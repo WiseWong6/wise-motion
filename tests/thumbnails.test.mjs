@@ -27,7 +27,7 @@ test('历史左栏全部接入对应原作缩略图，静态单帧与原片定�
     };
     d.querySelector('[data-kind="recipe"]').click();
     const cards=[...d.querySelectorAll('#effects-list .effect-item')];
-    assert.equal(cards.length,283);assert.equal(drawn.length,0);
+    assert.equal(cards.length,277);assert.equal(drawn.length,0);
     env.reveal();await w.MotionThumbs.whenIdle();
     const counts={image:0,canvas:0,video:0};
     for(const card of cards){
@@ -45,7 +45,7 @@ test('历史左栏全部接入对应原作缩略图，静态单帧与原片定�
         assert.equal(video.currentTime,(preview.start||0)+preview.duration*.65,effect.name);
       }
     }
-    assert.deepEqual(counts,{image:205,canvas:75,video:3});assert.equal(new Set(drawn).size,75);
+    assert.deepEqual(counts,{image:199,canvas:75,video:3});assert.equal(new Set(drawn).size,75);
     assert.equal(played(),0);assert.equal(w.MotionRuntime.instanceCount,1);
     assert.equal(w.MotionHistoryRuntime.instanceCount,0);assert.equal(env.listeners.size,3);
     assert.equal(w.MotionRuntime.runningCount,0);assert.equal(w.MotionHistoryRuntime.runningCount,0);
@@ -125,7 +125,7 @@ test('离开页面释放缩略图，返回后恢复，旧的异步绘制不能�
     };
     w.dispatchEvent(new w.Event('pageshow'));env.reveal();await w.MotionThumbs.whenIdle();
     assert.equal(d.querySelectorAll('.thumb canvas[data-entry]').length,75);
-    assert.equal(d.querySelectorAll('.thumb img').length,205);assert.equal(d.querySelectorAll('.thumb video').length,3);
+    assert.equal(d.querySelectorAll('.thumb img').length,200);assert.equal(d.querySelectorAll('.thumb video').length,3);
     assert.notEqual(d.querySelector('.thumb canvas'),oldCanvas);assert.equal(w.MotionRuntime.instanceCount,1);
     assert.equal(w.MotionHistoryRuntime.instanceCount,0);assert.equal(env.listeners.size,3);
   }finally{close(env);}

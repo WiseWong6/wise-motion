@@ -50,7 +50,7 @@
     const isScroll = /滚动|滚屏|走马灯/.test(positive);
     const isDual = /两排|双排|上下两行|上下两排|反向|相反方向/.test(positive);
     const isChain = /环境|连锁|经过.*反应|带动.*周围/.test(positive);
-    const scrollTarget=/刹停|减速.*停/.test(positive)?'scroll-brake':/轮播|停留/.test(positive)?'dwell-carousel':/纵向|终端|续接/.test(positive)?'vertical-feed':/滚筒|圆柱|转经筒/.test(positive)?'cylinder-drum':null;
+    const scrollTarget=/刹停|减速.*停/.test(positive)?'scroll-brake':/轮播|停留/.test(positive)?'dwell-carousel':/纵向|终端|续接/.test(positive)?'vertical-feed':null;
     return registry.effects.flatMap(e => {
       if (explicit.includes(e.id) || prohibited.some(([, test]) => test(e))) return [];
       // “持续滚动”和“主体引起环境反应”是结构要求，不能用相似视觉代替。

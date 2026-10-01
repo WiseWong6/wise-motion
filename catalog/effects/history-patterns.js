@@ -303,10 +303,6 @@
     const points=[[145,255],[245,155],[450,155],[450,250]],s=stage(root,rect('button',395,130,110,50)+text('label',450,163,'确认',22)+'<path data-part="cursor" d="M0 0 L0 23 L6 17 L13 28 L18 25 L12 15 L23 15 Z" fill="var(--ink)"/>');
     return p=>{const t=Math.min(2.999,p*3),i=Math.floor(t),q=smooth(t-i),a=points[i],b=points[i+1];move(s,'cursor',a[0]+(b[0]-a[0])*q,a[1]+(b[1]-a[1])*q);const press=section(p,.65,.7)*(1-section(p,.7,.76));s('button',{transform:`translate(450 155) scale(${1-.08*press}) translate(-450 -155)`});};
   });
-  register('cylinder-drum',(root) => {
-    const s=stage(root,line('axis',320,70,320,290,'stroke-dasharray="4 5"')+list(8,i=>`<g data-part="card${i}">${rect('r'+i,-55,-50,110,100)}${text('w'+i,0,8,String(i+1),28)}</g>`));
-    return p=>{for(let i=0;i<8;i++){const a=i/8*Math.PI*2-p*Math.PI*2,c=Math.cos(a);s('card'+i,{transform:`translate(${320+185*Math.sin(a)} 180) scale(${Math.max(.015,Math.abs(c))} 1)`,opacity:c>0?.3+.7*c:0});}};
-  });
   register('load-balance',(root) => {
     const s=stage(root,line('stand',320,165,320,285)+'<g data-part="beam">'+line('bar',190,165,450,165)+[190,450].map((x,i)=>`<g data-part="pan${i}">${line('cord'+i,0,0,0,65)}${rect('tray'+i,-45,60,90,15)}</g>`).join('')+'</g>'+rect('load',410,0,55,34));
     return p=>{const entry=section(p,.08,.3),q=smooth(section(p,.32,.75)),angle=14*q;s('beam',{transform:`rotate(${angle} 320 165)`});move(s,'pan0',190,165,1,-angle);move(s,'pan1',450,165,1,-angle);const x=320+130*Math.cos(angle*Math.PI/180),y=165+130*Math.sin(angle*Math.PI/180);s('load',{x:x-27.5,y:(y+26)*entry});};
