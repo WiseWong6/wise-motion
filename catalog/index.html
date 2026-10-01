@@ -1,0 +1,184 @@
+<!doctype html>
+<!-- Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only -->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>Wise Motion · 动效工作台</title>
+  <script>
+    (function () {
+      try {
+        var mode = localStorage.getItem('wise-motion-theme');
+        if (mode === 'light' || mode === 'dark') document.documentElement.dataset.theme = mode;
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="scenes.css"><link rel="stylesheet" href="app.css"><link rel="stylesheet" href="history.css">
+</head>
+<body>
+  <a class="skip-link" href="#preview-title">跳到当前动效</a>
+
+  <button id="directory-backdrop" class="directory-backdrop" type="button" aria-label="关闭动效目录" tabindex="-1" hidden></button>
+
+  <main class="workbench">
+    <aside class="sidebar-shell" aria-label="动效侧边栏">
+      <header class="sidebar-header">
+        <a class="brand" href="index.html"><img class="brand-mark" src="wise-avatar.webp" alt="" width="22" height="22">Wise Motion</a>
+        <div class="sidebar-actions">
+          <button id="theme-toggle" class="icon-btn theme-toggle" type="button" aria-label="外观：跟随系统" title="跟随系统"><span data-icon="theme-monitor"></span></button>
+          <button id="toggle-directory" class="icon-btn" type="button" aria-controls="directory-panel" aria-expanded="true" aria-label="收起动效目录" title="收起动效目录"><span data-icon="panel-collapse"></span></button>
+        </div>
+      </header>
+      <div id="directory-panel" class="directory" aria-label="动效目录">
+        <div class="directory-caption">
+          <span>动效目录</span>
+          <button id="close-directory" class="icon-btn" type="button" aria-label="关闭动效目录"><span data-icon="close"></span></button>
+        </div>
+        <div class="directory-top">
+          <div class="kind-tabs" role="group" aria-label="参考层级">
+            <button data-kind="action" aria-pressed="true">单个动作 <span class="pill-count">71</span></button>
+            <button data-kind="composition" aria-pressed="false">组合片段 <span class="pill-count">6</span></button>
+            <button data-kind="recipe" aria-pressed="false">历史配方 <span class="pill-count">289</span></button>
+          </div>
+          <div class="domain-tabs" role="group" aria-label="内容范围">
+            <button type="button" data-domain="all" aria-pressed="true">全部</button>
+            <button type="button" data-domain="animation" aria-pressed="false">动画</button>
+            <button type="button" data-domain="document" aria-pressed="false">文稿</button>
+          </div>
+          <div class="search-control select-control">
+            <div class="search">
+              <span data-icon="magnifying-glass" aria-hidden="true"></span>
+              <input id="search" type="search" placeholder="搜索动作或描述需求" aria-label="中文搜索动效">
+              <button id="category-filter" type="button" class="search-filter" aria-label="按运动行为筛选" aria-haspopup="listbox" aria-expanded="false" aria-controls="category-options" title="按运动行为筛选">
+                <span data-icon="chevron-down"></span>
+              </button>
+            </div>
+            <div id="category-options" class="select-menu scroll-area" role="listbox" aria-label="运动行为分类" hidden></div>
+          </div>
+          <div id="match-note" class="match-note" hidden></div>
+        </div>
+        <nav id="effects-list" class="effects-list scroll-area" aria-label="选择动作"></nav>
+        <div id="empty" class="empty" hidden>
+          <strong>还没有合适的参考</strong>
+          <p>试着说清谁在动、怎样动，以及不要什么。</p>
+          <button class="btn btn-outline" id="clear-search">清空筛选</button>
+        </div>
+      </div>
+    </aside>
+
+    <section class="stage" aria-label="动效预览">
+      <div class="stage-canvas">
+        <button id="previous-effect" class="icon-btn stage-nav" type="button" aria-label="上一个动效" aria-controls="preview" aria-keyshortcuts="ArrowLeft" title="上一个动效（←）" disabled><span data-icon="chevron-right"></span></button>
+        <div class="preview-shell">
+          <div id="preview" class="motion-viewport" aria-hidden="true"></div>
+          <div class="playbar" role="group" aria-label="动效播放控制">
+            <span class="playbar-glass" aria-hidden="true"></span>
+            <div class="playback-timeline">
+              <span id="time-current" aria-hidden="true">0.0</span>
+              <label class="scrub"><span class="sr-only">定位时间</span><input id="scrub" aria-describedby="time" type="range" min="0" max="1000" value="0" step="1"></label>
+              <span id="time-total" aria-hidden="true">3.0</span>
+            </div>
+            <div class="playback-controls">
+              <div class="playback-leading">
+                <button id="restart" class="icon-btn" aria-label="重播当前动效" title="重播"><span data-icon="arrow-path"></span></button>
+              </div>
+              <button id="toggle-play" class="icon-btn playback-main" aria-label="播放当前动效" title="播放"><span data-icon="play"></span></button>
+              <div class="playback-trailing">
+                <button class="icon-btn" id="fullscreen" aria-label="全屏预览" title="全屏预览"><span data-icon="expand"></span></button>
+              </div>
+            </div>
+            <output id="time" class="sr-only">已播放 0.0 秒，剩余 3.0 秒</output>
+          </div>
+        </div>
+        <button id="next-effect" class="icon-btn stage-nav" type="button" aria-label="下一个动效" aria-controls="preview" aria-keyshortcuts="ArrowRight" title="下一个动效（→）" disabled><span data-icon="chevron-right"></span></button>
+      </div>
+      <p id="motion-setting" hidden></p>
+      <p id="selection-status" class="sr-only" role="status" aria-live="polite"></p>
+    </section>
+
+    <aside class="inspector" aria-label="动效说明、节奏与输出">
+      <div class="ins-intro">
+        <h1 id="preview-title" tabindex="-1">渐入上移</h1>
+        <p id="preview-summary"></p>
+        <dl class="preview-source" hidden>
+          <dt>来源：</dt>
+          <dd id="preview-source"></dd>
+        </dl>
+      </div>
+
+      <section class="ins-section">
+        <button class="ins-head" data-section="about" aria-expanded="true" aria-controls="ins-about"><span data-icon="chevron-right"></span><span class="ins-label">动效说明</span></button>
+        <div id="ins-about" class="ins-body">
+          <dl class="ins-facts" id="ins-facts"></dl>
+          <div id="history-details" hidden></div>
+        </div>
+      </section>
+
+      <section class="ins-section">
+        <button class="ins-head" data-section="tempo" aria-expanded="true" aria-controls="ins-tempo"><span data-icon="chevron-right"></span><span class="ins-label">节奏设置</span></button>
+        <div id="ins-tempo" class="ins-body">
+          <div class="field">
+            <div class="field-head">
+              <label class="field-label" for="speed">播放速度</label>
+              <div class="speed-control">
+                <div class="stepper">
+                  <button type="button" class="step-btn" id="speed-down" data-icon="minus" aria-label="降低播放速度" title="降低播放速度"></button>
+                  <input id="speed-value" class="step-input" type="text" inputmode="decimal" autocomplete="off" spellcheck="false" aria-label="播放速度数值">
+                  <button type="button" class="step-btn" id="speed-up" data-icon="plus" aria-label="提高播放速度" title="提高播放速度"></button>
+                </div>
+              </div>
+            </div>
+            <input id="speed" type="range" min="0.5" max="2" value="1" step="0.25">
+          </div>
+          <div class="field" id="ease-label">
+            <div class="field-head"><span class="field-label" id="ease-text">速度变化</span></div>
+            <div class="select-control">
+              <button id="ease" type="button" class="select-trigger" aria-labelledby="ease-text" aria-haspopup="listbox" aria-expanded="false" aria-controls="ease-options"></button>
+              <div id="ease-options" class="select-menu scroll-area" role="listbox" aria-label="速度变化" hidden></div>
+            </div>
+          </div>
+          <p id="fixed-ease" class="hint" hidden>连续滚动保持匀速，只调整整体快慢。</p>
+          <div id="related"></div>
+        </div>
+      </section>
+
+      <section class="ins-section inspector-content">
+        <button class="ins-head" data-section="output" aria-expanded="true" aria-controls="ins-output"><span data-icon="chevron-right"></span><span class="ins-label">输出</span></button>
+        <div id="ins-output" class="ins-body">
+          <div class="output-tabs" role="tablist" aria-label="动效输出">
+            <button id="tab-prompt" role="tab" aria-selected="true" aria-controls="panel-prompt" data-tab="prompt" tabindex="0">提示词</button>
+            <button id="tab-code" role="tab" aria-selected="false" aria-controls="panel-code" data-tab="code" tabindex="-1">代码</button>
+          </div>
+          <section id="panel-prompt" role="tabpanel" aria-labelledby="tab-prompt">
+            <div class="output-box">
+              <div class="output-head">
+                <span class="output-label">代码块</span>
+                <button id="copy-prompt" class="copy-btn" data-copy="prompt" aria-label="复制提示词" title="复制提示词"><span class="copy-morph" aria-hidden="true"><span class="copy-morph-icon" data-icon="clipboard-document"></span><span class="copy-morph-icon" data-icon="check"></span></span></button>
+              </div>
+              <pre id="prompt" class="prompt-output" tabindex="0"></pre>
+            </div>
+            <p id="copy-status-prompt" class="copy-status" role="status" aria-live="polite"></p>
+          </section>
+          <section id="panel-code" role="tabpanel" aria-labelledby="tab-code" hidden>
+            <div class="output-box">
+              <div class="output-head">
+                <span class="output-label">代码块</span>
+                <button id="copy-code" class="copy-btn" data-copy="code" aria-label="复制代码" title="复制代码"><span class="copy-morph" aria-hidden="true"><span class="copy-morph-icon" data-icon="clipboard-document"></span><span class="copy-morph-icon" data-icon="check"></span></span></button>
+              </div>
+              <pre id="code" class="code-output" tabindex="0"></pre>
+            </div>
+            <p id="copy-status-code" class="copy-status" role="status" aria-live="polite"></p>
+          </section>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <script src="../vendor/liquid-glass/liquid-glass.js"></script><script src="player-glass.js"></script>
+  <script src="../vendor/animejs/anime.umd.min.js"></script>
+  <script src="registry-data.js"></script><script src="matching.js"></script><script src="runtime.js"></script>
+  <script src="history-data.js"></script><script src="history-runtime.js"></script>
+  <script src="effects/entrance.js"></script><script src="effects/continuous.js"></script><script src="effects/attention.js"></script><script src="effects/space.js"></script><script src="effects/transition.js"></script><script src="effects/environment.js"></script><script src="effects/compositions.js"></script>
+  <script src="effects/history-patterns.js"></script>
+  <script src="../vendor/heroicons/icons.js"></script><script src="thumbnails.js"></script><script src="dropdown.js"></script><script src="export.js"></script><script src="app.js"></script>
+</body></html>

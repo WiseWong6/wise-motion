@@ -1,0 +1,41 @@
+{
+  "id": "dither-lab-book",
+  "name": "立体翻页书",
+  "kind": "action",
+  "category": "space",
+  "summary": "纸页围绕固定书脊翻转，正反面内容与阴影连续承接。",
+  "purpose": "展示翻页、书脊固定和双面纸张的空间关系",
+  "aliases": ["立体书", "翻页", "书本", "纸张", "图稿", "3D Dither Lab Book"],
+  "behaviors": ["rotate", "reveal", "settle"],
+  "phases": [
+    "轻微调整书本俯视角度，同时连续快速翻十次。",
+    "向前翻两页，纸张绕书脊转过半周，正面切换为背面。",
+    "再向后翻两页，纸张沿原路回到右侧，恢复原页序。"
+  ],
+  "retain": "固定书脊、左右基础页与活动纸页共存，正反面及阴影随角度变化。",
+  "avoid": "不要只换图片或让整本书横向旋转。",
+  "duration_ms": 7600,
+  "loop": false,
+  "default_ease": "outCubic",
+  "parameters": {
+    "speed": {"label": "播放速度", "default": 1, "min": 0.5, "max": 2, "step": 0.25}
+  },
+  "source": {
+    "path": "catalog/lab/dither-book/book.js",
+    "factory": "dither-lab-book",
+    "origin": "original",
+    "license": "AGPL-3.0-only",
+    "library": "animejs@4.5.0",
+    "reference_url": "https://amicro.vercel.app/3d"
+  },
+  "actions": [],
+  "demo_mode": "fixed-timeline",
+  "preview_ms": 3390,
+  "recommendation": "适合书页、作品集和图稿浏览。保留固定书脊与纸张正反面的衔接。",
+  "tempo_note": "入场快翻使用匀速，普通翻页先快后慢；调整播放速度保留阶段关系。",
+  "objects": "奶油色纸页与六幅自绘几何插图",
+  "analogy": "翻阅一本有纸张厚度的图稿册",
+  "trigger": "目录演示按固定时间播放；独立预览另支持真实点击、方向键和纸页设置。",
+  "assumptions": "画面使用本地矢量插图和程序绘制的纸纹。仅参考原组件的行为与空间关系，未移植其代码或图片。",
+  "domains": ["animation", "document"]
+}

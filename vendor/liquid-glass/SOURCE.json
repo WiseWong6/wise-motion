@@ -1,0 +1,26 @@
+{
+  "name": "liquid-glass",
+  "author": "Deepika Rao",
+  "repository": "https://github.com/deepika-builds/liquid-glass",
+  "commit": "98ed97bd99def529493fd37177228810f6422f6d",
+  "license": "MIT",
+  "retrieved": "2026-10-01",
+  "modified": true,
+  "modifications": [
+    "保留原折射算法，补充版权与修改说明",
+    "缺少 CSS 或 ResizeObserver 能力时降级",
+    "首次位移图生成失败时清理滤镜",
+    "最后一个实例销毁时移除共享 SVG 容器"
+  ],
+  "upstream_sha256": "dfadcbd3e72646a156bab4f0bde4bfa3baae6ea7ebd54659ccb71fcb6ecfd752",
+  "files": {
+    "liquid-glass.js": {
+      "bytes": 9241,
+      "sha256": "4c721f284ec2ca09236cd9a1daa487837eb0df8207899c629807d718d4197c5e"
+    },
+    "LICENSE": {
+      "bytes": 1068,
+      "sha256": "b79a118386f46c7ef7469df5abcc0d3b49b19e6497d6788642247d9a109d4341"
+    }
+  }
+}

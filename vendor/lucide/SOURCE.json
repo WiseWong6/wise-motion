@@ -1,0 +1,15 @@
+{
+  "version": "1.8.0",
+  "license": "ISC AND MIT",
+  "source": "https://github.com/lucide-icons/lucide/tree/1.8.0",
+  "license_source": "https://raw.githubusercontent.com/lucide-icons/lucide/1.8.0/LICENSE",
+  "embedded_in": "catalog/app.js",
+  "modified": true,
+  "modifications": "按现有内联图标的声明核对来源；改写外层尺寸、笔画和可访问属性。侧栏展开与收起箭头为本地适配。保留 Lucide 和其中 Feather 来源的完整版权与许可。",
+  "files": {
+    "LICENSE": {
+      "bytes": 3208,
+      "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57"
+    }
+  }
+}

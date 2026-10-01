@@ -1,0 +1,6 @@
+interface:
+  display_name: "Wise Motion"
+  short_description: "讲清动效需求，匹配本地动作参考与源码"
+  default_prompt: "使用 $wise-motion，帮我把动效需求讲清楚，并找到符合动作关系和禁项的本地参考与源码。"
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,24 @@
+{
+  "name": "animejs",
+  "version": "4.5.0",
+  "license": "MIT",
+  "source": "https://github.com/juliangarnier/anime/tree/v4.5.0",
+  "tarball": "https://registry.npmjs.org/animejs/-/animejs-4.5.0.tgz",
+  "package_integrity": "sha512-NQimYX+lz8WaXonGS9zVVoviCIAjONeJayxacUditaivYLqyXgGjFKjuyl0aUUhFKm5MriX9ty1TGovNzoJQWA==",
+  "tarball_sha256": "f1bf4be22ae739bbfefd3ec3651a37a7d178dfa8ce782b0ebe5e39347fcb1706",
+  "files": {
+    "anime.umd.min.js": {
+      "bytes": 118043,
+      "sha256": "8d5b3a58a1f64023a04a4cedeef135a2263b18da04b35177ac13438a0bad033b"
+    },
+    "anime.umd.js": {
+      "bytes": 429444,
+      "sha256": "141b818417c67df8467fdc6bd5a32e77ddb1b520e86d2fee496b1e43ba8b8ec9"
+    },
+    "LICENSE.md": {
+      "bytes": 1075,
+      "sha256": "3f3e835a9952cfc2a6ca836fb95b3257c981f24fa3ef51249055acb09931897b"
+    }
+  },
+  "modified": false
+}
