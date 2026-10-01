@@ -17,8 +17,8 @@ async function historyEnvironment(withApp=false){
 }
 test('每条历史审查均有出处，案例源码与原片范围没有混并，原源码保持只读',async()=>{
   const snapshot=JSON.parse(await readFile(state+'/source-snapshot.json','utf8'));
-  assert.deepEqual(historical.counts,{reviewed:292,recipes:285,entries:307,animation:224,document:61});
-  assert.equal(historical.excluded.length,7);
+  assert.deepEqual(historical.counts,{reviewed:292,recipes:283,entries:305,animation:224,document:59});
+  assert.equal(historical.excluded.length,9);
   for(const r of historical.recipes){
     const original=snapshot.rules.find(x=>x.id===r.history_id);
     assert.ok(r.review.reuse_contract.clock);assert.ok(r.retain.includes(r.review.extraction));
@@ -88,7 +88,7 @@ test('历史目录筛选与多案例切换同步输出、源码和时长，前�
     const {w}=env,d=w.document;
     const originalCreate=w.MotionHistoryRuntime.create;
     w.MotionHistoryRuntime.create=(root,e,options)=>originalCreate(root,e,{...options,mount:async canvas=>({render(t){canvas.dataset.time=String(t);},dispose(){}})});
-    d.querySelector('[data-kind="recipe"]').click();assert.equal(d.querySelectorAll('#effects-list [data-effect]').length,285);
+    d.querySelector('[data-kind="recipe"]').click();assert.equal(d.querySelectorAll('#effects-list [data-effect]').length,283);
     const effect=w.MotionHistory.recipes.find(r=>r.entries.length>1&&new Set(r.entries.map(e=>e.preview.duration)).size>1);
     d.querySelector(`[data-effect="${effect.id}"]`).click();await tick();
     assert.equal(w.MotionRuntime.instanceCount,0);assert.equal(w.MotionHistoryRuntime.instanceCount,1);

@@ -72,10 +72,10 @@ for (const [, resource] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
   assert.ok((await stat(path.resolve(root, 'catalog', resource))).isFile(), '缺少目录资源：' + resource);
 }
 const historical=await history(data);
-assert.equal(historical.counts.reviewed,292);assert.equal(historical.counts.recipes,285);
-assert.equal(historical.counts.entries,307);assert.equal(historical.counts.document,61);
-assert.equal(historical.excluded.length,7);
-assert.equal(new Set(historical.recipes.map(x=>x.id)).size,285);
+assert.equal(historical.counts.reviewed,292);assert.equal(historical.counts.recipes,283);
+assert.equal(historical.counts.entries,305);assert.equal(historical.counts.document,59);
+assert.equal(historical.excluded.length,9);
+assert.equal(new Set(historical.recipes.map(x=>x.id)).size,283);
 assert.ok(historical.recipes.every(r=>r.entries.length&&r.source_clock&&r.source_parameters&&r.review.preserve.length));
 const ownFiles = ['catalog/runtime.js','catalog/history-runtime.js','catalog/history.css','catalog/export.js','catalog/dropdown.js','catalog/matching.js','catalog/app.js','catalog/app.css','catalog/scenes.css','catalog/book-controls.js','catalog/book-controls.css', ...files];
 for (const file of ownFiles) {
@@ -93,4 +93,4 @@ const build = spawnSync(process.execPath, [path.join(root, 'scripts/build.mjs'),
 assert.equal(build.status, 0, build.stderr);
 const markdown = ['README.md','SKILL.md','NOTICE.md','references/index.md','references/history.md','references/method.md','references/sources.md','references/runtime-interface.md','references/apple-hig.md','tests/manual.md', ...data.effects.map(e => 'references/effects/' + e.id + '.md')];
 for (const file of markdown) for (const [, link] of (await read(file)).matchAll(/\]\(([^)]+)\)/g)) if (!/^(https?:|#)/.test(link)) assert.ok((await stat(path.resolve(root, path.dirname(file), link))).isFile(), file + ' 的链接缺失：' + link);
-console.log('检查通过：79 个动作、6 个组合、285 条历史配方与 307 个案例；定义、来源路径、生成文件、许可和脚本语法完整。');
+console.log('检查通过：79 个动作、6 个组合、283 条历史配方与 305 个案例；定义、来源路径、生成文件、许可和脚本语法完整。');
