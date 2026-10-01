@@ -1875,6 +1875,67 @@
       ]
     },
     {
+      "id": "dual-scroll-settle",
+      "name": "双带对向滚动后停住",
+      "kind": "composition",
+      "category": "compositions",
+      "summary": "上下两排空白卡片反向滚动，减速后停住。",
+      "purpose": "连续展示有限的一组图形卡片并停留供观看",
+      "aliases": [
+        "左右对向滚动",
+        "双带滚动刹停",
+        "双带对向滚动后停住"
+      ],
+      "behaviors": [
+        "continuous",
+        "seamless",
+        "linear",
+        "move"
+      ],
+      "phases": [
+        "上带从左侧、下带从右侧进入。",
+        "两带保持固定间距，以相反方向连续滚动。",
+        "同时减速停住，保留最后一组卡片。"
+      ],
+      "retain": "上带右行、下带左行；整带同速、卡距固定，末段减速停止。",
+      "avoid": "不要重复首组伪装循环，不要用逐张切换替代整带滚动。",
+      "duration_ms": 1500,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/flow-bands.js",
+        "factory": "dual-scroll-settle",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [
+        "scroll-brake"
+      ],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 1300,
+      "recommendation": "适合有限内容连续展示后停住；需要一直循环时使用双排反向持续滚动。",
+      "tempo_note": "保留进入、巡航、刹停三个阶段，速度控件改变整体快慢。",
+      "objects": "上下各三张空白卡片",
+      "analogy": "两条方向相反的传送带",
+      "trigger": "打开预览后按固定顺序播放；可暂停和定位时间。",
+      "assumptions": "仅用六张黑白灰空白卡片说明运动；不使用原作素材、文稿和配色。",
+      "domains": [
+        "animation",
+        "document"
+      ]
+    },
+    {
       "id": "subtitle-focus",
       "name": "字幕引导注意",
       "kind": "composition",
@@ -4822,63 +4883,6 @@
       "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。",
       "domains": [
         "animation",
-        "document"
-      ]
-    },
-    {
-      "id": "cylinder-drum",
-      "name": "圆柱投影转动",
-      "kind": "action",
-      "category": "space",
-      "summary": "条目沿圆柱角度运动，边缘横向压缩并退弱。",
-      "purpose": "条目沿圆柱角度运动，边缘横向压缩并退弱。",
-      "objects": "圆柱上的内容条目",
-      "phases": [
-        "条目位于可见半圆。",
-        "转动时位置和横向比例一起变化。",
-        "背面条目隐藏并从另一侧接入。"
-      ],
-      "aliases": [
-        "圆柱投影转动",
-        "滚筒",
-        "转经筒",
-        "圆柱"
-      ],
-      "behaviors": [
-        "continuous",
-        "rotation3d"
-      ],
-      "retain": "条目沿圆柱角度运动，边缘横向压缩并退弱。",
-      "avoid": "不要用两排平面滚动代替圆柱投影。",
-      "duration_ms": 4000,
-      "loop": true,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "source": {
-        "path": "catalog/effects/history-patterns.js",
-        "factory": "cylinder-drum",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "preview_ms": 2640,
-      "recommendation": "适合条目沿圆柱角度运动，边缘横向压缩并退弱。保留对象关系和先后顺序。",
-      "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
-      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
-      "analogy": "条目沿圆柱角度运动，边缘横向压缩并退弱。",
-      "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。",
-      "domains": [
         "document"
       ]
     },

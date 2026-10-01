@@ -115,7 +115,8 @@
   const categories = MotionDropdown($('category-filter'), $('category-options'), {
     iconOnly: true,
     hoverRoot: searchControl,
-    anchor: searchControl.querySelector('.search')
+    anchor: searchControl.querySelector('.search'),
+    blocked: () => $('search').value.trim() !== ''
   });
   const easing = MotionDropdown($('ease'), $('ease-options'));
 
@@ -145,18 +146,12 @@
     const candidates = query ? matches.map(m => m.effect) : data.effects;
     const effects = candidates.filter(e => e.kind === kind && (category === 'all' || e.category === category));
     $('empty').hidden = !!effects.length;
-    $('match-note').hidden = !query || !matches.length;
-    if (query && matches.length) {
-      const match = matches.find(m => m.effect.id === effects[0]?.id) || matches[0];
-      $('match-note').textContent = effects.length ? `匹配依据：${match.matched.join('、')}。` : `匹配到「${match.effect.name}」，请切到${match.effect.kind === 'action' ? '单个动作' : '组合片段'}的全部分类。`;
-    }
     const list = $('effects-list');
     const focusedId = list.contains(document.activeElement) ? document.activeElement.dataset.effect : null;
     list.querySelectorAll('.thumb').forEach(host => MotionThumbs.release(host));
     list.replaceChildren();
-    const groups = query ? [{id:'matches', name:'匹配结果'}] : data.categories;
-    for (const group of groups) {
-      const items = query ? effects : effects.filter(e => e.category === group.id);
+    for (const group of data.categories) {
+      const items = effects.filter(e => e.category === group.id);
       if (!items.length) continue;
       const open = !collapsed.has(group.id);
       const section = document.createElement('section');
@@ -208,7 +203,7 @@
     if (!id) return false;
     const focusInList = $('effects-list').contains(document.activeElement);
     const effect = data.effects.find(effect => effect.id === id);
-    const group = $('search').value.trim() ? 'matches' : effect.category;
+    const group = effect.category;
     collapsed.delete(group);
     $('effects-list').querySelector(`[data-group="${group}"]`)?.setAttribute('aria-expanded', 'true');
     selectEffect(id);
@@ -564,6 +559,7 @@
     $('preview-title').focus();
   });
   $('search').addEventListener('input', () => {
+    if ($('search').value.trim()) categories.close();
     clearTimeout(debounce);
     debounce = setTimeout(() => { debounce = null; renderList(); }, 120);
   });

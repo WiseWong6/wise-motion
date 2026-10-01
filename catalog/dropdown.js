@@ -58,6 +58,7 @@
 
     function open({focus = true} = {}) {
       clearTimeout(leaveTimer);
+      if (settings.blocked?.()) { close(); return; }
       if (!options.length) return;
       if (opened()) {
         if (focus) { hoverOpened = false; focusOption(Math.max(0, options.findIndex(option => option.value === trigger.value))); }
