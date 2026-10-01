@@ -1,0 +1,37 @@
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createRequire} from 'node:module';
+import {data} from './helpers.mjs';
+const {rank, describe} = createRequire(import.meta.url)('../catalog/matching.js');
+test('持续滚动保留双排反向，不退化成轮播', () => {
+  const result = rank(data, '上下两排卡片反向持续滚动，不要轮播，不要停顿');
+  assert.equal(result[0].effect.id, 'dual-scroll');
+  assert.ok(result.every(x => x.effect.id === 'dual-scroll'));
+  assert.ok(result[0].excluded.includes('逐张切换'));
+  assert.equal(rank(data, '一排内容一直无缝滚动')[0].effect.id, 'seamless-scroll');
+});
+test('逐项呈现、标题关系与环境因果得到对应本地参考', () => {
+  assert.equal(rank(data, '四张卡片依次出现，按顺序')[0].effect.id, 'stagger-in');
+  assert.equal(rank(data, '标题先出现，然后内容依次展开')[0].effect.id, 'title-content');
+  const chain = rank(data, '主体经过环境，引发连锁反应');
+  assert.equal(chain[0].effect.id, 'environment-chain');
+  assert.ok(chain.every(x => x.effect.id === 'environment-chain'));
+});
+test('自然变成可解释的推荐，禁项与无匹配不被掩盖', () => {
+  const natural = rank(data, '卡片自然一点，轻轻进入');
+  assert.equal(natural[0].effect.id, 'fade-rise');
+  assert.match(describe(natural[0].effect), /末尾减速/);
+  assert.ok(!rank(data, '卡片翻转，不要翻面').some(x => x.effect.id === 'card-flip'));
+  assert.ok(!rank(data, '卡片翻转，不翻面').some(x => x.effect.id === 'card-flip'));
+  assert.equal(rank(data, '不要轮播而是两排卡片反向持续滚动')[0].effect.id, 'dual-scroll');
+  assert.equal(rank(data, '无缝滚动，不要循环').length, 0);
+  assert.equal(rank(data, '让三维液体表面生成真实湍流').length, 0);
+});
+test('动作说明同时提供要求、假设、当前节奏与源码', () => {
+  const effect = data.effects.find(x => x.id === 'dual-scroll');
+  const text = describe(effect, {speed:2,ease:'spring'}, data);
+  for (const label of ['目的：','对象：','动作阶段：','节奏：','触发与联动：','需要保留：','明确排除：','对应参考：','源码：','关键假设：']) assert.ok(text.includes(label));
+  assert.match(text, /4\.00 秒/); assert.match(text, /匀速/); assert.doesNotMatch(text, /轻微回弹/);
+  assert.match(text, /无缝滚动/);
+});

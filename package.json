@@ -1,0 +1,14 @@
+{
+  "name": "wise-motion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "讲清动效需求，匹配本地动作参考与源码",
+  "license": "AGPL-3.0-only",
+  "engines": {"node": "^24.15.0 || >=26"},
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node scripts/check.mjs && node --test tests/*.test.mjs"
+  },
+  "devDependencies": {"jsdom": "30.1.1"}
+}

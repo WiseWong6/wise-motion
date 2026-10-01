@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>立体翻页书 · Wise Motion</title>
+  <link rel="stylesheet" href="preview.css">
+</head>
+<body>
+  <header class="page-header">
+    <a href="../../index.html" class="brand">Wise Motion</a>
+    <div class="header-actions"><a href="https://amicro.vercel.app/3d" target="_blank" rel="noopener">查看原版 ↗</a><button id="theme" type="button" aria-label="切换深浅外观">切换外观</button></div>
+  </header>
+  <main>
+    <div class="intro"><p class="eyebrow">单项试作 · 等待验收</p><h1>立体翻页书</h1><p>固定书脊，翻过一张纸。正反面的内容与阴影一起承接。</p></div>
+    <section class="workbench" aria-label="翻页书预览">
+      <div class="mode-bar" role="group" aria-label="体验方式">
+        <button type="button" id="interactive-mode" aria-pressed="true">交互体验</button>
+        <button type="button" id="demo-mode" aria-pressed="false">时间演示</button>
+        <button id="settings-toggle" type="button" aria-controls="settings" aria-expanded="false">纸页设置</button>
+      </div>
+      <div id="book-host" tabindex="0" aria-label="立体翻页书，交互模式下左右方向键翻页"></div>
+      <div id="interactive-controls" class="book-navigation">
+        <button id="prev" type="button">‹ 上一页</button>
+        <output id="page-label" aria-live="polite">图稿 01 / 06</output>
+        <button id="next" type="button">下一页 ›</button>
+      </div>
+      <div id="demo-controls" class="demo-controls" hidden>
+        <button id="play" type="button">播放</button><button id="replay" type="button">重播</button>
+        <input id="time" type="range" min="0" max="7600" value="0" step="1" aria-label="演示时间">
+        <output id="time-label">0.0 / 7.6 秒</output>
+        <label class="speed-label">速度<select id="speed"><option value=".5">0.5 倍</option><option value="1" selected>1 倍</option><option value="1.5">1.5 倍</option><option value="2">2 倍</option></select></label>
+      </div>
+      <p id="mode-hint" class="hint">点击左右书页、使用下方按钮，或在书本上按左右方向键。</p>
+      <div class="minor-actions"><button id="intro-replay" type="button">重播入场</button><button id="reset-settings" type="button">重置纸页</button></div>
+      <section id="settings" class="settings-panel" aria-label="纸页设置" hidden>
+        <label for="padding"><span>图片留白</span><output id="padding-value">10 像素</output></label><input id="padding" type="range" min="0" max="30" value="10">
+        <label for="radius"><span>图片圆角</span><output id="radius-value">20 像素</output></label><input id="radius" type="range" min="0" max="40" value="20">
+        <label for="crease"><span>书脊阴影</span><output id="crease-value">11%</output></label><input id="crease" type="range" min="0" max="40" value="11">
+      </section>
+    </section>
+    <footer class="notes">
+      <p>效果参考 Amicro 的 <a href="https://amicro.vercel.app/3d" target="_blank" rel="noopener">3D Dither Lab Book</a>。本页保留点击翻页、快速入场和纸页设置；插图与纸纹替换成本地绘制内容。</p>
+      <p>这一项暂未纳入主目录。请重点观察正反面是否连续、书脊是否固定、上一页与下一页的方向，以及三个设置的即时变化。</p>
+    </footer>
+  </main>
+  <script src="../../../vendor/animejs/anime.umd.min.js"></script>
+  <script src="../../runtime.js"></script>
+  <script src="book.js"></script>
+  <script src="preview.js"></script>
+</body>
+</html>

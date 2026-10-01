@@ -1,0 +1,54 @@
+{
+  "version": "2.2.0",
+  "license": "MIT",
+  "source": "https://github.com/tailwindlabs/heroicons/tree/v2.2.0",
+  "modified": true,
+  "modifications": "仅将所用轮廓图标合并成普通本地脚本；统一外层尺寸及可访问属性，图形路径未修改。",
+  "original_svg_sha256": {
+    "arrow-up": "96d0150f6ca19bf60e55389884b69356718bb81f4bace10f2124853610941e46",
+    "viewfinder-circle": "e024efa54e28ede2d58e8cfee879912b349f8cdeaf50076a23f0a4e69bc6efcf",
+    "arrows-pointing-out": "c56d582414b52df330e6c3633a7604440a3743da8dbd5598818497ba3dcbc3f7",
+    "queue-list": "aa08b011e64493839e49d26fd8d200997e9d181b139b5ee951c4d8d498265914",
+    "arrows-right-left": "eab48554986c319d64191af3375fad9f9c638ee564320e9d306ae5f9be3b1873",
+    "arrow-trending-up": "95be57e0f5913b87a3927a0c1c361c1b9c0b363b35447865b510f3d86eb1a781",
+    "arrow-path": "b191971e5cd0347fb23ea91c87e7468b2a3759613d3dd928fdd326004a5542ae",
+    "arrows-up-down": "6cb83d5669ba0a46a1c04a3dfba0075cd19fc58a2c2de3f2da341c02c6c41326",
+    "hashtag": "9bb5eb6d3ea0c9a034c488ed6fa26900536152c0eb522122af25a4e9500f2bea",
+    "cursor-arrow-rays": "aa58e773150b36059f735a4bc891b008fb63dca5f498d1328e3aafc05db5876f",
+    "pencil-square": "21da72fcd66af3e386d554259ff8517124d0a2270975ffa3a69b5aa926959d4c",
+    "magnifying-glass-plus": "e70f02ce2cfc55925205cc79e55aeadba4796ae35ecd85f1d80bfadba026afc9",
+    "sparkles": "5287e3645dfb7c059018a63415e17aec7d31724102187669e83b1730f42fc07e",
+    "arrow-uturn-left": "f380cda0d31c7ef33412600a3ba007da040f3c0ccf0c374667adf6454e19f281",
+    "squares-2x2": "45f2eac7a2fda730f8ac492ed12431f894ae30b6469405f7468c788fe7963223",
+    "square-3-stack-3d": "21294b239b8f312fa44835fc135b5396cba1dcc8b86f0e03431c5e551b7249ba",
+    "rectangle-stack": "3a72740f2a315c6b1a377f73b72f5dd62a9db970423769610672ebe87dcddf41",
+    "document-duplicate": "33f61fb51ee237ffcba5d5c8a6993e205dc8bea0bff8e765efc2409b46c4f5d7",
+    "magnifying-glass": "3566eaf416d279baea18ebc5ccb5a9500f646a1afd42d1dc04f48581e24797eb",
+    "photo": "7097d901bd73841390a5a73f99193af198d3392bc84371e7063e520956eb7360",
+    "arrow-right": "2602a360312e14dc92da066780fed8e0b5eaf65e196b7d82b0e7cb5aed817015",
+    "sun": "e55df00558e838b63e6aeebc4af511b37a427f739ce1c4a63a8116a558b1b12e",
+    "radio": "ddcde47f2100546d8cfc20cc9ff1d357ae316ac04d770c5a0dc5160c257c93cc",
+    "bars-3-bottom-left": "e7e78dd544dd997c5217d3433eee69eafde89e25c5022798027101855dcb8dc9",
+    "chat-bubble-bottom-center-text": "33d884425ded4d602ed9a0998626530eb0af60846bac1c5493971edbd86ff790",
+    "film": "d40485c1eace7d01294cd8ce37db358ea59cc939bd41f5f11d9c85a3239a5f9d",
+    "document-text": "71f9dc980c507b7cfd044b7b322790f826e69cffcb6b06802c898502328a85b5",
+    "cursor-arrow-ripple": "1661d37bd73a184a8713a727329839c433de06405de468ebeec6ca8945b91a5f",
+    "share": "036b1908bbb0c4ae0f95a980a52b71a02396ef1851b75b8ee9d986aefcfbf55c",
+    "bars-3": "0e76cceaeef6685444adf1ccb47d743d791d30e19181289ce19d3fb5e5c7ed74",
+    "play": "88392682dbe1eac79795a5abe2c1b7a8eee73e696f9f770ffc7b0b851b898e8c",
+    "pause": "51d46111a245a9add33367dc8c9ff87724f7b68bec1a52d218b79b0a96fc5985",
+    "clipboard-document": "31c1926e8c961c0d5ca1287e193721b722f07b20e62364c3e55e26e6456d4bce",
+    "chevron-down": "2eacb6cecd8f1ab845a2a8417074b0dab9fd9612cdf56d76be45b82adb2933f5",
+    "check": "a38b003121485ad864240dd3145324deae133485f3ed28a8a9d99747912c5f18"
+  },
+  "files": {
+    "icons.js": {
+      "bytes": 18164,
+      "sha256": "ca66d1deb894ee9313999fee293b538bb4c0bd3aa3c1d04278425ca8865e1495"
+    },
+    "LICENSE": {
+      "bytes": 1071,
+      "sha256": "60e0b68c0f35c078eef3a5d29419d0b03ff84ec1df9c3f9d6e39a519a5ae7985"
+    }
+  }
+}

@@ -1,0 +1,229 @@
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* 从历史配方提炼的结构示例。保留身份、顺序与参数关系，不复制原作美术。 */
+(function (global) {
+  'use strict';
+  let serial = 0;
+  const F = global.MotionFactories = global.MotionFactories || {};
+  const ink = 'var(--ink)', muted = 'var(--muted)', panel = 'var(--panel)', path = 'var(--path)';
+  const list = (n, fn) => Array.from({length:n}, (_,i) => fn(i)).join('');
+  const attr = (name,value,extra) => new RegExp('(?:^|\\s)'+name+'\\s*=').test(extra) ? '' : ` ${name}="${value}"`;
+  const rect = (id,x,y,w,h,extra='') => `<rect data-part="${id}" x="${x}" y="${y}" width="${w}" height="${h}"${attr('rx',5,extra)}${attr('fill',panel,extra)}${attr('stroke',muted,extra)}${attr('stroke-width',.65,extra)} ${extra}/>`;
+  const dot = (id,x,y,r=8,extra='') => `<circle data-part="${id}" cx="${x}" cy="${y}" r="${r}"${attr('fill',ink,extra)} ${extra}/>`;
+  const text = (id,x,y,words,size=25,extra='') => `<text data-part="${id}" x="${x}" y="${y}" text-anchor="middle" font-size="${size}" fill="${ink}" ${extra}>${words}</text>`;
+  const line = (id,x1,y1,x2,y2,extra='') => `<line data-part="${id}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"${attr('stroke',muted,extra)}${attr('stroke-width',.85,extra)} ${extra}/>`;
+  function stage(root, markup) {
+    const ns = 'motion-pattern-' + (++serial);
+    root.innerHTML = `<svg class="pattern-svg" viewBox="0 0 640 360" width="640" height="360" style="color:${ink};font-family:inherit" aria-hidden="true">${markup.replaceAll('NAMESPACE',ns)}</svg>`;
+    const parts = new Map([...root.querySelectorAll('[data-part]')].map(x => [x.dataset.part,x]));
+    return (id, attrs) => { const el=parts.get(id); if (attrs) for (const [k,v] of Object.entries(attrs)) el.setAttribute(k,String(v)); return el; };
+  }
+  const setText = (s,id,words) => {s(id).textContent=words;};
+  const move = (s,id,x=0,y=0,scale=1,angle=0) => s(id,{transform:`translate(${x} ${y}) rotate(${angle}) scale(${scale})`});
+  function register(id, setup) {
+    F[id] = (root,K,definition) => {
+      const render=setup(root,K,definition);
+      return t => render(K.clamp(t/definition.duration_ms));
+    };
+  }
+  const smooth = p => 1-(1-Math.min(1,Math.max(0,p)))**3;
+  const section = (p,a,b) => Math.min(1,Math.max(0,(p-a)/(b-a)));
+
+  register('rigid-rebound',(root) => {
+    const s=stage(root,line('bar',210,180,430,180)+dot('left',0,0,16)+dot('right',0,0,16));
+    return p => {const q=section(p,.1,.8), overshoot=q===1?1:1-Math.exp(-7*q)*Math.cos(10*q), half=45+75*overshoot;move(s,'left',320-half,180);move(s,'right',320+half,180);s('bar',{x1:320-half,x2:320+half});};
+  });
+  register('mask-stagger-text',(root) => {
+    const s=stage(root,'<defs><clipPath id="NAMESPACE-window"><rect x="50" y="120" width="540" height="95"/></clipPath></defs><g clip-path="url(#NAMESPACE-window)">'+list(6,i=>text('c'+i,170+i*60,185,'表达更加清楚'[i],44))+'</g>');
+    return p=> {for(let i=0;i<6;i++){const q=smooth(section(p,.08+i*.075,.4+i*.075));s('c'+i,{transform:`translate(0 ${90*(1-q)})`});}};
+  });
+  register('stroke-draw',(root) => {
+    const s=stage(root,'<path data-part="stroke" d="M130 235 Q220 65 320 160 T510 120" fill="none" stroke="var(--ink)" stroke-width="4" pathLength="1" stroke-dasharray="1"/>');
+    return p=>s('stroke',{'stroke-dashoffset':1-smooth(section(p,.08,.85))});
+  });
+  register('underline-draw',(root) => {
+    const s=stage(root,text('body',320,166,'先说清楚，再做漂亮',35)+line('u0',145,186,145,186)+line('u1',356,186,356,186));
+    return p=> {s('u0',{x2:145+140*smooth(section(p,.12,.4))});s('u1',{x2:356+140*smooth(section(p,.48,.8))});};
+  });
+  register('vertical-feed',(root) => {
+    const rows=['建立问题','给出事实','解释原因','提出做法','核对结果','留下结论'];
+    const s=stage(root,'<defs><clipPath id="NAMESPACE-feed"><rect x="120" y="78" width="400" height="208"/></clipPath></defs><g clip-path="url(#NAMESPACE-feed)"><g data-part="rows">'+list(6,i=>text('row'+i,320,112+i*60,rows[i],27))+'</g></g>');
+    return p=>s('rows',{transform:`translate(0 ${-180*smooth(section(p,.15,.8))})`});
+  });
+  register('scroll-brake',(root) => {
+    const s=stage(root,line('guide',320,65,320,285,'stroke-dasharray="4 5"')+'<g data-part="belt">'+list(8,i=>rect('r'+i,i*150,120,130,120)+text('n'+i,i*150+65,190,String(i+1),32))+'</g>');
+    // 先匀速，随后速度线性减到零；终点正好对齐指定卡片。
+    return p=>{const v=300/.65,distance=p<.45 ? v*p : p<.85 ? v*.45+v*((p-.45)-(p-.45)**2/.8) : 300;s('belt',{transform:`translate(${320-65-distance} 0)`});};
+  });
+  register('dwell-carousel',(root) => {
+    const s=stage(root,'<defs><clipPath id="NAMESPACE-cards"><rect x="190" y="90" width="260" height="180"/></clipPath></defs><g clip-path="url(#NAMESPACE-cards)"><g data-part="cards">'+list(3,i=>rect('r'+i,190+i*280,95,260,170)+text('w'+i,320+i*280,185,['问题','做法','结果'][i],36))+'</g></g>');
+    return p=>{let q=p<.25?0:p<.4?smooth(section(p,.25,.4)):p<.65?1:p<.8?1+smooth(section(p,.65,.8)):2;s('cards',{transform:`translate(${-280*q} 0)`});};
+  });
+  register('title-dock',(root) => {
+    const s=stage(root,text('title',0,0,'让表达更清楚',42)+text('body',320,195,'事实 · 原因 · 做法',26)+text('detail',320,242,'一段有次序的正文',19));
+    return p=>{const q=smooth(section(p,.08,.48));move(s,'title',320,185-90*q,1-.32*q);s('body',{opacity:section(p,.55,.78)});s('detail',{opacity:section(p,.65,.88)});};
+  });
+  register('progress-readout',(root) => {
+    const s=stage(root,rect('track',110,195,420,16)+rect('fill',110,195,0,16,'style="fill:var(--ink)"')+text('value',320,160,'0%',50));
+    return p=>{const q=smooth(section(p,.12,.85));s('fill',{width:420*q});setText(s,'value',Math.round(100*q)+'%');};
+  });
+  register('rolling-digits',(root) => {
+    const s=stage(root,'<defs><clipPath id="NAMESPACE-digits"><rect x="225" y="132" width="190" height="64"/></clipPath></defs><g clip-path="url(#NAMESPACE-digits)">'+list(3,i=>`<g data-part="d${i}">${list(21,n=>text('digit'+i+'-'+n,260+i*60,180+n*64,String(n%10),53))}</g>` )+'</g>'+text('label',320,240,'低位越界，高位接着进位',18));
+    return p=>{const value=98+5*section(p,.1,.9);for(let i=0;i<3;i++){const div=10**(2-i),base=Math.floor(value/div),rem=value%div,frac=i===2?value%1:Math.max(0,rem-(div-1));s('d'+i,{transform:`translate(0 ${-64*((base%10)+Math.min(1,frac))})`,opacity:frac>1e-8?.45:1});}};
+  });
+  register('text-decode',(root) => {
+    const target='表达更加清楚',noise='◇△□○';const s=stage(root,text('word',320,195,target,43));
+    return p=> {const q=section(p,.1,.85),n=Math.floor(q*target.length),tick=Math.floor(q*24);setText(s,'word',[...target].map((c,i)=>i<n?c:noise[(i+tick)%4]).join(''));};
+  });
+  register('text-edit',(root) => {
+    const old='先说清楚问题',next='先说清楚做法',prefix='先说清楚';const s=stage(root,text('word',320,190,old,38));
+    return p=>{let value=old;if(p>.2&&p<.48)value=old.slice(0,old.length-Math.floor(section(p,.2,.48)*(old.length-prefix.length)));else if(p>=.48&&p<.7)value=prefix;else if(p>=.7)value=next.slice(0,prefix.length+Math.floor(section(p,.7,.9)*(next.length-prefix.length)));setText(s,'word',value);};
+  });
+  register('particle-word',(root) => {
+    // 演示目标明确给出为「人」字点阵；生产复用时必须换成实际字形采样点。
+    const targets=[];for(let i=0;i<16;i++){targets.push([320-7*i,108+9*i]);targets.push([320+7*i,108+9*i]);}
+    const s=stage(root,list(targets.length,i=>dot('p'+i,0,0,4))+text('label',320,315,'同一批点，逐一靠近字形目标',17));
+    return p=>{const q=smooth(section(p,.08,.85));targets.forEach(([x,y],i)=>{const a=i*2.399,sx=320+240*Math.cos(a),sy=180+135*Math.sin(a);s('p'+i,{cx:sx+(x-sx)*q,cy:sy+(y-sy)*q});});};
+  });
+  register('fragment-replace',(root) => {
+    const s=stage(root,'<defs>'+list(12,i=>`<clipPath id="NAMESPACE-f${i}"><rect x="${170+(i%4)*75}" y="${123+Math.floor(i/4)*35}" width="75" height="35"/></clipPath>` )+'</defs>'+list(12,i=>`<g data-part="f${i}" clip-path="url(#NAMESPACE-f${i})">${text('old'+i,320,198,'旧的表达',65)}</g>`)+text('new',320,198,'新的做法',50));
+    return p=>{const q=section(p,.2,.65);for(let i=0;i<12;i++)s('f'+i,{transform:`translate(${((i%4)-1.5)*100*q} ${(Math.floor(i/4)-1)*90*q}) rotate(${(i%2?1:-1)*8*q} 320 180)`,opacity:1-q});s('new',{opacity:smooth(section(p,.68,.88))});};
+  });
+  register('page-cover',(root) => {
+    const s=stage(root,rect('old',95,70,450,230)+text('oldwords',320,190,'旧页',40)+'<g data-part="new">'+rect('newrect',95,70,450,230,'style="fill:var(--plane-2)"')+text('newwords',320,190,'新页',40)+'</g>');
+    return p=> {s('old',{opacity:1});s('new',{transform:`translate(${500*(1-smooth(section(p,.12,.82)))} 0)`});};
+  });
+  register('stagger-crossfade',(root) => {
+    const s=stage(root,text('old',320,190,'先保留旧观点',38)+text('new',320,190,'再接入新做法',38));
+    return p=>{s('old',{opacity:1-section(p,.2,.42)});s('new',{opacity:section(p,.55,.82)});};
+  });
+  register('shutter-transition',(root) => {
+    const s=stage(root,text('old',320,190,'旧画面',45)+text('new',320,190,'新画面',45)+list(8,i=>rect('shade'+i,i*80,0,81,360,'rx="0" style="fill:var(--muted)"')));
+    return p=>{s('old',{opacity:p<.5?1:0});s('new',{opacity:p>=.5?1:0});for(let i=0;i<8;i++){const close=section(p,.1+i*.025,.25+i*.025),open=section(p,.58+i*.025,.76+i*.025);s('shade'+i,{transform:`translate(0 ${-360*(1-close+open)})`});}};
+  });
+  register('pivot-swing',(root) => {
+    const s=stage(root,dot('pin',320,75,5)+'<g data-part="body">'+line('rod',320,75,320,245)+rect('weight',290,220,60,50)+'</g>');
+    return p=>s('body',{transform:`rotate(${24*Math.sin(p*2*Math.PI)} 320 75)`});
+  });
+  register('squash-bounce',(root) => {
+    const s=stage(root,line('floor',95,285,545,285)+'<ellipse data-part="ball" cx="320" cy="100" rx="32" ry="32" fill="var(--ink)"/>');
+    return p=>{let height,ratio=1;if(p<.2)height=165*(1-(p/.2)**2);else{const q=section(p,.2,1),wave=Math.abs(Math.sin(q*3*Math.PI));height=112*Math.exp(-3*q)*wave;ratio=1+.38*Math.exp(-3*q)*Math.exp(-32*wave);if(wave>.35)ratio=1-.13*Math.exp(-3*q)*wave;}if(p===1){height=0;ratio=1;}s('ball',{cx:320,cy:285-32/ratio-height,rx:32*ratio,ry:32/ratio});};
+  });
+  register('path-trail',(root) => {
+    const route=q=>[105+430*q,185-70*Math.sin(q*2*Math.PI)];const s=stage(root,'<path data-part="trail" fill="none" stroke="var(--muted)" stroke-width="3"/>'+dot('body',0,0,10));
+    return p=>{const q=section(p,.05,.9),pts=Array.from({length:51},(_,i)=>route(q*i/50));s('trail',{d:pts.map(([x,y],i)=>`${i?'L':'M'}${x},${y}`).join(' ')});s('body',{cx:pts[50][0],cy:pts[50][1]});};
+  });
+  register('rolling-distance',(root) => {
+    const s=stage(root,line('floor',60,245,580,245)+'<g data-part="car">'+rect('box',-55,-85,110,56)+[-35,35].map((x,i)=>`<g data-part="wheel${i}">${dot('hub'+i,0,0,18,'fill="var(--panel)" stroke="var(--ink)"')}${line('spoke'+i,-17,0,17,0)}</g>`).join('')+'</g>');
+    return p=>{const distance=330*smooth(section(p,.1,.85));move(s,'car',155+distance,226);for(let i=0;i<2;i++)move(s,'wheel'+i,i?35:-35,0,1,distance/18*180/Math.PI);};
+  });
+  register('point-morph',(root) => {
+    const n=60,s=stage(root,list(n,i=>dot('p'+i,0,0,3)));
+    return p=>{const q=section(p,.12,.84);for(let i=0;i<n;i++){const a=i/n*Math.PI*2,x=320+110*Math.cos(a),y=180+110*Math.sin(a),tx=140+(i%12)*32,ty=100+Math.floor(i/12)*40;s('p'+i,{cx:x+(tx-x)*smooth(q),cy:y+(ty-y)*smooth(q)});}};
+  });
+  register('path-branch',(root) => {
+    const s=stage(root,rect('obstacle',280,125,80,110)+line('entry',90,180,220,180)+'<path d="M220 180 L260 95 H380 L420 180 M220 180 L260 265 H380 L420 180" fill="none" stroke="var(--path)" stroke-width="2"/>'+dot('input',90,180)+dot('top',220,180)+dot('bottom',220,180)+dot('end',420,180,15));
+    const route=(q,sign)=>q<.25?[220+160*q,180+sign*85*q/.25]:q<.75?[260+120*(q-.25)/.5,180+sign*85]:[380+40*(q-.75)/.25,180+sign*85*(1-(q-.75)/.25)];
+    return p=>{const start=section(p,.05,.25),q=section(p,.25,.85);s('input',{cx:90+130*start,opacity:p<=.25?1:0});for(const [id,sign] of [['top',-1],['bottom',1]]){const [x,y]=route(q,sign);s(id,{cx:x,cy:y,opacity:p>=.25&&p<.85?1:0});}s('end',{opacity:p>=.85?1:.15});};
+  });
+  register('connection-merge',(root) => {
+    const ys=[90,180,270],s=stage(root,list(3,i=>line('l'+i,130,ys[i],460,180)+dot('p'+i,130,ys[i]))+dot('receiver',460,180,24));
+    return p=>{ys.forEach((y,i)=>{const q=smooth(section(p,.1+i*.1,.55+i*.1));s('p'+i,{cx:130+330*q,cy:y+(180-y)*q});});s('receiver',{opacity:p>=.75?1:.15});};
+  });
+  register('sweep-trigger',(root) => {
+    const s=stage(root,list(6,i=>rect('c'+i,130+i*65,155,42,50))+line('scan',90,95,90,270,'stroke-width="4"'));
+    return p=>{const x=90+450*section(p,.1,.88);s('scan',{x1:x,x2:x});for(let i=0;i<6;i++)s('c'+i,{opacity:x>=151+i*65?1:.2});};
+  });
+  register('event-clock',(root) => {
+    const events=[.22,.48,.73],s=stage(root,line('axis',90,260,550,260)+line('now',90,85,90,278)+list(3,i=>dot('c'+i,90+460*events[i],155,25)+text('time'+i,90+460*events[i],210,`${i+1} 个事件`,16)));
+    return p=>{s('now',{x1:90+460*p,x2:90+460*p});events.forEach((time,i)=>s('c'+i,{opacity:p>=time?1:.15}));};
+  });
+  register('slider-response',(root) => {
+    const s=stage(root,line('axis',150,275,490,275)+dot('handle',150,275,12)+'<rect data-part="subject" x="270" y="90" width="100" height="100" fill="var(--ink)"/>');
+    return p=>{const q=.5-.5*Math.cos(p*2*Math.PI);s('handle',{cx:150+340*q});s('subject',{rx:50*q,transform:`rotate(${45*q} 320 140)`});};
+  });
+  register('data-pulse',(root) => {
+    const samples=[0,.15,.8,.4,.95,.2,0],s=stage(root,list(7,i=>rect('b'+i,145+i*50,240,30,0,'style="fill:var(--ink)"'))+line('base',120,240,520,240));
+    return p=>{for(let i=0;i<7;i++){const x=Math.max(0,Math.min(6,p*7-i*.13)),a=Math.floor(x),b=Math.min(6,a+1),v=samples[a]+(samples[b]-samples[a])*(x-a),h=130*v;s('b'+i,{y:240-h,height:h});}};
+  });
+  register('wave-grid',(root) => {
+    const s=stage(root,list(35,i=>dot('p'+i,180+(i%7)*46,88+Math.floor(i/7)*46,9)));
+    return p=>{for(let i=0;i<35;i++){const d=Math.hypot(i%7,Math.floor(i/7)),q=section(p,.1+d*.055,.23+d*.055),pulse=Math.sin(q*Math.PI);s('p'+i,{r:9+9*pulse,opacity:.3+.7*pulse});}};
+  });
+  register('bloom-layers',(root) => {
+    const s=stage(root,list(12,i=>`<g data-part="petal${i}"><ellipse cx="0" cy="-44" rx="17" ry="48" fill="var(--plane-${i<6?2:3})" stroke="var(--muted)"/></g>`)+dot('center',320,185,15));
+    return p=>{for(let i=0;i<12;i++){const q=smooth(section(p,i<6?.1:.28,i<6?.65:.85)),angle=(i%6)*60+(i<6?0:30);s('petal'+i,{transform:`translate(320 185) rotate(${angle}) scale(${.18+.82*q} ${.3+.7*q})`});}};
+  });
+  register('anchored-growth',(root) => {
+    const s=stage(root,line('stem',320,290,320,290)+list(4,i=>`<path data-part="leaf${i}" d="M0 0 Q${i%2?-60:60} -60 ${i%2?-65:65} -20 Q${i%2?-30:30} 10 0 0" fill="var(--plane-3)" stroke="var(--muted)"/>`));
+    return p=>{const q=smooth(section(p,.05,.7));s('stem',{y2:290-205*q});for(let i=0;i<4;i++){const v=smooth(section(p,.2+i*.13,.42+i*.13));s('leaf'+i,{transform:`translate(320 ${250-i*45}) scale(${v})`});}};
+  });
+  register('delay-wave-body',(root) => {
+    const s=stage(root,dot('root',120,180,6)+'<path data-part="body" fill="none" stroke="var(--ink)" stroke-width="14" stroke-linecap="round"/>');
+    return p=>{const pts=Array.from({length:40},(_,i)=>[120+i*10,180+i/39*38*Math.sin(p*2*Math.PI-i*.17)]);s('body',{d:pts.map(([x,y],i)=>`${i?'L':'M'}${x},${y}`).join(' ')});};
+  });
+  register('local-scan',(root) => {
+    const s=stage(root,'<defs><clipPath id="NAMESPACE-shape"><circle cx="320" cy="180" r="100"/></clipPath></defs><circle cx="320" cy="180" r="100" fill="var(--panel)" stroke="var(--muted)"/><g clip-path="url(#NAMESPACE-shape)">'+rect('scan',0,60,30,240,'style="fill:var(--ink)"')+'</g>');
+    return p=>s('scan',{x:160+320*p});
+  });
+  register('glyph-sheen',(root) => {
+    const s=stage(root,'<defs><mask id="NAMESPACE-type">'+text('mask',320,200,'表达清楚',65,'style="fill:white"')+'</mask></defs>'+text('base',320,200,'表达清楚',65,'style="fill:var(--muted)"')+'<g mask="url(#NAMESPACE-type)">'+rect('scan',0,100,42,130,'style="fill:var(--ink)"')+'</g>');
+    return p=>s('scan',{x:70+510*p});
+  });
+  register('color-evolve',(root) => {
+    const s=stage(root,rect('shape',240,100,160,160));
+    return p=>{const v=Math.round(80+145*smooth(section(p,.1,.85)));s('shape',{fill:`rgb(${v},${v},${v})`});};
+  });
+  register('density-field',(root) => {
+    const s=stage(root,list(120,i=>dot('p'+i,115+((i*73)%409),65+((i*37)%229),3)));
+    return p=>{const count=Math.floor(10+110*section(p,.08,.88));for(let i=0;i<120;i++)s('p'+i,{opacity:i<count?1:0});};
+  });
+  register('dim-focus',(root) => {
+    const s=stage(root,list(5,i=>rect('c'+i,78+i*100,125,84,110))+text('title',320,180,'重点',23));
+    return p=>{const q=section(p,.15,.75);for(let i=0;i<5;i++)s('c'+i,{opacity:i===2?1:1-.82*q});};
+  });
+  register('staged-build',(root) => {
+    const s=stage(root,text('title',320,82,'让每一步都有依据',28)+list(3,i=>rect('layer'+i,150,110+i*65,340,50)+text('words'+i,320,144+i*65,['看见问题','理解原因','确定做法'][i],23)));
+    return p=>{for(let i=0;i<3;i++){const q=smooth(section(p,.08+i*.22,.24+i*.22));s('layer'+i,{opacity:q});s('words'+i,{opacity:q});}};
+  });
+  register('countdown-dial',(root) => {
+    const s=stage(root,'<circle cx="320" cy="180" r="104" fill="none" stroke="var(--path)" stroke-width="5"/><circle data-part="remaining" cx="320" cy="180" r="104" fill="none" stroke="var(--ink)" stroke-width="5" pathLength="1" stroke-dasharray="1" transform="rotate(-90 320 180)"/>'+list(12,i=>line('tick'+i,320,65,320,75,`transform="rotate(${i*30} 320 180)"`))+line('needle',320,180,320,88)+text('value',320,220,'6',40));
+    return p=>{s('remaining',{'stroke-dashoffset':p});s('needle',{transform:`rotate(${360*p} 320 180)`});setText(s,'value',String(Math.ceil(6*(1-p))));};
+  });
+  register('playback-track',(root) => {
+    const points=[[145,255],[245,155],[450,155],[450,250]],s=stage(root,rect('button',395,130,110,50)+text('label',450,163,'确认',22)+'<path data-part="cursor" d="M0 0 L0 23 L6 17 L13 28 L18 25 L12 15 L23 15 Z" fill="var(--ink)"/>');
+    return p=>{const t=Math.min(2.999,p*3),i=Math.floor(t),q=smooth(t-i),a=points[i],b=points[i+1];move(s,'cursor',a[0]+(b[0]-a[0])*q,a[1]+(b[1]-a[1])*q);const press=section(p,.65,.7)*(1-section(p,.7,.76));s('button',{transform:`translate(450 155) scale(${1-.08*press}) translate(-450 -155)`});};
+  });
+  register('cylinder-drum',(root) => {
+    const s=stage(root,line('axis',320,70,320,290,'stroke-dasharray="4 5"')+list(8,i=>`<g data-part="card${i}">${rect('r'+i,-55,-50,110,100)}${text('w'+i,0,8,String(i+1),28)}</g>`));
+    return p=>{for(let i=0;i<8;i++){const a=i/8*Math.PI*2-p*Math.PI*2,c=Math.cos(a);s('card'+i,{transform:`translate(${320+185*Math.sin(a)} 180) scale(${Math.max(.015,Math.abs(c))} 1)`,opacity:c>0?.3+.7*c:0});}};
+  });
+  register('load-balance',(root) => {
+    const s=stage(root,line('stand',320,165,320,285)+'<g data-part="beam">'+line('bar',190,165,450,165)+[190,450].map((x,i)=>`<g data-part="pan${i}">${line('cord'+i,0,0,0,65)}${rect('tray'+i,-45,60,90,15)}</g>`).join('')+'</g>'+rect('load',410,0,55,34));
+    return p=>{const entry=section(p,.08,.3),q=smooth(section(p,.32,.75)),angle=14*q;s('beam',{transform:`rotate(${angle} 320 165)`});move(s,'pan0',190,165,1,-angle);move(s,'pan1',450,165,1,-angle);const x=320+130*Math.cos(angle*Math.PI/180),y=165+130*Math.sin(angle*Math.PI/180);s('load',{x:x-27.5,y:(y+26)*entry});};
+  });
+  register('film-step',(root) => {
+    const s=stage(root,line('axis',100,210,540,210)+dot('body',100,210,15)+text('label',320,275,'固定每秒六帧，同一路线',18));
+    return p=>s('body',{cx:100+440*Math.min(1,Math.floor(p*24)/24)});
+  });
+  register('field-speed',(root) => {
+    const s=stage(root,'<path d="M70 90 H230 L300 145 H400 L470 90 H580 M70 270 H230 L300 215 H400 L470 270 H580" fill="none" stroke="var(--muted)" stroke-width="2"/>'+list(12,i=>dot('p'+i,0,0,4)));
+    // 时间累积量与截面宽度积分成正比，因此速度随宽度连续变化。
+    // 这里只展示连续性关系，不计算真实流体。
+    const width=x=>x<230?180:x<300?180-110*(x-230)/70:x<400?70:x<470?70+110*(x-400)/70:180;
+    const table=[0],steps=1024,dx=510/steps;for(let i=1;i<=steps;i++)table[i]=table[i-1]+(width(70+(i-1)*dx)+width(70+i*dx))*dx/2;
+    const position=q=>{const target=q*table[steps];let low=0,high=steps;while(high-low>1){const mid=(low+high)>>1;if(table[mid]<target)low=mid;else high=mid;}return 70+dx*(low+(target-table[low])/(table[high]-table[low]));};
+    return p=>{for(let i=0;i<12;i++){const q=(p+i/12)%1,x=position(q);s('p'+i,{cx:x,cy:180+((i%3)-1)*width(x)*.3,opacity:Math.min(1,q/.04,(1-q)/.04)});}};
+  });
+  register('stroke-hatch',(root) => {
+    const s=stage(root,'<defs><clipPath id="NAMESPACE-outline"><rect x="220" y="85" width="200" height="190" rx="15"/></clipPath></defs><rect data-part="outline" x="220" y="85" width="200" height="190" rx="15" fill="none" stroke="var(--ink)" stroke-width="3" pathLength="1" stroke-dasharray="1"/><g clip-path="url(#NAMESPACE-outline)">'+list(20,i=>line('h'+i,150+i*18,300,330+i*18,60))+'</g>');
+    return p=>{s('outline',{'stroke-dashoffset':1-section(p,.05,.42)});for(let i=0;i<20;i++)s('h'+i,{opacity:section(p,.46+i*.018,.5+i*.018)});};
+  });
+  register('sequential-spec',(root) => {
+    const s=stage(root,list(3,i=>`<circle data-part="icon${i}" cx="${170+i*150}" cy="125" r="30" fill="none" stroke="var(--ink)" stroke-width="3" pathLength="1" stroke-dasharray="1"/>`+text('label'+i,170+i*150,205,['事实','原因','做法'][i],26)+text('value'+i,170+i*150,250,String((i+1)*12),27)));
+    return p=>{for(let i=0;i<3;i++){const delay=i*.2;s('icon'+i,{'stroke-dashoffset':1-section(p,.04+delay,.24+delay)});s('label'+i,{opacity:section(p,.25+delay,.34+delay)});s('value'+i,{opacity:section(p,.35+delay,.44+delay)});}};
+  });
+  register('bar-growth',(root) => {
+    const values=[110,65,175,130],s=stage(root,line('base',100,270,540,270)+list(4,i=>rect('bar'+i,140+i*95,270,55,0,'style="fill:var(--ink)"')));
+    return p=>values.forEach((value,i)=>{const h=value*smooth(section(p,.1+i*.08,.65+i*.08));s('bar'+i,{y:270-h,height:h});});
+  });
+})(globalThis);
