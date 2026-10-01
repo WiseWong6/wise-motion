@@ -9,7 +9,7 @@
 | Jitter | 官方帮助说明允许模板用于商业作品；未核实模板对应的程序源码为可内置的开源代码。 | 借鉴分类与行为，未打包模板、导出资源或程序。 |
 | LottieFiles | 播放程序和动画文件分别有许可。社区动画的正式许可与帮助说明对独立再分发的表述有差异。 | 暂不批量内置社区动画；如需个别动画，核对具体文件来源、许可和附带素材。 |
 | Amotion | 编辑器可访问；未核实公开源码与再分发许可。 | 借鉴用户指定的三栏交互结构，保留链接；程序许可状态为未知，未复制程序。 |
-| Amicro | 公开页面介绍可复制的网页交互动效；未核实具体组件文件的再分发许可。 | 作为用户指定的交互参考，未内置其程序或素材。 |
+| Amicro | 仓库根目录为 MIT；3D Dither Lab Book 的具体组件文件另标注 Apache-2.0，不能用根目录许可覆盖。 | 翻页书只参考动作与空间关系，代码、矢量插图和纸纹重新实现；未内置其程序或素材。 |
 | 小红书分享 | 当前未读到具体内容，不能判断作品或程序授权。 | 仅保留用户分享的来源，不复制素材，不推断授权。 |
 
 ## Anime.js：已经内置
@@ -28,6 +28,7 @@
 - LottieFiles：[官网](https://lottiefiles.com/) · [正式素材许可](https://lottiefiles.com/page/license) · [许可帮助说明](https://help.lottiefiles.com/animation-licensing-basics-)。正式许可含同条款要求与竞争库限制；帮助说明对独立再分发有更严格措辞。当前不把它们合并成“所有文件可随意内置”的结论。
 - Lottie 播放程序：[airbnb/lottie-web 的 MIT 许可](https://github.com/airbnb/lottie-web/blob/master/LICENSE.md)。程序许可不能覆盖播放的动画、字体和图片；本版未内置此播放器。
 - Amicro：[参考入口](https://amicro.vercel.app/)。仅参考浏览和复制路径，未内置第三方代码。
+- 翻页书：[原版效果](https://amicro.vercel.app/3d) · [固定版本组件与文件级许可](https://github.com/Subhan-code/Amicro--Micro-transitions-/blob/43c29ce9cdd16459e3eab4992381b8d35b38776a/src/components/dither-charts/DitherBook.tsx)。本地对应“立体翻页书”，保留固定书脊、双面纸张、入场快翻与三项纸页设置；使用自绘本地图形，无远程图片或纸纹依赖。
 - Amotion：[编辑器入口](https://www.amotion.app/editor)。未知许可保持未知，不据能访问、免费使用或编辑器外观推断开放源码。
 - [用户分享的小红书来源](https://www.xiaohongshu.com/s/poster?bgimg=https%3A%2F%2Fsns-redskillhub-s1.xhscdn.com%2Fred_app_image%2F1040g4m83241q07jpna005qelo9nsok378rohtb8%3Fsign%3D325e417b90d2f36dd545ce4f0d4a692d%26t%3D6c66710a&deeplink=xhsdiscover%3A%2F%2FminiTool%2F6a675ed61ed11800159c9d47%3Fsource%3Dh5%26page_key%3D28%26xhsMpScreenMode%3Dfull&code=031jeZFa1xQ5xM0p4AGa18RYP04jeZFv&state=wx_oauth)。当前尚未读到具体作品；只保留来源线索。
 
@@ -45,7 +46,7 @@ Amotion 当前只用于参考通用界面原则，没有公开源码授权证据
 
 ## 内置判断与联网负担
 
-本版可完整内置：需求方法、77 项统一定义、自编效果源码、播放接口、Anime.js 原程序及许可、已保留许可的图标与本地字体。目录使用代码绘制的图形，没有运行时远程素材。静态页面从普通本地脚本读数据，打开时无需联网。
+本版可完整内置：需求方法、79 项统一定义、自编效果源码、播放接口、Anime.js 原程序及许可、已保留许可的图标与本地字体。目录使用代码绘制的图形，没有运行时远程素材。静态页面从普通本地脚本读数据，打开时无需联网。
 
 暂不内置：Jitter 模板、GSAP 程序、LottieFiles 社区素材、Amotion 程序及小红书资源。它们的入口用于遇到本地缺口时定向查找，不在常见需求匹配中自动访问。
 

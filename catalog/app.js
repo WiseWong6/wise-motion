@@ -221,7 +221,8 @@
   $('previous-effect').addEventListener('click', () => navigateEffect(-1));
   $('next-effect').addEventListener('click', () => navigateEffect(1));
 
-  function settings() { return {speed:controller?.speed || 1, ease:$('ease').value,caseId:selected?.selected_entry?.id}; }
+  function settings() { return {speed:controller?.speed || 1, ease:$('ease').value,caseId:selected?.selected_entry?.id,
+    ...(selected?.id==='dither-lab-book' ? {bookMode:controller?.mode,bookSettings:controller?.paperSettings,bookIndex:controller?.pageIndex} : {})}; }
 
   function updateOutputs() {
     if (!selected || !controller) return;
@@ -358,7 +359,10 @@
     if(historyRelated.length)$('related').innerHTML+=`<p class="field-label" style="margin-top:18px">关联原作配方</p><div class="related-chips">${historyRelated.map(rid=>`<button class="btn" data-related="${rid}">${MotionKit.escape(data.effects.find(e=>e.id===rid).name)}</button>`).join('')}</div>`;
     renderHistoryDetails(effect);
     renderFacts(effect);
-    controller = effect.kind==='recipe' ? MotionHistoryRuntime.create($('preview'),effect,{onUpdate:syncPlayer,caseId:effect.selected_entry.id}) : MotionRuntime.create($('preview'), effect, {onUpdate:syncPlayer});
+    controller = effect.id==='dither-lab-book'
+      ? WiseDitherWorkbench.create($('preview'),effect,{onUpdate:syncPlayer,onSettingsChange:updateOutputs,reducedMotion,
+        mode:preserved?.bookMode,paperSettings:preserved?.bookSettings,pageIndex:preserved?.bookIndex})
+      : effect.kind==='recipe' ? MotionHistoryRuntime.create($('preview'),effect,{onUpdate:syncPlayer,caseId:effect.selected_entry.id}) : MotionRuntime.create($('preview'), effect, {onUpdate:syncPlayer});
     controller.setSpeed(Number($('speed').value));
     controller.setEase($('ease').value);
     if (preserved) {
@@ -654,6 +658,7 @@
     clearTimeout(debounce);
     if (controller) lastPlayback = {...settings(), time:controller.currentTime, paused:controller.paused};
     resumeAfterVisible = false;
+    controller?.destroy();
     MotionRuntime.disposeAll();
     MotionHistoryRuntime.disposeAll();
   });
@@ -762,6 +767,7 @@
   setDirectory(!directoryMedia.matches);
   renderCategories();
   renderList();
-  selectEffect('fade-rise');
+  const requestedEffect=location.hash.slice(1);
+  selectEffect(data.effects.some(effect=>effect.id===requestedEffect) ? requestedEffect : 'fade-rise');
   updateMotionPreference();
 })();
