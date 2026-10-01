@@ -34,20 +34,22 @@
   const titles = ['月相', '山势', '叶脉', '拱廊', '水纹', '轨道'];
   let serial = 0;
   const STYLE = [
-    '.wm-book{position:relative;display:grid;place-items:center;width:100%;height:100%;isolation:isolate;--book-pad:10px;--book-radius:20px;--book-crease:.11;--book-paper:#fcfaf6;color:#282724;font-family:inherit}',
+    '.wm-book{position:relative;display:grid;place-items:center;width:100%;height:100%;isolation:isolate;--book-pad:10px;--book-radius:20px;--book-crease:.11;--book-paper:var(--card,#ffffff);--book-art:var(--symbol,#eeeeee);--book-ink:var(--card-ink,#202020);--book-muted:var(--card-muted,#686868);color:var(--book-ink);font-family:inherit;font-weight:300}',
     '.wm-book,.wm-book *{box-sizing:border-box}',
-    '.wm-book__scene{position:relative;width:min(88%,512px);aspect-ratio:16/10;perspective:2400px;perspective-origin:50% 40%;user-select:none}',
+    '.wm-book__scene{position:relative;width:min(76%,440px);aspect-ratio:16/10;perspective:2400px;perspective-origin:50% 40%;user-select:none}',
     '.wm-book__body{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(6deg) rotateY(-4deg)}',
-    '.wm-book__cover{position:absolute;inset:-3px;transform:translateZ(-6px);background:#d4cec1;border:1px solid #beb6a7;border-radius:7px;box-shadow:0 20px 38px -18px #0009,0 4px 12px #0003}',
-    '.wm-book__edges{position:absolute;inset:0;transform:translate3d(0,3px,-3px);border-radius:5px;background:repeating-linear-gradient(to bottom,#e9e4da 0 1px,#cfc8bb 1px 2px);border:1px solid #d6cfc3}',
-    '.wm-book__base{position:absolute;top:0;width:50%;height:100%;padding:0;background:none;border:0;color:inherit;cursor:pointer;transform:translateZ(0px);appearance:none;text-align:inherit}',
+    '.wm-book__cover{position:absolute;inset:-3px;transform:translateZ(-6px);background:var(--flip-back,#d7d7d7);border:1px solid #b4b4b4;border-radius:7px;box-shadow:0 20px 38px -18px #0009,0 4px 12px #0003}',
+    '.wm-book__edges{position:absolute;inset:0;transform:translate3d(0,3px,-3px);border-radius:5px;background:repeating-linear-gradient(to bottom,#eeeeee 0 1px,#d0d0d0 1px 2px);border:1px solid #d7d7d7}',
+    '.wm-book__base{position:absolute;top:0;width:50%;height:100%;padding:0;background:none;border:0;font:inherit;color:inherit;cursor:pointer;transform:translateZ(0px);appearance:none;text-align:inherit}',
     '.wm-book__base--left{left:0}.wm-book__base--right{left:50%}',
-    '.wm-book__base:disabled{cursor:default}.wm-book__base:focus-visible{outline:2px solid #8b8170;outline-offset:6px}',
-    '.wm-book__paper{position:absolute;inset:0;background:var(--book-paper);border:1px solid #28272424;overflow:hidden;box-shadow:inset 0 0 16px #00000006;backface-visibility:hidden;-webkit-backface-visibility:hidden}',
+    '.wm-book__base:disabled{cursor:default}.wm-book__base:focus-visible{outline:2px solid var(--book-muted);outline-offset:6px}',
+    '.wm-book__paper{position:absolute;inset:0;background:var(--book-paper);border:1px solid #20202024;overflow:hidden;box-shadow:inset 0 0 16px #00000006;backface-visibility:hidden;-webkit-backface-visibility:hidden}',
     '.wm-book__paper[data-edge="left"]{border-radius:5px 0 0 5px}.wm-book__paper[data-edge="right"]{border-radius:0 5px 5px 0}',
-    '.wm-book__art{position:absolute;inset:var(--book-pad);overflow:hidden;border-radius:var(--book-radius);background:#eee9dd;box-shadow:0 2px 12px #0000000f;pointer-events:none}',
+    '.wm-book__art{position:absolute;inset:var(--book-pad);overflow:hidden;border-radius:var(--book-radius);background:var(--book-art);box-shadow:0 2px 12px #0000000f;pointer-events:none}',
     '.wm-book__art svg{display:block;width:100%;height:100%}',
-    '.wm-book__grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.32;background-image:radial-gradient(#705a3b50 .45px,transparent .8px),radial-gradient(#ffffff90 .6px,transparent 1px);background-size:3px 3px,7px 5px;background-position:0 0,2px 1px}',
+    '.wm-book__caption{font-family:inherit;font-weight:300}',
+    '.wm-book__number{font-family:Outfit,var(--font,"Wise Motion Sans","Source Han Sans CN","Source Han Sans SC","Noto Sans SC",sans-serif);font-weight:500;font-variant-numeric:tabular-nums}',
+    '.wm-book__grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.32;background-image:radial-gradient(#68686850 .45px,transparent .8px),radial-gradient(#ffffff90 .6px,transparent 1px);background-size:3px 3px,7px 5px;background-position:0 0,2px 1px}',
     '.wm-book__crease{position:absolute;top:0;bottom:0;width:19%;pointer-events:none}',
     '.wm-book__paper[data-edge="left"] .wm-book__crease{right:0;background:linear-gradient(to left,rgba(0,0,0,var(--book-crease)),rgba(0,0,0,calc(var(--book-crease)/4)) 34%,transparent)}',
     '.wm-book__paper[data-edge="right"] .wm-book__crease{left:0;background:linear-gradient(to right,rgba(0,0,0,var(--book-crease)),rgba(0,0,0,calc(var(--book-crease)/4)) 34%,transparent)}',
@@ -55,10 +57,10 @@
     '.wm-book__back{transform:rotateY(180deg)}',
     '.wm-book__shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to right,#0002,#000c);opacity:0}',
     '.wm-book__back .wm-book__shade{background:linear-gradient(to left,#0002,#000c)}',
-    '.wm-book__hint{position:absolute;inset:0;display:flex;align-items:center;padding:12px;opacity:0;background:#00000004;pointer-events:none;transition:opacity .15s;font-size:20px;color:#28272488}',
+    '.wm-book__hint{position:absolute;inset:0;display:flex;align-items:center;padding:12px;opacity:0;background:#00000004;pointer-events:none;transition:opacity .15s;font-size:20px;color:#20202088}',
     '.wm-book__base--right .wm-book__hint{justify-content:flex-end}',
     '.wm-book__base:not(:disabled):hover .wm-book__hint,.wm-book__base:focus-visible .wm-book__hint{opacity:1}',
-    '.wm-book__spine{position:absolute;left:calc(50% - 1px);top:0;bottom:0;width:2px;background:#776b5726;transform:translateZ(1px);pointer-events:none}',
+    '.wm-book__spine{position:absolute;left:calc(50% - 1px);top:0;bottom:0;width:2px;background:#68686826;transform:translateZ(1px);pointer-events:none}',
     '@media(prefers-reduced-motion:reduce){.wm-book__hint{transition:none}}'
   ].join('\n');
   function art(index, prefix) {
@@ -67,40 +69,40 @@
     const lines = [];
     let drawing = '';
     if (index === 0) {
-      drawing = '<circle cx="122" cy="121" r="73" fill="' + fill + '"/><circle cx="158" cy="93" r="59" fill="#eee9dd"/>';
-      for (let i = 0; i < 14; i++) lines.push('<path d="M-10 ' + (221+i*4) + ' Q65 ' + (199+i*4) + ' 120 ' + (221+i*4) + ' T250 ' + (214+i*4) + '" fill="none" stroke="#36332d" stroke-width=".75"/>');
+      drawing = '<circle cx="122" cy="121" r="73" fill="' + fill + '"/><circle cx="158" cy="93" r="59" fill="var(--book-art)"/>';
+      for (let i = 0; i < 14; i++) lines.push('<path d="M-10 ' + (221+i*4) + ' Q65 ' + (199+i*4) + ' 120 ' + (221+i*4) + ' T250 ' + (214+i*4) + '" fill="none" stroke="var(--book-ink)" stroke-width=".75"/>');
       drawing += lines.join('');
     } else if (index === 1) {
       drawing = '<path d="M-10 215L78 80L123 147L159 108L250 218V286H-10Z" fill="' + light + '"/>';
-      for (let i = 0; i < 18; i++) lines.push('<path d="M-10 ' + (227+i*3) + 'L78 ' + (80+i*7) + 'L123 ' + (147+i*5) + 'L159 ' + (108+i*7) + 'L250 ' + (225+i*3) + '" fill="none" stroke="#37342e" stroke-width=".65"/>');
+      for (let i = 0; i < 18; i++) lines.push('<path d="M-10 ' + (227+i*3) + 'L78 ' + (80+i*7) + 'L123 ' + (147+i*5) + 'L159 ' + (108+i*7) + 'L250 ' + (225+i*3) + '" fill="none" stroke="var(--book-ink)" stroke-width=".65"/>');
       drawing += lines.join('');
     } else if (index === 2) {
-      drawing = '<path d="M113 267Q111 165 141 62" fill="none" stroke="#37342e" stroke-width="2"/>';
+      drawing = '<path d="M113 267Q111 165 141 62" fill="none" stroke="var(--book-ink)" stroke-width="2"/>';
       for (let i = 0; i < 10; i++) {
         const y = 90+i*17, x = 135-i*2, reach = 22+i*2;
-        lines.push('<path d="M' + x + ' ' + y + 'Q' + (x-reach-17) + ' ' + (y-32) + ' ' + (x-reach) + ' ' + (y+8) + 'Q' + (x-9) + ' ' + (y+11) + ' ' + x + ' ' + y + 'Z" fill="' + fill + '" stroke="#5b5549" stroke-width=".5"/>');
-        lines.push('<path d="M' + x + ' ' + (y+8) + 'Q' + (x+reach+17) + ' ' + (y-21) + ' ' + (x+reach) + ' ' + (y+17) + 'Q' + (x+9) + ' ' + (y+21) + ' ' + x + ' ' + (y+8) + 'Z" fill="' + light + '" stroke="#5b5549" stroke-width=".5"/>');
+        lines.push('<path d="M' + x + ' ' + y + 'Q' + (x-reach-17) + ' ' + (y-32) + ' ' + (x-reach) + ' ' + (y+8) + 'Q' + (x-9) + ' ' + (y+11) + ' ' + x + ' ' + y + 'Z" fill="' + fill + '" stroke="var(--book-muted)" stroke-width=".5"/>');
+        lines.push('<path d="M' + x + ' ' + (y+8) + 'Q' + (x+reach+17) + ' ' + (y-21) + ' ' + (x+reach) + ' ' + (y+17) + 'Q' + (x+9) + ' ' + (y+21) + ' ' + x + ' ' + (y+8) + 'Z" fill="' + light + '" stroke="var(--book-muted)" stroke-width=".5"/>');
       }
       drawing += lines.join('');
     } else if (index === 3) {
-      drawing = '<path d="M32 270V132A88 88 0 0 1 208 132V270Z" fill="' + fill + '"/><path d="M64 270V134A56 56 0 0 1 176 134V270Z" fill="#eee9dd"/>';
-      for (let i = 0; i < 10; i++) lines.push('<path d="M' + (35+i*3) + ' 270V134A' + (85-i*3) + ' ' + (85-i*3) + ' 0 0 1 ' + (205-i*3) + ' 134V270" fill="none" stroke="#282724" stroke-width=".65"/>');
+      drawing = '<path d="M32 270V132A88 88 0 0 1 208 132V270Z" fill="' + fill + '"/><path d="M64 270V134A56 56 0 0 1 176 134V270Z" fill="var(--book-art)"/>';
+      for (let i = 0; i < 10; i++) lines.push('<path d="M' + (35+i*3) + ' 270V134A' + (85-i*3) + ' ' + (85-i*3) + ' 0 0 1 ' + (205-i*3) + ' 134V270" fill="none" stroke="var(--book-ink)" stroke-width=".65"/>');
       drawing += lines.join('') + '<rect x="99" y="173" width="42" height="97" fill="' + light + '"/>';
     } else if (index === 4) {
       drawing = '<ellipse cx="120" cy="171" rx="91" ry="72" fill="' + light + '"/>';
-      for (let i = 0; i < 17; i++) lines.push('<ellipse cx="120" cy="' + (133+i*2.2) + '" rx="' + (8+i*5.4) + '" ry="' + (3+i*2.4) + '" fill="none" stroke="#37342e" stroke-width=".8"/>');
+      for (let i = 0; i < 17; i++) lines.push('<ellipse cx="120" cy="' + (133+i*2.2) + '" rx="' + (8+i*5.4) + '" ry="' + (3+i*2.4) + '" fill="none" stroke="var(--book-ink)" stroke-width=".8"/>');
       drawing += lines.join('');
     } else {
       drawing = '<circle cx="119" cy="156" r="56" fill="' + fill + '"/>';
-      for (let i = 0; i < 7; i++) lines.push('<ellipse cx="120" cy="156" rx="' + (68+i*5) + '" ry="' + (14+i*6) + '" fill="none" stroke="#37342e" stroke-width=".6" transform="rotate(' + (-46+i*13) + ' 120 156)"/>');
-      drawing += lines.join('') + '<circle cx="186" cy="99" r="7" fill="#37342e"/>';
+      for (let i = 0; i < 7; i++) lines.push('<ellipse cx="120" cy="156" rx="' + (68+i*5) + '" ry="' + (14+i*6) + '" fill="none" stroke="var(--book-ink)" stroke-width=".6" transform="rotate(' + (-46+i*13) + ' 120 156)"/>');
+      drawing += lines.join('') + '<circle cx="186" cy="99" r="7" fill="var(--book-ink)"/>';
     }
     return '<svg viewBox="0 0 240 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs>' +
-      '<pattern id="' + dot + '" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r=".94" fill="#302d27"/></pattern>' +
-      '<pattern id="' + fine + '" width="3.4" height="3.4" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r=".48" fill="#494339"/></pattern></defs>' +
-      '<rect width="240" height="320" fill="#eee9dd"/>' + drawing +
-      '<path d="M29 291H211" stroke="#817969" stroke-width=".5"/><text x="30" y="304" font-size="8" fill="#5b5549" font-family="serif">' +
-      titles[index] + '</text><text x="210" y="304" text-anchor="end" font-size="8" fill="#5b5549" font-family="serif">' +
+      '<pattern id="' + dot + '" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r=".94" fill="var(--book-ink)"/></pattern>' +
+      '<pattern id="' + fine + '" width="3.4" height="3.4" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r=".48" fill="var(--book-muted)"/></pattern></defs>' +
+      '<rect width="240" height="320" fill="var(--book-art)"/>' + drawing +
+      '<path d="M29 291H211" stroke="#b4b4b4" stroke-width=".5"/><text class="wm-book__caption" x="30" y="304" font-size="8" fill="var(--book-muted)">' +
+      titles[index] + '</text><text class="wm-book__number" x="210" y="304" text-anchor="end" font-size="8" fill="var(--book-muted)">' +
       String(index + 1).padStart(2, '0') + '</text></svg>';
   }
   function paper(edge, extra) {

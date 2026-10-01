@@ -70,7 +70,7 @@
       return [{effect: e, score, matched: [...new Set(matched)], excluded: prohibited.map(x => x[2]), reason: e.recommendation}];
     }).sort((a, b) => b.score - a.score || a.effect.id.localeCompare(b.effect.id));
   }
-  const easeLabels = {linear: '匀速', outCubic: '末尾减速', inOutSine: '平缓加速、减速', spring: '轻微回弹'};
+  const easeLabels = {linear: '匀速', outCubic: '末尾减速', inOutCubic: '平缓加速、减速', inOutSine: '平缓加速、减速', spring: '轻微回弹'};
   function describe(effect, settings = {}, registry = null) {
     if(effect.kind==='recipe')return describeHistory(effect,settings,registry);
     const speed = settings.speed ?? 1;

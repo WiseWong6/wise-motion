@@ -35,7 +35,7 @@
   const icon = name => EXTRA[name] || MotionIcons[name] || '';
   const mark = name => `<span data-icon="${name}">${icon(name)}</span>`;
 
-  let kind = 'action', category = 'all', domain = 'all', tab = 'prompt', selected = null, controller = null;
+  let kind = 'action', category = 'all', tab = 'prompt', selected = null, controller = null;
   let debounce = null, resumeAfterVisible = false, lastPlayback = null, lastPaused = null;
   let navigationIds = [];
   const collapsed = new Set();
@@ -143,7 +143,7 @@
   function renderList() {
     const query = $('search').value.trim(), matches = query ? MotionMatch.rank(data, query) : [];
     const candidates = query ? matches.map(m => m.effect) : data.effects;
-    const effects = candidates.filter(e => e.kind === kind && (category === 'all' || e.category === category) && (domain==='all'||(e.domains||[e.domain||'animation']).includes(domain)));
+    const effects = candidates.filter(e => e.kind === kind && (category === 'all' || e.category === category));
     $('empty').hidden = !!effects.length;
     $('match-note').hidden = !query || !matches.length;
     if (query && matches.length) {
@@ -327,6 +327,38 @@
     if (selected) renderFacts(selected);
     updateOutputs();
   }
+  let speedGlide = 0, speedGoal = null;
+  const speedStep = speedInput.step;
+  function stopSpeedGlide() {
+    cancelAnimationFrame(speedGlide);
+    speedGoal = null;
+    speedInput.step = speedStep;
+  }
+  function glideSpeed(delta) {
+    const min = Number(speedInput.min), max = Number(speedInput.max), step = Number(speedStep);
+    const base = speedGoal ?? Number(speedInput.value);
+    const snapped = Math.min(max, Math.max(min, Math.round((base + delta - min) / step) * step + min));
+    const to = +snapped.toFixed(4);
+    const from = Number(speedInput.value);
+    cancelAnimationFrame(speedGlide);
+    speedGoal = to;
+    if (reducedMotion.matches || from === to) { speedGoal = null; speedInput.step = speedStep; applySpeed(to); return; }
+    speedInput.step = 'any';
+    $('speed-value').value = formatSpeed(to);
+    const start = performance.now();
+    const frame = now => {
+      const p = Math.min(1, (now - start) / 280);
+      const eased = 1 - (1 - p) ** 3;
+      const current = from + (to - from) * eased;
+      speedInput.value = String(p === 1 ? to : current);
+      fillTrack(speedInput);
+      const next = Number(speedInput.value);
+      if (Number.isFinite(next)) controller?.setSpeed(next);
+      if (p < 1) speedGlide = requestAnimationFrame(frame);
+      else { speedInput.step = speedStep; speedGoal = null; applySpeed(to); }
+    };
+    speedGlide = requestAnimationFrame(frame);
+  }
 
   function selectEffect(id, preserved = null, caseId = null) {
     let effect = data.effects.find(e => e.id === id);
@@ -451,6 +483,10 @@
     const modal = directoryMedia.matches && expanded;
     if (modal && $('directory-panel').hidden) directoryFocus = document.activeElement;
     categories.close();
+    const shell = document.querySelector('.sidebar-shell');
+    const glideSidebar = !directoryMedia.matches && !reducedMotion.matches && typeof shell.animate === 'function';
+    const sidebarFrom = glideSidebar ? shell.getBoundingClientRect().width : 0;
+    if (glideSidebar) shell.getAnimations().forEach(animation => animation.cancel());
     $('directory-panel').hidden = !expanded;
     document.querySelector('.workbench').classList.toggle('no-directory', !expanded);
     document.body.classList.toggle('directory-open', modal);
@@ -464,10 +500,20 @@
       $('directory-panel').removeAttribute('aria-modal');
     }
     $('toggle-directory').setAttribute('aria-expanded', String(expanded));
-    $('toggle-directory').innerHTML = icon(expanded ? 'panel-collapse' : 'panel-expand');
+    directoryExpanded = expanded;
+    syncDirectoryIcon();
     const label = expanded ? '收起动效目录' : '展开动效目录';
     $('toggle-directory').setAttribute('aria-label', label);
     $('toggle-directory').title = label;
+    if (glideSidebar) {
+      const sidebarTo = shell.getBoundingClientRect().width;
+      if (Math.abs(sidebarFrom - sidebarTo) > 1) {
+        shell.animate(
+          [{width: sidebarFrom + 'px'}, {width: sidebarTo + 'px'}],
+          {duration: 460, easing: 'cubic-bezier(0.22, 1, 0.36, 1)'}
+        );
+      }
+    }
     MotionRuntime.fit($('preview'));
     MotionThumbs.resize();
     if (modal && focus) $('search').focus({preventScroll:true});
@@ -523,10 +569,6 @@
     renderCategories();
     renderList();
   });
-  document.querySelector('.domain-tabs').addEventListener('click',event=>{
-    const button=event.target.closest('[data-domain]');if(!button)return;domain=button.dataset.domain;
-    document.querySelectorAll('[data-domain]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));renderList();
-  });
 
   document.querySelectorAll('.ins-head').forEach(head => head.addEventListener('click', () => {
     setSection(head.dataset.section, head.getAttribute('aria-expanded') !== 'true');
@@ -537,7 +579,6 @@
     const button = event.target.closest('[data-related]');
     if (!button) return;
     kind = data.effects.find(e => e.id === button.dataset.related).kind;
-    domain='all';document.querySelectorAll('[data-domain]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.domain==='all')));
     category = 'all';
     $('search').value = '';
     clearTimeout(debounce);
@@ -584,20 +625,20 @@
     controller.seek(target);
     fillTrack($('scrub'));
   });
-  speedInput.addEventListener('input', () => applySpeed(speedInput.value));
+  speedInput.addEventListener('input', () => { stopSpeedGlide(); applySpeed(speedInput.value); });
   $('speed-value').addEventListener('input', () => {
     // 输入过程中先不重排文字，只在能解析成数字时给出实时反馈；空串不当作 0。
     const raw = $('speed-value').value.trim();
     if (raw !== '' && Number.isFinite(Number(raw))) applySpeed(Number(raw), false);
   });
-  const commitSpeed = () => applySpeed($('speed-value').value);
+  const commitSpeed = () => { stopSpeedGlide(); applySpeed($('speed-value').value); };
   $('speed-value').addEventListener('change', commitSpeed);
   $('speed-value').addEventListener('keydown', event => {
     if (event.key === 'Enter') { event.preventDefault(); commitSpeed(); $('speed-value').blur(); }
     else if (event.key === 'Escape') { $('speed-value').value = formatSpeed(speedInput.value); }
   });
-  $('speed-down').addEventListener('click', () => applySpeed(Number(speedInput.value) - Number(speedInput.step)));
-  $('speed-up').addEventListener('click', () => applySpeed(Number(speedInput.value) + Number(speedInput.step)));
+  $('speed-down').addEventListener('click', () => glideSpeed(-Number(speedStep)));
+  $('speed-up').addEventListener('click', () => glideSpeed(Number(speedStep)));
   $('ease').addEventListener('change', () => { controller?.setEase($('ease').value); updateOutputs(); });
 
   $('fullscreen').addEventListener('click', async () => {
@@ -666,37 +707,141 @@
     if (selected && controller?.destroyed) selectEffect(selected.id, lastPlayback || {...settings(), time:controller.currentTime, paused:true});
   });
 
-  /* 外观：跟随系统、浅色、深色。图标样式对齐个人网站侧栏的太阳按钮。 */
+  /* 外观只有白天和黑夜，默认黑夜。悬停时当前图标弹簧换成另一个。 */
   const THEME_KEY = 'wise-motion-theme';
-  const THEME_CYCLE = ['system', 'light', 'dark'];
-  const THEME_LABEL = {system:'跟随系统', light:'浅色', dark:'深色'};
-  const THEME_ICON = {system:'theme-monitor', light:'theme-sun', dark:'theme-moon'};
+  const THEME_LABEL = {light:'浅色', dark:'深色'};
+  let themeMode = 'dark', themeHovered = false, themeReady = false, themeRaf = 0, themeLast = 0;
+  let directoryExpanded = true, directoryHovered = false, directoryReady = false, directoryRaf = 0, directoryLast = 0;
+  const directoryNodes = [];
+  function paintDirectoryIcons() {
+    for (const node of directoryNodes) {
+      node.el.style.transform = `scale(${node.scale})`;
+      node.el.style.opacity = String(node.opacity);
+    }
+  }
+  function tickDirectory(now) {
+    const dt = Math.min(.034, (now - directoryLast) / 1000 || .016);
+    directoryLast = now;
+    let moving = false;
+    for (const node of directoryNodes) {
+      for (const [value, goal, vel] of [['scale', 'goalScale', 'vScale'], ['opacity', 'goalOpacity', 'vOpacity']]) {
+        const error = node[goal] - node[value];
+        node[vel] += (600 * error - 25 * node[vel]) * dt;
+        node[value] += node[vel] * dt;
+        if (Math.abs(error) > .012 || Math.abs(node[vel]) > .04) moving = true;
+      }
+    }
+    paintDirectoryIcons();
+    if (moving) directoryRaf = requestAnimationFrame(tickDirectory);
+    else {
+      directoryRaf = 0;
+      for (const node of directoryNodes) { node.scale = node.goalScale; node.opacity = node.goalOpacity; node.vScale = node.vOpacity = 0; }
+      paintDirectoryIcons();
+    }
+  }
+  function syncDirectoryIcon() {
+    if (!directoryNodes.length) return;
+    const showExpand = directoryExpanded ? directoryHovered : !directoryHovered;
+    const goals = [!showExpand, showExpand];
+    directoryNodes.forEach((node, index) => {
+      node.goalScale = goals[index] ? 1 : .5;
+      node.goalOpacity = goals[index] ? 1 : 0;
+    });
+    if (!directoryReady || reducedMotion.matches) {
+      cancelAnimationFrame(directoryRaf);
+      directoryRaf = 0;
+      for (const node of directoryNodes) { node.scale = node.goalScale; node.opacity = node.goalOpacity; node.vScale = node.vOpacity = 0; }
+      directoryReady = true;
+      paintDirectoryIcons();
+      return;
+    }
+    if (!directoryRaf) { directoryLast = performance.now(); directoryRaf = requestAnimationFrame(tickDirectory); }
+  }
+  const themeNodes = [];
   function readTheme() {
     try {
       const saved = localStorage.getItem(THEME_KEY);
-      if (THEME_CYCLE.includes(saved)) return saved;
-    } catch (_) { /* 无法读取时保持跟随系统。 */ }
-    return 'system';
+      if (saved === 'light' || saved === 'dark') return saved;
+    } catch (_) { /* 读不到时用黑夜。 */ }
+    return 'dark';
+  }
+  function paintThemeIcons() {
+    for (const node of themeNodes) {
+      node.el.style.transform = `scale(${node.scale})`;
+      node.el.style.opacity = String(node.opacity);
+    }
+  }
+  function tickTheme(now) {
+    const dt = Math.min(.034, (now - themeLast) / 1000 || .016);
+    themeLast = now;
+    let moving = false;
+    for (const node of themeNodes) {
+      for (const [value, goal, vel] of [['scale', 'goalScale', 'vScale'], ['opacity', 'goalOpacity', 'vOpacity']]) {
+        const error = node[goal] - node[value];
+        node[vel] += (600 * error - 25 * node[vel]) * dt;
+        node[value] += node[vel] * dt;
+        if (Math.abs(error) > .012 || Math.abs(node[vel]) > .04) moving = true;
+      }
+    }
+    paintThemeIcons();
+    if (moving) themeRaf = requestAnimationFrame(tickTheme);
+    else {
+      themeRaf = 0;
+      for (const node of themeNodes) { node.scale = node.goalScale; node.opacity = node.goalOpacity; node.vScale = node.vOpacity = 0; }
+      paintThemeIcons();
+    }
+  }
+  function syncThemeIcon() {
+    const showSun = themeMode === 'dark' ? themeHovered : !themeHovered;
+    const goals = [!showSun, showSun];
+    themeNodes.forEach((node, index) => {
+      node.goalScale = goals[index] ? 1 : .5;
+      node.goalOpacity = goals[index] ? 1 : 0;
+    });
+    if (!themeReady || reducedMotion.matches) {
+      cancelAnimationFrame(themeRaf);
+      themeRaf = 0;
+      for (const node of themeNodes) { node.scale = node.goalScale; node.opacity = node.goalOpacity; node.vScale = node.vOpacity = 0; }
+      themeReady = true;
+      paintThemeIcons();
+      return;
+    }
+    if (!themeRaf) { themeLast = performance.now(); themeRaf = requestAnimationFrame(tickTheme); }
   }
   function applyTheme(mode, persist) {
-    if (mode === 'system') document.documentElement.removeAttribute('data-theme');
-    else document.documentElement.dataset.theme = mode;
+    themeMode = mode;
+    document.documentElement.dataset.theme = mode;
     const button = $('theme-toggle');
     if (button) {
-      button.innerHTML = icon(THEME_ICON[mode]);
       const label = `外观：${THEME_LABEL[mode]}`;
       button.setAttribute('aria-label', label);
       button.title = THEME_LABEL[mode];
     }
+    if (themeNodes.length) syncThemeIcon();
     if (persist) {
       try { localStorage.setItem(THEME_KEY, mode); } catch (_) { /* 隐私模式写不进时，本次会话仍然生效。 */ }
     }
   }
-  applyTheme(readTheme(), false);
-  $('theme-toggle').addEventListener('click', () => {
-    const current = readTheme();
-    applyTheme(THEME_CYCLE[(THEME_CYCLE.indexOf(current) + 1) % THEME_CYCLE.length], true);
+  $('theme-toggle').querySelectorAll('.icon-morph-glyph').forEach(element => {
+    themeNodes.push({el: element, scale: .5, opacity: 0, vScale: 0, vOpacity: 0, goalScale: .5, goalOpacity: 0});
   });
+  applyTheme(readTheme(), false);
+  const themeButton = $('theme-toggle');
+  themeButton.addEventListener('mouseenter', () => { themeHovered = true; syncThemeIcon(); });
+  themeButton.addEventListener('mouseleave', () => { themeHovered = false; syncThemeIcon(); });
+  themeButton.addEventListener('pointerenter', () => { themeHovered = true; syncThemeIcon(); });
+  themeButton.addEventListener('pointerleave', () => { themeHovered = false; syncThemeIcon(); });
+  themeButton.addEventListener('click', () => {
+    applyTheme(themeMode === 'dark' ? 'light' : 'dark', true);
+  });
+  $('toggle-directory').querySelectorAll('.icon-morph-glyph').forEach(element => {
+    directoryNodes.push({el: element, scale: .5, opacity: 0, vScale: 0, vOpacity: 0, goalScale: .5, goalOpacity: 0});
+  });
+  const directoryButton = $('toggle-directory');
+  directoryButton.addEventListener('mouseenter', () => { directoryHovered = true; syncDirectoryIcon(); });
+  directoryButton.addEventListener('mouseleave', () => { directoryHovered = false; syncDirectoryIcon(); });
+  directoryButton.addEventListener('pointerenter', () => { directoryHovered = true; syncDirectoryIcon(); });
+  directoryButton.addEventListener('pointerleave', () => { directoryHovered = false; syncDirectoryIcon(); });
 
   // 选中底共用一块，按弹簧滑到新页签。颜色来自样式里的芯片色，不另取强调色。
   function bindSlidingPill(root) {
@@ -761,7 +906,6 @@
     sync(false);
   }
   bindSlidingPill(document.querySelector('.kind-tabs'));
-  bindSlidingPill(document.querySelector('.domain-tabs'));
   bindSlidingPill(document.querySelector('.output-tabs'));
 
   setDirectory(!directoryMedia.matches);

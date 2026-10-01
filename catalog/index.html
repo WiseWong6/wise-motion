@@ -9,7 +9,7 @@
     (function () {
       try {
         var mode = localStorage.getItem('wise-motion-theme');
-        if (mode === 'light' || mode === 'dark') document.documentElement.dataset.theme = mode;
+        document.documentElement.dataset.theme = mode === 'light' ? 'light' : 'dark';
       } catch (e) {}
     })();
   </script>
@@ -26,8 +26,8 @@
       <header class="sidebar-header">
         <a class="brand" href="index.html"><img class="brand-mark" src="wise-avatar.webp" alt="" width="22" height="22">Wise Motion</a>
         <div class="sidebar-actions">
-          <button id="theme-toggle" class="icon-btn theme-toggle" type="button" aria-label="外观：跟随系统" title="跟随系统"><span data-icon="theme-monitor"></span></button>
-          <button id="toggle-directory" class="icon-btn" type="button" aria-controls="directory-panel" aria-expanded="true" aria-label="收起动效目录" title="收起动效目录"><span data-icon="panel-collapse"></span></button>
+          <button id="theme-toggle" class="icon-btn morph-toggle" type="button" aria-label="外观：深色" title="深色"><span class="icon-morph" aria-hidden="true"><span class="icon-morph-glyph" data-icon="theme-moon"></span><span class="icon-morph-glyph" data-icon="theme-sun"></span></span></button>
+          <button id="toggle-directory" class="icon-btn morph-toggle" type="button" aria-controls="directory-panel" aria-expanded="true" aria-label="收起动效目录" title="收起动效目录"><span class="icon-morph" aria-hidden="true"><span class="icon-morph-glyph" data-icon="panel-collapse"></span><span class="icon-morph-glyph" data-icon="panel-expand"></span></span></button>
         </div>
       </header>
       <div id="directory-panel" class="directory" aria-label="动效目录">
@@ -37,14 +37,9 @@
         </div>
         <div class="directory-top">
           <div class="kind-tabs" role="group" aria-label="参考层级">
-            <button data-kind="action" aria-pressed="true">单个动作 <span class="pill-count">73</span></button>
+            <button data-kind="action" aria-pressed="true">单个动作 <span class="pill-count">74</span></button>
             <button data-kind="composition" aria-pressed="false">组合片段 <span class="pill-count">6</span></button>
-            <button data-kind="recipe" aria-pressed="false">历史配方 <span class="pill-count">289</span></button>
-          </div>
-          <div class="domain-tabs" role="group" aria-label="内容范围">
-            <button type="button" data-domain="all" aria-pressed="true">全部</button>
-            <button type="button" data-domain="animation" aria-pressed="false">动画</button>
-            <button type="button" data-domain="document" aria-pressed="false">文稿</button>
+            <button data-kind="recipe" aria-pressed="false">历史配方 <span class="pill-count">285</span></button>
           </div>
           <div class="search-control select-control">
             <div class="search">

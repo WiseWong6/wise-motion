@@ -45,9 +45,41 @@
     return p=> {s('u0',{x2:145+140*smooth(section(p,.12,.4))});s('u1',{x2:356+140*smooth(section(p,.48,.8))});};
   });
   register('vertical-feed',(root) => {
-    const rows=['建立问题','给出事实','解释原因','提出做法','核对结果','留下结论'];
-    const s=stage(root,'<defs><clipPath id="NAMESPACE-feed"><rect x="120" y="78" width="400" height="208"/></clipPath></defs><g clip-path="url(#NAMESPACE-feed)"><g data-part="rows">'+list(6,i=>text('row'+i,320,112+i*60,rows[i],27))+'</g></g>');
-    return p=>s('rows',{transform:`translate(0 ${-180*smooth(section(p,.15,.8))})`});
+    // 自绘细线图标；整墙只用一条滚动带，新图标自然从底部接入。
+    const icons = [
+      'M3 11L12 3L21 11M6 9V21H18V9',
+      'M4 5H20V19H4ZM4 9H20M8 9V19',
+      'M5 3H15L20 8V21H5ZM15 3V8H20M8 12H16M8 16H14',
+      'M3 6H10L12 9H21V20H3Z',
+      'M12 3A9 9 0 1 0 12 21A9 9 0 1 0 12 3M12 7V12L16 14',
+      'M4 7H20V21H4ZM4 11H20M8 3V8M16 3V8',
+      'M3 18L8 12L13 15L21 5M15 5H21V11',
+      'M5 21V13H8V21M11 21V8H14V21M17 21V3H20V21',
+      'M10 3A7 7 0 1 0 10 17A7 7 0 1 0 10 3M15 15L21 21',
+      'M5 11H19V21H5ZM8 11V7A4 4 0 0 1 16 7V11',
+      'M12 3L21 7V12Q21 18 12 22Q3 18 3 12V7Z',
+      'M3 5H21V19H3ZM3 5L12 13L21 5',
+      'M3 4H21V17H9L4 21V17H3Z',
+      'M12 3L15 9L22 10L17 15L18 22L12 18L6 22L7 15L2 10L9 9Z',
+      'M4 12L10 18L21 5',
+      'M12 3V21M3 12H21',
+      'M3 12H21M15 6L21 12L15 18',
+      'M12 3V21M6 15L12 21L18 15',
+      'M4 4H20V20H4ZM4 10H20M10 4V20',
+      'M3 6L12 2L21 6L12 10ZM3 6V18L12 22L21 18V6M12 10V22',
+      'M4 18V10A8 8 0 0 1 20 10V18M4 12H7V19H4ZM17 12H20V19H17Z',
+      'M4 7H8L10 4H15L17 7H21V21H3V7ZM12 10A4 4 0 1 0 12 18A4 4 0 1 0 12 10',
+      'M5 3H19V21L12 17L5 21Z',
+      'M3 4H10L12 6L14 4H21V20H14L12 22L10 20H3ZM12 6V22'
+    ];
+    const s=stage(root,'<defs><clipPath id="NAMESPACE-feed"><rect x="100" y="36" width="440" height="288"/></clipPath></defs><g clip-path="url(#NAMESPACE-feed)"><g data-part="rows">'+icons.map((d,i)=>`<g data-part="icon${i}" transform="translate(${164+i%4*104} ${56+Math.floor(i/4)*72})"><path d="${d}" transform="scale(1.5)" fill="none" stroke="${ink}" stroke-width=".7" stroke-linecap="round" stroke-linejoin="round"/></g>`).join('')+'</g></g>');
+    return p=>{
+      s('rows',{transform:`translate(0 ${-144*section(p,.35,.85)})`});
+      icons.forEach((_,i)=>{
+        const delay=(Math.abs(i%4-1.5)+Math.abs(Math.floor(i/4)-1.5))*.025;
+        s('icon'+i,{opacity:smooth(section(p,.02+delay,.12+delay))});
+      });
+    };
   });
   register('scroll-brake',(root) => {
     const s=stage(root,line('guide',320,65,320,285,'stroke-dasharray="4 5"')+'<g data-part="belt">'+list(8,i=>rect('r'+i,i*150,120,130,120)+text('n'+i,i*150+65,190,String(i+1),32))+'</g>');

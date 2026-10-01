@@ -1,9 +1,6 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
 .kind-tabs { grid-template-columns:repeat(3,minmax(0,1fr)); }
 .kind-tabs button { padding-inline:5px; }
-.domain-tabs { position:relative; display:flex; gap:4px; margin-top:10px; }
-.domain-tabs button { position:relative; z-index:1; border:0; border-radius:5px; background:transparent; color:var(--muted); padding:5px 10px; font:inherit; font-size:12px; cursor:pointer; }
-.domain-tabs button[aria-pressed="true"] { background:transparent; color:var(--ink); }
 .history-media { display:block; position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
 .history-notice { position:absolute; inset:auto 24px 20px; margin:0; padding:12px; color:var(--ink); background:var(--panel); font-size:13px; line-height:1.7; }
 .history-notice[hidden] { display:none; }
