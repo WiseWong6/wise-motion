@@ -10,7 +10,7 @@ test('三栏目录筛选、常驻预览和节奏输出一致，只持有一个�
     const click = selector => d.querySelector(selector).click();
     assert.equal(d.querySelectorAll('.effect-item').length,data.effects.filter(e=>e.kind==='action').length);
     assert.equal(d.querySelector('[aria-current="true"]').dataset.effect,'fade-rise');
-    assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(listeners.size,4);
+    assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(listeners.size,3);
     assert.equal(w.MotionRuntime.runningCount,0); assert.notEqual(d.getElementById('scrub').value,'0');
     const category = d.getElementById('category-filter'); category.value = 'continuous'; category.dispatchEvent(new w.Event('change'));
     assert.equal(d.querySelectorAll('.effect-item').length,4);
@@ -48,7 +48,7 @@ test('三栏目录筛选、常驻预览和节奏输出一致，只持有一个�
     assert.match(d.getElementById('prompt').textContent,/4\.00 秒/);
     assert.match(d.getElementById('code').textContent,/player\.setSpeed\(2\)/);
     click('[data-related="seamless-scroll"]');
-    assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(listeners.size,4);
+    assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(listeners.size,3);
     assert.equal(d.getElementById('preview-title').textContent,'无缝滚动');
     assert.equal(d.querySelector('[aria-current="true"]').dataset.effect,'seamless-scroll');
     const duration = w.MotionRegistry.effects.find(effect => effect.id === 'seamless-scroll').duration_ms;
@@ -57,9 +57,9 @@ test('三栏目录筛选、常驻预览和节奏输出一致，只持有一个�
     assert.equal((elapsed + left).toFixed(1), (duration / 1000).toFixed(1));
     speed.value = .75; speed.dispatchEvent(new w.Event('input'));
     w.dispatchEvent(new w.Event('pagehide'));
-    assert.equal(w.MotionRuntime.instanceCount,0); assert.equal(listeners.size,3);
+    assert.equal(w.MotionRuntime.instanceCount,0); assert.equal(listeners.size,2);
     w.dispatchEvent(new w.Event('pageshow'));
-    assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(listeners.size,4);
+    assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(listeners.size,3);
     assert.equal(speed.value,'0.75');
   } finally { env.close(); }
 });
@@ -73,7 +73,7 @@ test('目录卡片懒绘制各自的场景，不共用第一张的渲染结果�
     assert.equal(shown.length,data.effects.filter(e=>e.kind==='action').length);
     assert.ok(shown.every(([id,painted]) => painted === id),shown.find(([id,painted]) => id !== painted)?.join('→'));
     // 缩略图只是静态一帧：不建计时器、不注册 ResizeObserver。
-    assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(env.listeners.size,4); assert.equal(w.MotionRuntime.runningCount,0);
+    assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(env.listeners.size,3); assert.equal(w.MotionRuntime.runningCount,0);
     d.querySelector('[data-kind="composition"]').click();
     env.reveal();
     const mixed = [...d.querySelectorAll('.effect-item')].map(card => [card.dataset.effect, card.querySelector('.thumb .motion-stage')?.dataset.effect]);
@@ -245,6 +245,6 @@ test('缩略图保留完整画板，尺寸变化后重算，仍然只持有一�
     assert.match(host.querySelector('.motion-stage').style.transform,/scale\(0\.25\)/);
     width = 128; w.dispatchEvent(new w.Event('resize'));
     assert.match(host.querySelector('.motion-stage').style.transform,/scale\(0\.2\)/);
-    assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(env.listeners.size,4);
+    assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(env.listeners.size,3);
   } finally {env.close();}
 });

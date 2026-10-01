@@ -35,7 +35,7 @@ test('两侧切换遵循筛选与搜索顺序，首尾循环，切换同步输�
     await new Promise(resolve => setTimeout(resolve, 160));
     assert.equal(ids().length, 0); assert.ok(previous.disabled && next.disabled);
     assert.equal(current(), 'dual-scroll');
-    assert.equal(w.MotionRuntime.instanceCount, 1); assert.equal(env.listeners.size, 4);
+    assert.equal(w.MotionRuntime.instanceCount, 1); assert.equal(env.listeners.size, 3);
     assert.equal(w.MotionRuntime.runningCount, 0);
   } finally { env.close(); }
 });

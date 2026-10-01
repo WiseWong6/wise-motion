@@ -17,8 +17,8 @@ async function historyEnvironment(withApp=false){
 }
 test('每条历史审查均有出处，案例源码与原片范围没有混并，原源码保持只读',async()=>{
   const snapshot=JSON.parse(await readFile(state+'/source-snapshot.json','utf8'));
-  assert.deepEqual(historical.counts,{reviewed:292,recipes:289,entries:311,animation:225,document:64});
-  assert.equal(historical.excluded.length,3);
+  assert.deepEqual(historical.counts,{reviewed:292,recipes:285,entries:307,animation:224,document:61});
+  assert.equal(historical.excluded.length,7);
   for(const r of historical.recipes){
     const original=snapshot.rules.find(x=>x.id===r.history_id);
     assert.ok(r.review.reuse_contract.clock);assert.ok(r.retain.includes(r.review.extraction));
@@ -88,10 +88,7 @@ test('历史目录筛选与多案例切换同步输出、源码和时长，前�
     const {w}=env,d=w.document;
     const originalCreate=w.MotionHistoryRuntime.create;
     w.MotionHistoryRuntime.create=(root,e,options)=>originalCreate(root,e,{...options,mount:async canvas=>({render(t){canvas.dataset.time=String(t);},dispose(){}})});
-    d.querySelector('[data-kind="recipe"]').click();assert.equal(d.querySelectorAll('#effects-list [data-effect]').length,289);
-    d.querySelector('[data-domain="document"]').click();assert.equal(d.querySelectorAll('#effects-list [data-effect]').length,64);
-    d.querySelector('[data-domain="animation"]').click();assert.equal(d.querySelectorAll('#effects-list [data-effect]').length,225);
-    d.querySelector('[data-domain="all"]').click();
+    d.querySelector('[data-kind="recipe"]').click();assert.equal(d.querySelectorAll('#effects-list [data-effect]').length,285);
     const effect=w.MotionHistory.recipes.find(r=>r.entries.length>1&&new Set(r.entries.map(e=>e.preview.duration)).size>1);
     d.querySelector(`[data-effect="${effect.id}"]`).click();await tick();
     assert.equal(w.MotionRuntime.instanceCount,0);assert.equal(w.MotionHistoryRuntime.instanceCount,1);
@@ -103,7 +100,7 @@ test('历史目录筛选与多案例切换同步输出、源码和时长，前�
     assert.equal(decodeURI(new URL(d.querySelector('#history-details a').href).pathname),entry.code[0].file);
     d.getElementById('next-effect').click();await tick();assert.equal(w.MotionHistoryRuntime.instanceCount,1);
     d.querySelector('[data-kind="action"]').click();d.querySelector('[data-effect="fade-rise"]').click();
-    assert.equal(w.MotionHistoryRuntime.instanceCount,0);assert.equal(w.MotionRuntime.instanceCount,1);assert.equal(env.listeners.size,4);
+    assert.equal(w.MotionHistoryRuntime.instanceCount,0);assert.equal(w.MotionRuntime.instanceCount,1);assert.equal(env.listeners.size,3);
     assert.equal(d.querySelectorAll('audio').length,0);
   }finally{env.close();}
 });

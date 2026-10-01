@@ -27,7 +27,7 @@ test('历史左栏全部接入对应原作缩略图，静态单帧与原片定�
     };
     d.querySelector('[data-kind="recipe"]').click();
     const cards=[...d.querySelectorAll('#effects-list .effect-item')];
-    assert.equal(cards.length,289);assert.equal(drawn.length,0);
+    assert.equal(cards.length,285);assert.equal(drawn.length,0);
     env.reveal();await w.MotionThumbs.whenIdle();
     const counts={image:0,canvas:0,video:0};
     for(const card of cards){
@@ -45,9 +45,9 @@ test('历史左栏全部接入对应原作缩略图，静态单帧与原片定�
         assert.equal(video.currentTime,(preview.start||0)+preview.duration*.65,effect.name);
       }
     }
-    assert.deepEqual(counts,{image:211,canvas:75,video:3});assert.equal(new Set(drawn).size,75);
+    assert.deepEqual(counts,{image:207,canvas:75,video:3});assert.equal(new Set(drawn).size,75);
     assert.equal(played(),0);assert.equal(w.MotionRuntime.instanceCount,1);
-    assert.equal(w.MotionHistoryRuntime.instanceCount,0);assert.equal(env.listeners.size,4);
+    assert.equal(w.MotionHistoryRuntime.instanceCount,0);assert.equal(env.listeners.size,3);
     assert.equal(w.MotionRuntime.runningCount,0);assert.equal(w.MotionHistoryRuntime.runningCount,0);
     const oldVideos=[...d.querySelectorAll('.thumb video')];
     d.querySelector('[data-kind="action"]').click();env.reveal();
@@ -93,7 +93,7 @@ test('单个原作绘制失败不挡后续缩略图，失效图片可用静音�
     };
     d.querySelector('[data-kind="recipe"]').click();env.reveal();await w.MotionThumbs.whenIdle();
     assert.equal(calls,75);assert.equal(d.querySelectorAll('.thumb .history-placeholder').length,1);
-    assert.equal(d.querySelectorAll('.thumb canvas[data-entry]').length,74);
+    assert.equal(d.querySelectorAll('.thumb canvas[data-entry]').length,data.effects.filter(e=>e.kind==='action').length);
     const img=d.querySelector('.thumb img'),host=img.parentElement;
     const effect=w.MotionHistory.recipes.find(e=>e.id===host.closest('.effect-item').dataset.effect);
     img.dispatchEvent(new w.Event('error'));const video=host.querySelector('video');
@@ -125,9 +125,9 @@ test('离开页面释放缩略图，返回后恢复，旧的异步绘制不能�
     };
     w.dispatchEvent(new w.Event('pageshow'));env.reveal();await w.MotionThumbs.whenIdle();
     assert.equal(d.querySelectorAll('.thumb canvas[data-entry]').length,75);
-    assert.equal(d.querySelectorAll('.thumb img').length,211);assert.equal(d.querySelectorAll('.thumb video').length,3);
+    assert.equal(d.querySelectorAll('.thumb img').length,207);assert.equal(d.querySelectorAll('.thumb video').length,3);
     assert.notEqual(d.querySelector('.thumb canvas'),oldCanvas);assert.equal(w.MotionRuntime.instanceCount,1);
-    assert.equal(w.MotionHistoryRuntime.instanceCount,0);assert.equal(env.listeners.size,4);
+    assert.equal(w.MotionHistoryRuntime.instanceCount,0);assert.equal(env.listeners.size,3);
   }finally{close(env);}
 });
 

@@ -1126,6 +1126,75 @@
       ]
     },
     {
+      "id": "column-to-row",
+      "name": "三点纵排转横排",
+      "kind": "action",
+      "category": "space",
+      "summary": "左侧纵排的三个圆点同时缩小、上移并展开成横排。",
+      "purpose": "将左侧纵排内容收紧并移至上方横排",
+      "aliases": [
+        "纵排转横排",
+        "竖排变横排",
+        "三点横排",
+        "列变行"
+      ],
+      "behaviors": [
+        "layout",
+        "move",
+        "scale"
+      ],
+      "phases": [
+        "三个较大的圆点在左侧纵向排列。",
+        "各点同时上移、缩小，下方两点向右展开。",
+        "三个圆点在上方形成横排，保留原来的阅读顺序。"
+      ],
+      "retain": "按原作同时改变各项位置和比例；第一项也上移，缩放以各项左侧为基准。",
+      "avoid": "不要绕固定点旋转，不要让第一项停在原位，不要分成先缩小后移动两段。",
+      "duration_ms": 2600,
+      "loop": false,
+      "default_ease": "inOutCubic",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        },
+        "ease": {
+          "label": "速度变化",
+          "default": "inOutCubic",
+          "options": [
+            "linear",
+            "outCubic",
+            "inOutCubic",
+            "inOutSine"
+          ]
+        }
+      },
+      "source": {
+        "path": "catalog/effects/space.js",
+        "factory": "column-to-row",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2100,
+      "recommendation": "适合把纵向说明收紧到上方横排，为下方内容让出空间。",
+      "tempo_note": "改变速度变化时保留动作阶段与先后关系。",
+      "objects": "三个等大的圆点",
+      "analogy": "把左侧三项说明收拢到上方一行",
+      "trigger": "打开预览后按固定顺序播放；可暂停和定位时间。",
+      "assumptions": "保留原作各项位移与缩放同步归位的关系，以三个圆点替代完整文字版式；不含旋转。",
+      "domains": [
+        "animation",
+        "document"
+      ]
+    },
+    {
       "id": "layer-expand",
       "name": "层级展开",
       "kind": "action",
@@ -2409,27 +2478,28 @@
       "name": "纵向内容续接",
       "kind": "action",
       "category": "writing",
-      "summary": "有限内容列表向上移，新增行在底部接入，最后停住。",
-      "purpose": "有限内容列表向上移，新增行在底部接入，最后停住。",
-      "objects": "纵向文字列表",
+      "summary": "图标墙成组显现后匀速上移，后续图标从底部接入。",
+      "purpose": "连续展示一组不重复的图标",
+      "objects": "四列六行的细线图标墙",
       "phases": [
-        "首组内容可见。",
-        "已有内容上移并接入新行。",
-        "最后一组停住供阅读。"
+        "图标由中间向外成组显现。",
+        "整面图标墙匀速上移，后续两行从底部接入。",
+        "滚动停止，保留最后一组图标。"
       ],
       "aliases": [
         "纵向内容续接",
         "纵向续接",
-        "向上接入"
+        "向上接入",
+        "向上连续滚动"
       ],
       "behaviors": [
         "move",
         "text",
         "sequence"
       ],
-      "retain": "有限内容列表向上移，新增行在底部接入，最后停住。",
+      "retain": "图标保持列距与行距，整组同速上移，底部接入新内容。",
       "avoid": "不要重复第一组假装无缝循环。",
-      "duration_ms": 6000,
+      "duration_ms": 2500,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -2451,12 +2521,12 @@
       },
       "actions": [],
       "demo_mode": "fixed-timeline",
-      "preview_ms": 3960,
-      "recommendation": "适合有限内容列表向上移，新增行在底部接入，最后停住。保留对象关系和先后顺序。",
+      "preview_ms": 1650,
+      "recommendation": "适合连续展示图标库；整组同速上移，不重复首组假装循环。",
       "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
       "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
       "analogy": "有限内容列表向上移，新增行在底部接入，最后停住。",
-      "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。",
+      "assumptions": "使用二十四个自绘细线图标解释滚动关系；沿用目录背景，不复制原片底色与图标素材。",
       "domains": [
         "animation",
         "document"

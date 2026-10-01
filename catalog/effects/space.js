@@ -77,6 +77,21 @@
     const s = M.scene(root, Array.from({length: 4}, (_, i) => `<div class="layout-card"><b>${i + 1}</b>同一个内容</div>`).join('')); const cards = s.all('.layout-card');
     return (t, o) => { const p = M.span(t, 800, 2900, o.ease); cards.forEach((c, i) => { c.style.left = `${M.mix(160, 144 + i % 2 * 182, p)}px`; c.style.top = `${M.mix(70 + i * 59, 92 + Math.floor(i / 2) * 112, p)}px`; c.style.width = `${M.mix(320, 168, p)}px`; c.style.height = `${M.mix(47, 98, p)}px`; }); };
   };
+  F['column-to-row'] = (root, M) => {
+    root.innerHTML = '<svg class="pattern-svg" viewBox="0 0 640 360" width="640" height="360" aria-hidden="true">' +
+      Array.from({length: 3}, (_, i) => `<circle data-point="${i}" r="9" fill="var(--ink)"/>`).join('') + '</svg>';
+    const points = [...root.querySelectorAll('circle')];
+    return (t, o) => {
+      const progress = M.span(t, 850, 1700, o.ease);
+      const scale = M.mix(1.15, 1, progress);
+      points.forEach((point, i) => {
+        // 原作对每项的位移和比例同时归位；缩放原点在左侧，不含旋转。
+        point.setAttribute('cx', 196 + 12 * scale + i * 92 * progress);
+        point.setAttribute('cy', M.mix(184 + i * 60, 104, progress));
+        point.setAttribute('r', 12 * scale);
+      });
+    };
+  };
   F['layer-expand'] = (root, M) => {
     const s = M.scene(root, Array.from({length: 4}, (_, i) => `<div class="plane" style="background:var(--plane-${i})">${['内容','结构','样式','基础'][i]}</div>`).join('')); const layers = s.all('.plane');
     return (t, o) => layers.forEach((c, i) => { const p = M.span(t, 700 + i * 120, 2800 + i * 120, o.ease); c.style.transform = `translateY(${(i - 1.5) * M.mix(10, 48, p)}px) rotateX(52deg) rotateZ(-25deg)`; c.style.zIndex = String(4 - i); });

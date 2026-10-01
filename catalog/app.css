@@ -34,7 +34,7 @@
    变量沿用 ink/muted/secondary 与 surface/canvas/soft/hover/selected 的口径，
    导出页面 demo.html 复用其中的 --soft 与 --line。 */
 
-/* ── 设计变量：深色为默认，浅色跟随系统；侧栏按钮可改成浅色、深色或跟随系统 ── */
+/* ── 设计变量：默认黑夜。侧栏按钮只在白天和黑夜之间切换 ── */
 :root {
   color-scheme:dark;
   /* 中性色阶 */
@@ -314,19 +314,30 @@ svg { display:block; width:15px; height:15px; flex:none; }
 .sidebar-header { display:flex; align-items:center; gap:8px; min-height:var(--topbar); flex:none; padding:7px 12px; border-bottom:1px solid var(--line); }
 .sidebar-actions { display:flex; align-items:center; gap:2px; margin-left:auto; }
 .sidebar-actions .icon-btn svg { width:18px; height:18px; }
+.morph-toggle { transition:background var(--dur) var(--ease), color var(--dur) var(--ease), transform .35s cubic-bezier(.34,1.4,.64,1); }
+.morph-toggle:hover { transform:scale(1.02); }
+.morph-toggle:active { transform:scale(.96); }
+.icon-morph { position:relative; width:18px; height:18px; }
+#theme-toggle { color:inherit; }
+html[data-theme="dark"] #theme-toggle { color:#fff; }
+html[data-theme="light"] #theme-toggle { color:#141414; }
+html[data-theme="dark"] #theme-toggle:hover .icon-morph-glyph[data-icon="theme-sun"] { color:#f5b400; }
+html[data-theme="light"] #theme-toggle:hover .icon-morph-glyph[data-icon="theme-moon"] { color:#f5b400; }
+.icon-morph-glyph { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; }
 .brand { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; letter-spacing:-.02em; white-space:nowrap; }
 .brand-mark { width:22px; height:22px; border-radius:50%; object-fit:cover; flex:none; }
 
 /* ── 三栏骨架 ──────────────────────────────────────────────────── */
 .workbench {
-  display:grid; grid-template-columns:var(--sidebar) minmax(0,1fr) var(--inspector);
+  display:grid; grid-template-columns:auto minmax(0,1fr) var(--inspector);
   height:100vh; height:100dvh;
   /* 背景延伸：点阵与环境色铺满三栏，侧栏和检视器浮在它上面，
      玻璃才有真实的内容可模糊，而不是糊一层纯色。 */
   background:radial-gradient(var(--dot) 1px,transparent 1px);
   background-size:22px 22px;
 }
-.workbench.no-directory { grid-template-columns:var(--sidebar-rail) minmax(0,1fr) var(--inspector); }
+.sidebar-shell { width:var(--sidebar); overflow-x:clip; }
+.workbench.no-directory .sidebar-shell { width:var(--sidebar-rail); }
 .directory-caption { display:none; }
 .directory-backdrop { position:fixed; inset:var(--topbar) 0 0; z-index:40; background:rgba(0,0,0,.32); }
 
@@ -647,10 +658,11 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
 .step-btn {
   display:grid; place-items:center; width:24px; height:24px; flex:none;
   border-radius:var(--r-xs); color:var(--secondary);
-  transition:background var(--dur) var(--ease), color var(--dur) var(--ease);
+  transition:background var(--dur) var(--ease), color var(--dur) var(--ease), transform .28s cubic-bezier(.34,1.45,.64,1);
 }
 .step-btn svg { width:13px; height:13px; }
 .step-btn:hover:not(:disabled) { background:var(--hover); color:var(--ink); }
+.step-btn:active:not(:disabled) { transform:scale(.86); }
 .step-btn:disabled { opacity:.35; cursor:default; }
 .step-input {
   width:46px; padding:0; border:0; background:transparent; outline:none;
@@ -752,13 +764,16 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
 
 /* ── 响应式：桌面三栏 / 窄桌面两栏与目录抽屉 / 手机预览在前 ────── */
 @media (min-width:1120px) {
-  .no-directory .sidebar-header { flex-direction:column; padding:8px 5px; }
-  .no-directory .brand { display:none; }
-  .no-directory .sidebar-actions { flex-direction:column-reverse; gap:8px; margin:0; }
+  .brand { max-width:240px; overflow:hidden; transition:opacity .32s ease, max-width .46s cubic-bezier(.22,1,.36,1); }
+  .sidebar-header { transition:padding .46s cubic-bezier(.22,1,.36,1), flex-direction 0s linear; }
+  .sidebar-actions { transition:gap .46s cubic-bezier(.22,1,.36,1), margin .46s cubic-bezier(.22,1,.36,1), flex-direction 0s linear; }
+  .no-directory .sidebar-header { flex-direction:column; padding:8px 5px; transition-delay:0s, .18s; }
+  .no-directory .brand { opacity:0; max-width:0; pointer-events:none; }
+  .no-directory .sidebar-actions { flex-direction:column-reverse; gap:8px; margin:0; transition-delay:0s, 0s, .18s; }
 }
 @media (max-width:1119px) {
   .workbench,.workbench.no-directory { grid-template-columns:minmax(0,1fr) var(--inspector); grid-template-rows:var(--topbar) minmax(0,1fr); }
-  .sidebar-shell { position:relative; z-index:50; grid-column:1/-1; height:var(--topbar); border-right:0; border-bottom:1px solid var(--line); }
+  .sidebar-shell,.workbench.no-directory .sidebar-shell { position:relative; z-index:50; grid-column:1/-1; width:auto; height:var(--topbar); border-right:0; border-bottom:1px solid var(--line); }
   .sidebar-header { width:min(336px,100%); height:100%; min-height:0; border-bottom:0; }
   .directory {
     position:fixed; z-index:50; inset:var(--topbar) auto 0 0;
@@ -813,7 +828,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
 @media (prefers-reduced-motion:reduce) {
   /* 过渡归零，避免给原本无需过渡的侧栏尺寸与画板缩放引入延迟。 */
   * { animation-duration:.01ms !important; transition-duration:0s !important; }
-  .playbar .icon-btn:active,.copy-btn:active { transform:none; }
+  .playbar .icon-btn:active,.copy-btn:active,.step-btn:active,.morph-toggle:hover,.morph-toggle:active { transform:none; }
 }
 @media (prefers-contrast:more) {
   .playbar { background:var(--surface); border-color:var(--border-strong); box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; }
@@ -825,7 +840,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
   .playbar input[type="range"]::-moz-range-track { background:linear-gradient(to right,var(--accent) var(--fill),var(--border-strong) var(--fill)); }
   .effect-item { box-shadow:0 0 0 1px var(--border-strong); }
   .effect-item[aria-current="true"] { box-shadow:0 0 0 2px var(--accent); }
-  .kind-tabs button[aria-pressed="true"],.output-tabs button[aria-selected="true"],.domain-tabs button[aria-pressed="true"] { background:transparent; box-shadow:none; }
+  .kind-tabs button[aria-pressed="true"],.output-tabs button[aria-selected="true"] { background:transparent; box-shadow:none; }
   .tab-pill { box-shadow:0 0 0 1px var(--ink); }
   #preview,.thumb { box-shadow:none; }
   .thumb { box-shadow:inset 0 0 0 1px var(--border); }
