@@ -327,37 +327,12 @@
     if (selected) renderFacts(selected);
     updateOutputs();
   }
-  let speedGlide = 0, speedGoal = null;
-  const speedStep = speedInput.step;
-  function stopSpeedGlide() {
-    cancelAnimationFrame(speedGlide);
-    speedGoal = null;
-    speedInput.step = speedStep;
-  }
-  function glideSpeed(delta) {
-    const min = Number(speedInput.min), max = Number(speedInput.max), step = Number(speedStep);
-    const base = speedGoal ?? Number(speedInput.value);
-    const snapped = Math.min(max, Math.max(min, Math.round((base + delta - min) / step) * step + min));
-    const to = +snapped.toFixed(4);
-    const from = Number(speedInput.value);
-    cancelAnimationFrame(speedGlide);
-    speedGoal = to;
-    if (reducedMotion.matches || from === to) { speedGoal = null; speedInput.step = speedStep; applySpeed(to); return; }
-    speedInput.step = 'any';
-    $('speed-value').value = formatSpeed(to);
-    const start = performance.now();
-    const frame = now => {
-      const p = Math.min(1, (now - start) / 280);
-      const eased = 1 - (1 - p) ** 3;
-      const current = from + (to - from) * eased;
-      speedInput.value = String(p === 1 ? to : current);
-      fillTrack(speedInput);
-      const next = Number(speedInput.value);
-      if (Number.isFinite(next)) controller?.setSpeed(next);
-      if (p < 1) speedGlide = requestAnimationFrame(frame);
-      else { speedInput.step = speedStep; speedGoal = null; applySpeed(to); }
-    };
-    speedGlide = requestAnimationFrame(frame);
+  function stepSpeed(delta) {
+    if (!reducedMotion.matches) {
+      speedInput.classList.add('is-growing');
+      void speedInput.offsetWidth;
+    }
+    applySpeed(Number(speedInput.value) + delta);
   }
 
   function selectEffect(id, preserved = null, caseId = null) {
@@ -625,20 +600,21 @@
     controller.seek(target);
     fillTrack($('scrub'));
   });
-  speedInput.addEventListener('input', () => { stopSpeedGlide(); applySpeed(speedInput.value); });
+  speedInput.addEventListener('pointerdown', () => speedInput.classList.remove('is-growing'));
+  speedInput.addEventListener('input', () => applySpeed(speedInput.value));
   $('speed-value').addEventListener('input', () => {
     // 输入过程中先不重排文字，只在能解析成数字时给出实时反馈；空串不当作 0。
     const raw = $('speed-value').value.trim();
     if (raw !== '' && Number.isFinite(Number(raw))) applySpeed(Number(raw), false);
   });
-  const commitSpeed = () => { stopSpeedGlide(); applySpeed($('speed-value').value); };
+  const commitSpeed = () => { speedInput.classList.remove('is-growing'); applySpeed($('speed-value').value); };
   $('speed-value').addEventListener('change', commitSpeed);
   $('speed-value').addEventListener('keydown', event => {
     if (event.key === 'Enter') { event.preventDefault(); commitSpeed(); $('speed-value').blur(); }
     else if (event.key === 'Escape') { $('speed-value').value = formatSpeed(speedInput.value); }
   });
-  $('speed-down').addEventListener('click', () => glideSpeed(-Number(speedStep)));
-  $('speed-up').addEventListener('click', () => glideSpeed(Number(speedStep)));
+  $('speed-down').addEventListener('click', () => stepSpeed(-Number(speedInput.step)));
+  $('speed-up').addEventListener('click', () => stepSpeed(Number(speedInput.step)));
   $('ease').addEventListener('change', () => { controller?.setEase($('ease').value); updateOutputs(); });
 
   $('fullscreen').addEventListener('click', async () => {
@@ -871,7 +847,7 @@
       let moving = false;
       for (const key of keys) {
         const error = goal[key] - state[key];
-        velocity[key] += (680 * error - 30 * velocity[key]) * dt;
+        velocity[key] += (200 * error - 28 * velocity[key]) * dt;
         state[key] += velocity[key] * dt;
         if (Math.abs(error) > 0.35 || Math.abs(velocity[key]) > 12) moving = true;
       }

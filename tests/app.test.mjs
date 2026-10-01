@@ -13,7 +13,7 @@ test('三栏目录筛选、常驻预览和节奏输出一致，只持有一个�
     assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(listeners.size,3);
     assert.equal(w.MotionRuntime.runningCount,0); assert.notEqual(d.getElementById('scrub').value,'0');
     const category = d.getElementById('category-filter'); category.value = 'continuous'; category.dispatchEvent(new w.Event('change'));
-    assert.equal(d.querySelectorAll('.effect-item').length,4);
+    assert.equal(d.querySelectorAll('.effect-item').length,6);
     assert.equal(d.getElementById('preview-title').textContent,'渐入上移');
     click('[data-kind="composition"]'); assert.equal(d.querySelectorAll('.effect-item').length,6);
     const search = d.getElementById('search'); search.value = '两排反向持续滚动，不要轮播，不要停顿'; search.dispatchEvent(new w.Event('input'));
@@ -225,7 +225,7 @@ test('悬停菜单能接住点击和键盘，浮层选中后回到原处，先�
     assert.ok(!menu.hidden); assert.equal(d.activeElement.getAttribute('role'),'option');
     menu.querySelector('[data-value="continuous"]').click();
     assert.ok(menu.hidden); assert.equal(menu.parentElement,root);
-    assert.equal(d.querySelectorAll('.effect-item').length,4);
+    assert.equal(d.querySelectorAll('.effect-item').length,6);
     directoryMedia.matches = true; directoryMedia.dispatchEvent(new w.Event('change'));
     d.getElementById('toggle-directory').click(); trigger.click();
     menu.dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));

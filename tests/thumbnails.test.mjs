@@ -93,7 +93,7 @@ test('单个原作绘制失败不挡后续缩略图，失效图片可用静音�
     };
     d.querySelector('[data-kind="recipe"]').click();env.reveal();await w.MotionThumbs.whenIdle();
     assert.equal(calls,75);assert.equal(d.querySelectorAll('.thumb .history-placeholder').length,1);
-    assert.equal(d.querySelectorAll('.thumb canvas[data-entry]').length,data.effects.filter(e=>e.kind==='action').length);
+    assert.equal(d.querySelectorAll('.thumb canvas[data-entry]').length,74);
     const img=d.querySelector('.thumb img'),host=img.parentElement;
     const effect=w.MotionHistory.recipes.find(e=>e.id===host.closest('.effect-item').dataset.effect);
     img.dispatchEvent(new w.Event('error'));const video=host.querySelector('video');

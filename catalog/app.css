@@ -78,7 +78,7 @@
   --r-xs:4px; --r-sm:6px; --r-md:8px; --r-lg:10px;
   --dur:120ms; --ease:cubic-bezier(.2,.8,.3,1);
   /* 一套尺寸规则：侧栏随空间有限增长，剩余宽度交给预览。 */
-  --sidebar:clamp(256px,20vw,336px); --inspector:clamp(288px,23vw,360px); --topbar:48px; --sidebar-rail:56px;
+  --sidebar:clamp(256px,20vw,336px); --inspector:clamp(288px,23vw,360px); --topbar:60px; --sidebar-rail:56px;
   --control-size:12px; --control-height:36px;
   --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-6:24px;
   --preview-max:1440px; --stage-nav-size:44px;
@@ -307,11 +307,10 @@ svg { display:block; width:15px; height:15px; flex:none; }
   transition:background var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 .icon-btn:hover { background:var(--hover); color:var(--ink); }
-.icon-btn[aria-expanded="false"] { background:var(--hover); color:var(--ink); }
 .pill-count { font-family:Outfit,var(--font); font-size:11px; font-weight:500; color:var(--muted); font-variant-numeric:tabular-nums; }
 
 /* 侧栏顶端沿用本地 website 的品牌、主题、收起按钮分组。 */
-.sidebar-header { display:flex; align-items:center; gap:8px; min-height:var(--topbar); flex:none; padding:7px 12px; border-bottom:1px solid var(--line); }
+.sidebar-header { display:flex; align-items:center; gap:8px; min-height:var(--topbar); flex:none; padding:16px 16px 12px; border-bottom:1px solid var(--line); }
 .sidebar-actions { display:flex; align-items:center; gap:2px; margin-left:auto; }
 .sidebar-actions .icon-btn svg { width:18px; height:18px; }
 .morph-toggle { transition:background var(--dur) var(--ease), color var(--dur) var(--ease), transform .35s cubic-bezier(.34,1.4,.64,1); }
@@ -326,6 +325,23 @@ html[data-theme="light"] #theme-toggle:hover .icon-morph-glyph[data-icon="theme-
 .icon-morph-glyph { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; }
 .brand { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; letter-spacing:-.02em; white-space:nowrap; }
 .brand-mark { width:22px; height:22px; border-radius:50%; object-fit:cover; flex:none; }
+.brand-name {
+  color:#8d8d96;
+  background-image:linear-gradient(90deg,#8d8d96 0%,#8d8d96 58%,#fff 70%,#fff 82%,#8d8d96 94%,#8d8d96 100%);
+  background-size:200% 100%;
+  background-position:0 0;
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:brand-shimmer 2.4s linear infinite;
+}
+html[data-theme="light"] .brand-name {
+  color:#2a2a2e;
+  background-image:linear-gradient(90deg,#2a2a2e 0%,#2a2a2e 58%,#d5d5dc 70%,#d5d5dc 82%,#2a2a2e 94%,#2a2a2e 100%);
+}
+@keyframes brand-shimmer {
+  from { background-position:200% 0; }
+  to { background-position:0 0; }
+}
 
 /* ── 三栏骨架 ──────────────────────────────────────────────────── */
 .workbench {
@@ -557,6 +573,11 @@ html[data-theme="dark"] .playbar .playback-main:hover { background:transparent; 
 }
 
 /* 滑块：从最小值到滑块之间的轨道填成强调色，滑块之后保持中性。 */
+@property --fill {
+  syntax:"<percentage>";
+  inherits:true;
+  initial-value:0%;
+}
 input[type="range"] {
   -webkit-appearance:none; appearance:none; width:100%; height:16px;
   background:none; cursor:pointer; --fill:0%;
@@ -605,6 +626,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
 #speed:active::-webkit-slider-thumb { opacity:0; transform:none; }
 .playbar input[type="range"]:focus-visible,
 #speed:focus-visible { outline:2px solid var(--accent); outline-offset:4px; border-radius:999px; }
+#speed.is-growing { transition:--fill .42s cubic-bezier(.22,1,.36,1); }
 
 /* ── 右栏检视器 ────────────────────────────────────────────────── */
 .inspector {
@@ -764,12 +786,11 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
 
 /* ── 响应式：桌面三栏 / 窄桌面两栏与目录抽屉 / 手机预览在前 ────── */
 @media (min-width:1120px) {
-  .brand { max-width:240px; overflow:hidden; transition:opacity .32s ease, max-width .46s cubic-bezier(.22,1,.36,1); }
-  .sidebar-header { transition:padding .46s cubic-bezier(.22,1,.36,1), flex-direction 0s linear; }
-  .sidebar-actions { transition:gap .46s cubic-bezier(.22,1,.36,1), margin .46s cubic-bezier(.22,1,.36,1), flex-direction 0s linear; }
-  .no-directory .sidebar-header { flex-direction:column; padding:8px 5px; transition-delay:0s, .18s; }
-  .no-directory .brand { opacity:0; max-width:0; pointer-events:none; }
-  .no-directory .sidebar-actions { flex-direction:column-reverse; gap:8px; margin:0; transition-delay:0s, 0s, .18s; }
+  .brand { max-width:240px; min-width:0; overflow:hidden; transition:opacity .32s ease, max-width .46s cubic-bezier(.22,1,.36,1); }
+  .no-directory .sidebar-header { justify-content:center; padding-inline:12px; }
+  .no-directory .brand,
+  .no-directory #theme-toggle { width:0; min-width:0; max-width:0; margin:0; overflow:hidden; opacity:0; visibility:hidden; pointer-events:none; }
+  .no-directory .sidebar-actions { margin:0; gap:0; }
 }
 @media (max-width:1119px) {
   .workbench,.workbench.no-directory { grid-template-columns:minmax(0,1fr) var(--inspector); grid-template-rows:var(--topbar) minmax(0,1fr); }
@@ -829,6 +850,8 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
   /* 过渡归零，避免给原本无需过渡的侧栏尺寸与画板缩放引入延迟。 */
   * { animation-duration:.01ms !important; transition-duration:0s !important; }
   .playbar .icon-btn:active,.copy-btn:active,.step-btn:active,.morph-toggle:hover,.morph-toggle:active { transform:none; }
+  .brand-name { animation:none; background:none; color:#e4e4e7; -webkit-text-fill-color:currentColor; }
+  html[data-theme="light"] .brand-name { color:#141414; background:none; }
 }
 @media (prefers-contrast:more) {
   .playbar { background:var(--surface); border-color:var(--border-strong); box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; }
@@ -861,6 +884,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
   .copy-btn,.btn,.select-trigger { border:1px solid ButtonText; }
   .stage-canvas { background-image:none; }
   input[type="range"] { forced-color-adjust:auto; }
+  .brand-name { background:none; color:CanvasText; -webkit-text-fill-color:CanvasText; animation:none; }
 }
 /* 夜间界面图标用纯白。浅色仍沿用各自的灰，不跟着变白。 */
 html[data-theme="dark"] .icon-btn,

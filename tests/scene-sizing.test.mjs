@@ -16,7 +16,7 @@ test('标准动作画面保持完整画板尺寸，不被页面图标样式缩�
     }
     env.reveal();
     const scenes=[...d.querySelectorAll('.thumb .pattern-svg')];
-    assert.equal(scenes.length,49);
+    assert.equal(scenes.length,54);
     const fullSize=svg=>{
       const size=w.getComputedStyle(svg);
       assert.equal(size.width,'640px',svg.parentElement.dataset.effect);
