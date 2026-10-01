@@ -28,10 +28,30 @@
   const smooth = p => 1-(1-Math.min(1,Math.max(0,p)))**3;
   const section = (p,a,b) => Math.min(1,Math.max(0,(p-a)/(b-a)));
 
-  register('rigid-rebound',(root) => {
-    const s=stage(root,line('bar',210,180,430,180)+dot('left',0,0,16)+dot('right',0,0,16));
-    return p => {const q=section(p,.1,.8), overshoot=q===1?1:1-Math.exp(-7*q)*Math.cos(10*q), half=45+75*overshoot;move(s,'left',320-half,180);move(s,'right',320+half,180);s('bar',{x1:320-half,x2:320+half});};
-  });
+  function reboundScene(root,K,definition) {
+    const vertical=definition.id==='vertical-rebound';
+    const first=vertical?'top':'left',second=vertical?'bottom':'right';
+    const style='fill="var(--card)" stroke="var(--ink)" rx="3"';
+    const s=stage(root,vertical
+      ?rect(first,248,60,144,96,style)+rect(second,248,204,144,96,style)
+      :rect(first,176,108,112,144,style)+rect(second,352,108,112,144,style));
+    // 保留原作的入场和五次逐渐减弱的回摆，不对卡片施加形变。
+    const stops=[[.04,-1200],[.60,34],[.96,-16],[1.38,8],[1.84,-3.5],[2.33,1],[2.94,0]];
+    return p => {
+      const t=p*definition.duration_ms/1000;
+      let x=stops[0][1];
+      for(let i=1;i<stops.length;i++){
+        const [end,value]=stops[i], [start,previous]=stops[i-1];
+        if(t>=end){x=value;continue;}
+        x=K.mix(previous,value,K.span(t,start,end,i===1?'outCubic':'inOutSine'));break;
+      }
+      const offset=x*640/1080,opacity=K.span(t,.04,.60,'outCubic');
+      s(first,{transform:`translate(${offset} 0)`,opacity});
+      s(second,{transform:`translate(${-offset} 0)`,opacity});
+    };
+  }
+  register('rigid-rebound',reboundScene);
+  register('vertical-rebound',reboundScene);
   register('mask-stagger-text',(root) => {
     const s=stage(root,'<defs><clipPath id="NAMESPACE-window"><rect x="50" y="120" width="540" height="95"/></clipPath></defs><g clip-path="url(#NAMESPACE-window)">'+list(6,i=>text('c'+i,170+i*60,185,'表达更加清楚'[i],44))+'</g>');
     return p=> {for(let i=0;i<6;i++){const q=smooth(section(p,.08+i*.075,.4+i*.075));s('c'+i,{transform:`translate(0 ${90*(1-q)})`});}};
@@ -39,6 +59,64 @@
   register('stroke-draw',(root) => {
     const s=stage(root,'<path data-part="stroke" d="M130 235 Q220 65 320 160 T510 120" fill="none" stroke="var(--ink)" stroke-width="4" pathLength="1" stroke-dasharray="1"/>');
     return p=>s('stroke',{'stroke-dashoffset':1-smooth(section(p,.08,.85))});
+  });
+  const heartbeatPoints=[[96,180],[208,180],[264,96],[320,264],[376,180],[544,180]];
+  const heartbeatPath=heartbeatPoints.map(([x,y],i)=>(i?'L':'M')+x+' '+y).join(' ');
+  const heartbeatSegments=heartbeatPoints.slice(1).map((point,i)=>({from:heartbeatPoints[i],to:point,length:Math.hypot(point[0]-heartbeatPoints[i][0],point[1]-heartbeatPoints[i][1])}));
+  const heartbeatLength=heartbeatSegments.reduce((sum,s)=>sum+s.length,0);
+  register('heartbeat-follow',(root)=>{
+    const s=stage(root,`<path data-part="guide" d="${heartbeatPath}" fill="none" stroke="var(--muted)" stroke-width=".9" stroke-linejoin="round" stroke-linecap="round"/>`+dot('glow',96,180,9,'opacity=".1"')+dot('point',96,180,3));
+    return p=>{
+      let remaining=p*heartbeatLength,segment=heartbeatSegments.at(-1);
+      for(const candidate of heartbeatSegments){segment=candidate;if(remaining<=candidate.length||candidate===heartbeatSegments.at(-1))break;remaining-=candidate.length;}
+      const q=Math.min(1,remaining/segment.length),x=segment.from[0]+(segment.to[0]-segment.from[0])*q,y=segment.from[1]+(segment.to[1]-segment.from[1])*q;
+      s('point',{cx:x,cy:y});s('glow',{cx:x,cy:y});
+    };
+  });
+  register('heartbeat-draw',(root)=>{
+    const s=stage(root,`<path data-part="stroke" d="${heartbeatPath}" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>`);
+    return p=>s('stroke',{'stroke-dashoffset':1-2*p,opacity:p===0||p===1?0:1});
+  });
+  register('mindmap-grow',(root)=>{
+    const ends=[[136,180],[504,180],[320,52],[320,308]];
+    const paths=ends.map(([x,y],i)=>`<path data-part="axis${i}" d="M320 180L${x} ${y}" fill="none" stroke="${ink}" stroke-width=".85" pathLength="1" stroke-dasharray="1 1"/>`).join('');
+    const labels=[[408,112,'I'],[232,112,'II'],[232,248,'III'],[408,248,'IV']];
+    const s=stage(root,paths+'<g data-part="labels">'+labels.map(([x,y,label],i)=>text('quadrant'+i,x,y,label,13,'font-weight="300" opacity=".45"')).join('')+'</g>');
+    return p=>{
+      const q=smooth(section(p,.12,.62));
+      ends.forEach((_,i)=>s('axis'+i,{'stroke-dashoffset':1-q,opacity:q===0?0:1}));
+      s('labels',{opacity:section(p,.65,.8)});
+    };
+  });
+  register('mindmap-follow',(root,K,definition)=>{
+    // 左至右的分流线路。子线仅在父线的光点到达后启动。
+    const edges=[];
+    const add=(points,start)=>{
+      const segments=points.slice(1).map((to,i)=>({from:points[i],to,length:Math.hypot(to[0]-points[i][0],to[1]-points[i][1])}));
+      const length=segments.reduce((sum,s)=>sum+s.length,0);
+      const edge={points,segments,length,start,end:start+length/260};edges.push(edge);return edge;
+    };
+    const curve=(from,to)=>Array.from({length:41},(_,i)=>{
+      const t=i/40,u=1-t,m=(from[0]+to[0])/2;
+      return [u*u*u*from[0]+3*u*u*t*m+3*u*t*t*m+t*t*t*to[0],u*u*u*from[1]+3*u*u*t*from[1]+3*u*t*t*to[1]+t*t*t*to[1]];
+    });
+    const stem=add([[112,180],[216,180]],.2);
+    [[360,108],[360,252]].forEach((joint,i)=>{
+      const parent=add(curve([216,180],joint),stem.end);
+      [joint[1]-44,joint[1]+44].forEach(y=>add(curve(joint,[504,y]),parent.end));
+    });
+    const lines=edges.map((e,i)=>`<path data-part="branch${i}" d="${e.points.map(([x,y],j)=>(j?'L':'M')+x+' '+y).join(' ')}" fill="none" stroke="${muted}" stroke-opacity=".45" stroke-width=".85"/>`).join('');
+    const nodes=[64,152,208,296].map((y,i)=>rect('terminal'+i,504,y-8,24,16,'fill="var(--stage)" stroke="var(--muted)" stroke-width=".7" rx="4"')).join('');
+    const s=stage(root,lines+nodes+dot('root',112,180,4)+edges.map((_,i)=>dot('head'+i,112,180,2.7)).join(''));
+    return p=>{
+      const t=p*definition.duration_ms/1000;
+      edges.forEach((edge,i)=>{
+        let remaining=section(t,edge.start,edge.end)*edge.length,segment=edge.segments.at(-1);
+        for(const candidate of edge.segments){segment=candidate;if(remaining<=candidate.length||candidate===edge.segments.at(-1))break;remaining-=candidate.length;}
+        const q=Math.min(1,remaining/segment.length);
+        s('head'+i,{cx:K.mix(segment.from[0],segment.to[0],q),cy:K.mix(segment.from[1],segment.to[1],q),opacity:t>=edge.start&&t<edge.end?1:0});
+      });
+    };
   });
   register('underline-draw',(root) => {
     const s=stage(root,text('body',320,166,'先说清楚，再做漂亮',35)+line('u0',145,186,145,186)+line('u1',356,186,356,186));

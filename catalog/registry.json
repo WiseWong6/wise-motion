@@ -2248,26 +2248,28 @@
       "name": "刚体回摆",
       "kind": "action",
       "category": "space",
-      "summary": "保持轮廓不变，两个端点对向轻微越过后回到目标。",
-      "purpose": "保持轮廓不变，两个端点对向轻微越过后回到目标。",
-      "objects": "两端节点",
+      "summary": "两张卡片从左右进入，越过落点后逐渐减弱地回摆。",
+      "purpose": "让对向进入的内容带着惯性落稳",
+      "objects": "两张保持形状和大小的卡片",
       "phases": [
-        "端点等待。",
-        "对向伸展并略微越过。",
-        "回摆后稳定。"
+        "两张卡片从画面左右同时进入并显现。",
+        "略微越过落点，反向回摆，幅度逐次减小。",
+        "卡片稳定在各自位置，保持原有形状和大小。"
       ],
       "aliases": [
         "刚体回摆",
         "回摆",
-        "对向伸展"
+        "对向伸展",
+        "对向进入与回摆",
+        "左右入场回摆"
       ],
       "behaviors": [
         "move",
         "settle"
       ],
-      "retain": "保持轮廓不变，两个端点对向轻微越过后回到目标。",
-      "avoid": "不要用压扁和拉长模拟刚体回摆。",
-      "duration_ms": 4000,
+      "retain": "保留对向入场、交替越过落点和幅度逐次减弱；卡片不变形。",
+      "avoid": "不要压扁拉长卡片，不要改成从中央向外展开。",
+      "duration_ms": 3400,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -2289,12 +2291,70 @@
       },
       "actions": [],
       "demo_mode": "fixed-timeline",
-      "preview_ms": 2640,
-      "recommendation": "适合保持轮廓不变，两个端点对向轻微越过后回到目标。保留对象关系和先后顺序。",
+      "preview_ms": 2300,
+      "recommendation": "适合两组内容从左右入场并带惯性落稳。",
       "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
       "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
-      "analogy": "保持轮廓不变，两个端点对向轻微越过后回到目标。",
-      "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。",
+      "analogy": "两张硬纸卡滑入后轻微来回晃动，逐渐停住",
+      "assumptions": "采用两张纯色卡片简化原作；按原源码保留入场和回摆时长、位移比例，不带原版式文稿与背景。",
+      "domains": [
+        "animation",
+        "document"
+      ]
+    },
+    {
+      "id": "vertical-rebound",
+      "name": "上下进入回摆",
+      "kind": "action",
+      "category": "space",
+      "summary": "两张卡片上下排列，上卡从左进入、下卡从右进入，水平回摆后停稳。",
+      "purpose": "让上下排列的两组内容带着惯性落稳",
+      "objects": "上下排列、保持形状和大小的两张卡片",
+      "phases": [
+        "上方卡片从左向右进入，下方卡片从右向左进入。",
+        "两张卡片各自越过落点，沿水平方向回摆，幅度逐次减小。",
+        "卡片稳定在上下两个位置，全程不改变高度、形状和大小。"
+      ],
+      "aliases": [
+        "上下进入回摆",
+        "上下排列左右入场",
+        "上下错向进入",
+        "双行回摆"
+      ],
+      "behaviors": [
+        "move",
+        "settle"
+      ],
+      "retain": "上下排列；上卡左入、下卡右入，水平方向回摆，尺寸不变。",
+      "avoid": "不要从顶部和底部进入，不要改成同一行，不要压扁拉长卡片。",
+      "duration_ms": 3400,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-patterns.js",
+        "factory": "vertical-rebound",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2300,
+      "recommendation": "适合上下两组内容从相反的水平方向进入并回摆落稳。",
+      "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "上下两张硬纸卡从左右两侧滑入后停稳",
+      "assumptions": "沿用刚体回摆的纸卡样式和节奏；仅排列为上下两行，运动仍沿水平方向。",
       "domains": [
         "animation",
         "document"
@@ -2414,6 +2474,236 @@
       "domains": [
         "animation",
         "document"
+      ]
+    },
+    {
+      "id": "heartbeat-follow",
+      "name": "光点沿线走",
+      "kind": "action",
+      "category": "continuous",
+      "summary": "心电折线始终完整可见，光点按线长匀速前进。",
+      "purpose": "心电折线始终完整可见，光点按线长匀速前进。",
+      "objects": "一条心电折线与一个光点",
+      "phases": [
+        "完整心电折线常驻，光点位于起点。",
+        "光点沿折线匀速走过每个转折，底线不改变。",
+        "光点到达末端后回到起点，开始下一轮。"
+      ],
+      "aliases": [
+        "心电图",
+        "光点沿线走",
+        "底线常驻",
+        "循线光点"
+      ],
+      "behaviors": [
+        "path",
+        "move"
+      ],
+      "retain": "心电折线始终完整可见，光点按线长匀速前进。",
+      "avoid": "不要让底线随光点出现或消失，不要沿横坐标匀速造成斜线段速度突变。",
+      "duration_ms": 2000,
+      "loop": true,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-patterns.js",
+        "factory": "heartbeat-follow",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 800,
+      "recommendation": "心电折线始终完整可见，光点按线长匀速前进。",
+      "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "心电监视器的线条运动",
+      "assumptions": "用用户给出的六点折线比例演示；使用现有本地动画运行方式，不引入 React 或 Framer Motion。",
+      "domains": [
+        "animation"
+      ]
+    },
+    {
+      "id": "heartbeat-draw",
+      "name": "心电线条绘制",
+      "kind": "action",
+      "category": "continuous",
+      "summary": "心电折线从零画出，再从起点逐段消失，循环播放。",
+      "purpose": "心电折线从零画出，再从起点逐段消失，循环播放。",
+      "objects": "一条心电折线",
+      "phases": [
+        "初始没有线条。",
+        "从左向右沿路径逐段画出完整折线。",
+        "线尾从起点向终点擦除，清空后重新绘制。"
+      ],
+      "aliases": [
+        "心电图",
+        "从零画线",
+        "心电线条绘制",
+        "逐段画线"
+      ],
+      "behaviors": [
+        "draw",
+        "reveal"
+      ],
+      "retain": "心电折线从零画出，再从起点逐段消失，循环播放。",
+      "avoid": "不要显示常驻底线，不要加移动光点，不要整条线同时淡入淡出。",
+      "duration_ms": 2000,
+      "loop": true,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-patterns.js",
+        "factory": "heartbeat-draw",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 800,
+      "recommendation": "心电折线从零画出，再从起点逐段消失，循环播放。",
+      "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "心电监视器的线条运动",
+      "assumptions": "用用户给出的六点折线比例演示；使用现有本地动画运行方式，不引入 React 或 Framer Motion。",
+      "domains": [
+        "animation"
+      ]
+    },
+    {
+      "id": "mindmap-grow",
+      "name": "象限图中心生长",
+      "kind": "action",
+      "category": "space",
+      "summary": "横纵坐标轴从交点向四端展开，形成四象限。",
+      "purpose": "从中心建立四象限结构",
+      "objects": "两条坐标轴与四个象限编号",
+      "phases": [
+        "画面留白，轴线尚未出现。",
+        "横纵轴从同一交点向四端同时展开。",
+        "完整四象限保留，象限编号轻轻显现。"
+      ],
+      "aliases": [
+        "象限图中心生长",
+        "四象限",
+        "坐标轴展开",
+        "中心生长"
+      ],
+      "behaviors": [
+        "path",
+        "sequence",
+        "draw"
+      ],
+      "retain": "坐标轴交点固定，线条从中心向四端生长。",
+      "avoid": "不要把轴线整体淡入，不要添加树状分支。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-patterns.js",
+        "factory": "mindmap-grow",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 1500,
+      "recommendation": "适合四象限结构的开场。",
+      "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "从交点向外画出十字坐标轴",
+      "assumptions": "用细线坐标轴与简短象限编号演示，沿用目录配色。",
+      "domains": [
+        "animation"
+      ]
+    },
+    {
+      "id": "mindmap-follow",
+      "name": "光点沿树状线路分流",
+      "kind": "action",
+      "category": "space",
+      "summary": "完整树状线路常驻，光点从左向右逐级分流。",
+      "purpose": "展示从单一入口到多个终点的信息传递",
+      "objects": "一条入口主干、两级柔和分支与四个终点",
+      "phases": [
+        "完整线路可见，光点从左侧入口出发。",
+        "到达分叉后分成两路，再沿弯曲线路分成四路。",
+        "光点到达终点消失，底线保留，下一轮从入口出发。"
+      ],
+      "aliases": [
+        "光点沿树状线路分流",
+        "分流线路",
+        "树状图",
+        "光点分叉"
+      ],
+      "behaviors": [
+        "path",
+        "sequence",
+        "move"
+      ],
+      "retain": "沿曲线匀速移动，父线到达后子线启动，底线保持可见。",
+      "avoid": "不要直接跨越弯道，不要在分叉前提前出现光点。",
+      "duration_ms": 3000,
+      "loop": true,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-patterns.js",
+        "factory": "mindmap-follow",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 1500,
+      "recommendation": "适合信息分发、流程分流和路径传递。",
+      "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "一股信号沿线路分成多路",
+      "assumptions": "使用自绘的横向树状线路，柔和转弯，沿真实分段线长计算速度。",
+      "domains": [
+        "animation"
       ]
     },
     {
