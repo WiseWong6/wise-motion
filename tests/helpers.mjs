@@ -30,7 +30,7 @@ export async function environment(withApp = false) {
   w.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
   w.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new w.Event('close')); };
   const sources = ['vendor/animejs/anime.umd.min.js','catalog/registry-data.js','catalog/matching.js','catalog/runtime.js', ...[...new Set(data.effects.map(e => e.source.path))]];
-  if (withApp) sources.push('vendor/liquid-glass/liquid-glass.js','catalog/player-glass.js','catalog/history-data.js','catalog/history-runtime.js','vendor/heroicons/icons.js','catalog/thumbnails.js','catalog/dropdown.js','catalog/export.js','catalog/app.js');
+  if (withApp) sources.push('vendor/liquid-glass/liquid-glass.js','catalog/player-glass.js','catalog/history-data.js','catalog/history-runtime.js','catalog/book-controls.js','vendor/heroicons/icons.js','catalog/thumbnails.js','catalog/dropdown.js','catalog/export.js','catalog/app.js');
   for (const file of sources) w.eval(await readFile(new URL('../' + file, import.meta.url), 'utf8'));
   return {dom,w,listeners,media,directoryMedia,reveal() {
     for (const observer of observers) observer.callback([...observer.nodes].map(target => ({target,isIntersecting:true})));

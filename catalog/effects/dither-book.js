@@ -271,8 +271,8 @@
   }
   global.WiseDitherBook = {create, introAt, demoAt, duration: DURATION, introDuration: INTRO_END, pageCount: PAGE_COUNT};
   const factories = global.MotionFactories = global.MotionFactories || {};
-  factories['dither-lab-book'] = function (root) {
-    const book = create(root, {interactive: false, intro: false});
+  factories['dither-lab-book'] = function (root, kit, definition) {
+    const book = create(root, {interactive: false, intro: false, settings: definition?.paper_settings});
     return time => book.renderState(demoAt(time));
   };
 })(globalThis);

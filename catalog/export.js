@@ -4,11 +4,14 @@
   const escape = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   function prompt(effect, settings, registry) {
     const description = global.MotionMatch.describe(effect, settings, registry).split('\n').filter(line => !/^(对应参考：|源码：|来源与许可：)/.test(line)).join('\n');
-    return `请实现以下动效，保留动作结构、顺序与因果关系。\n\n${description}`;
+    const paper = effect.id==='dither-lab-book' && settings.bookSettings;
+    const paperNote = paper ? `\n\n纸页设置：图片留白 ${paper.padding} 像素，图片圆角 ${paper.radius} 像素，书脊阴影 ${paper.crease}%。` : '';
+    return `请实现以下动效，保留动作结构、顺序与因果关系。\n\n${description}${paperNote}`;
   }
   function code(effect, settings = {}) {
     if(effect.kind==='recipe')return historyCode(effect,settings);
     const definition = {id:effect.id, duration_ms:effect.duration_ms, loop:effect.loop, default_ease:effect.default_ease, parameters:effect.parameters};
+    if(effect.id==='dither-lab-book' && settings.bookSettings)definition.paper_settings=settings.bookSettings;
     const speed = Math.min(2, Math.max(.5, Number(settings.speed) || 1));
     const ease = effect.parameters.ease?.options.includes(settings.ease) ? settings.ease : effect.default_ease;
     const json = value => JSON.stringify(value, null, 2).replace(/</g, '\\u003c');

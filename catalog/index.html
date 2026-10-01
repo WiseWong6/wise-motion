@@ -14,6 +14,7 @@
     })();
   </script>
   <link rel="stylesheet" href="scenes.css"><link rel="stylesheet" href="app.css"><link rel="stylesheet" href="history.css">
+  <link rel="stylesheet" href="book-controls.css">
 </head>
 <body>
   <a class="skip-link" href="#preview-title">跳到当前动效</a>
@@ -36,7 +37,7 @@
         </div>
         <div class="directory-top">
           <div class="kind-tabs" role="group" aria-label="参考层级">
-            <button data-kind="action" aria-pressed="true">单个动作 <span class="pill-count">71</span></button>
+            <button data-kind="action" aria-pressed="true">单个动作 <span class="pill-count">73</span></button>
             <button data-kind="composition" aria-pressed="false">组合片段 <span class="pill-count">6</span></button>
             <button data-kind="recipe" aria-pressed="false">历史配方 <span class="pill-count">289</span></button>
           </div>
@@ -105,6 +106,24 @@
           <dd id="preview-source"></dd>
         </dl>
       </div>
+
+      <section class="ins-section" id="book-panel" hidden>
+        <button class="ins-head" data-section="book" aria-expanded="true" aria-controls="ins-book"><span data-icon="chevron-right"></span><span class="ins-label">翻页与纸张</span></button>
+        <div id="ins-book" class="ins-body">
+          <div class="book-modes" role="group" aria-label="翻页书体验方式">
+            <button id="book-timeline" class="btn btn-outline" type="button" aria-pressed="true">时间演示</button>
+            <button id="book-interactive" class="btn btn-outline" type="button" aria-pressed="false">交互翻页</button>
+          </div>
+          <div class="book-navigation" id="book-navigation" hidden>
+            <button id="book-prev" class="btn" type="button">上一页</button><output id="book-page" class="field-value" aria-live="polite">图稿 01 / 06</output><button id="book-next" class="btn" type="button">下一页</button>
+          </div>
+          <p id="book-hint" class="hint"></p>
+          <div class="field"><div class="field-head"><label class="field-label" for="book-padding">图片留白</label><output id="book-padding-value" class="field-value">10 像素</output></div><input id="book-padding" type="range" min="0" max="30" value="10"></div>
+          <div class="field"><div class="field-head"><label class="field-label" for="book-radius">图片圆角</label><output id="book-radius-value" class="field-value">20 像素</output></div><input id="book-radius" type="range" min="0" max="40" value="20"></div>
+          <div class="field"><div class="field-head"><label class="field-label" for="book-crease">书脊阴影</label><output id="book-crease-value" class="field-value">11%</output></div><input id="book-crease" type="range" min="0" max="40" value="11"></div>
+          <button id="book-reset" class="btn" type="button">重置纸页</button><button id="book-replay" class="btn" type="button" hidden>重播入场</button>
+        </div>
+      </section>
 
       <section class="ins-section">
         <button class="ins-head" data-section="about" aria-expanded="true" aria-controls="ins-about"><span data-icon="chevron-right"></span><span class="ins-label">动效说明</span></button>
@@ -180,5 +199,6 @@
   <script src="history-data.js"></script><script src="history-runtime.js"></script>
   <script src="effects/entrance.js"></script><script src="effects/continuous.js"></script><script src="effects/attention.js"></script><script src="effects/space.js"></script><script src="effects/transition.js"></script><script src="effects/environment.js"></script><script src="effects/compositions.js"></script>
   <script src="effects/history-patterns.js"></script>
+  <script src="effects/dither-book.js"></script><script src="book-controls.js"></script>
   <script src="../vendor/heroicons/icons.js"></script><script src="thumbnails.js"></script><script src="dropdown.js"></script><script src="export.js"></script><script src="app.js"></script>
 </body></html>

@@ -8,7 +8,7 @@ test('三栏目录筛选、常驻预览和节奏输出一致，只持有一个�
   try {
     const {w,listeners} = env, d = w.document;
     const click = selector => d.querySelector(selector).click();
-    assert.equal(d.querySelectorAll('.effect-item').length,72);
+    assert.equal(d.querySelectorAll('.effect-item').length,data.effects.filter(e=>e.kind==='action').length);
     assert.equal(d.querySelector('[aria-current="true"]').dataset.effect,'fade-rise');
     assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(listeners.size,4);
     assert.equal(w.MotionRuntime.runningCount,0); assert.notEqual(d.getElementById('scrub').value,'0');
@@ -70,7 +70,7 @@ test('目录卡片懒绘制各自的场景，不共用第一张的渲染结果�
     assert.equal(d.querySelectorAll('.thumb .motion-stage').length,0);
     env.reveal();
     const shown = [...d.querySelectorAll('.effect-item')].map(card => [card.dataset.effect, card.querySelector('.thumb .motion-stage')?.dataset.effect]);
-    assert.equal(shown.length,72);
+    assert.equal(shown.length,data.effects.filter(e=>e.kind==='action').length);
     assert.ok(shown.every(([id,painted]) => painted === id),shown.find(([id,painted]) => id !== painted)?.join('→'));
     // 缩略图只是静态一帧：不建计时器、不注册 ResizeObserver。
     assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(env.listeners.size,4); assert.equal(w.MotionRuntime.runningCount,0);
@@ -92,11 +92,16 @@ test('本地动作不误标第三方来源，明确的代码改编和样式参�
       for (const card of d.querySelectorAll('#effects-list [data-effect]')) {
         card.click();
         visited++;
-        assert.equal(source.textContent, '', card.dataset.effect);
-        assert.ok(block.hidden, card.dataset.effect);
+        const reference=w.MotionRegistry.effects.find(e=>e.id===card.dataset.effect).source.reference;
+        if(reference){
+          assert.match(source.textContent,/效果参考/);assert.ok(source.textContent.includes(reference.name));assert.ok(!block.hidden);
+          assert.equal(source.querySelector('a').href,reference.url);
+        }else{
+          assert.equal(source.textContent, '', card.dataset.effect);assert.ok(block.hidden, card.dataset.effect);
+        }
       }
     }
-    assert.equal(visited, 78);
+    assert.equal(visited, data.effects.length);
     d.querySelector('[data-kind="action"]').click();
     const effect = w.MotionRegistry.effects.find(e => e.id === 'fade-rise');
     effect.source.origin = 'adapted';

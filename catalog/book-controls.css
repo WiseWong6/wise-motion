@@ -1,0 +1,9 @@
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+.book-modes,.book-navigation{display:flex;align-items:center;gap:6px}
+.book-modes .btn{flex:1}
+.book-navigation{justify-content:space-between;margin-top:14px}
+.book-navigation .field-value{white-space:nowrap}
+#book-hint{margin:10px 0 18px}
+#book-replay{width:100%;margin-top:4px}
+#book-reset{margin-top:18px}
+#preview[tabindex="0"]:focus-visible{outline:2px solid var(--border-strong);outline-offset:4px}

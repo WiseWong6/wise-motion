@@ -52,7 +52,7 @@ test('历史左栏全部接入对应原作缩略图，静态单帧与原片定�
     const oldVideos=[...d.querySelectorAll('.thumb video')];
     d.querySelector('[data-kind="action"]').click();env.reveal();
     for(const video of oldVideos)assert.equal(video.getAttribute('src'),null);
-    assert.equal(d.querySelectorAll('.thumb .motion-stage').length,72);assert.equal(w.MotionRuntime.instanceCount,1);
+    assert.equal(d.querySelectorAll('.thumb .motion-stage').length,data.effects.filter(e=>e.kind==='action').length);assert.equal(w.MotionRuntime.instanceCount,1);
   }finally{close(env);}
 });
 
