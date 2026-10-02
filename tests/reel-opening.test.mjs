@@ -132,7 +132,7 @@ test('两个新效果反复定位和变速不改画面，终态没有重复属�
 
 test('新效果可从目录搜索及直达，缩略图与主预览一致且不增设计时器',async()=>{
   for(const id of ['char-color-cycle','letter-hole-zoom']){
-    const env=await environment(true,{hash:'#'+id});
+    const env=await environment(true,{staticPreview:true,hash:'#'+id});
     try{
       const {w}=env,d=w.document;env.reveal();const effect=get(id);
       assert.equal(d.getElementById('preview-title').textContent,effect.name);

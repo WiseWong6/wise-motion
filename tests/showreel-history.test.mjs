@@ -54,3 +54,25 @@ test('已核实的原片描述修正保留在审查记录中，不能因归档�
   assert.doesNotMatch(data.effects.find(e=>e.id==='bezier-editor').summary,/三次/);
   for(const id of ['reel-striped-sun','reel-grid-floor','reel-star-twinkle','reel-chrome-echo','reel-neon-flicker'])assert.ok(historical.excluded.some(e=>e.id===id));
 });
+
+test('通用名称下的原片动作能按来源搜索，历史关联指向实际实现',async()=>{
+  const context={};
+  runInNewContext(await readFile(new URL('../catalog/matching.js',import.meta.url),'utf8'),context);
+  const scenes={
+    sIntro:['char-color-cycle','letter-hole-zoom'],
+    sBass:['paper-strip-stagger','spiral-draw-spin','planar-dot-orbit'],
+    sNeon:['striped-sun-rise','perspective-grid-flow','star-twinkle','neon-horizon'],
+    sGrit:['word-slam'],sKey:['bezier-editor','motion-compare'],sOutro:['timeline-progress']
+  };
+  for(const [scene,ids] of Object.entries(scenes))for(const id of ids){
+    assert.equal(data.effects.find(e=>e.id===id).original_scene,'claude-showreel-2026/'+scene,id);
+  }
+  const imported=data.effects.filter(e=>e.original_scene?.startsWith('claude-showreel-2026/'));
+  for(const query of ['Claude','动效演进史']){
+    const found=new Set(context.MotionMatch.rank(data,query).map(item=>item.effect.id));
+    for(const e of imported)assert.ok(found.has(e.id),query+' 未找到 '+e.name);
+  }
+  assert.deepEqual(crosswalk.rules['reel-bezier-editor'].patterns,['bezier-editor']);
+  assert.deepEqual(crosswalk.rules['reel-era-sweep'].patterns,['timeline-progress']);
+  for(const id of ['slider-response','sweep-trigger'])assert.ok(!data.effects.find(e=>e.id===id).original_scene?.startsWith('claude-showreel-2026/'),id+' 不能冒充原片动作');
+});

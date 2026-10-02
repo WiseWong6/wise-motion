@@ -96,13 +96,18 @@
     set(n,'visibility',p>0?'visible':'hidden');set(n,'y',r.y+(1-p)*r.size*1.1-out*r.size*1.15);
   }));}
   function promptScene(root,title,mode,offset=0,duration=8000){
-    const id='motion-prompt-'+ ++serial,onlyCore=mode==='core';
-    root.innerHTML=`<svg class="pattern-svg" width="640" height="360" viewBox="0 0 1920 1080" aria-hidden="true"><title>${title}</title><defs><radialGradient id="${id}-bg" gradientUnits="userSpaceOnUse" cx="960" cy="540" r="1100"><stop offset="${100/1100}" stop-color="#1a1a1f"/><stop offset="1" stop-color="#0b0b0c"/></radialGradient></defs><rect width="1920" height="1080" fill="url(#${id}-bg)"/>`+
-      (onlyCore?'':panelMarkup()+borderMarkup()+buttonMarkup()+lettersMarkup())+((mode==='combo'||onlyCore)?coreMarkup(id):'')+(mode==='combo'?promptLabels(id):'')+'</svg>';
-    const panel=onlyCore?null:panelMotion(root),border=onlyCore?null:borderMotion(root),button=onlyCore?null:buttonMotion(root),letters=onlyCore?null:lettersMotion(root),core=(mode==='combo'||onlyCore)?coreMotion(root):null;
-    const labels=mode==='combo'?promptLabelMotion(root):null;let last=-1;return ms=>{
+    const id='motion-prompt-'+ ++serial;
+    // 独立动作只建立其实际图层，不先建完整界面再隐藏无关对象。
+    const layers=mode==='combo'?['ui','border','send','letters','core','labels']:
+      ({typing:['letters'],gather:['letters'],send:['send'],border:['border'],ui:['ui'],core:['core'],labels:['labels']})[mode];
+    const include=layer=>layers.includes(layer),builders={ui:panelMarkup,border:borderMarkup,send:buttonMarkup,letters:lettersMarkup,core:()=>coreMarkup(id),labels:()=>promptLabels(id)};
+    root.innerHTML=`<svg class="pattern-svg" width="640" height="360" viewBox="0 0 1920 1080" aria-hidden="true"><title>${title}</title><defs><radialGradient id="${id}-bg" gradientUnits="userSpaceOnUse" cx="960" cy="540" r="1100"><stop offset="${100/1100}" stop-color="#1a1a1f"/><stop offset="1" stop-color="#0b0b0c"/></radialGradient></defs><rect width="1920" height="1080" fill="url(#${id}-bg)"/>${layers.map(layer=>builders[layer]()).join('')}</svg>`;
+    const panel=include('ui')?panelMotion(root):null,border=include('border')?borderMotion(root):null,button=include('send')?buttonMotion(root):null,letters=include('letters')?lettersMotion(root):null,core=include('core')?coreMotion(root):null;
+    const labels=include('labels')?promptLabelMotion(root):null,poses=[...root.querySelectorAll('[data-pose]')];let last=-1;return ms=>{
       const time=clamp(ms,0,duration);if(time===last)return;const t=offset+time/1000,fade=mode==='combo'||mode==='gather';
-      if(panel){const pose=panel(t,fade);border(t,mode==='combo'||mode==='border',fade);button(t,mode==='combo'||mode==='send',fade);letters(t,pose,{typing:mode==='combo'||mode==='typing',gather:mode==='combo'||mode==='gather'});}
+      const pose=panel?panel(t,fade):panelPose(t);if(!panel)for(const n of poses)set(n,'transform',panelTransform(pose));
+      border?.(t,mode==='combo'||mode==='border',fade);button?.(t,mode==='combo'||mode==='send',fade);
+      letters?.(t,pose,{typing:mode==='combo'||mode==='typing',gather:mode==='combo'||mode==='gather'});
       core?.(t);labels?.(t);last=time;
     };
   }
@@ -128,7 +133,7 @@
     root.innerHTML=`<svg class="pattern-svg" width="640" height="360" viewBox="0 0 1920 1080" aria-hidden="true"><title>${title}</title><rect width="1920" height="1080" fill="#0a0a0b"/>${layers.map(l=>builders[l]()).join('')}${include('burst')&&include('credits')?'<rect data-part="fade" width="1920" height="1080" fill="#000" opacity="0"/>':''}</svg>`;
     const motions={burst:burstMotion,axis:axisMotion,credits:creditsMotion,segments:colorMotion};
     const render=layers.map(l=>[l,motions[l](root)]),fade=root.querySelector('[data-part="fade"]');let last=-1;
-    return ms=>{const time=clamp(ms,0,duration);if(time===last)return;const t=offset+time/1000;for(const [l,fn]of render)fn(t,l!=='credits'||include('burst'));if(fade)set(fade,'opacity',Math.pow(prog(t,5.1,6),3));last=time;};
+    return ms=>{const time=clamp(ms,0,duration);if(time===last)return;const t=offset+time/1000;for(const [l,fn]of render)fn(t,l!=='credits'||include('burst')||layers.length===1);if(fade)set(fade,'opacity',Math.pow(prog(t,5.1,6),3));last=time;};
   }
   F['prompt-border-trace']=root=>promptScene(root,'输入框边缘循线显现','border',0,1400);
   F['prompt-chinese-type']=root=>promptScene(root,'输入框逐字写入','typing',0,4800);
@@ -136,23 +141,25 @@
   F['send-press-ring']=root=>promptScene(root,'发送按钮按压扩圈','send',4.9,1100);
   F['prompt-ui-push']=root=>promptScene(root,'输入界面落位后推近','ui',0,4800);
   F['core-ring-expand']=root=>promptScene(root,'光核扩张与光环外推','core',6.5,1500);
+  F['prompt-label-lift']=root=>promptScene(root,'提示词标题逐字升入升出','labels',0,6400);
   F['prompt-to-core-sequence']=root=>promptScene(root,'提示词汇入光核','combo');
   F['prompt-to-core-sequence'].breakdown=[
     {id:'ui',actions:['prompt-ui-push'],name:'输入界面落位推近',start:0,end:5800,time:'0–5.8 秒',detail:'原界面从略大、略低处落位，顶部菜单、工具与胶囊错峰进入；1–4.6 秒继续缓慢推近。所有控件、描边与文字共用这一移动。'},
     {id:'border',actions:['prompt-border-trace'],name:'圆角边缘描出',start:0,end:800,time:'0–0.8 秒',detail:'按原圆角路径起点沿一圈描出；描线完成后边缘亮度轻微起伏，5.2–5.8 秒随界面退出。'},
     {id:'letters',actions:['prompt-chinese-type','prompt-char-gather'],name:'逐字输入与沿弧汇聚',start:900,end:7554,time:'0.9–7.55 秒',detail:'原提示词在 0.9–4.5 秒逐字写入，字符出现时轻抬 6 像素；5.3 秒起逐字向外绕行、转动放大，再缩进同一个中心。两项独立文字动作共用这一组字与布局。'},
-    {id:'send',actions:['send-press-ring'],name:'发送按钮按压扩圈',start:5000,end:5700,time:'5–5.7 秒',detail:'白色发送按钮先缩到 80% 再恢复，白色细环向外扩张并淡去；原麦克风、加号和工具栏保留。'},
+    {id:'send',actions:['send-press-ring'],name:'发送按钮按压扩圈',start:5000,end:5700,time:'5–5.7 秒',detail:'白色发送按钮先缩到 80% 再恢复，白色细环向外扩张并淡去；按钮与细环共用原绘制函数。'},
     {id:'core',actions:['core-ring-expand'],name:'中心光核与同心环',start:6500,end:8000,time:'6.5–8 秒',detail:'白色光核以指数速度增大，外缘为淡紫；三条错相光环持续向外扩散，承接仍在汇聚的字符。'},
-    {id:'labels',actions:[],name:'原片标题与说明',start:400,end:6170,time:'0.4–6.17 秒',detail:'保留左上年份、Motion, from a prompt. 和底部原片说明；字从各自裁剪框中升入，发送后依次升出。'}
+    {id:'labels',actions:['prompt-label-lift'],name:'原片标题与说明',start:400,end:6170,time:'0.4–6.17 秒',detail:'保留左上年份、Motion, from a prompt. 和底部原片说明；字从各自裁剪框中升入，发送后依次升出。'}
   ];
   F['radial-line-burst']=root=>outroScene(root,'彩色短线由中心散开',['burst'],0,1100);
   F['timeline-dock-down']=root=>outroScene(root,'时间轴缩小下移',['axis'],2.3,1600);
   F['color-segment-stagger']=root=>outroScene(root,'七色色带错峰伸展',['credits','segments'],3.2,1400);
+  F['outro-credit-lift']=root=>outroScene(root,'片尾标题与落款逐字升入',['credits'],2.7,2500);
   F['outro-recap-sequence']=root=>outroScene(root,'彩线散开与片尾落款',['burst','axis','credits','segments']);
   F['outro-recap-sequence'].breakdown=[
     {id:'burst',actions:['radial-line-burst'],name:'彩色短线散开',start:0,end:1100,time:'0–1.1 秒',detail:'70 条短线保持源码中的固定方向与速度差异；向外减速，线段缩短，整体淡去。'},
     {id:'axis',actions:['timeline-dock-down'],name:'时间轴缩小下移',start:2500,end:3200,time:'2.5–3.2 秒',detail:'时间轴以七个已点亮节点静置，随后整体下移 300 像素并缩到 72%；不恢复已经剔除的年代扫描。'},
-    {id:'credits',actions:[],name:'原片标题与落款',start:2900,end:5000,time:'2.9–5 秒',detail:'原 CLAUDE 字形逐字从下方裁剪框中升起；两行署名按各自延迟进入，保留原文字、字距和细节。'},
+    {id:'credits',actions:['outro-credit-lift'],name:'原片标题与落款',start:2900,end:5000,time:'2.9–5 秒',detail:'原 CLAUDE 字形逐字从下方裁剪框中升起；两行署名按各自延迟进入，保留原文字、字距和细节。'},
     {id:'segments',actions:['color-segment-stagger'],name:'七色色带伸展',start:3300,end:4260,time:'3.3–4.26 秒',detail:'标题下七段原年代色各从自身左边缘延展，每段晚 0.06 秒；不互相挤压。5.1 秒后整幅画面按原节奏暗下。'}
   ];
 })(globalThis.MotionFactories);

@@ -3,9 +3,13 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {environment,data} from './helpers.mjs';
 const settle = () => new Promise(resolve => setTimeout(resolve, 0));
+async function animationSettled(predicate){
+  for(let i=0;i<24&&!predicate();i++)await new Promise(resolve=>setTimeout(resolve,40));
+  assert.ok(predicate(),'界面动画应在一秒内到达稳定状态');
+}
 const name = id => data.effects.find(effect => effect.id === id).name;
 test('搜索清空已选分类，空结果与清除按钮能恢复完整目录', async () => {
-  const env = await environment(true);
+  const env = await environment(true,{staticPreview:true});
   try {
     const {w} = env, d = w.document;
     const search = d.getElementById('search'), filter = d.getElementById('category-filter');
@@ -38,7 +42,7 @@ test('搜索清空已选分类，空结果与清除按钮能恢复完整目录',
 });
 
 test('搜索框 Esc 立即清空筛选，取消旧搜索且不关闭有搜索内容的目录抽屉', async () => {
-  const env = await environment(true);
+  const env = await environment(true,{staticPreview:true});
   try {
     const {w,directoryMedia} = env, d = w.document;
     const search = d.getElementById('search'), filter = d.getElementById('category-filter');
@@ -59,7 +63,7 @@ test('搜索框 Esc 立即清空筛选，取消旧搜索且不关闭有搜索内
 });
 
 test('三栏目录筛选与节奏输出一致，相关弹窗不替换主预览且关闭后回收', async () => {
-  const env = await environment(true);
+  const env = await environment(true,{staticPreview:true});
   try {
     const {w,listeners} = env, d = w.document;
     const click = selector => d.querySelector(selector).click();
@@ -71,6 +75,7 @@ test('三栏目录筛选与节奏输出一致，相关弹窗不替换主预览�
     assert.equal(d.querySelectorAll('.effect-item').length,w.MotionRegistry.effects.filter(e=>e.category==='continuous').length);
     assert.equal(d.getElementById('preview-title').textContent,name('fade-rise'));
     click('[data-kind="composition"]'); assert.equal(d.querySelectorAll('.effect-item').length,data.effects.filter(e=>e.kind==='composition').length);
+    click('[data-kind="action"]');
     const search = d.getElementById('search'); search.value = '两排反向持续滚动，不要轮播，不要停顿'; search.dispatchEvent(new w.Event('input'));
     await new Promise(resolve => setTimeout(resolve, 160));
     assert.equal(d.querySelectorAll('.effect-item').length,1);
@@ -102,22 +107,7 @@ test('三栏目录筛选与节奏输出一致，相关弹窗不替换主预览�
     const speed = d.getElementById('speed'); speed.value = 2; speed.dispatchEvent(new w.Event('input'));
     assert.match(d.getElementById('prompt').textContent,/4\.00 秒/);
     assert.match(d.getElementById('code').textContent,/player\.setSpeed\(2\)/);
-    const main=d.querySelector('#preview .motion-stage'),markup=main.innerHTML,hash=w.location.hash,mainTime=scrub.value;
-    click('#related [data-related-layer="upper"]');
-    assert.equal(d.getElementById('related-dialog').open,true);
-    assert.equal(w.MotionRuntime.instanceCount,2);assert.equal(listeners.size,4);
-    assert.equal(d.getElementById('preview-title').textContent,name('dual-scroll'));
-    assert.equal(d.querySelector('[aria-current="true"]').dataset.effect,'dual-scroll');
-    assert.equal(d.querySelector('#related-preview .motion-stage').dataset.effect,'dual-scroll');
-    assert.equal(d.querySelector('#related-preview [data-layer="upper"]').hasAttribute('data-composition-hidden'),false);
-    assert.equal(d.querySelector('#related-preview [data-layer="lower"]').hasAttribute('data-composition-hidden'),true);
-    const relatedScrub=d.getElementById('related-scrub');relatedScrub.value=500;relatedScrub.dispatchEvent(new w.Event('input'));
-    assert.equal(d.getElementById('related-time').textContent,'4.0 / 8.0 秒');
-    assert.equal(w.location.hash,hash);assert.equal(d.querySelector('#preview .motion-stage'),main);
-    assert.equal(main.innerHTML,markup);assert.equal(scrub.value,mainTime);
-    click('#related-close');
-    assert.equal(d.getElementById('related-dialog').open,false);
-    assert.equal(w.MotionRuntime.instanceCount,1);assert.equal(listeners.size,3);
+    assert.equal(d.getElementById('composition-panel').hidden,true);
     const duration = w.MotionRegistry.effects.find(effect => effect.id === 'dual-scroll').duration_ms;
     const elapsed = Number(d.getElementById('time-current').textContent);
     const left = Number(d.getElementById('time-total').textContent);
@@ -131,7 +121,7 @@ test('三栏目录筛选与节奏输出一致，相关弹窗不替换主预览�
   } finally { env.close(); }
 });
 test('目录卡片懒绘制各自的场景，不共用第一张的渲染结果，也不占用播放资源', async () => {
-  const env = await environment(true);
+  const env = await environment(true,{staticPreview:true});
   try {
     const {w} = env, d = w.document;
     assert.equal(d.querySelectorAll('.thumb .motion-stage').length,0);
@@ -149,7 +139,7 @@ test('目录卡片懒绘制各自的场景，不共用第一张的渲染结果�
   } finally {env.close();}
 });
 test('本地动作不误标第三方来源，明确的代码改编和样式参考分别呈现', async () => {
-  const env = await environment(true);
+  const env = await environment(true,{staticPreview:true});
   try {
     const {w} = env, d = w.document, source = d.getElementById('preview-source');
     const block = source.closest('.preview-source');
@@ -200,7 +190,7 @@ test('本地动作不误标第三方来源，明确的代码改编和样式参�
   } finally { env.close(); }
 });
 test('右栏名称与两个输出共用复制按钮，复制失败时选中对应内容', async () => {
-  const env = await environment(true);
+  const env = await environment(true,{staticPreview:true});
   try {
     const {w} = env, d = w.document;
     let copied = '';
@@ -212,8 +202,10 @@ test('右栏名称与两个输出共用复制按钮，复制失败时选中对�
     assert.equal(titleCopy.getAttribute('aria-label'),'复制动效名称');
     titleCopy.click(); await settle();
     assert.equal(copied,name('fade-rise'));
+    await animationSettled(()=>titleCopy.querySelector('[data-icon="check"]').style.opacity==='1');
     assert.equal(titleCopy.querySelector('[data-icon="check"]').style.opacity,'1');
     d.querySelector('[data-effect="mask-reveal"]').click();
+    await animationSettled(()=>titleCopy.querySelector('[data-icon="check"]').style.opacity==='0');
     assert.equal(titleCopy.querySelector('[data-icon="check"]').style.opacity,'0');
     titleCopy.click(); await settle();
     assert.equal(copied,d.getElementById('preview-title').textContent);
@@ -244,8 +236,8 @@ test('右栏名称与两个输出共用复制按钮，复制失败时选中对�
     assert.match(d.getElementById('copy-status-prompt').textContent,/系统复制快捷键/);
   } finally {env.close();}
 });
-test('键盘可选动作和输出，隐藏目录可找回，系统减少动态效果会暂停', async () => {
-  const env = await environment(true);
+test('键盘可选动作和输出，隐藏目录可找回，系统偏好变化不暂停', async () => {
+  const env = await environment(true,{staticPreview:true});
   try {
     const {w} = env, d = w.document;
     const first = d.querySelector('[data-effect="fade-rise"]'); first.focus();
@@ -260,22 +252,25 @@ test('键盘可选动作和输出，隐藏目录可找回，系统减少动态�
     assert.equal(d.activeElement.id,'tab-code'); assert.equal(d.activeElement.getAttribute('aria-selected'),'true');
     d.getElementById('toggle-directory').click();
     assert.ok(d.getElementById('directory-panel').hidden);
+    await animationSettled(()=>d.getElementById('toggle-directory').innerHTML!==directoryIcon);
     assert.notEqual(d.getElementById('toggle-directory').innerHTML,directoryIcon);
     assert.equal(d.getElementById('toggle-directory').getAttribute('aria-label'),'展开动效目录');
     d.body.dispatchEvent(new w.KeyboardEvent('keydown',{key:'/',bubbles:true,cancelable:true}));
     assert.ok(!d.getElementById('directory-panel').hidden); assert.equal(d.activeElement.id,'search');
     assert.equal(d.getElementById('toggle-directory').getAttribute('aria-expanded'),'true');
+    await animationSettled(()=>d.getElementById('toggle-directory').innerHTML===directoryIcon);
     assert.equal(d.getElementById('toggle-directory').innerHTML,directoryIcon);
     d.getElementById('toggle-play').click(); assert.equal(w.MotionRuntime.runningCount,1);
     env.media.matches = true; env.media.dispatchEvent(new w.Event('change'));
-    assert.equal(w.MotionRuntime.runningCount,0); assert.ok(!d.getElementById('motion-setting').hidden);
+    assert.equal(w.MotionRuntime.runningCount,1); assert.equal(d.getElementById('motion-setting'),null);
     env.media.matches = false; env.media.dispatchEvent(new w.Event('change'));
-    assert.equal(w.MotionRuntime.runningCount,0); // 取消系统限制不自行播放。
+    assert.equal(w.MotionRuntime.runningCount,1);
+    d.getElementById('toggle-play').click();assert.equal(w.MotionRuntime.runningCount,0);
   } finally {env.close();}
 });
 
 test('目录抽屉关闭背景交互，选择后回到预览，回到桌面恢复原来的目录状态', async () => {
-  const env = await environment(true);
+  const env = await environment(true,{staticPreview:true});
   try {
     const {w,directoryMedia} = env, d = w.document;
     const directory = d.getElementById('directory-panel'), toggle = d.getElementById('toggle-directory');
@@ -290,7 +285,7 @@ test('目录抽屉关闭背景交互，选择后回到预览，回到桌面恢�
     assert.ok(directory.hidden); assert.ok(!d.querySelector('.stage').inert);
     assert.ok(!d.querySelector('.sidebar-header').inert);
     assert.equal(d.activeElement,toggle); assert.equal(w.MotionRuntime.instanceCount,1);
-    assert.equal(d.getElementById('preview-title').textContent,'遮罩显现');
+    assert.equal(d.getElementById('preview-title').textContent, data.effects.find(e=>e.id==='mask-reveal').name);
     toggle.click();
     d.getElementById('search').dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));
     assert.ok(directory.hidden);
@@ -304,7 +299,7 @@ test('目录抽屉关闭背景交互，选择后回到预览，回到桌面恢�
 });
 
 test('悬停菜单能接住点击和键盘，浮层选中后回到原处，先关闭菜单再关闭目录抽屉', async () => {
-  const env = await environment(true);
+  const env = await environment(true,{staticPreview:true});
   try {
     const {w,directoryMedia} = env, d = w.document;
     const root = d.querySelector('.search-control'), menu = d.getElementById('category-options');
@@ -335,7 +330,7 @@ test('悬停菜单能接住点击和键盘，浮层选中后回到原处，先�
 });
 
 test('缩略图保留完整画板，尺寸变化后重算，仍然只持有一个播放实例', async () => {
-  const env = await environment(true);
+  const env = await environment(true,{staticPreview:true});
   try {
     const {w} = env, d = w.document;
     const host = d.querySelector('.thumb'); let width = 160;

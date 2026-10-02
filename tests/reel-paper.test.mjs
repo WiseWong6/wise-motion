@@ -139,7 +139,7 @@ test('剪纸倒放定位可重复，同一格内不重写纸条和螺线，销�
 });
 
 test('剪纸组合可直接访问，缩略图使用同一帧且不增加播放计时器',async()=>{
-  const env=await environment(true,{hash:'#paper-spiral-sequence'});
+  const env=await environment(true,{staticPreview:true,hash:'#paper-spiral-sequence'});
   try{
     const {w}=env,d=w.document,effect=get();env.reveal();
     assert.equal(d.getElementById('preview-title').textContent,effect.name);
@@ -189,32 +189,20 @@ test('三个独立动作与组合里的实际图形逐帧对应，只对右侧�
   }finally{env.close();}
 });
 
-test('剪纸图层与独立示例在弹窗内切换，缩略图一致且不离开主组合',async()=>{
-  const env=await environment(true,{hash:'#paper-spiral-sequence'});
+test('剪纸组成动作直接打开独立播放器并自动播放，关闭后主组合不变',async()=>{
+  const env=await environment(true,{staticPreview:true,hash:'#paper-spiral-sequence'});
   try{
-    const {w}=env,d=w.document,ids=['paper-strip-stagger','spiral-draw-spin','planar-dot-orbit'];
-    assert.deepEqual(get().actions,ids);
+    const {w}=env,d=w.document,ids=get().actions;
+    assert.ok(ids.includes('paper-disc-pop'));assert.ok(ids.includes('paper-title-stagger'));
     const main=d.querySelector('#preview .motion-stage'),markup=frameMarkup(main),hash=w.location.hash,time=d.getElementById('scrub').value;
-    assert.deepEqual([...d.querySelectorAll('#related [data-related-layer]')].map(node=>node.dataset.relatedLayer),['paper','disc','spiral','orbit','text']);
-    for(const [layer,id] of [['paper',ids[0]],['spiral',ids[1]],['orbit',ids[2]]]){
-      d.querySelector(`#related [data-related-layer="${layer}"]`).click();
+    assert.deepEqual([...d.querySelectorAll('#related [data-related]')].map(n=>n.dataset.related),ids);
+    for(const id of ids){
+      d.querySelector(`#related [data-related="${id}"]`).click();
       assert.equal(d.getElementById('related-dialog').open,true);
-      assert.equal(d.querySelector('#related-preview .motion-stage').dataset.effect,get().id);
-      for(const node of d.querySelectorAll('#related-preview [data-layer]'))assert.equal(node.getAttribute('display')==='none',node.dataset.layer!==layer);
-      assert.equal(w.MotionRuntime.instanceCount,2);assert.equal(w.MotionRuntime.runningCount,0);
-      d.querySelector(`#related-dialog [data-related-example="${id}"]`).click();
-      const effect=data.effects.find(e=>e.id===id),thumb=d.createElement('div');d.body.append(thumb);w.MotionThumbs.attach(thumb,effect);
-      env.reveal();
-      assert.equal(d.getElementById('related-title').textContent,effect.name);
-      assert.equal(frameMarkup(thumb.querySelector('.motion-stage')),frameMarkup(d.querySelector('#related-preview .motion-stage')));
-      w.MotionThumbs.release(thumb);thumb.remove();
-      assert.equal(w.MotionRuntime.instanceCount,2);
-      d.querySelector('#related-dialog [data-related-example=""]').click();
-      assert.equal(d.querySelector('#related-preview .motion-stage').dataset.effect,get().id);
+      assert.equal(d.querySelector('#related-preview .motion-stage').dataset.effect,id);
+      assert.equal(w.MotionRuntime.instanceCount,2);assert.equal(w.MotionRuntime.runningCount,1);
       d.getElementById('related-close').click();
-      assert.equal(d.getElementById('related-dialog').open,false);
       assert.equal(w.MotionRuntime.instanceCount,1);assert.equal(w.MotionRuntime.runningCount,0);
-      assert.equal(d.getElementById('preview-title').textContent,get().name);
       assert.equal(w.location.hash,hash);assert.equal(d.querySelector('#preview .motion-stage'),main);
       assert.equal(frameMarkup(main),markup);assert.equal(d.getElementById('scrub').value,time);
     }

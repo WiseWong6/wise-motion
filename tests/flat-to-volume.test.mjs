@@ -75,7 +75,7 @@ test('圆环显示前侧外壁、后侧内壁与环形顶面，隐藏背面并�
 });
 
 test('标准动作不再显示提炼出处，正文及目录名称统一细体',async()=>{
-  const env=await environment(true);
+  const env=await environment(true,{staticPreview:true});
   try{
     const {w}=env,d=w.document;
     for(const link of d.querySelectorAll('link[rel="stylesheet"]')){

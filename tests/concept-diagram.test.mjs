@@ -82,8 +82,9 @@ test('两段图解按实际成片时钟保留原弧线、流线、球心和标�
     const observer=new w.MutationObserver(()=>{});observer.observe(root,{subtree:true,attributes:true,childList:true});
     player.seek(effect.duration_ms);assert.equal(observer.takeRecords().length,0);observer.disconnect();
     for(const node of root.querySelectorAll('text')){
-      assert.equal(node.getAttribute('font-weight'),/[0-9]/.test(node.textContent)?'700':'300');
       const scale=node.closest('[data-part="definition"]') ? .34 : .5;
+      const title=Number(node.getAttribute('font-size'))*scale>=24;
+      assert.equal(node.getAttribute('font-weight'),title||/[0-9]/.test(node.textContent)?'700':'300');
       assert.ok([12,16,24].some(s=>Math.abs(s-Number(node.getAttribute('font-size'))*scale)<1e-8));
     }
   }finally{env.close();}
@@ -91,11 +92,11 @@ test('两段图解按实际成片时钟保留原弧线、流线、球心和标�
 
 test('概念图解的两个案例一并迁入，可搜索直达，缩略图与预览使用相同实现',async()=>{
   const historical=await history(data),cross=JSON.parse(await readFile(state+'/crosswalk.json','utf8'));
-  assert.equal(effect.category,'entrance');assert.ok(!historical.recipes.some(e=>e.history_id==='tutorial-definition'));
+  assert.equal(effect.category,'data');assert.ok(!historical.recipes.some(e=>e.history_id==='tutorial-definition'));
   assert.ok(historical.excluded.some(e=>e.id==='tutorial-definition'));
   assert.deepEqual(cross.rules['tutorial-definition'].migration.cases,['tutorial-definition','tutorial-concept']);
   for(const file of cross.rules['tutorial-definition'].migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
-  const env=await environment(true,{hash:'#concept-diagram'});
+  const env=await environment(true,{staticPreview:true,hash:'#concept-diagram'});
   try{
     const {w}=env,d=w.document;env.reveal();assert.equal(d.getElementById('preview-title').textContent,effect.name);
     for(const q of [effect.name,'三步定义图解','提问页概念图解'])assert.equal(w.MotionMatch.rank(data,q)[0].effect.id,effect.id);

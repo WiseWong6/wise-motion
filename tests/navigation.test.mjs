@@ -7,7 +7,7 @@ import {history} from '../scripts/history.mjs';
 const historyData=await history(data);
 
 test('已提炼的历史书签直接打开对应动作，不额外加载历史库',async()=>{
-  const env=await environment(true,{hash:'#history-reel-core-rings',lazyHistory:true});
+  const env=await environment(true,{staticPreview:true,hash:'#history-reel-core-rings',lazyHistory:true});
   try{
     const {w}=env,d=w.document;
     assert.equal(d.querySelector('#preview .motion-stage').dataset.effect,'core-ring-expand');
@@ -19,7 +19,7 @@ test('已提炼的历史书签直接打开对应动作，不额外加载历史�
 
 test('历史配方直达链接在延迟加载后切到对应目录，并能按原作搜索',async()=>{
   const target=historyData.recipes.find(r=>r.entries[0].preview.type==='original-crop');
-  const env=await environment(true,{hash:'#'+target.id,lazyHistory:true});
+  const env=await environment(true,{staticPreview:true,hash:'#'+target.id,lazyHistory:true});
   try{
     const {w}=env,d=w.document;
     w.HTMLMediaElement.prototype.pause=function(){};
@@ -42,7 +42,7 @@ test('历史配方直达链接在延迟加载后切到对应目录，并能按�
 });
 
 test('两侧切换遵循筛选与搜索顺序，首尾循环，切换同步输出并释放旧画面', async () => {
-  const env = await environment(true);
+  const env = await environment(true,{staticPreview:true});
   try {
     const {w} = env, d = w.document;
     const previous = d.getElementById('previous-effect'), next = d.getElementById('next-effect');
@@ -67,6 +67,7 @@ test('两侧切换遵循筛选与搜索顺序，首尾循环，切换同步输�
     const combinations = ids(); assert.equal(combinations.length, w.MotionRegistry.effects.filter(effect => effect.kind === 'composition').length);
     next.click(); assert.equal(current(), combinations[0]);
     const search = d.getElementById('search');
+    d.querySelector('[data-kind="action"]').click();
     search.value = '两排反向持续滚动，不要轮播，不要停顿'; search.dispatchEvent(new w.Event('input'));
     next.click(); assert.equal(current(), 'dual-scroll');
     assert.ok(previous.disabled && next.disabled);
@@ -80,7 +81,7 @@ test('两侧切换遵循筛选与搜索顺序，首尾循环，切换同步输�
 });
 
 test('左右方向键切换画面，输入、滑块、菜单、输出页签及抽屉保留各自键盘操作', async () => {
-  const env = await environment(true);
+  const env = await environment(true,{staticPreview:true});
   try {
     const {w, directoryMedia} = env, d = w.document;
     const current = () => d.querySelector('#preview .motion-stage').dataset.effect;

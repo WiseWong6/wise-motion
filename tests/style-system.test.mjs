@@ -84,7 +84,7 @@ test('两种主题的正文和输入提示可读，夜间细线及点阵蓝线�
 });
 
 test('切换主题保留暂停位置和静态缩略图，转场底色不固化为旧外观',async()=>{
-  const env=await environment(true);
+  const env=await environment(true,{staticPreview:true});
   try{
     await loadStyles(env);
     const {w}=env,d=w.document;
@@ -140,7 +140,7 @@ test('插画分类可独立浏览，删除的扫光没有残留入口',async()=>
   for(const effect of data.effects)groups.get(effect.category).push(effect);
   assert.ok([...groups.values()].every(effects=>effects.length>0));
   const art=data.effects.filter(e=>e.id.endsWith('-illustration'));
-  assert.equal(art.length,26);
+  assert.equal(art.length,42);
   assert.ok(art.every(e=>e.category.startsWith('illustration-')));
   assert.equal(data.effects.some(e=>e.id==='glyph-sheen'),false);
   const cross=JSON.parse(await readFile(new URL('../../../state/wise-motion/history/crosswalk.json',import.meta.url),'utf8'));

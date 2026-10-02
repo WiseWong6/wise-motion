@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {environment,frameMarkup} from './helpers.mjs';
 
 const ids=['paper','disc','spiral','orbit','text'];
-const setup=()=>environment(true,{hash:'#paper-spiral-sequence'});
+const setup=()=>environment(true,{staticPreview:true,hash:'#paper-spiral-sequence'});
 const settle=()=>new Promise(resolve=>setTimeout(resolve,0));
 const click=(d,selector)=>{const node=d.querySelector(selector);assert.ok(node,selector);node.click();};
 function seek(w,milliseconds){

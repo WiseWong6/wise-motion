@@ -4,12 +4,12 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
 import {environment as sharedEnvironment,data} from './helpers.mjs';
-async function environment(page=false){const env=await sharedEnvironment(page);env.root=env.w.document.getElementById(page?'preview':'root');return env;}
+async function environment(page=false){const env=await sharedEnvironment(page,{staticPreview:page});env.root=env.w.document.getElementById(page?'preview':'root');return env;}
 test('翻页书接入既有版式，真实交互与时间演示切换保留纸页设置和输出',async()=>{
-  const env=await environment(true),{w}=env,d=w.document,one=id=>d.getElementById(id);
+  const env=await environment(true,{staticPreview:true}),{w}=env,d=w.document,one=id=>d.getElementById(id),timer=clock();
   try{
     d.querySelector('[data-effect="dither-lab-book"]').click();
-    assert.equal(one('preview-title').textContent,'立体翻页书');assert.equal(one('book-panel').hidden,false);
+    assert.equal(one('preview-title').textContent,'绕脊翻页');assert.equal(one('book-panel').hidden,false);
     assert.equal(w.MotionRuntime.instanceCount,1);assert.equal(one('book-timeline').getAttribute('aria-pressed'),'true');
     assert.match(one('preview-source').textContent,/效果参考 Amicro/);
     for(const [key,value] of [['padding',22],['radius',31],['crease',27]]){
@@ -18,13 +18,14 @@ test('翻页书接入既有版式，真实交互与时间演示切换保留纸�
     assert.equal(env.root.querySelector('.wm-book').style.getPropertyValue('--book-pad'),'22px');
     assert.match(one('prompt').textContent,/图片留白 22 像素，图片圆角 31 像素，书脊阴影 27%/);
     assert.match(one('code').textContent,/"paper_settings"/);
+    w.anime.engine.pause();w.requestAnimationFrame=timer.requestFrame;w.cancelAnimationFrame=timer.cancelFrame;w.performance.now=timer.now;
     one('book-interactive').click();assert.equal(d.querySelector('.playbar').hidden,true);
     assert.equal(env.root.getAttribute('aria-hidden'),'false');assert.equal(one('ins-tempo').closest('.ins-section').hidden,true);
     const first=Number(env.root.querySelector('.wm-book').dataset.index);
     env.root.dispatchEvent(new w.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));
-    assert.equal(Number(env.root.querySelector('.wm-book').dataset.index),(first+1)%6);
-    assert.equal(one('preview-title').textContent,'立体翻页书');
-    one('book-prev').click();assert.equal(Number(env.root.querySelector('.wm-book').dataset.index),first);
+    timer.advance(450);assert.equal(Number(env.root.querySelector('.wm-book').dataset.index),(first+1)%6);
+    assert.equal(one('preview-title').textContent,'绕脊翻页');
+    one('book-prev').click();timer.advance(450);assert.equal(Number(env.root.querySelector('.wm-book').dataset.index),first);
     one('book-timeline').click();assert.equal(d.querySelector('.playbar').hidden,false);
     assert.equal(env.root.querySelector('.wm-book').style.getPropertyValue('--book-radius'),'31px');
     const scrub=one('scrub');scrub.value=750;scrub.dispatchEvent(new w.Event('input'));assert.equal(one('time-current').textContent,'5.7');
@@ -33,10 +34,11 @@ test('翻页书接入既有版式，真实交互与时间演示切换保留纸�
   }finally{w.dispatchEvent(new w.Event('pagehide'));env.close();}
 });
 test('工作台隐藏或切换动效时暂停与释放真实翻页，方向键不会误选其他动效',async()=>{
-  const env=await environment(true),{w,media}=env,d=w.document,one=id=>d.getElementById(id),timer=clock();
+  const env=await environment(true,{staticPreview:true}),{w,media}=env,d=w.document,one=id=>d.getElementById(id),timer=clock();
   try{
-    d.querySelector('[data-effect="dither-lab-book"]').click();one('book-interactive').click();
+    d.querySelector('[data-effect="dither-lab-book"]').click();
     w.anime.engine.pause();w.requestAnimationFrame=timer.requestFrame;w.cancelAnimationFrame=timer.cancelFrame;w.performance.now=timer.now;
+    one('book-interactive').click();
     media.matches=false;media.dispatchEvent(new w.Event('change'));
     one('book-next').click();assert.equal(timer.pending,1);timer.advance(90);
     assert(one('book-next').disabled);const before=visualState(env.root);
@@ -52,20 +54,22 @@ test('工作台隐藏或切换动效时暂停与释放真实翻页，方向键�
   }finally{w.dispatchEvent(new w.Event('pagehide'));env.close();}
 });
 test('恢复页面保留交互方式、当前图稿与纸页设置，不残留旧控制器',async()=>{
-  const env=await environment(true),{w}=env,d=w.document,one=id=>d.getElementById(id);
+  const env=await environment(true,{staticPreview:true}),{w}=env,d=w.document,one=id=>d.getElementById(id),timer=clock();
   try{
-    d.querySelector('[data-effect="dither-lab-book"]').click();one('book-interactive').click();one('book-next').click();
+    d.querySelector('[data-effect="dither-lab-book"]').click();
+    w.anime.engine.pause();w.requestAnimationFrame=timer.requestFrame;w.cancelAnimationFrame=timer.cancelFrame;w.performance.now=timer.now;
+    one('book-interactive').click();one('book-next').click();timer.advance(450);
     const page=Number(env.root.querySelector('.wm-book').dataset.index);
     one('book-padding').value=19;one('book-padding').dispatchEvent(new w.Event('input'));
     w.dispatchEvent(new w.Event('pagehide'));assert.equal(w.MotionRuntime.instanceCount,0);
     w.dispatchEvent(new w.Event('pageshow'));assert.equal(w.MotionRuntime.instanceCount,1);
     assert.equal(one('book-interactive').getAttribute('aria-pressed'),'true');assert.equal(one('book-padding').value,'19');
     assert.equal(Number(env.root.querySelector('.wm-book').dataset.index),page);
-    one('book-next').click();assert.equal(Number(env.root.querySelector('.wm-book').dataset.index),(page+1)%6);
+    one('book-next').click();timer.advance(450);assert.equal(Number(env.root.querySelector('.wm-book').dataset.index),(page+1)%6);
   }finally{w.dispatchEvent(new w.Event('pagehide'));env.close();}
 });
 test('复制的翻页书代码可独立加载正式源码，保留三个设置并可重复定位',async()=>{
-  const env=await environment(true);
+  const env=await environment(true,{staticPreview:true});
   try{
     const effect=data.effects.find(e=>e.id==='dither-lab-book');
     const html=env.w.MotionExport.code(effect,{speed:1.5,bookSettings:{padding:23,radius:32,crease:26}});
@@ -165,13 +169,21 @@ await test('暂停后等待不跳帧，恢复接续原角度，销毁后无待�
   }finally{env.close();}
 });
 
-await test('减少动态效果时跳过快速入场，点击直接换页，无动画帧',async()=>{
-  const env = await environment(),timer=clock();
-  try {
-    const book=env.w.WiseDitherBook.create(env.root,{interactive:true,reducedMotion:true,...timer});
-    assert.equal(book.snapshot.index,0);assert.equal(book.busy,false);assert.equal(timer.pending,0);
-    book.prev();assert.equal(book.snapshot.index,5);assert.equal(book.busy,false);
-    book.next();assert.equal(book.snapshot.index,0);book.restartIntro();assert.equal(timer.pending,0);book.destroy();
+await test('系统偏好为减少动态效果时仍保留入场与正常翻页动画',async()=>{
+  const env=await environment(),timer=clock();
+  try{
+    assert.equal(env.media.matches,true);
+    const intro=env.w.WiseDitherBook.create(env.root,{interactive:true,...timer});
+    assert.equal(timer.pending,1);timer.advance(env.w.WiseDitherBook.introDuration);
+    assert.equal(intro.snapshot.index,4);assert.equal(intro.busy,false);intro.destroy();
+    const book=env.w.WiseDitherBook.create(env.root,{interactive:true,intro:false,...timer});
+    book.next();assert.equal(book.busy,true);assert.equal(timer.pending,1);
+    timer.advance(90);assert.ok(book.snapshot.flip.progress>0&&book.snapshot.flip.progress<1);
+    env.media.matches=false;env.media.dispatchEvent(new env.w.Event('change'));
+    env.media.matches=true;env.media.dispatchEvent(new env.w.Event('change'));
+    assert.equal(book.busy,true);assert.equal(timer.pending,1);
+    timer.advance(360);assert.equal(book.snapshot.index,1);assert.equal(book.busy,false);
+    book.destroy();assert.equal(timer.pending,0);
   }finally{env.close();}
 });
 

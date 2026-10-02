@@ -16,22 +16,28 @@ const near=(a,b,tolerance=1e-7)=>assert.ok(Math.abs(a-b)<=tolerance,`${a} != ${b
 const defs={
  'tile-round-wave':[4000,1200],'material-phone-rise':[1600,1200],'material-card-stagger':[3500,1500],
  'material-switch-spring':[1000,650],'material-spinner-arc':[3000,1100],'material-like-pop':[1500,650],
+ 'generative-frame-readout':[8000,5300],
  'material-fab-panel':[3200,2500],'material-phone-sequence':[5000,2700],
  'generative-point-morph':[8000,3650],'generative-flow-field':[8000,2200],'code-line-sequence':[3500,3000],'generative-point-sequence':[8000,3650]
 };
-const definition=id=>data.effects.find(e=>e.id===id)||{id,duration_ms:defs[id][0],preview_ms:defs[id][1],loop:false,default_ease:'linear',parameters:{}};
+const definition=(id,variantId)=>{
+ const base=data.effects.find(e=>e.id===id)||{id,duration_ms:defs[id][0],preview_ms:defs[id][1],loop:false,default_ease:'linear',parameters:{}};
+ if(!variantId)return base;
+ const variant=base.variants?.find(v=>v.id===variantId);assert.ok(variant,id+' 缺少 '+variantId+' 样式');
+ return {...base,...variant,id,variant_id:variantId};
+};
 async function setup(){const env=await environment();env.w.eval(implementation);return env;}
 function original(scene,t){
- const fills=[],strokes=[],rects=[],transforms=[],stack=[];let path=[];
+ const fills=[],strokes=[],rects=[],transforms=[],labels=[],reveals=[],stack=[];let path=[];
  const ctx={globalAlpha:1,globalCompositeOperation:'source-over',save(){stack.push({fillStyle:this.fillStyle,strokeStyle:this.strokeStyle,globalAlpha:this.globalAlpha,lineWidth:this.lineWidth,globalCompositeOperation:this.globalCompositeOperation});},restore(){Object.assign(this,stack.pop());},
   beginPath(){path=[];},roundRect(...v){path.push(['roundRect',...v]);},arc(...v){path.push(['arc',...v]);},moveTo(...v){path.push(['M',...v]);},lineTo(...v){path.push(['L',...v]);},bezierCurveTo(...v){path.push(['C',...v]);},
   fill(){fills.push({path:[...path],fill:this.fillStyle,alpha:this.globalAlpha});},stroke(){strokes.push({path:[...path],stroke:this.strokeStyle,width:this.lineWidth,alpha:this.globalAlpha});},
   fillRect(...v){rects.push({v,fill:this.fillStyle,alpha:this.globalAlpha,operation:this.globalCompositeOperation});},
   clip(){},translate(...v){transforms.push(['translate',...v]);},rotate(...v){transforms.push(['rotate',...v]);},scale(...v){transforms.push(['scale',...v]);},strokeText(){},fillText(){},setLineDash(){},rect(...v){path.push(['rect',...v]);},strokeRect(){}
  };
- const sandbox={ctx,W:1920,H:1080,VERT:false,TAU:Math.PI*2,S:shared.window.SHARED,F:{avenir:'Avenir',mono:'Menlo'},txt(){},revealChars(){},setFont(){},typeOn(){}};
+ const sandbox={ctx,W:1920,H:1080,VERT:false,TAU:Math.PI*2,S:shared.window.SHARED,F:{avenir:'Avenir',mono:'Menlo'},txt(s,x,y,o){labels.push({s,x,y,...o,alpha:o.alpha??1});},revealChars(s,x,y,t,o){reveals.push({s,x,y,t,...o});},setFont(){},typeOn(){}};
  runInNewContext(math+(scene==='flat'?flat:gen)+`;globalThis.draw=${scene==='flat'?'sFlat':'sGen'};`,sandbox);
- sandbox.draw(t,(scene==='flat'?30:38)+t);return {fills,strokes,rects,transforms};
+ sandbox.draw(t,(scene==='flat'?30:38)+t);return {fills,strokes,rects,transforms,labels,reveals};
 }
 
 test('方圆阵列保留原 91 格的径向错峰、圆角、颜色和旋转',async()=>{
@@ -144,12 +150,88 @@ test('组合与独立动作复用实际图形，来源时钟只平移且控件�
   for(const [id,part,start] of [['material-switch-spring','switch-knob',4.6],['material-spinner-arc','spinner-arc',4.1],['material-like-pop','like-heart',5.3],['material-fab-panel','fab-panel',4.8]]){
    const host=d.createElement('div'),single=w.MotionRuntime.create(host,definition(id));for(const ms of [0,190,400,700]){single.seek(ms);whole.seek((start-3)*1000+ms);const standalone=host.querySelector(`[data-part="${part}"]`).cloneNode(true),combined=root.querySelector(`[data-part="${part}"]`).cloneNode(true);if(part==='spinner-arc'){assert.equal(standalone.getAttribute('stroke-opacity'),'1');standalone.removeAttribute('stroke-opacity');combined.removeAttribute('stroke-opacity');}assert.equal(standalone.outerHTML,combined.outerHTML);}single.destroy();
   }
-  assert.deepEqual(Array.from(w.MotionFactories['material-phone-sequence'].breakdown,x=>x.id),['phone','cards','switch','spinner','like','fab']);whole.destroy();
+  assert.deepEqual(Array.from(w.MotionFactories['material-phone-sequence'].breakdown,x=>x.id),['shapes','labels','phone','cards','switch','spinner','like','fab']);whole.destroy();
   const genRoot=d.createElement('div'),genWhole=w.MotionRuntime.create(genRoot,definition('generative-point-sequence'));
   for(const [id,layer,offset] of [['generative-point-morph','points',0],['generative-flow-field','field',0],['code-line-sequence','code',1.4]]){
-   const host=d.createElement('div'),single=w.MotionRuntime.create(host,definition(id));single.seek(1500);genWhole.seek(1500+offset*1000);assert.equal(host.querySelector(`[data-layer="${layer}"]`).outerHTML,genRoot.querySelector(`[data-layer="${layer}"]`).outerHTML);single.destroy();
+   const host=d.createElement('div'),single=w.MotionRuntime.create(host,definition(id));single.seek(1500);genWhole.seek(1500+offset*1000);
+   const standalone=host.querySelector(`[data-layer="${layer}"]`),combined=genRoot.querySelector(`[data-layer="${layer}"]`);
+   if(layer==='field'){
+    // 独立流线增强对比，组合仍作为点阵背景；两者必须共用完全相同的路径和时钟。
+    assert.equal(standalone.getAttribute('d'),combined.getAttribute('d'));
+    const ref=original('gen',1.5).strokes[0],rgba=ref.stroke.slice(5,-1).split(',').map(Number);
+    near(+combined.getAttribute('stroke-opacity'),ref.alpha*rgba[3]);near(+combined.getAttribute('stroke-width'),ref.width);
+    assert.equal(combined.getAttribute('stroke'),'#'+rgba.slice(0,3).map(v=>v.toString(16).padStart(2,'0')).join(''));
+   }else assert.equal(standalone.outerHTML,combined.outerHTML);
+   single.destroy();
   }
-  const broken=d.createElement('div');for(const id of Object.keys(defs)){const p=w.MotionRuntime.create(broken,definition(id));p.seek(definition(id).preview_ms);assert.ok(broken.querySelector('svg'));assert.ok(!/NaN|Infinity/.test(broken.innerHTML));p.destroy();}
+  const broken=d.createElement('div'),cases=[...Object.keys(defs).map(id=>definition(id)),...['material','outline'].map(variant=>definition('title-stagger',variant))];for(const def of cases){const p=w.MotionRuntime.create(broken,def);p.seek(def.preview_ms);assert.ok(broken.querySelector('svg'));assert.ok(!/NaN|Infinity/.test(broken.innerHTML));p.destroy();}
   genWhole.destroy();assert.equal(w.MotionRuntime.instanceCount,0);assert.equal(w.MotionRuntime.runningCount,0);assert.doesNotMatch(implementation,/requestAnimationFrame|setTimeout|setInterval|Math\.random/);
+ }finally{env.close();}
+});
+
+
+test('手机组合补齐原位装饰、年份标题与四词条，独立动作共用同一图层',async()=>{
+ const env=await setup();try{const w=env.w,d=w.document,root=d.getElementById('root'),combo=w.MotionRuntime.create(root,definition('material-phone-sequence'));
+  const isolated=d.createElement('div'),single=w.MotionRuntime.create(isolated,definition('title-stagger','material')),shapesRoot=d.createElement('div'),shape=w.MotionRuntime.create(shapesRoot,definition('shape-pop-float'));
+  const clean=n=>n.outerHTML.replace(/motion-flat(?:-labels)?-\d+/g,'fixed-id');
+  assert.equal(root.querySelector('[data-display]').getAttribute('transform'),'','手机必须回到原右列位置，为左文案留位');
+  for(const t of [3,3.35,3.72,4.12,4.52,5.18,5.48]){
+   combo.seek((t-3)*1000);single.seek((t-3)*1000);shape.seek((t-3)*1000);
+   assert.equal(clean(root.querySelector('[data-layer="labels"]')),clean(isolated.querySelector('[data-layer="labels"]')));
+   assert.equal(clean(root.querySelector('[data-layer="shapes"]')),clean(shapesRoot.querySelector('[data-layer="shapes"]')));
+   const ref=original('flat',t),rows=[...root.querySelectorAll('[data-title-layer="material-title"] [data-label-row]')];
+   assert.equal(rows.length,3);rows.forEach((row,k)=>{const r=ref.reveals[k];assert.equal(row.textContent,r.s);[...row.querySelectorAll('text')].forEach((n,i)=>{const u=Math.max(0,Math.min(1,(t-r.start-i*r.stagger)/(r.dur||.7))),p=k===0?1+2.70158*(u-1)**3+1.70158*(u-1)**2:u>=1?1:1-2**(-10*u);near(+n.getAttribute('y'),r.y+(1-p)*r.size*1.1);assert.equal(n.getAttribute('fill'),r.color);near(+n.getAttribute('font-size'),[192,72,36][k]);});});
+   [...root.querySelectorAll('[data-material-word]')].forEach((node,i)=>{const r=ref.labels.find(x=>x.s.startsWith('0'+(i+1)+'   ')),shown=+node.getAttribute('opacity')>0;assert.equal(shown,!!r);if(r){const label=node.querySelector('text');assert.equal(label.textContent,r.s);near(+label.getAttribute('x'),r.x);near(+label.getAttribute('y'),r.y);const u=Math.max(0,Math.min(1,(t-4.4-i*.16)/.6)),p=u>=1?1:1-2**(-10*u);near(+node.getAttribute('opacity'),p);near(numbers(node.getAttribute('transform'))[0],(1-p)*-40);}});
+  }
+  assert.equal(isolated.querySelectorAll('[data-phone-rig],[data-shape]').length,0,'文字子动作不创建手机或装饰节点');
+  assert.ok([...isolated.querySelectorAll('text')].every(n=>n.getAttribute('font-family')==='Oswald,sans-serif'&&n.getAttribute('font-weight')==='700'));
+  const frame=isolated.innerHTML;single.seek(0);single.seek(2480);assert.equal(isolated.innerHTML,frame);single.destroy();shape.destroy();combo.destroy();
+ }finally{env.close();}
+});
+
+test('点阵四角框、状态及姿态读数对应原片，组合真实复用而非另造示例',async()=>{
+ const env=await setup();try{const w=env.w,d=w.document,root=d.getElementById('root'),combo=w.MotionRuntime.create(root,definition('generative-point-sequence')),isolated=d.createElement('div'),single=w.MotionRuntime.create(isolated,definition('generative-frame-readout'));
+  for(const t of [.3,.6,.9,1.2,2.5,2.6,5.1,5.2,7.7]){
+   combo.seek(t*1000);single.seek(t*1000);assert.equal(root.querySelector('[data-layer="frame"]').outerHTML,isolated.querySelector('[data-layer="frame"]').outerHTML);
+   const ref=original('gen',t),frame=root.querySelector('[data-gen-frame]'),stroke=ref.strokes.find(s=>String(s.stroke).startsWith('rgba(200,200,255,'));
+   assert.deepEqual(numbers(frame.getAttribute('d')),stroke.path.flatMap(v=>v.slice(1)));near(+frame.getAttribute('stroke-width'),stroke.width);near(+frame.getAttribute('stroke-opacity'),Number(stroke.stroke.slice(4,-1).split(',').at(-1)));
+   [...root.querySelectorAll('[data-gen-readout]')].forEach((n,i)=>{const r=ref.labels[i];assert.equal(n.textContent,r.s);near(+n.getAttribute('x'),r.x);near(+n.getAttribute('y'),r.y);near(+n.getAttribute('opacity'),r.alpha);assert.equal(n.getAttribute('fill'),r.color);});
+  }
+  assert.equal(isolated.querySelectorAll('canvas,[data-point],[data-code-line],[data-gen-year]').length,0,'读数子动作不创建点阵或代码');
+  const frame=isolated.innerHTML;single.seek(0);single.seek(7700);assert.equal(isolated.innerHTML,frame);
+  single.destroy();combo.destroy();
+ }finally{env.close();}
+});
+
+test('生成页保留原颜色和逐字时序，标题字号统一且组合与单项一致',async()=>{
+ const env=await setup();try{const w=env.w,d=w.document,root=d.getElementById('root'),combo=w.MotionRuntime.create(root,definition('generative-point-sequence')),isolated=d.createElement('div'),single=w.MotionRuntime.create(isolated,definition('title-stagger','outline'));
+  const clean=n=>n.outerHTML.replace(/motion-gen-\d+/g,'fixed-id');
+  for(const t of [0,.3,.67,1.03,1.8,2.3]){
+   combo.seek(t*1000);single.seek(t*1000);assert.equal(clean(root.querySelector('[data-layer="title"]')),clean(isolated.querySelector('[data-layer="title"]')));
+   const year=isolated.querySelector('[data-gen-year]');assert.equal(year.textContent,'2020');assert.equal(year.getAttribute('fill'),'none');assert.equal(year.getAttribute('stroke'),'#fff');near(+year.getAttribute('stroke-opacity'),.9*Math.max(0,Math.min(1,(t-.3)/.6)));
+   const ref=original('gen',t);[...isolated.querySelectorAll('[data-title-layer="gen-title"] [data-label-row]')].forEach((row,k)=>{const r=ref.reveals[k];assert.equal(row.textContent,r.s);[...row.querySelectorAll('text')].forEach((n,i)=>{const u=Math.max(0,Math.min(1,(t-r.start-i*r.stagger)/.7)),p=u>=1?1:1-2**(-10*u);near(+n.getAttribute('y'),r.y+(1-p)*r.size*1.1);near(+n.getAttribute('font-size'),[72,72,30][k]);assert.equal(n.getAttribute('fill'),typeof r.color==='function'?r.color(i):r.color);});});
+  }
+  assert.equal(isolated.querySelectorAll('canvas,[data-point],[data-code-line],[data-gen-frame]').length,0);assert.equal(isolated.querySelectorAll('clipPath').length,3);
+  assert.ok([...isolated.querySelectorAll('text')].every(n=>n.getAttribute('font-family')==='Oswald,sans-serif'&&n.getAttribute('font-weight')==='700'));
+  single.destroy();combo.destroy();assert.equal(w.MotionRuntime.instanceCount,0);
+ }finally{env.close();}
+});
+
+
+test('新补标题与读数可通过真实组合控制器单独显示，内层文字不会被二次隐藏',async()=>{
+ const env=await setup();try{const {w}=env,d=w.document,root=d.getElementById('root');
+  d.body.insertAdjacentHTML('beforeend','<section id="composition-panel"><div id="composition-layers"></div><p id="composition-status"></p></section>');
+  w.eval(await readFile(new URL('../catalog/composition-controls.js',import.meta.url),'utf8'));
+  for(const [id,layer,selector,time] of [['material-phone-sequence','labels','[data-label-char],[data-material-word]',2500],['generative-point-sequence','title','[data-label-char],[data-gen-year]',2400],['generative-point-sequence','frame','[data-gen-frame],[data-gen-readout]',5300]]){
+   const player=w.MotionRuntime.create(root,definition(id));player.seek(time);
+   const selected=root.querySelector(`[data-layer="${layer}"]`),children=[...selected.querySelectorAll(selector)];assert.ok(children.length>4);
+   w.MotionComposition.isolate(root,[layer]);
+   assert.equal(selected.getAttribute('display'),null,layer+' 主层必须显示');
+   assert.equal(selected.querySelectorAll('[data-layer]').length,0,layer+' 的内部排版不能声明成其他可隐藏动作层');
+   for(const child of children)assert.equal(child.closest('[display="none"]'),null,layer+' 的文字或读数必须保留可见');
+   for(const other of root.querySelectorAll('[data-layer]'))if(other!==selected)assert.equal(other.getAttribute('display'),'none',other.dataset.layer+' 应独立隐藏');
+   player.seek(time-100);for(const child of children)assert.equal(child.closest('[display="none"]'),null,'继续拖动不能丢失单层文字');
+   w.MotionComposition.isolate(root,null);assert.equal(root.querySelectorAll('[data-layer][display="none"]').length,0,'恢复完整组合可见');player.destroy();
+  }
  }finally{env.close();}
 });

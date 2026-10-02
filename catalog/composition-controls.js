@@ -43,7 +43,7 @@
   global.MotionComposition = {
     isolate(root,ids) { isolate([...root.querySelectorAll('[data-layer]')],ids?new Set(ids):null); },
     select(effect,controller,view) {
-      player=null;layers=global.MotionFactories[effect.id]?.breakdown || [];
+      player=null;layers=effect.kind==='composition' ? global.MotionFactories[effect.id]?.breakdown || [] : [];
       panel.hidden=!layers.length;
       nodes=[];buttons=[];list.replaceChildren();
       if(panel.hidden) return;

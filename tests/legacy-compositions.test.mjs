@@ -6,16 +6,12 @@ import {data,environment,frameMarkup,motionTime,sourceDefinition} from './helper
 const get=id=>data.effects.find(effect=>effect.id===id);
 const geometry=root=>{const clone=root.cloneNode(true);for(const node of clone.querySelectorAll('[style]'))node.style.cssText=node.style.cssText;return frameMarkup(clone).replace(/ style=""/g,'');};
 const groups={
-  'dual-scroll':['upper','lower'],
   'subtitle-focus':['cells','statement'],
-  'arc-cards':['card-0','card-1','card-2','card-3','card-4'],
   'title-content':['title','content'],
   'interface-feedback':['pointer','button','progress','result'],
-  'environment-chain':['traveler','follower','plants','water'],
-  'dual-scroll-settle':['upper','lower']
 };
 
-test('七个旧组合均标注真实画面对象，拆解没有另造近似演示或新增计时器',async()=>{
+test('三个保留组合均标注真实画面对象，拆解没有另造近似演示或新增计时器',async()=>{
   const env=await environment();
   try{
     const {w}=env,root=w.document.getElementById('root');
@@ -66,7 +62,7 @@ test('旧组合分层时保留全部原动画状态，重新定位不会冲掉�
   }finally{env.close();}
 });
 
-test('拆解区间沿目录时钟显示，原时序中的进度、让位与草叶响应保持不变',async()=>{
+test('拆解区间沿目录时钟显示，原时序中的进度、让位与减速停靠保持不变',async()=>{
   const env=await environment();
   try{
     const {w}=env,root=w.document.getElementById('root');
@@ -74,8 +70,6 @@ test('拆解区间沿目录时钟显示，原时序中的进度、让位与草�
       'subtitle-focus':[['cells',200,9000],['statement',4900,7600]],
       'title-content':[['title',200,1800],['content',2000,4000]],
       'interface-feedback':[['pointer',300,2700],['button',1600,5300],['progress',2150,5900],['result',5300,6100]],
-      'environment-chain':[['traveler',0,9300],['follower',0,9300],['plants',154/760*9300,440/760*9300],['water',6900,8860]],
-      'dual-scroll-settle':[['upper',0,1300],['lower',0,1300]]
     };
     for(const [id,rows] of Object.entries(ranges))for(const [layerId,start,end] of rows){
       const layer=w.MotionFactories[id].breakdown.find(layer=>layer.id===layerId);
@@ -87,10 +81,6 @@ test('拆解区间沿目录时钟显示，原时序中的进度、让位与草�
     controls.seek(3725);assert.equal(root.querySelector('.progress-fill').style.transform,'scaleX(0.5)');assert.equal(root.querySelector('.action-button').textContent,'正在整理');
     controls.seek(6100);assert.equal(root.querySelector('.action-button').textContent,'整理完成');assert.equal(root.querySelector('.result').style.opacity,'1');
     controls.destroy();
-    const field=w.MotionRuntime.create(root,sourceDefinition(get('environment-chain')));
-    const first=root.querySelector('.chain-plant');
-    field.seek(216/760*9300);assert.match(first.style.transform,/rotate\(32deg\)/,'主体经过第一根草叶时响应最强');
-    field.seek(0);assert.match(first.style.transform,/rotate\(0deg\)/,'主体远离时草叶恢复');field.destroy();
     const belts=w.MotionRuntime.create(root,sourceDefinition(get('dual-scroll-settle')));
     belts.seek(1300);
     assert.match(root.querySelector('[data-belt="0"] [data-card="0"]').style.transform,/translate3d\(432px,0px,0px\)/);

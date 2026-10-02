@@ -25,7 +25,7 @@ test('提炼后的旧名称仍可找到标准动作，原题和各案例范围�
   const snapshot=JSON.parse(await readFile(state+'/source-snapshot.json','utf8'));
   const crosswalk=JSON.parse(await readFile(state+'/crosswalk.json','utf8'));
   for(const [id,old,name] of [
-    ['reel-char-scatter','逐字沿弧飞散','字符沿弧汇入中心']
+    ['reel-char-scatter','逐字沿弧飞散','弧线汇字']
   ]){
     const original=snapshot.rules.find(r=>r.id===id),review=crosswalk.rules[id];
     const effect=data.effects.find(e=>e.id==='prompt-char-gather');

@@ -8,10 +8,6 @@
     const s = M.scene(root, '<div class="seed-body"></div>' + Array.from({length: 8}, () => '<div class="seed"></div>').join('')); const seeds = s.all('.seed');
     return (t, o) => seeds.forEach((c, i) => { const a = i / 8 * Math.PI * 2, p = M.span(t, 900 + i * 130, 3300 + i * 130, o.ease); const radius = 42 + p * (92 + i * 4); M.pose(c, {x: 314 + Math.cos(a) * radius + p * 64, y: 174 + Math.sin(a) * radius - p * 18, scale: 1 - p * .35, opacity: 1 - M.clamp(p)}); });
   };
-  F.ripple = (root, M) => {
-    const s = M.scene(root, '<div class="water"></div><div class="orb" style="left:306px;top:105px"></div>' + Array.from({length: 3}, () => '<div class="ripple-ring"></div>').join('')); const rings = s.all('.ripple-ring');
-    return (t, o) => { const fall = M.span(t, 300, 1300, o.ease); M.pose(s.one('.orb'), {y: fall * 94, scale: 1 - M.span(t, 1300, 1900) * .35, opacity: 1 - M.span(t, 1500, 2100)}); rings.forEach((c, i) => { const p = M.span(t, 1300 + i * 200, 3300 + i * 200, o.ease); M.pose(c, {scale: 1 + p * 5, opacity: t > 1300 + i * 200 ? (1 - M.clamp(p)) * .68 : 0}); }); };
-  };
   F['group-stagger'] = (root, M) => {
     const s = M.scene(root, '<div class="dot-grid">' + Array.from({length: 35}, () => '<div class="grid-dot"></div>').join('') + '</div>'); const dots = s.all('.grid-dot');
     return (t, o) => dots.forEach((c, i) => { const distance = Math.hypot(i % 7 - 3, Math.floor(i / 7) - 2); const start = 500 + distance * 300; const q = M.clamp((t - start) / 1000); const p = Math.sin(M.ease(q, o.ease) * Math.PI); M.pose(c, {y: -p * 15, scale: 1 + p * .55, opacity: .5 + p * .5}); });

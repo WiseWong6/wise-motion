@@ -114,8 +114,37 @@
       set(layer,'transform',`translate(${576+768*q} 380)`);
     };
   }
-  const builders={stars:starLayer,sun:sunLayer,grid:gridLayer,chrome:chromeLayer,neon:neonLayer,flare:flareLayer};
-  const motions={stars:starMotion,sun:sunMotion,grid:gridMotion,chrome:chromeMotion,neon:neonMotion,flare:flareMotion};
+  // 两个原场景的 typeOn 共用同一规则：写完前光标常亮，写完后每 0.4 秒明灭一次。
+  // 保留原说明文字与间距；英文统一 Oswald Bold，前缀宽度只在创建时准备。
+  // 字宽取自本地 Oswald-Bold.woff2 的 advance / unitsPerEm；破折号采用本地中文粗体。
+  const captionWidths={" ":.256,"&":.57,",":.238,".":.244,":":.278,"A":.551,"C":.563,"D":.586,"E":.447,"F":.434,"G":.582,"H":.61,"I":.301,"L":.443,"M":.704,"N":.561,"O":.586,"R":.6,"S":.514,"T":.445,"V":.526,"Y":.493,"a":.46,"c":.468,"d":.503,"e":.47,"f":.32,"g":.502,"h":.509,"i":.265,"j":.269,"l":.274,"m":.753,"n":.507,"p":.505,"q":.504,"r":.383,"s":.424,"t":.351,"u":.504,"w":.597,"y":.448,"—":.908};
+  const captionPresets={
+    neon:{text:'LOGOS LEARN TO FLY — CHROME, NEON & THE VIDEO TOASTER',x:960,y:960,align:'center',size:22,color:'#ffd6f6',track:5,start:2.2,cps:45,caretEnd:4.5},
+    grit:{text:'Title sequences get raw: scratched film, jittered type, handmade grit.',x:120,y:930,align:'left',size:26,color:'#bdb6a2',track:0,start:.6,cps:32,caretEnd:5.2}
+  };
+  const escape=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function captionLayer(options={}){
+    const o={...captionPresets.neon,...options};
+    return `<g data-layer="caption" aria-label="${escape(o.text)}" fill="${o.color}"${o.centered?' transform="translate(960 540) scale(2) translate(-960 -951.2)"':''}>
+      <text data-part="caption-text" y="${o.y}" font-size="${o.size}" letter-spacing="${o.track}" lengthAdjust="spacingAndGlyphs" xml:space="preserve" style="font-family:Oswald,'Wise Motion Sans',sans-serif;font-weight:700;font-kerning:none;font-variant-ligatures:none;white-space:pre"></text>
+      <rect data-part="caption-caret" y="${o.y-o.size*.8}" width="${Math.max(2,o.size*.08)}" height="${o.size*.95}" visibility="hidden"/></g>`;
+  }
+  function captionMotion(root,options={}){
+    const o={...captionPresets.neon,...options},layer=root.querySelector('[data-layer="caption"]');
+    const text=layer.querySelector('[data-part="caption-text"]'),caret=layer.querySelector('[data-part="caption-caret"]');
+    const chars=Array.from(o.text),prefixes=[''],widths=[-o.track];
+    chars.forEach(ch=>{prefixes.push(prefixes[prefixes.length-1]+ch);widths.push(widths.at(-1)+(captionWidths[ch]??.6)*o.size+o.track);});
+    const x=o.x-(o.align==='center'?widths.at(-1)/2:o.align==='right'?widths.at(-1):0);
+    set(text,'x',x);set(caret,'x',x+widths[0]);let previous=-1;
+    return t=>{
+      const n=Math.max(0,Math.min(chars.length,Math.floor((t-o.start)*o.cps)));
+      if(n!==previous){text.textContent=prefixes[n];if(n)set(text,'textLength',widths[n]);else text.removeAttribute('textLength');set(caret,'x',x+widths[n]+(n?o.track+4:0));previous=n;}
+      const visible=t>=o.start&&t<o.caretEnd&&(n<chars.length||Math.floor(t*2.5)%2===0);
+      set(caret,'visibility',visible?'visible':'hidden');
+    };
+  }
+  const builders={stars:starLayer,sun:sunLayer,grid:gridLayer,chrome:chromeLayer,neon:neonLayer,flare:flareLayer,caption:(_id,centered)=>captionLayer({centered})};
+  const motions={stars:starMotion,sun:sunMotion,grid:gridMotion,chrome:chromeMotion,neon:neonMotion,flare:flareMotion,caption:captionMotion};
   function scene(root,title,layers,centered=false){
     const id='motion-neon-'+ ++serial;
     root.innerHTML=`<svg class="pattern-svg" width="640" height="360" viewBox="0 0 1920 1080" aria-hidden="true"><title>${title}</title><defs>
@@ -141,10 +170,15 @@
   F['chrome-outline-echo']=root=>scene(root,'文字描边多层拖影',['chrome']);
   F['neon-type-flicker']=root=>scene(root,'霓虹文字点亮闪烁',['neon'],true);
   F['cross-flare-travel']=root=>scene(root,'十字光斑横移闪亮',['flare']);
-  F['neon-title-sequence']=root=>scene(root,'霓虹文字片头',['stars','sun','grid','chrome','flare','neon']);
+  F['caption-type-caret']=root=>scene(root,'说明文字打字与光标闪烁',['caption'],true);
+  F['caption-type-caret'].layer=captionLayer;
+  F['caption-type-caret'].motion=captionMotion;
+  F['caption-type-caret'].presets=captionPresets;
+  F['neon-title-sequence']=root=>scene(root,'霓虹文字片头',['stars','sun','grid','chrome','flare','neon','caption']);
   F['neon-title-sequence'].breakdown=[...F['neon-horizon'].breakdown,
     {id:'chrome',actions:['chrome-outline-echo'],name:'主字与描边拖影',start:300,end:1600,time:'0.30–1.60 秒',detail:'原倾斜大字从五倍缩回原大，六层描边每层晚 0.05 秒、交替青色与品红。主字从 0.30 秒同步进入；到位后描边仍逐层向下错开。'},
     {id:'neon',actions:['neon-type-flicker'],name:'霓虹字点亮',start:900,end:6000,time:'0.90 秒起',detail:'空心年份在 0.90–1.30 秒间按原来的固定帧次明灭，之后稳定点亮，青色辉光继续随半秒节拍呼吸。'},
-    {id:'flare',actions:['cross-flare-travel'],name:'十字光斑横移',start:1700,end:2500,time:'1.70–2.50 秒',detail:'原片白色十字光斑沿水平方向滑过，径向泛光与两根细线共同渐亮再淡去；不裁进字形，也不恢复字内扫光。'}
+    {id:'flare',actions:['cross-flare-travel'],name:'十字光斑横移',start:1700,end:2500,time:'1.70–2.50 秒',detail:'原片白色十字光斑沿水平方向滑过，径向泛光与两根细线共同渐亮再淡去；不裁进字形，也不恢复字内扫光。'},
+    {id:'caption',actions:['caption-type-caret'],name:'说明文字与闪烁光标',start:2200,end:4500,time:'2.20–4.50 秒',detail:'底部原说明以每秒 45 字写出，行首位置按整句宽度固定；输入时光标跟在末字后，写完后每 0.4 秒明灭一次，4.50 秒截止，文字继续保留。'}
   ];
 })(globalThis.MotionFactories);

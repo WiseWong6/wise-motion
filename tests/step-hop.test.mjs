@@ -81,7 +81,7 @@ test('光球跳台阶可搜索与直达，缩略图和预览一致，历史去�
   assert.ok(historical.excluded.some(e=>e.id==='tutorial-steps-ball'));
   assert.ok(!historical.recipes.some(e=>e.history_id==='tutorial-steps-ball'));
   for(const file of cross.rules['tutorial-steps-ball'].migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
-  const env=await environment(true,{hash:'#step-hop'});
+  const env=await environment(true,{staticPreview:true,hash:'#step-hop'});
   try{
     const {w}=env,d=w.document;env.reveal();
     assert.equal(d.getElementById('preview-title').textContent,effect.name);

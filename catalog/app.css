@@ -83,7 +83,7 @@
   --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-6:24px;
   --preview-max:1440px; --stage-nav-size:44px;
   --stage-gutter:clamp(20px,2.5vw,48px); --stage-chrome:172px;
-  /* 拉丁字形始终选本地 Oswald Bold；中文正文 Light，分类与章节标题 Bold。 */
+  /* 拉丁字形始终选本地 Oswald Bold；中文正文 Light，动效内中文主标题、分类与章节标题 Bold。 */
   --font:"Oswald","Wise Motion Sans","Source Han Sans CN","Source Han Sans SC","Noto Sans SC",sans-serif;
   --mono:var(--font);
 }
@@ -323,7 +323,7 @@ html[data-theme="light"] #theme-toggle { color:#222226; }
 html[data-theme="dark"] #theme-toggle:hover .icon-morph-glyph[data-icon="theme-sun"] { color:#f5b400; }
 html[data-theme="light"] #theme-toggle:hover .icon-morph-glyph[data-icon="theme-moon"] { color:#f5b400; }
 .icon-morph-glyph { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; }
-.brand { display:inline-flex; align-items:center; gap:8px; font-size:14px; font-weight:700; letter-spacing:-.02em; white-space:nowrap; }
+.brand { display:inline-flex; align-items:center; gap:8px; font-size:16px; font-weight:700; letter-spacing:-.02em; white-space:nowrap; }
 .brand-mark { width:22px; height:22px; border-radius:50%; object-fit:cover; flex:none; }
 .brand-name {
   font-family:Oswald,sans-serif; font-weight:700; letter-spacing:.04em; text-transform:uppercase;
@@ -563,15 +563,6 @@ html[data-theme="dark"] .playbar .playback-main:hover { background:transparent; 
   :root:not([data-theme="light"]) .playbar .playback-main svg { width:36px; height:36px; }
   :root:not([data-theme="light"]) .playbar .playback-main:hover { background:transparent; }
 }
-#motion-setting {
-  position:relative; align-self:center; flex:none; z-index:3; margin:0 0 12px;
-  max-width:min(640px,calc(100% - 40px)); padding:8px 14px; border-radius:var(--r-sm);
-  background:var(--glass); box-shadow:0 0 0 1px var(--card-ring), var(--shadow-menu), inset 0 1px 0 var(--glass-edge);
-  backdrop-filter:blur(var(--glass-blur)) saturate(180%);
-  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(180%);
-  font-size:11.5px; line-height:1.6; color:var(--muted); text-align:center;
-}
-
 /* 滑块：从最小值到滑块之间的轨道填成强调色，滑块之后保持中性。 */
 @property --fill {
   syntax:"<percentage>";
@@ -776,9 +767,6 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
 .related-playbar { display:flex; align-items:center; gap:12px; margin-top:12px; }
 .related-playbar input { flex:1; min-width:0; }
 .related-playbar output { min-width:74px; text-align:right; color:var(--muted); font-size:12px; font-variant-numeric:tabular-nums; }
-#related-examples { margin-top:18px; }
-#related-examples .field-label { margin:0; }
-#related-examples [aria-pressed="true"] { color:var(--ink); box-shadow:inset 0 0 0 1px var(--border-strong); }
 @media (max-width:600px) { .related-dialog { padding:16px; } .related-playbar { gap:6px; } .related-dialog-head h2 { font-size:18px; } }
 
 /* ── 下拉框 ────────────────────────────────────────────────────── */
@@ -871,7 +859,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
 /* ── 外观适配 ──────────────────────────────────────────────────── */
 /* 打开「降低透明度」后玻璃必须退回实色，否则文字会糊在背景上读不清。 */
 @media (prefers-reduced-transparency: reduce) {
-  .sidebar-shell,.directory,.inspector,.playbar,.select-menu,#motion-setting {
+  .sidebar-shell,.directory,.inspector,.playbar,.select-menu {
     background:var(--surface);
     backdrop-filter:none; -webkit-backdrop-filter:none;
     box-shadow:none;
@@ -879,13 +867,6 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
   .sidebar-shell,.directory,.inspector { border-color:var(--border-strong); }
   .playbar,.select-menu { border:1px solid var(--border-strong); }
   .playbar-glass { display:none; }
-}
-@media (prefers-reduced-motion:reduce) {
-  /* 过渡归零，避免给原本无需过渡的侧栏尺寸与画板缩放引入延迟。 */
-  * { animation-duration:.01ms !important; transition-duration:0s !important; }
-  .playbar .icon-btn:active,.copy-btn:active,.step-btn:active,.morph-toggle:hover,.morph-toggle:active { transform:none; }
-  .brand-name { animation:none; background:none; color:#e4e4e7; -webkit-text-fill-color:currentColor; }
-  html[data-theme="light"] .brand-name { color:#222226; background:none; }
 }
 @media (prefers-contrast:more) {
   .playbar { background:var(--surface); border-color:var(--border-strong); box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; }

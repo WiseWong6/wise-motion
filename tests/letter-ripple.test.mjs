@@ -84,7 +84,7 @@ test('正式入口、缩略图、旧名搜索和导出完整，定位稳定且�
   assert.ok(!historical.recipes.some(e=>e.history_id==='letter-ripple'));
   assert.ok(historical.excluded.some(e=>e.id==='letter-ripple'));
   for(const file of files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
-  const env=await environment(true,{hash:'#letter-ripple'});
+  const env=await environment(true,{staticPreview:true,hash:'#letter-ripple'});
   try{
     const {w}=env,d=w.document;env.reveal();assert.equal(d.getElementById('preview-title').textContent,effect.name);
     for(const query of [effect.name,...effect.previous_names])assert.equal(w.MotionMatch.rank(data,query)[0].effect.id,effect.id);
