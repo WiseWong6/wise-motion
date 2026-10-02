@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {JSDOM} from 'jsdom';
+import {data,environment} from './helpers.mjs';
 const sources=Object.fromEntries(await Promise.all(['radial-branch-flow','letter-settle'].map(async id=>[id,await readFile(new URL('../catalog/effects/'+id+'.js',import.meta.url),'utf8')])));
 const normalize=markup=>markup.replaceAll(/motion-(?:radial-branch|letter-settle)-\d+/g,'fixed');
 const kernel={textSize:key=>key==='body'?16:12};
@@ -43,12 +44,7 @@ const baseline={
 };
 const definitions=[
   ['radial-branch-flow','origin','center-ripple-emit',0,6000],
-  ['radial-branch-flow','branches','radial-branch-grow',650,5350],
-  ['radial-branch-flow','flow','branch-comet-flow',650,5350],
-  ['radial-branch-flow','delivery','branch-pulse-arrive',1700,4300],
-  ['radial-branch-flow','cards','endpoint-card-reveal',2600,3400],
-  ['letter-settle','flight','symbol-flight-settle',0,10132],
-  ['letter-settle','trails','flight-history-trails',0,10569],
+  ['letter-settle',['flight','trails'],'symbol-flight-settle',0,10569],
   ['letter-settle','stars','arrival-star-reveal',5028,6972],
   ['letter-settle','sparkles','arrival-star-sparkle',5028,6972]
 ];
@@ -62,6 +58,12 @@ test('两个组合在抽取前后的完整节点状态一致，固定轨迹、�
   const env=setup();
   try{
     const root=env.w.document.querySelector('#root');
+    for(const id of ['endpoint-card-reveal','radial-branch-grow','branch-comet-flow','branch-pulse-arrive'])assert.equal(env.w.MotionFactories[id],undefined,'已剔除的动作不再注册：'+id);
+    for(const id of ['branches','flow','delivery','cards']){
+      const layer=env.w.MotionFactories['radial-branch-flow'].breakdown.find(layer=>layer.id===id);
+      assert.deepEqual(Array.from(layer.actions),[],'组合不再关联已剔除的动作');
+      assert.ok(layer.reason,'组合保留图层需要明确依据：'+id);
+    }
     for(const [id,frames]of Object.entries(baseline)){
       const draw=env.w.MotionFactories[id](root,kernel);
       for(const [ms,expected]of Object.entries(frames)){
@@ -72,20 +74,23 @@ test('两个组合在抽取前后的完整节点状态一致，固定轨迹、�
   }finally{env.close();}
 });
 
-test('九个独立动作只创建对应真实层，前移等待后逐节点等同于原组合',()=>{
+test('四个独立动作只创建对应真实层，前移等待后逐节点等同于原组合',()=>{
   const env=setup();
   try{
     const {w}=env;
     for(const [composition,layer,action,offset,duration] of definitions){
       const full=w.document.createElement('div'),part=w.document.createElement('div');
       const fullDraw=w.MotionFactories[composition](full,kernel),partDraw=w.MotionFactories[action](part,kernel);
-      const breakdown=w.MotionFactories[composition].breakdown.find(item=>item.id===layer);
-      assert.deepEqual(Array.from(breakdown.actions),[action]);
-      assert.deepEqual([...new Set([...part.querySelectorAll('[data-layer]')].map(node=>node.dataset.layer))],[layer]);
+      const layers=Array.isArray(layer)?layer:[layer];
+      for(const id of layers){
+        const breakdown=w.MotionFactories[composition].breakdown.find(item=>item.id===id);
+        assert.deepEqual(Array.from(breakdown.actions),[action]);
+      }
+      assert.deepEqual([...new Set([...part.querySelectorAll('[data-layer]')].map(node=>node.dataset.layer))].sort(),[...layers].sort());
       assert.equal(part.querySelectorAll('[display="none"],[visibility="hidden"]')[0],undefined,'不能隐藏整套组合充当独立动作');
       for(const ms of [0,150,600,duration*.4,duration*.8,duration]){
         partDraw(ms);fullDraw(ms+offset);
-        assert.deepEqual(layerState(part,layer),layerState(full,layer),`${action} 与原组合相应时刻不一致`);
+        for(const id of layers)assert.deepEqual(layerState(part,id),layerState(full,id),`${action}/${id} 与原组合相应时刻不一致`);
       }
       const nodes=[...part.querySelectorAll('*')];
       partDraw(duration*.6);const middle=part.innerHTML;
@@ -98,7 +103,7 @@ test('九个独立动作只创建对应真实层，前移等待后逐节点等�
   }finally{env.close();}
 });
 
-test('独立星光不计算飞行，独立光丝只计算原来的十八条历史轨迹',()=>{
+test('独立星光不计算飞行，合并群飞保留原十八条光丝及完整物品',()=>{
   const env=setup(true);
   try{
     const {w}=env,root=w.document.querySelector('#root');
@@ -109,12 +114,28 @@ test('独立星光不计算飞行，独立光丝只计算原来的十八条历�
       assert.equal(root.querySelectorAll(action==='arrival-star-reveal'?'[data-star]':'[data-glint]').length,126);
       assert.equal(root.querySelectorAll(action==='arrival-star-reveal'?'[data-halo],[data-glint]':'[data-star]').length,0);
     }
-    const trails=w.MotionFactories['flight-history-trails'](root);w.drawCounts={pose:0,trail:0,flight:0};trails(4000);
-    assert.equal(root.querySelectorAll('[data-trail]').length,18);assert.equal(root.querySelectorAll('[data-trail] path').length,432);
-    assert.equal(root.querySelectorAll('[data-particle],[data-symbol],[data-star],[data-glint]').length,0);
-    assert.equal(w.drawCounts.trail,18);assert.equal(w.drawCounts.flight,0);assert.equal(w.drawCounts.pose,18*26);
+    assert.equal(w.MotionFactories['flight-history-trails'],undefined,'光丝独立入口已并入群飞');
     const flight=w.MotionFactories['symbol-flight-settle'](root);w.drawCounts={pose:0,trail:0,flight:0};flight(4000);
-    assert.equal(root.querySelectorAll('[data-symbol]').length,126);assert.equal(root.querySelectorAll('[data-trail],[data-settled]').length,0);
-    assert.equal(w.drawCounts.flight,126);assert.equal(w.drawCounts.pose,126);assert.equal(w.drawCounts.trail,0);
+    assert.equal(root.querySelectorAll('[data-symbol]').length,126);
+    assert.equal(root.querySelectorAll('[data-trail]').length,18);
+    assert.equal(root.querySelectorAll('[data-trail] path').length,432);
+    assert.equal(root.querySelectorAll('[data-settled],[data-star],[data-halo],[data-glint]').length,0);
+    assert.equal(w.drawCounts.flight,126);assert.equal(w.drawCounts.pose,126+18*26);assert.equal(w.drawCounts.trail,18);
+    flight(10569);
+    assert.ok([...root.querySelectorAll('[data-symbol],[data-trail] path')].every(node=>Number(node.getAttribute('opacity'))===0),'物品与光丝均消退后才结束');
+  }finally{env.close();}
+});
+
+
+test('群飞与光丝共用一个目录入口，两种旧名称及旧光丝书签均能找到合并动作',async()=>{
+  const env=await environment(true,{hash:'#flight-history-trails',staticPreview:true});
+  try{
+    const effect=data.effects.find(e=>e.id==='symbol-flight-settle');
+    assert.ok(!data.effects.some(e=>e.id==='flight-history-trails'));
+    assert.equal(data.redirects['flight-history-trails'],effect.id);
+    for(const name of ['物品群飞减速落定','群飞轨迹光丝渐退','群飞落定','轨迹渐退'])assert.equal(env.w.MotionMatch.rank(data,name)[0]?.effect.id,effect.id,name);
+    assert.equal(env.w.document.querySelector('.effect-item[aria-current="true"]').dataset.effect,effect.id);
+    const prompt=env.w.MotionExport.prompt(effect,{speed:1},data);
+    assert.match(prompt,/126 件/);assert.match(prompt,/18 (?:件|条)/);assert.match(prompt,/10\.57 秒/);
   }finally{env.close();}
 });

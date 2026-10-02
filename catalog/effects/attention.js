@@ -68,10 +68,6 @@
       style(lines[i],'opacity',String(t>at+100?fade:0));
     });
   };
-  F.highlight = (root, M) => {
-    const s = M.scene(root, '<div class="word-line"><span>清楚</span><span>自然</span><span>有重点</span></div>'); const words = s.all('.word-line span');
-    return (t, o) => { const p = M.clamp(M.span(t, 200, 4200, o.ease)); const n = Math.min(2, Math.floor(p * 3)); words.forEach((w, i) => { w.className = i === n ? 'is-mark' : 'is-idle'; M.pose(w, {scale: i === n ? 1.03 : 1}); }); };
-  };
   F['focus-zoom'] = (root, M) => {
     const s = M.scene(root, M.cardSet(3)); const cards = s.all('.mini-card'); cards.forEach((c, i) => { c.style.left = `${148 + i * 118}px`; c.style.top = '125px'; });
     return (t, o) => { const p = M.span(t, 600, 2200, o.ease); cards.forEach((c, i) => M.pose(c, {scale: i === 1 ? 1 + p * .38 : 1 - p * .08, opacity: i === 1 ? 1 : 1 - p * .58, x: i === 1 ? 0 : (i - 1) * p * 18})); };

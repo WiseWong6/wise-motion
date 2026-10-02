@@ -74,5 +74,5 @@ test('通用名称下的原片动作能按来源搜索，历史关联指向实�
   }
   assert.deepEqual(crosswalk.rules['reel-bezier-editor'].patterns,['bezier-editor']);
   assert.deepEqual(crosswalk.rules['reel-era-sweep'].patterns,['timeline-progress']);
-  for(const id of ['slider-response','sweep-trigger'])assert.ok(!data.effects.find(e=>e.id===id).original_scene?.startsWith('claude-showreel-2026/'),id+' 不能冒充原片动作');
+  for(const id of ['slider-response'])assert.ok(!data.effects.find(e=>e.id===id).original_scene?.startsWith('claude-showreel-2026/'),id+' 不能冒充原片动作');
 });

@@ -1,0 +1,35 @@
+{
+  "description": "精修后的笔墨与材质演变：固定书法与字标轮廓、灰阶透明素材。",
+  "code_license": "AGPL-3.0-only",
+  "graphic_rights": "原字形、品牌字标及参考素材权利保留原状；参考原片素材许可未核实，生成结果不作为独立原创图形重新授权。",
+  "runtime": "本地普通脚本及图片按需载入；不包含原视频或JPG截图。",
+  "files": [
+    {
+      "file": "key-shapes.js",
+      "bytes": 6522769,
+      "sha256": "79fc0d4461624454cb7acae5dac4cf41c3996f9cb72e6f82f756b7d82d0efb67",
+      "source_type": "reference-vector-contours"
+    },
+    {
+      "file": "fiber.png",
+      "bytes": 2209058,
+      "sha256": "1ffbef3659dfc9b0caf4f1f0513fccedd59bd6ec702f410c15f6a4e89fbd78fd",
+      "source_type": "reference-based-generated-texture",
+      "tool": "image_gen.imagegen"
+    },
+    {
+      "file": "moon.png",
+      "bytes": 1470152,
+      "sha256": "88b93ce0d9605640a2d20df8bad1b447d92eb5696cc8b481f04fb94a587acc74",
+      "source_type": "reference-based-generated-texture",
+      "tool": "image_gen.imagegen"
+    },
+    {
+      "file": "atlas-engraving.png",
+      "bytes": 2518989,
+      "sha256": "d7674b59eb14d079b618b92d9145b873572b117bf4dd73565bf3559b4df9aade",
+      "source_type": "reference-based-generated-texture",
+      "tool": "image_gen.imagegen"
+    }
+  ]
+}

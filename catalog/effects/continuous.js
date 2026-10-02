@@ -2,7 +2,7 @@
 (function (F) {
   let conveyorSerial = 0;
   F['card-conveyor'] = (root) => {
-    // 原工程的八条斜向泳道：上四条右行，下四条左行；出场节奏保持，滚动位移减半。
+    // 八条斜向泳道：上四条右行，下四条左行；保持出场节奏，滚动位移为原工程的 37.5%。
     const W = 232, H = 174, STEP = W + 30, LOOP = STEP * 12;
     const ns = 'card-conveyor-' + (++conveyorSerial);
     const wrap = v => ((v + LOOP / 2) % LOOP + LOOP) % LOOP - LOOP / 2;
@@ -20,7 +20,7 @@
     return (t, o = {}) => {
       const frame = Math.max(0, (o.elapsed ?? t) * 30 / 1000 - 4);
       const advance = frame <= 20 ? 4 * frame * frame : 1600 + (frame - 20) * 160;
-      const travel = advance * .5;
+      const travel = advance * .375;
       const visible = Math.min(3400, advance);
       set(upper, 'width', visible); set(lower, 'width', visible); set(lower, 'x', 1700 - visible);
       // 用首尾副本滚动整条泳道，每帧只更新八组位置，而不逐张修改卡片。
@@ -36,10 +36,39 @@
     const s = M.scene(root, `<svg class="path-guide" viewBox="0 0 640 360"><path d="${points}"/></svg><div class="traveler">›</div>`);
     return (t, o) => { const p = M.ease(t / o.duration, o.ease); const a = M.curve(p), b = M.curve(p + .001); M.pose(s.one('.traveler'), {x: a.x, y: a.y, rotate: Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI}); };
   };
-  F.orbit = (root, M) => {
-    const s = M.scene(root, '<div class="center-shape" style="left:282px;top:166px;width:76px;height:76px"></div>' + M.cardSet(5));
-    const cards = s.all('.mini-card'); cards.forEach(c => { c.style.left = '266px'; c.style.top = '125px'; });
-    return (t, o) => cards.forEach((c, i) => { const a = (M.ease(t / o.duration, o.ease) + i / 5) * Math.PI * 2; const z = Math.sin(a); M.pose(c, {x: Math.cos(a) * 215, y: z * 26, scale: .68 + (z + 1) * .16, ry: -Math.cos(a) * 16, opacity: .64 + (z + 1) * .18}); c.style.zIndex = String(Math.round((z + 1) * 20)); });
+  F.orbit = (root, M, definition) => {
+    // 卡片与轨道共用空间投影，前后遮挡以中心球为界。
+    const project = angle => {
+      const depth = Math.sin(angle), scale = 740 / (740 - depth * 150);
+      return {depth, scale, x: Math.cos(angle) * 204 * scale, y: depth * 64 * scale};
+    };
+    const path = start => Array.from({length:65}, (_, i) => {
+      const p = project(start + i / 64 * Math.PI);
+      return `${i ? 'L' : 'M'}${320 + p.x},${180 + p.y}`;
+    }).join(' ');
+    const glyphs = [
+      '<circle cx="20" cy="20" r="12"/><circle cx="20" cy="20" r="4"/>',
+      '<rect x="8" y="8" width="24" height="24" rx="5"/><path d="M8 20h24M20 8v24"/>',
+      '<path d="M20 6l14 14-14 14L6 20Z"/><path d="M20 13l7 7-7 7-7-7Z"/>',
+      '<path d="M8 14l12-7 12 7-12 7ZM8 21l12 7 12-7M8 28l12 7 12-7"/>',
+      '<path d="M9 30V19M20 30V9M31 30V14"/><circle cx="9" cy="14" r="2"/><circle cx="20" cy="5" r="2"/><circle cx="31" cy="9" r="2"/>'
+    ];
+    const markup = '<svg class="orbit-guide" viewBox="0 0 640 360" aria-hidden="true">'+
+      `<path d="${path(Math.PI)}" stroke-dasharray="3 6" opacity=".4"/><path d="${path(0)}" opacity=".7"/></svg>`+
+      '<svg class="orbit-core" viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="34" fill="var(--stage)" stroke="var(--ink)" stroke-opacity=".55"/>'+
+      '<g fill="none" stroke="var(--muted)" stroke-opacity=".5" stroke-width=".8"><ellipse cx="42" cy="42" rx="13" ry="34"/><ellipse cx="42" cy="42" rx="34" ry="10" transform="rotate(-14 42 42)"/></g><circle cx="42" cy="42" r="3" fill="var(--teal)"/></svg>'+
+      glyphs.map((glyph, i) => `<div class="orbit-card" data-orbit-card="${i}"><span class="orbit-card-number">0${i+1}</span><svg viewBox="0 0 40 40" aria-hidden="true">${glyph}</svg><i></i></div>`).join('');
+    const cards = M.scene(root, markup).all('.orbit-card');
+    return (t, o = {}) => {
+      const duration = o.duration || definition?.duration_ms || 6000;
+      const phase = (((o.elapsed ?? t) / duration % 1) + 1) % 1;
+      cards.forEach((card, i) => {
+        const angle = (phase + i / cards.length) * Math.PI * 2 - Math.PI / 2;
+        const p = project(angle);
+        M.pose(card, {x:p.x, y:p.y, scale:p.scale, ry:-Math.cos(angle)*18, opacity:.62 + (p.depth+1)*.19});
+        card.style.zIndex = String(100 + Math.round(p.depth*60));
+      });
+    };
   };
   F.float = (root, M) => {
     const s = M.scene(root, M.tile('留一点轻盈', '缓慢起伏，保持安静'));

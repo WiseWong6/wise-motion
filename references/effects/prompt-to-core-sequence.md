@@ -14,7 +14,7 @@
 现实类比：原输入界面落位、描边、逐字写入；发送后文字沿弧汇聚，中心光核与三环接续展开。
 需要保留：原三行中文排版、原 UI 几何与配色、原 0–8 秒先后关系；六项独立动作与组合共用实际绘制函数。
 明确排除：不把通用打字、回弹和粒子汇聚当作组成动作；不删掉原菜单和细描线；不增加声音。
-对应参考：本地目录「汇聚与扩张」；所用动作：边界描绘、分行逐字、弧线汇字、按压扩圈、落位推近、光核外扩、升入升出
+对应参考：本地目录「汇聚与扩张」；所用动作：边界描绘、分行逐字、弧线汇字、按压扩圈、落位推近、光核外扩
 源码：catalog/effects/reel-prompt-outro.js 中的 prompt-to-core-sequence
 来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
 关键假设：保留原片 46–54 秒主场景，原上方年份、标题及底部说明也保留；原全片进度条与边角制作信息不属于这个输入场景动作。 深浅模式均保留原深色画面。 普通英文与数字按目录规范使用 Oswald Bold，中文及混排正文用 Light；原逐字落点与换行保持，片尾 CLAUDE 主字是造型轮廓例外。
@@ -33,4 +33,4 @@
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
 - 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[边界描绘](prompt-border-trace.md)、[分行逐字](prompt-chinese-type.md)、[弧线汇字](prompt-char-gather.md)、[按压扩圈](send-press-ring.md)、[落位推近](prompt-ui-push.md)、[光核外扩](core-ring-expand.md)、[升入升出](prompt-label-lift.md)。
+所用动作：[边界描绘](prompt-border-trace.md)、[分行逐字](prompt-chinese-type.md)、[弧线汇字](prompt-char-gather.md)、[按压扩圈](send-press-ring.md)、[落位推近](prompt-ui-push.md)、[光核外扩](core-ring-expand.md)。

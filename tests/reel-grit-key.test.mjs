@@ -80,13 +80,26 @@ test('四段弹跳、六道残影与高度投影对应原软件窗口的真实�
   }finally{e.close();}
 });
 
-test('时间线二十六关键帧沿用原位置与接近阈值，游标单向循环',async()=>{
+test('时间线增高并居中，文字行距足够，二十六关键帧保留原时序与单向扫描',async()=>{
   const e=await setup();try{const root=e.w.document.getElementById('root'),p=e.w.MotionRuntime.create(root,definition('timeline-keyframe-playhead'));
+    const group=root.querySelector('svg > g'),frame=group.querySelector(':scope > rect');
+    const [dx,dy]=nums(group.getAttribute('transform')||'translate(0 0)');
+    const [, ,width,height]=nums(root.querySelector('svg').getAttribute('viewBox'));
+    near(+frame.getAttribute('x')+Number(frame.getAttribute('width'))/2+dx,width/2);
+    near(+frame.getAttribute('y')+Number(frame.getAttribute('height'))/2+dy,height/2);
+    assert.equal(+frame.getAttribute('height'),480,'独立面板须为五行文字与刻度留足高度');
+    const labels=[...root.querySelectorAll('[data-timeline-label]')];
+    assert.equal(labels.length,5);
+    labels.forEach((label,i)=>{
+      const y=+label.getAttribute('y'),size=+label.getAttribute('font-size');
+      if(i)assert.ok(y-Number(labels[i-1].getAttribute('y'))>=size+24,'文字行之间需要留白');
+      assert.ok(y+size/3<Number(frame.getAttribute('y'))+Number(frame.getAttribute('height'))-30,'末行文字不贴底边');
+    });
     assert.equal(root.querySelectorAll('[data-key]').length,26);
     for(const ms of [0,900,1000,1100,1375,1750,1999,2250,2999,3000,4250,5000]){p.seek(ms);const ref=originalTimeline(ms/1000),keys=ref.filter(v=>v.type==='rect'&&v.args[0]===-5&&v.args[1]===-5),nodes=[...root.querySelectorAll('[data-key]')].filter(n=>n.getAttribute('visibility')==='visible');assert.equal(nodes.length,keys.length);
-      nodes.forEach((n,i)=>{const ns=nums(n.getAttribute('transform')),tr=keys[i].transforms;near(ns[0],tr[0][1]);near(ns[1],tr[0][2]);near(ns[2]*Math.PI/180,tr[1][1]);near(ns[3],tr[2][1]);assert.equal(n.getAttribute('fill'),keys[i].fill);});
-      const head=ref.find(v=>v.type==='rect'&&v.fill==='#4aa3ff'&&v.args[2]===2),n=root.querySelector('[data-playhead]');assert.equal(n.getAttribute('visibility'),head?'visible':'hidden');if(head)near(nums(n.getAttribute('transform'))[0],head.args[0]+1);
-    }p.seek(2999);const right=nums(root.querySelector('[data-playhead]').getAttribute('transform'))[0];p.seek(3000);const left=nums(root.querySelector('[data-playhead]').getAttribute('transform'))[0];assert.ok(right>1700&&left===420);p.destroy();
+      nodes.forEach((n,i)=>{const ns=nums(n.getAttribute('transform')),tr=keys[i].transforms;near((ns[0]-480)/1290,(tr[0][1]-420)/1360);near(ns[1],472+(+n.dataset.row)*60);near(ns[2]*Math.PI/180,tr[1][1]);near(ns[3],tr[2][1]);assert.equal(n.getAttribute('fill'),keys[i].fill);});
+      const head=ref.find(v=>v.type==='rect'&&v.fill==='#4aa3ff'&&v.args[2]===2),n=root.querySelector('[data-playhead]');assert.equal(n.getAttribute('visibility'),head?'visible':'hidden');if(head)near((nums(n.getAttribute('transform'))[0]-480)/1290,(head.args[0]+1-420)/1360);
+    }p.seek(2999);const right=nums(root.querySelector('[data-playhead]').getAttribute('transform'))[0];p.seek(3000);const left=nums(root.querySelector('[data-playhead]').getAttribute('transform'))[0];assert.ok(right>1700&&left===480);p.destroy();
   }finally{e.close();}
 });
 
@@ -145,7 +158,21 @@ test('组合按原位置复用图层；所有缩略帧非空、回拖确定、�
         }else if(layer==='bounce'){
           const a=[...single.querySelectorAll('*')],b=[...combined.querySelectorAll('*')];assert.equal(a.length,b.length);
           a.forEach((n,i)=>{assert.equal(n.tagName,b[i].tagName);for(const attr of n.attributes){const actual=b[i].getAttribute(attr.name);if(['x','cx'].includes(attr.name))near(+attr.value-350,+actual);else assert.equal(attr.value,actual);}});
-        }else assert.equal(frameMarkup(single),frameMarkup(combined));
+        }else{
+          const own=[...single.querySelectorAll('[data-key]')],original=[...combined.querySelectorAll('[data-key]')];
+          assert.equal(own.length,original.length);
+          own.forEach((node,i)=>{
+            const counterpart=original[i],a=nums(node.getAttribute('transform')),b=nums(counterpart.getAttribute('transform'));
+            for(const attr of ['visibility','fill','data-row','data-at'])assert.equal(node.getAttribute(attr),counterpart.getAttribute(attr),'重新排布只调整几何，不改关键帧状态');
+            near((a[0]-480)/1290,(b[0]-420)/1360);
+            near(a[1],472+(+node.dataset.row)*60);near(b[1],810+(+node.dataset.row)*24);
+            near(a[2],b[2]);near(a[3],b[3]);
+          });
+          const ownHead=single.querySelector('[data-playhead]'),originalHead=combined.querySelector('[data-playhead]');
+          assert.equal(ownHead.getAttribute('visibility'),originalHead.getAttribute('visibility'));
+          near((nums(ownHead.getAttribute('transform'))[0]-480)/1290,(nums(originalHead.getAttribute('transform'))[0]-420)/1360);
+          assert.deepEqual([...single.querySelectorAll('text')].map(n=>n.textContent),[...combined.querySelectorAll('text')].map(n=>n.textContent));
+        }
       }p.destroy();
     }whole.destroy();
     for(const def of defs){const p=e.w.MotionRuntime.create(root,def);p.seek(def.preview_ms);assert.ok(root.querySelectorAll('path,rect,circle,ellipse,text').length>3);assert.ok(root.querySelectorAll('*').length<(def.id==='keyframe-workbench'?260:230),def.id+' 节点应有界');assert.doesNotMatch(root.innerHTML,/NaN|Infinity/);for(const clip of root.querySelectorAll('clipPath'))for(const child of clip.children)assert.ok(['rect','path','circle','ellipse'].includes(child.localName));

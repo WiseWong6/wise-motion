@@ -32,7 +32,7 @@ test('快切按原录屏加速帧表换图，边界只有一张画面，最后�
   }finally{close(env);}
 });
 
-test('卡片传送带保持八泳道与出场节奏，滚动减半后循环接缝不重新入场',async()=>{
+test('卡片传送带保持八泳道与出场节奏，减慢滚动后循环接缝不重新入场',async()=>{
   const original=await source('naive-conveyor-belts','Countdown.tsx');
   assert.match(original,/W\s*=\s*232/);assert.match(original,/GAP\s*=\s*30/);
   assert.match(original,/lane\s*<\s*4\s*\?\s*1\s*:\s*-1/);assert.match(original,/rotate\(-12deg\)/);
@@ -48,7 +48,7 @@ test('卡片传送带保持八泳道与出场节奏，滚动减半后循环接�
     for(const time of [0,200,500,800,1200,1700,3000]){
       render(time);
       const f=Math.max(0,time*30/1000-4),distance=f<=20?4*f*f:1600+(f-20)*160;
-      const travel=distance*.5;
+      const travel=distance*.375;
       assert.equal(Number(root.querySelector('[data-mask="upper"]').getAttribute('width')),Math.min(3400,distance));
       assert.equal(Number(root.querySelector('[data-mask="lower"]').getAttribute('x')),1700-Math.min(3400,distance));
       lanes.forEach((lane,i)=>{
@@ -66,9 +66,10 @@ test('卡片传送带保持八泳道与出场节奏，滚动减半后循环接�
     render(3000,{elapsed:3000});const seam=root.innerHTML;
     render(0,{elapsed:3000});assert.equal(root.innerHTML,seam);
     render(1200);const first=lanes.map(position);
-    render(2510);lanes.forEach((lane,i)=>assert.ok(Math.abs(position(lane)[0]-first[i][0])<1e-8,'首尾副本应保持一个完整卡带周期'));
+    const nextCycle=1200+3144/(160*.375*30)*1000;
+    render(nextCycle);lanes.forEach((lane,i)=>assert.ok(Math.abs(position(lane)[0]-first[i][0])<1e-8,'首尾副本应保持一个完整卡带周期'));
     const observer=new w.MutationObserver(()=>{});observer.observe(root,{subtree:true,attributes:true});
-    render(2510);assert.equal(observer.takeRecords().length,0);observer.disconnect();
+    render(nextCycle);assert.equal(observer.takeRecords().length,0);observer.disconnect();
   }finally{close(env);}
 });
 

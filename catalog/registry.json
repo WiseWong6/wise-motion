@@ -675,7 +675,7 @@
       "loop": true,
       "preview_ms": 1900,
       "recommendation": "适合多条斜向卡片带的连续对向流动；普通上下两排使用双排反向持续滚动。",
-      "tempo_note": "沿用原工程三十帧每秒的起步曲线与循环步距；出场节奏保持，滚动位移减半。三秒为播放条的一轮，后续循环保持运动，不重复入场。",
+      "tempo_note": "按 640×360 设计画板，起步后平缓加速，约 0.80 秒进入匀速；匀速段沿泳道每秒移动 600 画板像素，上下组方向相反。入场揭示节奏保持，三秒为播放条的一轮，后续循环持续滚动，不重复入场。",
       "analogy": "斜向铺开的两组反向传送带。",
       "assumptions": "核对本机原工程后独立重写；保留八条泳道的尺寸比例、错位、方向和加速关系，以自有黑白卡片代替插画，使用目录画幅与底色。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
       "source": {
@@ -1072,8 +1072,8 @@
       "name": "纵深环绕",
       "kind": "action",
       "category": "space",
-      "summary": "多个对象绕同一个中心运动，有前后深度。",
-      "purpose": "表达中心与周围对象的关系",
+      "summary": "五张细边图形卡片绕线框球连续环行，近处清晰放大，远处轻淡缩小。",
+      "purpose": "以清楚的前后遮挡和透视表达中心与周围对象的关系。",
       "aliases": [
         "环绕",
         "绕中心",
@@ -1090,12 +1090,12 @@
         "rotation3d"
       ],
       "phases": [
-        "多个对象均匀分布在同一轨道。",
-        "围绕中心移动，靠近时变大，远离时变小。",
-        "持续完成完整一圈。"
+        "线框球固定在画板中心，五张卡片以相同角间距排在同一空间轨道。",
+        "卡片连续环行，近处放大并遮挡中心球，远处缩小、变淡并经过中心球后方。",
+        "每六秒完成一圈，循环接缝保持相同位置和速度，卡片面向观众并轻微侧转。"
       ],
-      "retain": "多个对象绕同一个中心运动，有前后深度。",
-      "avoid": "不把环绕误写成逐张平面切换。",
+      "retain": "640×360 画板，中心为（320,180）；卡片 72×88 像素、圆角 10 像素，中心球 68 像素直径。轨道以角度 θ 计算：深度 d=sin(θ)，缩放 s=740/(740−150d)，位置 x=320+204cos(θ)s、y=180+64ds；侧转角为 −18cos(θ) 度，透明度为 0.62+0.19(d+1)。五张卡片相差 72 度，中心球遮住后方卡片，前方卡片遮住中心球。",
+      "avoid": "卡片使用简单线形图案和编号，不加入大段文字；轨道与球体使用细线，中心只留一个青绿色小点；不把环绕改成逐张切换，不让所有卡片压在中心球前方。",
       "duration_ms": 6000,
       "loop": true,
       "default_ease": "linear",
@@ -1106,15 +1106,6 @@
           "min": 0.5,
           "max": 2,
           "step": 0.25
-        },
-        "ease": {
-          "label": "速度变化",
-          "default": "linear",
-          "options": [
-            "linear",
-            "outCubic",
-            "inOutSine"
-          ]
         }
       },
       "source": {
@@ -1128,12 +1119,12 @@
       "actions": [],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2880,
-      "recommendation": "适合表达中心与周围对象的关系。保留多个对象绕同一个中心运动，有前后深度；不把环绕误写成逐张平面切换。",
-      "tempo_note": "一轮 6 秒；连续运动不在周期末停顿，首轮入场与累计时间同步。速度控件在此基础上整体调整。",
-      "objects": "中心与环绕卡片",
-      "analogy": "绕中心行走",
+      "recommendation": "适合展示同一中心与五个周边对象的空间关系；小卡片、细轨道与清楚遮挡保持画面轻巧。",
+      "tempo_note": "一轮 6 秒，角度匀速增加；使用累计时间驱动，循环接缝不暂停或重播入场，速度控件只调整整体快慢。",
+      "objects": "居中的线框球、细椭圆轨道、五张 72×88 像素的图形卡片",
+      "analogy": "五张小卡片围绕一个球体从前后经过。",
       "trigger": "打开预览后按固定顺序播放；可暂停和定位时间。",
-      "assumptions": "使用自有抽象卡片与文字演示；对象内容、尺寸和总时长可调整，动作结构不变。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+      "assumptions": "自编空间投影示例，卡片、轨道与中心球共用（320,180）中心。沿用目录深浅主题，使用暖白细线和青绿色小点，字号为 12 像素；源码与复制页面使用同一绘制函数。",
       "domains": [
         "animation",
         "document"
@@ -1381,89 +1372,6 @@
       "previous_names": [
         "逐字呈现"
       ]
-    },
-    {
-      "id": "highlight",
-      "name": "底色强调",
-      "kind": "action",
-      "category": "attention",
-      "summary": "一句话中需要强调的词依次获得背景色。",
-      "purpose": "让注意力跟随讲述中的关键词",
-      "aliases": [
-        "高亮",
-        "重点",
-        "强调",
-        "字幕",
-        "上色",
-        "跟着讲述",
-        "局部高亮",
-        "词语底色强调"
-      ],
-      "behaviors": [
-        "focus",
-        "sequence",
-        "color"
-      ],
-      "phases": [
-        "完整文字可见。",
-        "依次突出三个关键词，其余文字保持安静。",
-        "强调停留在最后一个关键词。"
-      ],
-      "retain": "一句话中需要强调的词依次获得背景色。",
-      "avoid": "每一时刻只强调当前重点。",
-      "duration_ms": 2400,
-      "loop": false,
-      "default_ease": "outCubic",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        },
-        "ease": {
-          "label": "速度变化",
-          "default": "outCubic",
-          "options": [
-            "linear",
-            "outCubic",
-            "inOutSine"
-          ]
-        }
-      },
-      "source": {
-        "path": "catalog/effects/attention.js",
-        "factory": "highlight",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "preview_ms": 1140,
-      "recommendation": "适合让注意力跟随讲述中的关键词。保留一句话中需要强调的词依次获得背景色；每一时刻只强调当前重点。",
-      "tempo_note": "约零点一五秒起动，主要动作 1.8 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
-      "objects": "三个文字重点",
-      "analogy": "手指依次指向重点",
-      "trigger": "打开预览后按固定顺序播放；可暂停和定位时间。",
-      "assumptions": "使用自有抽象卡片与文字演示；对象内容、尺寸和总时长可调整，动作结构不变。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
-      "domains": [
-        "document"
-      ],
-      "previous_names": [
-        "局部高亮",
-        "词语底色强调"
-      ],
-      "timing": {
-        "source_duration_ms": 4600,
-        "source_preview_ms": 2400,
-        "source_start_ms": 200,
-        "source_end_ms": 4200,
-        "start_ms": 150,
-        "end_ms": 1950
-      }
     },
     {
       "id": "word-focus",
@@ -3155,8 +3063,7 @@
       "actions": [
         "stagger-in",
         "subtitle-cell-focus",
-        "subtitle-block-shift",
-        "statement-rise-exit"
+        "subtitle-block-shift"
       ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2032,
@@ -3417,7 +3324,6 @@
         ]
       },
       "actions": [
-        "pointer-approach-exit",
         "button-press-status",
         "progress-fill-exit",
         "fade-rise"
@@ -4106,7 +4012,7 @@
       ],
       "retain": "每项完整停留，再移动一格交给下一项阅读。",
       "avoid": "不要用匀速不停的滚动替代阅读停留。",
-      "duration_ms": 3000,
+      "duration_ms": 2400,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -4128,9 +4034,9 @@
       },
       "actions": [],
       "demo_mode": "fixed-timeline",
-      "preview_ms": 2130,
+      "preview_ms": 1635,
       "recommendation": "适合每项完整停留，再移动一格交给下一项阅读。保留对象关系和先后顺序。",
-      "tempo_note": "约零点一五秒起动，主要动作 2.4 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
+      "tempo_note": "零点一五秒起步，前两张各停留约零点五六秒，每次滑动约零点三四秒，一点九五秒到达第三张，末尾保持零点四五秒。整组向左移动两次，每次二百八十像素；速度控件整体调整。",
       "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
       "analogy": "每项完整停留，再移动一格交给下一项阅读。",
       "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
@@ -4147,78 +4053,8 @@
         "source_start_ms": 0,
         "source_end_ms": 4800,
         "start_ms": 150,
-        "end_ms": 2550
+        "end_ms": 1950
       }
-    },
-    {
-      "id": "title-dock",
-      "name": "缩小停靠",
-      "kind": "action",
-      "category": "layout",
-      "summary": "同一标题缩小上移，给后续正文留出空间。",
-      "purpose": "同一标题缩小上移，给后续正文留出空间。",
-      "objects": "标题和正文",
-      "phases": [
-        "标题位于中央。",
-        "缩小并向上移到页眉。",
-        "正文在留出的空间进入。"
-      ],
-      "aliases": [
-        "标题缩小停靠",
-        "标题停靠",
-        "缩小上移"
-      ],
-      "behaviors": [
-        "layout",
-        "move",
-        "scale",
-        "sequence"
-      ],
-      "retain": "同一标题缩小上移，给后续正文留出空间。",
-      "avoid": "不要换一个标题制造连续性，也不要让正文提前重叠。",
-      "duration_ms": 1800,
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "source": {
-        "path": "catalog/effects/history-patterns.js",
-        "factory": "title-dock",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "preview_ms": 1020,
-      "recommendation": "适合同一标题缩小上移，给后续正文留出空间。保留对象关系和先后顺序。",
-      "tempo_note": "约零点一五秒起动，主要动作 1.2 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
-      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
-      "analogy": "同一标题缩小上移，给后续正文留出空间。",
-      "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
-      "domains": [
-        "animation",
-        "document"
-      ],
-      "timing": {
-        "source_duration_ms": 4000,
-        "source_preview_ms": 2640,
-        "source_start_ms": 320,
-        "source_end_ms": 3520,
-        "start_ms": 150,
-        "end_ms": 1350
-      },
-      "previous_names": [
-        "标题缩小停靠"
-      ]
     },
     {
       "id": "progress-readout",
@@ -5500,76 +5336,6 @@
       ]
     },
     {
-      "id": "sweep-trigger",
-      "name": "经过点亮",
-      "kind": "action",
-      "category": "environment",
-      "summary": "扫描线经过对象时触发它，已触发状态持续保留。",
-      "purpose": "扫描线经过对象时触发它，已触发状态持续保留。",
-      "objects": "扫描线和对象组",
-      "phases": [
-        "对象保持未触发状态。",
-        "扫描线逐个经过并点亮。",
-        "扫描完成后保持已触发状态。"
-      ],
-      "aliases": [
-        "扫描经过触发",
-        "扫描触发",
-        "扫过点亮",
-        "扫描触发点亮"
-      ],
-      "behaviors": [
-        "react",
-        "sequence",
-        "focus"
-      ],
-      "retain": "扫描线经过对象时触发它，已触发状态持续保留。",
-      "avoid": "不要整组同时点亮或离开后立即熄灭。",
-      "duration_ms": 1800,
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "source": {
-        "path": "catalog/effects/history-patterns.js",
-        "factory": "sweep-trigger",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "preview_ms": 1012,
-      "recommendation": "适合扫描线经过对象时触发它，已触发状态持续保留。保留对象关系和先后顺序。",
-      "tempo_note": "约零点一五秒起动，主要动作 1.2 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
-      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
-      "analogy": "扫描线经过对象时触发它，已触发状态持续保留。",
-      "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
-      "domains": [
-        "animation"
-      ],
-      "previous_names": [
-        "扫描经过触发",
-        "扫描触发点亮"
-      ],
-      "timing": {
-        "source_duration_ms": 4000,
-        "source_preview_ms": 2640,
-        "source_start_ms": 400,
-        "source_end_ms": 3520,
-        "start_ms": 150,
-        "end_ms": 1350
-      }
-    },
-    {
       "id": "event-clock",
       "name": "定时触发",
       "kind": "action",
@@ -5835,145 +5601,6 @@
         "source_preview_ms": 2640,
         "source_start_ms": 400,
         "source_end_ms": 2520,
-        "start_ms": 150,
-        "end_ms": 1350
-      }
-    },
-    {
-      "id": "bloom-layers",
-      "name": "分层舒展",
-      "kind": "action",
-      "category": "shape",
-      "summary": "中心固定，内外层花瓣按次序伸展。",
-      "purpose": "中心固定，内外层花瓣按次序伸展。",
-      "objects": "固定花心和分层花瓣",
-      "phases": [
-        "花瓣保持较短的收拢状态。",
-        "内外层按顺序展开。",
-        "形成完整花形并停住。"
-      ],
-      "aliases": [
-        "花瓣分层展开",
-        "花瓣",
-        "开花"
-      ],
-      "behaviors": [
-        "morph",
-        "sequence"
-      ],
-      "retain": "中心固定，内外层花瓣按次序伸展。",
-      "avoid": "不要整体放大圆形冒充花瓣展开。",
-      "duration_ms": 1800,
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "source": {
-        "path": "catalog/effects/history-patterns.js",
-        "factory": "bloom-layers",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "preview_ms": 1046,
-      "recommendation": "适合中心固定，内外层花瓣按次序伸展。保留对象关系和先后顺序。",
-      "tempo_note": "约零点一五秒起动，主要动作 1.2 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
-      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
-      "analogy": "中心固定，内外层花瓣按次序伸展。",
-      "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
-      "domains": [
-        "animation",
-        "document"
-      ],
-      "timing": {
-        "source_duration_ms": 4000,
-        "source_preview_ms": 2640,
-        "source_start_ms": 400,
-        "source_end_ms": 3400,
-        "start_ms": 150,
-        "end_ms": 1350
-      },
-      "previous_names": [
-        "花瓣分层展开"
-      ]
-    },
-    {
-      "id": "anchored-growth",
-      "name": "定点生长",
-      "kind": "action",
-      "category": "shape",
-      "summary": "根部固定，主干先延长，叶片随后从生长节点展开。",
-      "purpose": "根部固定，主干先延长，叶片随后从生长节点展开。",
-      "objects": "根部、主干和叶片",
-      "phases": [
-        "根部固定并开始长主干。",
-        "主干达到节点后叶片展开。",
-        "枝叶完成后保留。"
-      ],
-      "aliases": [
-        "从根部逐段生长",
-        "生长",
-        "茎叶",
-        "根部",
-        "枝干生长与展叶"
-      ],
-      "behaviors": [
-        "reveal",
-        "morph",
-        "sequence"
-      ],
-      "retain": "根部固定，主干先延长，叶片随后从生长节点展开。",
-      "avoid": "不要把完整植物整体缩放。",
-      "duration_ms": 1800,
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "source": {
-        "path": "catalog/effects/history-patterns.js",
-        "factory": "anchored-growth",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "preview_ms": 1113,
-      "recommendation": "适合根部固定，主干先延长，叶片随后从生长节点展开。保留对象关系和先后顺序。",
-      "tempo_note": "约零点一五秒起动，主要动作 1.2 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
-      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
-      "analogy": "根部固定，主干先延长，叶片随后从生长节点展开。",
-      "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
-      "domains": [
-        "animation"
-      ],
-      "previous_names": [
-        "从根部逐段生长",
-        "枝干生长与展叶"
-      ],
-      "timing": {
-        "source_duration_ms": 4000,
-        "source_preview_ms": 2640,
-        "source_start_ms": 200,
-        "source_end_ms": 3240,
         "start_ms": 150,
         "end_ms": 1350
       }
@@ -6473,7 +6100,7 @@
       "purpose": "先让模糊反馈形成可阅读的词云，再收拢到上方，为接下来的内容留出空间。",
       "objects": "一个云朵轮廓、手工编排的十三个吐槽词",
       "phases": [
-        "云朵淡入，十三个词在各自的位置错峰出现，保持原字号层次。",
+        "云朵淡入，十三个词在各自的位置错峰出现，保持大小层次，文字完整位于云形内。",
         "云朵轻微呼吸，每个词按自己的频率小幅漂移，留出阅读时间。",
         "同一组词同步收紧词距与字号，随云朵缩小上移，最终停在上方。"
       ],
@@ -6495,7 +6122,7 @@
         "move",
         "reorder"
       ],
-      "retain": "保留原云形、十三词手工位置、中心绿色重点、大小层次和独立漂移频率；上移、词距与字号收紧同时发生，呼吸与漂移幅度随收拢减弱，所有词保持身份。",
+      "retain": "保留原云形、十三词手工编排、中心绿色重点、大小层次和独立漂移频率；所有词在漂移与收拢全过程完整位于云形内，彼此保留阅读空隙；上移、词距与字号收紧同时发生，呼吸与漂移幅度随收拢减弱，所有词保持身份。",
       "avoid": "不把各词漂移改成整组一起摆动，不重新自动排词，不在收拢时换字或删词；不带原整页背景、标题、字幕、箭头、回应图及扫光。",
       "duration_ms": 5400,
       "loop": false,
@@ -6524,7 +6151,7 @@
       "tempo_note": "按原成片的两段视觉时钟演示：约一秒完整出现，约四点一五秒开始上移收拢、四点八九秒完成；五秒后停止漂移，总长五点四秒。",
       "trigger": "词云先独立阅读，随后在下一段内容到来前整体收拢到上方；目录用固定时间表，可暂停与定位。",
       "analogy": "把散开的便签先放在面前看清，再轻轻收成一束移到上方。",
-      "assumptions": "依据本机动效教程当前正本的云形、手工词位、主题和实际成片视觉时钟适配，整体等比缩到目录横向画板。保留云对象与词位，配色跟随统一主题，中文细体、英文与数字使用 Oswald Bold；采用原动作公式中的字号比例和同步收紧，不复制影片运行器后续的统一字号替换。只提取词云主体，上移完成后停止，不导入原字体、声音或后续回应图。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+      "assumptions": "依据本机动效教程当前正本的云形、手工词位、主题和实际成片视觉时钟适配，整体等比缩到目录横向画板。保留云对象与手工编排，配色跟随统一主题，中文细体、英文与数字使用 Oswald Bold；为容纳全文，将原动作公式的字号等比例缩至 78%，右侧长词向内移 56 个设计单位，保留同步收紧与独立漂移，不复制影片运行器后续的统一字号替换。只提取词云主体，上移完成后停止，不导入原字体、声音或后续回应图。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
       "domains": [
         "animation",
         "document"
@@ -6539,11 +6166,11 @@
       "name": "逐项描绘",
       "kind": "action",
       "category": "connection",
-      "summary": "经历、方法、能力与数据四个图标按一句话中的词点逐项建立：先描笔画，柱形从基线长高，标签随后轻浮入。",
+      "summary": "经历、方法、能力与数据四个图标横向排成一行，按一句话中的词点逐项建立：先描笔画，柱形从基线长高，标签随后轻浮入。",
       "purpose": "让每项论据在讲到对应词时形成图解，保留已经出现的内容供后续阅读。",
-      "objects": "两列两行的四个论据图标、三根柱条与各自的标签",
+      "objects": "横向一行四个论据图标、三根柱条与各自的标签",
       "phases": [
-        "四组图形在最终位置等待，各自的笔画、柱形与标签隐藏。",
+        "四组图形从左到右等距排成一行，标签对齐，在最终位置等待，各自的笔画、柱形与标签隐藏。",
         "按经历、方法、能力、数据的词点启动各组；笔画逐笔描出，柱形沿自己的基线长高，标签稍后轻浮入。",
         "四组完整图解保持在同一版面，留出阅读停顿。"
       ],
@@ -6562,7 +6189,7 @@
         "grow",
         "appear"
       ],
-      "retain": "保留原四种图形、两列两行、细线与配色，词点间距保持不等；图标内部各笔有独立延迟，柱形底端固定，标签仅轻浮入，已完成内容保持。",
+      "retain": "保留原四种图形、细线与配色；经历、方法、能力、数据从左到右等距排成一行，标签对齐，词点间距保持不等；图标内部各笔有独立延迟，柱形底端固定，标签仅轻浮入，已完成内容保持。",
       "avoid": "不把四组改为等间隔进入，不用整组透明度闪现替代描画，不让柱条从中心伸长；不带原场景标题、文稿背景与语音。",
       "duration_ms": 2400,
       "loop": false,
@@ -6591,7 +6218,7 @@
       "tempo_note": "约零点一五秒起动，主要动作 1.8 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
       "trigger": "讲到对应论据的词点时开始描画；目录用固定时间表演示，可暂停和定位。",
       "analogy": "边讲一句话，边在纸上画出每个论据的小图解。",
-      "assumptions": "核对本机简历视频的定稿图形、词点与绘制源码后独立适配；原图形整体等比缩为四成，保留两行布局与细线图形，配色跟随统一主题，使用目录画幅与中文细体标签，不导入原字体或语音。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+      "assumptions": "核对本机简历视频的定稿图形、词点与绘制源码后独立适配；原图形整体等比缩为四成，四个图标改为横向单行布局，保留细线图形，配色跟随统一主题，使用目录画幅与中文细体标签，不导入原字体或语音。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
       "domains": [
         "animation",
         "document"
@@ -10298,11 +9925,7 @@
         "reference_url": "https://animejs.com/documentation/"
       },
       "actions": [
-        "center-ripple-emit",
-        "radial-branch-grow",
-        "branch-comet-flow",
-        "branch-pulse-arrive",
-        "endpoint-card-reveal"
+        "center-ripple-emit"
       ],
       "demo_mode": "fixed-timeline",
       "domains": [
@@ -10507,7 +10130,6 @@
       },
       "actions": [
         "symbol-flight-settle",
-        "flight-history-trails",
         "arrival-star-reveal",
         "arrival-star-sparkle"
       ],
@@ -12026,13 +11648,13 @@
       "preview_ms": 1750,
       "summary": "五行彩色关键帧逐个弹出，蓝色游标向右循环扫描，靠近的关键帧变白并放大。",
       "purpose": "五行彩色关键帧逐个弹出，蓝色游标向右循环扫描，靠近的关键帧变白并放大。",
-      "objects": "五行轨道、二十六个菱形关键帧、时间刻度和蓝色游标",
+      "objects": "居中的时间线面板、五行轨道、二十六个菱形关键帧、时间刻度和蓝色游标",
       "phases": [
         "从零点九秒起，关键帧每个错开零点零二五秒弹出。",
         "游标从一秒起两秒一轮向右扫描，末端跳回起点。",
-        "距离游标不足八像素的关键帧变白并放大一点五倍，离开即恢复。"
+        "距离游标不足约 2.53 画板像素的关键帧变白并放大一点五倍，离开即恢复。"
       ],
-      "retain": "保留五行名称、原色、关键帧位置、四十一根刻度、菱形弹出、单向游标循环和接近高亮阈值。",
+      "retain": "按 640×360 画板设计，面板位于（40,100），尺寸 560×160 像素；标题栏高约 21.3 像素，时间刻度区高约 22.7 像素，五行轨道的中心分别为 y=157.3、177.3、197.3、217.3、237.3，行距 20 像素。文字保持原比例；关键帧与游标的横向范围为 x=160–590，保留关键帧的相对时间位置、原色、四十一根刻度、菱形弹出和单向扫描。",
       "avoid": "不改成往返，不关联实际上为鼠标点击按钮的 playback-track。",
       "behaviors": [
         "move",
@@ -12051,7 +11673,7 @@
       "analogy": "五行彩色关键帧逐个弹出，蓝色游标向右循环扫描，靠近的关键帧变白并放大。",
       "recommendation": "用于需要该条明确对象与时序关系的场景；可更换内容，但保留描述中的运动关系。",
       "tempo_note": "保留原片局部时间，不套用目录统一压缩；播放速度只改变整体快慢。",
-      "assumptions": "依据本机 Claude 动效演进史源码重写局部；保留原图形几何、时间和颜色，纯英文数字使用目录的 Oswald Bold 字体。深浅模式均保留此原片特色画板；不含声音、字幕或其他场景动作。",
+      "assumptions": "依据本机 Claude 动效演进史源码重写局部；独立时间线整体居中并增加标题栏、刻度区和行距，保持文字比例与关键帧时序，完整组合沿用原布局。纯英文数字使用目录的 Oswald Bold 字体，深浅模式保留此特色画板；不含声音、字幕或其他场景动作。",
       "original_scene": "claude-showreel-2026/sKey",
       "source": {
         "path": "catalog/effects/reel-grit-key.js",
@@ -13391,13 +13013,13 @@
       "name": "分行逐字",
       "kind": "action",
       "category": "writing",
-      "summary": "原提示词按固定节拍写入三行，每个新字从略低处显现，细光标跟随。",
+      "summary": "完整圆角输入框内，提示词按固定节拍写入三行，每个新字从略低处显现，细光标跟随。",
       "purpose": "提取原片中输入框逐字写入的具体主体、造型与时间关系，独立复用并能与原组合逐层对照。",
-      "objects": "原中文提示词、三行排版与跟随光标",
+      "objects": "完整圆角输入框、描边、顶部工具栏、底部控件、发送按钮、三行中文提示词与跟随光标",
       "phases": [
-        "光标在原三行文字起点等待并闪烁，文字整体沿原输入界面的位置变化。",
+        "完整输入界面落位，圆角框边缘描出，工具栏与按钮依次进入；光标在三行文字起点等待并闪烁，输入框与文字共用位移和缩放。",
         "0.9–4.5秒按原顺序写入110个字符，每字在0.12秒内上抬6像素并显现。",
-        "文字停在原三行完成态，光标保持原位置。"
+        "文字停在三行完成态，光标保持位置；输入框、工具栏与发送按钮始终保留，停在完整输入界面。"
       ],
       "aliases": [
         "中文随节拍逐字输入",
@@ -13412,8 +13034,8 @@
         "opacity",
         "move"
       ],
-      "retain": "原 110 字内容、原 21.5 像素字号与逐字落点、885 像素换行阈值、36 像素行距和原光标位置。",
-      "avoid": "不改成整行淡入，不重排为单行，也不缩写提示词。",
+      "retain": "输入框及工具栏、发送按钮必须完整保留，与文字同步移动和缩放。内层坐标使用 1920×1080，输入框局部左上角为（45，88），宽 940、高 198、圆角 22；保留 110 字内容、21.5 像素字号、885 像素换行阈值、36 像素行距和跟随光标。",
+      "avoid": "不删除输入框而只留悬空文字，不在输入期间让界面退场；不改成整行淡入，不重排为单行，也不缩写提示词。",
       "duration_ms": 4800,
       "preview_ms": 3000,
       "default_ease": "linear",
@@ -13428,8 +13050,8 @@
       },
       "actions": [],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
-      "analogy": "原提示词按固定节拍写入三行，每个新字从略低处显现，细光标跟随。",
-      "assumptions": "仅创建110个原字符和光标，与组合共用原排版和绘制函数；深浅模式均保留原深色背景，中文及混排正文用Light，独立动作到4.8秒结束。",
+      "analogy": "完整圆角输入框内，提示词按固定节拍写入三行，每个新字从略低处显现，细光标跟随。",
+      "assumptions": "建立输入框、描边、工具栏、发送按钮及110个字符和光标，与组合共用原界面、排版和绘制函数；深浅模式均保留原深色背景，中文及混排正文用Light，独立动作到4.8秒结束。",
       "recommendation": "需要复用原片中这一具体动作时使用；相关组合复用同一实现。",
       "tempo_note": "4.8 秒，包含原 0.9 秒起笔与 3.6 秒书写。",
       "loop": false,
@@ -13960,8 +13582,7 @@
         "prompt-char-gather",
         "send-press-ring",
         "prompt-ui-push",
-        "core-ring-expand",
-        "prompt-label-lift"
+        "core-ring-expand"
       ],
       "analogy": "原输入界面落位、描边、逐字写入；发送后文字沿弧汇聚，中心光核与三环接续展开。",
       "assumptions": "保留原片 46–54 秒主场景，原上方年份、标题及底部说明也保留；原全片进度条与边角制作信息不属于这个输入场景动作。 深浅模式均保留原深色画面。 普通英文与数字按目录规范使用 Oswald Bold，中文及混排正文用 Light；原逐字落点与换行保持，片尾 CLAUDE 主字是造型轮廓例外。",
@@ -14198,166 +13819,6 @@
         "source_end_ms": 9000,
         "start_ms": 150,
         "end_ms": 2550
-      }
-    },
-    {
-      "id": "statement-rise-exit",
-      "name": "上移淡入淡出",
-      "kind": "action",
-      "category": "entrance",
-      "summary": "一句陈述从下方淡入，停留后继续轻微上移并淡出。",
-      "purpose": "让一段陈述短暂出现后完整退出",
-      "aliases": [
-        "陈述出现",
-        "上移淡入",
-        "停留淡出",
-        "短句进退",
-        "陈述升入后上移淡出"
-      ],
-      "behaviors": [
-        "appear",
-        "move",
-        "opacity",
-        "exit"
-      ],
-      "phases": [
-        "文字从最终位置下方三十像素开始上移淡入。",
-        "文字在原位置保持清晰可读。",
-        "文字再向上移动二十像素，并逐渐淡出。"
-      ],
-      "retain": "保留三十像素升入、完整停留和二十像素上移淡出的两段关系。",
-      "avoid": "不省略退出阶段，不把文字替换成其他内容。",
-      "duration_ms": 2400,
-      "loop": false,
-      "default_ease": "outCubic",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        },
-        "ease": {
-          "label": "速度变化",
-          "default": "outCubic",
-          "options": [
-            "linear",
-            "outCubic",
-            "inOutSine"
-          ]
-        }
-      },
-      "source": {
-        "path": "catalog/effects/compositions.js",
-        "factory": "statement-rise-exit",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "preview_ms": 883,
-      "recommendation": "适合让一段陈述短暂出现后完整退出。保留保留三十像素升入、完整停留和二十像素上移淡出的两段关系。",
-      "tempo_note": "约零点一五秒开始，主体动作 1.8 秒，末尾保持零点四五秒；播放倍率整体调整。",
-      "objects": "一行陈述文字",
-      "analogy": "一条陈述走入视线，讲完后轻轻退出",
-      "trigger": "打开预览后按固定顺序播放；可暂停、重播和定位时间。",
-      "assumptions": "独立示例只创建本动作所需对象，绘制函数与原组合共用；保留原对象样式、轨迹和阶段关系，目录时长按原时间段等比换算。",
-      "domains": [
-        "animation",
-        "document"
-      ],
-      "previous_names": [
-        "陈述升入后上移淡出"
-      ],
-      "timing": {
-        "source_duration_ms": 9400,
-        "source_preview_ms": 6000,
-        "source_start_ms": 4900,
-        "source_end_ms": 7600,
-        "start_ms": 150,
-        "end_ms": 1950
-      }
-    },
-    {
-      "id": "pointer-approach-exit",
-      "name": "靠近淡出",
-      "kind": "action",
-      "category": "environment",
-      "summary": "指针从右下方移到目标位置，短暂停留后逐渐淡出。",
-      "purpose": "表现一次模拟操作前后的指针移动",
-      "aliases": [
-        "指针靠近",
-        "模拟指针",
-        "停留后消失",
-        "箭头移动",
-        "指针靠近后淡出"
-      ],
-      "behaviors": [
-        "move",
-        "opacity",
-        "sequence"
-      ],
-      "phases": [
-        "指针从画面右下方开始移动。",
-        "指针到达目标坐标后保持位置。",
-        "指针在目标位置逐渐淡出。"
-      ],
-      "retain": "保留从右下方向目标靠近的直线路径、到达后的停留和随后淡出。",
-      "avoid": "不添加点击缩放、轨迹回放或其他界面对象。",
-      "duration_ms": 1800,
-      "loop": false,
-      "default_ease": "outCubic",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        },
-        "ease": {
-          "label": "速度变化",
-          "default": "outCubic",
-          "options": [
-            "linear",
-            "outCubic",
-            "inOutSine"
-          ]
-        }
-      },
-      "source": {
-        "path": "catalog/effects/compositions.js",
-        "factory": "pointer-approach-exit",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "preview_ms": 800,
-      "recommendation": "适合表现一次模拟操作前后的指针移动。保留保留从右下方向目标靠近的直线路径、到达后的停留和随后淡出。",
-      "tempo_note": "约零点一五秒开始，主体动作 1.2 秒，末尾保持零点四五秒；播放倍率整体调整。",
-      "objects": "一个箭头指针",
-      "analogy": "指针靠近操作位置，完成示意后离场",
-      "trigger": "打开预览后按固定顺序播放；可暂停、重播和定位时间。",
-      "assumptions": "独立示例只创建本动作所需对象，绘制函数与原组合共用；保留原对象样式、轨迹和阶段关系，目录时长按原时间段等比换算。",
-      "domains": [
-        "animation"
-      ],
-      "previous_names": [
-        "指针靠近后淡出"
-      ],
-      "timing": {
-        "source_duration_ms": 6500,
-        "source_preview_ms": 1600,
-        "source_start_ms": 300,
-        "source_end_ms": 2700,
-        "start_ms": 150,
-        "end_ms": 1350
       }
     },
     {
@@ -14644,69 +14105,6 @@
         "animation"
       ],
       "previous_names": [
-        "提示词标题逐字升入升出"
-      ],
-      "trigger": "打开后播放；可暂停、重播和任意定位。",
-      "recommendation": "需要复用组合中的这一具体动作时使用；独立项与组合共用实际图层和绘制函数。",
-      "id": "prompt-label-lift",
-      "name": "升入升出",
-      "category": "writing",
-      "duration_ms": 6400,
-      "preview_ms": 2500,
-      "summary": "左上年份、主标题和下方说明从各自裁剪框逐字升入，发送后再依次向上升出。",
-      "purpose": "独立复用提示词组合的标题进入与退出，保留各行文字的起止时差。",
-      "objects": "原年份、Motion, from a prompt.标题与底部说明",
-      "phases": [
-        "年份、主标题及下方说明依原先后逐字升入。",
-        "各行停在自身基线，保留原文字和字距。",
-        "发送后逐字向上升出各自裁剪框，最后退出。"
-      ],
-      "aliases": [
-        "提示词标题进入退出",
-        "逐字裁剪升入升出",
-        "Claude 动效演进史",
-        "提示词标题逐字升入升出"
-      ],
-      "behaviors": [
-        "text",
-        "reveal",
-        "move",
-        "stagger"
-      ],
-      "retain": "原三组标题文字、字号与落点，0.7秒指数减速进入、0.45秒指数加速退出及逐字错峰。",
-      "avoid": "不只保留进入阶段，不用输入框文字或通用遮罩单行代替原标题。",
-      "analogy": "标题从排版窗口中升起，讲述结束后从窗口上边缘依次离开。",
-      "assumptions": "只创建原标题与各自裁剪区域；与提示词组合共用节点和绘制函数，保留原深色背景与6.4秒局部时钟。",
-      "tempo_note": "独立6.4秒；0.4秒开始进入，约6.17秒完成退出。",
-      "original_scene": "claude-showreel-2026/sPrompt",
-      "source": {
-        "path": "catalog/effects/reel-prompt-outro.js",
-        "factory": "prompt-label-lift",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      }
-    },
-    {
-      "kind": "action",
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "domains": [
-        "animation"
-      ],
-      "previous_names": [
         "片尾标题与落款逐字升入"
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
@@ -14831,341 +14229,52 @@
       ],
       "trigger": "打开后独立播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "三路曲线错峰生长"
-      ],
-      "id": "radial-branch-grow",
-      "name": "分枝生长",
-      "category": "connection",
-      "duration_ms": 5350,
-      "preview_ms": 850,
-      "summary": "三条曲线从同一圆周错峰长出，亮点跟住枝尖，随后各自从流动虚线变为青色实线。",
-      "purpose": "独立复用由中心向三个方向展开、随后确认完成的路径生长。",
-      "objects": "三条二次曲线枝干与三个枝尖亮点",
-      "phases": [
-        "从原圆周三个起点出发，三路生长相隔 0.25 秒。",
-        "每条曲线用 0.65 秒长到端点，亮点始终位于当前枝尖。",
-        "按原抵达时刻逐路改为青色实线，三条完整路径最终保留。"
-      ],
-      "aliases": [
-        "枝干错峰长出",
-        "圆周向外描枝",
-        "三路曲线错峰生长"
-      ],
-      "behaviors": [
-        "draw",
-        "stagger",
-        "sequence"
-      ],
-      "retain": "保留原三条二次曲线、圆周起点、双重三次缓动、虚线滚动、枝尖和三次凝实时间。",
-      "avoid": "不改为单条心电描线或竖直植物展叶，不改端点和弯曲方向，不在长成前显示完整路径。",
-      "analogy": "从一个中心依次伸出三条路，每条路完成传递后变成稳定实线。",
-      "assumptions": "直接抽取组合枝干层，与组合共用路径截取和绘制；独立时钟仅去掉前 0.65 秒等待，全部几何和原目录配色不变。",
-      "recommendation": "用于一个中心向多个分支展开，且需要区分进行中和完成状态的线路。",
-      "tempo_note": "独立演示 5.35 秒；从 0.15 秒开始生长，0.25 秒错峰，原抵达后的虚实转换也完整保留。",
-      "source": {
-        "path": "catalog/effects/radial-branch-flow.js",
-        "factory": "radial-branch-grow",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      }
-    },
-    {
-      "kind": "action",
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "domains": [
-        "animation"
-      ],
-      "trigger": "打开后独立播放；可暂停、重播和任意定位。",
-      "previous_names": [
-        "三路亮尾沿枝流动"
-      ],
-      "id": "branch-comet-flow",
-      "name": "沿枝流光",
-      "category": "connection",
-      "duration_ms": 5350,
-      "preview_ms": 1650,
-      "summary": "三组亮点与弯曲短尾沿原枝干循环向外流动，只走到已经长出的部分，逐路停止。",
-      "purpose": "独立复用沿正在形成的分支持续传递的亮尾。",
-      "objects": "三组曲线亮尾、头部光点及径向辉光",
-      "phases": [
-        "三路光流等待各自路径开始生长后出现。",
-        "头部和短尾沿同一曲线前进，前端受当前枝干长度限制。",
-        "各路到原抵达时刻分别停止，不保留静态亮尾。"
-      ],
-      "aliases": [
-        "枝干彗星光流",
-        "曲线短尾循环外流",
-        "三路亮尾沿枝流动"
-      ],
-      "behaviors": [
-        "path",
-        "follow",
-        "sequence"
-      ],
-      "retain": "保留三条原曲线、每秒 0.8 周相位、三路错相、0.3 路程尾长和已生长范围限制；头部辉光与亮芯同位。",
-      "avoid": "不替换成沿完整折线匀速前进的单点，不让亮尾越过当前枝尖，不另画直线尾巴。",
-      "analogy": "三条路一边延长，一边有小彗星沿已成形的路段向外传递。",
-      "assumptions": "直接抽取组合光流层；与组合共用曲线和时钟，仅去掉前 0.65 秒等待。独立只创建三组亮尾，不创建枝干或其他组合层；原目录配色保留。",
-      "recommendation": "需要路径尚在展开时沿线传递的光流，可叠加三路曲线错峰生长。",
-      "tempo_note": "独立演示 5.35 秒；原路径生长、相位和逐路停止时间整体前移 0.65 秒，不压缩相对时间。",
-      "source": {
-        "path": "catalog/effects/radial-branch-flow.js",
-        "factory": "branch-comet-flow",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      }
-    },
-    {
-      "kind": "action",
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "domains": [
-        "animation"
-      ],
-      "trigger": "打开后独立播放；可暂停、重播和任意定位。",
-      "previous_names": [
-        "三路光团发射抵达"
-      ],
-      "id": "branch-pulse-arrive",
-      "name": "分路抵达",
-      "category": "connection",
-      "duration_ms": 4300,
-      "preview_ms": 1450,
-      "summary": "三个光团依次沿原曲线从圆周射向端点，抵达瞬间留下扩散淡去的暖色辉光。",
-      "purpose": "独立复用依次向三个目标发送并显示抵达反馈的过程。",
-      "objects": "三组光团亮芯与光晕、三个端点扩散辉光",
-      "phases": [
-        "首个光团从圆周发出，其后两路各晚 1.1 秒。",
-        "每个光团沿原二次曲线向端点前进，单程持续 0.9 秒。",
-        "光团到达即消失，原端点辉光扩大并在 0.55 秒内淡去。"
-      ],
-      "aliases": [
-        "曲线发射光团",
-        "三路端点抵达辉光",
-        "三路光团发射抵达"
-      ],
-      "behaviors": [
-        "path",
-        "stagger",
-        "react"
-      ],
-      "retain": "保留三条原二次曲线、双重三次缓动、0.9 秒单程、1.1 秒错峰和端点 16 到 40 的光晕半径变化。",
-      "avoid": "不改为多路向同一点汇入，不沿直线发射，不提前显出端点光晕，不重复反向往返。",
-      "analogy": "依次寄出三束光，每束光到达自己的接收位置后亮一下。",
-      "assumptions": "直接抽取组合发射与抵达层；只去掉前 1.7 秒等待，共用原路径、明暗包络和暖色光效。独立不建立枝干、圆心和卡片。",
-      "recommendation": "用于多个目标依次接收消息，可与端点卡片渐显叠加。",
-      "tempo_note": "独立演示 4.3 秒；首束约 0.15 秒发出、1.05 秒抵达，后两束保留原 1.1 秒间隔。",
-      "source": {
-        "path": "catalog/effects/radial-branch-flow.js",
-        "factory": "branch-pulse-arrive",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      }
-    },
-    {
-      "kind": "action",
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "domains": [
-        "animation"
-      ],
-      "trigger": "打开后独立播放；可暂停、重播和任意定位。",
-      "previous_names": [
-        "端点卡片依次渐显"
-      ],
-      "id": "endpoint-card-reveal",
-      "name": "依次渐显",
-      "category": "entrance",
-      "duration_ms": 3400,
-      "preview_ms": 1800,
-      "summary": "原三张端点卡片按抵达间隔依次在原位渐显，显出后保留，不位移或缩放。",
-      "purpose": "独立复用信息到达三个目标后对应内容依次出现的原卡片层。",
-      "objects": "三张原 146×96 端点卡片、编号、标题和说明",
-      "phases": [
-        "首张卡片在 0.15 秒开始从透明渐显。",
-        "每张用 0.55 秒显出，后两张各晚 1.1 秒。",
-        "已出现的卡片保持位置、尺寸和内容，最终三张都完整保留。"
-      ],
-      "aliases": [
-        "抵达后显出卡片",
-        "三张端点卡片淡入",
-        "端点卡片依次渐显"
-      ],
-      "behaviors": [
-        "appear",
-        "opacity",
-        "stagger"
-      ],
-      "retain": "保留原三张卡片、端点排布、字号层次、三次缓动和 1.1 秒间隔；只改变透明度。",
-      "avoid": "不改为上移入场，不套用竖排内容块，不改变到达间隔，不先显字后显卡片。",
-      "analogy": "三个接收位置依次拿到信息，卡片各自在原地显出来。",
-      "assumptions": "直接抽取组合卡片层并共享原创建和绘制逻辑；独立时钟仅去掉前 2.6 秒等待。原文字、样式、位置和目录配色不变。",
-      "recommendation": "用于固定三个接收位置的内容逐个显现，适合原位叠加三路光团发射抵达。",
-      "tempo_note": "独立演示 3.4 秒；0.15、1.25、2.35 秒开始显卡，每张持续 0.55 秒。",
-      "source": {
-        "path": "catalog/effects/radial-branch-flow.js",
-        "factory": "endpoint-card-reveal",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      }
-    },
-    {
-      "kind": "action",
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "domains": [
-        "animation"
-      ],
-      "trigger": "打开后独立播放；可暂停、重播和任意定位。",
-      "previous_names": [
-        "物品群飞减速落定"
+        "物品群飞减速落定",
+        "群飞落定",
+        "轨迹渐退",
+        "群飞轨迹光丝渐退"
       ],
       "id": "symbol-flight-settle",
-      "name": "群飞落定",
+      "name": "群飞留迹",
       "category": "connection",
-      "duration_ms": 10132,
+      "duration_ms": 10569,
       "preview_ms": 4500,
-      "summary": "126 件星月、音符、花朵和蝴蝶按原时差群飞，沿固定曲线减速落定，再原位淡去。",
-      "purpose": "独立复用原整群物品的飞行、近远层次和减速落定。",
-      "objects": "126 件原作符号，含蝴蝶双翼与各物品表面短闪",
+      "summary": "126 件物品沿固定曲线群飞、减速落定，18 条光丝从真实经过的位置留下，物品与光丝各按原时钟淡去。",
+      "purpose": "让群体飞行、减速落定和真实轨迹光丝在同一画面中完整呈现。",
+      "objects": "126 件星月、音符、花朵和蝴蝶，以及其中 18 件物品留下的真实光丝，每条光丝由 24 段细线组成",
       "phases": [
-        "126 件物品从下方按原出发时差显出，三层尺寸交错。",
-        "所有物品沿各自固定曲线前进，缩小、轻转并逐渐减速；蝴蝶翅膀继续开合。",
-        "各自在自己的终点停住，随后用 0.95 秒淡去。"
+        "126 件物品按固定出发时差从下方飞出，保持三层远近尺寸、原旋转、蝴蝶展翼与表面短闪。",
+        "物品沿各自曲线减速，18 条光丝逐段回看对应物品已经经过的位置；粗细跟随深度，尾端逐渐变淡。",
+        "物品抵达各自终点后原位淡去，光丝固定在已经经过的曲线上继续消退，全部消失后保持空画面。"
       ],
       "aliases": [
         "126 件符号群飞",
         "星月物品减速落定",
-        "物品群飞减速落定"
+        "物品群飞减速落定",
+        "18 条真实轨迹光丝",
+        "群物历史路径尾迹",
+        "群飞轨迹光丝渐退",
+        "群飞落定",
+        "轨迹渐退",
+        "群飞留迹",
+        "群飞与光丝渐退"
       ],
       "behaviors": [
         "path",
         "stagger",
         "scale",
-        "opacity"
+        "opacity",
+        "follow"
       ],
-      "retain": "保留全部 126 件物品、固定数据、十种造型、三层尺寸、原曲线控制点、原出发时差、旋转、翅膀与短闪。",
-      "avoid": "不只取一件物品演示，不重新撒点，不改为字符向文字轮廓汇聚，不重算随机轨迹。",
-      "analogy": "一群小物件从下方飞起，飞向各自的位置，越近终点越慢，最后安静消失。",
-      "assumptions": "直接抽取物品群飞化成星点的飞行层；与组合共用 126 件固定数据与绘制函数。只创建物品节点，不创建光丝、星点或落点光晕；原目录配色不变。",
-      "recommendation": "需要保留完整群体规模的原符号飞行时使用，可叠加真实轨迹光丝和对应落点动作。",
-      "tempo_note": "独立演示约 10.13 秒，保留原 0.15 秒起动及每件物品的原飞行时长；约 9.68 秒全部淡出，末尾静置约 0.45 秒。",
+      "retain": "保留全部 126 件固定物品数据、十种造型、三层尺寸、原曲线控制点、出发时差、旋转、蝴蝶翅膀与短闪。18 条光丝与对应物品共用位置函数，每条 24 段；按真实速度决定回看长度，深度决定粗细，尾端透明度递减；减速、到达和各自淡去均由同一时钟驱动。",
+      "avoid": "不重新撒点或随机生成轨迹，不把群飞缩成单个物品，不使用另画的曲线代替真实经过的位置；物品与光丝同时呈现，不加入落点星空或星芒。",
+      "analogy": "一群小物件沿各自路线飞起，在身后留下细光线，越接近终点越慢，物件和光线随后安静消失。",
+      "assumptions": "合并群飞与真实光丝两层，共用固定物品数据、位置函数和绘制时钟；创建 126 件物品及 18 条光丝，沿用目录配色。",
+      "recommendation": "适合需要同时展示物品群飞、减速落定和尾迹消退的完整过程。",
+      "tempo_note": "一轮约 10.57 秒，0.15 秒起步，约 0.36 秒首条光丝出现；物品在约 9.68 秒前全数淡出，光丝在约 10.12 秒前全数淡去，末尾静置约 0.45 秒。各物品保留固定的出发时差和飞行时长，速度控件整体调整。",
       "source": {
         "path": "catalog/effects/letter-settle.js",
         "factory": "symbol-flight-settle",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      }
-    },
-    {
-      "kind": "action",
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "domains": [
-        "animation"
-      ],
-      "trigger": "打开后独立播放；可暂停、重播和任意定位。",
-      "previous_names": [
-        "群飞轨迹光丝渐退"
-      ],
-      "id": "flight-history-trails",
-      "name": "轨迹渐退",
-      "category": "connection",
-      "duration_ms": 10569,
-      "preview_ms": 4500,
-      "summary": "十八条细光丝按原物品真实经过的位置逐段留下，物品到达后光丝原位渐退。",
-      "purpose": "独立复用原物品群飞的历史轨迹光丝，同时保留减速和远近变化。",
-      "objects": "十八条原飞行路径，每条由二十四段细线组成",
-      "phases": [
-        "原物品出发至少 0.12 秒后，其已走过的位置开始留下光丝。",
-        "光丝逐段回看原飞行位置，透明度沿尾端递减，粗细跟随原深度。",
-        "抵达后路径固定在原处，随后逐渐淡去，最终不留线。"
-      ],
-      "aliases": [
-        "18 条真实轨迹光丝",
-        "群物历史路径尾迹",
-        "群飞轨迹光丝渐退"
-      ],
-      "behaviors": [
-        "path",
-        "follow",
-        "opacity"
-      ],
-      "retain": "保留原十八条轨迹、每条二十四段、按真实速度决定的回看时长、深度粗细和末尾渐退。",
-      "avoid": "不用单条正弦线永久留痕代替，不重新计算随机路径，不增加飞行物品或星空节点。",
-      "analogy": "只看一群物件走过后留下的细光线，线条在它们停下后慢慢消失。",
-      "assumptions": "直接抽取组合光丝层；只创建和计算原带尾迹的十八件物品路径，与组合共用位置函数。没有隐藏其余 108 件物品；保留原目录配色。",
-      "recommendation": "用于呈现整群运动留下的真实曲线轨迹，可与原物品群飞精确叠加。",
-      "tempo_note": "独立演示约 10.57 秒，约 0.36 秒首条光丝出现；约 10.12 秒全数淡去，随后静置约 0.45 秒。",
-      "source": {
-        "path": "catalog/effects/letter-settle.js",
-        "factory": "flight-history-trails",
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
@@ -16371,6 +15480,783 @@
       "previous_names": [
         "帧数环形计数器"
       ]
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后按固定顺序播放；可暂停、重播和定位时间。",
+      "assumptions": "使用已精修的书法轮廓、粒子排布、空间结构及透明材质作为固定示例；内容替换需提供相应轮廓、位置与材质输入，专用转场排程保持不变。",
+      "source": {
+        "path": "catalog/effects/material-evolution.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [],
+        "extraction": "从2026年10月2日精修的Kimi开源发布片独立动画源码迁入，共用实际绘制函数和固定排程；开头37个书法姿态、结尾27个字形姿态使用选定画面的矢量轮廓与墨色，纤维球、月面及版画采用此前经Codex内置图片工具重建的透明素材；运行时不读取原片视频或JPG截图，不把轮廓及素材声明为独立原创图形。 AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "factory": "brush-glyph-build",
+        "assets": [
+          "catalog/assets/material-evolution/key-shapes.js",
+          "catalog/assets/material-evolution/fiber.png",
+          "catalog/assets/material-evolution/moon.png",
+          "catalog/assets/material-evolution/atlas-engraving.png"
+        ],
+        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e2e3dd，静态细纸纹，主体使用深灰至黑色墨迹。书法与字标使用既定矢量轮廓作为图形形状，保留毛边、厚薄及比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。",
+        "objects": "居中的书法矢量图形，主要墨迹位于横向160–472像素范围；37个固定书法姿态、每姿态7层实测灰墨、静态纸纹及角落小注。",
+        "phases": [
+          "0–0.63秒，墨迹从空白中出现，按选定轮廓形成横笔、弧笔与回转结构，保持实际墨色层次。",
+          "0.63–1.73秒，主要轮廓短暂维持后快速接续；首部逐渐成形，相邻姿态以透明画布加权混合。",
+          "1.73–2.50秒，长竖笔完整保留，首部与下方走之笔接成道字，角注在1.73–1.85秒显现，终点保持完整字形。"
+        ],
+        "retain": "保留37个固定姿态的顺序、7档墨色与细部孔洞；相邻画面的权重分别为1-p和p，避免长竖笔向小墨点塌缩；最多缓存3个区域姿态，保持纸纹静止和实际短暂停留。",
+        "avoid": "不以逐字打字或细线描画替代书法；不把不对应的碎墨强行连接变形，不每帧重算笔画对应关系，不删除长竖笔或缩成规则方块。"
+      },
+      "id": "brush-glyph-build",
+      "name": "笔画接续成字",
+      "category": "writing",
+      "summary": "灰黑书法笔画在纸面中央接续、换形，先形成首部，再与下方笔画组成完整的道字。",
+      "purpose": "用书法笔画的接续与组合表现字形建立，保留长竖笔和墨迹厚薄。",
+      "objects": "居中的书法矢量图形，主要墨迹位于横向160–472像素范围；37个固定书法姿态、每姿态7层实测灰墨、静态纸纹及角落小注。",
+      "phases": [
+        "0–0.63秒，墨迹从空白中出现，按选定轮廓形成横笔、弧笔与回转结构，保持实际墨色层次。",
+        "0.63–1.73秒，主要轮廓短暂维持后快速接续；首部逐渐成形，相邻姿态以透明画布加权混合。",
+        "1.73–2.50秒，长竖笔完整保留，首部与下方走之笔接成道字，角注在1.73–1.85秒显现，终点保持完整字形。"
+      ],
+      "aliases": [
+        "书法成字",
+        "笔画组合",
+        "道字形成",
+        "首部成形",
+        "Kimi开源发布片"
+      ],
+      "behaviors": [
+        "sequence",
+        "morph",
+        "reveal"
+      ],
+      "retain": "保留37个固定姿态的顺序、7档墨色与细部孔洞；相邻画面的权重分别为1-p和p，避免长竖笔向小墨点塌缩；最多缓存3个区域姿态，保持纸纹静止和实际短暂停留。",
+      "avoid": "不以逐字打字或细线描画替代书法；不把不对应的碎墨强行连接变形，不每帧重算笔画对应关系，不删除长竖笔或缩成规则方块。",
+      "duration_ms": 2500,
+      "preview_ms": 1800,
+      "recommendation": "需要厚墨笔画接续组成特定书法字形时使用；替换字形须提供完整姿态轮廓，不把固定姿态混合当成任意字体书写器。",
+      "tempo_note": "总长2.50秒，按每秒30个画面刻度取相邻姿态；0.63–1.10秒主要轮廓维持、笔锋小幅变化，1.73–1.85秒角注出现，1.80秒维持完整竖笔，不额外加入统一缓动。",
+      "analogy": "浓淡墨迹一段段接上，逐步组成同一个完整字形。"
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后按固定顺序播放；可暂停、重播和定位时间。",
+      "assumptions": "使用已精修的书法轮廓、粒子排布、空间结构及透明材质作为固定示例；内容替换需提供相应轮廓、位置与材质输入，专用转场排程保持不变。",
+      "source": {
+        "path": "catalog/effects/material-evolution.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [],
+        "extraction": "从2026年10月2日精修的Kimi开源发布片独立动画源码迁入，共用实际绘制函数和固定排程；开头37个书法姿态、结尾27个字形姿态使用选定画面的矢量轮廓与墨色，纤维球、月面及版画采用此前经Codex内置图片工具重建的透明素材；运行时不读取原片视频或JPG截图，不把轮廓及素材声明为独立原创图形。 AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "factory": "glyph-bar-collapse",
+        "assets": [
+          "catalog/assets/material-evolution/key-shapes.js",
+          "catalog/assets/material-evolution/fiber.png",
+          "catalog/assets/material-evolution/moon.png",
+          "catalog/assets/material-evolution/atlas-engraving.png"
+        ],
+        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e2e3dd，静态细纸纹，主体使用深灰至黑色墨迹。书法与字标使用既定矢量轮廓作为图形形状，保留毛边、厚薄及比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。",
+        "objects": "由道字轮廓采样的竖向细字符、17400个固定编号墨点及一笔横向书法轮廓；横笔覆盖横向171–449像素，上边134–173像素，下边181–224像素，左下较厚、右上隆起。",
+        "phases": [
+          "0–0.36秒，完整道字墨迹淡去，小字符在0–0.20秒进入并保留每笔位置，字符高度5.4–6.5像素。",
+          "0.70–0.74秒，多数字符压聚至横向171–449像素的目标轮廓；走之笔尾部延后到0.74–0.92秒接上。",
+          "0.93–1.05秒，细字符仍构成不对称横笔，墨点开始在0.93–1.04秒接替；末态保留书法起收笔和厚薄，接向墨点的两横分布。"
+        ],
+        "retain": "保留道字轮廓采样、字符列次序、逐列均匀保留数量和左下厚右上高的上下边界；字符与墨点共享固定位置数据，走之尾部延迟接入，墨点总量17400。",
+        "avoid": "不将一画成等厚胶囊或规则矩形，不让过密字符堆成黑色竖柱，不在压聚前提前散开整字，不随机重排每帧粒子。"
+      },
+      "id": "glyph-bar-collapse",
+      "name": "字符压聚成横笔",
+      "category": "writing",
+      "summary": "道字的灰墨先退，竖向小字符保留字形，随后整字向横向压聚成一笔不对称的书法横笔。",
+      "purpose": "保持字形辨认后，把书法墨迹转为字符和颗粒，连续接向下一段点线结构。",
+      "objects": "由道字轮廓采样的竖向细字符、17400个固定编号墨点及一笔横向书法轮廓；横笔覆盖横向171–449像素，上边134–173像素，下边181–224像素，左下较厚、右上隆起。",
+      "phases": [
+        "0–0.36秒，完整道字墨迹淡去，小字符在0–0.20秒进入并保留每笔位置，字符高度5.4–6.5像素。",
+        "0.70–0.74秒，多数字符压聚至横向171–449像素的目标轮廓；走之笔尾部延后到0.74–0.92秒接上。",
+        "0.93–1.05秒，细字符仍构成不对称横笔，墨点开始在0.93–1.04秒接替；末态保留书法起收笔和厚薄，接向墨点的两横分布。"
+      ],
+      "aliases": [
+        "道字拆成字符",
+        "一字书法",
+        "横笔压聚",
+        "字符变颗粒",
+        "字形压扁",
+        "Kimi开源发布片"
+      ],
+      "behaviors": [
+        "morph",
+        "sequence",
+        "layout"
+      ],
+      "retain": "保留道字轮廓采样、字符列次序、逐列均匀保留数量和左下厚右上高的上下边界；字符与墨点共享固定位置数据，走之尾部延迟接入，墨点总量17400。",
+      "avoid": "不将一画成等厚胶囊或规则矩形，不让过密字符堆成黑色竖柱，不在压聚前提前散开整字，不随机重排每帧粒子。",
+      "duration_ms": 1050,
+      "preview_ms": 1000,
+      "recommendation": "用于字形先转为字符，再压成一笔横向书法轮廓的承接；替换字形需重新提供轮廓采样，不复用普通爆散聚字排程。",
+      "tempo_note": "总长1.05秒；墨迹在0–0.36秒退去，主字符在0.70–0.74秒快速压聚，尾笔在0.74–0.92秒追上，墨点在0.93–1.04秒进入，字符与墨点短暂交叠。",
+      "analogy": "把一整字的笔画变成细小字符，再沿着原来的列挤成一笔厚薄不均的横画。"
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后按固定顺序播放；可暂停、重播和定位时间。",
+      "assumptions": "使用已精修的书法轮廓、粒子排布、空间结构及透明材质作为固定示例；内容替换需提供相应轮廓、位置与材质输入，专用转场排程保持不变。",
+      "source": {
+        "path": "catalog/effects/material-evolution.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [],
+        "extraction": "从2026年10月2日精修的Kimi开源发布片独立动画源码迁入，共用实际绘制函数和固定排程；开头37个书法姿态、结尾27个字形姿态使用选定画面的矢量轮廓与墨色，纤维球、月面及版画采用此前经Codex内置图片工具重建的透明素材；运行时不读取原片视频或JPG截图，不把轮廓及素材声明为独立原创图形。 AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "factory": "dots-lines-cylinders",
+        "assets": [
+          "catalog/assets/material-evolution/key-shapes.js",
+          "catalog/assets/material-evolution/fiber.png",
+          "catalog/assets/material-evolution/moon.png",
+          "catalog/assets/material-evolution/atlas-engraving.png"
+        ],
+        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e2e3dd，静态细纸纹，主体使用深灰至黑色墨迹。书法与字标使用既定矢量轮廓作为图形形状，保留毛边、厚薄及比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。",
+        "objects": "17400个固定墨点，上短横与下长横各有独立书法上下边；三条线团的长度191、168、325像素，基线83、181、277像素，倾斜系数0.14、0.095、0.06；三个圆柱共462个固定顶点，每柱11排、每排14点。",
+        "phases": [
+          "0–0.45秒，横笔墨点重新分布为二的上短横与下长横，上横向右抬升，下横左端较厚、右端有收笔肩；两笔颗粒保持不同退散比例。",
+          "0.68–1.283秒，墨点逐渐让位，三条线团分别显现；上笔较长、中笔最短、下笔最长，保留各自倾角与乱线，三笔在1.383–1.683秒分别退散。",
+          "1.43–2.55秒，固定顶点从线团打散，在1.63–1.85秒转成三个圆柱；圆柱横向间距84像素、半径33像素，空间连线按列补齐并轻微转动。"
+        ],
+        "retain": "两横各自的起收笔、灰颗粒及退散曲线；三笔不同的长短与倾角，分别出现和退散；圆柱462个固定顶点、固定连边与深度透明度，不把17400个墨点错误地宣称为一一对应的462个空间顶点。",
+        "avoid": "不把二的上横画成椭圆、下横画成圆头横杆，不把三写成三根等长等厚水平条，不同时骤然关掉三笔，不以卡片柱面轮播替代空间连线。"
+      },
+      "id": "dots-lines-cylinders",
+      "name": "点线转为空间柱体",
+      "category": "space",
+      "summary": "书法两横的墨点逐渐变淡，三个长短不同的斜横线团分开显现、退散，再建立三个有深度的连线圆柱。",
+      "purpose": "让平面书法的横笔逐步转入点、线和空间结构，保持一、二、三到三柱的先后。",
+      "objects": "17400个固定墨点，上短横与下长横各有独立书法上下边；三条线团的长度191、168、325像素，基线83、181、277像素，倾斜系数0.14、0.095、0.06；三个圆柱共462个固定顶点，每柱11排、每排14点。",
+      "phases": [
+        "0–0.45秒，横笔墨点重新分布为二的上短横与下长横，上横向右抬升，下横左端较厚、右端有收笔肩；两笔颗粒保持不同退散比例。",
+        "0.68–1.283秒，墨点逐渐让位，三条线团分别显现；上笔较长、中笔最短、下笔最长，保留各自倾角与乱线，三笔在1.383–1.683秒分别退散。",
+        "1.43–2.55秒，固定顶点从线团打散，在1.63–1.85秒转成三个圆柱；圆柱横向间距84像素、半径33像素，空间连线按列补齐并轻微转动。"
+      ],
+      "aliases": [
+        "书法二三",
+        "一二三演变",
+        "墨点变乱线",
+        "乱线成圆柱",
+        "点线空间化",
+        "Kimi开源发布片"
+      ],
+      "behaviors": [
+        "morph",
+        "sequence",
+        "depth",
+        "rotation3d"
+      ],
+      "retain": "两横各自的起收笔、灰颗粒及退散曲线；三笔不同的长短与倾角，分别出现和退散；圆柱462个固定顶点、固定连边与深度透明度，不把17400个墨点错误地宣称为一一对应的462个空间顶点。",
+      "avoid": "不把二的上横画成椭圆、下横画成圆头横杆，不把三写成三根等长等厚水平条，不同时骤然关掉三笔，不以卡片柱面轮播替代空间连线。",
+      "duration_ms": 2550,
+      "preview_ms": 1483.3333333333333,
+      "recommendation": "需要书法点团向乱线再向三个连线柱体演变时使用；粒子场和空间顶点是两种按固定排程接替的表示，内容替换要分别提供目标。",
+      "tempo_note": "总长2.55秒；两横在0–0.45秒建立；三笔显现窗口分别0.883–1.117、0.950–1.050、0.950–1.283秒，退散窗口分别1.550–1.683、1.450–1.617、1.383–1.583秒；空间柱体在1.63–1.85秒形成，后段总转角0.12弧度。",
+      "analogy": "两道墨团先变成三束松散的线，再让线束绕成三个可以看出前后的柱体。"
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后按固定顺序播放；可暂停、重播和定位时间。",
+      "assumptions": "使用已精修的书法轮廓、粒子排布、空间结构及透明材质作为固定示例；内容替换需提供相应轮廓、位置与材质输入，专用转场排程保持不变。",
+      "source": {
+        "path": "catalog/effects/material-evolution.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [],
+        "extraction": "从2026年10月2日精修的Kimi开源发布片独立动画源码迁入，共用实际绘制函数和固定排程；开头37个书法姿态、结尾27个字形姿态使用选定画面的矢量轮廓与墨色，纤维球、月面及版画采用此前经Codex内置图片工具重建的透明素材；运行时不读取原片视频或JPG截图，不把轮廓及素材声明为独立原创图形。 AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "factory": "material-form-chain",
+        "assets": [
+          "catalog/assets/material-evolution/key-shapes.js",
+          "catalog/assets/material-evolution/fiber.png",
+          "catalog/assets/material-evolution/moon.png",
+          "catalog/assets/material-evolution/atlas-engraving.png"
+        ],
+        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e2e3dd，静态细纸纹，主体使用深灰至黑色墨迹。书法与字标使用既定矢量轮廓作为图形形状，保留毛边、厚薄及比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。纤维、月面及版画按各段需要保留灰阶透明素材细节。",
+        "objects": "三列连线柱、六段字符带、点阵宽环与长柄、5.6像素棋盘格和三角风车、三个阶梯像素球；环柄横向中心200.5、321.5、442.5像素，最终球心186.67、320.33、452.67像素。",
+        "phases": [
+          "0–0.57秒，三列圆柱从两端向中间分段退出，六段小字符沿各自裁剪窗口接替；点阵环柄在0.43、0.695、0.47秒分别开始显现。",
+          "0.848–1.32秒，短促的大黑块落入后，环柄逐格转为5.6像素三角与棋盘格；每个11.2像素大格由四个小三角组成风车，保留各列的不同显影顺序。",
+          "1.32–2.00秒，棋盘局部拆散并缩回上方，字符与阶梯像素块接成三个球；末尾球的轮廓与下一段纤维球位置连续接上。"
+        ],
+        "retain": "保留圆柱→分段字符→点阵环柄→三角棋盘→像素球的顺序；字符从两端接力、三列错峰、环内空白、5.6像素小格与11.2像素大格的固定关系，末态三球位置接续。",
+        "avoid": "不把整个片段替换为普通遮罩或随机像素溶解，不抹平0.848秒的大黑块快切，不同时清空全部三列，不提前切为平滑圆形球。"
+      },
+      "id": "material-form-chain",
+      "name": "材质连续重组",
+      "category": "shape",
+      "summary": "三个连线圆柱被字符分段接替，字符再组成点阵环柄，转为三角与棋盘格，局部拆散后接成三个像素球。",
+      "purpose": "保留同一三列构图在多种材料间连续承接，展示字符、点阵、棋盘与球体的变化。",
+      "objects": "三列连线柱、六段字符带、点阵宽环与长柄、5.6像素棋盘格和三角风车、三个阶梯像素球；环柄横向中心200.5、321.5、442.5像素，最终球心186.67、320.33、452.67像素。",
+      "phases": [
+        "0–0.57秒，三列圆柱从两端向中间分段退出，六段小字符沿各自裁剪窗口接替；点阵环柄在0.43、0.695、0.47秒分别开始显现。",
+        "0.848–1.32秒，短促的大黑块落入后，环柄逐格转为5.6像素三角与棋盘格；每个11.2像素大格由四个小三角组成风车，保留各列的不同显影顺序。",
+        "1.32–2.00秒，棋盘局部拆散并缩回上方，字符与阶梯像素块接成三个球；末尾球的轮廓与下一段纤维球位置连续接上。"
+      ],
+      "aliases": [
+        "字符切柱",
+        "点阵环柄",
+        "棋盘变球",
+        "像素球成形",
+        "多材料承接",
+        "Kimi开源发布片"
+      ],
+      "behaviors": [
+        "sequence",
+        "morph",
+        "reveal"
+      ],
+      "retain": "保留圆柱→分段字符→点阵环柄→三角棋盘→像素球的顺序；字符从两端接力、三列错峰、环内空白、5.6像素小格与11.2像素大格的固定关系，末态三球位置接续。",
+      "avoid": "不把整个片段替换为普通遮罩或随机像素溶解，不抹平0.848秒的大黑块快切，不同时清空全部三列，不提前切为平滑圆形球。",
+      "duration_ms": 2000,
+      "preview_ms": 1166.6666666666667,
+      "recommendation": "用于固定三列对象跨多种材料连续变换；保留整条承接链，不能把各段任意调序或分别用外观类似的转场代替。",
+      "tempo_note": "总长2秒；0–0.57秒字符接柱，0.43–0.865秒点阵环柄接入，0.848–0.975秒保留黑块跳入，0.865–1.32秒三角棋盘逐格建立，1.32–1.717秒局部拆散，1.495–2秒字符与像素球接替。",
+      "analogy": "同一组柱体像换了一种材料，依次变成字符、点阵、棋盘，最后团成三个球。"
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后按固定顺序播放；可暂停、重播和定位时间。",
+      "assumptions": "使用已精修的书法轮廓、粒子排布、空间结构及透明材质作为固定示例；内容替换需提供相应轮廓、位置与材质输入，专用转场排程保持不变。",
+      "source": {
+        "path": "catalog/effects/material-evolution.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [],
+        "extraction": "从2026年10月2日精修的Kimi开源发布片独立动画源码迁入，共用实际绘制函数和固定排程；开头37个书法姿态、结尾27个字形姿态使用选定画面的矢量轮廓与墨色，纤维球、月面及版画采用此前经Codex内置图片工具重建的透明素材；运行时不读取原片视频或JPG截图，不把轮廓及素材声明为独立原创图形。 AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "factory": "spheres-material-merge",
+        "assets": [
+          "catalog/assets/material-evolution/key-shapes.js",
+          "catalog/assets/material-evolution/fiber.png",
+          "catalog/assets/material-evolution/moon.png",
+          "catalog/assets/material-evolution/atlas-engraving.png"
+        ],
+        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e2e3dd，静态细纸纹，主体使用深灰至黑色墨迹。书法与字标使用既定矢量轮廓作为图形形状，保留毛边、厚薄及比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。纤维、月面及版画按各段需要保留灰阶透明素材细节。",
+        "objects": "三个灰黑纤维球、每球两组细纤维线及共用月面；初始球心横向约186.67、320.33、452.67像素，纵向约179.33像素，半径55像素；合体纤维球半径95.5像素，月面最大半径85.3像素。",
+        "phases": [
+          "0–0.433秒，三个纤维球已在场，半径从55像素轻微增至约58.7像素，亮心、细纤维和少量内部转动维持。",
+          "0.433–0.70秒，两侧球迅速向中间靠拢，合成半径95.5像素的略扁纤维球；0.671–0.698秒纤维快速退去，月面接替。",
+          "0.70–1.15秒，月面先轻微增至半径85.3像素，再缩小下移至中心约334.83、251.67像素、半径约62像素，暗部边界向左退，接向下一段图鉴。"
+        ],
+        "retain": "保留三球已在场的起点、实测球心与半径关键值；两侧球后段快速合拢，先形成单纤维球再接月面，暗部沿边界退去，末态月球位置连续承接。",
+        "avoid": "不重新给三球做弹出入场，不用均匀慢速缩放替代后段快速合拢，不直接跳成月面，不把整体变亮误当成暗部边界移动。"
+      },
+      "id": "spheres-material-merge",
+      "name": "多球合拢换材",
+      "category": "shape",
+      "summary": "三个纤维球先轻微膨胀，再快速向中间合拢为单球，纤维材质接替成月面，月球放大后缩小下移。",
+      "purpose": "通过合拢和材质接替把三球转成一个月球，并接续到图鉴中心。",
+      "objects": "三个灰黑纤维球、每球两组细纤维线及共用月面；初始球心横向约186.67、320.33、452.67像素，纵向约179.33像素，半径55像素；合体纤维球半径95.5像素，月面最大半径85.3像素。",
+      "phases": [
+        "0–0.433秒，三个纤维球已在场，半径从55像素轻微增至约58.7像素，亮心、细纤维和少量内部转动维持。",
+        "0.433–0.70秒，两侧球迅速向中间靠拢，合成半径95.5像素的略扁纤维球；0.671–0.698秒纤维快速退去，月面接替。",
+        "0.70–1.15秒，月面先轻微增至半径85.3像素，再缩小下移至中心约334.83、251.67像素、半径约62像素，暗部边界向左退，接向下一段图鉴。"
+      ],
+      "aliases": [
+        "三球合体",
+        "纤维球转月面",
+        "月球缩小下移",
+        "合拢换材质",
+        "Kimi开源发布片"
+      ],
+      "behaviors": [
+        "morph",
+        "move",
+        "scale",
+        "sequence"
+      ],
+      "retain": "保留三球已在场的起点、实测球心与半径关键值；两侧球后段快速合拢，先形成单纤维球再接月面，暗部沿边界退去，末态月球位置连续承接。",
+      "avoid": "不重新给三球做弹出入场，不用均匀慢速缩放替代后段快速合拢，不直接跳成月面，不把整体变亮误当成暗部边界移动。",
+      "duration_ms": 1150,
+      "preview_ms": 866.6666666666666,
+      "recommendation": "需要多球合为一球再换材质时使用；球心、半径和材质接替取同一局部时间，不拆成互不相干的缩放与淡入。",
+      "tempo_note": "总长1.15秒；0–0.433秒轻微膨胀，0.433–0.667秒快速靠拢，0.667秒得到略扁合体球，0.671–0.698秒月面接替，0.80秒月面半径达85.3像素，后段缩小下移。",
+      "analogy": "三团细纤维挤成一团，表面变成月面，月球再让出空间。"
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后按固定顺序播放；可暂停、重播和定位时间。",
+      "assumptions": "使用已精修的书法轮廓、粒子排布、空间结构及透明材质作为固定示例；内容替换需提供相应轮廓、位置与材质输入，专用转场排程保持不变。",
+      "source": {
+        "path": "catalog/effects/material-evolution.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [],
+        "extraction": "从2026年10月2日精修的Kimi开源发布片独立动画源码迁入，共用实际绘制函数和固定排程；开头37个书法姿态、结尾27个字形姿态使用选定画面的矢量轮廓与墨色，纤维球、月面及版画采用此前经Codex内置图片工具重建的透明素材；运行时不读取原片视频或JPG截图，不把轮廓及素材声明为独立原创图形。 AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "factory": "atlas-reveal-clear",
+        "assets": [
+          "catalog/assets/material-evolution/key-shapes.js",
+          "catalog/assets/material-evolution/fiber.png",
+          "catalog/assets/material-evolution/moon.png",
+          "catalog/assets/material-evolution/atlas-engraving.png"
+        ],
+        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e2e3dd，静态细纸纹，主体使用深灰至黑色墨迹。书法与字标使用既定矢量轮廓作为图形形状，保留毛边、厚薄及比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。纤维、月面及版画按各段需要保留灰阶透明素材细节。",
+        "objects": "纸面中央下方月球与37个独立显影分区：机械分解图、旋梯、细胞、甲虫、蜻蜓、曲面、天线、轨道、建筑、航天器和几何图解；曲面网格由44条路径组成，每条45个固定采样点。",
+        "phases": [
+          "0–0.74秒，月球从中心335.5、250.3像素、半径60.5像素继续缩小，内圈机械、旋梯、细胞、曲面及昆虫身体分别以独立颗粒阈值显影。",
+          "0.74–1.83秒，外围版画按各自窗口补齐，昆虫足翅晚于身体，建筑塔尖先于拱廊；曲面峰位起伏，旋梯扇叶、环架和表盘内件持续转动，注释逐渐补全。",
+          "1.83–2.616667秒，图鉴保持完整并继续内部运动，月球趋近中心329、220像素、半径33像素；约2.567秒整组一次清除，仅留下横向小光标。"
+        ],
+        "retain": "保留37个分区的独立轮廓、显影窗口和先露主体后补细节的关系；细线灰阶与版画位置、月球缩小、44条曲面线的连续变化以及内件运动共用同一排程，完全显影后移除临时显影遮罩。",
+        "avoid": "不把整张版画一次淡入，不以37张卡片滑入替代局部显影，不让各物件停成静态装饰，不重新给月球做入场，不以缓慢淡出替代末尾整组清场。"
+      },
+      "id": "atlas-reveal-clear",
+      "name": "群像显影清场",
+      "category": "entrance",
+      "summary": "月球缩小下移，37组科学版画按独立轮廓与颗粒显影，曲面和仪器内部保持运动，最后一次清场。",
+      "purpose": "保留围绕月球逐渐建立图鉴、主体内部运动与最终清场的关系。",
+      "objects": "纸面中央下方月球与37个独立显影分区：机械分解图、旋梯、细胞、甲虫、蜻蜓、曲面、天线、轨道、建筑、航天器和几何图解；曲面网格由44条路径组成，每条45个固定采样点。",
+      "phases": [
+        "0–0.74秒，月球从中心335.5、250.3像素、半径60.5像素继续缩小，内圈机械、旋梯、细胞、曲面及昆虫身体分别以独立颗粒阈值显影。",
+        "0.74–1.83秒，外围版画按各自窗口补齐，昆虫足翅晚于身体，建筑塔尖先于拱廊；曲面峰位起伏，旋梯扇叶、环架和表盘内件持续转动，注释逐渐补全。",
+        "1.83–2.616667秒，图鉴保持完整并继续内部运动，月球趋近中心329、220像素、半径33像素；约2.567秒整组一次清除，仅留下横向小光标。"
+      ],
+      "aliases": [
+        "图鉴逐件显影",
+        "版画显影",
+        "科学群像",
+        "图鉴清場",
+        "独立轮廓显现",
+        "Kimi开源发布片"
+      ],
+      "behaviors": [
+        "reveal",
+        "sequence",
+        "move",
+        "rotation3d"
+      ],
+      "retain": "保留37个分区的独立轮廓、显影窗口和先露主体后补细节的关系；细线灰阶与版画位置、月球缩小、44条曲面线的连续变化以及内件运动共用同一排程，完全显影后移除临时显影遮罩。",
+      "avoid": "不把整张版画一次淡入，不以37张卡片滑入替代局部显影，不让各物件停成静态装饰，不重新给月球做入场，不以缓慢淡出替代末尾整组清场。",
+      "duration_ms": 2616.666666666667,
+      "preview_ms": 1600,
+      "recommendation": "用于固定科学版画群像的分件显影与内部运动；替换版画须重新提供独立轮廓、分区及可运动部件，不能只替换一张整板图片。",
+      "tempo_note": "总长2.616667秒；37个分区采用2650毫秒标尺等比映射到本段总长，身体先于足翅，塔尖先于拱廊；标尺1850毫秒后完整，2600毫秒一次清场，保留结束小光标。",
+      "analogy": "一张科学图鉴像在纸上逐件显影，图内机构仍在转动，最后整页清空。"
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后按固定顺序播放；可暂停、重播和定位时间。",
+      "assumptions": "使用已精修的书法轮廓、粒子排布、空间结构及透明材质作为固定示例；内容替换需提供相应轮廓、位置与材质输入，专用转场排程保持不变。",
+      "source": {
+        "path": "catalog/effects/material-evolution.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [],
+        "extraction": "从2026年10月2日精修的Kimi开源发布片独立动画源码迁入，共用实际绘制函数和固定排程；开头37个书法姿态、结尾27个字形姿态使用选定画面的矢量轮廓与墨色，纤维球、月面及版画采用此前经Codex内置图片工具重建的透明素材；运行时不读取原片视频或JPG截图，不把轮廓及素材声明为独立原创图形。 AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "factory": "glyph-cut-ending",
+        "assets": [
+          "catalog/assets/material-evolution/key-shapes.js",
+          "catalog/assets/material-evolution/fiber.png",
+          "catalog/assets/material-evolution/moon.png",
+          "catalog/assets/material-evolution/atlas-engraving.png"
+        ],
+        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e3e4de，静态细纸纹，主体使用深灰至黑色墨迹。书法与字标使用既定矢量轮廓作为图形形状，保留毛边、厚薄及比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。主体墨色#070805，末尾切为640×360纯黑画面。",
+        "objects": "27个固定字符、数字、字标试样、文案与KIMI字标矢量姿态；文案轮廓为“Kimi K3 open weights.”及随后补入的“Coming soon.”，深黑墨色#070805，纸色#e3e4de，最后640×360纯黑画面。",
+        "phases": [
+          "0–1.333秒，在固定纸面上按27个字形姿态的前段排程快速切换字符、数字与字标试样轮廓；每次仅呈现一个姿态，保留字形局部孔洞与不等宽笔画。",
+          "1.333–2.533秒，直接切成“Kimi K3 open weights.”并保持，在1.767秒下方补入“Coming soon.”，两行发布文案继续清晰停留。",
+          "2.533–3.187333秒，直接切为中央KIMI最终字标，约3.133秒直接切为纯黑并停在黑屏。"
+        ],
+        "retain": "保留27个固定矢量姿态和全部既定切换时刻；快速字符及字标试样直接切换，发布标题先停留再补下一行，随后最终KIMI字标清晰停留；书法和字标保持图形轮廓，结尾直接黑屏。",
+        "avoid": "不把字标改成普通排版字体，不为快切加入交叉淡化或随机乱码，不把全部姿态以同一等距节拍播放，不将结尾黑屏改为缓慢淡出。"
+      },
+      "id": "glyph-cut-ending",
+      "name": "字形试写与字标收尾",
+      "category": "writing",
+      "summary": "空纸上的字符、数字与字标轮廓按短促节拍快切，发布短句停留后接成最终字标，最后黑屏。",
+      "purpose": "用快速字形试样和清晰停留完成文字发布收尾，保持快切与阅读段的区别。",
+      "objects": "27个固定字符、数字、字标试样、文案与KIMI字标矢量姿态；文案轮廓为“Kimi K3 open weights.”及随后补入的“Coming soon.”，深黑墨色#070805，纸色#e3e4de，最后640×360纯黑画面。",
+      "phases": [
+        "0–1.333秒，在固定纸面上按27个字形姿态的前段排程快速切换字符、数字与字标试样轮廓；每次仅呈现一个姿态，保留字形局部孔洞与不等宽笔画。",
+        "1.333–2.533秒，直接切成“Kimi K3 open weights.”并保持，在1.767秒下方补入“Coming soon.”，两行发布文案继续清晰停留。",
+        "2.533–3.187333秒，直接切为中央KIMI最终字标，约3.133秒直接切为纯黑并停在黑屏。"
+      ],
+      "aliases": [
+        "字符试写",
+        "数字换形",
+        "字标快切",
+        "发布文案收尾",
+        "KIMI字标",
+        "Kimi开源发布片"
+      ],
+      "behaviors": [
+        "sequence",
+        "cut",
+        "reveal"
+      ],
+      "retain": "保留27个固定矢量姿态和全部既定切换时刻；快速字符及字标试样直接切换，发布标题先停留再补下一行，随后最终KIMI字标清晰停留；书法和字标保持图形轮廓，结尾直接黑屏。",
+      "avoid": "不把字标改成普通排版字体，不为快切加入交叉淡化或随机乱码，不把全部姿态以同一等距节拍播放，不将结尾黑屏改为缓慢淡出。",
+      "duration_ms": 3187.333333333333,
+      "preview_ms": 2500,
+      "recommendation": "适合固定字形试样后接发布短句和字标的收尾；替换文案须提供对应矢量姿态，不把轮廓快切误称为通用文字变形器。",
+      "tempo_note": "总长3.187333秒，每秒30个画面刻度；姿态切换刻度为0、1、2、3、4、6、7、8、11、12、13、14、15、16、18、20、21、24、25、27、30、33、35、38、40、53、76；第94个刻度切黑屏，姿态之间直接切换。",
+      "analogy": "快速翻过一串字形草样，再停在发布短句与最终字标上。"
+    },
+    {
+      "kind": "composition",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [
+        "brush-glyph-build",
+        "glyph-bar-collapse",
+        "dots-lines-cylinders",
+        "material-form-chain",
+        "spheres-material-merge",
+        "atlas-reveal-clear",
+        "glyph-cut-ending"
+      ],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后按固定顺序播放；可暂停、重播和定位时间。",
+      "assumptions": "使用已精修的书法轮廓、粒子排布、空间结构及透明材质作为固定示例；内容替换需提供相应轮廓、位置与材质输入，专用转场排程保持不变。",
+      "source": {
+        "path": "catalog/effects/material-evolution.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [],
+        "extraction": "从2026年10月2日精修的Kimi开源发布片独立动画源码迁入，共用实际绘制函数和固定排程；开头37个书法姿态、结尾27个字形姿态使用选定画面的矢量轮廓与墨色，纤维球、月面及版画采用此前经Codex内置图片工具重建的透明素材；运行时不读取原片视频或JPG截图，不把轮廓及素材声明为独立原创图形。 AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "factory": "material-evolution-sequence",
+        "assets": [
+          "catalog/assets/material-evolution/key-shapes.js",
+          "catalog/assets/material-evolution/fiber.png",
+          "catalog/assets/material-evolution/moon.png",
+          "catalog/assets/material-evolution/atlas-engraving.png"
+        ],
+        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e2e3dd，静态细纸纹，主体使用深灰至黑色墨迹。书法与字标使用既定矢量轮廓作为图形形状，保留毛边、厚薄及比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。结尾段纸色#e3e4de，最终切为640×360纯黑画面；纤维、月面与图鉴保持灰阶透明素材细节。",
+        "objects": "37个书法矢量姿态、道字细字符、17400个固定墨点、三条乱线笔形、462个空间顶点、字符环柄与棋盘、纤维三球和月面、37组图鉴版画及27个结尾字形姿态。",
+        "phases": [
+          "0–6.10秒，0–2.50秒笔画接续组成道字，2.50–3.55秒道字拆成字符并压成一，3.55–6.10秒二的墨点转为三的乱线再形成三个圆柱。",
+          "6.10–11.866667秒，6.10–8.10秒圆柱经字符、点阵环柄和棋盘转为像素三球，8.10–9.25秒纤维三球合拢换成月面，9.25–11.866667秒月球带出图鉴、分件显影并整组清场。",
+          "11.866667–15.054秒，字符、数字和字标草样按固定短促节拍切换，发布短句停留，接成最终字标，最后直接黑屏。"
+        ],
+        "retain": "七段共用同一毫秒时钟和实际绘制函数；前后段保留字符团、三个圆柱、三个球和月球的轮廓及位置承接；每段独立预览与整片使用同一绘制逻辑，保留快速切换、短暂停留和结尾黑屏。",
+        "avoid": "不替换为七个通用几何演示，不按段落重新给已有对象做入场，不随意改变段落先后，不给整片统一套缓动，不播放原片视频或用原片JPG画面代替代码。"
+      },
+      "id": "material-evolution-sequence",
+      "name": "笔墨与材质演变",
+      "category": "compositions",
+      "summary": "书法成字、字符压成横笔、点线形成圆柱，再经字符和棋盘变为三球；三球转月面，图鉴显影清场，最后字标收尾。",
+      "purpose": "保留七段实际动作的完整先后、材料承接与统一排程，提供可分段查看的整片组合。",
+      "objects": "37个书法矢量姿态、道字细字符、17400个固定墨点、三条乱线笔形、462个空间顶点、字符环柄与棋盘、纤维三球和月面、37组图鉴版画及27个结尾字形姿态。",
+      "phases": [
+        "0–6.10秒，0–2.50秒笔画接续组成道字，2.50–3.55秒道字拆成字符并压成一，3.55–6.10秒二的墨点转为三的乱线再形成三个圆柱。",
+        "6.10–11.866667秒，6.10–8.10秒圆柱经字符、点阵环柄和棋盘转为像素三球，8.10–9.25秒纤维三球合拢换成月面，9.25–11.866667秒月球带出图鉴、分件显影并整组清场。",
+        "11.866667–15.054秒，字符、数字和字标草样按固定短促节拍切换，发布短句停留，接成最终字标，最后直接黑屏。"
+      ],
+      "aliases": [
+        "书法与材料重组",
+        "七段材料演变",
+        "笔画点线空间图鉴",
+        "道一二三",
+        "Kimi开源发布整片",
+        "Kimi开源发布片"
+      ],
+      "behaviors": [
+        "sequence",
+        "morph",
+        "reveal",
+        "depth",
+        "move",
+        "cut"
+      ],
+      "retain": "七段共用同一毫秒时钟和实际绘制函数；前后段保留字符团、三个圆柱、三个球和月球的轮廓及位置承接；每段独立预览与整片使用同一绘制逻辑，保留快速切换、短暂停留和结尾黑屏。",
+      "avoid": "不替换为七个通用几何演示，不按段落重新给已有对象做入场，不随意改变段落先后，不给整片统一套缓动，不播放原片视频或用原片JPG画面代替代码。",
+      "duration_ms": 15054,
+      "preview_ms": 10250,
+      "recommendation": "需要这一完整书法、字符、点线、材料与图鉴演变链时使用；独立片段可各自复用，跨段拼接必须保留前后轮廓和位置承接。",
+      "tempo_note": "整片15.054秒；分段边界为0、2.50、3.55、6.10、8.10、9.25、11.866667、15.054秒，每秒30个画面刻度，所有固定分布、显影和快切均由同一时间计算。",
+      "analogy": "同一个画面从墨迹开始，一路换成字符、点线、立体材料和科学图鉴，最后变成发布字标。"
+    },
+    {
+      "id": "selfie-phone-illustration",
+      "name": "斜放手机",
+      "kind": "illustration",
+      "category": "illustration-object",
+      "summary": "黑色玻璃面板与银色边框的手机斜放，白色屏幕留空，保留圆形主页键、听筒和侧边接口。",
+      "purpose": "将原自拍场景中的手机独立提炼为可复用插画。",
+      "objects": "斜放手机、银色边框、空白屏幕、圆形主页键、听筒与接口",
+      "phases": [
+        "完整手机居中呈现。",
+        "保持原斜放角度与机身比例。",
+        "屏幕留白，插画保持静止。"
+      ],
+      "aliases": [
+        "手机",
+        "斜放手机",
+        "自拍手机",
+        "入框贴合",
+        "入库贴合"
+      ],
+      "behaviors": [
+        "hold"
+      ],
+      "retain": "保留黑玻璃面板、银色边框、斜放透视、白色空屏与圆形主页键。",
+      "avoid": "不包含原人物、绿色场景、角色动画、自拍倒计时或屏幕内容。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/selfie-phone.js",
+        "factory": "selfie-phone-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "基于本机「小葵和我的短片」手机与人物原图，使用 Codex 内置图片工具分离手机与透明背景；素材为生成式提炼，非逐像素原图裁切。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 1800,
+      "recommendation": "需要斜放手机插画时直接复用，屏幕内容可另行制作。",
+      "tempo_note": "静态插画全程保持；播放与定位不改变机身。",
+      "trigger": "打开预览后显示完整插画。",
+      "analogy": "把原自拍场景中的手机作为独立物件复用。",
+      "assumptions": "手机由内置图片工具依据原图提炼；机身角度、比例与细节以生成结果为准，采用透明底，不依赖原工程。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "previous_names": []
+    },
+    {
+      "id": "cat-mouth-illustration",
+      "name": "随声张合",
+      "kind": "illustration",
+      "category": "illustration-object",
+      "summary": "灰白小葵站定，嘴部按原叫声的轻重张开与收回，耳朵随表情稍向外折，身体与花纹保持。",
+      "purpose": "独立复用原小葵插画与叫声口型，不携带加工厂场景。",
+      "objects": "完整灰白小葵、非对称花纹、眼鼻、牙齿与舌头",
+      "phases": [
+        "小葵站定，嘴部闭合。",
+        "从零点二四秒开始，嘴部按预存叫声强弱张合，耳朵随表情微折。",
+        "一点四四秒闭嘴，保持站姿至一点七秒结束。"
+      ],
+      "aliases": [
+        "小葵",
+        "猫咪",
+        "猫咪口型",
+        "随声张合",
+        "猫咪叫声对应的口型",
+        "猫咪随叫声张合嘴"
+      ],
+      "behaviors": [
+        "continuous",
+        "react"
+      ],
+      "retain": "保留小葵原头身比例、灰白花纹、眼鼻位置、牙齿与舌头，开合强弱和耳朵表情沿用原叫声曲线。",
+      "avoid": "不添加加工厂、机器、传送带、原字幕或音效；不让猫咪走离画面，不改变身体比例与花纹。",
+      "duration_ms": 1700,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/cat-mouth.js",
+        "factory": "cat-mouth-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "提取本机「小猫加工厂」cat.js 的原路径、花纹、表情绘制与 timeline.js 的小葵叫声开合曲线；原绘图调用转换为独立 SVG，不依赖原工程、图片或声音。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 740,
+      "recommendation": "需要带嘴部表情的完整小葵插画时直接复用。",
+      "tempo_note": "保留原一点七秒口型片段：零点二四秒开口，一点四四秒闭嘴，之后停住。",
+      "trigger": "打开预览后按预存叫声强弱数据播放一次；可暂停、重播与定位。",
+      "analogy": "叫声强弱同时驱动嘴部开合与轻微耳部表情，站姿保持。",
+      "assumptions": "固定使用原灰白小葵；只显示猫咪与原口型，不读取麦克风、不附带音频。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "previous_names": [
+        "猫咪叫声对应的口型",
+        "猫咪随叫声张合嘴"
+      ]
     }
   ],
   "redirects": {
@@ -16427,7 +16313,9 @@
     "history-promo-crt-collapse": "crt-collapse",
     "history-particle-gather": "particle-word",
     "history-promo-kinetic-cards": "math-formula-drift",
-    "history-promo-grid-zoom": "tile-wall-focus"
+    "history-promo-grid-zoom": "tile-wall-focus",
+    "history-cat-mouth": "cat-mouth-illustration",
+    "flight-history-trails": "symbol-flight-settle"
   },
   "variant_redirects": {
     "material-label-stagger": "material",

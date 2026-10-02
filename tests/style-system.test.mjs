@@ -140,7 +140,7 @@ test('插画分类可独立浏览，删除的扫光没有残留入口',async()=>
   for(const effect of data.effects)groups.get(effect.category).push(effect);
   assert.ok([...groups.values()].every(effects=>effects.length>0));
   const art=data.effects.filter(e=>e.id.endsWith('-illustration'));
-  assert.equal(art.length,42);
+  assert.equal(art.length,44);
   assert.ok(art.every(e=>e.category.startsWith('illustration-')));
   assert.equal(data.effects.some(e=>e.id==='glyph-sheen'),false);
   const cross=JSON.parse(await readFile(new URL('../../../state/wise-motion/history/crosswalk.json',import.meta.url),'utf8'));

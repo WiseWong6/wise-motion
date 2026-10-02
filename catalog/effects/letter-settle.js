@@ -237,8 +237,7 @@
     };
   }
   F['letter-settle']=root=>scene(root,['flight','trails','stars','sparkles']);
-  F['symbol-flight-settle']=root=>scene(root,['flight']);
-  F['flight-history-trails']=root=>scene(root,['trails']);
+  F['symbol-flight-settle']=root=>scene(root,['flight','trails']);
   F['arrival-star-reveal']=root=>scene(root,['stars'],starOffset);
   F['arrival-star-sparkle']=root=>scene(root,['sparkles'],starOffset);
   // 飞行、光丝与星光只是同一批物品的不同绘制层，不另撒点或另建轨迹。
@@ -250,7 +249,7 @@
   const range=(start,end)=>`${(start/1000).toFixed(2)}–${(end/1000).toFixed(2)} 秒`;
   F['letter-settle'].breakdown=[
     {id:'flight',actions:['symbol-flight-settle'],name:'物品群飞减速落定',start:departure,end:lastArrival+950,time:range(departure,lastArrival+950),detail:'126 件原作符号按固定时差飞出，沿各自曲线减速，保留近远层次、蝴蝶翅膀与物品短闪；到达后在原位淡去。'},
-    {id:'trails',actions:['flight-history-trails'],name:'真实轨迹光丝',start:trailDeparture,end:trailEnd,time:range(trailDeparture,trailEnd),detail:'18 件物品留下已经走过的曲线光丝；光丝逐段回看物品自身位置，抵达后留在原处渐退。'},
+    {id:'trails',actions:['symbol-flight-settle'],name:'真实轨迹光丝',start:trailDeparture,end:trailEnd,time:range(trailDeparture,trailEnd),detail:'18 件物品留下已经走过的曲线光丝；光丝逐段回看物品自身位置，抵达后留在原处渐退。'},
     {id:'stars',actions:['arrival-star-reveal'],name:'落点原位化星',start:arrival,end:lastArrival+950,time:range(arrival,lastArrival+950),detail:'每件物品只在自己的飞行终点生成对应星点；物品与星点用同一到达时间交叉淡变，126 个落点保持一一对应，显出后继续原位明灭。'},
     {id:'sparkles',actions:['arrival-star-sparkle'],name:'落定闪光与星芒',start:arrival,end:11550,time:range(arrival,11550),detail:'落点到达时短闪，随后各自错相闪烁；六个主要落点保留较强光晕。星芒使用同一个到达时钟和原落点。'}
   ];

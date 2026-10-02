@@ -73,6 +73,7 @@
         elapsed:definition.loop ? elapsed * rate : clock(elapsed)});
     };
     if (render.destroy) draw.destroy = preserve => render.destroy(preserve);
+    if (render.ready) draw.ready = render.ready;
     return draw;
   }
   function fit(root) {
@@ -93,9 +94,13 @@
     const stage = root.firstElementChild;
     prepareStage(stage, definition);
     const render = createRenderer(stage, definition);
+    const preparation = render.ready;
+    let preparing = !!preparation && typeof preparation.then === 'function';
+    let pendingPlay = false, preparationError = null;
     let destroyed = false, time = 0, elapsedTime = 0;
     let currentEase = options.ease || definition.default_ease;
-    const notify = () => options.onUpdate?.({time, duration: definition.duration_ms, paused: timer.paused});
+    const paused = () => preparing ? !pendingPlay : timer.paused;
+    const notify = () => options.onUpdate?.({time, duration: definition.duration_ms, paused: paused(), preparing, error: preparationError});
     const draw = (ms, elapsed = ms) => {
       time = clamp(ms, 0, definition.duration_ms);
       elapsedTime = elapsed;
@@ -109,9 +114,15 @@
       onComplete() { if (!destroyed) notify(); }
     });
     const controller = {
-      play() { if (destroyed) return; if (!definition.loop && time >= definition.duration_ms) this.seek(0); timer.play(); notify(); },
-      pause() { if (destroyed) return; timer.pause(); notify(); },
-      restart(shouldPlay = true) { if (destroyed) return; timer.pause(); this.seek(0); if (shouldPlay) this.play(); },
+      play() {
+        if (destroyed || preparationError) return;
+        if (!definition.loop && time >= definition.duration_ms) this.seek(0);
+        if (preparing) pendingPlay = true;
+        else timer.play();
+        notify();
+      },
+      pause() { if (destroyed) return; pendingPlay = false; timer.pause(); notify(); },
+      restart(shouldPlay = true) { if (destroyed) return; this.pause(); this.seek(0); if (shouldPlay) this.play(); },
       seek(ms) {
         if (destroyed) return;
         if (!Number.isFinite(ms)) throw new TypeError('时间必须是有限数字');
@@ -139,19 +150,47 @@
       },
       destroy(preserve = false) {
         if (destroyed) return;
-        destroyed = true; timer.pause(); timer.cancel(); observer?.disconnect();
+        destroyed = true; preparing = false; pendingPlay = false; timer.pause(); timer.cancel(); observer?.disconnect();
         live.delete(controller);
         render.destroy?.(preserve);
         if (!preserve) root.replaceChildren();
       },
       get currentTime() { return time; },
       get elapsedTime() { return elapsedTime; },
-      get paused() { return timer.paused; },
+      // 准备期间仍保留播放意图，让暂停按钮和页面隐藏能取消它。
+      get paused() { return paused(); },
+      get preparing() { return preparing; },
+      get error() { return preparationError; },
       get speed() { return timer.speed; },
       get destroyed() { return destroyed; }
     };
     const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(() => fit(root)) : null;
     observer?.observe(root);
+    if (preparing) stage.dataset.preparation = 'preparing';
+    const failPreparation = reason => {
+      if (destroyed) return false;
+      preparing = false; pendingPlay = false; timer.pause();
+      preparationError = reason instanceof Error ? reason : new Error(reason?.message || String(reason || '动画准备失败'));
+      stage.dataset.preparation = 'failed';
+      stage.dataset.preparationError = preparationError.message;
+      const notice = stage.ownerDocument.createElement('div');
+      notice.className = 'motion-ready-error';
+      notice.setAttribute('role', 'alert');
+      notice.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;color:#f4f2e8;background:#161715;z-index:1000;text-align:center';
+      notice.textContent = '动画准备失败：' + preparationError.message;
+      stage.append(notice);
+      notify();
+      return false;
+    };
+    controller.ready = preparing ? Promise.resolve(preparation).then(() => {
+      if (destroyed) return false;
+      preparing = false;
+      stage.dataset.preparation = 'ready';
+      draw(time, elapsedTime);
+      if (pendingPlay) { pendingPlay = false; timer.play(); }
+      notify();
+      return true;
+    }).catch(failPreparation) : Promise.resolve(true);
     live.add(controller); draw(0); fit(root);
     if (options.autoplay) controller.play();
     return controller;

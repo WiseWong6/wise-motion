@@ -55,9 +55,12 @@ test('词云保留原十三词、云形、独立漂移与实际收拢时钟，�
       for(const word of words){
         const original=expected.words.find(item=>item.label===word.textContent);
         if(!original){assert.equal(word.getAttribute('opacity'),'0');continue;}
-        close(word.getAttribute('x'),original.x,'保留手工词位与各词独立漂移');
-        close(word.getAttribute('y'),original.y,'字号收紧时顶部位置应同步调整');
-        close(word.getAttribute('font-size'),original.size,'保留原动作公式的大小层次与连续缩小');
+        const t=ms<=3600?ms/3600*3.7:3.7+(ms-3600)/1800*2.8;
+        const scale=w.MotionKit.mix(1,.72,w.MotionKit.span(t,4.55,5.7,'inOutCubic'));
+        const size=original.size*.78,inset=word.textContent==='有点僵硬'?56*scale:0;
+        close(word.getAttribute('x'),original.x-inset,'除右侧长词内移外，保留手工编排和独立漂移');
+        close(word.getAttribute('y'),original.y+(original.size-size)*.625,'字号收紧时顶部位置应同步调整');
+        close(word.getAttribute('font-size'),size,'等比例收小以完整容纳文字，保留大小层次与连续缩小');
         close(word.getAttribute('opacity'),original.opacity,'按原时差淡入');
         assert.equal(word.getAttribute('fill'),themed(original.color));
       }
@@ -75,6 +78,54 @@ test('词云保留原十三词、云形、独立漂移与实际收拢时钟，�
     for(const file of cross.rules['tutorial-word-cloud'].migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256,'原工程保持只读');
   }finally{env.w.MotionThumbs.disposeAll();env.close();}
 });
+test('词云全文在淡入、漂移和收拢全过程位于云形内，并保留词间空隙',async()=>{
+  const env=await environment();
+  try{
+    const {w}=env,root=w.document.getElementById('root');
+    const effect=sourceDefinition(data.effects.find(e=>e.id==='word-cloud-lift'));
+    const draw=w.MotionFactories[effect.id](root,w.MotionKit,effect),cloud=part(root,'cloud');
+    // 按实际云形采样；用整字宽和一行字高包住文字，避免只检查文字中心点。
+    const values=cloud.getAttribute('d').match(/-?\d+(?:\.\d+)?/g).map(Number);
+    const outline=[[values[0],values[1]]];let previous=outline[0];
+    for(let at=2;at<values.length;at+=6){
+      const [ax,ay,bx,by,x,y]=values.slice(at,at+6),[px,py]=previous;
+      for(let i=1;i<=100;i++){
+        const t=i/100,u=1-t;
+        outline.push([u*u*u*px+3*u*u*t*ax+3*u*t*t*bx+t*t*t*x,u*u*u*py+3*u*u*t*ay+3*u*t*t*by+t*t*t*y]);
+      }
+      previous=[x,y];
+    }
+    const inside=(x,y)=>{
+      let hit=false;
+      for(let i=0,j=outline.length-1;i<outline.length;j=i++){
+        const [ax,ay]=outline[i],[bx,by]=outline[j];
+        if((ay>y)!==(by>y)&&x<(bx-ax)*(y-ay)/(by-ay)+ax)hit=!hit;
+      }
+      return hit;
+    };
+    const words=[...root.querySelectorAll('[data-cloud-word]')];
+    for(let ms=0;ms<=effect.duration_ms;ms+=25){
+      draw(ms);
+      const [cx,cy,scale]=cloud.getAttribute('transform').match(/[-\d.]+/g).map(Number),boxes=[];
+      for(const word of words){
+        if(Number(word.getAttribute('opacity'))===0)continue;
+        const size=Number(word.getAttribute('font-size')),x=Number(word.getAttribute('x')),y=Number(word.getAttribute('y'));
+        const half=Array.from(word.textContent).length*size/2,box={label:word.textContent,left:x-half,right:x+half,top:y,bottom:y+size};
+        boxes.push(box);
+        // 轮廓内额外保留六个设计单位；检查四条边，含云形凹入处。
+        const left=(box.left-cx)/scale-6,right=(box.right-cx)/scale+6,top=(box.top-cy)/scale-6,bottom=(box.bottom-cy)/scale+6;
+        for(let i=0;i<=12;i++){
+          const x=left+(right-left)*i/12,y=top+(bottom-top)*i/12;
+          assert.ok(inside(x,top)&&inside(x,bottom)&&inside(left,y)&&inside(right,y),ms+' 毫秒：'+box.label+' 全文应留在云形内');
+        }
+      }
+      for(let i=0;i<boxes.length;i++)for(let j=i+1;j<boxes.length;j++){
+        const a=boxes[i],b=boxes[j],gap=6*scale;
+        assert.ok(a.right+gap<=b.left||b.right+gap<=a.left||a.bottom+gap<=b.top||b.bottom+gap<=a.top,ms+' 毫秒：'+a.label+' 与 '+b.label+' 应留出阅读空隙');
+      }
+    }
+  }finally{env.close();}
+});
 test('论据图标保持原词点、细线与基线生长，定位和缩略图完整，旧图标入口清理',async()=>{
   const sourceRoot='/Users/wisewong/Documents/Developer/wise-video/resume-tutorial/wise-resume-writing/';
   const original=new JSDOM(await readFile(sourceRoot+'editions/compact/preview.html','utf8'));
@@ -90,13 +141,22 @@ test('论据图标保持原词点、细线与基线生长，定位和缩略图�
     const root=d.createElement('div'),draw=w.MotionFactories[effect.id](root,w.MotionKit,effect);
     const groups=[...root.querySelectorAll('[data-icon-sequence]')];
     assert.deepEqual(groups.map(n=>n.dataset.iconWord),['经历','方法','能力','数据']);
-    assert.equal(root.querySelector('svg > g').getAttribute('transform'),'translate(104 -137) scale(.4)');
+    assert.equal(root.querySelector('svg > g').getAttribute('transform'),'scale(.4)');
     assert.equal(root.querySelector('svg > g').getAttribute('font-weight'),'300');
+    const positions=groups.map(group=>{
+      const [dx,dy]=group.getAttribute('transform').match(/[-\d.]+/g).map(Number);
+      const label=group.querySelector('[data-icon-fade]');
+      return {x:(Number(label.getAttribute('x'))+dx)*.4,y:(Number(label.getAttribute('y'))+dy)*.4};
+    });
+    assert.equal(new Set(positions.map(p=>p.y)).size,1,'四个图标的标签应位于同一行');
+    const spacing=positions[1].x-positions[0].x;
+    assert.ok(spacing>100,'四个图标之间保留足够间距');
+    assert.ok(positions.every((p,i)=>p.x>40&&p.x<600&&(i===0||Math.abs(p.x-positions[i-1].x-spacing)<1e-9)),'依次从左到右等距排布，保留两侧余量');
     for(const source of icons){
       const group=groups.find(g=>g.dataset.iconSequence===source.dataset.iconSequence);
       const start=120+Math.round((clock(source.dataset.iconWord)-anchor)*1000);
       assert.equal(Number(group.dataset.iconStart),start);
-      assert.equal(group.getAttribute('transform'),source.firstElementChild.getAttribute('transform'));
+
       const parts=[...group.children],originalParts=[...source.firstElementChild.children];
       assert.equal(parts.length,originalParts.length);
       for(let i=0;i<parts.length;i++){
@@ -347,13 +407,12 @@ test('事件在指针到达对应位置时才触发，遮挡带闭合时覆盖�
     for(let i=0;i<8;i++){assert.equal(number(root,'shade'+i,'rx'),0);assert.equal(part(root,'shade'+i).getAttribute('transform'),'translate(0 0)');}
   }finally{env.close();}
 });
-test('物理关系保持挂点、面积、根部以及轮子随行程转动',async()=>{
+test('物理关系保持挂点、面积以及轮子随行程转动',async()=>{
   const env=await environment();
   try{
     const {w}=env,root=w.document.getElementById('root');
     let draw=render(w,root,'pivot-swing');const pin=part(root,'pin').outerHTML;draw(.25);draw(.7);assert.equal(part(root,'pin').outerHTML,pin);
     draw=render(w,root,'squash-bounce');for(const p of [.1,.2,.33,.6,1]){draw(p);assert.ok(Math.abs(number(root,'ball','rx')*number(root,'ball','ry')-1024)<1e-8);}
-    draw=render(w,root,'anchored-growth');draw(.1);draw(.8);assert.equal(number(root,'stem','y1'),290);assert.ok(number(root,'stem','y2')<number(root,'stem','y1'));
     draw=render(w,root,'rolling-distance');
     const measure=p=>{draw(p);return [Number(part(root,'car').getAttribute('transform').match(/translate\(([-.\d]+)/)[1]),Number(part(root,'wheel0').getAttribute('transform').match(/rotate\(([-.\d]+)/)[1])];};
     const [x0,a0]=measure(.2),[x1,a1]=measure(.7),r=number(root,'hub0','r');assert.ok(Math.abs((x1-x0)-(a1-a0)*Math.PI/180*r)<1e-7);

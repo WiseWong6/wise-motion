@@ -5,15 +5,13 @@ import {data,environment,frameMarkup,sourceDefinition} from './helpers.mjs';
 
 const get=id=>data.effects.find(effect=>effect.id===id);
 const mappings={
-  'subtitle-focus':{cells:['stagger-in','subtitle-cell-focus','subtitle-block-shift'],statement:['statement-rise-exit']},
+  'subtitle-focus':{cells:['stagger-in','subtitle-cell-focus','subtitle-block-shift'],statement:[]},
   'title-content':{title:['mask-reveal'],content:['stagger-in']},
-  'interface-feedback':{pointer:['pointer-approach-exit'],button:['button-press-status'],progress:['progress-fill-exit'],result:['fade-rise']}
+  'interface-feedback':{pointer:[],button:['button-press-status'],progress:['progress-fill-exit'],result:['fade-rise']}
 };
 const extracted={
   'subtitle-cell-focus':{parent:'subtitle-focus',selector:'.subtitle-cell',count:4,times:[1800,2449,2450,3100,4899,4900,7599,7600,9000],properties:['opacity'],className:true},
   'subtitle-block-shift':{parent:'subtitle-focus',selector:'.subtitle-block',count:4,times:[4100,4650,5200,6500,7600,8300,9000],properties:['transform','opacity']},
-  'statement-rise-exit':{parent:'subtitle-focus',selector:'.statement',count:1,times:[4900,5350,5800,6500,6900,7250,7600]},
-  'pointer-approach-exit':{parent:'interface-feedback',selector:'.pointer',count:1,times:[300,950,1600,2100,2400,2700]},
   'button-press-status':{parent:'interface-feedback',selector:'.action-button',count:2,times:[1600,1875,2149,2150,4000,5299,5300]},
   'progress-fill-exit':{parent:'interface-feedback',selector:'.progress-track',count:3,times:[2150,2325,2500,3725,5300,5600,5900]}
 };
@@ -30,23 +28,27 @@ function raw(env,id){
   return {root,draw:(t,ease=source.default_ease)=>render(t,{ease,duration:source.duration_ms,elapsed:t})};
 }
 
-test('三个旧组合的每个运动层都关联真实独立动作，登记与拆解完全一致',async()=>{
+test('三个旧组合的动作关联与登记一致，独立条目剔除后仍保留组合文字与指针层',async()=>{
   const env=await environment();
   try{
     for(const [id,expected] of Object.entries(mappings)){
       const definition=get(id),rows=env.w.MotionFactories[id].breakdown;
       assert.equal(definition.kind,'composition');
       assert.deepEqual(Object.fromEntries(rows.map(row=>[row.id,Array.from(row.actions)])),expected,id);
+      for(const layer of rows)assert.ok(layer.actions.length>0||layer.reason,`${id}/${layer.id} 未关联独立动作的图层必须说明保留依据`);
       const linked=[...new Set(rows.flatMap(row=>Array.from(row.actions)))];
       assert.deepEqual([...definition.actions].sort(),linked.sort(),id);
       for(const action of linked){assert.equal(get(action).kind,'action',action);assert.equal(typeof env.w.MotionFactories[action],'function');}
     }
     assert.deepEqual(Array.from(env.w.MotionFactories['subtitle-focus'].breakdown[0].actions),['stagger-in','subtitle-cell-focus','subtitle-block-shift'],'同一字幕层的出现、提亮、整体让位仍是三个动作');
+    assert.ok(!data.effects.some(effect=>effect.id==='statement-rise-exit'),'已剔除的陈述不能重新进入目录');
+    assert.equal(env.w.MotionFactories['statement-rise-exit'],undefined,'已剔除的陈述不再注册独立动作');
+    for(const effect of data.effects)assert.ok(!effect.actions.includes('statement-rise-exit'),'组合不再链接已剔除的动作');
     for(const id of ['dual-scroll','arc-cards'])assert.equal(env.w.MotionFactories[id].breakdown,undefined,'连续同机制对象已归为普通动作');
   }finally{env.close();}
 });
 
-test('六个独立示例只创建自己的对象，不调用完整组合或隐藏其余层',async()=>{
+test('四个独立示例只创建自己的对象，不调用完整组合或隐藏其余层',async()=>{
   const env=await environment();
   try{
     for(const parent of Object.keys(mappings))env.w.MotionFactories[parent]=()=>{throw new Error('独立动作不能创建完整组合：'+parent);};

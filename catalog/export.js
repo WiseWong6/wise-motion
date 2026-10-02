@@ -36,7 +36,7 @@
       lines.push('速度变化：'+(global.MotionMatch.easeLabels[easing]||easing)+'。');
       if(effect.timing)lines.push('时间安排：'+(effect.timing.start_ms/1000/speed).toFixed(2)+' 秒开始主要动作，'+(effect.timing.end_ms/1000/speed).toFixed(2)+' 秒完成；其余时间保持最终状态。');
       else {const tempo=concrete(effect.tempo_note);if(tempo)lines.push('动作节拍：'+tempo);}
-      if(effect.kind!=='illustration')lines.push('视觉：近黑底 #0a0a0b、暖白文字 #f4f1ea，强调色 #ff5a1f、#9b86ff、#65d4ca。中文标题使用思源黑体粗体，正文使用细体；英文和数字使用 Oswald 粗体。画板字号为 10、12、16、24、32、48、64 像素，字形造型和词云保留大小变化。');
+      if(effect.kind!=='illustration'&&!spec.presentation)lines.push('视觉：近黑底 #0a0a0b、暖白文字 #f4f1ea，强调色 #ff5a1f、#9b86ff、#65d4ca。中文标题使用思源黑体粗体，正文使用细体；英文和数字使用 Oswald 粗体。画板字号为 10、12、16、24、32、48、64 像素，字形造型和词云保留大小变化。');
       const trigger=concrete(effect.trigger);
       if(trigger&&!/打开预览|打开后按固定|固定时间表演示|可暂停和定位|时间表用于观察/.test(trigger))lines.push('触发与联动：'+trigger);
     }

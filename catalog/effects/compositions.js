@@ -33,10 +33,6 @@
     const s = M.scene(root, subtitleMarkup), block = s.one('.subtitle-block');
     return (t, o) => drawSubtitleShift(M, block, t, o);
   };
-  F['statement-rise-exit'] = (root, M) => {
-    const s = M.scene(root, statementMarkup), statement = s.one('.statement');
-    return (t, o) => drawStatement(M, statement, t, o);
-  };
   F['dual-scroll'] = (root, M) => {
     const cards = M.cardSet(4, 'mini-card strip-card'); const track = `<div class="scroll-track">${cards}${cards}${cards}</div>`;
     const s = M.scene(root, `<div class="strip-row">${track}</div><div class="strip-row lower">${track}</div>`); const tracks = s.all('.scroll-track'), rows = s.all('.strip-row');
@@ -82,10 +78,6 @@
     fill.style.transform = `scaleX(${M.span(t, 2150, 5300, 'linear')})`;
     M.pose(track, {opacity: M.span(t, 2150, 2500) * (1 - M.span(t, 5300, 5900))});
   }
-  F['pointer-approach-exit'] = (root, M) => {
-    const s = M.scene(root, '<div class="pointer"></div>'), pointer = s.one('.pointer');
-    return (t, o) => drawPointer(M, pointer, t, o);
-  };
   F['button-press-status'] = (root, M) => {
     const s = M.scene(root, '<div class="operation">' + buttonMarkup + '</div>'), button = s.one('.action-button');
     return t => drawButton(M, button, t);
@@ -109,7 +101,7 @@
   const subtitleClock=[200,9000,150,3750];
   F['subtitle-focus'].breakdown = [
     row('cells','字幕格呈现、切重点和让位',200,9000,'三个字格先错峰出现，再依次提亮；整组上移为陈述让位，最后下移放大。逐项入场、重点轮换和整体让位分别复用独立动作。',subtitleClock,['stagger-in','subtitle-cell-focus','subtitle-block-shift']),
-    row('statement','陈述上移显现与淡出',4900,7600,'字格开始让位后，陈述才由下方淡入；陈述淡出后，重心交回字格。',subtitleClock,['statement-rise-exit'])
+    {...row('statement','陈述上移显现与淡出',4900,7600,'字格开始让位后，陈述才由下方淡入；陈述淡出后，重心交回字格。',subtitleClock),reason:'组合中的陈述仅作为整段画面的文字层使用，无独立参考。'}
   ];
   const titleClock=[200,4000,150,2550];
   F['title-content'].breakdown = [
@@ -118,7 +110,7 @@
   ];
   const interfaceClock=[300,6100,150,3750];
   F['interface-feedback'].breakdown = [
-    row('pointer','指针靠近后离场',300,2700,'指针从右下方移到按钮，按下后逐渐隐藏。',interfaceClock,['pointer-approach-exit']),
+    {...row('pointer','指针靠近后离场',300,2700,'指针从右下方移到按钮，按下后逐渐隐藏。',interfaceClock),reason:'指针仅作为完整界面反馈组合的操作示意层保留，无独立参考。'},
     row('button','按钮按压与状态改写',1600,5300,'按钮轻微缩小后恢复，同时依处理阶段把文案改为正在整理、整理完成。',interfaceClock,['button-press-status']),
     row('progress','处理进度填充与收起',2150,5900,'按下后出现细进度条，从左向右匀速填满，完成后淡出。',interfaceClock,['progress-fill-exit']),
     row('result','完成结果淡入上移',5300,6100,'进度填满后，完成文案由下方轻微上移并显现。',interfaceClock,['fade-rise'])
