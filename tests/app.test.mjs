@@ -3,7 +3,62 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {environment,data} from './helpers.mjs';
 const settle = () => new Promise(resolve => setTimeout(resolve, 0));
-test('三栏目录筛选、常驻预览和节奏输出一致，只持有一个动画', async () => {
+const name = id => data.effects.find(effect => effect.id === id).name;
+test('搜索清空已选分类，空结果与清除按钮能恢复完整目录', async () => {
+  const env = await environment(true);
+  try {
+    const {w} = env, d = w.document;
+    const search = d.getElementById('search'), filter = d.getElementById('category-filter');
+    const clear = d.getElementById('search-clear');
+    assert.ok(clear.hidden);
+    filter.value = 'continuous'; filter.dispatchEvent(new w.Event('change'));
+    search.value = name('fade-rise'); search.dispatchEvent(new w.Event('input'));
+    assert.equal(filter.value, 'all');
+    assert.equal(filter.title, '全部动作');
+    assert.ok(!clear.hidden);
+    await new Promise(resolve => setTimeout(resolve, 160));
+    assert.ok(d.querySelector('[data-effect="fade-rise"]'));
+    search.value = 'zzzzzz'; search.dispatchEvent(new w.Event('input'));
+    await new Promise(resolve => setTimeout(resolve, 160));
+    assert.ok(!d.getElementById('empty').hidden);
+    assert.ok(d.getElementById('effects-list').hidden);
+    assert.equal(d.getElementById('empty').querySelector('p'), null);
+    d.getElementById('clear-search').click();
+    assert.equal(search.value, ''); assert.equal(d.activeElement, search);
+    assert.ok(d.getElementById('empty').hidden); assert.ok(!d.getElementById('effects-list').hidden);
+    assert.equal(d.querySelectorAll('.effect-item').length, data.effects.filter(e=>e.kind==='action').length);
+    // 在延迟搜索尚未绘制时清空，旧搜索不能重新覆盖目录。
+    search.value = name('fade-rise'); search.dispatchEvent(new w.Event('input'));
+    clear.click();
+    await new Promise(resolve => setTimeout(resolve, 160));
+    assert.equal(search.value, ''); assert.ok(clear.hidden);
+    assert.equal(d.activeElement, search);
+    assert.equal(d.querySelectorAll('.effect-item').length, data.effects.filter(e=>e.kind==='action').length);
+  } finally { env.close(); }
+});
+
+test('搜索框 Esc 立即清空筛选，取消旧搜索且不关闭有搜索内容的目录抽屉', async () => {
+  const env = await environment(true);
+  try {
+    const {w,directoryMedia} = env, d = w.document;
+    const search = d.getElementById('search'), filter = d.getElementById('category-filter');
+    const escape = () => search.dispatchEvent(new w.KeyboardEvent('keydown', {key:'Escape',bubbles:true,cancelable:true}));
+    filter.value = 'continuous'; filter.dispatchEvent(new w.Event('change'));
+    search.focus(); escape();
+    assert.equal(filter.value, 'all'); assert.equal(d.activeElement, search);
+    directoryMedia.matches = true; directoryMedia.dispatchEvent(new w.Event('change'));
+    d.getElementById('toggle-directory').click();
+    search.value = 'zzzzzz'; search.dispatchEvent(new w.Event('input'));
+    escape();
+    assert.equal(search.value, ''); assert.ok(d.getElementById('search-clear').hidden);
+    assert.ok(!d.getElementById('directory-panel').hidden); assert.equal(d.activeElement, search);
+    await new Promise(resolve => setTimeout(resolve, 160));
+    assert.equal(d.querySelectorAll('.effect-item').length, data.effects.filter(e=>e.kind==='action').length);
+    escape(); assert.ok(d.getElementById('directory-panel').hidden);
+  } finally { env.close(); }
+});
+
+test('三栏目录筛选与节奏输出一致，相关弹窗不替换主预览且关闭后回收', async () => {
   const env = await environment(true);
   try {
     const {w,listeners} = env, d = w.document;
@@ -13,14 +68,14 @@ test('三栏目录筛选、常驻预览和节奏输出一致，只持有一个�
     assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(listeners.size,3);
     assert.equal(w.MotionRuntime.runningCount,0); assert.notEqual(d.getElementById('scrub').value,'0');
     const category = d.getElementById('category-filter'); category.value = 'continuous'; category.dispatchEvent(new w.Event('change'));
-    assert.equal(d.querySelectorAll('.effect-item').length,6);
-    assert.equal(d.getElementById('preview-title').textContent,'渐入上移');
-    click('[data-kind="composition"]'); assert.equal(d.querySelectorAll('.effect-item').length,7);
+    assert.equal(d.querySelectorAll('.effect-item').length,w.MotionRegistry.effects.filter(e=>e.category==='continuous').length);
+    assert.equal(d.getElementById('preview-title').textContent,name('fade-rise'));
+    click('[data-kind="composition"]'); assert.equal(d.querySelectorAll('.effect-item').length,data.effects.filter(e=>e.kind==='composition').length);
     const search = d.getElementById('search'); search.value = '两排反向持续滚动，不要轮播，不要停顿'; search.dispatchEvent(new w.Event('input'));
     await new Promise(resolve => setTimeout(resolve, 160));
     assert.equal(d.querySelectorAll('.effect-item').length,1);
     click('[data-effect="dual-scroll"]');
-    assert.equal(d.getElementById('preview-title').textContent,'双排反向持续滚动');
+    assert.equal(d.getElementById('preview-title').textContent,name('dual-scroll'));
     assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(w.MotionRuntime.runningCount,0);
     assert.ok(d.getElementById('ease-label').hidden); assert.ok(!d.getElementById('fixed-ease').hidden);
     click('#toggle-play'); assert.equal(w.MotionRuntime.runningCount,1);
@@ -47,11 +102,23 @@ test('三栏目录筛选、常驻预览和节奏输出一致，只持有一个�
     const speed = d.getElementById('speed'); speed.value = 2; speed.dispatchEvent(new w.Event('input'));
     assert.match(d.getElementById('prompt').textContent,/4\.00 秒/);
     assert.match(d.getElementById('code').textContent,/player\.setSpeed\(2\)/);
-    click('[data-related="seamless-scroll"]');
-    assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(listeners.size,3);
-    assert.equal(d.getElementById('preview-title').textContent,'无缝滚动');
-    assert.equal(d.querySelector('[aria-current="true"]').dataset.effect,'seamless-scroll');
-    const duration = w.MotionRegistry.effects.find(effect => effect.id === 'seamless-scroll').duration_ms;
+    const main=d.querySelector('#preview .motion-stage'),markup=main.innerHTML,hash=w.location.hash,mainTime=scrub.value;
+    click('#related [data-related-layer="upper"]');
+    assert.equal(d.getElementById('related-dialog').open,true);
+    assert.equal(w.MotionRuntime.instanceCount,2);assert.equal(listeners.size,4);
+    assert.equal(d.getElementById('preview-title').textContent,name('dual-scroll'));
+    assert.equal(d.querySelector('[aria-current="true"]').dataset.effect,'dual-scroll');
+    assert.equal(d.querySelector('#related-preview .motion-stage').dataset.effect,'dual-scroll');
+    assert.equal(d.querySelector('#related-preview [data-layer="upper"]').hasAttribute('data-composition-hidden'),false);
+    assert.equal(d.querySelector('#related-preview [data-layer="lower"]').hasAttribute('data-composition-hidden'),true);
+    const relatedScrub=d.getElementById('related-scrub');relatedScrub.value=500;relatedScrub.dispatchEvent(new w.Event('input'));
+    assert.equal(d.getElementById('related-time').textContent,'4.0 / 8.0 秒');
+    assert.equal(w.location.hash,hash);assert.equal(d.querySelector('#preview .motion-stage'),main);
+    assert.equal(main.innerHTML,markup);assert.equal(scrub.value,mainTime);
+    click('#related-close');
+    assert.equal(d.getElementById('related-dialog').open,false);
+    assert.equal(w.MotionRuntime.instanceCount,1);assert.equal(listeners.size,3);
+    const duration = w.MotionRegistry.effects.find(effect => effect.id === 'dual-scroll').duration_ms;
     const elapsed = Number(d.getElementById('time-current').textContent);
     const left = Number(d.getElementById('time-total').textContent);
     assert.equal((elapsed + left).toFixed(1), (duration / 1000).toFixed(1));
@@ -87,7 +154,7 @@ test('本地动作不误标第三方来源，明确的代码改编和样式参�
     const {w} = env, d = w.document, source = d.getElementById('preview-source');
     const block = source.closest('.preview-source');
     let visited = 0;
-    for (const kind of ['action','composition']) {
+    for (const kind of ['action','illustration','composition']) {
       d.querySelector(`[data-kind="${kind}"]`).click();
       for (const card of d.querySelectorAll('#effects-list [data-effect]')) {
         card.click();
@@ -132,12 +199,26 @@ test('本地动作不误标第三方来源，明确的代码改编和样式参�
     assert.ok(block.hidden);
   } finally { env.close(); }
 });
-test('右栏两个输出的小按钮可直接复制，复制失败时选中当前内容', async () => {
+test('右栏名称与两个输出共用复制按钮，复制失败时选中对应内容', async () => {
   const env = await environment(true);
   try {
     const {w} = env, d = w.document;
     let copied = '';
     d.execCommand = command => {assert.equal(command,'copy');copied=d.activeElement.value;return true;};
+    const titleCopy = d.getElementById('copy-title');
+    assert.equal(titleCopy.closest('.ins-intro-head').querySelector('h1').id,'preview-title');
+    assert.equal(titleCopy.className,d.getElementById('copy-prompt').className);
+    assert.equal(titleCopy.querySelector('.copy-morph').innerHTML,d.getElementById('copy-prompt').querySelector('.copy-morph').innerHTML);
+    assert.equal(titleCopy.getAttribute('aria-label'),'复制动效名称');
+    titleCopy.click(); await settle();
+    assert.equal(copied,name('fade-rise'));
+    assert.equal(titleCopy.querySelector('[data-icon="check"]').style.opacity,'1');
+    d.querySelector('[data-effect="mask-reveal"]').click();
+    assert.equal(titleCopy.querySelector('[data-icon="check"]').style.opacity,'0');
+    titleCopy.click(); await settle();
+    assert.equal(copied,d.getElementById('preview-title').textContent);
+    assert.notEqual(copied,name('fade-rise'));
+    d.querySelector('[data-effect="fade-rise"]').click();
     d.getElementById('copy-prompt').click(); await settle();
     assert.match(copied,/请实现以下动效/); assert.doesNotMatch(copied,/来源与许可：/); assert.match(copied,/需要保留：/);
     d.getElementById('tab-code').click();
@@ -146,8 +227,19 @@ test('右栏两个输出的小按钮可直接复制，复制失败时选中当�
     d.getElementById('copy-code').click(); await settle();
     assert.match(copied,/<!doctype html>/); assert.match(copied,/catalog\/effects\/entrance\.js/);
     assert.equal(d.querySelectorAll('textarea').length,0); assert.equal(d.getElementById('copy-status-code').textContent,'');
+    Object.defineProperty(w.navigator,'clipboard',{configurable:true,value:{writeText:async text=>{copied=text;}}});
+    titleCopy.click(); await settle();
+    assert.equal(copied,name('fade-rise'));
+    assert.ok(!d.getElementById('panel-code').hidden);
+    delete w.navigator.clipboard;
     d.execCommand = () => false;
+    titleCopy.click(); await settle();
+    assert.equal(w.getSelection().toString(),name('fade-rise'));
+    assert.match(d.getElementById('copy-status-title').textContent,/系统复制快捷键/);
+    assert.ok(!d.getElementById('panel-code').hidden); assert.ok(d.getElementById('panel-prompt').hidden);
+    assert.equal(d.querySelectorAll('textarea').length,0);
     d.getElementById('tab-prompt').click(); d.getElementById('copy-prompt').click(); await settle();
+    assert.equal(d.getElementById('copy-status-title').textContent,'');
     assert.match(w.getSelection().toString(),/动效说明/);
     assert.match(d.getElementById('copy-status-prompt').textContent,/系统复制快捷键/);
   } finally {env.close();}
@@ -225,7 +317,7 @@ test('悬停菜单能接住点击和键盘，浮层选中后回到原处，先�
     assert.ok(!menu.hidden); assert.equal(d.activeElement.getAttribute('role'),'option');
     menu.querySelector('[data-value="continuous"]').click();
     assert.ok(menu.hidden); assert.equal(menu.parentElement,root);
-    assert.equal(d.querySelectorAll('.effect-item').length,6);
+    assert.equal(d.querySelectorAll('.effect-item').length,w.MotionRegistry.effects.filter(e=>e.category==='continuous').length);
     const search = d.getElementById('search');
     search.value = '滚动'; search.dispatchEvent(new w.Event('input'));
     root.dispatchEvent(enter);

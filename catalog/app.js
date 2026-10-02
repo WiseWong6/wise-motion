@@ -1,9 +1,28 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
 (function () {
   'use strict';
-  const data = {...MotionRegistry, categories:[...MotionRegistry.categories,...MotionHistory.categories], effects:[...MotionRegistry.effects,...MotionHistory.recipes]}, $ = id => document.getElementById(id);
+  const data = {...MotionRegistry, categories:[...MotionRegistry.categories], effects:[...MotionRegistry.effects]}, $ = id => document.getElementById(id);
+  let historyReady = false, historyLoad = null, kindToken = 0;
+  function adoptHistory() {
+    if (historyReady || !globalThis.MotionHistory) return;
+    data.categories.push(...MotionHistory.categories);
+    data.effects.push(...MotionHistory.recipes);
+    historyReady = true;
+  }
+  adoptHistory();
+  function loadHistory() {
+    if (historyReady) return Promise.resolve();
+    historyLoad ||= new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'history-data.js';
+      script.onload = () => { adoptHistory(); resolve(); };
+      script.onerror = () => { historyLoad = null; reject(new Error('历史配方无法加载')); };
+      document.head.append(script);
+    });
+    return historyLoad;
+  }
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const labels = {prompt:'提示词', code:'代码'};
+  const labels = {title:'动效名称', prompt:'提示词', code:'代码'};
   const categoryName = id => data.categories.find(x => x.id === id)?.name || '';
 
   /* 内联图标参考 Lucide 1.8.0，部分继承 Feather；路径分别保留 ISC / MIT 来源，完整声明见 vendor/lucide/LICENSE。
@@ -38,6 +57,7 @@
   let kind = 'action', category = 'all', tab = 'prompt', selected = null, controller = null;
   let debounce = null, resumeAfterVisible = false, lastPlayback = null, lastPaused = null;
   let navigationIds = [];
+  const relatedPreview=MotionRelated.create({data,icon,reducedMotion,getMain:()=>controller,getSettings:settings});
   const collapsed = new Set();
   const icons = {
     'fade-rise':'arrow-up', 'mask-reveal':'viewfinder-circle', 'scale-in':'arrows-pointing-out', 'stagger-in':'queue-list',
@@ -91,6 +111,7 @@
       nodes[0].goalOpacity = on ? 0 : 1;
       nodes[1].goalScale = on ? 1 : .5;
       nodes[1].goalOpacity = on ? 1 : 0;
+      if (nodes.every(node => node.scale === node.goalScale && node.opacity === node.goalOpacity && node.vScale === 0 && node.vOpacity === 0)) return;
       if (reducedMotion.matches) {
         cancelAnimationFrame(raf);
         raf = 0;
@@ -121,11 +142,12 @@
   const easing = MotionDropdown($('ease'), $('ease-options'));
 
   function renderCategories() {
-    const cats = [{id:'all', name:{action:'全部动作',composition:'全部组合',recipe:'全部历史配方'}[kind]}, ...data.categories.filter(x => data.effects.some(e=>e.kind===kind&&e.category===x.id))];
+    const cats = [{id:'all', name:{action:'全部动作',illustration:'全部插画',composition:'全部组合',recipe:'全部历史配方'}[kind]}, ...data.categories.filter(x => data.effects.some(e=>e.kind===kind&&e.category===x.id))];
     categories.setOptions(cats.map(c => ({value:c.id,label:c.name})), category);
     document.querySelectorAll('[data-kind]').forEach(button => {
       const active = button.dataset.kind === kind;
       button.setAttribute('aria-pressed', String(active));
+      if (button.dataset.kind === 'recipe' && !historyReady) return;
       button.querySelector('.pill-count').textContent=data.effects.filter(e=>e.kind===button.dataset.kind).length;
     });
   }
@@ -142,14 +164,23 @@
   }
 
   function renderList() {
-    const query = $('search').value.trim(), matches = query ? MotionMatch.rank(data, query) : [];
+    $('search-clear').hidden = !$('search').value;
+    const query = $('search').value.trim();
+    const pool = query ? data.effects.filter(e => e.kind === kind) : null;
+    const matches = pool ? MotionMatch.rank({effects: pool}, query) : [];
     const candidates = query ? matches.map(m => m.effect) : data.effects;
     const effects = candidates.filter(e => e.kind === kind && (category === 'all' || e.category === category));
     $('empty').hidden = !!effects.length;
     const list = $('effects-list');
+    list.hidden = !effects.length;
     const focusedId = list.contains(document.activeElement) ? document.activeElement.dataset.effect : null;
-    list.querySelectorAll('.thumb').forEach(host => MotionThumbs.release(host));
+    const retained = new Map([...list.querySelectorAll('.effect-item')].map(button => [button.dataset.effect, button]));
+    const wanted = new Set(effects.map(effect => effect.id));
+    for (const [id, button] of retained) {
+      if (!wanted.has(id)) { MotionThumbs.release(button.querySelector('.thumb')); retained.delete(id); }
+    }
     list.replaceChildren();
+    const fragment = document.createDocumentFragment();
     for (const group of data.categories) {
       const items = effects.filter(e => e.category === group.id);
       if (!items.length) continue;
@@ -160,10 +191,11 @@
         `<button class="group-head" data-group="${group.id}" aria-expanded="${open}">${mark('chevron-right')}<span class="group-name">${MotionKit.escape(group.name)}</span><span class="pill-count">${items.length}</span></button>`;
       const grid = document.createElement('div');
       grid.className = 'effect-grid';
-      for (const effect of items) grid.append(card(effect));
+      for (const effect of items) grid.append(retained.get(effect.id) || card(effect));
       section.append(grid);
-      list.append(section);
+      fragment.append(section);
     }
+    list.append(fragment);
     // 和用户看到的分组、搜索排序一致；收起分组不改变浏览顺序。
     navigationIds = [...list.querySelectorAll('.effect-item')].map(button => button.dataset.effect);
     syncNavigation();
@@ -216,7 +248,7 @@
   $('previous-effect').addEventListener('click', () => navigateEffect(-1));
   $('next-effect').addEventListener('click', () => navigateEffect(1));
 
-  function settings() { return {speed:controller?.speed || 1, ease:$('ease').value,caseId:selected?.selected_entry?.id,
+  function settings() { return {speed:controller?.speed || 1, ease:$('ease').value,caseId:selected?.selected_entry?.id,compositionView:MotionComposition.view,
     ...(selected?.id==='dither-lab-book' ? {bookMode:controller?.mode,bookSettings:controller?.paperSettings,bookIndex:controller?.pageIndex} : {})}; }
 
   function updateOutputs() {
@@ -235,13 +267,19 @@
   }
 
   function syncPlayer(state) {
+    MotionComposition.sync(state.time);
     $('scrub').value = state.time / state.duration * 1000;
     fillTrack($('scrub'));
     const elapsed = state.time / 1000;
     const remaining = Math.max(0, state.duration - state.time) / 1000;
-    $('time').textContent = `已播放 ${elapsed.toFixed(1)} 秒，剩余 ${remaining.toFixed(1)} 秒`;
-    $('time-current').textContent = elapsed.toFixed(1);
-    $('time-total').textContent = remaining.toFixed(1);
+    const elapsedText = elapsed.toFixed(1), remainingText = remaining.toFixed(1);
+    const timeText = `已播放 ${elapsedText} 秒，剩余 ${remainingText} 秒`;
+    if ($('time').textContent !== timeText) {
+      $('time').textContent = timeText;
+      $('time-current').textContent = elapsedText;
+      $('time-total').textContent = remainingText;
+      $('scrub').setAttribute('aria-valuetext', `${elapsedText} 秒，剩余 ${remainingText} 秒`);
+    }
     if (lastPaused !== state.paused) {
       const playing = !state.paused;
       $('toggle-play').innerHTML = icon(playing ? 'pause' : 'play');
@@ -250,7 +288,6 @@
       $('toggle-play').title = playing ? '暂停' : '播放';
       lastPaused = state.paused;
     }
-    $('scrub').setAttribute('aria-valuetext', `${elapsed.toFixed(1)} 秒，剩余 ${remaining.toFixed(1)} 秒`);
   }
 
   function renderFacts(effect) {
@@ -333,6 +370,7 @@
   function selectEffect(id, preserved = null, caseId = null) {
     let effect = data.effects.find(e => e.id === id);
     if (!effect) return;
+    relatedPreview.close({resume:false,focus:false});
     if(effect.kind==='recipe'){
       const entry=effect.entries.find(e=>e.id===(caseId||preserved?.caseId))||effect.entries[0];
       const duration=Math.round(entry.preview.duration*1000);
@@ -343,6 +381,7 @@
     controller?.destroy();
     selected = effect;
     resumeAfterVisible = false;
+    $('copy-title').resetCopyIcon?.();
     $('preview-title').textContent = effect.name;
     $('preview-summary').textContent = effect.summary;
     renderSource(effect);
@@ -353,12 +392,15 @@
     $('ease-label').hidden = !effect.parameters.ease;
     $('fixed-ease').hidden = !!effect.parameters.ease;
     $('fixed-ease').textContent=effect.tempo_note;
+    const parts=MotionFactories[effect.id]?.breakdown||[];
     const related = effect.kind==='recipe' ? effect.actions : effect.actions.length ? effect.actions : data.effects.filter(e => e.kind!=='recipe'&&e.actions.includes(effect.id)).map(e => e.id);
-    $('related').innerHTML = related.length
-      ? `<p class="field-label" style="margin-top:18px">${effect.kind==='recipe' ? '提炼的组成动作' : effect.actions.length ? '所用动作' : '使用这个动作的组合'}</p><div class="related-chips">${related.map(rid => `<button class="btn" data-related="${rid}">${MotionKit.escape(data.effects.find(e => e.id === rid).name)}</button>`).join('')}</div>`
+    $('related').innerHTML = parts.length
+      ? `<p class="field-label" style="margin-top:18px">相关动作</p><div class="related-chips">${parts.map(layer=>`<button type="button" class="btn" data-related-layer="${MotionKit.escape(layer.id)}" aria-haspopup="dialog">${MotionKit.escape(layer.name)}</button>`).join('')}</div>`
+      : related.length
+      ? `<p class="field-label" style="margin-top:18px">${effect.kind==='recipe' ? '提炼的组成动作' : MotionFactories[effect.id]?.breakdown ? '可独立复用的组成动作' : effect.actions.length ? '所用动作' : '使用这个动作的组合'}</p><div class="related-chips">${related.map(rid => `<button type="button" class="btn" aria-haspopup="dialog" data-related="${rid}">${MotionKit.escape(data.effects.find(e => e.id === rid).name)}</button>`).join('')}</div>`
       : '';
     const historyRelated=effect.kind==='recipe'?effect.related_history.filter(rid=>data.effects.some(e=>e.id===rid)):[];
-    if(historyRelated.length)$('related').innerHTML+=`<p class="field-label" style="margin-top:18px">关联原作配方</p><div class="related-chips">${historyRelated.map(rid=>`<button class="btn" data-related="${rid}">${MotionKit.escape(data.effects.find(e=>e.id===rid).name)}</button>`).join('')}</div>`;
+    if(historyRelated.length)$('related').innerHTML+=`<p class="field-label" style="margin-top:18px">关联原作配方</p><div class="related-chips">${historyRelated.map(rid=>`<button type="button" class="btn" aria-haspopup="dialog" data-related="${rid}">${MotionKit.escape(data.effects.find(e=>e.id===rid).name)}</button>`).join('')}</div>`;
     renderHistoryDetails(effect);
     renderFacts(effect);
     controller = effect.id==='dither-lab-book'
@@ -367,6 +409,7 @@
       : effect.kind==='recipe' ? MotionHistoryRuntime.create($('preview'),effect,{onUpdate:syncPlayer,caseId:effect.selected_entry.id}) : MotionRuntime.create($('preview'), effect, {onUpdate:syncPlayer});
     controller.setSpeed(Number($('speed').value));
     controller.setEase($('ease').value);
+    MotionComposition.select(effect,controller,preserved?.compositionView);
     if (preserved) {
       controller.seek(preserved.time);
       if (!preserved.paused && !reducedMotion.matches) controller.play();
@@ -417,7 +460,8 @@
   }
 
   async function copyOutput(copiedTab) {
-    const button = $('copy-' + copiedTab), text = $(copiedTab).textContent, status = $('copy-status-' + copiedTab);
+    const content = $(copiedTab === 'title' ? 'preview-title' : copiedTab);
+    const button = $('copy-' + copiedTab), text = content.textContent, status = $('copy-status-' + copiedTab);
     let ok = false;
     try { if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(text); ok = true; } } catch (_) { /* 本地文件使用复制回退。 */ }
     if (!ok) {
@@ -436,9 +480,9 @@
       status.textContent = '';
       button.showCopied?.();
     } else {
-      setTab(copiedTab);
+      if (copiedTab !== 'title') setTab(copiedTab);
       const range = document.createRange();
-      range.selectNodeContents($(copiedTab));
+      range.selectNodeContents(content);
       const selection = window.getSelection();
       selection.removeAllRanges();
       selection.addRange(range);
@@ -531,13 +575,19 @@
 
   reducedMotion.addEventListener?.('change', updateMotionPreference);
 
+  function showKind(next) {
+    kind = next;
+    category = 'all';
+    const token = ++kindToken;
+    document.querySelectorAll('[data-kind]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.kind === kind)));
+    const paint = () => { if (token !== kindToken) return; renderCategories(); renderList(); };
+    if (kind === 'recipe' && !historyReady) loadHistory().then(paint).catch(() => { if (token === kindToken) renderList(); });
+    else paint();
+  }
   document.querySelector('.kind-tabs').addEventListener('click', event => {
     const button = event.target.closest('[data-kind]');
     if (!button) return;
-    kind = button.dataset.kind;
-    category = 'all';
-    renderCategories();
-    renderList();
+    showKind(button.dataset.kind);
   });
 
   document.querySelectorAll('.ins-head').forEach(head => head.addEventListener('click', () => {
@@ -546,31 +596,45 @@
 
   $('category-filter').addEventListener('change', () => { category = $('category-filter').value; renderList(); });
   $('related').addEventListener('click', event => {
+    const layerButton=event.target.closest('[data-related-layer]');
+    if(layerButton){
+      const layer=MotionFactories[selected?.id]?.breakdown?.find(l=>l.id===layerButton.dataset.relatedLayer);
+      if(layer)relatedPreview.open(selected,layer,layerButton);
+      return;
+    }
     const button = event.target.closest('[data-related]');
     if (!button) return;
-    kind = data.effects.find(e => e.id === button.dataset.related).kind;
-    category = 'all';
-    $('search').value = '';
+    const effect=data.effects.find(e=>e.id===button.dataset.related);
+    if(effect)relatedPreview.open(effect,null,button);
+  });
+  function clearSearch() {
     clearTimeout(debounce);
     debounce = null;
+    $('search').value = '';
+    category = 'all';
     renderCategories();
     renderList();
-    selectEffect(button.dataset.related);
-    $('preview-title').focus();
-  });
+  }
   $('search').addEventListener('input', () => {
-    if ($('search').value.trim()) categories.close();
+    $('search-clear').hidden = !$('search').value;
+    if ($('search').value.trim()) {
+      categories.close();
+      category = 'all';
+      categories.setValue('all');
+    }
     clearTimeout(debounce);
     debounce = setTimeout(() => { debounce = null; renderList(); }, 120);
   });
-  $('clear-search').addEventListener('click', () => {
-    clearTimeout(debounce);
-    debounce = null;
-    $('search').value = '';
-    category = 'all';
-    renderCategories();
-    renderList();
+  $('search').addEventListener('keydown', event => {
+    if (event.key !== 'Escape' || event.defaultPrevented || event.isComposing) return;
+    if (!$('search').value && category === 'all' && $('category-filter').getAttribute('aria-expanded') !== 'true') return;
+    event.preventDefault();
+    clearSearch();
   });
+  ['search-clear','clear-search'].forEach(id => $(id).addEventListener('click', () => {
+    clearSearch();
+    $('search').focus();
+  }));
   $('toggle-play').addEventListener('click', () => { if (controller?.paused) controller.play(); else controller?.pause(); });
   $('restart').addEventListener('click', () => controller?.restart());
   const stage = document.querySelector('.stage');
@@ -633,12 +697,13 @@
     if (next) { event.preventDefault(); setTab(next, true); }
   });
 
-  document.querySelector('.inspector-content').addEventListener('click', event => {
+  document.querySelector('.inspector').addEventListener('click', event => {
     const button = event.target.closest('[data-copy]');
     if (button) copyOutput(button.dataset.copy);
   });
 
   document.addEventListener('keydown', event => {
+    if(relatedPreview.active)return;
     if (['ArrowLeft','ArrowRight'].includes(event.key) && !event.defaultPrevented && !event.isComposing &&
       !event.metaKey && !event.ctrlKey && !event.altKey && !event.shiftKey &&
       !event.target.closest('input,textarea,select,pre,[contenteditable]:not([contenteditable="false"]),[role="tablist"],[role="listbox"],[role="menu"]') &&
@@ -668,6 +733,7 @@
     else if (resumeAfterVisible) { controller?.play(); resumeAfterVisible = false; }
   });
   window.addEventListener('pagehide', () => {
+    relatedPreview.close({resume:false,focus:false});
     clearTimeout(debounce);
     if (controller) lastPlayback = {...settings(), time:controller.currentTime, paused:controller.paused};
     resumeAfterVisible = false;
@@ -883,7 +949,15 @@
   setDirectory(!directoryMedia.matches);
   renderCategories();
   renderList();
-  const requestedEffect=location.hash.slice(1);
-  selectEffect(data.effects.some(effect=>effect.id===requestedEffect) ? requestedEffect : 'fade-rise');
+  const requestedId=location.hash.slice(1);
+  const requestedEffect=data.redirects?.[requestedId]||requestedId;
+  function selectInitial(){
+    const effect=data.effects.find(effect=>effect.id===requestedEffect)||data.effects.find(effect=>effect.id==='fade-rise');
+    if(kind!==effect.kind){kind=effect.kind;category='all';renderCategories();renderList();}
+    selectEffect(effect.id);
+  }
+  if (requestedEffect && !data.effects.some(effect => effect.id === requestedEffect)) {
+    loadHistory().then(selectInitial).catch(selectInitial);
+  } else selectInitial();
   updateMotionPreference();
 })();

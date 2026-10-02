@@ -10,19 +10,39 @@ import {history} from './history.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('catalog/registry.json'));
-assert.equal(data.effects.length, 85);
-assert.equal(data.effects.filter(x => x.kind === 'action').length, 78);
-assert.equal(data.effects.filter(x => x.kind === 'composition').length, 7);
+assert.equal(data.effects.length, 198);
+assert.equal(data.effects.filter(x => x.kind === 'action').length, 154);
+assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 27);
+assert.equal(data.effects.filter(x => x.kind === 'composition').length, 17);
 assert.equal(new Set(data.effects.map(x => x.id)).size, data.effects.length);
+for(const [from,to] of Object.entries(data.redirects||{})){
+  assert.ok(!data.effects.some(e=>e.id===from),'旧书签不应覆盖现有条目');
+  assert.ok(data.effects.some(e=>e.id===to),'旧书签对应动作缺失：'+from);
+}
 assert.equal(data.license, 'AGPL-3.0-only');
 const files = new Set();
 for (const e of data.effects) {
   for (const key of ['id','name','kind','category','summary','purpose','objects','phases','aliases','behaviors','retain','avoid','duration_ms','default_ease','parameters','source','actions','trigger','analogy','assumptions','tempo_note']) assert.ok(e[key], e.id + ' 缺少 ' + key);
   assert.ok(data.categories.some(c => c.id === e.category));
-  assert.ok(['action','composition'].includes(e.kind));
+  assert.ok(['action','illustration','composition'].includes(e.kind));
   assert.equal(e.kind === 'composition', e.category === 'compositions');
+  assert.equal(e.kind === 'illustration', e.category.startsWith('illustration-'));
   assert.equal(e.phases.length, 3);
   assert.ok(e.duration_ms > 0 && e.preview_ms >= 0 && e.preview_ms <= e.duration_ms);
+  if (e.timing) {
+    const t=e.timing;
+    assert.ok(Object.values(t).every(Number.isFinite),e.id+' 的节奏有无效时间');
+    assert.ok(t.source_duration_ms>0&&t.source_preview_ms>=0&&t.source_preview_ms<=t.source_duration_ms);
+    assert.ok(t.source_start_ms>=0&&t.source_start_ms<t.source_end_ms&&t.source_end_ms<=t.source_duration_ms);
+    assert.ok(t.start_ms>=0&&t.start_ms<t.end_ms&&t.end_ms<=e.duration_ms);
+    if (e.loop) {
+      assert.equal(t.start_ms,0);assert.equal(t.end_ms,e.duration_ms);
+      assert.equal(t.source_start_ms,0);assert.equal(t.source_end_ms,t.source_duration_ms);
+    } else {
+      assert.equal(t.start_ms,150);assert.equal(e.duration_ms-t.end_ms,450);
+      assert.ok([600,1200,1800,2400,3600].includes(t.end_ms-t.start_ms));
+    }
+  }
   assert.equal(typeof e.loop, 'boolean');
   assert.equal(e.source.factory, e.id);
   assert.equal(e.source.origin, 'original');
@@ -33,14 +53,25 @@ for (const e of data.effects) {
   assert.ok((await stat(path.join(root, e.source.path))).isFile());
   assert.ok(e.parameters.speed.min <= e.parameters.speed.default && e.parameters.speed.default <= e.parameters.speed.max);
   if (e.parameters.ease) assert.ok(e.parameters.ease.options.includes(e.default_ease));
-  if (e.kind === 'action') assert.equal(e.actions.length, 0);
-  else { assert.ok(e.actions.length); for (const id of e.actions) assert.ok(data.effects.some(x => x.id === id && x.kind === 'action'), e.id + ' 的关联动作无效：' + id); }
+  if (e.kind !== 'composition') assert.equal(e.actions.length, 0);
+  else { for (const id of e.actions) assert.ok(data.effects.some(x => x.id === id && ['action','illustration'].includes(x.kind)), e.id + ' 的关联参考无效：' + id); }
   files.add(e.source.path);
 }
 const factories = {}; const context = vm.createContext({MotionFactories: factories});
 for (const file of files) vm.runInContext(await read(file), context, {filename:file});
 assert.deepEqual(Object.keys(factories).sort(), data.effects.map(x => x.id).sort());
 assert.ok(Object.values(factories).every(x => typeof x === 'function'));
+for (const effect of data.effects.filter(e=>e.kind==='composition')) {
+  const layers=factories[effect.id].breakdown;
+  assert.ok(layers?.length,effect.id+' 缺少真实拆解');
+  assert.equal(new Set(layers.map(x=>x.id)).size,layers.length);
+  for(const layer of layers){
+    assert.ok(layer.id&&layer.name&&layer.detail&&layer.time,effect.id+' 拆解信息不完整');
+    assert.ok(layer.start>=0&&layer.end>layer.start&&layer.end<=effect.duration_ms,effect.id+'/'+layer.id+' 时段无效');
+    for(const action of layer.actions||[])assert.ok(effect.actions.includes(action),effect.id+' 存在未登记关联');
+  }
+}
+
 const source = JSON.parse(await read('vendor/animejs/SOURCE.json'));
 assert.equal(source.version, '4.5.0'); assert.equal(source.license, 'MIT'); assert.equal(source.modified, false);
 for (const [name, expected] of Object.entries(source.files)) {
@@ -72,12 +103,12 @@ for (const [, resource] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
   assert.ok((await stat(path.resolve(root, 'catalog', resource))).isFile(), '缺少目录资源：' + resource);
 }
 const historical=await history(data);
-assert.equal(historical.counts.reviewed,292);assert.equal(historical.counts.recipes,277);
-assert.equal(historical.counts.entries,298);assert.equal(historical.counts.document,53);
-assert.equal(historical.excluded.length,15);
-assert.equal(new Set(historical.recipes.map(x=>x.id)).size,277);
+assert.equal(historical.counts.reviewed,311);assert.equal(historical.counts.recipes,130);
+assert.equal(historical.counts.entries,140);assert.equal(historical.counts.document,4);
+assert.equal(historical.excluded.length,181);
+assert.equal(new Set(historical.recipes.map(x=>x.id)).size,130);
 assert.ok(historical.recipes.every(r=>r.entries.length&&r.source_clock&&r.source_parameters&&r.review.preserve.length));
-const ownFiles = ['catalog/runtime.js','catalog/history-runtime.js','catalog/history.css','catalog/export.js','catalog/dropdown.js','catalog/matching.js','catalog/app.js','catalog/app.css','catalog/scenes.css','catalog/book-controls.js','catalog/book-controls.css', ...files];
+const ownFiles = ['catalog/runtime.js','catalog/history-runtime.js','catalog/history.css','catalog/export.js','catalog/dropdown.js','catalog/matching.js','catalog/app.js','catalog/app.css','catalog/scenes.css','catalog/book-controls.js','catalog/book-controls.css','catalog/composition-controls.js','catalog/related-preview.js', ...files];
 for (const file of ownFiles) {
   const content = await read(file);
   assert.ok(!/\bfetch\s*\(|\bXMLHttpRequest\b|\bWebSocket\b|\bEventSource\b|\bimport\s*\(|@import\s|url\(\s*["']?(?:https?:|\/\/)/.test(content), '运行时有联网或模块依赖：' + file);
@@ -93,4 +124,4 @@ const build = spawnSync(process.execPath, [path.join(root, 'scripts/build.mjs'),
 assert.equal(build.status, 0, build.stderr);
 const markdown = ['README.md','SKILL.md','NOTICE.md','references/index.md','references/history.md','references/method.md','references/sources.md','references/runtime-interface.md','references/apple-hig.md','tests/manual.md', ...data.effects.map(e => 'references/effects/' + e.id + '.md')];
 for (const file of markdown) for (const [, link] of (await read(file)).matchAll(/\]\(([^)]+)\)/g)) if (!/^(https?:|#)/.test(link)) assert.ok((await stat(path.resolve(root, path.dirname(file), link))).isFile(), file + ' 的链接缺失：' + link);
-console.log('检查通过：78 个动作、7 个组合、277 条历史配方与 298 个案例；定义、来源路径、生成文件、许可和脚本语法完整。');
+console.log('检查通过：154 个动作、27 个插画单图、17 个组合、130 条历史配方与 140 个案例；定义、来源路径、生成文件、许可和脚本语法完整。');

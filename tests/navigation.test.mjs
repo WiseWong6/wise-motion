@@ -1,7 +1,45 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {environment} from './helpers.mjs';
+import {environment,data} from './helpers.mjs';
+import {readFile} from 'node:fs/promises';
+import {history} from '../scripts/history.mjs';
+const historyData=await history(data);
+
+test('已提炼的历史书签直接打开对应动作，不额外加载历史库',async()=>{
+  const env=await environment(true,{hash:'#history-reel-core-rings',lazyHistory:true});
+  try{
+    const {w}=env,d=w.document;
+    assert.equal(d.querySelector('#preview .motion-stage').dataset.effect,'core-ring-expand');
+    assert.equal(d.getElementById('preview-title').textContent,data.effects.find(e=>e.id==='core-ring-expand').name);
+    assert.equal(d.querySelector('script[src="history-data.js"]'),null);
+    assert.equal(w.MotionRuntime.instanceCount,1);assert.equal(w.MotionHistoryRuntime.instanceCount,0);
+  }finally{env.close();}
+});
+
+test('历史配方直达链接在延迟加载后切到对应目录，并能按原作搜索',async()=>{
+  const target=historyData.recipes.find(r=>r.entries[0].preview.type==='original-crop');
+  const env=await environment(true,{hash:'#'+target.id,lazyHistory:true});
+  try{
+    const {w}=env,d=w.document;
+    w.HTMLMediaElement.prototype.pause=function(){};
+    w.HTMLMediaElement.prototype.load=function(){};
+    w.HTMLMediaElement.prototype.play=function(){return Promise.resolve();};
+    const script=d.querySelector('script[src="history-data.js"]');assert.ok(script,'打开原片配方时才加载历史数据');
+    w.eval(await readFile(new URL('../catalog/history-data.js',import.meta.url),'utf8'));script.dispatchEvent(new w.Event('load'));
+    await new Promise(resolve=>setTimeout(resolve,0));
+    assert.equal(d.querySelector('[data-kind="recipe"]').getAttribute('aria-pressed'),'true');
+    assert.equal(d.querySelector('.effect-item[aria-current="true"]').dataset.effect,target.id);
+    assert.equal(d.getElementById('preview-title').textContent,target.name);
+    assert.equal(w.MotionRuntime.instanceCount,0);assert.equal(w.MotionHistoryRuntime.instanceCount,1);
+    const search=d.getElementById('search');search.value=target.original_sources[0];search.dispatchEvent(new w.Event('input'));
+    await new Promise(resolve=>setTimeout(resolve,160));
+    assert.equal(d.querySelectorAll('.effect-item').length,w.MotionMatch.rank({effects:w.MotionHistory.recipes},search.value).length);assert.equal(d.getElementById('empty').hidden,true);
+    search.value='zzzz不存在的原作';search.dispatchEvent(new w.Event('input'));
+    await new Promise(resolve=>setTimeout(resolve,160));
+    assert.equal(d.querySelectorAll('.effect-item').length,0);assert.equal(d.getElementById('empty').hidden,false);
+  }finally{env.close();}
+});
 
 test('两侧切换遵循筛选与搜索顺序，首尾循环，切换同步输出并释放旧画面', async () => {
   const env = await environment(true);
@@ -12,10 +50,11 @@ test('两侧切换遵循筛选与搜索顺序，首尾循环，切换同步输�
     const ids = () => [...d.querySelectorAll('.effect-item')].map(card => card.dataset.effect);
     const firstThumb = d.querySelector('.thumb');
     const original = ids();
+    d.querySelector(`[data-effect="${original[0]}"]`).click();
     previous.click(); assert.equal(current(), original.at(-1));
     next.click(); assert.equal(current(), original[0]);
     next.click(); assert.equal(current(), original[1]);
-    assert.match(d.getElementById('prompt').textContent, /遮罩显现/);
+    assert.ok(d.getElementById('prompt').textContent.includes('动效说明：'+w.MotionRegistry.effects.find(effect=>effect.id===current()).name));
     assert.equal(d.querySelector('.thumb'), firstThumb); assert.ok(firstThumb.isConnected);
     env.reveal(); assert.equal(firstThumb.querySelector('.motion-stage').dataset.effect, original[0]);
     const category = d.getElementById('category-filter');

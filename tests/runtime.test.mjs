@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {data, environment} from './helpers.mjs';
+import {data, environment, motionTime} from './helpers.mjs';
 test('全部标准样例在任意定位后均可回到相同画面，资源可全部释放', async () => {
   const env = await environment();
   try {
@@ -51,12 +51,14 @@ test('持续滚动周期接缝、逐项顺序和环境触发按定义执行', as
     player.seek(700); const cards = [...root.querySelectorAll('.mini-card')];
     assert.ok(Number(cards[0].style.opacity) > Number(cards[1].style.opacity));
     assert.ok(Number(cards[1].style.opacity) > Number(cards[2].style.opacity)); player.destroy();
-    player = w.MotionRuntime.create(root, data.effects.find(x => x.id === 'ripple'));
-    player.seek(1200); assert.ok([...root.querySelectorAll('.ripple-ring')].every(x => x.style.opacity === '0'));
-    player.seek(1700); assert.ok([...root.querySelectorAll('.ripple-ring')].some(x => Number(x.style.opacity) > 0)); player.destroy();
-    player = w.MotionRuntime.create(root, data.effects.find(x => x.id === 'environment-chain'));
-    player.seek(6000); assert.ok([...root.querySelectorAll('.ripple-ring')].every(x => x.style.opacity === '0'));
-    player.seek(7400); assert.ok([...root.querySelectorAll('.ripple-ring')].some(x => Number(x.style.opacity) > 0)); player.destroy();
+    const ripple = data.effects.find(x => x.id === 'ripple');
+    player = w.MotionRuntime.create(root, ripple);
+    player.seek(motionTime(ripple,1200)); assert.ok([...root.querySelectorAll('.ripple-ring')].every(x => x.style.opacity === '0'));
+    player.seek(motionTime(ripple,1700)); assert.ok([...root.querySelectorAll('.ripple-ring')].some(x => Number(x.style.opacity) > 0)); player.destroy();
+    const chain = data.effects.find(x => x.id === 'environment-chain');
+    player = w.MotionRuntime.create(root, chain);
+    player.seek(motionTime(chain,6000)); assert.ok([...root.querySelectorAll('.ripple-ring')].every(x => x.style.opacity === '0'));
+    player.seek(motionTime(chain,7400)); assert.ok([...root.querySelectorAll('.ripple-ring')].some(x => Number(x.style.opacity) > 0)); player.destroy();
   } finally { env.close(); }
 });
 test('数字和逐字显现的允许节奏不会反向退回', async () => {
@@ -66,11 +68,11 @@ test('数字和逐字显现的允许节奏不会反向退回', async () => {
     for (const id of ['count-up','type-reveal']) {
       const e = data.effects.find(x => x.id === id);
       const player = w.MotionRuntime.create(root,e);
-      for (const easing of e.parameters.ease.options) {
+      for (const easing of e.parameters.ease?.options || [e.default_ease]) {
         player.setEase(easing); let previous = 0;
         for (let t = 0; t <= e.duration_ms; t += 50) {
           player.seek(t);
-          const value = id === 'count-up' ? Number(root.querySelector('.big-number').textContent) : [...root.querySelectorAll('.headline span')].filter(c => c.style.opacity === '1').length;
+          const value = id === 'count-up' ? Number(root.querySelector('.big-number').textContent) : root.querySelector('.typed-text').textContent.length;
           assert.ok(value >= previous, id + ' 的已显示内容退回了'); previous = value;
         }
       }
@@ -90,4 +92,21 @@ test('真实 Anime.js 计时器可前进和暂停，销毁后不再回调', asyn
     await new Promise(resolve => setTimeout(resolve, 40)); assert.equal(callbacks, count);
     assert.throws(() => {const p = w.MotionRuntime.create(w.document.getElementById('root'),data.effects[0]); try {p.seek(NaN);} finally {p.destroy();}}, /有限数字/);
   } finally { env.close(); }
+});
+
+test('累计定位保持循环轮次，普通定位和重播归零，单次效果仍限制在有效区间',async()=>{
+  const env=await environment();
+  try{
+    const {w}=env,root=w.document.getElementById('root');
+    const loop=w.MotionRuntime.create(root,data.effects.find(e=>e.id==='dual-scroll'));
+    loop.seekElapsed(8300);assert.equal(loop.currentTime,300);assert.equal(loop.elapsedTime,8300);
+    assert.match(root.querySelector('.strip-row').style.transform,/translate3d\(0px/);
+    assert.throws(()=>loop.seekElapsed(Infinity),/有限数字/);
+    loop.seek(300);assert.equal(loop.elapsedTime,300);assert.doesNotMatch(root.querySelector('.strip-row').style.transform,/translate3d\(0px/);
+    loop.seekElapsed(16300);loop.restart(false);assert.equal(loop.currentTime,0);assert.equal(loop.elapsedTime,0);
+    loop.seekElapsed(-200);assert.equal(loop.currentTime,0);assert.equal(loop.elapsedTime,0);loop.destroy();
+    const effect=data.effects.find(e=>e.id==='title-content'),once=w.MotionRuntime.create(root,effect);
+    once.seekElapsed(effect.duration_ms*2);assert.equal(once.currentTime,effect.duration_ms);assert.equal(once.elapsedTime,effect.duration_ms);
+    once.seekElapsed(0);assert.equal(once.currentTime,0);once.destroy();
+  }finally{env.close();}
 });

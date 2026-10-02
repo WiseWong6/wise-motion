@@ -37,14 +37,16 @@
         </div>
         <div class="directory-top">
           <div class="kind-tabs" role="group" aria-label="参考层级">
-            <button data-kind="action" aria-pressed="true">单个动作 <span class="pill-count">78</span></button>
-            <button data-kind="composition" aria-pressed="false">组合片段 <span class="pill-count">7</span></button>
-            <button data-kind="recipe" aria-pressed="false">历史配方 <span class="pill-count">277</span></button>
+            <button data-kind="action" aria-pressed="true">动作 <span class="pill-count">119</span></button>
+            <button data-kind="composition" aria-pressed="false">组合 <span class="pill-count">12</span></button>
+            <button data-kind="illustration" aria-pressed="false">插画 <span class="pill-count">27</span></button>
+            <button data-kind="recipe" aria-pressed="false">历史 <span class="pill-count">163</span></button>
           </div>
           <div class="search-control select-control">
             <div class="search">
               <span data-icon="magnifying-glass" aria-hidden="true"></span>
               <input id="search" type="search" placeholder="搜索动作或描述需求" aria-label="中文搜索动效">
+              <button id="search-clear" type="button" class="search-clear" aria-label="清空搜索" title="清空搜索（Esc）" hidden><span data-icon="close"></span></button>
               <button id="category-filter" type="button" class="search-filter" aria-label="按运动行为筛选" aria-haspopup="listbox" aria-expanded="false" aria-controls="category-options" title="按运动行为筛选">
                 <span data-icon="chevron-down"></span>
               </button>
@@ -55,7 +57,6 @@
         <nav id="effects-list" class="effects-list scroll-area" aria-label="选择动作"></nav>
         <div id="empty" class="empty" hidden>
           <strong>还没有合适的参考</strong>
-          <p>试着说清谁在动、怎样动，以及不要什么。</p>
           <button class="btn btn-outline" id="clear-search">清空筛选</button>
         </div>
       </div>
@@ -93,13 +94,36 @@
 
     <aside class="inspector" aria-label="动效说明、节奏与输出">
       <div class="ins-intro">
-        <h1 id="preview-title" tabindex="-1">渐入上移</h1>
+        <div class="ins-intro-head">
+          <h1 id="preview-title" tabindex="-1">渐入上移</h1>
+          <button id="copy-title" type="button" class="copy-btn" data-copy="title" aria-label="复制动效名称" title="复制动效名称"><span class="copy-morph" aria-hidden="true"><span class="copy-morph-icon" data-icon="clipboard-document"></span><span class="copy-morph-icon" data-icon="check"></span></span></button>
+        </div>
+        <p id="copy-status-title" class="copy-status" role="status" aria-live="polite"></p>
         <p id="preview-summary"></p>
         <dl class="preview-source" hidden>
           <dt>来源：</dt>
           <dd id="preview-source"></dd>
         </dl>
       </div>
+
+      <section class="ins-section" id="composition-panel" hidden>
+        <button class="ins-head" data-section="composition" aria-expanded="true" aria-controls="ins-composition"><span data-icon="chevron-right"></span><span class="ins-label">组合拆解</span></button>
+        <div id="ins-composition" class="ins-body">
+          <div class="composition-modes" role="group" aria-label="查看组成方式">
+            <button class="btn" type="button" data-composition-mode="stack" aria-pressed="true">逐层叠加</button>
+            <button class="btn" type="button" data-composition-mode="solo" aria-pressed="false">单独查看</button>
+          </div>
+          <p class="hint composition-hint">点选一层，在同一时刻对照画面；点击重播可看它怎样进入。</p>
+          <div id="composition-layers" role="group" aria-label="组成图层"></div>
+          <p id="composition-status" class="composition-status" role="status" aria-live="polite"></p>
+          <p id="composition-detail" class="hint"></p>
+          <div class="composition-actions">
+            <button id="composition-full" class="btn" type="button" aria-pressed="true">完整组合</button>
+            <button id="composition-replay" class="btn" type="button">从头播放</button>
+          </div>
+          <p class="hint composition-hint">拆解用于对照；下方提示词与代码保留完整组合。</p>
+        </div>
+      </section>
 
       <section class="ins-section" id="book-panel" hidden>
         <button class="ins-head" data-section="book" aria-expanded="true" aria-controls="ins-book"><span data-icon="chevron-right"></span><span class="ins-label">翻页与纸张</span></button>
@@ -187,13 +211,51 @@
     </aside>
   </main>
 
+  <dialog id="related-dialog" class="related-dialog" aria-labelledby="related-title" aria-describedby="related-summary">
+    <div class="related-dialog-head">
+      <div><p id="related-origin" class="field-label"></p><h2 id="related-title"></h2></div>
+      <button type="button" class="icon-btn" id="related-close" aria-label="关闭相关动作预览" autofocus><span data-icon="close"></span></button>
+    </div>
+    <p id="related-summary" class="hint"></p>
+    <div id="related-preview" class="related-preview" role="img"></div>
+    <div class="related-playbar" role="group" aria-label="相关动作播放控制">
+      <button type="button" class="icon-btn" id="related-restart" aria-label="重播相关动作"><span data-icon="arrow-path"></span></button>
+      <button type="button" class="icon-btn" id="related-play" aria-label="播放相关动作"><span data-icon="play"></span></button>
+      <input type="range" id="related-scrub" min="0" max="1000" step="1" value="0" aria-label="相关动作播放进度">
+      <output id="related-time"></output>
+    </div>
+    <div id="related-examples" hidden><p class="field-label">独立动作示例</p><div id="related-example-buttons" class="related-chips"></div></div>
+  </dialog>
+
   <script src="../vendor/liquid-glass/liquid-glass.js"></script><script src="player-glass.js"></script>
   <script src="../vendor/animejs/anime.umd.min.js"></script>
   <script src="registry-data.js"></script><script src="matching.js"></script><script src="runtime.js"></script>
-  <script src="history-data.js"></script><script src="history-runtime.js"></script>
-  <script src="effects/entrance.js"></script><script src="effects/continuous.js"></script><script src="effects/attention.js"></script><script src="effects/space.js"></script><script src="effects/transition.js"></script><script src="effects/environment.js"></script><script src="effects/compositions.js"></script>
+  <script src="history-runtime.js"></script>
+  <script src="effects/entrance.js"></script><script src="effects/continuous.js"></script><script src="effects/attention.js"></script>
+  <script src="effects/theme-color-cycle.js"></script><script src="effects/space.js"></script><script src="effects/transition.js"></script><script src="effects/environment.js"></script><script src="effects/compositions.js"></script>
+  <script src="effects/radial-branch-flow.js"></script>
+  <script src="effects/rect-wave-field.js"></script>
+  <script src="effects/letter-ripple.js"></script>
+  <script src="effects/letter-settle.js"></script>
   <script src="effects/flow-bands.js"></script>
   <script src="effects/history-patterns.js"></script>
+  <script src="effects/data-motion.js"></script>
+  <script src="effects/data-comparisons.js"></script>
+  <script src="effects/live-code-readout.js"></script>
+  <script src="effects/word-slam.js"></script>
+  <script src="effects/step-hop.js"></script>
+  <script src="effects/concept-diagram.js"></script>
+  <script src="effects/illustrations.js"></script>
+  <script src="effects/door-halftone.js"></script>
+  <script src="effects/kimi-illustrations.js"></script>
+  <script src="effects/rasengan-illustrations.js"></script>
+  <script src="effects/reel-opening.js"></script>
+  <script src="effects/reel-paper.js"></script>
+  <script src="effects/reel-neon.js"></script>
+  <script src="effects/reel-transitions.js"></script>
+  <script src="effects/reel-grit-key.js"></script>
+  <script src="effects/reel-flat-gen.js"></script>
+  <script src="effects/reel-prompt-outro.js"></script>
   <script src="effects/dither-book.js"></script><script src="book-controls.js"></script>
-  <script src="../vendor/heroicons/icons.js"></script><script src="thumbnails.js"></script><script src="dropdown.js"></script><script src="export.js"></script><script src="app.js"></script>
+  <script src="../vendor/heroicons/icons.js"></script><script src="thumbnails.js"></script><script src="dropdown.js"></script><script src="export.js"></script><script src="composition-controls.js"></script><script src="related-preview.js"></script><script src="app.js"></script>
 </body></html>

@@ -3,7 +3,24 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createRequire} from 'node:module';
 import {data} from './helpers.mjs';
+import {readFile} from 'node:fs/promises';
+import {runInNewContext} from 'node:vm';
 const {rank, describe} = createRequire(import.meta.url)('../catalog/matching.js');
+test('历史配方可按来源标题片段搜索，英文不区分大小写',async()=>{
+  const context={};runInNewContext(await readFile(new URL('../catalog/history-data.js',import.meta.url),'utf8'),context);
+  const effects=context.MotionHistory.recipes;
+  const expected=Array.from(effects.filter(effect=>effect.original_sources.some(source=>/claude/i.test(source))),effect=>effect.id).sort();
+  assert.ok(expected.length>0,'其他 Claude 原作仍保留历史入口');
+  for(const query of ['Claude','claude','  cLaUdE  ']){
+    assert.deepEqual(Array.from(rank({effects},query),match=>match.effect.id).sort(),expected);
+  }
+  assert.equal(rank({effects},'动效演进史').length,0,'已提炼的演进史不重复留在历史列表');
+  const pending=data.effects.filter(e=>e.aliases.includes('演进史待验收')).map(e=>e.id).sort();
+  assert.equal(pending.length,41);
+  assert.deepEqual(rank(data,'演进史待验收').map(m=>m.effect.id).sort(),pending);
+  assert.equal(rank({effects},'   ').length,0);
+  assert.equal(rank({effects},'不存在的宣传片标题').length,0);
+});
 test('持续滚动保留双排反向，不退化成轮播', () => {
   const result = rank(data, '上下两排卡片反向持续滚动，不要轮播，不要停顿');
   assert.equal(result[0].effect.id, 'dual-scroll');

@@ -6,11 +6,14 @@
     const description = global.MotionMatch.describe(effect, settings, registry).split('\n').filter(line => !/^(对应参考：|源码：|来源与许可：)/.test(line)).join('\n');
     const paper = effect.id==='dither-lab-book' && settings.bookSettings;
     const paperNote = paper ? `\n\n纸页设置：图片留白 ${paper.padding} 像素，图片圆角 ${paper.radius} 像素，书脊阴影 ${paper.crease}%。` : '';
-    return `请实现以下动效，保留动作结构、顺序与因果关系。\n\n${description}${paperNote}`;
+    const layers = global.MotionFactories?.[effect.id]?.breakdown;
+    const layerNote = layers ? '\n\n组成图层（原速时刻，共用时间轴）：\n'+layers.map(layer=>`${layer.name} · ${layer.time}：${layer.detail}`).join('\n') : '';
+    return `请实现以下动效，保留动作结构、顺序与因果关系。\n\n${description}${paperNote}${layerNote}`;
   }
   function code(effect, settings = {}) {
     if(effect.kind==='recipe')return historyCode(effect,settings);
     const definition = {id:effect.id, duration_ms:effect.duration_ms, loop:effect.loop, default_ease:effect.default_ease, parameters:effect.parameters};
+    if(effect.timing)definition.timing=effect.timing;
     if(effect.id==='dither-lab-book' && settings.bookSettings)definition.paper_settings=settings.bookSettings;
     const speed = Math.min(2, Math.max(.5, Number(settings.speed) || 1));
     const ease = effect.parameters.ease?.options.includes(settings.ease) ? settings.ease : effect.default_ease;
@@ -73,8 +76,8 @@
 <!-- 本机历史配方预览。保存到 Wise Motion 包根目录的 demo.html。
 播放器代码 AGPLv3；原作代码与素材保留各自许可。本文件依赖本机历史目录，不能视为已迁出的独立效果源码。 -->
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${escape(effect.name)}</title><link rel="stylesheet" href="catalog/scenes.css"><link rel="stylesheet" href="catalog/history.css">
-<style>body{margin:0;min-height:100vh;display:grid;place-content:center;background:#171717;color:#eee;font-family:sans-serif}#motion{width:min(90vw,960px)}.controls{display:flex;gap:12px;padding:16px}input{flex:1}</style></head>
+<title>${escape(effect.name)}</title><link rel="stylesheet" href="catalog/scenes.css"><link rel="stylesheet" href="catalog/history.css"><link rel="stylesheet" href="catalog/app.css">
+<style>body{margin:0;min-height:100vh;display:grid;place-content:center;background:var(--canvas);color:var(--ink);font-family:var(--font)}#motion{width:min(90vw,960px)}.controls{display:flex;gap:12px;padding:16px}input{flex:1}</style></head>
 <body><div id="motion" class="motion-viewport"></div><div class="controls"><button id="play">播放</button><button id="again">重播</button><input id="time" aria-label="定位时间" type="range" min="0" max="1000" value="0"><output id="readout"></output></div>
 <script src="vendor/animejs/anime.umd.min.js"></script><script src="catalog/history-data.js"></script><script src="catalog/history-runtime.js"></script>
 <script>

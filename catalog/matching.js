@@ -7,6 +7,7 @@
     [/反向|相反方向/, ['dual-scroll'], '方向相反'],
     [/持续|一直|不停|循环|无缝/, ['seamless-scroll', 'dual-scroll', 'curve-path', 'orbit', 'float', 'parallax', 'follow', 'arc-cards', 'environment-chain'], '持续运动'],
     [/依次|逐项|逐个|一个接一个|按顺序/, ['stagger-in', 'type-reveal', 'title-content'], '保留先后顺序'],
+    [/三连(?:图标)?错峰|三个图标依次浮入/, ['stagger-in'], '三个图标等间隔错开进入'],
     [/标题.*内容|先.*标题|主张.*内容/, ['title-content'], '标题先于内容'],
     [/弧面|弧形.*卡片|卡片.*弧/, ['arc-cards'], '卡片沿弧面展示'],
     [/环绕|绕着|绕中心/, ['orbit', 'arc-cards'], '围绕中心运动'],
@@ -45,23 +46,29 @@
   }
   function rank(registry, query, options = {}) {
     const {positive, denied} = parse(query);
+    const text=positive.trim().toLowerCase();
     const explicit = options.exclude || [];
     const prohibited = exclusions.filter(([pattern]) => denied.some(x => pattern.test(x)));
     const isScroll = /滚动|滚屏|走马灯/.test(positive);
     const isDual = /两排|双排|上下两行|上下两排|反向|相反方向/.test(positive);
     const isChain = /环境|连锁|经过.*反应|带动.*周围/.test(positive);
-    const scrollTarget=/刹停|减速.*停/.test(positive)?'scroll-brake':/轮播|停留/.test(positive)?'dwell-carousel':/纵向|终端|续接/.test(positive)?'vertical-feed':null;
+    const scrollTarget=/刹停|减速.*停/.test(positive)?'scroll-brake':/轮播|停留/.test(positive)?'dwell-carousel':/纵向|终端|续接/.test(positive)?'vertical-feed':/滚筒|圆柱|转经筒/.test(positive)?'cylinder-drum':null;
     return registry.effects.flatMap(e => {
       if (explicit.includes(e.id) || prohibited.some(([, test]) => test(e))) return [];
       // “持续滚动”和“主体引起环境反应”是结构要求，不能用相似视觉代替。
-      const exact=positive.includes(e.name)||positive.trim()===e.history_id;
+      const nameMatch=[e.name,...(e.previous_names||[])].find(name=>text.includes(name.toLowerCase()));
+      const exact=!!nameMatch||positive.trim()===e.history_id;
       const patterns=e.kind==='recipe'?e.actions:[e.id];
       if (!exact && isScroll && !patterns.some(id=>(scrollTarget?[scrollTarget]:['seamless-scroll','dual-scroll']).includes(id))) return [];
       if (!exact && isScroll && isDual && !patterns.includes('dual-scroll')) return [];
       if (!exact && isChain && !patterns.includes('environment-chain')) return [];
       let score = 0; const matched = [];
-      if (positive.includes(e.name)) { score += 20; matched.push(e.name); }
-      for (const word of e.aliases) if (positive.includes(word)) { score += 3; matched.push(word); }
+      if (nameMatch) { score += 20; matched.push(nameMatch); }
+      // 来源名称常是长标题；输入 Claude 等片名片段也应找到，不区分英文大小写。
+      for (const word of new Set([...e.aliases,...(e.original_sources||[])])) {
+        const term=word.toLowerCase();
+        if(text&&term&&(text.includes(term)||term.includes(text))){score+=3;matched.push(word);}
+      }
       for (const [pattern, ids, label] of terms) if (pattern.test(positive) && patterns.some(id=>ids.includes(id))) { score += 5; matched.push(label); }
       if(scrollTarget&&patterns.includes(scrollTarget)){score+=15;matched.push('保留滚动与停留的具体关系');}
       if (!score) return [];
@@ -70,7 +77,7 @@
       return [{effect: e, score, matched: [...new Set(matched)], excluded: prohibited.map(x => x[2]), reason: e.recommendation}];
     }).sort((a, b) => b.score - a.score || a.effect.id.localeCompare(b.effect.id));
   }
-  const easeLabels = {linear: '匀速', outCubic: '末尾减速', inOutCubic: '平缓加速、减速', inOutSine: '平缓加速、减速', spring: '轻微回弹'};
+  const easeLabels = {linear: '匀速', outCubic: '末尾减速', inOutCubic: '平缓加速、减速', inOutSine: '平缓加速、减速', spring: '轻微回弹', outBounce:'回弹缓出', outElastic:'弹性缓出', outSine:'正弦缓出'};
   function describe(effect, settings = {}, registry = null) {
     if(effect.kind==='recipe')return describeHistory(effect,settings,registry);
     const speed = settings.speed ?? 1;

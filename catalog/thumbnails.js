@@ -73,9 +73,10 @@
     try {
       const stage = document.createElement('div');
       stage.className = 'motion-stage';
-      stage.dataset.effect = effect.id;
-      const render = factory(stage, global.MotionKit, effect);
-      render(effect.preview_ms, {ease: effect.default_ease, duration: effect.duration_ms});
+      global.MotionKit.prepareStage(stage, effect);
+      const render = global.MotionKit.createRenderer(stage, effect);
+      try { render(effect.preview_ms, {ease: effect.default_ease, duration: effect.duration_ms}); }
+      finally { render.destroy?.(true); }
       host.prepend(stage);
       frame(host);
     } catch (_) {

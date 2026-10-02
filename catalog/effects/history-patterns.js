@@ -1,5 +1,5 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
-/* 从历史配方提炼的结构示例。保留身份、顺序与参数关系，不复制原作美术。 */
+/* 从历史配方提炼的结构示例。保留身份、顺序与参数关系；本机图形适配见 NOTICE.md。 */
 (function (global) {
   'use strict';
   let serial = 0;
@@ -9,15 +9,15 @@
   const attr = (name,value,extra) => new RegExp('(?:^|\\s)'+name+'\\s*=').test(extra) ? '' : ` ${name}="${value}"`;
   const rect = (id,x,y,w,h,extra='') => `<rect data-part="${id}" x="${x}" y="${y}" width="${w}" height="${h}"${attr('rx',5,extra)}${attr('fill',panel,extra)}${attr('stroke',muted,extra)}${attr('stroke-width',.65,extra)} ${extra}/>`;
   const dot = (id,x,y,r=8,extra='') => `<circle data-part="${id}" cx="${x}" cy="${y}" r="${r}"${attr('fill',ink,extra)} ${extra}/>`;
-  const text = (id,x,y,words,size=25,extra='') => `<text data-part="${id}" x="${x}" y="${y}" text-anchor="middle" font-size="${size}" fill="${ink}" ${extra}>${words}</text>`;
+  const text = (id,x,y,words,size=25,extra='') => `<text data-part="${id}" x="${x}" y="${y}" text-anchor="middle" font-size="${global.MotionKit.textSize(size)}" fill="${ink}"${attr('font-weight',/[A-Za-z0-9]/.test(String(words))&&!/[\u3400-\u9fff]/.test(String(words))?700:300,extra)} ${extra}>${words}</text>`;
   const line = (id,x1,y1,x2,y2,extra='') => `<line data-part="${id}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"${attr('stroke',muted,extra)}${attr('stroke-width',.85,extra)} ${extra}/>`;
   function stage(root, markup) {
     const ns = 'motion-pattern-' + (++serial);
     root.innerHTML = `<svg class="pattern-svg" viewBox="0 0 640 360" width="640" height="360" style="color:${ink};font-family:inherit" aria-hidden="true">${markup.replaceAll('NAMESPACE',ns)}</svg>`;
     const parts = new Map([...root.querySelectorAll('[data-part]')].map(x => [x.dataset.part,x]));
-    return (id, attrs) => { const el=parts.get(id); if (attrs) for (const [k,v] of Object.entries(attrs)) el.setAttribute(k,String(v)); return el; };
+    return (id, attrs) => { const el=parts.get(id); if (attrs) for (const [k,v] of Object.entries(attrs)) { const value=String(v); if(el.getAttribute(k)!==value)el.setAttribute(k,value); } return el; };
   }
-  const setText = (s,id,words) => {s(id).textContent=words;};
+  const setText = (s,id,words) => {const el=s(id),value=String(words);if(el.textContent!==value)el.textContent=value;};
   const move = (s,id,x=0,y=0,scale=1,angle=0) => s(id,{transform:`translate(${x} ${y}) rotate(${angle}) scale(${scale})`});
   function register(id, setup) {
     F[id] = (root,K,definition) => {
@@ -27,6 +27,247 @@
   }
   const smooth = p => 1-(1-Math.min(1,Math.max(0,p)))**3;
   const section = (p,a,b) => Math.min(1,Math.max(0,(p-a)/(b-a)));
+
+  F['theme-card-layout'] = (root,K) => {
+    // 原主题卡用排版块示意眉题、标题和说明，不替换成另画的卡片或文案。
+    const rows=[
+      {y:92,w:130,h:16,at:.45,fill:'var(--accent)',alpha:1},
+      {y:140,w:480,h:46,at:.95,fill:'var(--ink)',alpha:.15},
+      {y:212,w:340,h:46,at:1.45,fill:'var(--ink)',alpha:.15},
+      {y:306,w:250,h:14,at:1.95,fill:'var(--muted)',alpha:.45}
+    ];
+    const s=stage(root,`<g transform="translate(98 48) scale(.6)">
+      <defs>
+        <clipPath id="NAMESPACE-theme-card-clip"><rect width="740" height="440" rx="16"/></clipPath>
+        <linearGradient id="NAMESPACE-theme-card-light" gradientUnits="userSpaceOnUse" x1="-90" y1="0" x2="90" y2="0">
+          <stop offset="0" stop-color="var(--accent)" stop-opacity="0"/><stop offset=".5" stop-color="var(--accent)" stop-opacity=".08"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <g data-part="theme-card">
+        <rect width="740" height="440" rx="16" fill="var(--card)" stroke="var(--card-edge)" stroke-width="2"/>
+        <g clip-path="url(#NAMESPACE-theme-card-clip)">
+          ${rows.map((r,i)=>`<rect data-part="theme-row${i}" data-theme-row="${i}" y="${r.y}" height="${r.h}" rx="${Math.min(8,r.h/2)}" fill="${r.fill}"/>`).join('')}
+          <rect data-part="theme-underline" x="64" y="196" height="4" fill="var(--accent)"/>
+          <rect data-part="theme-cursor" x="418" y="212" width="8" height="46" fill="var(--teal)"/>
+        </g>
+      </g>
+      <g clip-path="url(#NAMESPACE-theme-card-clip)"><g data-part="theme-light"><rect x="-90" y="0" width="180" height="440" fill="url(#NAMESPACE-theme-card-light)"/></g></g>
+    </g>`);
+    return elapsed=>{
+      // 保留原三秒设计时钟及独立的固定卡面扫光，末尾四百毫秒冻结。
+      const u=K.clamp(elapsed,0,3000)/1000,q=K.span(u,.1,.6,'inOutCubic');
+      s('theme-card',{opacity:q,transform:`translate(0 ${(1-q)*26})`});
+      rows.forEach((r,i)=>{
+        const e=K.span(u,r.at,r.at+.45,'inOutCubic');
+        s('theme-row'+i,{x:64-150*(1-e),width:r.w*(.55+.45*e),opacity:e*r.alpha});
+      });
+      const underline=200*K.span(u,2.5,3,'inOutCubic');
+      s('theme-underline',{width:underline,opacity:underline>1?1:0});
+      s('theme-cursor',{opacity:u>2.1&&Math.floor(u*2.3)%2===0?1:0});
+      const travel=((u*.42%1)+1)%1;
+      s('theme-light',{transform:`translate(${-140+1020*travel} 0)`});
+    };
+  };
+
+  F['terminal-code'] = (root,K) => {
+    // 窗口与打字时钟沿用原作，代码统一为画板中的正文大小。
+    // 字宽来自本地 Oswald Bold / 思源 Light；缩略图和播放都无需现场测量。
+    const codeSize=K.textSize('body',.6);
+    const advances={' ':.221,'"':.415,'(':.315,')':.315,',':.25,';':.25,'=':.535,a:.46,c:.468,d:.503,e:.47,i:.265,m:.753,n:.507,o:.483,r:.383,s:.424,t:.351};
+    const width=value=>Array.from(value).reduce((sum,ch)=>sum+codeSize*(advances[ch]??1),0);
+    const code=[
+      [['const ','var(--ink)'],['idea','var(--ink)'],[' = ','var(--muted)'],['"一个画面"','var(--teal)'],[';','var(--muted)']],
+      [['const ','var(--ink)'],['motion','var(--ink)'],[' = ','var(--muted)'],['"让它动起来"','var(--teal)'],[';','var(--muted)']],
+      [['create','var(--ink)'],['(','var(--muted)'],['idea','var(--ink)'],[', ','var(--muted)'],['motion','var(--ink)'],[');','var(--muted)']]
+    ];
+    const rows=code.map((tokens,i)=>{
+      let pen=62,start=0;
+      return {words:tokens.map(([value])=>value).join(''),tokens:tokens.map(([value,color],j)=>{
+        const token={value,color,x:pen,start,runs:[]};let at=0;
+        for(const run of value.match(/[0-9A-Za-z.\-]+|[^0-9A-Za-z.\-]+/g)){
+          token.runs.push({value:run,start:at,part:`terminal-token${i}-${j}-${token.runs.length}`,latin:/[0-9A-Za-z.\-]/.test(run)});at+=run.length;
+        }
+        pen+=width(value);start+=value.length;return token;
+      })};
+    });
+    const s=stage(root,`<g transform="translate(80 78) scale(.6)"><g data-part="terminal-window" font-weight="300">
+      <defs>
+        <clipPath id="NAMESPACE-terminal-bar"><rect width="800" height="340" rx="18"/></clipPath>
+        <filter id="NAMESPACE-terminal-shadow" x="-10%" y="-30%" width="120%" height="160%"><feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity=".4"/></filter>
+        <linearGradient id="NAMESPACE-terminal-beam" gradientUnits="userSpaceOnUse" x1="-55" y1="0" x2="55" y2="0"><stop offset="0" stop-color="var(--accent)" stop-opacity="0"/><stop offset=".5" stop-color="var(--accent)" stop-opacity=".18"/><stop offset="1" stop-color="var(--accent)" stop-opacity="0"/></linearGradient>
+      </defs>
+      <rect width="800" height="340" rx="18" fill="var(--card)" filter="url(#NAMESPACE-terminal-shadow)"/>
+      <g clip-path="url(#NAMESPACE-terminal-bar)"><rect width="800" height="48" fill="var(--symbol)"/></g>
+      <rect width="800" height="340" rx="18" fill="none" stroke="var(--card-edge)" stroke-width="1.5"/>
+      ${['#ff5f56','#ffbd2e','#27c93f'].map((color,i)=>`<circle cx="${27+i*23}" cy="24" r="6" fill="${color}"/>`).join('')}
+      <text x="400" y="14" text-anchor="middle" dominant-baseline="text-before-edge" font-family="Oswald, sans-serif" font-weight="700" font-size="${K.textSize('caption',.6)}" fill="var(--muted)">creative-session</text>
+      ${rows.map((row,i)=>`<g data-part="terminal-row${i}" data-terminal-code-row="${i}">
+        <text x="30" y="${87+i*72}" dominant-baseline="text-before-edge" font-size="${codeSize}" fill="var(--accent)">›</text>
+        ${row.tokens.map(token=>`<text x="${token.x}" y="${87+i*72}" fill="${token.color}" dominant-baseline="text-before-edge" xml:space="preserve" style="white-space:pre">${token.runs.map(run=>`<tspan data-part="${run.part}" font-size="${codeSize}" font-weight="${run.latin?700:300}" font-family="${run.latin?'Oswald':'Wise Motion Sans'}, sans-serif">${K.escape(run.value)}</tspan>`).join('')}</text>`).join('')}
+        <rect data-part="terminal-cursor${i}" y="${90+i*72}" width="10" height="29" fill="var(--teal)"/>
+      </g>`).join('')}
+      <g data-part="terminal-status"><rect x="-55" y="300" width="110" height="28" fill="url(#NAMESPACE-terminal-beam)"/><rect x="-18" y="320" width="36" height="4" fill="var(--accent)" fill-opacity=".58"/></g>
+    </g></g>`);
+    return elapsed=>{
+      // 原场景使用二点五秒设计时钟；末尾半秒冻结，保持代码清晰可读。
+      const t=K.clamp(elapsed,0,2500)/1000,p=K.span(t,0,.4,'inOutCubic');
+      s('terminal-window',{opacity:p,transform:`translate(0 ${16*(1-p)})`});
+      rows.forEach((row,i)=>{
+        const count=Math.max(0,Math.floor((t-.3-i*.5)*50));
+        s('terminal-row'+i,{opacity:count?1:0});
+        for(const token of row.tokens)for(const run of token.runs)setText(s,run.part,run.value.slice(0,Math.max(0,count-token.start-run.start)));
+        s('terminal-cursor'+i,{x:62+width(row.words.slice(0,count)),opacity:count>0&&count<row.words.length&&Math.floor(t*8)%2===0?1:0});
+      });
+      const travel=((t*.18%1)+1)%1;
+      s('terminal-status',{transform:`translate(${36+728*travel} 0)`});
+    };
+  };
+
+  F['formula-evolve'] = (root,K) => {
+    // 定稿的四项公式及真实词点。演示统一加快两倍，保留先横移、再合行的两步关系。
+    const terms=[
+      {id:'years',at:120,parts:[['years',208,52,'var(--teal)','X年',332,55]]},
+      {id:'domain',at:750,parts:[['domain',378,52,'var(--blue)','电商',162,205],['domain-plus',292,43,'var(--muted)','+',248,130]]},
+      {id:'audience',at:1430,parts:[['audience',548,52,'var(--accent)','C端',-8,355],['audience-plus',464,43,'var(--muted)','+',76,280]]},
+      {id:'experience',at:1500,parts:[['experience',783,52,'var(--teal)','产品经验',-243,505],['experience-plus',630,43,'var(--muted)','+',-90,430]]}
+    ];
+    const s=stage(root,`<g transform="translate(104 -68) scale(.4)" font-weight="300">
+      ${terms.map(term=>`<g data-part="term-${term.id}" data-formula-term="${term.id}">${term.parts.map(([id,x,size,color,words])=>`<g data-part="pose-${id}"><text x="${x}" y="435" text-anchor="middle" font-size="${K.textSize('title',.4)}" fill="${color}">${words}</text></g>`).join('')}</g>`).join('')}
+      <g data-part="underline"><path data-part="underline-stroke" d="M209 463H871" fill="none" stroke="var(--teal)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".5" pathLength="1" stroke-dasharray="1 1"/></g>
+    </g>`);
+    return elapsed=>{
+      const t=Math.min(3400,Math.max(0,elapsed));
+      const spread=K.span(t,1714,1949,'inOutCubic');
+      const row=K.span(t,1972.5166666666664,2142.5166666666664,'inOutCubic');
+      for(const term of terms){
+        s('term-'+term.id,{opacity:K.span(t,term.at,term.at+110,'outCubic')});
+        for(const [id,,,,,x,y] of term.parts)s('pose-'+id,{transform:`translate(${K.mix(x,0,spread)} ${K.mix(y,0,row)})`});
+      }
+      const underline=K.span(t,2780.0333333333347,2910.0333333333347,'outCubic');
+      s('underline',{opacity:underline});
+      s('underline-stroke',{'stroke-dashoffset':1-underline});
+    };
+  };
+
+  F['experience-progress'] = (root,K) => {
+    // 保留三张经验卡和原成片的讲述间距；只统一成目录的中性配色。
+    const cards=[['精准描述需求','把话说清楚',3.9,7.2,235],['进行需求拆解','分成小任务',7.2,13.5,540],['借助真实规律','从世界找灵感',13.5,19.5,845]];
+    // 原成片五个讲述区间，统一加快四倍；不是三个等长的进度窗口。
+    const clock=[[120,3.9],[986.666666666667,7.2],[1361.666666666667,9.7],[2053.3333333333335,13.5],[2503.333333333334,16.2],[3053.3333333333335,19.5]];
+    const s=stage(root,`<g transform="translate(-4 -309) scale(.6)" font-weight="300">
+      <defs>
+        <linearGradient id="NAMESPACE-experience-beam" gradientUnits="userSpaceOnUse" x1="-95" y1="0" x2="95" y2="0">
+          <stop offset="0" stop-color="var(--card-ink)" stop-opacity="0"/><stop offset=".5" stop-color="var(--card-ink)" stop-opacity=".12"/><stop offset="1" stop-color="var(--card-ink)" stop-opacity="0"/>
+        </linearGradient>
+        ${cards.map((_,i)=>`<clipPath id="NAMESPACE-experience-clip${i}"><rect x="0" y="0" width="260" height="310" rx="12"/></clipPath>`).join('')}
+      </defs>
+      ${cards.map(([title,label],i)=>`<g data-part="experience-card${i}" data-experience-card="${i}">
+        <rect data-part="experience-frame${i}" x="0" y="0" width="260" height="310" rx="14" fill="var(--card)" stroke-width="2"/>
+        <path d="M34 0H226" stroke="var(--card-muted)" stroke-width="3" fill="none"/>
+        <text x="130" y="44" font-size="${K.textSize('caption',.6)}" font-family="Oswald, sans-serif" font-weight="700" fill="var(--card-ink)" text-anchor="middle" dominant-baseline="text-before-edge">${String(i+1).padStart(2,'0')}</text>
+        <text x="130" y="132" font-size="${K.textSize('body',.6)}" fill="var(--card-ink)" text-anchor="middle" dominant-baseline="text-before-edge">${title}</text>
+        <path d="M48 206H212" stroke="var(--card-muted)" stroke-width="1.4" opacity=".9" fill="none"/>
+        <text x="130" y="240" font-size="${K.textSize('caption',.6)}" fill="var(--card-muted)" text-anchor="middle" dominant-baseline="text-before-edge">${label}</text>
+        <g data-part="experience-flow${i}" clip-path="url(#NAMESPACE-experience-clip${i})">
+          <g data-part="experience-beam${i}"><rect x="-95" y="0" width="190" height="310" fill="url(#NAMESPACE-experience-beam)"/></g>
+          <rect data-part="experience-progress${i}" x="0" y="305" height="5" fill="var(--card-ink)"/>
+        </g>
+      </g>`).join('')}
+    </g>`);
+    return elapsed=>{
+      const ms=K.clamp(elapsed,0,3400);
+      let u=19.5;
+      for(let i=0;i<clock.length-1;i++)if(ms<clock[i+1][0]){
+        const [at,from]=clock[i],[end,to]=clock[i+1];u=K.mix(from,to,(ms-at)/(end-at));break;
+      }
+      cards.forEach(([, ,at,end,x],i)=>{
+        const q=K.span(u,at,at+.55,'inOutCubic'),e=K.ease(q,'inOutCubic'),active=u>=at&&u<end;
+        s('experience-card'+i,{opacity:q,transform:`translate(${x-130} ${660+(1-e)*26})`});
+        s('experience-frame'+i,{stroke:active?'var(--card-ink)':'var(--card-muted)','stroke-opacity':active?.55:1});
+        s('experience-flow'+i,{opacity:active?1:0});
+        const travel=((u-at)*.31%1+1)%1;
+        s('experience-beam'+i,{transform:`translate(${-130+travel*520} 0)`});
+        s('experience-progress'+i,{width:260*K.clamp((u-at)/(end-at))});
+      });
+    };
+  };
+
+  F['word-cloud-lift'] = (root,K) => {
+    // 只提取原云形与手工词位，原视频的回应图和整页底色不带入。
+    const words=[
+      ['没感觉',0,-218,50,'var(--muted)'],['太死板',-244,-106,46,'var(--muted)'],
+      ['再好看一点',-8,-95,52,'var(--muted)'],['不够高级',268,-105,43,'var(--muted)'],
+      ['不够顺',-302,15,42,'var(--muted)'],['有点丑',0,12,88,'var(--teal)'],
+      ['有点僵硬',340,16,68,'var(--ink)'],['不够舒服',-286,114,42,'var(--muted)'],
+      ['不够灵动',0,113,60,'var(--ink)'],['不够自然',298,103,42,'var(--muted)'],
+      ['缺点氛围',-227,187,41,'var(--muted)'],['再优化一下',16,186,43,'var(--muted)'],
+      ['节奏不对',262,180,41,'var(--muted)']
+    ];
+    const s=stage(root,`<g transform="translate(158 -25) scale(.3)" font-weight="300">
+      <path data-part="cloud" d="M-337 229 C-502 226 -505 16 -402 -26 C-420 -184 -237 -234 -160 -163 C-141 -350 161 -350 179 -189 C286 -267 443 -175 411 -43 C529 3 510 227 371 230 C179 251 -132 253 -337 229 Z" fill="var(--card)" stroke="var(--card-edge)" stroke-width="1.5"/>
+      ${words.map(([label,x,y,size,color],i)=>`<text data-part="word${i}" data-cloud-word="${label}" text-anchor="middle" dominant-baseline="text-before-edge" fill="${color}">${label}</text>`).join('')}
+    </g>`);
+    return elapsed=>{
+      // 原成片前两段视觉时钟；五秒后停在收拢完成处，不进入后续回应图。
+      const ms=Math.min(5000,Math.max(0,elapsed));
+      const t=ms<=3600?ms/3600*3.7:3.7+(ms-3600)/1800*2.8;
+      const lift=K.span(t,4.55,5.7,'inOutCubic'),scale=K.mix(1,.72,lift);
+      const fontLift=K.mix(1.25,1,lift),idle=.22+.78*(1-lift);
+      const x=540+Math.sin(t*.86)*7*idle,y=K.mix(650,375,lift)+Math.cos(t*.71)*4*idle;
+      const breath=1+Math.sin(t*1.55)*.009*idle;
+      s('cloud',{transform:`translate(${x} ${y}) scale(${scale*breath})`,opacity:K.span(t,0,.5,'inOutCubic')});
+      words.forEach(([,wx,wy,size],i)=>{
+        const font=size*scale*fontLift;
+        const dx=Math.sin(t*(.72+(i%4)*.05)+i*1.13)*6*idle;
+        const dy=Math.cos(t*(.64+(i%3)*.07)+i*.91)*4*idle;
+        s('word'+i,{x:x+wx*scale+dx,y:y+wy*scale+dy-font*.625,'font-size':font,opacity:K.span(t,i*.045,i*.045+.5,'inOutCubic')});
+      });
+    };
+  };
+
+  F['evidence-icons'] = (root,K) => {
+    // 提取原论据组的四种图形，等比缩到目录画板；不带原背景、标题与语音。
+    // 从真实词点取相对时刻，不把句子内的节拍替换成等间隔图标进入。
+    const s=stage(root,`<g transform="translate(104 -137) scale(.4)" font-weight="300">
+      <g data-icon-sequence="experience" data-icon-word="经历" data-icon-start="120" transform="translate(15 55)">
+        <rect data-part="experience-frame" x="230" y="456" width="180" height="122" rx="10" fill="none" stroke="var(--teal)" stroke-width="3" data-icon-stroke data-icon-delay="0" data-icon-duration=".32"/>
+        <path data-part="experience-line0" d="M260 486H371" fill="none" stroke="var(--teal)" stroke-width="5" stroke-linecap="round" data-icon-stroke data-icon-delay=".33" data-icon-duration=".13"/>
+        <path data-part="experience-line1" d="M260 516H350" fill="none" stroke="var(--teal)" stroke-width="5" stroke-linecap="round" data-icon-stroke data-icon-delay=".44" data-icon-duration=".13"/>
+        <path data-part="experience-line2" d="M260 546H380" fill="none" stroke="var(--teal)" stroke-width="5" stroke-linecap="round" data-icon-stroke data-icon-delay=".55" data-icon-duration=".13"/>
+        <text data-part="experience-label" x="320" y="660" font-size="${K.textSize('body',.4)}" fill="var(--teal)" text-anchor="middle" data-icon-fade data-icon-delay=".66" data-icon-duration=".16">经历</text>
+      </g>
+      <g data-icon-sequence="method" data-icon-word="方法" data-icon-start="432" transform="translate(-15 55)">
+        <circle data-part="method-node0" cx="706" cy="486" r="26" fill="none" stroke="var(--blue)" stroke-width="3" data-icon-stroke data-icon-delay="0" data-icon-duration=".19"/>
+        <path data-part="method-line0" d="M732 490H790V524" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" data-icon-stroke data-icon-delay=".14" data-icon-duration=".23"/>
+        <path data-part="method-line1" d="M690 512V554H784" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" data-icon-stroke data-icon-delay=".22" data-icon-duration=".23"/>
+        <circle data-part="method-node1" cx="816" cy="554" r="26" fill="none" stroke="var(--blue)" stroke-width="3" data-icon-stroke data-icon-delay=".33" data-icon-duration=".19"/>
+        <text data-part="method-label" x="760" y="660" font-size="${K.textSize('body',.4)}" fill="var(--blue)" text-anchor="middle" data-icon-fade data-icon-delay=".49" data-icon-duration=".16">方法</text>
+      </g>
+      <g data-icon-sequence="ability" data-icon-word="能力" data-icon-start="753" transform="translate(15 64)">
+        <circle data-part="ability-circle" cx="320" cy="860" r="68" fill="none" stroke="var(--accent)" stroke-width="4" data-icon-stroke data-icon-delay="0" data-icon-duration=".28"/>
+        <path data-part="ability-check" d="M279 858L308 887L361 827" fill="none" stroke="var(--accent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" data-icon-stroke data-icon-delay=".28" data-icon-duration=".23"/>
+        <text data-part="ability-label" x="320" y="1010" font-size="${K.textSize('body',.4)}" fill="var(--accent)" text-anchor="middle" data-icon-fade data-icon-delay=".5" data-icon-duration=".16">能力</text>
+      </g>
+      <g data-icon-sequence="data" data-icon-word="数据" data-icon-start="1458" transform="translate(-15 64)">
+        <path data-part="data-baseline" d="M659 922H851" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" data-icon-stroke data-icon-delay="0" data-icon-duration=".19"/>
+        <rect data-part="data-bar0" x="688" y="865" width="36" height="57" rx="4" fill="var(--path)" data-icon-bar data-icon-delay=".09" data-icon-duration=".35"/>
+        <rect data-part="data-bar1" x="747" y="823" width="36" height="99" rx="4" fill="var(--blue)" data-icon-bar data-icon-delay=".17" data-icon-duration=".35"/>
+        <rect data-part="data-bar2" x="806" y="785" width="36" height="137" rx="4" fill="var(--teal)" data-icon-bar data-icon-delay=".25" data-icon-duration=".35"/>
+        <text data-part="data-label" x="760" y="1010" font-size="${K.textSize('body',.4)}" fill="var(--teal)" text-anchor="middle" data-icon-fade data-icon-delay=".58" data-icon-duration=".16">数据</text>
+      </g>
+    </g>`);
+    const items=[...root.querySelectorAll('[data-icon-stroke],[data-icon-bar],[data-icon-fade]')].map(node=>{
+      const mode=node.hasAttribute('data-icon-stroke')?'stroke':node.hasAttribute('data-icon-bar')?'bar':'label';
+      if(mode==='stroke')s(node.dataset.part,{pathLength:1,'stroke-dasharray':'1 1'});
+      return {id:node.dataset.part,mode,start:Number(node.closest('[data-icon-start]').dataset.iconStart)+Number(node.dataset.iconDelay)*1000,duration:Number(node.dataset.iconDuration)*1000,bottom:mode==='bar'?Number(node.getAttribute('y'))+Number(node.getAttribute('height')):0};
+    });
+    return t=>items.forEach(item=>{
+      const q=K.span(t,item.start,item.start+item.duration,item.mode==='stroke'?'inOutQuad':'outCubic');
+      if(item.mode==='stroke')s(item.id,{'stroke-dashoffset':1-q,opacity:q>0?1:0});
+      else if(item.mode==='bar')s(item.id,{transform:`translate(0 ${item.bottom*(1-q)}) scale(1 ${q})`,opacity:q>0?1:0});
+      else s(item.id,{transform:`translate(0 ${5*(1-q)})`,opacity:q});
+    });
+  };
 
   function reboundScene(root,K,definition) {
     const vertical=definition.id==='vertical-rebound';
@@ -57,8 +298,8 @@
     return p=> {for(let i=0;i<6;i++){const q=smooth(section(p,.08+i*.075,.4+i*.075));s('c'+i,{transform:`translate(0 ${90*(1-q)})`});}};
   });
   register('stroke-draw',(root) => {
-    const s=stage(root,'<path data-part="stroke" d="M130 235 Q220 65 320 160 T510 120" fill="none" stroke="var(--ink)" stroke-width="4" pathLength="1" stroke-dasharray="1"/>');
-    return p=>s('stroke',{'stroke-dashoffset':1-smooth(section(p,.08,.85))});
+    const s=stage(root,'<path data-part="stroke" d="M96 180 H174 C188 180 190 162 204 162 S220 180 236 180 C248 180 250 194 258 194 S274 96 286 96 S308 254 320 254 S338 180 354 180 H378 C398 180 400 148 422 148 S450 180 470 180 H544" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1"/>');
+    return p=>{const q=smooth(section(p,.08,.85));s('stroke',{'stroke-dashoffset':1-q,opacity:q>0?1:0});};
   });
   const heartbeatPoints=[[96,180],[208,180],[264,96],[320,264],[376,180],[544,180]];
   const heartbeatPath=heartbeatPoints.map(([x,y],i)=>(i?'L':'M')+x+' '+y).join(' ');
@@ -72,10 +313,6 @@
       const q=Math.min(1,remaining/segment.length),x=segment.from[0]+(segment.to[0]-segment.from[0])*q,y=segment.from[1]+(segment.to[1]-segment.from[1])*q;
       s('point',{cx:x,cy:y});s('glow',{cx:x,cy:y});
     };
-  });
-  register('heartbeat-draw',(root)=>{
-    const s=stage(root,`<path data-part="stroke" d="${heartbeatPath}" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>`);
-    return p=>s('stroke',{'stroke-dashoffset':1-2*p,opacity:p===0||p===1?0:1});
   });
   register('mindmap-grow',(root)=>{
     const ends=[[136,180],[504,180],[320,52],[320,308]];
@@ -117,10 +354,6 @@
         s('head'+i,{cx:K.mix(segment.from[0],segment.to[0],q),cy:K.mix(segment.from[1],segment.to[1],q),opacity:t>=edge.start&&t<edge.end?1:0});
       });
     };
-  });
-  register('underline-draw',(root) => {
-    const s=stage(root,text('body',320,166,'先说清楚，再做漂亮',35)+line('u0',145,186,145,186)+line('u1',356,186,356,186));
-    return p=> {s('u0',{x2:145+140*smooth(section(p,.12,.4))});s('u1',{x2:356+140*smooth(section(p,.48,.8))});};
   });
   register('vertical-feed',(root) => {
     // 自绘细线图标；整墙只用一条滚动带，新图标自然从底部接入。
@@ -173,26 +406,75 @@
     return p=>{const q=smooth(section(p,.08,.48));move(s,'title',320,185-90*q,1-.32*q);s('body',{opacity:section(p,.55,.78)});s('detail',{opacity:section(p,.65,.88)});};
   });
   register('progress-readout',(root) => {
-    const s=stage(root,rect('track',110,195,420,16)+rect('fill',110,195,0,16,'style="fill:var(--ink)"')+text('value',320,160,'0%',50));
+    const s=stage(root,rect('track',76,172,420,16)+rect('fill',76,172,0,16,'style="fill:var(--ink)"')+`<text data-part="value" x="514" y="180" fill="var(--ink)" font-size="${global.MotionKit.textSize('body')}" font-weight="700" text-anchor="start" dominant-baseline="central">0%</text>`);
     return p=>{const q=smooth(section(p,.12,.85));s('fill',{width:420*q});setText(s,'value',Math.round(100*q)+'%');};
-  });
-  register('rolling-digits',(root) => {
-    const s=stage(root,'<defs><clipPath id="NAMESPACE-digits"><rect x="225" y="132" width="190" height="64"/></clipPath></defs><g clip-path="url(#NAMESPACE-digits)">'+list(3,i=>`<g data-part="d${i}">${list(21,n=>text('digit'+i+'-'+n,260+i*60,180+n*64,String(n%10),53))}</g>` )+'</g>'+text('label',320,240,'低位越界，高位接着进位',18));
-    return p=>{const value=98+5*section(p,.1,.9);for(let i=0;i<3;i++){const div=10**(2-i),base=Math.floor(value/div),rem=value%div,frac=i===2?value%1:Math.max(0,rem-(div-1));s('d'+i,{transform:`translate(0 ${-64*((base%10)+Math.min(1,frac))})`,opacity:frac>1e-8?.45:1});}};
   });
   register('text-decode',(root) => {
     const target='表达更加清楚',noise='◇△□○';const s=stage(root,text('word',320,195,target,43));
     return p=> {const q=section(p,.1,.85),n=Math.floor(q*target.length),tick=Math.floor(q*24);setText(s,'word',[...target].map((c,i)=>i<n?c:noise[(i+tick)%4]).join(''));};
   });
-  register('text-edit',(root) => {
-    const old='先说清楚问题',next='先说清楚做法',prefix='先说清楚';const s=stage(root,text('word',320,190,old,38));
-    return p=>{let value=old;if(p>.2&&p<.48)value=old.slice(0,old.length-Math.floor(section(p,.2,.48)*(old.length-prefix.length)));else if(p>=.48&&p<.7)value=prefix;else if(p>=.7)value=next.slice(0,prefix.length+Math.floor(section(p,.7,.9)*(next.length-prefix.length)));setText(s,'word',value);};
+  register('text-edit',(root,K) => {
+    // 对照 Input.tsx：原 1920×1080 输入框整体缩至 1/3，保留双行布局与工具栏。
+    // 只使用目录卡片底色；不带原场景网格、题签、裁切标记和发送后的扩散。
+    const old='一次，绘制一张“鹈鹕骑自行车”的 SVG 插画。',next='一次性绘制 50 张“鹈鹕骑自行车”。',prefix='一次';
+    const size=K.textSize('body'),width=1520/3,height=296/3,sendX=(1520-98)/3,sendY=(296-66)/3;
+    const measure=value=>[...value].reduce((w,ch)=>w+size*(ch.charCodeAt(0)>0x2e7f?1:ch===' '?.3:.56),0);
+    // 否定的是单张数量，叉号固定在“一张”上；尺寸跟随字高，不覆盖边框和工具栏。
+    const strikeWidth=size*2+8,strikeHeight=size*1.55;
+    const strikeLeft=measure(old.slice(0,old.indexOf('一张')))-4;
+    const icon=(part,size,path,extra='')=>`<svg data-part="${part}" aria-hidden="true" viewBox="0 0 24 24" width="${size}" height="${size}" style="display:block;width:${size}px;height:${size}px;flex:none" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${extra}<path d="${path}"/></svg>`;
+    const s=K.scene(root,`<div data-part="input" class="edit-input" style="position:absolute;left:${200/3}px;top:${392/3}px;width:${width}px;height:${height}px;border:0;border-radius:2px;background:var(--card);color:var(--card-ink);opacity:0">
+      <svg class="edit-outline" aria-hidden="true" viewBox="0 0 1520 296" width="${width}" height="${height}" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"><path data-part="outline" d="M6 0H1514Q1520 0 1520 6V290Q1520 296 1514 296H6Q0 296 0 290V6Q0 0 6 0" fill="none" stroke="var(--card-ink)" stroke-width="1" opacity=".55" pathLength="1" stroke-dasharray="1 1"/></svg>
+      <div class="edit-line" style="position:absolute;left:20px;top:${(100-46)/3}px;font-size:${size}px;line-height:1.2;font-weight:300;white-space:nowrap"><span data-part="draft" style="position:relative;display:inline-block"><span data-part="word"></span><svg data-part="strike" aria-hidden="true" viewBox="0 0 ${strikeWidth} ${strikeHeight}" width="${strikeWidth}" height="${strikeHeight}" style="position:absolute;left:${strikeLeft}px;top:50%;transform:translateY(-50%);width:${strikeWidth}px;height:${strikeHeight}px;pointer-events:none"><g fill="none" stroke="var(--red)" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"><path data-part="strike-a" d="M3 3 Q${strikeWidth*.42} ${strikeHeight*.46} ${strikeWidth-3} ${strikeHeight-3}" pathLength="1" stroke-dasharray="1 1"/><path data-part="strike-b" d="M${strikeWidth-4} 2 Q${strikeWidth*.54} ${strikeHeight*.48} 2 ${strikeHeight-2}" pathLength="1" stroke-dasharray="1 1"/></g></svg></span><i data-part="caret" aria-hidden="true" style="display:inline-block;width:${2/3}px;height:${50/3}px;margin-left:1px;vertical-align:-3px;background:var(--card-ink)"></i></div>
+      <svg aria-hidden="true" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"><path data-part="ruler" fill="none" stroke="var(--card-muted)" stroke-width="${.8/3}"/><circle data-part="send-ring" cx="${sendX}" cy="${sendY}" r="${52/3}" fill="none" stroke="var(--card-muted)" stroke-width="${.8/3}" stroke-dasharray="${2/3} ${5/3}"/></svg>
+      <div data-part="toolbar" class="edit-toolbar" style="position:absolute;left:20px;right:20px;top:64px;height:${76/3}px;display:flex;align-items:center;color:var(--card-ink)">
+        ${icon('plus',10,'M12 5v14M5 12h14')}
+        <span class="edit-agent" style="display:flex;align-items:center;gap:${10/3}px;margin-left:12px;font-family:Oswald,sans-serif;font-weight:700;font-size:${K.textSize('caption')}px;letter-spacing:${1/3}px">${icon('bot',8,'M12 8V4H8M2 14h2M20 14h2M15 13v2M9 13v2','<rect width="16" height="12" x="4" y="8" rx="2"/>')}<span>Agent</span></span>
+        <span style="flex:1"></span>
+        <span data-part="model" class="edit-model" style="display:flex;align-items:center;gap:${10/3}px;margin-right:${50/3}px;font-size:${K.textSize('caption')}px;font-family:Oswald,sans-serif;font-weight:700;white-space:nowrap">WISE MOTION<span style="color:var(--card-muted)">${icon('chevron',8,'m6 9 6 6 6-6')}</span></span>
+        <span data-part="send" class="edit-send" aria-hidden="true" style="width:${76/3}px;height:${76/3}px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--card-ink);color:var(--card)">${icon('arrow',32/3,'M12 19V5M5 12l7-7 7 7').replace('stroke-width="2"','stroke-width="2.4"')}</span>
+      </div>
+    </div>`);
+    const node=id=>s.one(`[data-part="${id}"]`),input=node('input'),word=node('word'),caret=node('caret'),strike=node('strike'),a=node('strike-a'),b=node('strike-b');
+    const outline=node('outline'),toolbar=node('toolbar'),ring=node('send-ring'),ruler=node('ruler');
+    const style=(el,key,value)=>{if(el.style[key]!==value)el.style[key]=value;};
+    const attribute=(el,key,value)=>{value=String(value);if(el.getAttribute(key)!==value)el.setAttribute(key,value);};
+    let lastValue;
+    return p=>{
+      const enter=smooth(section(p,0,.12));K.pose(input,{y:18*(1-enter),opacity:enter});
+      let value=old.slice(0,Math.floor(section(p,.1,.26)*old.length));
+      if(p>=.44&&p<.58)value=old.slice(0,old.length-Math.floor(section(p,.44,.58)*(old.length-prefix.length)));
+      else if(p>=.58&&p<.64)value=prefix;
+      else if(p>=.64)value=next.slice(0,prefix.length+Math.floor(section(p,.64,.82)*(next.length-prefix.length)));
+      if(value!==lastValue){
+        lastValue=value;word.textContent=value;
+        // 与原作一样按字宽绘制尺线；不逐帧读取字体布局。
+        const textWidth=measure(value),y=134/3;
+        attribute(ruler,'d',value?'M20 '+y+'H'+(20+textWidth)+Array.from({length:Math.floor(textWidth/(11.5/3))+1},(_,i)=>'M'+(20+i*11.5/3)+' '+y+'v'+((i%4===0?9:4)/3)).join(''):'');
+      }
+      attribute(outline,'stroke-dashoffset',1-smooth(section(p,0,.18)));
+      style(toolbar,'opacity',String(smooth(section(p,.08,.2))));
+      attribute(ring,'opacity',smooth(section(p,0,.18)));
+      style(caret,'opacity',String(p>=.82||Math.floor(p*3000/210)%2===0?1:0));
+      style(strike,'opacity',String(p>=.3&&p<.44?1:0));
+      const first=section(p,.3,.34),second=section(p,.34,.38);
+      attribute(a,'stroke-dashoffset',1-first);attribute(a,'opacity',first>0?1:0);
+      attribute(b,'stroke-dashoffset',1-second);attribute(b,'opacity',second>0?1:0);
+    };
   });
   register('particle-word',(root) => {
-    // 演示目标明确给出为「人」字点阵；生产复用时必须换成实际字形采样点。
-    const targets=[];for(let i=0;i<16;i++){targets.push([320-7*i,108+9*i]);targets.push([320+7*i,108+9*i]);}
-    const s=stage(root,list(targets.length,i=>dot('p'+i,0,0,4))+text('label',320,315,'同一批点，逐一靠近字形目标',17));
-    return p=>{const q=smooth(section(p,.08,.85));targets.forEach(([x,y],i)=>{const a=i*2.399,sx=320+240*Math.cos(a),sy=180+135*Math.sin(a);s('p'+i,{cx:sx+(x-sx)*q,cy:sy+(y-sy)*q});});};
+    // 从本包 Oswald Bold 的 WISE MOTION 轮廓按 3.5px 网格采样，预存坐标避免字体载入改变终态。
+    const targets=[[112.0,150.5],[115.5,150.5],[119.0,150.5],[129.5,150.5],[133.0,150.5],[136.5,150.5],[147.0,150.5],[150.5,150.5],[154.0,150.5],[168.0,150.5],[171.5,150.5],[175.0,150.5],[178.5,150.5],[203.0,150.5],[206.5,150.5],[210.0,150.5],[234.5,150.5],[238.0,150.5],[241.5,150.5],[245.0,150.5],[248.5,150.5],[252.0,150.5],[255.5,150.5],[294.0,150.5],[297.5,150.5],[301.0,150.5],[304.5,150.5],[322.0,150.5],[325.5,150.5],[329.0,150.5],[332.5,150.5],[357.0,150.5],[360.5,150.5],[364.0,150.5],[367.5,150.5],[388.5,150.5],[392.0,150.5],[395.5,150.5],[399.0,150.5],[402.5,150.5],[406.0,150.5],[409.5,150.5],[413.0,150.5],[416.5,150.5],[430.5,150.5],[434.0,150.5],[437.5,150.5],[462.0,150.5],[465.5,150.5],[469.0,150.5],[472.5,150.5],[476.0,150.5],[500.5,150.5],[504.0,150.5],[521.5,150.5],[525.0,150.5],[528.5,150.5],[112.0,154.0],[115.5,154.0],[119.0,154.0],[129.5,154.0],[133.0,154.0],[136.5,154.0],[147.0,154.0],[150.5,154.0],[154.0,154.0],[168.0,154.0],[171.5,154.0],[175.0,154.0],[178.5,154.0],[196.0,154.0],[199.5,154.0],[203.0,154.0],[206.5,154.0],[210.0,154.0],[213.5,154.0],[217.0,154.0],[234.5,154.0],[238.0,154.0],[241.5,154.0],[245.0,154.0],[248.5,154.0],[252.0,154.0],[255.5,154.0],[294.0,154.0],[297.5,154.0],[301.0,154.0],[304.5,154.0],[322.0,154.0],[325.5,154.0],[329.0,154.0],[332.5,154.0],[350.0,154.0],[353.5,154.0],[357.0,154.0],[360.5,154.0],[364.0,154.0],[367.5,154.0],[371.0,154.0],[374.5,154.0],[388.5,154.0],[392.0,154.0],[395.5,154.0],[399.0,154.0],[402.5,154.0],[406.0,154.0],[409.5,154.0],[413.0,154.0],[416.5,154.0],[430.5,154.0],[434.0,154.0],[437.5,154.0],[458.5,154.0],[462.0,154.0],[465.5,154.0],[469.0,154.0],[472.5,154.0],[476.0,154.0],[479.5,154.0],[500.5,154.0],[504.0,154.0],[507.5,154.0],[521.5,154.0],[525.0,154.0],[528.5,154.0],[112.0,157.5],[115.5,157.5],[119.0,157.5],[129.5,157.5],[133.0,157.5],[136.5,157.5],[147.0,157.5],[150.5,157.5],[154.0,157.5],[168.0,157.5],[171.5,157.5],[175.0,157.5],[178.5,157.5],[192.5,157.5],[196.0,157.5],[199.5,157.5],[203.0,157.5],[206.5,157.5],[210.0,157.5],[213.5,157.5],[217.0,157.5],[234.5,157.5],[238.0,157.5],[241.5,157.5],[245.0,157.5],[248.5,157.5],[252.0,157.5],[255.5,157.5],[294.0,157.5],[297.5,157.5],[301.0,157.5],[304.5,157.5],[318.5,157.5],[322.0,157.5],[325.5,157.5],[329.0,157.5],[332.5,157.5],[350.0,157.5],[353.5,157.5],[357.0,157.5],[360.5,157.5],[364.0,157.5],[367.5,157.5],[371.0,157.5],[374.5,157.5],[378.0,157.5],[388.5,157.5],[392.0,157.5],[395.5,157.5],[399.0,157.5],[402.5,157.5],[406.0,157.5],[409.5,157.5],[413.0,157.5],[416.5,157.5],[430.5,157.5],[434.0,157.5],[437.5,157.5],[455.0,157.5],[458.5,157.5],[462.0,157.5],[465.5,157.5],[469.0,157.5],[472.5,157.5],[476.0,157.5],[479.5,157.5],[483.0,157.5],[500.5,157.5],[504.0,157.5],[507.5,157.5],[521.5,157.5],[525.0,157.5],[528.5,157.5],[112.0,161.0],[115.5,161.0],[119.0,161.0],[129.5,161.0],[133.0,161.0],[136.5,161.0],[147.0,161.0],[150.5,161.0],[154.0,161.0],[168.0,161.0],[171.5,161.0],[175.0,161.0],[178.5,161.0],[192.5,161.0],[196.0,161.0],[199.5,161.0],[203.0,161.0],[210.0,161.0],[213.5,161.0],[217.0,161.0],[220.5,161.0],[234.5,161.0],[238.0,161.0],[241.5,161.0],[245.0,161.0],[294.0,161.0],[297.5,161.0],[301.0,161.0],[304.5,161.0],[318.5,161.0],[322.0,161.0],[325.5,161.0],[329.0,161.0],[332.5,161.0],[346.5,161.0],[350.0,161.0],[353.5,161.0],[357.0,161.0],[367.5,161.0],[371.0,161.0],[374.5,161.0],[378.0,161.0],[399.0,161.0],[402.5,161.0],[406.0,161.0],[409.5,161.0],[430.5,161.0],[434.0,161.0],[437.5,161.0],[455.0,161.0],[458.5,161.0],[462.0,161.0],[476.0,161.0],[479.5,161.0],[483.0,161.0],[500.5,161.0],[504.0,161.0],[507.5,161.0],[511.0,161.0],[521.5,161.0],[525.0,161.0],[528.5,161.0],[112.0,164.5],[115.5,164.5],[119.0,164.5],[122.5,164.5],[129.5,164.5],[133.0,164.5],[136.5,164.5],[147.0,164.5],[150.5,164.5],[154.0,164.5],[168.0,164.5],[171.5,164.5],[175.0,164.5],[178.5,164.5],[192.5,164.5],[196.0,164.5],[199.5,164.5],[213.5,164.5],[217.0,164.5],[220.5,164.5],[234.5,164.5],[238.0,164.5],[241.5,164.5],[245.0,164.5],[294.0,164.5],[297.5,164.5],[301.0,164.5],[304.5,164.5],[308.0,164.5],[318.5,164.5],[322.0,164.5],[325.5,164.5],[329.0,164.5],[332.5,164.5],[346.5,164.5],[350.0,164.5],[353.5,164.5],[357.0,164.5],[367.5,164.5],[371.0,164.5],[374.5,164.5],[378.0,164.5],[399.0,164.5],[402.5,164.5],[406.0,164.5],[409.5,164.5],[430.5,164.5],[434.0,164.5],[437.5,164.5],[451.5,164.5],[455.0,164.5],[458.5,164.5],[462.0,164.5],[476.0,164.5],[479.5,164.5],[483.0,164.5],[486.5,164.5],[500.5,164.5],[504.0,164.5],[507.5,164.5],[511.0,164.5],[521.5,164.5],[525.0,164.5],[528.5,164.5],[115.5,168.0],[119.0,168.0],[122.5,168.0],[129.5,168.0],[133.0,168.0],[136.5,168.0],[140.0,168.0],[147.0,168.0],[150.5,168.0],[154.0,168.0],[168.0,168.0],[171.5,168.0],[175.0,168.0],[178.5,168.0],[192.5,168.0],[196.0,168.0],[199.5,168.0],[203.0,168.0],[234.5,168.0],[238.0,168.0],[241.5,168.0],[245.0,168.0],[294.0,168.0],[297.5,168.0],[301.0,168.0],[304.5,168.0],[308.0,168.0],[318.5,168.0],[322.0,168.0],[325.5,168.0],[329.0,168.0],[332.5,168.0],[346.5,168.0],[350.0,168.0],[353.5,168.0],[357.0,168.0],[367.5,168.0],[371.0,168.0],[374.5,168.0],[378.0,168.0],[399.0,168.0],[402.5,168.0],[406.0,168.0],[409.5,168.0],[430.5,168.0],[434.0,168.0],[437.5,168.0],[451.5,168.0],[455.0,168.0],[458.5,168.0],[462.0,168.0],[476.0,168.0],[479.5,168.0],[483.0,168.0],[486.5,168.0],[500.5,168.0],[504.0,168.0],[507.5,168.0],[511.0,168.0],[514.5,168.0],[521.5,168.0],[525.0,168.0],[528.5,168.0],[115.5,171.5],[119.0,171.5],[122.5,171.5],[129.5,171.5],[133.0,171.5],[136.5,171.5],[140.0,171.5],[147.0,171.5],[150.5,171.5],[154.0,171.5],[168.0,171.5],[171.5,171.5],[175.0,171.5],[178.5,171.5],[192.5,171.5],[196.0,171.5],[199.5,171.5],[203.0,171.5],[234.5,171.5],[238.0,171.5],[241.5,171.5],[245.0,171.5],[294.0,171.5],[297.5,171.5],[301.0,171.5],[304.5,171.5],[308.0,171.5],[318.5,171.5],[322.0,171.5],[325.5,171.5],[329.0,171.5],[332.5,171.5],[346.5,171.5],[350.0,171.5],[353.5,171.5],[357.0,171.5],[367.5,171.5],[371.0,171.5],[374.5,171.5],[378.0,171.5],[399.0,171.5],[402.5,171.5],[406.0,171.5],[409.5,171.5],[430.5,171.5],[434.0,171.5],[437.5,171.5],[451.5,171.5],[455.0,171.5],[458.5,171.5],[462.0,171.5],[476.0,171.5],[479.5,171.5],[483.0,171.5],[486.5,171.5],[500.5,171.5],[504.0,171.5],[507.5,171.5],[511.0,171.5],[514.5,171.5],[521.5,171.5],[525.0,171.5],[528.5,171.5],[115.5,175.0],[119.0,175.0],[122.5,175.0],[126.0,175.0],[129.5,175.0],[133.0,175.0],[136.5,175.0],[140.0,175.0],[147.0,175.0],[150.5,175.0],[154.0,175.0],[168.0,175.0],[171.5,175.0],[175.0,175.0],[178.5,175.0],[196.0,175.0],[199.5,175.0],[203.0,175.0],[206.5,175.0],[210.0,175.0],[234.5,175.0],[238.0,175.0],[241.5,175.0],[245.0,175.0],[248.5,175.0],[252.0,175.0],[294.0,175.0],[297.5,175.0],[301.0,175.0],[304.5,175.0],[308.0,175.0],[315.0,175.0],[318.5,175.0],[322.0,175.0],[325.5,175.0],[329.0,175.0],[332.5,175.0],[346.5,175.0],[350.0,175.0],[353.5,175.0],[357.0,175.0],[367.5,175.0],[371.0,175.0],[374.5,175.0],[378.0,175.0],[399.0,175.0],[402.5,175.0],[406.0,175.0],[409.5,175.0],[430.5,175.0],[434.0,175.0],[437.5,175.0],[451.5,175.0],[455.0,175.0],[458.5,175.0],[462.0,175.0],[476.0,175.0],[479.5,175.0],[483.0,175.0],[486.5,175.0],[500.5,175.0],[504.0,175.0],[507.5,175.0],[511.0,175.0],[514.5,175.0],[521.5,175.0],[525.0,175.0],[528.5,175.0],[115.5,178.5],[119.0,178.5],[122.5,178.5],[126.0,178.5],[129.5,178.5],[136.5,178.5],[140.0,178.5],[143.5,178.5],[147.0,178.5],[150.5,178.5],[168.0,178.5],[171.5,178.5],[175.0,178.5],[178.5,178.5],[199.5,178.5],[203.0,178.5],[206.5,178.5],[210.0,178.5],[213.5,178.5],[234.5,178.5],[238.0,178.5],[241.5,178.5],[245.0,178.5],[248.5,178.5],[252.0,178.5],[294.0,178.5],[297.5,178.5],[304.5,178.5],[308.0,178.5],[315.0,178.5],[318.5,178.5],[322.0,178.5],[325.5,178.5],[329.0,178.5],[332.5,178.5],[346.5,178.5],[350.0,178.5],[353.5,178.5],[357.0,178.5],[367.5,178.5],[371.0,178.5],[374.5,178.5],[378.0,178.5],[399.0,178.5],[402.5,178.5],[406.0,178.5],[409.5,178.5],[430.5,178.5],[434.0,178.5],[437.5,178.5],[451.5,178.5],[455.0,178.5],[458.5,178.5],[462.0,178.5],[476.0,178.5],[479.5,178.5],[483.0,178.5],[486.5,178.5],[500.5,178.5],[504.0,178.5],[507.5,178.5],[511.0,178.5],[514.5,178.5],[518.0,178.5],[521.5,178.5],[525.0,178.5],[528.5,178.5],[115.5,182.0],[119.0,182.0],[122.5,182.0],[126.0,182.0],[129.5,182.0],[136.5,182.0],[140.0,182.0],[143.5,182.0],[147.0,182.0],[150.5,182.0],[168.0,182.0],[171.5,182.0],[175.0,182.0],[178.5,182.0],[203.0,182.0],[206.5,182.0],[210.0,182.0],[213.5,182.0],[217.0,182.0],[234.5,182.0],[238.0,182.0],[241.5,182.0],[245.0,182.0],[248.5,182.0],[252.0,182.0],[294.0,182.0],[297.5,182.0],[304.5,182.0],[308.0,182.0],[311.5,182.0],[315.0,182.0],[318.5,182.0],[325.5,182.0],[329.0,182.0],[332.5,182.0],[346.5,182.0],[350.0,182.0],[353.5,182.0],[357.0,182.0],[367.5,182.0],[371.0,182.0],[374.5,182.0],[378.0,182.0],[399.0,182.0],[402.5,182.0],[406.0,182.0],[409.5,182.0],[430.5,182.0],[434.0,182.0],[437.5,182.0],[451.5,182.0],[455.0,182.0],[458.5,182.0],[462.0,182.0],[476.0,182.0],[479.5,182.0],[483.0,182.0],[486.5,182.0],[500.5,182.0],[504.0,182.0],[507.5,182.0],[511.0,182.0],[514.5,182.0],[518.0,182.0],[521.5,182.0],[525.0,182.0],[528.5,182.0],[115.5,185.5],[119.0,185.5],[122.5,185.5],[126.0,185.5],[129.5,185.5],[136.5,185.5],[140.0,185.5],[143.5,185.5],[147.0,185.5],[150.5,185.5],[168.0,185.5],[171.5,185.5],[175.0,185.5],[178.5,185.5],[206.5,185.5],[210.0,185.5],[213.5,185.5],[217.0,185.5],[234.5,185.5],[238.0,185.5],[241.5,185.5],[245.0,185.5],[294.0,185.5],[297.5,185.5],[304.5,185.5],[308.0,185.5],[311.5,185.5],[315.0,185.5],[318.5,185.5],[325.5,185.5],[329.0,185.5],[332.5,185.5],[346.5,185.5],[350.0,185.5],[353.5,185.5],[357.0,185.5],[367.5,185.5],[371.0,185.5],[374.5,185.5],[378.0,185.5],[399.0,185.5],[402.5,185.5],[406.0,185.5],[409.5,185.5],[430.5,185.5],[434.0,185.5],[437.5,185.5],[451.5,185.5],[455.0,185.5],[458.5,185.5],[462.0,185.5],[476.0,185.5],[479.5,185.5],[483.0,185.5],[486.5,185.5],[500.5,185.5],[504.0,185.5],[507.5,185.5],[514.5,185.5],[518.0,185.5],[521.5,185.5],[525.0,185.5],[528.5,185.5],[115.5,189.0],[119.0,189.0],[122.5,189.0],[126.0,189.0],[129.5,189.0],[136.5,189.0],[140.0,189.0],[143.5,189.0],[147.0,189.0],[150.5,189.0],[168.0,189.0],[171.5,189.0],[175.0,189.0],[178.5,189.0],[210.0,189.0],[213.5,189.0],[217.0,189.0],[220.5,189.0],[234.5,189.0],[238.0,189.0],[241.5,189.0],[245.0,189.0],[294.0,189.0],[297.5,189.0],[308.0,189.0],[311.5,189.0],[315.0,189.0],[318.5,189.0],[325.5,189.0],[329.0,189.0],[332.5,189.0],[346.5,189.0],[350.0,189.0],[353.5,189.0],[357.0,189.0],[367.5,189.0],[371.0,189.0],[374.5,189.0],[378.0,189.0],[399.0,189.0],[402.5,189.0],[406.0,189.0],[409.5,189.0],[430.5,189.0],[434.0,189.0],[437.5,189.0],[451.5,189.0],[455.0,189.0],[458.5,189.0],[462.0,189.0],[476.0,189.0],[479.5,189.0],[483.0,189.0],[486.5,189.0],[500.5,189.0],[504.0,189.0],[507.5,189.0],[514.5,189.0],[518.0,189.0],[521.5,189.0],[525.0,189.0],[528.5,189.0],[115.5,192.5],[119.0,192.5],[122.5,192.5],[126.0,192.5],[129.5,192.5],[136.5,192.5],[140.0,192.5],[143.5,192.5],[147.0,192.5],[150.5,192.5],[168.0,192.5],[171.5,192.5],[175.0,192.5],[178.5,192.5],[192.5,192.5],[196.0,192.5],[199.5,192.5],[210.0,192.5],[213.5,192.5],[217.0,192.5],[220.5,192.5],[234.5,192.5],[238.0,192.5],[241.5,192.5],[245.0,192.5],[294.0,192.5],[297.5,192.5],[308.0,192.5],[311.5,192.5],[315.0,192.5],[318.5,192.5],[325.5,192.5],[329.0,192.5],[332.5,192.5],[346.5,192.5],[350.0,192.5],[353.5,192.5],[357.0,192.5],[367.5,192.5],[371.0,192.5],[374.5,192.5],[378.0,192.5],[399.0,192.5],[402.5,192.5],[406.0,192.5],[409.5,192.5],[430.5,192.5],[434.0,192.5],[437.5,192.5],[451.5,192.5],[455.0,192.5],[458.5,192.5],[462.0,192.5],[476.0,192.5],[479.5,192.5],[483.0,192.5],[486.5,192.5],[500.5,192.5],[504.0,192.5],[507.5,192.5],[514.5,192.5],[518.0,192.5],[521.5,192.5],[525.0,192.5],[528.5,192.5],[119.0,196.0],[122.5,196.0],[126.0,196.0],[129.5,196.0],[140.0,196.0],[143.5,196.0],[147.0,196.0],[150.5,196.0],[168.0,196.0],[171.5,196.0],[175.0,196.0],[178.5,196.0],[192.5,196.0],[196.0,196.0],[199.5,196.0],[210.0,196.0],[213.5,196.0],[217.0,196.0],[220.5,196.0],[234.5,196.0],[238.0,196.0],[241.5,196.0],[245.0,196.0],[294.0,196.0],[297.5,196.0],[308.0,196.0],[311.5,196.0],[315.0,196.0],[318.5,196.0],[325.5,196.0],[329.0,196.0],[332.5,196.0],[346.5,196.0],[350.0,196.0],[353.5,196.0],[357.0,196.0],[367.5,196.0],[371.0,196.0],[374.5,196.0],[378.0,196.0],[399.0,196.0],[402.5,196.0],[406.0,196.0],[409.5,196.0],[430.5,196.0],[434.0,196.0],[437.5,196.0],[451.5,196.0],[455.0,196.0],[458.5,196.0],[462.0,196.0],[476.0,196.0],[479.5,196.0],[483.0,196.0],[486.5,196.0],[500.5,196.0],[504.0,196.0],[507.5,196.0],[518.0,196.0],[521.5,196.0],[525.0,196.0],[528.5,196.0],[119.0,199.5],[122.5,199.5],[126.0,199.5],[129.5,199.5],[140.0,199.5],[143.5,199.5],[147.0,199.5],[150.5,199.5],[168.0,199.5],[171.5,199.5],[175.0,199.5],[178.5,199.5],[192.5,199.5],[196.0,199.5],[199.5,199.5],[203.0,199.5],[210.0,199.5],[213.5,199.5],[217.0,199.5],[220.5,199.5],[234.5,199.5],[238.0,199.5],[241.5,199.5],[245.0,199.5],[294.0,199.5],[297.5,199.5],[308.0,199.5],[311.5,199.5],[315.0,199.5],[318.5,199.5],[325.5,199.5],[329.0,199.5],[332.5,199.5],[346.5,199.5],[350.0,199.5],[353.5,199.5],[357.0,199.5],[367.5,199.5],[371.0,199.5],[374.5,199.5],[378.0,199.5],[399.0,199.5],[402.5,199.5],[406.0,199.5],[409.5,199.5],[430.5,199.5],[434.0,199.5],[437.5,199.5],[455.0,199.5],[458.5,199.5],[462.0,199.5],[472.5,199.5],[476.0,199.5],[479.5,199.5],[483.0,199.5],[500.5,199.5],[504.0,199.5],[507.5,199.5],[518.0,199.5],[521.5,199.5],[525.0,199.5],[528.5,199.5],[119.0,203.0],[122.5,203.0],[126.0,203.0],[129.5,203.0],[140.0,203.0],[143.5,203.0],[147.0,203.0],[150.5,203.0],[168.0,203.0],[171.5,203.0],[175.0,203.0],[178.5,203.0],[192.5,203.0],[196.0,203.0],[199.5,203.0],[203.0,203.0],[206.5,203.0],[210.0,203.0],[213.5,203.0],[217.0,203.0],[220.5,203.0],[234.5,203.0],[238.0,203.0],[241.5,203.0],[245.0,203.0],[248.5,203.0],[252.0,203.0],[255.5,203.0],[294.0,203.0],[297.5,203.0],[308.0,203.0],[311.5,203.0],[315.0,203.0],[325.5,203.0],[329.0,203.0],[332.5,203.0],[350.0,203.0],[353.5,203.0],[357.0,203.0],[360.5,203.0],[364.0,203.0],[367.5,203.0],[371.0,203.0],[374.5,203.0],[378.0,203.0],[399.0,203.0],[402.5,203.0],[406.0,203.0],[409.5,203.0],[430.5,203.0],[434.0,203.0],[437.5,203.0],[455.0,203.0],[458.5,203.0],[462.0,203.0],[465.5,203.0],[469.0,203.0],[472.5,203.0],[476.0,203.0],[479.5,203.0],[483.0,203.0],[500.5,203.0],[504.0,203.0],[507.5,203.0],[521.5,203.0],[525.0,203.0],[528.5,203.0],[119.0,206.5],[122.5,206.5],[126.0,206.5],[140.0,206.5],[143.5,206.5],[147.0,206.5],[168.0,206.5],[171.5,206.5],[175.0,206.5],[178.5,206.5],[196.0,206.5],[199.5,206.5],[203.0,206.5],[206.5,206.5],[210.0,206.5],[213.5,206.5],[217.0,206.5],[234.5,206.5],[238.0,206.5],[241.5,206.5],[245.0,206.5],[248.5,206.5],[252.0,206.5],[255.5,206.5],[294.0,206.5],[297.5,206.5],[308.0,206.5],[311.5,206.5],[315.0,206.5],[325.5,206.5],[329.0,206.5],[332.5,206.5],[350.0,206.5],[353.5,206.5],[357.0,206.5],[360.5,206.5],[364.0,206.5],[367.5,206.5],[371.0,206.5],[374.5,206.5],[399.0,206.5],[402.5,206.5],[406.0,206.5],[409.5,206.5],[430.5,206.5],[434.0,206.5],[437.5,206.5],[458.5,206.5],[462.0,206.5],[465.5,206.5],[469.0,206.5],[472.5,206.5],[476.0,206.5],[479.5,206.5],[500.5,206.5],[504.0,206.5],[507.5,206.5],[521.5,206.5],[525.0,206.5],[528.5,206.5],[203.0,210.0],[206.5,210.0],[210.0,210.0],[357.0,210.0],[360.5,210.0],[364.0,210.0],[367.5,210.0],[465.5,210.0],[469.0,210.0],[472.5,210.0]];
+    const golden=Math.PI*(3-Math.sqrt(5));
+    const s=stage(root,list(targets.length,i=>text('p'+i,0,0,'01/.'[(i*7+i%3)%4],5.6,'style="fill:var(--ink);font-family:Oswald,sans-serif;font-weight:700" dominant-baseline="central"')));
+    return p=>{
+      const progress=section(p,0,.48);
+      targets.forEach(([x,y],i)=>{
+        const delay=(i%17)/17*.18,local=section(progress,delay,1),q=smooth(local);
+        const a=i*golden,r=64+(i%23)*7.1,sx=320+Math.cos(a)*r,sy=180+Math.sin(a)*r*.58;
+        s('p'+i,{x:sx+(x-sx)*q,y:sy+(y-sy)*q,opacity:(.65+(i%7)/35)*Math.min(1,local*3.5)});
+      });
+    };
   });
   register('fragment-replace',(root) => {
     const s=stage(root,'<defs>'+list(12,i=>`<clipPath id="NAMESPACE-f${i}"><rect x="${170+(i%4)*75}" y="${123+Math.floor(i/4)*35}" width="75" height="35"/></clipPath>` )+'</defs>'+list(12,i=>`<g data-part="f${i}" clip-path="url(#NAMESPACE-f${i})">${text('old'+i,320,198,'旧的表达',65)}</g>`)+text('new',320,198,'新的做法',50));
@@ -235,6 +517,42 @@
     const route=(q,sign)=>q<.25?[220+160*q,180+sign*85*q/.25]:q<.75?[260+120*(q-.25)/.5,180+sign*85]:[380+40*(q-.75)/.25,180+sign*85*(1-(q-.75)/.25)];
     return p=>{const start=section(p,.05,.25),q=section(p,.25,.85);s('input',{cx:90+130*start,opacity:p<=.25?1:0});for(const [id,sign] of [['top',-1],['bottom',1]]){const [x,y]=route(q,sign);s(id,{cx:x,cy:y,opacity:p>=.25&&p<.85?1:0});}s('end',{opacity:p>=.85?1:.15});};
   });
+  register('line-converge',(root,K,definition) => {
+    // 原三卡依次建立后上移，三线同拍向下描到主卡。只保留相关卡片与连接关系。
+    const xs=[95,257,419],centers=xs.map(x=>x+63),starts=[0,.5538,1.1645];
+    const riseAt=starts[2]+.42,connectorAt=riseAt+.49;
+    const icons=[
+      '<path d="M-10-9H10V14H-10Z M-5-13H5V-6H-5Z M-5 1H5 M-5 7H2"/>',
+      '<circle cx="0" cy="0" r="12"/><circle cx="0" cy="0" r="1.5" fill="var(--card-ink)" stroke="none"/>',
+      '<path d="M-12-9H12 M-12 0H12 M-12 9H12"/>'
+    ];
+    const frame=(id,x,y,w,h,inside=false)=>rect(id,x,y,w,h,`rx="0" fill="${inside?'none':'var(--card)'}" stroke="var(--card-ink)" stroke-width="${inside?.25:.65}" opacity="${inside?.35:1}" pathLength="1" stroke-dasharray="1 1"`);
+    const paths=[`M${centers[0]} 158 C${centers[0]} 191.3,320 196.7,320 230`,'M320 158 L320 230',`M${centers[2]} 158 C${centers[2]} 191.3,320 196.7,320 230`];
+    const cards=xs.map((x,i)=>frame('frame'+i,x,44,126,114)+frame('inset'+i,x+2,46,122,110,true)+
+      `<g data-part="icon${i}" transform="translate(${centers[i]} 70)" fill="none" stroke="var(--card-ink)" stroke-width=".8" stroke-linecap="round" stroke-linejoin="round">${icons[i]}</g>`+
+      `<text data-part="label${i}" x="${centers[i]}" y="105" text-anchor="middle" font-size="${global.MotionKit.textSize('caption')}" fill="var(--card-ink)" font-weight="300">${['内容先于装饰','颜色必须有语义','密度服从层级'][i]}</text>`+
+      `<g data-part="detail${i}">${line('detail-a'+i,x+24,125,x+102,125,'stroke="var(--card-muted)" stroke-width=".5"')}${line('detail-b'+i,x+36,135,x+90,135,'stroke="var(--card-muted)" stroke-width=".5"')}</g>`).join('');
+    const s=stage(root,'<g data-part="cards">'+cards+'</g>'+paths.map((d,i)=>`<path data-part="connector${i}" d="${d}" fill="none" stroke="var(--muted)" stroke-width=".65" stroke-linecap="round" pathLength="1" stroke-dasharray="1 1"/>`).join('')+
+      frame('receiver-frame',95,230,450,80)+frame('receiver-inset',97,232,446,76,true)+`<text data-part="receiver-label" x="320" y="278" text-anchor="middle" font-size="${K.textSize('title')}" fill="var(--card-ink)" font-weight="300">一页一个重心</text>`+
+      centers.map((x,i)=>dot('start-dot'+i,x,158,1.75,'fill="var(--card-ink)"')).join('')+dot('end-dot',320,230,1.75,'fill="var(--card-ink)"'));
+    return p=>{
+      const t=p*definition.duration_ms/1000,rise=K.span(t,riseAt,riseAt+.46,'inOutCubic');
+      move(s,'cards',0,84*(1-rise));
+      starts.forEach((at,i)=>{
+        s('frame'+i,{opacity:t>=at?1:0,'stroke-dashoffset':1-K.span(t,at,at+.28,'outCubic'),'fill-opacity':K.span(t,at+.182,at+.362,'outQuad')});
+        s('inset'+i,{opacity:t>=at+.025?.35:0,'stroke-dashoffset':1-K.span(t,at+.025,at+.245,'outCubic')});
+        s('icon'+i,{opacity:K.span(t,at+.07,at+.27,'outQuad')});
+        s('label'+i,{opacity:K.span(t,at+.11,at+.31,'outQuad')});
+        s('detail'+i,{opacity:K.span(t,at+.14,at+.34,'outQuad')});
+        s('connector'+i,{opacity:t>=connectorAt?1:0,'stroke-dashoffset':1-K.span(t,connectorAt,connectorAt+.44,'outCubic')});
+        s('start-dot'+i,{opacity:K.span(t,connectorAt-.03,connectorAt+.13)});
+      });
+      s('receiver-frame',{opacity:t>=connectorAt+.03?1:0,'stroke-dashoffset':1-K.span(t,connectorAt+.03,connectorAt+.41,'outCubic'),'fill-opacity':K.span(t,connectorAt+.277,connectorAt+.457,'outQuad')});
+      s('receiver-inset',{opacity:t>=connectorAt+.11?.35:0,'stroke-dashoffset':1-K.span(t,connectorAt+.11,connectorAt+.49,'outCubic')});
+      s('receiver-label',{opacity:K.span(t,connectorAt+.23,connectorAt+.49,'outQuad')});
+      s('end-dot',{opacity:K.span(t,connectorAt+.37,connectorAt+.55)});
+    };
+  });
   register('connection-merge',(root) => {
     const ys=[90,180,270],s=stage(root,list(3,i=>line('l'+i,130,ys[i],460,180)+dot('p'+i,130,ys[i]))+dot('receiver',460,180,24));
     return p=>{ys.forEach((y,i)=>{const q=smooth(section(p,.1+i*.1,.55+i*.1));s('p'+i,{cx:130+330*q,cy:y+(180-y)*q});});s('receiver',{opacity:p>=.75?1:.15});};
@@ -250,10 +568,6 @@
   register('slider-response',(root) => {
     const s=stage(root,line('axis',150,275,490,275)+dot('handle',150,275,12)+'<rect data-part="subject" x="270" y="90" width="100" height="100" fill="var(--ink)"/>');
     return p=>{const q=.5-.5*Math.cos(p*2*Math.PI);s('handle',{cx:150+340*q});s('subject',{rx:50*q,transform:`rotate(${45*q} 320 140)`});};
-  });
-  register('data-pulse',(root) => {
-    const samples=[0,.15,.8,.4,.95,.2,0],s=stage(root,list(7,i=>rect('b'+i,145+i*50,240,30,0,'style="fill:var(--ink)"'))+line('base',120,240,520,240));
-    return p=>{for(let i=0;i<7;i++){const x=Math.max(0,Math.min(6,p*7-i*.13)),a=Math.floor(x),b=Math.min(6,a+1),v=samples[a]+(samples[b]-samples[a])*(x-a),h=130*v;s('b'+i,{y:240-h,height:h});}};
   });
   register('wave-grid',(root) => {
     const s=stage(root,list(35,i=>dot('p'+i,180+(i%7)*46,88+Math.floor(i/7)*46,9)));
@@ -272,16 +586,13 @@
     return p=>{const pts=Array.from({length:40},(_,i)=>[120+i*10,180+i/39*38*Math.sin(p*2*Math.PI-i*.17)]);s('body',{d:pts.map(([x,y],i)=>`${i?'L':'M'}${x},${y}`).join(' ')});};
   });
   register('local-scan',(root) => {
-    const s=stage(root,'<defs><clipPath id="NAMESPACE-shape"><circle cx="320" cy="180" r="100"/></clipPath></defs><circle cx="320" cy="180" r="100" fill="var(--panel)" stroke="var(--muted)"/><g clip-path="url(#NAMESPACE-shape)">'+rect('scan',0,60,30,240,'style="fill:var(--ink)"')+'</g>');
-    return p=>s('scan',{x:160+320*p});
-  });
-  register('glyph-sheen',(root) => {
-    const s=stage(root,'<defs><mask id="NAMESPACE-type">'+text('mask',320,200,'表达清楚',65,'style="fill:white"')+'</mask></defs>'+text('base',320,200,'表达清楚',65,'style="fill:var(--muted)"')+'<g mask="url(#NAMESPACE-type)">'+rect('scan',0,100,42,130,'style="fill:var(--ink)"')+'</g>');
-    return p=>s('scan',{x:70+510*p});
+    const s=stage(root,'<foreignObject x="0" y="0" width="640" height="360"><div xmlns="http://www.w3.org/1999/xhtml" style="width:640px;height:360px;display:flex;align-items:center;justify-content:center"><span data-part="wordmark" class="brand-name" style="font-size:var(--type-heading);line-height:1.2;white-space:nowrap;animation:none;color:var(--brand-base);background-image:linear-gradient(90deg,var(--brand-base) 0%,var(--brand-base) 58%,var(--brand-light) 70%,var(--brand-light) 82%,var(--brand-base) 94%,var(--brand-base) 100%)">WISE MOTION</span></div></foreignObject>');
+    // 与左上角品牌共用字形和渐变，只由播放器控制扫光进度。
+    return p=>{s('wordmark').style.backgroundPosition=`${200*(1-p)}% 0px`;};
   });
   register('color-evolve',(root) => {
     const s=stage(root,rect('shape',240,100,160,160));
-    return p=>{const v=Math.round(80+145*smooth(section(p,.1,.85)));s('shape',{fill:`rgb(${v},${v},${v})`});};
+    return p=>{const q=smooth(section(p,.1,.85));s('shape',{fill:`color-mix(in srgb,var(--accent) ${(1-q)*100}%,var(--teal) ${q*100}%)`});};
   });
   register('density-field',(root) => {
     const s=stage(root,list(120,i=>dot('p'+i,115+((i*73)%409),65+((i*37)%229),3)));
@@ -295,18 +606,85 @@
     const s=stage(root,text('title',320,82,'让每一步都有依据',28)+list(3,i=>rect('layer'+i,150,110+i*65,340,50)+text('words'+i,320,144+i*65,['看见问题','理解原因','确定做法'][i],23)));
     return p=>{for(let i=0;i<3;i++){const q=smooth(section(p,.08+i*.22,.24+i*.22));s('layer'+i,{opacity:q});s('words'+i,{opacity:q});}};
   });
-  register('countdown-dial',(root) => {
-    const s=stage(root,'<circle cx="320" cy="180" r="104" fill="none" stroke="var(--path)" stroke-width="5"/><circle data-part="remaining" cx="320" cy="180" r="104" fill="none" stroke="var(--ink)" stroke-width="5" pathLength="1" stroke-dasharray="1" transform="rotate(-90 320 180)"/>'+list(12,i=>line('tick'+i,320,65,320,75,`transform="rotate(${i*30} 320 180)"`))+line('needle',320,180,320,88)+text('value',320,220,'6',40));
-    return p=>{s('remaining',{'stroke-dashoffset':p});s('needle',{transform:`rotate(${360*p} 320 180)`});setText(s,'value',String(Math.ceil(6*(1-p))));};
-  });
   register('playback-track',(root) => {
     const points=[[145,255],[245,155],[450,155],[450,250]],s=stage(root,rect('button',395,130,110,50)+text('label',450,163,'确认',22)+'<path data-part="cursor" d="M0 0 L0 23 L6 17 L13 28 L18 25 L12 15 L23 15 Z" fill="var(--ink)"/>');
     return p=>{const t=Math.min(2.999,p*3),i=Math.floor(t),q=smooth(t-i),a=points[i],b=points[i+1];move(s,'cursor',a[0]+(b[0]-a[0])*q,a[1]+(b[1]-a[1])*q);const press=section(p,.65,.7)*(1-section(p,.7,.76));s('button',{transform:`translate(450 155) scale(${1-.08*press}) translate(-450 -155)`});};
   });
-  register('load-balance',(root) => {
-    const s=stage(root,line('stand',320,165,320,285)+'<g data-part="beam">'+line('bar',190,165,450,165)+[190,450].map((x,i)=>`<g data-part="pan${i}">${line('cord'+i,0,0,0,65)}${rect('tray'+i,-45,60,90,15)}</g>`).join('')+'</g>'+rect('load',410,0,55,34));
-    return p=>{const entry=section(p,.08,.3),q=smooth(section(p,.32,.75)),angle=14*q;s('beam',{transform:`rotate(${angle} 320 165)`});move(s,'pan0',190,165,1,-angle);move(s,'pan1',450,165,1,-angle);const x=320+130*Math.cos(angle*Math.PI/180),y=165+130*Math.sin(angle*Math.PI/180);s('load',{x:x-27.5,y:(y+26)*entry});};
+  register('cylinder-drum',(root)=>{
+    const radius=102,tilt=.24;
+    const front=a=>Math.cos(a)>radius/(650*Math.cos(tilt));
+    const s=stage(root,list(8,i=>`<path data-part="panel${i}" fill="none" stroke="var(--card-ink)" stroke-opacity=".48" stroke-width=".6"/>`));
+    const project=(a,y)=>{
+      const x=radius*Math.sin(a),z=radius*Math.cos(a),depth=z*Math.cos(tilt)-y*Math.sin(tilt),scale=650/(650-depth);
+      return [320+x*scale,178+(y*Math.cos(tilt)+z*Math.sin(tilt))*scale];
+    };
+    const point=([x,y])=>x.toFixed(3)+' '+y.toFixed(3);
+    return p=>{
+      const phase=p*Math.PI*2;
+      for(let i=0;i<8;i++){
+        const center=i/8*Math.PI*2-phase,lo=center-.30,hi=center+.30;let d='';
+        for(const y of [-51,-22,-5,12,51]){
+          const left=y===-51||y===51?lo:lo+.09,right=y===-51||y===51?hi:hi-.09;
+          for(let j=0;j<20;j++){
+            const a=left+(right-left)*j/20,b=left+(right-left)*(j+1)/20;
+            if(front((a+b)/2))d+='M'+point(project(a,y))+'L'+point(project(b,y));
+          }
+        }
+        for(const a of [lo,hi])if(front(a))d+='M'+point(project(a,-51))+'L'+point(project(a,51));
+        s('panel'+i,{d});
+      }
+    };
   });
+  register('stamp-land',root => {
+    // 原档案印记从 2.1 倍缩到原尺寸，双边框与墨色共用落印进度。
+    const s=stage(root,`<g data-part="stamp" fill="#B23A2A">
+      <rect x="-76" y="-24.7" width="152" height="49.4" fill="none" stroke="#B23A2A" stroke-opacity=".85" stroke-width="2.5"/>
+      <rect x="-72" y="-20.7" width="144" height="41.4" fill="none" stroke="#B23A2A" stroke-opacity=".5" stroke-width="1"/>
+      <text x="0" y="1" dominant-baseline="middle" text-anchor="middle" font-size="${global.MotionKit.textSize('title')}" font-weight="700" fill-opacity=".85">样本 · K3</text>
+    </g>`);
+    return p=>{const q=smooth(section(p,0,.27/.7));s('stamp',{transform:`translate(320 180) scale(${2.1-1.1*q}) rotate(${-0.14*180/Math.PI})`,opacity:.9*q});};
+  });
+  F['load-balance']=(root,K)=>{
+    // 指令章节的 SFT 杠杆天平，原片案例 77.1–82.67 秒；保留成片时钟与设计时钟的对应。
+    const green='#0AE448',scale=.55;
+    const beats=[
+      [74.66666666666666,77.33333333333334,5.200000000000003,9.5],
+      [77.33333333333334,79.26666666666665,9.5,12.300000000000011],
+      [79.26666666666665,82.36666666666667,12.300000000000011,15.199999999999989],
+      [82.36666666666667,85.30000000000001,15.199999999999989,19]
+    ];
+    const ease=p=>{p=K.clamp(p);return p<.5?4*p*p*p:1-(-2*p+2)**3/2;};
+    const s=stage(root,`<g data-part="instruction" transform="translate(23 -328) scale(.55)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <g data-part="beam"><path d="M-370 0H370" stroke="var(--ink)" stroke-width="7"/>
+        <circle cx="-330" r="10" fill="var(--ink)"/><circle cx="330" r="10" fill="var(--ink)"/>
+      </g>
+      <path data-part="stand" d="M495 1070L540 980L585 1070L495 1070M460 1090H620" stroke="var(--ink)" stroke-width="3"/>
+      <text x="540" y="1110" text-anchor="middle" dominant-baseline="hanging" font-size="${global.MotionKit.textSize('title',scale)}" font-weight="300" fill="var(--ink)">指令遵循</text>
+      <g data-part="fine">
+        <rect data-part="weight" width="166" height="100" fill="${green}"/>
+        <text data-part="sft" text-anchor="middle" dominant-baseline="hanging" font-size="${global.MotionKit.textSize('subhead',scale)}" font-weight="700" fill="#0E100F">SFT</text>
+        <text data-part="tuning" text-anchor="middle" dominant-baseline="hanging" font-size="${global.MotionKit.textSize('body',scale)}" font-weight="300" fill="${green}">微调</text>
+        <rect data-part="pulse" width="180" height="114" stroke="${green}"/>
+        ${list(4,i=>`<circle data-part="particle${i}" r="${4+i*.7}" fill="${green}"/>`)}
+      </g>
+    </g>`);
+    return ms=>{
+      const program=77.1+K.clamp(ms,0,5570)/1000,b=beats.find(b=>program<b[1])||beats.at(-1);
+      const t=K.mix(b[2],b[3],K.clamp((program-b[0])/(b[1]-b[0])));
+      const lever=ease((t-9.5)/1),fine=ease((t-12.3)/.85),live=program-70.96666666666667;
+      const angle=K.mix(-.14,0,fine)+fine*Math.sin(live*2.2)*.012;
+      const wx=540+295*Math.cos(angle),wy=960+295*Math.sin(angle),yy=K.mix(wy-92,wy-145,fine);
+      s('instruction',{opacity:lever});s('beam',{transform:`translate(540 960) rotate(${angle*180/Math.PI})`});s('fine',{opacity:fine});
+      s('weight',{x:wx-83,y:yy});s('sft',{x:wx,y:yy+15});s('tuning',{x:wx,y:yy-50});
+      const pulse=.5+.5*Math.sin(live*4.2);
+      s('pulse',{x:wx-90,y:yy-7,'stroke-opacity':.35+.45*pulse,'stroke-width':2+2*pulse});
+      const particleTime=Math.max(0,program-79.26666666666665);
+      for(let i=0;i<4;i++){
+        const q=((particleTime*.42+i*.24)%1+1)%1;
+        s('particle'+i,{cx:K.mix(570,wx-92,q),cy:K.mix(748,yy+50,q)+Math.sin(q*Math.PI)*18,'fill-opacity':.45+.45*(1-q)});
+      }
+    };
+  };
   register('film-step',(root) => {
     const s=stage(root,line('axis',100,210,540,210)+dot('body',100,210,15)+text('label',320,275,'固定每秒六帧，同一路线',18));
     return p=>s('body',{cx:100+440*Math.min(1,Math.floor(p*24)/24)});
@@ -320,16 +698,8 @@
     const position=q=>{const target=q*table[steps];let low=0,high=steps;while(high-low>1){const mid=(low+high)>>1;if(table[mid]<target)low=mid;else high=mid;}return 70+dx*(low+(target-table[low])/(table[high]-table[low]));};
     return p=>{for(let i=0;i<12;i++){const q=(p+i/12)%1,x=position(q);s('p'+i,{cx:x,cy:180+((i%3)-1)*width(x)*.3,opacity:Math.min(1,q/.04,(1-q)/.04)});}};
   });
-  register('stroke-hatch',(root) => {
-    const s=stage(root,'<defs><clipPath id="NAMESPACE-outline"><rect x="220" y="85" width="200" height="190" rx="15"/></clipPath></defs><rect data-part="outline" x="220" y="85" width="200" height="190" rx="15" fill="none" stroke="var(--ink)" stroke-width="3" pathLength="1" stroke-dasharray="1"/><g clip-path="url(#NAMESPACE-outline)">'+list(20,i=>line('h'+i,150+i*18,300,330+i*18,60))+'</g>');
-    return p=>{s('outline',{'stroke-dashoffset':1-section(p,.05,.42)});for(let i=0;i<20;i++)s('h'+i,{opacity:section(p,.46+i*.018,.5+i*.018)});};
-  });
   register('sequential-spec',(root) => {
     const s=stage(root,list(3,i=>`<circle data-part="icon${i}" cx="${170+i*150}" cy="125" r="30" fill="none" stroke="var(--ink)" stroke-width="3" pathLength="1" stroke-dasharray="1"/>`+text('label'+i,170+i*150,205,['事实','原因','做法'][i],26)+text('value'+i,170+i*150,250,String((i+1)*12),27)));
     return p=>{for(let i=0;i<3;i++){const delay=i*.2;s('icon'+i,{'stroke-dashoffset':1-section(p,.04+delay,.24+delay)});s('label'+i,{opacity:section(p,.25+delay,.34+delay)});s('value'+i,{opacity:section(p,.35+delay,.44+delay)});}};
-  });
-  register('bar-growth',(root) => {
-    const values=[110,65,175,130],s=stage(root,line('base',100,270,540,270)+list(4,i=>rect('bar'+i,140+i*95,270,55,0,'style="fill:var(--ink)"')));
-    return p=>values.forEach((value,i)=>{const h=value*smooth(section(p,.1+i*.08,.65+i*.08));s('bar'+i,{y:270-h,height:h});});
   });
 })(globalThis);
