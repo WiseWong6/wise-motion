@@ -34,7 +34,7 @@ test('三项迁入数据分类且原文件未改，五个历史入口剔除，�
   }
 });
 
-test('双百分数按原讲述词点先后增长，读数、柱高和柱顶位置共用进度',async()=>{
+test('双百分数落定后紧接下一组，读数、柱高和柱顶位置共用原增长进度',async()=>{
   const files=crosswalk.rules['resume-count'].migration.files;
   const original=new JSDOM(await readFile(files.find(f=>f.file.endsWith('preview.html')).file,'utf8'));
   const timing=JSON.parse(await readFile(files.find(f=>f.file.endsWith('timing.json')).file,'utf8'));
@@ -45,12 +45,12 @@ test('双百分数按原讲述词点先后增长，读数、柱高和柱顶位�
   });original.window.close();
   const env=await environment();try{
     const {w}=env,root=w.document.getElementById('root'),player=w.MotionRuntime.create(root,effect('narrated-count')),{get,num}=access(root);
-    const second=(values[1].start-values[0].start)*1000;
-    player.seek(1000);assert.equal(get('value0').textContent,'60%');assert.equal(get('value1').textContent,'0%');
+    const second=values[0].duration;
+    player.seek(640);assert.equal(get('value0').textContent,'60%');assert.equal(get('value1').textContent,'0%');
     for(const time of [0,320,640,second,second+280,second+560,3000]){
       player.seek(time);
       values.forEach((v,i)=>{
-        const elapsed=time-(v.start-values[0].start)*1000,p=Math.max(0,Math.min(1,elapsed/v.duration)),q=1-(1-p)**3;
+        const elapsed=time-(i?second:0),p=Math.max(0,Math.min(1,elapsed/v.duration)),q=1-(1-p)**3;
         assert.equal(get('value'+i).textContent,Math.round(v.target*q)+'%');closeTo(num('bar'+i,'height'),v.height*q);
         closeTo(num('bar'+i,'y')+num('bar'+i,'height'),1048);closeTo(num('value'+i,'y'),v.y+v.height*(1-q));
       });

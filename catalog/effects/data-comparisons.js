@@ -12,10 +12,10 @@ function scene(root,html){
   const nodes=new Map([...root.querySelectorAll('[data-part]')].map(n=>[n.dataset.part,n]));
   return (id,attrs={},text)=>{const n=nodes.get(id);for(const [k,v]of Object.entries(attrs))if(n.getAttribute(k)!==String(v))n.setAttribute(k,String(v));if(text!==undefined&&n.textContent!==String(text))n.textContent=String(text);return n;};
 }
-// 简历原作的 60% / 78%：保留两次词点间隔、柱高与读数共用的进度。
+// 保留原双柱与读数的同步增长；第一组落定的同一时刻立即启动第二组。
 F['narrated-count']=(root,K,def)=>{
   const items=[{x:260,y:808,h:240,value:60,at:0,duration:640,color:'var(--muted)',label:'优化前'},
-    {x:650,y:736,h:312,value:78,at:1630.03333333334,duration:560,color:'var(--blue)',label:'优化后'}];
+    {x:650,y:736,h:312,value:78,at:640,duration:560,color:'var(--blue)',label:'优化后'}];
   const s=scene(root,`<g transform="translate(50 -252.5) scale(.5)">
     <text x="540" y="600" text-anchor="middle" fill="var(--ink)" font-size="${size('title',.5)}" font-weight="700">注册完成率</text>
     <path d="M210 1048H870" fill="none" stroke="var(--muted)" stroke-width="2" opacity=".5"/>

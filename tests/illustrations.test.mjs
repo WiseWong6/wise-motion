@@ -11,7 +11,7 @@ test('插画单图独立计数、筛选和搜索，直达链接切到插画目�
     const {w} = env, d = w.document;
     const art = data.effects.filter(e=>e.kind==='illustration');
     const tab = d.querySelector('[data-kind="illustration"]');
-    assert.equal(art.length, 45);
+    assert.equal(art.length, 46);
     assert.equal(tab.getAttribute('aria-pressed'), 'true');
     assert.equal(tab.querySelector('.pill-count').textContent, String(art.length));
     assert.equal(d.querySelector('.effect-item[aria-current="true"]').dataset.effect, 'rasengan-illustration');
@@ -46,7 +46,7 @@ test('插画正式入口加载全部独立图形，缩略图可生成并可切�
       cards.push(...d.querySelectorAll('.effect-item'));
     }
     filter.value='all';filter.dispatchEvent(new w.Event('change'));env.reveal();
-    assert.equal(cards.length, 45);
+    assert.equal(cards.length, 46);
     for (const previous of cards) {
       const card=d.querySelector(`[data-effect="${previous.dataset.effect}"]`);
       assert.ok(card.querySelector('.thumb .pattern-svg'), card.dataset.effect);

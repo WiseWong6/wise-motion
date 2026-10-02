@@ -49,16 +49,12 @@
       drawStatement(M, statement, t, o);
     };
   };
-  F['arc-cards'] = (root, M) => {
-    const s = M.scene(root, M.cardSet(5)); const cards = s.all('.mini-card'); cards.forEach(c => { c.style.left = '266px'; c.style.top = '117px'; });
-    cards.forEach((node,i)=>tag(node,'card-'+i));
-    return (t, o) => cards.forEach((c, i) => { const a = (M.ease(t / o.duration, o.ease) + i / 5) * Math.PI * 2; const z = Math.cos(a); M.pose(c, {x: Math.sin(a) * 235, y: (1 - z) * 28, scale: .67 + (z + 1) * .21, ry: -Math.sin(a) * 30, opacity: .5 + (z + 1) * .25}); c.style.zIndex = String(Math.round((z + 1) * 50)); });
-  };
   F['title-content'] = (root, M) => {
     const s = M.scene(root, '<div class="product-title">好想法，从这里开始。</div>' + ['表达','节奏','重点'].map((word, i) => `<div class="feature-card" style="left:${98 + i * 154}px">${word}<small>让内容被看见</small></div>`).join('')), cards = s.all('.feature-card'), title = s.one('.product-title');
     tag(title,'title');tag(cards,'content');
     return (t, o) => {
-      F['mask-reveal'].draw(M, title, t, o, {start:200, end:1800});
+      const reveal = M.span(t, 200, 1800, o.ease);
+      title.style.clipPath = `inset(0 ${(1 - reveal) * 100}% 0 0)`;
       F['stagger-in'].draw(M, cards, t, o, {start:2000, end:3300, gap:350, distance:30});
     };
   };
@@ -105,7 +101,7 @@
   ];
   const titleClock=[200,4000,150,2550];
   F['title-content'].breakdown = [
-    row('title','标题遮罩揭示',200,1800,'保持标题位置不动，仅从左向右打开遮罩，标题先于内容建立。',titleClock,['mask-reveal']),
+    {...row('title','标题遮罩揭示',200,1800,'保持标题位置不动，仅从左向右打开遮罩，标题先于内容建立。',titleClock),reason:'标题揭示仅作为完整组合的标题层保留，无独立参考。'},
     row('content','三个内容模块错峰上移',2000,4000,'标题揭示结束后，三个模块分别从下方淡入，开始时间逐个错开。',titleClock,['stagger-in'])
   ];
   const interfaceClock=[300,6100,150,3750];

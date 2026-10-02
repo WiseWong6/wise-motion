@@ -18,7 +18,7 @@ const defs={
  'material-switch-spring':[1000,650],'material-spinner-arc':[3000,1100],'material-like-pop':[1500,650],
  'generative-frame-readout':[8000,5300],
  'material-fab-panel':[3200,2500],'material-phone-sequence':[5000,2700],
- 'generative-point-morph':[8000,3650],'generative-flow-field':[8000,2200],'code-line-sequence':[3500,3000],'generative-point-sequence':[8000,3650]
+ 'generative-point-morph':[8000,3650],'generative-flow-field':[8000,2200],'generative-point-sequence':[8000,3650]
 };
 const definition=(id,variantId)=>{
  const base=data.effects.find(e=>e.id===id)||{id,duration_ms:defs[id][0],preview_ms:defs[id][1],loop:false,default_ease:'linear',parameters:{}};
@@ -139,9 +139,9 @@ test('有画布时一次创建并按原顺序加色绘制，静态缩略图保�
 test('220 条噪声流线坐标对应原绘制，四行代码按原字速接续而不增加窗口或光标',async()=>{
  const env=await setup();try{const root=env.w.document.getElementById('root'),field=env.w.MotionRuntime.create(root,definition('generative-flow-field'));
   for(const t of [0,.7,2.2,5.2]){field.seek(t*1000);const p=root.querySelector('[data-part="field-lines"]'),actual=numbers(p.getAttribute('d')),ref=original('gen',t).strokes[0].path.flatMap(v=>v.slice(1));assert.equal((p.getAttribute('d').match(/M/g)||[]).length,220);assert.equal(actual.length,220*11*2);actual.forEach((v,i)=>near(v,ref[i]));}
-  field.destroy();const code=env.w.MotionRuntime.create(root,definition('code-line-sequence')),lines=['const t = ease(time);','p = mix(sphere, torus, t);','camera.orbit(0.55 * time);',"render(points, 'additive');"];
-  for(const elapsed of [0,200,350,950,1500,2400,3100]){code.seek(elapsed);const t=elapsed/1000+1.4;let start=1.6;lines.forEach((l,i)=>{const shown=l.slice(0,Math.max(0,Math.min(l.length,Math.floor((t-start)*38))));assert.equal(root.querySelector(`[data-code-line="${i}"]`).textContent,shown);start+=l.length/38+.1;});}
-  assert.equal(root.querySelectorAll('text').length,8);assert.ok([...root.querySelectorAll('text')].every(n=>n.getAttribute('font-family')==='Oswald,sans-serif'&&n.getAttribute('font-weight')==='700'));
+  field.destroy();const code=env.w.MotionRuntime.create(root,definition('generative-point-sequence')),lines=['const t = ease(time);','p = mix(sphere, torus, t);','camera.orbit(0.55 * time);',"render(points, 'additive');"];
+  for(const elapsed of [0,200,350,950,1500,2400,3100]){code.seek(elapsed+1400);const t=elapsed/1000+1.4;let start=1.6;lines.forEach((l,i)=>{const shown=l.slice(0,Math.max(0,Math.min(l.length,Math.floor((t-start)*38))));assert.equal(root.querySelector(`[data-code-line="${i}"]`).textContent,shown);start+=l.length/38+.1;});}
+  assert.equal(root.querySelectorAll('[data-layer="code"] text').length,8);assert.ok([...root.querySelectorAll('[data-layer="code"] text')].every(n=>n.getAttribute('font-family')==='Oswald,sans-serif'&&n.getAttribute('font-weight')==='700'));
  }finally{env.close();}
 });
 
@@ -152,7 +152,7 @@ test('组合与独立动作复用实际图形，来源时钟只平移且控件�
   }
   assert.deepEqual(Array.from(w.MotionFactories['material-phone-sequence'].breakdown,x=>x.id),['shapes','labels','phone','cards','switch','spinner','like','fab']);whole.destroy();
   const genRoot=d.createElement('div'),genWhole=w.MotionRuntime.create(genRoot,definition('generative-point-sequence'));
-  for(const [id,layer,offset] of [['generative-point-morph','points',0],['generative-flow-field','field',0],['code-line-sequence','code',1.4]]){
+  for(const [id,layer,offset] of [['generative-point-morph','points',0],['generative-flow-field','field',0]]){
    const host=d.createElement('div'),single=w.MotionRuntime.create(host,definition(id));single.seek(1500);genWhole.seek(1500+offset*1000);
    const standalone=host.querySelector(`[data-layer="${layer}"]`),combined=genRoot.querySelector(`[data-layer="${layer}"]`);
    if(layer==='field'){

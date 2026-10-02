@@ -19,7 +19,7 @@ test('历史配方可按来源标题片段搜索，英文不区分大小写',asy
   }
   assert.equal(rank({effects},'动效演进史').length,0,'已提炼的演进史不重复留在历史列表');
   const pending=data.effects.filter(e=>e.aliases.includes('演进史待验收')).map(e=>e.id).sort();
-  assert.equal(pending.length,42);
+  assert.equal(pending.length,41);
   assert.ok(pending.includes('title-stagger'),'合并标题保留原待验收入口');
   for(const name of ['年份标题与词条错峰入场','轮廓年份与标题错峰呈现','年份说明退场与结语升入']){
     assert.equal(rank(data,name)[0].effect.id,'title-stagger','旧名称检索合并后的同一动作');

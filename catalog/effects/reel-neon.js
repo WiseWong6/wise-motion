@@ -170,7 +170,11 @@
   F['chrome-outline-echo']=root=>scene(root,'文字描边多层拖影',['chrome']);
   F['neon-type-flicker']=root=>scene(root,'霓虹文字点亮闪烁',['neon'],true);
   F['cross-flare-travel']=root=>scene(root,'十字光斑横移闪亮',['flare']);
-  F['caption-type-caret']=root=>scene(root,'说明文字打字与光标闪烁',['caption'],true);
+  F['caption-type-caret']=root=>{
+    const draw=scene(root,'说明文字打字与光标闪烁',['caption'],true);
+    // 独立字幕去掉开头两秒等待；组合继续使用原场景时钟。
+    return ms=>draw(Math.max(0,Math.min(4000,ms))+2000);
+  };
   F['caption-type-caret'].layer=captionLayer;
   F['caption-type-caret'].motion=captionMotion;
   F['caption-type-caret'].presets=captionPresets;

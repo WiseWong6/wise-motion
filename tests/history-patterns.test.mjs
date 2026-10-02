@@ -211,7 +211,7 @@ test('成组展开保留原六卡的缩放和标签时差，缩略图完整并�
     const pose=n=>n.getAttribute('transform').match(/[-\d.]+/g).map(Number);
     assert.equal(typeof w.anime.eases.outQuart,'function','不能回退成三次减速');
     draw(0);const centers=cards.map(n=>pose(n).slice(0,2));
-    assert.equal(new Set(centers.map(p=>p[0])).size,2);assert.equal(new Set(centers.map(p=>p[1])).size,3);
+    assert.equal(new Set(centers.map(p=>p[0])).size,3);assert.equal(new Set(centers.map(p=>p[1])).size,2);
     for(let i=0;i<6;i++){
       const start=120+i*interval,half=Number(image[2])*1000/2;
       draw(start);assert.equal(cards[i].getAttribute('opacity'),'0');assert.equal(pose(cards[i])[2],Number(image[1]));
@@ -265,7 +265,7 @@ test('纸层倾斜按原时刻分出三层透视后归位，内容身份保持�
     assert.equal(root.querySelectorAll('image,video,canvas,filter,clipPath').length,0);
     assert.ok(w.MotionHistory.excluded.some(e=>e.id==='paper-wipe'));
     assert.ok(!w.MotionHistory.recipes.some(e=>e.history_id==='paper-wipe'));
-    assert.equal(data.effects.filter(e=>e.id==='wipe').length,1);assert.equal(data.effects.filter(e=>e.id==='mask-reveal').length,1);
+    assert.equal(data.effects.filter(e=>e.id==='wipe').length,1);assert.equal(data.effects.filter(e=>e.id==='mask-reveal').length,0);
   }finally{env.w.MotionThumbs.disposeAll();env.close();}
 });
 test('跨页承接采用统一主题的三列配色，先上色，再让同一组九格同步下移放大',async()=>{

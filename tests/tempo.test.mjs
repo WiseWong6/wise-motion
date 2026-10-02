@@ -13,7 +13,7 @@ function sameFrame(actual,expected,message) {
 test('同类动作共用主要时长与末尾停顿，循环和特殊节拍分别保留',()=>{
   const get=id=>data.effects.find(e=>e.id===id);
   for(const ids of [
-    ['fade-rise','mask-reveal','scale-in','card-flip','wipe'],
+    ['fade-rise','scale-in','card-flip','wipe'],
     ['dimension-line','ruler-ticks','leader-callout'],
     ['count-up','progress-readout','bar-growth','sector-appear','trend-draw','map-paint','stroke-draw','tone-grow'],
     ['rigid-rebound','vertical-rebound','gauge-rebound','flat-to-volume','timeline-progress'],

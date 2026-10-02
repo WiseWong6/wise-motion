@@ -13,6 +13,14 @@ const starts=[0,2500,3550,6100,8100,9250,356/30*1000];
 const ends=[2500,3550,6100,8100,9250,356/30*1000,15054];
 const definition=(id,extra={})=>({id,duration_ms:id==='material-evolution-sequence'?15054:ends[ids.indexOf(id)]-starts[ids.indexOf(id)],...extra});
 const geometry=node=>{const copy=node.cloneNode(true);copy.querySelectorAll('.kimi-paper').forEach(node=>node.remove());copy.querySelectorAll('[style=""]').forEach(node=>node.removeAttribute('style'));return frameMarkup(copy);};
+// visibility 可由子节点覆盖，检查实际 display 祖先才能保证整段退出绘制树。
+const displayed=node=>{
+ for(let parent=node;parent;parent=parent.parentElement){
+  if(parent.hidden||parent.getAttribute('display')==='none'||parent.ownerDocument.defaultView.getComputedStyle(parent).display==='none')return false;
+ }
+ return true;
+};
+const near=(actual,expected,message)=>assert.ok(Math.abs(Number(actual)-expected)<.000002,message||`${actual} 应接近 ${expected}`);
 
 function setup({canvas=true,manualFrames=false,url=new URL('../catalog/index.html',import.meta.url).href}={}){
  const dom=new JSDOM('<!doctype html><head></head><body><div id="root"></div></body>',{url,runScripts:'outside-only'}),w=dom.window;
@@ -21,7 +29,7 @@ function setup({canvas=true,manualFrames=false,url=new URL('../catalog/index.htm
  function context(node){
   const stack=[],gradient={addColorStop(){}};
   const c={globalAlpha:1,save(){stack.push({globalAlpha:this.globalAlpha});},restore(){Object.assign(this,stack.pop());},
-   setTransform(){},clearRect(){},scale(){},translate(){},rotate(){},beginPath(){},moveTo(){},lineTo(){},closePath(){},rect(){},clip(){},ellipse(){},
+   setTransform(){},clearRect(){draws.push({node,op:'clear'});},scale(){},translate(){},rotate(){},beginPath(){},moveTo(){},lineTo(){},closePath(){},rect(){},clip(){},ellipse(){},
    fillRect(){draws.push({node,op:'fillRect'});},strokeRect(){draws.push({node,op:'strokeRect'});},fill(path){draws.push({node,op:'fill',path:path?.data});},drawImage(image){draws.push({node,op:'image',image});},createLinearGradient(){return gradient;},
    getImageData(){const data=new Uint8ClampedArray(1280*720*4);for(let i=0;i<data.length;i+=4){data[i]=25;data[i+3]=255;}return {data};}};
   return c;
@@ -108,8 +116,10 @@ test('组合的七个稳定节点复用单段实际绘制，边界和反向定�
    for(const local of [0,(ends[i]-starts[i])*.45,ends[i]-starts[i]-.1]){
     single(local);whole(starts[i]+local);
     assert.ok(geometry(layers[i])===geometry(host),ids[i]+' 组合必须复用单段真实绘制');
-    assert.equal(layers.filter(node=>node.style.visibility==='visible').length,1);assert.equal(layers[i].style.visibility,'visible');
-    const before=e.root.innerHTML;whole(15054-(starts[i]+local));whole(starts[i]+local);assert.ok(e.root.innerHTML===before,ids[i]+' 回拖后所有图层保持确定');
+    assert.equal(layers.filter(displayed).length,1);assert.ok(displayed(layers[i]));
+    const before=geometry(layers[i]);whole(15054-(starts[i]+local));whole(starts[i]+local);
+    assert.equal(geometry(layers[i]),before,ids[i]+' 回拖后当前可见画面保持确定，隐藏段可以保留自己的缓存');
+    assert.equal(layers.filter(displayed).length,1);assert.ok(displayed(layers[i]));
    }
    single.destroy();
   }
@@ -119,6 +129,77 @@ test('组合的七个稳定节点复用单段实际绘制，边界和反向定�
   whole(15054);assert.equal(e.root.querySelector('.ending-black').getAttribute('opacity'),'1');
   assert.ok(e.canvases.filter(node=>node._options?.willReadFrequently).every(node=>node.classList.contains('bridge-ball-layer')||!node.isConnected),'只有桥接读像素画布使用频繁读取配置');
  }finally{whole?.destroy();e.close();}
+});
+
+test('整段隐藏能遮住自身显式可见的圆柱、字符和图鉴物件',async()=>{
+ const e=setup();let whole;
+ try{
+  whole=e.w.MotionFactories['material-evolution-sequence'](e.root,{},definition('material-evolution-sequence'));await whole.ready;
+  const bridge=e.root.querySelector('[data-layer="material-form-chain"]'),atlas=e.root.querySelector('[data-layer="atlas-reveal-clear"]');
+  whole(6100);const wire=bridge.querySelector('.bridge-wire');
+  assert.equal(wire.getAttribute('visibility'),'visible');assert.ok(displayed(wire));
+  assert.ok(bridge.querySelector('.bridge-wire-clip').getAttribute('d').length>0);
+  whole(9250);const stair=atlas.querySelector('.atlas-object[data-region="stair-plan"]');
+  assert.equal(stair.getAttribute('visibility'),'visible');assert.ok(displayed(stair));
+  assert.ok(Number(stair.dataset.progress)>0,'图鉴首态确实已显影，不用空节点代替穿帮复现');
+  for(const time of [0,1800,2499,3550,8100,12500]){
+   whole(time);
+   for(const layer of [bridge,atlas])if(layer.dataset.layer!==e.root.dataset.materialPhase){
+    assert.equal(layer.style.display,'none');
+    for(const node of layer.querySelectorAll('[visibility="visible"]'))assert.equal(displayed(node),false,'显式可见的子项必须受整段 display 隐藏约束');
+   }
+  }
+ }finally{whole?.destroy();e.close();}
+});
+
+test('切段只绘制接棒画面，不再为已隐藏的书法和颗粒补画末帧',async()=>{
+ const e=setup();let whole;
+ try{
+  whole=e.w.MotionFactories['material-evolution-sequence'](e.root,{},definition('material-evolution-sequence'));await whole.ready;
+  for(const [id,before,after] of [['glyph-bar-collapse',3549,3550],['dots-lines-cylinders',6099,6100],['material-form-chain',8099,8100]]){
+   whole(before);const layer=e.root.querySelector(`[data-layer="${id}"]`),canvas=layer.querySelector('canvas');
+   const operations=()=>e.draws.filter(row=>row.node===canvas).length;
+   const count=operations();assert.ok(count>0,'退出前确实运行过该段画布');
+   whole(after);assert.equal(layer.style.display,'none');assert.equal(operations(),count,id+' 隐藏后不能再清空或重画其画布');
+  }
+ }finally{whole?.destroy();e.close();}
+});
+
+test('播放使用原片帧格并跳过重复画面，手动定位仍保留精确毫秒',async()=>{
+ const e=setup();let whole;
+ try{
+  whole=e.w.MotionFactories['material-evolution-sequence'](e.root,{},definition('material-evolution-sequence'));await whole.ready;
+  assert.equal(whole.frameRate,30);
+  whole(1000.1,{playback:true});const count=e.draws.length,layer=e.root.querySelector('[data-layer="brush-glyph-build"]'),before=geometry(layer);
+  whole(1001,{playback:true});whole(1015,{playback:true});whole(1033.2,{playback:true});
+  assert.equal(e.draws.length,count,'同一原片帧内的刷新不能重复绘制');assert.equal(geometry(layer),before);
+  near(e.root.dataset.sourceTime,1);
+  whole(1034,{playback:true});assert.ok(e.draws.length>count,'跨入下一原片帧应真正绘制');near(e.root.dataset.sourceTime,31/30);
+  whole(1001);near(e.root.dataset.materialTime,1001);near(e.root.dataset.sourceTime,1.001);
+  const manual=e.draws.length;whole(1001);assert.equal(e.draws.length,manual,'重复手动定位也不重画');
+  whole(11850,{playback:true});assert.equal(e.root.querySelector('.atlas-world').style.display,'','原片帧格略过不足一帧的清场光标，不提前露空场');
+  whole(11867,{playback:true});assert.equal(e.root.dataset.materialPhase,'glyph-cut-ending');
+  whole(15054,{playback:true});near(e.root.dataset.materialTime,15054);assert.equal(e.root.querySelector('.ending-black').getAttribute('opacity'),'1');
+ }finally{whole?.destroy();e.close();}
+});
+
+test('半帧起点的独立段沿全片帧格播放，末端和手动定位保持精确',async()=>{
+ const e=setup();let whole,single;
+ try{
+  whole=e.w.MotionFactories['material-evolution-sequence'](e.root,{},definition('material-evolution-sequence'));await whole.ready;
+  for(const id of ['dots-lines-cylinders','atlas-reveal-clear']){
+   const index=ids.indexOf(id),start=starts[index],limit=ends[index]-start,host=e.w.document.createElement('div');
+   single=e.w.MotionFactories[id](host,{},definition(id));await single.ready;assert.equal(single.frameRate,30);
+   single(1,{playback:true});near(host.dataset.materialTime,0);near(host.dataset.sourceTime,start/1000);
+   single(20,{playback:true});whole(start+20,{playback:true});
+   near(host.dataset.materialTime,1000/60);near(host.dataset.sourceTime,(start+1000/60)/1000);
+   assert.equal(geometry(host),geometry(e.root.querySelector(`[data-layer="${id}"]`)),'独立段和组合对齐完整原片时间，不能从局部起点另开帧格');
+   single(21,{playback:true});near(host.dataset.materialTime,1000/60);
+   single(20);near(host.dataset.materialTime,20);near(host.dataset.sourceTime,(start+20)/1000);
+   single(limit,{playback:true});near(host.dataset.materialTime,limit);near(host.dataset.sourceTime,ends[index]/1000);
+   single.destroy();single=null;
+  }
+ }finally{single?.destroy();whole?.destroy();e.close();}
 });
 
 test('双实例的内部图形引用唯一，预览销毁不会清除另一个实例的缓存',async()=>{
@@ -174,6 +255,25 @@ test('实际预热恢复最新定位，准备过程不改变用户请求的播�
    await Promise.resolve();
   }
   await draw.ready;assert.equal(e.root.dataset.materialTime,'2100');assert.equal(e.root.dataset.sourceTime,'2.1');assert.equal(e.root.dataset.renderState,'ready');
+ }finally{draw?.destroy();e.close();}
+});
+
+test('准备遮罩在恢复最后定位并给出两次绘制机会后才撤下',async()=>{
+ const e=setup({manualFrames:true});let draw;
+ const settle=async()=>{for(let i=0;i<8;i++)await Promise.resolve();};
+ const paint=async()=>{for(const [id,callback] of [...e.frames]){e.frames.delete(id);callback(id);}await settle();};
+ try{
+  draw=e.w.MotionFactories['brush-glyph-build'](e.root,{},definition('brush-glyph-build'));draw(2100);await settle();
+  assert.equal(e.root.dataset.materialTime,'1800','先实际预绘书法昂贵姿态');
+  assert.ok(e.root.querySelector('[data-material-preparing]'));
+  await paint();assert.equal(e.root.dataset.materialTime,'1800');
+  await paint();assert.equal(e.root.dataset.materialTime,'2100','预热后恢复用户最后定位');
+  assert.ok(e.root.querySelector('[data-material-preparing]'),'刚恢复画面仍须保留遮罩');
+  assert.ok(e.frames.size>0,'恢复后应真正等待浏览器绘制机会');
+  await paint();assert.ok(e.root.querySelector('[data-material-preparing]'),'只经过一次绘制机会不能撤遮罩');
+  await paint();await draw.ready;
+  assert.equal(e.root.querySelector('[data-material-preparing]'),null);assert.equal(e.root.dataset.renderState,'ready');
+  near(e.root.dataset.materialTime,2100);assert.equal(e.frames.size,0);
  }finally{draw?.destroy();e.close();}
 });
 
