@@ -17,8 +17,8 @@ async function historyEnvironment(withApp=false){
 }
 test('每条历史审查均有出处，案例源码与原片范围没有混并，原源码保持只读',async()=>{
   const snapshot=JSON.parse(await readFile(state+'/source-snapshot.json','utf8'));
-  assert.deepEqual(historical.counts,{"reviewed":311,"recipes":73,"entries":78,"animation":70,"document":3});
-  assert.equal(historical.excluded.length,238);
+  assert.deepEqual(historical.counts,{"reviewed":311,"recipes":67,"entries":72,"animation":64,"document":3});
+  assert.equal(historical.excluded.length,244);
   assert.ok(historical.excluded.some(e=>e.id==='reading-rhythm'));
   assert.ok(!historical.recipes.some(e=>e.history_id==='reading-rhythm'));
   assert.ok(historical.excluded.some(e=>e.id==='resume-typography'));
@@ -71,7 +71,7 @@ test('相似旧名称不偷换动作：柱高、内部翻卷、时间压缩与�
   assert.ok(historical.excluded.some(e=>e.id==='resume-reveal'));
   assert.ok(historical.excluded.some(e=>e.id==='horizontal-reveal'));
   assert.ok(!find('horizontal-reveal'));
-  assert.ok(data.effects.some(e=>e.id==='mask-reveal'),'剔除横向揭示历史入口时保留遮罩显现');
+  assert.ok(!data.effects.some(e=>e.id==='mask-reveal'),'边界显现按用户要求从独立目录剔除');
   assert.equal(rank(data,'三连错峰')[0].effect.id,'stagger-in','等间隔上移淡入应复用逐项出现');
 });
 test('原作绘制器载入迟到时释放，反复定位与观看倍率不改变原作时间关系',async()=>{

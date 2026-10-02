@@ -86,7 +86,7 @@ test('左右方向键切换画面，输入、滑块、菜单、输出页签及�
     const {w, directoryMedia} = env, d = w.document;
     const current = () => d.querySelector('#preview .motion-stage').dataset.effect;
     const key = (target, name, options = {}) => target.dispatchEvent(new w.KeyboardEvent('keydown', {key:name,bubbles:true,cancelable:true,...options}));
-    key(d.body, 'ArrowRight'); assert.equal(current(), 'mask-reveal');
+    key(d.body, 'ArrowRight'); assert.equal(current(), 'scale-in');
     key(d.body, 'ArrowLeft'); assert.equal(current(), 'fade-rise');
     for (const selector of ['#search','#speed','#scrub','#prompt']) key(d.querySelector(selector), 'ArrowRight');
     for (const option of ['ctrlKey','metaKey','altKey','shiftKey','isComposing']) key(d.body, 'ArrowRight', {[option]:true});
@@ -99,7 +99,7 @@ test('左右方向键切换画面，输入、滑块、菜单、输出页签及�
     assert.equal(d.activeElement.id, 'tab-code'); assert.equal(current(), 'fade-rise');
     d.querySelector('[data-effect="fade-rise"]').focus();
     key(d.activeElement, 'ArrowRight');
-    assert.equal(current(), 'mask-reveal'); assert.equal(d.activeElement.dataset.effect, 'mask-reveal');
+    assert.equal(current(), 'scale-in'); assert.equal(d.activeElement.dataset.effect, 'scale-in');
     d.querySelector('[data-group="entrance"]').click();
     d.getElementById('next-effect').focus(); key(d.activeElement, 'ArrowRight');
     assert.equal(d.activeElement.id, 'next-effect');

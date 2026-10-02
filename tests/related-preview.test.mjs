@@ -96,13 +96,13 @@ test('先关闭模态层再恢复按钮焦点',async()=>{
   }finally{env.close();}
 });
 
-test('弹窗使用深浅色变量，三项普通动作不再出现组合拆解',async()=>{
+test('弹窗使用深浅色变量，普通动作不再出现组合拆解',async()=>{
   const css=await readFile(new URL('../catalog/app.css',import.meta.url),'utf8'),dialog=css.match(/\.related-dialog \{([^}]+)\}/)[1];
   assert.match(dialog,/background:var\(--surface\)/);assert.match(dialog,/color:var\(--ink\)/);assert.doesNotMatch(dialog,/display:\s*(flex|grid|block)/);
   const env=await environment(true,{staticPreview:true,hash:'#dual-scroll'});
   try{
     const {w}=env,d=w.document;
-    for(const id of ['dual-scroll','dual-scroll-settle','arc-cards']){
+    for(const id of ['dual-scroll','dual-scroll-settle']){
       assert.equal(data.effects.find(e=>e.id===id).kind,'action');click(d,`[data-effect="${id}"]`);
       assert.equal(d.getElementById('composition-panel').hidden,true);assert.equal(w.MotionFactories[id].breakdown,undefined);
     }

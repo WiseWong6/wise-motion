@@ -956,6 +956,8 @@ parts['release-ending']=root=>{
  function make(root,K,definition,clip){
   const isComposition=!clip,poster=Boolean(definition.poster_only),limit=isComposition?duration:clip.end-clip.start;
   root.dataset.art='original';root.style.background='#e2e3dd';
+  // 原作的小字符与角注保持原文字环境，不继承目录正文的字重和字体特性。
+  Object.assign(root.style,{fontWeight:'400',fontFeatureSettings:'normal',fontSynthesisWeight:'auto',webkitFontSmoothing:'auto'});
   let disposed=false,ready=false,latest=finiteTime(poster?definition.poster_time_ms:0,limit),lastDrawn=null,retained=false;
   const frames=new Map(),renderers=[],roots=[];
   let selected=isComposition?clips: [clip],cover=null;
@@ -970,23 +972,34 @@ parts['release-ending']=root=>{
    set(root,'sourceTime',Number(((isComposition?time:clip.start+time)/1000).toFixed(6)));
    if(isComposition){
     const index=activeIndex(time);set(root,'materialPhase',clips[index].id);
-    roots.forEach((node,i)=>{const visibility=i===index?'visible':'hidden';if(node.style.visibility!==visibility)node.style.visibility=visibility;});
+    // 子项会单独切换 visibility；整段用 display 才能同时关掉所有后代。
+    roots.forEach((node,i)=>{const display=i===index?'block':'none';if(node.style.display!==display)node.style.display=display;});
     const fill=index===clips.length-1?'#e3e4de':'#e2e3dd';baseRects.forEach(node=>{if(node.getAttribute('fill')!==fill)node.setAttribute('fill',fill);});
    }else set(root,'materialPhase',clip.id);
   };
   function draw(time){
    if(disposed||lastDrawn===time)return;
    lastDrawn=time;applyClock(time);
+   const active=isComposition?clips[activeIndex(time)]:clip;
    renderers.forEach(renderer=>{
     const {item,node,draw}=renderer;
+    if(item!==active)return;
     const local=finiteTime(isComposition?time-item.start:time,item.end-item.start);
     if(renderer.lastLocalTime===local)return;
-    // 未开始和已结束的片段只在局部边界变化时归位，正常播放只重绘当前片段。
+    // 只绘制在场片段；回拖重新进入时，按当前时间恢复，不补画隐藏段末态。
     renderer.lastLocalTime=local;draw(local);
     set(node,'materialLocalTime',Number(local.toFixed(6)));
    });
   }
-  const render=ms=>{if(disposed)return;latest=finiteTime(ms,limit);if(ready)draw(latest);else applyClock(latest);};
+  const render=(ms,state={})=>{
+   if(disposed)return;
+   const requested=finiteTime(ms,limit),origin=isComposition?0:clip.start;
+   // 播放沿用原片的全片帧格；半帧起点的独立段也先加原起点，再转回局部时间。
+   // 手动定位和精确末帧保留请求时间。
+   latest=state.playback&&requested<limit?finiteTime(Math.floor((origin+requested)*.03+.00000001)/.03-origin,limit):requested;
+   if(ready)draw(latest);else applyClock(latest);
+  };
+  render.frameRate=30;
   const probe=document.createElement('canvas');let canvasOK=false;
   try{canvasOK=Boolean(probe.getContext('2d'));}catch(error){canvasOK=false;}
   probe.width=probe.height=0;
@@ -1030,7 +1043,15 @@ parts['release-ending']=root=>{
      }
     }
     if(disposed)return;
-    ready=true;lastDrawn=null;draw(latest);cover.remove();cover=null;root.dataset.renderState='ready';
+    // 恢复目标画面后给浏览器真正绘制的机会，再撤遮罩；期间定位变化继续恢复最新请求。
+    lastDrawn=null;
+    let restored;
+    do{
+     restored=latest;draw(restored);
+     if(!await waitPaint()||!await waitPaint())return;
+    }while(restored!==latest);
+    if(disposed)return;
+    ready=true;cover.remove();cover=null;root.dataset.renderState='ready';
    }).catch(error=>{
     if(disposed)return;
     root.dataset.renderState='error';if(cover)cover.textContent='素材未能载入，请重新打开。';throw error;

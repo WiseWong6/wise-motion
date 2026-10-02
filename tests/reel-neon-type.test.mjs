@@ -98,7 +98,7 @@ test('霓虹字启动的每一格明灭与原片相同，之后保持点亮，�
   }finally{env.close();}
 });
 
-test('片头共用七个真实动作的绘制，独立年份和字幕只调整展示位置，不改变内部字形和时序',async()=>{
+test('片头共用七个真实动作，独立年份居中、字幕裁掉开头等待后保留内部字形和节奏',async()=>{
   const env=await environment();
   try{
     const {w}=env,d=w.document,root=d.createElement('div'),whole=w.MotionRuntime.create(root,get('neon-title-sequence'));
@@ -107,7 +107,7 @@ test('片头共用七个真实动作的绘制，独立年份和字幕只调整�
       const host=d.createElement('div'),effect=get(id),player=w.MotionRuntime.create(host,effect);
       assert.equal(host.querySelectorAll('[data-layer]').length,1);
       for(const time of [0,500,980,1100,1500,effect.duration_ms]){
-        player.seek(time);whole.seek(time);
+        player.seek(time);whole.seek(time+(layer==='caption'?2000:0));
         const single=host.querySelector(`[data-layer="${layer}"]`).cloneNode(true),combined=root.querySelector(`[data-layer="${layer}"]`).cloneNode(true);
         if(layer==='neon'||layer==='caption'){single.removeAttribute('transform');combined.removeAttribute('transform');}
         assert.equal(same(single.outerHTML),same(combined.outerHTML));

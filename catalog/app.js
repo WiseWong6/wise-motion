@@ -60,13 +60,13 @@
   const relatedPreview=MotionRelated.create({icon,getMain:()=>controller});
   const collapsed = new Set();
   const icons = {
-    'fade-rise':'arrow-up', 'mask-reveal':'viewfinder-circle', 'scale-in':'arrows-pointing-out', 'stagger-in':'queue-list',
+    'fade-rise':'arrow-up', 'scale-in':'arrows-pointing-out', 'stagger-in':'queue-list',
     'seamless-scroll':'arrows-right-left', 'curve-path':'arrow-trending-up', 'orbit':'arrow-path', 'float':'arrows-up-down',
     'count-up':'hashtag', 'type-reveal':'cursor-arrow-rays', 'focus-zoom':'magnifying-glass-plus',
     'shape-morph':'sparkles', 'card-flip':'arrow-uturn-left', 'layout-reorder':'squares-2x2', 'layer-expand':'square-3-stack-3d',
     'wipe':'rectangle-stack', 'shared-object':'document-duplicate', 'zoom-transition':'magnifying-glass', 'parallax':'photo',
     'follow':'arrow-right', 'detach':'sun', 'group-stagger':'bars-3-bottom-left',
-    'dual-scroll':'arrows-right-left', 'subtitle-focus':'chat-bubble-bottom-center-text', 'arc-cards':'film',
+    'dual-scroll':'arrows-right-left', 'subtitle-focus':'chat-bubble-bottom-center-text',
     'title-content':'document-text', 'interface-feedback':'cursor-arrow-ripple'
   };
 

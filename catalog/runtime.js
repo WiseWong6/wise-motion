@@ -70,10 +70,11 @@
       const time = clock(ms), elapsed = state.elapsed ?? ms;
       // 循环用累计时间保持连续位移；首轮入场不会在下一轮重播。
       render(time, {ease:state.ease || definition.default_ease, duration:source.duration_ms,
-        elapsed:definition.loop ? elapsed * rate : clock(elapsed)});
+        elapsed:definition.loop ? elapsed * rate : clock(elapsed), playback:state.playback === true});
     };
     if (render.destroy) draw.destroy = preserve => render.destroy(preserve);
     if (render.ready) draw.ready = render.ready;
+    if (render.frameRate !== undefined) draw.frameRate = render.frameRate;
     return draw;
   }
   function fit(root) {
@@ -95,22 +96,24 @@
     prepareStage(stage, definition);
     const render = createRenderer(stage, definition);
     const preparation = render.ready;
+    const frameRate = render.frameRate;
     let preparing = !!preparation && typeof preparation.then === 'function';
     let pendingPlay = false, preparationError = null;
     let destroyed = false, time = 0, elapsedTime = 0;
     let currentEase = options.ease || definition.default_ease;
     const paused = () => preparing ? !pendingPlay : timer.paused;
     const notify = () => options.onUpdate?.({time, duration: definition.duration_ms, paused: paused(), preparing, error: preparationError});
-    const draw = (ms, elapsed = ms) => {
+    const draw = (ms, elapsed = ms, playback = false) => {
       time = clamp(ms, 0, definition.duration_ms);
       elapsedTime = elapsed;
-      render(time, {ease: currentEase, duration: definition.duration_ms, elapsed});
+      render(time, {ease: currentEase, duration: definition.duration_ms, elapsed, playback});
     };
     const timer = global.anime.createTimer({
+      ...(Number.isFinite(frameRate) && frameRate > 0 ? {frameRate} : {}),
       duration: definition.duration_ms,
       loop: definition.loop,
       autoplay: false,
-      onUpdate(self) { if (!destroyed) { draw(self.iterationCurrentTime, self.currentTime); notify(); } },
+      onUpdate(self) { if (!destroyed) { draw(self.iterationCurrentTime, self.currentTime, true); notify(); } },
       onComplete() { if (!destroyed) notify(); }
     });
     const controller = {

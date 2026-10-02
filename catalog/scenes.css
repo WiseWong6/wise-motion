@@ -81,9 +81,7 @@ html[data-theme="light"] .motion-viewport,html[data-theme="light"] .motion-stage
 .dot-grid{position:absolute;left:192px;top:92px;display:grid;grid-template-columns:repeat(7,1fr);gap:20px}.grid-dot{width:18px;height:18px;background:var(--dot);border-radius:3px}
 .big-number{position:absolute;inset:102px 0 auto;text-align:center;font-size:var(--type-display);font-family:Oswald,sans-serif;font-weight:700;letter-spacing:-.07em;font-variant-numeric:tabular-nums}.number-caption{position:absolute;top:230px;width:100%;text-align:center;font-size:var(--type-caption);color:var(--caption)}
 .center-shape{position:absolute;left:240px;top:108px;width:160px;height:160px;border-radius:50%;background:var(--accent);box-shadow:0 12px 28px rgba(0,0,0,.12)}
-/* 纵深环绕：小卡片与线框球共享画面中心。 */
-.orbit-guide{position:absolute;inset:0;width:640px;height:360px;z-index:0;pointer-events:none;fill:none;stroke:var(--muted);stroke-width:.8}
-.orbit-core{position:absolute;left:278px;top:138px;width:84px;height:84px;z-index:100;pointer-events:none}
+/* 纵深环绕：仅保留绕画面中心运动的小卡片。 */
 .orbit-card{position:absolute;left:284px;top:136px;width:72px;height:88px;padding:10px 11px;border:1px solid var(--card-edge);border-radius:10px;background:var(--card);color:var(--ink);box-shadow:0 4px 12px rgba(0,0,0,.12);display:flex;flex-direction:column;transform-origin:center;backface-visibility:hidden}
 .orbit-card-number{font-size:var(--type-caption);line-height:1;color:var(--muted);font-weight:300;font-variant-numeric:tabular-nums}
 .orbit-card>svg{display:block;width:32px;height:32px;margin:4px auto 6px;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}

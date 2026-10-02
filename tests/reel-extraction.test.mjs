@@ -65,7 +65,7 @@ test('独立动作只建必要图层，不能把整段组合建立后藏起来',
       'chrome-outline-echo':['chrome'],'neon-type-flicker':['neon'],'cross-flare-travel':['flare'],
       'panel-rise-collapse':['panels'],'ball-bounce-trails':['bounce'],'timeline-keyframe-playhead':['timeline'],
       'caption-type-caret':['caption'],'generative-frame-readout':['frame'],
-      'generative-point-morph':['points'],'generative-flow-field':['field'],'code-line-sequence':['code'],
+      'generative-point-morph':['points'],'generative-flow-field':['field'],
       'radial-line-burst':['burst'],'timeline-dock-down':['axis']
     };
     const cases=[...Object.entries(scopes),['title-stagger',['labels'],'material'],['title-stagger',['title'],'outline'],['title-stagger',['labels'],'handoff']];

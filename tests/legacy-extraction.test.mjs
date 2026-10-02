@@ -6,7 +6,7 @@ import {data,environment,frameMarkup,sourceDefinition} from './helpers.mjs';
 const get=id=>data.effects.find(effect=>effect.id===id);
 const mappings={
   'subtitle-focus':{cells:['stagger-in','subtitle-cell-focus','subtitle-block-shift'],statement:[]},
-  'title-content':{title:['mask-reveal'],content:['stagger-in']},
+  'title-content':{title:[],content:['stagger-in']},
   'interface-feedback':{pointer:[],button:['button-press-status'],progress:['progress-fill-exit'],result:['fade-rise']}
 };
 const extracted={
@@ -44,7 +44,7 @@ test('三个旧组合的动作关联与登记一致，独立条目剔除后仍�
     assert.ok(!data.effects.some(effect=>effect.id==='statement-rise-exit'),'已剔除的陈述不能重新进入目录');
     assert.equal(env.w.MotionFactories['statement-rise-exit'],undefined,'已剔除的陈述不再注册独立动作');
     for(const effect of data.effects)assert.ok(!effect.actions.includes('statement-rise-exit'),'组合不再链接已剔除的动作');
-    for(const id of ['dual-scroll','arc-cards'])assert.equal(env.w.MotionFactories[id].breakdown,undefined,'连续同机制对象已归为普通动作');
+    for(const id of ['dual-scroll'])assert.equal(env.w.MotionFactories[id].breakdown,undefined,'连续同机制对象已归为普通动作');
   }finally{env.close();}
 });
 
@@ -90,12 +90,11 @@ test('抽取后的每项动作与原组合的对应对象逐时刻同源，反�
   }finally{env.close();}
 });
 
-test('已有三项动作和旧组合实际调用同一绘制函数，复用不是名称关联',async()=>{
+test('已有动作和旧组合实际调用同一绘制函数，复用不是名称关联',async()=>{
   const env=await environment();
   try{
     const F=env.w.MotionFactories;
     for(const [action,method,parents] of [
-      ['mask-reveal','draw',['title-content']],
       ['stagger-in','draw',['subtitle-focus','title-content']],
       ['fade-rise','draw',['interface-feedback']]
     ]){

@@ -204,7 +204,7 @@ test('右栏名称与两个输出共用复制按钮，复制失败时选中对�
     assert.equal(copied,name('fade-rise'));
     await animationSettled(()=>titleCopy.querySelector('[data-icon="check"]').style.opacity==='1');
     assert.equal(titleCopy.querySelector('[data-icon="check"]').style.opacity,'1');
-    d.querySelector('[data-effect="mask-reveal"]').click();
+    d.querySelector('[data-effect="scale-in"]').click();
     await animationSettled(()=>titleCopy.querySelector('[data-icon="check"]').style.opacity==='0');
     assert.equal(titleCopy.querySelector('[data-icon="check"]').style.opacity,'0');
     titleCopy.click(); await settle();
@@ -242,10 +242,10 @@ test('键盘可选动作和输出，隐藏目录可找回，系统偏好变化�
     const {w} = env, d = w.document;
     const first = d.querySelector('[data-effect="fade-rise"]'); first.focus();
     first.dispatchEvent(new w.KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true,cancelable:true}));
-    assert.equal(d.activeElement.dataset.effect,'mask-reveal');
+    assert.equal(d.activeElement.dataset.effect,'scale-in');
     d.activeElement.click();
-    assert.equal(d.activeElement.dataset.effect,'mask-reveal');
-    assert.equal(d.querySelector('[aria-current="true"]').dataset.effect,'mask-reveal');
+    assert.equal(d.activeElement.dataset.effect,'scale-in');
+    assert.equal(d.querySelector('[aria-current="true"]').dataset.effect,'scale-in');
     const directoryIcon = d.getElementById('toggle-directory').innerHTML;
     d.getElementById('tab-prompt').focus();
     d.activeElement.dispatchEvent(new w.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));
@@ -281,11 +281,11 @@ test('目录抽屉关闭背景交互，选择后回到预览，回到桌面恢�
     assert.equal(d.activeElement.id,'search'); assert.ok(d.querySelector('.stage').inert);
     assert.ok(d.querySelector('.sidebar-header').inert);
     assert.ok(!d.getElementById('directory-backdrop').hidden);
-    d.querySelector('[data-effect="mask-reveal"]').click();
+    d.querySelector('[data-effect="scale-in"]').click();
     assert.ok(directory.hidden); assert.ok(!d.querySelector('.stage').inert);
     assert.ok(!d.querySelector('.sidebar-header').inert);
     assert.equal(d.activeElement,toggle); assert.equal(w.MotionRuntime.instanceCount,1);
-    assert.equal(d.getElementById('preview-title').textContent, data.effects.find(e=>e.id==='mask-reveal').name);
+    assert.equal(d.getElementById('preview-title').textContent, data.effects.find(e=>e.id==='scale-in').name);
     toggle.click();
     d.getElementById('search').dispatchEvent(new w.KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));
     assert.ok(directory.hidden);

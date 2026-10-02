@@ -14,7 +14,7 @@ async function environment(thumbnails=false){
   for(const file of ['vendor/animejs/anime.umd.min.js','catalog/runtime.js',...(thumbnails?['catalog/thumbnails.js']:[])])w.eval(await readFile(new URL('../'+file,import.meta.url),'utf8'));
   return {w,root:w.document.getElementById('root'),close(){w.MotionThumbs?.disposeAll();w.MotionRuntime.disposeAll();w.anime.engine.pause();dom.window.close();}};
 }
-function delayedFactory(w,id=definition.id){
+function delayedFactory(w,id=definition.id,frameRate){
   let resolve,reject,destroyed=0;
   const frames=[],states=[],definitions=[];
   const ready=new Promise((yes,no)=>{resolve=yes;reject=no;});
@@ -22,12 +22,25 @@ function delayedFactory(w,id=definition.id){
     definitions.push(effect);
     const render=(time,state)=>{frames.push(time);states.push(state);stage.dataset.time=String(time);};
     render.ready=ready;
+    if(frameRate!==undefined)render.frameRate=frameRate;
     render.destroy=()=>{destroyed++;};
     return render;
   };
   factory.requiresPreparation=true;
   w.MotionFactories[id]=factory;
   return {resolve,reject,frames,states,definitions,get destroyed(){return destroyed;}};
+}
+function timerStub(w){
+  const timers=[];
+  w.anime.createTimer=options=>{
+    const timer={options,paused:true,speed:1,currentTime:0,iterationCurrentTime:0,
+      play(){this.paused=false;},pause(){this.paused=true;},cancel(){this.paused=true;},
+      seek(time){this.currentTime=time;this.iterationCurrentTime=options.loop?time%options.duration:time;},
+      tick(time,elapsed=time){this.iterationCurrentTime=time;this.currentTime=elapsed;options.onUpdate(this);}
+    };
+    timers.push(timer);return timer;
+  };
+  return timers;
 }
 
 test('准备期间计时保持不动，定位和倍速保留，准备完成后才继续播放',async()=>{
@@ -113,6 +126,67 @@ test('统一节奏包装传递准备与销毁，已有同步工厂仍立即播�
     assert.equal(legacy.preparing,false);assert.equal(legacy.paused,false);assert.equal(await legacy.ready,true);
     assert.equal(root.firstElementChild.dataset.preparation,undefined);
     await delay(70);assert.ok(legacy.currentTime>0);
+  }finally{env.close();}
+});
+
+test('绘制器声明的有效帧率仅交给对应计时器，其他实例保持默认更新频率',async()=>{
+  const env=await environment();
+  try{
+    const {w,root}=env,timers=timerStub(w),defaultRate=w.anime.engine.defaults.frameRate;
+    for(const value of [30,undefined,0,-1,NaN,Infinity,'30']){
+      w.MotionFactories[definition.id]=()=>{
+        const render=()=>{};
+        if(value!==undefined)render.frameRate=value;
+        return render;
+      };
+      const player=w.MotionRuntime.create(root,definition),options=timers.at(-1).options;
+      assert.equal(Object.hasOwn(options,'frameRate'),value===30);
+      if(value===30)assert.equal(options.frameRate,30);
+      assert.equal(options.duration,1000);assert.equal(options.loop,false);
+      assert.equal(w.anime.engine.defaults.frameRate,defaultRate,'不能修改全局计时器默认帧率');
+      player.destroy();
+    }
+  }finally{env.close();}
+});
+
+test('统一节奏包装保留帧率声明和播放标记，手动定位仍使用精确时间',async()=>{
+  const env=await environment();
+  try{
+    const {w,root}=env,timers=timerStub(w),source=delayedFactory(w,definition.id,30);
+    const timing={source_duration_ms:2000,source_preview_ms:1000,source_start_ms:400,source_end_ms:1600,start_ms:150,end_ms:850};
+    const player=w.MotionRuntime.create(root,{...definition,timing}),timer=timers[0];
+    assert.equal(timer.options.frameRate,30);
+    assert.equal(source.states.at(-1).playback,false);
+    source.resolve();await player.ready;
+    assert.equal(source.states.at(-1).playback,false);
+    timer.tick(500);
+    assert.equal(source.frames.at(-1),1000);assert.equal(source.states.at(-1).playback,true);
+    player.seek(512.75);
+    assert.equal(source.frames.at(-1),1021.857142857);
+    assert.equal(source.states.at(-1).playback,false);assert.equal(player.currentTime,512.75);
+    player.setEase('linear');assert.equal(source.states.at(-1).playback,false);
+  }finally{env.close();}
+});
+
+test('仅播放更新标为播放，准备恢复、定位累计时间与末帧保持准确',async()=>{
+  const env=await environment();
+  try{
+    const {w,root}=env,timers=timerStub(w),source=delayedFactory(w,definition.id,30);
+    const effect={...definition,duration_ms:1005.1},player=w.MotionRuntime.create(root,effect,{autoplay:true}),timer=timers[0];
+    assert.equal(source.states.at(-1).playback,false);
+    player.seek(400.25);assert.equal(source.states.at(-1).playback,false);
+    source.resolve();await player.ready;
+    assert.equal(source.frames.at(-1),400.25);assert.equal(source.states.at(-1).playback,false);
+    assert.equal(timer.paused,false);
+    timer.tick(475.75);
+    assert.equal(source.frames.at(-1),475.75);assert.equal(source.states.at(-1).playback,true);
+    assert.equal(player.currentTime,475.75);assert.equal(player.elapsedTime,475.75);
+    player.seekElapsed(690.125);
+    assert.equal(source.frames.at(-1),690.125);assert.equal(source.states.at(-1).playback,false);
+    player.setEase('linear');assert.equal(source.states.at(-1).playback,false);
+    timer.tick(effect.duration_ms);
+    assert.equal(source.frames.at(-1),1005.1);assert.equal(source.states.at(-1).playback,true);
+    assert.equal(player.currentTime,1005.1);assert.equal(player.elapsedTime,1005.1);
   }finally{env.close();}
 });
 

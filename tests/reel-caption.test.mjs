@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {runInNewContext} from 'node:vm';
-import {environment} from './helpers.mjs';
+import {environment,data} from './helpers.mjs';
 
 const source=await readFile('/Users/wisewong/Documents/Developer/wise-video/claude-showreel-2026/reel.js','utf8');
 const helpers=source.slice(source.indexOf('const clamp ='),source.indexOf('const lerp ='))+
@@ -68,15 +68,17 @@ test('字幕使用预先读取的本地字宽，创建与播放都不测字，�
     const {w}=env,root=w.document.getElementById('root'),factory=w.MotionFactories['caption-type-caret'];
     w.HTMLCanvasElement.prototype.getContext=()=>{throw new Error('字体不应由画布重新测量');};
     for(const name of ['getBoundingClientRect','getClientRects'])w.Element.prototype[name]=()=>{throw new Error('播放时读取布局');};
+    const effect=data.effects.find(e=>e.id==='caption-type-caret');
+    assert.equal(effect.duration_ms,4000);assert.equal(effect.preview_ms,1300);
     const render=factory(root);
     const count=root.querySelectorAll('*').length;
-    for(const time of [0,2200,2223,2600,3000,3400,3600,4000,4400,4500,6000,0,2223,3000]){render(time);compare(root,original('neon',time));}
+    for(const time of [0,199,200,223,600,1000,1400,1600,2000,2400,2499,2500,4000,0,223,1000]){render(time);compare(root,original('neon',time+2000));}
     assert.equal(root.querySelectorAll('*').length,count);
-    render(3010);
+    render(1010);
     const observer=new w.MutationObserver(()=>{});observer.observe(root,{subtree:true,attributes:true,childList:true,characterData:true});
-    render(3010);assert.equal(observer.takeRecords().length,0);
+    render(1010);assert.equal(observer.takeRecords().length,0);
     // 跨过一帧仍处于同一字数和光标状态，也不应产生重复写入。
-    render(3011);assert.equal(observer.takeRecords().length,0);observer.disconnect();
+    render(1011);assert.equal(observer.takeRecords().length,0);observer.disconnect();
   }finally{env.close();}
 });
 
@@ -87,8 +89,8 @@ test('字幕锁定本地粗体字宽，字体尚未载入和迟到通知均不�
     w.HTMLCanvasElement.prototype.getContext=()=>{throw new Error('不能临时测量回退字体');};
     const render=w.MotionFactories['caption-type-caret'](root),text=root.querySelector('[data-part="caption-text"]');
     assert.match(text.style.fontFamily,/Oswald/);assert.equal(text.style.fontWeight,'700');
-    for(const time of [2200,2223,2600,3300,4000,4499,4500]){
-      render(time);compare(root,original('neon',time));
+    for(const time of [200,223,600,1300,2000,2499,2500]){
+      render(time);compare(root,original('neon',time+2000));
       if(text.textContent){
         const width=Array.from(text.textContent).reduce((sum,ch)=>sum+22*advances[ch]/1000+5,-5);
         near(+text.getAttribute('textLength'),width);
@@ -108,15 +110,15 @@ test('霓虹组合与独立字幕共用实际图层，真实拆解控制能单�
     assert.equal(single.querySelectorAll('[data-layer]').length,1);assert.equal(single.querySelectorAll('[data-star]').length,0);
     const layer=whole.querySelector('[data-layer="caption"]'),count=whole.querySelectorAll('*').length;
     assert.equal(layer.querySelectorAll('[data-layer]').length,0,'说明文字里不能另藏一个不同名称的动作层');
-    for(const time of [0,2200,2300,3000,3600,4000,4500,6000,0,3000]){
-      fullDraw(time);singleDraw(time);
+    for(const time of [0,200,300,1000,1600,2000,2500,4000,0,1000]){
+      fullDraw(time+2000);singleDraw(time);
       const shown=single.querySelector('[data-layer="caption"]').cloneNode(true);
       assert.equal(shown.getAttribute('transform'),'translate(960 540) scale(2) translate(-960 -951.2)');
       shown.removeAttribute('transform');assert.equal(layer.outerHTML,shown.outerHTML);
       w.MotionComposition.isolate(whole,['caption']);
       for(const node of whole.querySelectorAll('[data-layer]'))assert.equal(node.getAttribute('display')==='none',node.dataset.layer!=='caption');
       assert.equal(layer.querySelector('[display="none"]'),null);
-      fullDraw(6000);fullDraw(time);assert.equal(layer.getAttribute('display'),null);
+      fullDraw(6000);fullDraw(time+2000);assert.equal(layer.getAttribute('display'),null);
       w.MotionComposition.isolate(whole,['chrome']);assert.equal(layer.getAttribute('display'),'none');
       w.MotionComposition.isolate(whole,null);assert.equal(whole.querySelector('[data-layer][display="none"]'),null);
       assert.equal(layer.querySelector('[display="none"]'),null);assert.equal(whole.querySelectorAll('*').length,count);

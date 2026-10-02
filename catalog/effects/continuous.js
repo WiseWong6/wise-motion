@@ -37,15 +37,11 @@
     return (t, o) => { const p = M.ease(t / o.duration, o.ease); const a = M.curve(p), b = M.curve(p + .001); M.pose(s.one('.traveler'), {x: a.x, y: a.y, rotate: Math.atan2(b.y - a.y, b.x - a.x) * 180 / Math.PI}); };
   };
   F.orbit = (root, M, definition) => {
-    // 卡片与轨道共用空间投影，前后遮挡以中心球为界。
+    // 仅保留五张卡片，沿同一空间路径投影并按深度排序。
     const project = angle => {
       const depth = Math.sin(angle), scale = 740 / (740 - depth * 150);
       return {depth, scale, x: Math.cos(angle) * 204 * scale, y: depth * 64 * scale};
     };
-    const path = start => Array.from({length:65}, (_, i) => {
-      const p = project(start + i / 64 * Math.PI);
-      return `${i ? 'L' : 'M'}${320 + p.x},${180 + p.y}`;
-    }).join(' ');
     const glyphs = [
       '<circle cx="20" cy="20" r="12"/><circle cx="20" cy="20" r="4"/>',
       '<rect x="8" y="8" width="24" height="24" rx="5"/><path d="M8 20h24M20 8v24"/>',
@@ -53,11 +49,7 @@
       '<path d="M8 14l12-7 12 7-12 7ZM8 21l12 7 12-7M8 28l12 7 12-7"/>',
       '<path d="M9 30V19M20 30V9M31 30V14"/><circle cx="9" cy="14" r="2"/><circle cx="20" cy="5" r="2"/><circle cx="31" cy="9" r="2"/>'
     ];
-    const markup = '<svg class="orbit-guide" viewBox="0 0 640 360" aria-hidden="true">'+
-      `<path d="${path(Math.PI)}" stroke-dasharray="3 6" opacity=".4"/><path d="${path(0)}" opacity=".7"/></svg>`+
-      '<svg class="orbit-core" viewBox="0 0 84 84" aria-hidden="true"><circle cx="42" cy="42" r="34" fill="var(--stage)" stroke="var(--ink)" stroke-opacity=".55"/>'+
-      '<g fill="none" stroke="var(--muted)" stroke-opacity=".5" stroke-width=".8"><ellipse cx="42" cy="42" rx="13" ry="34"/><ellipse cx="42" cy="42" rx="34" ry="10" transform="rotate(-14 42 42)"/></g><circle cx="42" cy="42" r="3" fill="var(--teal)"/></svg>'+
-      glyphs.map((glyph, i) => `<div class="orbit-card" data-orbit-card="${i}"><span class="orbit-card-number">0${i+1}</span><svg viewBox="0 0 40 40" aria-hidden="true">${glyph}</svg><i></i></div>`).join('');
+    const markup = glyphs.map((glyph, i) => `<div class="orbit-card" data-orbit-card="${i}"><span class="orbit-card-number">0${i+1}</span><svg viewBox="0 0 40 40" aria-hidden="true">${glyph}</svg><i></i></div>`).join('');
     const cards = M.scene(root, markup).all('.orbit-card');
     return (t, o = {}) => {
       const duration = o.duration || definition?.duration_ms || 6000;
@@ -72,6 +64,7 @@
   };
   F.float = (root, M) => {
     const s = M.scene(root, M.tile('留一点轻盈', '缓慢起伏，保持安静'));
+    s.one('.tile-symbol').innerHTML = '<svg data-motion-icon="layers" width="28" height="28" style="width:28px;height:28px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4-9 4zM3 12l9 4 9-4M3 17l9 4 9-4"/></svg>';
     return (t, o) => { const a = M.ease(t / o.duration, o.ease) * Math.PI * 2; M.pose(s.one('.tile'), {y: -Math.sin(a) * 18, rotate: Math.sin(a) * 1.4}); };
   };
 })(globalThis.MotionFactories);

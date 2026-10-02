@@ -146,9 +146,9 @@
   function gen(root,mode){const id='motion-gen-'+ ++serial,layers=mode==='whole'?['field','points','frame','title','code']:[mode];
     const builders={field:fieldLayer,points:pointLayer,frame:frameLayer,title:generativeTitle,code:codeLayer};
     const content=layers.map(l=>builders[l](id,mode==='field')).join('');
-    const display=mode==='points'?'translate(-290 20)':mode==='code'?'translate(960 540) scale(2.4) translate(-310 -754)':mode==='frame'?'translate(960 540) scale(1.08) translate(-1250 -534)':mode==='title'?'translate(420 80)':'';
+    const display=mode==='points'?'translate(-290 20)':mode==='frame'?'translate(960 540) scale(1.08) translate(-1250 -534)':mode==='title'?'translate(420 80)':'';
     root.innerHTML=svg(mode==='field'?'噪声流线连续游动':'生成点阵与代码',`<g ${display?`transform="${display}"`:''}>${content}</g>`,mode==='field'?'var(--stage,#05060a)':'#05060a');
-    const draws=layers.map(l=>({field:fieldMotion,points:pointMotion,frame:frameMotion,title:generativeTitleMotion,code:codeMotion})[l](root)),draw=once(t=>draws.forEach(f=>f(Math.round((t+(mode==='code'?1.4:0))*1e9)/1e9)));
+    const draws=layers.map(l=>({field:fieldMotion,points:pointMotion,frame:frameMotion,title:generativeTitleMotion,code:codeMotion})[l](root)),draw=once(t=>draws.forEach(f=>f(Math.round(t*1e9)/1e9)));
     draw.destroy=preserve=>draws.forEach(f=>f.destroy?.(preserve));return draw;
   }
   F['title-stagger']=(root,kit,definition={})=>{
@@ -179,13 +179,12 @@
   ];
   F['generative-point-morph']=root=>gen(root,'points');
   F['generative-flow-field']=root=>gen(root,'field');
-  F['code-line-sequence']=root=>gen(root,'code');
   F['generative-point-sequence']=root=>gen(root,'whole');
   F['generative-point-sequence'].breakdown=[
     {id:'field',actions:['generative-flow-field'],name:'噪声流线',start:0,end:8000,time:'0–8 秒',detail:'220 条细线按同一噪声场逐步延伸，每条由 10 个短步连接，底层保持 16% 透明。'},
     {id:'points',actions:['generative-point-morph'],name:'三态点阵',start:100,end:8000,time:'0.10–8.00 秒',detail:'2400 点形成球体，2–3 秒变环面，4.6–5.6 秒变波场；持续自转、透视投影和半秒节拍胀缩。'},
     {id:'frame',actions:['generative-frame-readout'],name:'四角框与实时读数',start:600,end:8000,time:'0.60–8.00 秒',detail:'原四角框与读数共同渐显，形态说明随球、环、波场切换；水平旋转与俯仰读数使用点阵同一时钟。'},
     {id:'title',actions:['title-stagger'],name:'轮廓年份与三行标题',start:300,end:2268,time:'0.30–2.27 秒',detail:'2020 白色轮廓渐显，CODE IS、THE CAMERA. 和副标题按原错峰从裁剪框内升起。'},
-    {id:'code',actions:['code-line-sequence'],name:'逐行输入代码',start:1600,end:4400,time:'1.60–约 4.40 秒',detail:'四行代码按每秒 38 字写出，每行结束停顿 0.1 秒，行号随对应行显现。'}
+    {id:'code',actions:[],reason:'按用户要求剔除独立分行续写，四行代码仅保留在完整组合中。',name:'逐行输入代码',start:1600,end:4400,time:'1.60–约 4.40 秒',detail:'四行代码按每秒 38 字写出，每行结束停顿 0.1 秒，行号随对应行显现。'}
   ];
 })(globalThis.MotionFactories);

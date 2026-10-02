@@ -110,7 +110,7 @@
         "向上移动，同时逐渐变清晰。",
         "减速落到最终位置，保持可读。"
       ],
-      "retain": "从下方轻轻靠近，同时从透明变清晰。",
+      "retain": "从下方轻轻靠近，同时从透明变清晰。 卡片上方图标为文档线框，显示尺寸 28×28 像素，线宽 1.5；卡片与图标一起运动。",
       "avoid": "不要忽然弹跳或变成逐张切换。",
       "duration_ms": 1200,
       "loop": false,
@@ -146,7 +146,7 @@
       "preview_ms": 975,
       "recommendation": "适合让标题或卡片进入视线。保留从下方轻轻靠近，同时从透明变清晰；不要忽然弹跳或变成逐张切换。",
       "tempo_note": "约零点一五秒起动，主要动作 0.6 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
-      "objects": "标题或卡片",
+      "objects": "带文档线框图标的卡片",
       "analogy": "走近后放慢脚步",
       "trigger": "打开预览后按固定顺序播放；可暂停和定位时间。",
       "assumptions": "使用自有抽象卡片与文字演示；对象内容、尺寸和总时长可调整，动作结构不变。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
@@ -165,86 +165,6 @@
         "start_ms": 150,
         "end_ms": 750
       }
-    },
-    {
-      "id": "mask-reveal",
-      "name": "边界显现",
-      "kind": "action",
-      "category": "entrance",
-      "summary": "内容本身不移动，由一道边界逐渐露出。",
-      "purpose": "揭示标题，保持版面稳定",
-      "aliases": [
-        "遮罩",
-        "揭开",
-        "露出来",
-        "揭示",
-        "裁切",
-        "遮罩显现"
-      ],
-      "behaviors": [
-        "appear",
-        "reveal"
-      ],
-      "phases": [
-        "内容固定在原位，先被遮住。",
-        "遮挡边界向右移动，逐步露出内容。",
-        "完整显现后保持不动。"
-      ],
-      "retain": "内容本身不移动，由一道边界逐渐露出。",
-      "avoid": "不要把内容整块推着走。",
-      "duration_ms": 1200,
-      "loop": false,
-      "default_ease": "outCubic",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        },
-        "ease": {
-          "label": "速度变化",
-          "default": "outCubic",
-          "options": [
-            "linear",
-            "outCubic",
-            "inOutSine"
-          ]
-        }
-      },
-      "source": {
-        "path": "catalog/effects/entrance.js",
-        "factory": "mask-reveal",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "preview_ms": 588,
-      "recommendation": "适合揭示标题，保持版面稳定。保留内容本身不移动，由一道边界逐渐露出；不要把内容整块推着走。",
-      "tempo_note": "约零点一五秒起动，主要动作 0.6 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
-      "objects": "标题或文字块",
-      "analogy": "从遮挡后露出来",
-      "trigger": "打开预览后按固定顺序播放；可暂停和定位时间。",
-      "assumptions": "使用自有抽象卡片与文字演示；对象内容、尺寸和总时长可调整，动作结构不变。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
-      "domains": [
-        "animation",
-        "document"
-      ],
-      "timing": {
-        "source_duration_ms": 2300,
-        "source_preview_ms": 1440,
-        "source_start_ms": 200,
-        "source_end_ms": 1900,
-        "start_ms": 150,
-        "end_ms": 750
-      },
-      "previous_names": [
-        "遮罩显现"
-      ]
     },
     {
       "id": "scale-in",
@@ -271,7 +191,7 @@
         "放大到目标附近，出现轻微回弹。",
         "稳定在目标尺寸。"
       ],
-      "retain": "从较小状态变大，轻微越过后回到目标尺寸。",
+      "retain": "从较小状态变大，轻微越过后回到目标尺寸。 卡片上方图标为立方体线框，显示尺寸 28×28 像素，线宽 1.5；卡片与图标一起运动。",
       "avoid": "回弹只发生一次，不反复抖动。",
       "duration_ms": 1200,
       "loop": false,
@@ -307,7 +227,7 @@
       "preview_ms": 975,
       "recommendation": "适合让关键内容有一次清晰的登场。保留从较小状态变大，轻微越过后回到目标尺寸；回弹只发生一次，不反复抖动。",
       "tempo_note": "约零点一五秒起动，主要动作 0.6 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
-      "objects": "单张卡片",
+      "objects": "带立方体线框图标的单张卡片",
       "analogy": "轻轻落到桌面",
       "trigger": "打开预览后按固定顺序播放；可暂停和定位时间。",
       "assumptions": "使用自有抽象卡片与文字演示；对象内容、尺寸和总时长可调整，动作结构不变。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
@@ -492,9 +412,9 @@
       "name": "成组展开",
       "kind": "action",
       "category": "entrance",
-      "summary": "两列三行的六张卡片按阅读顺序由小放大，标签随后显现，已出现的卡片保持原位。",
+      "summary": "三列两行的六张卡片按阅读顺序由小放大，标签随后显现，已出现的卡片保持原位。",
       "purpose": "让一组并列内容逐张建立，同时保持完整布局和阅读顺序。",
-      "objects": "两列三行的六张卡片与各自的小标签",
+      "objects": "三列两行的六张卡片与各自的小标签",
       "phases": [
         "六张卡片在最终位置以较小比例等待。",
         "从左到右、从上到下依次放大并显现，每张卡片的标签稍后进入。",
@@ -506,7 +426,9 @@
         "逐张放大",
         "卡片组放大",
         "两列三行展开",
-        "卡片成组展开"
+        "卡片成组展开",
+        "三列两行展开",
+        "每行三张卡片"
       ],
       "behaviors": [
         "appear",
@@ -514,7 +436,7 @@
         "sequence",
         "stagger"
       ],
-      "retain": "保留两列三行、阅读顺序、从较小比例到完整尺寸的纯减速放大，标签晚于自己的卡片出现，已显现内容保持。",
+      "retain": "保留三列两行、阅读顺序、从较小比例到完整尺寸的纯减速放大，标签晚于自己的卡片出现，已显现内容保持。 640×360 画板中，每行三张、共两行；卡片尺寸 135.68×76.32，中心横向间距 145.92、纵向间距 99.2，整组居中。",
       "avoid": "不把放大换成上移淡入，不让全部卡片同时出现，不产生回弹，不换页清空已出现的内容；不带原图集背景、题注和计数。",
       "duration_ms": 1800,
       "loop": false,
@@ -543,7 +465,7 @@
       "tempo_note": "约零点一五秒起动，主要动作 1.2 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
       "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
       "analogy": "一张张打开同一张桌面上的卡片。",
-      "assumptions": "核对本机图集原工程后独立重写，只提取第二组六张卡片的进入关系；保留卡片比例与两列三行，用自有卡片和数字标签示意，使用目录画幅与底色。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+      "assumptions": "核对本机图集原工程后独立重写，只提取第二组六张卡片的进入关系；保留卡片比例与三列两行，用自有卡片和数字标签示意，使用目录画幅与底色。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
       "domains": [
         "animation",
         "document"
@@ -792,9 +714,9 @@
       "purpose": "依次展示两组数据，让前一组先落定，再呈现后一组。",
       "objects": "同一底线上的两根柱条、百分数与优化前后标签",
       "phases": [
-        "两组从零开始，第一组柱条长高，数字同步递增并随柱顶上移。",
-        "第一组停住后，第二组接着上涨；每组的读数、柱高与数字位置同步。",
-        "两组分别停在 60% 和 78%，保留结果。"
+        "0.15 秒开始，优化前柱条与数字同步上涨，约 0.85 秒落在 60%。",
+        "优化前播放结束的同一时刻，优化后立即接着上涨，不插入停顿；1.47 秒落在 78%。",
+        "两组结果共同保留至 1.92 秒结束，柱顶位置与读数始终同步。"
       ],
       "aliases": [
         "数字随语音词点递增",
@@ -814,22 +736,22 @@
         "sequence",
         "grow"
       ],
-      "retain": "保留第一组先上涨、落定后第二组再上涨的顺序，以及每组柱高、读数和数字上移的同步关系。两次启动的间隔和两组时长可按内容调整。",
+      "retain": "保留优化前先上涨、优化前结束后优化后立即启动的顺序，以及每组柱高、读数和数字上移的同步关系。优化前约 0.15–0.85 秒，优化后约 0.85–1.47 秒，两组之间没有空档；最终读数为 60% 和 78%。",
       "avoid": "不让两个计数同时启动，不改为数字轮滚动，不用播放次数累计数值，不添加原片叙事标题和音频。",
-      "duration_ms": 3000,
-      "preview_ms": 2700,
+      "duration_ms": 1920,
+      "preview_ms": 1720,
       "timing": {
         "source_duration_ms": 3000,
-        "source_preview_ms": 2190.03333333334,
+        "source_preview_ms": 1400,
         "source_start_ms": 0,
-        "source_end_ms": 2190.03333333334,
+        "source_end_ms": 1200,
         "start_ms": 150,
-        "end_ms": 2550
+        "end_ms": 1470
       },
       "recommendation": "需要先展示一组数据，再呈现下一组时使用；适用于优化前后、两个阶段或两种方案的数据对比。",
-      "tempo_note": "两次计数保持原来的间隔比例，主要动作共 2.4 秒；开头停留 0.15 秒，末尾停留 0.45 秒。",
+      "tempo_note": "总长 1.92 秒：开头停留 0.15 秒，优化前结束后立即接优化后，1.47 秒全部落定，末尾共同停留 0.45 秒。",
       "analogy": "先让第一根柱子长高并停住，第二根柱子再接着长高。",
-      "assumptions": "从本机简历原作提取两组注册完成率图，只保留双柱、数字和标签。60% 与 78% 为示例；播放使用固定时间表，不要求绑定讲述或语音。原作词点仅作为提取时的节奏依据，迁用时可调整间隔、时长与目标值。使用统一底色、颜色与字号，原工程保持只读。",
+      "assumptions": "从本机简历原作提取两组注册完成率图，只保留双柱、数字和标签。60% 与 78% 为示例；播放使用固定时间表，不要求绑定讲述或语音。按用户要求去掉两组之间的等待；保留原每组增长时长与同步关系，迁用时可调整间隔、时长与目标值。使用统一底色、颜色与字号，原工程保持只读。",
       "source": {
         "path": "catalog/effects/data-comparisons.js",
         "factory": "narrated-count",
@@ -1072,8 +994,8 @@
       "name": "纵深环绕",
       "kind": "action",
       "category": "space",
-      "summary": "五张细边图形卡片绕线框球连续环行，近处清晰放大，远处轻淡缩小。",
-      "purpose": "以清楚的前后遮挡和透视表达中心与周围对象的关系。",
+      "summary": "五张细边图形卡片围绕画面中心连续环行，近处清晰放大，远处轻淡缩小。",
+      "purpose": "以卡片的位置、尺寸和明暗变化表达前后空间层次。",
       "aliases": [
         "环绕",
         "绕中心",
@@ -1090,12 +1012,12 @@
         "rotation3d"
       ],
       "phases": [
-        "线框球固定在画板中心，五张卡片以相同角间距排在同一空间轨道。",
-        "卡片连续环行，近处放大并遮挡中心球，远处缩小、变淡并经过中心球后方。",
+        "五张卡片以相同角间距排在围绕画面中心的空间路径上。",
+        "卡片连续环行，近处放大、变清晰，远处缩小、变淡，按深度决定前后遮挡。",
         "每六秒完成一圈，循环接缝保持相同位置和速度，卡片面向观众并轻微侧转。"
       ],
-      "retain": "640×360 画板，中心为（320,180）；卡片 72×88 像素、圆角 10 像素，中心球 68 像素直径。轨道以角度 θ 计算：深度 d=sin(θ)，缩放 s=740/(740−150d)，位置 x=320+204cos(θ)s、y=180+64ds；侧转角为 −18cos(θ) 度，透明度为 0.62+0.19(d+1)。五张卡片相差 72 度，中心球遮住后方卡片，前方卡片遮住中心球。",
-      "avoid": "卡片使用简单线形图案和编号，不加入大段文字；轨道与球体使用细线，中心只留一个青绿色小点；不把环绕改成逐张切换，不让所有卡片压在中心球前方。",
+      "retain": "640×360 画板，中心为（320,180）；五张卡片为 72×88 像素、圆角 10 像素，不绘制环线和中心球。运动以角度 θ 计算：深度 d=sin(θ)，缩放 s=740/(740−150d)，位置 x=320+204cos(θ)s、y=180+64ds；侧转角为 −18cos(θ) 度，透明度为 0.62+0.19(d+1)。五张卡片相差 72 度，按深度从后向前叠放。",
+      "avoid": "不绘制环线、中心圆球或中心亮点；卡片使用简单线形图案和编号，不加入大段文字，不把环绕改成逐张切换。",
       "duration_ms": 6000,
       "loop": true,
       "default_ease": "linear",
@@ -1119,12 +1041,12 @@
       "actions": [],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2880,
-      "recommendation": "适合展示同一中心与五个周边对象的空间关系；小卡片、细轨道与清楚遮挡保持画面轻巧。",
+      "recommendation": "适合展示同一组卡片的连续空间运动；以尺寸、明暗和前后遮挡建立层次。",
       "tempo_note": "一轮 6 秒，角度匀速增加；使用累计时间驱动，循环接缝不暂停或重播入场，速度控件只调整整体快慢。",
-      "objects": "居中的线框球、细椭圆轨道、五张 72×88 像素的图形卡片",
-      "analogy": "五张小卡片围绕一个球体从前后经过。",
+      "objects": "五张 72×88 像素的图形卡片",
+      "analogy": "五张小卡片围绕同一个空中心从前后经过。",
       "trigger": "打开预览后按固定顺序播放；可暂停和定位时间。",
-      "assumptions": "自编空间投影示例，卡片、轨道与中心球共用（320,180）中心。沿用目录深浅主题，使用暖白细线和青绿色小点，字号为 12 像素；源码与复制页面使用同一绘制函数。",
+      "assumptions": "自编空间投影示例，五张卡片围绕（320,180）中心连续运动。沿用目录深浅主题，使用细边卡片，编号字号为 12 像素；源码与复制页面使用同一绘制函数。",
       "domains": [
         "animation",
         "document"
@@ -1166,7 +1088,7 @@
         "缓慢上升，再缓慢下降。",
         "以固定周期连续循环。"
       ],
-      "retain": "对象轻微上下起伏，幅度与节奏保持平稳。",
+      "retain": "对象轻微上下起伏，幅度与节奏保持平稳。 卡片上方图标为叠层线框，显示尺寸 28×28 像素，线宽 1.5；卡片与图标一起运动。",
       "avoid": "不加入随机抖动或大幅度弹跳。",
       "duration_ms": 4000,
       "loop": true,
@@ -1202,7 +1124,7 @@
       "preview_ms": 1920,
       "recommendation": "适合营造安静、有生命感的持续状态。保留对象轻微上下起伏，幅度与节奏保持平稳；不加入随机抖动或大幅度弹跳。",
       "tempo_note": "一轮 4 秒；连续运动不在周期末停顿，首轮入场与累计时间同步。速度控件在此基础上整体调整。",
-      "objects": "悬浮卡片",
+      "objects": "带叠层线框图标的悬浮卡片",
       "analogy": "水面轻轻浮起又落下",
       "trigger": "打开预览后按固定顺序播放；可暂停和定位时间。",
       "assumptions": "使用自有抽象卡片与文字演示；对象内容、尺寸和总时长可调整，动作结构不变。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
@@ -3091,89 +3013,6 @@
       }
     },
     {
-      "id": "arc-cards",
-      "name": "弧面轮转",
-      "kind": "action",
-      "category": "space",
-      "summary": "卡片沿弧形轨道循环经过前景，并保持可辨认的正面。",
-      "purpose": "连续展示一组卡片，同时建立空间深度",
-      "aliases": [
-        "弧面",
-        "卡片旋转",
-        "弧形",
-        "卡片展示",
-        "环绕展示",
-        "卡片沿弧面展示",
-        "弧面卡片轮播"
-      ],
-      "behaviors": [
-        "continuous",
-        "orbit",
-        "depth",
-        "rotation3d"
-      ],
-      "phases": [
-        "五张卡片沿同一条弧面轨道排列。",
-        "中心卡片靠近视线，两侧卡片退向后方。",
-        "卡片持续沿轨道移动，轮流经过中心。"
-      ],
-      "retain": "卡片沿弧形轨道循环经过前景，并保持可辨认的正面。",
-      "avoid": "不是每次只替换一张卡片。",
-      "duration_ms": 6000,
-      "loop": true,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        },
-        "ease": {
-          "label": "速度变化",
-          "default": "linear",
-          "options": [
-            "linear",
-            "outCubic",
-            "inOutSine"
-          ]
-        }
-      },
-      "source": {
-        "path": "catalog/effects/compositions.js",
-        "factory": "arc-cards",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "preview_ms": 2880,
-      "recommendation": "适合连续展示一组卡片，同时建立空间深度。保留卡片沿弧形轨道循环经过前景，并保持可辨认的正面；不是每次只替换一张卡片。",
-      "tempo_note": "一轮 6 秒；连续运动不在周期末停顿，首轮入场与累计时间同步。速度控件在此基础上整体调整。",
-      "objects": "沿弧面排列的五张卡片",
-      "analogy": "看展品沿弧面依次靠近",
-      "trigger": "打开预览后按固定顺序播放；可暂停和定位时间。",
-      "assumptions": "使用自有抽象卡片与文字演示；对象内容、尺寸和总时长可调整，动作结构不变。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
-      "domains": [
-        "animation"
-      ],
-      "previous_names": [
-        "卡片沿弧面展示",
-        "弧面卡片轮播"
-      ],
-      "timing": {
-        "source_duration_ms": 8000,
-        "source_preview_ms": 3840,
-        "source_start_ms": 0,
-        "source_end_ms": 8000,
-        "start_ms": 0,
-        "end_ms": 6000
-      }
-    },
-    {
       "id": "title-content",
       "name": "揭示与展开",
       "kind": "composition",
@@ -3235,7 +3074,6 @@
         ]
       },
       "actions": [
-        "mask-reveal",
         "stagger-in"
       ],
       "demo_mode": "fixed-timeline",
@@ -10621,15 +10459,15 @@
       "id": "caption-type-caret",
       "name": "打字与光标",
       "category": "writing",
-      "duration_ms": 6000,
-      "preview_ms": 3300,
+      "duration_ms": 4000,
+      "preview_ms": 1300,
       "summary": "说明文字按原节奏逐字写出，光标跟随末字；写完后明灭，截止时光标隐藏、文字保留。",
-      "purpose": "复用原片说明文字逐字写出、光标跟随与完成后闪烁的完整动作。",
+      "purpose": "说明文字逐字写出，光标跟随末字并在输入完成后短暂闪烁。",
       "objects": "单行说明文字与尾随竖线光标",
       "phases": [
-        "2.20 秒开始，整句先确定行首，以每秒 45 字逐字写出。",
-        "输入尚未结束时光标常亮并紧跟末字；写完后每 0.40 秒明灭一次。",
-        "4.50 秒隐藏光标，完整说明保留到场景结束。"
+        "0.20 秒开始，整句先确定行首，以每秒 45 字逐字写出。",
+        "输入尚未结束时光标常亮并紧跟末字；写完后每 0.40 秒明灭一次，明灭相位按 floor((t + 2) × 2.5) 为偶数时显示计算，t 为当前动作秒数。",
+        "2.50 秒隐藏光标，完整说明保留至 4.00 秒结束。"
       ],
       "aliases": [
         "说明文字逐字写出",
@@ -10649,12 +10487,12 @@
         "type",
         "blink"
       ],
-      "retain": "保留原文字、字号 22、字距 5、淡粉配色、每秒 45 字、写完后的 0.4 秒闪烁间隔和原场景 4.5 秒截止。全句宽度预先固定，行首不会随字数跳动。英文统一本地 Oswald Bold，原字号和节奏不变。",
+      "retain": "保留文字 LOGOS LEARN TO FLY — CHROME, NEON & THE VIDEO TOASTER、字号 22、字距 5、淡粉配色 #ffd6f6、每秒 45 字及写完后的 0.4 秒闪烁间隔，2.5 秒时隐藏光标。全句宽度预先固定，行首不会随字数跳动。英文使用本地 Oswald Bold，图层居中并等比放大 2 倍。",
       "avoid": "不把整个句子左右推入，不在每帧测字，不给光标增加淡入淡出或额外循环，不新增同类粗粝字幕条目。",
       "analogy": "打字时竖线紧跟最后一个字，写完后闪烁几次再消失。",
-      "assumptions": "原片 reel.js 的 sNeon 底部 typeOn 提取。独立动作只将同一 caption 图层整体平移至中央并等比放大 2 倍，组合版保持底部原位；内部文字坐标、字号、字距、颜色、字数推进与光标时间完全共用。英文按用户规范用本地 Oswald Bold；固定字宽直接取自包内字体，破折号使用本地中文粗体，创建和播放均不读取布局或临时测量字体。相同绘制函数还提供 sGrit 原参数：0.6 秒开始，每秒 32 字，5.2 秒光标截止，字号 26、字距 0、原灰褐配色。word-slam 是八词撞入的专用普通动作，本轮不拼入额外字幕，不新增粗粝组合。",
+      "assumptions": "原片 reel.js 的 sNeon 底部 typeOn 提取。独立动作去掉原场景开头 2 秒等待，将同一 caption 图层整体平移至中央并等比放大 2 倍；独立播放秒数加 2 后交给原绘制函数，组合版保持底部原位及原时钟。内部文字坐标、字号、字距、颜色、字数推进与光标状态共用。英文按用户规范用本地 Oswald Bold；固定字宽直接取自包内字体，破折号使用本地中文粗体，创建和播放均不读取布局或临时测量字体。相同绘制函数还提供 sGrit 原参数：0.6 秒开始，每秒 32 字，5.2 秒光标截止，字号 26、字距 0、原灰褐配色。word-slam 是八词撞入的专用普通动作，本轮不拼入额外字幕，不新增粗粝组合。",
       "recommendation": "用于片头或说明段落：保留固定行首、末字尾随光标及完成后的短暂闪烁。可通过同一绘制函数改用原粗粝页的文字和节奏。",
-      "tempo_note": "沿用原场景 6 秒时钟：2.2 秒开始每秒写 45 字，写完后的光标每 0.4 秒明灭，4.5 秒截止；播放速度整体调整。",
+      "tempo_note": "总长 4 秒：0.2 秒开始每秒写 45 字，写完后光标每 0.4 秒明灭，2.5 秒时隐藏光标，完整文字保留至结束；播放速度整体调整。",
       "source": {
         "path": "catalog/effects/reel-neon.js",
         "factory": "caption-type-caret",
@@ -12526,69 +12364,6 @@
       ]
     },
     {
-      "id": "code-line-sequence",
-      "name": "分行续写",
-      "kind": "action",
-      "category": "writing",
-      "summary": "四行原代码以每秒 38 字逐字写出，每行结束停顿 0.1 秒再写下一行；左侧行号与对应行一起显现。",
-      "purpose": "四行原代码以每秒 38 字逐字写出，每行结束停顿 0.1 秒再写下一行；左侧行号与对应行一起显现。",
-      "objects": "四行紫色代码、两位数字行号",
-      "phases": [
-        "第一行行号显现，代码按固定字速写出。",
-        "每行完成后停顿 0.1 秒，再开始下一行；单双行保留原紫色区别。",
-        "四行全部保留，没有输入光标或额外窗口。"
-      ],
-      "aliases": [
-        "多行代码接续打出",
-        "多行代码逐行输入",
-        "演进史待验收",
-        "Claude 动效演进史",
-        "行号随代码逐行输入"
-      ],
-      "behaviors": [
-        "text",
-        "sequence",
-        "appear"
-      ],
-      "retain": "原四行文本、每秒 38 字、0.1 秒行间停顿、36 像素行距与行号显现。",
-      "avoid": "不附加终端窗口、光标、语法高亮或代码运行读数，不用整行淡入代替逐字输入。",
-      "duration_ms": 3500,
-      "preview_ms": 3000,
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "domains": [
-        "animation"
-      ],
-      "trigger": "按固定时间表播放，可暂停、重播和任意拖动定位。",
-      "analogy": "四行原代码以每秒 38 字逐字写出，每行结束停顿 0.1 秒再写下一行；左侧行号与对应行一起显现。",
-      "recommendation": "需要此原作的图形、颜色及动作关系时使用；独立条目与组合读取同一绘制函数。",
-      "tempo_note": "目录从原场景 1.4 秒起，原 1.6 秒开始第一行；只是平移起点，不压缩字速。",
-      "assumptions": "按本机动效演进史原绘制源码独立实现，原工程只读。保留原图形和色板，深浅模式均保持该片段的原视觉；纯英文和数字按用户要求统一使用 Oswald Bold。独立项只作必要平移或等比放大，组合沿用原相对位置。没有声音、外部视频和网络依赖。",
-      "source": {
-        "path": "catalog/effects/reel-flat-gen.js",
-        "factory": "code-line-sequence",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "original_scene": "claude-showreel-2026/sGen",
-      "previous_names": [
-        "行号随代码逐行输入"
-      ]
-    },
-    {
       "kind": "action",
       "loop": false,
       "default_ease": "linear",
@@ -12914,7 +12689,6 @@
       "actions": [
         "generative-flow-field",
         "generative-point-morph",
-        "code-line-sequence",
         "generative-frame-readout",
         "title-stagger"
       ],
@@ -16257,6 +16031,433 @@
         "猫咪叫声对应的口型",
         "猫咪随叫声张合嘴"
       ]
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按原片段时钟播放一次；可暂停、重播与任意定位。",
+      "previous_names": [],
+      "id": "encore-hook",
+      "name": "弯点转动",
+      "category": "continuous",
+      "duration_ms": 3810,
+      "preview_ms": 2096,
+      "summary": "雨伞围绕弯钩连续转动三圈，弯钩支点轻移，整体尺寸保持。",
+      "purpose": "独立复用雨中曲的原雨伞动作与接触反馈。",
+      "objects": "原细线雨伞、伞柄弯钩、伞骨、雨丝、水花、水纹及短轨迹",
+      "phases": [
+        "弯钩作为支点，整把伞开始转动。",
+        "按原加减速曲线连续转动三圈，伞面与伞柄一起运动。",
+        "完成旋转，保留原末端姿态。"
+      ],
+      "aliases": [
+        "弯点转动",
+        "雨中曲",
+        "雨中曲返场",
+        "雨伞",
+        "雨伞围绕弯钩连续转动三圈，弯钩支点轻移，整体尺寸保持。"
+      ],
+      "behaviors": [
+        "path",
+        "rotate",
+        "react"
+      ],
+      "retain": "保留固定弯钩支点关系、三圈转角、平滑起停、原伞面遮挡与伞柄轮廓；沿用原蓝色雨景、白色细线伞体、淡倒影、雨丝与水面反馈。",
+      "avoid": "不改变伞体尺寸，不简化原伞面前后遮挡，不让支点或接触位置滑动，不引入音乐、音效或原工程依赖。",
+      "analogy": "雨伞围绕弯钩连续转动三圈，弯钩支点轻移，整体尺寸保持。",
+      "assumptions": "迁入原雨伞几何、编舞和场景绘制；原1280×800画板等比适配目录画板，保留原蓝色场景。固定原实测节拍数据，仅用于动作排程，不加载音频。",
+      "recommendation": "需要雨伞的弯点转动动作时直接复用。",
+      "tempo_note": "沿用原作第0至3.81秒，独立播放3.81秒后停住；速度控件整体调整，落地与甩水关系不变。",
+      "source": {
+        "path": "catalog/effects/encore-dance.js",
+        "factory": "encore-hook",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。"
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按原片段时钟播放一次；可暂停、重播与任意定位。",
+      "previous_names": [],
+      "id": "encore-tap",
+      "name": "踏步溅起",
+      "category": "response",
+      "duration_ms": 4695,
+      "preview_ms": 2582,
+      "summary": "雨伞按原节拍轻跳碎步，落地后从真实接触点溅起水花与涟漪。",
+      "purpose": "独立复用雨中曲的原雨伞动作与接触反馈。",
+      "objects": "原细线雨伞、伞柄弯钩、伞骨、雨丝、水花、水纹及短轨迹",
+      "phases": [
+        "雨伞在地面短暂停顿后起跳。",
+        "保持原交错碎步路线，每次跳跃沿小抛物线落回地面。",
+        "实际接触后生成水花和涟漪，停在原最后落点。"
+      ],
+      "aliases": [
+        "踏步溅起",
+        "雨中曲",
+        "雨中曲返场",
+        "雨伞",
+        "雨伞按原节拍轻跳碎步，落地后从真实接触点溅起水花与涟漪。"
+      ],
+      "behaviors": [
+        "path",
+        "rotate",
+        "react"
+      ],
+      "retain": "保留原不等距节拍、每步短停、抛物线高度、真实接触点与落地后水花；沿用原蓝色雨景、白色细线伞体、淡倒影、雨丝与水面反馈。",
+      "avoid": "不改变伞体尺寸，不简化原伞面前后遮挡，不让支点或接触位置滑动，不引入音乐、音效或原工程依赖。",
+      "analogy": "雨伞按原节拍轻跳碎步，落地后从真实接触点溅起水花与涟漪。",
+      "assumptions": "迁入原雨伞几何、编舞和场景绘制；原1280×800画板等比适配目录画板，保留原蓝色场景。固定原实测节拍数据，仅用于动作排程，不加载音频。",
+      "recommendation": "需要雨伞的踏步溅起动作时直接复用。",
+      "tempo_note": "沿用原作第4.678至9.373秒，独立播放4.695秒后停住；速度控件整体调整，落地与甩水关系不变。",
+      "source": {
+        "path": "catalog/effects/encore-dance.js",
+        "factory": "encore-tap",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。"
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按原片段时钟播放一次；可暂停、重播与任意定位。",
+      "previous_names": [],
+      "id": "encore-flight",
+      "name": "翻转落尖",
+      "category": "continuous",
+      "duration_ms": 3691,
+      "preview_ms": 2030,
+      "summary": "雨伞沿原抛物线腾空翻转，以伞尖落地，机身尺寸保持固定。",
+      "purpose": "独立复用雨中曲的原雨伞动作与接触反馈。",
+      "objects": "原细线雨伞、伞柄弯钩、伞骨、雨丝、水花、水纹及短轨迹",
+      "phases": [
+        "雨伞从原地面姿态腾空。",
+        "质心沿抛物线移动，翻转按原起停曲线推进。",
+        "以伞尖接触地面，落点产生水花，保留原结束姿态。"
+      ],
+      "aliases": [
+        "翻转落尖",
+        "雨中曲",
+        "雨中曲返场",
+        "雨伞",
+        "雨伞沿原抛物线腾空翻转，以伞尖落地，机身尺寸保持固定。"
+      ],
+      "behaviors": [
+        "path",
+        "rotate",
+        "react"
+      ],
+      "retain": "保留质心抛物线、原翻转角与速度、伞尖接触位置和固定伞体尺寸；沿用原蓝色雨景、白色细线伞体、淡倒影、雨丝与水面反馈。",
+      "avoid": "不改变伞体尺寸，不简化原伞面前后遮挡，不让支点或接触位置滑动，不引入音乐、音效或原工程依赖。",
+      "analogy": "雨伞沿原抛物线腾空翻转，以伞尖落地，机身尺寸保持固定。",
+      "assumptions": "迁入原雨伞几何、编舞和场景绘制；原1280×800画板等比适配目录画板，保留原蓝色场景。固定原实测节拍数据，仅用于动作排程，不加载音频。",
+      "recommendation": "需要雨伞的翻转落尖动作时直接复用。",
+      "tempo_note": "沿用原作第9.373至13.064秒，独立播放3.691秒后停住；速度控件整体调整，落地与甩水关系不变。",
+      "source": {
+        "path": "catalog/effects/encore-dance.js",
+        "factory": "encore-flight",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。"
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按原片段时钟播放一次；可暂停、重播与任意定位。",
+      "previous_names": [],
+      "id": "encore-tip",
+      "name": "定尖转面",
+      "category": "space",
+      "duration_ms": 3936,
+      "preview_ms": 2165,
+      "summary": "伞尖固定在地面，伞面绕伞轴回旋四圈，伞轴轻微摇摆。",
+      "purpose": "独立复用雨中曲的原雨伞动作与接触反馈。",
+      "objects": "原细线雨伞、伞柄弯钩、伞骨、雨丝、水花、水纹及短轨迹",
+      "phases": [
+        "伞尖固定在原落地点。",
+        "伞骨绕轴转动，伞轴按原小幅曲线轻摇。",
+        "四圈回旋结束，伞尖仍保持同一支点。"
+      ],
+      "aliases": [
+        "定尖转面",
+        "雨中曲",
+        "雨中曲返场",
+        "雨伞",
+        "伞尖固定在地面，伞面绕伞轴回旋四圈，伞轴轻微摇摆。"
+      ],
+      "behaviors": [
+        "rotate",
+        "follow"
+      ],
+      "retain": "保留固定伞尖支点、四圈伞面回旋、原伞骨前后遮挡和轻摇幅度；沿用原蓝色雨景、白色细线伞体、淡倒影、雨丝与水面反馈。",
+      "avoid": "不改变伞体尺寸，不简化原伞面前后遮挡，不让支点或接触位置滑动，不引入音乐、音效或原工程依赖。",
+      "analogy": "伞尖固定在地面，伞面绕伞轴回旋四圈，伞轴轻微摇摆。",
+      "assumptions": "迁入原雨伞几何、编舞和场景绘制；原1280×800画板等比适配目录画板，保留原蓝色场景。固定原实测节拍数据，仅用于动作排程，不加载音频。",
+      "recommendation": "需要雨伞的定尖转面动作时直接复用。",
+      "tempo_note": "沿用原作第13.064至17秒，独立播放3.936秒后停住；速度控件整体调整，落地与甩水关系不变。",
+      "source": {
+        "path": "catalog/effects/encore-dance.js",
+        "factory": "encore-tip",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。"
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按原片段时钟播放一次；可暂停、重播与任意定位。",
+      "previous_names": [],
+      "id": "encore-roll",
+      "name": "沿廓滚动",
+      "category": "continuous",
+      "duration_ms": 3752,
+      "preview_ms": 2064,
+      "summary": "雨伞沿真实外轮廓滚过水面，位移与接触边缘一致，沿途留下轻水纹。",
+      "purpose": "独立复用雨中曲的原雨伞动作与接触反馈。",
+      "objects": "原细线雨伞、伞柄弯钩、伞骨、雨丝、水花、水纹及短轨迹",
+      "phases": [
+        "雨伞从原伞尖支撑姿态开始倾转。",
+        "按真实外轮廓计算前进距离，接触点沿伞沿与弯钩连续变化。",
+        "滚动结束，水纹在实际接触位置扩散并衰减。"
+      ],
+      "aliases": [
+        "沿廓滚动",
+        "雨中曲",
+        "雨中曲返场",
+        "雨伞",
+        "雨伞沿真实外轮廓滚过水面，位移与接触边缘一致，沿途留下轻水纹。"
+      ],
+      "behaviors": [
+        "path",
+        "rotate",
+        "react"
+      ],
+      "retain": "保留轮廓决定的滚动位移、地面支撑高度、持续变换的接触点和原水纹；沿用原蓝色雨景、白色细线伞体、淡倒影、雨丝与水面反馈。",
+      "avoid": "不改变伞体尺寸，不简化原伞面前后遮挡，不让支点或接触位置滑动，不引入音乐、音效或原工程依赖。",
+      "analogy": "雨伞沿真实外轮廓滚过水面，位移与接触边缘一致，沿途留下轻水纹。",
+      "assumptions": "迁入原雨伞几何、编舞和场景绘制；原1280×800画板等比适配目录画板，保留原蓝色场景。固定原实测节拍数据，仅用于动作排程，不加载音频。",
+      "recommendation": "需要雨伞的沿廓滚动动作时直接复用。",
+      "tempo_note": "沿用原作第17至20.752秒，独立播放3.752秒后停住；速度控件整体调整，落地与甩水关系不变。",
+      "source": {
+        "path": "catalog/effects/encore-dance.js",
+        "factory": "encore-roll",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。"
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按原片段时钟播放一次；可暂停、重播与任意定位。",
+      "previous_names": [],
+      "id": "encore-shed",
+      "name": "旋转甩离",
+      "category": "environment",
+      "duration_ms": 3791,
+      "preview_ms": 2085,
+      "summary": "雨伞反弹腾空飞旋，伞沿水珠继承离开瞬间的运动速度，留下连续短轨迹。",
+      "purpose": "独立复用雨中曲的原雨伞动作与接触反馈。",
+      "objects": "原细线雨伞、伞柄弯钩、伞骨、雨丝、水花、水纹及短轨迹",
+      "phases": [
+        "雨伞从滚动终点反弹腾空。",
+        "伞沿甩出水珠，水珠继承伞沿速度再受重力下落，短轨迹跟随旧位置。",
+        "雨伞返回原中央落点，水花与尾迹随原时钟变化，停在片段结束姿态。"
+      ],
+      "aliases": [
+        "旋转甩离",
+        "雨中曲",
+        "雨中曲返场",
+        "雨伞",
+        "雨伞反弹腾空飞旋，伞沿水珠继承离开瞬间的运动速度，留下连续短轨迹。"
+      ],
+      "behaviors": [
+        "path",
+        "rotate",
+        "react"
+      ],
+      "retain": "保留伞沿真实发射位置与速度、原抛物线与翻转、零点五四秒水珠寿命和连续短尾迹；沿用原蓝色雨景、白色细线伞体、淡倒影、雨丝与水面反馈。",
+      "avoid": "不改变伞体尺寸，不简化原伞面前后遮挡，不让支点或接触位置滑动，不引入音乐、音效或原工程依赖。",
+      "analogy": "雨伞反弹腾空飞旋，伞沿水珠继承离开瞬间的运动速度，留下连续短轨迹。",
+      "assumptions": "迁入原雨伞几何、编舞和场景绘制；原1280×800画板等比适配目录画板，保留原蓝色场景。固定原实测节拍数据，仅用于动作排程，不加载音频。",
+      "recommendation": "需要雨伞的旋转甩离动作时直接复用。",
+      "tempo_note": "沿用原作第20.752至24.543秒，独立播放3.791秒后停住；速度控件整体调整，落地与甩水关系不变。",
+      "source": {
+        "path": "catalog/effects/encore-dance.js",
+        "factory": "encore-shed",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。"
+      }
+    },
+    {
+      "id": "encore-umbrella-illustration",
+      "name": "细线雨伞",
+      "kind": "illustration",
+      "category": "illustration-object",
+      "summary": "乳白细线勾勒撑开的圆弧伞面、八根伞骨、直杆与弯钩，保留原伞面遮挡。",
+      "purpose": "将雨中曲的原雨伞独立提炼为可复用的透明底插画。",
+      "objects": "圆弧伞面、八根伞骨、直杆、弯钩与伞沿细点",
+      "phases": [
+        "完整雨伞居中呈现。",
+        "保持原伞面曲率、伞骨遮挡与弯钩比例。",
+        "透明背景下保持静止。"
+      ],
+      "aliases": [
+        "伞",
+        "雨伞",
+        "细线雨伞",
+        "雨中曲",
+        "雨中曲返场",
+        "撑开的伞",
+        "弯钩伞"
+      ],
+      "behaviors": [
+        "hold"
+      ],
+      "retain": "直接保留原圆弧伞面、八根伞骨的前后遮挡、直杆、弯钩、乳白线色与原尺寸比例。",
+      "avoid": "不包含雨景、雨丝、水花、倒影、尾迹或动作。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/encore-dance.js",
+        "factory": "encore-umbrella-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接复用已迁入的雨中曲原伞绘制函数，保留原伞面、伞骨遮挡及伞柄；仅绘制独立雨伞，移除场景与动作。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 1800,
+      "recommendation": "需要原雨中曲伞造型作为独立插画时复用，可与其他动作组合。",
+      "tempo_note": "静态插画全程保持；播放与定位不改变伞体。",
+      "trigger": "打开预览后显示完整雨伞插画。",
+      "analogy": "把雨中曲中的伞单独取出，作为透明底的线描物件。",
+      "assumptions": "采用原伞绘制函数，只调整居中位置；透明矢量图，不依赖原工程或图片。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "previous_names": []
     }
   ],
   "redirects": {
@@ -16281,7 +16482,6 @@
     "history-reel-switch-spring": "material-switch-spring",
     "history-reel-spinner-arc": "material-spinner-arc",
     "history-reel-like-pop": "material-like-pop",
-    "history-reel-code-lines": "code-line-sequence",
     "history-reel-striped-sun": "striped-sun-rise",
     "history-reel-grid-floor": "perspective-grid-flow",
     "history-reel-star-twinkle": "star-twinkle",
@@ -16315,7 +16515,13 @@
     "history-promo-kinetic-cards": "math-formula-drift",
     "history-promo-grid-zoom": "tile-wall-focus",
     "history-cat-mouth": "cat-mouth-illustration",
-    "flight-history-trails": "symbol-flight-settle"
+    "flight-history-trails": "symbol-flight-settle",
+    "history-recovered-hook": "encore-hook",
+    "history-recovered-tap": "encore-tap",
+    "history-recovered-flight": "encore-flight",
+    "history-recovered-tip": "encore-tip",
+    "history-recovered-roll": "encore-roll",
+    "history-recovered-shed": "encore-shed"
   },
   "variant_redirects": {
     "material-label-stagger": "material",
