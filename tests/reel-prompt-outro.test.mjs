@@ -80,6 +80,33 @@ test('输入框按原尺寸、描边、工具、推近与发送时刻复现，�
   }finally{e.close();}
 });
 
+test('独立逐字输入保留完整输入框，文字始终写在框内并与界面同步移动',async()=>{
+  const e=await env();try{
+    const d=e.w.document,root=d.createElement('div'),whole=d.createElement('div');
+    const player=e.w.MotionRuntime.create(root,definition('prompt-chinese-type'));
+    const combo=e.w.MotionRuntime.create(whole,definition('prompt-to-core-sequence'));
+    const clean=n=>n.outerHTML.replace(/motion-prompt-\d+/g,'fixed-id');
+    assert.ok(root.querySelector('[data-part="box-fill"]'),'逐字输入必须带承载文字的圆角输入框');
+    assert.ok(root.querySelector('[data-part="send-button"]'),'保留输入框中的发送按钮');
+    assert.equal(root.querySelector('[data-layer="core"],[data-layer="labels"]'),null,'不建立后续光核或片头文字');
+    for(const ms of [0,200,900,1300,3000,4500,4800]){
+      player.seek(ms);combo.seek(ms);
+      for(const layer of ['ui','border','send','letters']){
+        assert.equal(clean(root.querySelector('[data-layer="'+layer+'"]')),clean(whole.querySelector('[data-layer="'+layer+'"]')),layer+' 与组合在 '+ms+' 毫秒保持相同输入界面');
+      }
+      assert.equal(root.querySelector('[data-part="panel-chrome"]').getAttribute('opacity'),'1','输入框在输入全过程保持可见');
+      const [px,py,scale]=nums(root.querySelector('[data-pose="ui"]').getAttribute('transform'));
+      for(const letter of root.querySelectorAll('[data-char]')){
+        if(letter.getAttribute('visibility')!=='visible'||Number(letter.getAttribute('opacity'))===0)continue;
+        const [x,y]=nums(letter.getAttribute('transform')),localX=(x-px)/scale,localY=(y-py)/scale;
+        assert.ok(localX>=45&&localX+art.layout[Number(letter.dataset.char)].w<=985,'字符全文应位于输入框左右边界内');
+        assert.ok(localY-21.5>=88&&localY<=264,'字符上下沿应位于输入框内');
+      }
+    }
+    const final=root.innerHTML;player.seek(0);player.seek(4800);assert.equal(root.innerHTML,final,'回拖后恢复完整输入界面');
+    player.destroy();combo.destroy();
+  }finally{e.close();}
+});
 test('原提示词的逐字出生、绕行控制点、旋转缩放与七色变换均对应原绘制代码',async()=>{
   const e=await env();try{
     const root=e.w.document.getElementById('root'),p=e.w.MotionRuntime.create(root,definition('prompt-to-core-sequence'));

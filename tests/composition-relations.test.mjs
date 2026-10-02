@@ -20,7 +20,7 @@ const expected={
   'keyframe-workbench':{panels:['panel-rise-collapse'],bounce:['ball-bounce-trails'],graph:['bezier-editor'],timeline:['timeline-keyframe-playhead'],'large-graph':['bezier-editor'],labels:['title-stagger']},
   'material-phone-sequence':{shapes:['shape-pop-float'],labels:['title-stagger'],phone:['material-phone-rise'],cards:['material-card-stagger'],switch:['material-switch-spring'],spinner:['material-spinner-arc'],like:['material-like-pop'],fab:['material-fab-panel']},
   'generative-point-sequence':{field:['generative-flow-field'],points:['generative-point-morph'],frame:['generative-frame-readout'],title:['title-stagger'],code:['code-line-sequence']},
-  'prompt-to-core-sequence':{ui:['prompt-ui-push'],border:['prompt-border-trace'],letters:['prompt-chinese-type','prompt-char-gather'],send:['send-press-ring'],core:['core-ring-expand'],labels:['prompt-label-lift']},
+  'prompt-to-core-sequence':{ui:['prompt-ui-push'],border:['prompt-border-trace'],letters:['prompt-chinese-type','prompt-char-gather'],send:['send-press-ring'],core:['core-ring-expand'],labels:[]},
   'outro-recap-sequence':{burst:['radial-line-burst'],axis:['timeline-dock-down'],credits:['outro-credit-lift'],segments:['color-segment-stagger']}
 };
 

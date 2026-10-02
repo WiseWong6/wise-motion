@@ -198,7 +198,7 @@
       ['没感觉',0,-218,50,'var(--muted)'],['太死板',-244,-106,46,'var(--muted)'],
       ['再好看一点',-8,-95,52,'var(--muted)'],['不够高级',268,-105,43,'var(--muted)'],
       ['不够顺',-302,15,42,'var(--muted)'],['有点丑',0,12,88,'var(--teal)'],
-      ['有点僵硬',340,16,68,'var(--ink)'],['不够舒服',-286,114,42,'var(--muted)'],
+      ['有点僵硬',284,16,68,'var(--ink)'],['不够舒服',-286,114,42,'var(--muted)'],
       ['不够灵动',0,113,60,'var(--ink)'],['不够自然',298,103,42,'var(--muted)'],
       ['缺点氛围',-227,187,41,'var(--muted)'],['再优化一下',16,186,43,'var(--muted)'],
       ['节奏不对',262,180,41,'var(--muted)']
@@ -217,7 +217,8 @@
       const breath=1+Math.sin(t*1.55)*.009*idle;
       s('cloud',{transform:`translate(${x} ${y}) scale(${scale*breath})`,opacity:K.span(t,0,.5,'inOutCubic')});
       words.forEach(([,wx,wy,size],i)=>{
-        const font=size*scale*fontLift;
+        // 整体收小文字，留出各词漂移的余量；右侧长词向内移，不裁切字形。
+        const font=size*scale*fontLift*.78;
         const dx=Math.sin(t*(.72+(i%4)*.05)+i*1.13)*6*idle;
         const dy=Math.cos(t*(.64+(i%3)*.07)+i*.91)*4*idle;
         s('word'+i,{x:x+wx*scale+dx,y:y+wy*scale+dy-font*.625,'font-size':font,opacity:K.span(t,i*.045,i*.045+.5,'inOutCubic')});
@@ -226,29 +227,29 @@
   };
 
   F['evidence-icons'] = (root,K) => {
-    // 提取原论据组的四种图形，等比缩到目录画板；不带原背景、标题与语音。
+    // 四种原图形等比缩到目录画板，单行等距排布，标签对齐；不带原背景、标题与语音。
     // 从真实词点取相对时刻，不把句子内的节拍替换成等间隔图标进入。
-    const s=stage(root,`<g transform="translate(104 -137) scale(.4)" font-weight="300">
-      <g data-icon-sequence="experience" data-icon-word="经历" data-icon-start="120" transform="translate(15 55)">
+    const s=stage(root,`<g transform="scale(.4)" font-weight="300">
+      <g data-icon-sequence="experience" data-icon-word="经历" data-icon-start="120" transform="translate(-60 -100)">
         <rect data-part="experience-frame" x="230" y="456" width="180" height="122" rx="10" fill="none" stroke="var(--teal)" stroke-width="3" data-icon-stroke data-icon-delay="0" data-icon-duration=".32"/>
         <path data-part="experience-line0" d="M260 486H371" fill="none" stroke="var(--teal)" stroke-width="5" stroke-linecap="round" data-icon-stroke data-icon-delay=".33" data-icon-duration=".13"/>
         <path data-part="experience-line1" d="M260 516H350" fill="none" stroke="var(--teal)" stroke-width="5" stroke-linecap="round" data-icon-stroke data-icon-delay=".44" data-icon-duration=".13"/>
         <path data-part="experience-line2" d="M260 546H380" fill="none" stroke="var(--teal)" stroke-width="5" stroke-linecap="round" data-icon-stroke data-icon-delay=".55" data-icon-duration=".13"/>
         <text data-part="experience-label" x="320" y="660" font-size="${K.textSize('body',.4)}" fill="var(--teal)" text-anchor="middle" data-icon-fade data-icon-delay=".66" data-icon-duration=".16">经历</text>
       </g>
-      <g data-icon-sequence="method" data-icon-word="方法" data-icon-start="432" transform="translate(-15 55)">
+      <g data-icon-sequence="method" data-icon-word="方法" data-icon-start="432" transform="translate(-140 -100)">
         <circle data-part="method-node0" cx="706" cy="486" r="26" fill="none" stroke="var(--blue)" stroke-width="3" data-icon-stroke data-icon-delay="0" data-icon-duration=".19"/>
         <path data-part="method-line0" d="M732 490H790V524" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" data-icon-stroke data-icon-delay=".14" data-icon-duration=".23"/>
         <path data-part="method-line1" d="M690 512V554H784" fill="none" stroke="var(--blue)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" data-icon-stroke data-icon-delay=".22" data-icon-duration=".23"/>
         <circle data-part="method-node1" cx="816" cy="554" r="26" fill="none" stroke="var(--blue)" stroke-width="3" data-icon-stroke data-icon-delay=".33" data-icon-duration=".19"/>
         <text data-part="method-label" x="760" y="660" font-size="${K.textSize('body',.4)}" fill="var(--blue)" text-anchor="middle" data-icon-fade data-icon-delay=".49" data-icon-duration=".16">方法</text>
       </g>
-      <g data-icon-sequence="ability" data-icon-word="能力" data-icon-start="753" transform="translate(15 64)">
+      <g data-icon-sequence="ability" data-icon-word="能力" data-icon-start="753" transform="translate(660 -450)">
         <circle data-part="ability-circle" cx="320" cy="860" r="68" fill="none" stroke="var(--accent)" stroke-width="4" data-icon-stroke data-icon-delay="0" data-icon-duration=".28"/>
         <path data-part="ability-check" d="M279 858L308 887L361 827" fill="none" stroke="var(--accent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" data-icon-stroke data-icon-delay=".28" data-icon-duration=".23"/>
         <text data-part="ability-label" x="320" y="1010" font-size="${K.textSize('body',.4)}" fill="var(--accent)" text-anchor="middle" data-icon-fade data-icon-delay=".5" data-icon-duration=".16">能力</text>
       </g>
-      <g data-icon-sequence="data" data-icon-word="数据" data-icon-start="1458" transform="translate(-15 64)">
+      <g data-icon-sequence="data" data-icon-word="数据" data-icon-start="1458" transform="translate(580 -450)">
         <path data-part="data-baseline" d="M659 922H851" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" data-icon-stroke data-icon-delay="0" data-icon-duration=".19"/>
         <rect data-part="data-bar0" x="688" y="865" width="36" height="57" rx="4" fill="var(--path)" data-icon-bar data-icon-delay=".09" data-icon-duration=".35"/>
         <rect data-part="data-bar1" x="747" y="823" width="36" height="99" rx="4" fill="var(--blue)" data-icon-bar data-icon-delay=".17" data-icon-duration=".35"/>
@@ -401,10 +402,6 @@
     const s=stage(root,'<defs><clipPath id="NAMESPACE-cards"><rect x="190" y="90" width="260" height="180"/></clipPath></defs><g clip-path="url(#NAMESPACE-cards)"><g data-part="cards">'+list(3,i=>rect('r'+i,190+i*280,95,260,170)+text('w'+i,320+i*280,185,['问题','做法','结果'][i],36))+'</g></g>');
     return p=>{let q=p<.25?0:p<.4?smooth(section(p,.25,.4)):p<.65?1:p<.8?1+smooth(section(p,.65,.8)):2;s('cards',{transform:`translate(${-280*q} 0)`});};
   });
-  register('title-dock',(root) => {
-    const s=stage(root,text('title',0,0,'让表达更清楚',42)+text('body',320,195,'事实 · 原因 · 做法',26)+text('detail',320,242,'一段有次序的正文',19));
-    return p=>{const q=smooth(section(p,.08,.48));move(s,'title',320,185-90*q,1-.32*q);s('body',{opacity:section(p,.55,.78)});s('detail',{opacity:section(p,.65,.88)});};
-  });
   register('progress-readout',(root) => {
     const s=stage(root,rect('track',76,172,420,16)+rect('fill',76,172,0,16,'style="fill:var(--ink)"')+`<text data-part="value" x="514" y="180" fill="var(--ink)" font-size="${global.MotionKit.textSize('body')}" font-weight="700" text-anchor="start" dominant-baseline="central">0%</text>`);
     return p=>{const q=smooth(section(p,.12,.85));s('fill',{width:420*q});setText(s,'value',Math.round(100*q)+'%');};
@@ -530,10 +527,6 @@
       s('end-dot',{opacity:K.span(t,connectorAt+.37,connectorAt+.55)});
     };
   });
-  register('sweep-trigger',(root) => {
-    const s=stage(root,list(6,i=>rect('c'+i,130+i*65,155,42,50))+line('scan',90,95,90,270,'stroke-width="4"'));
-    return p=>{const x=90+450*section(p,.1,.88);s('scan',{x1:x,x2:x});for(let i=0;i<6;i++)s('c'+i,{opacity:x>=151+i*65?1:.2});};
-  });
   register('event-clock',(root) => {
     const events=[.22,.48,.73],s=stage(root,line('axis',90,260,550,260)+line('now',90,85,90,278)+list(3,i=>dot('c'+i,90+460*events[i],155,25)+text('time'+i,90+460*events[i],210,`${i+1} 个事件`,16)));
     return p=>{s('now',{x1:90+460*p,x2:90+460*p});events.forEach((time,i)=>s('c'+i,{opacity:p>=time?1:.15}));};
@@ -545,14 +538,6 @@
   register('wave-grid',(root) => {
     const s=stage(root,list(35,i=>dot('p'+i,180+(i%7)*46,88+Math.floor(i/7)*46,9)));
     return p=>{for(let i=0;i<35;i++){const d=Math.hypot(i%7,Math.floor(i/7)),q=section(p,.1+d*.055,.23+d*.055),pulse=Math.sin(q*Math.PI);s('p'+i,{r:9+9*pulse,opacity:.3+.7*pulse});}};
-  });
-  register('bloom-layers',(root) => {
-    const s=stage(root,list(12,i=>`<g data-part="petal${i}"><ellipse cx="0" cy="-44" rx="17" ry="48" fill="var(--plane-${i<6?2:3})" stroke="var(--muted)"/></g>`)+dot('center',320,185,15));
-    return p=>{for(let i=0;i<12;i++){const q=smooth(section(p,i<6?.1:.28,i<6?.65:.85)),angle=(i%6)*60+(i<6?0:30);s('petal'+i,{transform:`translate(320 185) rotate(${angle}) scale(${.18+.82*q} ${.3+.7*q})`});}};
-  });
-  register('anchored-growth',(root) => {
-    const s=stage(root,line('stem',320,290,320,290)+list(4,i=>`<path data-part="leaf${i}" d="M0 0 Q${i%2?-60:60} -60 ${i%2?-65:65} -20 Q${i%2?-30:30} 10 0 0" fill="var(--plane-3)" stroke="var(--muted)"/>`));
-    return p=>{const q=smooth(section(p,.05,.7));s('stem',{y2:290-205*q});for(let i=0;i<4;i++){const v=smooth(section(p,.2+i*.13,.42+i*.13));s('leaf'+i,{transform:`translate(320 ${250-i*45}) scale(${v})`});}};
   });
   register('local-scan',(root) => {
     const s=stage(root,'<foreignObject x="0" y="0" width="640" height="360"><div xmlns="http://www.w3.org/1999/xhtml" style="width:640px;height:360px;display:flex;align-items:center;justify-content:center"><span data-part="wordmark" class="brand-name" style="font-size:var(--type-heading);line-height:1.2;white-space:nowrap;animation:none;color:var(--brand-base);background-image:linear-gradient(90deg,var(--brand-base) 0%,var(--brand-base) 58%,var(--brand-light) 70%,var(--brand-light) 82%,var(--brand-base) 94%,var(--brand-base) 100%)">WISE MOTION</span></div></foreignObject>');

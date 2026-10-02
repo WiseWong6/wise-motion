@@ -61,6 +61,29 @@
     host.querySelector('.motion-stage').style.transform = `translate(-50%,-50%) scale(${scale})`;
   }
 
+  function preparedFrame(host,effect,state,stage){
+    const job=async()=>{
+      if(!current(host,state))return;
+      let render,disposed=false,hasFrame=false,cancelWait;
+      const cancelled=new Promise(resolve=>{cancelWait=()=>resolve(false);});
+      const dispose=preserve=>{if(disposed)return;disposed=true;render?.destroy?.(preserve);};
+      const cancel=()=>{cancelWait();dispose(false);};
+      state.cleanup.push(cancel);
+      try{
+        render=global.MotionKit.createRenderer(stage,{...effect,poster_only:true,poster_time_ms:effect.preview_ms});
+        const ready=render.ready?await Promise.race([Promise.resolve(render.ready).then(()=>true),cancelled]):true;
+        if(!ready||!current(host,state))return;
+        render(effect.preview_ms,{ease:effect.default_ease,duration:effect.duration_ms});
+        hasFrame=true;frame(host);
+      }catch(error){unavailable(host,state,error.message||'动画预览准备失败。');}
+      finally{
+        dispose(hasFrame&&current(host,state));
+        const index=state.cleanup.indexOf(cancel);if(index!==-1)state.cleanup.splice(index,1);
+      }
+    };
+    queue=queue.then(job,job);
+  }
+
   function paint(host, effect) {
     const state=states.get(host);
     if (painted.has(host)||!state||!current(host,state)) return;
@@ -74,6 +97,9 @@
       const stage = document.createElement('div');
       stage.className = 'motion-stage';
       global.MotionKit.prepareStage(stage, effect);
+      if(factory.requiresPreparation){
+        host.prepend(stage);frame(host);preparedFrame(host,effect,state,stage);return;
+      }
       const render = global.MotionKit.createRenderer(stage, effect);
       try { render(effect.preview_ms, {ease: effect.default_ease, duration: effect.duration_ms}); }
       finally { render.destroy?.(true); }
@@ -151,7 +177,12 @@
     /* 卡片从列表移除时交还缩略图，避免长期持有场景 DOM。 */
     release,
     disposeAll,
-    whenIdle:()=>queue,
+    whenIdle:async()=>{
+      // 没有观察器时，挂载完成后的微任务才会登记绘制任务。
+      await Promise.resolve();
+      let waiting;
+      do{waiting=queue;await waiting;}while(waiting!==queue);
+    },
     resize,
     supported
   };

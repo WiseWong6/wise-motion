@@ -14,7 +14,7 @@
 现实类比：随讲述指向重点，再为新信息让位
 需要保留：格子逐项出现并上色，区域移动后让新的陈述成为重心。
 明确排除：同一时刻只突出一个重点。
-对应参考：本地目录「显现与聚焦」；所用动作：错峰入场、轮换提亮、让位后放大、上移淡入淡出
+对应参考：本地目录「显现与聚焦」；所用动作：错峰入场、轮换提亮、让位后放大
 源码：catalog/effects/compositions.js 中的 subtitle-focus
 来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
 关键假设：使用自有抽象卡片与文字演示；对象内容、尺寸和总时长可调整，动作结构不变。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。
@@ -33,4 +33,4 @@
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
 - 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[错峰入场](stagger-in.md)、[轮换提亮](subtitle-cell-focus.md)、[让位后放大](subtitle-block-shift.md)、[上移淡入淡出](statement-rise-exit.md)。
+所用动作：[错峰入场](stagger-in.md)、[轮换提亮](subtitle-cell-focus.md)、[让位后放大](subtitle-block-shift.md)。

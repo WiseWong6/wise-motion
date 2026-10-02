@@ -11,7 +11,7 @@ test('插画单图独立计数、筛选和搜索，直达链接切到插画目�
     const {w} = env, d = w.document;
     const art = data.effects.filter(e=>e.kind==='illustration');
     const tab = d.querySelector('[data-kind="illustration"]');
-    assert.equal(art.length, 43);
+    assert.equal(art.length, 45);
     assert.equal(tab.getAttribute('aria-pressed'), 'true');
     assert.equal(tab.querySelector('.pill-count').textContent, String(art.length));
     assert.equal(d.querySelector('.effect-item[aria-current="true"]').dataset.effect, 'rasengan-illustration');
@@ -46,14 +46,14 @@ test('插画正式入口加载全部独立图形，缩略图可生成并可切�
       cards.push(...d.querySelectorAll('.effect-item'));
     }
     filter.value='all';filter.dispatchEvent(new w.Event('change'));env.reveal();
-    assert.equal(cards.length, 43);
+    assert.equal(cards.length, 45);
     for (const previous of cards) {
       const card=d.querySelector(`[data-effect="${previous.dataset.effect}"]`);
       assert.ok(card.querySelector('.thumb .pattern-svg'), card.dataset.effect);
       if (card.dataset.effect === 'animal-illustration') assert.equal(card.querySelectorAll('.thumb [data-part^="a"]').length, 6);
       card.click();
       assert.equal(d.querySelector('#preview .motion-stage').dataset.effect, card.dataset.effect);
-      assert.equal(d.querySelector('#preview svg').querySelectorAll('image, foreignObject').length, 0);
+      assert.equal(d.querySelector('#preview svg').querySelectorAll('image, foreignObject').length, card.dataset.effect === 'selfie-phone-illustration' ? 1 : 0);
       if (!card.dataset.effect.endsWith('-illustration') || !['moon-card-illustration','drafting-tools-illustration','archive-folder-illustration','folio-cards-illustration','chart-card-illustration','aperture-eye-illustration','terminal-window-illustration','archive-box-illustration','paper-scroll-illustration','steel-ruler-illustration','claude-glyph-rain-illustration','claude-frame-counter-illustration'].includes(card.dataset.effect)) assert.equal(d.querySelectorAll('#preview svg text').length, 0);
       assert.equal(w.MotionRuntime.instanceCount, 1);
     }

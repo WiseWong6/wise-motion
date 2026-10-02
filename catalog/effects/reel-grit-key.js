@@ -39,8 +39,12 @@
   const comp={x:470,y:230,w:980,h:470,index:0,title:'COMPOSITION — BALL_v03'};
   const originalComp={...comp,x:120},graphPanel={x:1130,y:230,w:670,h:470,index:1,title:'GRAPH EDITOR'};
   const timeline={x:120,y:730,w:1680,h:210,index:2,title:'TIMELINE'};
+  const standaloneTimeline={...timeline,y:300,h:480,header:64,ruler:68,rowStart:172,rowGap:60,labelWidth:360,endInset:30};
   const inner=P=>({x:P.x+20,y:P.y+54,w:P.w-40,h:P.h-74});
-  function panel(P){return `<rect x="${P.x}" y="${P.y}" width="${P.w}" height="${P.h}" rx="10" fill="#1c1e24" stroke="#2c2f37" stroke-width="1.5"/><path d="M${P.x+10} ${P.y}H${P.x+P.w-10}Q${P.x+P.w} ${P.y} ${P.x+P.w} ${P.y+10}V${P.y+34}H${P.x}V${P.y+10}Q${P.x} ${P.y} ${P.x+10} ${P.y}" fill="#23262d"/>`+text(P.title,P.x+16,P.y+22,13,'#8b909c','letter-spacing="2"')+[0,1,2].map(i=>`<circle cx="${P.x+P.w-20-i*16}" cy="${P.y+17}" r="4" fill="#3a3e48"/>`).join('');}
+  function panel(P){
+    const header=P.header??34,labelY=P.y+(P.header?42:22);
+    return `<rect x="${P.x}" y="${P.y}" width="${P.w}" height="${P.h}" rx="10" fill="#1c1e24" stroke="#2c2f37" stroke-width="1.5"/><path d="M${P.x+10} ${P.y}H${P.x+P.w-10}Q${P.x+P.w} ${P.y} ${P.x+P.w} ${P.y+10}V${P.y+header}H${P.x}V${P.y+10}Q${P.x} ${P.y} ${P.x+10} ${P.y}" fill="#23262d"/>`+text(P.title,P.x+16,labelY,13,'#8b909c','letter-spacing="2"')+[0,1,2].map(i=>`<circle cx="${P.x+P.w-20-i*16}" cy="${P.y+header/2}" r="4" fill="#3a3e48"/>`).join('');
+  }
   function panelPose(t,P){const a=outExpo(span(t,.1+P.index*.12,.8+P.index*.12)),c=inExpo(span(t,5.4+P.index*.08,5.85+P.index*.08)),cy=P.y+P.h/2;return {opacity:c>=1?0:a,transform:`translate(0 ${(1-a)*60+cy}) scale(1 ${1-c}) translate(0 ${-cy})`};}
   function panelLayer(panels){return '<g data-layer="panels">'+panels.map(P=>`<g data-window="${P.index}">${panel(P)}</g>`).join('')+'</g>';}
   function panelMotion(root,panels){const nodes=[...root.querySelectorAll('[data-window]')];return t=>nodes.forEach(n=>attrs(n,panelPose(t,panels.find(P=>P.index===+n.dataset.window))));}
@@ -61,10 +65,30 @@
   const keyNames=['Ball · Position','Ball · Scale','Shadow · Opacity','Title · Tracking','Camera · Zoom'];
   const keyColors=['#ff6b4a','#ff6b4a','#8a8f99','#ffc93c','#4aa3ff'];
   const keyTimes=[[0,.25,.5,.75,1],[0,.24,.26,.49,.51,.74,.76,.99],[0,.125,.25,.375,.5,.625,.75,.875,1],[.05,.4],[0,1]];
-  function timelineLayer(){const P=timeline,tx=P.x+300,tw=P.w-320,ry=P.y+34;let index=0;return '<g data-layer="timeline">'+`<rect x="${P.x}" y="${ry}" width="${P.w}" height="26" fill="#191b20"/>`+Array.from({length:41},(_,i)=>`<rect x="${tx+tw*i/40}" y="${ry+(i%5?18:10)}" width="1" height="${i%5?8:16}" fill="#4b4f5a"/>`).join('')+Array.from({length:9},(_,i)=>text(`${(i*.25).toFixed(2)}s`,tx+tw*i/8+4,ry+14,10,'#5d626e')).join('')+keyNames.map((name,i)=>{const y=P.y+80+i*24;return `<rect x="${P.x+18}" y="${y-6}" width="10" height="10" fill="${keyColors[i]}"/>`+text(name,P.x+40,y+4,13,'#a4a9b4')+`<rect x="${tx}" y="${y-8}" width="${tw}" height="16" fill="${keyColors[i]}" opacity=".16"/>`+keyTimes[i].map(k=>`<rect data-key="${index++}" data-row="${i}" data-at="${k}" x="-5" y="-5" width="10" height="10"/>`).join('');}).join('')+`<g data-playhead fill="#4aa3ff"><rect x="-1" y="${ry}" width="2" height="${P.h-34}"/><path d="M-8 ${ry}H8V${ry+10}L0 ${ry+18}L-8 ${ry+10}Z"/></g></g>`;}
-  function timelineMotion(root){const P=timeline,tx=P.x+300,tw=P.w-320,nodes=[...root.querySelectorAll('[data-key]')],head=root.querySelector('[data-playhead]');return t=>{
-    const px=tx+loopU(t)*tw;nodes.forEach(n=>{const i=+n.dataset.key,row=+n.dataset.row,x=tx+(+n.dataset.at)*tw,y=P.y+80+row*24,s=outBack(span(t,.9+i*.025,1.25+i*.025)),hot=Math.abs(x-px)<8&&t>1,c=keyColors[row];attrs(n,{visibility:s>0?'visible':'hidden',transform:`translate(${x} ${y}) rotate(45) scale(${s*(hot?1.5:1)})`,fill:hot?'#fff':c==='#8a8f99'?'#c5c9d1':c});});attrs(head,{visibility:t>.9?'visible':'hidden',transform:`translate(${px} 0)`});
-  };}
+  function timelineLayer(P=timeline){
+    const tx=P.x+(P.labelWidth??300),tw=P.w-(P.labelWidth??300)-(P.endInset??20),ry=P.y+(P.header??34),rowGap=P.rowGap??24,barHeight=P.rowGap?24:16;
+    let index=0;
+    return '<g data-layer="timeline">'+`<rect x="${P.x}" y="${ry}" width="${P.w}" height="${P.ruler??26}" fill="#191b20"/>`+
+      Array.from({length:41},(_,i)=>`<rect x="${tx+tw*i/40}" y="${ry+(P.ruler?(i%5?50:42):(i%5?18:10))}" width="1" height="${i%5?8:16}" fill="#4b4f5a"/>`).join('')+
+      Array.from({length:9},(_,i)=>text(`${(i*.25).toFixed(2)}s`,tx+tw*i/8+(P.ruler?0:4),ry+(P.ruler?28:14),10,'#5d626e',P.ruler?`text-anchor="${i===8?'end':i===0?'start':'middle'}"`:'')).join('')+
+      keyNames.map((name,i)=>{
+        const y=P.y+(P.rowStart??80)+i*rowGap;
+        return `<rect x="${P.x+18}" y="${y-6}" width="10" height="10" fill="${keyColors[i]}"/>`+text(name,P.x+40,y+(P.rowGap?10:4),13,'#a4a9b4',`data-timeline-label="${i}"`)+
+          `<rect x="${tx}" y="${y-barHeight/2}" width="${tw}" height="${barHeight}" fill="${keyColors[i]}" opacity=".16"/>`+
+          keyTimes[i].map(k=>`<rect data-key="${index++}" data-row="${i}" data-at="${k}" x="-5" y="-5" width="10" height="10"/>`).join('');
+      }).join('')+`<g data-playhead fill="#4aa3ff"><rect x="-1" y="${ry}" width="2" height="${P.h-(P.header??34)}"/><path d="M-8 ${ry}H8V${ry+10}L0 ${ry+18}L-8 ${ry+10}Z"/></g></g>`;
+  }
+  function timelineMotion(root,P=timeline){
+    const tx=P.x+(P.labelWidth??300),tw=P.w-(P.labelWidth??300)-(P.endInset??20),nodes=[...root.querySelectorAll('[data-key]')],head=root.querySelector('[data-playhead]');
+    return t=>{
+      const px=tx+loopU(t)*tw;
+      nodes.forEach(n=>{
+        const i=+n.dataset.key,row=+n.dataset.row,x=tx+(+n.dataset.at)*tw,y=P.y+(P.rowStart??80)+row*(P.rowGap??24),s=outBack(span(t,.9+i*.025,1.25+i*.025)),hot=Math.abs(x-px)<8*tw/(timeline.w-320)&&t>1,c=keyColors[row];
+        attrs(n,{visibility:s>0?'visible':'hidden',transform:`translate(${x} ${y}) rotate(45) scale(${s*(hot?1.5:1)})`,fill:hot?'#fff':c==='#8a8f99'?'#c5c9d1':c});
+      });
+      attrs(head,{visibility:t>.9?'visible':'hidden',transform:`translate(${px} 0)`});
+    };
+  }
   function workbenchGraphMotion(root){
     const draw=F['bezier-editor'].graphMotion(root);
     return t=>{const [a,b]=handles(t);draw({a,b,x:1190,y:330,w:550,height:310,draw:1-Math.pow(1-span(t,.5,1.3),3),progress:pingPong(loopU(t)),visible:t>1,handleOpacity:span(t,1.2,1.5),captionOpacity:span(t,.8,1.1),caption:`cubic-bezier(${a[0].toFixed(2)}, ${a[1].toFixed(2)}, ${b[0].toFixed(2)}, ${b[1].toFixed(2)})`});};
@@ -107,20 +131,25 @@
       draw({x:1260,y:260,w:480,height:480,draw:dp,progress,visible:t>6.9,caption:'cubic-bezier(.34, 1.56, .64, 1)',captionOpacity:dp});
     };
   }
-  function content(root,title,layers,{collapse=false,original=false}={}){
-    const Pcomp=original?originalComp:comp,panels=original?[Pcomp,graphPanel,timeline]:[Pcomp,timeline];
-    const id='motion-grit-key-'+ ++serial,defs=panels.map(P=>`<clipPath id="${id}-${P.index}"><rect x="${P.x}" y="${P.y+34}" width="${P.w}" height="${P.h-34}"/></clipPath>`).join('');let body=`<defs>${defs}</defs>`;
-    const panelFor=layer=>layer==='bounce'?Pcomp:layer==='graph'?graphPanel:timeline;
+  function content(root,title,layers,{collapse=false,original=false,timelinePanel=timeline}={}){
+    const Pcomp=original?originalComp:comp,panels=original?[Pcomp,graphPanel,timelinePanel]:[Pcomp,timelinePanel];
+    const id='motion-grit-key-'+ ++serial,defs=panels.map(P=>`<clipPath id="${id}-${P.index}"><rect x="${P.x}" y="${P.y+(P.header??34)}" width="${P.w}" height="${P.h-(P.header??34)}"/></clipPath>`).join('');let body=`<defs>${defs}</defs>`;
+    const panelFor=layer=>layer==='bounce'?Pcomp:layer==='graph'?graphPanel:timelinePanel;
     if(layers.includes('panels'))body+=panelLayer(panels);
     else body+=layers.filter(l=>!['labels','large-graph'].includes(l)).map(l=>panel(panelFor(l))).join('');
-    for(const layer of layers.filter(l=>l!=='panels')){if(layer==='labels'){body+=labelLayer();continue;}if(layer==='large-graph'){body+=F['bezier-editor'].graphLayer(true,'large-graph',true);continue;}const P=panelFor(layer);body+=`<g ${collapse?`data-window="${P.index}"`:''}><g clip-path="url(#${id}-${P.index})">${layer==='bounce'?bounceLayer(Pcomp):layer==='graph'?F['bezier-editor'].graphLayer(true):timelineLayer()}</g></g>`;}
+    for(const layer of layers.filter(l=>l!=='panels')){if(layer==='labels'){body+=labelLayer();continue;}if(layer==='large-graph'){body+=F['bezier-editor'].graphLayer(true,'large-graph',true);continue;}const P=panelFor(layer);body+=`<g ${collapse?`data-window="${P.index}"`:''}><g clip-path="url(#${id}-${P.index})">${layer==='bounce'?bounceLayer(Pcomp):layer==='graph'?F['bezier-editor'].graphLayer(true):timelineLayer(P)}</g></g>`;}
     base(root,title,'#131418',body);
-    const draws=layers.map(l=>l==='panels'?panelMotion(root,panels):l==='bounce'?bounceMotion(root,Pcomp):l==='graph'?workbenchGraphMotion(root):l==='large-graph'?workbenchLargeGraphMotion(root):l==='labels'?labelMotion(root):timelineMotion(root));
+    const draws=layers.map(l=>l==='panels'?panelMotion(root,panels):l==='bounce'?bounceMotion(root,Pcomp):l==='graph'?workbenchGraphMotion(root):l==='large-graph'?workbenchLargeGraphMotion(root):l==='labels'?labelMotion(root):timelineMotion(root,timelinePanel));
     return clock(original||layers.includes('labels')?8000:6200,t=>draws.forEach(draw=>draw(t)));
   }
   F['panel-rise-collapse']=root=>content(root,'面板升入后纵向收扁',['panels']);
   F['ball-bounce-trails']=root=>content(root,'小球递减弹跳与残影',['bounce']);
-  F['timeline-keyframe-playhead']=root=>content(root,'关键帧建立与游标扫描',['timeline']);
+  F['timeline-keyframe-playhead']=root=>{
+    const draw=content(root,'关键帧建立与游标扫描',['timeline'],{timelinePanel:standaloneTimeline});
+    // 独立示例增加行距与标题留白，整体居中；完整组合沿用原布局。
+    set(root.querySelector('svg > g'),'transform',`translate(0 ${540-standaloneTimeline.y-standaloneTimeline.h/2})`);
+    return draw;
+  };
   F['keyframe-workbench']=root=>content(root,'弹跳与关键帧工作台',['panels','bounce','graph','timeline','large-graph','labels'],{collapse:true,original:true});
   F['keyframe-workbench'].title=root=>content(root,'年份说明退场与结语升入',['labels']);
   F['keyframe-workbench'].breakdown=[

@@ -25,6 +25,11 @@ test('全部复制提示词只含制作要求，不包含原片定位、假设�
         assert.match(text,/时间：\d+\.\d{2} 秒/);
         assert.doesNotMatch(text,/原片范围|关键假设|抽象结论|来源与许可|案例边界|对应参考|对应案例|描述校正|观看速度|尚未|验收|未搬入|本机|\/Users\/|file:\/\/|固定源码和复用说明|沿用原作时间/);
         assert.doesNotMatch(text,/\d+\. \n/,'制作步骤不能因清理而为空：'+effect.id);
+        if(effect.id==='prompt-chinese-type'){
+          assert.match(text,/画面与对象：.*完整圆角输入框/);
+          assert.match(text,/输入框及工具栏、发送按钮必须完整保留/);
+          assert.match(text,/不删除输入框而只留悬空文字/);
+        }
       }
     }
   }finally{env.close();}

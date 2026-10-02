@@ -87,16 +87,12 @@
   }
   F['radial-branch-flow']=(root,K)=>scene(root,K,['origin','branches','flow','delivery','cards']);
   F['center-ripple-emit']=(root,K)=>scene(root,K,['origin']);
-  F['radial-branch-grow']=(root,K)=>scene(root,K,['branches'],650);
-  F['branch-comet-flow']=(root,K)=>scene(root,K,['flow'],650);
-  F['branch-pulse-arrive']=(root,K)=>scene(root,K,['delivery'],1700);
-  F['endpoint-card-reveal']=(root,K)=>scene(root,K,['cards'],2600);
-  // 每层关联真实独立动作；独立演示仅去掉开头等待，组合时钟不变。
+  // 各层保留组合绘制；圆心涟漪提供独立参考，其余层只在完整组合中使用。
   F['radial-branch-flow'].breakdown=[
     {id:'origin',actions:['center-ripple-emit'],name:'圆心与涟漪',start:150,end:5550,time:'0.15–5.55 秒',detail:'中心圆形渐显，两圈涟漪错相扩散，最后一次到达后涟漪退去、圆心停稳；中心始终固定。'},
-    {id:'branches',actions:['radial-branch-grow'],name:'枝干错峰生长',start:800,end:4950,time:'0.80–4.95 秒',detail:'三条二次曲线从圆周错峰长出，枝尖沿同一曲线前进；对应光团抵达后，虚线变为实线。'},
-    {id:'flow',actions:['branch-comet-flow'],name:'亮尾沿枝干流动',start:800,end:4950,time:'0.80–4.95 秒',detail:'三组光点与亮尾沿各自枝干前进，只走已经长出的部分，并在对应发射光团抵达后停止。'},
-    {id:'delivery',actions:['branch-pulse-arrive'],name:'光团发射与抵达',start:1850,end:5500,time:'1.85–5.50 秒',detail:'三个较强光团依次发射，分别在 2.75、3.85、4.95 秒抵达枝干端点，落点辉光随后扩散淡去。'},
-    {id:'cards',actions:['endpoint-card-reveal'],name:'抵达后显出卡片',start:2750,end:5500,time:'2.75–5.50 秒',detail:'三张端点卡片严格等待各自光团抵达，再用 0.55 秒渐显，结束后原位保留。'}
+    {id:'branches',actions:[],reason:'枝干生长仅作为完整组合的路径层保留，无独立参考。',name:'枝干错峰生长',start:800,end:4950,time:'0.80–4.95 秒',detail:'三条二次曲线从圆周错峰长出，枝尖沿同一曲线前进；对应光团抵达后，虚线变为实线。'},
+    {id:'flow',actions:[],reason:'沿枝亮尾仅作为完整组合的光流层保留，无独立参考。',name:'亮尾沿枝干流动',start:800,end:4950,time:'0.80–4.95 秒',detail:'三组光点与亮尾沿各自枝干前进，只走已经长出的部分，并在对应发射光团抵达后停止。'},
+    {id:'delivery',actions:[],reason:'光团发射与抵达仅作为完整组合的传递层保留，无独立参考。',name:'光团发射与抵达',start:1850,end:5500,time:'1.85–5.50 秒',detail:'三个较强光团依次发射，分别在 2.75、3.85、4.95 秒抵达枝干端点，落点辉光随后扩散淡去。'},
+    {id:'cards',actions:[],reason:'端点卡片仅作为完整组合的内容层保留，无独立参考。',name:'抵达后显出卡片',start:2750,end:5500,time:'2.75–5.50 秒',detail:'三张端点卡片严格等待各自光团抵达，再用 0.55 秒渐显，结束后原位保留。'}
   ];
 })(globalThis.MotionFactories);
