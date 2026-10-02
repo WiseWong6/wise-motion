@@ -160,61 +160,87 @@
     return {points:Array.from({length:25},(_,i)=>project(pose(p,at-span*i/24))),depth,
       alpha:alpha*smooth((at-.12)/.3)};
   }
+  const ordered=particles.map((p,index)=>({...p,index})).sort((a,b)=>b.layer-a.layer||a.start-b.start);
+  const firstArrival=Math.min(...particles.map(p=>p.start+p.duration));
+  const starOffset=Math.floor(firstArrival*1000);
+  const ray='M0 -1Q.035 -.035 1 0Q.035 .035 0 1Q-.035 .035 -1 0Q-.035 -.035 0 -1Z';
+  const set=(node,attrs)=>{for(const [key,value]of Object.entries(attrs))if(node.getAttribute(key)!==String(value))node.setAttribute(key,String(value));};
+  function symbolMarkup(p){
+    const body=p.kind==='butterfly'?['left','right'].map((side,i)=>`<path data-wing="${i?1:-1}" d="${shapes['wing-'+side]}" fill="${color(p)}" transform="scale(1 1)" opacity="1"/>`).join('')+
+      `<ellipse rx=".1" ry=".53" fill="${color(p)}"/><path d="M0 -.42Q-.09 -.64 -.24 -.7M0 -.42Q.09 -.64 .24 -.7" fill="none" stroke="${color(p)}" stroke-width=".065"/>`:
+      `<path data-outline d="${shapes[p.kind]}" fill="${p.outline?'none':color(p)}" stroke="${color(p)}" stroke-width=".2" stroke-linejoin="round"/>`;
+    return `<g data-layer="flight" data-symbol opacity="0" transform="translate(0 0) scale(1) rotate(0)">${body}<path data-shine d="${ray}" fill="${color(p)}" opacity="0" transform="translate(0 -1) scale(1)"/></g>`;
+  }
+  function drawFlight(e,t){
+    const p=e.p,age=t-p.start,arrived=age-p.duration,q=pose(p,age),position=project(q);
+    const star=smooth(arrived/.95),rotationAge=Math.min(Math.max(0,age),p.duration);
+    const tilt=p.spin*rotationAge*.06+Math.sin(rotationAge*.45+p.phase)*.12;
+    set(e.symbol,{opacity:smooth(age/p.revealDuration)*p.luminosity*(1-star),
+      transform:`translate(${position}) scale(${q.scale*p.r*.82}) rotate(${tilt*180/Math.PI})`});
+    if(e.outline)set(e.outline,{'stroke-width':Math.min(p.r*.28,Math.max(1.9,.85/q.scale))/p.r});
+    for(const wing of e.wings){
+      const side=Number(wing.dataset.wing),beat=rotationAge*(2.1+.25*Math.sin(p.phase))*Math.PI*2+p.phase+side*.07;
+      const spread=.24+.76*(.5+.5*Math.sin(beat));set(wing,{transform:`scale(${spread} 1)`,opacity:.82+.18*spread});
+    }
+    const shine=Math.max(pulse(age,p.flashAt),pulse(age,p.flashAt+p.flashGap));
+    set(e.shine,{opacity:shine,transform:`translate(${p.kind==='moon'?'.48 -.96':'0 -1'}) scale(${2.6*(.68+.32*shine)})`});
+  }
+  function drawSettled(e,t){
+    const p=e.p,arrived=t-p.start-p.duration,star=smooth(arrived/.95),flash=twinkle(p,arrived);
+    if(e.star){
+      const shimmer=.86+.14*Math.sin(t*Math.PI*2/9+p.phase);
+      set(e.star,{r:p.settle.radius+flash*.25,opacity:star*(shimmer*p.settle.brightness*(1-flash)+flash)});
+    }
+    if(e.halo){
+      const land=landing(p,arrived),light=Math.max(land,star*flash),size=p.settle.twinkleSize+land*(p.settle.anchor?4:1.5);
+      set(e.halo,{r:size*2,opacity:light*(p.settle.anchor||p.settle.accent?.52:.32)});
+      set(e.glint,{transform:`scale(${size*26/12*(.68+.32*light)})`,opacity:light});
+    }
+  }
+  function drawTrail(e,t){
+    const tail=trail(e.p,t-e.p.start);
+    e.trail.forEach((node,i)=>set(node,{d:`M${tail.points[i]}L${tail.points[i+1]}`,
+      opacity:tail.alpha*(1-(i+1)/24)**1.2*.46,'stroke-width':.7*tail.depth}));
+  }
   let serial=0;
-  F['letter-settle']=root=>{
-    const id='motion-letter-settle-'+ ++serial;
-    const ray='M0 -1Q.035 -.035 1 0Q.035 .035 0 1Q-.035 .035 -1 0Q-.035 -.035 0 -1Z';
-    const ordered=particles.map((p,index)=>({...p,index})).sort((a,b)=>b.layer-a.layer||a.start-b.start);
-    root.innerHTML='<svg class="pattern-svg" width="640" height="360" viewBox="0 0 640 360" aria-hidden="true"><defs>'+
-      `<radialGradient id="${id}-glow"><stop stop-color="var(--ink)" stop-opacity=".5"/><stop offset=".28" stop-color="var(--ink)" stop-opacity=".12"/><stop offset="1" stop-color="var(--ink)" stop-opacity="0"/></radialGradient></defs>`+
-      '<g data-layer="trails" fill="none" stroke-linecap="round">'+ordered.filter(p=>p.hasTrail).map(p=>
-        `<g data-trail="${p.index}" stroke="${color(p)}">`+Array.from({length:24},()=>'<path d="M0 0" opacity="0" stroke-width=".7"/>').join('')+'</g>').join('')+'</g>'+
-      ordered.map(p=>{
+  // 建立需要的物品/落点/光丝节点，随后只计算所选层；单独光丝只访问 18 条原轨迹。
+  function scene(root,layers,offset=0){
+    const has=name=>layers.includes(name),id='motion-letter-settle-'+ ++serial;
+    const hasParticles=has('flight')||has('stars')||has('sparkles');
+    root.innerHTML='<svg class="pattern-svg" width="640" height="360" viewBox="0 0 640 360" aria-hidden="true">'+
+      (has('sparkles')?`<defs><radialGradient id="${id}-glow"><stop stop-color="var(--ink)" stop-opacity=".5"/><stop offset=".28" stop-color="var(--ink)" stop-opacity=".12"/><stop offset="1" stop-color="var(--ink)" stop-opacity="0"/></radialGradient></defs>`:'')+
+      (has('trails')?'<g data-layer="trails" fill="none" stroke-linecap="round">'+ordered.filter(p=>p.hasTrail).map(p=>
+        `<g data-trail="${p.index}" stroke="${color(p)}">`+Array.from({length:24},()=>'<path d="M0 0" opacity="0" stroke-width=".7"/>').join('')+'</g>').join('')+'</g>':'')+
+      (hasParticles?ordered.map(p=>{
         const target=project({x:p.endX,y:p.endY});
-        const body=p.kind==='butterfly'?['left','right'].map((side,i)=>`<path data-wing="${i?1:-1}" d="${shapes['wing-'+side]}" fill="${color(p)}" transform="scale(1 1)" opacity="1"/>`).join('')+
-          `<ellipse rx=".1" ry=".53" fill="${color(p)}"/><path d="M0 -.42Q-.09 -.64 -.24 -.7M0 -.42Q.09 -.64 .24 -.7" fill="none" stroke="${color(p)}" stroke-width=".065"/>`:
-          `<path data-outline d="${shapes[p.kind]}" fill="${p.outline?'none':color(p)}" stroke="${color(p)}" stroke-width=".2" stroke-linejoin="round"/>`;
         return `<g data-particle="${p.index}" data-symbol-kind="${p.kind}" data-start="${p.start}" data-arrival="${p.start+p.duration}">`+
-          `<g data-layer="flight" data-symbol opacity="0" transform="translate(0 0) scale(1) rotate(0)">${body}<path data-shine d="${ray}" fill="${color(p)}" opacity="0" transform="translate(0 -1) scale(1)"/></g>`+
-          `<g data-settled transform="translate(${target})"><circle data-layer="sparkles" data-halo r="1" fill="url(#${id}-glow)" opacity="0"/>`+
-          `<path data-layer="sparkles" data-glint d="${ray}" fill="${color(p)}" transform="scale(1)" opacity="0"/>`+
-          `<circle data-layer="stars" data-star r=".5" fill="${color(p)}" opacity="0"/></g></g>`;
-      }).join('')+'</svg>';
-    const set=(node,attrs)=>{for(const [key,value]of Object.entries(attrs))if(node.getAttribute(key)!==String(value))node.setAttribute(key,String(value));};
-    const entries=ordered.map(p=>{
-      const group=root.querySelector(`[data-particle="${p.index}"]`),get=name=>group.querySelector(`[data-${name}]`);
-      return {p,symbol:get('symbol'),outline:get('outline'),wings:[...group.querySelectorAll('[data-wing]')],shine:get('shine'),
-        star:get('star'),halo:get('halo'),glint:get('glint'),trail:[...root.querySelectorAll(`[data-trail="${p.index}"] path`)]};
+          (has('flight')?symbolMarkup(p):'')+
+          (has('stars')||has('sparkles')?`<g data-settled transform="translate(${target})">`+
+            (has('sparkles')?`<circle data-layer="sparkles" data-halo r="1" fill="url(#${id}-glow)" opacity="0"/>`+
+              `<path data-layer="sparkles" data-glint d="${ray}" fill="${color(p)}" transform="scale(1)" opacity="0"/>`:'')+
+            (has('stars')?`<circle data-layer="stars" data-star r=".5" fill="${color(p)}" opacity="0"/>`:'')+'</g>':'')+'</g>';
+      }).join(''):'')+'</svg>';
+    const entries=(hasParticles?ordered:ordered.filter(p=>p.hasTrail)).map(p=>{
+      const group=hasParticles?root.querySelector(`[data-particle="${p.index}"]`):null,get=name=>group?.querySelector(`[data-${name}]`);
+      return {p,symbol:get('symbol'),outline:get('outline'),wings:has('flight')?[...group.querySelectorAll('[data-wing]')]:[],shine:get('shine'),
+        star:get('star'),halo:get('halo'),glint:get('glint'),trail:has('trails')&&p.hasTrail?[...root.querySelectorAll(`[data-trail="${p.index}"] path`)]:[]};
     });
+    const draw=[];
+    for(const e of entries){
+      if(e.symbol)draw.push(t=>drawFlight(e,t));
+      if(e.star||e.halo)draw.push(t=>drawSettled(e,t));
+      if(e.trail.length)draw.push(t=>drawTrail(e,t));
+    }
     return ms=>{
-      const t=Math.min(11.4,Math.max(0,ms-150)/1000);
-      for(const e of entries){
-        const p=e.p,age=t-p.start,arrived=age-p.duration,q=pose(p,age),position=project(q);
-        const star=smooth(arrived/.95),rotationAge=Math.min(Math.max(0,age),p.duration);
-        const tilt=p.spin*rotationAge*.06+Math.sin(rotationAge*.45+p.phase)*.12;
-        set(e.symbol,{opacity:smooth(age/p.revealDuration)*p.luminosity*(1-star),
-          transform:`translate(${position}) scale(${q.scale*p.r*.82}) rotate(${tilt*180/Math.PI})`});
-        if(e.outline)set(e.outline,{'stroke-width':Math.min(p.r*.28,Math.max(1.9,.85/q.scale))/p.r});
-        for(const wing of e.wings){
-          const side=Number(wing.dataset.wing),beat=rotationAge*(2.1+.25*Math.sin(p.phase))*Math.PI*2+p.phase+side*.07;
-          const spread=.24+.76*(.5+.5*Math.sin(beat));set(wing,{transform:`scale(${spread} 1)`,opacity:.82+.18*spread});
-        }
-        const shine=Math.max(pulse(age,p.flashAt),pulse(age,p.flashAt+p.flashGap));
-        set(e.shine,{opacity:shine,transform:`translate(${p.kind==='moon'?'.48 -.96':'0 -1'}) scale(${2.6*(.68+.32*shine)})`});
-        const flash=twinkle(p,arrived),land=landing(p,arrived),light=Math.max(land,star*flash);
-        const shimmer=.86+.14*Math.sin(t*Math.PI*2/9+p.phase);
-        set(e.star,{r:p.settle.radius+flash*.25,opacity:star*(shimmer*p.settle.brightness*(1-flash)+flash)});
-        const size=p.settle.twinkleSize+land*(p.settle.anchor?4:1.5);
-        set(e.halo,{r:size*2,opacity:light*(p.settle.anchor||p.settle.accent?.52:.32)});
-        set(e.glint,{transform:`scale(${size*26/12*(.68+.32*light)})`,opacity:light});
-        if(e.trail.length){
-          const tail=trail(p,age);
-          e.trail.forEach((node,i)=>set(node,{d:`M${tail.points[i]}L${tail.points[i+1]}`,
-            opacity:tail.alpha*(1-(i+1)/24)**1.2*.46,'stroke-width':.7*tail.depth}));
-        }
-      }
+      const t=Math.min(11.4,Math.max(0,ms+offset-150)/1000);
+      draw.forEach(render=>render(t));
     };
-  };
+  }
+  F['letter-settle']=root=>scene(root,['flight','trails','stars','sparkles']);
+  F['symbol-flight-settle']=root=>scene(root,['flight']);
+  F['flight-history-trails']=root=>scene(root,['trails']);
+  F['arrival-star-reveal']=root=>scene(root,['stars'],starOffset);
+  F['arrival-star-sparkle']=root=>scene(root,['sparkles'],starOffset);
   // 飞行、光丝与星光只是同一批物品的不同绘制层，不另撒点或另建轨迹。
   const departure=Math.min(...particles.map(p=>p.start))*1000+150;
   const arrival=Math.min(...particles.map(p=>p.start+p.duration))*1000+150;
@@ -223,9 +249,9 @@
   const trailEnd=Math.max(...particles.filter(p=>p.hasTrail).map(p=>p.start+p.duration))*1000+2550;
   const range=(start,end)=>`${(start/1000).toFixed(2)}–${(end/1000).toFixed(2)} 秒`;
   F['letter-settle'].breakdown=[
-    {id:'flight',name:'物品群飞减速落定',start:departure,end:lastArrival+950,time:range(departure,lastArrival+950),detail:'126 件原作符号按固定时差飞出，沿各自曲线减速，保留近远层次、蝴蝶翅膀与物品短闪；到达后在原位淡去。'},
-    {id:'trails',name:'真实轨迹光丝',start:trailDeparture,end:trailEnd,time:range(trailDeparture,trailEnd),detail:'18 件物品留下已经走过的曲线光丝；光丝逐段回看物品自身位置，抵达后留在原处渐退。'},
-    {id:'stars',name:'落点原位化星',start:arrival,end:lastArrival+950,time:range(arrival,lastArrival+950),detail:'每件物品只在自己的飞行终点生成对应星点；物品与星点用同一到达时间交叉淡变，126 个落点保持一一对应。'},
-    {id:'sparkles',name:'落定闪光与星芒',start:arrival,end:11550,time:range(arrival,11550),detail:'落点到达时短闪，随后各自错相闪烁；六个主要落点保留较强光晕。星芒使用同一个到达时钟和原落点。'}
+    {id:'flight',actions:['symbol-flight-settle'],name:'物品群飞减速落定',start:departure,end:lastArrival+950,time:range(departure,lastArrival+950),detail:'126 件原作符号按固定时差飞出，沿各自曲线减速，保留近远层次、蝴蝶翅膀与物品短闪；到达后在原位淡去。'},
+    {id:'trails',actions:['flight-history-trails'],name:'真实轨迹光丝',start:trailDeparture,end:trailEnd,time:range(trailDeparture,trailEnd),detail:'18 件物品留下已经走过的曲线光丝；光丝逐段回看物品自身位置，抵达后留在原处渐退。'},
+    {id:'stars',actions:['arrival-star-reveal'],name:'落点原位化星',start:arrival,end:lastArrival+950,time:range(arrival,lastArrival+950),detail:'每件物品只在自己的飞行终点生成对应星点；物品与星点用同一到达时间交叉淡变，126 个落点保持一一对应，显出后继续原位明灭。'},
+    {id:'sparkles',actions:['arrival-star-sparkle'],name:'落定闪光与星芒',start:arrival,end:11550,time:range(arrival,11550),detail:'落点到达时短闪，随后各自错相闪烁；六个主要落点保留较强光晕。星芒使用同一个到达时钟和原落点。'}
   ];
 })(globalThis.MotionFactories);

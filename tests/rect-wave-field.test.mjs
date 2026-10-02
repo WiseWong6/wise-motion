@@ -63,7 +63,7 @@ test('矩形波浪正式纳入且历史去重，旧名称能找到；距离传�
   assert.ok(!historical.recipes.some(e=>e.history_id==='tutorial-probability'));
   assert.ok(historical.excluded.some(e=>e.id==='tutorial-probability'));
   for(const file of cross.rules['tutorial-probability'].migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
-  const env=await environment(true,{hash:'#rect-wave-field'});
+  const env=await environment(true,{staticPreview:true,hash:'#rect-wave-field'});
   try{
     const {w}=env,d=w.document;env.reveal();assert.equal(d.getElementById('preview-title').textContent,effect.name);
     for(const query of [effect.name,'概率点阵收拢','概率场收拢'])assert.equal(w.MotionMatch.rank(data,query)[0].effect.id,effect.id);

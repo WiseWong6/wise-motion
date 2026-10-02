@@ -359,15 +359,10 @@ test('物理关系保持挂点、面积、根部以及轮子随行程转动',asy
     const [x0,a0]=measure(.2),[x1,a1]=measure(.7),r=number(root,'hub0','r');assert.ok(Math.abs((x1-x0)-(a1-a0)*Math.PI/180*r)<1e-7);
   }finally{env.close();}
 });
-test('轨迹来自实际经过的位置，固定点身份不因换形重建，流点在窄处连续加速',async()=>{
+test('固定点身份不因换形重建',async()=>{
   const env=await environment();
   try{
     const {w}=env,root=w.document.getElementById('root');
-    let draw=render(w,root,'path-trail');draw(.55);const last=part(root,'trail').getAttribute('d').split(' ').at(-1).slice(1).split(',').map(Number);
-    assert.deepEqual(last,[number(root,'body','cx'),number(root,'body','cy')]);
-    draw=render(w,root,'point-morph');const nodes=[...root.querySelectorAll('circle')];draw(.1);draw(.7);assert.ok(nodes.every(node=>node.isConnected));assert.equal(root.querySelectorAll('circle').length,nodes.length);
-    draw=render(w,root,'field-speed');const x=p=>{draw(p);return number(root,'p0','cx');};
-    const wide=x(.101)-x(.1),narrow=x(.561)-x(.56);assert.ok(narrow>wide*2.4);
-    let previous=x(.49),maxStep=0;for(let p=.491;p<.63;p+=.001){const next=x(p);maxStep=Math.max(maxStep,next-previous);assert.ok(next>previous);previous=next;}assert.ok(maxStep<1.1);
+    const draw=render(w,root,'point-morph'),nodes=[...root.querySelectorAll('circle')];draw(.1);draw(.7);assert.ok(nodes.every(node=>node.isConnected));assert.equal(root.querySelectorAll('circle').length,nodes.length);
   }finally{env.close();}
 });

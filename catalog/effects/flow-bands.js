@@ -12,8 +12,4 @@
       cards.forEach((row,r)=>row.forEach((card,i)=>M.pose(card,{x:r?672+i*160-distance:-128-i*160+distance})));
     };
   };
-  F['dual-scroll-settle'].breakdown=[
-    {id:'upper',name:'上排右行后减速停靠',start:150,end:1350,time:'0.2–1.4 秒',detail:'上方三张卡片保持固定间距，从左侧加速进入、匀速右行，再共同减速停住。'},
-    {id:'lower',name:'下排左行后减速停靠',start:150,end:1350,time:'0.2–1.4 秒',detail:'下方三张卡片从右侧进入，使用与上排相同的位移和减速曲线，方向相反。'}
-  ];
 })(globalThis.MotionFactories);

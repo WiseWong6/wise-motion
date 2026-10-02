@@ -10,14 +10,17 @@ import {history} from './history.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('catalog/registry.json'));
-assert.equal(data.effects.length, 198);
-assert.equal(data.effects.filter(x => x.kind === 'action').length, 154);
-assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 27);
-assert.equal(data.effects.filter(x => x.kind === 'composition').length, 17);
+assert.equal(data.effects.length, 233);
+assert.equal(data.effects.filter(x => x.kind === 'action').length, 177);
+assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 43);
+assert.equal(data.effects.filter(x => x.kind === 'composition').length, 13);
 assert.equal(new Set(data.effects.map(x => x.id)).size, data.effects.length);
 for(const [from,to] of Object.entries(data.redirects||{})){
   assert.ok(!data.effects.some(e=>e.id===from),'旧书签不应覆盖现有条目');
   assert.ok(data.effects.some(e=>e.id===to),'旧书签对应动作缺失：'+from);
+}
+for(const [from,variant] of Object.entries(data.variant_redirects||{})){
+  assert.ok(data.effects.find(e=>e.id===data.redirects[from])?.variants?.some(v=>v.id===variant),'旧书签对应示例缺失：'+from);
 }
 assert.equal(data.license, 'AGPL-3.0-only');
 const files = new Set();
@@ -54,7 +57,21 @@ for (const e of data.effects) {
   assert.ok(e.parameters.speed.min <= e.parameters.speed.default && e.parameters.speed.default <= e.parameters.speed.max);
   if (e.parameters.ease) assert.ok(e.parameters.ease.options.includes(e.default_ease));
   if (e.kind !== 'composition') assert.equal(e.actions.length, 0);
-  else { for (const id of e.actions) assert.ok(data.effects.some(x => x.id === id && ['action','illustration'].includes(x.kind)), e.id + ' 的关联参考无效：' + id); }
+  else { assert.ok(e.actions.length,e.id+' 未关联独立动作'); for (const id of e.actions) assert.ok(data.effects.some(x => x.id === id && ['action','illustration'].includes(x.kind)), e.id + ' 的关联参考无效：' + id); }
+  if (e.variants) {
+    assert.ok(e.variants.length>1);
+    assert.equal(new Set(e.variants.map(v=>v.id)).size,e.variants.length);
+    for(const v of e.variants)assert.ok(v.id&&v.label&&v.summary&&v.duration_ms>0&&v.preview_ms>=0&&v.preview_ms<=v.duration_ms,e.id+' 的示例定义不完整');
+    assert.equal(e.duration_ms,e.variants[0].duration_ms);assert.equal(e.preview_ms,e.variants[0].preview_ms);
+  }
+  for(const [id,variant] of Object.entries(e.action_variants||{})){
+    assert.ok(e.actions.includes(id),e.id+' 的示例不属于相关动作');
+    assert.ok(data.effects.find(x=>x.id===id)?.variants?.some(v=>v.id===variant),e.id+' 关联的示例不存在');
+  }
+  for(const dependency of e.source.dependencies||[]){
+    assert.ok(dependency.startsWith('catalog/effects/')&&!dependency.includes('..'));
+    assert.ok((await stat(path.join(root,dependency))).isFile());files.add(dependency);
+  }
   files.add(e.source.path);
 }
 const factories = {}; const context = vm.createContext({MotionFactories: factories});
@@ -70,6 +87,7 @@ for (const effect of data.effects.filter(e=>e.kind==='composition')) {
     assert.ok(layer.start>=0&&layer.end>layer.start&&layer.end<=effect.duration_ms,effect.id+'/'+layer.id+' 时段无效');
     for(const action of layer.actions||[])assert.ok(effect.actions.includes(action),effect.id+' 存在未登记关联');
   }
+  assert.deepEqual([...new Set(layers.flatMap(layer=>Array.from(layer.actions||[])))].sort(),[...effect.actions].sort(),effect.id+' 的图层与独立动作不对应');
 }
 
 const source = JSON.parse(await read('vendor/animejs/SOURCE.json'));
@@ -103,10 +121,12 @@ for (const [, resource] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
   assert.ok((await stat(path.resolve(root, 'catalog', resource))).isFile(), '缺少目录资源：' + resource);
 }
 const historical=await history(data);
-assert.equal(historical.counts.reviewed,311);assert.equal(historical.counts.recipes,130);
-assert.equal(historical.counts.entries,140);assert.equal(historical.counts.document,4);
-assert.equal(historical.excluded.length,181);
-assert.equal(new Set(historical.recipes.map(x=>x.id)).size,130);
+assert.equal(historical.counts.reviewed,311);assert.equal(historical.counts.recipes,104);
+assert.equal(historical.counts.entries,110);assert.equal(historical.counts.document,3);
+assert.equal(historical.excluded.length,207);
+assert.equal(historical.merged.length,0);
+assert.equal(historical.recipes.length+historical.excluded.length+historical.merged.length,historical.counts.reviewed);
+assert.equal(new Set(historical.recipes.map(x=>x.id)).size,104);
 assert.ok(historical.recipes.every(r=>r.entries.length&&r.source_clock&&r.source_parameters&&r.review.preserve.length));
 const ownFiles = ['catalog/runtime.js','catalog/history-runtime.js','catalog/history.css','catalog/export.js','catalog/dropdown.js','catalog/matching.js','catalog/app.js','catalog/app.css','catalog/scenes.css','catalog/book-controls.js','catalog/book-controls.css','catalog/composition-controls.js','catalog/related-preview.js', ...files];
 for (const file of ownFiles) {
@@ -124,4 +144,4 @@ const build = spawnSync(process.execPath, [path.join(root, 'scripts/build.mjs'),
 assert.equal(build.status, 0, build.stderr);
 const markdown = ['README.md','SKILL.md','NOTICE.md','references/index.md','references/history.md','references/method.md','references/sources.md','references/runtime-interface.md','references/apple-hig.md','tests/manual.md', ...data.effects.map(e => 'references/effects/' + e.id + '.md')];
 for (const file of markdown) for (const [, link] of (await read(file)).matchAll(/\]\(([^)]+)\)/g)) if (!/^(https?:|#)/.test(link)) assert.ok((await stat(path.resolve(root, path.dirname(file), link))).isFile(), file + ' 的链接缺失：' + link);
-console.log('检查通过：154 个动作、27 个插画单图、17 个组合、130 条历史配方与 140 个案例；定义、来源路径、生成文件、许可和脚本语法完整。');
+console.log('检查通过：177 个动作、43 个插画单图、13 个组合、104 条历史配方与 110 个案例；定义、来源路径、生成文件、许可和脚本语法完整。');

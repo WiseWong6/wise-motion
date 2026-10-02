@@ -20,7 +20,7 @@
   const set=(node,key,value)=>{const next=String(value);if(node.getAttribute(key)!==next)node.setAttribute(key,next);};
   const content=(node,value)=>{if(node.textContent!==value)node.textContent=value;};
   const monoWidth=(value,size,track)=>value.length*(size*.60205078125+track)-track;
-  const text=(part,value,x,y,size,extra='')=>`<text data-part="${part}" x="${x}" y="${y}" font-size="${size}" letter-spacing="3" fill="#111" style="font-family:Menlo,'SF Mono',monospace;font-weight:500" ${extra}>${value}</text>`;
+  const text=(part,value,x,y,size,extra='')=>`<text data-part="${part}" x="${x}" y="${y}" font-size="${globalThis.MotionKit.textSize(Math.max(10,size/3),1/3)}" letter-spacing="3" fill="#111" style="font-family:Oswald,sans-serif;font-weight:700" ${extra}>${value}</text>`;
   const paperPaths=bars.map((b,i)=>[0,1,2].map(boil=>{
     const n=Math.max(2,Math.floor(b.w/40)),points=[];
     for(let j=0;j<=n;j++)points.push(`${b.w*j/n} ${(hash(i*31+j*1.7+boil)-.5)*6}`);
@@ -66,6 +66,27 @@
       set(satellite,'r',14*outBack(prog(q,.15,.75)));
     };
   }
+  const discMarkup=(cx=1400,cy=540)=>`<circle data-layer="disc" data-part="disc" cx="${cx}" cy="${cy}" r="0" fill="#f1e4c8"/><circle data-layer="disc" data-part="disc-center" cx="${cx}" cy="${cy}" r="0" fill="#e8541e"/>`;
+  function discMotion(root) {
+    const disc=root.querySelector('[data-part="disc"]'),center=root.querySelector('[data-part="disc-center"]');
+    return (q,local=q)=>{
+      const p=outBack(prog(q,.15,.75)),t=local+4,lastBeat=4+Math.floor(local/.5)*.5;
+      set(disc,'r',360*p);set(center,'visibility',p>.2?'visible':'hidden');
+      set(center,'r',26+10*Math.exp(-(t-lastBeat)*6));
+    };
+  }
+  function titleMarkup(id) {
+    return '<defs>'+rows.map(row=>`<clipPath id="${id}-${row.id}"><rect x="${row.x-row.size}" y="${row.base-row.size*1.05}" width="${row.width+row.size*2}" height="${row.size*1.35}"/></clipPath>`).join('')+'</defs>'+rows.map(row=>`<g data-layer="text" data-line="${row.id}" data-font="Futura Bold" aria-label="${row.text}" fill="${row.fill}" clip-path="url(#${id}-${row.id})">`+
+      row.letters.map((letter,i)=>`<g data-char="${i}" transform="translate(${letter.x} ${row.base})"><path data-glyph="${letter.ch}" d="${glyphs[letter.ch]}" transform="scale(${row.size/1000} ${-row.size/1000})"/></g>`).join('')+'</g>').join('');
+  }
+  function titleMotion(root) {
+    const lines=rows.map(row=>[...root.querySelectorAll(`[data-line="${row.id}"] [data-char]`)]);
+    return q=>rows.forEach((row,i)=>lines[i].forEach((node,j)=>{
+      const p=(row.id==='year'?outBack:outExpo)(prog(q,row.start+j*row.stagger,row.start+j*row.stagger+row.duration));
+      set(node,'visibility',p>0?'visible':'hidden');
+      set(node,'transform',`translate(${row.letters[j].x} ${row.base+(1-p)*row.size*1.1})`);
+    }));
+  }
   function stepped(draw,duration=6000) {
     let previous=-1;
     return ms=>{
@@ -90,10 +111,17 @@
     return stepped(orbitMotion(root,960,540));
   };
   let serial=0;
+  F['paper-disc-pop']=root=>{
+    standalone(root,'剪纸圆盘回弹与圆心节拍',discMarkup(960,540));
+    const draw=discMotion(root);return ms=>{const local=clamp(ms,0,6000)/1000;draw(Math.floor(local*12)/12,local);};
+  };
+  F['paper-title-stagger']=root=>{
+    standalone(root,'剪纸四行文字逐格升入',titleMarkup('motion-paper-title-'+ ++serial));
+    return stepped(titleMotion(root),4000);
+  };
   F['paper-spiral-sequence']=root=>{
     const id='motion-paper-sequence-'+ ++serial;
     root.innerHTML='<svg class="pattern-svg" width="640" height="360" viewBox="0 0 1920 1080" aria-hidden="true"><title>剪纸图盘逐格展开</title><defs>'+
-      rows.map(row=>`<clipPath id="${id}-${row.id}"><rect x="${row.x-row.size}" y="${row.base-row.size*1.05}" width="${row.width+row.size*2}" height="${row.size*1.35}"/></clipPath>`).join('')+
       `<clipPath id="${id}-hud-era"><rect x="920" y="44" width="940" height="36"/></clipPath></defs>`+
       '<rect data-part="bg" width="1920" height="1080" fill="#e8541e"/>'+
       paperMarkup()+
@@ -101,8 +129,7 @@
       spiralMarkup+
       '<circle data-layer="disc" data-part="disc-center" cx="1400" cy="540" r="0" fill="#e8541e"/>'+
       orbitMarkup+
-      rows.map(row=>`<g data-layer="text" data-line="${row.id}" data-font="Futura Bold" aria-label="${row.text}" fill="${row.fill}" clip-path="url(#${id}-${row.id})">`+
-        row.letters.map((letter,i)=>`<g data-char="${i}" transform="translate(${letter.x} ${row.base})"><path data-glyph="${letter.ch}" d="${glyphs[letter.ch]}" transform="scale(${row.size/1000} ${-row.size/1000})"/></g>`).join('')+'</g>').join('')+
+      titleMarkup(id)+
       '<g data-layer="labels" data-part="hud" opacity="0">'+
       text('title','CLAUDE  /  MOTION REEL  ’26',72,70,15)+
       `<g clip-path="url(#${id}-hud-era)"><g data-part="era-motion"><rect x="${1848-monoWidth('1959  —  THE TITLE SEQUENCE',15,3)-26}" y="58" width="12" height="12" fill="#111"/>`+
@@ -113,8 +140,7 @@
       text('shot','SHOT 01 / 08',72,1010,14)+text('timecode','',1848,1010,14,'text-anchor="end"')+'</g></svg>';
     const part=name=>root.querySelector(`[data-part="${name}"]`);
     const drawPaper=paperMotion(root),drawSpiral=spiralMotion(root),drawOrbit=orbitMotion(root);
-    const disc=part('disc'),center=part('disc-center');
-    const lines=rows.map(row=>[...root.querySelectorAll(`[data-line="${row.id}"] [data-char]`)]);
+    const drawDisc=discMotion(root),drawTitles=titleMotion(root);
     const hud=part('hud'),era=part('era-motion'),progress=part('hud-progress'),timecode=part('timecode');
     let previousFrame=-1;
     return ms=>{
@@ -122,18 +148,11 @@
       // 所有逐格几何只在原片下一格到达时更新；边角读数和圆心脉冲仍保留连续时间。
       if(frame!==previousFrame){
         drawPaper(q,frame);drawSpiral(q);drawOrbit(q);
-        const dp=outBack(prog(q,.15,.75));
-        set(disc,'r',360*dp);set(center,'visibility',dp>.2?'visible':'hidden');
-        rows.forEach((row,i)=>lines[i].forEach((node,j)=>{
-          const p=(row.id==='year'?outBack:outExpo)(prog(q,row.start+j*row.stagger,row.start+j*row.stagger+row.duration));
-          set(node,'visibility',p>0?'visible':'hidden');
-          set(node,'transform',`translate(${row.letters[j].x} ${row.base+(1-p)*row.size*1.1})`);
-        }));
+        drawTitles(q);
         previousFrame=frame;
       }
-      // 原共享节拍在这一页每半秒一次；只保留图形响应，不加载或复制声音。
-      const lastBeat=4+Math.floor(local/.5)*.5;
-      set(center,'r',26+10*Math.exp(-(t-lastBeat)*6));
+      // 圆盘按十二格取样；圆心保留原连续时间的半秒节拍。
+      drawDisc(q,local);
       set(hud,'opacity',prog(t,3.9,4.4));
       set(era,'transform',`translate(0 ${(1-outExpo(prog(local,0,.6)))*30})`);
       set(progress,'width',1776*t/60);
@@ -143,9 +162,9 @@
   // 拆解只切换原画中的图层，不另画示意图，也不改动共同的原片时钟。
   F['paper-spiral-sequence'].breakdown = [
     {id:'paper',actions:['paper-strip-stagger'],name:'纸条滑入',start:1000/6,end:19000/12,time:'0.17–1.58 秒',detail:'五条纸条从左右错峰进入；到位后边缘仍逐格轻颤。时间条标出滑入区间。'},
-    {id:'disc',actions:[],name:'圆盘弹入',start:1000/6,end:750,time:'0.17–0.75 秒',detail:'奶油色圆盘放大后回弹落定。圆心从 0.25 秒起出现，每半秒胀缩一次。时间条标出圆盘弹入区间。'},
+    {id:'disc',actions:['paper-disc-pop'],name:'圆盘弹入',start:1000/6,end:750,time:'0.17–0.75 秒',detail:'奶油色圆盘放大后回弹落定。圆心从 0.25 秒起出现，每半秒胀缩一次。时间条标出圆盘弹入区间。'},
     {id:'spiral',actions:['spiral-draw-spin'],name:'螺线绘转',start:7000/12,end:6000,time:'0.58 秒起',detail:'螺线从右侧起笔，边画边自转，约 4.33 秒画齐后继续旋转；描画越接近末尾越慢。'},
     {id:'orbit',actions:['planar-dot-orbit'],name:'圆点公转',start:1000/6,end:6000,time:'0.17 秒起',detail:'外圈黑点随圆盘一起长大，沿圆周持续绕行，与螺线同时运动。'},
-    {id:'text',actions:[],name:'文字升入',start:2000/3,end:10000/3,time:'0.67–3.33 秒',detail:'年代标题、年份、两行字幕依次逐字升入；年份带回弹，各行有自己的裁剪框。'}
+    {id:'text',actions:['paper-title-stagger'],name:'文字升入',start:2000/3,end:10000/3,time:'0.67–3.33 秒',detail:'年代标题、年份、两行字幕依次逐字升入；年份带回弹，各行有自己的裁剪框。'}
   ];
 })(globalThis.MotionFactories);

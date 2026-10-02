@@ -4,7 +4,6 @@
   'use strict';
   function create(root, definition, options = {}) {
     const one = id => document.getElementById(id);
-    const media = options.reducedMotion || global.matchMedia('(prefers-reduced-motion: reduce)');
     const handlers = [];
     let mode = 'timeline', destroyed = false, book = null, timer = null;
     let savedTime = 0, savedPlaying = false, speed = 1, ease = definition.default_ease;
@@ -34,7 +33,7 @@
       one('book-interactive').setAttribute('aria-pressed',String(interactive));
       one('book-timeline').setAttribute('aria-pressed',String(!interactive));
       one('book-navigation').hidden = !interactive;
-      one('book-replay').hidden = !interactive || media.matches;
+      one('book-replay').hidden = !interactive;
       document.querySelector('.playbar').hidden = interactive;
       one('ins-tempo').closest('.ins-section').hidden = interactive;
       root.setAttribute('aria-hidden',String(!interactive));
@@ -48,7 +47,7 @@
     }
     function makeBook(index) {
       book = WiseDitherBook.create(root.querySelector('.motion-stage'),{
-        interactive:true,intro:false,reducedMotion:media.matches,settings:paper,
+        interactive:true,intro:false,settings:paper,
         onUpdate(state){
           interactiveState=state;
           one('book-prev').disabled=one('book-next').disabled=state.busy;
@@ -66,7 +65,7 @@
       } else {
         book.destroy(); book=null; timer.destroy(); timer=makeTimer();
         timer.setSpeed(speed); timer.setEase(ease); timer.seek(savedTime);
-        if (savedPlaying && !media.matches) timer.play();
+        if (savedPlaying) timer.play();
       }
       mode=next; paintMode(); paintPaper();
     }
@@ -87,10 +86,6 @@
     });
     on(one('book-reset'),'click',()=>{
       paper={padding:10,radius:20,crease:11}; paintPaper(); options.onSettingsChange?.();
-    });
-    on(media,'change',()=>{
-      if (book) {const index=interactiveState.index;book.destroy();makeBook(index);}
-      paintMode();paintPaper();
     });
     paintMode(); paintPaper();
     if (options.mode==='interactive') {

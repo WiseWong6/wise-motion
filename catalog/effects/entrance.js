@@ -2,11 +2,21 @@
 (function (F) {
   F['fade-rise'] = (root, M) => {
     const s = M.scene(root, M.tile());
-    return (t, o) => { const p = M.span(t, 150, 1350, o.ease); M.pose(s.one('.tile'), {y: 48 * (1 - p), opacity: p}); };
+    return (t, o) => F['fade-rise'].draw(M, s.one('.tile'), t, o);
+  };
+  // 组合复用同一上移淡入，只把对象、距离和时段作为参数传入。
+  F['fade-rise'].draw = (M, node, t, o, {start = 150, end = 1350, distance = 48} = {}) => {
+    const p = M.span(t, start, end, o.ease);
+    M.pose(node, {y: distance * (1 - p), opacity: p});
+    return p;
   };
   F['mask-reveal'] = (root, M) => {
     const s = M.scene(root, '<div class="reveal-clip"><div class="headline">让好想法，<br><span class="muted">被看见。</span></div></div>');
-    return (t, o) => { const p = M.span(t, 200, 1900, o.ease); s.one('.reveal-clip').style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0)`; };
+    return (t, o) => F['mask-reveal'].draw(M, s.one('.reveal-clip'), t, o);
+  };
+  F['mask-reveal'].draw = (M, node, t, o, {start = 200, end = 1900} = {}) => {
+    const p = M.span(t, start, end, o.ease);
+    node.style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0)`;
   };
   F['scale-in'] = (root, M) => {
     const s = M.scene(root, M.tile('值得注意', '一次登场，一次落定'));
@@ -15,8 +25,10 @@
   F['stagger-in'] = (root, M) => {
     const s = M.scene(root, M.cardSet());
     const cards = s.all('.mini-card'); cards.forEach((c, i) => { c.style.left = `${80 + i * 124}px`; c.style.top = '111px'; });
-    return (t, o) => cards.forEach((c, i) => { const p = M.span(t, 200 + i * 300, 1100 + i * 300, o.ease); M.pose(c, {y: 44 * (1 - p), opacity: p}); });
+    return (t, o) => F['stagger-in'].draw(M, cards, t, o);
   };
+  F['stagger-in'].draw = (M, nodes, t, o, {start = 200, end = 1100, gap = 300, distance = 44} = {}) =>
+    nodes.map((node, i) => F['fade-rise'].draw(M, node, t, o, {start:start + i * gap, end:end + i * gap, distance}));
   F['group-expand'] = (root, M) => {
     // 原成组展开的第二组六卡：两列三行，逐张由 .62 放大到 1；标签晚 140ms。
     const ratio = .32, width = 424 * ratio, height = 238.5 * ratio;

@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {data, environment, motionTime} from './helpers.mjs';
+import {data, environment} from './helpers.mjs';
 test('全部标准样例在任意定位后均可回到相同画面，资源可全部释放', async () => {
   const env = await environment();
   try {
@@ -33,7 +33,7 @@ test('全部标准样例在任意定位后均可回到相同画面，资源可�
     }
   } finally { env.close(); }
 });
-test('持续滚动周期接缝、逐项顺序和环境触发按定义执行', async () => {
+test('持续滚动周期接缝和逐项顺序按定义执行', async () => {
   const env = await environment();
   try {
     const {w} = env, root = w.document.getElementById('root'), M = w.MotionKit;
@@ -47,18 +47,10 @@ test('持续滚动周期接缝、逐项顺序和环境触发按定义执行', as
     assert.equal(root.innerHTML, loop); assert.notEqual(initial, loop);
     const tracks = root.querySelectorAll('.scroll-track');
     assert.match(tracks[0].style.transform, /-672px/); assert.match(tracks[1].style.transform, /0px/);
-    let player = w.MotionRuntime.create(root, data.effects.find(x => x.id === 'stagger-in'));
+    const player = w.MotionRuntime.create(root, data.effects.find(x => x.id === 'stagger-in'));
     player.seek(700); const cards = [...root.querySelectorAll('.mini-card')];
     assert.ok(Number(cards[0].style.opacity) > Number(cards[1].style.opacity));
     assert.ok(Number(cards[1].style.opacity) > Number(cards[2].style.opacity)); player.destroy();
-    const ripple = data.effects.find(x => x.id === 'ripple');
-    player = w.MotionRuntime.create(root, ripple);
-    player.seek(motionTime(ripple,1200)); assert.ok([...root.querySelectorAll('.ripple-ring')].every(x => x.style.opacity === '0'));
-    player.seek(motionTime(ripple,1700)); assert.ok([...root.querySelectorAll('.ripple-ring')].some(x => Number(x.style.opacity) > 0)); player.destroy();
-    const chain = data.effects.find(x => x.id === 'environment-chain');
-    player = w.MotionRuntime.create(root, chain);
-    player.seek(motionTime(chain,6000)); assert.ok([...root.querySelectorAll('.ripple-ring')].every(x => x.style.opacity === '0'));
-    player.seek(motionTime(chain,7400)); assert.ok([...root.querySelectorAll('.ripple-ring')].some(x => Number(x.style.opacity) > 0)); player.destroy();
   } finally { env.close(); }
 });
 test('数字和逐字显现的允许节奏不会反向退回', async () => {

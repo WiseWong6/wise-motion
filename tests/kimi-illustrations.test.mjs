@@ -102,7 +102,7 @@ test('八项 Kimi 插画可反复定位，双实例标识独立，物件原色�
       const def=data.effects.find(e=>e.id===entry.id),p=env.w.MotionRuntime.create(root,def),q=env.w.MotionRuntime.create(other,def);
       for(const ms of [3000,0,1500,700,2900]){p.seek(ms);const snapshot=root.innerHTML;p.seek(0);p.seek(ms);assert.equal(root.innerHTML,snapshot,entry.id);}
       if(entry.id==='terminal-window-illustration'){
-        assert.equal(def.name,'终端命令与日志');
+        assert.equal(def.name,'命令窗口');assert.ok(def.previous_names.includes('终端命令与日志'));
         const html=await source('scenes/s5_agents.html'),c=await original();
         vm.runInContext(html.slice(html.indexOf('const C_PROMPT'),html.indexOf('function monoW')),c);
         const lines=vm.runInContext('LINES',c);

@@ -81,7 +81,7 @@ test('词语撞入换位进入文字分类，旧名可查且历史去重，主�
   assert.ok(historical.excluded.some(r=>r.id==='reel-word-slam'));
   assert.ok(!historical.recipes.some(r=>r.history_id==='reel-word-slam'));
   assert.equal(createHash('sha256').update(source).digest('hex'),migration.files[0].sha256);
-  const env=await environment(true,{hash:'#word-slam'});
+  const env=await environment(true,{staticPreview:true,hash:'#word-slam'});
   try{
     const {w}=env,d=w.document;env.reveal();
     assert.equal(d.getElementById('preview-title').textContent,effect.name);

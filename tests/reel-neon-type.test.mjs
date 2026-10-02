@@ -98,18 +98,18 @@ test('霓虹字启动的每一格明灭与原片相同，之后保持点亮，�
   }finally{env.close();}
 });
 
-test('片头共用六个真实动作的绘制，独立年份只居中，不改变字形和时序',async()=>{
+test('片头共用七个真实动作的绘制，独立年份和字幕只调整展示位置，不改变内部字形和时序',async()=>{
   const env=await environment();
   try{
     const {w}=env,d=w.document,root=d.createElement('div'),whole=w.MotionRuntime.create(root,get('neon-title-sequence'));
     const same=s=>s.replace(/motion-neon-\d+/g,'neon-fixed');
-    for(const [id,layer] of [['striped-sun-rise','sun'],['perspective-grid-flow','grid'],['star-twinkle','stars'],['chrome-outline-echo','chrome'],['neon-type-flicker','neon'],['cross-flare-travel','flare']]){
+    for(const [id,layer] of [['striped-sun-rise','sun'],['perspective-grid-flow','grid'],['star-twinkle','stars'],['chrome-outline-echo','chrome'],['neon-type-flicker','neon'],['cross-flare-travel','flare'],['caption-type-caret','caption']]){
       const host=d.createElement('div'),effect=get(id),player=w.MotionRuntime.create(host,effect);
       assert.equal(host.querySelectorAll('[data-layer]').length,1);
       for(const time of [0,500,980,1100,1500,effect.duration_ms]){
         player.seek(time);whole.seek(time);
         const single=host.querySelector(`[data-layer="${layer}"]`).cloneNode(true),combined=root.querySelector(`[data-layer="${layer}"]`).cloneNode(true);
-        if(layer==='neon'){single.removeAttribute('transform');combined.removeAttribute('transform');}
+        if(layer==='neon'||layer==='caption'){single.removeAttribute('transform');combined.removeAttribute('transform');}
         assert.equal(same(single.outerHTML),same(combined.outerHTML));
         if(layer==='chrome'||layer==='neon')for(const use of host.querySelectorAll('use[href]')){
           const path=host.querySelector(use.getAttribute('href')),other=root.querySelector('[id$="'+path.id.replace(/^motion-neon-\d+/,'')+'"]');
@@ -123,26 +123,26 @@ test('片头共用六个真实动作的绘制，独立年份只居中，不改�
 });
 
 test('霓虹文字在弹窗中对照独立动作，保持主组合拆解状态并回收播放实例',async()=>{
-  const env=await environment(true,{hash:'#neon-title-sequence'});
+  const env=await environment(true,{staticPreview:true,hash:'#neon-title-sequence'});
   try{
-    const {w}=env,d=w.document,parts=['stars','sun','grid','chrome','neon','flare'];
-    assert.equal(d.getElementById('preview-title').textContent,'霓虹文字片头');
+    const {w}=env,d=w.document,parts=['stars','sun','grid','chrome','neon','flare','caption'];
+    assert.equal(d.getElementById('preview-title').textContent,get('neon-title-sequence').name);
     assert.deepEqual([...d.querySelectorAll('[data-composition-layer]')].map(n=>n.dataset.compositionLayer),parts);
     d.querySelector('[data-composition-mode="solo"]').click();d.querySelector('[data-composition-layer="chrome"]').click();
     for(const node of d.querySelectorAll('#preview [data-layer]'))assert.equal(node.getAttribute('display')==='none',node.dataset.layer!=='chrome');
     assert.doesNotMatch(d.getElementById('prompt').textContent,/完整组合另保留原边角标注/);
     const main=d.querySelector('#preview .motion-stage'),markup=frameMarkup(main),hash=w.location.hash,time=d.getElementById('scrub').value;
     for(const [layer,id] of [['chrome','chrome-outline-echo'],['neon','neon-type-flicker']]){
-      d.querySelector(`#related [data-related-layer="${layer}"]`).click();
+      d.querySelector(`#related [data-related="${id}"]`).click();
       assert.equal(d.getElementById('related-dialog').open,true);
-      for(const node of d.querySelectorAll('#related-preview [data-layer]'))assert.equal(node.getAttribute('display')==='none',node.dataset.layer!==layer);
-      d.querySelector(`#related-dialog [data-related-example="${id}"]`).click();
+      assert.equal(w.MotionRuntime.runningCount,1);
+      const popupScrub=d.getElementById('related-scrub');popupScrub.value=get(id).preview_ms/get(id).duration_ms*1000;popupScrub.dispatchEvent(new w.Event('input'));
       const thumb=d.createElement('div');d.body.append(thumb);w.MotionThumbs.attach(thumb,get(id));env.reveal();
       assert.equal(d.getElementById('related-title').textContent,get(id).name);
       assert.equal(frameMarkup(thumb.querySelector('.motion-stage')),frameMarkup(d.querySelector('#related-preview .motion-stage')));
       w.MotionThumbs.release(thumb);thumb.remove();
       assert.equal(w.MotionRuntime.instanceCount,2);assert.equal(w.MotionRuntime.runningCount,0);
-      assert.equal(d.getElementById('preview-title').textContent,'霓虹文字片头');
+      assert.equal(d.getElementById('preview-title').textContent,get('neon-title-sequence').name);
       assert.equal(w.location.hash,hash);assert.equal(d.querySelector('#preview .motion-stage'),main);
       assert.equal(frameMarkup(main),markup);assert.equal(d.getElementById('scrub').value,time);
       assert.equal(w.MotionComposition.view.layer,'chrome');assert.equal(w.MotionComposition.view.mode,'solo');

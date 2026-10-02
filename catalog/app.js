@@ -7,6 +7,7 @@
     if (historyReady || !globalThis.MotionHistory) return;
     data.categories.push(...MotionHistory.categories);
     data.effects.push(...MotionHistory.recipes);
+    data.redirects={...(data.redirects||{}),...(MotionHistory.redirects||{})};
     historyReady = true;
   }
   adoptHistory();
@@ -21,7 +22,6 @@
     });
     return historyLoad;
   }
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const labels = {title:'动效名称', prompt:'提示词', code:'代码'};
   const categoryName = id => data.categories.find(x => x.id === id)?.name || '';
 
@@ -57,7 +57,7 @@
   let kind = 'action', category = 'all', tab = 'prompt', selected = null, controller = null;
   let debounce = null, resumeAfterVisible = false, lastPlayback = null, lastPaused = null;
   let navigationIds = [];
-  const relatedPreview=MotionRelated.create({data,icon,reducedMotion,getMain:()=>controller,getSettings:settings});
+  const relatedPreview=MotionRelated.create({icon,getMain:()=>controller});
   const collapsed = new Set();
   const icons = {
     'fade-rise':'arrow-up', 'mask-reveal':'viewfinder-circle', 'scale-in':'arrows-pointing-out', 'stagger-in':'queue-list',
@@ -65,9 +65,9 @@
     'count-up':'hashtag', 'type-reveal':'cursor-arrow-rays', 'highlight':'pencil-square', 'focus-zoom':'magnifying-glass-plus',
     'shape-morph':'sparkles', 'card-flip':'arrow-uturn-left', 'layout-reorder':'squares-2x2', 'layer-expand':'square-3-stack-3d',
     'wipe':'rectangle-stack', 'shared-object':'document-duplicate', 'zoom-transition':'magnifying-glass', 'parallax':'photo',
-    'follow':'arrow-right', 'detach':'sun', 'ripple':'radio', 'group-stagger':'bars-3-bottom-left',
+    'follow':'arrow-right', 'detach':'sun', 'group-stagger':'bars-3-bottom-left',
     'dual-scroll':'arrows-right-left', 'subtitle-focus':'chat-bubble-bottom-center-text', 'arc-cards':'film',
-    'title-content':'document-text', 'interface-feedback':'cursor-arrow-ripple', 'environment-chain':'share'
+    'title-content':'document-text', 'interface-feedback':'cursor-arrow-ripple'
   };
 
   document.querySelectorAll('[data-icon]').forEach(element => { element.innerHTML = icon(element.dataset.icon); });
@@ -112,13 +112,6 @@
       nodes[1].goalScale = on ? 1 : .5;
       nodes[1].goalOpacity = on ? 1 : 0;
       if (nodes.every(node => node.scale === node.goalScale && node.opacity === node.goalOpacity && node.vScale === 0 && node.vOpacity === 0)) return;
-      if (reducedMotion.matches) {
-        cancelAnimationFrame(raf);
-        raf = 0;
-        for (const node of nodes) { node.scale = node.goalScale; node.opacity = node.goalOpacity; node.vScale = node.vOpacity = 0; }
-        paint();
-        return;
-      }
       if (!raf) { last = performance.now(); raf = requestAnimationFrame(tick); }
     }
     button.showCopied = () => {
@@ -188,7 +181,7 @@
       const section = document.createElement('section');
       section.className = 'effect-group';
       section.innerHTML =
-        `<button class="group-head" data-group="${group.id}" aria-expanded="${open}">${mark('chevron-right')}<span class="group-name">${MotionKit.escape(group.name)}</span><span class="pill-count">${items.length}</span></button>`;
+        `<button class="group-head" data-group="${group.id}" title="${MotionKit.escape(group.description||group.name)}" aria-expanded="${open}">${mark('chevron-right')}<span class="group-name">${MotionKit.escape(group.name)}</span><span class="pill-count">${items.length}</span></button>`;
       const grid = document.createElement('div');
       grid.className = 'effect-grid';
       for (const effect of items) grid.append(retained.get(effect.id) || card(effect));
@@ -248,7 +241,7 @@
   $('previous-effect').addEventListener('click', () => navigateEffect(-1));
   $('next-effect').addEventListener('click', () => navigateEffect(1));
 
-  function settings() { return {speed:controller?.speed || 1, ease:$('ease').value,caseId:selected?.selected_entry?.id,compositionView:MotionComposition.view,
+  function settings() { return {speed:controller?.speed || 1, ease:$('ease').value,caseId:selected?.selected_entry?.id,variantId:selected?.variant_id,compositionView:MotionComposition.view,
     ...(selected?.id==='dither-lab-book' ? {bookMode:controller?.mode,bookSettings:controller?.paperSettings,bookIndex:controller?.pageIndex} : {})}; }
 
   function updateOutputs() {
@@ -360,22 +353,21 @@
     updateOutputs();
   }
   function stepSpeed(delta) {
-    if (!reducedMotion.matches) {
-      speedInput.classList.add('is-growing');
-      void speedInput.offsetWidth;
-    }
+    speedInput.classList.add('is-growing');
+    void speedInput.offsetWidth;
     applySpeed(Number(speedInput.value) + delta);
   }
 
-  function selectEffect(id, preserved = null, caseId = null) {
+  function selectEffect(id, preserved = null, caseId = null, variantId = null) {
     let effect = data.effects.find(e => e.id === id);
     if (!effect) return;
     relatedPreview.close({resume:false,focus:false});
     if(effect.kind==='recipe'){
       const entry=effect.entries.find(e=>e.id===(caseId||preserved?.caseId))||effect.entries[0];
       const duration=Math.round(entry.preview.duration*1000);
-      effect={...effect,selected_entry:entry,duration_ms:duration,preview_ms:Math.round(duration*(typeof entry.preview.poster==='number'?entry.preview.poster:.65))};
+      effect={...effect,...entry.definition,selected_entry:entry,duration_ms:duration,preview_ms:Math.round(duration*(typeof entry.preview.poster==='number'?entry.preview.poster:.65))};
     }
+    effect = MotionKit.resolveVariant(effect,variantId||preserved?.variantId);
     categories.close();
     easing.close();
     controller?.destroy();
@@ -384,6 +376,9 @@
     $('copy-title').resetCopyIcon?.();
     $('preview-title').textContent = effect.name;
     $('preview-summary').textContent = effect.summary;
+    $('effect-variant-field').hidden = !effect.variants?.length;
+    $('effect-variant').innerHTML = (effect.variants||[]).map(item=>`<option value="${MotionKit.escape(item.id)}">${MotionKit.escape(item.label)}</option>`).join('');
+    $('effect-variant').value = effect.variant_id || '';
     renderSource(effect);
     $('selection-status').textContent = `当前动效：${effect.name}。${effect.summary}`;
     $('preview').setAttribute('aria-label', effect.name);
@@ -392,19 +387,16 @@
     $('ease-label').hidden = !effect.parameters.ease;
     $('fixed-ease').hidden = !!effect.parameters.ease;
     $('fixed-ease').textContent=effect.tempo_note;
-    const parts=MotionFactories[effect.id]?.breakdown||[];
-    const related = effect.kind==='recipe' ? effect.actions : effect.actions.length ? effect.actions : data.effects.filter(e => e.kind!=='recipe'&&e.actions.includes(effect.id)).map(e => e.id);
-    $('related').innerHTML = parts.length
-      ? `<p class="field-label" style="margin-top:18px">相关动作</p><div class="related-chips">${parts.map(layer=>`<button type="button" class="btn" data-related-layer="${MotionKit.escape(layer.id)}" aria-haspopup="dialog">${MotionKit.escape(layer.name)}</button>`).join('')}</div>`
-      : related.length
-      ? `<p class="field-label" style="margin-top:18px">${effect.kind==='recipe' ? '提炼的组成动作' : MotionFactories[effect.id]?.breakdown ? '可独立复用的组成动作' : effect.actions.length ? '所用动作' : '使用这个动作的组合'}</p><div class="related-chips">${related.map(rid => `<button type="button" class="btn" aria-haspopup="dialog" data-related="${rid}">${MotionKit.escape(data.effects.find(e => e.id === rid).name)}</button>`).join('')}</div>`
+    const related = effect.kind==='recipe' ? effect.actions : effect.actions.length ? effect.actions : data.effects.filter(e => e.kind==='composition'&&e.actions.includes(effect.id)).map(e => e.id);
+    $('related').innerHTML = related.length
+      ? `<p class="field-label" style="margin-top:18px">${effect.kind==='recipe' ? '提炼的组成动作' : effect.actions.length ? '相关动作' : '使用这个动作的组合'}</p><div class="related-chips">${related.map(rid => `<button type="button" class="btn" aria-haspopup="dialog" data-related="${rid}">${MotionKit.escape(data.effects.find(e => e.id === rid).name)}</button>`).join('')}</div>`
       : '';
     const historyRelated=effect.kind==='recipe'?effect.related_history.filter(rid=>data.effects.some(e=>e.id===rid)):[];
     if(historyRelated.length)$('related').innerHTML+=`<p class="field-label" style="margin-top:18px">关联原作配方</p><div class="related-chips">${historyRelated.map(rid=>`<button type="button" class="btn" aria-haspopup="dialog" data-related="${rid}">${MotionKit.escape(data.effects.find(e=>e.id===rid).name)}</button>`).join('')}</div>`;
     renderHistoryDetails(effect);
     renderFacts(effect);
     controller = effect.id==='dither-lab-book'
-      ? WiseDitherWorkbench.create($('preview'),effect,{onUpdate:syncPlayer,onSettingsChange:updateOutputs,reducedMotion,
+      ? WiseDitherWorkbench.create($('preview'),effect,{onUpdate:syncPlayer,onSettingsChange:updateOutputs,
         mode:preserved?.bookMode,paperSettings:preserved?.bookSettings,pageIndex:preserved?.bookIndex})
       : effect.kind==='recipe' ? MotionHistoryRuntime.create($('preview'),effect,{onUpdate:syncPlayer,caseId:effect.selected_entry.id}) : MotionRuntime.create($('preview'), effect, {onUpdate:syncPlayer});
     controller.setSpeed(Number($('speed').value));
@@ -412,9 +404,7 @@
     MotionComposition.select(effect,controller,preserved?.compositionView);
     if (preserved) {
       controller.seek(preserved.time);
-      if (!preserved.paused && !reducedMotion.matches) controller.play();
-    } else if (reducedMotion.matches) {
-      controller.seek(effect.preview_ms);
+      if (!preserved.paused) controller.play();
     } else {
       controller.play();
     }
@@ -423,6 +413,10 @@
     renderFacts(effect);
     syncSelection();
   }
+
+  $('effect-variant').addEventListener('change',event=>{
+    if(selected?.variants)selectEffect(selected.id,{...settings(),time:0,paused:false},null,event.target.value);
+  });
 
   function renderHistoryDetails(effect){
     const host=$('history-details');host.hidden=effect.kind!=='recipe';
@@ -436,7 +430,7 @@
       (entry.preview.file?`<p>${sourceLink('打开原作画面',entry.preview.file)}</p>`:'')+
       (entry.context_note?`<p>${esc(entry.context_note)}</p>`:'')+
       (effect.review.correction?`<p>${esc(effect.review.correction)}</p>`:'');
-    $('history-case').addEventListener('change',event=>selectEffect(effect.id,{speed:Number($('speed').value),ease:'linear',time:0,paused:true},event.target.value));
+    $('history-case').addEventListener('change',event=>selectEffect(effect.id,{speed:Number($('speed').value),ease:'linear',time:0,paused:false},event.target.value));
   }
 
   function setTab(next, focus = false) {
@@ -498,7 +492,7 @@
     if (modal && $('directory-panel').hidden) directoryFocus = document.activeElement;
     categories.close();
     const shell = document.querySelector('.sidebar-shell');
-    const glideSidebar = !directoryMedia.matches && !reducedMotion.matches && typeof shell.animate === 'function';
+    const glideSidebar = !directoryMedia.matches && typeof shell.animate === 'function';
     const sidebarFrom = glideSidebar ? shell.getBoundingClientRect().width : 0;
     if (glideSidebar) shell.getAnimations().forEach(animation => animation.cancel());
     $('directory-panel').hidden = !expanded;
@@ -567,14 +561,6 @@
     buttons[next].focus();
   });
 
-  function updateMotionPreference() {
-    $('motion-setting').hidden = !reducedMotion.matches;
-    $('motion-setting').textContent = '已遵循系统的“减少动态效果”设置。点击播放可查看当前动作。';
-    if (reducedMotion.matches) { controller?.pause(); resumeAfterVisible = false; }
-  }
-
-  reducedMotion.addEventListener?.('change', updateMotionPreference);
-
   function showKind(next) {
     kind = next;
     category = 'all';
@@ -596,16 +582,10 @@
 
   $('category-filter').addEventListener('change', () => { category = $('category-filter').value; renderList(); });
   $('related').addEventListener('click', event => {
-    const layerButton=event.target.closest('[data-related-layer]');
-    if(layerButton){
-      const layer=MotionFactories[selected?.id]?.breakdown?.find(l=>l.id===layerButton.dataset.relatedLayer);
-      if(layer)relatedPreview.open(selected,layer,layerButton);
-      return;
-    }
     const button = event.target.closest('[data-related]');
     if (!button) return;
     const effect=data.effects.find(e=>e.id===button.dataset.related);
-    if(effect)relatedPreview.open(effect,null,button);
+    if(effect)relatedPreview.open(MotionKit.resolveVariant(effect,selected?.action_variants?.[effect.id]),button);
   });
   function clearSearch() {
     clearTimeout(debounce);
@@ -785,7 +765,7 @@
       node.goalScale = goals[index] ? 1 : .5;
       node.goalOpacity = goals[index] ? 1 : 0;
     });
-    if (!directoryReady || reducedMotion.matches) {
+    if (!directoryReady) {
       cancelAnimationFrame(directoryRaf);
       directoryRaf = 0;
       for (const node of directoryNodes) { node.scale = node.goalScale; node.opacity = node.goalOpacity; node.vScale = node.vOpacity = 0; }
@@ -836,7 +816,7 @@
       node.goalScale = goals[index] ? 1 : .5;
       node.goalOpacity = goals[index] ? 1 : 0;
     });
-    if (!themeReady || reducedMotion.matches) {
+    if (!themeReady) {
       cancelAnimationFrame(themeRaf);
       themeRaf = 0;
       for (const node of themeNodes) { node.scale = node.goalScale; node.opacity = node.goalOpacity; node.vScale = node.vOpacity = 0; }
@@ -926,7 +906,7 @@
       const next = measure();
       if (!next) return;
       goal = next;
-      if (!ready || !animate || reducedMotion.matches) {
+      if (!ready || !animate) {
         cancelAnimationFrame(raf);
         raf = 0;
         Object.assign(state, next);
@@ -940,7 +920,6 @@
     const observer = new MutationObserver(() => sync(true));
     root.querySelectorAll(':scope > button').forEach(button => observer.observe(button, {attributes:true, attributeFilter:['aria-pressed', 'aria-selected']}));
     new ResizeObserver(() => sync(false)).observe(root);
-    reducedMotion.addEventListener?.('change', () => sync(false));
     sync(false);
   }
   bindSlidingPill(document.querySelector('.kind-tabs'));
@@ -950,14 +929,14 @@
   renderCategories();
   renderList();
   const requestedId=location.hash.slice(1);
-  const requestedEffect=data.redirects?.[requestedId]||requestedId;
+  const requestedEffect=()=>data.redirects?.[requestedId]||requestedId;
   function selectInitial(){
-    const effect=data.effects.find(effect=>effect.id===requestedEffect)||data.effects.find(effect=>effect.id==='fade-rise');
+    const effect=data.effects.find(effect=>effect.id===requestedEffect())||data.effects.find(effect=>effect.id==='fade-rise');
     if(kind!==effect.kind){kind=effect.kind;category='all';renderCategories();renderList();}
-    selectEffect(effect.id);
+    const caseId=effect.entries?.find(entry=>entry.source_rule_id===requestedId.replace(/^history-/,''))?.id;
+    selectEffect(effect.id,null,caseId,data.variant_redirects?.[requestedId]);
   }
-  if (requestedEffect && !data.effects.some(effect => effect.id === requestedEffect)) {
+  if (requestedEffect() && !data.effects.some(effect => effect.id === requestedEffect())) {
     loadHistory().then(selectInitial).catch(selectInitial);
   } else selectInitial();
-  updateMotionPreference();
 })();

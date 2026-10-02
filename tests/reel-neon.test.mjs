@@ -133,7 +133,7 @@ test('独立动作与组合共用原位图层，不建立无关图形，回退�
 });
 
 test('霓虹组合能逐层查看，弹窗独立示例与缩略图一致且不替换主组合',async()=>{
-  const env=await environment(true,{hash:'#neon-horizon'});
+  const env=await environment(true,{staticPreview:true,hash:'#neon-horizon'});
   try{
     const {w}=env,d=w.document;
     assert.deepEqual(get('neon-horizon').actions,ids);
@@ -147,12 +147,12 @@ test('霓虹组合能逐层查看，弹窗独立示例与缩略图一致且不�
     assert.equal(d.querySelector('#preview [data-layer="stars"]').getAttribute('display'),'none');
     d.getElementById('composition-full').click();
     const main=d.querySelector('#preview .motion-stage'),markup=frameMarkup(main),hash=w.location.hash,time=scrub.value;
-    assert.deepEqual([...d.querySelectorAll('#related [data-related-layer]')].map(n=>n.dataset.relatedLayer),['stars','sun','grid']);
+    assert.deepEqual([...d.querySelectorAll('#related [data-related]')].map(n=>n.dataset.related),get('neon-horizon').actions);
     for(const [layer,id] of [['sun','striped-sun-rise'],['grid','perspective-grid-flow'],['stars','star-twinkle']]){
-      d.querySelector(`#related [data-related-layer="${layer}"]`).click();
+      d.querySelector(`#related [data-related="${id}"]`).click();
       assert.equal(d.getElementById('related-dialog').open,true);
-      for(const node of d.querySelectorAll('#related-preview [data-layer]'))assert.equal(node.getAttribute('display')==='none',node.dataset.layer!==layer);
-      d.querySelector(`#related-dialog [data-related-example="${id}"]`).click();
+      assert.equal(w.MotionRuntime.runningCount,1);
+      const popupScrub=d.getElementById('related-scrub');popupScrub.value=get(id).preview_ms/get(id).duration_ms*1000;popupScrub.dispatchEvent(new w.Event('input'));
       const thumb=d.createElement('div');d.body.append(thumb);w.MotionThumbs.attach(thumb,get(id));env.reveal();
       assert.equal(d.getElementById('related-title').textContent,get(id).name);
       assert.equal(frameMarkup(thumb.querySelector('.motion-stage')),frameMarkup(d.querySelector('#related-preview .motion-stage')));

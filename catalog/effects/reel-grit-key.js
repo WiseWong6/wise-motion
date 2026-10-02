@@ -9,7 +9,7 @@
   const outBack=p=>1+2.70158*Math.pow(p-1,3)+1.70158*Math.pow(p-1,2);
   const set=(n,k,v)=>{v=String(v);if(n.getAttribute(k)!==v)n.setAttribute(k,v);};
   const attrs=(n,a)=>{for(const [k,v] of Object.entries(a))set(n,k,v);};
-  const text=(s,x,y,size,color,extra='')=>`<text x="${x}" y="${y}" fill="${color}" font-size="${size}" ${extra}>${s}</text>`;
+  const text=(s,x,y,size,color,extra='')=>`<text x="${x}" y="${y}" fill="${color}" font-size="${globalThis.MotionKit.textSize(Math.max(10,size/3),1/3)}" ${extra}>${s}</text>`;
   let serial=0;
   function base(root,title,color,body){
     root.innerHTML=`<svg class="pattern-svg" width="640" height="360" viewBox="0 0 1920 1080" aria-hidden="true"><title>${title}</title><rect width="1920" height="1080" fill="${color}"/><g font-family="Oswald,sans-serif" font-weight="700">${body}</g></svg>`;
@@ -35,20 +35,21 @@
   F['ghost-type-overprint']=root=>{base(root,'文字多层套印漂移','#0c0b09',overprintLayer());return clock(3000,overprintMotion(root));};
   F['film-scratch-flicker']=root=>{base(root,'胶片刮痕与尘点闪动','#0c0b09',scratchLayer());return clock(3000,scratchMotion(root));};
 
-  // 两个窗口保留原尺寸；合成窗口仅向右平移 350 像素，空出的曲线编辑器不伪装成组成动作。
+  // 组合恢复原三个窗口；独立弹跳仍居中。曲线窗口直接调用独立曲线的共用图层。
   const comp={x:470,y:230,w:980,h:470,index:0,title:'COMPOSITION — BALL_v03'};
+  const originalComp={...comp,x:120},graphPanel={x:1130,y:230,w:670,h:470,index:1,title:'GRAPH EDITOR'};
   const timeline={x:120,y:730,w:1680,h:210,index:2,title:'TIMELINE'};
   const inner=P=>({x:P.x+20,y:P.y+54,w:P.w-40,h:P.h-74});
   function panel(P){return `<rect x="${P.x}" y="${P.y}" width="${P.w}" height="${P.h}" rx="10" fill="#1c1e24" stroke="#2c2f37" stroke-width="1.5"/><path d="M${P.x+10} ${P.y}H${P.x+P.w-10}Q${P.x+P.w} ${P.y} ${P.x+P.w} ${P.y+10}V${P.y+34}H${P.x}V${P.y+10}Q${P.x} ${P.y} ${P.x+10} ${P.y}" fill="#23262d"/>`+text(P.title,P.x+16,P.y+22,13,'#8b909c','letter-spacing="2"')+[0,1,2].map(i=>`<circle cx="${P.x+P.w-20-i*16}" cy="${P.y+17}" r="4" fill="#3a3e48"/>`).join('');}
   function panelPose(t,P){const a=outExpo(span(t,.1+P.index*.12,.8+P.index*.12)),c=inExpo(span(t,5.4+P.index*.08,5.85+P.index*.08)),cy=P.y+P.h/2;return {opacity:c>=1?0:a,transform:`translate(0 ${(1-a)*60+cy}) scale(1 ${1-c}) translate(0 ${-cy})`};}
-  function panelLayer(){return '<g data-layer="panels">'+[comp,timeline].map(P=>`<g data-window="${P.index}">${panel(P)}</g>`).join('')+'</g>';}
-  function panelMotion(root){const nodes=[...root.querySelectorAll('[data-window]')];return t=>nodes.forEach(n=>attrs(n,panelPose(t,+n.dataset.window===0?comp:timeline)));}
+  function panelLayer(panels){return '<g data-layer="panels">'+panels.map(P=>`<g data-window="${P.index}">${panel(P)}</g>`).join('')+'</g>';}
+  function panelMotion(root,panels){const nodes=[...root.querySelectorAll('[data-window]')];return t=>nodes.forEach(n=>attrs(n,panelPose(t,panels.find(P=>P.index===+n.dataset.window))));}
   const loopU=t=>t<1?0:((t-1)/2)%1,pingPong=u=>u<.5?u*2:2-u*2;
   const bez=(a,b,u)=>3*(1-u)*(1-u)*u*a+3*(1-u)*u*u*b+u*u*u;
   function handles(t){const p=outBack(span(t,1.6,2.4));return [[mix(.333,.8,p),mix(.333,0,p)],[mix(.667,.2,p),mix(.667,1,p)]];}
   function ease(x,a,b){let lo=0,hi=1;for(let i=0;i<22;i++){const mid=(lo+hi)/2;if(bez(a[0],b[0],mid)<x)lo=mid;else hi=mid;}return bez(a[1],b[1],(lo+hi)/2);}
-  function bounceLayer(){const I=inner(comp),ground=I.y+I.h-44,x0=I.x+150,x1=I.x+I.w-90;return '<g data-layer="bounce">'+`<rect x="${I.x}" y="${I.y}" width="${I.w}" height="${I.h}" fill="#0d0e11"/><rect x="${I.x+30}" y="${I.y+20}" width="${I.w-60}" height="${I.h-40}" fill="none" stroke="#2a2d35" stroke-width="1" stroke-dasharray="6 6"/>`+['linear','ease'].map((s,i)=>{const y=I.y+56+i*44;return text(s,I.x+50,y+5,14,'#6e7380')+`<rect x="${x0}" y="${y-1}" width="${x1-x0}" height="2" fill="#20232a"/><rect data-compare="${i}" y="${y-13}" width="26" height="26" fill="${i?'#ffc93c':'#4aa3ff'}"/>`;}).join('')+`<rect x="${I.x+40}" y="${ground}" width="${I.w-80}" height="2" fill="#2a2d35"/>`+[6,5,4,3,2,1].map(j=>`<ellipse data-ball="${j}" fill="#ff6b4a"/>`).join('')+`<ellipse data-shadow cy="${ground+2}" ry="7" fill="#000" fill-opacity=".6"/><ellipse data-ball="0" fill="#ff6b4a"/>`+text('squash &amp; stretch',I.x+I.w-50,I.y+I.h-12,13,'#4b4f5a','data-bounce-label text-anchor="end"')+'</g>';}
-  function bounceMotion(root){const I=inner(comp),ground=I.y+I.h-44,nodes=[...root.querySelectorAll('[data-ball]')],shadow=root.querySelector('[data-shadow]'),label=root.querySelector('[data-bounce-label]'),compare=[...root.querySelectorAll('[data-compare]')];return t=>{
+  function bounceLayer(P=comp){const I=inner(P),ground=I.y+I.h-44,x0=I.x+150,x1=I.x+I.w-90;return '<g data-layer="bounce">'+`<rect x="${I.x}" y="${I.y}" width="${I.w}" height="${I.h}" fill="#0d0e11"/><rect x="${I.x+30}" y="${I.y+20}" width="${I.w-60}" height="${I.h-40}" fill="none" stroke="#2a2d35" stroke-width="1" stroke-dasharray="6 6"/>`+['linear','ease'].map((s,i)=>{const y=I.y+56+i*44;return text(s,I.x+50,y+5,14,'#6e7380')+`<rect x="${x0}" y="${y-1}" width="${x1-x0}" height="2" fill="#20232a"/><rect data-compare="${i}" y="${y-13}" width="26" height="26" fill="${i?'#ffc93c':'#4aa3ff'}"/>`;}).join('')+`<rect x="${I.x+40}" y="${ground}" width="${I.w-80}" height="2" fill="#2a2d35"/>`+[6,5,4,3,2,1].map(j=>`<ellipse data-ball="${j}" fill="#ff6b4a"/>`).join('')+`<ellipse data-shadow cy="${ground+2}" ry="7" fill="#000" fill-opacity=".6"/><ellipse data-ball="0" fill="#ff6b4a"/>`+text('squash &amp; stretch',I.x+I.w-50,I.y+I.h-12,13,'#4b4f5a','data-bounce-label text-anchor="end"')+'</g>';}
+  function bounceMotion(root,P=comp){const I=inner(P),ground=I.y+I.h-44,nodes=[...root.querySelectorAll('[data-ball]')],shadow=root.querySelector('[data-shadow]'),label=root.querySelector('[data-bounce-label]'),compare=[...root.querySelectorAll('[data-compare]')];return t=>{
     const u=loopU(t),pp=pingPong(u),ga=span(t,.6,1),[a,b]=handles(t);
     compare.forEach((n,i)=>set(n,'x',mix(I.x+150,I.x+I.w-90,i?ease(pp,a,b):pp)-13));
     nodes.forEach(n=>{const j=+n.dataset.ball,uu=u-j*.012,valid=uu>=0,s=uu*4-Math.floor(uu*4),k=((Math.floor(uu*4)%4)+4)%4;
@@ -64,26 +65,78 @@
   function timelineMotion(root){const P=timeline,tx=P.x+300,tw=P.w-320,nodes=[...root.querySelectorAll('[data-key]')],head=root.querySelector('[data-playhead]');return t=>{
     const px=tx+loopU(t)*tw;nodes.forEach(n=>{const i=+n.dataset.key,row=+n.dataset.row,x=tx+(+n.dataset.at)*tw,y=P.y+80+row*24,s=outBack(span(t,.9+i*.025,1.25+i*.025)),hot=Math.abs(x-px)<8&&t>1,c=keyColors[row];attrs(n,{visibility:s>0?'visible':'hidden',transform:`translate(${x} ${y}) rotate(45) scale(${s*(hot?1.5:1)})`,fill:hot?'#fff':c==='#8a8f99'?'#c5c9d1':c});});attrs(head,{visibility:t>.9?'visible':'hidden',transform:`translate(${px} 0)`});
   };}
-  function content(root,title,layers,{collapse=false}={}){const id='motion-grit-key-'+ ++serial,defs=[comp,timeline].map(P=>`<clipPath id="${id}-${P.index}"><rect x="${P.x}" y="${P.y+34}" width="${P.w}" height="${P.h-34}"/></clipPath>`).join('');let body=`<defs>${defs}</defs>`;
-    if(layers.includes('panels'))body+=panelLayer();
-    else body+=layers.map(l=>panel(l==='bounce'?comp:timeline)).join('');
-    for(const layer of layers.filter(l=>l!=='panels')){const P=layer==='bounce'?comp:timeline;body+=`<g ${collapse?`data-window="${P.index}"`:''}><g clip-path="url(#${id}-${P.index})">${layer==='bounce'?bounceLayer():timelineLayer()}</g></g>`;}
+  function workbenchGraphMotion(root){
+    const draw=F['bezier-editor'].graphMotion(root);
+    return t=>{const [a,b]=handles(t);draw({a,b,x:1190,y:330,w:550,height:310,draw:1-Math.pow(1-span(t,.5,1.3),3),progress:pingPong(loopU(t)),visible:t>1,handleOpacity:span(t,1.2,1.5),captionOpacity:span(t,.8,1.1),caption:`cubic-bezier(${a[0].toFixed(2)}, ${a[1].toFixed(2)}, ${b[0].toFixed(2)}, ${b[1].toFixed(2)})`});};
+  }
+  // 原软件段两次文字交接；纯英文与数字使用目录内置 Oswald Bold。
+  const labelRows=[
+    {id:'year',value:'2003',x:120,y:190,size:84,start:.15,stagger:.05,duration:.6,out:5.4,color:'#ffc93c',track:0},
+    {id:'curve-title',value:'THE CURVE',x:130,y:470,size:160,start:5.85,stagger:.035,duration:.7,color:'#f4f1ea',track:-4},
+    {id:'craft-title',value:'IS THE CRAFT.',x:130,y:640,size:160,start:6.05,stagger:.035,duration:.7,color:'#f4f1ea',track:-4}
+  ];
+  const sizedLabelRows=()=>labelRows.map(row=>({...row,motion_size:row.size,size:globalThis.MotionKit.textSize(Math.max(10,row.size/3),1/3)}));
+  // 固定字体字宽来自随包 Oswald-Bold.woff2（每1000单位），初始化排字，无逐帧测量。
+  const widths={' ':256,'.':244,'0':550,'2':514,'3':514,A:551,C:563,E:447,F:434,H:610,I:301,R:600,S:514,T:445,U:588,V:526};
+  const labelText={description:'After Effects & Flash put keyframes on every desktop.',terms:'EASE IN · EASE OUT · OVERSHOOT · SETTLE'};
+  function labelLayer(){
+    const id='motion-key-label-'+ ++serial;
+    return '<g data-layer="labels">'+sizedLabelRows().map(row=>{
+      let advance=0;const letters=[...row.value].map((ch,i)=>{const x=row.x+advance;advance+=widths[ch]*row.size/1000+row.track;return text(ch,x,row.y,row.size,row.id==='craft-title'&&i===12?'#ffc93c':row.color,`data-label="${row.id}" data-char="${i}" xml:space="preserve"`);}).join('');
+      return `<defs><clipPath id="${id}-${row.id}"><rect x="${row.x-row.size}" y="${row.y-row.size*1.05}" width="${advance-row.track+row.size*2}" height="${row.size*1.35}"/></clipPath></defs><g clip-path="url(#${id}-${row.id})">${letters}</g>`;
+    }).join('')+text('',380,180,28,'#c9ccd3','data-label-description')+text('',136,730,22,'#ffc93c','data-label-terms letter-spacing="4"')+'</g>';
+  }
+  function labelMotion(root){
+    const rows=sizedLabelRows().map(row=>({row,nodes:[...root.querySelectorAll(`[data-label="${row.id}"]`)]}));
+    const description=root.querySelector('[data-label-description]'),terms=root.querySelector('[data-label-terms]');
+    const write=(n,value)=>{if(n.textContent!==value)n.textContent=value;};
+    return t=>{
+      rows.forEach(({row,nodes})=>nodes.forEach((n,i)=>{
+        const p=outExpo(span(t,row.start+i*row.stagger,row.start+i*row.stagger+row.duration));
+        const exit=row.out===undefined?0:inExpo(span(t,row.out+i*row.stagger*.5,row.out+i*row.stagger*.5+.45));
+        attrs(n,{visibility:p>0?'visible':'hidden',y:row.y+(1-p)*row.motion_size*1.1-exit*row.motion_size*1.15});
+      }));
+      set(description,'opacity',1-span(t,5.4,5.9));write(description,labelText.description.slice(0,Math.max(0,Math.floor((t-.5)*60))));
+      write(terms,labelText.terms.slice(0,Math.max(0,Math.floor((t-6.4)*50))));
+    };
+  }
+  function workbenchLargeGraphMotion(root){
+    const group=root.querySelector('[data-layer="large-graph"]'),draw=F['bezier-editor'].largeGraphMotion(root,{layer:'large-graph',original:true});
+    return t=>{const progress=((Math.max(6.9,t)-6.9)%1),dp=1-(1-span(t,6,6.9))**3;
+      set(group,'opacity',t>5.7?1:0);
+      draw({x:1260,y:260,w:480,height:480,draw:dp,progress,visible:t>6.9,caption:'cubic-bezier(.34, 1.56, .64, 1)',captionOpacity:dp});
+    };
+  }
+  function content(root,title,layers,{collapse=false,original=false}={}){
+    const Pcomp=original?originalComp:comp,panels=original?[Pcomp,graphPanel,timeline]:[Pcomp,timeline];
+    const id='motion-grit-key-'+ ++serial,defs=panels.map(P=>`<clipPath id="${id}-${P.index}"><rect x="${P.x}" y="${P.y+34}" width="${P.w}" height="${P.h-34}"/></clipPath>`).join('');let body=`<defs>${defs}</defs>`;
+    const panelFor=layer=>layer==='bounce'?Pcomp:layer==='graph'?graphPanel:timeline;
+    if(layers.includes('panels'))body+=panelLayer(panels);
+    else body+=layers.filter(l=>!['labels','large-graph'].includes(l)).map(l=>panel(panelFor(l))).join('');
+    for(const layer of layers.filter(l=>l!=='panels')){if(layer==='labels'){body+=labelLayer();continue;}if(layer==='large-graph'){body+=F['bezier-editor'].graphLayer(true,'large-graph',true);continue;}const P=panelFor(layer);body+=`<g ${collapse?`data-window="${P.index}"`:''}><g clip-path="url(#${id}-${P.index})">${layer==='bounce'?bounceLayer(Pcomp):layer==='graph'?F['bezier-editor'].graphLayer(true):timelineLayer()}</g></g>`;}
     base(root,title,'#131418',body);
-    const draws=layers.map(l=>l==='panels'?panelMotion(root):l==='bounce'?bounceMotion(root):timelineMotion(root));
-    return clock(6200,t=>draws.forEach(draw=>draw(t)));
+    const draws=layers.map(l=>l==='panels'?panelMotion(root,panels):l==='bounce'?bounceMotion(root,Pcomp):l==='graph'?workbenchGraphMotion(root):l==='large-graph'?workbenchLargeGraphMotion(root):l==='labels'?labelMotion(root):timelineMotion(root));
+    return clock(original||layers.includes('labels')?8000:6200,t=>draws.forEach(draw=>draw(t)));
   }
   F['panel-rise-collapse']=root=>content(root,'面板升入后纵向收扁',['panels']);
   F['ball-bounce-trails']=root=>content(root,'小球递减弹跳与残影',['bounce']);
   F['timeline-keyframe-playhead']=root=>content(root,'关键帧建立与游标扫描',['timeline']);
-  F['keyframe-workbench']=root=>content(root,'弹跳与关键帧工作台',['panels','bounce','timeline'],{collapse:true});
+  F['keyframe-workbench']=root=>content(root,'弹跳与关键帧工作台',['panels','bounce','graph','timeline','large-graph','labels'],{collapse:true,original:true});
+  F['keyframe-workbench'].title=root=>content(root,'年份说明退场与结语升入',['labels']);
   F['keyframe-workbench'].breakdown=[
-    {id:'panels',actions:['panel-rise-collapse'],name:'面板外框',start:100,end:6010,time:'0.10–6.01 秒',detail:'两个窗口按原来的序号错峰升入，末尾围绕各自中线收扁。仅平移合成窗口到中间，保留原尺寸、配色和时间。'},
-    {id:'bounce',actions:['ball-bounce-trails'],name:'弹跳与速度对照',start:600,end:6010,time:'0.60–6.01 秒',detail:'同一时钟控制线性与缓动对照、小球四段递减弹跳、六道残影和落地压扁。与独立动作共用实际绘制函数。'},
+    {id:'panels',actions:['panel-rise-collapse'],name:'面板外框',start:100,end:6010,time:'0.10–6.01 秒',detail:'三个窗口按原来的序号错峰升入，末尾围绕各自中线收扁。组合恢复原三窗布局；独立面板保留居中的示意位置，共用外框与进退场函数。'},
+    {id:'bounce',actions:['ball-bounce-trails'],name:'弹跳与速度对照',start:600,end:6010,time:'0.60–6.01 秒',detail:'同一时钟控制线性与缓动对照、小球四段递减弹跳、六道残影和落地压扁。组合位于原左窗，独立动作仅向右平移350像素。'},
+    {id:'graph',actions:['bezier-editor'],name:'曲线手柄与速度映射',start:500,end:5930,time:'0.50–5.93 秒',detail:'直接共用缓动曲线编辑器的曲线、手柄、辅助线与行进点绘制函数；按原时钟改变手柄，同步驱动左侧黄色方块。组合恢复原右窗尺寸与配色。'},
+    {id:'large-graph',actions:['bezier-editor'],name:'大曲线与同高小球',start:5700,end:8000,time:'5.70–8.00 秒',detail:'窗口收扁后，超调曲线按原100步逐点画出，曲线上白点与右侧黄球每秒同高运动。直接复用独立曲线第二个案例的求值与绘制函数。'},
+    {id:'labels',actions:['title-stagger'],name:'年份说明与结语',start:150,end:8000,time:'0.15–8.00 秒',detail:'年份逐字升入，说明按每秒60字键入；5.4秒开始退场，再按原错峰升入两行结语，黄色术语以每秒50字出现。组合和独立动作共用文字层与时钟。'},
     {id:'timeline',actions:['timeline-keyframe-playhead'],name:'关键帧与游标',start:900,end:6010,time:'0.90–6.01 秒',detail:'五行关键帧每个错开 0.025 秒弹出。游标每两秒扫描一次，靠近的关键帧变白并放大，与小球共享循环时间。'}
   ];
-  F['shape-pop-float']=root=>{
-    base(root,'几何形状弹出漂浮','#f4efe6','<g data-layer="shapes"><circle data-shape="disc" cx="1700" fill="#ffc93c"/><circle data-shape="ring" cx="160" r="170" fill="none" stroke="#1fb5a8"/><rect data-shape="square" fill="#ff9aa2"/></g>');
+  function shapeLayer(){return '<g data-layer="shapes"><circle data-shape="disc" cx="1700" fill="#ffc93c"/><circle data-shape="ring" cx="160" r="170" fill="none" stroke="#1fb5a8"/><rect data-shape="square" fill="#ff9aa2"/></g>';}
+  function shapeMotion(root){
     const disc=root.querySelector('[data-shape="disc"]'),ring=root.querySelector('[data-shape="ring"]'),square=root.querySelector('[data-shape="square"]');
-    return clock(5000,t=>{const wave=Math.sin(t*1.3)*12,a=outBack(span(t,3.1,3.8)),b=outBack(span(t,3.3,4)),c=outBack(span(t,3.5,4.1));attrs(disc,{cy:170+wave,r:250*a});attrs(ring,{cy:980-wave,r:170*b,'stroke-width':44*b});attrs(square,{x:-40*c,y:-40*c,width:80*c,height:80*c,transform:`translate(920 ${900+wave}) rotate(${t*.6*180/Math.PI})`});},3);
-  };
+    return t=>{const wave=Math.sin(t*1.3)*12,a=outBack(span(t,3.1,3.8)),b=outBack(span(t,3.3,4)),c=outBack(span(t,3.5,4.1));attrs(disc,{cy:170+wave,r:250*a});attrs(ring,{cy:980-wave,r:170*b,'stroke-width':44*b});attrs(square,{x:-40*c,y:-40*c,width:80*c,height:80*c,transform:`translate(920 ${900+wave}) rotate(${t*.6*180/Math.PI})`});};
+  }
+  F['shape-pop-float']=root=>{base(root,'几何形状弹出漂浮','#f4efe6',shapeLayer());return clock(5000,shapeMotion(root),3);};
+  F['shape-pop-float'].layer=shapeLayer;
+  F['shape-pop-float'].motion=shapeMotion;
 })(globalThis.MotionFactories);

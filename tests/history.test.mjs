@@ -17,8 +17,8 @@ async function historyEnvironment(withApp=false){
 }
 test('每条历史审查均有出处，案例源码与原片范围没有混并，原源码保持只读',async()=>{
   const snapshot=JSON.parse(await readFile(state+'/source-snapshot.json','utf8'));
-  assert.deepEqual(historical.counts,{"reviewed":311,"recipes":130,"entries":140,"animation":126,"document":4});
-  assert.equal(historical.excluded.length,181);
+  assert.deepEqual(historical.counts,{"reviewed":311,"recipes":104,"entries":110,"animation":101,"document":3});
+  assert.equal(historical.excluded.length,207);
   assert.ok(historical.excluded.some(e=>e.id==='reading-rhythm'));
   assert.ok(!historical.recipes.some(e=>e.history_id==='reading-rhythm'));
   assert.ok(historical.excluded.some(e=>e.id==='resume-typography'));
@@ -27,7 +27,8 @@ test('每条历史审查均有出处，案例源码与原片范围没有混并�
     const original=snapshot.rules.find(x=>x.id===r.history_id);
     assert.ok(r.review.reuse_contract.clock);assert.ok(r.retain.includes(r.review.extraction));
     for(const entry of r.entries){
-      const expected=entry.cases.flatMap(c=>original.cases.find(x=>x.id===c.id).references.map(i=>original.references[i]));
+      const source=snapshot.rules.find(x=>x.id===(entry.source_rule_id||original.id));
+      const expected=entry.cases.flatMap(c=>source.cases.find(x=>x.id===c.id).references.map(i=>source.references[i]));
       for(const ref of entry.code){
         assert.ok(expected.some(x=>x.file===ref.file),entry.id+' 混入其他案例的文件');
         for(const a of ref.anchors)assert.ok(expected.some(x=>x.file===ref.file&&x.anchors.some(b=>b.symbol===a.symbol)),entry.id+' 混入其他案例入口');
@@ -43,14 +44,15 @@ test('相似旧名称不偷换动作：柱高、内部翻卷、时间压缩与�
   assert.ok(historical.excluded.some(e=>e.id==='numeric'));assert.ok(data.effects.some(e=>e.id==='bar-growth'));
   assert.ok(historical.excluded.some(e=>e.id==='tutorial-prayer-drum'));assert.ok(data.effects.some(e=>e.id==='cylinder-drum'));
   assert.ok(historical.excluded.some(e=>e.id==='tutorial-ease-dot'));assert.ok(!data.effects.some(e=>e.id==='ease-visualizer'));assert.ok(data.effects.some(e=>e.id==='bezier-editor'));
-  assert.ok(!find('turnover').actions.includes('card-flip'));
+  assert.ok(!find('turnover'));assert.ok(historical.excluded.some(e=>e.id==='turnover'));
+  assert.ok(!Object.hasOwn(historical.originals.sources,'physics'));
+  assert.ok(historical.recipes.every(r=>r.entries.every(e=>e.cases.every(c=>c.source!=='physics'))));
   assert.ok(historical.excluded.some(e=>e.id==='row-mask'));
   assert.ok(historical.excluded.some(e=>e.id==='tone-grow'));
   assert.ok(historical.excluded.some(e=>e.id==='naive-prompt-retype'));
   assert.equal(data.effects.filter(e=>e.id==='text-edit').length,1,'退格改写不应重复入库');
   assert.ok(historical.excluded.some(e=>e.id==='line-converge'));
   assert.equal(rank(data,'连线向下汇聚')[0].effect.id,'line-converge');
-  assert.ok(data.effects.some(e=>e.id==='connection-merge'),'描线汇聚不得替换沿线传递');
   assert.ok(!find('resume-dissolve'));
   assert.ok(historical.excluded.some(e=>e.id==='resume-dissolve'));
   assert.ok(!find('text-burst'));
@@ -121,8 +123,9 @@ test('历史目录筛选与多案例切换同步输出、源码和时长，前�
     const select=d.getElementById('history-case');select.value=effect.entries[1].id;select.dispatchEvent(new w.Event('change'));await tick();
     const entry=effect.entries[1];
     assert.equal(d.getElementById('time-total').textContent,entry.preview.duration.toFixed(1));
-    assert.match(d.getElementById('code').textContent,new RegExp(entry.id));
-    assert.ok(d.getElementById('prompt').textContent.includes(entry.name));
+    assert.ok(d.getElementById('code').textContent.includes(env.w.MotionHistory.source_files[entry.code[0].file].content));
+    // 提示词核对所选案例的实际动作说明，不依赖来源案例标题。
+    assert.ok(d.getElementById('prompt').textContent.includes(entry.cases[0].note.replace(/[。；]+$/,'')));
     assert.equal(decodeURI(new URL(d.querySelector('#history-details a').href).pathname),entry.code[0].file);
     d.getElementById('next-effect').click();await tick();assert.equal(w.MotionHistoryRuntime.instanceCount,1);
     d.querySelector('[data-kind="action"]').click();d.querySelector('[data-effect="fade-rise"]').click();

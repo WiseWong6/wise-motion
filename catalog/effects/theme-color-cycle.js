@@ -7,7 +7,7 @@
     {name:'玫瑰棕',hex:'#A56D76'},{name:'香槟金',hex:'#C5A96C'}
   ];
   F['theme-color-cycle']=(root,K)=>{
-    const text=(value,x,y,role='caption',extra='')=>`<text x="${x}" y="${y}" dominant-baseline="hanging" font-size="${K.textSize(role,.6)}" font-weight="300" fill="var(--ink)" ${extra}>${value}</text>`;
+    const text=(value,x,y,role='caption',extra='')=>`<text x="${x}" y="${y}" dominant-baseline="hanging" font-size="${K.textSize(role,.6)}" font-weight="${role==='title'?700:300}" fill="var(--ink)" ${extra}>${value}</text>`;
     root.innerHTML='<svg class="pattern-svg" width="640" height="360" viewBox="0 0 640 360" aria-hidden="true"><g transform="translate(50 54) scale(.6)">'+
       text('主题换色',0,0,'title')+text('自定义主色 · 示例',900,12,'caption','text-anchor="end"')+
       '<g data-accent><rect x="0" y="85" width="108" height="162"/>'+[66,112].map((h,i)=>`<rect x="${581+i*109}" y="${221-h}" width="53" height="${h}"/>`).join('')+'</g>'+

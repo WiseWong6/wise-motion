@@ -77,7 +77,8 @@ test('指定历史入口已清理，两个标准动作只入库一次，来源�
   for(const id of ['naive-plate-push','naive-node-backout','naive-prompt-dock','naive-capture-mount','naive-conveyor-belts']){
     assert.ok(historical.excluded.some(e=>e.id===id));assert.ok(!historical.recipes.some(e=>e.history_id===id));
   }
-  assert.ok(historical.recipes.some(e=>e.history_id==='promo-grid-zoom'));
+  assert.ok(historical.excluded.some(e=>e.id==='promo-grid-zoom'));
+  assert.ok(data.effects.some(e=>e.id==='tile-wall-focus'));
   for(const id of ['naive-capture-mount','naive-conveyor-belts']){
     assert.equal(data.effects.filter(e=>e.id===migration(id).effect).length,1);
     for(const item of migration(id).files)assert.equal(createHash('sha256').update(await readFile(item.file)).digest('hex'),item.sha256);

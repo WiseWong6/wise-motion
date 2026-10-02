@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {runInNewContext} from 'node:vm';
 
-const files=['reel-paper','reel-neon','reel-grit-key','reel-flat-gen','reel-prompt-outro'];
+const files=['data-comparisons','reel-paper','reel-neon','reel-grit-key','reel-flat-gen','reel-prompt-outro'];
 const context={MotionFactories:{}};
 for(const file of files)runInNewContext(await readFile(new URL(`../catalog/effects/${file}.js`,import.meta.url),'utf8'),context);
 const factories=context.MotionFactories;
@@ -14,17 +14,17 @@ const definitions=new Map(effects.map(effect=>[effect.id,effect]));
 // 按真实绘制函数核对关系；这些行的顺序与目录 actions 顺序不同，不能按位置配对。
 const horizon={stars:['star-twinkle'],sun:['striped-sun-rise'],grid:['perspective-grid-flow']};
 const expected={
-  'paper-spiral-sequence':{paper:['paper-strip-stagger'],disc:[],spiral:['spiral-draw-spin'],orbit:['planar-dot-orbit'],text:[]},
+  'paper-spiral-sequence':{paper:['paper-strip-stagger'],disc:['paper-disc-pop'],spiral:['spiral-draw-spin'],orbit:['planar-dot-orbit'],text:['paper-title-stagger']},
   'neon-horizon':horizon,
-  'neon-title-sequence':{...horizon,chrome:['chrome-outline-echo'],neon:['neon-type-flicker'],flare:['cross-flare-travel']},
-  'keyframe-workbench':{panels:['panel-rise-collapse'],bounce:['ball-bounce-trails'],timeline:['timeline-keyframe-playhead']},
-  'material-phone-sequence':{phone:['material-phone-rise'],cards:['material-card-stagger'],switch:['material-switch-spring'],spinner:['material-spinner-arc'],like:['material-like-pop'],fab:['material-fab-panel']},
-  'generative-point-sequence':{field:['generative-flow-field'],points:['generative-point-morph'],code:['code-line-sequence']},
-  'prompt-to-core-sequence':{ui:['prompt-ui-push'],border:['prompt-border-trace'],letters:['prompt-chinese-type','prompt-char-gather'],send:['send-press-ring'],core:['core-ring-expand'],labels:[]},
-  'outro-recap-sequence':{burst:['radial-line-burst'],axis:['timeline-dock-down'],credits:[],segments:['color-segment-stagger']}
+  'neon-title-sequence':{...horizon,chrome:['chrome-outline-echo'],neon:['neon-type-flicker'],flare:['cross-flare-travel'],caption:['caption-type-caret']},
+  'keyframe-workbench':{panels:['panel-rise-collapse'],bounce:['ball-bounce-trails'],graph:['bezier-editor'],timeline:['timeline-keyframe-playhead'],'large-graph':['bezier-editor'],labels:['title-stagger']},
+  'material-phone-sequence':{shapes:['shape-pop-float'],labels:['title-stagger'],phone:['material-phone-rise'],cards:['material-card-stagger'],switch:['material-switch-spring'],spinner:['material-spinner-arc'],like:['material-like-pop'],fab:['material-fab-panel']},
+  'generative-point-sequence':{field:['generative-flow-field'],points:['generative-point-morph'],frame:['generative-frame-readout'],title:['title-stagger'],code:['code-line-sequence']},
+  'prompt-to-core-sequence':{ui:['prompt-ui-push'],border:['prompt-border-trace'],letters:['prompt-chinese-type','prompt-char-gather'],send:['send-press-ring'],core:['core-ring-expand'],labels:['prompt-label-lift']},
+  'outro-recap-sequence':{burst:['radial-line-burst'],axis:['timeline-dock-down'],credits:['outro-credit-lift'],segments:['color-segment-stagger']}
 };
 
-test('八个组合的三十六个拆解行都明确声明独立动作，未提炼的层保留空数组',()=>{
+test('八个组合的四十四个拆解行都明确声明独立动作，每层保留准确的动作关联',()=>{
   let count=0;
   for(const id of Object.keys(expected)){
     const rows=factories[id].breakdown;
@@ -38,7 +38,7 @@ test('八个组合的三十六个拆解行都明确声明独立动作，未提�
       count++;
     }
   }
-  assert.equal(count,36);
+  assert.equal(count,44);
 });
 
 test('所有关联均有可运行的独立示例，并且完整对应组合登记的组成动作',()=>{
@@ -66,4 +66,20 @@ test('真实图层关系不依赖列表顺序，同一文字层保留写入和�
   assert.equal(rows[0].actions[0],'star-twinkle');
   assert.notEqual(rows[0].actions[0],definitions.get('neon-horizon').actions[0]);
   assert.deepEqual(Array.from(factories['prompt-to-core-sequence'].breakdown.find(row=>row.id==='letters').actions),['prompt-chinese-type','prompt-char-gather']);
+});
+
+
+test('合并后的标题动作在三个组合中仍指向各自原样式和原时长',()=>{
+  const title=definitions.get('title-stagger');assert.ok(title);
+  const variants=new Map(title.variants.map(variant=>[variant.id,variant]));
+  for(const [composition,variant,duration] of [
+    ['material-phone-sequence','material',3000],
+    ['generative-point-sequence','outline',3000],
+    ['keyframe-workbench','handoff',8000]
+  ]){
+    assert.equal(definitions.get(composition).action_variants?.['title-stagger'],variant,composition+' 应匹配原标题样式');
+    assert.equal(variants.get(variant)?.duration_ms,duration,variant+' 保留原时长');
+    assert.equal(variants.get(variant)?.timing,undefined,variant+' 不额外压缩原时序');
+  }
+  assert.equal(title.timing,undefined,'三种标题保留各自原时钟');
 });

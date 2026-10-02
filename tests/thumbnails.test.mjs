@@ -17,7 +17,7 @@ function mediaStub(w){
 function close(env){env.w.MotionThumbs?.disposeAll();env.close();}
 
 test('历史左栏全部接入对应原作缩略图，静态单帧与原片定位不增加播放器',async()=>{
-  const env=await environment(true);
+  const env=await environment(true,{staticPreview:true});
   try{
     const {w}=env,d=w.document,played=mediaStub(w),drawn=[];
     // 原作绘制器另测；这里核对真实目录条目接到各自的图片、画布或原片。
@@ -87,15 +87,16 @@ test('原作单帧复制后保留画面并释放绘制器，迟到载入不能�
 });
 
 test('单个原作绘制失败不挡后续缩略图，失效图片可用静音原片代表帧',async()=>{
-  const env=await environment(true);
+  const env=await environment(true,{staticPreview:true});
   try{
     const {w}=env,d=w.document,played=mediaStub(w);let calls=0;
     w.MotionHistoryRuntime.poster=async(canvas,entry)=>{
       if(++calls===1)throw new Error('测试原作无法加载');canvas.dataset.entry=entry.id;return true;
     };
     d.querySelector('[data-kind="recipe"]').click();env.reveal();await w.MotionThumbs.whenIdle();
-    assert.equal(calls,68);assert.equal(d.querySelectorAll('.thumb .history-placeholder').length,1);
-    assert.equal(d.querySelectorAll('.thumb canvas[data-entry]').length,67);
+    const expected=w.MotionHistory.recipes.filter(e=>['isolated','web-isolated'].includes(e.entries[0].preview.type)&&typeof e.entries[0].preview.poster!=='string').length;
+    assert.equal(calls,expected);assert.equal(d.querySelectorAll('.thumb .history-placeholder').length,1);
+    assert.equal(d.querySelectorAll('.thumb canvas[data-entry]').length,expected-1);
     const img=d.querySelector('.thumb img'),host=img.parentElement;
     const effect=w.MotionHistory.recipes.find(e=>e.id===host.closest('.effect-item').dataset.effect);
     img.dispatchEvent(new w.Event('error'));const video=host.querySelector('video');
@@ -109,7 +110,7 @@ test('单个原作绘制失败不挡后续缩略图，失效图片可用静音�
 });
 
 test('离开页面释放缩略图，返回后恢复，旧的异步绘制不能覆盖新卡片',async()=>{
-  const env=await environment(true);
+  const env=await environment(true,{staticPreview:true});
   try{
     const {w}=env,d=w.document;mediaStub(w);let resolve;
     w.MotionHistoryRuntime.poster=(canvas,entry,_data,{isCurrent})=>new Promise(r=>{

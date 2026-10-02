@@ -61,7 +61,6 @@
     '.wm-book__base--right .wm-book__hint{justify-content:flex-end}',
     '.wm-book__base:not(:disabled):hover .wm-book__hint,.wm-book__base:focus-visible .wm-book__hint{opacity:1}',
     '.wm-book__spine{position:absolute;left:calc(50% - 1px);top:0;bottom:0;width:2px;background:color-mix(in srgb,var(--card-edge) 45%,transparent);transform:translateZ(1px);pointer-events:none}',
-    '@media(prefers-reduced-motion:reduce){.wm-book__hint{transition:none}}'
   ].join('\n');
   function art(index, prefix) {
     const dot = prefix + '-dot', fine = prefix + '-fine';
@@ -112,7 +111,6 @@
   function create(root, options) {
     options = options || {};
     const interactive = !!options.interactive;
-    const reduced = !!options.reducedMotion;
     const requestFrame = options.requestFrame || global.requestAnimationFrame.bind(global);
     const cancelFrame = options.cancelFrame || global.cancelAnimationFrame.bind(global);
     const now = options.now || (() => global.performance.now());
@@ -208,12 +206,10 @@
     function turn(direction) {
       if (destroyed || !interactive || animation) return false;
       direction = direction < 0 ? -1 : 1;
-      if (reduced) { draw({index: wrap(state.index + direction), flip: null, entrance: 1}); return true; }
       return start({type: 'turn', from: state.index, direction, duration: 450});
     }
     function restartIntro() {
       if (destroyed) return;
-      if (reduced) { stopFrame(); animation = null; draw({index: 0, flip: null, entrance: 1}); return; }
       start({type: 'intro', duration: INTRO_END});
     }
     function setSettings(next) {

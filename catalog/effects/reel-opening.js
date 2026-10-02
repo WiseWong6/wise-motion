@@ -22,7 +22,7 @@
   // 原字幕使用 Menlo 等宽字。固定字宽用于光标和对齐，播放时不读布局。
   const measure = (text, size, track) => text.length*(size*.60205078125+track)-track;
   const text = (part, value, x, y, size, track, fill, extra='') =>
-    `<text data-part="${part}" x="${x}" y="${y}" font-size="${size}" letter-spacing="${track}" fill="${fill}" style="font-family:Menlo,'SF Mono',monospace;font-weight:500" ${extra}>${value}</text>`;
+    `<text data-part="${part}" x="${x}" y="${y}" font-size="${globalThis.MotionKit.textSize(Math.max(10,size/3),1/3)}" letter-spacing="${track}" fill="${fill}" style="font-family:Oswald,sans-serif;font-weight:700" ${extra}>${value}</text>`;
   const items = [];
   let letterX = 358.5, serial = 0;
   for (const ch of 'MOTION') {

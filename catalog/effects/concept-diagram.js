@@ -20,7 +20,7 @@
     const path=(id,color='teal',width=2,extra='')=>`<path data-part="${id}" fill="none" stroke="var(--${color})" stroke-width="${width}" ${extra}/>`;
     const dot=(id,r,color='teal',opacity=1)=>`<circle data-part="${id}" r="${r}" fill="var(--${color})" opacity="${opacity}"/>`;
     const arrow=id=>`<g data-part="${id}">${path(id+'-line','teal',3,'stroke-linecap="round"')}${path(id+'-head','teal',3,'stroke-linecap="round"')}</g>`;
-    const text=(value,x,y,role,scale,color='ink',weight=300)=>`<text x="${x}" y="${y}" dominant-baseline="hanging" text-anchor="middle" font-size="${K.textSize(role,scale)}" font-weight="${weight}" fill="var(--${color})">${value}</text>`;
+    const text=(value,x,y,role,scale,color='ink',weight=K.type[role]>=K.type.title?700:300)=>`<text x="${x}" y="${y}" dominant-baseline="hanging" text-anchor="middle" font-size="${K.textSize(role,scale)}" font-weight="${weight}" fill="var(--${color})">${value}</text>`;
     root.innerHTML='<svg class="pattern-svg" width="640" height="360" viewBox="0 0 640 360" aria-hidden="true">'+
       '<g data-part="definition" transform="translate(136.4 -75) scale(.34)">'+
       ['方向','流动','压缩'].map((label,i)=>{const x=240+i*300;return `<g data-part="step${i}">`+

@@ -53,7 +53,7 @@ test('换色单独归入强调与色彩，和换图、平滑变色可分别搜�
   const historical=await history(data);assert.equal(effect.category,'attention');
   assert.ok(!historical.recipes.some(e=>e.history_id==='theme-switch'));assert.ok(historical.excluded.some(e=>e.id==='theme-switch'));
   for(const file of cross.rules['theme-switch'].migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
-  const env=await environment(true,{hash:'#theme-color-cycle'});
+  const env=await environment(true,{staticPreview:true,hash:'#theme-color-cycle'});
   try{
     const {w}=env,d=w.document;env.reveal();assert.equal(d.getElementById('preview-title').textContent,effect.name);
     for(const [query,id] of [[effect.name,effect.id],['主题连续换色',effect.id],['快速切换闪烁','rapid-cut'],['对象平滑换色','color-evolve']])assert.equal(w.MotionMatch.rank(data,query)[0].effect.id,id);

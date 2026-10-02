@@ -37,10 +37,10 @@
         </div>
         <div class="directory-top">
           <div class="kind-tabs" role="group" aria-label="参考层级">
-            <button data-kind="action" aria-pressed="true">动作 <span class="pill-count">119</span></button>
-            <button data-kind="composition" aria-pressed="false">组合 <span class="pill-count">12</span></button>
-            <button data-kind="illustration" aria-pressed="false">插画 <span class="pill-count">27</span></button>
-            <button data-kind="recipe" aria-pressed="false">历史 <span class="pill-count">163</span></button>
+            <button data-kind="action" aria-pressed="true">动作 <span class="pill-count">177</span></button>
+            <button data-kind="composition" aria-pressed="false">组合 <span class="pill-count">13</span></button>
+            <button data-kind="illustration" aria-pressed="false">插画 <span class="pill-count">43</span></button>
+            <button data-kind="recipe" aria-pressed="false">历史 <span class="pill-count">114</span></button>
           </div>
           <div class="search-control select-control">
             <div class="search">
@@ -88,14 +88,13 @@
         </div>
         <button id="next-effect" class="icon-btn stage-nav" type="button" aria-label="下一个动效" aria-controls="preview" aria-keyshortcuts="ArrowRight" title="下一个动效（→）" disabled><span data-icon="chevron-right"></span></button>
       </div>
-      <p id="motion-setting" hidden></p>
       <p id="selection-status" class="sr-only" role="status" aria-live="polite"></p>
     </section>
 
     <aside class="inspector" aria-label="动效说明、节奏与输出">
       <div class="ins-intro">
         <div class="ins-intro-head">
-          <h1 id="preview-title" tabindex="-1">渐入上移</h1>
+          <h1 id="preview-title" tabindex="-1">淡入上移</h1>
           <button id="copy-title" type="button" class="copy-btn" data-copy="title" aria-label="复制动效名称" title="复制动效名称"><span class="copy-morph" aria-hidden="true"><span class="copy-morph-icon" data-icon="clipboard-document"></span><span class="copy-morph-icon" data-icon="check"></span></span></button>
         </div>
         <p id="copy-status-title" class="copy-status" role="status" aria-live="polite"></p>
@@ -146,6 +145,7 @@
       <section class="ins-section">
         <button class="ins-head" data-section="about" aria-expanded="true" aria-controls="ins-about"><span data-icon="chevron-right"></span><span class="ins-label">动效说明</span></button>
         <div id="ins-about" class="ins-body">
+          <label id="effect-variant-field" class="field" hidden>示例样式<select id="effect-variant" class="history-case"></select></label>
           <dl class="ins-facts" id="ins-facts"></dl>
           <div id="history-details" hidden></div>
         </div>
@@ -217,6 +217,7 @@
       <button type="button" class="icon-btn" id="related-close" aria-label="关闭相关动作预览" autofocus><span data-icon="close"></span></button>
     </div>
     <p id="related-summary" class="hint"></p>
+    <label id="related-variant-field" class="field" hidden>示例样式<select id="related-variant" class="history-case"></select></label>
     <div id="related-preview" class="related-preview" role="img"></div>
     <div class="related-playbar" role="group" aria-label="相关动作播放控制">
       <button type="button" class="icon-btn" id="related-restart" aria-label="重播相关动作"><span data-icon="arrow-path"></span></button>
@@ -224,7 +225,6 @@
       <input type="range" id="related-scrub" min="0" max="1000" step="1" value="0" aria-label="相关动作播放进度">
       <output id="related-time"></output>
     </div>
-    <div id="related-examples" hidden><p class="field-label">独立动作示例</p><div id="related-example-buttons" class="related-chips"></div></div>
   </dialog>
 
   <script src="../vendor/liquid-glass/liquid-glass.js"></script><script src="player-glass.js"></script>
@@ -239,15 +239,20 @@
   <script src="effects/letter-settle.js"></script>
   <script src="effects/flow-bands.js"></script>
   <script src="effects/history-patterns.js"></script>
+  <script src="effects/promo-particles.js"></script>
+  <script src="effects/crt-collapse.js"></script>
   <script src="effects/data-motion.js"></script>
   <script src="effects/data-comparisons.js"></script>
   <script src="effects/live-code-readout.js"></script>
+  <script src="effects/glyph-code-fill.js"></script>
+  <script src="effects/math-formula-drift.js"></script>
   <script src="effects/word-slam.js"></script>
   <script src="effects/step-hop.js"></script>
   <script src="effects/concept-diagram.js"></script>
   <script src="effects/illustrations.js"></script>
   <script src="effects/door-halftone.js"></script>
   <script src="effects/kimi-illustrations.js"></script>
+  <script src="effects/claude-tile-illustrations.js"></script>
   <script src="effects/rasengan-illustrations.js"></script>
   <script src="effects/reel-opening.js"></script>
   <script src="effects/reel-paper.js"></script>

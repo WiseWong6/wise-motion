@@ -59,6 +59,28 @@ export async function environment(withApp = false, options = {}) {
     }
   }
   for (const file of sources) w.eval(await readFile(new URL('../' + file, import.meta.url), 'utf8'));
+  // 原作画面对照显式选择静帧；默认环境完整保留正式页面的自动播放。
+  // 使用真正的播放条暂停与定位，不替换播放器，也不改变系统偏好。
+  if (withApp && options.staticPreview) {
+    let previousStage;
+    const freezeSelection = () => {
+      const host=w.document.getElementById('preview'),stage=host?.firstElementChild;
+      if (!stage || stage===previousStage) return;
+      previousStage=stage;
+      const selected=w.document.querySelector('.effect-item[aria-current="true"]')?.dataset.effect;
+      const effect=w.MotionRegistry.effects.find(e=>e.id===selected)||w.MotionHistory?.recipes.find(e=>e.id===selected);
+      if (!effect) return;
+      const entry=effect.entries?.find(e=>e.id===w.document.getElementById('history-case')?.value)||effect.entries?.[0];
+      const duration=entry?Math.round(entry.preview.duration*1000):effect.duration_ms;
+      const time=entry?Math.round(duration*(typeof entry.preview.poster==='number'?entry.preview.poster:.65)):effect.preview_ms;
+      const scrub=w.document.getElementById('scrub');
+      scrub.value=1000*time/duration; scrub.dispatchEvent(new w.Event('input'));
+    };
+    freezeSelection();
+    w.document.addEventListener('click',freezeSelection);
+    w.document.addEventListener('keydown',freezeSelection);
+    w.addEventListener('pageshow',()=>{previousStage=w.document.getElementById('preview')?.firstElementChild;});
+  }
   return {dom,w,listeners,media,directoryMedia,reveal() {
     for (const observer of observers) observer.callback([...observer.nodes].map(target => ({target,isIntersecting:true})));
   },close() { w.MotionRuntime.disposeAll(); w.MotionHistoryRuntime?.disposeAll(); w.anime.engine.pause(); dom.window.close(); }};

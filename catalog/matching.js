@@ -5,16 +5,14 @@
     [/滚动|滚屏|走马灯/, ['seamless-scroll', 'dual-scroll'], '连续滚动'],
     [/两排|双排|上下两行|上下两排/, ['dual-scroll'], '两排同时运动'],
     [/反向|相反方向/, ['dual-scroll'], '方向相反'],
-    [/持续|一直|不停|循环|无缝/, ['seamless-scroll', 'dual-scroll', 'curve-path', 'orbit', 'float', 'parallax', 'follow', 'arc-cards', 'environment-chain'], '持续运动'],
+    [/持续|一直|不停|循环|无缝/, ['seamless-scroll', 'dual-scroll', 'curve-path', 'orbit', 'float', 'parallax', 'follow', 'arc-cards'], '持续运动'],
     [/依次|逐项|逐个|一个接一个|按顺序/, ['stagger-in', 'type-reveal', 'title-content'], '保留先后顺序'],
     [/三连(?:图标)?错峰|三个图标依次浮入/, ['stagger-in'], '三个图标等间隔错开进入'],
     [/标题.*内容|先.*标题|主张.*内容/, ['title-content'], '标题先于内容'],
     [/弧面|弧形.*卡片|卡片.*弧/, ['arc-cards'], '卡片沿弧面展示'],
     [/环绕|绕着|绕中心/, ['orbit', 'arc-cards'], '围绕中心运动'],
     [/字幕|讲述|讲解.*文字/, ['subtitle-focus'], '文字引导注意'],
-    [/环境|连锁|经过.*反应|带动.*周围/, ['environment-chain'], '主体引发环境变化'],
-    [/接触|水面|涟漪/, ['ripple', 'environment-chain'], '接触后回应'],
-    [/跟随|跟着|拖尾/, ['follow', 'environment-chain'], '保留跟随关系'],
+    [/跟随|跟着|拖尾/, ['follow'], '保留跟随关系'],
     [/自然|轻柔|轻轻|柔和/, ['fade-rise', 'float', 'follow'], '平缓进入或轻微往返'],
     [/翻转|翻面|背面/, ['card-flip'], '展示卡片背面'],
     [/数字|计数|增长/, ['count-up'], '数字逐步变化'],
@@ -51,17 +49,15 @@
     const prohibited = exclusions.filter(([pattern]) => denied.some(x => pattern.test(x)));
     const isScroll = /滚动|滚屏|走马灯/.test(positive);
     const isDual = /两排|双排|上下两行|上下两排|反向|相反方向/.test(positive);
-    const isChain = /环境|连锁|经过.*反应|带动.*周围/.test(positive);
     const scrollTarget=/刹停|减速.*停/.test(positive)?'scroll-brake':/轮播|停留/.test(positive)?'dwell-carousel':/纵向|终端|续接/.test(positive)?'vertical-feed':/滚筒|圆柱|转经筒/.test(positive)?'cylinder-drum':null;
     return registry.effects.flatMap(e => {
       if (explicit.includes(e.id) || prohibited.some(([, test]) => test(e))) return [];
-      // “持续滚动”和“主体引起环境反应”是结构要求，不能用相似视觉代替。
+      // “持续滚动”是结构要求，不能用相似视觉代替。
       const nameMatch=[e.name,...(e.previous_names||[])].find(name=>text.includes(name.toLowerCase()));
       const exact=!!nameMatch||positive.trim()===e.history_id;
       const patterns=e.kind==='recipe'?e.actions:[e.id];
       if (!exact && isScroll && !patterns.some(id=>(scrollTarget?[scrollTarget]:['seamless-scroll','dual-scroll']).includes(id))) return [];
       if (!exact && isScroll && isDual && !patterns.includes('dual-scroll')) return [];
-      if (!exact && isChain && !patterns.includes('environment-chain')) return [];
       let score = 0; const matched = [];
       if (nameMatch) { score += 20; matched.push(nameMatch); }
       // 来源名称常是长标题；输入 Claude 等片名片段也应找到，不区分英文大小写。
@@ -85,6 +81,7 @@
     const actions = registry ? effect.actions.map(id => registry.effects.find(x => x.id === id).name) : effect.actions;
     return [
       `动效说明：${effect.name}`,
+      ...(effect.variant_name ? [`示例样式：${effect.variant_name}`] : []),
       `目的：${effect.purpose}`,
       `对象：${effect.objects}`,
       '动作阶段：', ...effect.phases.map((p, i) => `${i + 1}. ${p}`),
@@ -95,12 +92,13 @@
       `明确排除：${effect.avoid}`,
       `对应参考：本地目录「${effect.name}」${actions.length ? '；所用动作：' + actions.join('、') : ''}`,
       `源码：${effect.source.path} 中的 ${effect.source.factory}`,
-      `来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。`,
+      `来源与许可：${effect.source.extraction ? '原码提取与接入' : '自编示例'}，AGPLv3；Anime.js 4.5.0，MIT。`,
       `关键假设：${effect.assumptions}`
     ].join('\n');
   }
   function describeHistory(effect,settings,registry){
     const entry=effect.entries.find(e=>e.id===settings.caseId)||effect.selected_entry||effect.entries[0],speed=settings.speed??1;
+    effect={...effect,...entry.definition};
     const names=effect.actions.map(id=>registry?.effects.find(e=>e.id===id)?.name||id);
     return [
       `动效说明：${effect.name}`,`目的：${effect.purpose}`,`对象与保留关系：${effect.retain}`,
