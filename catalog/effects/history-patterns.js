@@ -472,7 +472,13 @@
     return p=>{s('old',{opacity:1-section(p,.2,.42)});s('new',{opacity:section(p,.55,.82)});};
   });
   register('shutter-transition',(root) => {
-    const s=stage(root,text('old',320,190,'旧画面',45)+text('new',320,190,'新画面',45)+list(8,i=>rect('shade'+i,i*80,0,81,360,'rx="0" style="fill:var(--muted)"')));
+    // 参照横条交错展开：橙色旧页、青绿新页与深色底；条栅保留不透明遮挡。
+    const surface=(after)=>`<g data-part="${after?'new':'old'}">
+      <rect width="640" height="360" fill="${after?'var(--card)':'var(--stage)'}"/>
+      <rect x="50" y="50" width="540" height="260" rx="10" fill="none" stroke="var(--faint)" stroke-width=".65"/>
+      <g transform="translate(320 162)" fill="none" stroke="${after?'var(--teal)':'var(--accent)'}" stroke-width="1.65">${after?'<rect x="-48" y="-48" width="96" height="96" rx="13" transform="rotate(45)"/><rect x="-28" y="-28" width="56" height="56" rx="7" transform="rotate(45)"/>':'<circle r="60"/><circle r="40"/>'}</g>
+      ${text(after?'new-label':'old-label',320,263,after?'新画面':'旧画面',24,'font-weight="700"')}</g>`;
+    const s=stage(root,'<defs><linearGradient id="NAMESPACE-shutter-color" x1="0" y1="0" x2="0" y2="1"><stop stop-color="color-mix(in srgb,var(--accent) 12%,var(--card))"/><stop offset=".5" stop-color="var(--card)"/><stop offset="1" stop-color="color-mix(in srgb,var(--teal) 12%,var(--card))"/></linearGradient></defs>'+surface(false)+surface(true)+list(8,i=>rect('shade'+i,i*80,0,81,360,'rx="0" fill="url(#NAMESPACE-shutter-color)" stroke="var(--card-edge)" stroke-width=".5"')));
     return p=>{s('old',{opacity:p<.5?1:0});s('new',{opacity:p>=.5?1:0});for(let i=0;i<8;i++){const close=section(p,.1+i*.025,.25+i*.025),open=section(p,.58+i*.025,.76+i*.025);s('shade'+i,{transform:`translate(0 ${-360*(1-close+open)})`});}};
   });
   register('pivot-swing',(root) => {
@@ -557,12 +563,33 @@
     return p=>{const q=section(p,.15,.75);for(let i=0;i<5;i++)s('c'+i,{opacity:i===2?1:1-.82*q});};
   });
   register('staged-build',(root) => {
-    const s=stage(root,text('title',320,82,'让每一步都有依据',28)+list(3,i=>rect('layer'+i,150,110+i*65,340,50)+text('words'+i,320,144+i*65,['看见问题','理解原因','确定做法'][i],23)));
-    return p=>{for(let i=0;i<3;i++){const q=smooth(section(p,.08+i*.22,.24+i*.22));s('layer'+i,{opacity:q});s('words'+i,{opacity:q});}};
-  });
-  register('playback-track',(root) => {
-    const points=[[145,255],[245,155],[450,155],[450,250]],s=stage(root,rect('button',395,130,110,50)+text('label',450,163,'确认',22)+'<path data-part="cursor" d="M0 0 L0 23 L6 17 L13 28 L18 25 L12 15 L23 15 Z" fill="var(--ink)"/>');
-    return p=>{const t=Math.min(2.999,p*3),i=Math.floor(t),q=smooth(t-i),a=points[i],b=points[i+1];move(s,'cursor',a[0]+(b[0]-a[0])*q,a[1]+(b[1]-a[1])*q);const press=section(p,.65,.7)*(1-section(p,.7,.76));s('button',{transform:`translate(450 155) scale(${1-.08*press}) translate(-450 -155)`});};
+    const labels=['看见问题','理解原因','确定做法'];
+    const details=['先把问题看清楚','再找到其中的联系','让做法有据可循'];
+    // 同一轴线逐层加入，已出现的内容留在原位；中文用本地思源黑体。
+    const s=stage(root,'<g font-family="Wise Motion Sans,sans-serif">'+
+      '<text x="172" y="68" font-size="24" font-weight="700" fill="var(--ink)">让每一步都有依据</text>'+
+      list(2,i=>'<line data-part="join'+i+'" x1="144" y1="'+(139+i*74)+'" x2="144" y2="'+(191+i*74)+'" stroke="var(--path)" stroke-width=".85" pathLength="1" stroke-dasharray="1 1"/>')+
+      list(3,i=>{
+        const y=96+i*74;
+        return '<g data-part="layer'+i+'">'+
+          '<rect x="172" y="'+y+'" width="332" height="64" rx="9" fill="var(--card)" stroke="var(--card-edge)" stroke-width=".65"/>'+
+          '<rect data-part="edge'+i+'" x="172.5" y="'+(y+13)+'" width="2" height="38" rx="1" fill="var(--accent)"/>'+
+          '<text x="196" y="'+(y+28)+'" font-size="24" font-weight="700" fill="var(--ink)">'+labels[i]+'</text>'+
+          '<text x="197" y="'+(y+49)+'" font-size="12" font-weight="300" fill="var(--muted)">'+details[i]+'</text>'+
+          '<circle data-part="ring'+i+'" cx="144" cy="'+(y+32)+'" r="10" fill="var(--stage)" stroke="var(--path)" stroke-width=".85"/>'+
+          '<text data-part="number'+i+'" x="144" y="'+(y+36)+'" text-anchor="middle" font-family="Oswald,sans-serif" font-size="12" font-weight="700" fill="var(--muted)">'+(i+1)+'</text></g>';
+      })+'</g>');
+    return p=>{
+      const progress=Array.from({length:3},(_,i)=>smooth(section(p,.08+i*.22,.24+i*.22)));
+      for(let i=0;i<3;i++){
+        const q=progress[i],active=q*(1-(progress[i+1]||0));
+        s('layer'+i,{opacity:q,transform:`translate(0 ${8*(1-q)})`});
+        s('edge'+i,{opacity:.12+.7*active});
+        s('ring'+i,{stroke:active>.01?'var(--accent)':'var(--path)','stroke-opacity':.65+.35*active});
+        s('number'+i,{fill:active>.01?'var(--accent)':'var(--muted)'});
+        if(i<2)s('join'+i,{opacity:progress[i+1],'stroke-dashoffset':1-progress[i+1]});
+      }
+    };
   });
   register('cylinder-drum',(root)=>{
     const radius=102,tilt=.24;
@@ -639,10 +666,6 @@
       }
     };
   };
-  register('film-step',(root) => {
-    const s=stage(root,line('axis',100,210,540,210)+dot('body',100,210,15)+text('label',320,275,'固定每秒六帧，同一路线',18));
-    return p=>s('body',{cx:100+440*Math.min(1,Math.floor(p*24)/24)});
-  });
   register('sequential-spec',(root) => {
     const s=stage(root,list(3,i=>`<circle data-part="icon${i}" cx="${170+i*150}" cy="125" r="30" fill="none" stroke="var(--ink)" stroke-width="3" pathLength="1" stroke-dasharray="1"/>`+text('label'+i,170+i*150,205,['事实','原因','做法'][i],26)+text('value'+i,170+i*150,250,String((i+1)*12),27)));
     return p=>{for(let i=0;i<3;i++){const delay=i*.2;s('icon'+i,{'stroke-dashoffset':1-section(p,.04+delay,.24+delay)});s('label'+i,{opacity:section(p,.25+delay,.34+delay)});s('value'+i,{opacity:section(p,.35+delay,.44+delay)});}};

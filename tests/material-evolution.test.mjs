@@ -12,7 +12,7 @@ const ids=['brush-glyph-build','glyph-bar-collapse','dots-lines-cylinders','mate
 const starts=[0,2500,3550,6100,8100,9250,356/30*1000];
 const ends=[2500,3550,6100,8100,9250,356/30*1000,15054];
 const definition=(id,extra={})=>({id,duration_ms:id==='material-evolution-sequence'?15054:ends[ids.indexOf(id)]-starts[ids.indexOf(id)],...extra});
-const geometry=node=>{const copy=node.cloneNode(true);copy.querySelectorAll('.kimi-paper').forEach(node=>node.remove());copy.querySelectorAll('[style=""]').forEach(node=>node.removeAttribute('style'));return frameMarkup(copy);};
+const geometry=node=>{const copy=node.cloneNode(true);copy.querySelectorAll('.material-shared-paper,.kimi-paper').forEach(node=>node.remove());copy.querySelectorAll('[style=""]').forEach(node=>node.removeAttribute('style'));return frameMarkup(copy);};
 // visibility 可由子节点覆盖，检查实际 display 祖先才能保证整段退出绘制树。
 const displayed=node=>{
  for(let parent=node;parent;parent=parent.parentElement){
@@ -22,16 +22,16 @@ const displayed=node=>{
 };
 const near=(actual,expected,message)=>assert.ok(Math.abs(Number(actual)-expected)<.000002,message||`${actual} 应接近 ${expected}`);
 
-function setup({canvas=true,manualFrames=false,url=new URL('../catalog/index.html',import.meta.url).href}={}){
+function setup({canvas=true,manualFrames=false,captureCharacters=false,url=new URL('../catalog/index.html',import.meta.url).href}={}){
  const dom=new JSDOM('<!doctype html><head></head><body><div id="root"></div></body>',{url,runScripts:'outside-only'}),w=dom.window;
  const canvases=[],draws=[],requests=[],imageLoads=[],frames=new Map();let serial=0;
  // 这里只记录绘制调用。合成的字形采样用于走完粒子分支，不代表任何像素验收。
  function context(node){
   const stack=[],gradient={addColorStop(){}};
   const c={globalAlpha:1,save(){stack.push({globalAlpha:this.globalAlpha});},restore(){Object.assign(this,stack.pop());},
-   setTransform(){},clearRect(){draws.push({node,op:'clear'});},scale(){},translate(){},rotate(){},beginPath(){},moveTo(){},lineTo(){},closePath(){},rect(){},clip(){},ellipse(){},
-   fillRect(){draws.push({node,op:'fillRect'});},strokeRect(){draws.push({node,op:'strokeRect'});},fill(path){draws.push({node,op:'fill',path:path?.data});},drawImage(image){draws.push({node,op:'image',image});},createLinearGradient(){return gradient;},
-   getImageData(){const data=new Uint8ClampedArray(1280*720*4);for(let i=0;i<data.length;i+=4){data[i]=25;data[i+3]=255;}return {data};}};
+   setTransform(){},clearRect(){draws.push({node,op:'clear'});},scale(){},translate(){},rotate(){},beginPath(){},moveTo(){},lineTo(){},closePath(){},rect(...args){draws.push({node,op:'rect',args});},clip(rule){draws.push({node,op:'clip',rule});},ellipse(){},
+   fillRect(...args){draws.push({node,op:'fillRect',...(captureCharacters?{args,alpha:this.globalAlpha}:{})});},strokeRect(...args){draws.push({node,op:'strokeRect',...(captureCharacters?{args,alpha:this.globalAlpha}:{})});},fill(path){draws.push({node,op:'fill',path:path?.data});},drawImage(image){draws.push({node,op:'image',image});},createLinearGradient(){return gradient;},
+   getImageData(){draws.push({node,op:'pixels'});const data=new Uint8ClampedArray(1280*720*4);for(let i=0;i<data.length;i+=4){data[i]=25;data[i+3]=255;}return {data};}};
   return c;
  }
  w.HTMLCanvasElement.prototype.getContext=function(type,options){
@@ -104,6 +104,140 @@ test('实际分段各自构建自己的绘制节点，共享大字形资料而�
  }finally{e.close();}
 });
 
+test('七个独立动作与整片都保留唯一静态纸面兄弟层，定位不重建纸纹',async()=>{
+ const e=setup();let draw;
+ try{
+  for(const id of [...ids,'material-evolution-sequence']){
+   const def=definition(id);draw=e.w.MotionFactories[id](e.root,{},def);
+   const paper=e.root.querySelector('.material-shared-paper');assert.ok(paper);
+   await draw.ready;
+   assert.equal(e.root.querySelector('.material-shared-paper'),paper,'内容准备过程中应保留原纸面节点');
+   assert.equal(paper.parentElement,e.root,'静态纸面直接作为动作内容的兄弟层');
+   for(const time of [0,def.duration_ms*.4,def.duration_ms,def.duration_ms*.8,0]){
+    draw(time);assert.equal(e.root.querySelector('.material-shared-paper'),paper,id+' 回拖不能重建纸纹');
+    assert.equal(e.root.querySelectorAll('.kimi-paper').length,1);
+    assert.equal(e.root.querySelector('.kimi-paper').closest('svg'),paper,'唯一纸纹属于静态纸面 SVG');
+    assert.equal(e.root.querySelectorAll('svg.review-svg:not(.material-shared-paper) .kimi-paper').length,0,'动作 SVG 不再包含会被局部滤镜或混色重复处理的纸纹');
+    const ending=id==='glyph-cut-ending'||id==='material-evolution-sequence'&&time>=starts.at(-1);
+    for(const rect of paper.querySelectorAll('.kimi-paper>rect'))assert.equal(rect.getAttribute('fill'),ending?'#e3e4de':'#e2e3dd');
+   }
+   draw.destroy();draw=null;
+  }
+ }finally{draw?.destroy();e.close();}
+});
+
+test('字符压聚在正常播放帧之间连续移动，不能一两帧跳到横笔',async()=>{
+ const e=setup({captureCharacters:true});let draw;
+ try{
+  draw=e.w.MotionFactories['glyph-bar-collapse'](e.root,{},definition('glyph-bar-collapse'));await draw.ready;
+  const canvas=e.root.querySelector('canvas');
+  const positions=[];
+  for(let frame=15;frame<=28;frame++){
+   const start=e.draws.length;draw(frame/30*1000,{playback:true});
+   const strokes=e.draws.slice(start).filter(row=>row.node===canvas&&row.op==='fillRect');
+   assert.ok(strokes.length>0);positions.push(strokes[0].args[1]);
+  }
+  const distance=positions.at(-1)-positions[0];assert.ok(distance>100);
+  const steps=positions.slice(1).map((value,i)=>value-positions[i]);
+  assert.ok(steps.filter(step=>step>0.001).length>=9,'主体压聚至少有九个不同的中间画面');
+  assert.ok(steps.every(step=>step>=0&&step<distance*.18),'相邻正常播放帧不能突然跨过大部分位移');
+  const strokesAt=ms=>{const start=e.draws.length;draw(ms);return e.draws.slice(start).filter(row=>row.node===canvas&&(row.op==='fillRect'||row.op==='strokeRect')).map(({op,args,alpha})=>({op,args,alpha}));};
+  const middle=strokesAt(700);draw(1050);assert.deepEqual(strokesAt(700),middle,'回拖还原同一批字符的位置与透明度');
+ }finally{draw?.destroy();e.close();}
+});
+
+test('线团转柱体全程不断线，中途不停在散点位置，末态仍接入下一段',async()=>{
+ const e=setup();let draw,bridge;
+ try{
+  draw=e.w.MotionFactories['dots-lines-cylinders'](e.root,{},definition('dots-lines-cylinders'));await draw.ready;
+  const points=[...e.root.querySelectorAll('.wire-points rect')],lines=[...e.root.querySelectorAll('.wire-lines path')];
+  assert.equal(points.length,462);
+  const perColumn=lines.length/3;assert.ok(Number.isInteger(perColumn));
+  for(let ms=1350;ms<=2100;ms+=25){
+   draw(ms);
+   for(let c=0;c<3;c++){
+    const column=lines.slice(c*perColumn,(c+1)*perColumn);
+    const opacity=column.reduce((sum,line)=>sum+Number(line.getAttribute('opacity')),0)/column.length;
+    assert.ok(opacity>.02,`${ms} 毫秒第 ${c+1} 列不可退成没有连线的空档`);
+   }
+  }
+  const centers=ms=>{draw(ms);return points.map(point=>[Number(point.getAttribute('x'))+Number(point.getAttribute('width'))/2,Number(point.getAttribute('y'))+Number(point.getAttribute('height'))/2]);};
+  const before=centers(1629),middle=centers(1630),after=centers(1631);
+  const distance=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+  const velocity=(a,b)=>a.reduce((sum,p,i)=>sum+distance(p,b[i]),0)/a.length;
+  assert.ok(velocity(before,middle)>.1&&velocity(middle,after)>.1,'弧线中段保持移动，不先散开停住再重新启动');
+  const turn=before.reduce((sum,p,i)=>sum+Math.hypot(after[i][0]-2*middle[i][0]+p[0],after[i][1]-2*middle[i][1]+p[1]),0)/before.length;
+  assert.ok(turn<.01,'中段方向与速度连续变化');
+  draw(1575);const saved=geometry(e.root);draw(2300);draw(1575);assert.equal(geometry(e.root),saved);
+  draw(2550);const host=e.w.document.createElement('div');
+  bridge=e.w.MotionFactories['material-form-chain'](host,{},definition('material-form-chain'));await bridge.ready;bridge(0);
+  for(const selector of ['.wire-lines','.wire-points'])assert.equal(geometry(host.querySelector(selector)),geometry(e.root.querySelector(selector)),'下一段接住相同柱体末态');
+ }finally{draw?.destroy();bridge?.destroy();e.close();}
+});
+
+test('独立材质接续只准备实际桥接画布和纤维素材，不建立开头颗粒采样',async()=>{
+ const e=setup();let draw;
+ try{
+  draw=e.w.MotionFactories['material-form-chain'](e.root,{},definition('material-form-chain'));await draw.ready;
+  assert.equal(e.requests.length,0,'截取圆柱末态不应载入开头六兆字形数据');
+  assert.equal(e.imageLoads.length,1);assert.ok(e.imageLoads[0].endsWith('/material-evolution/fiber.png'));
+  const bridge=e.root.querySelector('.bridge-ball-layer');assert.ok(bridge);
+  assert.equal(e.root.querySelectorAll('canvas').length,1,'在场只保留实际像素球画布');
+  assert.equal(e.canvases.length,3,'只能建立能力探测、实际桥接和离屏像素拼图三个画布');
+  const active=e.canvases.filter(node=>node.width>0);assert.equal(active.length,2);assert.ok(active.includes(bridge));
+  assert.equal(active.filter(node=>node!==bridge).length,1,'另一个画布仅供像素拼图缩放');
+  assert.equal(e.draws.some(row=>row.op==='pixels'),false,'不应对隐藏书法遮罩读取像素');
+  assert.equal(e.root.querySelectorAll('.opening-notes,.wire-cloud').length,0);
+  draw(0);const first=geometry(e.root);
+  assert.equal(e.root.querySelector('.bridge-wire').getAttribute('visibility'),'visible');
+  assert.ok(e.root.querySelector('.bridge-wire-clip').getAttribute('d').length>0);
+  draw(1995);const tail=e.root.querySelector('.bridge-sphere-tail');assert.ok(tail);
+  assert.ok(Number(tail.getAttribute('opacity'))>0,'末端纤维图层应接替实际像素球');
+  assert.ok(Number(bridge.dataset.pixelSize)>0);const ending=geometry(e.root);
+  draw(0);assert.equal(geometry(e.root),first,'任意回到开头仍恢复真实圆柱');
+  draw(1995);assert.equal(geometry(e.root),ending,'再次定位末端恢复同样纤维接续');
+  draw(2000);assert.equal(tail.getAttribute('opacity'),'1');assert.equal(bridge.style.opacity,'0');
+  assert.equal(e.canvases.length,3,'回拖不能迟到地建立颗粒遮罩或姿态缓存');
+  assert.equal(e.requests.length,0);assert.equal(e.draws.some(row=>row.op==='pixels'),false);
+  draw.destroy();draw=null;assert.ok(e.canvases.every(node=>node.width===0),'释放桥接与离屏拼图画布');
+ }finally{draw?.destroy();e.close();}
+});
+
+test('重组末尾补齐球体轮廓，合拢首态无缺口且反向定位不重新挖洞',async()=>{
+ const e=setup();let bridge,merge;
+ try{
+  bridge=e.w.MotionFactories['material-form-chain'](e.root,{},definition('material-form-chain'));await bridge.ready;
+  const host=e.w.document.createElement('div');
+  merge=e.w.MotionFactories['spheres-material-merge'](host,{},definition('spheres-material-merge'));await merge.ready;
+  const canvas=e.root.querySelector('.bridge-ball-layer');
+  const frame=ms=>{const start=e.draws.length;bridge(ms);return e.draws.slice(start).filter(row=>row.node===canvas);};
+  const building=frame(1940),filling=frame(1960),complete=frame(1975);
+  assert.equal(building.filter(row=>row.op==='clip').length,3,'建立阶段仍逐球保留阶梯显现');
+  for(const rows of [building,filling,complete])assert.ok(rows.every(row=>row.op!=='clip'||row.rule!=='evenodd'),'已经建立的轮廓不再被反向裁切挖洞');
+  const before=building.filter(row=>row.op==='rect'),after=filling.filter(row=>row.op==='rect');
+  assert.equal(before.length,after.length);assert.ok(before.length>0);
+  before.forEach((row,i)=>{
+   assert.ok(after[i].args[1]<row.args[1],'每列上缘继续向上补齐');
+   assert.ok(after[i].args[1]+after[i].args[3]>row.args[1]+row.args[3],'每列下缘同时补齐');
+  });
+  assert.equal(complete.filter(row=>row.op==='clip').length,0,'交接前完整球体必须脱离阶梯裁切');
+  bridge(2000);merge(0);
+  const tail=e.root.querySelector('.bridge-sphere-tail'),first=host.querySelector('.fiber-spheres');
+  assert.equal(tail.getAttribute('opacity'),'1');assert.equal(canvas.style.opacity,'0');
+  assert.equal(tail.querySelector('.fiber-spheres').outerHTML,first.outerHTML,'两段交接包含同样的球心、比例、纤维方向和明暗');
+  for(const group of [tail.querySelector('.fiber-spheres'),first]){
+   assert.equal(group.querySelectorAll('image.fiber-image').length,3);
+   for(const image of group.querySelectorAll('image'))for(let node=image;node;node=node.parentElement){
+    assert.equal(node.hasAttribute('mask'),false,'球体及祖先没有残留阶梯遮罩');
+    assert.equal(node.hasAttribute('clip-path'),false,'球体及祖先没有残留裁切');
+   }
+  }
+  const end=geometry(tail),start=geometry(host);
+  bridge(0);bridge(1940);bridge(2000);assert.equal(geometry(tail),end);
+  merge(600);merge(33);merge(0);assert.equal(geometry(host),start);
+ }finally{bridge?.destroy();merge?.destroy();e.close();}
+});
+
 test('组合的七个稳定节点复用单段实际绘制，边界和反向定位保持同一几何',async()=>{
  const e=setup();let whole;
  try{
@@ -169,7 +303,7 @@ test('播放使用原片帧格并跳过重复画面，手动定位仍保留精�
  const e=setup();let whole;
  try{
   whole=e.w.MotionFactories['material-evolution-sequence'](e.root,{},definition('material-evolution-sequence'));await whole.ready;
-  assert.equal(whole.frameRate,30);
+  assert.equal(whole.frameRate,120);
   whole(1000.1,{playback:true});const count=e.draws.length,layer=e.root.querySelector('[data-layer="brush-glyph-build"]'),before=geometry(layer);
   whole(1001,{playback:true});whole(1015,{playback:true});whole(1033.2,{playback:true});
   assert.equal(e.draws.length,count,'同一原片帧内的刷新不能重复绘制');assert.equal(geometry(layer),before);
@@ -189,7 +323,7 @@ test('半帧起点的独立段沿全片帧格播放，末端和手动定位保�
   whole=e.w.MotionFactories['material-evolution-sequence'](e.root,{},definition('material-evolution-sequence'));await whole.ready;
   for(const id of ['dots-lines-cylinders','atlas-reveal-clear']){
    const index=ids.indexOf(id),start=starts[index],limit=ends[index]-start,host=e.w.document.createElement('div');
-   single=e.w.MotionFactories[id](host,{},definition(id));await single.ready;assert.equal(single.frameRate,30);
+   single=e.w.MotionFactories[id](host,{},definition(id));await single.ready;assert.equal(single.frameRate,120);
    single(1,{playback:true});near(host.dataset.materialTime,0);near(host.dataset.sourceTime,start/1000);
    single(20,{playback:true});whole(start+20,{playback:true});
    near(host.dataset.materialTime,1000/60);near(host.dataset.sourceTime,(start+1000/60)/1000);

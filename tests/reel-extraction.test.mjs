@@ -63,7 +63,7 @@ test('独立动作只建必要图层，不能把整段组合建立后藏起来',
       'outro-credit-lift':['credits'],
       'striped-sun-rise':['sun'],'perspective-grid-flow':['grid'],'star-twinkle':['stars'],
       'chrome-outline-echo':['chrome'],'neon-type-flicker':['neon'],'cross-flare-travel':['flare'],
-      'panel-rise-collapse':['panels'],'ball-bounce-trails':['bounce'],'timeline-keyframe-playhead':['timeline'],
+      'panel-rise-collapse':['panels','bounce','graph','timeline'],'ball-bounce-trails':['bounce'],'timeline-keyframe-playhead':['timeline'],
       'caption-type-caret':['caption'],'generative-frame-readout':['frame'],
       'generative-point-morph':['points'],'generative-flow-field':['field'],
       'radial-line-burst':['burst'],'timeline-dock-down':['axis']

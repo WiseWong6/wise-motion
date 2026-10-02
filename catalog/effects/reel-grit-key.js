@@ -35,7 +35,7 @@
   F['ghost-type-overprint']=root=>{base(root,'文字多层套印漂移','#0c0b09',overprintLayer());return clock(3000,overprintMotion(root));};
   F['film-scratch-flicker']=root=>{base(root,'胶片刮痕与尘点闪动','#0c0b09',scratchLayer());return clock(3000,scratchMotion(root));};
 
-  // 组合恢复原三个窗口；独立弹跳仍居中。曲线窗口直接调用独立曲线的共用图层。
+  // 三窗升入/收扁和组合恢复原布局；独立弹跳仍居中。曲线共用独立编辑器的绘制函数。
   const comp={x:470,y:230,w:980,h:470,index:0,title:'COMPOSITION — BALL_v03'};
   const originalComp={...comp,x:120},graphPanel={x:1130,y:230,w:670,h:470,index:1,title:'GRAPH EDITOR'};
   const timeline={x:120,y:730,w:1680,h:210,index:2,title:'TIMELINE'};
@@ -131,7 +131,7 @@
       draw({x:1260,y:260,w:480,height:480,draw:dp,progress,visible:t>6.9,caption:'cubic-bezier(.34, 1.56, .64, 1)',captionOpacity:dp});
     };
   }
-  function content(root,title,layers,{collapse=false,original=false,timelinePanel=timeline}={}){
+  function content(root,title,layers,{collapse=false,original=false,timelinePanel=timeline,duration}={}){
     const Pcomp=original?originalComp:comp,panels=original?[Pcomp,graphPanel,timelinePanel]:[Pcomp,timelinePanel];
     const id='motion-grit-key-'+ ++serial,defs=panels.map(P=>`<clipPath id="${id}-${P.index}"><rect x="${P.x}" y="${P.y+(P.header??34)}" width="${P.w}" height="${P.h-(P.header??34)}"/></clipPath>`).join('');let body=`<defs>${defs}</defs>`;
     const panelFor=layer=>layer==='bounce'?Pcomp:layer==='graph'?graphPanel:timelinePanel;
@@ -140,9 +140,17 @@
     for(const layer of layers.filter(l=>l!=='panels')){if(layer==='labels'){body+=labelLayer();continue;}if(layer==='large-graph'){body+=F['bezier-editor'].graphLayer(true,'large-graph',true);continue;}const P=panelFor(layer);body+=`<g ${collapse?`data-window="${P.index}"`:''}><g clip-path="url(#${id}-${P.index})">${layer==='bounce'?bounceLayer(Pcomp):layer==='graph'?F['bezier-editor'].graphLayer(true):timelineLayer(P)}</g></g>`;}
     base(root,title,'#131418',body);
     const draws=layers.map(l=>l==='panels'?panelMotion(root,panels):l==='bounce'?bounceMotion(root,Pcomp):l==='graph'?workbenchGraphMotion(root):l==='large-graph'?workbenchLargeGraphMotion(root):l==='labels'?labelMotion(root):timelineMotion(root,timelinePanel));
-    return clock(original||layers.includes('labels')?8000:6200,t=>draws.forEach(draw=>draw(t)));
+    return clock(duration??(original||layers.includes('labels')?8000:6200),t=>draws.forEach(draw=>draw(t)));
   }
-  F['panel-rise-collapse']=root=>content(root,'面板升入后纵向收扁',['panels']);
+  F['panel-rise-collapse']=root=>{
+    // 原 sKey 的三窗及内部演示一起运动；不搬入年份、结语与收尾大曲线。
+    const draw=content(root,'三窗错峰升入与中线压扁',['panels','bounce','graph','timeline'],{collapse:true,original:true,duration:6200});
+    // 软件界面小字按原绘图字号保留，避免放大后挤进34px顶栏和24px轨道行距。
+    for(const label of root.querySelectorAll('[data-layer="panels"] text'))set(label,'font-size',13);
+    for(const label of root.querySelectorAll('[data-layer="bounce"] text'))set(label,'font-size',label.hasAttribute('data-bounce-label')?13:14);
+    for(const label of root.querySelectorAll('[data-layer="timeline"] text'))set(label,'font-size',label.hasAttribute('data-timeline-label')?13:10);
+    return draw;
+  };
   F['ball-bounce-trails']=root=>content(root,'小球递减弹跳与残影',['bounce']);
   F['timeline-keyframe-playhead']=root=>{
     const draw=content(root,'关键帧建立与游标扫描',['timeline'],{timelinePanel:standaloneTimeline});
@@ -153,7 +161,7 @@
   F['keyframe-workbench']=root=>content(root,'弹跳与关键帧工作台',['panels','bounce','graph','timeline','large-graph','labels'],{collapse:true,original:true});
   F['keyframe-workbench'].title=root=>content(root,'年份说明退场与结语升入',['labels']);
   F['keyframe-workbench'].breakdown=[
-    {id:'panels',actions:['panel-rise-collapse'],name:'面板外框',start:100,end:6010,time:'0.10–6.01 秒',detail:'三个窗口按原来的序号错峰升入，末尾围绕各自中线收扁。组合恢复原三窗布局；独立面板保留居中的示意位置，共用外框与进退场函数。'},
+    {id:'panels',actions:['panel-rise-collapse'],name:'面板外框',start:100,end:6010,time:'0.10–6.01 秒',detail:'三个窗口按原来的序号错峰升入，末尾围绕各自中线收扁。组合与独立示例均保留原三窗和内部内容，共用外框、绘制与进退场函数。'},
     {id:'bounce',actions:['ball-bounce-trails'],name:'弹跳与速度对照',start:600,end:6010,time:'0.60–6.01 秒',detail:'同一时钟控制线性与缓动对照、小球四段递减弹跳、六道残影和落地压扁。组合位于原左窗，独立动作仅向右平移350像素。'},
     {id:'graph',actions:['bezier-editor'],name:'曲线手柄与速度映射',start:500,end:5930,time:'0.50–5.93 秒',detail:'直接共用缓动曲线编辑器的曲线、手柄、辅助线与行进点绘制函数；按原时钟改变手柄，同步驱动左侧黄色方块。组合恢复原右窗尺寸与配色。'},
     {id:'large-graph',actions:['bezier-editor'],name:'大曲线与同高小球',start:5700,end:8000,time:'5.70–8.00 秒',detail:'窗口收扁后，超调曲线按原100步逐点画出，曲线上白点与右侧黄球每秒同高运动。直接复用独立曲线第二个案例的求值与绘制函数。'},

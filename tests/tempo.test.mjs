@@ -26,7 +26,7 @@ test('同类动作共用主要时长与末尾停顿，循环和特殊节拍分�
     assert.equal(effect.timing.start_ms,150,effect.id);
     assert.equal(effect.duration_ms-effect.timing.end_ms,450,effect.id);
   }
-  for(const id of ['rapid-cut','card-conveyor','data-pulse','film-step','word-cloud-lift','dither-lab-book',
+  for(const id of ['rapid-cut','card-conveyor','data-pulse','word-cloud-lift','dither-lab-book',
     ...data.effects.filter(e=>e.id.endsWith('-illustration')).map(e=>e.id)]) assert.equal(get(id).timing,undefined,id);
 });
 

@@ -73,7 +73,7 @@
   const n=v=>Number(v.toFixed(3));
   const rand=i=>{const x=Math.sin(i*127.1+31.73)*43758.5453;return x-Math.floor(x);};
   const path=(points,close=false)=>points.map((p,i)=>(i?'L':'M')+n(p[0])+' '+n(p[1])).join('')+(close?'Z':'');
-  const attr=(el,key,value)=>el.setAttribute(key,typeof value==='number'?n(value):value);
+  const attr=(el,key,value)=>{const text=String(typeof value==='number'?n(value):value);if(el.getAttribute(key)!==text)el.setAttribute(key,text);};
   const move=(el,x,y,scale=1,angle=0)=>attr(el,'transform',`translate(${n(x)} ${n(y)}) rotate(${n(angle)}) scale(${n(scale)})`);
   const group=(body,transform='',extra='')=>`<g${transform?` transform="${transform}"`:''} ${extra}>${body}</g>`;
   const line=(d,width=.5,extra='')=>`<path d="${d}" fill="none"${/\bstroke=/.test(extra)?'':' stroke="currentColor"'} stroke-width="${width}" ${extra}/>`;
@@ -106,20 +106,29 @@
     const q=svg(root,`<path class="wire-cloud" d="${cloud}" fill="none" stroke="#151515" stroke-width=".6"/><g class="wire-lines" fill="none">${edges.map(()=>'<path/>').join('')}</g><g class="wire-points" fill="#171717">${vertices.map(()=>'<rect width="1.5" height="1.5"/>').join('')}</g>`, '',true);
     const dots=q.all('.wire-points rect'),lines=q.all('.wire-lines path'),cloudNode=q.one('.wire-cloud'),points=new Float64Array(vertices.length*3);
     return disposable(ms=>{
-      const p=clamp(ms/d.duration_ms),band=d.kimiOpen?smooth(ms,680,1080):smooth(p,.16,.31),form=d.kimiOpen?smooth(ms,1630,1850):smooth(p,.39,.77),scatter=d.kimiOpen?smooth(ms,1430,1630):0,enter=smooth(p,0,.08),angle=(d.kimiOpen?smooth(ms,1750,2550):smooth(p,.48,.86))*.12;
+      const p=clamp(ms/d.duration_ms),band=d.kimiOpen?smooth(ms,680,1080):smooth(p,.16,.31),form=d.kimiOpen?smooth(ms,1430,1850):smooth(p,.39,.77),enter=smooth(p,0,.08),angle=(d.kimiOpen?smooth(ms,1750,2550):smooth(p,.48,.86))*.12;
+      // 原线团松开时，空间连线同步接住；每列只算一次，不逐条退尽后再显现。
+      const lineGate=[0,1,2].map(c=>{
+        if(!d.kimiOpen)return 1;
+        const incoming=smooth(ms,[883,950,950][c],[1117,1050,1283][c]);
+        const handoff=smooth(ms,[1550,1450,1383][c],[1683,1617,1583][c]);
+        return (incoming*(1-handoff)+handoff)*.72;
+      });
       attr(cloudNode,'opacity',enter*(1-smooth(p,.17,.31))*.85);attr(cloudNode,'transform',`translate(0 ${n(8*(1-enter))})`);
       vertices.forEach((v,i)=>{
         const a=v.angle+angle,tx=320+(v.c-1)*84+33*Math.cos(a),ty=68+v.row*22.55+v.jitter+10*Math.sin(a),front=(Math.sin(a)+1)/2;
-        const sx=v.scatterX,sy=v.scatterY;
-        const x=mix(mix(mix(v.sx,v.bandX,band),sx,scatter),tx,form),y=mix(mix(mix(v.sy,v.bandY,band),sy,scatter),ty,form),r=mix(1.45,1.65+.65*front,form);
+        const bx=mix(v.sx,v.bandX,band),by=mix(v.sy,v.bandY,band);
+        // 散开位置作为弧线控制点，途中不落地停顿，同一顶点连续抵达柱面。
+        const bend=d.kimiOpen?2*form*(1-form):0;
+        const x=mix(bx,tx,form)+bend*(v.scatterX-(bx+tx)/2),y=mix(by,ty,form)+bend*(v.scatterY-(by+ty)/2),r=mix(1.45,1.65+.65*front,form);
         points[i*3]=x;points[i*3+1]=y;points[i*3+2]=front;
-        attr(dots[i],'x',x-r/2);attr(dots[i],'y',y-r/2);attr(dots[i],'width',r);attr(dots[i],'height',r);attr(dots[i],'opacity',enter*mix(.8,.38+.62*front,form));
+        attr(dots[i],'x',x-r/2);attr(dots[i],'y',y-r/2);attr(dots[i],'width',r);attr(dots[i],'height',r);attr(dots[i],'opacity',Math.min(1,enter*mix(.8,.38+.62*front,form)*(d.kimiOpen?1.5:1)));
       });
       edges.forEach(([a,b,c,type],i)=>{
         const x=points[a*3],y=points[a*3+1],reveal=smooth(p,.24,.33),depth=(points[a*3+2]+points[b*3+2])*.5;
         attr(lines[i],'d',`M${n(x)} ${n(y)}L${n(mix(x,points[b*3],reveal))} ${n(mix(y,points[b*3+1],reveal))}`);
         const sparse=i%13===0||type===0&&i%3===0?1:0,alpha=mix(sparse,.22+.75*depth,form);
-        attr(lines[i],'stroke','#171717');attr(lines[i],'stroke-width',type===0?.72:.39+.28*depth);attr(lines[i],'opacity',reveal*alpha);
+        attr(lines[i],'stroke','#171717');attr(lines[i],'stroke-width',type===0?.72:.39+.28*depth);attr(lines[i],'opacity',reveal*alpha*lineGate[c]);
       });
     });
   };
@@ -192,15 +201,14 @@
   }
   F['spheres-unite']=(root,K,definition)=>{
     const shared=material.paper,id=uid('spheres'),moonId=id+'-moon';
-    const edgeMask=`<mask id="${id}-initial-steps" maskUnits="userSpaceOnUse" x="-72" y="-72" width="144" height="144"><rect x="-72" y="-72" width="144" height="144" fill="white"/><g class="initial-sphere-steps" fill="black"><rect x="-72" y="-72" width="47" height="29"/><rect x="-72" y="-43" width="34" height="13"/><rect x="-72" y="-30" width="22" height="38"/><rect x="51" y="-43" width="21" height="51"/><rect x="38" y="-72" width="34" height="29"/></g></mask>`;
     const textureDefs=`<filter id="${id}-fiber-motion" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB"><feTurbulence class="fiber-flow-noise" type="fractalNoise" baseFrequency=".049 .053" numOctaves="2" seed="27" result="flow"/><feDisplacementMap class="fiber-flow-warp" in="SourceGraphic" in2="flow" scale=".55" xChannelSelector="R" yChannelSelector="G"/></filter><filter id="${id}-moon-soft"><feGaussianBlur class="moon-appearance-blur" stdDeviation=".55"/></filter>`;
     // PNG 的浅外缘比估读注册半径淡，补偿 5% 显示尺寸，缩放中心仍为亮心。
     const image=`<image class="fiber-image" href="${assetURL('fiber.png')}" x="-67.0747" y="-66.9688" width="132.878" height="132.878"/>`;
     const variants=['rotate(-7) scale(-1 1)','rotate(0)','rotate(11) scale(1 -1)'];
-    const fiberMarkup=i=>`<g class="fiber-sphere" data-sphere="${i}"><g mask="url(#${id}-initial-steps)"><g class="fiber-drift"><g class="fiber-variant" transform="${variants[i]}">${image}</g></g><path class="fiber-threads-a" d="${threads(47+i*11)}" fill="none" stroke="#f1f0ea" stroke-width=".12" opacity=".10"/><path class="fiber-threads-b" d="${threads(171+i*13)}" fill="none" stroke="#deded7" stroke-width=".10" opacity=".09"/></g></g>`;
+    const fiberMarkup=i=>`<g class="fiber-sphere" data-sphere="${i}"><g><g class="fiber-drift"><g class="fiber-variant" transform="${variants[i]}">${image}</g></g><path class="fiber-threads-a" d="${threads(47+i*11)}" fill="none" stroke="#f1f0ea" stroke-width=".12" opacity=".10"/><path class="fiber-threads-b" d="${threads(171+i*13)}" fill="none" stroke="#deded7" stroke-width=".10" opacity=".09"/></g></g>`;
     root.dataset.art='original';
     root.style.background='#e2e3dd';
-    root.innerHTML=`<svg class="review-svg" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="三枚已在场的纤维球靠拢放大，先合成单个纤维球，再快速变为月面；月球缩小下移，接向图鉴"><defs>${shared.paperDefs(id)}${shared.moonDefs(moonId)}${edgeMask}${textureDefs}</defs>${shared.paperMarkup(id)}<g class="sphere-marginalia">${shared.marginalia(16)}</g><g class="fiber-spheres">${fiberMarkup(0)}${fiberMarkup(2)}${fiberMarkup(1)}</g><g class="united-moon" filter="url(#${id}-moon-soft)">${shared.moonMarkup(moonId)}</g></svg>`;
+    root.innerHTML=`<svg class="review-svg" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="三枚已在场的纤维球靠拢放大，先合成单个纤维球，再快速变为月面；月球缩小下移，接向图鉴"><defs>${shared.paperDefs(id)}${shared.moonDefs(moonId)}${textureDefs}</defs>${shared.paperMarkup(id)}<g class="sphere-marginalia">${shared.marginalia(16)}</g><g class="fiber-spheres">${fiberMarkup(0)}${fiberMarkup(2)}${fiberMarkup(1)}</g><g class="united-moon" filter="url(#${id}-moon-soft)">${shared.moonMarkup(moonId)}</g></svg>`;
     const all=s=>Array.from(root.querySelectorAll(s)),one=s=>root.querySelector(s);
     const spheres=all('.fiber-sphere'),moon=one('.united-moon'),shade=one('.moon-shade'),shadow=one('.moon-shadow-gradient');
     // 用样式模糊合成后的月面，避免局部 SVG 滤镜把暗部裁成纯黑斑。
@@ -214,7 +222,6 @@
       const mineral=smooth(frame,264.12,264.95),merged=smooth(frame,263.15,264);
       attr(one('.fiber-spheres'),'opacity',1-mineral);
       one('.fiber-spheres').style.filter='brightness('+n(.95-.16*smooth(frame,257,264))+')';
-      attr(one('.initial-sphere-steps'),'opacity',1-smooth(frame,244,246));
       spheres.forEach(el=>{
         const i=Number(el.dataset.sphere),radius=i===1?centerRadius:sideRadius;
         const px=i===0?x-left:i===2?x+right:x;
@@ -534,14 +541,19 @@
  parts['dots-wireframe']=(root,K,d)=>{
   const paperId=uid('dots-paper'),old=base(root,K,{...d,duration_ms:2550,kimiOpen:true});const svg=root.querySelector('svg');svg.querySelectorAll(':scope > rect,:scope > path:not(.wire-cloud)').forEach(e=>e.remove());
   svg.querySelector('defs').insertAdjacentHTML('beforeend',material.paper.paperDefs(paperId));svg.querySelector('defs').insertAdjacentHTML('afterend',material.paper.paperMarkup(paperId));svg.insertAdjacentHTML('beforeend',material.paper.marginalia(16));
-  const canvas=document.createElement('canvas');canvas.width=1280;canvas.height=720;canvas.style.cssText='position:absolute;inset:0;width:640px;height:360px;pointer-events:none';root.append(canvas);const ctx=canvas.getContext('2d'),cloudNode=svg.querySelector('.wire-cloud'),pointsNode=svg.querySelector('.wire-points'),lineNodes=Array.from(svg.querySelectorAll('.wire-lines path')),pointNodes=Array.from(svg.querySelectorAll('.wire-points rect'));let last=-1,disposed=false;
+  // 连接段只截取线框末态，不建立已经完全退场的墨点与字形遮罩。
+  const canvas=d.wireOnly?null:document.createElement('canvas');
+  if(canvas){canvas.width=1280;canvas.height=720;canvas.style.cssText='position:absolute;inset:0;width:640px;height:360px;pointer-events:none';root.append(canvas);}
+  const ctx=canvas?.getContext('2d'),cloudNode=svg.querySelector('.wire-cloud'),pointsNode=svg.querySelector('.wire-points');let last=-1,disposed=false,particlesClear=false;
   const render=ms=>{if(disposed||last===ms)return;last=ms;
    old(ms);
    cloudNode.setAttribute('opacity','0');pointsNode.setAttribute('opacity',ease((ms-800)/250));
-   lineNodes.forEach((el,i)=>{const column=i/lineNodes.length*3|0,start=[883,950,950][column],full=[1117,1050,1283][column],fadeStart=[1550,1450,1383][column],fadeEnd=[1683,1617,1583][column],early=ease((ms-start)/(full-start))*(1-ease((ms-fadeStart)/(fadeEnd-fadeStart))),later=ease((ms-(1800+column*100))/210);el.setAttribute('opacity',Number(el.getAttribute('opacity'))*Math.max(early,later)*.72);});
-   pointNodes.forEach(el=>el.setAttribute('opacity',Math.min(1,Number(el.getAttribute('opacity'))*1.5)));
-   ctx.setTransform(2,0,0,2,0,0);ctx.clearRect(0,0,640,360);material.particles.draw(ctx,3.55+ms/1000);
-  };render.destroy=preserve=>{disposed=true;old.destroy?.();if(!preserve)canvas.width=canvas.height=0;};return render;
+   if(ctx&&(ms<1330||!particlesClear)){
+    ctx.setTransform(2,0,0,2,0,0);ctx.clearRect(0,0,640,360);
+    if(ms<1330)material.particles.draw(ctx,3.55+ms/1000);
+    particlesClear=ms>=1330;
+   }
+  };render.destroy=preserve=>{disposed=true;old.destroy?.();if(canvas&&!preserve)canvas.width=canvas.height=0;};return render;
  };
 })();
 /* Kimi 原片 6.10—8.10 秒：字符切柱 → 点阵环柄 → 棋盘 → 像素三球。 */
@@ -634,7 +646,7 @@
     if(!shared||!F['dots-wireframe'])throw new Error('连接段需要纸面共用文件和点阵圆柱先载入。');
     const id='kimi-bridge-'+(++instance), duration=Number(definition&&definition.duration_ms)||2000;
     const wireRoot=document.createElement('div');
-    const wireRenderer=F['dots-wireframe'](wireRoot,K,{id:'dots-wireframe',duration_ms:2550});
+    const wireRenderer=F['dots-wireframe'](wireRoot,K,{id:'dots-wireframe',duration_ms:2550,wireOnly:true});
     wireRenderer(2550);
     const wireMarkup=['.wire-lines','.wire-points'].map(q=>wireRoot.querySelector(q).outerHTML).join('');
     const textMarkup=bases.map((y,j)=>[0,1,2].map(c=>`<g class="bridge-code-band" data-column="${c}" data-band="${j}"><g clip-path="url(#${id}-code-window-${c}-${j})"><text x="128" y="${y}">${codeLine(c*700+j*41)}</text><text x="128" y="${y+6.6}">${codeLine(c*700+j*41+19)}</text></g></g>`).join('')).join('');
@@ -654,7 +666,7 @@
     const mosaic=document.createElement('canvas'),mctx=mosaic.getContext('2d',{willReadFrequently:true});
     const sphere=material.images.get('fiber.png');
     let sphereHeadRenderer=null,sphereHeadRoot=null,sphereHead=null;
-    // 末端直接共享下一段的首帧主体、纤维方向与阶梯遮罩，避免接缝跳变。
+    // 末端共享下一段完整圆球的首帧主体与纤维方向，独立停帧和组合交接均不留缺口。
     if(F['spheres-unite']){
       sphereHeadRoot=document.createElement('div');
       sphereHeadRenderer=F['spheres-unite'](sphereHeadRoot,K,{id:'spheres-unite',duration_ms:1250});
@@ -674,7 +686,9 @@
       if(t<7.817){canvas.dataset.pixelSize='0';canvas.dataset.revealTop='241';return;}
       // 外形是从下部逐层建起来；清晰度同时从粗格走向纤维，而非整球淡入。
       const size=lerpKeys([[7.817,13],[7.9,8.1],[7.967,4.3],[8.033,2.6],[8.1,.7]],t);
-      const revealTop=lerpKeys([[7.817,219],[7.833,213],[7.9,176],[7.967,151],[8.033,138],[8.1,122]],t);
+      const finish=clamp((t-8.033)/.034),rounding=finish*finish*(3-2*finish);
+      const revealTop=lerpKeys([[7.817,219],[7.833,213],[7.9,176],[7.967,151],[8.033,138]],t)-31*rounding;
+      const revealBottom=241+10*rounding;
       canvas.dataset.pixelSize=n(size);canvas.dataset.revealTop=n(revealTop);
       if(!sphere.complete||!sphere.naturalWidth)return;
       const resolution=Math.max(10,Math.round(132.878/size));
@@ -694,19 +708,16 @@
         // 粗像素阶段先呈扁球，再逐步长高，最终与下一段的完整纤维球重合。
         const aspect=lerpKeys([[7.817,.78],[7.9,.82],[7.967,.94],[8.033,1],[8.1,1]],t);
         ctx.translate(cx,179.33);ctx.scale(1,aspect);ctx.translate(-cx,-179.33);ctx.beginPath();
-        for(let x=-69.3;x<69.3;x+=12.6){
-          const center=x+6.3;
-          const plateau=lerpKeys([[7.817,6.3],[7.9,12.6],[8.033,25.2],[8.1,37.8]],t);
-          const staircase=Math.ceil(Math.max(0,Math.abs(center)-plateau)/18.9)*12.6;
-          const yy=Math.min(237,revealTop+staircase);
-          ctx.rect(cx+x,yy,12.64,Math.max(0,241-yy));
-        }
-        ctx.clip();
-        if(t>=8.033){
-          ctx.beginPath();ctx.rect(cx-72,179.33-72,144,144);
-          [[-72,-72,47,29],[-72,-43,34,13],[-72,-30,22,38],[51,-43,21,51],[38,-72,34,29]].forEach(r=>ctx.rect(cx+r[0],179.33+r[1],r[2],r[3]));
-          if(t>=8.05&&t<8.095)ctx.rect(cx-12.6,107.33,25.2,30);
-          ctx.clip('evenodd');
+        // 阶梯只负责逐列建立；最后补满上下轮廓，不能在成球后再次挖掉边缘。
+        if(finish<1){
+          for(let x=-69.3;x<69.3;x+=12.6){
+            const center=x+6.3;
+            const plateau=lerpKeys([[7.817,6.3],[7.9,12.6],[8.033,25.2]],t);
+            const staircase=Math.ceil(Math.max(0,Math.abs(center)-plateau)/18.9)*12.6*(1-rounding);
+            const yy=Math.min(237,revealTop+staircase);
+            ctx.rect(cx+x,yy,12.64,Math.max(0,revealBottom-yy));
+          }
+          ctx.clip();
         }
         ctx.imageSmoothingEnabled=t>=8.085;
         ctx.drawImage(mosaic,cx-67.0747,179.33-66.9688,132.878,132.878);
@@ -889,13 +900,15 @@ function particleData(){
 }
 const map=(t,keys)=>{for(let i=1;i<keys.length;i++)if(t<=keys[i][0])return mix(keys[i-1][1],keys[i][1],clamp((t-keys[i-1][0])/(keys[i][0]-keys[i-1][0])));return keys.at(-1)[1];};
 function drawParticles(ctx,t){
- const pool=particleData(),collapse=smooth(t,3.20,3.24),charOut=smooth(t,3.52,3.74),dotsIn=smooth(t,3.43,3.54);
+ const pool=particleData(),collapse=smooth(t,3.02,3.34),tailCollapse=smooth(t,3.16,3.43),charOut=smooth(t,3.52,3.74),dotsIn=smooth(t,3.43,3.54);
  // 灰墨先退，竖向小字符仍维持「道」的轮廓，然后各笔画向横向团块聚拢。
  if(t<2.86)drawGlyph(ctx,76,1-smooth(t,2.5,2.86));
- if(t<3.81){ctx.save();ctx.fillStyle='#171814';ctx.globalAlpha=smooth(t,2.5,2.70)*(1-charOut);
-  for(const p of characters){const delayed=p.origin[1]>311&&p.origin[0]>325&&p.origin[0]<385?smooth(t,3.24,3.42):collapse,travel=smooth(t,3.55,4.00),dot=pool[p.index];const x=mix(mix(p.origin[0],p.target[0],delayed),dot.mid[0],travel),y=mix(mix(p.origin[1],p.target[1],delayed),dot.mid[1],travel),h=mix(p.h,dot.r*2,charOut);
-   ctx.globalAlpha=smooth(t,2.5,2.70)*(1-charOut)*(p.keepInBand?1:1-delayed);if(ctx.globalAlpha<.002)continue;
-   if(p.index%3===0){ctx.fillRect(x-.27,y-h/2,.54,h);ctx.fillRect(x-.8,y-h/2,.8,.37);ctx.fillRect(x-.8,y+h/2-.4,.8,.37);}else{ctx.strokeStyle='#171814';ctx.lineWidth=.68;ctx.strokeRect(x-.65,y-h/2,1.3,h);if(p.index%5===0)ctx.fillRect(x-.5,y,.8,.3);}
+ // 压聚覆盖多个播放帧，尾笔与主体重叠跟进；共用的进度与画笔设置每帧只计算一次。
+ if(t<3.81){ctx.save();ctx.fillStyle=ctx.strokeStyle='#171814';ctx.lineWidth=.68;
+  const characterAlpha=smooth(t,2.5,2.70)*(1-charOut),travel=smooth(t,3.55,4.00);
+  for(const p of characters){const delayed=p.origin[1]>311&&p.origin[0]>325&&p.origin[0]<385?tailCollapse:collapse,dot=pool[p.index];const x=mix(mix(p.origin[0],p.target[0],delayed),dot.mid[0],travel),y=mix(mix(p.origin[1],p.target[1],delayed),dot.mid[1],travel),h=mix(p.h,dot.r*2,charOut);
+   ctx.globalAlpha=characterAlpha*(p.keepInBand?1:1-delayed);if(ctx.globalAlpha<.002)continue;
+   if(p.index%3===0){ctx.fillRect(x-.27,y-h/2,.54,h);ctx.fillRect(x-.8,y-h/2,.8,.37);ctx.fillRect(x-.8,y+h/2-.4,.8,.37);}else{ctx.strokeRect(x-.65,y-h/2,1.3,h);if(p.index%5===0)ctx.fillRect(x-.5,y,.8,.3);}
   }ctx.restore();
  }
  const body=smooth(t,3.89,4.00)*(1-smooth(t,4.1,4.50));if(body>0){ctx.save();ctx.globalAlpha=body*.45;const g=ctx.createLinearGradient(0,196,0,254);g.addColorStop(0,'#8d8e82');g.addColorStop(1,'#30312a');ctx.fillStyle=g;const sp=smooth((t-3.55)*1000,450,790),px=x=>319+(x-319)*(1+sp*.08),py=y=>224+(y-224)*(1+sp*.14);ctx.beginPath();longX.forEach((x,i)=>{if(i)ctx.lineTo(px(x),py(longTop[i]));else ctx.moveTo(px(x),py(longTop[i]));});for(let i=longX.length-1;i>=0;i--)ctx.lineTo(px(longX[i]),py(longBottom[i]));ctx.closePath();ctx.fill();ctx.restore();}
@@ -941,7 +954,7 @@ parts['release-ending']=root=>{
   {id:'brush-glyph-build',name:'书法笔形生成',part:'brush-writing',start:0,end:2500,sourceDuration:2500,keys:true,warm:[1800],detail:'保留七档墨色和独立笔画姿态，相邻姿态加权显影。'},
   {id:'glyph-bar-collapse',name:'字形聚为书法横带',part:'glyph-particles',start:2500,end:3550,sourceDuration:1050,keys:true,warm:[200,850,1000],detail:'竖向小字符沿各笔位置收拢成具有独立上下边的斜向横带。'},
   {id:'dots-lines-cylinders',name:'颗粒横笔接点阵圆柱',part:'dots-wireframe',start:3550,end:6100,sourceDuration:2550,keys:true,warm:[150,2150],detail:'同一颗粒场先形成独立长短横笔，再按列补点和空间连线。'},
-  {id:'material-form-chain',name:'字符网格接像素纤维球',part:'kimi-open-bridge',start:6100,end:8100,sourceDuration:2000,keys:true,images:['fiber.png'],warm:[200,1995],detail:'圆柱沿网格交接字符、环柄、棋盘和像素球，末帧接入真实纤维球。'},
+  {id:'material-form-chain',name:'字符网格接像素纤维球',part:'kimi-open-bridge',start:6100,end:8100,sourceDuration:2000,images:['fiber.png'],warm:[200,1995],detail:'圆柱沿网格交接字符、环柄、棋盘和像素球，末帧接入真实纤维球。'},
   {id:'spheres-material-merge',name:'纤维球合为月面',part:'spheres-unite',start:8100,end:9250,sourceDuration:1250,images:['fiber.png','moon.png'],warm:[500,800],detail:'三球保留各自半径和内层流向，合体后快速换为月面并缩小下移。'},
   {id:'atlas-reveal-clear',name:'版画图鉴显影清场',part:'atlas-expand',start:9250,end:356/30*1000,sourceDuration:2650,images:['moon.png','atlas-engraving.png'],warm:[750,1150,1550],detail:'三十七个独立轮廓分区显影，曲面及仪器内部连续运动后清场。'},
   {id:'glyph-cut-ending',name:'字形快切与字标收束',part:'release-ending',start:356/30*1000,end:15054,sourceDuration:15054-356/30*1000,keys:true,warm:[12500-356/30*1000],detail:'按独立矢量轮廓切换字符、数字、字标和发布短句，末段进入黑场。'}
@@ -965,7 +978,8 @@ parts['release-ending']=root=>{
    paperNode(root);
    for(const item of clips){const node=document.createElement('div');node.dataset.layer=item.id;node.style.cssText='position:absolute;inset:0;width:640px;height:360px;pointer-events:none';root.append(node);roots.push(node);}
   }else{root.dataset.layer=clip.id;paperNode(root);roots.push(root);}
-  const baseRects=isComposition?Array.from(root.querySelectorAll('.material-shared-paper .kimi-paper>rect')):[];
+  // 单段工厂会替换画板内容，保留静态纸层，构建后放回动画图层之外。
+  const sharedPaper=root.querySelector('.material-shared-paper'),baseRects=Array.from(sharedPaper.querySelectorAll('.kimi-paper>rect'));
   const set=(node,name,value)=>{const text=String(value);if(node.dataset[name]!==text)node.dataset[name]=text;};
   const applyClock=time=>{
    set(root,'materialTime',Number(time.toFixed(6)));
@@ -974,8 +988,8 @@ parts['release-ending']=root=>{
     const index=activeIndex(time);set(root,'materialPhase',clips[index].id);
     // 子项会单独切换 visibility；整段用 display 才能同时关掉所有后代。
     roots.forEach((node,i)=>{const display=i===index?'block':'none';if(node.style.display!==display)node.style.display=display;});
-    const fill=index===clips.length-1?'#e3e4de':'#e2e3dd';baseRects.forEach(node=>{if(node.getAttribute('fill')!==fill)node.setAttribute('fill',fill);});
    }else set(root,'materialPhase',clip.id);
+   const fill=(isComposition?clips[activeIndex(time)]:clip)===clips.at(-1)?'#e3e4de':'#e2e3dd';baseRects.forEach(node=>{if(node.getAttribute('fill')!==fill)node.setAttribute('fill',fill);});
   };
   function draw(time){
    if(disposed||lastDrawn===time)return;
@@ -999,7 +1013,9 @@ parts['release-ending']=root=>{
    latest=state.playback&&requested<limit?finiteTime(Math.floor((origin+requested)*.03+.00000001)/.03-origin,limit):requested;
    if(ready)draw(latest);else applyClock(latest);
   };
-  render.frameRate=30;
+  // 时钟留足采样余量，避免回调略早时重复一帧、下一次又跳帧。
+  // 两倍速度也能接住原帧；同一原帧由 draw 去重，昂贵绘制仍沿用原片帧率。
+  render.frameRate=120;
   const probe=document.createElement('canvas');let canvasOK=false;
   try{canvasOK=Boolean(probe.getContext('2d'));}catch(error){canvasOK=false;}
   probe.width=probe.height=0;
@@ -1026,7 +1042,8 @@ parts['release-ending']=root=>{
      const draw=parts[item.part](node,K,{id:item.part,duration_ms:item.sourceDuration});
      node.dataset.art='original';
      for(const svg of node.querySelectorAll('svg.review-svg'))Object.assign(svg.style,{position:'absolute',inset:'0',width:'640px',height:'360px',display:'block'});
-     if(isComposition){node.style.background='transparent';node.querySelectorAll('.kimi-paper').forEach(paper=>paper.remove());}
+     node.style.background='transparent';node.querySelectorAll('.kimi-paper').forEach(paper=>paper.remove());
+     if(!isComposition)node.prepend(sharedPaper);
      renderers.push({item,node,draw});
     }
     // 单段建立过程会替换它的内部节点；纸面遮罩重新置于同一个稳定画板上。

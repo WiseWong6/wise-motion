@@ -67,6 +67,7 @@ html[data-theme="light"] .motion-viewport,html[data-theme="light"] .motion-stage
 .motion-stage > .pattern-svg,.motion-stage > .pattern-canvas{display:block;width:640px;height:360px}
 .tile{position:absolute;left:200px;top:92px;width:240px;height:196px;padding:30px;background:var(--card);color:var(--card-ink);border:.65px solid var(--card-edge);border-radius:8px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
 .tile strong{font-size:var(--type-title);letter-spacing:-.04em;font-weight:700}.tile small{font-size:var(--type-caption);color:var(--card-muted)}.tile-symbol{width:54px;height:54px;display:grid;place-items:center;font-size:var(--type-title);background:var(--symbol);border-radius:8px;color:var(--symbol-ink)}
+.tile-symbol.tile-symbol-bare{background:none;border-radius:0}
 .mini-card{position:absolute;width:108px;height:138px;padding:17px;border:.65px solid var(--card-edge);border-radius:6px;background:var(--card);color:var(--card-ink);box-shadow:var(--card-shadow);display:flex;flex-direction:column;gap:12px}
 .mini-card strong{font-size:var(--type-body);letter-spacing:-.05em}.mini-card i{height:4px;border-radius:3px;background:currentColor;opacity:.18;width:75%}.mini-card i:last-child{width:50%}.tiny-mark{font-size:var(--type-caption);opacity:.55;font-variant-numeric:tabular-nums}
 .tone-0,.tone-1,.tone-2,.tone-3{background:var(--card);color:var(--card-ink)}

@@ -82,7 +82,7 @@ test('三栏目录筛选与节奏输出一致，相关弹窗不替换主预览�
     click('[data-effect="dual-scroll"]');
     assert.equal(d.getElementById('preview-title').textContent,name('dual-scroll'));
     assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(w.MotionRuntime.runningCount,0);
-    assert.ok(d.getElementById('ease-label').hidden); assert.ok(!d.getElementById('fixed-ease').hidden);
+    assert.ok(d.getElementById('ease-label').hidden); assert.equal(d.getElementById('fixed-ease'),null);
     click('#toggle-play'); assert.equal(w.MotionRuntime.runningCount,1);
     assert.equal(d.getElementById('toggle-play').getAttribute('aria-label'),'暂停当前动效');
     click('#toggle-play'); assert.equal(w.MotionRuntime.runningCount,0);

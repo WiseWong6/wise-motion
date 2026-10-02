@@ -34,27 +34,42 @@ test('三项迁入数据分类且原文件未改，五个历史入口剔除，�
   }
 });
 
-test('双百分数落定后紧接下一组，读数、柱高和柱顶位置共用原增长进度',async()=>{
+test('双百分数平缓交接，柱高、读数和柱顶保持同步且可倒拖',async()=>{
   const files=crosswalk.rules['resume-count'].migration.files;
   const original=new JSDOM(await readFile(files.find(f=>f.file.endsWith('preview.html')).file,'utf8'));
-  const timing=JSON.parse(await readFile(files.find(f=>f.file.endsWith('timing.json')).file,'utf8'));
   const values=[...original.window.document.querySelectorAll('[data-count-to]')].map(n=>{
-    const cue=timing.cues.find(c=>c.id===n.dataset.countCue),start=cue.start+cue.charAt[cue.text.indexOf(n.dataset.countWord)];
     const rise=JSON.parse(n.parentElement.dataset.evolve)[0];
-    return {target:+n.dataset.countTo,duration:+n.dataset.countDuration*1000,start,y:+n.getAttribute('y'),height:+rise.from.attr.transform.match(/0 ([\d.]+)/)[1]};
+    return {target:+n.dataset.countTo,y:+n.getAttribute('y'),height:+rise.from.attr.transform.match(/0 ([\d.]+)/)[1]};
   });original.window.close();
   const env=await environment();try{
     const {w}=env,root=w.document.getElementById('root'),player=w.MotionRuntime.create(root,effect('narrated-count')),{get,num}=access(root);
-    const second=values[0].duration;
-    player.seek(640);assert.equal(get('value0').textContent,'60%');assert.equal(get('value1').textContent,'0%');
-    for(const time of [0,320,640,second,second+280,second+560,3000]){
-      player.seek(time);
+    const heights=time=>{player.seek(time);return values.map((_,i)=>num('bar'+i,'height'));};
+    assert.deepEqual(heights(0),[0,0]);
+    assert.ok(heights(250)[0]>0);assert.equal(num('bar1','height'),0,'第二组应在第一组之后起步');
+    assert.equal(heights(500)[1],0);
+    const overlap=heights(570);
+    assert.ok(overlap[0]>0&&overlap[0]<values[0].height,'交接时第一组仍在收尾');
+    assert.ok(overlap[1]>0,'交接时第二组已经起步');
+    closeTo(heights(640)[0],values[0].height);
+    let previous=[0,0];
+    for(let time=0;time<=1200;time+=20){
+      const current=heights(time);
       values.forEach((v,i)=>{
-        const elapsed=time-(i?second:0),p=Math.max(0,Math.min(1,elapsed/v.duration)),q=1-(1-p)**3;
-        assert.equal(get('value'+i).textContent,Math.round(v.target*q)+'%');closeTo(num('bar'+i,'height'),v.height*q);
-        closeTo(num('bar'+i,'y')+num('bar'+i,'height'),1048);closeTo(num('value'+i,'y'),v.y+v.height*(1-q));
+        assert.ok(current[i]>=previous[i]&&current[i]<=v.height,'柱条应连续递增且不超出目标');
+        assert.equal(get('value'+i).textContent,Math.round(v.target*current[i]/v.height)+'%');
+        closeTo(num('bar'+i,'y')+current[i],1048);
+        closeTo(num('value'+i,'y'),v.y+v.height-current[i]);
       });
+      previous=current;
     }
+    // 检查交接边界的速度，防止后一组突然快速起步或前一组硬停。
+    for(const [i,time] of [[0,0],[1,500],[0,640],[1,1200]]){
+      const before=heights(time-1)[i],at=heights(time)[i],after=heights(time+1)[i];
+      assert.ok(Math.abs(at-before)<.01&&Math.abs(after-at)<.01,'起步和落定时速度应接近零');
+    }
+    assert.deepEqual(heights(1200),values.map(v=>v.height));
+    assert.equal(get('value0').textContent,'60%');assert.equal(get('value1').textContent,'78%');
+    assert.deepEqual(heights(3000),values.map(v=>v.height));
     reversible(w,root,player);
   }finally{env.close();}
 });

@@ -54,7 +54,19 @@
   const icon = name => EXTRA[name] || MotionIcons[name] || '';
   const mark = name => `<span data-icon="${name}">${icon(name)}</span>`;
 
-  let kind = 'action', category = 'all', tab = 'prompt', selected = null, controller = null;
+  const KIND_KEY = 'wise-motion-kind:' + location.href;
+  function readKind() {
+    try {
+      const saved = sessionStorage.getItem(KIND_KEY);
+      if (['action','composition','illustration','recipe'].includes(saved)) return saved;
+    } catch (_) { /* 无法读取时使用默认页签。 */ }
+    return null;
+  }
+  function rememberKind() {
+    try { sessionStorage.setItem(KIND_KEY, kind); } catch (_) { /* 存储受限时仍可正常切换。 */ }
+  }
+  const rememberedKind = readKind();
+  let kind = rememberedKind || 'action', category = 'all', tab = 'prompt', selected = null, controller = null;
   let debounce = null, resumeAfterVisible = false, lastPlayback = null, lastPaused = null;
   let navigationIds = [];
   const relatedPreview=MotionRelated.create({icon,getMain:()=>controller});
@@ -385,8 +397,6 @@
     paintSpeed(preserved?.speed || 1);
     easing.setOptions((effect.parameters.ease?.options || [effect.default_ease]).map(value => ({value, label:MotionMatch.easeLabels[value]})), preserved?.ease || effect.default_ease);
     $('ease-label').hidden = !effect.parameters.ease;
-    $('fixed-ease').hidden = !!effect.parameters.ease;
-    $('fixed-ease').textContent=effect.tempo_note;
     const related = effect.kind==='recipe' ? effect.actions : effect.actions.length ? effect.actions : data.effects.filter(e => e.kind==='composition'&&e.actions.includes(effect.id)).map(e => e.id);
     $('related').innerHTML = related.length
       ? `<p class="field-label" style="margin-top:18px">${effect.kind==='recipe' ? '提炼的组成动作' : effect.actions.length ? '相关动作' : '使用这个动作的组合'}</p><div class="related-chips">${related.map(rid => `<button type="button" class="btn" aria-haspopup="dialog" data-related="${rid}">${MotionKit.escape(data.effects.find(e => e.id === rid).name)}</button>`).join('')}</div>`
@@ -563,6 +573,7 @@
 
   function showKind(next) {
     kind = next;
+    rememberKind();
     category = 'all';
     const token = ++kindToken;
     document.querySelectorAll('[data-kind]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.kind === kind)));
@@ -931,12 +942,16 @@
   const requestedId=location.hash.slice(1);
   const requestedEffect=()=>data.redirects?.[requestedId]||requestedId;
   function selectInitial(){
-    const effect=data.effects.find(effect=>effect.id===requestedEffect())||data.effects.find(effect=>effect.id==='fade-rise');
-    if(kind!==effect.kind){kind=effect.kind;category='all';renderCategories();renderList();}
+    if (selected) return;
+    const requested = data.effects.find(effect=>effect.id===requestedEffect());
+    // 新链接按动效所在页签打开；同一页面刷新和加载期间的手动切换优先。
+    if (!rememberedKind && kindToken === 0 && requested) kind = requested.kind;
+    const effect=(requested?.kind===kind ? requested : null)||data.effects.find(effect=>effect.kind===kind)||data.effects.find(effect=>effect.id==='fade-rise');
+    renderCategories();renderList();rememberKind();
     const caseId=effect.entries?.find(entry=>entry.source_rule_id===requestedId.replace(/^history-/,''))?.id;
     selectEffect(effect.id,null,caseId,data.variant_redirects?.[requestedId]);
   }
-  if (requestedEffect() && !data.effects.some(effect => effect.id === requestedEffect())) {
+  if ((kind === 'recipe' && !historyReady) || (requestedEffect() && !data.effects.some(effect => effect.id === requestedEffect()))) {
     loadHistory().then(selectInitial).catch(selectInitial);
   } else selectInitial();
 })();

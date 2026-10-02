@@ -64,6 +64,7 @@
   };
   F.float = (root, M) => {
     const s = M.scene(root, M.tile('留一点轻盈', '缓慢起伏，保持安静'));
+    s.one('.tile-symbol').classList.add('tile-symbol-bare');
     s.one('.tile-symbol').innerHTML = '<svg data-motion-icon="layers" width="28" height="28" style="width:28px;height:28px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 7 9-4 9 4-9 4zM3 12l9 4 9-4M3 17l9 4 9-4"/></svg>';
     return (t, o) => { const a = M.ease(t / o.duration, o.ease) * Math.PI * 2; M.pose(s.one('.tile'), {y: -Math.sin(a) * 18, rotate: Math.sin(a) * 1.4}); };
   };
