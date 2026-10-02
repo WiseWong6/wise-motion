@@ -17,8 +17,8 @@ async function historyEnvironment(withApp=false){
 }
 test('每条历史审查均有出处，案例源码与原片范围没有混并，原源码保持只读',async()=>{
   const snapshot=JSON.parse(await readFile(state+'/source-snapshot.json','utf8'));
-  assert.deepEqual(historical.counts,{"reviewed":311,"recipes":67,"entries":72,"animation":64,"document":3});
-  assert.equal(historical.excluded.length,244);
+  assert.deepEqual(historical.counts,{"reviewed":311,"recipes":50,"entries":55,"animation":50,"document":0});
+  assert.equal(historical.excluded.length,261);
   assert.ok(historical.excluded.some(e=>e.id==='reading-rhythm'));
   assert.ok(!historical.recipes.some(e=>e.history_id==='reading-rhythm'));
   assert.ok(historical.excluded.some(e=>e.id==='resume-typography'));

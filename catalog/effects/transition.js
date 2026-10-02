@@ -66,8 +66,4 @@
     const s = M.scene(root, '<div class="zoom-board"><div class="zoom-target">进入想法</div></div><div class="headline" style="top:164px">看见更深一层。</div>');
     return (t, o) => { const p = M.span(t, 800, 2700, o.ease); M.pose(s.one('.zoom-board'), {scale: 1 + p * 3.6, opacity: 1 - M.span(t, 2300, 3000)}); M.pose(s.one('.headline'), {opacity: M.span(t, 2700, 3500, o.ease)}); };
   };
-  F.parallax = (root, M) => {
-    const s = M.scene(root, '<div class="landscape"><div class="sun"></div><div class="hill far"></div><div class="hill mid"></div><div class="hill near"></div></div>');
-    return (t, o) => { const p = Math.sin(M.ease(t / o.duration, o.ease) * Math.PI * 2); ['.sun','.far','.mid','.near'].forEach((key, i) => M.pose(s.one(key), {x: p * [8, 24, 55, 100][i]})); };
-  };
 })(globalThis.MotionFactories);

@@ -110,7 +110,7 @@
         "向上移动，同时逐渐变清晰。",
         "减速落到最终位置，保持可读。"
       ],
-      "retain": "从下方轻轻靠近，同时从透明变清晰。 卡片上方图标为文档线框，显示尺寸 28×28 像素，线宽 1.5；卡片与图标一起运动。",
+      "retain": "从下方轻轻靠近，同时从透明变清晰。 卡片上方图标为文档线框，显示尺寸 28×28 像素，线宽 1.5；图标不加底色或背景块；卡片与图标一起运动。",
       "avoid": "不要忽然弹跳或变成逐张切换。",
       "duration_ms": 1200,
       "loop": false,
@@ -191,7 +191,7 @@
         "放大到目标附近，出现轻微回弹。",
         "稳定在目标尺寸。"
       ],
-      "retain": "从较小状态变大，轻微越过后回到目标尺寸。 卡片上方图标为立方体线框，显示尺寸 28×28 像素，线宽 1.5；卡片与图标一起运动。",
+      "retain": "从较小状态变大，轻微越过后回到目标尺寸。 卡片上方图标为立方体线框，显示尺寸 28×28 像素，线宽 1.5；图标不加底色或背景块；卡片与图标一起运动。",
       "avoid": "回弹只发生一次，不反复抖动。",
       "duration_ms": 1200,
       "loop": false,
@@ -691,7 +691,7 @@
       "kind": "action",
       "category": "data",
       "loop": false,
-      "default_ease": "linear",
+      "default_ease": "inOutSine",
       "parameters": {
         "speed": {
           "label": "播放速度",
@@ -710,12 +710,12 @@
       "trigger": "按固定时间表演示；可暂停、重播和拖动时间。",
       "id": "narrated-count",
       "name": "分组递增",
-      "summary": "第一组柱条与数字先上涨并停住，随后第二组接着上涨，各组柱高与读数同步。",
-      "purpose": "依次展示两组数据，让前一组先落定，再呈现后一组。",
+      "summary": "第一组柱条与数字先平缓上涨，接近落定时第二组轻轻起步，以短暂交叠自然衔接，各组柱高与读数同步。",
+      "purpose": "依次展示两组数据，让前一组收尾时自然带起后一组。",
       "objects": "同一底线上的两根柱条、百分数与优化前后标签",
       "phases": [
-        "0.15 秒开始，优化前柱条与数字同步上涨，约 0.85 秒落在 60%。",
-        "优化前播放结束的同一时刻，优化后立即接着上涨，不插入停顿；1.47 秒落在 78%。",
+        "0.15 秒开始，优化前柱条与数字平缓加速、减速，约 0.85 秒落在 60%。",
+        "约 0.70 秒，优化前减速收尾时，优化后从静止平缓起步；交叠约 0.15 秒，1.47 秒落在 78%。",
         "两组结果共同保留至 1.92 秒结束，柱顶位置与读数始终同步。"
       ],
       "aliases": [
@@ -736,7 +736,7 @@
         "sequence",
         "grow"
       ],
-      "retain": "保留优化前先上涨、优化前结束后优化后立即启动的顺序，以及每组柱高、读数和数字上移的同步关系。优化前约 0.15–0.85 秒，优化后约 0.85–1.47 秒，两组之间没有空档；最终读数为 60% 和 78%。",
+      "retain": "保留优化前先起步、优化后随后接上的顺序，两组都平缓加速和减速。优化前约 0.15–0.85 秒，优化后约 0.70–1.47 秒，收尾与起步交叠约 0.15 秒，不插入等待；每组柱高、读数和数字上移同步，最终读数为 60% 和 78%。",
       "avoid": "不让两个计数同时启动，不改为数字轮滚动，不用播放次数累计数值，不添加原片叙事标题和音频。",
       "duration_ms": 1920,
       "preview_ms": 1720,
@@ -749,9 +749,9 @@
         "end_ms": 1470
       },
       "recommendation": "需要先展示一组数据，再呈现下一组时使用；适用于优化前后、两个阶段或两种方案的数据对比。",
-      "tempo_note": "总长 1.92 秒：开头停留 0.15 秒，优化前结束后立即接优化后，1.47 秒全部落定，末尾共同停留 0.45 秒。",
-      "analogy": "先让第一根柱子长高并停住，第二根柱子再接着长高。",
-      "assumptions": "从本机简历原作提取两组注册完成率图，只保留双柱、数字和标签。60% 与 78% 为示例；播放使用固定时间表，不要求绑定讲述或语音。按用户要求去掉两组之间的等待；保留原每组增长时长与同步关系，迁用时可调整间隔、时长与目标值。使用统一底色、颜色与字号，原工程保持只读。",
+      "tempo_note": "总长 1.92 秒：开头停留 0.15 秒，两组均平缓起落，优化后提前约 0.15 秒接住优化前的收尾，1.47 秒全部落定，末尾共同停留 0.45 秒。",
+      "analogy": "第一根柱子慢慢停住时，第二根柱子轻轻接着长高。",
+      "assumptions": "从本机简历原作提取两组注册完成率图，只保留双柱、数字和标签。60% 与 78% 为示例；播放使用固定时间表，不要求绑定讲述或语音。按用户要求让两组自然衔接：保留总时长和同步关系，改为平缓起落，并让第二组在第一组收尾时提前起步；迁用时可调整交叠、时长与目标值。使用统一底色、颜色与字号，原工程保持只读。",
       "source": {
         "path": "catalog/effects/data-comparisons.js",
         "factory": "narrated-count",
@@ -1088,7 +1088,7 @@
         "缓慢上升，再缓慢下降。",
         "以固定周期连续循环。"
       ],
-      "retain": "对象轻微上下起伏，幅度与节奏保持平稳。 卡片上方图标为叠层线框，显示尺寸 28×28 像素，线宽 1.5；卡片与图标一起运动。",
+      "retain": "对象轻微上下起伏，幅度与节奏保持平稳。 卡片上方图标为叠层线框，显示尺寸 28×28 像素，线宽 1.5；图标不加底色或背景块；卡片与图标一起运动。",
       "avoid": "不加入随机抖动或大幅度弹跳。",
       "duration_ms": 4000,
       "loop": true,
@@ -1321,7 +1321,7 @@
         "draw",
         "sequence"
       ],
-      "retain": "保留原作的变红、画线和恢复关系；文字位置、字号和细体字重保持不变；使用目录统一的横向画幅与舞台底色。",
+      "retain": "保留原作的变红、画线和恢复关系；文字位置、字号保持不变，字体使用思源黑体粗体，字重 700；使用目录统一的横向画幅与舞台底色。",
       "avoid": "不要加入原作的 3:4 背景、页码、标题和完整工作流程；不要放大文字或增加背景色块。",
       "duration_ms": 2400,
       "loop": false,
@@ -2463,88 +2463,6 @@
         "source_end_ms": 3500,
         "start_ms": 150,
         "end_ms": 1950
-      }
-    },
-    {
-      "id": "parallax",
-      "name": "远近视差",
-      "kind": "action",
-      "category": "space",
-      "summary": "视线移动时，前景移动得快，远景移动得慢。",
-      "purpose": "建立空间深度与行进感",
-      "aliases": [
-        "视差",
-        "景深",
-        "前景背景",
-        "镜头平移",
-        "空间",
-        "景深视差",
-        "图层景深视差"
-      ],
-      "behaviors": [
-        "continuous",
-        "depth",
-        "move"
-      ],
-      "phases": [
-        "远、中、近三个景层分开排列。",
-        "视线平移，三个景层以不同幅度移动。",
-        "沿同一路线平稳往返。"
-      ],
-      "retain": "视线移动时，前景移动得快，远景移动得慢。",
-      "avoid": "各层共享同一个视线移动方向。",
-      "duration_ms": 4000,
-      "loop": true,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        },
-        "ease": {
-          "label": "速度变化",
-          "default": "linear",
-          "options": [
-            "linear",
-            "outCubic",
-            "inOutSine"
-          ]
-        }
-      },
-      "source": {
-        "path": "catalog/effects/transition.js",
-        "factory": "parallax",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "preview_ms": 1920,
-      "recommendation": "适合建立空间深度与行进感。保留视线移动时，前景移动得快，远景移动得慢；各层共享同一个视线移动方向。",
-      "tempo_note": "一轮 4 秒；连续运动不在周期末停顿，首轮入场与累计时间同步。速度控件在此基础上整体调整。",
-      "objects": "远、中、近景",
-      "analogy": "近处移动明显，远处移动缓慢",
-      "trigger": "打开预览后按固定顺序播放；可暂停和定位时间。",
-      "assumptions": "使用自有抽象卡片与文字演示；对象内容、尺寸和总时长可调整，动作结构不变。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
-      "domains": [
-        "animation"
-      ],
-      "previous_names": [
-        "景深视差",
-        "图层景深视差"
-      ],
-      "timing": {
-        "source_duration_ms": 7000,
-        "source_preview_ms": 3360,
-        "source_start_ms": 0,
-        "source_end_ms": 7000,
-        "start_ms": 0,
-        "end_ms": 4000
       }
     },
     {
@@ -4630,11 +4548,11 @@
       "category": "transition",
       "summary": "多条遮挡带按间隔闭合，覆盖完整后切换并打开。",
       "purpose": "多条遮挡带按间隔闭合，覆盖完整后切换并打开。",
-      "objects": "遮挡带和前后画面",
+      "objects": "八条竖向遮挡带、橙色双圆旧画面与青绿色双菱形新画面",
       "phases": [
-        "旧画面无遮挡。",
-        "遮挡带依次闭合并切换底图。",
-        "遮挡带打开露出新画面。"
+        "橙色双圆旧画面完整显示。",
+        "八条深色遮挡带从上方依次闭合，完全覆盖后切换为青绿色新画面。",
+        "遮挡带依次向上打开，完整露出新画面并停留。"
       ],
       "aliases": [
         "百叶遮挡转场",
@@ -4646,7 +4564,7 @@
         "reveal",
         "stagger"
       ],
-      "retain": "多条遮挡带按间隔闭合，覆盖完整后切换并打开。",
+      "retain": "八条竖带保持80像素间距、81像素宽度与360像素高度，依次闭合、完全遮住后换页，再依次打开；旧页橙色、新页青绿色，深色遮挡带只带轻微双色渐变。",
       "avoid": "底图只能在完全遮住后替换。",
       "duration_ms": 1800,
       "loop": false,
@@ -4689,7 +4607,11 @@
       },
       "previous_names": [
         "百叶遮挡转场"
-      ]
+      ],
+      "reproduction": {
+        "presentation": "16:9画幅，设计尺寸640×360。沿用横条交错展开的配色：夜间旧页近黑#0a0a0b，新页#151517，文字暖白#f4f1ea，旧页双圆橙色#ff5a1f，新页双菱形青绿色#1fb5a8；白天旧页#f7f5f0，新页#fdfbf7，文字#222226，橙色#d54a19、青绿色#087f75。两页均有(x50,y50,w540,h260,r10)细边框；几何图形中心(320,162)，旧页圆半径60、40，新页96和56像素圆角正方形旋转45度；标题位于(320,263)，思源黑体Bold，24像素。八条遮挡带不透明，顶部颜色为12%橙色混入88%新页底色，中点使用新页底色，底部为12%青绿色混入88%新页底色；边线为0.5像素暗灰，避免大片亮灰抢占画面。",
+        "retain": "八条竖带保持80像素间距、81像素宽度与360像素高度，依次闭合、完全遮住后换页，再依次打开；旧页橙色、新页青绿色，深色遮挡带只带轻微双色渐变。 所有色值随深浅主题切换，保持色相与遮挡能力。八条竖带分别位于x=80i、y=0，i=0至7。用p作为原设计进度：实际播放150至1350毫秒对应p=0.10至0.935，超出范围保持端点；闭合进度clamp((p−0.10−0.025i)/0.15)，打开进度clamp((p−0.58−0.025i)/0.18)，竖带纵坐标为−360×(1−闭合进度+打开进度)。p达到0.50时切换底图，此时八条竖带必须全部闭合。"
+      }
     },
     {
       "id": "pivot-swing",
@@ -5866,11 +5788,11 @@
       "category": "layout",
       "summary": "在同一版面逐层加入信息，已解释内容保留作为后续依据。",
       "purpose": "在同一版面逐层加入信息，已解释内容保留作为后续依据。",
-      "objects": "多个内容层",
+      "objects": "一组居中的三层信息，依次为“看见问题／先把问题看清楚”“理解原因／再找到其中的联系”“确定做法／让做法有据可循”，左侧有 1、2、3 顺序标记与细连接线。",
       "phases": [
-        "第一层建立语境。",
-        "后续信息按讲述次序加入。",
-        "完整结构停留供阅读。"
+        "固定标题先建立语境，第一层用 0.48 秒从下方 8 像素升入并显现。",
+        "第二层在 0.81 秒、第三层在 1.47 秒开始加入，各用 0.48 秒落位；连接线随新层从上向下描出，新层的左侧细边和顺序标记呈强调色，前一层回到常态并保留。",
+        "1.95 秒三层累积完成，标题、信息位置与连接关系保持，最后一层保留轻微强调，停留至 2.4 秒。"
       ],
       "aliases": [
         "同场按讲述累积",
@@ -5882,8 +5804,8 @@
         "sequence",
         "appear"
       ],
-      "retain": "在同一版面逐层加入信息，已解释内容保留作为后续依据。",
-      "avoid": "不要换页清空上下文，也不要把全部内容同时出现。",
+      "retain": "640×360 画板，标题在 (172,68)；三层信息框左上角为 (172,96)、(172,170)、(172,244)，大小 332×64，圆角 9，边线 0.65 像素；正文标题左侧内距 24，标题为思源黑体粗体 24 像素，说明为思源黑体细体 12 像素。左侧标记中心 x=144，与各层垂直居中；顺序数字为 Oswald 粗体 12 像素，圆圈半径 10，连接线 0.85 像素。新层整体按 q=1−(1−p)³ 从下方 8 像素落位，透明度=q；已出现的内容持续保留。",
+      "avoid": "不要把全部内容同时出现，不清空前一层，不让已有信息重新漂移，不使用厚重色块、强阴影或额外装饰。",
       "duration_ms": 2400,
       "loop": false,
       "default_ease": "linear",
@@ -5911,7 +5833,7 @@
       "tempo_note": "约零点一五秒起动，主要动作 1.8 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
       "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
       "analogy": "在同一版面逐层加入信息，已解释内容保留作为后续依据。",
-      "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+      "assumptions": "这是信息逐层累积的独立结构示例，保持同一版面的身份、顺序和阅读位置。",
       "domains": [
         "animation",
         "document"
@@ -5927,6 +5849,9 @@
         "source_end_ms": 2720,
         "start_ms": 150,
         "end_ms": 1950
+      },
+      "reproduction": {
+        "presentation": "近黑底 #0a0a0b，暖白标题 #f4f1ea，次级说明 #a5a4ad；信息层底色 #151517、边线 #3a3a40，连接线 #62626b，新层细边与数字用橙色 #ff5a1f。浅色模式采用暖白舞台、近白信息层、深色文字与橙色强调。整体固定居中，左侧顺序标记与三层信息共同构成连续结构。"
       }
     },
     {
@@ -6443,77 +6368,6 @@
       ]
     },
     {
-      "id": "playback-track",
-      "name": "轨迹回放",
-      "kind": "action",
-      "category": "environment",
-      "summary": "指针沿固定记录移动，到指定事件位置才表现按压。",
-      "purpose": "指针沿固定记录移动，到指定事件位置才表现按压。",
-      "objects": "指针轨迹和按压事件",
-      "phases": [
-        "指针位于记录起点。",
-        "按轨迹移动并按时刻触发按压。",
-        "最后位置保持。"
-      ],
-      "aliases": [
-        "按记录回放操作",
-        "指针",
-        "鼠标回放",
-        "指针按记录回放"
-      ],
-      "behaviors": [
-        "move",
-        "react",
-        "sequence"
-      ],
-      "retain": "指针沿固定记录移动，到指定事件位置才表现按压。",
-      "avoid": "本示例是记录回放，不应称为实时可操作界面。",
-      "duration_ms": 2400,
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "source": {
-        "path": "catalog/effects/history-patterns.js",
-        "factory": "playback-track",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "preview_ms": 1338,
-      "recommendation": "适合指针沿固定记录移动，到指定事件位置才表现按压。保留对象关系和先后顺序。",
-      "tempo_note": "约零点一五秒起动，主要动作 1.8 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
-      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
-      "analogy": "指针沿固定记录移动，到指定事件位置才表现按压。",
-      "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
-      "domains": [
-        "animation",
-        "document"
-      ],
-      "previous_names": [
-        "按记录回放操作",
-        "指针按记录回放"
-      ],
-      "timing": {
-        "source_duration_ms": 4000,
-        "source_preview_ms": 2640,
-        "source_start_ms": 0,
-        "source_end_ms": 4000,
-        "start_ms": 150,
-        "end_ms": 1950
-      }
-    },
-    {
       "id": "cylinder-drum",
       "name": "柱面轮转",
       "kind": "action",
@@ -6663,68 +6517,6 @@
         "start_ms": 150,
         "end_ms": 3750
       }
-    },
-    {
-      "id": "film-step",
-      "name": "逐格推进",
-      "kind": "action",
-      "category": "continuous",
-      "summary": "同一条运动路线按固定帧数采样，形成逐格推进。",
-      "purpose": "同一条运动路线按固定帧数采样，形成逐格推进。",
-      "objects": "沿路径移动的主体",
-      "phases": [
-        "对象位于路径起点。",
-        "时间按固定间隔取整后更新位置。",
-        "路线终点与连续版本相同。"
-      ],
-      "aliases": [
-        "按低帧数分步运动",
-        "逐格",
-        "低帧率",
-        "逐格时间量化",
-        "低帧率逐格运动"
-      ],
-      "behaviors": [
-        "move",
-        "sequence"
-      ],
-      "retain": "同一条运动路线按固定帧数采样，形成逐格推进。",
-      "avoid": "改变的是采样节奏，不改变路线或随意抖动。",
-      "duration_ms": 4000,
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "source": {
-        "path": "catalog/effects/history-patterns.js",
-        "factory": "film-step",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "preview_ms": 2640,
-      "recommendation": "适合同一条运动路线按固定帧数采样，形成逐格推进。保留对象关系和先后顺序。",
-      "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
-      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
-      "analogy": "同一条运动路线按固定帧数采样，形成逐格推进。",
-      "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
-      "domains": [
-        "animation"
-      ],
-      "previous_names": [
-        "按低帧数分步运动",
-        "低帧率逐格运动"
-      ]
     },
     {
       "id": "dither-lab-book",
@@ -11357,14 +11149,14 @@
       "preview_ms": 1700,
       "summary": "软件窗口先错峰上浮落位，末尾各自绕水平中线压扁至消失。",
       "purpose": "软件窗口先错峰上浮落位，末尾各自绕水平中线压扁至消失。",
-      "objects": "两个保留原尺寸的深色软件窗口",
+      "objects": "左侧合成窗口、右侧曲线编辑器、下方时间线，包含速度对照方块、弹跳球、曲线手柄及五行关键帧",
       "phases": [
-        "合成窗口与时间线窗口沿用原序号，在零点一与零点三四秒开始上浮淡入。",
-        "窗口停留供内容演示。",
-        "从五点四秒起分别纵向收扁，宽度保持，到六点零一秒消失。"
+        "三个窗口分别在0.10、0.22、0.34秒开始从下方60像素上浮淡入，0.80、0.92、1.04秒落位。",
+        "窗口内同时演示线性与缓动的速度对照、四段递减弹跳、曲线控制点变化及五行关键帧单向扫描。",
+        "三个窗口分别在5.40、5.48、5.56秒开始绕各自水平中线纵向压扁，宽度保持不变；5.85、5.93、6.01秒完全消失。"
       ],
-      "retain": "保留原片窗口圆角、顶栏高度、边框与三圆点、上移六十像素和绕中线收扁；独立示例用两窗居中展示，组合的原三窗共用同一进退场函数。",
-      "avoid": "不是全方向缩小；不把逐块收扁写成整个画布同一枢轴收扁。",
+      "retain": "三个窗口的外框和内部内容使用相同位移与纵向缩放；每个窗口分别以自身中线为中心压扁。保留34像素顶栏、10像素圆角、1.5像素边框和三圆点。",
+      "avoid": "不能漏掉曲线窗口或只绘制空框；不能将内容留在原位、将宽度一起缩小，或围绕整个画布的中心压扁；不加入年份、结语和收尾大曲线。",
       "behaviors": [
         "move",
         "opacity",
@@ -11382,7 +11174,7 @@
       "analogy": "软件窗口先错峰上浮落位，末尾各自绕水平中线压扁至消失。",
       "recommendation": "用于需要该条明确对象与时序关系的场景；可更换内容，但保留描述中的运动关系。",
       "tempo_note": "保留原片局部时间，不套用目录统一压缩；播放速度只改变整体快慢。",
-      "assumptions": "依据本机 Claude 动效演进史源码重写局部；保留原图形几何、时间和颜色，纯英文数字使用目录的 Oswald Bold 字体。深浅模式均保留此原片特色画板；不含声音、字幕或其他场景动作。",
+      "assumptions": "基于软件工作台的三窗绘制函数，保留几何、时序、颜色与内部联动。软件界面小字沿用原绘图尺寸；英文和数字使用随包的Oswald Bold。",
       "original_scene": "claude-showreel-2026/sKey",
       "source": {
         "path": "catalog/effects/reel-grit-key.js",
@@ -11390,7 +11182,14 @@
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [
+          "catalog/effects/data-comparisons.js"
+        ]
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，内部设计坐标1920×1080，整幅等比缩放到640×360。背景#131418；左窗(x120,y230,w980,h470)，右窗(x1130,y230,w670,h470)，下窗(x120,y730,w1680,h210)。窗口#1c1e24，顶栏#23262d，边框#2c2f37。软件界面英文数字使用Oswald Bold；标题13、正文13或14、时间刻度10、曲线参数17像素，字号均指内部设计坐标。",
+        "retain": "三个窗口的外框和内部内容使用相同位移与纵向缩放；每个窗口分别以自身中线为中心压扁。保留34像素顶栏、10像素圆角、1.5像素边框和三圆点。 窗口序号i=0、1、2。入场a=1−2^(−10p)，p限制在0到1且p=(t−0.10−0.12i)/0.70，p=1时a=1；不透明度a，上移量由60(1−a)回到0。退场c=2^(10q−10)，q限制在0到1且q=(t−5.40−0.08i)/0.45，q=0时c=0；横向比例1、纵向比例1−c，c=1隐藏。时间t以秒计。内部所有动作共享t：1秒后每2秒一圈，u=((t−1)/2)%1，线性方块按u往返，黄色方块按同一曲线缓动；手柄1.6至2.4秒从(0.333,0.333)/(0.667,0.667)变为(0.8,0)/(0.2,1)，使用超调回落。小球四段弹跳高度250、180、120、70像素，六道残影各落后0.012圈。五行关键帧在0.90秒起每个错开0.025秒弹出，游标按u单向扫过；外框和内容统一压扁并裁切在各自窗口内。"
       }
     },
     {
@@ -11493,7 +11292,7 @@
         "距离游标不足约 2.53 画板像素的关键帧变白并放大一点五倍，离开即恢复。"
       ],
       "retain": "按 640×360 画板设计，面板位于（40,100），尺寸 560×160 像素；标题栏高约 21.3 像素，时间刻度区高约 22.7 像素，五行轨道的中心分别为 y=157.3、177.3、197.3、217.3、237.3，行距 20 像素。文字保持原比例；关键帧与游标的横向范围为 x=160–590，保留关键帧的相对时间位置、原色、四十一根刻度、菱形弹出和单向扫描。",
-      "avoid": "不改成往返，不关联实际上为鼠标点击按钮的 playback-track。",
+      "avoid": "不改成往返，不替换为指针点击按钮的动作。",
       "behaviors": [
         "move",
         "stagger",
@@ -15376,7 +15175,7 @@
         "objects": "由道字轮廓采样的竖向细字符、17400个固定编号墨点及一笔横向书法轮廓；横笔覆盖横向171–449像素，上边134–173像素，下边181–224像素，左下较厚、右上隆起。",
         "phases": [
           "0–0.36秒，完整道字墨迹淡去，小字符在0–0.20秒进入并保留每笔位置，字符高度5.4–6.5像素。",
-          "0.70–0.74秒，多数字符压聚至横向171–449像素的目标轮廓；走之笔尾部延后到0.74–0.92秒接上。",
+          "0.52–0.84秒，多数字符连续压聚至横向171–449像素的目标轮廓；走之笔尾部在0.66–0.93秒跟进，与主体的压聚过程重叠。",
           "0.93–1.05秒，细字符仍构成不对称横笔，墨点开始在0.93–1.04秒接替；末态保留书法起收笔和厚薄，接向墨点的两横分布。"
         ],
         "retain": "保留道字轮廓采样、字符列次序、逐列均匀保留数量和左下厚右上高的上下边界；字符与墨点共享固定位置数据，走之尾部延迟接入，墨点总量17400。",
@@ -15390,7 +15189,7 @@
       "objects": "由道字轮廓采样的竖向细字符、17400个固定编号墨点及一笔横向书法轮廓；横笔覆盖横向171–449像素，上边134–173像素，下边181–224像素，左下较厚、右上隆起。",
       "phases": [
         "0–0.36秒，完整道字墨迹淡去，小字符在0–0.20秒进入并保留每笔位置，字符高度5.4–6.5像素。",
-        "0.70–0.74秒，多数字符压聚至横向171–449像素的目标轮廓；走之笔尾部延后到0.74–0.92秒接上。",
+        "0.52–0.84秒，多数字符连续压聚至横向171–449像素的目标轮廓；走之笔尾部在0.66–0.93秒跟进，与主体的压聚过程重叠。",
         "0.93–1.05秒，细字符仍构成不对称横笔，墨点开始在0.93–1.04秒接替；末态保留书法起收笔和厚薄，接向墨点的两横分布。"
       ],
       "aliases": [
@@ -15411,7 +15210,7 @@
       "duration_ms": 1050,
       "preview_ms": 1000,
       "recommendation": "用于字形先转为字符，再压成一笔横向书法轮廓的承接；替换字形需重新提供轮廓采样，不复用普通爆散聚字排程。",
-      "tempo_note": "总长1.05秒；墨迹在0–0.36秒退去，主字符在0.70–0.74秒快速压聚，尾笔在0.74–0.92秒追上，墨点在0.93–1.04秒进入，字符与墨点短暂交叠。",
+      "tempo_note": "总长1.05秒；墨迹在0–0.36秒退去，主字符在0.52–0.84秒连续压聚，尾笔在0.66–0.93秒跟进，墨点在0.93–1.04秒进入，字符与墨点短暂交叠。",
       "analogy": "把一整字的笔画变成细小字符，再沿着原来的列挤成一笔厚薄不均的横画。"
     },
     {
@@ -15456,8 +15255,8 @@
         "objects": "17400个固定墨点，上短横与下长横各有独立书法上下边；三条线团的长度191、168、325像素，基线83、181、277像素，倾斜系数0.14、0.095、0.06；三个圆柱共462个固定顶点，每柱11排、每排14点。",
         "phases": [
           "0–0.45秒，横笔墨点重新分布为二的上短横与下长横，上横向右抬升，下横左端较厚、右端有收笔肩；两笔颗粒保持不同退散比例。",
-          "0.68–1.283秒，墨点逐渐让位，三条线团分别显现；上笔较长、中笔最短、下笔最长，保留各自倾角与乱线，三笔在1.383–1.683秒分别退散。",
-          "1.43–2.55秒，固定顶点从线团打散，在1.63–1.85秒转成三个圆柱；圆柱横向间距84像素、半径33像素，空间连线按列补齐并轻微转动。"
+          "0.68–1.283秒，墨点逐渐让位，三条线团分别显现；上笔较长、中笔最短、下笔最长，保留各自倾角与乱线，三笔在1.383–1.683秒先后松开，连线跟随固定顶点转入空间结构，交接中不断线。",
+          "1.43–2.55秒，固定顶点沿连续弧线从线团展开，在1.85秒抵达三个圆柱的柱面，途中不先停在散点状态；圆柱横向间距84像素、半径33像素，空间连线随顶点运动补齐并轻微转动。"
         ],
         "retain": "两横各自的起收笔、灰颗粒及退散曲线；三笔不同的长短与倾角，分别出现和退散；圆柱462个固定顶点、固定连边与深度透明度，不把17400个墨点错误地宣称为一一对应的462个空间顶点。",
         "avoid": "不把二的上横画成椭圆、下横画成圆头横杆，不把三写成三根等长等厚水平条，不同时骤然关掉三笔，不以卡片柱面轮播替代空间连线。"
@@ -15470,8 +15269,8 @@
       "objects": "17400个固定墨点，上短横与下长横各有独立书法上下边；三条线团的长度191、168、325像素，基线83、181、277像素，倾斜系数0.14、0.095、0.06；三个圆柱共462个固定顶点，每柱11排、每排14点。",
       "phases": [
         "0–0.45秒，横笔墨点重新分布为二的上短横与下长横，上横向右抬升，下横左端较厚、右端有收笔肩；两笔颗粒保持不同退散比例。",
-        "0.68–1.283秒，墨点逐渐让位，三条线团分别显现；上笔较长、中笔最短、下笔最长，保留各自倾角与乱线，三笔在1.383–1.683秒分别退散。",
-        "1.43–2.55秒，固定顶点从线团打散，在1.63–1.85秒转成三个圆柱；圆柱横向间距84像素、半径33像素，空间连线按列补齐并轻微转动。"
+        "0.68–1.283秒，墨点逐渐让位，三条线团分别显现；上笔较长、中笔最短、下笔最长，保留各自倾角与乱线，三笔在1.383–1.683秒先后松开，连线跟随固定顶点转入空间结构，交接中不断线。",
+        "1.43–2.55秒，固定顶点沿连续弧线从线团展开，在1.85秒抵达三个圆柱的柱面，途中不先停在散点状态；圆柱横向间距84像素、半径33像素，空间连线随顶点运动补齐并轻微转动。"
       ],
       "aliases": [
         "书法二三",
@@ -15492,7 +15291,7 @@
       "duration_ms": 2550,
       "preview_ms": 1483.3333333333333,
       "recommendation": "需要书法点团向乱线再向三个连线柱体演变时使用；粒子场和空间顶点是两种按固定排程接替的表示，内容替换要分别提供目标。",
-      "tempo_note": "总长2.55秒；两横在0–0.45秒建立；三笔显现窗口分别0.883–1.117、0.950–1.050、0.950–1.283秒，退散窗口分别1.550–1.683、1.450–1.617、1.383–1.583秒；空间柱体在1.63–1.85秒形成，后段总转角0.12弧度。",
+      "tempo_note": "总长2.55秒；两横在0–0.45秒建立；三笔显现窗口分别0.883–1.117、0.950–1.050、0.950–1.283秒，转入空间连线的交接窗口分别1.550–1.683、1.450–1.617、1.383–1.583秒，交接中不断线；固定顶点在1.43–1.85秒沿连续弧线形成柱体，后段总转角0.12弧度。",
       "analogy": "两道墨团先变成三束松散的线，再让线束绕成三个可以看出前后的柱体。"
     },
     {
@@ -16458,10 +16257,943 @@
         "document"
       ],
       "previous_names": []
+    },
+    {
+      "id": "moon-event-fill",
+      "name": "光面渐满",
+      "kind": "action",
+      "category": "attention",
+      "summary": "月面由月牙逐渐盈满，进度仍由原蝴蝶抵达月面的八十四个事件聚合得到。",
+      "purpose": "将原作的动作关系提炼为独立可复用参考。",
+      "objects": "原月貌、椭圆弧受光交界和透明暗面",
+      "phases": [
+        "开始时月面未受光，背景可透出。",
+        "原抵达事件逐个贡献进度，明暗交界沿椭圆弧向左推进。",
+        "最后一只蝴蝶抵达后形成完整满月。"
+      ],
+      "aliases": [
+        "光面渐满",
+        "月相",
+        "月亮渐圆",
+        "月牙渐盈成满月",
+        "金叶化蝶"
+      ],
+      "behaviors": [
+        "light",
+        "progress"
+      ],
+      "retain": "保留原八十四个抵达事件及平滑贡献平均，原月貌取样、边界柔化、受光色彩和透明暗面。",
+      "avoid": "不把进度改成固定线性补间，不使用随机坑洞或通用圆形遮罩。",
+      "duration_ms": 5700,
+      "preview_ms": 3135,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "moon-event-fill",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接提取金叶化蝶的原月貌数据、lunarPixel、createMoonRaster、paintMoonRaster；原蝴蝶轨迹二分计算出的八十四个抵达区间固定保存，保留事件聚合平均。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后播放一次；可暂停、重播和定位。",
+      "analogy": "月面由月牙逐渐盈满，进度仍由原蝴蝶抵达月面的八十四个事件聚合得到。",
+      "assumptions": "只绘制月面；原月面等比放大至半径九十，暗面透明；NASA/GSFC/Arizona State University 月貌保留原署名。",
+      "tempo_note": "原作第十一点五至十七点二秒，覆盖最后一只蝴蝶的抵达；定位按原绝对秒数计算。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "previous_names": [],
+      "reproduction": {
+        "presentation": "16:9 画幅；半径九十的原月面位于画板中心稍上，月外及未受光暗面透明，完整保留柔边与月貌。"
+      }
+    },
+    {
+      "id": "sunset-water-reflection",
+      "name": "倒影浮光",
+      "kind": "action",
+      "category": "attention",
+      "summary": "暖色太阳照在海面上，倒影随解析波面起伏；太阳抬升后，倒影按原受光计算缩短。",
+      "purpose": "将原作的动作关系提炼为独立可复用参考。",
+      "objects": "原暖色日盘、波面、透明受光倒影",
+      "phases": [
+        "原太阳照在海平面，远密近疏的波纹连续起伏。",
+        "太阳按原路径抬升，倒影沿波面朝向保持闪动。",
+        "倒影随光源高度缩短，并继续跟随光源横向位置。"
+      ],
+      "aliases": [
+        "倒影浮光",
+        "太阳",
+        "海面倒影",
+        "波面受光倒影场",
+        "夕阳"
+      ],
+      "behaviors": [
+        "light",
+        "react"
+      ],
+      "retain": "保留七十二行波面、四组解析波法线、原菲涅耳项、半角方向与透明受光层；抬升和横移都来自原太阳路径。",
+      "avoid": "不使用手绘光带、重复笔触或亮度驱动的条带形变。",
+      "duration_ms": 14000,
+      "preview_ms": 7700,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "sunset-water-reflection",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接迁入夕阳原暖色配色、sunDeformationAt、flightAt、waveAt、waterFresnel、buildWaterReflection、drawWaterReflection 与 makeSunBrush；只绘制太阳和海面，保留光源路径和法线受光关系。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后播放一次；可暂停、重播和定位。",
+      "analogy": "暖色太阳照在海面上，倒影随解析波面起伏；太阳抬升后，倒影按原受光计算缩短。",
+      "assumptions": "固定原九百乘一千二百画板，取海平面附近的完整宽度；移除飞机、绳索、音效和星空，保留原解析光源路径。",
+      "tempo_note": "取原动作时钟第十二至三十三秒，沿用原演示一点五倍观看速度，独立播放十四秒；波面仍用原秒数求值。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "previous_names": [],
+      "reproduction": {
+        "presentation": "16:9 画幅；原暖色天空与海面保持连续渐变，日盘位于海平线附近，倒影按波面受光闪动。"
+      }
+    },
+    {
+      "id": "drive-balloon-release",
+      "name": "逐个脱离",
+      "kind": "action",
+      "category": "environment",
+      "summary": "三十五只气球按原时刻依次松开，先继承原速度，再被风带向左上方；绳尾从车尾锚点自然落下。",
+      "purpose": "将原作的动作关系提炼为独立可复用参考。",
+      "objects": "原蓝色敞篷车、小葵、彩色气球及绳尾",
+      "phases": [
+        "气球簇附着在原车尾锚点，分别轻摆。",
+        "按各自松开时刻脱离，位置和速度连续衔接。",
+        "风和浮力逐渐带走气球，绳尾自然垂落。"
+      ],
+      "aliases": [
+        "逐个脱离",
+        "汽车",
+        "气球",
+        "气球逐个松开飘走"
+      ],
+      "behaviors": [
+        "detach",
+        "path"
+      ],
+      "retain": "保留三十五只的原分布、五批释放次序、各球惯性和阻力、绳尾从原锚点垂落及原汽车造型。",
+      "avoid": "不瞬移气球，不统一同时释放，不让绳尾凭空消失，不带音效。",
+      "duration_ms": 8000,
+      "preview_ms": 4400,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "drive-balloon-release",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接迁入原敞篷车绘制、trackedBalloonState、trackedBalloonString、release 与 drawBalloon；将原 p5 曲线绘制转为矢量路径，保持原绝对时间。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后播放一次；可暂停、重播和定位。",
+      "analogy": "三十五只气球按原时刻依次松开，先继承原速度，再被风带向左上方；绳尾从车尾锚点自然落下。",
+      "assumptions": "取原气球释放第零至八秒，原蓝底和车尾锚点关系保留；不带道路纹理与外围控件。",
+      "tempo_note": "原第零至八秒；每只气球释放时刻不变，调速整体调整观看时间。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "previous_names": [],
+      "reproduction": {
+        "presentation": "16:9 画幅；原蓝色背景，敞篷车及气球簇整体等比置入，完整保留气球、驾驶猫、车身和绳尾。"
+      }
+    },
+    {
+      "id": "dandelion-radial-release",
+      "name": "径向释放",
+      "kind": "action",
+      "category": "environment",
+      "summary": "原蒲公英球簇向外释放种子，细长气流和周围微粒同步向外推开。",
+      "purpose": "将原作的动作关系提炼为独立可复用参考。",
+      "objects": "九十六颗原种子、五千六百道气流和七百六十颗微粒",
+      "phases": [
+        "球簇保持原分布，释放事件尚未开始。",
+        "原一点六五秒触发径向位移，种子和气流一同向外。",
+        "保留原回摆与气流弯曲，停在原片段末态。"
+      ],
+      "aliases": [
+        "径向释放",
+        "蒲公英",
+        "球簇释放",
+        "向外释放与气流扩散"
+      ],
+      "behaviors": [
+        "detach",
+        "react"
+      ],
+      "retain": "保留原固定种子分布、开场事件、气流径向位移、微粒伸长和回摆，原 floret 绘制。",
+      "avoid": "不改成单个扩大的圆环，不随机重排种子，不替换为通用粒子爆炸。",
+      "duration_ms": 1000,
+      "preview_ms": 550,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "dandelion-radial-release",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接提取原蒲公英 openingEvent、openingDisplacement、openingAir、openingPose 和 floret；沿用原独立预览的一点四至二点四秒。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后播放一次；可暂停、重播和定位。",
+      "analogy": "原蒲公英球簇向外释放种子，细长气流和周围微粒同步向外推开。",
+      "assumptions": "保留原种子球簇、气流、微粒与灰绿场色；只取径向释放片段。",
+      "tempo_note": "原工程一点四至二点四秒，独立播放一秒；不能直接套用发布片窗口的秒数。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "previous_names": [],
+      "reproduction": {
+        "presentation": "16:9 画幅；原灰绿背景，原种子球簇及气流等比呈现。"
+      }
+    },
+    {
+      "id": "frog-impact-ripple",
+      "name": "落入扩波",
+      "kind": "action",
+      "category": "environment",
+      "summary": "原青蛙从荷叶跳入水面，落点触发原水花、扩散涟漪和快起慢衰的正弦波纹。",
+      "purpose": "将原作的动作关系提炼为独立可复用参考。",
+      "objects": "原青蛙、荷叶、水花、三道涟漪和正弦波纹",
+      "phases": [
+        "青蛙留在原荷叶上，接近后按原事件起跳。",
+        "落水后才从真实落点溅水并扩散三道涟漪。",
+        "教学原波形按快起慢衰的包络消散。"
+      ],
+      "aliases": [
+        "落入扩波",
+        "青蛙落水",
+        "涟漪",
+        "蒲公英的旅行"
+      ],
+      "behaviors": [
+        "react",
+        "propagate"
+      ],
+      "retain": "保留由原主体接近荷叶求得的第一起跳事件、零点四六秒跃起轨迹、原水花与涟漪，以及教学正弦波形的幅度包络。",
+      "avoid": "不提前触发波纹，不用通用扩圆替换原落水，不带文字或其他章节。",
+      "duration_ms": 2100,
+      "preview_ms": 1155,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "frog-impact-ripple",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接提取蒲公英原 frogEvents、frogPose、frog、pondAnimals、lotus；叠加原教学案例 waveform，触发时刻取原青蛙事件，保持原水花。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后播放一次；可暂停、重播和定位。",
+      "analogy": "原青蛙从荷叶跳入水面，落点触发原水花、扩散涟漪和快起慢衰的正弦波纹。",
+      "assumptions": "只保留首个青蛙落水事件，镜头跟随落点；主体与种子插画另行独立呈现。",
+      "tempo_note": "从原第一起跳前零点四秒开始，独立播放二点一秒；波形年龄取落水之后的原秒数。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "previous_names": [],
+      "reproduction": {
+        "presentation": "16:9 画幅；原绿色水面，镜头围绕荷叶与青蛙落点，落水后才出现水花与涟漪。"
+      }
+    },
+    {
+      "id": "osmanthus-moon-illustration",
+      "name": "金色满月",
+      "kind": "illustration",
+      "category": "illustration-nature",
+      "summary": "原金叶化蝶中的金色满月，保留真实正面月貌明暗和柔和圆周。",
+      "purpose": "将原作物件提炼为独立可复用插画。",
+      "objects": "原月貌、金色受光面和透明圆周",
+      "phases": [
+        "完整物件居中呈现。",
+        "保持原轮廓、比例与细节。",
+        "透明背景下保持静止。"
+      ],
+      "aliases": [
+        "金色满月",
+        "月亮",
+        "满月",
+        "金叶化蝶"
+      ],
+      "behaviors": [
+        "hold"
+      ],
+      "retain": "保留原 NASA/GSFC/Arizona State University 正面月貌数据、原色彩取样与边缘柔化。",
+      "avoid": "不带原场景、背景、字幕、音频或外围控件。",
+      "duration_ms": 3000,
+      "preview_ms": 1650,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "osmanthus-moon-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "analogy": "原金叶化蝶中的金色满月，保留真实正面月貌明暗和柔和圆周。",
+      "assumptions": "透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。",
+      "tempo_note": "静态插画全程保持；播放与定位不改变物件。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "previous_names": []
+    },
+    {
+      "id": "sunset-sun-illustration",
+      "name": "暖色太阳",
+      "kind": "illustration",
+      "category": "illustration-nature",
+      "summary": "原夕阳中的暖色日盘，上亮下暗，保留原渐变和柔和圆周。",
+      "purpose": "将原作物件提炼为独立可复用插画。",
+      "objects": "暖黄到橘红的原太阳圆盘",
+      "phases": [
+        "完整物件居中呈现。",
+        "保持原轮廓、比例与细节。",
+        "透明背景下保持静止。"
+      ],
+      "aliases": [
+        "暖色太阳",
+        "太阳",
+        "夕阳",
+        "暖色日盘"
+      ],
+      "behaviors": [
+        "hold"
+      ],
+      "retain": "保留原暖色太阳渐变、像素覆盖率和透明柔边；不增加表情、手脚或新纹理。",
+      "avoid": "不带原场景、背景、字幕、音频或外围控件。",
+      "duration_ms": 3000,
+      "preview_ms": 1650,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "sunset-sun-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "analogy": "原夕阳中的暖色日盘，上亮下暗，保留原渐变和柔和圆周。",
+      "assumptions": "透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。",
+      "tempo_note": "静态插画全程保持；播放与定位不改变物件。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "previous_names": []
+    },
+    {
+      "id": "forward-boat-illustration",
+      "name": "轻摇随摆",
+      "kind": "illustration",
+      "category": "illustration-object",
+      "summary": "原暖木船体轻摇，敞舱、横座和归灯保留；帆已去除。",
+      "purpose": "将原作物件提炼为独立可复用插画。",
+      "objects": "原暖木船体、敞舱、横座、慢摆归灯",
+      "phases": [
+        "原木船居中轻摇。",
+        "归灯沿原延迟曲线慢摆，敞舱始终清晰。",
+        "完成原四秒轮次后停住。"
+      ],
+      "aliases": [
+        "轻摇随摆",
+        "船",
+        "木船",
+        "无帆木船",
+        "归舟"
+      ],
+      "behaviors": [
+        "rotate",
+        "deform"
+      ],
+      "retain": "保留原船壳厚度、木色渐变、横座、细线与归灯慢摆；移除帆、桅杆、帆索和小旗。",
+      "avoid": "不带原场景、背景、字幕、音频或外围控件。",
+      "duration_ms": 4000,
+      "preview_ms": 2200,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "forward-boat-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "analogy": "原暖木船体轻摇，敞舱、横座和归灯保留；帆已去除。",
+      "assumptions": "透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。",
+      "tempo_note": "四秒完成原船体与归灯的小幅周期，单次播放后停住。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "previous_names": []
+    },
+    {
+      "id": "forward-plane-illustration",
+      "name": "折翼前行",
+      "kind": "illustration",
+      "category": "illustration-object",
+      "summary": "原黄纸飞机保持朝前，双翼轻折、短折脊与机身微偏转保持。",
+      "purpose": "将原作物件提炼为独立可复用插画。",
+      "objects": "原黄纸面、明暗双翼、短折脊和白色翼缘",
+      "phases": [
+        "纸飞机保持朝前，翼根固定。",
+        "外侧翼缘按原错拍曲线轻折，机身微偏转。",
+        "完成原四秒轮次后停住。"
+      ],
+      "aliases": [
+        "折翼前行",
+        "纸飞机",
+        "黄色纸飞机",
+        "晴日纸飞机"
+      ],
+      "behaviors": [
+        "rotate",
+        "deform"
+      ],
+      "retain": "保留原宽翼、双色渐变、短折脊、固定翼根与两侧错拍折动。",
+      "avoid": "不带原场景、背景、字幕、音频或外围控件。",
+      "duration_ms": 4000,
+      "preview_ms": 2200,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "forward-plane-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "analogy": "原黄纸飞机保持朝前，双翼轻折、短折脊与机身微偏转保持。",
+      "assumptions": "透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。",
+      "tempo_note": "四秒完成原纸面与姿态的小幅周期，单次播放后停住。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "previous_names": []
+    },
+    {
+      "id": "drive-car-illustration",
+      "name": "小葵敞篷车",
+      "kind": "illustration",
+      "category": "illustration-object",
+      "summary": "原小葵坐在蓝色敞篷车内，保留车身、方向盘、车轮和驾驶姿态。",
+      "purpose": "将原作物件提炼为独立可复用插画。",
+      "objects": "原蓝色敞篷车、完整小葵、方向盘、三孔轮毂",
+      "phases": [
+        "完整物件居中呈现。",
+        "保持原轮廓、比例与细节。",
+        "透明背景下保持静止。"
+      ],
+      "aliases": [
+        "小葵敞篷车",
+        "汽车",
+        "敞篷车",
+        "蓝色汽车",
+        "小葵"
+      ],
+      "behaviors": [
+        "hold"
+      ],
+      "retain": "保留批准造型的全部原曲线、车色、驾驶猫、方向盘、车灯、轮毂与弧形保险杠。",
+      "avoid": "不带原场景、背景、字幕、音频或外围控件。",
+      "duration_ms": 3000,
+      "preview_ms": 1650,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "drive-car-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "analogy": "原小葵坐在蓝色敞篷车内，保留车身、方向盘、车轮和驾驶姿态。",
+      "assumptions": "透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。",
+      "tempo_note": "静态插画全程保持；播放与定位不改变物件。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "previous_names": []
+    },
+    {
+      "id": "dandelion-subject-illustration",
+      "name": "蒲公英主体",
+      "kind": "illustration",
+      "category": "illustration-nature",
+      "summary": "原蒲公英旅行主体：密集半圆冠毛、细茎与下端种子。",
+      "purpose": "将原作物件提炼为独立可复用插画。",
+      "objects": "一百三十七道原冠毛、细茎、种子",
+      "phases": [
+        "完整物件居中呈现。",
+        "保持原轮廓、比例与细节。",
+        "透明背景下保持静止。"
+      ],
+      "aliases": [
+        "蒲公英主体",
+        "蒲公英",
+        "蒲公英的旅行",
+        "主种子"
+      ],
+      "behaviors": [
+        "hold"
+      ],
+      "retain": "保留原一百三十七道冠毛的形状、尖端、线宽，细茎曲线和下端种子轮廓。",
+      "avoid": "不带原场景、背景、字幕、音频或外围控件。",
+      "duration_ms": 3000,
+      "preview_ms": 1650,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "dandelion-subject-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "analogy": "原蒲公英旅行主体：密集半圆冠毛、细茎与下端种子。",
+      "assumptions": "透明底；保持原冠毛、细茎和种子的曲线与相对比例，整体居中并在下方预留播放条空间；冠毛保持细线，不随物件放大而增粗。",
+      "tempo_note": "静态插画全程保持；播放与定位不改变物件。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "previous_names": []
+    },
+    {
+      "id": "dandelion-seed-illustration",
+      "name": "蒲公英种子",
+      "kind": "illustration",
+      "category": "illustration-nature",
+      "summary": "原脱落小种子：疏朗冠毛、弯曲细茎与米色种子。",
+      "purpose": "将原作物件提炼为独立可复用插画。",
+      "objects": "十一道原冠毛、弯曲细茎、米色种子",
+      "phases": [
+        "完整物件居中呈现。",
+        "保持原轮廓、比例与细节。",
+        "透明背景下保持静止。"
+      ],
+      "aliases": [
+        "蒲公英种子",
+        "蒲公英",
+        "小种子",
+        "脱落种子"
+      ],
+      "behaviors": [
+        "hold"
+      ],
+      "retain": "保留原十一道冠毛、毛尖短线、原弯曲细茎和米色种子形状。",
+      "avoid": "不带原场景、背景、字幕、音频或外围控件。",
+      "duration_ms": 3000,
+      "preview_ms": 1650,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "dandelion-seed-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "analogy": "原脱落小种子：疏朗冠毛、弯曲细茎与米色种子。",
+      "assumptions": "透明底；保持原冠毛、细茎和种子的曲线与相对比例，整体居中并在下方预留播放条空间；冠毛保持细线，不随物件放大而增粗。",
+      "tempo_note": "静态插画全程保持；播放与定位不改变物件。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "previous_names": []
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "按统一秒数驱动；可暂停、重播和定位，同一时刻始终得到同一姿态。",
+      "assumptions": "仅提取指定运动主体和光效；固定零件数据与绘制随代码打包，直接静态打开即可使用。",
+      "id": "shape-contact-rebound",
+      "name": "依形回弹",
+      "category": "response",
+      "summary": "金银符号错峰下落，按各自旋转后的真实轮廓触地，再由落差决定回弹高度。",
+      "purpose": "让不同形状的物体自然触地，保留落差、撞击速度和回弹高度之间的关系。",
+      "objects": "112 件金银月牙、四角和五角星、十字与叶形零件，包含实心及空心轮廓；固定初始位置、尺寸、相位和释放时差随源码提供。",
+      "phases": [
+        "开头显示已处于下落和触地阶段的符号；释放时钟从 3.668395 秒起均匀错开 3.3 秒，局部播放时钟为 5+t，t 从 0 到 3.5 秒。",
+        "每件符号先按 y=起点+0.5×300×下落秒数²÷0.6 下落，横向漂移以 p²×(3−2p) 过渡；旋转量为下落时长×0.7。采样旋转后的实际轮廓底边，迭代十次求出触地时刻；空心描边也计入接触高度。",
+        "触地后，回弹初速度=撞击速度×0.46；按 v×t−0.5×300×t² 向上回弹，高度为 v²÷(2×300×0.6)，横向继续移动原漂移量的 35%。到达回弹顶点后退出本动作，保留仍在下落或回弹的零件。"
+      ],
+      "aliases": [
+        "按自身形状落地回弹",
+        "依形回弹",
+        "真实轮廓触地",
+        "形状碰撞",
+        "月牙落地",
+        "金银符号落地回弹",
+        "落差决定回弹"
+      ],
+      "behaviors": [
+        "fall",
+        "bounce",
+        "physics",
+        "stagger"
+      ],
+      "retain": "轮廓、尺寸、旋转和各自落差决定接触高度；重力 300、回弹系数 0.46、十次触地收敛与金银渐变不可替换成统一圆球碰撞。下落和回弹使用同一撞击速度，定位时间不依赖前一帧。",
+      "avoid": "不要用固定半径替代实际轮廓，不要让所有符号同时落地或弹到同一高度，不绘制树、蝴蝶、月面和星空，不添加声音。",
+      "duration_ms": 3500,
+      "preview_ms": 1610,
+      "tempo_note": "完整播放 3.5 秒；计算时钟=5+局部播放秒数，开头已有物体位于半空或触地，不额外重排释放时差；速度参数统一缩放时钟。",
+      "analogy": "不同形状的零件从各自高度掉下，沿自己的底边碰地，再按落差弹起。",
+      "reproduction": {
+        "presentation": "640×360 横向画板，深色底 #141510；原 3:4 构图等比居中为 270×360。内部坐标到画板：X=185+(225+(x−360)×0.6)×0.421875，Y=(770+(y−745)×0.6)×0.421875。金色渐变 #af7929→#f4bd46→#ffe5a0→#dca847，银色 #7f8c9e→#d4d8d2→#fff8e6→#acb6bd；触地只有轻微柔光。"
+      },
+      "source": {
+        "path": "catalog/effects/osmanthus-motion.js",
+        "factory": "shape-contact-rebound",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "提取自有八月桂夜的固定零件数据、实际轮廓触地计算、飞行方程与二维材质绘制；无需原工程或 p5.js，不包含树、月面、音频。"
+      },
+      "recommendation": "让不同形状的物体自然触地，保留落差、撞击速度和回弹高度之间的关系。"
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "按统一秒数驱动；可暂停、重播和定位，同一时刻始终得到同一姿态。",
+      "assumptions": "仅提取指定运动主体和光效；固定零件数据与绘制随代码打包，直接静态打开即可使用。",
+      "id": "swarm-arc-flight",
+      "name": "群体弧飞",
+      "category": "connection",
+      "summary": "金银蝴蝶各沿两段曲线错峰飞向同一远点，途中摆动、振翅并逐渐变小，身后留短光丝。",
+      "purpose": "将一群独立主体沿各自弧线汇向远处，保留不同起点、路径、振翅相位和远近变化。",
+      "objects": "从 112 件固定零件中已完成化蝶的金银蝴蝶；只显示蝴蝶和部分蝴蝶身后的短光丝，目标位置不绘制实体。固定起点、时差、路线参数和相位随源码提供。",
+      "phases": [
+        "总长 5 秒，局部 t 从 0 到 5，计算时钟为 8.5+t；只显示化蝶进度达到 0.999、化星进度低于 0.001 且仍可见的蝴蝶。各自从回弹顶点离地，不统一重置起点。",
+        "先用 0.6+(序号除以9的余数)×0.095 秒完成短程爬升转向，再用 4.5+(序号除以11的余数)×0.16 秒沿各自三次曲线飞向内部画面 (585,61) 附近的环形落点。途中 x 叠加 sin(6πp+相位)×14×sin²(πp)，y 叠加 cos(4πp+相位)×9×sin²(πp)，确保起止摆动为零。",
+        "振翅开合为 0.22+0.78×(0.5+0.5×sin(11×时钟+相位))，两翼从胸部翻转并轻微倾斜；远飞后尺寸降至 0.62、透明度降至 0.8，抵达目标后逐渐消失。每第五件只采样过去 0.48 秒的 13 个历史位置形成短尾，长度限制 52 内部像素、尾部亮度按平方衰减。"
+      ],
+      "aliases": [
+        "群体弧飞",
+        "群蝶沿弧线飞向月亮",
+        "群蝶沿弧飞向月亮",
+        "蝴蝶群飞",
+        "错峰弧线飞行",
+        "金银蝴蝶汇聚",
+        "振翅远去",
+        "群蝶飞向远点"
+      ],
+      "behaviors": [
+        "path",
+        "move",
+        "stagger",
+        "trail",
+        "depth"
+      ],
+      "retain": "保留短程转向和长程弧飞两段曲线、固定相位对应的环形落点、sin²(πp) 摆动包络、真实振翅和金银翅脉。目标在内部构图 (585,61)，用原固定控制点；部分路径按 u−u²/2 平缓减速，化星阶段不显示。光丝沿主体刚走过的位置，不另造漂浮粒子。",
+      "avoid": "不要变成统一轨道的环绕，不把全部蝴蝶同时发射，不绘制树、月面、掉落符号或星点，不拉伸竖幅，不添加声音。",
+      "duration_ms": 5000,
+      "preview_ms": 3250,
+      "tempo_note": "完整播放 5 秒；计算时钟=8.5+局部播放秒数；各件继续沿固定时间和路线前进，尾光只读取过去位置。",
+      "analogy": "一群蝴蝶先各自抬头转向，再沿不同弧线向远处汇拢。",
+      "reproduction": {
+        "presentation": "640×360 横向画板，纯黑底 #000000；3:4 构图等比居中为 270×360。内部坐标到画板：X=185+(225+(x−360)×0.6)×0.421875，Y=(770+(y−745)×0.6)×0.421875。金翅从 #9b7135 到 #ebbd63、#fff0bc，银翅从 #778caa 到 #cedbe8、#f7f6f1；细翅脉、胸腹、头部和触角均保留，短尾为金白或银白柔光。"
+      },
+      "source": {
+        "path": "catalog/effects/osmanthus-motion.js",
+        "factory": "swarm-arc-flight",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "提取自有八月桂夜的固定零件数据、实际轮廓触地计算、飞行方程与二维材质绘制；无需原工程或 p5.js，不包含树、月面、音频。"
+      },
+      "recommendation": "将一群独立主体沿各自弧线汇向远处，保留不同起点、路径、振翅相位和远近变化。"
+    },
+    {
+      "id": "settle-grow-spread",
+      "name": "落定蔓生",
+      "kind": "action",
+      "category": "shape",
+      "summary": "种子错峰落定，先长出一簇茎叶与花，再从这簇向周围逐片蔓延。",
+      "purpose": "让落地、萌发、开花与向外传播共享一条连续时间线。",
+      "objects": "93 颗有伞状绒毛与浅褐种子的蒲公英，620 株高低错落的花草；其中 125 株组成起始簇，495 株向外扩散。每株位置、起始时间、尺寸、相位、叶数与花型初始化后固定，完整数值表随独立源码提供。",
+      "phases": [
+        "0–0.18 秒错峰释放 93 颗种子，落点位于 (720,1000) 周围半径 145×140 的椭圆。每颗飞行时长=0.85+距 (710,875) 的距离÷520+0–0.16 秒。以 p=夹紧((t−释放时刻)÷飞行时长)、q=1−(1−p)³ 插值到落点；垂直种子底部对齐落点，横向叠加 sin(πp)×sin(固定相位)×65 的弯曲偏移。落地姿态以 p 在 0.2–1 间的平滑过渡收正。",
+        "落地后等待 0.12–0.37 秒萌发，起始簇从约 1.17 秒开始，最迟 2.888 秒完成茎叶生长。93 株沿种子落点长出，另 32 株在半径 165×155 椭圆内，按最近种子的萌发时刻加距离÷190 再错开 0.02–0.16 秒。每株生长历时 0.7–1.15 秒；平滑函数 S(u)=u²(3−2u)，u 先限制在 0–1，茎高以 S((生长进度−0.15)÷0.85) 上升，3–5 片叶按序号每片错开 0.08 个进度，至 0.48+序号×0.08 展开。",
+        "起始簇茎叶完成后约 0.16 秒接入外部传播，第一株外部植物约 3.142 秒开始；495 株各自起始时刻=起始簇完成时刻+0.16+max(0,距 (720,1000) 的距离−175)÷490+区域延迟×0.23+0.02–0.22 秒，生长历时 0.65–0.92 秒。花朵在茎叶完成后错开 0.02–0.14 秒，再用 0.42–0.62 秒展开 5 或 6 片花瓣；约 7.093 秒全部成熟后保持最终状态。"
+      ],
+      "aliases": [
+        "生长扩散",
+        "落定生长",
+        "落地生长与开花",
+        "生长从局部向外扩散",
+        "生长由局部向外扩散",
+        "种子落地萌发",
+        "植物蔓延",
+        "落定蔓生"
+      ],
+      "previous_names": [
+        "生长扩散",
+        "落定生长"
+      ],
+      "behaviors": [
+        "grow",
+        "spread",
+        "stagger",
+        "settle"
+      ],
+      "retain": "整段共享时钟 T=27.65+t。固定每株数据：尺寸 0.5–1.85、高度=(23–55)×尺寸、叶长=(10+sin(相位+叶序号)×3)×尺寸×叶片进度；茎偏移=sin(T×1.1+相位)×当前高度×0.07+sin(相位)×当前高度×0.1。约 63% 植株开花，花半径按大小分为 6–9、10–16、18–23；花瓣从花心沿自身轮廓伸长。外部位置限制 x=15–885、y=45–1185，起始簇外植物间距至少 19；以七块椭圆区域聚集分布，接受概率=0.13+0.87×exp(−最近区域归一距离平方×1.7)。七区域中心／半径／延迟依次为 (720,1000)/(170,175)/0、(415,1070)/(195,145)/0.12、(165,840)/(160,210)/0.6、(490,690)/(180,180)/0.4、(780,425)/(140,220)/0.85、(370,330)/(185,175)/1.18、(120,100)/(155,155)/1.65。 种子半径初始 4.5–7，落地后缩为 80%；每颗 11 条伞状绒毛，种子位于绒毛中心下方 2.15 倍半径。释放后用 0.07 秒显现，萌发进度 0.08–0.55 之间平滑淡出，与同一落点的植物接续。",
+      "avoid": "不要把两段交替播放，不要清空起始簇后另播扩散，不要重排已长出的植物，不要以整片淡入代替每株茎叶生长，不添加文字与声音。",
+      "duration_ms": 7343,
+      "preview_ms": 4542,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/settle-grow-spread.js",
+        "factory": "settle-grow-spread",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "提取自有蒲公英旅程的固定播种与植株数据、释放位置及完整落定、生长、展叶、开花和传播绘制；包内可直接运行，无需原工程或媒体。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "种子抵达落点后触发对应植株萌发；起始簇茎叶长齐后向外传播，同一秒数可重复定位。",
+      "analogy": "种子落地生出一簇花草，这簇成熟后把生长传向更远处。",
+      "assumptions": "固定数据与原绘制函数已随源码提供，按统一时钟计算全部状态。",
+      "tempo_note": "完整动作 7.343 秒。落地、茎叶、开花与传播连续衔接；约 7.093 秒全场成熟，末尾短暂停留。速度控件统一缩放时间。",
+      "recommendation": "适合由落点触发生长，再从局部扩散至全场的连续变化。",
+      "reproduction": {
+        "presentation": "640×360 画板，底色 #f1f0e8；900×1200 内部构图等比居中，画板坐标 X=185+内部 X×0.3，Y=内部 Y×0.3。茎 #779947，叶片交替 #91b65c、#abc574、#739e4c，花瓣 #f2ce42、#f7de6c、#e7bd32、#f3e59e，花心 #b99438；绒毛 #fffde9，种子 #dec39a。固定取景，保持高低、大小和区域密度变化。"
+      }
     }
   ],
   "redirects": {
-    "history-reel-quantized-stepping": "film-step",
     "history-reel-char-mask": "mask-stagger-text",
     "history-reel-frame-jitter": "frame-jitter-type",
     "history-reel-ghost-overprint": "ghost-type-overprint",
@@ -16521,7 +17253,18 @@
     "history-recovered-flight": "encore-flight",
     "history-recovered-tip": "encore-tip",
     "history-recovered-roll": "encore-roll",
-    "history-recovered-shed": "encore-shed"
+    "history-recovered-shed": "encore-shed",
+    "history-osmanthus-event-moonphase": "moon-event-fill",
+    "history-sunset-specular-reflection": "sunset-water-reflection",
+    "history-recovered-forward-boat": "forward-boat-illustration",
+    "history-recovered-forward-plane": "forward-plane-illustration",
+    "history-drive-release": "drive-balloon-release",
+    "history-flow-radial-release": "dandelion-radial-release",
+    "history-tutorial-frog-ripple": "frog-impact-ripple",
+    "history-osmanthus-fall-contact": "shape-contact-rebound",
+    "history-osmanthus-moon-flight": "swarm-arc-flight",
+    "history-begin-end": "settle-grow-spread",
+    "history-flow-colony-spread": "settle-grow-spread"
   },
   "variant_redirects": {
     "material-label-stagger": "material",

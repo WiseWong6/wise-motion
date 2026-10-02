@@ -12,10 +12,10 @@ function scene(root,html){
   const nodes=new Map([...root.querySelectorAll('[data-part]')].map(n=>[n.dataset.part,n]));
   return (id,attrs={},text)=>{const n=nodes.get(id);for(const [k,v]of Object.entries(attrs))if(n.getAttribute(k)!==String(v))n.setAttribute(k,String(v));if(text!==undefined&&n.textContent!==String(text))n.textContent=String(text);return n;};
 }
-// 保留原双柱与读数的同步增长；第一组落定的同一时刻立即启动第二组。
+// 柱高与读数同步平缓起落；第二组在第一组收尾时起步，以短暂交叠接续。
 F['narrated-count']=(root,K,def)=>{
   const items=[{x:260,y:808,h:240,value:60,at:0,duration:640,color:'var(--muted)',label:'优化前'},
-    {x:650,y:736,h:312,value:78,at:640,duration:560,color:'var(--blue)',label:'优化后'}];
+    {x:650,y:736,h:312,value:78,at:500,duration:700,color:'var(--blue)',label:'优化后'}];
   const s=scene(root,`<g transform="translate(50 -252.5) scale(.5)">
     <text x="540" y="600" text-anchor="middle" fill="var(--ink)" font-size="${size('title',.5)}" font-weight="700">注册完成率</text>
     <path d="M210 1048H870" fill="none" stroke="var(--muted)" stroke-width="2" opacity=".5"/>
@@ -23,7 +23,7 @@ F['narrated-count']=(root,K,def)=>{
       <text data-part="value${i}" x="${v.x+85}" y="1022" text-anchor="middle" fill="${v.color}" font-size="${size('subhead',.5)}" font-weight="700">0%</text>
       <text x="${v.x+85}" y="1105" text-anchor="middle" fill="var(--muted)" font-size="${size('body',.5)}" font-weight="300">${v.label}</text>`).join('')}
   </g>`);
-  return t=>items.forEach((v,i)=>{const q=out(part(t,v.at,v.at+v.duration));s('bar'+i,{y:1048-v.h*q,height:v.h*q});s('value'+i,{y:1022-v.h*q},Math.round(v.value*q)+'%');});
+  return t=>items.forEach((v,i)=>{const q=K.ease(part(t,v.at,v.at+v.duration),'inOutSine');s('bar'+i,{y:1048-v.h*q,height:v.h*q});s('value'+i,{y:1022-v.h*q},Math.round(v.value*q)+'%');});
 };
 function bezier(a,b,u){const m=1-u;return 3*m*m*u*a+3*m*u*u*b+u*u*u;}
 function atX(x,a,b,snapEndpoints=true){if(snapEndpoints&&(x===0||x===1))return x;let lo=0,hi=1;for(let i=0;i<22;i++){const mid=(lo+hi)/2;if(bezier(a[0],b[0],mid)<x)lo=mid;else hi=mid;}return bezier(a[1],b[1],(lo+hi)/2);}

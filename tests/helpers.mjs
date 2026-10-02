@@ -24,6 +24,7 @@ export async function environment(withApp = false, options = {}) {
   const html = withApp ? await readFile(new URL('../catalog/index.html', import.meta.url), 'utf8') : '<!doctype html><div id="root"></div>';
   const dom = new JSDOM(html, {url:'file:///wise-motion/catalog/index.html'+(options.hash||''),runScripts:'outside-only',pretendToBeVisual:true});
   const w = dom.window;
+  if (options.sessionStorage) Object.defineProperty(w, 'sessionStorage', {value:options.sessionStorage});
   // 只做结构与控制检查。jsdom 没有像素绘制能力，显式返回空值，避免能力探测噪声。
   w.HTMLCanvasElement.prototype.getContext = () => null;
   // jsdom 不渲染背景滤镜；播放器光学层的完整能力分支另用独立测试检查。

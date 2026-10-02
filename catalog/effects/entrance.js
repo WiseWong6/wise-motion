@@ -2,6 +2,7 @@
 (function (F) {
   F['fade-rise'] = (root, M) => {
     const s = M.scene(root, M.tile());
+    s.one('.tile-symbol').classList.add('tile-symbol-bare');
     s.one('.tile-symbol').innerHTML = '<svg data-motion-icon="document" width="28" height="28" style="width:28px;height:28px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7zM14 3v5h4M10 12h5M10 16h5"/></svg>';
     return (t, o) => F['fade-rise'].draw(M, s.one('.tile'), t, o);
   };
@@ -13,6 +14,7 @@
   };
   F['scale-in'] = (root, M) => {
     const s = M.scene(root, M.tile('值得注意', '一次登场，一次落定'));
+    s.one('.tile-symbol').classList.add('tile-symbol-bare');
     s.one('.tile-symbol').innerHTML = '<svg data-motion-icon="cube" width="28" height="28" style="width:28px;height:28px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9"/></svg>';
     return (t, o) => { const p = M.span(t, 150, 1300, o.ease); const bounce = Math.sin(M.clamp((t - 150) / 1150) * Math.PI) * .08; M.pose(s.one('.tile'), {scale: .66 + .34 * p + bounce, opacity: M.span(t, 100, 600)}); };
   };

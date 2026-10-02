@@ -43,11 +43,50 @@ function originalGraph(t){const r=recorder();runInNewContext(source.slice(source
 function originalTimeline(t){const r=recorder();runInNewContext(source.slice(source.indexOf('function easeHandles('),source.indexOf('function drawPanel('))+source.slice(source.indexOf('function drawTimeline('),source.indexOf('function sKey('))+';drawTimeline({x:120,y:730,w:1680,h:210},T);',Object.assign(r.box,{T:t}));return r.events;}
 function originalShapes(t){const r=recorder(),start=source.indexOf('const PAL ='),end=source.indexOf('  const tx = VERT ? 64 : 130;',start);runInNewContext(source.slice(start,end)+'};sFlat(T,T+30);',Object.assign(r.box,{T:t}));return r.events;}
 function originalKey(t){
-  const r=recorder();Object.assign(r.box,{drawPanel(){},drawComp(){},drawGraph(){},drawTimeline(){},T:t});
+  const r=recorder();Object.assign(r.box,{drawPanel(P){r.events.push({type:'panel',x:P.x,y:P.y,w:P.w,h:P.h,title:P.title,opacity:r.ctx.globalAlpha,transforms:r.ctx.transforms.slice()});},drawComp(){},drawGraph(){},drawTimeline(){},T:t});
   runInNewContext(source.slice(source.indexOf('function setFont('),source.indexOf('function chevron('))+source.slice(source.indexOf('function sKey('),source.indexOf('/* ============================================================',source.indexOf('function sKey(')))+';sKey(T,T+22);',r.box);
   return r.events;
 }
 async function setup(){const e=await environment();e.w.eval(local);return e;}
+
+test('升入压扁还原三个有内容的窗口，逐时刻对照原源码的局部中心与缩放',async()=>{
+  const e=await setup();try{
+    const root=e.w.document.getElementById('root'),p=e.w.MotionRuntime.create(root,definition('panel-rise-collapse'));
+    const windows=[...root.querySelector('[data-layer="panels"]').children];
+    assert.equal(windows.length,3,'不能遗漏右侧曲线窗口');
+    assert.deepEqual(windows.map(n=>['x','y','width','height'].map(k=>+n.firstChild.getAttribute(k))),[[120,230,980,470],[1130,230,670,470],[120,730,1680,210]]);
+    assert.ok(root.querySelector('[data-layer="bounce"] [data-ball="0"]'),'合成窗口包含真实小球');
+    assert.ok(root.querySelector('[data-layer="graph"] [data-part="curve"]'),'曲线窗口包含真实曲线');
+    assert.equal(root.querySelectorAll('[data-layer="timeline"] [data-key]').length,26);
+    assert.equal(root.querySelector('[data-layer="labels"], [data-layer="large-graph"]'),null,'不加入片尾和其他场景');
+    for(const ms of [0,100,101,220,221,340,341,500,800,920,1040,1700,2400,5400,5480,5560,5700,5849,5850,5929,5930,6009,6010,6200]){
+      p.seek(ms);const panels=originalKey(ms/1000).filter(v=>v.type==='panel');
+      for(const window of windows){
+        const frame=window.firstChild,ref=panels.find(v=>v.x===+frame.getAttribute('x')&&v.y===+frame.getAttribute('y'));
+        if(!ref){assert.equal(+window.getAttribute('opacity'),0);continue;}
+        near(+window.getAttribute('opacity'),ref.opacity);
+        const actual=nums(window.getAttribute('transform')),expected=ref.transforms.flatMap(v=>v.slice(1));
+        assert.equal(actual.length,expected.length);actual.forEach((v,i)=>near(v,expected[i]));
+        near(actual[2],1);near(actual[5],-ref.y-ref.h/2);
+        const content=root.querySelector(`[data-layer="${['bounce','graph','timeline'][+window.dataset.window]}"]`);
+        const carrier=content.parentElement.parentElement;
+        for(const attr of ['transform','opacity'])assert.equal(carrier.getAttribute(attr),window.getAttribute(attr),'窗口内容与外框一起移动和压扁');
+        const clipId=content.parentElement.getAttribute('clip-path').slice(5,-1),clip=e.w.document.getElementById(clipId).firstChild;
+        assert.deepEqual(['x','y','width','height'].map(k=>+clip.getAttribute(k)),[ref.x,ref.y+34,ref.w,ref.h-34]);
+      }
+    }
+    p.seek(1700);
+    assert.ok(root.querySelector('[data-layer="graph"] [data-part="curve"]').getAttribute('d').includes('L'));
+    const labels=[...root.querySelectorAll('[data-timeline-label]')];
+    labels.forEach((label,i)=>{assert.equal(+label.getAttribute('font-size'),13);if(i)assert.ok(+label.getAttribute('y')-(+labels[i-1].getAttribute('y'))>+label.getAttribute('font-size'));});
+    assert.ok([...root.querySelectorAll('[data-layer="panels"] text')].every(n=>+n.getAttribute('font-size')===13));
+    for(const [layer,selector]of [['bounce','[data-ball="0"]'],['graph','[data-part="point"]'],['timeline','[data-playhead]']]){
+      const node=root.querySelector(`[data-layer="${layer}"] ${selector}`),before=node.outerHTML;
+      p.seek(2400);assert.notEqual(node.outerHTML,before,'内部内容保留真实运动');p.seek(1700);
+    }
+    p.destroy();
+  }finally{e.close();}
+});
 
 test('抖动与套印按源帧号计算，两种帧率保持分离',async()=>{
   const e=await setup();try{const root=e.w.document.getElementById('root');let p=e.w.MotionRuntime.create(root,definition('frame-jitter-type'));
@@ -153,7 +192,7 @@ test('组合按原位置复用图层；所有缩略帧非空、回拖确定、�
       for(const ms of [0,100,700,1600,2400,5400,5700,6010]){
         p.seek(ms);whole.seek(ms);const single=host.querySelector(`[data-layer="${layer}"]`),combined=root.querySelector(`[data-layer="${layer}"]`);
         if(layer==='panels'){
-          assert.equal(single.children.length,2);assert.equal(combined.children.length,3);
+          assert.equal(single.children.length,3);assert.equal(combined.children.length,3);
           for(const n of single.children){const pair=combined.querySelector(`[data-window="${n.dataset.window}"]`);for(const attr of ['transform','opacity'])assert.equal(n.getAttribute(attr),pair.getAttribute(attr));}
         }else if(layer==='bounce'){
           const a=[...single.querySelectorAll('*')],b=[...combined.querySelectorAll('*')];assert.equal(a.length,b.length);
