@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {environment,data} from './helpers.mjs';
+import {environment,data,motionTime} from './helpers.mjs';
 
 const points=path=>[...path.getAttribute('d').matchAll(/[ML](-?[\d.]+) (-?[\d.]+)/g)].map(m=>[Number(m[1]),Number(m[2])]);
 const meanY=path=>{const p=points(path);return p.reduce((sum,point)=>sum+point[1],0)/p.length;};
@@ -26,9 +26,9 @@ test('平面图案长出真实高度与侧壁，同时放平进入透视，定�
       assert.equal(part(id).getAttribute('d'),part(id+'-base').getAttribute('d'),'初态图案与底部重合，不能预先有厚度');
     }
     assert.equal(area(part('ring-outer-12')),0);
-    player.seek(600);assert.equal(root.innerHTML,flat);
-    player.seek(1800);const middle=root.innerHTML;assert.notEqual(middle,flat);
-    player.seek(3200);const end=root.innerHTML;assert.notEqual(end,middle);
+    player.seek(motionTime(effect,600));assert.equal(root.innerHTML,flat);
+    player.seek(motionTime(effect,1800));const middle=root.innerHTML;assert.notEqual(middle,flat);
+    player.seek(motionTime(effect,3200));const end=root.innerHTML;assert.notEqual(end,middle);
     player.seek(effect.duration_ms);assert.equal(root.innerHTML,end);
     // 透视后的近边比远边宽；仅压扁或采用平行投影不能满足这一关系。
     const last=corners(),far=last[1][0]-last[0][0],near=last[2][0]-last[3][0];
@@ -41,7 +41,7 @@ test('平面图案长出真实高度与侧壁，同时放平进入透视，定�
     assert.ok(area(part('ring-outer-12'))>100,'外侧壁必须有实际面积');
     assert.ok(area(part('ring-inner-36'))>100,'内侧壁必须有实际面积');
     assert.ok(paths.every(p=>p===part(p.dataset.part)),'绘制前后顺序变化时仍保留相同节点');
-    player.seek(1800);assert.equal(root.innerHTML,middle);
+    player.seek(motionTime(effect,1800));assert.equal(root.innerHTML,middle);
     player.restart(false);assert.equal(root.innerHTML,flat);assert.equal(w.MotionRuntime.runningCount,0);
   }finally{env.close();}
 });
@@ -50,8 +50,9 @@ test('圆环显示前侧外壁、后侧内壁与环形顶面，隐藏背面并�
   const env=await environment();
   try{
     const root=env.w.document.getElementById('root');
-    const player=env.w.MotionRuntime.create(root,data.effects.find(e=>e.id==='flat-to-volume'));
-    player.seek(3200);
+    const effect=data.effects.find(e=>e.id==='flat-to-volume');
+    const player=env.w.MotionRuntime.create(root,effect);
+    player.seek(motionTime(effect,3200));
     const part=id=>root.querySelector(`[data-part="${id}"]`);
     assert.equal(part('ring-outer-12').getAttribute('visibility'),'visible');
     assert.equal(part('ring-outer-36').getAttribute('visibility'),'hidden');

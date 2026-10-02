@@ -17,8 +17,12 @@ async function historyEnvironment(withApp=false){
 }
 test('每条历史审查均有出处，案例源码与原片范围没有混并，原源码保持只读',async()=>{
   const snapshot=JSON.parse(await readFile(state+'/source-snapshot.json','utf8'));
-  assert.deepEqual(historical.counts,{reviewed:292,recipes:277,entries:298,animation:224,document:53});
-  assert.equal(historical.excluded.length,15);
+  assert.deepEqual(historical.counts,{"reviewed":311,"recipes":130,"entries":140,"animation":126,"document":4});
+  assert.equal(historical.excluded.length,181);
+  assert.ok(historical.excluded.some(e=>e.id==='reading-rhythm'));
+  assert.ok(!historical.recipes.some(e=>e.history_id==='reading-rhythm'));
+  assert.ok(historical.excluded.some(e=>e.id==='resume-typography'));
+  assert.ok(!historical.recipes.some(e=>e.history_id==='resume-typography'));
   for(const r of historical.recipes){
     const original=snapshot.rules.find(x=>x.id===r.history_id);
     assert.ok(r.review.reuse_contract.clock);assert.ok(r.retain.includes(r.review.extraction));
@@ -36,18 +40,37 @@ test('每条历史审查均有出处，案例源码与原片范围没有混并�
 });
 test('相似旧名称不偷换动作：柱高、内部翻卷、时间压缩与有停顿回放保持差别',()=>{
   const find=id=>historical.recipes.find(r=>r.history_id===id);
-  assert.deepEqual(find('numeric').actions,['bar-growth']);
+  assert.ok(historical.excluded.some(e=>e.id==='numeric'));assert.ok(data.effects.some(e=>e.id==='bar-growth'));
+  assert.ok(historical.excluded.some(e=>e.id==='tutorial-prayer-drum'));assert.ok(data.effects.some(e=>e.id==='cylinder-drum'));
+  assert.ok(historical.excluded.some(e=>e.id==='tutorial-ease-dot'));assert.ok(!data.effects.some(e=>e.id==='ease-visualizer'));assert.ok(data.effects.some(e=>e.id==='bezier-editor'));
   assert.ok(!find('turnover').actions.includes('card-flip'));
-  assert.ok(!find('row-mask').actions.includes('mask-stagger-text'));
-  assert.deepEqual(find('resume-dissolve').actions,['stagger-crossfade']);
-  assert.ok(!find('tutorial-time-compress').actions.includes('film-step'));
-  assert.ok(!find('naive-gallery-replay').actions.includes('seamless-scroll'));
-  assert.ok(!find('naive-attention-dual').actions.includes('dual-scroll'));
-  assert.equal(find('reel-whitney-spiral').name,'螺线描画后持续旋转');
-  assert.doesNotMatch(find('reel-whitney-spiral').summary,/匀加速/);
+  assert.ok(historical.excluded.some(e=>e.id==='row-mask'));
+  assert.ok(historical.excluded.some(e=>e.id==='tone-grow'));
+  assert.ok(historical.excluded.some(e=>e.id==='naive-prompt-retype'));
+  assert.equal(data.effects.filter(e=>e.id==='text-edit').length,1,'退格改写不应重复入库');
+  assert.ok(historical.excluded.some(e=>e.id==='line-converge'));
+  assert.equal(rank(data,'连线向下汇聚')[0].effect.id,'line-converge');
+  assert.ok(data.effects.some(e=>e.id==='connection-merge'),'描线汇聚不得替换沿线传递');
+  assert.ok(!find('resume-dissolve'));
+  assert.ok(historical.excluded.some(e=>e.id==='resume-dissolve'));
+  assert.ok(!find('text-burst'));
+  assert.ok(historical.excluded.some(e=>e.id==='text-burst'));
+  for(const id of ['tutorial-time-compress','tutorial-layered-form']){assert.ok(!find(id));assert.ok(historical.excluded.some(e=>e.id===id));}
+  assert.ok(historical.excluded.some(e=>e.id==='naive-gallery-replay'));
+  assert.ok(historical.excluded.some(e=>e.id==='naive-attention-dual'));
+  assert.ok(historical.excluded.some(e=>e.id==='recovered-expert-route'));
+  assert.equal(rank(data,'点阵逐行出现并连中目标')[0].effect.id,'dot-route-illustration');
+  assert.equal(data.effects.find(e=>e.id==='dot-route-illustration').category,'illustration-diagram');
+  assert.ok(!data.effects.find(e=>e.id==='attention-illustration').actions.includes('dual-scroll'));
+  assert.ok(historical.excluded.some(e=>e.id==='reel-whitney-spiral'));
   assert.equal(rank(data,'滚动后刹停对齐')[0].effect.id,'scroll-brake');
   assert.equal(rank(data,'停留滑切轮播')[0].effect.id,'dwell-carousel');
   assert.equal(rank(data,'纵向内容续接')[0].effect.id,'vertical-feed');
+  assert.ok(historical.excluded.some(e=>e.id==='resume-reveal'));
+  assert.ok(historical.excluded.some(e=>e.id==='horizontal-reveal'));
+  assert.ok(!find('horizontal-reveal'));
+  assert.ok(data.effects.some(e=>e.id==='mask-reveal'),'剔除横向揭示历史入口时保留遮罩显现');
+  assert.equal(rank(data,'三连错峰')[0].effect.id,'stagger-in','等间隔上移淡入应复用逐项出现');
 });
 test('原作绘制器载入迟到时释放，反复定位与观看倍率不改变原作时间关系',async()=>{
   const env=await historyEnvironment();
@@ -72,12 +95,15 @@ test('原视频强制静音，原片裁剪范围与预览定位分别计算，�
   const env=await historyEnvironment();
   try{
     const {w}=env,root=w.document.getElementById('root');
-    const effect=historical.recipes.find(r=>r.entries.some(e=>e.preview.type==='source-clip'&&e.preview.start>0));
-    const entry=effect.entries.find(e=>e.preview.type==='source-clip'&&e.preview.start>0);
+    const original=historical.recipes.find(r=>r.entries.some(e=>e.preview.type==='original-crop'&&e.preview.duration>2.2));
+    const source=original.entries.find(e=>e.preview.type==='original-crop'&&e.preview.duration>2.2);
+    // 用仍保留的原视频构造非零起点，避免裁剪检查依赖被剔除的目录条目。
+    const entry={...source,preview:{...source.preview,start:(source.preview.start||0)+1,duration:source.preview.duration-1}};
+    const effect={...original,entries:[entry]};
     const player=w.MotionHistoryRuntime.create(root,effect,{caseId:entry.id});
     const video=root.querySelector('video');assert.ok(video.muted);assert.ok(video.defaultMuted);assert.equal(video.volume,0);
     player.seek(1200);video.dispatchEvent(new w.Event('loadedmetadata'));await player.ready;
-    assert.equal(video.currentTime,entry.preview.start+1.2);assert.equal(player.currentTime,1200);
+    assert.ok(Math.abs(video.currentTime-(entry.preview.start+1.2))<1e-9);assert.equal(player.currentTime,1200);
     video.dispatchEvent(new w.Event('error'));assert.ok(player.paused);assert.match(root.textContent,/不存在或浏览器不支持/);
     player.destroy();video.dispatchEvent(new w.Event('error'));assert.equal(root.innerHTML,'');
   }finally{env.close();}
@@ -88,7 +114,7 @@ test('历史目录筛选与多案例切换同步输出、源码和时长，前�
     const {w}=env,d=w.document;
     const originalCreate=w.MotionHistoryRuntime.create;
     w.MotionHistoryRuntime.create=(root,e,options)=>originalCreate(root,e,{...options,mount:async canvas=>({render(t){canvas.dataset.time=String(t);},dispose(){}})});
-    d.querySelector('[data-kind="recipe"]').click();assert.equal(d.querySelectorAll('#effects-list [data-effect]').length,277);
+    d.querySelector('[data-kind="recipe"]').click();assert.equal(d.querySelectorAll('#effects-list [data-effect]').length,historical.counts.recipes);
     const effect=w.MotionHistory.recipes.find(r=>r.entries.length>1&&new Set(r.entries.map(e=>e.preview.duration)).size>1);
     d.querySelector(`[data-effect="${effect.id}"]`).click();await tick();
     assert.equal(w.MotionRuntime.instanceCount,0);assert.equal(w.MotionHistoryRuntime.instanceCount,1);
