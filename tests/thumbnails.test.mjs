@@ -62,7 +62,7 @@ test('原作单帧复制后保留画面并释放绘制器，迟到载入不能�
   const env=await environment();
   try{
     await load(env,'history-data.js','history-runtime.js');
-    const {w}=env,entry=w.MotionHistory.recipes.find(e=>e.entries[0].preview.type==='isolated').entries[0];
+    const {w}=env,entry=w.MotionHistory.recipes.find(e=>e.entries[0].preview.type==='web-isolated').entries[0];
     const canvas=w.document.createElement('canvas');canvas.width=360;canvas.height=480;
     let copies=0,disposed=0,source;
     canvas.getContext=()=>({drawImage(frame,x,y){

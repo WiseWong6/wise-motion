@@ -4595,28 +4595,34 @@
       "name": "压缩回弹",
       "kind": "action",
       "category": "response",
-      "summary": "主体落地压扁、离地拉长，保持面积近似不变并逐次衰减。",
-      "purpose": "主体落地压扁、离地拉长，保持面积近似不变并逐次衰减。",
-      "objects": "弹性主体和地面",
+      "summary": "主体贴住支点，先拉长、再压扁、最后一次小幅回弹恢复，面积保持不变。",
+      "purpose": "用连续三段形变表达受力和恢复，同时保持底部接触。",
+      "objects": "半径 64 像素的弹性圆形主体与固定水平支点，接触点为画板坐标 (320,252)。",
       "phases": [
-        "主体从上方落下。",
-        "接触时压扁并反弹拉长。",
-        "跳动幅度衰减后停住。"
+        "主体底部贴住支点，纵向拉长到 1.06 倍，横向同步收窄。",
+        "同一曲线接续压扁到 0.91 倍，横向同步变宽，底部不离开支点。",
+        "纵向小幅回弹到 1.022 倍，随后恢复圆形；只回弹一次，末尾保持。"
       ],
       "aliases": [
         "压扁拉长回弹",
         "压扁",
         "拉长",
         "弹性",
-        "落地压扁回弹"
+        "落地压扁回弹",
+        "逐段形变",
+        "负重三段形变",
+        "负重逐段形变",
+        "贴底拉压",
+        "先拉长再压扁",
+        "接触点固定回弹"
       ],
       "behaviors": [
         "bounce",
         "morph",
         "settle"
       ],
-      "retain": "主体落地压扁、离地拉长，保持面积近似不变并逐次衰减。",
-      "avoid": "不要把全身等比缩放当作形变。",
+      "retain": "拉长、压扁、回弹共用同一时钟；保留 0.06、0.09、0.022 的形变强度。横向比例始终为纵向比例的倒数，主体底部固定在支点上。",
+      "avoid": "不要把全身等比缩放当作形变，不要让底部离开支点，不要把三段拆成互不接续的动画或增加重复弹跳。",
       "duration_ms": 2400,
       "loop": false,
       "default_ease": "linear",
@@ -4635,31 +4641,102 @@
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从自有夕阳 sketch.js 提取 SUN_MOTION 与 sunDeformationAt 的三个连续窗口、形变强度、横纵互逆及接触点约束；按目录时钟绘制，无需原工程、p5.js 或素材。另保留原落地弹跳示例。"
       },
       "actions": [],
       "demo_mode": "fixed-timeline",
-      "preview_ms": 1338,
-      "recommendation": "适合主体落地压扁、离地拉长，保持面积近似不变并逐次衰减。保留对象关系和先后顺序。",
-      "tempo_note": "约零点一五秒起动，主要动作 1.8 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
+      "preview_ms": 789,
+      "recommendation": "适合在固定接触点表现受力拉长、受压变宽与一次回弹；可切换落地弹跳示例。",
+      "tempo_note": "零点一五秒开始，三段完整曲线统一映射到一点八秒，之后保持零点四五秒。",
       "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
-      "analogy": "主体落地压扁、离地拉长，保持面积近似不变并逐次衰减。",
-      "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+      "analogy": "柔软物体被拉起后受压，贴着底部支点恢复形状。",
+      "assumptions": "提取夕阳原码的三段形变曲线与接触点约束，以圆形主体展示；不包含飞机、海面和音效。",
       "domains": [
         "animation"
       ],
       "previous_names": [
         "压扁拉长回弹",
-        "落地压扁回弹"
+        "落地压扁回弹",
+        "逐段形变",
+        "负重三段形变",
+        "负重逐段形变"
       ],
       "timing": {
-        "source_duration_ms": 4000,
-        "source_preview_ms": 2640,
+        "source_duration_ms": 3100,
+        "source_preview_ms": 1100,
         "source_start_ms": 0,
-        "source_end_ms": 4000,
+        "source_end_ms": 3100,
         "start_ms": 150,
         "end_ms": 1950
-      }
+      },
+      "reproduction": {
+        "presentation": "16:9 画幅，设计尺寸 640×360。近黑背景 #0a0a0b，暖白主体 #f4f1ea，灰色支点线 #a5a4ad。主体初始半径 64 像素、中心 (320,188)，支点线从 (224,252) 到 (416,252)。支点线宽 0.85 像素。主体底端全程贴住支点线。浅色外观改用背景 #f7f5f0、主体 #222226、支点 #63616b。",
+        "retain": "时间 t 以秒计。u=3.1×clamp((t−0.15)/1.8,0,1)。平滑函数 S(a,b,u)：先令 q=clamp((u−a)/(b−a),0,1)，再求 q²×(3−2q)。拉长 L=S(0,0.45,u)×[1−S(0.45,1,u)]；压扁 C=S(0.65,1.1,u)×[1−S(1.1,1.85,u)]；回弹 R=S(1.65,2.15,u)×[1−S(2.15,3.1,u)]。纵向比例 y=1+强度×(0.06L−0.09C+0.022R)，横向比例 x=1/y；强度默认 1，改为 0.35 可得轻微版。椭圆横半径=64x、纵半径=64y、中心=(320,252−64y)，因此面积和底部接触点始终不变。"
+      },
+      "variants": [
+        {
+          "id": "contact",
+          "label": "贴底拉压",
+          "duration_ms": 2400,
+          "preview_ms": 789,
+          "summary": "主体贴住支点，先拉长、再压扁、最后一次小幅回弹恢复，面积保持不变。",
+          "purpose": "用连续三段形变表达受力和恢复，同时保持底部接触。",
+          "objects": "半径 64 像素的弹性圆形主体与固定水平支点，接触点为画板坐标 (320,252)。",
+          "phases": [
+            "主体底部贴住支点，纵向拉长到 1.06 倍，横向同步收窄。",
+            "同一曲线接续压扁到 0.91 倍，横向同步变宽，底部不离开支点。",
+            "纵向小幅回弹到 1.022 倍，随后恢复圆形；只回弹一次，末尾保持。"
+          ],
+          "retain": "拉长、压扁、回弹共用同一时钟；保留 0.06、0.09、0.022 的形变强度。横向比例始终为纵向比例的倒数，主体底部固定在支点上。",
+          "avoid": "不要把全身等比缩放当作形变，不要让底部离开支点，不要把三段拆成互不接续的动画或增加重复弹跳。",
+          "analogy": "柔软物体被拉起后受压，贴着底部支点恢复形状。",
+          "assumptions": "提取夕阳原码的三段形变曲线与接触点约束，以圆形主体展示；不包含飞机、海面和音效。",
+          "tempo_note": "零点一五秒开始，三段完整曲线统一映射到一点八秒，之后保持零点四五秒。",
+          "timing": {
+            "source_duration_ms": 3100,
+            "source_preview_ms": 1100,
+            "source_start_ms": 0,
+            "source_end_ms": 3100,
+            "start_ms": 150,
+            "end_ms": 1950
+          },
+          "reproduction": {
+            "presentation": "16:9 画幅，设计尺寸 640×360。近黑背景 #0a0a0b，暖白主体 #f4f1ea，灰色支点线 #a5a4ad。主体初始半径 64 像素、中心 (320,188)，支点线从 (224,252) 到 (416,252)。支点线宽 0.85 像素。主体底端全程贴住支点线。浅色外观改用背景 #f7f5f0、主体 #222226、支点 #63616b。",
+            "retain": "时间 t 以秒计。u=3.1×clamp((t−0.15)/1.8,0,1)。平滑函数 S(a,b,u)：先令 q=clamp((u−a)/(b−a),0,1)，再求 q²×(3−2q)。拉长 L=S(0,0.45,u)×[1−S(0.45,1,u)]；压扁 C=S(0.65,1.1,u)×[1−S(1.1,1.85,u)]；回弹 R=S(1.65,2.15,u)×[1−S(2.15,3.1,u)]。纵向比例 y=1+强度×(0.06L−0.09C+0.022R)，横向比例 x=1/y；强度默认 1，改为 0.35 可得轻微版。椭圆横半径=64x、纵半径=64y、中心=(320,252−64y)，因此面积和底部接触点始终不变。"
+          }
+        },
+        {
+          "id": "drop",
+          "label": "落地回弹",
+          "duration_ms": 2400,
+          "preview_ms": 1338,
+          "summary": "主体落地压扁、离地拉长，保持面积近似不变并逐次衰减。",
+          "purpose": "主体落地压扁、离地拉长，保持面积近似不变并逐次衰减。",
+          "objects": "弹性主体和地面",
+          "phases": [
+            "主体从上方落下。",
+            "接触时压扁并反弹拉长。",
+            "跳动幅度衰减后停住。"
+          ],
+          "retain": "主体落地压扁、离地拉长，保持面积近似不变并逐次衰减。",
+          "avoid": "不要把全身等比缩放当作形变。",
+          "analogy": "主体落地压扁、离地拉长，保持面积近似不变并逐次衰减。",
+          "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+          "tempo_note": "约零点一五秒起动，主要动作 1.8 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
+          "timing": {
+            "source_duration_ms": 4000,
+            "source_preview_ms": 2640,
+            "source_start_ms": 0,
+            "source_end_ms": 4000,
+            "start_ms": 150,
+            "end_ms": 1950
+          },
+          "reproduction": {
+            "presentation": "640×360 横向画板。主体初始半径 32 像素、横向中心 320；地面位于 y=285。近黑底、暖白主体、灰色地面，保留从上方落下、接触压扁和离地拉长。"
+          }
+        }
+      ]
     },
     {
       "id": "step-hop",
@@ -12503,13 +12580,13 @@
       "name": "分行逐字",
       "kind": "action",
       "category": "writing",
-      "summary": "完整圆角输入框内，提示词按固定节拍写入三行，每个新字从略低处显现，细光标跟随。",
-      "purpose": "提取原片中输入框逐字写入的具体主体、造型与时间关系，独立复用并能与原组合逐层对照。",
+      "summary": "完整圆角输入框内，提示词按固定节拍写入三行；写完后画面推进到发送按钮，按钮按压恢复，外侧蓝色短弧绕转并收起。",
+      "purpose": "呈现完整输入框内的分行逐字写入，以及向发送按钮推进的点击反馈。",
       "objects": "完整圆角输入框、描边、顶部工具栏、底部控件、发送按钮、三行中文提示词与跟随光标",
       "phases": [
         "完整输入界面落位，圆角框边缘描出，工具栏与按钮依次进入；光标在三行文字起点等待并闪烁，输入框与文字共用位移和缩放。",
         "0.9–4.5秒按原顺序写入110个字符，每字在0.12秒内上抬6像素并显现。",
-        "文字停在三行完成态，光标保持位置；输入框、工具栏与发送按钮始终保留，停在完整输入界面。"
+        "4.8–5.45秒画面从完整输入界面推进到发送按钮近景，放大至输入完成时的6倍，并将按钮移到画面中心；5–5.25秒按钮按下缩至80%再恢复，外侧蓝色短弧在5–6.1秒绕转并收起，结尾停在近景。"
       ],
       "aliases": [
         "中文随节拍逐字输入",
@@ -12524,9 +12601,9 @@
         "opacity",
         "move"
       ],
-      "retain": "输入框及工具栏、发送按钮必须完整保留，与文字同步移动和缩放。内层坐标使用 1920×1080，输入框局部左上角为（45，88），宽 940、高 198、圆角 22；保留 110 字内容、21.5 像素字号、885 像素换行阈值、36 像素行距和跟随光标。",
-      "avoid": "不删除输入框而只留悬空文字，不在输入期间让界面退场；不改成整行淡入，不重排为单行，也不缩写提示词。",
-      "duration_ms": 4800,
+      "retain": "输入框及工具栏、发送按钮必须完整保留，与文字同步移动和缩放。内层坐标使用 1920×1080，输入框局部左上角为（45，88），宽 940、高 198、圆角 22；保留 110 字内容、21.5 像素字号、885 像素换行阈值、36 像素行距和跟随光标。 输入完成后以发送按钮为落点推进，0.65秒内放大到6倍并停在画面中心，过程先快后慢；输入框、文字、按钮和蓝弧必须同步移动和缩放。按钮自身按下时缩到80%再恢复；蓝色弧线为 #007aff、线宽 2 像素、圆头，位于按钮外侧 2 像素，最长半圈，在 1.1 秒内绕转两圈后收起。",
+      "avoid": "不删除输入框而只留悬空文字，不在输入期间让界面退场；不改成整行淡入，不重排为单行，也不缩写提示词。 推进期间不让文字与输入框分离，不将按钮推出画面，也不把蓝弧改成整圈向外扩散。",
+      "duration_ms": 6200,
       "preview_ms": 3000,
       "default_ease": "linear",
       "parameters": {
@@ -12540,10 +12617,10 @@
       },
       "actions": [],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
-      "analogy": "完整圆角输入框内，提示词按固定节拍写入三行，每个新字从略低处显现，细光标跟随。",
-      "assumptions": "建立输入框、描边、工具栏、发送按钮及110个字符和光标，与组合共用原界面、排版和绘制函数；深浅模式均保留原深色背景，中文及混排正文用Light，独立动作到4.8秒结束。",
-      "recommendation": "需要复用原片中这一具体动作时使用；相关组合复用同一实现。",
-      "tempo_note": "4.8 秒，包含原 0.9 秒起笔与 3.6 秒书写。",
+      "analogy": "完整圆角输入框内，提示词按固定节拍写入三行；写完后画面推进到发送按钮，按钮按压恢复，外侧蓝色短弧绕转并收起。",
+      "assumptions": "建立输入框、描边、工具栏、发送按钮及110个字符和光标，输入阶段与组合共用原界面、排版和绘制函数；深浅模式均保留原深色背景，中文及混排正文用Light。独立动作在输入结束后向发送按钮推进，增加按钮外侧的蓝弧点击反馈，6.2秒结束；原组合继续使用原有发送效果。",
+      "recommendation": "需要完整输入界面中的逐字书写、发送按钮近景与点击反馈时使用；相关组合共用输入阶段的实现。",
+      "tempo_note": "6.2 秒，包含 0.9 秒起笔等待、3.6 秒书写、4.8–5.45 秒推进，以及 5–6.1 秒的发送点击反馈。",
       "loop": false,
       "demo_mode": "fixed-timeline",
       "domains": [
@@ -17046,6 +17123,728 @@
       "reproduction": {
         "presentation": "640×360 横版画板，绿色草场铺满全画布，不保留中央竖版框。花草的位置从内部 900×1200 坐标重排：X=内部 X×640÷900，Y=内部 Y×360÷1200；种子落点中心在画板 (512,300)，先从右下角生长，再向左侧和上方扩散，最终 620 株遍布画布。各株以自身落点为原点，把茎叶、花瓣、绒毛用同一个 0.48 比例缩放，宽高比例不变；位置重排不能用横向拉伸整张画面代替。背景在 1600×900 内部画布绘制后整体等比缩至 0.4：底色 #4b9f27，明暗色带 rgba(123,190,43,0.10)、rgba(42,116,23,0.11)，细草六色 #236e1c、#367f20、#489828、#64ae32、#82c33e、#acdb52。6900 根细草以固定种子 2029338688 初始化；33000 片纸纹细点和 150 道细纤维以种子 2774014912 建立一次并缓存。草场时间=16+(T−23.5)×0.7，地面按减速距离移动，细草随风轻摆，并随对应区域的花草生长缩短、减轻摆动；所有状态由同一个 T 计算。茎 #779947，叶片交替 #91b65c、#abc574、#739e4c，花瓣 #f2ce42、#f7de6c、#e7bd32、#f3e59e，花心 #b99438；绒毛 #fffde9，种子 #dec39a。"
       }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "以统一绝对秒数计算，可播放、暂停、重播和任意定位；替换主体位置函数即可沿任意路线复用。",
+      "id": "emission-drift",
+      "name": "释出飘散",
+      "category": "entrance",
+      "duration_ms": 4200,
+      "preview_ms": 1750,
+      "summary": "保留猫咪敞篷车与真实排气口，白蓝雾团继承车速，向车后扩散、上漂并淡去。",
+      "purpose": "把出口释出、速度继承和逐粒消散提炼成可替换主体的能力，同时保留完整示例的造型、材质和行驶关系。",
+      "objects": "灰白小猫驾驶白色敞篷车，蓝色轮胎持续滚动；车尾真实排气管吐出白蓝柔雾，蓝色道路标记向后移动。完整车身宽约 315 像素、高约 194 像素，烟雾在车尾左侧留足展开空间。",
+      "phases": [
+        "0.15 秒起动，动作秒数 u=clamp(t−0.15,0,3.6)。车体原点=(450,266+0.7sin(9u)+0.45sin(3.2u))，整车等比缩放 0.64；排气口局部位置=(−253,−47)，随车一起轻微起伏。相机累计横移=360u，车轮累计路程=360u÷0.64，原轮圈角度=累计路程÷(96×0.52)。",
+        "从 u=0 开始，每 0.19 秒释出一团白蓝雾，至 u=2.9 停止，共 16 团。序号 i 的出生时间 b=0.19i、年龄 a=u−b。出生位置 P 只采样出生瞬间的排气口；X=P.x−360a−24a+384×0.12×(1−exp(−a/0.12))，Y=P.y−18a−sin(1.7i)×5a。每团先继承车速，再被风留在身后。",
+        "每团寿命 0.72 秒，令 S(q)=clamp(q,0,1)²×(3−2×clamp(q,0,1))。半径 r=(4+23S(a/0.72))×0.64，椭圆横半径 1.3r、纵半径 0.9r；透明度=0.42S(a/0.045)×[1−S((a−0.1)/0.62)]。最后一团在 u=3.57 秒消失，3.75 秒画面停止，保持 0.45 秒。"
+      ],
+      "aliases": [
+        "释出飘散",
+        "尾气吐出并向后飘散",
+        "尾气吐出后飘散",
+        "粒子释出",
+        "粒子扩散淡出",
+        "继承速度",
+        "drive-exhaust"
+      ],
+      "previous_names": [
+        "尾气吐出并向后飘散",
+        "尾气吐出后飘散"
+      ],
+      "behaviors": [
+        "opacity",
+        "scale",
+        "move",
+        "stagger"
+      ],
+      "retain": "主体、车轮、方向盘与猫咪使用随附源码 carSource 的全部曲线、图层和比例；转向 s=0.14sin(2.1u)+0.035sin(0.85u)，手臂与方向盘共用该值；头部轻转为 0.007sin(0.72u)。烟雾渐变在圆形坐标中计算，再由椭圆边界裁去上下部分，不能把渐变拉成椭圆。MotionEmission.puffsAt 接收秒数、出口位置函数、相机累计位移函数及排放选项；保留出生时的位置、速度继承、0.19 秒间隔、0.72 秒寿命和固定序号偏移。",
+      "avoid": "不能用箭头、点或简化轮廓替代主体；不能将猫、方向盘、车轮拆成不同步的动画；不要随机撒烟，不要让旧雾重新跟着当前出口，不加入文字或声音。",
+      "analogy": "车尾吐出的雾团先跟车，随后被风留在车后并散去。",
+      "assumptions": "使用自有驾车源码的完整猫咪、敞篷车、轮胎与排气口，重取景到横版；动作与矢量绘制全部随包提供。",
+      "tempo_note": "共 4.2 秒，0.15 秒起动，按真实动作秒数行驶 3.6 秒；最后一团雾散尽后停留 0.45 秒。",
+      "recommendation": "从移动物体真实出口持续释出烟雾、气泡或粉尘，同时保留主体与排放物的运动联系。",
+      "source": {
+        "path": "catalog/effects/emission-trails.js",
+        "factory": "emission-drift",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/drive/scene.js",
+        "original_symbol": "exhaustPuffs / drawExhaust / drawXiaokuiCar",
+        "extraction": "迁入自有驾车原码的完整 drawXiaokuiCar 绘制函数，原车曲线、图层、配色、轮转和握盘动作不变；以矢量指令承接 p5 绘制，保留真实排气口与原圆形径向雾材质。排放计算独立暴露位置与相机输入，不依赖原工程、p5.js、位图或声音。",
+        "original_files": [
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/drive/scene.js",
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/drive/xiaokui-car.js"
+        ]
+      },
+      "reproduction": {
+        "presentation": "640×360 横版画板，背景 #0e3cf1，道路 #1340e7。小猫敞篷车位于画面右侧，轮胎底约 y=266，角色头顶约 y=73，完整车体宽约 315 像素；排气口约 (288.08,235.92)，左侧约 230 像素供烟雾展开。车身和胸腹 #ffffff、灰毛 #958878、耳内 #78634e、五官 #09244f、轮胎与细节 #0077ff/#064ddd、车身细边 #87bfff，保留原曲线形状。雾团为圆形径向渐变：中心 #f1faff、不透明度 1；半径 45% 处 #d5eeff、不透明度 0.55；外缘不透明度 0，整体再乘该团透明度。径向渐变半径 1.3r，绘制范围为横半径 1.3r、纵半径 0.9r 的椭圆。路面线 #4272f4、宽 2.2 像素，第一排 y=314、第二排 y=358，每 160 像素一组，随 360u 的累计距离向左移动。深浅外观均保留这些颜色。"
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "以统一绝对秒数计算，可播放、暂停、重播和任意定位；替换主体位置函数即可沿任意路线复用。",
+      "id": "advected-trail",
+      "name": "尾流消退",
+      "category": "connection",
+      "duration_ms": 6600,
+      "preview_ms": 2550,
+      "summary": "原四层飞机沿水平航线减速，双尾流从真实尾口留下，停住后继续散宽、漂移并消退。",
+      "purpose": "将真实历史轨迹、双尾口姿态和余迹消散作为可复用能力，保留飞机形体、天空渐变与双层尾流的完整表现。",
+      "objects": "暖色渐变天空中的深灰蓝飞机，保留机身、远翼、近翼及机窗四层形状与明暗；飞机实际显示宽约 88 像素，两条乳白尾流在身后铺开。",
+      "phases": [
+        "0.15 秒起动。动作时钟 u=2+24.5×clamp((t−0.15)/6,0,1)。单位尺寸 U=41.04×0.34，接近进度 p=1−[1−clamp((u−2)/12.5,0,1)]²，飞机中心 X=−1.41U+(450+1.41U)p、Y=264，朝向保持 0。飞机在 u=14.5 秒抵达并保持同一姿态。",
+        "固定两倍等比取景：整个飞机和所有尾流共用平移 (174+282p−2X,170−2Y)，再缩放 2，因此飞机在画面中从 (174,170) 移到 (456,170)。每次从 max(2,u−12) 至 min(u,14.5) 回看真实历史位置，间隔 0.15 动作秒，最后一段截到当前时刻；相邻中心距离小于 0.05 像素时不排放。两侧尾口局部坐标为 (−1.35U,(0.08+侧号×0.14)U)，侧号为 −1、1。",
+        "以 k=4/3 保留尾流宽度。每个历史端点的年龄 a=u−采样秒数；端点 X 减 0.9ka，Y 加 0.35ka+sin(采样秒数×0.7+侧号)×0.1ka。整段年龄 A=u−两端秒数平均值，透明度 α=max(0,1−A/12)^1.6×0.34，低于 0.002 时省略；线宽 w=(0.75+0.23A)k。外层为 3w、0.15α，内层为 w、α；两层圆头，随整个取景一起放大。主体约 3.21 秒停止，余迹继续散去，6.15 秒时全部消失，再停留 0.45 秒。"
+      ],
+      "aliases": [
+        "尾流消退",
+        "历史尾流",
+        "尾流沿轨迹消退",
+        "历史位置尾迹",
+        "尾迹变宽漂移",
+        "停止排放",
+        "sunset-contrail"
+      ],
+      "previous_names": [
+        "历史尾流",
+        "尾流沿轨迹消退"
+      ],
+      "behaviors": [
+        "path",
+        "move",
+        "opacity",
+        "follow"
+      ],
+      "retain": "四层飞机曲线直接使用随附源码中的 planePaths，完整保留机身、机翼、机窗及各自颜色。飞机与两条尾流共用同一历史姿态和取景变换，不能分别缩放、重新画一条类似路线或用当前相机位置记录旧尾流。MotionEmission.segmentsAt 接收秒数、任意历史时刻的姿态函数和排放选项；姿态返回 x、y、pitch 弧度和 unit 尺寸，寿命默认 12、采样间隔默认 0.15，支持 start、end 和 scale。",
+      "avoid": "不能用小箭头替代飞机，不使用另画的弧线，不放大主体而缩小尾流；停住时不堆烟，拖动进度不保留上一帧缓存；不添加文字或声音。",
+      "analogy": "飞机沿真实航线留下一双乳白尾流，飞机停住后，旧尾流仍在空气里散宽并慢慢消失。",
+      "assumptions": "提取自有夕阳原码 2–14.5 秒的真实接近航线和飞机四层绘制；抵达后固定该姿态，留出十二秒动作时间观察尾流消散。",
+      "tempo_note": "共 6.6 秒，0.15 秒起步；24.5 秒动作时钟映射到 6 秒完整过程，前约 3.06 秒行进、后约 2.94 秒消散，末尾保留 0.45 秒。",
+      "recommendation": "适用于有历史姿态函数的运动主体；主体形状可替换，尾口、取景与历史尾流始终保持对应。",
+      "source": {
+        "path": "catalog/effects/emission-trails.js",
+        "factory": "advected-trail",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/scenes/ocean-sunset/sketch.js",
+        "original_symbol": "flightAt 接近阶段 / drawAirplane / contrailSegments / drawContrail",
+        "extraction": "迁入自有夕阳原码的飞机四层路径、暖色天空渐变、2–14.5 秒接近航线、双尾口与历史尾流模型；横版以统一两倍取景同时放大主体和尾流，不再使用抽象箭头或另设弧线。抵达后固定姿态，仅让历史尾流自然变宽、漂移和消散；独立运行无需原工程或媒体。"
+      },
+      "reproduction": {
+        "presentation": "640×360 横版画板。天空纵向渐变依次为 0% #f69b18、36% #e88d30、67% #ba6c50、88% #785b71、100% #57576e。原四层飞机：机身 #505969、远翼 #687181、近翼 #3e4859、机窗 #303b4c；形状由随附 planePaths 完整提供，不添加额外描边。飞机等比放大，显示宽约 88 像素，中心高度固定在 y=170。尾流 #fff4e1，外层宽淡、内层细亮；飞机和尾流在同一取景组内，旧尾流超出画布时自然裁切，画布内保留完整的主体。深浅外观均保留这些颜色。"
+      }
+    },
+    {
+      "id": "hud-ring-build",
+      "name": "环圈分层展开",
+      "kind": "action",
+      "category": "entrance",
+      "summary": "五层圆弧和一百二十根刻度从十二点方向逐步显现，各环保留不同的旋转速度。",
+      "purpose": "五层圆弧和一百二十根刻度从十二点方向逐步显现，各环保留不同的旋转速度。",
+      "objects": "半径190、199、208、217、226的五层圆环、一百二十根长短刻度及十二个角度标签",
+      "phases": [
+        "五层圆弧从十二点方向展开，长短刻度沿顺时针逐项出现。",
+        "相邻圆弧按相反方向缓转，亮短弧随所属圆环运动。",
+        "完整刻度与中心准星保留，停在展开后的状态。"
+      ],
+      "aliases": [
+        "环圈分层展开",
+        "第八段环圈分层展开"
+      ],
+      "behaviors": [
+        "draw",
+        "rotate",
+        "appear"
+      ],
+      "retain": "中心固定在1066×600画板的(533,300)，刻度半径225，长短为10、6、3；五圈起始旋转为序号×0.61弧度，速度分别为每秒−0.13或0.18弧度。",
+      "avoid": "不把刻度变成随机粒子，不让所有环共用同一转速。",
+      "duration_ms": 1800,
+      "preview_ms": 1200,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "dashboard"
+      ],
+      "trigger": "打开后按固定时间演示，可暂停、重播及任意定位。",
+      "analogy": "五层圆弧和一百二十根刻度从十二点方向逐步显现，各环保留不同的旋转速度。",
+      "assumptions": "从第八段绘制代码拆出实际图层，改为中文标签与目录字体，保持原深色发光界面。斜距按可读帧核对；其它遥测和图表为确定的演示曲线，不代表真实监测数据。",
+      "tempo_note": "总长1.8秒，等待0.15秒后开始，末尾静止0.45秒；保留图层内部的先后关系。",
+      "source": {
+        "path": "catalog/effects/hud-targeting.js",
+        "factory": "hud-ring-build",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
+      }
+    },
+    {
+      "id": "hud-globe-scan",
+      "name": "曲面扫描推近",
+      "kind": "action",
+      "category": "space",
+      "summary": "球面经纬网和地理轮廓缓慢旋转，扇形光束扫过表面，随后推近目标区域。",
+      "purpose": "球面经纬网和地理轮廓缓慢旋转，扇形光束扫过表面，随后推近目标区域。",
+      "objects": "半径166的球面、经纬网、国家边界、窄扇形扫描光和局部地理轮廓",
+      "phases": [
+        "球面从暗处显现，经纬网和轮廓保持前后遮挡。",
+        "扇形光束绕球心扫描，观察经度随时间转动。",
+        "观察方向转向东经121.5度、北纬31度，局部网格随推近逐渐变密。"
+      ],
+      "aliases": [
+        "曲面扫描推近",
+        "第八段曲面扫描推近"
+      ],
+      "behaviors": [
+        "rotate",
+        "focus",
+        "scale"
+      ],
+      "retain": "采用正交球面投影，背向面隐藏；扫描角为时间×2.3−1.2弧度、扇宽0.19弧度；锁定时局部几何放大到4.5倍，球形裁切半径保持166。",
+      "avoid": "不把完整平面地图贴在圆里平移，不省略背面隐藏和裁切。",
+      "duration_ms": 3000,
+      "preview_ms": 2350,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "dashboard"
+      ],
+      "trigger": "打开后按固定时间演示，可暂停、重播及任意定位。",
+      "analogy": "球面经纬网和地理轮廓缓慢旋转，扇形光束扫过表面，随后推近目标区域。",
+      "assumptions": "从第八段绘制代码拆出实际图层，改为中文标签与目录字体，保持原深色发光界面。斜距按可读帧核对；其它遥测和图表为确定的演示曲线，不代表真实监测数据。",
+      "tempo_note": "总长3秒，等待0.15秒后开始，末尾静止0.45秒；保留图层内部的先后关系。",
+      "source": {
+        "path": "catalog/effects/hud-targeting.js",
+        "factory": "hud-globe-scan",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
+      }
+    },
+    {
+      "id": "hud-system-boot",
+      "name": "分栏逐行自检",
+      "kind": "action",
+      "category": "writing",
+      "summary": "七行自检信息按顺序淡入，每一行的通过标记与其正文一起出现。",
+      "purpose": "七行自检信息按顺序淡入，每一行的通过标记与其正文一起出现。",
+      "objects": "七条中文自检日志、左侧引导符、右侧通过标记和细线面板",
+      "phases": [
+        "面板边线与标题出现。",
+        "日志从上往下按55毫秒间隔出现，每行用120毫秒淡入。",
+        "七条日志和通过状态全部保留。"
+      ],
+      "aliases": [
+        "分栏逐行自检",
+        "第八段分栏逐行自检"
+      ],
+      "behaviors": [
+        "stagger",
+        "appear",
+        "sequence"
+      ],
+      "retain": "原日志区为(52,74)、165×145，基线从91开始每行递增14；单项等比放大2.8倍，正文和通过标记共用同一个透明度进度。",
+      "avoid": "不换成逐字打字，不让状态先于对应日志出现。",
+      "duration_ms": 1800,
+      "preview_ms": 1300,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "dashboard"
+      ],
+      "trigger": "打开后按固定时间演示，可暂停、重播及任意定位。",
+      "analogy": "七行自检信息按顺序淡入，每一行的通过标记与其正文一起出现。",
+      "assumptions": "从第八段绘制代码拆出实际图层，改为中文标签与目录字体，保持原深色发光界面。斜距按可读帧核对；其它遥测和图表为确定的演示曲线，不代表真实监测数据。",
+      "tempo_note": "总长1.8秒，等待0.15秒后开始，末尾静止0.45秒；保留图层内部的先后关系。",
+      "source": {
+        "path": "catalog/effects/hud-targeting.js",
+        "factory": "hud-system-boot",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
+      }
+    },
+    {
+      "id": "hud-telemetry-sync",
+      "name": "仪表同步读数",
+      "kind": "action",
+      "category": "data",
+      "summary": "斜距、倍率、视场和两翼图表共用同一时钟，锁定时读数快速变化，波形和频谱保持联动。",
+      "purpose": "斜距、倍率、视场和两翼图表共用同一时钟，锁定时读数快速变化，波形和频谱保持联动。",
+      "objects": "四位整数加一位小数的目标斜距、倍率与视场、导航遥测、雷达、双波形、候选列表和五十一根频谱条",
+      "phases": [
+        "斜距显示滚动数字，倍率保持1.0，视场保持12.40度。",
+        "斜距从1712.5缓降到1648.3，双波形与频谱同步更新。",
+        "锁定后斜距快速降至0077.9，倍率升到21.2，视场降到0.59度。"
+      ],
+      "aliases": [
+        "仪表同步读数",
+        "第八段仪表同步读数"
+      ],
+      "behaviors": [
+        "count",
+        "react",
+        "sequence"
+      ],
+      "retain": "保持前导零、公里单位和六字符读数；局部时间1.716667秒为1665.8、2.416667秒为0201.7、3.366667秒为0077.9；频谱51柱按固定时间采样更新，所有状态由当前时间计算。",
+      "avoid": "不把201.7作为末值，不用实时随机数驱动读数，不把演示数据冒充业务实况。",
+      "duration_ms": 3000,
+      "preview_ms": 2200,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "dashboard"
+      ],
+      "trigger": "打开后按固定时间演示，可暂停、重播及任意定位。",
+      "analogy": "斜距、倍率、视场和两翼图表共用同一时钟，锁定时读数快速变化，波形和频谱保持联动。",
+      "assumptions": "从第八段绘制代码拆出实际图层，改为中文标签与目录字体，保持原深色发光界面。斜距按可读帧核对；其它遥测和图表为确定的演示曲线，不代表真实监测数据。",
+      "tempo_note": "总长3秒，等待0.15秒后开始，末尾静止0.45秒；保留图层内部的先后关系。",
+      "source": {
+        "path": "catalog/effects/hud-targeting.js",
+        "factory": "hud-telemetry-sync",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
+      }
+    },
+    {
+      "id": "hud-target-lock",
+      "name": "准星锁定变色",
+      "kind": "action",
+      "category": "attention",
+      "summary": "四角准星与中文状态条同时出现，青色界面切为琥珀色，明确标出目标已锁定。",
+      "purpose": "四角准星与中文状态条同时出现，青色界面切为琥珀色，明确标出目标已锁定。",
+      "objects": "四角短线准星、半透明横条、目标锁定文字和中文经纬位置",
+      "phases": [
+        "中心准星保持，界面处于搜索状态。",
+        "锁定进度从零到一，四角线和状态条共同显现。",
+        "琥珀色锁定条稳定，显示北纬31度14分、东经121度29分。"
+      ],
+      "aliases": [
+        "准星锁定变色",
+        "第八段准星锁定变色"
+      ],
+      "behaviors": [
+        "focus",
+        "color",
+        "appear"
+      ],
+      "retain": "准星四角距中心48，短线11；横条在(346,278)，尺寸374×42；锁定进度对应局部2.22—2.40秒，过45%由青色切琥珀色。",
+      "avoid": "不只改变文字颜色，不加入与锁定无关的装饰闪烁。",
+      "duration_ms": 1800,
+      "preview_ms": 1200,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "dashboard"
+      ],
+      "trigger": "打开后按固定时间演示，可暂停、重播及任意定位。",
+      "analogy": "四角准星与中文状态条同时出现，青色界面切为琥珀色，明确标出目标已锁定。",
+      "assumptions": "从第八段绘制代码拆出实际图层，改为中文标签与目录字体，保持原深色发光界面。斜距按可读帧核对；其它遥测和图表为确定的演示曲线，不代表真实监测数据。",
+      "tempo_note": "总长1.8秒，等待0.15秒后开始，末尾静止0.45秒；保留图层内部的先后关系。",
+      "source": {
+        "path": "catalog/effects/hud-targeting.js",
+        "factory": "hud-target-lock",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
+      }
+    },
+    {
+      "id": "hud-acquisition-sequence",
+      "name": "扫描捕获与锁定",
+      "kind": "composition",
+      "category": "compositions",
+      "summary": "环圈、自检和数据面板依次建立，球体扫描推近后切为琥珀色锁定，最终收成细线退出。",
+      "purpose": "把搜寻、发现、聚焦与锁定组织成可拆解的完整界面动效。",
+      "objects": "中央线框球体、五层环形刻度、左右数据面板、中文状态条和关机细线",
+      "phases": [
+        "环圈先展开，中文自检日志与两翼数据面板依次显现。",
+        "地球轮廓和扫描光束进入，斜距变化；捕获后视角推近、青色切为琥珀色。",
+        "中文锁定条稳定，最后所有界面退出，横线收短并熄灭。"
+      ],
+      "aliases": [
+        "扫描捕获与锁定",
+        "第八段",
+        "赛博朋克HUD",
+        "隼眼九号",
+        "中文数据大屏",
+        "科幻仪表界面"
+      ],
+      "behaviors": [
+        "sequence",
+        "draw",
+        "rotate",
+        "count",
+        "focus",
+        "exit"
+      ],
+      "retain": "1066×600原构图等比放入640×360；球心(533,300)，左栏x=52、右栏x=848；0.12—0.53秒展环，0.4—0.75秒显现面板，0.66—0.99秒显现球体，2.22—2.40秒锁定，3.41665秒切换关机线，3.57秒熄灭。所有子动作共享同一绘制函数与时钟。",
+      "avoid": "不加入片外介绍，不把各图层改成互不关联的循环，不截取原片图像代替绘制。",
+      "duration_ms": 3733.334,
+      "preview_ms": 1716.667,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [
+        "hud-ring-build",
+        "hud-globe-scan",
+        "hud-system-boot",
+        "hud-telemetry-sync",
+        "hud-target-lock"
+      ],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "dashboard"
+      ],
+      "trigger": "打开后按固定时间演示，可暂停、重播及任意定位。",
+      "analogy": "从暗处启动观测界面，扫描发现信号，推近目标并锁定，最后关机。",
+      "assumptions": "从第八段绘制代码拆出实际图层，改为中文标签与目录字体，保持原深色发光界面。斜距按可读帧核对；其它遥测和图表为确定的演示曲线，不代表真实监测数据。",
+      "tempo_note": "按原片第八段完整局部时钟播放，总长约3.733秒。",
+      "source": {
+        "path": "catalog/effects/hud-targeting.js",
+        "factory": "hud-acquisition-sequence",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后播放一次，可暂停、定位和重播；全程静音。",
+      "recommendation": "复用随包提供的完整绘制与绝对时间函数。",
+      "previous_names": [],
+      "id": "particle-hopper",
+      "name": "群粒落入",
+      "kind": "action",
+      "category": "entrance",
+      "summary": "十二颗豆粒错峰下落，先在料斗内聚集，再依次进入下料口。",
+      "purpose": "十二颗豆粒错峰下落，先在料斗内聚集，再依次进入下料口。",
+      "objects": "保留真实咖啡豆纹理与中间沟槽、深蓝料斗及前沿遮挡。",
+      "phases": [
+        "设计画板 640×360，原料斗坐标整体平移到 (320,160)，等比缩放 0.64，再平移 (−306,−174)；蓝底 #0E3CF1。动作秒数 u=clamp(t−0.15,0,1.5)。",
+        "十二颗粒子采用随附 BEAN_BATCH 中的固定落点和角度。第 i 颗出生 b=0.032i，落地 l=b+0.68+0.012(i mod 3)。下落进度 q=(u−b)/(l−b)，横坐标=落点X+sin(4.31i)×9×(1−q)，纵坐标=−24+(落点Y+24)q²；旋转由交替的 ±1.4 弧度回到各自落点角度。",
+        "第 i 颗在 d=0.98+0.012i 开始下料。令 v=S(clamp((u−d)/0.32))，S(x)=x²(3−2x)，位置从原落点移动到 (306,362)，角度额外转交替的 ±0.45v；到 d+0.32 删除该豆粒。最后一颗在动作 1.432 秒消失，料斗保持完整。"
+      ],
+      "aliases": [
+        "群粒落入",
+        "豆粒落入料斗",
+        "小猫加工厂",
+        "错峰下落"
+      ],
+      "behaviors": [
+        "sequence",
+        "move"
+      ],
+      "retain": "hopperBeans 与 hopper 的原坐标、裁切、前后遮挡及材质保持。原豆粒图片随包提供；裁取 (216,59,824,1140)，先灰度并提亮 1.55 倍，再以 0.72 透明度交替覆色 #666560 与 #FFFFFF。单粒长 24、宽 24×824/1140；保留本地素材透明轮廓，不另画椭圆代替。",
+      "avoid": "不随机重排豆粒，不省略料斗，不将豆粒简化成点，不拉伸图片，不添加文字或声音。",
+      "duration_ms": 2100,
+      "preview_ms": 950,
+      "source": {
+        "path": "catalog/effects/particle-scenes.js",
+        "factory": "particle-hopper",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [
+          "catalog/assets/particle-scenes/coffee-bean.png"
+        ],
+        "original_files": [
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/cat/timeline.js",
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/cat-source.js"
+        ],
+        "extraction": "hopperBeans 与 hopper 的原坐标、裁切、前后遮挡及材质保持。原豆粒图片随包提供；裁取 (216,59,824,1140)，先灰度并提亮 1.55 倍，再以 0.72 透明度交替覆色 #666560 与 #FFFFFF。单粒长 24、宽 24×824/1140；保留本地素材透明轮廓，不另画椭圆代替。"
+      },
+      "analogy": "十二颗豆粒错峰下落，先在料斗内聚集，再依次进入下料口。",
+      "assumptions": "16:9，640×360。保留蓝底 #0E3CF1、深蓝料斗 #172356、侧面 #344A80 和内沿 #111B42。料斗及整段下落路径等比居中，底部预留控件空间。",
+      "reproduction": {
+        "presentation": "16:9，640×360。保留蓝底 #0E3CF1、深蓝料斗 #172356、侧面 #344A80 和内沿 #111B42。料斗及整段下落路径等比居中，底部预留控件空间。"
+      },
+      "tempo_note": "总长 2.1 秒，起始等待 0.15 秒，动作结束后保持 0.45 秒。"
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后播放一次，可暂停、定位和重播；全程静音。",
+      "recommendation": "复用随包提供的完整绘制与绝对时间函数。",
+      "previous_names": [],
+      "id": "seed-shedding-illustration",
+      "name": "脱落飘动",
+      "kind": "illustration",
+      "category": "illustration-nature",
+      "summary": "蒲公英冠毛陆续脱落，主体逐渐稀疏，脱落种子保持原起伏与旋转。",
+      "purpose": "蒲公英冠毛陆续脱落，主体逐渐稀疏，脱落种子保持原起伏与旋转。",
+      "objects": "一百三十七道冠毛组成的蒲公英主体，以及从真实冠毛连接处脱落的种子。",
+      "phases": [
+        "原动作时钟 u=5.6+clamp(t−0.15,0,3.8)，保留 3.8 秒片段。固定种子序列不重新随机生成；原所有图形共用平移 (194,−50) 与等比缩放 0.28。",
+        "第 i 个脱落种子的冠毛槽位=(29i) mod 137，出生时刻 b=4.65+0.485i。主体冠毛在各自出生后的 0.12 秒内退出；主体半径=42−已脱落数量×0.22。出生位置由该时刻主体位置、旋转、半径及对应冠毛方向共同求出。",
+        "年龄 a=u−b；存活 3.3 秒。X=出生X+侧号×19a+sin(1.7a+相位)×9a，Y=出生Y+[distance(u)−distance(b)]×0.52+16a²；旋转=出生角度+侧号×0.95a+0.55sin(2a+相位)。半径=原尺寸×(1−0.075a)，透明度=S(0,0.14,a)×[1−S(2.25,3.3,a)]。distance、冠毛曲线和飞行轨迹使用随附源码中的原函数。"
+      ],
+      "aliases": [
+        "脱落飘动",
+        "蒲公英绒毛脱落",
+        "种子脱落并飘动",
+        "风过之处"
+      ],
+      "behaviors": [
+        "move"
+      ],
+      "retain": "复用 history-nature.js 内完整 DandelionJourney 冠毛、细茎和种子曲线；releasePose、driftingPose 与 drifting 从原作逐字迁入，出生位置保持历史姿态，主体稀疏与独立种子数量对应。",
+      "avoid": "不把冠毛改成直线图标，不改出生位置，不用当前主体位置带动已经脱落的种子，不添加文字或声音。",
+      "duration_ms": 4400,
+      "preview_ms": 2500,
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "seed-shedding-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [],
+        "original_files": [
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/source-projects/dandelion-scene/assets/js/dandelion.js"
+        ],
+        "extraction": "复用 history-nature.js 内完整 DandelionJourney 冠毛、细茎和种子曲线；releasePose、driftingPose 与 drifting 从原作逐字迁入，出生位置保持历史姿态，主体稀疏与独立种子数量对应。"
+      },
+      "analogy": "蒲公英冠毛陆续脱落，主体逐渐稀疏，脱落种子保持原起伏与旋转。",
+      "assumptions": "16:9，640×360，底色 #526957，冠毛和细茎保留原奶油白。保持主体在上、种子向下飘动的原纵向构图，用统一缩放完整放入横画板，不把纵向下落压成横向平移。",
+      "reproduction": {
+        "presentation": "16:9，640×360，底色 #526957，冠毛和细茎保留原奶油白。保持主体在上、种子向下飘动的原纵向构图，用统一缩放完整放入横画板，不把纵向下落压成横向平移。"
+      },
+      "tempo_note": "总长 4.4 秒，起始等待 0.15 秒，动作结束后保持 0.45 秒。"
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后播放一次，可暂停、定位和重播；全程静音。",
+      "recommendation": "复用随包提供的完整绘制与绝对时间函数。",
+      "previous_names": [],
+      "id": "note-hop-illustration",
+      "name": "沿点跳跃",
+      "kind": "illustration",
+      "category": "illustration-nature",
+      "summary": "白色亮芯带紫色柔雾，沿真实谱面音符起跳、落点和留光。",
+      "purpose": "白色亮芯带紫色柔雾，沿真实谱面音符起跳、落点和留光。",
+      "objects": "完整谱纸、第一声部亮芯、沿历史轨迹留下的光带、实际符头轮廓亮边。",
+      "phases": [
+        "动作秒数 u=clamp(t−0.15,0,8)，按随附 score-data.json 中的音符时刻、位置与时值播放八秒。以第一声部的同拍事件分组，最高音作为支撑点；第二声部亮芯隐藏，谱面保留。",
+        "每步开始在原符头停留 min(0.03,0.14×步长) 秒。余下时间进度 q，水平与纵深沿 q²(3−2q) 插值，离地高度=0.035+4×H×q(1−q)×3.3；H=0.72+0.46×clamp((步长−0.15)/0.15)。不压扁或拉长亮芯。",
+        "保留原 createOrb 的白亮芯、紫色雾光、落点短增亮，createTrail 的历史路径与消退，以及 createNoteGlow 按真实符头路径绘制的柔光。镜头使用 cameraPose 的连续谱面进度、42 度视角和 −0.16 弧度倾角，保持光点跳起时镜头不跟着上下晃。"
+      ],
+      "aliases": [
+        "沿点跳跃",
+        "光点逐音跳弧",
+        "光点沿音符跳跃",
+        "音符跳动"
+      ],
+      "behaviors": [
+        "move"
+      ],
+      "retain": "直接使用本地 notes-source.js 中完整原谱面、光点、尾迹和光照绘制，只将输出尺寸接入横画板；源 bundle 内嵌谱面矢量、音符数据与 Three.js。依赖全部随包，无网络、音频或原工程路径；Three.js 的 MIT 许可保留。",
+      "avoid": "不改成单个圆点在简线跳动，不替换真实谱面，不减少亮芯与柔雾层，不拉伸原纵横比例，不播放音乐。",
+      "duration_ms": 8600,
+      "preview_ms": 4150,
+      "source": {
+        "path": "catalog/effects/particle-scenes.js",
+        "factory": "note-hop-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [
+          "catalog/assets/particle-scenes/SOURCE.json",
+          "catalog/assets/particle-scenes/THREE-LICENSE.txt",
+          "catalog/assets/particle-scenes/notes/assets/score-clean.svg",
+          "catalog/assets/particle-scenes/notes/assets/score-data.json",
+          "catalog/assets/particle-scenes/notes/assets/来源.md",
+          "catalog/assets/particle-scenes/notes/src/butterfly.js",
+          "catalog/assets/particle-scenes/notes/src/isolated-scene.js",
+          "catalog/assets/particle-scenes/notes/src/motion.js",
+          "catalog/assets/particle-scenes/notes/src/note-glow.js",
+          "catalog/assets/particle-scenes/notes/src/orb.js",
+          "catalog/assets/particle-scenes/notes/src/trail.js",
+          "catalog/assets/particle-scenes/notes/vendor/lunar-butterfly-geometry.js",
+          "catalog/assets/particle-scenes/notes-source.js"
+        ],
+        "original_files": [
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/notes/src/motion.js",
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/notes/src/orb.js",
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/notes/src/trail.js",
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/notes/src/isolated-scene.js"
+        ],
+        "extraction": "直接使用本地 notes-source.js 中完整原谱面、光点、尾迹和光照绘制，只将输出尺寸接入横画板；源 bundle 内嵌谱面矢量、音符数据与 Three.js。依赖全部随包，无网络、音频或原工程路径；Three.js 的 MIT 许可保留。"
+      },
+      "analogy": "白色亮芯带紫色柔雾，沿真实谱面音符起跳、落点和留光。",
+      "assumptions": "16:9，640×360，按横画板重新计算透视宽高比，不拉伸竖版画面。保留 #25212b 暗紫环境、原灰色谱纸、白色亮芯及 #c9a0ff 紫色柔雾、符头亮边和原光带。",
+      "reproduction": {
+        "presentation": "16:9，640×360，按横画板重新计算透视宽高比，不拉伸竖版画面。保留 #25212b 暗紫环境、原灰色谱纸、白色亮芯及 #c9a0ff 紫色柔雾、符头亮边和原光带。"
+      },
+      "tempo_note": "总长 8.6 秒，起始等待 0.15 秒，动作结束后保持 0.45 秒。"
     }
   ],
   "redirects": {
@@ -17118,11 +17917,18 @@
     "history-osmanthus-fall-contact": "shape-contact-rebound",
     "history-osmanthus-moon-flight": "swarm-arc-flight",
     "history-begin-end": "settle-grow-spread",
-    "history-flow-colony-spread": "settle-grow-spread"
+    "history-flow-colony-spread": "settle-grow-spread",
+    "history-sunset-load-deform": "squash-bounce",
+    "history-drive-exhaust": "emission-drift",
+    "history-sunset-contrail": "advected-trail",
+    "history-cat-beans": "particle-hopper",
+    "history-flow-seed-shed": "seed-shedding-illustration",
+    "history-notes-hop": "note-hop-illustration"
   },
   "variant_redirects": {
     "material-label-stagger": "material",
     "generative-title-reveal": "outline",
-    "keyframe-title-handoff": "handoff"
+    "keyframe-title-handoff": "handoff",
+    "history-sunset-load-deform": "contact"
   }
 }

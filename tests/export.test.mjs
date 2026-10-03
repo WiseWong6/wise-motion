@@ -65,6 +65,12 @@ test('导出的历史页面保持选中案例、静音与时间范围，播放�
         const entry=base.entries.find(e=>e.preview.type==='original-crop');
         effect={...base,entries:[{...entry,preview:{...entry.preview,type}}]};
       }
+      // 原 isolated 案例已全部迁出，用同结构的当前案例保留导出兼容验证。
+      if(!effect&&type==='isolated'){
+        const base=env.w.MotionHistory.recipes.find(r=>r.entries.some(e=>e.preview.type==='web-isolated'));
+        const entry=base.entries.find(e=>e.preview.type==='web-isolated');
+        effect={...base,entries:[{...entry,preview:{...entry.preview,type}}]};
+      }
       assert.ok(effect,'缺少 '+type+' 的导出验证案例');
       const entry=effect.entries.find(e=>e.preview.type===type);
       const html=env.w.MotionExport.previewCode(effect,{speed:1.75,caseId:entry.id});

@@ -485,9 +485,28 @@
     const s=stage(root,dot('pin',320,75,5)+'<g data-part="body">'+line('rod',320,75,320,245)+rect('weight',290,220,60,50)+'</g>');
     return p=>s('body',{transform:`rotate(${24*Math.sin(p*2*Math.PI)} 320 75)`});
   });
-  register('squash-bounce',(root) => {
-    const s=stage(root,line('floor',95,285,545,285)+'<ellipse data-part="ball" cx="320" cy="100" rx="32" ry="32" fill="var(--ink)"/>');
-    return p=>{let height,ratio=1;if(p<.2)height=165*(1-(p/.2)**2);else{const q=section(p,.2,1),wave=Math.abs(Math.sin(q*3*Math.PI));height=112*Math.exp(-3*q)*wave;ratio=1+.38*Math.exp(-3*q)*Math.exp(-32*wave);if(wave>.35)ratio=1-.13*Math.exp(-3*q)*wave;}if(p===1){height=0;ratio=1;}s('ball',{cx:320,cy:285-32/ratio-height,rx:32*ratio,ry:32/ratio});};
+  register('squash-bounce',(root,K,definition) => {
+    if(definition.variant_id==='drop'){
+      const s=stage(root,line('floor',95,285,545,285)+'<ellipse data-part="ball" cx="320" cy="100" rx="32" ry="32" fill="var(--ink)"/>');
+      return p=>{let height,ratio=1;if(p<.2)height=165*(1-(p/.2)**2);else{const q=section(p,.2,1),wave=Math.abs(Math.sin(q*3*Math.PI));height=112*Math.exp(-3*q)*wave;ratio=1+.38*Math.exp(-3*q)*Math.exp(-32*wave);if(wave>.35)ratio=1-.13*Math.exp(-3*q)*wave;}if(p===1){height=0;ratio=1;}s('ball',{cx:320,cy:285-32/ratio-height,rx:32*ratio,ry:32/ratio});};
+    }
+    // 提取自夕阳 sketch.js 的 SUN_MOTION / sunDeformationAt；三个窗口共用时钟。
+    const SUN_MOTION=Object.freeze({strength:1,stretch:.06,squash:.09,rebound:.022});
+    const smoothstep=(a,b,value)=>{const u=K.clamp((value-a)/(b-a));return u*u*(3-2*u);};
+    function sunDeformationAt(time){
+      const stretch=smoothstep(24.5,24.95,time)*(1-smoothstep(24.95,25.5,time));
+      const squash=smoothstep(25.15,25.6,time)*(1-smoothstep(25.6,26.35,time));
+      const rebound=smoothstep(26.15,26.65,time)*(1-smoothstep(26.65,27.6,time));
+      const y=1+SUN_MOTION.strength*(SUN_MOTION.stretch*stretch-SUN_MOTION.squash*squash+SUN_MOTION.rebound*rebound);
+      return {x:1/y,y};
+    }
+    const radius=64,contactY=252;
+    const s=stage(root,line('floor',224,contactY,416,contactY)+'<ellipse data-part="ball" cx="320" cy="188" rx="64" ry="64" fill="var(--ink)"/>');
+    return p=>{
+      const body=sunDeformationAt(24.5+3.1*p);
+      // 同步移动中心，使纵向形变始终以底部接触点为支点；横纵比例互为倒数。
+      s('ball',{cx:320,cy:contactY-radius*body.y,rx:radius*body.x,ry:radius*body.y});
+    };
   });
   register('rolling-distance',(root) => {
     const s=stage(root,line('floor',60,245,580,245)+'<g data-part="car">'+rect('box',-55,-85,110,56)+[-35,35].map((x,i)=>`<g data-part="wheel${i}">${dot('hub'+i,0,0,18,'fill="var(--panel)" stroke="var(--ink)"')}${line('spoke'+i,-17,0,17,0)}</g>`).join('')+'</g>');

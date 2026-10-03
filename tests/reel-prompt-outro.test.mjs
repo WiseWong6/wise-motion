@@ -13,7 +13,7 @@ runInNewContext(await readFile(sourceRoot+'shared.js','utf8'),shared);
 const near=(actual,expected)=>assert.ok(Math.abs(actual-expected)<1e-7,`${actual} / ${expected}`);
 const nums=s=>(s.match(/-?\d+(?:\.\d+)?(?:e[-+]?\d+)?/gi)||[]).map(Number);
 const defs={
-  'prompt-border-trace':[1400,600],'prompt-chinese-type':[4800,3000],
+  'prompt-border-trace':[1400,600],'prompt-chinese-type':[6200,3000],
   'prompt-char-gather':[3000,1000],'send-press-ring':[1100,240],
   'prompt-ui-push':[4800,2500],'core-ring-expand':[1500,1050],
   'prompt-to-core-sequence':[8000,3700],'radial-line-burst':[1100,160],
@@ -105,6 +105,45 @@ test('独立逐字输入保留完整输入框，文字始终写在框内并与�
     }
     const final=root.innerHTML;player.seek(0);player.seek(4800);assert.equal(root.innerHTML,final,'回拖后恢复完整输入界面');
     player.destroy();combo.destroy();
+  }finally{e.close();}
+});
+test('逐字输入完成后推进到发送按钮，蓝弧和完整界面同步移动且能任意回拖',async()=>{
+  const e=await env();try{
+    const root=e.w.document.getElementById('root'),p=e.w.MotionRuntime.create(root,definition('prompt-chinese-type'));
+    const part=n=>root.querySelector(`[data-part="${n}"]`),nodes=[...root.querySelectorAll('*')];
+    p.seek(4800);
+    const [baseX,baseY,baseScale]=nums(root.querySelector('[data-pose="ui"]').getAttribute('transform'));
+    const panel=part('panel-chrome').outerHTML,border=part('border').outerHTML;
+    let previousScale=baseScale,previousDistance=Math.hypot(baseX+952*baseScale-960,baseY+255*baseScale-540);
+    let previousRotation;
+    for(const ms of [5125,5400,5800,6200]){
+      p.seek(ms);
+      const pose=root.querySelector('[data-pose="ui"]').getAttribute('transform'),[px,py,zoom]=nums(pose);
+      for(const n of root.querySelectorAll('[data-pose]'))assert.equal(n.getAttribute('transform'),pose,'输入框、边缘和按钮共用推进');
+      const bx=px+952*zoom,by=py+255*zoom,distance=Math.hypot(bx-960,by-540);
+      assert.ok(zoom>=previousScale&&distance<=previousDistance+1e-7,'推进持续放大并靠近按钮');previousScale=zoom;previousDistance=distance;
+      assert.ok(bx-20*zoom>0&&bx+20*zoom<1920&&by-20*zoom>0&&by+20*zoom<1080,'按钮及蓝弧始终完整留在画面中');
+      if(ms>=5800){near(zoom,baseScale*6);near(bx,960);near(by,540);}
+      for(const n of root.querySelectorAll('[data-char]')){
+        const [x,y,letterScale]=nums(n.getAttribute('transform')),c=art.layout[Number(n.dataset.char)];
+        near(letterScale,zoom);near((x-px)/zoom,65+c.x);near((y-py)/zoom,128+c.line*36);
+        assert.equal(n.getAttribute('visibility'),'visible');assert.equal(n.getAttribute('opacity'),'1');
+      }
+      assert.equal(part('panel-chrome').outerHTML,panel);assert.equal(part('border').outerHTML,border);
+      assert.equal(part('caret').getAttribute('visibility'),'hidden');
+      const scale=nums(part('send-button').getAttribute('transform'))[2],ring=part('send-ring');
+      near(scale,ms===5125?.8:1);near(+ring.getAttribute('r'),17*scale+2);
+      assert.equal(ring.getAttribute('stroke'),'#007aff');assert.equal(ring.getAttribute('stroke-linecap'),'round');
+      const [arc,per]=nums(ring.getAttribute('stroke-dasharray'));near(per,2*Math.PI*(17*scale+2));assert.ok(arc>=0&&arc<=per*.5);
+      if(ms<6200){
+        assert.ok(+ring.getAttribute('opacity')>0);assert.ok(arc>0);
+        const rotation=nums(ring.getAttribute('transform'))[0];if(previousRotation!==undefined)assert.ok(rotation>previousRotation);previousRotation=rotation;
+      }else assert.equal(+ring.getAttribute('opacity'),0,'蓝弧在结尾收起');
+    }
+    p.seek(5400);const clicked=root.innerHTML;p.seek(6200);p.seek(0);
+    assert.equal(part('send-ring').getAttribute('stroke'),'#fff');assert.equal(part('send-ring').hasAttribute('stroke-dasharray'),false);
+    p.seek(5400);assert.equal(root.innerHTML,clicked);assert.deepEqual([...root.querySelectorAll('*')],nodes);
+    const observer=new e.w.MutationObserver(()=>{});observer.observe(root,{attributes:true,childList:true,subtree:true});p.seek(5400);assert.equal(observer.takeRecords().length,0);observer.disconnect();p.destroy();
   }finally{e.close();}
 });
 test('原提示词的逐字出生、绕行控制点、旋转缩放与七色变换均对应原绘制代码',async()=>{

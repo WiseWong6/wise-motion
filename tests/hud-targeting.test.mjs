@@ -1,0 +1,52 @@
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {runInNewContext} from 'node:vm';
+import {createHash} from 'node:crypto';
+import {environment,data} from './helpers.mjs';
+const code=await readFile(new URL('../catalog/effects/hud-targeting.js',import.meta.url),'utf8');
+const scope={MotionFactories:{}};runInNewContext(code,scope);
+const api=scope.WiseHudTargeting;
+const ids=['hud-acquisition-sequence',...api.parts.map(p=>p[1])];
+
+test('斜距对齐原片三个可读锚点并保留前导零，锁定之后继续降到77.9',()=>{
+ for(const [frame,value]of [[1771,'1665.8'],[1803,'1648.3'],[1813,'0201.7'],[1870,'0077.9']])assert.equal(api.rangeAt((frame-1668)/60).text,value);
+ assert.equal(api.rangeAt(0).text,'----.-');
+ assert.ok(api.rangeAt((1824-1668)/60).value<api.rangeAt((1813-1668)/60).value);
+ assert.equal(api.stateAt(3.36).magnification,21.2);assert.ok(Math.abs(api.stateAt(3.36).fov-.59)<1e-8);
+ for(const t of [0,.9,1.7,2.43,3.36]){const a=JSON.stringify(api.stateAt(t));api.stateAt(3.7);api.stateAt(.1);assert.equal(JSON.stringify(api.stateAt(t)),a);}
+});
+
+test('五个独立项只建立自己的真实图层，组合和单项均可倒拖并释放',async()=>{
+ assert.equal(data.effects.some(e=>e.id==='hud-line-out'),false);
+ assert.equal(scope.MotionFactories['hud-line-out'],undefined);
+ assert.equal(api.parts.length,5);
+ const env=await environment();
+ try{const {w}=env,root=w.document.createElement('div');
+ for(const id of ids){const e=data.effects.find(e=>e.id===id);assert.ok(e,id);const render=w.MotionFactories[id](root,w.MotionKit,e);
+  const expected=id==='hud-acquisition-sequence'?6:1;assert.equal(root.querySelectorAll('canvas[data-layer]').length,expected);
+  render(e.preview_ms);const first=root.innerHTML;render(e.duration_ms);render(0);render(e.preview_ms);assert.equal(root.innerHTML,first,id);
+  assert.equal(render.frameRate,30);render.destroy();assert.equal(root.childElementCount,0);render(400);assert.equal(root.childElementCount,0);
+ }
+ const comp=data.effects.find(e=>e.id===ids[0]);assert.deepEqual([...scope.MotionFactories[ids[0]].breakdown.flatMap(x=>[...x.actions])].sort(),[...comp.actions].sort());
+ }finally{env.close();}
+});
+
+function recordingContext(canvas){
+ const state={globalAlpha:1},stack=[],calls=[];
+ const gradient={addColorStop:(n,c)=>{assert.ok(Number.isFinite(n));assert.equal(typeof c,'string');}};
+ const fn=(name)=>(...args)=>{for(const n of args)if(typeof n==='number')assert.ok(Number.isFinite(n),name+' 出现非有限数值');calls.push([name,...args.map(x=>typeof x==='object'?'object':x)]);};
+ const ctx=new Proxy(state,{get(target,key){if(key==='canvas')return canvas;if(key==='calls')return calls;if(key==='save')return()=>{stack.push({...state});fn('save')();};if(key==='restore')return()=>{Object.assign(state,stack.pop());fn('restore')();};if(key==='getTransform')return()=>({a:1,b:0,c:0,d:1,e:0,f:0});if(String(key).startsWith('create')&&String(key).endsWith('Gradient'))return()=>gradient;if(key==='measureText')return s=>({width:s.length*8});if(key in target)return target[key];return fn(key);},set(target,key,value){if(typeof value==='number')assert.ok(Number.isFinite(value),key);target[key]=value;calls.push([key,value]);return true;}});return ctx;
+}
+
+test('实际绘制分支在开机、扫描、锁定和退出均无无效坐标，重复定位输出相同指令',async()=>{
+ const env=await environment();try{const {w}=env;
+ w.HTMLCanvasElement.prototype.getContext=function(){return this._ctx||(this._ctx=recordingContext(this));};
+ const painter=w.WiseHudTargeting.createPainter(),canvas=w.document.createElement('canvas'),c=canvas.getContext('2d');
+ const digest=t=>{c.calls.length=0;painter.draw(c,t);return createHash('sha256').update(JSON.stringify(c.calls)).digest('hex');};
+ for(const t of [0,.5,.9,1.7166667,2.4166667,3.3666667,3.43,3.6]){const first=digest(t);digest(3.7);digest(.1);assert.equal(digest(t),first,'time '+t);}
+ painter.draw(c,1.7166667);assert.ok(c.calls.some(x=>x[0]==='fillText'&&x[1]==='1665.8'));
+ assert.ok(c.calls.some(x=>x[0]==='fillText'&&x[1]==='目标斜距'));painter.destroy();
+ }finally{env.close();}
+});
