@@ -10,8 +10,8 @@ import {history} from './history.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('catalog/registry.json'));
-assert.equal(data.effects.length, 255);
-assert.equal(data.effects.filter(x => x.kind === 'action').length, 185);
+assert.equal(data.effects.length, 256);
+assert.equal(data.effects.filter(x => x.kind === 'action').length, 186);
 assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 55);
 assert.equal(data.effects.filter(x => x.kind === 'composition').length, 15);
 assert.equal(new Set(data.effects.map(x => x.id)).size, data.effects.length);
@@ -127,12 +127,12 @@ for (const [, resource] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
   assert.ok((await stat(path.resolve(root, 'catalog', resource))).isFile(), '缺少目录资源：' + resource);
 }
 const historical=await history(data);
-assert.equal(historical.counts.reviewed,311);assert.equal(historical.counts.recipes,9);
-assert.equal(historical.counts.entries,9);assert.equal(historical.counts.document,0);
-assert.equal(historical.excluded.length,302);
+assert.equal(historical.counts.reviewed,311);assert.equal(historical.counts.recipes,0);
+assert.equal(historical.counts.entries,0);assert.equal(historical.counts.document,0);
+assert.equal(historical.excluded.length,311);
 assert.equal(historical.merged.length,0);
 assert.equal(historical.recipes.length+historical.excluded.length+historical.merged.length,historical.counts.reviewed);
-assert.equal(new Set(historical.recipes.map(x=>x.id)).size,9);
+assert.equal(new Set(historical.recipes.map(x=>x.id)).size,0);
 assert.ok(historical.recipes.every(r=>r.entries.length&&r.source_clock&&r.source_parameters&&r.review.preserve.length));
 const ownFiles = ['catalog/runtime.js','catalog/history-runtime.js','catalog/history.css','catalog/export.js','catalog/dropdown.js','catalog/matching.js','catalog/app.js','catalog/app.css','catalog/scenes.css','catalog/book-controls.js','catalog/book-controls.css','catalog/composition-controls.js','catalog/related-preview.js', ...files];
 for (const file of ownFiles) {
@@ -150,4 +150,4 @@ const build = spawnSync(process.execPath, [path.join(root, 'scripts/build.mjs'),
 assert.equal(build.status, 0, build.stderr);
 const markdown = ['README.md','SKILL.md','NOTICE.md','references/index.md','references/history.md','references/method.md','references/sources.md','references/runtime-interface.md','references/material-refinement.md','references/apple-hig.md','tests/manual.md', ...data.effects.map(e => 'references/effects/' + e.id + '.md')];
 for (const file of markdown) for (const [, link] of (await read(file)).matchAll(/\]\(([^)]+)\)/g)) if (!/^(https?:|#)/.test(link)) assert.ok((await stat(path.resolve(root, path.dirname(file), link))).isFile(), file + ' 的链接缺失：' + link);
-console.log('检查通过：185 个动作、55 个插画单图、15 个组合、9 条历史配方与 9 个案例；定义、来源路径、生成文件、许可和脚本语法完整。');
+console.log('检查通过：186 个动作、55 个插画单图、15 个组合、0 条历史配方与 0 个案例；定义、来源路径、生成文件、许可和脚本语法完整。');

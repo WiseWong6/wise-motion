@@ -35,11 +35,11 @@
     return (t, o) => { const p = M.span(t, 700, 2500, o.ease); s.one('.panel.alt').style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0 round 24px)`; };
   };
   F['shared-object'] = (root, M) => {
-    const s = M.scene(root, '<div class="panel shared-panel"><small class="old-label">内容列表</small><small class="new-label">内容详情</small></div>' + M.tile('这个想法', '跨过画面，保持连续'));
+    const s = M.scene(root, '<div class="panel shared-panel"><small class="old-label">内容列表</small><small class="new-label">内容详情</small></div>' + '<svg class="shared-icon" width="128" height="128" viewBox="0 0 128 128" aria-hidden="true"><path d="M14 55 114 14 73 114 56 73Z" fill="var(--teal)"/><path d="M56 73 114 14M14 55 56 73 73 114" fill="none" stroke="var(--ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>');
     // 保留主题变量，暂停画面和未挂入页面的缩略图也能随外观切换。
     return (t, o) => {
       const p = M.span(t, 900, 3000, o.ease), color = M.clamp(p);
-      M.pose(s.one('.tile'), {x: -115 * (1 - p), y: 23 * (1 - p), scale: .55 + .45 * p});
+      M.pose(s.one('.shared-icon'), {x: -115 * (1 - p), y: 23 * (1 - p), scale: .55 + .45 * p});
       s.one('.old-label').style.opacity = String(1 - color);
       s.one('.new-label').style.opacity = String(color);
       s.one('.panel').style.setProperty('--object-progress', `${color * 100}%`);
@@ -50,9 +50,9 @@
     const colors=['var(--blue)','var(--teal)','var(--accent)'];
     root.innerHTML='<svg class="pattern-svg" width="640" height="360" viewBox="0 0 640 360" aria-hidden="true"><g data-part="grid" transform="translate(320 80) scale(.6)">'+colors.map((color,col)=>{
       const cells=Array.from({length:3},(_,row)=>{const x=(col-1)*68-28,y=(row-1)*68-28;
-        return `<rect x="${x}" y="${y}" width="56" height="56" vector-effect="non-scaling-stroke"/>`;
+        return `<rect x="${x}" y="${y}" width="56" height="56"/>`;
       }).join('');
-      return `<g fill="var(--panel)" stroke="var(--muted)" stroke-opacity=".45" stroke-width=".55">${cells}</g><g data-part="column${col}" fill="${color}" stroke="var(--ink)" stroke-width=".55" opacity="0">${cells}</g>`;
+      return `<g fill="var(--panel)" stroke="none">${cells}</g><g data-part="column${col}" fill="${color}" stroke="none" opacity="0">${cells}</g>`;
     }).join('')+'</g></svg>';
     const grid=root.querySelector('[data-part="grid"]'),columns=colors.map((_,i)=>root.querySelector(`[data-part="column${i}"]`));
     const set=(el,key,value)=>{const v=String(value);if(el.getAttribute(key)!==v)el.setAttribute(key,v);};

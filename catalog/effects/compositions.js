@@ -7,10 +7,10 @@
     const a=time(start),b=time(end),seconds=value=>String(Math.round(value/100)/10);
     return {id,name,start:a,end:b,time:`${seconds(a)}–${seconds(b)} 秒`,detail,actions};
   };
-  const subtitleMarkup = '<div class="subtitle-block"><div class="subtitle-cell">想</div><div class="subtitle-cell">达</div><div class="subtitle-cell">见</div></div>';
+  const subtitleMarkup = '<div class="subtitle-block"><div class="subtitle-cell">W</div><div class="subtitle-cell">I</div><div class="subtitle-cell">S</div><div class="subtitle-cell">E</div></div>';
   const statementMarkup = '<div class="statement">让视线，跟着讲述走。</div>';
   function drawSubtitleFocus(cells, t, appearance) {
-    const focus = t >= 1800 && (t < 4900 || t >= 7600) ? Math.min(2, Math.floor((t - 1800) / 650)) : -1;
+    const focus = t >= 1800 && (t < 4900 || t >= 7600) ? Math.min(cells.length - 1, Math.floor((t - 1800) / 650)) : -1;
     cells.forEach((node, i) => {
       const active = i === focus;
       node.style.opacity = String((appearance ? appearance[i] : 1) * (focus < 0 || active ? 1 : .45));
@@ -43,7 +43,7 @@
     const s = M.scene(root, subtitleMarkup + statementMarkup), cells = s.all('.subtitle-cell'), block = s.one('.subtitle-block'), statement = s.one('.statement');
     tag(block,'cells');tag(statement,'statement');
     return (t, o) => {
-      const appearance = F['stagger-in'].draw(M, cells, t, o, {start:200, end:900, gap:450, distance:25});
+      const appearance = F['stagger-in'].draw(M, cells, t, o, {start:200, end:900, gap:300, distance:25});
       drawSubtitleFocus(cells, t, appearance);
       drawSubtitleShift(M, block, t, o);
       drawStatement(M, statement, t, o);
@@ -96,7 +96,7 @@
   };
   const subtitleClock=[200,9000,150,3750];
   F['subtitle-focus'].breakdown = [
-    row('cells','字幕格呈现、切重点和让位',200,9000,'三个字格先错峰出现，再依次提亮；整组上移为陈述让位，最后下移放大。逐项入场、重点轮换和整体让位分别复用独立动作。',subtitleClock,['stagger-in','subtitle-cell-focus','subtitle-block-shift']),
+    row('cells','字幕格呈现、切重点和让位',200,9000,'WISE 四个字格先错峰出现，再依次提亮；整组上移为陈述让位，最后下移放大。逐项入场、重点轮换和整体让位分别复用独立动作。',subtitleClock,['stagger-in','subtitle-cell-focus','subtitle-block-shift']),
     {...row('statement','陈述上移显现与淡出',4900,7600,'字格开始让位后，陈述才由下方淡入；陈述淡出后，重心交回字格。',subtitleClock),reason:'组合中的陈述仅作为整段画面的文字层使用，无独立参考。'}
   ];
   const titleClock=[200,4000,150,2550];
