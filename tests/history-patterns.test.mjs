@@ -276,7 +276,7 @@ test('跨页承接采用统一主题的三列配色，先上色，再让同一�
     assert.ok(card.querySelector('.thumb .pattern-svg'),'正式目录缩略图接入');
     card.click();
     const root=d.querySelector('#preview .motion-stage'),definition=sourceDefinition(data.effects.find(e=>e.id==='scene-carry'));
-    assert.equal(definition.category,'transition');
+    assert.equal(definition.category,'layout');
     assert.equal(root.querySelectorAll('text,image,foreignObject,filter').length,0,'不携带表情、文稿、图片和原背景');
     const source=await readFile('/Users/wisewong/Documents/Developer/wise-video/wise-ppt-video/video/compositions/p01.html','utf8');
     assert.deepEqual(JSON.parse(source.match(/const colColor = (\[[^;]+\]);/)[1]),['#8B5CF6','#22C55E','#111827']);

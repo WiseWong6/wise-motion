@@ -45,7 +45,7 @@ test('三张透光卡作为独立插画登记，透明居中、静态定位和�
   const {w}=env;w.eval(await readFile(new URL('../catalog/export.js',import.meta.url),'utf8'));
   for(const id of cardIds){
    const def=data.effects.find(e=>e.id===id),root=w.document.createElement('div');
-   assert.equal(def.kind,'illustration');assert.equal(def.category,'illustration-object');
+   assert.equal(def.kind,'illustration');assert.equal(def.category,'illustration-interface');
    const player=w.MotionRuntime.create(root,def,{autoplay:false}),node=root.querySelector('canvas');
    assert.equal(root.querySelectorAll('canvas').length,1);assert.equal(node.className,'pattern-canvas');
    assert.equal(node.style.background,'transparent');assert.equal(node.width,1066);assert.equal(node.height,600);

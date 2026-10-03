@@ -61,7 +61,7 @@ test('五条旧规则和六段重复裁剪移出历史目录，只保留升级�
     assert.equal(effect(id).kind,'action');
     assert.equal(effect(id).loop,false);
   }
-  assert.equal(effect('particle-word').name,'粒子聚散');
+  assert.equal(effect('particle-word').name,'粒子聚散成字');
   assert.equal(effect('particle-word').source.path,'catalog/effects/promo-particles.js');
   assert.equal(data.redirects['history-particle-gather'],'particle-word','粒子汇聚旧入口应归入同一个正式动作');
   assert.ok(!data.effects.some(e=>e.id==='particle-gather'||e.id==='history-particle-gather'),'不能额外创建重复粒子汇聚项');

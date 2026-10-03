@@ -28,7 +28,7 @@ for (const e of data.effects) {
   for (const key of ['id','name','kind','category','summary','purpose','objects','phases','aliases','behaviors','retain','avoid','duration_ms','default_ease','parameters','source','actions','trigger','analogy','assumptions','tempo_note']) assert.ok(e[key], e.id + ' 缺少 ' + key);
   assert.ok(data.categories.some(c => c.id === e.category));
   assert.ok(['action','illustration','composition'].includes(e.kind));
-  assert.equal(e.kind === 'composition', e.category === 'compositions');
+  assert.equal(e.kind === 'composition', (e.category === 'compositions' || e.category.startsWith('composition-')));
   assert.equal(e.kind === 'illustration', e.category.startsWith('illustration-'));
   assert.equal(e.phases.length, 3);
   assert.ok(e.duration_ms > 0 && e.preview_ms >= 0 && e.preview_ms <= e.duration_ms);

@@ -41,7 +41,7 @@ test('插画正式入口加载全部独立图形，缩略图可生成并可切�
     d.querySelector('[data-kind="illustration"]').click();
     const filter = d.getElementById('category-filter');
     const cards=[];
-    for(const category of ['illustration-nature','illustration-diagram','illustration-object']){
+    for(const category of data.categories.filter(c=>c.id.startsWith('illustration-')).map(c=>c.id)){
       filter.value=category;filter.dispatchEvent(new w.Event('change'));env.reveal();
       cards.push(...d.querySelectorAll('.effect-item'));
     }
