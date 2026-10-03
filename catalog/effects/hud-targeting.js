@@ -58,7 +58,7 @@
    altitude:512.1,velocity:7.613,snr:mix(39.4,41.2,lock)};
  }
  function createPainter(){
-  let globeBorderLayer=null,globeBorderContext=null;
+  let globeBorderLayer=null,globeBorderContext=null,minimumText=0,isolatedView=false,activePart='';
   function globe(c,x,y,r,t,color,lock=0){
     const lon=mix(47+t*20,121.5,lock),lat=mix(18,31,lock),rad=PI/180,sl=Math.sin(lat*rad),cl=Math.cos(lat*rad);
     const project=(a,b)=>{const la=b*rad,lo=(a-lon)*rad;return[x+r*(1+lock*3.5)*Math.cos(la)*Math.sin(lo),y-r*(1+lock*3.5)*(cl*Math.sin(la)-sl*Math.cos(la)*Math.cos(lo)),sl*Math.sin(la)+cl*Math.cos(la)*Math.cos(lo)];};
@@ -66,10 +66,11 @@
     const g=c.createRadialGradient(x-r*.22,y-r*.2,0,x,y,r);g.addColorStop(0,lock?'#182722':'#08272c');g.addColorStop(.8,'#041014');g.addColorStop(1,'#010608');circle(c,x,y,r,g,color,.65);
     c.save();c.beginPath();c.arc(x,y,r,0,TAU);c.clip();c.strokeStyle=lock?'rgba(221,161,62,.23)':'rgba(74,189,193,.24)';c.lineWidth=.6;
     for(let a=-180;a<180;a+=mix(15,2.5,lock))polyline(Array.from({length:73},(_,i)=>[a,-90+i*2.5]));for(let b=-75;b<=75;b+=mix(15,2.5,lock))polyline(Array.from({length:145},(_,i)=>[-180+i*2.5,b]));
-    c.shadowColor=color;c.shadowBlur=13;c.strokeStyle=color;c.lineWidth=1.15;
+    c.shadowColor=color;c.shadowBlur=5;c.strokeStyle=color;c.lineWidth=1.15;
     if(lock>.3)geo.forEach(a=>polyline(a));else{
-      if(!globeBorderLayer){globeBorderLayer=typeof OffscreenCanvas==='function'?new OffscreenCanvas(W,H):Object.assign(document.createElement('canvas'),{width:W,height:H});globeBorderContext=globeBorderLayer.getContext('2d',{willReadFrequently:true});}
-      const b=globeBorderContext;b.setTransform(1,0,0,1,0,0);b.clearRect(0,0,W,H);b.setTransform(c.getTransform());b.globalAlpha=c.globalAlpha;b.globalCompositeOperation='source-over';b.strokeStyle=color;b.lineWidth=1.15;b.shadowColor=color;b.shadowBlur=13;
+      if(!globeBorderLayer){globeBorderLayer=typeof OffscreenCanvas==='function'?new OffscreenCanvas(1,1):c.canvas.ownerDocument.createElement('canvas');globeBorderContext=globeBorderLayer.getContext('2d');}
+      if(globeBorderLayer.width!==c.canvas.width||globeBorderLayer.height!==c.canvas.height){globeBorderLayer.width=c.canvas.width;globeBorderLayer.height=c.canvas.height;}
+      const b=globeBorderContext;b.setTransform(1,0,0,1,0,0);b.clearRect(0,0,globeBorderLayer.width,globeBorderLayer.height);b.setTransform(c.getTransform());b.globalAlpha=c.globalAlpha;b.globalCompositeOperation='source-over';b.strokeStyle=color;b.lineWidth=1.15;b.shadowColor=color;b.shadowBlur=5;
       naturalCountries.forEach(([,rings])=>rings.forEach(a=>polyline(a,b)));
       c.save();c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.shadowBlur=0;c.drawImage(globeBorderLayer,0,0);c.restore();
     }
@@ -77,11 +78,21 @@
     c.shadowBlur=3;c.globalAlpha=.55;c.lineWidth=.45;
     [[[14,50],[25,49],[30,46],[39,47],[44,43],[50,40],[58,39],[64,42],[74,40],[80,43],[92,45],[110,47],[119,48]],[[25,30],[29,22],[34,20],[35,15]],[[73,36],[77,32],[79,28],[84,28],[88,28],[93,26],[98,28]],[[99,22],[102,25],[105,25],[107,23],[109,22]],[[114,32],[118,31],[121,31]]].forEach(a=>polyline(a));
     c.restore();
-    const sweep=t*2.3-1.2;const gx=x+Math.cos(sweep)*r,gy=y+Math.sin(sweep)*r;const sg=c.createLinearGradient(x,y,gx,gy);sg.addColorStop(0,color+'00');sg.addColorStop(.75,color+'33');sg.addColorStop(1,color+'cc');c.save();c.beginPath();c.moveTo(x,y);c.arc(x,y,r,sweep-.19,sweep);c.closePath();c.fillStyle=sg;c.fill();c.shadowColor=color;c.shadowBlur=16;line(c,x,y,gx,gy,color,1.8);c.restore();
+    const sweep=t*2.3-1.2;const gx=x+Math.cos(sweep)*r,gy=y+Math.sin(sweep)*r;const sg=c.createLinearGradient(x,y,gx,gy);sg.addColorStop(0,color+'00');sg.addColorStop(.75,color+'33');sg.addColorStop(1,color+'cc');c.save();c.beginPath();c.moveTo(x,y);c.arc(x,y,r,sweep-.19,sweep);c.closePath();c.fillStyle=sg;c.fill();c.shadowColor=color;c.shadowBlur=6;line(c,x,y,gx,gy,color,1.8);c.restore();
   }
 
-  function hudText(c,s,x,y,size,...rest){text(c,s,x,y,size<12?size*1.2:size,...rest);}
-  function hudPanel(c,x,y,w,h,title,color){line(c,x,y,x+w,y,color,1);hudText(c,title,x,y-7,8,color);line(c,x,y,x,y+h,color+'55',.6);line(c,x+w,y,x+w,y+9,color+'55',.6);line(c,x,y+h,x+7,y+h,color+'66',.8);}
+  function hudText(c,s,x,y,size,...rest){text(c,s,x,y,Math.max(size<12?size*1.2:size,minimumText),...rest);}
+  function panelFrame(c,box,color){
+   const [x,y,w,h]=box;
+   rr(c,x,y,w,h,0,null,color+'66',.6);
+   for(const [cx,cy,dx,dy]of [[x,y,1,1],[x+w,y,-1,1],[x,y+h,1,-1],[x+w,y+h,-1,-1]]){
+    line(c,cx,cy,cx+dx*7,cy,color,.9);line(c,cx,cy,cx,cy+dy*7,color,.9);
+   }
+  }
+  function hudPanel(c,x,y,w,h,title,color){
+   if(isolatedView){panelFrame(c,soloFrames[activePart],color);return;}
+   line(c,x,y,x+w,y,color,1);hudText(c,title,x,y-7,8,color);line(c,x,y,x,y+h,color+'55',.6);line(c,x+w,y,x+w,y+9,color+'55',.6);line(c,x,y+h,x+7,y+h,color+'66',.8);
+  }
   function backdrop(c){
    c.fillStyle='#02080a';c.fillRect(0,0,W,H);
    for(let y=0;y<H;y+=3)line(c,0,y,W,y,'#baf7ff03',.6);
@@ -95,24 +106,68 @@
    const logs=['光学核心 4.2.1','制冷阵列 4096² · 77开尔文','陀螺校准 0.003度','低轨高度 512公里','上行链路 9.6吉比特','地理数据库已就绪','搜索模式已启动'];
    logs.forEach((s,i)=>alpha(c,progress(t,.45+i*.055,.57+i*.055),()=>{hudText(c,'› '+s,56,91+i*14,7.2,col);hudText(c,'通过',212,91+i*14,7,col,300,'right');}));
   }
-  function telemetry(c,t,col,q){
-   hudText(c,'目标斜距',52,241,8,col);line(c,52,249,218,249,col,.8);
-   hudText(c,q.range.text,52,290,39,'#eafcfc');hudText(c,'公里',207,289,8,col,300,'right');line(c,52,300,218,300,col,.7);
+  function rangeReadout(c,t,col,q){
+   if(isolatedView)panelFrame(c,soloFrames.range,col);
+   else{hudText(c,'目标斜距',52,241,8,col);line(c,52,249,218,249,col,.8);}
+   hudText(c,q.range.text,52,290,39,'#eafcfc');hudText(c,'公里',218,289,8,col,300,'right');line(c,52,300,218,300,col,.7);
    hudText(c,`倍率 ×${q.magnification.toFixed(1)}`,52,316,8,col);hudText(c,`视场 ${q.fov.toFixed(2)}°`,218,316,8,col,300,'right');
+  }
+  function navigation(c,t,col,q){
    hudPanel(c,52,350,165,88,'02 导航遥测',col);
-   [['方位',q.heading,'°'],['仰角',q.tilt,'°'],['高度',q.altitude,'公里'],['速度',q.velocity,'公里/秒'],['信噪比',q.snr,'分贝']].forEach(([s,v,u],i)=>{hudText(c,s,54,365+i*15,7,col);hudText(c,v.toFixed(i===3?3:2),106,365+i*15,8,'#d7ffff');hudText(c,u,213,365+i*15,6.8,col,300,'right');});
-   hudPanel(c,52,467,165,87,'03 局部雷达',col);for(let i=1;i<5;i++)circle(c,89,511,i*9,null,col+'55',.65);
-   line(c,50,511,125,511,col+'44',.5);line(c,89,473,89,550,col+'44',.5);line(c,89,511,89+31*Math.cos(t*3),511+31*Math.sin(t*3),col,1);
-   hudText(c,'目标位置',207,482,6.7,col,300,'right');hudText(c,'北纬31°14′',207,500,7,col,300,'right');hudText(c,'东经121°29′',207,514,7,col,300,'right');
+   const rows=[['方位',q.heading,'°',180],['仰角',q.tilt,'°',90],['高度',q.altitude,'公里',1000],['速度',q.velocity,'公里/秒',12],['信噪比',q.snr,'分贝',60]];
+   rows.forEach(([label,value,unit,max],i)=>{
+    const y=365+i*15;
+    hudText(c,label,54,y,7,col);hudText(c,value.toFixed(2),104,y,8,'#eafcfc');hudText(c,unit,164,y,5.5,col,300,'right');
+    line(c,173,y-3,214,y-3,col+'33',1.4);
+    line(c,173,y-3,173+41*clamp(value/max),y-3,col,1.8);
+   });
+  }
+  function radar(c,t,col){
+   if(!isolatedView)hudPanel(c,52,467,165,87,'03 局部雷达',col);
+   const x=89,y=511,r=36,a=t*3;
+   for(let i=1;i<=4;i++)circle(c,x,y,i*9,null,col+'66',.65);
+   line(c,x-r,y,x+r,y,col+'55',.5);line(c,x,y-r,x,y+r,col+'55',.5);
+   for(let i=0;i<16;i++){
+    c.beginPath();c.moveTo(x,y);c.arc(x,y,r,a-(i+1)*.025,a-i*.025);c.closePath();
+    c.fillStyle=col+Math.round(35*(1-i/16)).toString(16).padStart(2,'0');c.fill();
+   }
+   line(c,x,y,x+r*Math.cos(a),y+r*Math.sin(a),col,1);
+   if(!isolatedView){hudText(c,'目标位置',207,482,6.7,col,300,'right');hudText(c,'北纬31°14′',207,500,7,col,300,'right');hudText(c,'东经121°29′',207,514,7,col,300,'right');}
+  }
+  function waves(c,t,col){
    hudPanel(c,848,74,166,116,'04 信号分析',col);
-   for(let k=0;k<2;k++){c.beginPath();for(let i=0;i<163;i++){const y=119+k*36+Math.sin(i*.18+t*9)*Math.sin(i*.065)*8+Math.sin(i*.74-t*6)*4;i?c.lineTo(850+i,y):c.moveTo(850+i,y);}c.strokeStyle=col+'88';c.lineWidth=.7;c.stroke();}
-   hudPanel(c,848,221,166,133,'05 目标候选',col);for(let i=0;i<4;i++){hudText(c,`候选0${i+1}`,850,241+i*30,7,col);hudText(c,i===2?(q.lock>.6?'已锁定':'跟踪中'):'分析中',1009,241+i*30,7,col+'99',300,'right');line(c,850,251+i*30,1012,251+i*30,col+'33',.5);}
-   hudPanel(c,848,383,166,101,'06 信号频谱',col);for(let i=0;i<51;i++){const h=8+Math.pow(n(i*3+Math.floor(t*8)),3)*61;line(c,852+i*3.1,477,852+i*3.1,477-h,col+(i%3===0?'aa':'55'),1);}
-   hudText(c,'数据链路 · 通道07',848,507,6.8,col);for(let i=0;i<12;i++)rr(c,947+i*3.4,502,2.4,6,0,col);
-   for(let r=0;r<5;r++)for(let j=0;j<9;j++)hudText(c,Math.floor(n(r*9+j+Math.floor(t*12))*256).toString(16).padStart(2,'0').toUpperCase(),850+j*18,522+r*9,6,col+'99');
+   for(let k=0;k<2;k++){
+    c.beginPath();for(let i=0;i<163;i++){
+     const y=119+k*36+Math.sin(i*.18+t*9)*Math.sin(i*.065)*8+Math.sin(i*.74-t*6)*4;
+     i?c.lineTo(850+i,y):c.moveTo(850+i,y);
+    }
+    c.strokeStyle=col+'cc';c.lineWidth=.9;c.stroke();
+   }
+  }
+  function candidates(c,t,col,q){
+   hudPanel(c,848,221,166,133,'05 目标候选',col);
+   for(let i=0;i<4;i++){
+    hudText(c,`候选0${i+1}`,850,241+i*30,7,col);
+    hudText(c,i===2?(q.lock>.6?'已锁定':t>1.1?'跟踪中':'分析中'):'分析中',1009,241+i*30,7,i===2?col:col+'99',300,'right');
+    line(c,850,251+i*30,1012,251+i*30,col+'33',.5);
+   }
+  }
+  function spectrum(c,t,col){
+   hudPanel(c,848,383,166,101,'06 信号频谱',col);
+   for(let i=0;i<51;i++){
+    const h=8+Math.pow(n(i*3+Math.floor(t*8)),3)*61;
+    line(c,852+i*3.1,477,852+i*3.1,477-h,col+(i%3===0?'cc':'88'),1.1);
+   }
+  }
+  function stream(c,t,col){
+   if(isolatedView)panelFrame(c,soloFrames.stream,col);
+   else hudText(c,'数据链路 · 通道07',848,507,6.8,col);
+   const tick=Math.floor(t*12);
+   for(let i=0;i<12;i++)rr(c,(isolatedView?912:970)+i*3.4,502,2.4,6,0,col+(i===(tick%12)?'ff':'66'));
+   for(let r=0;r<5;r++)for(let j=0;j<9;j++)hudText(c,Math.floor(n(r*9+j+tick)*256).toString(16).padStart(2,'0').toUpperCase(),850+j*18,522+r*9,6,col+'cc');
   }
   function rings(c,t,col,lock,intro){
-    c.save();c.shadowColor=col;c.shadowBlur=12;
+    c.save();c.shadowColor=col;c.shadowBlur=4;
     for(let k=0;k<5;k++){const r=190+k*9,rot=t*(k%2?.18:-.13)+k*.61;c.strokeStyle=k%2?col+'25':col+'88';c.lineWidth=k===3?2:.65;c.beginPath();c.arc(533,300,r,-PI/2+rot,-PI/2+rot+TAU*intro);c.stroke();for(let j=0;j<4;j++){c.beginPath();c.arc(533,300,r,rot+j*PI/2+.12,rot+j*PI/2+.44);c.strokeStyle=col;c.lineWidth=k%2?3.8:1.0;c.stroke();}}
     c.shadowBlur=0;for(let j=0;j<120*intro;j++){const a=j*TAU/120-PI/2+t*.017,r=225;const len=j%10===0?10:j%5===0?6:3;line(c,533+Math.cos(a)*r,300+Math.sin(a)*r,533+Math.cos(a)*(r-len),300+Math.sin(a)*(r-len),col+(j%5===0?'dd':'77'),j%10===0?1.5:.65);}
     for(let j=0;j<12;j++){const a=j*TAU/12-PI/2;alpha(c,intro,()=>hudText(c,String(j*30).padStart(3,'0'),533+Math.cos(a)*241,303+Math.sin(a)*241,7,col+'bb',400,'center','monospace'));}
@@ -130,13 +185,17 @@
    const p=progress(t,3.41665,3.43332),w=mix(970,64,p);
    alpha(c,1-progress(t,3.51665,3.57),()=>{const g=c.createLinearGradient(533-w/2,300,533+w/2,300);g.addColorStop(0,'#a6d2c000');g.addColorStop(.5,'#e8eee4');g.addColorStop(1,'#a6d2c000');shadow(c,'#b4ddc7',3,0);rr(c,533-w/2,299.5,w,1.7,1,g);});
   }
-  function drawPart(c,key,t,{isolated=false}={}){
+  const sideDrawers={boot,range:rangeReadout,nav:navigation,radar,waves,candidates,spectrum,stream};
+  function drawPart(c,key,t,{isolated=false,displayScale=1}={}){
+   isolatedView=isolated;activePart=key;
+   minimumText=isolated&&key==='rings'?10/displayScale:0;
    const q=stateAt(t),{color:col,lock,intro}=q;
    c.save();
    if(key==='collapse'){if(t>=3.41665)collapse(c,t);c.restore();return;}
    if(t>=3.41665){c.restore();return;}
-   if(key==='boot'){if(!isolated)header(c,t,col,lock);alpha(c,progress(t,.4,.75),()=>at(c,533,300,0,isolated?1:1+lock*.18,()=>{c.translate(-533,-300);boot(c,t,col);}));}
-   if(key==='telemetry'){alpha(c,progress(t,.4,.75),()=>at(c,533,300,0,isolated?1:1+lock*.18,()=>{c.translate(-533,-300);telemetry(c,t,col,q);}));if(!isolated)metrics(c,q);}
+   if(key==='header')header(c,t,col,lock);
+   if(key==='metrics')metrics(c,q);
+   if(sideDrawers[key])alpha(c,progress(t,.4,.75),()=>at(c,533,300,0,isolated?1:1+lock*.18,()=>{c.translate(-533,-300);sideDrawers[key](c,t,col,q);}));
    if(['rings','globe','lock'].includes(key)){
     const scale=isolated?1:1+lock*.42;c.translate(533,300);c.scale(scale,scale);c.translate(-533,-300);
     if(key==='rings')rings(c,t,col,lock,intro);
@@ -145,39 +204,104 @@
    }
    c.restore();
   }
-  function draw(c,t){backdrop(c);for(const key of ['boot','telemetry','globe','rings','lock','collapse'])drawPart(c,key,t);}
+  function draw(c,t){backdrop(c);for(const key of compositionKeys)drawPart(c,key,t);}
   function destroy(){if(globeBorderLayer){globeBorderLayer.width=1;globeBorderLayer.height=1;}globeBorderLayer=globeBorderContext=null;}
   return {draw,drawPart,backdrop,destroy};
  }
- const parts=[['rings','hud-ring-build','环圈分层展开'],['globe','hud-globe-scan','曲面扫描推近'],['boot','hud-system-boot','分栏逐行自检'],['telemetry','hud-telemetry-sync','仪表同步读数'],['lock','hud-target-lock','准星锁定变色']];
- const partClocks={rings:[0,1.1],globe:[.6,2.9],boot:[.35,1.2],telemetry:[.8,3.37],lock:[2.1,2.85]};
- const durations={rings:1800,globe:3000,boot:1800,telemetry:3000,lock:1800};
+ // One real drawing function per action. No hidden full-dashboard instance in an isolated preview.
+ const parts=[
+  ['rings','hud-ring-build','环圈分层展开'],['globe','hud-globe-scan','球面扫描推近'],
+  ['boot','hud-system-boot','分栏逐行自检'],['range','hud-range-readout','斜距递减与变倍'],
+  ['nav','hud-navigation-bars','遥测数值与短条'],['radar','hud-radar-sweep','雷达扇面扫描'],
+  ['waves','hud-signal-waves','双路信号波动'],['candidates','hud-candidate-status','候选状态递进'],
+  ['spectrum','hud-spectrum-bars','频谱柱列跳动'],['stream','hud-data-stream','链路字符刷新'],
+  ['lock','hud-target-lock','准星锁定变色']
+ ];
+ const compositionKeys=['header','boot','range','nav','radar','waves','candidates','spectrum','stream','metrics','globe','rings','lock','collapse'];
+ const partClocks={rings:[0,1.1],globe:[.6,2.9],boot:[.35,1.2],range:[.8,3.37],nav:[.8,3.37],radar:[.8,2.2],waves:[.8,2.2],candidates:[.8,2.8],spectrum:[.8,2.2],stream:[.8,2.2],lock:[2.1,2.85]};
+ const durations={rings:1800,globe:3000,boot:1800,range:3000,nav:3000,radar:3000,waves:3000,candidates:3000,spectrum:3000,stream:3000,lock:1800};
+ const bounds={
+  header:[12,10,1042,580],metrics:[284,98,506,466],boot:[48,54,174,170],range:[48,224,176,99],nav:[48,330,174,114],
+  radar:[48,447,174,113],waves:[844,54,174,142],candidates:[844,201,174,159],spectrum:[844,363,174,128],stream:[844,489,174,75],
+  globe:[361,128,344,344],rings:[277,41,512,518],lock:[337,239,392,118],collapse:[38,290,990,20]
+ };
+ // 独立仪表去掉编号标题，完整外框围绕实际内容留白；雷达只取圆盘。
+ const soloFrames={boot:[46,76,176,111],range:[44,240,182,88],nav:[46,344,176,94],waves:[840,95,180,84],candidates:[842,221,176,133],spectrum:[840,397,180,88],stream:[840,491,180,75]};
+ const soloBounds={radar:[47,469,84,84],...Object.fromEntries(Object.entries(soloFrames).map(([key,[x,y,w,h]])=>[key,[x-4,y-4,w+8,h+8]]))};
+ const details={
+  rings:'五层圆弧沿周长展开，一百二十根刻度依次建立；短弧不同向缓转。',
+  globe:'扫描光束绕球心旋转，国家轮廓与经纬网随视角改变，锁定后推近目标区域。',
+  boot:'七行自检日志依次显现，每行正文和通过标记同步出现。',
+  range:'斜距先滚码，再缓降，锁定时迅速减小；倍率上升且视场收窄，保留前导零。',
+  nav:'五行数值各自驱动右侧短条；条长按各项量程归一化，固定值的短条保持稳定。',
+  radar:'平面雷达的扫描线和尾随扇面独立转动，四层距离环与十字基线保持不动。',
+  waves:'上下两路信号沿横向连续变化，低频包络叠加高频细波，彼此保持相位关系。',
+  candidates:'四行候选中第三行从分析转入跟踪，随后锁定并变为琥珀色。',
+  spectrum:'五十一根细柱按固定采样时钟改变高度，保留高低峰与共同基线。',
+  stream:'五行九列十六进制字符按固定时钟刷新，十二格链路指示按顺序点亮。',
+  lock:'四角准星和中文状态条显现，青色切换琥珀色。'
+ };
  function prepareFonts(doc){
   return doc?.fonts?.load?Promise.all([doc.fonts.load('700 24px "Oswald"','0077.9'),doc.fonts.load('300 12px "Wise Motion Sans"','目标斜距公里自检通过'),doc.fonts.load('700 26px "Wise Motion Sans"','目标锁定')]):Promise.resolve();
  }
+ function layerBox(key){
+  const [x,y,w,h]=bounds[key];
+  const zoom=['globe','rings','lock'].includes(key)?1.42:['boot','range','nav','radar','waves','candidates','spectrum','stream'].includes(key)?1.18:1;
+  const left=Math.max(0,Math.min(x,533+(x-533)*zoom)-8),top=Math.max(0,Math.min(y,300+(y-300)*zoom)-8);
+  const right=Math.min(W,Math.max(x+w,533+(x+w-533)*zoom)+8),bottom=Math.min(H,Math.max(y+h,300+(y+h-300)*zoom)+8);
+  return [left*640/W,top*360/H,(right-left)*640/W,(bottom-top)*360/H];
+ }
  function make(root,kit,definition={},only){
-  const doc=root.ownerDocument,keys=only?[only]:['boot','telemetry','globe','rings','lock','collapse'];
+  const doc=root.ownerDocument,view=doc.defaultView||global,keys=only?[only]:compositionKeys;
   const container=doc.createElement('div');Object.assign(container.style,{position:'absolute',inset:'0',background:'#02080a',overflow:'hidden'});root.replaceChildren(container);
-  const painter=createPainter(),layers=keys.map(key=>{const canvas=doc.createElement('canvas');canvas.width=640;canvas.height=360;canvas.dataset.layer=key;Object.assign(canvas.style,{position:'absolute',inset:'0',width:'640px',height:'360px'});container.append(canvas);return {key,canvas,c:canvas.getContext('2d')};});
+  const painter=createPainter(),layers=keys.map(key=>{
+   const box=only?[0,0,640,360]:layerBox(key),canvas=doc.createElement('canvas');
+   canvas.dataset.layer=key;Object.assign(canvas.style,{position:'absolute',left:box[0]+'px',top:box[1]+'px',width:box[2]+'px',height:box[3]+'px'});
+   container.append(canvas);return {key,box,canvas,c:canvas.getContext('2d')};
+  });
   const info=doc.createElement('span');info.setAttribute('aria-live','off');Object.assign(info.style,{position:'absolute',width:'1px',height:'1px',overflow:'hidden',clipPath:'inset(50%)'});container.append(info);
-  let dead=false,previous=-1;
+  let dead=false,previous=-1,resolution=0;
+  const size=()=>{
+   // Actual screen pixels, not the 640×360 logical stage. Thumbnail buffers stay small.
+   const width=root.getBoundingClientRect().width||640,dpr=Math.max(1,view.devicePixelRatio||1);
+   const next=Math.min(definition.poster_only?2:6,Math.max(.5,width*dpr/640));
+   if(Math.abs(next-resolution)<.001)return false;resolution=next;
+   for(const {canvas,box}of layers){canvas.width=Math.ceil(box[2]*resolution);canvas.height=Math.ceil(box[3]*resolution);}
+   return true;
+  };
   const render=ms=>{
-   if(dead)return;ms=Math.max(0,Math.min(definition.duration_ms||DURATION,ms));if(ms===previous)return;previous=ms;
+   if(dead)return;
+   const resized=size();ms=Math.max(0,Math.min(definition.duration_ms||DURATION,Number.isFinite(ms)?ms:0));
+   if(ms===previous&&!resized)return;previous=ms;
    let t=ms/1000;
    if(only){const [a,b]=partClocks[only],duration=definition.duration_ms||durations[only];t=mix(a,b,clamp((ms-150)/(duration-600)));}
    const q=stateAt(t);container.dataset.frame=String(q.range.frame);container.dataset.range=q.range.text;container.dataset.phase=t>=3.41665?'关机':q.lock>.6?'锁定':'搜索';
-   info.textContent=`目标斜距 ${q.range.text} 公里；${container.dataset.phase}`;
-   for(const {key,c}of layers){if(!c)continue;c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,640,360);c.save();c.scale(640/W,360/H);
-    if(only==='boot'){c.translate(65,-40);c.scale(2.8,2.8);}
-    if(only==='telemetry'){
-     // 两翼合拢供单独阅读，依旧调用同一组读数和波形。
-     c.save();c.beginPath();c.rect(0,0,533,H);c.clip();c.translate(-6,-275);c.scale(1.5,1.5);painter.drawPart(c,key,t,{isolated:true});c.restore();
-     c.save();c.beginPath();c.rect(533,0,533,H);c.clip();c.translate(-190,-14);c.scale(1.05,1.05);painter.drawPart(c,key,t,{isolated:true});c.restore();
-    }else painter.drawPart(c,key,t,{isolated:!!only});c.restore();}
+   info.textContent=only?parts.find(p=>p[0]===only)[2]:`目标斜距 ${q.range.text} 公里；${container.dataset.phase}`;
+   for(const {key,c,canvas,box}of layers){
+    if(!c)continue;c.setTransform(1,0,0,1,0,0);c.clearRect(0,0,canvas.width,canvas.height);c.save();
+    c.scale(canvas.width/box[2],canvas.height/box[3]);c.translate(-box[0],-box[1]);
+    let displayScale=1;
+    if(only){
+     const [x,y,w,h]=soloBounds[key]||bounds[key],scale=Math.min(528/w,280/h);displayScale=scale;
+     c.translate(320-(x+w/2)*scale,180-(y+h/2)*scale);c.scale(scale,scale);
+    }else c.scale(640/W,360/H);
+    painter.drawPart(c,key,t,{isolated:!!only,displayScale});c.restore();
+   }
   };
+  const redraw=()=>{if(!dead){const ms=Math.max(0,previous);previous=-1;render(ms);}};
+  const observer=!definition.poster_only&&typeof view.ResizeObserver==='function'?new view.ResizeObserver(redraw):null;
+  observer?.observe(root.parentElement||root);
+  // fit() changes the stage transform after layout, including while playback is paused.
+  const transformObserver=!definition.poster_only&&typeof view.MutationObserver==='function'?new view.MutationObserver(redraw):null;
+  transformObserver?.observe(root,{attributes:true,attributeFilter:['style']});
+  if(!definition.poster_only)view.addEventListener?.('resize',redraw);
   render.frameRate=30;
-  render.destroy=(preserve=false)=>{if(dead)return;dead=true;painter.destroy();for(const layer of layers){if(!preserve){layer.canvas.width=1;layer.canvas.height=1;}layer.c=null;}if(!preserve)root.replaceChildren();};
-  render(0);render.ready=prepareFonts(doc).then(()=>{if(!dead){const ms=previous;previous=-1;render(ms);}});return render;
+  render.destroy=(preserve=false)=>{
+   if(dead)return;dead=true;observer?.disconnect();transformObserver?.disconnect();view.removeEventListener?.('resize',redraw);painter.destroy();
+   for(const layer of layers){if(!preserve){layer.canvas.width=1;layer.canvas.height=1;}layer.c=null;}
+   if(!preserve)root.replaceChildren();
+  };
+  render(0);render.ready=prepareFonts(doc).then(redraw);return render;
  }
  global.WiseHudTargeting={prepareFonts,createPainter,stateAt,rangeAt,rangeSamples:RANGE_SAMPLES,duration:DURATION,parts};
  const F=global.MotionFactories;
@@ -185,6 +309,11 @@
   F['hud-acquisition-sequence']=(root,kit,def)=>make(root,kit,def);
   for(const [key,id]of parts)F[id]=(root,kit,def)=>make(root,kit,def,key);
   for(const id of ['hud-acquisition-sequence',...parts.map(p=>p[1])])F[id].requiresPreparation=true;
-  F['hud-acquisition-sequence'].breakdown=parts.map(([key,id,name])=>({id:key,name,actions:[id],start:Math.round(partClocks[key][0]*1000),end:Math.round(partClocks[key][1]*1000),time:partClocks[key].map(x=>x.toFixed(2)).join('–')+' 秒',detail:{rings:'五层不同半径的圆弧和一百二十根刻度先展开再缓转。',globe:'经纬网、国家轮廓和扫描扇形共同旋转，随后推近目标区域。',boot:'自检日志按固定次序逐行出现，状态与顶栏一致。',telemetry:'斜距、倍率、视场和两翼波形共用时钟；斜距保留四位整数和一位小数。',lock:'青色切换琥珀色，四角准星和中文锁定条同时显现。'}[key]}));
+  F['hud-acquisition-sequence'].breakdown=[
+   {id:'header',name:'标题与边角',actions:[],start:150,end:3416.65,time:'0.15–3.42 秒',detail:'顶栏状态、时间与四角边线。'},
+   ...parts.map(([key,id,name])=>({id:key,name,actions:[id],start:Math.round(partClocks[key][0]*1000),end:3416.65,time:partClocks[key][0].toFixed(2)+'–3.42 秒',detail:details[key]})),
+   {id:'metrics',name:'外围读数与标尺',actions:[],start:120,end:3416.65,time:'0.12–3.42 秒',detail:'倍率、视场、航向、俯仰和底部标尺随统一时间更新。'},
+   {id:'collapse',name:'收线退出',actions:[],start:3416.65,end:3570,time:'3.42–3.57 秒',detail:'保留组合原有的关机收线，不单独增加目录条目。'}
+  ];
  }
 })(globalThis);

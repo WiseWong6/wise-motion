@@ -5,14 +5,15 @@ import {createRequire} from 'node:module';
 import {data} from './helpers.mjs';
 import {readFile} from 'node:fs/promises';
 import {runInNewContext} from 'node:vm';
+import {historyTestData} from './history-fixture.mjs';
 const {rank, describe} = createRequire(import.meta.url)('../catalog/matching.js');
-test('历史配方可按来源标题片段搜索，英文不区分大小写',async()=>{
+test('历史目录清空后，来源标题片段匹配仍通过独立样例验证',async()=>{
   const context={};runInNewContext(await readFile(new URL('../catalog/history-data.js',import.meta.url),'utf8'),context);
   const effects=context.MotionHistory.recipes;
   const expected=Array.from(effects.filter(effect=>effect.original_sources.some(source=>/claude/i.test(source))),effect=>effect.id).sort();
-  assert.ok(effects.length>0,'历史库仍有真实条目');
+  assert.equal(effects.length,0,'正式历史目录已清空');
   // 已删除来源可以没有结果，使用独立样例继续验证英文片段匹配。
-  const sample={...effects[0],id:'source-fragment-case',original_sources:['Claude 原作'],aliases:[]};
+  const sample={...historyTestData().recipes[0],id:'source-fragment-case',original_sources:['Claude 原作'],aliases:[]};
   for(const query of ['Claude','claude','  cLaUdE  '])assert.deepEqual(Array.from(rank({effects:[sample]},query),match=>match.effect.id),[sample.id]);
   for(const query of ['Claude','claude','  cLaUdE  ']){
     assert.deepEqual(Array.from(rank({effects},query),match=>match.effect.id).sort(),expected);
