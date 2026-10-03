@@ -25,6 +25,12 @@
     const scale=1.5*(1.07-.07*enter)*(1+.07*inOut(prog(t,1,4.6)));
     return {scale,x:960-514.5*scale,y:540-195*scale+(1-enter)*40,enter};
   };
+  const sendFocusPose=t=>{
+    const p=panelPose(Math.min(t,4.8)),q=outCubic(prog(t,4.8,5.45));
+    if(q===0)return p;
+    const scale=p.scale*(1+5*q),bx=p.x+952*p.scale,by=p.y+255*p.scale;
+    return {...p,scale,x:bx+(960-bx)*q-952*scale,y:by+(540-by)*q-255*scale};
+  };
   const el=(t,i)=>outExpo(prog(t,.3+i*.08,.9+i*.08));
   const chrome=t=>1-inOut(prog(t,5.2,5.8));
   const panelTransform=p=>`translate(${p.x} ${p.y}) scale(${p.scale})`;
@@ -47,8 +53,8 @@
   function panelMotion(root){
     const poses=[...root.querySelectorAll('[data-pose]')],part=n=>root.querySelector(`[data-part="${n}"]`);
     const toolbar=part('toolbar'),lower=part('lower-tools'),pills=part('pills'),panel=part('panel-chrome');
-    return (t,fade=true)=>{
-      const p=panelPose(t);for(const n of poses)set(n,'transform',panelTransform(p));
+    return (t,fade=true,p=panelPose(t))=>{
+      for(const n of poses)set(n,'transform',panelTransform(p));
       set(panel,'opacity',fade?chrome(t):1);
       for(const [node,i] of [[toolbar,0],[lower,2],[pills,3]]){const a=el(t,i);set(node,'opacity',a);if(node!==lower)set(node,'transform',`translate(0 ${(1-a)*10})`);}
       return p;
@@ -59,10 +65,19 @@
     set(n,'stroke-opacity',(.55+glow)*(fade?chrome(t):1));
     set(n,'stroke-dasharray',`${per*(draw?inOut(prog(t,0,.8)):1)} ${per}`);
   };}
-  function buttonMotion(root){const button=root.querySelector('[data-part="send-button"]'),ring=root.querySelector('[data-part="send-ring"]'),group=root.querySelector('[data-part="send-opacity"]');return(t,press=true,fade=true)=>{
+  function buttonMotion(root){const button=root.querySelector('[data-part="send-button"]'),ring=root.querySelector('[data-part="send-ring"]'),group=root.querySelector('[data-part="send-opacity"]');return(t,press=true,fade=true,blueArc=false)=>{
     const s=press?1-.2*Math.sin(prog(t,5,5.25)*Math.PI):1,rp=press?prog(t,5,5.7):0;
     set(button,'transform',`translate(952 255) scale(${s})`);set(group,'opacity',el(t,2)*(fade?chrome(t):1));
-    set(ring,'r',17+70*outCubic(rp));set(ring,'opacity',rp>0&&rp<1?1-rp:0);
+    if(blueArc&&t>=5){
+      const q=prog(t,5,6.1),r=17*s+2,per=2*Math.PI*r;
+      set(ring,'r',r);set(ring,'stroke','#007aff');set(ring,'stroke-linecap','round');
+      set(ring,'stroke-dasharray',`${per*.5*Math.sin(Math.PI*q)} ${per}`);
+      set(ring,'transform',`rotate(${-160+720*q} 952 255)`);
+      set(ring,'opacity',q>0&&q<1?Math.min(1,q*8,(1-q)*8):0);
+    }else{
+      set(ring,'stroke','#fff');for(const key of ['stroke-dasharray','stroke-linecap','transform'])if(ring.hasAttribute(key))ring.removeAttribute(key);
+      set(ring,'r',17+70*outCubic(rp));set(ring,'opacity',rp>0&&rp<1?1-rp:0);
+    }
   };}
   function lettersMotion(root){
     const letters=[...root.querySelectorAll('[data-char]')],glyphs=letters.map(n=>n.firstElementChild),caret=root.querySelector('[data-part="caret"]');
@@ -105,9 +120,13 @@
     const panel=include('ui')?panelMotion(root):null,border=include('border')?borderMotion(root):null,button=include('send')?buttonMotion(root):null,letters=include('letters')?lettersMotion(root):null,core=include('core')?coreMotion(root):null;
     const labels=include('labels')?promptLabelMotion(root):null,poses=[...root.querySelectorAll('[data-pose]')];let last=-1;return ms=>{
       const time=clamp(ms,0,duration);if(time===last)return;const t=offset+time/1000,fade=mode==='combo'||mode==='gather';
-      const pose=panel?panel(t,fade):panelPose(t);if(!panel)for(const n of poses)set(n,'transform',panelTransform(pose));
-      border?.(t,mode==='combo'||mode==='border'||mode==='typing',fade);button?.(t,mode==='combo'||mode==='send',fade);
-      letters?.(t,pose,{typing:mode==='combo'||mode==='typing',gather:mode==='combo'||mode==='gather'});
+      // 输入完成后向发送按钮推进；界面、边缘、按钮和文字共用同一位置与尺寸。
+      const inputTime=mode==='typing'?Math.min(t,4.8):t;
+      const targetPose=mode==='typing'?sendFocusPose(t):panelPose(inputTime);
+      const pose=panel?panel(inputTime,fade,targetPose):targetPose;if(!panel)for(const n of poses)set(n,'transform',panelTransform(pose));
+      border?.(inputTime,mode==='combo'||mode==='border'||mode==='typing',fade);button?.(t,mode==='combo'||mode==='send'||mode==='typing',fade,mode==='typing');
+      letters?.(inputTime,pose,{typing:mode==='combo'||mode==='typing',gather:mode==='combo'||mode==='gather'});
+      if(mode==='typing'&&t>=5)set(root.querySelector('[data-part="caret"]'),'visibility','hidden');
       core?.(t);labels?.(t);last=time;
     };
   }
@@ -136,7 +155,7 @@
     return ms=>{const time=clamp(ms,0,duration);if(time===last)return;const t=offset+time/1000;for(const [l,fn]of render)fn(t,l!=='credits'||include('burst')||layers.length===1);if(fade)set(fade,'opacity',Math.pow(prog(t,5.1,6),3));last=time;};
   }
   F['prompt-border-trace']=root=>promptScene(root,'输入框边缘循线显现','border',0,1400);
-  F['prompt-chinese-type']=root=>promptScene(root,'输入框逐字写入','typing',0,4800);
+  F['prompt-chinese-type']=root=>promptScene(root,'输入框逐字写入与发送点击','typing',0,6200);
   F['prompt-char-gather']=root=>promptScene(root,'字符沿弧汇入中心','gather',5,3000);
   F['send-press-ring']=root=>promptScene(root,'发送按钮按压扩圈','send',4.9,1100);
   F['prompt-ui-push']=root=>promptScene(root,'输入界面落位后推近','ui',0,4800);

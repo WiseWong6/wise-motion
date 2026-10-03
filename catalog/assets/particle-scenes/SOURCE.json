@@ -1,0 +1,8 @@
+{
+  "origin": "用户本机小猫加工厂、蒲公英和音符跳动项目",
+  "notes_bundle_change": "只将固定 600×800 输出改为当前画板宽高；其余编译内容逐字保留。",
+  "entry": "notes-source.js",
+  "readable_source": "notes/src/isolated-scene.js",
+  "runtime_dependencies": "Three.js 已内嵌在 notes-source.js；MIT 许可见 THREE-LICENSE.txt；不发起网络请求。",
+  "assets": "coffee-bean.png 为原透明素材，未修改像素。谱面及原素材权利保留原状。"
+}

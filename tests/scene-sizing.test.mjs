@@ -25,7 +25,7 @@ test('标准动作画面保持完整画板尺寸，不被页面图标样式缩�
       const scenes=[...d.querySelectorAll('.thumb .pattern-svg')];
       sceneCount+=scenes.length;scenes.forEach(fullSize);
     }
-    assert.equal(sceneCount,186);
+    assert.equal(sceneCount,189);
     d.querySelector('[data-kind="action"]').click();
     d.querySelector('[data-effect="rigid-rebound"]').click();
     fullSize(d.querySelector('#preview .pattern-svg'));

@@ -17,8 +17,8 @@ async function historyEnvironment(withApp=false){
 }
 test('每条历史审查均有出处，案例源码与原片范围没有混并，原源码保持只读',async()=>{
   const snapshot=JSON.parse(await readFile(state+'/source-snapshot.json','utf8'));
-  assert.deepEqual(historical.counts,{"reviewed":311,"recipes":50,"entries":55,"animation":50,"document":0});
-  assert.equal(historical.excluded.length,261);
+  assert.deepEqual(historical.counts,{"reviewed":311,"recipes":9,"entries":9,"animation":9,"document":0});
+  assert.equal(historical.excluded.length,302);
   assert.ok(historical.excluded.some(e=>e.id==='reading-rhythm'));
   assert.ok(!historical.recipes.some(e=>e.history_id==='reading-rhythm'));
   assert.ok(historical.excluded.some(e=>e.id==='resume-typography'));
@@ -78,8 +78,8 @@ test('原作绘制器载入迟到时释放，反复定位与观看倍率不改�
   const env=await historyEnvironment();
   try{
     const {w}=env,root=w.document.getElementById('root');
-    const effect=historical.recipes.find(r=>r.entries.some(e=>e.preview.type==='isolated'));
-    const entry=effect.entries.find(e=>e.preview.type==='isolated');
+    const effect=historical.recipes.find(r=>r.entries.some(e=>e.preview.type==='web-isolated'));
+    const entry=effect.entries.find(e=>e.preview.type==='web-isolated');
     let resolve,disposed=0,draws=0;
     const late=w.MotionHistoryRuntime.create(root,effect,{caseId:entry.id,mount:()=>new Promise(r=>{resolve=r;})});
     late.seek(700);late.play();late.destroy();
@@ -110,22 +110,28 @@ test('原视频强制静音，原片裁剪范围与预览定位分别计算，�
     player.destroy();video.dispatchEvent(new w.Event('error'));assert.equal(root.innerHTML,'');
   }finally{env.close();}
 });
-test('历史目录筛选与多案例切换同步输出、源码和时长，前后切换只保留一个播放器',async()=>{
+test('历史目录筛选与配方切换同步输出、源码和时长，前后切换只保留一个播放器',async()=>{
   const env=await historyEnvironment(true);
   try{
     const {w}=env,d=w.document;
     const originalCreate=w.MotionHistoryRuntime.create;
     w.MotionHistoryRuntime.create=(root,e,options)=>originalCreate(root,e,{...options,mount:async canvas=>({render(t){canvas.dataset.time=String(t);},dispose(){}})});
     d.querySelector('[data-kind="recipe"]').click();assert.equal(d.querySelectorAll('#effects-list [data-effect]').length,historical.counts.recipes);
-    const effect=w.MotionHistory.recipes.find(r=>r.entries.length>1&&new Set(r.entries.map(e=>e.preview.duration)).size>1);
+    const effect=w.MotionHistory.recipes.find(r=>r.entries[0].preview.type==='web-isolated');
     d.querySelector(`[data-effect="${effect.id}"]`).click();await tick();
     assert.equal(w.MotionRuntime.instanceCount,0);assert.equal(w.MotionHistoryRuntime.instanceCount,1);
-    const select=d.getElementById('history-case');select.value=effect.entries[1].id;select.dispatchEvent(new w.Event('change'));await tick();
-    const entry=effect.entries[1];
+    const select=d.getElementById('history-case');assert.equal(select.options.length,1);assert.equal(select.value,effect.entries[0].id);
+    const next=w.MotionHistory.recipes.find(r=>r.entries[0].preview.type==='web-isolated'&&r.duration_ms!==effect.duration_ms);
+    d.querySelector(`[data-effect="${next.id}"]`).click();await tick();
+    assert.equal(w.MotionHistoryRuntime.instanceCount,1);
+    const entry=next.entries[0];
     assert.equal(d.getElementById('time-total').textContent,entry.preview.duration.toFixed(1));
     assert.ok(d.getElementById('code').textContent.includes(env.w.MotionHistory.source_files[entry.code[0].file].content));
-    // 提示词核对所选案例的实际动作说明，不依赖来源案例标题。
-    assert.ok(d.getElementById('prompt').textContent.includes(entry.cases[0].note.replace(/[。；]+$/,'')));
+    // 提示词跟随保留配方切换；动作要求与内部审查说明分开核对。
+    const prompt=d.getElementById('prompt').textContent;
+    assert.ok(prompt.includes('动效说明：'+next.name));
+    assert.ok(!prompt.includes('动效说明：'+effect.name));
+    assert.ok(prompt.includes(next.purpose.replace(/[。；]+$/,'')));
     assert.equal(decodeURI(new URL(d.querySelector('#history-details a').href).pathname),entry.code[0].file);
     d.getElementById('next-effect').click();await tick();assert.equal(w.MotionHistoryRuntime.instanceCount,1);
     d.querySelector('[data-kind="action"]').click();d.querySelector('[data-effect="fade-rise"]').click();

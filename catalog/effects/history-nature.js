@@ -996,6 +996,30 @@ function background(c) { ctx.fillStyle = colorOf([c]); ctx.fillRect(0, 0, W, H);
       const roll=TAU*smooth(7.2,9.1,t)-Math.PI*0.45*Math.sin(Math.PI*smooth(16.1,18.2,t));
       return {x,y,angle:-0.15+Math.atan2(vx,125)*0.85+gust+roll};
     }
+    releasePose(seed,courseAt) {
+      const body=this.subjectPose(seed.born,courseAt);
+      const shape=this.filamentShape(this.filaments[seed.slot],this.shedCount(seed.born)/this.drifters.length);
+      const angle=shape.angle,radius=body.radius*shape.length;
+      const lx=Math.cos(angle)*radius,ly=Math.sin(angle)*radius;
+      return {x:body.x+lx*Math.cos(body.angle)-ly*Math.sin(body.angle),
+        y:body.y+lx*Math.sin(body.angle)+ly*Math.cos(body.angle),angle:body.angle};
+    }
+    driftingPose(seed,t,courseAt) {
+      const age=t-seed.born;
+      if(age<0||age>3.3)return null;
+      const origin=this.releasePose(seed,courseAt),{x,y,angle}=origin;
+      return {x:x+seed.side*age*19+Math.sin(age*1.7+seed.phase)*age*9,
+        y:y+(this.distance(t)-this.distance(seed.born))*0.52+age*age*16,
+        angle:angle+seed.side*age*0.95+Math.sin(age*2+seed.phase)*0.55,
+        alpha:smooth(0,0.14,age)*(1-smooth(2.25,3.3,age)),radius:seed.size*(1-age*0.075)};
+    }
+    drifting(ctx,s) {
+      for(const seed of this.drifters){
+        const pose=this.driftingPose(seed,s.time,s.courseAt);
+        if(!pose||pose.y>1250)continue;
+        this.floret(ctx,pose.x,pose.y,pose.radius,pose.angle,pose.alpha*0.85);
+      }
+    }
     distance(t) {
 
       const integral=(v)=>{const u=Math.max(0,Math.min(1,v));return u*u*u-u*u*u*u/2;};
@@ -1143,6 +1167,18 @@ function waveform(ctx,x,y,age){
   svg.dataset.radius=String(event.radius);svg.dataset.sourceTime=String(sourceTime);
  },'0 200 900 660');
  // 独立插画放大几何时，冠毛仍保持细线；下方留出播放条区域。
+ // 原脱落片段保持冠毛身份、出生位置和后续下漂；只改变整体取景。
+ global.MotionDandelion=Object.freeze({journey:J,course});
+ F['seed-shedding-illustration']=(root,K,def)=>{
+  root.dataset.art='original';
+  return svgFactory(root,def,(ctx,t,svg)=>{
+   const j=J(),time=5.6+Math.min(3.8,Math.max(0,t-.15)),pose=j.subjectPose(time,course);
+   svg.style.backgroundColor='#526957';
+   ctx.translate(194,-50);ctx.scale(.28,.28);
+   j.floret(ctx,pose.x,pose.y,pose.radius,pose.angle,1,j.filamentState(time));
+   j.drifting(ctx,{time,courseAt:course});svg.dataset.sourceTime=String(time);
+  });
+ };
  F['dandelion-subject-illustration']=(root,K,def)=>{
   const render=svgFactory(root,def,ctx=>{const j=J();ctx.translate(320,116);ctx.scale(1.25,1.25);j.floret(ctx,0,0,42,0,1,j.filamentState(4.5));},'0 0 640 360',.5);render(0);return ()=>{};
  };

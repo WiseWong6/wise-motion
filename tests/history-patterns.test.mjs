@@ -412,7 +412,7 @@ test('物理关系保持挂点、面积以及轮子随行程转动',async()=>{
   try{
     const {w}=env,root=w.document.getElementById('root');
     let draw=render(w,root,'pivot-swing');const pin=part(root,'pin').outerHTML;draw(.25);draw(.7);assert.equal(part(root,'pin').outerHTML,pin);
-    draw=render(w,root,'squash-bounce');for(const p of [.1,.2,.33,.6,1]){draw(p);assert.ok(Math.abs(number(root,'ball','rx')*number(root,'ball','ry')-1024)<1e-8);}
+    draw=render(w,root,'squash-bounce');for(const p of [.1,.2,.33,.6,1]){draw(p);assert.ok(Math.abs(number(root,'ball','rx')*number(root,'ball','ry')-4096)<1e-8);}
     draw=render(w,root,'rolling-distance');
     const measure=p=>{draw(p);return [Number(part(root,'car').getAttribute('transform').match(/translate\(([-.\d]+)/)[1]),Number(part(root,'wheel0').getAttribute('transform').match(/rotate\(([-.\d]+)/)[1])];};
     const [x0,a0]=measure(.2),[x1,a1]=measure(.7),r=number(root,'hub0','r');assert.ok(Math.abs((x1-x0)-(a1-a0)*Math.PI/180*r)<1e-7);
