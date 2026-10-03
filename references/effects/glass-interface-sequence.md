@@ -1,8 +1,8 @@
-# 透光浮层与折射
+# 玻璃卡片显现折射
 
 以下动效说明由统一定义生成。示例对象和时长是可调整的假设，结构要求需要保留。
 
-动效说明：透光浮层与折射
+动效说明：玻璃卡片显现折射
 目的：紫蓝光场中三张玻璃卡错层进入，柔光凸泡放大文字，随后卡片退出并露出细线字标。
 对象：紫蓝弥散光场、WISE 语音卡、创作对话卡、光感控制卡、柔光凸泡、WISE MOTION 字标和收拢光点
 动作阶段：
@@ -14,7 +14,7 @@
 现实类比：紫蓝光场中三张玻璃卡错层进入，柔光凸泡放大文字，随后卡片退出并露出细线字标。
 需要保留：设计画板1066×600等比放入640×360；总长3.65秒，1.62秒出现凸泡、2.25秒约253×132、2.48秒开始露出字标、3.48秒开始收拢；全部对象共用固定时间。 字标左右范围231至835，字高56；气泡终点577、304与MOTION第一个O中心一致，圆环半径28.1。
 明确排除：不重建已去掉的气泡深色线或描边，不压缩各对象的交接顺序，不读取视频或截图绘制。
-对应参考：本地目录「透光浮层与折射」；所用动作：弥散光团渐变、透光卡片错层、凸泡变形折射、透光语音卡、透光对话卡、透光创作卡
+对应参考：本地目录「玻璃卡片显现折射」；所用动作：弥散光团流动、透光卡片错层、凸泡伸缩折射、玻璃语音卡、玻璃对话卡、玻璃控制卡
 源码：catalog/effects/glass-light.js 中的 glass-interface-sequence
 来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
 关键假设：保留紫蓝光场、透光材质与柔光气泡；界面采用 WISE 创作主题文案，字标改为 WISE MOTION，未携带原片媒体。
@@ -33,4 +33,4 @@
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
 - 从本机玻璃效果精修的自主绘制源码提取；仅采用几何、颜色和时间参数，没有原片图片、视频或第三方运行代码。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[弥散光团渐变](diffuse-light-drift.md)、[透光卡片错层](glass-card-stagger.md)、[凸泡变形折射](convex-glass-lens.md)、[透光语音卡](glass-voice-card-illustration.md)、[透光对话卡](glass-dialogue-card-illustration.md)、[透光创作卡](glass-control-card-illustration.md)。
+所用动作：[弥散光团流动](diffuse-light-drift.md)、[透光卡片错层](glass-card-stagger.md)、[凸泡伸缩折射](convex-glass-lens.md)、[玻璃语音卡](glass-voice-card-illustration.md)、[玻璃对话卡](glass-dialogue-card-illustration.md)、[玻璃控制卡](glass-control-card-illustration.md)。

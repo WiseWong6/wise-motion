@@ -36,24 +36,24 @@
           <button id="close-directory" class="icon-btn" type="button" aria-label="关闭动效目录"><span data-icon="close"></span></button>
         </div>
         <div class="directory-top">
-          <div class="kind-tabs" role="group" aria-label="参考层级">
-            <button data-kind="action" aria-pressed="true">动作 <span class="pill-count">195</span></button>
-            <button data-kind="composition" aria-pressed="false">组合 <span class="pill-count">16</span></button>
-            <button data-kind="illustration" aria-pressed="false">插画 <span class="pill-count">58</span></button>
+          <div class="kind-tabs" role="group" aria-label="动效类型">
+            <button data-kind="action" aria-pressed="true">单个动作 <span class="pill-count">195</span></button>
+            <button data-kind="composition" aria-pressed="false">组合片段 <span class="pill-count">16</span></button>
+            <button data-kind="illustration" aria-pressed="false">插画素材 <span class="pill-count">58</span></button>
           </div>
           <div class="search-control select-control">
             <div class="search">
               <span data-icon="magnifying-glass" aria-hidden="true"></span>
-              <input id="search" type="search" placeholder="搜索动作或描述需求" aria-label="中文搜索动效">
+              <input id="search" type="search" placeholder="搜索名称或描述需求" aria-label="搜索动效名称或需求">
               <button id="search-clear" type="button" class="search-clear" aria-label="清空搜索" title="清空搜索（Esc）" hidden><span data-icon="close"></span></button>
-              <button id="category-filter" type="button" class="search-filter" aria-label="按运动行为筛选" aria-haspopup="listbox" aria-expanded="false" aria-controls="category-options" title="按运动行为筛选">
+              <button id="category-filter" type="button" class="search-filter" aria-label="按动效分类筛选" aria-haspopup="listbox" aria-expanded="false" aria-controls="category-options" title="按动效分类筛选">
                 <span data-icon="chevron-down"></span>
               </button>
             </div>
-            <div id="category-options" class="select-menu scroll-area" role="listbox" aria-label="运动行为分类" hidden></div>
+            <div id="category-options" class="select-menu scroll-area" role="listbox" aria-label="动效分类" hidden></div>
           </div>
         </div>
-        <nav id="effects-list" class="effects-list scroll-area" aria-label="选择动作"></nav>
+        <nav id="effects-list" class="effects-list scroll-area" aria-label="选择动效参考"></nav>
         <div id="empty" class="empty" hidden>
           <strong>还没有合适的参考</strong>
           <button class="btn btn-outline" id="clear-search">清空筛选</button>

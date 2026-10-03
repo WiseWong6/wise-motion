@@ -4,84 +4,119 @@
   "license": "AGPL-3.0-only",
   "categories": [
     {
+      "id": "entrance",
+      "name": "入场与展开",
+      "description": "对象出现、依次进入、展开并落定。"
+    },
+    {
       "id": "writing",
-      "name": "文字与编排",
-      "description": "字符本身的显现、组合与替换。"
+      "name": "文字与字形",
+      "description": "文字输入、替换、编排，以及笔画和字形变化。"
     },
     {
       "id": "data",
-      "name": "数值与图示",
-      "description": "数量变化、图表建立和同步读数。"
+      "name": "数字与图表",
+      "description": "数字、进度、图表、刻度与标注随数据变化。"
     },
     {
-      "id": "entrance",
-      "name": "显现与展开",
-      "description": "对象进入视野、展开并落定。"
-    },
-    {
-      "id": "continuous",
-      "name": "运动与循环",
-      "description": "持续位移、滚动和往复运动。"
-    },
-    {
-      "id": "response",
-      "name": "惯性与弹性",
-      "description": "跟随、回摆、压缩和衰减回弹。"
-    },
-    {
-      "id": "shape",
-      "name": "形变与生长",
-      "description": "同一对象改变轮廓、密度或形态。"
-    },
-    {
-      "id": "space",
-      "name": "空间与透视",
-      "description": "翻面、纵深、曲面和远近关系。"
+      "id": "scanning",
+      "name": "扫描与信号",
+      "description": "雷达、目标扫描、自检、状态和连续信号读数。"
     },
     {
       "id": "layout",
-      "name": "层次与重组",
-      "description": "重排、停靠、让位和内容累积。"
+      "name": "布局与层次",
+      "description": "内容重排、分层、让位、停靠与逐层累积。"
+    },
+    {
+      "id": "continuous",
+      "name": "滚动与轮播",
+      "description": "内容连续滚动、减速停靠或按间隔轮换。"
     },
     {
       "id": "connection",
-      "name": "路径与连接",
-      "description": "循线行进、描绘、汇聚和分流。"
+      "name": "路径与描绘",
+      "description": "沿路线移动、绕点旋转、描线、汇聚与分流。"
     },
     {
-      "id": "environment",
-      "name": "触发与传播",
-      "description": "一个状态引起后续响应或波次传播。"
+      "id": "response",
+      "name": "跟随与回弹",
+      "description": "延迟跟随、摆动、弹跳、压缩回弹与平衡。"
+    },
+    {
+      "id": "shape",
+      "name": "变形与生长",
+      "description": "同一对象改变轮廓、密度、结构或材质。"
+    },
+    {
+      "id": "space",
+      "name": "立体与镜头",
+      "description": "立体翻转、曲面运动、透视变化与镜头推近。"
     },
     {
       "id": "attention",
-      "name": "焦点与色光",
-      "description": "强调、换色、扫光和明灭。"
+      "name": "强调与配色",
+      "description": "突出阅读重点、逐项聚焦、换色与展开色阶。"
+    },
+    {
+      "id": "lighting",
+      "name": "光效与氛围",
+      "description": "扫光、闪烁、光晕、倒影与背景纹理。"
+    },
+    {
+      "id": "environment",
+      "name": "反馈与联动",
+      "description": "控件反馈、状态切换、定时触发与波次响应。"
+    },
+    {
+      "id": "particles",
+      "name": "粒子与流动",
+      "description": "群体散开、汇集、释放、拖尾与流线运动。"
     },
     {
       "id": "transition",
-      "name": "场景与转换",
-      "description": "两个画面的遮挡、替换和承接。"
+      "name": "画面转场",
+      "description": "通过遮挡、闪切、缩放或主体承接连接两个画面。"
     },
     {
       "id": "illustration-nature",
-      "name": "场域与能量",
-      "description": "流场、涡旋、波阵和能量图形。"
+      "name": "自然与天体",
+      "description": "太阳、月亮、植物、树形与地形等自然图形。"
+    },
+    {
+      "id": "illustration-energy",
+      "name": "流场与能量",
+      "description": "烟圈、涡流、能量球、电弧与放射光线。"
     },
     {
       "id": "illustration-diagram",
-      "name": "结构与网络",
-      "description": "几何结构、信息关系和联动装置。"
+      "name": "几何与网络",
+      "description": "点阵、线框、波形、轨道与点线关系。"
     },
     {
       "id": "illustration-object",
-      "name": "纸张与器物",
-      "description": "纸艺、卡片、容器和具象物件。"
+      "name": "物件与角色",
+      "description": "纸张、工具、容器、动物与载具等具象素材。"
+    },
+    {
+      "id": "illustration-interface",
+      "name": "界面与读数",
+      "description": "终端、界面卡片、频谱和计数器等界面素材。"
+    },
+    {
+      "id": "composition-text",
+      "name": "文字与叙事",
+      "description": "以标题、字幕和片尾文字推进内容的组合片段。"
+    },
+    {
+      "id": "composition-interface",
+      "name": "界面与演示",
+      "description": "操作反馈、产品界面、数据观测和图文说明的组合片段。"
     },
     {
       "id": "compositions",
-      "name": "组合编排",
-      "description": "多个动作在同一时间线中形成完整关系。"
+      "name": "图形与材质",
+      "description": "以几何、光线、空间和材质演变为主的组合片段。"
     }
   ],
   "effects": [
@@ -168,7 +203,7 @@
     },
     {
       "id": "scale-in",
-      "name": "缩放入场",
+      "name": "放大回弹入场",
       "kind": "action",
       "category": "entrance",
       "summary": "从较小状态变大，轻微越过后回到目标尺寸。",
@@ -179,7 +214,8 @@
         "弹入",
         "回弹",
         "登场",
-        "回弹缩放入场"
+        "回弹缩放入场",
+        "缩放入场"
       ],
       "behaviors": [
         "appear",
@@ -237,7 +273,8 @@
       ],
       "previous_names": [
         "缩放进入",
-        "回弹缩放入场"
+        "回弹缩放入场",
+        "缩放入场"
       ],
       "timing": {
         "source_duration_ms": 1700,
@@ -269,7 +306,7 @@
       ],
       "trigger": "按固定时间表演示；可暂停、重播和拖动时间。",
       "id": "stamp-land",
-      "name": "缩小落定",
+      "name": "缩小显现落定",
       "category": "entrance",
       "summary": "红色双框印章从放大状态快速缩小到落点，墨色同步显现，然后保持。",
       "purpose": "表现盖章确认，让印记迅速落定。",
@@ -285,11 +322,13 @@
         "缩小盖章",
         "印章落定",
         "落印",
-        "双框印章"
+        "双框印章",
+        "缩小落定"
       ],
       "previous_names": [
         "印章放大落印",
-        "印章缩小落印"
+        "印章缩小落印",
+        "缩小落定"
       ],
       "behaviors": [
         "scale",
@@ -409,7 +448,7 @@
     },
     {
       "id": "group-expand",
-      "name": "成组展开",
+      "name": "卡片逐张放大",
       "kind": "action",
       "category": "entrance",
       "summary": "三列两行的六张卡片按阅读顺序由小放大，标签随后显现，已出现的卡片保持原位。",
@@ -485,7 +524,7 @@
     },
     {
       "id": "seamless-scroll",
-      "name": "首尾续接",
+      "name": "首尾相接滚动",
       "kind": "action",
       "category": "continuous",
       "summary": "一列连续内容匀速移动，首尾相接。",
@@ -497,7 +536,8 @@
         "无缝",
         "跑马灯",
         "不要停顿",
-        "无缝滚动"
+        "无缝滚动",
+        "首尾续接"
       ],
       "behaviors": [
         "continuous",
@@ -545,7 +585,8 @@
         "document"
       ],
       "previous_names": [
-        "无缝滚动"
+        "无缝滚动",
+        "首尾续接"
       ]
     },
     {
@@ -569,7 +610,7 @@
         "document"
       ],
       "id": "card-conveyor",
-      "name": "斜向对流",
+      "name": "斜向双向滚动",
       "category": "continuous",
       "summary": "八条卡片带斜向铺满画面，上四条向右、下四条向左，缓起后连续循环。",
       "purpose": "用密集的斜向卡片墙展示两组方向相反的连续流动。",
@@ -584,7 +625,8 @@
         "双向卡片传送带",
         "斜向卡片墙",
         "八条泳道",
-        "双向鹈鹕传送带"
+        "双向鹈鹕传送带",
+        "斜向对流"
       ],
       "behaviors": [
         "continuous",
@@ -609,12 +651,13 @@
         "reference_url": "https://animejs.com/documentation/"
       },
       "previous_names": [
-        "双向卡片传送带"
+        "双向卡片传送带",
+        "斜向对流"
       ]
     },
     {
       "id": "curve-path",
-      "name": "沿曲行进",
+      "name": "沿曲线行进",
       "kind": "action",
       "category": "connection",
       "summary": "主体沿弯曲路线行进，朝向跟着路径改变。",
@@ -626,7 +669,8 @@
         "弯曲",
         "飞行",
         "曲线路径",
-        "沿曲线行进"
+        "沿曲线行进",
+        "沿曲行进"
       ],
       "behaviors": [
         "continuous",
@@ -684,7 +728,7 @@
       ],
       "previous_names": [
         "曲线路径",
-        "沿曲线行进"
+        "沿曲行进"
       ]
     },
     {
@@ -709,7 +753,7 @@
       ],
       "trigger": "按固定时间表演示；可暂停、重播和拖动时间。",
       "id": "narrated-count",
-      "name": "分组递增",
+      "name": "柱条先后增长",
       "summary": "第一组柱条与数字先平缓上涨，接近落定时第二组轻轻起步，以短暂交叠自然衔接，各组柱高与读数同步。",
       "purpose": "依次展示两组数据，让前一组收尾时自然带起后一组。",
       "objects": "同一底线上的两根柱条、百分数与优化前后标签",
@@ -728,7 +772,8 @@
         "数据先后上涨",
         "第一组先涨，第二组再涨",
         "双柱先后长高",
-        "两组数据依次上涨"
+        "两组数据依次上涨",
+        "分组递增"
       ],
       "behaviors": [
         "count",
@@ -762,7 +807,8 @@
       },
       "previous_names": [
         "数字随讲述递增",
-        "两组数据依次上涨"
+        "两组数据依次上涨",
+        "分组递增"
       ]
     },
     {
@@ -861,7 +907,7 @@
       ],
       "trigger": "按固定时间表演示；可暂停、重播和拖动时间。",
       "id": "motion-compare",
-      "name": "同程异速",
+      "name": "匀速缓动对照",
       "category": "data",
       "summary": "匀速与缓动方块沿等长轨道往返，与同一时钟驱动的曲线、控制手柄和移动点联动。",
       "purpose": "用同一行程直接比较匀速与缓动的速度差异。",
@@ -878,11 +924,13 @@
         "双轨速度对比",
         "同程往返",
         "线性和缓动",
-        "Claude 动效演进史"
+        "Claude 动效演进史",
+        "同程异速"
       ],
       "previous_names": [
         "同程匀速与缓动对照",
-        "同程匀速与缓动对比"
+        "同程匀速与缓动对比",
+        "同程异速"
       ],
       "behaviors": [
         "data",
@@ -938,7 +986,7 @@
       ],
       "trigger": "按固定时间表演示；可暂停、重播和拖动时间。",
       "id": "reduction-dimension",
-      "name": "缩减留痕",
+      "name": "条长缩短对照",
       "summary": "实色新条从原长缩短，虚线框保留省去段，尺寸线和降幅百分数由同一进度更新。",
       "purpose": "同时讲清原值、新值和节省了多少。",
       "objects": "排线原条、实色新条、虚线节省段、尺寸线和滚动降幅读数",
@@ -953,7 +1001,8 @@
         "条形缩短",
         "节省段标注",
         "减少44%",
-        "条形降幅与尺寸标注"
+        "条形降幅与尺寸标注",
+        "缩减留痕"
       ],
       "behaviors": [
         "data",
@@ -986,12 +1035,13 @@
         "reference_url": "https://animejs.com/documentation/"
       },
       "previous_names": [
-        "条形降幅与尺寸标注"
+        "条形降幅与尺寸标注",
+        "缩减留痕"
       ]
     },
     {
       "id": "orbit",
-      "name": "纵深环绕",
+      "name": "立体环绕",
       "kind": "action",
       "category": "space",
       "summary": "五张细边图形卡片围绕画面中心连续环行，近处清晰放大，远处轻淡缩小。",
@@ -1003,7 +1053,8 @@
         "圆周",
         "转经筒",
         "环绕运动",
-        "立体环绕"
+        "立体环绕",
+        "纵深环绕"
       ],
       "behaviors": [
         "continuous",
@@ -1053,7 +1104,7 @@
       ],
       "previous_names": [
         "环绕运动",
-        "立体环绕"
+        "纵深环绕"
       ],
       "timing": {
         "source_duration_ms": 8000,
@@ -1068,7 +1119,7 @@
       "id": "float",
       "name": "悬浮起伏",
       "kind": "action",
-      "category": "continuous",
+      "category": "response",
       "summary": "对象轻微上下起伏，幅度与节奏保持平稳。",
       "purpose": "营造安静、有生命感的持续状态",
       "aliases": [
@@ -1222,7 +1273,7 @@
     },
     {
       "id": "type-reveal",
-      "name": "逐字显现",
+      "name": "文字逐字显现",
       "kind": "action",
       "category": "writing",
       "summary": "WISE MOTION 轻微上移落位，随后按原地址写出的节奏匀速逐字呈现。",
@@ -1292,12 +1343,13 @@
         "end_ms": 750
       },
       "previous_names": [
-        "逐字呈现"
+        "逐字呈现",
+        "逐字显现"
       ]
     },
     {
       "id": "word-focus",
-      "name": "划线强调",
+      "name": "词语划线强调",
       "kind": "action",
       "category": "attention",
       "summary": "词语依次变红、画出下划线，再恢复原来的颜色。",
@@ -1313,7 +1365,8 @@
         "词语变红",
         "重点词语",
         "下划线强调",
-        "强调后恢复"
+        "强调后恢复",
+        "划线强调"
       ],
       "behaviors": [
         "focus",
@@ -1364,7 +1417,8 @@
         "end_ms": 1950
       },
       "previous_names": [
-        "关键词强调"
+        "关键词强调",
+        "划线强调"
       ]
     },
     {
@@ -1452,7 +1506,7 @@
     },
     {
       "id": "shape-morph",
-      "name": "轮廓渐变",
+      "name": "轮廓连续变形",
       "kind": "action",
       "category": "shape",
       "summary": "同一个轮廓从圆润形态连续变成方形。",
@@ -1464,7 +1518,8 @@
         "轮廓",
         "形状变化",
         "图形变形",
-        "轮廓连续变形"
+        "轮廓连续变形",
+        "轮廓渐变"
       ],
       "behaviors": [
         "morph",
@@ -1520,7 +1575,7 @@
       ],
       "previous_names": [
         "图形变形",
-        "轮廓连续变形"
+        "轮廓渐变"
       ],
       "timing": {
         "source_duration_ms": 6000,
@@ -1533,7 +1588,7 @@
     },
     {
       "id": "flat-to-volume",
-      "name": "平面生厚",
+      "name": "平面变立体",
       "kind": "action",
       "category": "space",
       "summary": "平面圆环和圆点逐渐长出高度，底板同步放平，显露顶面、侧壁与透视关系。",
@@ -1545,7 +1600,8 @@
         "圆环升成立体",
         "圆点变柱体",
         "二维图案转入三维空间",
-        "近大远小"
+        "近大远小",
+        "平面生厚"
       ],
       "behaviors": [
         "rotation3d"
@@ -1607,12 +1663,13 @@
         "end_ms": 1950
       },
       "previous_names": [
-        "平面转立体透视"
+        "平面转立体透视",
+        "平面生厚"
       ]
     },
     {
       "id": "card-flip",
-      "name": "绕轴翻面",
+      "name": "卡片翻面",
       "kind": "action",
       "category": "space",
       "summary": "卡片绕竖轴转半圈，展示背面的内容。",
@@ -1623,7 +1680,8 @@
         "翻牌",
         "背面",
         "绕轴",
-        "卡片翻转"
+        "卡片翻转",
+        "绕轴翻面"
       ],
       "behaviors": [
         "flip",
@@ -1686,7 +1744,8 @@
         "end_ms": 750
       },
       "previous_names": [
-        "卡片翻转"
+        "卡片翻转",
+        "绕轴翻面"
       ]
     },
     {
@@ -1774,7 +1833,7 @@
     },
     {
       "id": "column-to-row",
-      "name": "纵横重排",
+      "name": "纵排变横排",
       "kind": "action",
       "category": "layout",
       "summary": "左侧纵排的三个圆点同时缩小、上移并展开成横排。",
@@ -1784,7 +1843,8 @@
         "竖排变横排",
         "三点横排",
         "列变行",
-        "三点纵排转横排"
+        "三点纵排转横排",
+        "纵横重排"
       ],
       "behaviors": [
         "layout",
@@ -1850,12 +1910,13 @@
         "end_ms": 750
       },
       "previous_names": [
-        "三点纵排转横排"
+        "三点纵排转横排",
+        "纵横重排"
       ]
     },
     {
       "id": "layer-expand",
-      "name": "层次拉开",
+      "name": "图层分离展开",
       "kind": "action",
       "category": "layout",
       "summary": "上下层逐渐拉开距离，露出原先隐藏的层次。",
@@ -1867,7 +1928,8 @@
         "拆开",
         "层次",
         "层级展开",
-        "图层拉开"
+        "图层拉开",
+        "层次拉开"
       ],
       "behaviors": [
         "depth",
@@ -1925,7 +1987,8 @@
       ],
       "previous_names": [
         "层级展开",
-        "图层拉开"
+        "图层拉开",
+        "层次拉开"
       ],
       "timing": {
         "source_duration_ms": 3600,
@@ -1938,7 +2001,7 @@
     },
     {
       "id": "paper-tilt",
-      "name": "叠层倾展",
+      "name": "叠层倾斜展开",
       "kind": "action",
       "category": "layout",
       "summary": "同一张纸面缩小并倾斜，背后两层沿深度拉开，短暂停留后一起收回平面。",
@@ -1955,7 +2018,8 @@
         "纸面倾斜",
         "三层纸面",
         "纸层透视",
-        "倾斜收回"
+        "倾斜收回",
+        "叠层倾展"
       ],
       "behaviors": [
         "rotate",
@@ -2007,12 +2071,13 @@
         "end_ms": 1350
       },
       "previous_names": [
-        "纸层倾斜展开"
+        "纸层倾斜展开",
+        "叠层倾展"
       ]
     },
     {
       "id": "crt-collapse",
-      "name": "纵横收束",
+      "name": "关机收缩熄灭",
       "kind": "action",
       "category": "transition",
       "summary": "整幅画面先纵向压成白色横线，横线再向中心收成小亮点，最后熄灭为黑场。",
@@ -2028,11 +2093,13 @@
         "关机收缩",
         "CRT 关机",
         "画面压扁消失",
-        "关机亮点收缩"
+        "关机亮点收缩",
+        "纵横收束"
       ],
       "previous_names": [
         "画面收缩关机转场",
-        "关机收缩"
+        "关机收缩",
+        "纵横收束"
       ],
       "behaviors": [
         "scale",
@@ -2075,7 +2142,7 @@
     },
     {
       "id": "wipe",
-      "name": "擦移切换",
+      "name": "画面擦入切换",
       "kind": "action",
       "category": "transition",
       "summary": "一块新画面从边缘推进，覆盖原画面。",
@@ -2086,7 +2153,8 @@
         "横向转场",
         "新画面",
         "覆盖",
-        "擦除切换"
+        "擦除切换",
+        "擦移切换"
       ],
       "behaviors": [
         "transition",
@@ -2150,7 +2218,8 @@
         "end_ms": 750
       },
       "previous_names": [
-        "擦除切换"
+        "擦除切换",
+        "擦移切换"
       ]
     },
     {
@@ -2219,7 +2288,7 @@
     },
     {
       "id": "shared-object",
-      "name": "同形承接",
+      "name": "同一主体跨场",
       "kind": "action",
       "category": "transition",
       "summary": "同一个无底板的纸飞机图标跨越两个版面，位置和尺寸连续变化。",
@@ -2231,7 +2300,8 @@
         "连续变化",
         "匹配转场",
         "同物承接",
-        "同一对象跨页承接"
+        "同一对象跨页承接",
+        "同形承接"
       ],
       "behaviors": [
         "transition",
@@ -2289,7 +2359,8 @@
       ],
       "previous_names": [
         "同物承接",
-        "同一对象跨页承接"
+        "同一对象跨页承接",
+        "同形承接"
       ],
       "timing": {
         "source_duration_ms": 3400,
@@ -2302,9 +2373,9 @@
     },
     {
       "id": "scene-carry",
-      "name": "移放承接",
+      "name": "图块下移放大",
       "kind": "action",
-      "category": "transition",
+      "category": "layout",
       "summary": "上方的三列九格依次上色，同一组格子一起下移、等比放大，最后停住。",
       "purpose": "用持续存在的三列格子，从上方的小图承接到中央的大图。",
       "aliases": [
@@ -2313,7 +2384,8 @@
         "九格承接",
         "下移放大",
         "三列格子",
-        "色块下移放大承接"
+        "色块下移放大承接",
+        "移放承接"
       ],
       "behaviors": [
         "transition",
@@ -2373,7 +2445,8 @@
       ],
       "previous_names": [
         "跨页承接",
-        "色块下移放大承接"
+        "色块下移放大承接",
+        "移放承接"
       ],
       "timing": {
         "source_duration_ms": 2400,
@@ -2386,7 +2459,7 @@
     },
     {
       "id": "zoom-transition",
-      "name": "缩放穿场",
+      "name": "缩放穿越转场",
       "kind": "action",
       "category": "transition",
       "summary": "视线靠近一个区域，区域成为下一画面。",
@@ -2397,7 +2470,8 @@
         "推进",
         "局部进入",
         "镜头",
-        "镜头缩放转场"
+        "镜头缩放转场",
+        "缩放穿场"
       ],
       "behaviors": [
         "transition",
@@ -2454,7 +2528,8 @@
       ],
       "previous_names": [
         "缩放转场",
-        "镜头缩放转场"
+        "镜头缩放转场",
+        "缩放穿场"
       ],
       "timing": {
         "source_duration_ms": 3900,
@@ -2535,7 +2610,7 @@
     },
     {
       "id": "group-stagger",
-      "name": "距离错峰",
+      "name": "按距离依次响应",
       "kind": "action",
       "category": "environment",
       "summary": "群体接到同一信号，按距离依次产生动作。",
@@ -2547,7 +2622,8 @@
         "传播",
         "依次响应",
         "群体错峰",
-        "群体按距离错峰响应"
+        "群体按距离错峰响应",
+        "距离错峰"
       ],
       "behaviors": [
         "react",
@@ -2604,7 +2680,8 @@
       ],
       "previous_names": [
         "群体错峰",
-        "群体按距离错峰响应"
+        "群体按距离错峰响应",
+        "距离错峰"
       ],
       "timing": {
         "source_duration_ms": 3000,
@@ -2617,7 +2694,7 @@
     },
     {
       "id": "dual-scroll",
-      "name": "双排对流",
+      "name": "双排反向滚动",
       "kind": "action",
       "category": "continuous",
       "summary": "上下两排从相反方向进入，进入后不停顿地持续滚动。",
@@ -2630,7 +2707,8 @@
         "持续滚动",
         "不停顿",
         "双排反向持续滚动",
-        "双排反向滚动"
+        "双排反向滚动",
+        "双排对流"
       ],
       "behaviors": [
         "continuous",
@@ -2680,12 +2758,12 @@
       ],
       "previous_names": [
         "双排反向持续滚动",
-        "双排反向滚动"
+        "双排对流"
       ]
     },
     {
       "id": "dual-scroll-settle",
-      "name": "双排停靠",
+      "name": "双排反向停靠",
       "kind": "action",
       "category": "continuous",
       "summary": "上下两排空白卡片反向滚动，减速后停住。",
@@ -2694,7 +2772,8 @@
         "左右对向滚动",
         "双带滚动刹停",
         "双带对向滚动后停住",
-        "双排滚动减速停靠"
+        "双排滚动减速停靠",
+        "双排停靠"
       ],
       "behaviors": [
         "continuous",
@@ -2744,7 +2823,8 @@
       ],
       "previous_names": [
         "双带对向滚动后停住",
-        "双排滚动减速停靠"
+        "双排滚动减速停靠",
+        "双排停靠"
       ],
       "timing": {
         "source_duration_ms": 1500,
@@ -2757,9 +2837,9 @@
     },
     {
       "id": "subtitle-focus",
-      "name": "显现与聚焦",
+      "name": "字幕显现聚焦",
       "kind": "composition",
-      "category": "compositions",
+      "category": "composition-text",
       "summary": "格子逐项出现并上色，区域移动后让新的陈述成为重心。",
       "purpose": "让观众的视线跟着讲述走",
       "aliases": [
@@ -2770,7 +2850,8 @@
         "一个重心",
         "上色",
         "字幕引导注意",
-        "字幕呈现与重点切换"
+        "字幕呈现与重点切换",
+        "显现与聚焦"
       ],
       "behaviors": [
         "focus",
@@ -2836,7 +2917,8 @@
       ],
       "previous_names": [
         "字幕引导注意",
-        "字幕呈现与重点切换"
+        "字幕呈现与重点切换",
+        "显现与聚焦"
       ],
       "timing": {
         "source_duration_ms": 9400,
@@ -2849,9 +2931,9 @@
     },
     {
       "id": "title-content",
-      "name": "揭示与展开",
+      "name": "标题内容展开",
       "kind": "composition",
-      "category": "compositions",
+      "category": "composition-text",
       "summary": "先揭示标题，再让三个内容模块错开进入。",
       "purpose": "建立从主张到细节的清楚阅读顺序",
       "aliases": [
@@ -2861,7 +2943,8 @@
         "功能列表",
         "揭示",
         "标题与内容依次揭示",
-        "标题揭示与内容入场"
+        "标题揭示与内容入场",
+        "揭示与展开"
       ],
       "behaviors": [
         "appear",
@@ -2924,7 +3007,8 @@
       ],
       "previous_names": [
         "标题与内容依次揭示",
-        "标题揭示与内容入场"
+        "标题揭示与内容入场",
+        "揭示与展开"
       ],
       "timing": {
         "source_duration_ms": 4400,
@@ -2937,9 +3021,9 @@
     },
     {
       "id": "interface-feedback",
-      "name": "操作与反馈",
+      "name": "按钮操作反馈",
       "kind": "composition",
-      "category": "compositions",
+      "category": "composition-interface",
       "summary": "模拟一次按钮操作，随后显示进度和成功结果。",
       "purpose": "让操作、处理中状态与结果形成可见关系",
       "aliases": [
@@ -2950,7 +3034,8 @@
         "成功",
         "处理",
         "界面操作反馈",
-        "按钮操作与进度反馈"
+        "按钮操作与进度反馈",
+        "操作与反馈"
       ],
       "behaviors": [
         "react",
@@ -3014,7 +3099,8 @@
       ],
       "previous_names": [
         "界面操作反馈",
-        "按钮操作与进度反馈"
+        "按钮操作与进度反馈",
+        "操作与反馈"
       ],
       "timing": {
         "source_duration_ms": 6500,
@@ -3027,7 +3113,7 @@
     },
     {
       "id": "rigid-rebound",
-      "name": "左右回摆",
+      "name": "左右入场回摆",
       "kind": "action",
       "category": "response",
       "summary": "两张卡片从左右进入，越过落点后逐渐减弱地回摆。",
@@ -3044,7 +3130,8 @@
         "对向伸展",
         "对向进入与回摆",
         "左右入场回摆",
-        "卡片左右进入回摆"
+        "卡片左右进入回摆",
+        "左右回摆"
       ],
       "behaviors": [
         "move",
@@ -3086,7 +3173,8 @@
       ],
       "previous_names": [
         "刚体回摆",
-        "卡片左右进入回摆"
+        "卡片左右进入回摆",
+        "左右回摆"
       ],
       "timing": {
         "source_duration_ms": 3400,
@@ -3099,7 +3187,7 @@
     },
     {
       "id": "vertical-rebound",
-      "name": "对向回摆",
+      "name": "双层反向回摆",
       "kind": "action",
       "category": "response",
       "summary": "两张卡片上下排列，上卡从左进入、下卡从右进入，水平回摆后停稳。",
@@ -3115,7 +3203,8 @@
         "上下排列左右入场",
         "上下错向进入",
         "双行回摆",
-        "上下卡片对向回摆"
+        "上下卡片对向回摆",
+        "对向回摆"
       ],
       "behaviors": [
         "move",
@@ -3157,7 +3246,8 @@
       ],
       "previous_names": [
         "上下进入回摆",
-        "上下卡片对向回摆"
+        "上下卡片对向回摆",
+        "对向回摆"
       ],
       "timing": {
         "source_duration_ms": 3400,
@@ -3170,7 +3260,7 @@
     },
     {
       "id": "mask-stagger-text",
-      "name": "裁切升入",
+      "name": "文字裁切升入",
       "kind": "action",
       "category": "writing",
       "summary": "字符保持完整，从同一裁剪边界依次升入。",
@@ -3186,7 +3276,8 @@
         "逐字升入",
         "裁剪框",
         "逐字遮罩上升揭示",
-        "文字遮罩升入"
+        "文字遮罩升入",
+        "裁切升入"
       ],
       "behaviors": [
         "text",
@@ -3229,7 +3320,8 @@
       ],
       "previous_names": [
         "逐字升入裁剪框",
-        "文字遮罩升入"
+        "文字遮罩升入",
+        "裁切升入"
       ],
       "timing": {
         "source_duration_ms": 4000,
@@ -3242,7 +3334,7 @@
     },
     {
       "id": "stroke-draw",
-      "name": "循线描绘",
+      "name": "线条逐段描绘",
       "kind": "action",
       "category": "connection",
       "summary": "平滑心电曲线从左向右逐段描出，完成后保留整条线。",
@@ -3261,7 +3353,8 @@
         "心电图",
         "平滑心电图",
         "从零画线",
-        "路径逐段描线"
+        "路径逐段描线",
+        "循线描绘"
       ],
       "behaviors": [
         "reveal",
@@ -3303,7 +3396,8 @@
       ],
       "previous_names": [
         "沿路径描线",
-        "路径逐段描线"
+        "路径逐段描线",
+        "循线描绘"
       ],
       "timing": {
         "source_duration_ms": 4000,
@@ -3316,7 +3410,7 @@
     },
     {
       "id": "heartbeat-follow",
-      "name": "循线追光",
+      "name": "光点沿线移动",
       "kind": "action",
       "category": "connection",
       "summary": "心电折线始终完整可见，光点按线长匀速前进。",
@@ -3332,7 +3426,8 @@
         "光点沿线走",
         "底线常驻",
         "循线光点",
-        "光点沿路径行进"
+        "光点沿路径行进",
+        "循线追光"
       ],
       "behaviors": [
         "path",
@@ -3373,7 +3468,8 @@
       ],
       "previous_names": [
         "光点沿线走",
-        "光点沿路径行进"
+        "光点沿路径行进",
+        "循线追光"
       ],
       "timing": {
         "source_duration_ms": 2000,
@@ -3386,7 +3482,7 @@
     },
     {
       "id": "mindmap-grow",
-      "name": "坐标展开",
+      "name": "坐标轴展开",
       "kind": "action",
       "category": "data",
       "summary": "横纵坐标轴从交点向四端展开，形成四象限。",
@@ -3402,7 +3498,8 @@
         "四象限",
         "坐标轴展开",
         "中心生长",
-        "象限坐标轴展开"
+        "象限坐标轴展开",
+        "坐标展开"
       ],
       "behaviors": [
         "path",
@@ -3444,7 +3541,8 @@
       ],
       "previous_names": [
         "象限图中心生长",
-        "象限坐标轴展开"
+        "象限坐标轴展开",
+        "坐标展开"
       ],
       "timing": {
         "source_duration_ms": 3000,
@@ -3457,7 +3555,7 @@
     },
     {
       "id": "mindmap-follow",
-      "name": "树状分流",
+      "name": "光点树状分流",
       "kind": "action",
       "category": "connection",
       "summary": "完整树状线路常驻，光点从左向右逐级分流。",
@@ -3473,7 +3571,8 @@
         "分流线路",
         "树状图",
         "光点分叉",
-        "树状路径光点分流"
+        "树状路径光点分流",
+        "树状分流"
       ],
       "behaviors": [
         "path",
@@ -3515,12 +3614,13 @@
       ],
       "previous_names": [
         "光点沿树状线路分流",
-        "树状路径光点分流"
+        "树状路径光点分流",
+        "树状分流"
       ]
     },
     {
       "id": "vertical-feed",
-      "name": "纵向续流",
+      "name": "内容连续上移",
       "kind": "action",
       "category": "continuous",
       "summary": "图标墙成组显现后匀速上移，后续图标从底部接入。",
@@ -3535,7 +3635,8 @@
         "纵向内容续接",
         "纵向续接",
         "向上接入",
-        "向上连续滚动"
+        "向上连续滚动",
+        "纵向续流"
       ],
       "behaviors": [
         "move",
@@ -3578,7 +3679,8 @@
       ],
       "previous_names": [
         "纵向内容续接",
-        "向上连续滚动"
+        "向上连续滚动",
+        "纵向续流"
       ],
       "timing": {
         "source_duration_ms": 2500,
@@ -3591,7 +3693,7 @@
     },
     {
       "id": "scroll-brake",
-      "name": "减速对齐",
+      "name": "滚动减速对齐",
       "kind": "action",
       "category": "continuous",
       "summary": "前段匀速滚动，后段逐渐减速到指定卡片。",
@@ -3606,7 +3708,8 @@
         "滚动后刹停对齐",
         "刹停",
         "滚动后停住",
-        "滚动减速对齐"
+        "滚动减速对齐",
+        "减速对齐"
       ],
       "behaviors": [
         "move",
@@ -3647,7 +3750,7 @@
       ],
       "previous_names": [
         "滚动后刹停对齐",
-        "滚动减速对齐"
+        "减速对齐"
       ],
       "timing": {
         "source_duration_ms": 4000,
@@ -3660,7 +3763,7 @@
     },
     {
       "id": "dwell-carousel",
-      "name": "停留轮换",
+      "name": "停留后再轮换",
       "kind": "action",
       "category": "continuous",
       "summary": "每项完整停留，再移动一格交给下一项阅读。",
@@ -3676,7 +3779,8 @@
         "停留轮播",
         "轮播",
         "滑切",
-        "停留滑动轮播"
+        "停留滑动轮播",
+        "停留轮换"
       ],
       "behaviors": [
         "move",
@@ -3718,7 +3822,8 @@
       ],
       "previous_names": [
         "停留滑切轮播",
-        "停留滑动轮播"
+        "停留滑动轮播",
+        "停留轮换"
       ],
       "timing": {
         "source_duration_ms": 6000,
@@ -3731,7 +3836,7 @@
     },
     {
       "id": "progress-readout",
-      "name": "填充读数",
+      "name": "进度读数同步",
       "kind": "action",
       "category": "data",
       "summary": "进度条与右侧小字号百分数由同一个进度值同步更新。",
@@ -3746,7 +3851,8 @@
         "进度与读数同步",
         "百分数",
         "进度读数",
-        "进度条与读数同步"
+        "进度条与读数同步",
+        "填充读数"
       ],
       "behaviors": [
         "count",
@@ -3788,7 +3894,8 @@
       ],
       "previous_names": [
         "进度与读数同步",
-        "进度条与读数同步"
+        "进度条与读数同步",
+        "填充读数"
       ],
       "timing": {
         "source_duration_ms": 4000,
@@ -3801,7 +3908,7 @@
     },
     {
       "id": "live-code-readout",
-      "name": "参数映照",
+      "name": "代码参数联动",
       "kind": "action",
       "category": "data",
       "summary": "六行代码逐字写出，参数变化时高亮对应行，底部三位小数读数与进度条同步。",
@@ -3818,11 +3925,13 @@
         "代码高亮与读数联动",
         "着色器代码窗口",
         "morph 参数读数",
-        "代码窗口实时读数"
+        "代码窗口实时读数",
+        "参数映照"
       ],
       "previous_names": [
         "伪代码窗实时读数",
-        "代码窗口实时读数"
+        "代码窗口实时读数",
+        "参数映照"
       ],
       "behaviors": [
         "data",
@@ -3876,7 +3985,7 @@
     },
     {
       "id": "text-decode",
-      "name": "字符解码",
+      "name": "乱码逐字还原",
       "kind": "action",
       "category": "writing",
       "summary": "占位字符按顺序收敛为目标文字，已确定的字保持。",
@@ -3891,7 +4000,8 @@
         "字符解码收敛",
         "解码",
         "字符噪声",
-        "乱码逐字还原"
+        "乱码逐字还原",
+        "字符解码"
       ],
       "behaviors": [
         "text",
@@ -3934,7 +4044,7 @@
       ],
       "previous_names": [
         "字符解码收敛",
-        "乱码逐字还原"
+        "字符解码"
       ],
       "timing": {
         "source_duration_ms": 4000,
@@ -4020,7 +4130,7 @@
     },
     {
       "id": "particle-word",
-      "name": "粒子聚散",
+      "name": "粒子聚散成字",
       "kind": "action",
       "category": "writing",
       "summary": "同一批粒子从中心爆散，错峰聚成字标，短暂停留后吸回中心；白闪、双环、震屏、辉光和噪点随这次动作一起出现。",
@@ -4108,7 +4218,7 @@
     },
     {
       "id": "glyph-code-fill",
-      "name": "字形内流动",
+      "name": "字形内文字流动",
       "kind": "action",
       "category": "writing",
       "summary": "固定的“代码”大字作为窗口，多行源码只在笔画内部横向滚动并缓慢上移，外描边保持字形清晰。",
@@ -4124,11 +4234,13 @@
         "代码字形蒙版",
         "文字内部滚动代码",
         "源码填充文字",
-        "字形内代码填充"
+        "字形内代码填充",
+        "字形内流动"
       ],
       "previous_names": [
         "字形内填充源码纹理",
-        "字形内代码填充"
+        "字形内代码填充",
+        "字形内流动"
       ],
       "behaviors": [
         "text",
@@ -4173,7 +4285,7 @@
     },
     {
       "id": "fragment-replace",
-      "name": "碎散替换",
+      "name": "文字碎散替换",
       "kind": "action",
       "category": "writing",
       "summary": "旧文字按裁剪格分成碎片，散开后由新文字接替。",
@@ -4188,7 +4300,8 @@
         "旧字碎散接新字",
         "碎字",
         "文字炸散",
-        "文字碎散替换"
+        "文字碎散替换",
+        "碎散替换"
       ],
       "behaviors": [
         "replacement",
@@ -4230,7 +4343,7 @@
       ],
       "previous_names": [
         "旧字碎散接新字",
-        "文字碎散替换"
+        "碎散替换"
       ],
       "timing": {
         "source_duration_ms": 5000,
@@ -4243,7 +4356,7 @@
     },
     {
       "id": "word-slam",
-      "name": "撞入换位",
+      "name": "文字撞入换位",
       "kind": "action",
       "category": "writing",
       "summary": "八个词按固定节拍撞入不同位置，错色叠印与反白块交替出现，最近三个旧词留作淡残影。",
@@ -4261,11 +4374,13 @@
         "错版文字",
         "词语残影替换",
         "Claude 动效演进史",
-        "词语撞入换位"
+        "词语撞入换位",
+        "撞入换位"
       ],
       "previous_names": [
         "词语抨击换位",
-        "词语撞入换位"
+        "词语撞入换位",
+        "撞入换位"
       ],
       "behaviors": [
         "replacement",
@@ -4321,7 +4436,7 @@
     },
     {
       "id": "page-cover",
-      "name": "层叠覆盖",
+      "name": "新页推入覆盖",
       "kind": "action",
       "category": "transition",
       "summary": "新页从一侧推入覆盖旧页，旧页保持不透明到被挡住。",
@@ -4335,7 +4450,8 @@
       "aliases": [
         "新页覆盖旧页",
         "页覆盖",
-        "覆页"
+        "覆页",
+        "层叠覆盖"
       ],
       "behaviors": [
         "transition",
@@ -4384,12 +4500,13 @@
         "end_ms": 750
       },
       "previous_names": [
-        "新页覆盖旧页"
+        "新页覆盖旧页",
+        "层叠覆盖"
       ]
     },
     {
       "id": "stagger-crossfade",
-      "name": "错峰换字",
+      "name": "文字错峰替换",
       "kind": "action",
       "category": "writing",
       "summary": "旧文字先退出，新文字稍后进入，避免阅读重影。",
@@ -4447,7 +4564,7 @@
       ],
       "previous_names": [
         "先退旧字再接新字",
-        "文字错峰替换"
+        "错峰换字"
       ],
       "timing": {
         "source_duration_ms": 4000,
@@ -4460,7 +4577,7 @@
     },
     {
       "id": "shutter-transition",
-      "name": "条栅闭合",
+      "name": "条带闭合转场",
       "kind": "action",
       "category": "transition",
       "summary": "多条遮挡带按间隔闭合，覆盖完整后切换并打开。",
@@ -4474,7 +4591,8 @@
       "aliases": [
         "百叶遮挡转场",
         "百叶",
-        "条带转场"
+        "条带转场",
+        "条栅闭合"
       ],
       "behaviors": [
         "transition",
@@ -4523,7 +4641,8 @@
         "end_ms": 1350
       },
       "previous_names": [
-        "百叶遮挡转场"
+        "百叶遮挡转场",
+        "条栅闭合"
       ],
       "reproduction": {
         "presentation": "16:9画幅，设计尺寸640×360。沿用横条交错展开的配色：夜间旧页近黑#0a0a0b，新页#151517，文字暖白#f4f1ea，旧页双圆橙色#ff5a1f，新页双菱形青绿色#1fb5a8；白天旧页#f7f5f0，新页#fdfbf7，文字#222226，橙色#d54a19、青绿色#087f75。两页均有(x50,y50,w540,h260,r10)细边框；几何图形中心(320,162)，旧页圆半径60、40，新页96和56像素圆角正方形旋转45度；标题位于(320,263)，思源黑体Bold，24像素。八条遮挡带不透明，顶部颜色为12%橙色混入88%新页底色，中点使用新页底色，底部为12%青绿色混入88%新页底色；边线为0.5像素暗灰，避免大片亮灰抢占画面。",
@@ -4815,7 +4934,7 @@
     },
     {
       "id": "concept-diagram",
-      "name": "关系递演",
+      "name": "图解逐段演变",
       "kind": "action",
       "category": "data",
       "summary": "先把方向、流动、压缩逐步画成图，再接续方向、旋转和流动变大的第二段图解。",
@@ -4832,11 +4951,13 @@
         "提问页概念图解",
         "方向流动压缩",
         "方向旋转流动图解",
-        "概念逐步图解"
+        "概念逐步图解",
+        "关系递演"
       ],
       "previous_names": [
         "定义图解",
-        "概念逐步图解"
+        "概念逐步图解",
+        "关系递演"
       ],
       "behaviors": [
         "sequence",
@@ -4882,9 +5003,9 @@
     },
     {
       "id": "rolling-distance",
-      "name": "行程滚动",
+      "name": "轮子随行程转动",
       "kind": "action",
-      "category": "response",
+      "category": "connection",
       "summary": "主体平移时，轮子的转角由实际行程除以半径得出。",
       "purpose": "主体平移时，轮子的转角由实际行程除以半径得出。",
       "objects": "主体和轮子",
@@ -4896,7 +5017,8 @@
       "aliases": [
         "轮子随行程滚动",
         "车轮",
-        "滚动距离"
+        "滚动距离",
+        "行程滚动"
       ],
       "behaviors": [
         "move",
@@ -4945,7 +5067,8 @@
         "end_ms": 1350
       },
       "previous_names": [
-        "轮子随行程滚动"
+        "轮子随行程滚动",
+        "行程滚动"
       ]
     },
     {
@@ -5160,7 +5283,7 @@
     },
     {
       "id": "slider-response",
-      "name": "同参响应",
+      "name": "控件同值联动",
       "kind": "action",
       "category": "environment",
       "summary": "控件位置和主体形态取自同一个参数值。",
@@ -5175,7 +5298,8 @@
         "控件驱动参数",
         "滑块",
         "参数联动",
-        "控件与图形同步变化"
+        "控件与图形同步变化",
+        "同参响应"
       ],
       "behaviors": [
         "react",
@@ -5216,7 +5340,8 @@
       ],
       "previous_names": [
         "控件驱动参数",
-        "控件与图形同步变化"
+        "控件与图形同步变化",
+        "同参响应"
       ],
       "timing": {
         "source_duration_ms": 4000,
@@ -5229,7 +5354,7 @@
     },
     {
       "id": "data-pulse",
-      "name": "频波同步",
+      "name": "频谱波形同步",
       "kind": "action",
       "category": "data",
       "summary": "原式环形镜像频谱与双层波形共用逐帧分析数据。",
@@ -5245,7 +5370,8 @@
         "环形频谱",
         "音频可视",
         "数据动效",
-        "频谱与波形同步"
+        "频谱与波形同步",
+        "频波同步"
       ],
       "behaviors": [
         "continuous",
@@ -5287,12 +5413,13 @@
       ],
       "previous_names": [
         "信号频谱与波形",
-        "频谱与波形同步"
+        "频谱与波形同步",
+        "频波同步"
       ]
     },
     {
       "id": "wave-grid",
-      "name": "延迟传波",
+      "name": "网格波次传递",
       "kind": "action",
       "category": "environment",
       "summary": "网格中的回应按照距触发点的距离延后发生。",
@@ -5307,7 +5434,8 @@
         "按距离传播波",
         "网格波",
         "距离延迟",
-        "波浪按距离传播"
+        "波浪按距离传播",
+        "延迟传波"
       ],
       "behaviors": [
         "react",
@@ -5348,7 +5476,8 @@
       ],
       "previous_names": [
         "按距离传播波",
-        "波浪按距离传播"
+        "波浪按距离传播",
+        "延迟传波"
       ],
       "timing": {
         "source_duration_ms": 4000,
@@ -5363,7 +5492,7 @@
       "id": "local-scan",
       "name": "字内扫光",
       "kind": "action",
-      "category": "attention",
+      "category": "lighting",
       "summary": "渐变高光从左向右扫过 WISE MOTION 字内，文字保持原位。",
       "purpose": "用文字内部的柔和扫光强调品牌名",
       "objects": "WISE MOTION 品牌文字",
@@ -5492,7 +5621,7 @@
     },
     {
       "id": "theme-color-cycle",
-      "name": "同步轮色",
+      "name": "配色同步轮换",
       "kind": "action",
       "category": "attention",
       "summary": "固定同一版式，主色块与两根柱条同步轮换六种颜色，色名、色值和下方选中标记同时更新。",
@@ -5508,7 +5637,8 @@
         "固定版式切换配色",
         "六种主色轮换",
         "版式不动只换色",
-        "同一版式连续换色"
+        "同一版式连续换色",
+        "同步轮色"
       ],
       "behaviors": [
         "color",
@@ -5558,7 +5688,8 @@
         "end_ms": 1350
       },
       "previous_names": [
-        "同一版式连续换色"
+        "同一版式连续换色",
+        "同步轮色"
       ]
     },
     {
@@ -5707,7 +5838,7 @@
     },
     {
       "id": "dim-focus",
-      "name": "淡化聚焦",
+      "name": "周围淡化聚焦",
       "kind": "action",
       "category": "attention",
       "summary": "主体保持清晰，周围内容降低对比让出阅读重点。",
@@ -5723,7 +5854,8 @@
         "减弱",
         "退弱",
         "突出主体",
-        "背景淡化聚焦"
+        "背景淡化聚焦",
+        "淡化聚焦"
       ],
       "behaviors": [
         "focus"
@@ -5764,7 +5896,8 @@
       ],
       "previous_names": [
         "背景减弱突出主体",
-        "背景淡化聚焦"
+        "背景淡化聚焦",
+        "淡化聚焦"
       ],
       "timing": {
         "source_duration_ms": 4000,
@@ -5777,7 +5910,7 @@
     },
     {
       "id": "staged-build",
-      "name": "逐层累积",
+      "name": "内容逐层累积",
       "kind": "action",
       "category": "layout",
       "summary": "在同一版面逐层加入信息，已解释内容保留作为后续依据。",
@@ -5792,7 +5925,8 @@
         "同场按讲述累积",
         "逐层构建",
         "讲述累积",
-        "内容逐层累积"
+        "内容逐层累积",
+        "逐层累积"
       ],
       "behaviors": [
         "sequence",
@@ -5834,7 +5968,7 @@
       ],
       "previous_names": [
         "同场按讲述累积",
-        "内容逐层累积"
+        "逐层累积"
       ],
       "timing": {
         "source_duration_ms": 4000,
@@ -5850,7 +5984,7 @@
     },
     {
       "id": "word-cloud-lift",
-      "name": "漂移收拢",
+      "name": "文字漂移收拢",
       "kind": "action",
       "category": "writing",
       "summary": "十三个吐槽词在云朵内错峰淡入、各自轻微漂移；随后词距与字号同步收紧，云朵和词群整体上移。",
@@ -5869,7 +6003,8 @@
         "词云上移",
         "词云收拢",
         "词群上移收拢",
-        "词云漂移与上移收拢"
+        "词云漂移与上移收拢",
+        "漂移收拢"
       ],
       "behaviors": [
         "appear",
@@ -5915,12 +6050,13 @@
       ],
       "previous_names": [
         "吐槽词云呼吸与上移收拢",
-        "词云漂移与上移收拢"
+        "词云漂移与上移收拢",
+        "漂移收拢"
       ]
     },
     {
       "id": "evidence-icons",
-      "name": "逐项描绘",
+      "name": "图标逐项描绘",
       "kind": "action",
       "category": "connection",
       "summary": "经历、方法、能力与数据四个图标横向排成一行，按一句话中的词点逐项建立：先描笔画，柱形从基线长高，标签随后轻浮入。",
@@ -5938,7 +6074,8 @@
         "图标按讲述描出",
         "逐项描出图标",
         "经历方法能力数据",
-        "图标随讲述描出"
+        "图标随讲述描出",
+        "逐项描绘"
       ],
       "behaviors": [
         "draw",
@@ -5982,7 +6119,8 @@
       ],
       "previous_names": [
         "论据图标按词点逐项描出",
-        "图标随讲述描出"
+        "图标随讲述描出",
+        "逐项描绘"
       ],
       "timing": {
         "source_duration_ms": 2600,
@@ -5995,7 +6133,7 @@
     },
     {
       "id": "formula-evolve",
-      "name": "分项合行",
+      "name": "分项公式合行",
       "kind": "action",
       "category": "writing",
       "summary": "四项公式按讲解依次竖排出现，先横移到各自的位置，再合拢成一行，最后描出下划线。",
@@ -6014,7 +6152,8 @@
         "竖排合成公式",
         "按讲解合行",
         "四项公式",
-        "公式逐项显现与合行"
+        "公式逐项显现与合行",
+        "分项合行"
       ],
       "behaviors": [
         "sequence",
@@ -6058,7 +6197,8 @@
       ],
       "previous_names": [
         "定位公式随讲解逐项改写",
-        "公式逐项显现与合行"
+        "公式逐项显现与合行",
+        "分项合行"
       ],
       "timing": {
         "source_duration_ms": 3400,
@@ -6071,7 +6211,7 @@
     },
     {
       "id": "experience-progress",
-      "name": "逐项聚焦",
+      "name": "卡片逐项聚焦",
       "kind": "action",
       "category": "attention",
       "summary": "三张经验卡依次淡入上浮落位；正在讲述的卡片内光束横向扫描，底部细进度线随该项讲述推进。",
@@ -6089,7 +6229,8 @@
         "卡片凝成",
         "卡内扫描进度",
         "三张经验卡",
-        "卡片聚焦与讲述进度"
+        "卡片聚焦与讲述进度",
+        "逐项聚焦"
       ],
       "behaviors": [
         "appear",
@@ -6133,7 +6274,8 @@
       ],
       "previous_names": [
         "经验卡凝成与讲述进度",
-        "卡片聚焦与讲述进度"
+        "卡片聚焦与讲述进度",
+        "逐项聚焦"
       ],
       "timing": {
         "source_duration_ms": 3400,
@@ -6146,7 +6288,7 @@
     },
     {
       "id": "terminal-code",
-      "name": "逐行键入",
+      "name": "代码逐行输入",
       "kind": "action",
       "category": "writing",
       "summary": "石墨灰终端窗口轻微上移淡入，三行带语法配色的代码依次逐字输入，方块光标闪烁，底部状态光带横扫。",
@@ -6164,7 +6306,8 @@
         "逐行敲代码",
         "代码逐字写出",
         "语法着色打字",
-        "终端逐行输入代码"
+        "终端逐行输入代码",
+        "逐行键入"
       ],
       "behaviors": [
         "text",
@@ -6208,7 +6351,8 @@
       ],
       "previous_names": [
         "终端逐字敲代码",
-        "终端逐行输入代码"
+        "终端逐行输入代码",
+        "逐行键入"
       ],
       "timing": {
         "source_duration_ms": 3000,
@@ -6221,7 +6365,7 @@
     },
     {
       "id": "theme-card-layout",
-      "name": "分行铺排",
+      "name": "排版逐行展开",
       "kind": "action",
       "category": "layout",
       "summary": "原黑色主题卡轻微上移淡入，四行排版块依次从左侧滑入并展开，绿色强调线划出，光标闪烁，微光横扫卡面。",
@@ -6239,7 +6383,8 @@
         "卡内标题排版",
         "眉题标题说明",
         "主题卡错峰滑入",
-        "卡片内容自动排版"
+        "卡片内容自动排版",
+        "分行铺排"
       ],
       "behaviors": [
         "appear",
@@ -6283,7 +6428,8 @@
       ],
       "previous_names": [
         "主题卡自行排版",
-        "卡片内容自动排版"
+        "卡片内容自动排版",
+        "分行铺排"
       ],
       "timing": {
         "source_duration_ms": 3400,
@@ -6363,7 +6509,7 @@
     },
     {
       "id": "cylinder-drum",
-      "name": "柱面轮转",
+      "name": "沿柱面转动",
       "kind": "action",
       "category": "space",
       "summary": "卡片沿隐形圆柱曲面转动，随深度产生透视，转到背面时隐藏。",
@@ -6379,7 +6525,8 @@
         "滚筒",
         "转经筒",
         "圆柱",
-        "卡片沿柱面转动"
+        "卡片沿柱面转动",
+        "柱面轮转"
       ],
       "behaviors": [
         "continuous",
@@ -6421,7 +6568,8 @@
       ],
       "previous_names": [
         "圆柱投影转动",
-        "卡片沿柱面转动"
+        "卡片沿柱面转动",
+        "柱面轮转"
       ],
       "timing": {
         "source_duration_ms": 4000,
@@ -6434,7 +6582,7 @@
     },
     {
       "id": "load-balance",
-      "name": "负载平衡",
+      "name": "杠杆负载平衡",
       "kind": "action",
       "category": "response",
       "summary": "绿色 SFT 微调块在右端上方显现，杠杆从倾斜趋近水平，四颗粒子沿弧线汇入块内。",
@@ -6457,7 +6605,8 @@
         "SFT微调天平",
         "指令天平",
         "指令负载天平",
-        "微调杠杆"
+        "微调杠杆",
+        "负载平衡"
       ],
       "behaviors": [
         "react",
@@ -6501,7 +6650,8 @@
       "previous_names": [
         "负载改变引起倾斜",
         "负载变化引起倾斜",
-        "天平随负载倾斜"
+        "天平随负载倾斜",
+        "负载平衡"
       ],
       "timing": {
         "source_duration_ms": 6000,
@@ -6514,7 +6664,7 @@
     },
     {
       "id": "dither-lab-book",
-      "name": "绕脊翻页",
+      "name": "书脊翻页",
       "kind": "action",
       "category": "space",
       "summary": "纸页围绕固定书脊翻转，正反面内容与阴影连续承接。",
@@ -6526,7 +6676,8 @@
         "纸张",
         "图稿",
         "3D Dither Lab Book",
-        "立体翻页书"
+        "立体翻页书",
+        "绕脊翻页"
       ],
       "behaviors": [
         "rotate",
@@ -6578,7 +6729,8 @@
         "document"
       ],
       "previous_names": [
-        "立体翻页书"
+        "立体翻页书",
+        "绕脊翻页"
       ]
     },
     {
@@ -6652,7 +6804,7 @@
     },
     {
       "id": "sequential-spec",
-      "name": "图文错峰",
+      "name": "图文依次显现",
       "kind": "action",
       "category": "data",
       "summary": "列间错开，每列先描图形，再出现名称和读数。",
@@ -6668,7 +6820,8 @@
         "分列",
         "样本列",
         "列内顺序",
-        "图文读数错峰显现"
+        "图文读数错峰显现",
+        "图文错峰"
       ],
       "behaviors": [
         "stagger",
@@ -6711,7 +6864,8 @@
       ],
       "previous_names": [
         "分列讲解逐层出现",
-        "图文读数错峰显现"
+        "图文读数错峰显现",
+        "图文错峰"
       ],
       "timing": {
         "source_duration_ms": 6000,
@@ -6724,7 +6878,7 @@
     },
     {
       "id": "benchmark-columns",
-      "name": "分栏对比",
+      "name": "数据分栏对比",
       "kind": "action",
       "category": "data",
       "summary": "三栏横向对比图错峰建立，排线条与实色重点条生长，读数同步落定。",
@@ -6741,7 +6895,8 @@
         "横向数据对比",
         "图版标题三件套",
         "图斑标题三件套",
-        "三栏条形图对比"
+        "三栏条形图对比",
+        "分栏对比"
       ],
       "behaviors": [
         "sequence",
@@ -6783,7 +6938,8 @@
       ],
       "previous_names": [
         "三栏数据对比",
-        "三栏条形图对比"
+        "三栏条形图对比",
+        "分栏对比"
       ],
       "timing": {
         "source_duration_ms": 3000,
@@ -6796,7 +6952,7 @@
     },
     {
       "id": "bar-growth",
-      "name": "基线生长",
+      "name": "柱条依次长高",
       "kind": "action",
       "category": "data",
       "summary": "六根细线柱从同一底线依次长高，首柱以蓝色排线强调。",
@@ -6812,7 +6968,8 @@
         "柱体从基线长高",
         "竖向柱图",
         "数据动效",
-        "柱条从基线长高"
+        "柱条从基线长高",
+        "基线生长"
       ],
       "behaviors": [
         "sequence",
@@ -6854,7 +7011,8 @@
       ],
       "previous_names": [
         "柱条从基线生长",
-        "柱条从基线长高"
+        "柱条从基线长高",
+        "基线生长"
       ],
       "timing": {
         "source_duration_ms": 3000,
@@ -6867,7 +7025,7 @@
     },
     {
       "id": "sector-appear",
-      "name": "扇区展开",
+      "name": "环图分区展开",
       "kind": "action",
       "category": "data",
       "summary": "三段细线环图从圆心依次展开，随后描出引线并显现读数。",
@@ -6883,7 +7041,8 @@
         "环图展开",
         "三段环图",
         "数据动效",
-        "环图分段展开"
+        "环图分段展开",
+        "扇区展开"
       ],
       "behaviors": [
         "sequence",
@@ -6925,7 +7084,8 @@
       ],
       "previous_names": [
         "环形分段显现",
-        "环图分段展开"
+        "环图分段展开",
+        "扇区展开"
       ],
       "timing": {
         "source_duration_ms": 3000,
@@ -6938,7 +7098,7 @@
     },
     {
       "id": "trend-draw",
-      "name": "折线建点",
+      "name": "折线描绘建点",
       "kind": "action",
       "category": "data",
       "summary": "趋势折线从左向右描出，八个节点原位长出，周次与峰值标注随后显现。",
@@ -6956,7 +7116,8 @@
         "折线描出",
         "节点依次出现",
         "数据动效",
-        "折线描绘与节点显现"
+        "折线描绘与节点显现",
+        "折线建点"
       ],
       "behaviors": [
         "reveal",
@@ -6998,7 +7159,8 @@
       ],
       "previous_names": [
         "趋势折线与节点呈现",
-        "折线描绘与节点显现"
+        "折线描绘与节点显现",
+        "折线建点"
       ],
       "timing": {
         "source_duration_ms": 3000,
@@ -7011,7 +7173,7 @@
     },
     {
       "id": "map-paint",
-      "name": "分区着色",
+      "name": "地图分区着色",
       "kind": "action",
       "category": "data",
       "summary": "广东地图边界常驻，各地区依次填入灰阶。",
@@ -7025,7 +7187,8 @@
       "aliases": [
         "地图分区着色",
         "数据动效",
-        "地图逐区着色"
+        "地图逐区着色",
+        "分区着色"
       ],
       "behaviors": [
         "sequence",
@@ -7066,8 +7229,8 @@
         "document"
       ],
       "previous_names": [
-        "地图分区着色",
-        "地图逐区着色"
+        "地图逐区着色",
+        "分区着色"
       ],
       "timing": {
         "source_duration_ms": 3000,
@@ -7080,7 +7243,7 @@
     },
     {
       "id": "timeline-progress",
-      "name": "沿轴点亮",
+      "name": "时间轴依次点亮",
       "kind": "action",
       "category": "data",
       "summary": "细底线展开，七个彩色年份节点依次轻弹出现，暖白进度线沿线推进并点亮节点。",
@@ -7096,7 +7259,8 @@
         "数据动效",
         "Claude 动效演进史",
         "年代轴扫描点亮",
-        "时间轴推进与节点点亮"
+        "时间轴推进与节点点亮",
+        "沿轴点亮"
       ],
       "behaviors": [
         "sequence",
@@ -7138,7 +7302,8 @@
       ],
       "previous_names": [
         "时间轴逐点推进",
-        "时间轴推进与节点点亮"
+        "时间轴推进与节点点亮",
+        "沿轴点亮"
       ],
       "timing": {
         "source_duration_ms": 3000,
@@ -7152,7 +7317,7 @@
     },
     {
       "id": "dimension-line",
-      "name": "双端标注",
+      "name": "尺寸线双端展开",
       "kind": "action",
       "category": "data",
       "summary": "尺寸横线从中心向两端对称展开，斜短线随端点移动，两侧引出线渐显；超过一半后中间留出标注空位，尺寸数值同步显现。",
@@ -7170,7 +7335,8 @@
         "长度标注",
         "尺寸测量",
         "中心展开标注",
-        "尺寸线展开标注"
+        "尺寸线展开标注",
+        "双端标注"
       ],
       "behaviors": [
         "reveal",
@@ -7213,7 +7379,8 @@
       ],
       "previous_names": [
         "尺寸标注线",
-        "尺寸线展开标注"
+        "尺寸线展开标注",
+        "双端标注"
       ],
       "timing": {
         "source_duration_ms": 3000,
@@ -7226,7 +7393,7 @@
     },
     {
       "id": "ruler-ticks",
-      "name": "逐格刻度",
+      "name": "刻度逐格显现",
       "kind": "action",
       "category": "data",
       "summary": "底线从左向右展开，长、中、短三档刻度在对应位置逐格出现，主刻度标签随刻度出现。",
@@ -7244,7 +7411,8 @@
         "坐标尺",
         "三档刻度",
         "刻度线展开",
-        "刻度逐格显现"
+        "刻度逐格显现",
+        "逐格刻度"
       ],
       "behaviors": [
         "reveal",
@@ -7287,7 +7455,7 @@
       ],
       "previous_names": [
         "刻度尺逐格",
-        "刻度逐格显现"
+        "逐格刻度"
       ],
       "timing": {
         "source_duration_ms": 3000,
@@ -7442,7 +7610,7 @@
     },
     {
       "id": "animal-illustration",
-      "name": "轮廓描绘",
+      "name": "线描动物与载具",
       "kind": "illustration",
       "category": "illustration-object",
       "summary": "熊猫、兔子、猫、汽车、帆船和火箭按原轮廓先描线，再显现排线与墨色。",
@@ -7464,7 +7632,8 @@
         "火箭",
         "任务图谱标",
         "动物与载具插画",
-        "动物与载具描绘"
+        "动物与载具描绘",
+        "轮廓描绘"
       ],
       "behaviors": [
         "draw",
@@ -7506,12 +7675,13 @@
       ],
       "previous_names": [
         "动物与载具插画",
-        "动物与载具描绘"
+        "动物与载具描绘",
+        "轮廓描绘"
       ]
     },
     {
       "id": "venturi-illustration",
-      "name": "缩口流场",
+      "name": "缩口管道流线",
       "kind": "illustration",
       "category": "illustration-diagram",
       "summary": "收口管形与十五束流线逐步画出，流动标记经过窄口时加速。",
@@ -7528,7 +7698,8 @@
         "收口管道",
         "流体",
         "文氏管流场插画",
-        "文氏管流场"
+        "文氏管流场",
+        "缩口流场"
       ],
       "behaviors": [
         "draw",
@@ -7571,12 +7742,13 @@
       ],
       "previous_names": [
         "文氏管流场插画",
-        "文氏管流场"
+        "文氏管流场",
+        "缩口流场"
       ]
     },
     {
       "id": "attention-illustration",
-      "name": "双联映射",
+      "name": "线圈窗口连线",
       "kind": "illustration",
       "category": "illustration-diagram",
       "summary": "左侧线圈窗口等距步进，右侧选定线圈以弧线桥接到终点。",
@@ -7593,7 +7765,8 @@
         "稀疏连接",
         "线圈",
         "双联注意力插画",
-        "双联注意力图"
+        "双联注意力图",
+        "双联映射"
       ],
       "behaviors": [
         "draw",
@@ -7636,12 +7809,13 @@
       ],
       "previous_names": [
         "双联注意力插画",
-        "双联注意力图"
+        "双联注意力图",
+        "双联映射"
       ]
     },
     {
       "id": "heads-illustration",
-      "name": "环点汇聚",
+      "name": "环形光点汇聚",
       "kind": "illustration",
       "category": "illustration-diagram",
       "summary": "十六个端点沿椭圆排布，曲线汇入中心，光点持续向内传递。",
@@ -7658,7 +7832,8 @@
         "十六路汇聚",
         "椭圆分布",
         "查询头汇聚环插画",
-        "环形端点汇聚"
+        "环形端点汇聚",
+        "环点汇聚"
       ],
       "behaviors": [
         "draw",
@@ -7701,12 +7876,13 @@
       ],
       "previous_names": [
         "查询头汇聚环插画",
-        "环形端点汇聚"
+        "环形端点汇聚",
+        "环点汇聚"
       ]
     },
     {
       "id": "stage-merge-illustration",
-      "name": "阶段合并",
+      "name": "卡片压缩合并",
       "kind": "illustration",
       "category": "illustration-diagram",
       "summary": "四组小卡片下沉压缩，内部行距收拢，合入两个长框。",
@@ -7723,7 +7899,8 @@
         "多步归一",
         "卡片压缩",
         "阶段卡并融插画",
-        "阶段卡片压缩合并"
+        "阶段卡片压缩合并",
+        "阶段合并"
       ],
       "behaviors": [
         "draw",
@@ -7765,12 +7942,13 @@
       ],
       "previous_names": [
         "阶段卡并融插画",
-        "阶段卡片压缩合并"
+        "阶段卡片压缩合并",
+        "阶段合并"
       ]
     },
     {
       "id": "torus-illustration",
-      "name": "环面线框",
+      "name": "旋转圆环线框",
       "kind": "illustration",
       "category": "illustration-diagram",
       "summary": "沿用原工程网格与透视关系，环面线框逐线生成并自转。",
@@ -7787,7 +7965,8 @@
         "立体环",
         "几何插画",
         "环面线框插画",
-        "环面线框自转"
+        "环面线框自转",
+        "环面线框"
       ],
       "behaviors": [
         "draw",
@@ -7830,7 +8009,8 @@
       ],
       "previous_names": [
         "环面线框插画",
-        "环面线框自转"
+        "环面线框自转",
+        "环面线框"
       ]
     },
     {
@@ -7988,7 +8168,7 @@
       ],
       "trigger": "按固定时间表演示；可暂停、重播和拖动时间。",
       "id": "steel-ruler-illustration",
-      "name": "金属刻度",
+      "name": "金属钢尺",
       "category": "illustration-object",
       "summary": "横放的深灰金属钢尺，保留亮边、三档刻度、数字和蚀刻说明。",
       "purpose": "独立复用钢尺物件的原材质和刻度细节。",
@@ -8003,7 +8183,8 @@
         "钢尺",
         "金属尺",
         "不锈钢尺",
-        "刻度钢尺"
+        "刻度钢尺",
+        "金属刻度"
       ],
       "behaviors": [
         "illustration",
@@ -8026,14 +8207,15 @@
         "reference_url": "https://animejs.com/documentation/"
       },
       "previous_names": [
-        "金属钢尺插画"
+        "金属钢尺插画",
+        "金属刻度"
       ]
     },
     {
       "id": "smoke-ring-illustration",
-      "name": "烟环翻卷",
+      "name": "烟圈翻卷",
       "kind": "illustration",
-      "category": "illustration-nature",
+      "category": "illustration-energy",
       "summary": "细小粒子围成有厚度的烟圈，沿环管剖面持续翻卷。",
       "purpose": "将螺旋丸视频中的烟圈粒子作为可独立播放、定位和复制的图形参考。",
       "objects": "烟圈、环管剖面、固定身份的细粒子",
@@ -8050,7 +8232,8 @@
         "螺旋丸插画",
         "螺旋丸视频图形",
         "烟圈粒子插画",
-        "烟圈粒子翻卷"
+        "烟圈粒子翻卷",
+        "烟环翻卷"
       ],
       "behaviors": [
         "illustration",
@@ -8093,14 +8276,15 @@
       ],
       "previous_names": [
         "烟圈粒子插画",
-        "烟圈粒子翻卷"
+        "烟圈粒子翻卷",
+        "烟环翻卷"
       ]
     },
     {
       "id": "vortex-ring-illustration",
-      "name": "涡环剖流",
+      "name": "涡环流线翻卷",
       "kind": "illustration",
-      "category": "illustration-nature",
+      "category": "illustration-energy",
       "summary": "十六个剖面环和六圈环向细线构成涡环，短流线沿剖面翻卷。",
       "purpose": "将螺旋丸视频中的涡环剖面作为可独立播放、定位和复制的图形参考。",
       "objects": "十六个剖面环、六圈环向线、二十八条短流线",
@@ -8117,7 +8301,8 @@
         "螺旋丸插画",
         "螺旋丸视频图形",
         "涡环剖面插画",
-        "涡环剖面流动"
+        "涡环剖面流动",
+        "涡环剖流"
       ],
       "behaviors": [
         "illustration",
@@ -8160,14 +8345,15 @@
       ],
       "previous_names": [
         "涡环剖面插画",
-        "涡环剖面流动"
+        "涡环剖面流动",
+        "涡环剖流"
       ]
     },
     {
       "id": "mushroom-cloud-illustration",
-      "name": "云体翻升",
+      "name": "蘑菇云翻升",
       "kind": "illustration",
-      "category": "illustration-nature",
+      "category": "illustration-energy",
       "summary": "上升的细粒子进入云头，云顶向外铺开、边缘向下卷回。",
       "purpose": "将螺旋丸视频中的蘑菇云粒子作为可独立播放、定位和复制的图形参考。",
       "objects": "原云头粒子、上升气柱与短尾迹",
@@ -8184,7 +8370,8 @@
         "螺旋丸插画",
         "螺旋丸视频图形",
         "蘑菇云粒子插画",
-        "蘑菇云上升翻卷"
+        "蘑菇云上升翻卷",
+        "云体翻升"
       ],
       "behaviors": [
         "illustration",
@@ -8227,14 +8414,15 @@
       ],
       "previous_names": [
         "蘑菇云粒子插画",
-        "蘑菇云上升翻卷"
+        "蘑菇云上升翻卷",
+        "云体翻升"
       ]
     },
     {
       "id": "hill-vortex-illustration",
-      "name": "球涡循环",
+      "name": "球形涡流",
       "kind": "illustration",
-      "category": "illustration-nature",
+      "category": "illustration-energy",
       "summary": "球内二十四条支撑流线保持轮廓，六十四条短尾迹沿原球涡轨迹流动。",
       "purpose": "将螺旋丸视频中的球涡流线作为可独立播放、定位和复制的图形参考。",
       "objects": "四层球涡流线与六十四个示踪点",
@@ -8251,7 +8439,8 @@
         "螺旋丸插画",
         "螺旋丸视频图形",
         "球涡流线插画",
-        "球涡流线循环"
+        "球涡流线循环",
+        "球涡循环"
       ],
       "behaviors": [
         "illustration",
@@ -8294,14 +8483,15 @@
       ],
       "previous_names": [
         "球涡流线插画",
-        "球涡流线循环"
+        "球涡流线循环",
+        "球涡循环"
       ]
     },
     {
       "id": "cyclone-illustration",
-      "name": "螺旋内流",
+      "name": "螺旋流线内聚",
       "kind": "illustration",
-      "category": "illustration-nature",
+      "category": "illustration-energy",
       "summary": "六条细螺旋臂弯向中心，短尾迹沿原螺旋路径向内流动。",
       "purpose": "将螺旋丸视频中的台风螺旋作为可独立播放、定位和复制的图形参考。",
       "objects": "六条螺旋主线、九十六条错相尾迹",
@@ -8318,7 +8508,8 @@
         "螺旋丸插画",
         "螺旋丸视频图形",
         "台风螺旋插画",
-        "台风螺旋内流"
+        "台风螺旋内流",
+        "螺旋内流"
       ],
       "behaviors": [
         "illustration",
@@ -8361,12 +8552,13 @@
       ],
       "previous_names": [
         "台风螺旋插画",
-        "台风螺旋内流"
+        "台风螺旋内流",
+        "螺旋内流"
       ]
     },
     {
       "id": "spiral-galaxy-illustration",
-      "name": "星系旋流",
+      "name": "旋转星系",
       "kind": "illustration",
       "category": "illustration-nature",
       "summary": "原六臂细星点组成倾斜星盘，不同半径的星点按原轨道继续转动。",
@@ -8385,7 +8577,8 @@
         "螺旋丸插画",
         "螺旋丸视频图形",
         "螺旋星系插画",
-        "螺旋星系旋转"
+        "螺旋星系旋转",
+        "星系旋流"
       ],
       "behaviors": [
         "illustration",
@@ -8428,14 +8621,15 @@
       ],
       "previous_names": [
         "螺旋星系插画",
-        "螺旋星系旋转"
+        "螺旋星系旋转",
+        "星系旋流"
       ]
     },
     {
       "id": "rasengan-illustration",
-      "name": "能量流球",
+      "name": "蓝色能量球",
       "kind": "illustration",
-      "category": "illustration-nature",
+      "category": "illustration-energy",
       "summary": "细蓝流线沿原受力球涡轨迹缠绕，窄亮芯与蓝色线身共同构成球形。",
       "purpose": "将螺旋丸视频中的螺旋丸作为可独立播放、定位和复制的图形参考。",
       "objects": "原球涡短尾迹、补充示踪线和窄亮芯",
@@ -8451,7 +8645,8 @@
         "能量球",
         "螺旋丸插画",
         "螺旋丸视频图形",
-        "螺旋丸流线"
+        "螺旋丸流线",
+        "能量流球"
       ],
       "behaviors": [
         "illustration",
@@ -8494,14 +8689,15 @@
       ],
       "previous_names": [
         "螺旋丸插画",
-        "螺旋丸流线"
+        "螺旋丸流线",
+        "能量流球"
       ]
     },
     {
       "id": "lightning-orb-illustration",
-      "name": "分叉电弧",
+      "name": "球形分叉电弧",
       "kind": "illustration",
-      "category": "illustration-nature",
+      "category": "illustration-energy",
       "summary": "沿螺旋丸原流线生成折角电弧，主弧闪动并向两侧分叉。",
       "purpose": "将螺旋丸视频中的分叉电弧作为可独立播放、定位和复制的图形参考。",
       "objects": "蓝色球涡线团、折角主弧、支弧和细分支",
@@ -8561,12 +8757,13 @@
       ],
       "previous_names": [
         "分叉电弧插画",
-        "分叉电弧闪动"
+        "分叉电弧闪动",
+        "分叉电弧"
       ]
     },
     {
       "id": "moon-card-illustration",
-      "name": "月相纸卡",
+      "name": "月相照片卡",
       "kind": "illustration",
       "category": "illustration-object",
       "summary": "米白照片卡落入，深蓝底上保留原月面、二十六个环形山与月相暗部。",
@@ -8582,7 +8779,8 @@
         "月相",
         "蓝晒",
         "Kimi 插画",
-        "月相蓝晒卡"
+        "月相蓝晒卡",
+        "月相纸卡"
       ],
       "behaviors": [
         "sequence",
@@ -8623,12 +8821,13 @@
         "document"
       ],
       "previous_names": [
-        "月相蓝晒卡"
+        "月相蓝晒卡",
+        "月相纸卡"
       ]
     },
     {
       "id": "drafting-tools-illustration",
-      "name": "绘图器具",
+      "name": "绘图工具",
       "kind": "illustration",
       "category": "illustration-object",
       "summary": "放大镜、圆规、铅笔、标尺和回形针依次落位，保留原金属、木质和石墨颜色。",
@@ -8647,7 +8846,8 @@
         "标尺",
         "回形针",
         "Kimi 插画",
-        "档案桌绘图工具"
+        "档案桌绘图工具",
+        "绘图器具"
       ],
       "behaviors": [
         "sequence",
@@ -8688,12 +8888,13 @@
         "document"
       ],
       "previous_names": [
-        "档案桌绘图工具"
+        "档案桌绘图工具",
+        "绘图器具"
       ]
     },
     {
       "id": "archive-folder-illustration",
-      "name": "折页纸夹",
+      "name": "牛皮纸档案夹",
       "kind": "illustration",
       "category": "illustration-object",
       "summary": "牛皮纸档案夹由右侧落定，侧缘保留六个竖向标签，内部标题逐字出现。",
@@ -8710,7 +8911,8 @@
         "牛皮纸",
         "标签页",
         "Kimi 插画",
-        "牛皮纸档案夹"
+        "牛皮纸档案夹",
+        "折页纸夹"
       ],
       "behaviors": [
         "sequence",
@@ -8751,12 +8953,12 @@
         "document"
       ],
       "previous_names": [
-        "牛皮纸档案夹"
+        "折页纸夹"
       ]
     },
     {
       "id": "folio-cards-illustration",
-      "name": "散页卡组",
+      "name": "散页纸卡",
       "kind": "illustration",
       "category": "illustration-object",
       "summary": "四张编号散页错落落位，保留原纸色、细小印刷行、页码和第二张上的回形针。",
@@ -8773,7 +8975,8 @@
         "档案卡",
         "纸页插画",
         "Kimi 插画",
-        "散页档案卡"
+        "散页档案卡",
+        "散页卡组"
       ],
       "behaviors": [
         "sequence",
@@ -8814,12 +9017,13 @@
         "document"
       ],
       "previous_names": [
-        "散页档案卡"
+        "散页档案卡",
+        "散页卡组"
       ]
     },
     {
       "id": "chart-card-illustration",
-      "name": "手绘图卡",
+      "name": "手绘折线图卡",
       "kind": "illustration",
       "category": "illustration-object",
       "summary": "米白图纸卡从上方落入，保留原虚线网格、蓝色双笔折线、九个数据点与峰值细环。",
@@ -8835,7 +9039,8 @@
         "信号卡",
         "图纸",
         "Kimi 插画",
-        "手绘信号图卡"
+        "手绘信号图卡",
+        "手绘图卡"
       ],
       "behaviors": [
         "sequence",
@@ -8876,12 +9081,13 @@
         "document"
       ],
       "previous_names": [
-        "手绘信号图卡"
+        "手绘信号图卡",
+        "手绘图卡"
       ]
     },
     {
       "id": "aperture-eye-illustration",
-      "name": "光圈目形",
+      "name": "光圈眼形",
       "kind": "illustration",
       "category": "illustration-object",
       "summary": "蓝色光圈轻弹显现，细环和十二个刻度围住渐变虹膜，出现一次向外扩散的脉冲环。",
@@ -8898,7 +9104,8 @@
         "虹膜",
         "感知插画",
         "Kimi 插画",
-        "蓝色光圈眼睛"
+        "蓝色光圈眼睛",
+        "光圈目形"
       ],
       "behaviors": [
         "sequence",
@@ -8939,14 +9146,15 @@
         "document"
       ],
       "previous_names": [
-        "蓝色光圈眼睛"
+        "蓝色光圈眼睛",
+        "光圈目形"
       ]
     },
     {
       "id": "terminal-window-illustration",
       "name": "命令窗口",
       "kind": "illustration",
-      "category": "illustration-object",
+      "category": "illustration-interface",
       "summary": "终端窗口保持固定，命令随光标逐字输入，日志和调试状态按原顺序出现，完成后停住。",
       "purpose": "复用原终端的命令输入与输出节奏，保留原窗口样式。",
       "objects": "终端窗口与九行输出",
@@ -9012,7 +9220,7 @@
     },
     {
       "id": "archive-box-illustration",
-      "name": "开盒浮页",
+      "name": "档案盒开盖浮页",
       "kind": "illustration",
       "category": "illustration-object",
       "summary": "牛皮纸档案盒落位，左侧盒盖转开，七个带蓝点的文件块从盒内错峰升到上方两排。",
@@ -9030,7 +9238,8 @@
         "开源文件",
         "Kimi 插画",
         "档案盒开启与文件浮出",
-        "档案盒开盖与文件浮出"
+        "档案盒开盖与文件浮出",
+        "开盒浮页"
       ],
       "behaviors": [
         "sequence",
@@ -9072,7 +9281,8 @@
       ],
       "previous_names": [
         "档案盒开启与文件浮出",
-        "档案盒开盖与文件浮出"
+        "档案盒开盖与文件浮出",
+        "开盒浮页"
       ]
     },
     {
@@ -9101,11 +9311,12 @@
         "animation"
       ],
       "previous_names": [
-        "文字错峰进场与轮换变色"
+        "文字错峰进场与轮换变色",
+        "字色轮换"
       ],
       "trigger": "打开预览后按固定时间顺序播放；可暂停、重播及拖动时间。",
       "id": "char-color-cycle",
-      "name": "字色轮换",
+      "name": "字色依次轮换",
       "category": "attention",
       "summary": "尺度横线先展开，点阵铺开；MOTION 逐字升入，年份、彩色刻度和打字字幕陆续出现，最后轮换字母颜色。",
       "purpose": "让短标题从有序进场过渡到连续的色彩强调。",
@@ -9117,7 +9328,8 @@
         "MOTION 进场",
         "Claude 开场文字",
         "Claude 动效演进史",
-        "文字错峰进场与轮换变色"
+        "文字错峰进场与轮换变色",
+        "字色轮换"
       ],
       "behaviors": [
         "appear",
@@ -9226,7 +9438,7 @@
     },
     {
       "id": "paper-strip-stagger",
-      "name": "双向滑入",
+      "name": "双向错峰滑入",
       "category": "entrance",
       "duration_ms": 2000,
       "preview_ms": 1650,
@@ -9244,7 +9456,8 @@
         "剪纸条双向滑入",
         "黑纸条滑入",
         "Claude 动效演进史",
-        "剪纸条双向错峰滑入"
+        "剪纸条双向错峰滑入",
+        "双向滑入"
       ],
       "behaviors": [
         "appear",
@@ -9275,7 +9488,8 @@
         "animation"
       ],
       "previous_names": [
-        "剪纸条双向错峰滑入"
+        "剪纸条双向错峰滑入",
+        "双向滑入"
       ],
       "trigger": "打开后播放；可暂停、重播和定位时间。",
       "source": {
@@ -9290,7 +9504,7 @@
     },
     {
       "id": "spiral-draw-spin",
-      "name": "螺线绘转",
+      "name": "螺线描绘旋转",
       "category": "connection",
       "duration_ms": 6000,
       "preview_ms": 3800,
@@ -9308,7 +9522,8 @@
         "惠特尼螺线自转",
         "Claude 动效演进史",
         "螺线匀加速描画",
-        "螺线描画并自转"
+        "螺线描画并自转",
+        "螺线绘转"
       ],
       "behaviors": [
         "draw",
@@ -9339,7 +9554,8 @@
         "animation"
       ],
       "previous_names": [
-        "螺线描画并自转"
+        "螺线描画并自转",
+        "螺线绘转"
       ],
       "trigger": "打开后播放；可暂停、重播和定位时间。",
       "source": {
@@ -9354,8 +9570,8 @@
     },
     {
       "id": "planar-dot-orbit",
-      "name": "平面公转",
-      "category": "continuous",
+      "name": "圆点平面绕转",
+      "category": "connection",
       "duration_ms": 6000,
       "preview_ms": 2400,
       "summary": "一个圆点以固定半径绕中心公转，保持相同大小与平面关系。",
@@ -9372,7 +9588,8 @@
         "平面圆周运动",
         "圆点公转",
         "Claude 动效演进史",
-        "圆点平面公转"
+        "圆点平面公转",
+        "平面公转"
       ],
       "behaviors": [
         "move",
@@ -9402,7 +9619,8 @@
         "animation"
       ],
       "previous_names": [
-        "圆点平面公转"
+        "圆点平面公转",
+        "平面公转"
       ],
       "trigger": "打开后播放；可暂停、重播和定位时间。",
       "source": {
@@ -9417,7 +9635,7 @@
     },
     {
       "id": "paper-spiral-sequence",
-      "name": "纸层与旋轨",
+      "name": "纸条铺展螺线旋转",
       "kind": "composition",
       "category": "compositions",
       "loop": false,
@@ -9434,10 +9652,12 @@
         "1959 剪纸",
         "惠特尼螺线",
         "Claude 动效演进史",
-        "剪纸图盘逐格展开"
+        "剪纸图盘逐格展开",
+        "纸层与旋轨"
       ],
       "previous_names": [
-        "剪纸图盘逐格展开"
+        "剪纸图盘逐格展开",
+        "纸层与旋轨"
       ],
       "behaviors": [
         "sequence",
@@ -9489,13 +9709,14 @@
     },
     {
       "id": "radial-branch-flow",
-      "name": "扩散与分流",
+      "name": "涟漪扩散连线分流",
       "previous_names": [
         "胶囊向外扩散涟漪",
         "总结胶囊发散涟漪",
         "枝干生长与光点流动",
         "枝干生长与彗星光流",
-        "圆心发射与枝干光流"
+        "圆心发射与枝干光流",
+        "扩散与分流"
       ],
       "kind": "composition",
       "category": "compositions",
@@ -9515,7 +9736,8 @@
         "圆心涟漪",
         "向外发射",
         "中心向外传递",
-        "圆心发射与枝干光流"
+        "圆心发射与枝干光流",
+        "扩散与分流"
       ],
       "behaviors": [
         "sequence",
@@ -9564,11 +9786,12 @@
     },
     {
       "id": "rect-wave-field",
-      "name": "扫波起伏",
+      "name": "点阵亮波扫过",
       "previous_names": [
         "概率点阵收拢",
         "概率场收拢",
-        "矩形点阵波浪"
+        "矩形点阵波浪",
+        "扫波起伏"
       ],
       "kind": "action",
       "category": "environment",
@@ -9586,7 +9809,8 @@
         "点阵波浪",
         "概率点阵收拢",
         "概率场收拢",
-        "矩形点阵波浪"
+        "矩形点阵波浪",
+        "扫波起伏"
       ],
       "behaviors": [
         "react",
@@ -9629,10 +9853,11 @@
     },
     {
       "id": "letter-ripple",
-      "name": "波动折射",
+      "name": "水波折射文字",
       "previous_names": [
         "水波推动文字模糊化形",
-        "水波推动文字模糊变形"
+        "水波推动文字模糊变形",
+        "波动折射"
       ],
       "kind": "action",
       "category": "writing",
@@ -9650,7 +9875,8 @@
         "文字模糊化形",
         "文字化成星月",
         "水波推动文字模糊化形",
-        "水波推动文字模糊变形"
+        "水波推动文字模糊变形",
+        "波动折射"
       ],
       "behaviors": [
         "react",
@@ -9696,11 +9922,12 @@
     },
     {
       "id": "letter-settle",
-      "name": "群飞与星化",
+      "name": "符号群飞化星点",
       "previous_names": [
         "物品落定化成星点",
         "物品落定并凝成星点",
-        "物品群飞化成星点"
+        "物品群飞化成星点",
+        "群飞与星化"
       ],
       "kind": "composition",
       "category": "compositions",
@@ -9720,7 +9947,8 @@
         "群飞成星",
         "星月来信",
         "星月飞散",
-        "物品群飞化成星点"
+        "物品群飞化成星点",
+        "群飞与星化"
       ],
       "behaviors": [
         "path",
@@ -9791,7 +10019,7 @@
       "assumptions": "按本机 Claude 动效演进史原片 10–16 秒及 sNeon 源码重写；深浅模式均保留原霓虹色，独立动作与组合共用原位置、大小和计时。省去文字、转场和声音。",
       "tempo_note": "保留原片六秒时间，太阳上升用前 1.3 秒，其余运动持续至段尾；播放倍率只改变观看速度。",
       "id": "striped-sun-rise",
-      "name": "条纹升圆",
+      "name": "条纹太阳升起",
       "category": "illustration-nature",
       "summary": "渐变太阳从地平线下升起，下半部条纹持续向下移动，圆盘随节拍轻微胀缩。",
       "purpose": "独立复用太阳上升、条纹下移与外围泛光共同构成的霓虹图形。",
@@ -9806,11 +10034,12 @@
         "霓虹条纹太阳",
         "Claude 条纹太阳",
         "Claude 动效演进史",
-        "条纹太阳升起"
+        "条纹太阳升起",
+        "条纹升圆"
       ],
       "previous_names": [
         "条纹落日",
-        "条纹太阳升起"
+        "条纹升圆"
       ],
       "behaviors": [
         "appear",
@@ -9855,7 +10084,7 @@
       "assumptions": "按本机 Claude 动效演进史原片 10–16 秒及 sNeon 源码重写；深浅模式均保留原霓虹色，独立动作与组合共用原位置、大小和计时。省去文字、转场和声音。",
       "tempo_note": "保留原片六秒时间，太阳上升用前 1.3 秒，其余运动持续至段尾；播放倍率只改变观看速度。",
       "id": "perspective-grid-flow",
-      "name": "纵深前行",
+      "name": "透视网格前行",
       "category": "space",
       "summary": "横线按纵深距离向前滚来，纵线固定汇向地平线，品红网格亮度随节拍起伏。",
       "purpose": "独立复用原片透视地面的向前流动，保持消失点和纵深关系。",
@@ -9870,12 +10099,13 @@
         "透视网格地面前行",
         "Claude 网格地面",
         "Claude 动效演进史",
-        "透视网格前行"
+        "透视网格前行",
+        "纵深前行"
       ],
       "previous_names": [
         "透视网格地面",
         "透视网格地面前行",
-        "透视网格前行"
+        "纵深前行"
       ],
       "behaviors": [
         "move",
@@ -9920,8 +10150,8 @@
       "assumptions": "按本机 Claude 动效演进史原片 10–16 秒及 sNeon 源码重写；深浅模式均保留原霓虹色，独立动作与组合共用原位置、大小和计时。省去文字、转场和声音。",
       "tempo_note": "保留原片六秒时间，太阳上升用前 1.3 秒，其余运动持续至段尾；播放倍率只改变观看速度。",
       "id": "star-twinkle",
-      "name": "错峰明灭",
-      "category": "attention",
+      "name": "星点错峰闪烁",
+      "category": "lighting",
       "summary": "140 个细小星点固定在天空，各自按不同节奏起点平缓明灭。",
       "purpose": "独立复用固定星空的分散明灭，保持原片星点密度、大小和位置。",
       "objects": "紫黑天空中的 140 个白色方形细点",
@@ -9935,11 +10165,12 @@
         "固定星空闪烁",
         "Claude 星点",
         "Claude 动效演进史",
-        "星点错峰闪烁"
+        "星点错峰闪烁",
+        "错峰明灭"
       ],
       "previous_names": [
         "星点错相明灭",
-        "星点错峰闪烁"
+        "错峰明灭"
       ],
       "behaviors": [
         "opacity",
@@ -9987,7 +10218,7 @@
       "assumptions": "按本机 Claude 动效演进史原片 10–16 秒及 sNeon 源码重写；深浅模式均保留原霓虹色，独立动作与组合共用原位置、大小和计时。省去文字、转场和声音。",
       "tempo_note": "保留原片六秒时间，太阳上升用前 1.3 秒，其余运动持续至段尾；播放倍率只改变观看速度。",
       "id": "neon-horizon",
-      "name": "升圆与纵深",
+      "name": "日出与网格前行",
       "category": "compositions",
       "summary": "固定星点错峰明灭，条纹太阳从地平线升起，品红透视网格向前滚动。",
       "purpose": "将三个真实提取的背景动作按原位置、原计时叠加，形成原片霓虹场景的背景。",
@@ -10002,10 +10233,12 @@
         "条纹太阳网格星空",
         "1981 霓虹背景",
         "Claude 动效演进史",
-        "霓虹地平线"
+        "霓虹地平线",
+        "升圆与纵深"
       ],
       "previous_names": [
-        "霓虹地平线"
+        "霓虹地平线",
+        "升圆与纵深"
       ],
       "behaviors": [
         "appear",
@@ -10114,11 +10347,12 @@
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "previous_names": [
         "铬金字描边拖影",
-        "文字描边多层拖影"
+        "文字描边多层拖影",
+        "描边拖影"
       ],
       "original_scene": "claude-showreel-2026/sNeon",
       "id": "chrome-outline-echo",
-      "name": "描边拖影",
+      "name": "描边延迟拖影",
       "category": "writing",
       "duration_ms": 2400,
       "preview_ms": 1600,
@@ -10135,7 +10369,8 @@
         "标题缩回拖影",
         "Claude 描边拖影",
         "Claude 动效演进史",
-        "文字描边多层拖影"
+        "文字描边多层拖影",
+        "描边拖影"
       ],
       "behaviors": [
         "scale",
@@ -10179,12 +10414,13 @@
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "previous_names": [
         "霓虹管点亮闪烁",
-        "霓虹文字点亮闪烁"
+        "霓虹文字点亮闪烁",
+        "辉光明灭"
       ],
       "original_scene": "claude-showreel-2026/sNeon",
       "id": "neon-type-flicker",
-      "name": "辉光明灭",
-      "category": "attention",
+      "name": "霓虹闪烁点亮",
+      "category": "lighting",
       "duration_ms": 3000,
       "preview_ms": 1500,
       "summary": "空心年份短暂断续闪烁后稳定点亮，青色辉光继续随半秒节拍呼吸。",
@@ -10200,7 +10436,8 @@
         "霓虹年份点亮",
         "Claude 霓虹字",
         "Claude 动效演进史",
-        "霓虹文字点亮闪烁"
+        "霓虹文字点亮闪烁",
+        "辉光明灭"
       ],
       "behaviors": [
         "appear",
@@ -10243,7 +10480,7 @@
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "original_scene": "claude-showreel-2026/sNeon",
       "id": "caption-type-caret",
-      "name": "打字与光标",
+      "name": "光标跟随打字",
       "category": "writing",
       "duration_ms": 4000,
       "preview_ms": 1300,
@@ -10267,7 +10504,8 @@
         "霓虹页底部说明",
         "粗粝字体底部说明",
         "Claude 动效演进史",
-        "说明文字打字与光标闪烁"
+        "说明文字打字与光标闪烁",
+        "打字与光标"
       ],
       "behaviors": [
         "type",
@@ -10288,7 +10526,8 @@
         "reference_url": "https://animejs.com/documentation/"
       },
       "previous_names": [
-        "说明文字打字与光标闪烁"
+        "说明文字打字与光标闪烁",
+        "打字与光标"
       ]
     },
     {
@@ -10319,12 +10558,13 @@
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "霓虹文字片头"
+        "霓虹文字片头",
+        "字形与辉光"
       ],
       "original_scene": "claude-showreel-2026/sNeon",
       "id": "neon-title-sequence",
-      "name": "字形与辉光",
-      "category": "compositions",
+      "name": "金属霓虹文字亮相",
+      "category": "composition-text",
       "duration_ms": 6000,
       "preview_ms": 1600,
       "summary": "条纹太阳与透视网格构成背景，金属主字和六层描边缩回落位，左上霓虹年份闪烁点亮。十字光斑在主字上沿横移闪亮。底部说明随后逐字写出，输入完成后光标闪烁至截止时刻。",
@@ -10341,7 +10581,8 @@
         "金属标题与霓虹年份",
         "演进史待验收",
         "Claude 动效演进史",
-        "霓虹文字片头"
+        "霓虹文字片头",
+        "字形与辉光"
       ],
       "behaviors": [
         "scale",
@@ -10385,12 +10626,13 @@
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "十字光斑横移闪亮"
+        "十字光斑横移闪亮",
+        "移光闪亮"
       ],
       "original_scene": "claude-showreel-2026/sNeon",
       "id": "cross-flare-travel",
-      "name": "移光闪亮",
-      "category": "attention",
+      "name": "十字光斑横移",
+      "category": "lighting",
       "duration_ms": 3000,
       "preview_ms": 2100,
       "summary": "白色十字光斑水平滑过，中心泛光与两根细光线一起渐亮，再淡去。",
@@ -10407,7 +10649,8 @@
         "演进史待验收",
         "Claude 动效演进史",
         "十字镜头光斑横移闪亮",
-        "十字光斑横移闪亮"
+        "十字光斑横移闪亮",
+        "移光闪亮"
       ],
       "behaviors": [
         "move",
@@ -10448,11 +10691,11 @@
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "圆孔扩张转场"
+        "圆孔扩开"
       ],
       "original_scene": "claude-showreel-2026/transClip",
       "id": "iris-open-transition",
-      "name": "圆孔扩开",
+      "name": "圆孔扩张转场",
       "category": "transition",
       "duration_ms": 1800,
       "preview_ms": 900,
@@ -10469,7 +10712,8 @@
         "演进史待验收",
         "圆孔扩张转场",
         "Claude 动效演进史",
-        "几何遮罩转场组"
+        "几何遮罩转场组",
+        "圆孔扩开"
       ],
       "behaviors": [
         "mask",
@@ -10510,11 +10754,12 @@
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "横条交错展开转场"
+        "横条交错展开转场",
+        "横条交错展开"
       ],
       "original_scene": "claude-showreel-2026/transClip",
       "id": "slat-alternate-transition",
-      "name": "横条交错展开",
+      "name": "横条交替展开",
       "category": "transition",
       "duration_ms": 1800,
       "preview_ms": 850,
@@ -10531,7 +10776,8 @@
         "演进史待验收",
         "横条交错展开转场",
         "Claude 动效演进史",
-        "几何遮罩转场组"
+        "几何遮罩转场组",
+        "横条交错展开"
       ],
       "behaviors": [
         "mask",
@@ -10572,11 +10818,12 @@
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "横带撕裂闪切转场"
+        "横带撕裂闪切转场",
+        "横带闪切"
       ],
       "original_scene": "claude-showreel-2026/transClip",
       "id": "glitch-band-transition",
-      "name": "横带闪切",
+      "name": "横带间歇闪切",
       "category": "transition",
       "duration_ms": 1800,
       "preview_ms": 725,
@@ -10593,7 +10840,8 @@
         "演进史待验收",
         "横带撕裂闪切转场",
         "Claude 动效演进史",
-        "几何遮罩转场组"
+        "几何遮罩转场组",
+        "横带闪切"
       ],
       "behaviors": [
         "mask",
@@ -10634,11 +10882,12 @@
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "中心闪亮切换"
+        "中心闪亮切换",
+        "中心闪切"
       ],
       "original_scene": "claude-showreel-2026/transClip",
       "id": "radial-flash-transition",
-      "name": "中心闪切",
+      "name": "中心闪光转场",
       "category": "transition",
       "duration_ms": 1800,
       "preview_ms": 750,
@@ -10655,7 +10904,8 @@
         "演进史待验收",
         "中心闪亮切换",
         "Claude 动效演进史",
-        "几何遮罩转场组"
+        "几何遮罩转场组",
+        "中心闪切"
       ],
       "behaviors": [
         "mask",
@@ -10696,11 +10946,12 @@
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "方块由中心铺开转场"
+        "方块由中心铺开转场",
+        "块面波展"
       ],
       "original_scene": "claude-showreel-2026/transClip",
       "id": "tile-wave-transition",
-      "name": "块面波展",
+      "name": "方块由内展开",
       "category": "transition",
       "duration_ms": 1800,
       "preview_ms": 950,
@@ -10717,7 +10968,8 @@
         "演进史待验收",
         "方块由中心铺开转场",
         "Claude 动效演进史",
-        "几何遮罩转场组"
+        "几何遮罩转场组",
+        "块面波展"
       ],
       "behaviors": [
         "mask",
@@ -10758,11 +11010,12 @@
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "斜边推移转场"
+        "斜边推移转场",
+        "斜边推移"
       ],
       "original_scene": "claude-showreel-2026/transClip",
       "id": "diagonal-edge-transition",
-      "name": "斜边推移",
+      "name": "斜边推进转场",
       "category": "transition",
       "duration_ms": 1800,
       "preview_ms": 850,
@@ -10779,7 +11032,8 @@
         "演进史待验收",
         "斜边推移转场",
         "Claude 动效演进史",
-        "几何遮罩转场组"
+        "几何遮罩转场组",
+        "斜边推移"
       ],
       "behaviors": [
         "mask",
@@ -10820,11 +11074,12 @@
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "像素错序显露转场"
+        "像素错序显露转场",
+        "像素显现"
       ],
       "original_scene": "claude-showreel-2026/transClip",
       "id": "pixel-dissolve-transition",
-      "name": "像素显现",
+      "name": "像素逐格显现",
       "category": "transition",
       "duration_ms": 1800,
       "preview_ms": 900,
@@ -10841,7 +11096,8 @@
         "演进史待验收",
         "像素错序显露转场",
         "Claude 动效演进史",
-        "几何遮罩转场组"
+        "几何遮罩转场组",
+        "像素显现"
       ],
       "behaviors": [
         "mask",
@@ -10882,11 +11138,12 @@
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "圆孔扩张与闪亮交接"
+        "圆孔扩张与闪亮交接",
+        "扩孔闪接"
       ],
       "original_scene": "claude-showreel-2026/transClip",
       "id": "iris-flash-transition",
-      "name": "扩孔闪接",
+      "name": "圆孔闪光转场",
       "category": "transition",
       "duration_ms": 1800,
       "preview_ms": 750,
@@ -10903,7 +11160,8 @@
         "演进史待验收",
         "圆孔扩张与闪亮交接",
         "Claude 动效演进史",
-        "几何遮罩转场组"
+        "几何遮罩转场组",
+        "扩孔闪接"
       ],
       "behaviors": [
         "mask",
@@ -10944,10 +11202,11 @@
       ],
       "trigger": "打开后按原片局部时间播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "文字逐帧错位抖动"
+        "文字逐帧错位抖动",
+        "逐帧错位"
       ],
       "id": "frame-jitter-type",
-      "name": "逐帧错位",
+      "name": "文字逐格错位",
       "category": "writing",
       "duration_ms": 1900,
       "preview_ms": 700,
@@ -10972,7 +11231,8 @@
         "演进史待验收",
         "Claude 动效演进史",
         "画框抖动与跳格",
-        "文字逐帧错位抖动"
+        "文字逐帧错位抖动",
+        "逐帧错位"
       ],
       "analogy": "同一组大字按每秒二十四格轻微错位，偶尔整组向下跳一格，三行文字依次出现。",
       "recommendation": "用于需要该条明确对象与时序关系的场景；可更换内容，但保留描述中的运动关系。",
@@ -11008,10 +11268,11 @@
       ],
       "trigger": "打开后按原片局部时间播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "文字多层套印漂移"
+        "文字多层套印漂移",
+        "多层套印"
       ],
       "id": "ghost-type-overprint",
-      "name": "多层套印",
+      "name": "文字错位套印",
       "category": "writing",
       "duration_ms": 3000,
       "preview_ms": 1250,
@@ -11035,7 +11296,8 @@
         "演进史待验收",
         "Claude 动效演进史",
         "多重曝光文字残影",
-        "文字多层套印漂移"
+        "文字多层套印漂移",
+        "多层套印"
       ],
       "analogy": "三层低透明度年份彼此错开，每秒十二次改变小幅偏移，保留印刷套版不齐的细边。",
       "recommendation": "用于需要该条明确对象与时序关系的场景；可更换内容，但保留描述中的运动关系。",
@@ -11071,11 +11333,12 @@
       ],
       "trigger": "打开后按原片局部时间播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "胶片刮痕与尘点闪动"
+        "胶片刮痕与尘点闪动",
+        "纹理闪动"
       ],
       "id": "film-scratch-flicker",
-      "name": "纹理闪动",
-      "category": "attention",
+      "name": "胶片纹理闪动",
+      "category": "lighting",
       "duration_ms": 3000,
       "preview_ms": 900,
       "summary": "竖向细刮痕、黑白尘点和偶发毛发逐格跳换，整幅叠加轻微的暖色曝光闪烁。",
@@ -11098,7 +11361,8 @@
         "演进史待验收",
         "Claude 动效演进史",
         "胶片划痕与尘点",
-        "胶片刮痕与尘点闪动"
+        "胶片刮痕与尘点闪动",
+        "纹理闪动"
       ],
       "analogy": "竖向细刮痕、黑白尘点和偶发毛发逐格跳换，整幅叠加轻微的暖色曝光闪烁。",
       "recommendation": "用于需要该条明确对象与时序关系的场景；可更换内容，但保留描述中的运动关系。",
@@ -11134,10 +11398,11 @@
       ],
       "trigger": "打开后按原片局部时间播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "面板升入后纵向收扁"
+        "面板升入后纵向收扁",
+        "升入压扁"
       ],
       "id": "panel-rise-collapse",
-      "name": "升入压扁",
+      "name": "窗口升入压扁",
       "category": "shape",
       "duration_ms": 6200,
       "preview_ms": 1700,
@@ -11163,7 +11428,8 @@
         "演进史待验收",
         "Claude 动效演进史",
         "面板级联入场与压扁退场",
-        "面板升入后纵向收扁"
+        "面板升入后纵向收扁",
+        "升入压扁"
       ],
       "analogy": "软件窗口先错峰上浮落位，末尾各自绕水平中线压扁至消失。",
       "recommendation": "用于需要该条明确对象与时序关系的场景；可更换内容，但保留描述中的运动关系。",
@@ -11206,10 +11472,11 @@
       ],
       "trigger": "打开后按原片局部时间播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "小球递减弹跳与残影"
+        "小球递减弹跳与残影",
+        "衰减弹跳"
       ],
       "id": "ball-bounce-trails",
-      "name": "衰减弹跳",
+      "name": "弹跳逐次减小",
       "category": "response",
       "duration_ms": 6200,
       "preview_ms": 1650,
@@ -11234,7 +11501,8 @@
         "演进史待验收",
         "Claude 动效演进史",
         "挤压拉伸弹跳球",
-        "小球递减弹跳与残影"
+        "小球递减弹跳与残影",
+        "衰减弹跳"
       ],
       "analogy": "橙色小球从左至右四次递减弹跳，触地压扁、空中拉长，六道残影和地面投影跟随。",
       "recommendation": "用于需要该条明确对象与时序关系的场景；可更换内容，但保留描述中的运动关系。",
@@ -11270,10 +11538,11 @@
       ],
       "trigger": "打开后按原片局部时间播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "关键帧建立与游标扫描"
+        "关键帧建立与游标扫描",
+        "节点扫描"
       ],
       "id": "timeline-keyframe-playhead",
-      "name": "节点扫描",
+      "name": "游标扫描节点",
       "category": "data",
       "duration_ms": 6200,
       "preview_ms": 1750,
@@ -11299,7 +11568,8 @@
         "演进史待验收",
         "Claude 动效演进史",
         "播放头掠过高亮关键帧",
-        "关键帧建立与游标扫描"
+        "关键帧建立与游标扫描",
+        "节点扫描"
       ],
       "analogy": "五行彩色关键帧逐个弹出，蓝色游标向右循环扫描，靠近的关键帧变白并放大。",
       "recommendation": "用于需要该条明确对象与时序关系的场景；可更换内容，但保留描述中的运动关系。",
@@ -11406,11 +11676,12 @@
       ],
       "trigger": "打开后按原片局部时间播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "弹跳与关键帧工作台"
+        "弹跳与关键帧工作台",
+        "曲线与惯性"
       ],
       "id": "keyframe-workbench",
-      "name": "曲线与惯性",
-      "category": "compositions",
+      "name": "曲线回弹演示",
+      "category": "composition-interface",
       "duration_ms": 8000,
       "preview_ms": 2200,
       "summary": "三个软件窗口与曲线同步演示，随后收扁退出；两行结语升入，大曲线接续展示回弹与落稳。",
@@ -11434,7 +11705,8 @@
         "软件面板弹跳演示",
         "演进史待验收",
         "Claude 动效演进史",
-        "弹跳与关键帧工作台"
+        "弹跳与关键帧工作台",
+        "曲线与惯性"
       ],
       "analogy": "上面的球展示运动，下面的轨道展示控制它的关键帧。",
       "assumptions": "恢复原片22–30秒软件段，保留三窗位置、深色软件界面及窗口收拢后的结语和大曲线。纯英文和数字使用Oswald Bold。",
@@ -11458,7 +11730,7 @@
     },
     {
       "id": "tile-round-wave",
-      "name": "方圆翻转",
+      "name": "方圆变形旋转",
       "kind": "action",
       "category": "shape",
       "summary": "13 列、7 行的图形由中心向外弹入，在圆与圆角方块间连续变化并转动，最后按同一距离次序收出。",
@@ -11474,7 +11746,8 @@
         "方格阵列错峰翻转",
         "演进史待验收",
         "Claude 动效演进史",
-        "方圆阵列波次翻转"
+        "方圆阵列波次翻转",
+        "方圆翻转"
       ],
       "behaviors": [
         "morph",
@@ -11517,7 +11790,8 @@
       },
       "original_scene": "claude-showreel-2026/sFlat",
       "previous_names": [
-        "方圆阵列波次翻转"
+        "方圆阵列波次翻转",
+        "方圆翻转"
       ]
     },
     {
@@ -11584,7 +11858,7 @@
     },
     {
       "id": "material-card-stagger",
-      "name": "错峰回弹",
+      "name": "错峰升入回弹",
       "kind": "action",
       "category": "entrance",
       "summary": "四张原样卡片每张晚 0.12 秒从下方升入回弹，第二张卡片的原进度条继续填充。",
@@ -11600,7 +11874,8 @@
         "卡片错峰回弹入场",
         "演进史待验收",
         "Claude 动效演进史",
-        "手机卡片错峰回弹"
+        "手机卡片错峰回弹",
+        "错峰回弹"
       ],
       "behaviors": [
         "stagger",
@@ -11643,12 +11918,13 @@
       },
       "original_scene": "claude-showreel-2026/sFlat",
       "previous_names": [
-        "手机卡片错峰回弹"
+        "手机卡片错峰回弹",
+        "错峰回弹"
       ]
     },
     {
       "id": "material-switch-spring",
-      "name": "滑移换态",
+      "name": "开关滑动回弹",
       "kind": "action",
       "category": "environment",
       "summary": "白色圆钮沿原轨道向右滑过终点再回弹，进度过半时轨道从暖灰切到青色。",
@@ -11663,7 +11939,8 @@
         "开关滑动回弹与轨道变色",
         "演进史待验收",
         "Claude 动效演进史",
-        "开关滑动回弹变色"
+        "开关滑动回弹变色",
+        "滑移换态"
       ],
       "behaviors": [
         "move",
@@ -11706,14 +11983,15 @@
       },
       "original_scene": "claude-showreel-2026/sFlat",
       "previous_names": [
-        "开关滑动回弹变色"
+        "开关滑动回弹变色",
+        "滑移换态"
       ]
     },
     {
       "id": "material-spinner-arc",
-      "name": "旋弧伸缩",
+      "name": "圆弧旋转伸缩",
       "kind": "action",
-      "category": "continuous",
+      "category": "environment",
       "summary": "原黄色加载圆弧绕固定中心旋转，同时由短变长再缩短，半径与圆端点保持。",
       "purpose": "原黄色加载圆弧绕固定中心旋转，同时由短变长再缩短，半径与圆端点保持。",
       "objects": "原半径 18、线宽 6 的黄色圆弧与第三张原样卡片",
@@ -11726,7 +12004,8 @@
         "加载圆弧旋转与长短变化",
         "演进史待验收",
         "Claude 动效演进史",
-        "加载圆弧旋转伸缩"
+        "加载圆弧旋转伸缩",
+        "旋弧伸缩"
       ],
       "behaviors": [
         "rotate",
@@ -11768,12 +12047,13 @@
       },
       "original_scene": "claude-showreel-2026/sFlat",
       "previous_names": [
-        "加载圆弧旋转伸缩"
+        "加载圆弧旋转伸缩",
+        "旋弧伸缩"
       ]
     },
     {
       "id": "material-like-pop",
-      "name": "弹性填色",
+      "name": "填色放大回弹",
       "kind": "action",
       "category": "environment",
       "summary": "原心形从灰色小尺寸切为珊瑚色，带衰减振荡放大，越过目标后逐步回稳。",
@@ -11789,7 +12069,8 @@
         "点赞填色与回弹放大",
         "演进史待验收",
         "Claude 动效演进史",
-        "心形填色弹性放大"
+        "心形填色弹性放大",
+        "弹性填色"
       ],
       "behaviors": [
         "scale",
@@ -11832,12 +12113,13 @@
       },
       "original_scene": "claude-showreel-2026/sFlat",
       "previous_names": [
-        "心形填色弹性放大"
+        "心形填色弹性放大",
+        "弹性填色"
       ]
     },
     {
       "id": "material-fab-panel",
-      "name": "圆面扩展",
+      "name": "圆形扩成面板",
       "kind": "action",
       "category": "shape",
       "summary": "珊瑚色圆钮先弹出，再连续扩大成手机屏幕下部面板；加号淡出，对勾分两段描成并出现 Published。",
@@ -11853,7 +12135,8 @@
         "悬浮钮容器变换",
         "演进史待验收",
         "Claude 动效演进史",
-        "圆钮展开确认面板"
+        "圆钮展开确认面板",
+        "圆面扩展"
       ],
       "behaviors": [
         "morph",
@@ -11896,12 +12179,13 @@
       },
       "original_scene": "claude-showreel-2026/sFlat",
       "previous_names": [
-        "圆钮展开确认面板"
+        "圆钮展开确认面板",
+        "圆面扩展"
       ]
     },
     {
       "id": "generative-point-morph",
-      "name": "点阵形态演变",
+      "name": "点阵连续换形",
       "kind": "action",
       "category": "shape",
       "summary": "同一批 2400 点从球体变为环面、再铺成起伏波场；全过程自转，透视大小、远近透明度与原节拍胀缩持续变化。",
@@ -11918,7 +12202,8 @@
         "2400 点球环波场",
         "演进史待验收",
         "Claude 动效演进史",
-        "三维点阵球环波场变形"
+        "三维点阵球环波场变形",
+        "点阵形态演变"
       ],
       "behaviors": [
         "morph",
@@ -11961,7 +12246,8 @@
       },
       "original_scene": "claude-showreel-2026/sGen",
       "previous_names": [
-        "三维点阵球环波场变形"
+        "三维点阵球环波场变形",
+        "点阵形态演变"
       ]
     },
     {
@@ -12032,7 +12318,7 @@
       "id": "generative-flow-field",
       "name": "流线游动",
       "kind": "action",
-      "category": "continuous",
+      "category": "particles",
       "summary": "220 条紫色流线在连续变化的噪声场中蜿蜒，起点缓慢向右漂移；独立展示随深浅主题调整颜色与背景。",
       "purpose": "以清晰的连续流线展示同一噪声场中的方向变化。",
       "objects": "220 条由 10 个短步连接的紫色流线",
@@ -12093,9 +12379,9 @@
     },
     {
       "id": "math-formula-drift",
-      "name": "异速漂移",
+      "name": "文字异速漂移",
       "kind": "action",
-      "category": "continuous",
+      "category": "writing",
       "summary": "十条半透明数学公式分散在画面中，以各自不同的速度向左或向右缓慢漂移。",
       "purpose": "作为数学、算法或代码主题内容背后的持续漂浮背景。",
       "objects": "十条原数学公式，分散的位置、字号和透明度",
@@ -12111,7 +12397,8 @@
         "漂浮公式背景",
         "巨字卡片随节拍切换",
         "巨字节拍硬切卡",
-        "数学公式漂浮"
+        "数学公式漂浮",
+        "异速漂移"
       ],
       "behaviors": [
         "move",
@@ -12153,7 +12440,8 @@
       "analogy": "十条半透明数学公式分散在画面中，以各自不同的速度向左或向右缓慢漂移。",
       "assumptions": "来自本机 Claude 宣传片第三场的数学卡背景，保留原公式和运动参数，等比缩小至目录画板。字体沿用本地字体，中性色随主题变化；为持续播放增加画板外回收。原工程保持只读。",
       "previous_names": [
-        "数学公式漂浮"
+        "数学公式漂浮",
+        "异速漂移"
       ]
     },
     {
@@ -12178,12 +12466,13 @@
         "年份标题与词条错峰入场",
         "轮廓年份与标题错峰呈现",
         "年份说明退场与结语升入",
-        "标题错峰呈现"
+        "标题错峰呈现",
+        "标题错峰"
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "recommendation": "需要复用组合中的这一具体动作时使用；独立项与组合共用实际图层和绘制函数。",
       "id": "title-stagger",
-      "name": "标题错峰",
+      "name": "标题依次呈现",
       "category": "writing",
       "duration_ms": 3000,
       "preview_ms": 2200,
@@ -12303,9 +12592,9 @@
     },
     {
       "id": "material-phone-sequence",
-      "name": "容器与响应",
+      "name": "界面展开与反馈",
       "kind": "composition",
-      "category": "compositions",
+      "category": "composition-interface",
       "summary": "左侧年份、标题与四项词条错峰入场，几何装饰弹出漂浮；右侧手机升入回正，卡片与微交互依次展开。",
       "purpose": "恢复原片手机页的完整左右关系，并可单独查看每组真实动作。",
       "objects": "年份标题、四项彩点词条、三种几何装饰、原圆角手机、四张卡片与微交互",
@@ -12318,7 +12607,8 @@
         "手机卡片交互演示",
         "Claude 手机卡片交互演示",
         "演进史待验收",
-        "Claude 动效演进史"
+        "Claude 动效演进史",
+        "容器与响应"
       ],
       "behaviors": [
         "sequence",
@@ -12373,7 +12663,8 @@
       },
       "original_scene": "claude-showreel-2026/sFlat",
       "previous_names": [
-        "手机卡片交互演示"
+        "手机卡片交互演示",
+        "容器与响应"
       ],
       "action_variants": {
         "title-stagger": "material"
@@ -12398,12 +12689,13 @@
         "animation"
       ],
       "previous_names": [
-        "点阵边框与姿态读数"
+        "点阵边框与姿态读数",
+        "姿态读数"
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "recommendation": "需要复用组合中的这一具体动作时使用；独立项与组合共用实际图层和绘制函数。",
       "id": "generative-frame-readout",
-      "name": "姿态读数",
+      "name": "姿态读数同步",
       "category": "data",
       "duration_ms": 8000,
       "preview_ms": 5300,
@@ -12417,7 +12709,8 @@
       ],
       "aliases": [
         "点阵边框与姿态读数",
-        "Claude 动效演进史"
+        "Claude 动效演进史",
+        "姿态读数"
       ],
       "behaviors": [
         "reveal",
@@ -12441,7 +12734,7 @@
     },
     {
       "id": "generative-point-sequence",
-      "name": "点阵与演算",
+      "name": "点阵变形与读数",
       "kind": "composition",
       "category": "compositions",
       "summary": "流线铺底，轮廓年份与标题错峰显现；点阵球体变环面和波场，四角标注同步显示形态及旋转读数，代码逐行写出。",
@@ -12456,7 +12749,8 @@
         "生成点阵与代码演示",
         "Claude 生成点阵与代码演示",
         "演进史待验收",
-        "Claude 动效演进史"
+        "Claude 动效演进史",
+        "点阵与演算"
       ],
       "behaviors": [
         "sequence",
@@ -12504,7 +12798,8 @@
       },
       "original_scene": "claude-showreel-2026/sGen",
       "previous_names": [
-        "生成点阵与代码演示"
+        "生成点阵与代码演示",
+        "点阵与演算"
       ],
       "action_variants": {
         "title-stagger": "outline"
@@ -12512,7 +12807,7 @@
     },
     {
       "id": "prompt-border-trace",
-      "name": "边界描绘",
+      "name": "边框逐段描绘",
       "kind": "action",
       "category": "connection",
       "summary": "原圆角输入框沿边缘描出，描线完成后仍有轻微亮度起伏。",
@@ -12529,7 +12824,8 @@
         "Claude 输入框边缘循线显现",
         "演进史待验收",
         "Claude 动效演进史",
-        "输入框边缘循线显现"
+        "输入框边缘循线显现",
+        "边界描绘"
       ],
       "behaviors": [
         "draw",
@@ -12563,7 +12859,8 @@
       "previous_names": [
         "边框描绘点亮",
         "边框描画点亮",
-        "输入框边缘循线显现"
+        "输入框边缘循线显现",
+        "边界描绘"
       ],
       "original_scene": "claude-showreel-2026/sPrompt",
       "source": {
@@ -12577,7 +12874,7 @@
     },
     {
       "id": "prompt-chinese-type",
-      "name": "分行逐字",
+      "name": "文字分行输入",
       "kind": "action",
       "category": "writing",
       "summary": "完整圆角输入框内，提示词按固定节拍写入三行；写完后画面推进到发送按钮，按钮按压恢复，外侧蓝色短弧绕转并收起。",
@@ -12594,7 +12891,8 @@
         "Claude 输入框逐字写入",
         "演进史待验收",
         "Claude 动效演进史",
-        "输入框逐字写入"
+        "输入框逐字写入",
+        "分行逐字"
       ],
       "behaviors": [
         "type",
@@ -12629,7 +12927,8 @@
       "previous_names": [
         "中文随节拍逐字输入",
         "中文节拍打字机",
-        "输入框逐字写入"
+        "输入框逐字写入",
+        "分行逐字"
       ],
       "original_scene": "claude-showreel-2026/sPrompt",
       "source": {
@@ -12643,7 +12942,7 @@
     },
     {
       "id": "prompt-char-gather",
-      "name": "弧线汇字",
+      "name": "文字绕弧汇聚",
       "kind": "action",
       "category": "writing",
       "summary": "字从原三行提示词的位置逐个飞出，先向外绕行、旋转放大，再缩进同一个中心。",
@@ -12659,7 +12958,8 @@
         "Claude 字符沿弧汇入中心",
         "演进史待验收",
         "Claude 动效演进史",
-        "字符沿弧汇入中心"
+        "字符沿弧汇入中心",
+        "弧线汇字"
       ],
       "behaviors": [
         "move",
@@ -12695,7 +12995,8 @@
       ],
       "previous_names": [
         "逐字沿弧飞散",
-        "字符沿弧汇入中心"
+        "字符沿弧汇入中心",
+        "弧线汇字"
       ],
       "original_scene": "claude-showreel-2026/sPrompt",
       "source": {
@@ -12709,7 +13010,7 @@
     },
     {
       "id": "send-press-ring",
-      "name": "按压扩圈",
+      "name": "按钮按压扩圈",
       "kind": "action",
       "category": "environment",
       "summary": "白色发送按钮短暂压小再恢复，细白环从按钮中心扩张并淡去。",
@@ -12726,7 +13027,8 @@
         "Claude 发送按钮按压扩圈",
         "演进史待验收",
         "Claude 动效演进史",
-        "发送按钮按压扩圈"
+        "发送按钮按压扩圈",
+        "按压扩圈"
       ],
       "behaviors": [
         "scale",
@@ -12761,7 +13063,8 @@
       "previous_names": [
         "按钮按压激起涟漪",
         "按钮按压涟漪",
-        "发送按钮按压扩圈"
+        "发送按钮按压扩圈",
+        "按压扩圈"
       ],
       "original_scene": "claude-showreel-2026/sPrompt",
       "source": {
@@ -12775,7 +13078,7 @@
     },
     {
       "id": "prompt-ui-push",
-      "name": "落位推近",
+      "name": "界面落位推近",
       "kind": "action",
       "category": "layout",
       "summary": "原输入底板、顶部菜单、工具和胶囊从略大、略低处落位，然后一起缓慢推近。",
@@ -12792,7 +13095,8 @@
         "Claude 输入界面落位后推近",
         "演进史待验收",
         "Claude 动效演进史",
-        "输入界面落位后推近"
+        "输入界面落位后推近",
+        "落位推近"
       ],
       "behaviors": [
         "scale",
@@ -12827,7 +13131,8 @@
       "previous_names": [
         "界面轻落位后推近",
         "界面轻落位后持续推近",
-        "输入界面落位后推近"
+        "输入界面落位后推近",
+        "落位推近"
       ],
       "original_scene": "claude-showreel-2026/sPrompt",
       "source": {
@@ -12841,9 +13146,9 @@
     },
     {
       "id": "core-ring-expand",
-      "name": "光核外扩",
+      "name": "光核光环扩张",
       "kind": "action",
-      "category": "attention",
+      "category": "lighting",
       "summary": "白色光核加速扩大，淡紫色外缘承接三道错相向外扩散的细光环。",
       "purpose": "提取原片中光核扩张与光环外推的具体主体、造型与时间关系，独立复用并能与原组合逐层对照。",
       "objects": "中心白光、淡紫外缘、三个同心环",
@@ -12857,7 +13162,8 @@
         "Claude 光核扩张与光环外推",
         "演进史待验收",
         "Claude 动效演进史",
-        "光核扩张与光环外推"
+        "光核扩张与光环外推",
+        "光核外扩"
       ],
       "behaviors": [
         "scale",
@@ -12891,7 +13197,8 @@
       ],
       "previous_names": [
         "光核扩张与同心环外推",
-        "光核扩张与光环外推"
+        "光核扩张与光环外推",
+        "光核外扩"
       ],
       "original_scene": "claude-showreel-2026/sPrompt",
       "source": {
@@ -12905,9 +13212,9 @@
     },
     {
       "id": "radial-line-burst",
-      "name": "径向散射",
+      "name": "短线向外散开",
       "kind": "action",
-      "category": "continuous",
+      "category": "particles",
       "summary": "70 条彩色短线从同一中心向固定方向散开，逐渐减速、缩短并淡去。",
       "purpose": "提取原片中彩色短线由中心散开的具体主体、造型与时间关系，独立复用并能与原组合逐层对照。",
       "objects": "七种年代色组成的 70 条圆头短线",
@@ -12922,7 +13229,8 @@
         "Claude 彩色短线由中心散开",
         "演进史待验收",
         "Claude 动效演进史",
-        "彩色短线由中心散开"
+        "彩色短线由中心散开",
+        "径向散射"
       ],
       "behaviors": [
         "move",
@@ -12956,7 +13264,8 @@
       "previous_names": [
         "短线由中心爆散消退",
         "彩色短线从中心爆散消退",
-        "彩色短线由中心散开"
+        "彩色短线由中心散开",
+        "径向散射"
       ],
       "original_scene": "claude-showreel-2026/sOutro",
       "source": {
@@ -12970,7 +13279,7 @@
     },
     {
       "id": "timeline-dock-down",
-      "name": "缩小下移",
+      "name": "时间轴缩小下移",
       "kind": "action",
       "category": "layout",
       "summary": "完成态的七节点时间轴整体缩小并下移，为上方标题让出空间。",
@@ -12987,7 +13296,8 @@
         "Claude 时间轴缩小下移",
         "演进史待验收",
         "Claude 动效演进史",
-        "时间轴缩小下移"
+        "时间轴缩小下移",
+        "缩小下移"
       ],
       "behaviors": [
         "move",
@@ -13021,7 +13331,7 @@
       "previous_names": [
         "时间轴缩小下移承接标题",
         "回顾轴缩小下移承接标题",
-        "时间轴缩小下移"
+        "缩小下移"
       ],
       "original_scene": "claude-showreel-2026/sOutro",
       "source": {
@@ -13035,7 +13345,7 @@
     },
     {
       "id": "color-segment-stagger",
-      "name": "色段伸展",
+      "name": "色带错峰展开",
       "kind": "action",
       "category": "attention",
       "summary": "标题下方七段相邻色带分别从自身左端伸展，错峰拼成完整一条。",
@@ -13051,7 +13361,8 @@
         "演进史待验收",
         "Claude 动效演进史",
         "分段色带错峰展开",
-        "七色色带错峰伸展"
+        "七色色带错峰伸展",
+        "色段伸展"
       ],
       "behaviors": [
         "draw",
@@ -13083,7 +13394,8 @@
         "animation"
       ],
       "previous_names": [
-        "七色色带错峰伸展"
+        "七色色带错峰伸展",
+        "色段伸展"
       ],
       "original_scene": "claude-showreel-2026/sOutro",
       "source": {
@@ -13115,7 +13427,7 @@
         "animation"
       ],
       "id": "prompt-to-core-sequence",
-      "name": "汇聚与扩张",
+      "name": "文字汇聚光核扩散",
       "category": "compositions",
       "summary": "原输入界面落位、描边、逐字写入；发送后文字沿弧汇聚，中心光核与三环接续展开。",
       "purpose": "保留原场景中的关系与细节，并支持按实际图层逐层对照。",
@@ -13130,7 +13442,8 @@
         "原片 提示词汇入光核",
         "演进史待验收",
         "Claude 动效演进史",
-        "提示词汇入光核"
+        "提示词汇入光核",
+        "汇聚与扩张"
       ],
       "behaviors": [
         "move",
@@ -13155,7 +13468,8 @@
       "assumptions": "保留原片 46–54 秒主场景，原上方年份、标题及底部说明也保留；原全片进度条与边角制作信息不属于这个输入场景动作。 深浅模式均保留原深色画面。 普通英文与数字按目录规范使用 Oswald Bold，中文及混排正文用 Light；原逐字落点与换行保持，片尾 CLAUDE 主字是造型轮廓例外。",
       "tempo_note": "完整组合 8.0 秒，使用原片局部时钟，播放倍率只改变观看速度。",
       "previous_names": [
-        "提示词汇入光核"
+        "提示词汇入光核",
+        "汇聚与扩张"
       ],
       "original_scene": "claude-showreel-2026/sPrompt",
       "source": {
@@ -13187,8 +13501,8 @@
         "animation"
       ],
       "id": "outro-recap-sequence",
-      "name": "散射与归位",
-      "category": "compositions",
+      "name": "散射归位片尾展开",
+      "category": "composition-text",
       "summary": "彩色短线散开后，完成态的年代轴缩小下移，原片标题升起，七色色带错峰展开。",
       "purpose": "保留原场景中的关系与细节，并支持按实际图层逐层对照。",
       "objects": "七十条彩线、完成态年代轴、原 CLAUDE 字形、落款与七色色带",
@@ -13202,7 +13516,8 @@
         "原片 彩线散开与片尾落款",
         "演进史待验收",
         "Claude 动效演进史",
-        "彩线散开与片尾落款"
+        "彩线散开与片尾落款",
+        "散射与归位"
       ],
       "behaviors": [
         "move",
@@ -13225,7 +13540,8 @@
       "assumptions": "以原片 54–60 秒片尾为底，仅把年代扫描替换为静态完成态；其余下移、标题、色带与淡黑仍用原时钟。 深浅模式均保留原深色画面。 普通英文与数字按目录规范使用 Oswald Bold，中文及混排正文用 Light；原逐字落点与换行保持，片尾 CLAUDE 主字是造型轮廓例外。",
       "tempo_note": "完整组合 6.0 秒，使用原片局部时钟，播放倍率只改变观看速度。",
       "previous_names": [
-        "彩线散开与片尾落款"
+        "彩线散开与片尾落款",
+        "散射与归位"
       ],
       "original_scene": "claude-showreel-2026/sOutro",
       "source": {
@@ -13239,7 +13555,7 @@
     },
     {
       "id": "subtitle-cell-focus",
-      "name": "轮换提亮",
+      "name": "字格轮换提亮",
       "kind": "action",
       "category": "attention",
       "summary": "W、I、S、E 四个字格依次提亮，其余字格变淡；中间恢复等亮，最后重申末格。",
@@ -13249,7 +13565,8 @@
         "重点轮换",
         "提亮",
         "其余变淡",
-        "字幕格轮换提亮"
+        "字幕格轮换提亮",
+        "轮换提亮"
       ],
       "behaviors": [
         "focus",
@@ -13297,7 +13614,8 @@
         "document"
       ],
       "previous_names": [
-        "字幕格轮换提亮"
+        "字幕格轮换提亮",
+        "轮换提亮"
       ],
       "timing": {
         "source_duration_ms": 9400,
@@ -13310,7 +13628,7 @@
     },
     {
       "id": "subtitle-block-shift",
-      "name": "让位后放大",
+      "name": "字格让位放大",
       "kind": "action",
       "category": "layout",
       "summary": "整组字格先向上让出空间，停留后向下返回并一起放大。",
@@ -13320,7 +13638,8 @@
         "整体上移",
         "下移放大",
         "重心转移",
-        "字格上移让位后放大"
+        "字格上移让位后放大",
+        "让位后放大"
       ],
       "behaviors": [
         "move",
@@ -13377,7 +13696,8 @@
         "document"
       ],
       "previous_names": [
-        "字格上移让位后放大"
+        "字格上移让位后放大",
+        "让位后放大"
       ],
       "timing": {
         "source_duration_ms": 9400,
@@ -13390,7 +13710,7 @@
     },
     {
       "id": "button-press-status",
-      "name": "按压换态",
+      "name": "按钮按压换态",
       "kind": "action",
       "category": "environment",
       "summary": "按钮轻微缩小后恢复，文字按开始、处理中、完成三个状态切换。",
@@ -13400,7 +13720,8 @@
         "状态改写",
         "正在整理",
         "按钮完成",
-        "按钮轻压与状态换字"
+        "按钮轻压与状态换字",
+        "按压换态"
       ],
       "behaviors": [
         "react",
@@ -13447,7 +13768,8 @@
         "animation"
       ],
       "previous_names": [
-        "按钮轻压与状态换字"
+        "按钮轻压与状态换字",
+        "按压换态"
       ],
       "timing": {
         "source_duration_ms": 6500,
@@ -13460,7 +13782,7 @@
     },
     {
       "id": "progress-fill-exit",
-      "name": "填满收起",
+      "name": "进度填满淡出",
       "kind": "action",
       "category": "environment",
       "summary": "细进度条显现并从左向右匀速填满，完成后整条淡出。",
@@ -13470,7 +13792,8 @@
         "匀速填充",
         "进度完成",
         "进度条收起",
-        "进度条填满后收起"
+        "进度条填满后收起",
+        "填满收起"
       ],
       "behaviors": [
         "appear",
@@ -13518,7 +13841,8 @@
         "animation"
       ],
       "previous_names": [
-        "进度条填满后收起"
+        "进度条填满后收起",
+        "填满收起"
       ],
       "timing": {
         "source_duration_ms": 6500,
@@ -13548,12 +13872,13 @@
         "animation"
       ],
       "previous_names": [
-        "剪纸圆盘回弹与圆心节拍"
+        "剪纸圆盘回弹与圆心节拍",
+        "逐格回弹"
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "recommendation": "需要复用组合中的这一具体动作时使用；独立项与组合共用实际图层和绘制函数。",
       "id": "paper-disc-pop",
-      "name": "逐格回弹",
+      "name": "圆盘逐格回弹",
       "category": "response",
       "duration_ms": 6000,
       "preview_ms": 520,
@@ -13569,7 +13894,8 @@
         "剪纸圆盘弹入",
         "圆心半秒节拍",
         "Claude 动效演进史",
-        "剪纸圆盘回弹与圆心节拍"
+        "剪纸圆盘回弹与圆心节拍",
+        "逐格回弹"
       ],
       "behaviors": [
         "scale",
@@ -13609,12 +13935,13 @@
         "animation"
       ],
       "previous_names": [
-        "剪纸四行文字逐格升入"
+        "剪纸四行文字逐格升入",
+        "逐格升字"
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "recommendation": "需要复用组合中的这一具体动作时使用；独立项与组合共用实际图层和绘制函数。",
       "id": "paper-title-stagger",
-      "name": "逐格升字",
+      "name": "文字逐格升入",
       "category": "writing",
       "duration_ms": 4000,
       "preview_ms": 2300,
@@ -13630,7 +13957,8 @@
         "剪纸标题逐字升入",
         "年份回弹字幕升入",
         "Claude 动效演进史",
-        "剪纸四行文字逐格升入"
+        "剪纸四行文字逐格升入",
+        "逐格升字"
       ],
       "behaviors": [
         "text",
@@ -13672,12 +14000,13 @@
         "animation"
       ],
       "previous_names": [
-        "片尾标题与落款逐字升入"
+        "片尾标题与落款逐字升入",
+        "分层升字"
       ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "recommendation": "需要复用组合中的这一具体动作时使用；独立项与组合共用实际图层和绘制函数。",
       "id": "outro-credit-lift",
-      "name": "分层升字",
+      "name": "文字分层升入",
       "category": "writing",
       "duration_ms": 2500,
       "preview_ms": 1300,
@@ -13693,7 +14022,8 @@
         "片尾落款升入",
         "片尾原字形逐字出现",
         "Claude 动效演进史",
-        "片尾标题与落款逐字升入"
+        "片尾标题与落款逐字升入",
+        "分层升字"
       ],
       "behaviors": [
         "text",
@@ -13736,10 +14066,11 @@
       ],
       "trigger": "打开后独立播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "圆心涟漪持续外扩"
+        "圆心涟漪持续外扩",
+        "同心扩散"
       ],
       "id": "center-ripple-emit",
-      "name": "同心扩散",
+      "name": "同心涟漪扩散",
       "category": "environment",
       "duration_ms": 6000,
       "preview_ms": 2500,
@@ -13754,7 +14085,8 @@
       "aliases": [
         "圆形发射源涟漪",
         "两圈涟漪错相扩散",
-        "圆心涟漪持续外扩"
+        "圆心涟漪持续外扩",
+        "同心扩散"
       ],
       "behaviors": [
         "appear",
@@ -13799,11 +14131,12 @@
         "物品群飞减速落定",
         "群飞落定",
         "轨迹渐退",
-        "群飞轨迹光丝渐退"
+        "群飞轨迹光丝渐退",
+        "群飞留迹"
       ],
       "id": "symbol-flight-settle",
-      "name": "群飞留迹",
-      "category": "connection",
+      "name": "群体飞行留迹",
+      "category": "particles",
       "duration_ms": 10569,
       "preview_ms": 4500,
       "summary": "126 件物品沿固定曲线群飞、减速落定，18 条光丝从真实经过的位置留下，物品与光丝各按原时钟淡去。",
@@ -13868,10 +14201,11 @@
       ],
       "trigger": "打开后独立播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "群飞落点原位成星"
+        "群飞落点原位成星",
+        "抵达换形"
       ],
       "id": "arrival-star-reveal",
-      "name": "抵达换形",
+      "name": "抵达换形显现",
       "category": "entrance",
       "duration_ms": 6972,
       "preview_ms": 2000,
@@ -13886,7 +14220,8 @@
       "aliases": [
         "126 落点星点显现",
         "物品终点原位生星",
-        "群飞落点原位成星"
+        "群飞落点原位成星",
+        "抵达换形"
       ],
       "behaviors": [
         "appear",
@@ -13928,11 +14263,12 @@
       ],
       "trigger": "打开后独立播放；可暂停、重播和任意定位。",
       "previous_names": [
-        "落点星芒错相闪亮"
+        "落点星芒错相闪亮",
+        "错相闪亮"
       ],
       "id": "arrival-star-sparkle",
-      "name": "错相闪亮",
-      "category": "attention",
+      "name": "落点错峰闪亮",
+      "category": "lighting",
       "duration_ms": 6972,
       "preview_ms": 1900,
       "summary": "原 126 个落点到达时各自短闪，随后光晕与四角星芒按原相位错开闪亮。",
@@ -13946,7 +14282,8 @@
       "aliases": [
         "群物落定闪光",
         "六个主落点辉光",
-        "落点星芒错相闪亮"
+        "落点星芒错相闪亮",
+        "错相闪亮"
       ],
       "behaviors": [
         "react",
@@ -13971,7 +14308,7 @@
     },
     {
       "id": "claude-lissajous-illustration",
-      "name": "周期交织",
+      "name": "交织曲线",
       "kind": "illustration",
       "category": "illustration-diagram",
       "summary": "一条细线按横向三次、纵向四次的正弦关系绕出交错曲线，横向相位持续前进。",
@@ -13991,7 +14328,8 @@
         "算法图块",
         "算法图块逐格铺开",
         "生成算法瓦片墙",
-        "李萨如曲线"
+        "李萨如曲线",
+        "周期交织"
       ],
       "behaviors": [
         "continuous",
@@ -14034,12 +14372,13 @@
         "document"
       ],
       "previous_names": [
-        "李萨如曲线"
+        "李萨如曲线",
+        "周期交织"
       ]
     },
     {
       "id": "claude-wireframe-illustration",
-      "name": "立方线框",
+      "name": "旋转立方线框",
       "kind": "illustration",
       "category": "illustration-diagram",
       "summary": "立方体的八个顶点和十二条边沿两条轴同时旋转，远近透视跟着角度变化。",
@@ -14059,7 +14398,8 @@
         "算法图块",
         "算法图块逐格铺开",
         "生成算法瓦片墙",
-        "旋转线框立方体"
+        "旋转线框立方体",
+        "立方线框"
       ],
       "behaviors": [
         "continuous",
@@ -14102,14 +14442,15 @@
         "document"
       ],
       "previous_names": [
-        "旋转线框立方体"
+        "旋转线框立方体",
+        "立方线框"
       ]
     },
     {
       "id": "claude-flow-field-illustration",
-      "name": "噪声流场",
+      "name": "游动流线",
       "kind": "illustration",
-      "category": "illustration-nature",
+      "category": "illustration-energy",
       "summary": "一百四十条短流线从固定起点出发，每条沿连续变化的方向走十八步。",
       "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
       "objects": "一百四十条十八步流线",
@@ -14167,11 +14508,14 @@
       "domains": [
         "animation",
         "document"
+      ],
+      "previous_names": [
+        "噪声流场"
       ]
     },
     {
       "id": "claude-pendulum-wave-illustration",
-      "name": "多摆成波",
+      "name": "摆点波浪",
       "kind": "illustration",
       "category": "illustration-diagram",
       "summary": "十八个圆点按不同频率左右摆动，逐渐组成聚拢与散开的波形。",
@@ -14191,7 +14535,8 @@
         "算法图块",
         "算法图块逐格铺开",
         "生成算法瓦片墙",
-        "摆锤波"
+        "摆锤波",
+        "多摆成波"
       ],
       "behaviors": [
         "continuous",
@@ -14234,14 +14579,15 @@
         "document"
       ],
       "previous_names": [
-        "摆锤波"
+        "摆锤波",
+        "多摆成波"
       ]
     },
     {
       "id": "claude-phyllotaxis-illustration",
-      "name": "叶序点阵",
+      "name": "旋转螺旋点阵",
       "kind": "illustration",
-      "category": "illustration-nature",
+      "category": "illustration-diagram",
       "summary": "四百二十个方点按黄金角和平方根半径排成叶序螺旋，整组缓慢旋转。",
       "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
       "objects": "四百二十个叶序方点",
@@ -14259,7 +14605,8 @@
         "算法图块",
         "算法图块逐格铺开",
         "生成算法瓦片墙",
-        "叶序螺旋点阵"
+        "叶序螺旋点阵",
+        "叶序点阵"
       ],
       "behaviors": [
         "continuous",
@@ -14302,14 +14649,15 @@
         "document"
       ],
       "previous_names": [
-        "叶序螺旋点阵"
+        "叶序螺旋点阵",
+        "叶序点阵"
       ]
     },
     {
       "id": "claude-kick-rings-illustration",
-      "name": "节拍扩环",
+      "name": "节拍同心光环",
       "kind": "illustration",
-      "category": "illustration-nature",
+      "category": "illustration-energy",
       "summary": "八道橙色同心环按原鼓点强度共同伸缩，同时缓慢向外推进。",
       "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
       "objects": "八道橙色同心环",
@@ -14327,7 +14675,8 @@
         "算法图块",
         "算法图块逐格铺开",
         "生成算法瓦片墙",
-        "鼓点扩散环"
+        "鼓点扩散环",
+        "节拍扩环"
       ],
       "behaviors": [
         "continuous",
@@ -14370,14 +14719,15 @@
         "document"
       ],
       "previous_names": [
-        "鼓点扩散环"
+        "鼓点扩散环",
+        "节拍扩环"
       ]
     },
     {
       "id": "claude-spectrum-illustration",
-      "name": "频谱起伏",
+      "name": "起伏频谱柱",
       "kind": "illustration",
-      "category": "illustration-diagram",
+      "category": "illustration-interface",
       "summary": "三十二根柱条使用原片声音分析值起伏，柱高与明暗随频段强度变化。",
       "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
       "objects": "三十二根频谱柱",
@@ -14395,7 +14745,8 @@
         "算法图块",
         "算法图块逐格铺开",
         "生成算法瓦片墙",
-        "音频频谱"
+        "音频频谱",
+        "频谱起伏"
       ],
       "behaviors": [
         "continuous",
@@ -14438,14 +14789,15 @@
         "document"
       ],
       "previous_names": [
-        "音频频谱"
+        "音频频谱",
+        "频谱起伏"
       ]
     },
     {
       "id": "claude-warp-illustration",
-      "name": "纵深星线",
+      "name": "放射加速光线",
       "kind": "illustration",
-      "category": "illustration-nature",
+      "category": "illustration-energy",
       "summary": "一百六十根短线按固定方向从中心向外加速伸展，抵达边缘后从中心重新出现。",
       "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
       "objects": "一百六十根放射短线",
@@ -14463,7 +14815,8 @@
         "算法图块",
         "算法图块逐格铺开",
         "生成算法瓦片墙",
-        "跃迁星线"
+        "跃迁星线",
+        "纵深星线"
       ],
       "behaviors": [
         "continuous",
@@ -14506,14 +14859,15 @@
         "document"
       ],
       "previous_names": [
-        "跃迁星线"
+        "跃迁星线",
+        "纵深星线"
       ]
     },
     {
       "id": "claude-sine-grid-illustration",
-      "name": "周期波阵",
+      "name": "方块波浪",
       "kind": "illustration",
-      "category": "illustration-nature",
+      "category": "illustration-diagram",
       "summary": "十二行、二十二列方点在正弦波中上下起伏，大小沿另一组波动变化。",
       "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
       "objects": "十二行二十二列方点",
@@ -14531,7 +14885,8 @@
         "算法图块",
         "算法图块逐格铺开",
         "生成算法瓦片墙",
-        "正弦波点阵"
+        "正弦波点阵",
+        "周期波阵"
       ],
       "behaviors": [
         "continuous",
@@ -14574,12 +14929,13 @@
         "document"
       ],
       "previous_names": [
-        "正弦波点阵"
+        "正弦波点阵",
+        "周期波阵"
       ]
     },
     {
       "id": "claude-fractal-tree-illustration",
-      "name": "递归枝形",
+      "name": "分叉树形",
       "kind": "illustration",
       "category": "illustration-nature",
       "summary": "九层左右分叉形成五百一十一段树枝，分叉角度随时间轻轻张合。",
@@ -14599,7 +14955,8 @@
         "算法图块",
         "算法图块逐格铺开",
         "生成算法瓦片墙",
-        "分形树"
+        "分形树",
+        "递归枝形"
       ],
       "behaviors": [
         "continuous",
@@ -14642,14 +14999,15 @@
         "document"
       ],
       "previous_names": [
-        "分形树"
+        "分形树",
+        "递归枝形"
       ]
     },
     {
       "id": "claude-glyph-rain-illustration",
       "name": "字符雨幕",
       "kind": "illustration",
-      "category": "illustration-diagram",
+      "category": "illustration-interface",
       "summary": "三十列字符以不同速度向下流动，每列带八个逐渐变淡的尾部字符。",
       "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
       "objects": "三十列、每列八个字符",
@@ -14714,7 +15072,7 @@
     },
     {
       "id": "claude-hex-pulse-illustration",
-      "name": "六角脉冲",
+      "name": "六角扩散波",
       "kind": "illustration",
       "category": "illustration-diagram",
       "summary": "十行、十六列六边形按离中心的距离错开缩放与明暗，形成向外移动的脉冲。",
@@ -14734,7 +15092,8 @@
         "算法图块",
         "算法图块逐格铺开",
         "生成算法瓦片墙",
-        "六边形脉冲"
+        "六边形脉冲",
+        "六角脉冲"
       ],
       "behaviors": [
         "continuous",
@@ -14777,12 +15136,13 @@
         "document"
       ],
       "previous_names": [
-        "六边形脉冲"
+        "六边形脉冲",
+        "六角脉冲"
       ]
     },
     {
       "id": "claude-orbits-illustration",
-      "name": "多轨环绕",
+      "name": "多轨圆点环绕",
       "kind": "illustration",
       "category": "illustration-diagram",
       "summary": "五个圆点沿不同大小的椭圆轨道绕中心运行，外侧圆点速度更慢。",
@@ -14802,7 +15162,8 @@
         "算法图块",
         "算法图块逐格铺开",
         "生成算法瓦片墙",
-        "轨道环绕"
+        "轨道环绕",
+        "多轨环绕"
       ],
       "behaviors": [
         "continuous",
@@ -14845,12 +15206,13 @@
         "document"
       ],
       "previous_names": [
-        "轨道环绕"
+        "轨道环绕",
+        "多轨环绕"
       ]
     },
     {
       "id": "claude-terrain-illustration",
-      "name": "起伏网面",
+      "name": "起伏地形线",
       "kind": "illustration",
       "category": "illustration-nature",
       "summary": "二十二条地形轮廓随噪声起伏，中央山峰更高，前层轮廓遮住后层。",
@@ -14870,7 +15232,8 @@
         "算法图块",
         "算法图块逐格铺开",
         "生成算法瓦片墙",
-        "起伏地形"
+        "起伏地形",
+        "起伏网面"
       ],
       "behaviors": [
         "continuous",
@@ -14913,12 +15276,13 @@
         "document"
       ],
       "previous_names": [
-        "起伏地形"
+        "起伏地形",
+        "起伏网面"
       ]
     },
     {
       "id": "claude-plexus-illustration",
-      "name": "点线网络",
+      "name": "漂移点线网络",
       "kind": "illustration",
       "category": "illustration-diagram",
       "summary": "四十个点按固定噪声轨迹漂移，距离小于八十时出现连线，距离越近线越清晰。",
@@ -14978,13 +15342,16 @@
       "domains": [
         "animation",
         "document"
+      ],
+      "previous_names": [
+        "点线网络"
       ]
     },
     {
       "id": "claude-frame-counter-illustration",
-      "name": "环形计数",
+      "name": "圆环帧数计数",
       "kind": "illustration",
-      "category": "illustration-diagram",
+      "category": "illustration-interface",
       "summary": "中央四位帧数按原每秒六十帧前进，橙色圆弧按原三十秒总帧数同步增长。",
       "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
       "objects": "四位帧数与橙色圆弧",
@@ -15002,7 +15369,8 @@
         "算法图块",
         "算法图块逐格铺开",
         "生成算法瓦片墙",
-        "帧数环形计数器"
+        "帧数环形计数器",
+        "环形计数"
       ],
       "behaviors": [
         "continuous",
@@ -15045,7 +15413,8 @@
         "document"
       ],
       "previous_names": [
-        "帧数环形计数器"
+        "帧数环形计数器",
+        "环形计数"
       ]
     },
     {
@@ -15176,7 +15545,7 @@
         "avoid": "不将一画成等厚胶囊或规则矩形，不让过密字符堆成黑色竖柱，不在压聚前提前散开整字，不随机重排每帧粒子。"
       },
       "id": "glyph-bar-collapse",
-      "name": "字符压聚成横笔",
+      "name": "字符压成横笔",
       "category": "writing",
       "summary": "道字的灰墨先退，竖向小字符保留字形，随后整字向横向压聚成左端轻入、中段稍细、右端顿收的柳体参考横笔。",
       "purpose": "保持字形辨认后，把书法墨迹转为字符和颗粒，连续接向下一段点线结构。",
@@ -15192,7 +15561,8 @@
         "横笔压聚",
         "字符变颗粒",
         "字形压扁",
-        "Kimi开源发布片"
+        "Kimi开源发布片",
+        "字符压聚成横笔"
       ],
       "behaviors": [
         "morph",
@@ -15205,7 +15575,10 @@
       "preview_ms": 1000,
       "recommendation": "用于字形先转为字符，再压成一笔横向书法轮廓的承接；替换字形需重新提供轮廓采样，不复用普通爆散聚字排程。",
       "tempo_note": "总长1.05秒；墨迹在0–0.36秒退去，主字符在0.52–0.84秒连续压聚，尾笔在0.66–0.93秒跟进，墨点在0.93–1.04秒进入，字符与墨点短暂交叠。",
-      "analogy": "把一整字的笔画变成细小字符，再沿着原来的列挤成一笔厚薄不均的横画。"
+      "analogy": "把一整字的笔画变成细小字符，再沿着原来的列挤成一笔厚薄不均的横画。",
+      "previous_names": [
+        "字符压聚成横笔"
+      ]
     },
     {
       "kind": "action",
@@ -15256,7 +15629,7 @@
         "avoid": "不把二的上横画成椭圆、下横画成圆头横杆，不把三写成三根等长等厚水平条，不同时骤然关掉三笔，不以卡片柱面轮播替代空间连线。"
       },
       "id": "dots-lines-cylinders",
-      "name": "点线转为空间柱体",
+      "name": "点线变圆柱",
       "category": "space",
       "summary": "书法两横的墨点逐渐变淡，三个长短不同的斜横线团分开显现、退散，再建立三个有深度的连线圆柱。",
       "purpose": "让平面书法的横笔逐步转入点、线和空间结构，保持一、二、三到三柱的先后。",
@@ -15272,7 +15645,8 @@
         "墨点变乱线",
         "乱线成圆柱",
         "点线空间化",
-        "Kimi开源发布片"
+        "Kimi开源发布片",
+        "点线转为空间柱体"
       ],
       "behaviors": [
         "morph",
@@ -15286,7 +15660,10 @@
       "preview_ms": 1483.3333333333333,
       "recommendation": "需要书法点团向乱线再向三个连线柱体演变时使用；粒子场和空间顶点是两种按固定排程接替的表示，内容替换要分别提供目标。",
       "tempo_note": "总长2.55秒；两横在0–0.45秒建立；三笔显现窗口分别0.883–1.117、0.950–1.050、0.950–1.283秒，转入空间连线的交接窗口分别1.550–1.683、1.450–1.617、1.383–1.583秒，交接中不断线；固定顶点在1.43–1.85秒沿连续弧线形成柱体，后段总转角0.12弧度。",
-      "analogy": "两道墨团先变成三束松散的线，再让线束绕成三个可以看出前后的柱体。"
+      "analogy": "两道墨团先变成三束松散的线，再让线束绕成三个可以看出前后的柱体。",
+      "previous_names": [
+        "点线转为空间柱体"
+      ]
     },
     {
       "kind": "action",
@@ -15337,7 +15714,7 @@
         "avoid": "不把整个片段替换为普通遮罩或随机像素溶解，不抹平0.848秒的大黑块快切，不同时清空全部三列，不提前切为平滑圆形球。"
       },
       "id": "material-form-chain",
-      "name": "材质连续重组",
+      "name": "形态连续重组",
       "category": "shape",
       "summary": "三个连线圆柱被字符分段接替，字符再组成点阵环柄，转为三角与棋盘格，局部拆散后接成三个像素球。",
       "purpose": "保留同一三列构图在多种材料间连续承接，展示字符、点阵、棋盘与球体的变化。",
@@ -15353,7 +15730,8 @@
         "棋盘变球",
         "像素球成形",
         "多材料承接",
-        "Kimi开源发布片"
+        "Kimi开源发布片",
+        "材质连续重组"
       ],
       "behaviors": [
         "sequence",
@@ -15366,7 +15744,10 @@
       "preview_ms": 1166.6666666666667,
       "recommendation": "用于固定三列对象跨多种材料连续变换；保留整条承接链，不能把各段任意调序或分别用外观类似的转场代替。",
       "tempo_note": "总长2秒；0–0.57秒字符接柱，0.43–0.865秒点阵环柄接入，0.848–0.975秒保留黑块跳入，0.865–1.32秒三角棋盘逐格建立，1.32–1.717秒局部拆散，1.495–2秒字符与像素球接替。",
-      "analogy": "同一组柱体像换了一种材料，依次变成字符、点阵、棋盘，最后团成三个球。"
+      "analogy": "同一组柱体像换了一种材料，依次变成字符、点阵、棋盘，最后团成三个球。",
+      "previous_names": [
+        "材质连续重组"
+      ]
     },
     {
       "kind": "action",
@@ -15417,7 +15798,7 @@
         "avoid": "不重新给三球做弹出入场，不用均匀慢速缩放替代后段快速合拢，不直接跳成月面，不把整体变亮误当成暗部边界移动。"
       },
       "id": "spheres-material-merge",
-      "name": "多球合拢换材",
+      "name": "球体合拢换材质",
       "category": "shape",
       "summary": "三个纤维球先轻微膨胀，再快速向中间合拢为单球，纤维材质接替成月面，月球放大后缩小下移。",
       "purpose": "通过合拢和材质接替把三球转成一个月球，并接续到图鉴中心。",
@@ -15432,7 +15813,8 @@
         "纤维球转月面",
         "月球缩小下移",
         "合拢换材质",
-        "Kimi开源发布片"
+        "Kimi开源发布片",
+        "多球合拢换材"
       ],
       "behaviors": [
         "morph",
@@ -15446,7 +15828,10 @@
       "preview_ms": 866.6666666666666,
       "recommendation": "需要多球合为一球再换材质时使用；球心、半径和材质接替取同一局部时间，不拆成互不相干的缩放与淡入。",
       "tempo_note": "总长1.15秒；0–0.433秒轻微膨胀，0.433–0.667秒快速靠拢，0.667秒得到略扁合体球，0.671–0.698秒月面接替，0.80秒月面半径达85.3像素，后段缩小下移。",
-      "analogy": "三团细纤维挤成一团，表面变成月面，月球再让出空间。"
+      "analogy": "三团细纤维挤成一团，表面变成月面，月球再让出空间。",
+      "previous_names": [
+        "多球合拢换材"
+      ]
     },
     {
       "kind": "action",
@@ -15497,7 +15882,7 @@
         "avoid": "不把整张版画一次淡入，不以37张卡片滑入替代局部显影，不让各物件停成静态装饰，不重新给月球做入场，不以缓慢淡出替代末尾整组清场。"
       },
       "id": "atlas-reveal-clear",
-      "name": "群像显影清场",
+      "name": "群像显现清场",
       "category": "entrance",
       "summary": "月球缩小下移，37组科学版画按独立轮廓与颗粒显影，曲面和仪器内部保持运动，最后一次清场。",
       "purpose": "保留围绕月球逐渐建立图鉴、主体内部运动与最终清场的关系。",
@@ -15513,7 +15898,8 @@
         "科学群像",
         "图鉴清場",
         "独立轮廓显现",
-        "Kimi开源发布片"
+        "Kimi开源发布片",
+        "群像显影清场"
       ],
       "behaviors": [
         "reveal",
@@ -15527,7 +15913,10 @@
       "preview_ms": 1600,
       "recommendation": "用于固定科学版画群像的分件显影与内部运动；替换版画须重新提供独立轮廓、分区及可运动部件，不能只替换一张整板图片。",
       "tempo_note": "总长2.616667秒；37个分区采用2650毫秒标尺等比映射到本段总长，身体先于足翅，塔尖先于拱廊；标尺1850毫秒后完整，2600毫秒一次清场，保留结束小光标。",
-      "analogy": "一张科学图鉴像在纸上逐件显影，图内机构仍在转动，最后整页清空。"
+      "analogy": "一张科学图鉴像在纸上逐件显影，图内机构仍在转动，最后整页清空。",
+      "previous_names": [
+        "群像显影清场"
+      ]
     },
     {
       "kind": "action",
@@ -15578,7 +15967,7 @@
         "avoid": "不把字标改成普通排版字体，不为快切加入交叉淡化或随机乱码，不把全部姿态以同一等距节拍播放，不将结尾黑屏改为缓慢淡出。"
       },
       "id": "glyph-cut-ending",
-      "name": "字形试写与字标收尾",
+      "name": "字形快切收尾",
       "category": "writing",
       "summary": "空纸上的字符、数字与字标轮廓按短促节拍快切，发布短句停留后接成最终字标，最后黑屏。",
       "purpose": "用快速字形试样和清晰停留完成文字发布收尾，保持快切与阅读段的区别。",
@@ -15594,7 +15983,8 @@
         "字标快切",
         "发布文案收尾",
         "KIMI字标",
-        "Kimi开源发布片"
+        "Kimi开源发布片",
+        "字形试写与字标收尾"
       ],
       "behaviors": [
         "sequence",
@@ -15607,7 +15997,10 @@
       "preview_ms": 2500,
       "recommendation": "适合固定字形试样后接发布短句和字标的收尾；替换文案须提供对应矢量姿态，不把轮廓快切误称为通用文字变形器。",
       "tempo_note": "总长3.187333秒，每秒30个画面刻度；姿态切换刻度为0、1、2、3、4、6、7、8、11、12、13、14、15、16、18、20、21、24、25、27、30、33、35、38、40、53、76；第94个刻度切黑屏，姿态之间直接切换。",
-      "analogy": "快速翻过一串字形草样，再停在发布短句与最终字标上。"
+      "analogy": "快速翻过一串字形草样，再停在发布短句与最终字标上。",
+      "previous_names": [
+        "字形试写与字标收尾"
+      ]
     },
     {
       "kind": "composition",
@@ -15666,7 +16059,7 @@
         "avoid": "不替换为七个通用几何演示，不按段落重新给已有对象做入场，不随意改变段落先后，不给整片统一套缓动，不播放原片视频或用原片JPG画面代替代码。"
       },
       "id": "material-evolution-sequence",
-      "name": "笔墨与材质演变",
+      "name": "笔墨成形材质演变",
       "category": "compositions",
       "summary": "书法成字、字符压成横笔、点线形成圆柱，再经字符和棋盘变为三球；三球转月面，图鉴显影清场，最后字标收尾。",
       "purpose": "保留七段实际动作的完整先后、材料承接与统一排程，提供可分段查看的整片组合。",
@@ -15682,7 +16075,8 @@
         "笔画点线空间图鉴",
         "道一二三",
         "Kimi开源发布整片",
-        "Kimi开源发布片"
+        "Kimi开源发布片",
+        "笔墨与材质演变"
       ],
       "behaviors": [
         "sequence",
@@ -15698,7 +16092,10 @@
       "preview_ms": 10250,
       "recommendation": "需要这一完整书法、字符、点线、材料与图鉴演变链时使用；独立片段可各自复用，跨段拼接必须保留前后轮廓和位置承接。",
       "tempo_note": "整片15.054秒；分段边界为0、2.50、3.55、6.10、8.10、9.25、11.866667、15.054秒，每秒30个画面刻度，所有固定分布、显影和快切均由同一时间计算。",
-      "analogy": "同一个画面从墨迹开始，一路换成字符、点线、立体材料和科学图鉴，最后变成发布字标。"
+      "analogy": "同一个画面从墨迹开始，一路换成字符、点线、立体材料和科学图鉴，最后变成发布字标。",
+      "previous_names": [
+        "笔墨与材质演变"
+      ]
     },
     {
       "id": "selfie-phone-illustration",
@@ -15762,7 +16159,7 @@
     },
     {
       "id": "cat-mouth-illustration",
-      "name": "随声张合",
+      "name": "小猫张嘴",
       "kind": "illustration",
       "category": "illustration-object",
       "summary": "灰白小葵站定，嘴部按原叫声的轻重张开与收回，耳朵随表情稍向外折，身体与花纹保持。",
@@ -15822,7 +16219,8 @@
       ],
       "previous_names": [
         "猫咪叫声对应的口型",
-        "猫咪随叫声张合嘴"
+        "猫咪随叫声张合嘴",
+        "随声张合"
       ]
     },
     {
@@ -15844,10 +16242,12 @@
         "animation"
       ],
       "trigger": "打开后按原片段时钟播放一次；可暂停、重播与任意定位。",
-      "previous_names": [],
+      "previous_names": [
+        "弯点转动"
+      ],
       "id": "encore-hook",
-      "name": "弯点转动",
-      "category": "continuous",
+      "name": "绕钩连续转动",
+      "category": "connection",
       "duration_ms": 3810,
       "preview_ms": 2096,
       "summary": "雨伞围绕弯钩连续转动三圈，弯钩支点轻移，整体尺寸保持。",
@@ -15905,9 +16305,11 @@
         "animation"
       ],
       "trigger": "打开后按原片段时钟播放一次；可暂停、重播与任意定位。",
-      "previous_names": [],
+      "previous_names": [
+        "踏步溅起"
+      ],
       "id": "encore-tap",
-      "name": "踏步溅起",
+      "name": "踏步溅起水花",
       "category": "response",
       "duration_ms": 4695,
       "preview_ms": 2582,
@@ -15966,10 +16368,12 @@
         "animation"
       ],
       "trigger": "打开后按原片段时钟播放一次；可暂停、重播与任意定位。",
-      "previous_names": [],
+      "previous_names": [
+        "翻转落尖"
+      ],
       "id": "encore-flight",
-      "name": "翻转落尖",
-      "category": "continuous",
+      "name": "腾空翻转落尖",
+      "category": "response",
       "duration_ms": 3691,
       "preview_ms": 2030,
       "summary": "雨伞沿原抛物线腾空翻转，以伞尖落地，机身尺寸保持固定。",
@@ -16027,10 +16431,12 @@
         "animation"
       ],
       "trigger": "打开后按原片段时钟播放一次；可暂停、重播与任意定位。",
-      "previous_names": [],
+      "previous_names": [
+        "定尖转面"
+      ],
       "id": "encore-tip",
-      "name": "定尖转面",
-      "category": "space",
+      "name": "支点固定回旋",
+      "category": "connection",
       "duration_ms": 3936,
       "preview_ms": 2165,
       "summary": "伞尖固定在地面，伞面绕伞轴回旋四圈，伞轴轻微摇摆。",
@@ -16087,10 +16493,12 @@
         "animation"
       ],
       "trigger": "打开后按原片段时钟播放一次；可暂停、重播与任意定位。",
-      "previous_names": [],
+      "previous_names": [
+        "沿廓滚动"
+      ],
       "id": "encore-roll",
-      "name": "沿廓滚动",
-      "category": "continuous",
+      "name": "沿轮廓滚动",
+      "category": "connection",
       "duration_ms": 3752,
       "preview_ms": 2064,
       "summary": "雨伞沿真实外轮廓滚过水面，位移与接触边缘一致，沿途留下轻水纹。",
@@ -16148,10 +16556,12 @@
         "animation"
       ],
       "trigger": "打开后按原片段时钟播放一次；可暂停、重播与任意定位。",
-      "previous_names": [],
+      "previous_names": [
+        "旋转甩离"
+      ],
       "id": "encore-shed",
-      "name": "旋转甩离",
-      "category": "environment",
+      "name": "旋转甩出水滴",
+      "category": "particles",
       "duration_ms": 3791,
       "preview_ms": 2085,
       "summary": "雨伞反弹腾空飞旋，伞沿水珠继承离开瞬间的运动速度，留下连续短轨迹。",
@@ -16254,9 +16664,9 @@
     },
     {
       "id": "moon-event-fill",
-      "name": "光面渐满",
+      "name": "月面逐渐盈满",
       "kind": "action",
-      "category": "attention",
+      "category": "lighting",
       "summary": "月面由月牙逐渐盈满，进度仍由原蝴蝶抵达月面的八十四个事件聚合得到。",
       "purpose": "将原作的动作关系提炼为独立可复用参考。",
       "objects": "原月貌、椭圆弧受光交界和透明暗面",
@@ -16310,16 +16720,18 @@
       "assumptions": "只绘制月面；原月面等比放大至半径九十，暗面透明；NASA/GSFC/Arizona State University 月貌保留原署名。",
       "tempo_note": "原作第十一点五至十七点二秒，覆盖最后一只蝴蝶的抵达；定位按原绝对秒数计算。",
       "recommendation": "需要此原作造型或动作关系时直接复用。",
-      "previous_names": [],
+      "previous_names": [
+        "光面渐满"
+      ],
       "reproduction": {
         "presentation": "16:9 画幅；半径九十的原月面位于画板中心稍上，月外及未受光暗面透明，完整保留柔边与月貌。"
       }
     },
     {
       "id": "sunset-water-reflection",
-      "name": "倒影浮光",
+      "name": "水面倒影起伏",
       "kind": "action",
-      "category": "attention",
+      "category": "lighting",
       "summary": "暖色太阳照在海面上，倒影随解析波面起伏；太阳抬升后，倒影按原受光计算缩短。",
       "purpose": "将原作的动作关系提炼为独立可复用参考。",
       "objects": "原暖色日盘、波面、透明受光倒影",
@@ -16373,16 +16785,18 @@
       "assumptions": "固定原九百乘一千二百画板，取海平面附近的完整宽度；移除飞机、绳索、音效和星空，保留原解析光源路径。",
       "tempo_note": "取原动作时钟第十二至三十三秒，沿用原演示一点五倍观看速度，独立播放十四秒；波面仍用原秒数求值。",
       "recommendation": "需要此原作造型或动作关系时直接复用。",
-      "previous_names": [],
+      "previous_names": [
+        "倒影浮光"
+      ],
       "reproduction": {
         "presentation": "16:9 画幅；原暖色天空与海面保持连续渐变，日盘位于海平线附近，倒影按波面受光闪动。"
       }
     },
     {
       "id": "drive-balloon-release",
-      "name": "逐个脱离",
+      "name": "逐个松脱飘离",
       "kind": "action",
-      "category": "environment",
+      "category": "particles",
       "summary": "三十五只气球按原时刻依次松开，先继承原速度，再被风带向左上方；绳尾从车尾锚点自然落下。",
       "purpose": "将原作的动作关系提炼为独立可复用参考。",
       "objects": "原蓝色敞篷车、小葵、彩色气球及绳尾",
@@ -16435,16 +16849,18 @@
       "assumptions": "取原气球释放第零至八秒，背景透明，保留车尾锚点关系；不带道路纹理与外围控件。",
       "tempo_note": "原第零至八秒；每只气球释放时刻不变，调速整体调整观看时间。",
       "recommendation": "需要此原作造型或动作关系时直接复用。",
-      "previous_names": [],
+      "previous_names": [
+        "逐个脱离"
+      ],
       "reproduction": {
         "presentation": "16:9 画幅；透明背景，敞篷车及气球簇整体等比置入，完整保留气球、驾驶猫、车身和绳尾。"
       }
     },
     {
       "id": "dandelion-radial-release",
-      "name": "径向释放",
+      "name": "种子向外散开",
       "kind": "action",
-      "category": "environment",
+      "category": "particles",
       "summary": "原蒲公英球簇向外释放种子，细长气流和周围微粒同步向外推开。",
       "purpose": "将原作的动作关系提炼为独立可复用参考。",
       "objects": "九十六颗原种子、五千六百道气流和七百六十颗微粒",
@@ -16497,7 +16913,9 @@
       "assumptions": "保留原种子球簇、气流、微粒与灰绿场色；只取径向释放片段。",
       "tempo_note": "原工程一点四至二点四秒，独立播放一秒；不能直接套用发布片窗口的秒数。",
       "recommendation": "需要此原作造型或动作关系时直接复用。",
-      "previous_names": [],
+      "previous_names": [
+        "径向释放"
+      ],
       "reproduction": {
         "presentation": "16:9 画幅；原灰绿背景铺满整个画板，包括等比展示时的左右留白；原种子球簇及气流等比呈现。"
       }
@@ -16622,7 +17040,7 @@
     },
     {
       "id": "forward-boat-illustration",
-      "name": "轻摇随摆",
+      "name": "木船轻摇",
       "kind": "illustration",
       "category": "illustration-object",
       "summary": "原暖木船体轻摇，敞舱、横座和归灯保留；帆已去除。",
@@ -16679,11 +17097,13 @@
       "assumptions": "透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。",
       "tempo_note": "四秒完成原船体与归灯的小幅周期，单次播放后停住。",
       "recommendation": "需要此原作造型或动作关系时直接复用。",
-      "previous_names": []
+      "previous_names": [
+        "轻摇随摆"
+      ]
     },
     {
       "id": "forward-plane-illustration",
-      "name": "折翼前行",
+      "name": "纸飞机折翼",
       "kind": "illustration",
       "category": "illustration-object",
       "summary": "原黄纸飞机保持朝前，双翼轻折、短折脊与机身微偏转保持。",
@@ -16739,7 +17159,9 @@
       "assumptions": "透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。",
       "tempo_note": "四秒完成原纸面与姿态的小幅周期，单次播放后停住。",
       "recommendation": "需要此原作造型或动作关系时直接复用。",
-      "previous_names": []
+      "previous_names": [
+        "折翼前行"
+      ]
     },
     {
       "id": "drive-car-illustration",
@@ -16940,7 +17362,7 @@
       "trigger": "按统一秒数驱动；可暂停、重播和定位，同一时刻始终得到同一姿态。",
       "assumptions": "仅提取指定运动主体和光效；固定零件数据与绘制随代码打包，直接静态打开即可使用。",
       "id": "shape-contact-rebound",
-      "name": "依形回弹",
+      "name": "按轮廓触地回弹",
       "category": "response",
       "summary": "金银符号错峰下落，按各自旋转后的真实轮廓触地，再由落差决定回弹高度。",
       "purpose": "让不同形状的物体自然触地，保留落差、撞击速度和回弹高度之间的关系。",
@@ -16983,7 +17405,10 @@
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "提取自有八月桂夜的固定零件数据、实际轮廓触地计算、飞行方程与二维材质绘制；无需原工程或 p5.js，不包含树、月面、音频。"
       },
-      "recommendation": "让不同形状的物体自然触地，保留落差、撞击速度和回弹高度之间的关系。"
+      "recommendation": "让不同形状的物体自然触地，保留落差、撞击速度和回弹高度之间的关系。",
+      "previous_names": [
+        "依形回弹"
+      ]
     },
     {
       "kind": "action",
@@ -17006,8 +17431,8 @@
       "trigger": "按统一秒数驱动；可暂停、重播和定位，同一时刻始终得到同一姿态。",
       "assumptions": "仅提取指定运动主体和光效；固定零件数据与绘制随代码打包，直接静态打开即可使用。",
       "id": "swarm-arc-flight",
-      "name": "群体弧飞",
-      "category": "connection",
+      "name": "群体弧线飞行",
+      "category": "particles",
       "summary": "金银蝴蝶各沿两段曲线错峰飞向同一远点，途中摆动、振翅并逐渐变小，身后留短光丝。",
       "purpose": "将一群独立主体沿各自弧线汇向远处，保留不同起点、路径、振翅相位和远近变化。",
       "objects": "从 112 件固定零件中已完成化蝶的金银蝴蝶；只显示蝴蝶和部分蝴蝶身后的短光丝，目标位置不绘制实体。固定起点、时差、路线参数和相位随源码提供。",
@@ -17051,11 +17476,14 @@
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "提取自有八月桂夜的固定零件数据、实际轮廓触地计算、飞行方程与二维材质绘制；无需原工程或 p5.js，不包含树、月面、音频。"
       },
-      "recommendation": "将一群独立主体沿各自弧线汇向远处，保留不同起点、路径、振翅相位和远近变化。"
+      "recommendation": "将一群独立主体沿各自弧线汇向远处，保留不同起点、路径、振翅相位和远近变化。",
+      "previous_names": [
+        "群体弧飞"
+      ]
     },
     {
       "id": "settle-grow-spread",
-      "name": "落定蔓生",
+      "name": "落定后生长蔓延",
       "kind": "action",
       "category": "shape",
       "summary": "种子在右下角错峰落定，先长出一簇花草，再逐片蔓延至整张草场。",
@@ -17078,7 +17506,8 @@
       ],
       "previous_names": [
         "生长扩散",
-        "落定生长"
+        "落定生长",
+        "落定蔓生"
       ],
       "behaviors": [
         "grow",
@@ -17144,8 +17573,8 @@
       ],
       "trigger": "以统一绝对秒数计算，可播放、暂停、重播和任意定位；替换主体位置函数即可沿任意路线复用。",
       "id": "emission-drift",
-      "name": "释出飘散",
-      "category": "entrance",
+      "name": "释出扩散飘移",
+      "category": "particles",
       "duration_ms": 4200,
       "preview_ms": 1750,
       "summary": "保留猫咪敞篷车与真实排气口，白蓝雾团继承车速，向车后扩散、上漂并淡去。",
@@ -17167,7 +17596,8 @@
       ],
       "previous_names": [
         "尾气吐出并向后飘散",
-        "尾气吐出后飘散"
+        "尾气吐出后飘散",
+        "释出飘散"
       ],
       "behaviors": [
         "opacity",
@@ -17220,8 +17650,8 @@
       ],
       "trigger": "以统一绝对秒数计算，可播放、暂停、重播和任意定位；替换主体位置函数即可沿任意路线复用。",
       "id": "advected-trail",
-      "name": "尾流消退",
-      "category": "connection",
+      "name": "尾流漂移消退",
+      "category": "particles",
       "duration_ms": 6600,
       "preview_ms": 2550,
       "summary": "原四层飞机沿水平航线减速，双尾流从真实尾口留下，停住后继续散宽、漂移并消退。",
@@ -17243,7 +17673,8 @@
       ],
       "previous_names": [
         "历史尾流",
-        "尾流沿轨迹消退"
+        "尾流沿轨迹消退",
+        "尾流消退"
       ],
       "behaviors": [
         "path",
@@ -17276,7 +17707,7 @@
       "id": "hud-ring-build",
       "name": "环圈分层展开",
       "kind": "action",
-      "category": "data",
+      "category": "scanning",
       "summary": "五层圆弧依次展开，刻度沿周长建立，短弧分别转动。",
       "purpose": "五层圆弧依次展开，刻度沿周长建立，短弧分别转动。",
       "objects": "五层同心圆弧、120根刻度、12组角度读数",
@@ -17333,7 +17764,7 @@
       "id": "hud-globe-scan",
       "name": "球面扫描推近",
       "kind": "action",
-      "category": "data",
+      "category": "scanning",
       "summary": "球面上的扫描光束旋转，地图与经纬网转动，捕获后推近目标区域。",
       "purpose": "球面上的扫描光束旋转，地图与经纬网转动，捕获后推近目标区域。",
       "objects": "正交投影地球、国家轮廓、经纬网、扫描光束",
@@ -17390,9 +17821,9 @@
     },
     {
       "id": "hud-system-boot",
-      "name": "分栏逐行自检",
+      "name": "自检逐行显现",
       "kind": "action",
-      "category": "writing",
+      "category": "scanning",
       "summary": "七行自检内容按先后出现，每行的通过标记同步显现。",
       "purpose": "七行自检内容按先后出现，每行的通过标记同步显现。",
       "objects": "七行中文检查日志与对应通过标记",
@@ -17442,13 +17873,16 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
-      }
+      },
+      "previous_names": [
+        "分栏逐行自检"
+      ]
     },
     {
       "id": "hud-range-readout",
-      "name": "斜距递减与变倍",
+      "name": "斜距递减变倍",
       "kind": "action",
-      "category": "data",
+      "category": "scanning",
       "summary": "目标斜距先缓降后快速减小，同时提高倍率、收窄视场。",
       "purpose": "目标斜距先缓降后快速减小，同时提高倍率、收窄视场。",
       "objects": "四位整数一位小数的斜距、公里单位、倍率与视场",
@@ -17498,13 +17932,16 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
-      }
+      },
+      "previous_names": [
+        "斜距递减与变倍"
+      ]
     },
     {
       "id": "hud-navigation-bars",
-      "name": "遥测数值与短条",
+      "name": "数值短条联动",
       "kind": "action",
-      "category": "data",
+      "category": "scanning",
       "summary": "五项遥测数值与右侧水平短条一起变化，各项保留独立量程。",
       "purpose": "五项遥测数值与右侧水平短条一起变化，各项保留独立量程。",
       "objects": "方位、仰角、高度、速度、信噪比五行数值与短条",
@@ -17554,13 +17991,16 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
-      }
+      },
+      "previous_names": [
+        "遥测数值与短条"
+      ]
     },
     {
       "id": "hud-radar-sweep",
       "name": "雷达扇面扫描",
       "kind": "action",
-      "category": "data",
+      "category": "scanning",
       "summary": "扫描线带着渐淡扇面绕圆心转动，雷达距离环与十字基线保持固定。",
       "purpose": "扫描线带着渐淡扇面绕圆心转动，雷达距离环与十字基线保持固定。",
       "objects": "四层距离环、十字基线、旋转扫描线、尾随扇面",
@@ -17616,7 +18056,7 @@
       "id": "hud-signal-waves",
       "name": "双路信号波动",
       "kind": "action",
-      "category": "data",
+      "category": "scanning",
       "summary": "两路上下排列的信号连续波动，高频细波叠加缓慢变化的包络。",
       "purpose": "两路上下排列的信号连续波动，高频细波叠加缓慢变化的包络。",
       "objects": "两条信号折线、固定面板边界",
@@ -17670,9 +18110,9 @@
     },
     {
       "id": "hud-candidate-status",
-      "name": "候选状态递进",
+      "name": "状态逐级更新",
       "kind": "action",
-      "category": "data",
+      "category": "scanning",
       "summary": "候选列表中一个目标从分析转为跟踪，最终锁定并变色。",
       "purpose": "候选列表中一个目标从分析转为跟踪，最终锁定并变色。",
       "objects": "四行候选编号、状态文字、分隔线",
@@ -17723,13 +18163,16 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
-      }
+      },
+      "previous_names": [
+        "候选状态递进"
+      ]
     },
     {
       "id": "hud-spectrum-bars",
       "name": "频谱柱列跳动",
       "kind": "action",
-      "category": "data",
+      "category": "scanning",
       "summary": "密集频谱柱沿共同基线上下跳动，高峰与低谷不断变化。",
       "purpose": "密集频谱柱沿共同基线上下跳动，高峰与低谷不断变化。",
       "objects": "51根等间距细柱、固定基线与面板",
@@ -17785,7 +18228,7 @@
       "id": "hud-data-stream",
       "name": "链路字符刷新",
       "kind": "action",
-      "category": "data",
+      "category": "scanning",
       "summary": "十六进制字符成批刷新，链路指示格依次点亮。",
       "purpose": "十六进制字符成批刷新，链路指示格依次点亮。",
       "objects": "五行九列双字符、十二格链路状态",
@@ -17841,7 +18284,7 @@
       "id": "hud-target-lock",
       "name": "准星锁定变色",
       "kind": "action",
-      "category": "attention",
+      "category": "scanning",
       "summary": "四角准星与中文锁定条同时显现，颜色从青色转为琥珀色。",
       "purpose": "四角准星与中文锁定条同时显现，颜色从青色转为琥珀色。",
       "objects": "四角准星、状态条、中文目标锁定与位置读数",
@@ -17896,9 +18339,9 @@
     },
     {
       "id": "hud-acquisition-sequence",
-      "name": "扫描捕获与锁定",
+      "name": "目标扫描捕获锁定",
       "kind": "composition",
-      "category": "compositions",
+      "category": "composition-interface",
       "summary": "中文观测界面从自检与环圈展开，进入两种独立扫描、遥测和信号分析，再推近目标并锁定。",
       "purpose": "把搜寻、发现、聚焦与锁定组织成可拆解的完整界面动效。",
       "objects": "球面扫描、平面雷达扫描、环圈、自检、斜距、遥测短条、双波形、候选状态、频谱、字符链路与锁定条",
@@ -17968,7 +18411,10 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
-      }
+      },
+      "previous_names": [
+        "扫描捕获与锁定"
+      ]
     },
     {
       "loop": false,
@@ -17990,11 +18436,13 @@
       ],
       "trigger": "打开后播放一次，可暂停、定位和重播；全程静音。",
       "recommendation": "复用随包提供的完整绘制与绝对时间函数。",
-      "previous_names": [],
+      "previous_names": [
+        "群粒落入"
+      ],
       "id": "particle-hopper",
-      "name": "群粒落入",
+      "name": "粒子落入汇集",
       "kind": "action",
-      "category": "entrance",
+      "category": "particles",
       "summary": "十二颗豆粒错峰下落，先在料斗内聚集，再依次进入下料口。",
       "purpose": "十二颗豆粒错峰下落，先在料斗内聚集，再依次进入下料口。",
       "objects": "保留真实咖啡豆纹理与中间沟槽、深蓝料斗及前沿遮挡。",
@@ -18060,9 +18508,11 @@
       ],
       "trigger": "打开后播放一次，可暂停、定位和重播；全程静音。",
       "recommendation": "复用随包提供的完整绘制与绝对时间函数。",
-      "previous_names": [],
+      "previous_names": [
+        "脱落飘动"
+      ],
       "id": "seed-shedding-illustration",
-      "name": "脱落飘动",
+      "name": "蒲公英脱落飘散",
       "kind": "illustration",
       "category": "illustration-nature",
       "summary": "蒲公英冠毛陆续脱落，主体逐渐稀疏，脱落种子保持原起伏与旋转。",
@@ -18126,11 +18576,13 @@
       ],
       "trigger": "打开后播放一次，可暂停、定位和重播；全程静音。",
       "recommendation": "复用随包提供的完整绘制与绝对时间函数。",
-      "previous_names": [],
+      "previous_names": [
+        "沿点跳跃"
+      ],
       "id": "note-hop-illustration",
-      "name": "沿点跳跃",
+      "name": "谱面光点跳跃",
       "kind": "illustration",
-      "category": "illustration-nature",
+      "category": "illustration-diagram",
       "summary": "白色亮芯带紫色柔雾，沿真实谱面音符起跳、落点和留光。",
       "purpose": "白色亮芯带紫色柔雾，沿真实谱面音符起跳、落点和留光。",
       "objects": "完整谱纸、第一声部亮芯、沿历史轨迹留下的光带、实际符头轮廓亮边。",
@@ -18191,7 +18643,7 @@
     },
     {
       "id": "thread-weave",
-      "name": "牵丝织形",
+      "name": "双路牵丝织形",
       "kind": "action",
       "category": "shape",
       "summary": "两枚银梭牵着连续细丝沿针点穿行，每到一处织出一束羽丝；短暂尾迹渐退，织好的形体持续保留。",
@@ -18256,13 +18708,16 @@
       },
       "reproduction": {
         "presentation": "640×360横版；背景沿用原#123deb及蓝色柔光和固定细颗粒。原1080×1440形体等比缩放0.34，平移至(136.4,−64.8)，原相机、羽轴、羽枝和双梭共用此变换。银羽保持冷银/暖银的分侧反光，针眼保留蓝色镂空；绘制顺序为背景、羽轴暗面、羽丝、羽轴亮面、暖侧银梭、冷侧银梭。"
-      }
+      },
+      "previous_names": [
+        "牵丝织形"
+      ]
     },
     {
       "id": "diffuse-light-drift",
-      "name": "弥散光团渐变",
+      "name": "弥散光团流动",
       "kind": "action",
-      "category": "attention",
+      "category": "lighting",
       "summary": "紫、蓝与青色光团在固定椭圆范围内渐变叠加，形成缓慢流动的透光背景。",
       "objects": "十四组椭圆光团、近黑底色与八个微弱光点",
       "phases": [
@@ -18281,7 +18736,8 @@
       "aliases": [
         "弥散渐变",
         "紫蓝光场",
-        "环境透光"
+        "环境透光",
+        "弥散光团渐变"
       ],
       "purpose": "紫、蓝与青色光团在固定椭圆范围内渐变叠加，形成缓慢流动的透光背景。",
       "loop": false,
@@ -18316,7 +18772,10 @@
       },
       "reproduction": {
         "presentation": "16:9画幅，1066×600设计坐标等比显示；近黑底叠紫、蓝、青色弥散光，卡片保持左暗右蓝和低透明着色。保留原界面的无衬线文字比例，字标用细线矢量绘制。"
-      }
+      },
+      "previous_names": [
+        "弥散光团渐变"
+      ]
     },
     {
       "id": "glass-card-stagger",
@@ -18382,7 +18841,7 @@
     },
     {
       "id": "convex-glass-lens",
-      "name": "凸泡变形折射",
+      "name": "凸泡伸缩折射",
       "kind": "action",
       "category": "shape",
       "summary": "柔光凸泡从小圆扩张成胶囊，放大并弯曲后方文字，再缩回圆形。",
@@ -18404,7 +18863,8 @@
       "aliases": [
         "玻璃气泡",
         "凸透镜",
-        "柔光折射"
+        "柔光折射",
+        "凸泡变形折射"
       ],
       "purpose": "柔光凸泡从小圆扩张成胶囊，放大并弯曲后方文字，再缩回圆形。",
       "loop": false,
@@ -18440,13 +18900,16 @@
       "reproduction": {
         "presentation": "16:9画幅，1066×600设计坐标等比显示；近黑底叠紫、蓝、青色弥散光，卡片保持左暗右蓝和低透明着色。界面使用 WISE 品牌及创作主题文案，保留原卡片内的无衬线文字比例。",
         "objects": "紫蓝渐变、静止的 WISE 创作对话卡及一枚会伸缩移动的透明凸泡。主对话卡标题 WISE；用户说 Bring this idea to life.；回复依次为 Start with a clear idea.、Give every move a purpose.、Let the details catch light.、Make the next frame matter.；按钮为 Build a scene 与 Explore a variation。"
-      }
+      },
+      "previous_names": [
+        "凸泡变形折射"
+      ]
     },
     {
       "id": "glass-interface-sequence",
-      "name": "透光浮层与折射",
+      "name": "玻璃卡片显现折射",
       "kind": "composition",
-      "category": "compositions",
+      "category": "composition-interface",
       "summary": "紫蓝光场中三张玻璃卡错层进入，柔光凸泡放大文字，随后卡片退出并露出细线字标。",
       "objects": "紫蓝弥散光场、WISE 语音卡、创作对话卡、光感控制卡、柔光凸泡、WISE MOTION 字标和收拢光点",
       "phases": [
@@ -18469,7 +18932,8 @@
         "弥散渐变与玻璃拟态",
         "第十段",
         "Aurora",
-        "玻璃界面"
+        "玻璃界面",
+        "透光浮层与折射"
       ],
       "purpose": "紫蓝光场中三张玻璃卡错层进入，柔光凸泡放大文字，随后卡片退出并露出细线字标。",
       "loop": false,
@@ -18512,13 +18976,16 @@
       "reproduction": {
         "presentation": "16:9画幅，1066×600设计坐标等比显示；近黑底叠紫、蓝、青色弥散光，卡片保持左暗右蓝和低透明着色。界面使用 WISE 品牌及创作主题文案，保留原卡片内的无衬线文字比例。 片尾用细线矢量字标 WISE MOTION，气泡成为 MOTION 的第一个 O；下方两行居中短句为 Motion with meaning.／让每一次运动，都有意义。",
         "objects": "紫蓝弥散光场、WISE 语音卡、创作对话卡、光感控制卡、柔光凸泡、WISE MOTION 字标和收拢光点。主对话卡标题 WISE；用户说 Bring this idea to life.；回复依次为 Start with a clear idea.、Give every move a purpose.、Let the details catch light.、Make the next frame matter.；按钮为 Build a scene 与 Explore a variation。"
-      }
+      },
+      "previous_names": [
+        "透光浮层与折射"
+      ]
     },
     {
       "id": "glass-voice-card-illustration",
-      "name": "透光语音卡",
+      "name": "玻璃语音卡",
       "kind": "illustration",
-      "category": "illustration-object",
+      "category": "illustration-interface",
       "summary": "透光语音卡单独居中，保留紫蓝透光材质和完整控件，卡片外为透明背景。",
       "purpose": "独立复用 WISE 创作界面中的玻璃卡片。",
       "objects": "语音标题、九秒时码、三十条波形、青色光点与提示句",
@@ -18530,7 +18997,8 @@
       "aliases": [
         "语音玻璃卡",
         "WISE 语音",
-        "监听卡"
+        "监听卡",
+        "透光语音卡"
       ],
       "behaviors": [
         "focus"
@@ -18572,13 +19040,16 @@
       "reproduction": {
         "presentation": "透明画板上只放一张紫蓝玻璃卡，原始比例300×148，等比居中；保留界面无衬线文字比例，卡外完全透明。",
         "objects": "语音标题、九秒时码、三十条波形、青色光点与提示句。Voice input；0:09；“…give this idea motion”。"
-      }
+      },
+      "previous_names": [
+        "透光语音卡"
+      ]
     },
     {
       "id": "glass-dialogue-card-illustration",
-      "name": "透光对话卡",
+      "name": "玻璃对话卡",
       "kind": "illustration",
-      "category": "illustration-object",
+      "category": "illustration-interface",
       "summary": "透光对话卡单独居中，保留紫蓝透光材质和完整控件，卡片外为透明背景。",
       "purpose": "独立复用 WISE 创作界面中的玻璃卡片。",
       "objects": "WISE 标题、圆形光点、创作请求、四行回复与两个按钮",
@@ -18590,7 +19061,8 @@
       "aliases": [
         "WISE 对话",
         "创作玻璃卡",
-        "玻璃对话框"
+        "玻璃对话框",
+        "透光对话卡"
       ],
       "behaviors": [
         "focus"
@@ -18632,13 +19104,16 @@
       "reproduction": {
         "presentation": "透明画板上只放一张紫蓝玻璃卡，原始比例578×414，等比居中；保留界面无衬线文字比例，卡外完全透明。",
         "objects": "WISE 标题、圆形光点、创作请求、四行回复与两个按钮。主对话卡标题 WISE；用户说 Bring this idea to life.；回复依次为 Start with a clear idea.、Give every move a purpose.、Let the details catch light.、Make the next frame matter.；按钮为 Build a scene 与 Explore a variation。"
-      }
+      },
+      "previous_names": [
+        "透光对话卡"
+      ]
     },
     {
       "id": "glass-control-card-illustration",
-      "name": "透光创作卡",
+      "name": "玻璃控制卡",
       "kind": "illustration",
-      "category": "illustration-object",
+      "category": "illustration-interface",
       "summary": "透光创作卡单独居中，保留紫蓝透光材质和完整控件，卡片外为透明背景。",
       "purpose": "独立复用 WISE 创作界面中的玻璃卡片。",
       "objects": "月牙图标、创作开关、光感滑杆、太阳图标与百分比",
@@ -18650,7 +19125,8 @@
       "aliases": [
         "玻璃控制卡",
         "创作开关",
-        "光感滑杆"
+        "光感滑杆",
+        "透光创作卡"
       ],
       "behaviors": [
         "focus"
@@ -18692,7 +19168,10 @@
       "reproduction": {
         "presentation": "透明画板上只放一张紫蓝玻璃卡，原始比例356×202，等比居中；保留界面无衬线文字比例，卡外完全透明。",
         "objects": "月牙图标、创作开关、光感滑杆、太阳图标与百分比。Create；Space for your next idea；Light；74%。开关开启，滑杆停在74%。"
-      }
+      },
+      "previous_names": [
+        "透光创作卡"
+      ]
     }
   ],
   "redirects": {

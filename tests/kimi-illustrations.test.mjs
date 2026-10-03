@@ -26,7 +26,7 @@ test('Kimi 插画提取保持原工程只读，八项来源可追溯，已有点
   assert.equal(record.entries.length,8);
   for(const entry of record.entries){
     const def=data.effects.find(e=>e.id===entry.id);
-    assert.equal(def.category,'illustration-object');assert.equal(def.source.path,'catalog/effects/kimi-illustrations.js');
+    assert.equal(def.category,entry.id==='terminal-window-illustration'?'illustration-interface':'illustration-object');assert.equal(def.source.path,'catalog/effects/kimi-illustrations.js');
     for(const anchor of entry.anchors)assert.ok((await source(entry.sources[0])).includes(anchor),anchor);
   }
   for(const v of record.duplicates)assert.equal(data.effects.filter(e=>e.id===v.existing).length,1);
