@@ -597,6 +597,24 @@
     if(insideShape(x,y,c))dots.push({x,y,c,row,col});
   }
   const ringShapePath = cells.map(v=>rectPath(v.x,v.y,cell+.01,cell+.01)).join('');
+  // 每行环形的左右区间由实际格子合并，窄柱逐行展开时保留环内空白。
+  const ringRows=[0,1,2].map(c=>Array.from({length:43},(_,row)=>{
+    const spans=[];
+    for(const v of cells.filter(v=>v.c===c&&v.row===row)){
+      const previous=spans.at(-1);
+      if(previous&&Math.abs(previous[1]-v.x)<.02)previous[1]=v.x+cell;
+      else spans.push([v.x,v.x+cell]);
+    }
+    return spans;
+  }));
+  function expandingRing(c,p){
+    return ringRows[c].map((spans,row)=>spans.map(([left,right],i)=>{
+      const x0=202+c*84+67*i/spans.length,w0=67/spans.length;
+      const y0=50+row*255/43,h0=255/43;
+      return rectPath(x0+(left-x0)*p,y0+(top+row*cell-y0)*p,w0+(right-left-w0)*p+.01,h0+(cell-h0)*p+.01);
+    }).join('')).join('');
+  }
+
   const bases=[85.3,126.3,167.3,208.3,249.3,290.3];
   // 原片184帧左柱底部先露右侧字符，顶部只有短头；两端随后向中部接力。
   const codeStarts=[
@@ -653,14 +671,18 @@
     const codeClips=bases.map((y,j)=>[0,1,2].map(c=>`<clipPath id="${id}-code-window-${c}-${j}"><rect class="bridge-code-window" x="0" y="50" width="0" height="255"/></clipPath>`).join('')).join('');
     const oldClips=[0,1,2].map(c=>`<clipPath id="${id}-old-${c}"><rect x="${202+c*84}" y="50" width="67" height="255"/></clipPath>`).join('');
     const ringClips=[0,1,2].map(c=>`<clipPath id="${id}-ring-${c}"><path d="${cells.filter(v=>v.c===c).map(v=>rectPath(v.x,v.y,cell,cell)).join('')}"/></clipPath>`).join('');
+    const morphClips=[0,1,2,3].map(i=>`<clipPath id="${id}-morph-${i}"><path class="bridge-code-morph"/></clipPath>`).join('');
     const ballCode=[0,1,2].map(c=>`<g class="bridge-ball-code" data-ball="${c}"><text x="${ballCenters[c]-39}" y="164.2">${codeLine(800+c*61,28)}</text><text x="${ballCenters[c]-39}" y="170.8">${codeLine(819+c*61,28)}</text><text class="lower-code" x="${ballCenters[c]-39}" y="204.7">${codeLine(863+c*61,28)}</text><text class="lower-code" x="${ballCenters[c]-39}" y="211.3">${codeLine(891+c*61,28)}</text></g>`).join('');
     root.dataset.art='original';root.style.background='#e2e3dd';
-    root.innerHTML=`<svg class="review-svg kimi-bridge-study" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg"><defs>${shared.paperDefs(id+'-paper')}<clipPath id="${id}-wire"><path class="bridge-wire-clip"/></clipPath><filter id="${id}-soft" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur class="bridge-wire-blur" stdDeviation="0"/></filter>${oldClips}${ringClips}${codeClips}<clipPath id="${id}-shape"><path d="${ringShapePath}"/></clipPath></defs>${shared.paperMarkup(id+'-paper')}${shared.marginalia(16)}<g class="bridge-wire" clip-path="url(#${id}-wire)" filter="url(#${id}-soft)">${wireMarkup}</g><path class="bridge-dots" fill="#11120f"/><g class="bridge-code" font-family="Arial,sans-serif" font-size="5.5" letter-spacing="-.15" fill="#11120f">${textMarkup}</g><path class="bridge-cell-paper" fill="#e2e3dd"/><path class="bridge-solid" fill="#090a07"/><path class="bridge-checker" fill="#090a07"/><path class="bridge-triangles" fill="#090a07"/><g class="bridge-ball-codes" font-family="Arial,sans-serif" font-size="5.5" letter-spacing="-.15" fill="#11120f">${ballCode}</g></svg><canvas class="bridge-ball-layer" width="640" height="360" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"></canvas>`;
+    root.innerHTML=`<svg class="review-svg kimi-bridge-study" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg"><defs>${shared.paperDefs(id+'-paper')}<clipPath id="${id}-wire"><path class="bridge-wire-clip"/></clipPath><filter id="${id}-soft" x="-5%" y="-5%" width="110%" height="110%"><feGaussianBlur class="bridge-wire-blur" stdDeviation="0"/></filter>${oldClips}${ringClips}${morphClips}${codeClips}<clipPath id="${id}-shape"><path d="${ringShapePath}"/></clipPath></defs>${shared.paperMarkup(id+'-paper')}${shared.marginalia(16)}<g class="bridge-wire" clip-path="url(#${id}-wire)" filter="url(#${id}-soft)">${wireMarkup}</g><path class="bridge-dots" fill="#11120f"/><g class="bridge-code" font-family="Arial,sans-serif" font-size="5.5" letter-spacing="-.15" fill="#11120f">${textMarkup}</g><path class="bridge-cell-paper" fill="#e2e3dd"/><path class="bridge-solid" fill="#090a07"/><path class="bridge-checker" fill="#090a07"/><path class="bridge-triangles" fill="#090a07"/><g class="bridge-ball-codes" font-family="Arial,sans-serif" font-size="5.5" letter-spacing="-.15" fill="#11120f">${ballCode}</g></svg><canvas class="bridge-ball-layer" width="640" height="360" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"></canvas>`;
     const query=q=>root.querySelector(q);
     const wire=query('.bridge-wire'),wireClip=query('.bridge-wire-clip'),blur=query('.bridge-wire-blur');
     const dotNode=query('.bridge-dots'),paperCells=query('.bridge-cell-paper'),solid=query('.bridge-solid'),checker=query('.bridge-checker'),triangles=query('.bridge-triangles');
     const codeNodes=Array.from(root.querySelectorAll('.bridge-code-band'));
     const codeWindows=Array.from(root.querySelectorAll('.bridge-code-window'));
+    const morphNodes=Array.from(root.querySelectorAll('.bridge-code-morph'));
+    const codeTexts=codeNodes.map(el=>Array.from(el.querySelectorAll('text')));
+    const morphProgress=[-1,-1,-1,-1];
     const ballCodeNodes=Array.from(root.querySelectorAll('.bridge-ball-code'));
     const canvas=query('.bridge-ball-layer'),ctx=canvas.getContext('2d',{willReadFrequently:true});
     const mosaic=document.createElement('canvas'),mctx=mosaic.getContext('2d',{willReadFrequently:true});
@@ -737,9 +759,9 @@
         if(p>=1)continue;
         for(let col=0;col<6;col++){
           const x=201+c*84+col*11.6;
-          const y0=p===0?48:55+p*180+(5-col)*12*p;
-          const y1=p===0?311:305-p*85-col*11*p;
-          if(y1>y0)wirePath+=rectPath(x,Math.floor(y0/11.2)*11.2,11.7,Math.ceil((y1-y0)/11.2)*11.2);
+          const y0=48+p*187+(5-col)*12*p;
+          const y1=311-p*91-col*11*p;
+          if(y1>y0)wirePath+=rectPath(x,y0,11.7,y1-y0);
         }
       }
       wireClip.setAttribute('d',wirePath);wire.setAttribute('visibility',wirePath?'visible':'hidden');
@@ -748,7 +770,8 @@
       for(const v of dots){
         const enter=[6.53,6.795,6.57][v.c]+(v.y-55)*.00012;
         if(t<enter||!keepCell(v,t)||(patternLimit(v,t)&&t>=arrival(v)))continue;
-        dp+=`M${n(v.x-1)} ${n(v.y)}a1 1 0 1 0 2 0a1 1 0 1 0-2 0`;
+        const q=clamp((t-enter)/.10),radius=q*q*(3-2*q);
+        if(radius>0)dp+=`M${n(v.x-radius)} ${n(v.y)}a${n(radius)} ${n(radius)} 0 1 0 ${n(2*radius)} 0a${n(radius)} ${n(radius)} 0 1 0 ${n(-2*radius)} 0`;
       }
       for(const v of cells){
         if(!keepCell(v,t)||!patternLimit(v,t))continue;
@@ -791,18 +814,20 @@
         if(t<7.80)for(const xx of [426,437.2,448.4])dp+=`M${xx-.7} 136.5a.7 .7 0 1 0 1.4 0a.7 .7 0 1 0-1.4 0`;
       }
       dotNode.setAttribute('d',dp);paperCells.setAttribute('d',pp);solid.setAttribute('d',sp);checker.setAttribute('d',cp);triangles.setAttribute('d',tp);
-      codeNodes.forEach(el=>{
+      codeNodes.forEach((el,index)=>{
         const c=Number(el.dataset.column),band=Number(el.dataset.band),y=bases[band];
-        const middleBottom=c===1&&band===5&&t>=6.63;
-        const ring=t>=[6.53,6.795,6.57][c]||middleBottom;
-        const enter=codeStarts[c][band];
-        const leave=6.99+(y-55)/1100+c*.007;
-        const centerGap=c===1&&t>=6.63&&t<6.795&&band!==5;
-        el.setAttribute('visibility',t>=enter&&t<leave&&!centerGap?'visible':'hidden');
-        el.setAttribute('clip-path',`url(#${id}-${ring?'ring':'old'}-${c})`);
-        el.querySelectorAll('text').forEach(node=>node.setAttribute('x',ring?centers[c]-72.5:202+c*84));
-        const width=ring?390:67*clamp((t-enter)/(codeFull[c][band]-enter));
-        const windowX=ring?128:202+c*84+(band>=3?67-width:0);
+        const slot=c===1&&band===5?3:c,ringAt=slot===3?6.63:[6.53,6.795,6.57][c];
+        const q=clamp((t-ringAt)/.18),progress=q*q*(3-2*q);
+        const enter=codeStarts[c][band],leave=6.99+(y-55)/1100+c*.007;
+        el.setAttribute('visibility',t>=enter&&t<leave?'visible':'hidden');
+        if(progress!==morphProgress[slot]){
+          morphNodes[slot].setAttribute('d',expandingRing(c,progress));morphProgress[slot]=progress;
+        }
+        el.setAttribute('clip-path',`url(#${id}-${progress===0?'old-'+c:progress===1?'ring-'+c:'morph-'+slot})`);
+        codeTexts[index].forEach(node=>node.setAttribute('x',n(202+c*84+(centers[c]-72.5-202-c*84)*progress)));
+        const oldWidth=67*clamp((t-enter)/(codeFull[c][band]-enter));
+        const width=oldWidth+(390-oldWidth)*progress;
+        const oldX=202+c*84+(band>=3?67-oldWidth:0),windowX=oldX+(128-oldX)*progress;
         codeWindows[band*3+c].setAttribute('x',n(windowX));
         codeWindows[band*3+c].setAttribute('width',n(width));
       });
@@ -863,12 +888,15 @@ function drawGlyph(ctx,frame,opacity=1){
  }
  ctx.save();ctx.globalAlpha=opacity;ctx.drawImage(source,160,0,312,360);ctx.restore();
 }
-// 左下鼓起、右上隆起和两端斜切，来自原片字符团的独立上下边。
-const bandX=[171,176,184,196,216,240,264,288,312,336,360,384,400,416,432,444,449];
-const bandTop=[168,163,163,163,164,159,152,149,145,143,138,134,135,143,153,161,173];
-const bandBottom=[181,190,200,211,224,224,222,212,208,207,204,201,200,199,203,200,190];
+// 紧凑横笔参考：书法字典标注的柳公权「一」（具体碑帖未注明）。
+// https://ishufa.net/i/shufa%2Fk%2F103081.gif
+// 手工重构斜入笔、中段提锋、右端顿收的上下边；不嵌入参考图片。
+const bandX=[210,216,223,232,244,262,284,306,328,350,372,390,401,412,422,428,430];
+const bandLeft=bandX[0],bandWidth=bandX.at(-1)-bandLeft;
+const bandTop=[190,184,179,176,175,172,170,167,165,163,160,157,159,166,174,179,184];
+const bandBottom=[194,198,201,206,205,201,199,197,195,192,192,194,196,197,193,190,186];
 function edgeAt(values,x,xs=bandX){let i=1;while(i<xs.length-1&&x>xs[i])i++;return mix(values[i-1],values[i],clamp((x-xs[i-1])/(xs[i]-xs[i-1])));}
-function bandPoint(x,v,inset=0){return [x,mix(edgeAt(bandTop,x)+inset,edgeAt(bandBottom,x)-inset,v)];}
+function bandPoint(x,v,inset=0){const top=edgeAt(bandTop,x),bottom=edgeAt(bandBottom,x),padding=Math.min(inset,(bottom-top)/2);return [x,mix(top+padding,bottom-padding,v)];}
 // 二的上短横与下长横分别保留落笔厚度、向右抬升和收笔肩。
 const shortX=[275.1,280.6,288.5,299.5,312.1,323.9,335.8,345.2,353.9,359.4];
 const shortTop=[130,123.5,121.4,118.5,117,114.1,112,118.5,129.3,138];
@@ -883,12 +911,12 @@ function particleData(){
  const mask=document.createElement('canvas');mask.width=1280;mask.height=720;const c=mask.getContext('2d');c.scale(2,2);drawGlyph(c,76);const pixels=c.getImageData(0,0,1280,720).data,cells=[];
  for(let x=176;x<459;x+=2.9)for(let y=27;y<336;y+=2.35){const i=(Math.round(y*2)*1280+Math.round(x*2))*4;if(pixels[i+3]>0&&pixels[i]<155)cells.push([x,y]);}
  characters=[];for(let x=176;x<459;x+=3.25)for(let y=27;y<336;y+=5.45){const i=(Math.round(y*2)*1280+Math.round(x*2))*4;if(pixels[i+3]>0&&pixels[i]<155)characters.push({origin:[x,y],index:characters.length});}
- const columns=new Map();characters.forEach(p=>{const x=p.origin[0];if(!columns.has(x))columns.set(x,[]);columns.get(x).push(p);});const minX=Math.min(...columns.keys()),maxX=Math.max(...columns.keys());columns.forEach(column=>{const x=171+(column[0].origin[0]-minX)/(maxX-minX)*278,height=edgeAt(bandBottom,x)-edgeAt(bandTop,x),count=Math.min(column.length,Math.max(1,Math.floor(height/6.2))),keep=new Set(Array.from({length:count},(_,i)=>Math.round(count>1?i*(column.length-1)/(count-1):column.length/2)));column.forEach((p,index)=>{p.order=column.length>1?index/(column.length-1):.5;p.keepInBand=keep.has(index);});});
- characters.forEach(p=>{p.h=5.4+random(p.index+613)*1.1;const x=171+(p.origin[0]-minX)/(maxX-minX)*278;p.target=bandPoint(x,p.order,p.h/2);});
+ const columns=new Map();characters.forEach(p=>{const x=p.origin[0];if(!columns.has(x))columns.set(x,[]);columns.get(x).push(p);});const minX=Math.min(...columns.keys()),maxX=Math.max(...columns.keys());columns.forEach(column=>{const x=bandLeft+(column[0].origin[0]-minX)/(maxX-minX)*bandWidth,height=edgeAt(bandBottom,x)-edgeAt(bandTop,x),count=Math.min(column.length,Math.max(1,Math.floor(height/6.2))),keep=new Set(Array.from({length:count},(_,i)=>Math.round(count>1?i*(column.length-1)/(count-1):column.length/2)));column.forEach((p,index)=>{p.order=column.length>1?index/(column.length-1):.5;p.keepInBand=keep.has(index);});});
+ characters.forEach(p=>{p.h=5.4+random(p.index+613)*1.1;const x=bandLeft+(p.origin[0]-minX)/(maxX-minX)*bandWidth;p.target=bandPoint(x,p.order,p.h/2);});
  particles=Array.from({length:17400},(_,i)=>{
   const u=random(i+19),v=random(i+178),w=random(i+811),g=i%10,a=u*Math.PI*2;
   const col=Math.floor(u*220),row=Math.floor(v*32);
-  let start=bandPoint(171+col/219*278+(w-.5)*2.4,row/31);
+  let start=bandPoint(bandLeft+col/219*bandWidth+(w-.5)*2.4,row/31);
   if(i%9===0){start[0]+=(random(i+973)-.5)*8;start[1]+=(w-.5)*8;}
   const lead=i<characters.length;if(lead)start=characters[i].target;
   const origin=lead?characters[i].origin:cells[(i*61+Math.floor(w*37))%cells.length];let mid;const gauss=Math.sqrt(-2*Math.log(.04+v*.96));

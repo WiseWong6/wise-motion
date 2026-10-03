@@ -18,6 +18,17 @@ await mkdir(path.join(root, 'references/effects'), {recursive: true});
 await output('catalog/registry-data.js', '/* 自动生成自 registry.json；请修改权威定义后运行 node scripts/build.mjs。AGPL-3.0-only */\nglobalThis.MotionRegistry = ' + JSON.stringify(registry) + ';\n');
 const historical=await history(registry);
 await output('catalog/history-data.js','/* 本机历史配方编译数据；权威审查与来源快照位于 private/state/wise-motion/history。 */\nglobalThis.MotionHistory = '+JSON.stringify(historical)+';\n');
+// 首屏页签数量也从目录生成；历史数据尚未按需加载时沿用这个准确总数。
+const tabKinds=['action','composition','illustration','recipe'];
+const tabCounts=Object.fromEntries(tabKinds.map(kind=>[kind,kind==='recipe'?historical.recipes.length:registry.effects.filter(effect=>effect.kind===kind).length]));
+const seenTabs=new Set();
+const page=await readFile(path.join(root,'catalog/index.html'),'utf8');
+const countedPage=page.replace(/(<button\b[^>]*data-kind="(action|composition|illustration|recipe)"[^>]*>[^<]*<span class="pill-count">)\d+(<\/span>)/g,(_,before,kind,after)=>{
+  if(seenTabs.has(kind))throw new Error('目录页签重复：'+kind);
+  seenTabs.add(kind);return before+tabCounts[kind]+after;
+});
+if(seenTabs.size!==tabKinds.length)throw new Error('目录页签数量节点缺失');
+await output('catalog/index.html',countedPage);
 const review=reviewMarkdown(historical,registry);
 if(checking){if(await readFile(path.join(state,'review.md'),'utf8')!==review)throw new Error('历史审查报告需要重新生成');}
 else await writeFile(path.join(state,'review.md'),review);

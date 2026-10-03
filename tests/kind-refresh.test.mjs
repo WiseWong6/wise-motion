@@ -2,7 +2,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {environment} from './helpers.mjs';
+import {JSDOM} from 'jsdom';
+import {environment,data} from './helpers.mjs';
+import {history} from '../scripts/history.mjs';
 const settle=()=>new Promise(resolve=>setTimeout(resolve,0));
 function storage(){
   const values=new Map();
@@ -86,4 +88,27 @@ test('存储内容无效或浏览器拒绝存储时，默认目录和手动切�
       assert.equal(activeKind(env.w.document),'composition');checkList(env.w,'composition');
     }finally{env.close();}
   }
+});
+
+
+test('四个页签数量在首屏、刷新及历史延迟加载前后始终一致',async()=>{
+  const historical=await history(data);
+  const counts={...Object.fromEntries(['action','composition','illustration'].map(kind=>[kind,data.effects.filter(e=>e.kind===kind).length])),recipe:historical.recipes.length};
+  const check=d=>{
+    for(const [kind,count] of Object.entries(counts))assert.equal(d.querySelector(`[data-kind="${kind}"] .pill-count`).textContent,String(count),kind+' 数量错误');
+  };
+  const initial=new JSDOM(await readFile(new URL('../catalog/index.html',import.meta.url),'utf8'));
+  try{check(initial.window.document);}finally{initial.window.close();}
+  const memory=storage();
+  const first=await environment(true,{staticPreview:true,lazyHistory:true,sessionStorage:memory});
+  try{
+    const {w}=first,d=w.document;check(d);assert.equal(w.MotionHistory,undefined);
+    for(const kind of ['composition','illustration','action','recipe']){d.querySelector(`[data-kind="${kind}"]`).click();check(d);}
+    await finishHistory(w);check(d);checkList(w,'recipe');
+  }finally{first.close();}
+  const refreshed=await environment(true,{staticPreview:true,lazyHistory:true,sessionStorage:memory});
+  try{
+    check(refreshed.w.document);assert.equal(refreshed.w.MotionHistory,undefined);
+    await finishHistory(refreshed.w);check(refreshed.w.document);checkList(refreshed.w,'recipe');
+  }finally{refreshed.close();}
 });
