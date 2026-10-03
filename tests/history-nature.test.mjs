@@ -8,7 +8,7 @@ import {JSDOM} from 'jsdom';
 import {environment,data,frameMarkup} from './helpers.mjs';
 import {history,state} from '../scripts/history.mjs';
 const scenes='/Users/wisewong/Documents/Developer/scenes/';
-const redirects={'osmanthus-event-moonphase':'moon-event-fill','sunset-specular-reflection':'sunset-water-reflection','recovered-forward-boat':'forward-boat-illustration','recovered-forward-plane':'forward-plane-illustration','drive-release':'drive-balloon-release','flow-radial-release':'dandelion-radial-release','tutorial-frog-ripple':'frog-impact-ripple'};
+const redirects={'osmanthus-event-moonphase':'moon-event-fill','sunset-specular-reflection':'sunset-water-reflection','recovered-forward-boat':'forward-boat-illustration','recovered-forward-plane':'forward-plane-illustration','drive-release':'drive-balloon-release','flow-radial-release':'dandelion-radial-release'};
 const art=['osmanthus-moon-illustration','sunset-sun-illustration','forward-boat-illustration','forward-plane-illustration','drive-car-illustration','dandelion-subject-illustration','dandelion-seed-illustration'];
 const ids=[...new Set([...Object.values(redirects),...art])],def=id=>data.effects.find(e=>e.id===id);
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} != ${b}`);
@@ -62,9 +62,8 @@ function strokeContext(){
  const c={lines,save(){stack.push({...state});},restore(){state=stack.pop();},translate(x,y){state.transform+=` translate(${x} ${y})`;},scale(x,y){state.transform+=` scale(${x} ${y})`;},rotate(a){state.transform+=` rotate(${a*180/Math.PI})`;},beginPath(){path='';},moveTo(x,y){path+=`M${x} ${y}`;},lineTo(x,y){path+=`L${x} ${y}`;},quadraticCurveTo(...n){path+='Q'+n.join(' ');},ellipse(){},fill(){},stroke(){lines.push({d:path,transform:state.transform,alpha:state.globalAlpha,width:state.lineWidth,color:state.strokeStyle});}};
  for(const k of ['globalAlpha','lineWidth','strokeStyle','fillStyle'])Object.defineProperty(c,k,{get:()=>state[k],set:v=>{state[k]=v;}});return c;
 }
-test('蒲公英原曲线保持，放大插画仍为细冠毛，原起跳事件落水后才扩波',async()=>{
+test('蒲公英原曲线保持，放大插画仍为细冠毛',async()=>{
  const o={window:{JourneyAir:class{},JourneyClouds:class{},JourneyWater:class{},JourneyEncounters:class{}}};vm.createContext(o);vm.runInContext(await readFile(scenes+'motion-catalog/source-projects/dandelion-scene/assets/js/dandelion.js','utf8'),o);const j=new o.window.DandelionJourney();
- const tutorial=await readFile('/Users/wisewong/Documents/Developer/wise-video/motion-tutorial/ai-motion-tutorial-portrait-remake/scenes/dandelion.js','utf8');const start=tutorial.indexOf('  const COURSE ='),end=tutorial.indexOf('\n  function ',tutorial.indexOf('function course(t)')+20);vm.runInContext(tutorial.slice(start,end)+'\nglobalThis.courseAt=course;',o);const event=j.frogEvents(o.courseAt)[0];
  const env=await environment();try{
   const {w}=env,root=w.document.getElementById('root'),e=def('dandelion-radial-release'),render=w.MotionFactories[e.id](root,w.MotionKit,e);for(const ms of [0,249,250,400,800,1000,400]){render(ms);near(+root.firstElementChild.dataset.radius,j.openingEvent(1.4+ms/1000).radius);}
   for(const [id,r,scale,y,hairs,thin] of [['dandelion-subject-illustration',42,1.25,116,137,.5],['dandelion-seed-illustration',8,6,128,11,1/9]]){
@@ -72,7 +71,6 @@ test('蒲公英原曲线保持，放大插画仍为细冠毛，原起跳事件�
    const actual=[...ar.querySelectorAll('path[stroke]')].map(n=>({d:n.getAttribute('d'),transform:n.getAttribute('transform'),alpha:+n.getAttribute('opacity'),width:+n.getAttribute('stroke-width'),color:n.getAttribute('stroke')}));assert.equal(hash(JSON.stringify(actual)),hash(JSON.stringify(ctx.lines)),'原冠毛曲线、颜色、透明度或线宽有差异');assert.equal(actual.length,hairs+1);assert.ok(actual.every(line=>line.width*scale<.6),'冠毛放大后变成粗杆');assert.equal(ar.querySelectorAll('path:not([stroke])').length,1);
    const before=frameMarkup(ar);for(const ms of [0,1500,3000]){still(ms);assert.equal(frameMarkup(ar),before);}
   }
-  const f=def('frog-impact-ripple'),frog=w.MotionFactories[f.id](root,w.MotionKit,f);for(const ms of [0,400,859,900,1200,2100]){frog(ms);near(+root.firstElementChild.dataset.eventAt,event.at);near(+root.firstElementChild.dataset.age,ms/1000-.4-event.duration);assert.equal(root.querySelectorAll('path[stroke="#fffde9"]').length,ms>860&&ms<2010?1:0);}
  }finally{env.close();}
 });
 test('无帆木船保留原船壳及归灯，纸飞机按原曲线折翼，渐变坐标不重复偏移',async()=>{
@@ -106,8 +104,9 @@ test('七幅插画完整等比置入并避开底部播放条，汽车不裁猫�
   for(const id of art){const e=def(id),render=w.MotionFactories[id](root,w.MotionKit,e);for(const ms of [0,e.preview_ms,e.duration_ms]){render(ms);if(root.querySelector('svg')){const b=bounds(root);assert.ok(b.x0>=36&&b.x1<=604&&b.y0>=38&&b.y1<=278,id+' '+JSON.stringify(b));}else{const canvas=root.firstElementChild;assert.equal(canvas.width,1280);assert.equal(canvas.height,720);const draw=contexts.get(canvas).draws.at(-1);if(id==='osmanthus-moon-illustration')assert.ok(draw[2]>=60&&draw[2]+draw[4]<=278);}}if(render.destroy)render.destroy();}
  }finally{env.close();}
 });
-test('十二项独立导出可定位和释放，七个历史入口删除，旧书签转向正式条目',async()=>{
+test('十一项独立导出可定位和释放，六个历史入口已迁入，落入扩波已剔除',async()=>{
  const crosswalk=JSON.parse(await readFile(state+'/crosswalk.json','utf8')),historical=await history(data),env=await environment(true);try{
+  assert.ok(!def('frog-impact-ripple'));assert.ok(!env.w.MotionFactories['frog-impact-ripple']);assert.equal(crosswalk.rules['tutorial-frog-ripple'].status,'excluded');assert.ok(!historical.recipes.some(r=>r.history_id==='tutorial-frog-ripple'));assert.ok(!data.redirects['history-tutorial-frog-ripple']);
   for(const [old,id] of Object.entries(redirects)){assert.equal(crosswalk.rules[old].status,'excluded');assert.ok(!historical.recipes.some(r=>r.history_id===old));assert.equal(data.redirects['history-'+old],id);const linked=await environment(true,{hash:'#history-'+old});try{assert.equal(linked.w.document.querySelector('.effect-item[aria-current="true"]').dataset.effect,id);}finally{linked.close();}}
   for(const id of ids){const e=def(id),html=env.w.MotionExport.code(e);assert.doesNotMatch(html,/history-data|history-runtime|\/Users\/|p5(?:\.min)?\.js|<audio/);const dom=new JSDOM(html,{url:'file:///wise-motion/demo.html',runScripts:'outside-only',pretendToBeVisual:true});try{
     const w=dom.window,contexts=canvasContexts(w);w.matchMedia=()=>({matches:false});w.ResizeObserver=class{observe(){}disconnect(){}};for(const s of w.document.querySelectorAll('script'))w.eval(s.src?await readFile(new URL('../'+s.getAttribute('src'),import.meta.url),'utf8'):s.textContent);

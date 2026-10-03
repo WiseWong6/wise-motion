@@ -175,6 +175,29 @@ test('线团转柱体全程不断线，中途不停在散点位置，末态仍�
  }finally{draw?.destroy();bridge?.destroy();e.close();}
 });
 
+test('字符窄柱展开为宽环经过多个中间帧，点阵不在切点整片跳出',async()=>{
+ const e=setup();let draw;
+ try{
+  draw=e.w.MotionFactories['material-form-chain'](e.root,{},definition('material-form-chain'));await draw.ready;
+  const band=e.root.querySelector('.bridge-code-band[data-column="0"][data-band="0"]'),text=band.querySelector('text');
+  const xs=[],widths=[],shapes=[];
+  for(const time of [400,430,460,490,520,550,580,610]){
+   draw(time);xs.push(Number(text.getAttribute('x')));widths.push(Number(e.root.querySelector('.bridge-code-window').getAttribute('width')));
+   shapes.push(e.root.querySelector('.bridge-code-morph').getAttribute('d'));
+  }
+  assert.equal(xs[0],202);assert.equal(xs.at(-1),128);
+  assert.equal(widths[0],67);assert.equal(widths.at(-1),390);
+  assert.ok(new Set(xs).size>=7,'字符横移有足够多的中间位置');
+  assert.ok(new Set(shapes).size>=7,'环柄轮廓逐行展开而非直接换遮罩');
+  xs.slice(1).forEach((x,i)=>assert.ok(x<=xs[i]&&xs[i]-x<20,'相邻帧不能横跳约七十四像素'));
+  widths.slice(1).forEach((width,i)=>assert.ok(width>=widths[i]&&width-widths[i]<90));
+  draw(431);const firstDot=e.root.querySelector('.bridge-dots').getAttribute('d');
+  assert.ok(firstDot.length>0);assert.doesNotMatch(firstDot,/a1 1 /,'初始点阵从小点建立，不能整片直接出现满尺寸点');
+  draw(500);const middle=geometry(e.root);draw(2000);draw(500);assert.equal(geometry(e.root),middle);
+  draw(530);assert.equal(e.root.querySelector('.bridge-code-band[data-column="1"][data-band="0"]').getAttribute('visibility'),'visible','中柱等待展开时不能骤然消失');
+ }finally{draw?.destroy();e.close();}
+});
+
 test('独立材质接续只准备实际桥接画布和纤维素材，不建立开头颗粒采样',async()=>{
  const e=setup();let draw;
  try{

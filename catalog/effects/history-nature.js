@@ -778,7 +778,7 @@ function background(c) { ctx.fillStyle = colorOf([c]); ctx.fillRect(0, 0, W, H);
   const car=vehiclePose(t);push();translate(car.x,car.y);scale(CAR_SCALE);drawXiaokuiCar(t,driveDistance(t)/CAR_SCALE,0);pop();
  }
  F['drive-balloon-release']=(root,K,def)=>svgFactory(root,def,(ctx,t,svg)=>{
-  ctx.fillStyle=BLUE;ctx.fillRect(0,0,900,1200);drawDrive(ctx,t,false);
+  drawDrive(ctx,t,false);
   svg.dataset.released=String(Array.from({length:BALLOON_COUNT},(_,i)=>t>release(i)).filter(Boolean).length);
   svg.dataset.firstX=String(balloonState(0,t).p.x);svg.dataset.firstY=String(balloonState(0,t).p.y);
   svg.dataset.firstEndX=String(balloonString(0,t).end.x);svg.dataset.firstEndY=String(balloonString(0,t).end.y);
@@ -1137,6 +1137,7 @@ function waveform(ctx,x,y,age){
  let journey;const J=()=>journey??=new DandelionJourney();
  F['dandelion-radial-release']=(root,K,def)=>svgFactory(root,def,(ctx,t,svg)=>{
   const j=J(),sourceTime=1.4+t,state={time:sourceTime,courseAt:course},event=j.openingEvent(sourceTime);
+  svg.style.backgroundColor='#526957';
   ctx.fillStyle='#526957';ctx.fillRect(0,200,900,660);j.openingAir(ctx,state,event);
   for(const seed of j.openingSeeds){const p=j.openingPose(seed,sourceTime);j.floret(ctx,p.x,p.y,p.radius,p.angle,j.openingGrowth(seed,sourceTime));}
   svg.dataset.radius=String(event.radius);svg.dataset.sourceTime=String(sourceTime);
@@ -1148,16 +1149,7 @@ function waveform(ctx,x,y,age){
  F['dandelion-seed-illustration']=(root,K,def)=>{
   const render=svgFactory(root,def,ctx=>{const j=J();ctx.translate(320,128);ctx.scale(6,6);j.floret(ctx,0,0,8,0,1);},'0 0 640 360',1/9);render(0);return ()=>{};
  };
- F['frog-impact-ripple']=(root,K,def)=>{
-  const j=J(),event=j.frogEvents(course)[0],one=Object.create(j);one.frogEvents=()=>[event];
-  return svgFactory(root,def,(ctx,t,svg)=>{
-   const sourceTime=event.at-.4+t,p=j.frogPose(event,sourceTime),age=sourceTime-event.at-event.duration;
-   ctx.fillStyle='#07796a';ctx.fillRect(0,0,640,360);ctx.translate(320,240);ctx.scale(1.8,1.8);ctx.translate(-p.landX,-p.landY);
-   const leaf=j.leafPosition(event.leaf,sourceTime);j.lotus(ctx,leaf.x,leaf.y,event.leaf.r,0,event.leaf.phase);
-   one.pondAnimals(ctx,{time:sourceTime,courseAt:course});waveform(ctx,p.landX,p.landY+38,age);
-   svg.dataset.age=String(age);svg.dataset.sourceTime=String(sourceTime);svg.dataset.eventAt=String(event.at);svg.dataset.eventDuration=String(event.duration);
-  });
- };
+
 })();
 
 /* 原 NASA 正面月貌与蝴蝶抵达月面的事件时钟 */
