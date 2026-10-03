@@ -58,7 +58,7 @@
   function readKind() {
     try {
       const saved = sessionStorage.getItem(KIND_KEY);
-      if (['action','composition','illustration','recipe'].includes(saved)) return saved;
+      if (['action','composition','illustration'].includes(saved)) return saved;
     } catch (_) { /* 无法读取时使用默认页签。 */ }
     return null;
   }

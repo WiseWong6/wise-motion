@@ -1,6 +1,7 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
 import {readFile} from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
+import {historyTestData} from './history-fixture.mjs';
 export const data = JSON.parse(await readFile(new URL('../catalog/registry.json', import.meta.url), 'utf8'));
 // 原片对照测试使用设计时钟；目录节奏另测，避免把原动作关系也改成新预期。
 export function sourceDefinition(effect) {
@@ -21,7 +22,9 @@ export function frameMarkup(root) {
   return value.replace(/-?\d+\.\d+(?:e[-+]?\d+)?/gi,n=>String(Math.round(Number(n)*1e7)/1e7));
 }
 export async function environment(withApp = false, options = {}) {
-  const html = withApp ? await readFile(new URL('../catalog/index.html', import.meta.url), 'utf8') : '<!doctype html><div id="root"></div>';
+  let html = withApp ? await readFile(new URL('../catalog/index.html', import.meta.url), 'utf8') : '<!doctype html><div id="root"></div>';
+  // 历史兼容接口只用测试专属入口验证，正式页面不再提供历史页签。
+  if(withApp&&options.historyFixture)html=html.replace('<button data-kind="action"','<button data-kind="recipe" aria-pressed="false">历史 <span class="pill-count">0</span></button><button data-kind="action"');
   const dom = new JSDOM(html, {url:'file:///wise-motion/catalog/index.html'+(options.hash||''),runScripts:'outside-only',pretendToBeVisual:true});
   const w = dom.window;
   if (options.sessionStorage) Object.defineProperty(w, 'sessionStorage', {value:options.sessionStorage});
@@ -59,7 +62,10 @@ export async function environment(withApp = false, options = {}) {
       sources.push(file);
     }
   }
-  for (const file of sources) w.eval(await readFile(new URL('../' + file, import.meta.url), 'utf8'));
+  for (const file of sources) {
+    w.eval(await readFile(new URL('../' + file, import.meta.url), 'utf8'));
+    if(file==='catalog/history-data.js'&&options.historyFixture)w.MotionHistory=historyTestData();
+  }
   // 原作画面对照显式选择静帧；默认环境完整保留正式页面的自动播放。
   // 使用真正的播放条暂停与定位，不替换播放器，也不改变系统偏好。
   if (withApp && options.staticPreview) {
@@ -89,3 +95,10 @@ export async function environment(withApp = false, options = {}) {
 
 // 原作形状和计时不变；颜色按本次统一的主题色位核对。
 export const themed=value=>({"#0AE448": "var(--accent)", "#FFFCE1": "var(--ink)", "#BBBAA6": "var(--muted)", "#191919": "var(--card)", "#42433D": "var(--card-edge)", "#ABFF84": "var(--teal)", "#DDE8D8": "var(--ink)", "#AEB7A8": "var(--muted)", "#40614c": "var(--teal)", "#718074": "var(--muted)", "#416a86": "var(--blue)", "#bd5039": "var(--accent)", "#c8d3d3": "var(--path)", "#9C9C9E": "var(--faint)", "#30302E": "var(--ink)"})[value]||value;
+
+// 已迁出的历史绘制类型用独立夹具验证兼容接口，不恢复正式目录入口。
+export function historicalDrawingFixture(base, suffix='drawing-fixture', type='web-isolated') {
+  const entry=base.entries[0];
+  return {...base,id:base.id+'-'+suffix,duration_ms:4000,preview_ms:2600,
+    entries:[{...entry,id:entry.id+'-'+suffix,preview:{type,duration:4,poster:.65,engine:'fixture',mode:'fixture'}}]};
+}

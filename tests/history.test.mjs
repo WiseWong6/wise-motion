@@ -5,20 +5,22 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {history,state} from '../scripts/history.mjs';
-import {environment,data} from './helpers.mjs';
-const historical=await history(data);
+import {environment,data,historicalDrawingFixture} from './helpers.mjs';
+import {historyTestData} from './history-fixture.mjs';
+const historical=await history(data),fixture=historyTestData();
 const {rank}=createRequire(import.meta.url)('../catalog/matching.js');
 const tick=()=>new Promise(resolve=>setTimeout(resolve,0));
 async function historyEnvironment(withApp=false){
-  const env=await environment(withApp);
+  const env=await environment(withApp,{historyFixture:true});
   if(!withApp)for(const file of ['catalog/history-data.js','catalog/history-runtime.js'])env.w.eval(await readFile(new URL('../'+file,import.meta.url),'utf8'));
+  if(!withApp)env.w.MotionHistory=historyTestData();
   const media=env.w.HTMLMediaElement.prototype;media.pause=function(){};media.load=function(){};media.play=function(){return Promise.resolve();};
   return env;
 }
 test('每条历史审查均有出处，案例源码与原片范围没有混并，原源码保持只读',async()=>{
   const snapshot=JSON.parse(await readFile(state+'/source-snapshot.json','utf8'));
-  assert.deepEqual(historical.counts,{"reviewed":311,"recipes":9,"entries":9,"animation":9,"document":0});
-  assert.equal(historical.excluded.length,302);
+  assert.deepEqual(historical.counts,{"reviewed":311,"recipes":0,"entries":0,"animation":0,"document":0});
+  assert.equal(historical.excluded.length,311);
   assert.ok(historical.excluded.some(e=>e.id==='reading-rhythm'));
   assert.ok(!historical.recipes.some(e=>e.history_id==='reading-rhythm'));
   assert.ok(historical.excluded.some(e=>e.id==='resume-typography'));
@@ -78,7 +80,7 @@ test('原作绘制器载入迟到时释放，反复定位与观看倍率不改�
   const env=await historyEnvironment();
   try{
     const {w}=env,root=w.document.getElementById('root');
-    const effect=historical.recipes.find(r=>r.entries.some(e=>e.preview.type==='web-isolated'));
+    const effect=historicalDrawingFixture(fixture.recipes[0]);
     const entry=effect.entries.find(e=>e.preview.type==='web-isolated');
     let resolve,disposed=0,draws=0;
     const late=w.MotionHistoryRuntime.create(root,effect,{caseId:entry.id,mount:()=>new Promise(r=>{resolve=r;})});
@@ -97,7 +99,7 @@ test('原视频强制静音，原片裁剪范围与预览定位分别计算，�
   const env=await historyEnvironment();
   try{
     const {w}=env,root=w.document.getElementById('root');
-    const original=historical.recipes.find(r=>r.entries.some(e=>e.preview.type==='original-crop'&&e.preview.duration>2.2));
+    const original=fixture.recipes.find(r=>r.entries.some(e=>e.preview.type==='original-crop'&&e.preview.duration>2.2));
     const source=original.entries.find(e=>e.preview.type==='original-crop'&&e.preview.duration>2.2);
     // 用仍保留的原视频构造非零起点，避免裁剪检查依赖被剔除的目录条目。
     const entry={...source,preview:{...source.preview,start:(source.preview.start||0)+1,duration:source.preview.duration-1}};
@@ -116,12 +118,12 @@ test('历史目录筛选与配方切换同步输出、源码和时长，前后�
     const {w}=env,d=w.document;
     const originalCreate=w.MotionHistoryRuntime.create;
     w.MotionHistoryRuntime.create=(root,e,options)=>originalCreate(root,e,{...options,mount:async canvas=>({render(t){canvas.dataset.time=String(t);},dispose(){}})});
-    d.querySelector('[data-kind="recipe"]').click();assert.equal(d.querySelectorAll('#effects-list [data-effect]').length,historical.counts.recipes);
-    const effect=w.MotionHistory.recipes.find(r=>r.entries[0].preview.type==='web-isolated');
+    d.querySelector('[data-kind="recipe"]').click();assert.equal(d.querySelectorAll('#effects-list [data-effect]').length,fixture.counts.recipes);
+    const effect=w.MotionHistory.recipes.find(r=>r.entries[0].preview.type==='original-crop');
     d.querySelector(`[data-effect="${effect.id}"]`).click();await tick();
     assert.equal(w.MotionRuntime.instanceCount,0);assert.equal(w.MotionHistoryRuntime.instanceCount,1);
     const select=d.getElementById('history-case');assert.equal(select.options.length,1);assert.equal(select.value,effect.entries[0].id);
-    const next=w.MotionHistory.recipes.find(r=>r.entries[0].preview.type==='web-isolated'&&r.duration_ms!==effect.duration_ms);
+    const next=w.MotionHistory.recipes.find(r=>r.entries[0].preview.type==='original-crop'&&r.duration_ms!==effect.duration_ms);
     d.querySelector(`[data-effect="${next.id}"]`).click();await tick();
     assert.equal(w.MotionHistoryRuntime.instanceCount,1);
     const entry=next.entries[0];

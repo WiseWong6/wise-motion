@@ -84,7 +84,7 @@ export async function history(registry) {
   const caseIds=new Set(recipes.flatMap(r=>r.entries.flatMap(e=>e.cases.map(c=>c.id))));
   const originals={...snapshot.originals,clips:snapshot.originals.clips.filter(c=>caseIds.has(c.id)),sources:Object.fromEntries(Object.entries(snapshot.originals.sources).filter(([id])=>used.has(id)))};
   const source_files=await reproductionSources(recipes,snapshot.source_root);
-  return {version:1,date:snapshot.date,source_root:sourceURL,source_files,merged,redirects,categories:snapshot.taxonomy.map(t=>({id:'history-'+t.id,name:crosswalk.category_names?.[t.id]||t.title,boundary:t.boundary})),recipes,excluded,originals,counts:{reviewed:snapshot.rules.length,recipes:recipes.length,entries:recipes.reduce((n,r)=>n+r.entries.length,0),animation:recipes.filter(r=>r.domain==='animation').length,document:recipes.filter(r=>r.domain==='document').length}};
+  return {version:1,date:snapshot.date,source_root:sourceURL,source_files,merged,redirects,categories:(recipes.length?snapshot.taxonomy:[]).map(t=>({id:'history-'+t.id,name:crosswalk.category_names?.[t.id]||t.title,boundary:t.boundary})),recipes,excluded,originals,counts:{reviewed:snapshot.rules.length,recipes:recipes.length,entries:recipes.reduce((n,r)=>n+r.entries.length,0),animation:recipes.filter(r=>r.domain==='animation').length,document:recipes.filter(r=>r.domain==='document').length}};
 }
 export function reviewMarkdown(data,registry){
   const out=['# 历史动画与文稿逐条审查','',`审查日期：${data.date}。共 ${data.counts.reviewed} 条，纳入 ${data.counts.recipes} 条配方、${data.counts.entries} 个案例。`,'','来源文件、定位标记和本机预览存在性已自动核对；本轮没有逐帧截图或人工视觉验收。原工程保持只读；沿用本机引用，未迁移字体、绘制素材、依赖库和声音。','','标准动作解释可复用的结构；历史配方保留原作的完整参数关系、案例级源码与时钟。标为「提炼组成动作」不代表完整原效果已经通用封装。','','## 范围外记录',''];

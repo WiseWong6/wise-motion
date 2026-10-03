@@ -5,6 +5,7 @@ import {readFile} from 'node:fs/promises';
 import {environment,data} from './helpers.mjs';
 import {reproductionSources} from '../scripts/reproduction-sources.mjs';
 
+import {historyTestData} from './history-fixture.mjs';
 async function setup(){
   const env=await environment();
   env.w.eval(await readFile(new URL('../catalog/history-data.js',import.meta.url),'utf8'));
@@ -48,7 +49,7 @@ test('复制提示词按当前速度给出实际制作时长，入场与循环�
 test('历史代码复制当前案例的实际源码及文字依赖，原文件内容逐字保留',async()=>{
   const env=await setup();
   try{
-    const history=env.w.MotionHistory;
+    const history=env.w.MotionHistory=historyTestData();
     for(const effect of history.recipes)for(const entry of effect.entries){
       const text=env.w.MotionExport.code(effect,{caseId:entry.id});
       for(const name of entry.source_packages)assert.match(name,/^(?:@[a-z0-9._-]+\/)?[a-z0-9._-]+$/i,'依赖包不能来自普通对象字段：'+name);
@@ -66,7 +67,7 @@ test('历史代码复制当前案例的实际源码及文字依赖，原文件�
 test('源码收集保留引用关系，重复文件只存一份，素材输入与依赖包明确记录',async()=>{
   const env=await setup();
   try{
-    const history=env.w.MotionHistory,recipe=history.recipes.find(e=>e.entries[0].source_files.length>e.entries[0].code.length);
+    const history=env.w.MotionHistory=historyTestData(),recipe=history.recipes.find(e=>e.entries[0].source_files.length>e.entries[0].code.length);
     const clone=JSON.parse(JSON.stringify(recipe));
     const files=await reproductionSources([clone],new URL(history.source_root).pathname);
     assert.equal(new Set(clone.entries[0].source_files).size,clone.entries[0].source_files.length);

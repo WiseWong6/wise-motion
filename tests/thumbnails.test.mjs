@@ -2,7 +2,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {environment,data} from './helpers.mjs';
+import {environment,data,historicalDrawingFixture} from './helpers.mjs';
+import {historyTestData} from './history-fixture.mjs';
 const tick=()=>new Promise(resolve=>setTimeout(resolve,0));
 async function load(env,...files){
   for(const file of files)env.w.eval(await readFile(new URL('../catalog/'+file,import.meta.url),'utf8'));
@@ -17,7 +18,7 @@ function mediaStub(w){
 function close(env){env.w.MotionThumbs?.disposeAll();env.close();}
 
 test('历史左栏全部接入对应原作缩略图，静态单帧与原片定位不增加播放器',async()=>{
-  const env=await environment(true,{staticPreview:true});
+  const env=await environment(true,{staticPreview:true,historyFixture:true});
   try{
     const {w}=env,d=w.document,played=mediaStub(w),drawn=[];
     // 原作绘制器另测；这里核对真实目录条目接到各自的图片、画布或原片。
@@ -61,8 +62,8 @@ test('历史左栏全部接入对应原作缩略图，静态单帧与原片定�
 test('原作单帧复制后保留画面并释放绘制器，迟到载入不能绘制被移除的卡片',async()=>{
   const env=await environment();
   try{
-    await load(env,'history-data.js','history-runtime.js');
-    const {w}=env,entry=w.MotionHistory.recipes.find(e=>e.entries[0].preview.type==='web-isolated').entries[0];
+    await load(env,'history-data.js','history-runtime.js');env.w.MotionHistory=historyTestData();
+    const {w}=env,entry=historicalDrawingFixture(w.MotionHistory.recipes[0]).entries[0];
     const canvas=w.document.createElement('canvas');canvas.width=360;canvas.height=480;
     let copies=0,disposed=0,source;
     canvas.getContext=()=>({drawImage(frame,x,y){
@@ -87,7 +88,7 @@ test('原作单帧复制后保留画面并释放绘制器，迟到载入不能�
 });
 
 test('单个原作绘制失败不挡后续缩略图，失效图片可用静音原片代表帧',async()=>{
-  const env=await environment(true,{staticPreview:true});
+  const env=await environment(true,{staticPreview:true,historyFixture:true});
   try{
     const {w}=env,d=w.document,played=mediaStub(w);let calls=0;
     w.MotionHistoryRuntime.poster=async(canvas,entry)=>{
@@ -110,9 +111,10 @@ test('单个原作绘制失败不挡后续缩略图，失效图片可用静音�
 });
 
 test('离开页面释放缩略图，返回后恢复，旧的异步绘制不能覆盖新卡片',async()=>{
-  const env=await environment(true,{staticPreview:true});
+  const env=await environment(true,{staticPreview:true,historyFixture:true});
   try{
     const {w}=env,d=w.document;mediaStub(w);let resolve;
+    w.MotionHistory.recipes[3].entries[0].preview={...w.MotionHistory.recipes[0].entries[0].preview};
     w.MotionHistoryRuntime.poster=(canvas,entry,_data,{isCurrent})=>new Promise(r=>{
       resolve=()=>{if(isCurrent())canvas.dataset.entry=entry.id;r(isCurrent());};
     });

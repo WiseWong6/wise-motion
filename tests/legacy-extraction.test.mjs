@@ -10,8 +10,8 @@ const mappings={
   'interface-feedback':{pointer:[],button:['button-press-status'],progress:['progress-fill-exit'],result:['fade-rise']}
 };
 const extracted={
-  'subtitle-cell-focus':{parent:'subtitle-focus',selector:'.subtitle-cell',count:4,times:[1800,2449,2450,3100,4899,4900,7599,7600,9000],properties:['opacity'],className:true},
-  'subtitle-block-shift':{parent:'subtitle-focus',selector:'.subtitle-block',count:4,times:[4100,4650,5200,6500,7600,8300,9000],properties:['transform','opacity']},
+  'subtitle-cell-focus':{parent:'subtitle-focus',selector:'.subtitle-cell',count:5,times:[1800,2449,2450,3100,4899,4900,7599,7600,9000],properties:['opacity'],className:true},
+  'subtitle-block-shift':{parent:'subtitle-focus',selector:'.subtitle-block',count:5,times:[4100,4650,5200,6500,7600,8300,9000],properties:['transform','opacity']},
   'button-press-status':{parent:'interface-feedback',selector:'.action-button',count:2,times:[1600,1875,2149,2150,4000,5299,5300]},
   'progress-fill-exit':{parent:'interface-feedback',selector:'.progress-track',count:3,times:[2150,2325,2500,3725,5300,5600,5900]}
 };
@@ -113,7 +113,7 @@ test('重点切换、按钮换字和进度收起保留各自的边界条件',asy
   const env=await environment();
   try{
     const focus=raw(env,'subtitle-cell-focus'),cells=[...focus.root.querySelectorAll('.subtitle-cell')];
-    for(const [time,index] of [[1700,-1],[1800,0],[2450,1],[3100,2],[4900,-1],[7600,2]]){
+    for(const [time,index] of [[1700,-1],[1800,0],[2450,1],[3100,2],[3750,3],[4900,-1],[7600,3]]){
       focus.draw(time);assert.equal(cells.findIndex(node=>node.classList.contains('is-on')),index);
       cells.forEach((node,i)=>assert.equal(Number(node.style.opacity),index<0||index===i?1:.45));
     }

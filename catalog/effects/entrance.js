@@ -28,9 +28,10 @@
   F['group-expand'] = (root, M) => {
     // 保留原第二组六卡的进入关系，按每行三张重排为三列两行，逐张由 .62 放大到 1；标签晚 140ms。
     const ratio = .32, width = 424 * ratio, height = 238.5 * ratio;
-    const positions = Array.from({length:6}, (_, i) => ({x:320 + (i % 3 - 1) * 456 * ratio, y:180 + (Math.floor(i / 3) - .5) * 310 * ratio}));
+    // 编号与卡片留出独立间距，行间额外留白；含编号的整体保持居中。
+    const positions = Array.from({length:6}, (_, i) => ({x:320 + (i % 3 - 1) * (width + 18), y:170 + (Math.floor(i / 3) - .5) * 120}));
     root.innerHTML = '<svg class="pattern-svg" width="640" height="360" viewBox="0 0 640 360" aria-hidden="true">' + positions.map((p, i) =>
-      `<g data-card="${i}" opacity="0"><rect x="${-width / 2}" y="${-height / 2}" width="${width}" height="${height}" rx="4" fill="var(--card)" stroke="var(--card-muted)" stroke-opacity=".3" stroke-width=".6"/><circle cx="-43" cy="-12" r="7" fill="none" stroke="var(--card-ink)" stroke-width=".7"/><path d="M-27 -12h52M-50 9h100M-50 20h68" fill="none" stroke="var(--card-muted)" stroke-width=".65" stroke-linecap="round"/></g><text data-label="${i}" x="${p.x}" y="${p.y + height / 2 + 34 * ratio}" text-anchor="middle" font-size="${M.textSize('caption')}" font-weight="700" fill="var(--ink)" opacity="0">${String(i + 1).padStart(2, '0')}</text>`
+      `<g data-card="${i}" opacity="0"><rect x="${-width / 2}" y="${-height / 2}" width="${width}" height="${height}" rx="4" fill="var(--card)" stroke="var(--card-muted)" stroke-opacity=".3" stroke-width=".6"/><circle cx="-43" cy="-12" r="7" fill="none" stroke="var(--card-ink)" stroke-width=".7"/><path d="M-27 -12h52M-50 9h100M-50 20h68" fill="none" stroke="var(--card-muted)" stroke-width=".65" stroke-linecap="round"/></g><text data-label="${i}" x="${p.x}" y="${p.y + height / 2 + 22}" text-anchor="middle" font-size="${M.textSize('caption')}" font-weight="700" fill="var(--ink)" opacity="0">${String(i + 1).padStart(2, '0')}</text>`
     ).join('') + '</svg>';
     const cards = [...root.querySelectorAll('[data-card]')], labels = [...root.querySelectorAll('[data-label]')];
     const set = (el, key, value) => { const v = String(value); if (el.getAttribute(key) !== v) el.setAttribute(key, v); };

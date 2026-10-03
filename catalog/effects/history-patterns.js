@@ -570,7 +570,7 @@
     return p=>{s('wordmark').style.backgroundPosition=`${200*(1-p)}% 0px`;};
   });
   register('color-evolve',(root) => {
-    const s=stage(root,rect('shape',240,100,160,160));
+    const s=stage(root,rect('shape',240,100,160,160,'stroke="none"'));
     return p=>{const q=smooth(section(p,.1,.85));s('shape',{fill:`color-mix(in srgb,var(--accent) ${(1-q)*100}%,var(--teal) ${q*100}%)`});};
   });
   register('density-field',(root) => {
