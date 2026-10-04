@@ -55,6 +55,7 @@
   const mark = name => `<span data-icon="${name}">${icon(name)}</span>`;
 
   const KIND_KEY = 'wise-motion-kind:' + location.href;
+  const SELECTION_KEY = 'wise-motion-selection:' + location.href;
   function readKind() {
     try {
       const saved = sessionStorage.getItem(KIND_KEY);
@@ -65,7 +66,22 @@
   function rememberKind() {
     try { sessionStorage.setItem(KIND_KEY, kind); } catch (_) { /* 存储受限时仍可正常切换。 */ }
   }
+  function readSelection() {
+    try {
+      const saved = JSON.parse(sessionStorage.getItem(SELECTION_KEY));
+      if (saved && typeof saved.id === 'string') return saved;
+    } catch (_) { /* 旧记录损坏或存储受限时使用默认动效。 */ }
+    return null;
+  }
+  function rememberSelection() {
+    try {
+      sessionStorage.setItem(SELECTION_KEY, JSON.stringify({
+        id:selected.id, caseId:selected.selected_entry?.id, variantId:selected.variant_id
+      }));
+    } catch (_) { /* 存储受限时仍可正常选择和播放。 */ }
+  }
   const rememberedKind = readKind();
+  const rememberedSelection = readSelection();
   let kind = rememberedKind || 'action', category = 'all', tab = 'prompt', selected = null, controller = null;
   let debounce = null, resumeAfterVisible = false, lastPlayback = null, lastPaused = null;
   let navigationIds = [];
@@ -428,6 +444,7 @@
     updateOutputs();
     renderFacts(effect);
     syncSelection();
+    rememberSelection();
   }
 
   $('effect-variant').addEventListener('change',event=>{
@@ -952,10 +969,14 @@
     const requested = data.effects.find(effect=>effect.id===requestedEffect());
     // 新链接按动效所在页签打开；同一页面刷新和加载期间的手动切换优先。
     if (!rememberedKind && kindToken === 0 && requested) kind = requested.kind;
-    const effect=(requested?.kind===kind ? requested : null)||data.effects.find(effect=>effect.kind===kind)||data.effects.find(effect=>effect.id==='fade-rise');
+    const remembered = data.effects.find(effect=>effect.id===rememberedSelection?.id && effect.kind===kind);
+    const effect=remembered||(requested?.kind===kind ? requested : null)||data.effects.find(effect=>effect.kind===kind)||data.effects.find(effect=>effect.id==='fade-rise');
     renderCategories();renderList();rememberKind();
-    const caseId=effect.entries?.find(entry=>entry.source_rule_id===requestedId.replace(/^history-/,''))?.id;
-    selectEffect(effect.id,null,caseId,data.variant_redirects?.[requestedId]);
+    const caseId=remembered ? rememberedSelection.caseId : effect.entries?.find(entry=>entry.source_rule_id===requestedId.replace(/^history-/,''))?.id;
+    selectEffect(effect.id,null,caseId,remembered ? rememberedSelection.variantId : data.variant_redirects?.[requestedId]);
+    if (remembered && !$('directory-panel').hidden) {
+      $('effects-list').querySelector('.effect-item[aria-current="true"]')?.scrollIntoView?.({block:'nearest'});
+    }
   }
   if ((kind === 'recipe' && !historyReady) || (requestedEffect() && !data.effects.some(effect => effect.id === requestedEffect()))) {
     loadHistory().then(selectInitial).catch(selectInitial);
