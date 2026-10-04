@@ -1,0 +1,27 @@
+{
+  "created": "2026-10-03",
+  "tool": "Codex 宿主内置 image_gen.imagegen",
+  "request": "用户要求4号的核心为不断叠加，并允许使用生图能力绘制素材。",
+  "asset": "map-paper.png",
+  "purpose": "同一纸堆上逐张叠加的地图纸表面，文字另由代码绘制。",
+  "prompt": "Use case: product-mockup. Asset type: one reusable transparent paper face for a deterministic animation of many map papers accumulating on a desktop. Input image is a reference for the muted paper material and extremely faint vintage cartographic pattern only. Generate a SINGLE flat rectangular landscape map sheet, viewed precisely straight down, no perspective, no rotation, no curl, no folded corners. Aspect ratio of the physical sheet 256:168, perfectly axis-aligned. The sheet is warm grey beige, subtly translucent vellum-like matte paper with softly weathered rectangular edges. Print very faint fine cartographic latitude/longitude grid, a few compass/rhumb line centers, delicate unlabeled navigational curves, faded olive-grey fine lines. Low contrast and subdued sage daylight as in the reference. Keep the middle open enough for a separate black headline that will be composited by code. One whole paper face only, large in the canvas with a small transparent margin on all four sides. No lettering anywhere, no Chinese characters, no numbers, no captions, no logos, no K3, no tools, no desk, no background, no other sheets, no stack, no decorative border outside the paper. No cast shadow outside the paper, no pronounced gradient, no shiny surface. Preserve real paper microtexture. This is a newly generated reusable isolated asset, do not reproduce the whole reference frame. Output landscape 1536x1024 with true alpha transparency.",
+  "original_output": "/Users/wisewong/.codex/generated_images/01a0ffc4-a939-7c52-b3df-2525e9b83c61/exec-e9acf899-b25c-4456-bf32-0f6690bcea69.png",
+  "transparent_background": true,
+  "size": [
+    1536,
+    1024
+  ],
+  "alpha_range": [
+    0,
+    254
+  ],
+  "display_window": [
+    50,
+    55,
+    1437,
+    914
+  ],
+  "usage": "生成文件原样复制；页面使用显示窗口去掉透明外边距，以显示滤镜呈现米灰、蓝灰和浅灰纸层。未用脚本编辑图片文件。",
+  "visual_review": "生成纸面有低对比细地图线、纸纹和透明边缘，无文字。动画整体视觉由用户在片段页面验收。",
+  "sha256": "b96f9e16213ff35e062855ebcbceb5be150c70df28f35ec1cace3d8e26192cf6"
+}

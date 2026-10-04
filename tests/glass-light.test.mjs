@@ -81,8 +81,9 @@ test('WISE 创作文案由共用绘制输出，片尾光环与 MOTION 的首个 
   for(const word of ['Voice input','WISE','Bring this idea to life.','Start with a clear idea.','Give every move a purpose.','Let the details catch light.','Make the next frame matter.','Build a scene','Explore a variation','Create','Light'])assert.ok(words.includes(word),word);
   assert.ok(!words.includes('Aurora'));assert.ok(!words.some(x=>/Sunday|family|calendar/.test(x)));
   contexts.forEach(c=>{c.trace.length=0;});const end=painter.render(ctx,3.1),marks=contexts.flatMap(c=>c.trace),arcs=marks.filter(x=>x.type==='arc');
-  assert.ok(arcs.some(x=>x.x===end.lens[0]&&x.y===end.lens[1]&&x.r===28.1),'气泡落点与首个 O 的光环中心重合');
-  assert.ok(arcs.some(x=>x.x===739&&x.y===304&&x.r===28.1),'第二个 O 仍完整存在');
+  const brand=w.WiseGlassLight.brand;assert.equal(brand.family,'Oswald');assert.equal(brand.weight,700);
+  assert.ok(arcs.some(x=>x.x===end.lens[0]&&x.y===end.lens[1]&&x.r+brand.oStroke/2===end.lens[2]/2),'气泡落点与首个 O 的圆心、外径重合');
+  assert.ok(arcs.some(x=>x.x===brand.oCenters[1][0]&&x.y===brand.oCenters[1][1]&&x.r===brand.oRadius-brand.oStroke/2),'第二个 O 仍完整且为同样大小的正圆');
   for(const value of ['Motion with meaning.','让每一次运动，都有意义。'])assert.ok(marks.some(x=>x.type==='text'&&x.value===value&&x.x===533));
   painter.destroy();
  }finally{env.close();}

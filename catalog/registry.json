@@ -2245,7 +2245,7 @@
       "id": "rapid-cut",
       "name": "节拍闪切",
       "category": "transition",
-      "summary": "同一位置的图形连续快速硬切，形成闪烁感，最后停在一张完整画面。",
+      "summary": "同一位置的图形连续快速硬切，形成闪烁感，最后停在一张完整画面。 可切换印刷纹理叠加快闪示例。",
       "purpose": "用短促的连续换图展示多种画面，而不把注意力放在录屏边框与裁切。",
       "objects": "同一画框中的十张简洁图形",
       "phases": [
@@ -2258,7 +2258,9 @@
         "连续快切",
         "快速换图",
         "闪切",
-        "录屏裁切装裱"
+        "录屏裁切装裱",
+        "印刷纹理快闪",
+        "背景纹理叠加"
       ],
       "behaviors": [
         "transition",
@@ -2280,10 +2282,70 @@
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [
+          "catalog/effects/geometric-poster.js"
+        ]
       },
       "previous_names": [
         "快速切换闪烁"
+      ],
+      "variants": [
+        {
+          "duration_ms": 3000,
+          "preview_ms": 2200,
+          "summary": "同一位置的图形连续快速硬切，形成闪烁感，最后停在一张完整画面。",
+          "purpose": "用短促的连续换图展示多种画面，而不把注意力放在录屏边框与裁切。",
+          "objects": "同一画框中的十张简洁图形",
+          "phases": [
+            "第一张图形在中央短暂停留。",
+            "后续图形大约每六分之一秒直接切换，配色固定，用图形快切形成闪烁。",
+            "快速切换结束后，最后一张图形保持可见。"
+          ],
+          "retain": "画框的位置、尺寸、底色与图形颜色固定；按原加速帧表的切换时刻直接替换图形，单次只显示一张，最后保留完整画面。",
+          "avoid": "不交替反转明暗配色，不做裁切推拉、装裱刻度、缓慢淡入淡出或多张叠加；不使用原作录屏和插画。",
+          "tempo_note": "第一张停留约零点五七秒，后续每四至五帧切换；约一点八七秒结束快切，其余时间保持最后一张。",
+          "assumptions": "从原录屏加速帧表核对换图时刻后独立重写；用十张自有图形示意快速切换，统一使用目录的卡片底色与图形颜色，切换时配色固定，不提炼装裱动作。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+          "id": "standard",
+          "label": "图形换页"
+        },
+        {
+          "id": "print-burst",
+          "label": "印刷叠加",
+          "duration_ms": 1175,
+          "preview_ms": 450,
+          "summary": "原始七个几何层分组闪现，与背景叠印和小缺口同步联动，结束后恢复完整底图。",
+          "objects": "弧形线纹、竖纹、斜线、橙色曲面、黑色斜面与左右网点组成的七层印刷底图及额外叠印层",
+          "phases": [
+            "纸底与七个印刷层静止0.15秒。",
+            "从0.15秒起，以0、5/40、10/40、15/40、19/40秒为偏移，硬切五种纹理布局；原始七层每0.1秒分组暂隐两至三个，同步轮换24处小纸色缺口，共六组。",
+            "0.725秒清除额外叠印和缺口，恢复全部七个原始图层并保持0.45秒。"
+          ],
+          "retain": "每秒40格的4–5格短促硬切、五种布局、固定纸色与墨橙色、快闪结束后恢复底图。每4/40秒切换24处小缺口（从36处中选择），宽52–70像素，共六组，形状含半圆、斜切、阶梯、细条与四分之一圆。 原始七层与缺口共用六组节拍，依次暂隐：弧线与右网点；橙面、斜线与左网点；黑面与竖纹；弧线、橙面与右网点；黑面、斜线与左网点；竖纹与橙面。每组0.1秒，最后一组0.075秒；只改变显隐，保留位置、纹理与叠放顺序，结束后七层全部复原。",
+          "avoid": "不交叉淡化、不反相换色，不改变原始几何的位置与纹理，不创建标题。",
+          "tempo_note": "前停0.15秒，快闪23/40秒，末停0.45秒，共1.175秒；原始几何与小缺口每0.1秒同步更换一组。",
+          "timing": null,
+          "purpose": "原始七个几何层分组闪现，与背景叠印和小缺口同步联动，结束后恢复完整底图。",
+          "analogy": "原始七个几何层分组闪现，与背景叠印和小缺口同步联动，结束后恢复完整底图。",
+          "assumptions": "独立动作只建立自身图层，绘制与几何海报组合共用；保留组合对应动作的时长与位置关系。",
+          "reproduction": {
+            "presentation": "横版1672×941画面等比展示；暖纸色#efeada、墨色#23241f、橙色#ee5427。几何区位于顶部654像素，固定种子的细颗粒附着在各印刷层。左上65圈变间距椭圆弧，橙色曲面横穿中部，右上黑色斜面，右侧疏密竖纹与渐变网点圆面，左下局部网点；保留贴边裁切与重叠关系。",
+            "objects": "弧形线纹、竖纹、斜线、橙色曲面、黑色斜面与左右网点组成的七层印刷底图及额外叠印层"
+          },
+          "source": {
+            "path": "catalog/effects/transition.js",
+            "factory": "rapid-cut",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "dependencies": [
+              "catalog/effects/geometric-poster.js"
+            ],
+            "extraction": "从用户确认的印刷几何海报提取原生曲面、弧线、网点、纸纹与固定时钟。组合与独立动作共用绘制，独立动作只准备自身需要的图层；节拍闪切与文字裁切升入复用已有动作入口，分别增加印刷叠加、海报词组示例。字体为包内Oswald Bold，遵循OFL；画面不依赖生成图片、外部素材或来源工程路径。"
+          },
+          "requires_preparation": true
+        }
       ]
     },
     {
@@ -3263,7 +3325,7 @@
       "name": "文字裁切升入",
       "kind": "action",
       "category": "writing",
-      "summary": "字符保持完整，从同一裁剪边界依次升入。",
+      "summary": "字符保持完整，从同一裁剪边界依次升入。 可切换同字号海报词组示例。",
       "purpose": "字符保持完整，从同一裁剪边界依次升入。",
       "objects": "一行文字",
       "phases": [
@@ -3277,7 +3339,9 @@
         "裁剪框",
         "逐字遮罩上升揭示",
         "文字遮罩升入",
-        "裁切升入"
+        "裁切升入",
+        "WISE MOTION",
+        "海报词组升入"
       ],
       "behaviors": [
         "text",
@@ -3304,7 +3368,10 @@
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [
+          "catalog/effects/geometric-poster.js"
+        ]
       },
       "actions": [],
       "demo_mode": "fixed-timeline",
@@ -3330,7 +3397,72 @@
         "source_end_ms": 3100,
         "start_ms": 150,
         "end_ms": 1350
-      }
+      },
+      "variants": [
+        {
+          "duration_ms": 1800,
+          "preview_ms": 1151,
+          "summary": "字符保持完整，从同一裁剪边界依次升入。",
+          "purpose": "字符保持完整，从同一裁剪边界依次升入。",
+          "objects": "一行文字",
+          "phases": [
+            "完整字符藏在下方。",
+            "每个字按间隔向上升入。",
+            "整句稳定可读。"
+          ],
+          "retain": "字符保持完整，从同一裁剪边界依次升入。",
+          "avoid": "不要逐笔写字或按字符替换内容。",
+          "tempo_note": "约零点一五秒起动，主要动作 1.2 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
+          "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+          "timing": {
+            "source_duration_ms": 4000,
+            "source_preview_ms": 2640,
+            "source_start_ms": 320,
+            "source_end_ms": 3100,
+            "start_ms": 150,
+            "end_ms": 1350
+          },
+          "id": "standard",
+          "label": "逐字升入"
+        },
+        {
+          "id": "poster-words",
+          "label": "海报词组",
+          "duration_ms": 1110,
+          "preview_ms": 810,
+          "summary": "两个同字号粗体词组从共同裁切边界错峰升入，最后落在同一基线上。",
+          "objects": "WISE与MOTION两个Oswald Bold词组、暖纸底与固定印刷颗粒",
+          "phases": [
+            "标题保持完整藏在裁切窗下方0.15秒。",
+            "WISE在0.15秒起、MOTION在0.26秒起升入，分别持续0.35、0.40秒，位移按1−(1−p)⁴减速。",
+            "0.66秒两词完成，保持同字号与基线至1.11秒。"
+          ],
+          "retain": "两个词组共用字号，从下方287像素升入；Oswald Bold实际字形按1590像素宽与250像素高共同约束；独立演示仅将文字区域上移320像素居中。",
+          "avoid": "不逐笔书写、不创建海报几何、不分别放大两个词组、不改变共同基线。",
+          "tempo_note": "前停0.15秒，两个词组间隔0.11秒进入，0.66秒完成，末停0.45秒。",
+          "timing": null,
+          "purpose": "两个同字号粗体词组从共同裁切边界错峰升入，最后落在同一基线上。",
+          "analogy": "两个同字号粗体词组从共同裁切边界错峰升入，最后落在同一基线上。",
+          "assumptions": "独立动作只建立自身图层，绘制与几何海报组合共用；保留组合对应动作的时长与位置关系。",
+          "reproduction": {
+            "presentation": "横版暖纸底#efeada、墨色#23241f；两个词组使用同字号Oswald Bold，文字区域居中，字面带固定印刷颗粒。",
+            "objects": "WISE与MOTION两个Oswald Bold词组、暖纸底与固定印刷颗粒"
+          },
+          "source": {
+            "path": "catalog/effects/history-patterns.js",
+            "factory": "mask-stagger-text",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "dependencies": [
+              "catalog/effects/geometric-poster.js"
+            ],
+            "extraction": "从用户确认的印刷几何海报提取原生曲面、弧线、网点、纸纹与固定时钟。组合与独立动作共用绘制；横带间歇闪切复用已有18区、30格固定取值及0.45秒交接，增加几何海报示例；文字裁切升入沿用海报词组示例。字体为包内Oswald Bold，遵循OFL；画面不依赖生成图片、外部素材或来源工程路径。"
+          },
+          "requires_preparation": true
+        }
+      ]
     },
     {
       "id": "stroke-draw",
@@ -10188,7 +10320,62 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "original_scene": "claude-showreel-2026/sNeon"
+      "original_scene": "claude-showreel-2026/sNeon",
+      "variants": [
+        {
+          "id": "fixed-neon",
+          "label": "固定细星",
+          "summary": "140 个细小星点固定在天空，各自按不同节奏起点平缓明灭。",
+          "duration_ms": 6000,
+          "preview_ms": 2600,
+          "source": {
+            "path": "catalog/effects/reel-neon.js",
+            "factory": "star-twinkle",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/"
+          }
+        },
+        {
+          "id": "layered-night",
+          "label": "深浅夜空",
+          "summary": "180颗冷暖细星以固定深度分层，轻微漂移和微幅明灭，在流场展开时退去。",
+          "objects": "180颗深浅不一的冷暖圆形细星；其中24颗较亮，其他细星保持低亮度。",
+          "duration_ms": 25866.666666666668,
+          "preview_ms": 11200,
+          "source": {
+            "path": "catalog/effects/point-domain-flow.js",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "extraction": "从本机光点、文字边界与流线精修源码提取几何和绝对时间，依用户要求去掉叙事字幕、让亮线停在文字内侧并放大碰撞火花；运行不读取原片、参考帧或远程资源。代码许可仅覆盖本地适配源码。",
+            "rights_note": "原片设计与边界原文的再分发权利未经核实；本地参考收录不代表该视觉内容获得公开分发授权。",
+            "factory": "star-twinkle",
+            "dependencies": [
+              "catalog/effects/reel-neon.js"
+            ]
+          },
+          "retain": "固定180颗深浅冷暖星点、24颗较亮细星，半径0.1至0.7；明灭只在0.94至1之间变化，深度决定轻微漂移，保持疏密和暗部。",
+          "avoid": "不重排星点，不把微幅明灭改成齐闪；不携带组合字幕、网格、光点或流场。",
+          "phases": [
+            "细星按固定位置和深度显出。",
+            "不同深度产生微小漂移，星点各自进行微幅明灭。",
+            "流场展开时星空渐退。"
+          ],
+          "source_clock": [
+            0,
+            25.866666666666667
+          ],
+          "tempo_note": "保留整片25.866667秒环境时钟，23.88秒起随流场展开退去。",
+          "assumptions": "同一星点明灭动作的深浅夜空示例，与组合共用星点函数，不改变原有固定细星示例。",
+          "reproduction": {
+            "presentation": "16:9近黑夜空，180颗固定深度冷暖圆形细星，24颗稍亮；保持疏密、暗部与微幅明灭，只绘制星空，不加字幕或其他对象。",
+            "objects": "180颗深浅不一的冷暖圆形细星；其中24颗较亮，其他细星保持低亮度。"
+          }
+        }
+      ]
     },
     {
       "kind": "composition",
@@ -10827,7 +11014,7 @@
       "category": "transition",
       "duration_ms": 1800,
       "preview_ms": 725,
-      "summary": "十八条横带按固定逐帧取值间歇显露，同时短彩带闪现，最终落到完整新页。",
+      "summary": "十八条横带按固定逐帧取值间歇显露，同时短彩带闪现，最终落到完整新页。 可切换印刷几何海报示例。",
       "purpose": "十八条横带按固定逐帧取值间歇显露，同时短彩带闪现，最终落到完整新页。",
       "objects": "前后两张几何示意页、原片交接遮罩与必要光效",
       "phases": [
@@ -10841,7 +11028,9 @@
         "横带撕裂闪切转场",
         "Claude 动效演进史",
         "几何遮罩转场组",
-        "横带闪切"
+        "横带闪切",
+        "几何海报闪切",
+        "满幅间歇闪切"
       ],
       "behaviors": [
         "mask",
@@ -10859,8 +11048,67 @@
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
-      }
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [
+          "catalog/effects/geometric-poster.js"
+        ]
+      },
+      "variants": [
+        {
+          "duration_ms": 1800,
+          "preview_ms": 725,
+          "summary": "十八条横带按固定逐帧取值间歇显露，同时短彩带闪现，最终落到完整新页。",
+          "purpose": "十八条横带按固定逐帧取值间歇显露，同时短彩带闪现，最终落到完整新页。",
+          "objects": "前后两张几何示意页、原片交接遮罩与必要光效",
+          "phases": [
+            "原页先完整静置0.5秒。",
+            "十八条横带按固定逐帧取值间歇显露，同时短彩带闪现，最终落到完整新页。",
+            "保留完整新页，交接装饰停止。"
+          ],
+          "retain": "十八条横带、每秒30格的固定取值、七条青色品红米色碎带与原0.45秒时长",
+          "avoid": "不使用每次不同的随机数，不在结束后遗留碎带",
+          "tempo_note": "静置0.5秒，按原片0.45秒交接，随后保持新页；总长1.8秒。",
+          "assumptions": "保留原片遮罩形状、随机次序、速度曲线与交接时长，前后两页换成目录配色的几何示意；纯英文采用本地 Oswald Bold，支持深浅主题。原视频与声音未复制。",
+          "id": "standard",
+          "label": "几何换页"
+        },
+        {
+          "id": "poster-cut",
+          "label": "几何海报",
+          "duration_ms": 1050,
+          "preview_ms": 350,
+          "summary": "七层印刷几何短暂错位，十八条横向区域间歇切回原构图；碎带消失后保留完整满幅图形。",
+          "objects": "橙色曲面、黑色斜面、左上弧形线纹、斜向细线、左右网点圆面、右侧疏密竖纹与暖纸底",
+          "phases": [
+            "满幅几何静置0.15秒。",
+            "0.15–0.60秒，错位几何与十八区原图交替切换，同时闪现七条短碎带。",
+            "0.60秒恢复完整满幅几何，停留0.45秒。"
+          ],
+          "retain": "全程保持941/654倍满幅，画面由七个原生印刷图层构成。交接持续0.45秒，p为交接进度、e为已过秒数，f=floor((16−0.45/2+e)×30)，固定取值h(n)=sin(n×127.1+311.7)×43758.5453的小数部分。画面分18条等高横带，第j条在p>0.92或h(j×3.7+f×0.131)<p×1.25−0.12时显露原构图，覆盖高度为画高×61/1080。仅在0.05<p<0.95时绘制错位构图和7条碎带；第k条碎带位置为(h(f+k)−200/1920)×画宽、h(2f+k)×画高，宽为(200+700h(3f+k))/1920×画宽，高为(6+40h(k+5f))/1080×画高；颜色依次为橙、墨、纸，透明度0.55、0.55、0.5。错位层按橙面、弧线、黑面、斜线、右网点、竖纹、左网点顺序，位移分别为(−38,26)、(48,12)、(−30,20)、(55,−18)、(−60,22)、(35,−16)、(28,−22)像素；转角分别为−8、12、7、−5、0、5、0度，等比缩放分别为1.075、1.055、1.035、1.04、1.08、1.035、1.10。",
+          "avoid": "不改变纸墨橙配色，不淡化转场，不上移，不创建标题，不在结束后留下错位或碎带。",
+          "assumptions": "与几何海报组合共用原生绘制及固定时钟，独立示例仅增加前后静置。",
+          "reproduction": {
+            "presentation": "横版1672×941画面等比展示；暖纸色#efeada、墨色#23241f、橙色#ee5427。几何区位于顶部654像素，固定种子的细颗粒附着在各印刷层。左上65圈变间距椭圆弧，橙色曲面横穿中部，右上黑色斜面，右侧疏密竖纹与渐变网点圆面，左下局部网点；保留贴边裁切与重叠关系。七层整体以941/654倍满幅展示。",
+            "objects": "橙色曲面、黑色斜面、左上弧形线纹、斜向细线、左右网点圆面、右侧疏密竖纹与暖纸底"
+          },
+          "source": {
+            "path": "catalog/effects/reel-transitions.js",
+            "factory": "glitch-band-transition",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "dependencies": [
+              "catalog/effects/geometric-poster.js"
+            ],
+            "extraction": "从用户确认的印刷几何海报提取原生曲面、弧线、网点、纸纹与固定时钟。组合与独立动作共用绘制；横带间歇闪切复用已有18区、30格固定取值及0.45秒交接，增加几何海报示例；文字裁切升入沿用海报词组示例。字体为包内Oswald Bold，遵循OFL；画面不依赖生成图片、外部素材或来源工程路径。"
+          },
+          "requires_preparation": true,
+          "tempo_note": "前停0.15秒，闪切0.45秒，末停0.45秒，共1.05秒。",
+          "purpose": "七层印刷几何短暂错位，十八条横向区域间歇切回原构图；碎带消失后保留完整满幅图形。",
+          "analogy": "七层印刷几何短暂错位，十八条横向区域间歇切回原构图；碎带消失后保留完整满幅图形。"
+        }
+      ]
     },
     {
       "kind": "action",
@@ -17267,7 +17515,8 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+        "extraction": "直接复用 scenes/dandelion-scene/assets/js/dandelion.js 的 floret 原绘制；主体使用 filamentState(4.5)，种子使用原十一道冠毛；保留原线宽、曲线、配色与种子轮廓，仅对整体做等比缩放和居中。",
+        "original_path": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/dandelion.js"
       },
       "actions": [],
       "demo_mode": "fixed-timeline",
@@ -17277,7 +17526,7 @@
       ],
       "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
       "analogy": "原蒲公英旅行主体：密集半圆冠毛、细茎与下端种子。",
-      "assumptions": "透明底；保持原冠毛、细茎和种子的曲线与相对比例，整体居中并在下方预留播放条空间；冠毛保持细线，不随物件放大而增粗。",
+      "assumptions": "透明底；保持原冠毛、细茎和种子的曲线与相对比例，整体居中并在下方预留播放条空间；线宽与轮廓整体等比缩放，不再单独削细冠毛或细茎。",
       "tempo_note": "静态插画全程保持；播放与定位不改变物件。",
       "recommendation": "需要此原作造型或动作关系时直接复用。",
       "previous_names": []
@@ -17287,9 +17536,9 @@
       "name": "蒲公英种子",
       "kind": "illustration",
       "category": "illustration-nature",
-      "summary": "原脱落小种子：疏朗冠毛、弯曲细茎与米色种子。",
+      "summary": "原目录独立种子：三十七道细冠毛、弯曲细茎与细长米色种子。",
       "purpose": "将原作物件提炼为独立可复用插画。",
-      "objects": "十一道原冠毛、弯曲细茎、米色种子",
+      "objects": "三十七道原冠毛、弯曲细茎、细长米色种子",
       "phases": [
         "完整物件居中呈现。",
         "保持原轮廓、比例与细节。",
@@ -17304,7 +17553,7 @@
       "behaviors": [
         "hold"
       ],
-      "retain": "保留原十一道冠毛、毛尖短线、原弯曲细茎和米色种子形状。",
+      "retain": "保留原独立种子半径三十五、三十七道冠毛、毛尖短线、弯曲细茎和细长米色种子形状。",
       "avoid": "不带原场景、背景、字幕、音频或外围控件。",
       "duration_ms": 3000,
       "preview_ms": 1650,
@@ -17326,7 +17575,12 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+        "extraction": "沿用 scenes/motion-catalog/isolated-player.js 中 seed 的 floret 半径三十五调用；绘制函数来自 scenes/dandelion-scene/assets/js/dandelion.js，保留三十七道冠毛、原线宽与细长种子轮廓，静态呈现，仅整体居中与等比缩放。",
+        "original_path": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/dandelion.js",
+        "original_files": [
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/isolated-player.js",
+          "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/dandelion.js"
+        ]
       },
       "actions": [],
       "demo_mode": "fixed-timeline",
@@ -17335,8 +17589,8 @@
         "document"
       ],
       "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
-      "analogy": "原脱落小种子：疏朗冠毛、弯曲细茎与米色种子。",
-      "assumptions": "透明底；保持原冠毛、细茎和种子的曲线与相对比例，整体居中并在下方预留播放条空间；冠毛保持细线，不随物件放大而增粗。",
+      "analogy": "原目录独立种子：三十七道细冠毛、弯曲细茎与细长米色种子。",
+      "assumptions": "透明底；保持原冠毛、细茎和种子的曲线与相对比例，整体居中并在下方预留播放条空间；线宽与轮廓整体等比缩放，不再单独削细冠毛或细茎。",
       "tempo_note": "静态插画全程保持；播放与定位不改变物件。",
       "recommendation": "需要此原作造型或动作关系时直接复用。",
       "previous_names": []
@@ -18910,14 +19164,14 @@
       "name": "玻璃卡片显现折射",
       "kind": "composition",
       "category": "composition-interface",
-      "summary": "紫蓝光场中三张玻璃卡错层进入，柔光凸泡放大文字，随后卡片退出并露出细线字标。",
-      "objects": "紫蓝弥散光场、WISE 语音卡、创作对话卡、光感控制卡、柔光凸泡、WISE MOTION 字标和收拢光点",
+      "summary": "紫蓝光场中三张玻璃卡错层进入，柔光凸泡放大文字，随后卡片退出并露出Oswald Bold 字标。",
+      "objects": "紫蓝弥散光场、WISE 语音卡、创作对话卡、光感控制卡、柔光凸泡、Oswald Bold 的 WISE MOTION 字标和收拢光点",
       "phases": [
         "开窗进入紫蓝光场，三张卡错层移动，语音波形与回复内容出现。",
         "开关开启、滑杆变化；凸泡扩张并放大后方文字，体积只靠柔和光照表现。",
         "三张卡片分向退出，凸泡收小并成为 WISE MOTION 中第一个 O；底部出现“Motion with meaning.”与“让每一次运动，都有意义。”，最后收拢为过渡光点。"
       ],
-      "retain": "设计画板1066×600等比放入640×360；总长3.65秒，1.62秒出现凸泡、2.25秒约253×132、2.48秒开始露出字标、3.48秒开始收拢；全部对象共用固定时间。 字标左右范围231至835，字高56；气泡终点577、304与MOTION第一个O中心一致，圆环半径28.1。",
+      "retain": "设计画板1066×600等比放入640×360；总长3.65秒，1.62秒出现凸泡、2.25秒约253×132、2.48秒开始露出字标、3.48秒开始收拢；全部对象共用固定时间。 字标采用本地 Oswald Bold 真实字形，字高56；两个O为直径56.2、笔画厚11.4的正圆。气泡收拢到563.774、304，与MOTION第一个O中心和外径一致；第二个O中心695.549、304。",
       "avoid": "不重建已去掉的气泡深色线或描边，不压缩各对象的交接顺序，不读取视频或截图绘制。",
       "duration_ms": 3650,
       "preview_ms": 2250,
@@ -18935,7 +19189,7 @@
         "玻璃界面",
         "透光浮层与折射"
       ],
-      "purpose": "紫蓝光场中三张玻璃卡错层进入，柔光凸泡放大文字，随后卡片退出并露出细线字标。",
+      "purpose": "紫蓝光场中三张玻璃卡错层进入，柔光凸泡放大文字，随后卡片退出并露出Oswald Bold 字标。",
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -18961,7 +19215,7 @@
         "interface"
       ],
       "trigger": "打开后按固定时间演示，可暂停、重播及任意定位。",
-      "analogy": "紫蓝光场中三张玻璃卡错层进入，柔光凸泡放大文字，随后卡片退出并露出细线字标。",
+      "analogy": "紫蓝光场中三张玻璃卡错层进入，柔光凸泡放大文字，随后卡片退出并露出Oswald Bold 字标。",
       "assumptions": "保留紫蓝光场、透光材质与柔光气泡；界面采用 WISE 创作主题文案，字标改为 WISE MOTION，未携带原片媒体。",
       "tempo_note": "完整组合保留3.65秒局部时钟。",
       "source": {
@@ -18971,11 +19225,11 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从本机玻璃效果精修的自主绘制源码提取；仅采用几何、颜色和时间参数，没有原片图片、视频或第三方运行代码。"
+        "extraction": "从本机玻璃效果精修的自主绘制源码提取；仅采用几何、颜色和时间参数，没有原片图片、视频或第三方运行代码。 片尾英文字形轮廓取自包内 Oswald Bold（SIL OFL 1.1），两个O按用户要求改为正圆。"
       },
       "reproduction": {
-        "presentation": "16:9画幅，1066×600设计坐标等比显示；近黑底叠紫、蓝、青色弥散光，卡片保持左暗右蓝和低透明着色。界面使用 WISE 品牌及创作主题文案，保留原卡片内的无衬线文字比例。 片尾用细线矢量字标 WISE MOTION，气泡成为 MOTION 的第一个 O；下方两行居中短句为 Motion with meaning.／让每一次运动，都有意义。",
-        "objects": "紫蓝弥散光场、WISE 语音卡、创作对话卡、光感控制卡、柔光凸泡、WISE MOTION 字标和收拢光点。主对话卡标题 WISE；用户说 Bring this idea to life.；回复依次为 Start with a clear idea.、Give every move a purpose.、Let the details catch light.、Make the next frame matter.；按钮为 Build a scene 与 Explore a variation。"
+        "presentation": "16:9画幅，1066×600设计坐标等比显示；近黑底叠紫、蓝、青色弥散光，卡片保持左暗右蓝和低透明着色。界面使用 WISE 品牌及创作主题文案，保留原卡片内的无衬线文字比例。 片尾 WISE MOTION 使用 Oswald Bold 的实际字形轮廓，两个 O 均为正圆，气泡成为 MOTION 的第一个 O；下方两行居中短句为 Motion with meaning.／让每一次运动，都有意义。",
+        "objects": "紫蓝弥散光场、WISE 语音卡、创作对话卡、光感控制卡、柔光凸泡、Oswald Bold 的 WISE MOTION 字标和收拢光点。主对话卡标题 WISE；用户说 Bring this idea to life.；回复依次为 Start with a clear idea.、Give every move a purpose.、Let the details catch light.、Make the next frame matter.；按钮为 Build a scene 与 Explore a variation。"
       },
       "previous_names": [
         "透光浮层与折射"
@@ -19172,6 +19426,2725 @@
       "previous_names": [
         "透光创作卡"
       ]
+    },
+    {
+      "id": "cyanotype",
+      "name": "纸面蓝晒显影",
+      "kind": "action",
+      "category": "shape",
+      "summary": "三张已叠好的植物纸卡整体缩回，暗绿纸面连续显影为深蓝，纹理逐渐清晰。",
+      "purpose": "在纸卡位置固定的情况下，通过色光显影与镜头缩回展示印刷材质和细密纹理。",
+      "objects": "上方横卡与左右两张斜卡，深蓝满版纸面、细密植物曝光纹理、薄纸边和贴近纸面的柔影，冷绿灯箱底",
+      "phases": [
+        "零秒时三张暗绿纸卡已经叠好，整组为最终尺寸的1.22倍，底部略有裁切；三卡间位置与角度固定。",
+        "整组在0–0.86秒缓慢缩回到原尺寸；0.29秒起三张纸面以18毫秒间隔开始连续显影，在0.756秒前由暗绿转为深蓝，植物纹理逐渐清晰。",
+        "0.78秒背景暗绿薄层消失，0.86秒后整组三张完整蓝晒纸卡停稳，保持到1秒结束。"
+      ],
+      "aliases": [
+        "植物纸卡蓝晒显影",
+        "植物蓝晒",
+        "蓝晒",
+        "纸面显影",
+        "材质显影",
+        "蓝晒纸卡",
+        "暗绿转深蓝"
+      ],
+      "behaviors": [
+        "color",
+        "scale"
+      ],
+      "retain": "三张纸从第一帧即叠好，只改变整组尺寸；保留横卡与左右斜卡的叠放、冷绿光感、深蓝纸面与细密植物纹理。图集按比例裁取，纸面和植物不拉伸。",
+      "avoid": "不增加逐张飞入、滑动或旋转，不用统一透明度淡入替代纸面显影，不把三张纸做成重复图案，不覆盖整幅背景改变原有色光。",
+      "duration_ms": 1000,
+      "preview_ms": 875,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/cyanotype.js",
+        "factory": "cyanotype",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [
+          "catalog/assets/cyanotype/botanical-atlas.png",
+          "catalog/assets/cyanotype/SOURCE.json"
+        ]
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "recommendation": "适合纸面、印刷与植物图版的材质显现；更换图集时保持三栏分区与等比裁取方式。",
+      "tempo_note": "总长1秒，保留显影与整组縮回共用的时间；0.29秒开始显影，0.756秒完成纸面色变，0.86秒停稳。播放速度整体调整。",
+      "trigger": "打开预览后按固定时间顺序播放；可暂停、重播和拖动时间。",
+      "analogy": "像把三张已经叠好的蓝晒纸从近景慢慢拉远，同时看见纸上的植物显影。",
+      "assumptions": "示例为640×360画板，使用自主生成的三栏植物纸面图集，保留审核样例的一秒时长、纸卡位置和色光，不引用原片像素。素材按相同比例裁取，可替换为自己的三栏印刷图集。",
+      "reproduction": {
+        "objects": "上方横卡与左右两张斜卡，深蓝满版纸面、细密植物曝光纹理、薄纸边和贴近纸面的柔影，冷绿灯箱底",
+        "presentation": "16:9画幅，设计尺寸640×360；冷绿灯箱渐变底色#e6ecdb、#d0dccb、#afc2b2，三张纸面最终为深蓝，植物纹理为浅青与淡象牙色。横卡中心(293,108.5)，202×145像素，旋转1度；左卡中心(249,202)，163×202像素，旋转−26度；右卡中心(403.8,224)，140×200像素，旋转31度。三张纸保持这一叠放关系，等比居中缩放；每张纸读取1536×1024图集中一个512×1024分区并等比裁取。",
+        "phases": [
+          "零秒时三张暗绿纸卡已经叠好，整组为最终尺寸的1.22倍，底部略有裁切；三卡间位置与角度固定。",
+          "整组在0–0.86秒缓慢缩回到原尺寸；0.29秒起三张纸面以18毫秒间隔开始连续显影，在0.756秒前由暗绿转为深蓝，植物纹理逐渐清晰。",
+          "0.78秒背景暗绿薄层消失，0.86秒后整组三张完整蓝晒纸卡停稳，保持到1秒结束。"
+        ],
+        "retain": "三张纸从第一帧即叠好，只改变整组尺寸；保留横卡与左右斜卡的叠放、冷绿光感、深蓝纸面与细密植物纹理。图集按比例裁取，纸面和植物不拉伸。",
+        "avoid": "不增加逐张飞入、滑动或旋转，不用统一透明度淡入替代纸面显影，不把三张纸做成重复图案，不覆盖整幅背景改变原有色光。"
+      },
+      "previous_names": [
+        "纸面显影"
+      ]
+    },
+    {
+      "id": "result-anchors",
+      "name": "图文配对展示",
+      "kind": "composition",
+      "category": "composition-interface",
+      "summary": "成果与自己的说明形成局部配对，共同围绕中心名称组织；入场有先后，最终以内容密度而非图标数量建立丰富度。",
+      "purpose": "成果与自己的说明形成局部配对，共同围绕中心名称组织；入场有先后，最终以内容密度而非图标数量建立丰富度。",
+      "objects": "保留九组目录图形、原片落点、边缘裁切与近邻说明；四组纸卡和档案盒沿用自身轮廓，不额外垫大矩形；五张印刷图版采用不同纸色、薄纸边和不同高度的阴影。",
+      "phases": [
+        "左上首张图形先进入",
+        "中央大写WISE MOTION与其余目录图形错峰落位；半透明圆角说明框就近出现",
+        "九组图形沿用目录内部运动，边缘裁切与中心留白保持"
+      ],
+      "aliases": [
+        "成果墙与说明就近配对",
+        "成果就近配对",
+        "成果配对"
+      ],
+      "behaviors": [
+        "sequence",
+        "move",
+        "layer"
+      ],
+      "retain": "保留九组目录图形、原片落点、边缘裁切与近邻说明；四组纸卡和档案盒沿用自身轮廓，不额外垫大矩形；五张印刷图版采用不同纸色、薄纸边和不同高度的阴影。",
+      "avoid": "不删除图形内部运动，不改为统一图标或相同底板，不添加中文副标题，不使用带尖角的说明气泡。",
+      "duration_ms": 2950,
+      "preview_ms": 2200,
+      "loop": false,
+      "default_ease": "outCubic",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        },
+        "catalogElements": [
+          {
+            "id": "claude-glyph-rain-illustration",
+            "name": "字符雨幕",
+            "duration_ms": 3000,
+            "preview_ms": 2200,
+            "default_ease": "linear",
+            "parameters": {},
+            "source": {
+              "path": "catalog/effects/claude-tile-illustrations.js"
+            }
+          },
+          {
+            "id": "claude-orbits-illustration",
+            "name": "多轨环绕",
+            "duration_ms": 3000,
+            "preview_ms": 2200,
+            "default_ease": "linear",
+            "parameters": {},
+            "source": {
+              "path": "catalog/effects/claude-tile-illustrations.js"
+            }
+          },
+          {
+            "id": "claude-terrain-illustration",
+            "name": "起伏网面",
+            "duration_ms": 3000,
+            "preview_ms": 2200,
+            "default_ease": "linear",
+            "parameters": {},
+            "source": {
+              "path": "catalog/effects/claude-tile-illustrations.js"
+            }
+          },
+          {
+            "id": "archive-box-illustration",
+            "name": "开盒浮页",
+            "duration_ms": 3000,
+            "preview_ms": 2900,
+            "default_ease": "linear",
+            "parameters": {},
+            "source": {
+              "path": "catalog/effects/kimi-illustrations.js"
+            }
+          },
+          {
+            "id": "chart-card-illustration",
+            "name": "手绘图卡",
+            "duration_ms": 3000,
+            "preview_ms": 2900,
+            "default_ease": "linear",
+            "parameters": {},
+            "source": {
+              "path": "catalog/effects/kimi-illustrations.js"
+            }
+          },
+          {
+            "id": "folio-cards-illustration",
+            "name": "散页卡组",
+            "duration_ms": 3000,
+            "preview_ms": 2900,
+            "default_ease": "linear",
+            "parameters": {},
+            "source": {
+              "path": "catalog/effects/kimi-illustrations.js"
+            }
+          },
+          {
+            "id": "torus-illustration",
+            "name": "环面线框",
+            "duration_ms": 3000,
+            "preview_ms": 2400,
+            "default_ease": "linear",
+            "parameters": {},
+            "source": {
+              "path": "catalog/effects/illustrations.js"
+            }
+          },
+          {
+            "id": "moon-card-illustration",
+            "name": "月相纸卡",
+            "duration_ms": 3000,
+            "preview_ms": 2900,
+            "default_ease": "linear",
+            "parameters": {},
+            "source": {
+              "path": "catalog/effects/kimi-illustrations.js"
+            }
+          },
+          {
+            "id": "claude-flow-field-illustration",
+            "name": "噪声流场",
+            "duration_ms": 3000,
+            "preview_ms": 2200,
+            "default_ease": "linear",
+            "parameters": {},
+            "source": {
+              "path": "catalog/effects/claude-tile-illustrations.js"
+            }
+          }
+        ]
+      },
+      "source": {
+        "path": "catalog/effects/paper-showcase.js",
+        "factory": "result-anchors",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [
+          "catalog/effects/claude-tile-illustrations.js",
+          "catalog/effects/kimi-illustrations.js",
+          "catalog/effects/illustrations.js"
+        ]
+      },
+      "actions": [
+        "claude-glyph-rain-illustration",
+        "claude-orbits-illustration",
+        "claude-terrain-illustration",
+        "archive-box-illustration",
+        "chart-card-illustration",
+        "folio-cards-illustration",
+        "torus-illustration",
+        "moon-card-illustration",
+        "claude-flow-field-illustration"
+      ],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开预览后播放，可暂停、重播和拖动定位。",
+      "analogy": "成果与自己的说明一起围绕中心名称展开。",
+      "assumptions": "直接调用当前工作区动效目录的九个原生绘制方法，保留完整形状与内部动作，不另画近似元素；中心标题采用WISE MOTION，删除中文副标题。各图形从目录完整预览时刻继续自身动作，由父页面同一时间轴控制。 本轮仅优化外围呈现：放大原生素材主体，加入石墨深纸、深蓝图版、浅色图纸和蓝晒纸的区别，保留低与高两种贴地投影、纸边、轻微转角及反光；中心标题为带空格的WISE MOTION，使用本地Oswald粗体，等待字体准备后显示。",
+      "tempo_note": "总长2.95秒，首项立即出现，其余项从0.32秒起每隔55毫秒错峰出现，说明框延后170毫秒。",
+      "reproduction": {
+        "presentation": "640×360画板；冷绿桌面、不同色泽的纸张、薄纸边、接触阴影与轻微反光。中央 WISE MOTION 使用36像素 Oswald Bold，九组图形在四周保留错落位置和边缘裁切。",
+        "phases": [
+          "左上首张图形先进入",
+          "中央大写WISE MOTION与其余目录图形错峰落位；半透明圆角说明框就近出现",
+          "九组图形沿用目录内部运动，边缘裁切与中心留白保持"
+        ],
+        "retain": "保留九组目录图形、原片落点、边缘裁切与近邻说明；四组纸卡和档案盒沿用自身轮廓，不额外垫大矩形；五张印刷图版采用不同纸色、薄纸边和不同高度的阴影。"
+      },
+      "previous_names": [
+        "成果就近配对"
+      ]
+    },
+    {
+      "id": "stack-flick",
+      "name": "纸片连续叠加",
+      "kind": "action",
+      "category": "layout",
+      "summary": "从一张地图纸开始，每隔0.18秒在同一纸堆上加一张；新页在0.09秒内短距离压下，旧页位置不再变化，内容更换与纸层增加同步发生。",
+      "purpose": "从一张地图纸开始，每隔0.18秒在同一纸堆上加一张；新页在0.09秒内短距离压下，旧页位置不再变化，内容更换与纸层增加同步发生。",
+      "objects": "保留低对比地图纸纹理、米灰与蓝灰纸色、多语言衬线文字及桌面工具；纸堆中心稳定，12张纸按绘制顺序逐张叠加，已落定的纸不移动、不消失。",
+      "phases": [
+        "桌面与第一张地图纸已经落定",
+        "新纸页在堆顶快速叠加，文字随纸更换；底层纸不移动、不退出，错位边角与接触阴影逐层增加",
+        "十二张纸全部留下，最后一张文字随纸堆停稳"
+      ],
+      "aliases": [
+        "多语言纸片连续压入纸堆",
+        "纸片连续叠加",
+        "纸片堆叠"
+      ],
+      "behaviors": [
+        "sequence",
+        "move",
+        "layer"
+      ],
+      "retain": "保留低对比地图纸纹理、米灰与蓝灰纸色、多语言衬线文字及桌面工具；纸堆中心稳定，12张纸按绘制顺序逐张叠加，已落定的纸不移动、不消失。",
+      "avoid": "不改变已经落定的纸页位置，不让旧纸消失，不用远距离飘入代替堆顶短距离下压。",
+      "duration_ms": 2550,
+      "preview_ms": 2350,
+      "loop": false,
+      "default_ease": "outCubic",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/paper-showcase.js",
+        "factory": "stack-flick",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [
+          "catalog/assets/stack-flick/map-paper.png",
+          "catalog/assets/stack-flick/desk-background.png",
+          "catalog/assets/stack-flick/generation.json",
+          "catalog/assets/stack-flick/background-generation.json"
+        ]
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开预览后播放，可暂停、重播和拖动定位。",
+      "analogy": "往同一纸堆上一张接一张地放纸，纸层不断增加。",
+      "assumptions": "桌面背景与中央地图纸均由Codex内置生图能力依据原片参考独立生成。背景保留柔和灰绿光感、半透明图纸、工程文件、蓝色底板与金属圆规的反光和接触阴影；中央纸堆和文字另由代码叠加。蓝灰与浅灰纸色由页面显示滤镜调整，十二张连续叠加的动作保持原样。未使用原片帧直接作为背景或动画画面，未做完整纸张物理模拟。",
+      "tempo_note": "总长2.55秒；第一张已落定，0.3秒开始每隔0.18秒增加一张，各在0.09秒内压下7像素，共十二张。",
+      "reproduction": {
+        "presentation": "640×360画板；灰绿光感的桌面与周边图纸、文件、金属圆规。中央纸堆位于(328,183)，每页256×168像素，按固定错位与倾角持续叠加。保留地图纸纹理与多语言文字。",
+        "phases": [
+          "桌面与第一张地图纸已经落定",
+          "新纸页在堆顶快速叠加，文字随纸更换；底层纸不移动、不退出，错位边角与接触阴影逐层增加",
+          "十二张纸全部留下，最后一张文字随纸堆停稳"
+        ],
+        "retain": "保留低对比地图纸纹理、米灰与蓝灰纸色、多语言衬线文字及桌面工具；纸堆中心稳定，12张纸按绘制顺序逐张叠加，已落定的纸不移动、不消失。"
+      }
+    },
+    {
+      "id": "coordinate-grid-build",
+      "name": "坐标网格绘入",
+      "kind": "action",
+      "category": "data",
+      "summary": "横纵轴先从交点展开，细点阵、主网格、三圈测量圆与边框随后分层绘入。",
+      "purpose": "独立复用坐标网格绘入的几何与时间关系。",
+      "objects": "两根轴线、细点阵、主网格、三圈圆、刻度、尺寸线与边框",
+      "phases": [
+        "两根轴线从中央向四方伸长。",
+        "细点阵和主网格按距离错开绘入，随后描出三圈同心圆及刻度。",
+        "角部短线、外框和内框补齐，保留尺度与圆心。"
+      ],
+      "aliases": [
+        "坐标网格绘入",
+        "光点建域",
+        "文字边界",
+        "流线展开"
+      ],
+      "behaviors": [
+        "draw",
+        "stagger"
+      ],
+      "retain": "主格距34.3、细格距11.43；三个圆半径51.4、85.7、120；保留分别绘入的起点与顺序。",
+      "avoid": "不加入底部字幕、音轨、原片图像或随机重排；独立动作仅建立自身对象，不播放完整组合再隐藏其他对象。",
+      "duration_ms": 4200,
+      "preview_ms": 3900,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/point-domain-flow.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机光点、文字边界与流线精修源码提取几何和绝对时间，依用户要求去掉叙事字幕、让亮线停在文字内侧并放大碰撞火花；运行不读取原片、参考帧或远程资源。代码许可仅覆盖本地适配源码。",
+        "rights_note": "原片设计与边界原文的再分发权利未经核实；本地参考收录不代表该视觉内容获得公开分发授权。",
+        "factory": "coordinate-grid-build"
+      },
+      "source_clock": [
+        0,
+        4.2
+      ],
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；可暂停、重播与任意定位。",
+      "analogy": "横纵轴先从交点展开，细点阵、主网格、三圈测量圆与边框随后分层绘入。",
+      "assumptions": "保留本地精修后的原色、空间文字与实际局部时钟，去掉叙事字幕。",
+      "tempo_note": "独立动作沿用组合0.000000至4.200000秒的局部时钟，播放速度可调为半速至两倍。",
+      "reproduction": {
+        "presentation": "16:9画幅，640×360绘制坐标、1280×720画布；近黑底，几何与文字直接绘制。空间文字使用苹方无衬线字体回退，不读取视频或图片，不含叙事字幕。",
+        "objects": "两根轴线、细点阵、主网格、三圈圆、刻度、尺寸线与边框"
+      }
+    },
+    {
+      "id": "coordinate-focus-zoom",
+      "name": "坐标中心放大",
+      "kind": "action",
+      "category": "space",
+      "summary": "同一坐标平面持续放大，中心方框逐层锁定，模型标记随相同镜头进入近景。",
+      "purpose": "独立复用坐标中心放大的几何与时间关系。",
+      "objects": "坐标平面、测量圆、中心方框与模型标记",
+      "phases": [
+        "镜头从现有坐标中心开始放大。",
+        "放大倍率逐步升至8.15，中心三个方框分别出现，模型标记保持与平面一致。",
+        "中心近景停住，留给后续平面倾转。"
+      ],
+      "aliases": [
+        "坐标中心放大",
+        "光点建域",
+        "文字边界",
+        "流线展开"
+      ],
+      "behaviors": [
+        "scale",
+        "depth",
+        "draw"
+      ],
+      "retain": "保留4.2至8.533333秒的放大过程，方框半径3.75、6.4、10.5与已确定的标记位置。",
+      "avoid": "不加入底部字幕、音轨、原片图像或随机重排；独立动作仅建立自身对象，不播放完整组合再隐藏其他对象。",
+      "duration_ms": 4333.333333333333,
+      "preview_ms": 2300,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/point-domain-flow.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机光点、文字边界与流线精修源码提取几何和绝对时间，依用户要求去掉叙事字幕、让亮线停在文字内侧并放大碰撞火花；运行不读取原片、参考帧或远程资源。代码许可仅覆盖本地适配源码。",
+        "rights_note": "原片设计与边界原文的再分发权利未经核实；本地参考收录不代表该视觉内容获得公开分发授权。",
+        "factory": "coordinate-focus-zoom"
+      },
+      "source_clock": [
+        4.2,
+        8.533333333333333
+      ],
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；可暂停、重播与任意定位。",
+      "analogy": "同一坐标平面持续放大，中心方框逐层锁定，模型标记随相同镜头进入近景。",
+      "assumptions": "保留本地精修后的原色、空间文字与实际局部时钟，去掉叙事字幕。",
+      "tempo_note": "独立动作沿用组合4.200000至8.533333秒的局部时钟，播放速度可调为半速至两倍。",
+      "reproduction": {
+        "presentation": "16:9画幅，640×360绘制坐标、1280×720画布；近黑底，几何与文字直接绘制。空间文字使用苹方无衬线字体回退，不读取视频或图片，不含叙事字幕。",
+        "objects": "坐标平面、测量圆、中心方框与模型标记"
+      }
+    },
+    {
+      "id": "text-plane-tilt",
+      "name": "文字平面倾斜",
+      "kind": "action",
+      "category": "space",
+      "summary": "近景坐标向下倾转，镜头掠过同一文字平面，再拉远为围绕光点的文字边界。",
+      "purpose": "独立复用文字平面倾转的几何与时间关系。",
+      "objects": "文字组成的横纵网格、退出的坐标近景与虚线轴",
+      "phases": [
+        "坐标近景向下倾斜，原标记逐渐退出。",
+        "镜头沿固定路径掠过文字平面，文字与线条使用相同透视。",
+        "平面回到近乎正面并拉远，文字边界向中央收小。"
+      ],
+      "aliases": [
+        "文字平面倾转",
+        "光点建域",
+        "文字边界",
+        "流线展开"
+      ],
+      "behaviors": [
+        "rotate",
+        "depth",
+        "position"
+      ],
+      "retain": "文字是空间几何的一部分；保留横向317、纵向328的间距、字大小13.5及固定镜头轨迹。",
+      "avoid": "不加入底部字幕、音轨、原片图像或随机重排；独立动作仅建立自身对象，不播放完整组合再隐藏其他对象。",
+      "duration_ms": 8133.333333333335,
+      "preview_ms": 1766.6666666666674,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/point-domain-flow.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机光点、文字边界与流线精修源码提取几何和绝对时间，依用户要求去掉叙事字幕、让亮线停在文字内侧并放大碰撞火花；运行不读取原片、参考帧或远程资源。代码许可仅覆盖本地适配源码。",
+        "rights_note": "原片设计与边界原文的再分发权利未经核实；本地参考收录不代表该视觉内容获得公开分发授权。",
+        "factory": "text-plane-tilt"
+      },
+      "source_clock": [
+        8.533333333333333,
+        16.666666666666668
+      ],
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；可暂停、重播与任意定位。",
+      "analogy": "近景坐标向下倾转，镜头掠过同一文字平面，再拉远为围绕光点的文字边界。",
+      "assumptions": "保留本地精修后的原色、空间文字与实际局部时钟，去掉叙事字幕。",
+      "tempo_note": "独立动作沿用组合8.533333至16.666667秒的局部时钟，播放速度可调为半速至两倍。",
+      "reproduction": {
+        "presentation": "16:9画幅，640×360绘制坐标、1280×720画布；近黑底，几何与文字直接绘制。空间文字使用苹方无衬线字体回退，不读取视频或图片，不含叙事字幕。",
+        "objects": "文字组成的横纵网格、退出的坐标近景与虚线轴"
+      },
+      "previous_names": [
+        "文字平面倾转"
+      ]
+    },
+    {
+      "id": "boundary-curve-stop",
+      "name": "亮线遇字停住",
+      "kind": "action",
+      "category": "connection",
+      "summary": "三次亮线沿曲线尝试伸长，前两次在文字前停驻，放大的火花向边界内散开，旧线冷却为铜色。",
+      "purpose": "独立复用亮线触字停驻的几何与时间关系。",
+      "objects": "斜排与竖排文字墙、两条弯线、窄通道亮线、碰撞火花",
+      "phases": [
+        "亮线从光点附近沿曲线向斜排文字生长，在字前停住。",
+        "第二条亮线向竖排文字伸长并停止；两次触边各出现160颗较大的火花。",
+        "旧线冷却为铜色，第三次亮线沿文字通道伸长，随后与文字墙一起退去。"
+      ],
+      "aliases": [
+        "亮线触字停驻",
+        "光点建域",
+        "文字边界",
+        "流线展开"
+      ],
+      "behaviors": [
+        "draw",
+        "particles",
+        "color"
+      ],
+      "retain": "保留三次生长及冷却时间；终点距两面文字墙至少7与22个绘制单位，并再留2.1的笔触余量；160颗火花半径0.55至1.75、存活0.7秒，只向可用边界内显示。",
+      "avoid": "不加入底部字幕、音轨、原片图像或随机重排；独立动作仅建立自身对象，不播放完整组合再隐藏其他对象。",
+      "duration_ms": 4920.000000000002,
+      "preview_ms": 1800.0000000000007,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/point-domain-flow.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机光点、文字边界与流线精修源码提取几何和绝对时间，依用户要求去掉叙事字幕、让亮线停在文字内侧并放大碰撞火花；运行不读取原片、参考帧或远程资源。代码许可仅覆盖本地适配源码。",
+        "rights_note": "原片设计与边界原文的再分发权利未经核实；本地参考收录不代表该视觉内容获得公开分发授权。",
+        "factory": "boundary-curve-stop"
+      },
+      "source_clock": [
+        11.2,
+        16.12
+      ],
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；可暂停、重播与任意定位。",
+      "analogy": "三次亮线沿曲线尝试伸长，前两次在文字前停驻，放大的火花向边界内散开，旧线冷却为铜色。",
+      "assumptions": "保留本地精修后的原色、空间文字与实际局部时钟，去掉叙事字幕。",
+      "tempo_note": "独立动作沿用组合11.200000至16.120000秒的局部时钟，播放速度可调为半速至两倍。",
+      "reproduction": {
+        "presentation": "16:9画幅，640×360绘制坐标、1280×720画布；近黑底，几何与文字直接绘制。空间文字使用苹方无衬线字体回退，不读取视频或图片，不含叙事字幕。",
+        "objects": "斜排与竖排文字墙、两条弯线、窄通道亮线、碰撞火花"
+      },
+      "previous_names": [
+        "亮线触字停驻"
+      ]
+    },
+    {
+      "id": "frame-ring-collapse",
+      "name": "圆环方框收拢",
+      "kind": "action",
+      "category": "space",
+      "summary": "镜头拉远后，三圈文字圆与方框逐层显出并缩回光点，一小段亮物旋转回落。",
+      "purpose": "独立复用圈框回缩的几何与时间关系。",
+      "objects": "三圈文字圆、三层方框、角部标记与回落亮物",
+      "phases": [
+        "三圈与相应方框在拉远中显出。",
+        "圈框保持同心，同时向光点收小。",
+        "最后小亮物旋转回落，圈框退尽。"
+      ],
+      "aliases": [
+        "圈框回缩",
+        "光点建域",
+        "文字边界",
+        "流线展开"
+      ],
+      "behaviors": [
+        "scale",
+        "rotate",
+        "exit"
+      ],
+      "retain": "三个圆按0.428、0.714、1的比例使用同一基准半径；收束开始14.15秒，最后小亮物于15.85至16.28秒回落。",
+      "avoid": "不加入底部字幕、音轨、原片图像或随机重排；独立动作仅建立自身对象，不播放完整组合再隐藏其他对象。",
+      "duration_ms": 2130.000000000001,
+      "preview_ms": 949.9999999999993,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/point-domain-flow.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机光点、文字边界与流线精修源码提取几何和绝对时间，依用户要求去掉叙事字幕、让亮线停在文字内侧并放大碰撞火花；运行不读取原片、参考帧或远程资源。代码许可仅覆盖本地适配源码。",
+        "rights_note": "原片设计与边界原文的再分发权利未经核实；本地参考收录不代表该视觉内容获得公开分发授权。",
+        "factory": "frame-ring-collapse"
+      },
+      "source_clock": [
+        14.15,
+        16.28
+      ],
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；可暂停、重播与任意定位。",
+      "analogy": "镜头拉远后，三圈文字圆与方框逐层显出并缩回光点，一小段亮物旋转回落。",
+      "assumptions": "保留本地精修后的原色、空间文字与实际局部时钟，去掉叙事字幕。",
+      "tempo_note": "独立动作沿用组合14.150000至16.280000秒的局部时钟，播放速度可调为半速至两倍。",
+      "reproduction": {
+        "presentation": "16:9画幅，640×360绘制坐标、1280×720画布；近黑底，几何与文字直接绘制。空间文字使用苹方无衬线字体回退，不读取视频或图片，不含叙事字幕。",
+        "objects": "三圈文字圆、三层方框、角部标记与回落亮物"
+      },
+      "previous_names": [
+        "圈框回缩"
+      ]
+    },
+    {
+      "id": "bounded-fibre-grow",
+      "name": "格内纤维生长",
+      "kind": "action",
+      "category": "shape",
+      "summary": "短亮纤维从中心生长并沿自身路径流动，数量从34增到58，所有笔触限制在逐渐收小的方格内。",
+      "purpose": "独立复用格内纤维生长的几何与时间关系。",
+      "objects": "方格边界内的亮纤维与沿线细亮点",
+      "phases": [
+        "回落亮物之后，34条短纤维从中心展开。",
+        "纤维数量增至58，分段亮线沿曲线流动，边界随网格收小。",
+        "在流场展开前，局部纤维保持运动，随后一起退去。"
+      ],
+      "aliases": [
+        "格内纤维生长",
+        "光点建域",
+        "文字边界",
+        "流线展开"
+      ],
+      "behaviors": [
+        "draw",
+        "particles",
+        "clip"
+      ],
+      "retain": "方格半宽49缩至28，纤维裁在方格内；独立动作仅绘制纤维及四边文字框，不携带其他段落。",
+      "avoid": "不加入底部字幕、音轨、原片图像或随机重排；独立动作仅建立自身对象，不播放完整组合再隐藏其他对象。",
+      "duration_ms": 7840,
+      "preview_ms": 2340,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/point-domain-flow.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机光点、文字边界与流线精修源码提取几何和绝对时间，依用户要求去掉叙事字幕、让亮线停在文字内侧并放大碰撞火花；运行不读取原片、参考帧或远程资源。代码许可仅覆盖本地适配源码。",
+        "rights_note": "原片设计与边界原文的再分发权利未经核实；本地参考收录不代表该视觉内容获得公开分发授权。",
+        "factory": "bounded-fibre-grow"
+      },
+      "source_clock": [
+        16.36,
+        24.2
+      ],
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；可暂停、重播与任意定位。",
+      "analogy": "短亮纤维从中心生长并沿自身路径流动，数量从34增到58，所有笔触限制在逐渐收小的方格内。",
+      "assumptions": "保留本地精修后的原色、空间文字与实际局部时钟，去掉叙事字幕。",
+      "tempo_note": "独立动作沿用组合16.360000至24.200000秒的局部时钟，播放速度可调为半速至两倍。",
+      "reproduction": {
+        "presentation": "16:9画幅，640×360绘制坐标、1280×720画布；近黑底，几何与文字直接绘制。空间文字使用苹方无衬线字体回退，不读取视频或图片，不含叙事字幕。",
+        "objects": "方格边界内的亮纤维与沿线细亮点"
+      }
+    },
+    {
+      "id": "grid-flow-unfold",
+      "name": "网格弯曲流线展开",
+      "kind": "action",
+      "category": "shape",
+      "summary": "文字网格铺展并持续弯曲，文字退去后短丝爆发，彩色流线连续展开成满幅多涡流场。",
+      "purpose": "连续表现网格形变到流线展开的过渡，作为一个独立动作复用。",
+      "objects": "全幅文字网格、细网格、320条径向分段细线、短丝爆发、八组颜色流线、多个涡心与1500个沿线亮点",
+      "phases": [
+        "文字网格保持全幅并转动、收小，细网格从中央铺开。",
+        "横纵线和文字持续弯曲，径向细线向外流动，文字网格逐渐退去。",
+        "短丝从中心爆发，彩色流线展开成多个涡心，细亮点沿轨迹流动。"
+      ],
+      "aliases": [
+        "网格铺展弯曲",
+        "多涡流线展开",
+        "光点建域",
+        "文字边界",
+        "流线展开"
+      ],
+      "behaviors": [
+        "warp",
+        "draw",
+        "position",
+        "particles",
+        "scale",
+        "morph"
+      ],
+      "retain": "主格距从100×92缩至75×68；细网格20.03秒开始铺开，弯曲从19.5秒持续至23.77秒；不得提前换成满幅旋涡。 使用两组65×37稀疏方向几何重新积分成细流线；八组颜色、固定种子、1500个沿线亮点，运行不使用原片位图。",
+      "avoid": "不加入底部字幕、音轨、原片图像或随机重排；独立动作仅建立自身对象，不播放完整组合再隐藏其他对象。",
+      "duration_ms": 9200,
+      "preview_ms": 8333.333333333332,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/point-domain-flow.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机光点、文字边界与流线精修源码提取几何和绝对时间，依用户要求去掉叙事字幕、让亮线停在文字内侧并放大碰撞火花；运行不读取原片、参考帧或远程资源。代码许可仅覆盖本地适配源码。",
+        "rights_note": "原片设计与边界原文的再分发权利未经核实；本地参考收录不代表该视觉内容获得公开分发授权。",
+        "factory": "grid-flow-unfold"
+      },
+      "source_clock": [
+        16.666666666666668,
+        25.866666666666667
+      ],
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；可暂停、重播与任意定位。",
+      "analogy": "文字网格铺展并持续弯曲，文字退去后短丝爆发，彩色流线连续展开成满幅多涡流场。",
+      "assumptions": "保留本地精修后的原色、空间文字与实际局部时钟，去掉叙事字幕。",
+      "tempo_note": "文字网格铺展、弯曲到彩色流线展开连续播放9.2秒，保留原来的交接与时钟，播放速度可调为半速至两倍。",
+      "reproduction": {
+        "presentation": "16:9近黑画幅，文字网格、细网格和径向细线逐渐弯曲；文字退去后，短丝爆发接入八组彩色细流线与多涡流场。保持原色、细丝暗部间隙与连续交接，不加字幕。",
+        "objects": "全幅文字网格、细网格、320条径向分段细线、短丝爆发、八组颜色流线、多个涡心与1500个沿线亮点"
+      },
+      "previous_names": [
+        "网格铺展弯曲",
+        "多涡流线展开"
+      ]
+    },
+    {
+      "id": "point-domain-flow-sequence",
+      "name": "光点建网流线展开",
+      "kind": "composition",
+      "category": "compositions",
+      "summary": "中心光点建立坐标和文字边界；亮线在文字前停住，圈框收回，格内纤维生长，网格弯曲后展开成满幅彩色旋涡。",
+      "purpose": "连续表现空间建立、运动受限和流线向外展开，并提供真实部件拆解。",
+      "objects": "暖色光点与夜空、坐标和镜头、文字平面与边界、触边亮线和大火花、收束圈框、格内纤维、弯曲网格、多涡流场",
+      "phases": [
+        "光点与细星显出，轴线、网格、测量圆和边框分层建立；镜头放大后倾入文字平面。",
+        "亮线在斜排和竖排文字前停住并向内散出大火花，圈框收回；短纤维在方格内生长。",
+        "细网格铺开并持续弯曲，文字退去；短丝爆发，流线展开成满幅多涡流场。"
+      ],
+      "aliases": [
+        "光点建域",
+        "文字边界生长",
+        "方格纤维",
+        "网格弯曲",
+        "多涡流线",
+        "Opus 5.5",
+        "光点建域与流线展开"
+      ],
+      "behaviors": [
+        "sequence",
+        "depth",
+        "draw",
+        "particles",
+        "warp"
+      ],
+      "retain": "完整776帧、30帧每秒、25.866667秒时钟；保留已校正的光感、夜空和末段涡心；337至425帧亮线先停在文字内侧，碰撞火花半径0.55至1.75、160颗。构成空间的文字保留，全片无底部叙事字幕。",
+      "avoid": "不添加字幕或音轨，不把时间段伪装成独立动作，不用视频与截图绘制，不提前切换满幅旋涡。",
+      "duration_ms": 25866.666666666668,
+      "preview_ms": 25000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/point-domain-flow.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从本机光点、文字边界与流线精修源码提取几何和绝对时间，依用户要求去掉叙事字幕、让亮线停在文字内侧并放大碰撞火花；运行不读取原片、参考帧或远程资源。代码许可仅覆盖本地适配源码。",
+        "rights_note": "原片设计与边界原文的再分发权利未经核实；本地参考收录不代表该视觉内容获得公开分发授权。",
+        "factory": "point-domain-flow-sequence"
+      },
+      "actions": [
+        "coordinate-grid-build",
+        "coordinate-focus-zoom",
+        "text-plane-tilt",
+        "boundary-curve-stop",
+        "frame-ring-collapse",
+        "bounded-fibre-grow",
+        "grid-flow-unfold",
+        "star-twinkle"
+      ],
+      "action_variants": {
+        "star-twinkle": "layered-night"
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后播放完整组合，可暂停、重播和逐时刻定位；组合拆解支持单独查看与逐层叠加。",
+      "analogy": "从一个光点建立空间，亮线遇到边界止步，再从局部纤维展开成满幅流场。",
+      "assumptions": "从本机精修原稿提取自主绘制函数，依用户最新要求去字幕、触字前停驻、放大火花；保留边界文字作为空间对象。",
+      "tempo_note": "保留完整原片时钟与段落交接，不压缩为短组合；最后一帧25.833333秒，段尾保持一帧。",
+      "reproduction": {
+        "presentation": "16:9近黑暗场，中心小白核叠宽阔暖棕软光，夜空疏密星点微幅闪亮。640×360绘制坐标、1280×720画布；保留文字平面、约束文字与模型标记，不加底部叙事字幕；光点位置、透视和末段涡心按固定时间接续。",
+        "objects": "空间对象包括坐标、文字边界、圈框、受限纤维和流场，所有独立部件与组合共用绘制函数。"
+      },
+      "previous_names": [
+        "光点建域与流线展开"
+      ]
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后从头播放；支持暂停、重播、时间定位与整体倍速。",
+      "tempo_note": "每秒12格逐格绘制，动作保持原有先后关系；末尾静止。",
+      "assumptions": "1600×900设计坐标等比呈现在640×360逻辑画板；纸白、炭黑与少量朱红；字片用本地Oswald粗体字形。",
+      "id": "cutout-type-fold",
+      "name": "字片折落归位",
+      "category": "writing",
+      "summary": "带纸背与切边的字片先后翻落，重新排列为上下两行。",
+      "purpose": "带纸背与切边的字片先后翻落，重新排列为上下两行。",
+      "objects": "上下两行WISE与MOTION剪纸字片、黑白相接的撕边纸底",
+      "phases": [
+        "开场0.25秒后，上行四片字以75毫秒间隔开始翻落；每片在0.65秒内从上方进入，并从负1.8弧度展开纸背。",
+        "0.62秒后，下行六片字以95毫秒间隔从右下方进入，在0.72秒内从2弧度翻回正面；每片保留不同倾角和离纸阴影。",
+        "1.82秒前完成上下两行排列，保持到2.2秒；上行炭黑字配浅纸切边，下行浅字配炭黑切边。"
+      ],
+      "duration_ms": 2200,
+      "preview_ms": 2000,
+      "aliases": [
+        "剪纸文字",
+        "折落",
+        "纸背",
+        "字片翻入",
+        "WISE MOTION"
+      ],
+      "behaviors": [
+        "stagger",
+        "flip",
+        "settle"
+      ],
+      "retain": "两行字的先后关系、底边折叠轴、纸背、切边与固定微小倾角；上行有轻微过冲。",
+      "avoid": "不以纯透明度淡入替代翻折，不把字片做成整块卡片。",
+      "analogy": "像把剪下的字母逐片翻回正面并排到海报上。",
+      "reproduction": {
+        "presentation": "16:9画面，纸白底#f1eee6、炭黑#232420、朱红#c34430；剪纸保留撕边、纸纤维、印刷网点和贴近纸面的软影。英文与数字为Oswald粗体；每秒12格，所有画面由绝对时间决定。",
+        "objects": "上下两行WISE与MOTION剪纸字片、黑白相接的撕边纸底"
+      },
+      "source": {
+        "path": "catalog/effects/collage-film.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "factory": "cutout-type-fold"
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后从头播放；支持暂停、重播、时间定位与整体倍速。",
+      "tempo_note": "每秒12格逐格绘制，动作保持原有先后关系；末尾静止。",
+      "assumptions": "1600×900设计坐标等比呈现在640×360逻辑画板；纸白、炭黑与少量朱红；字片用本地Oswald粗体字形。",
+      "id": "crank-linked-turn",
+      "name": "曲柄牵引联动",
+      "category": "environment",
+      "summary": "手掌拉动纸带，转轮、偏心连杆与小齿轮共同运动。",
+      "purpose": "手掌拉动纸带，转轮、偏心连杆与小齿轮共同运动。",
+      "objects": "透明手掌剪影、朱红纸带、八辐转轮、偏心销、纸连杆、小转轴与两片纸齿轮",
+      "phases": [
+        "0–0.4秒手掌进入；0.78秒纸带开始从横坐标1060拉到340，1.3秒内完成牵引。",
+        "转轮随牵引转过负4.9弧度；半径177的偏心销用实际角度确定位置，连杆连接到固定小轴心786、678。",
+        "2.08秒后转轮继续以每秒负1.7弧度转动；小轴转速为反向1.8倍，两片纸齿轮按反向1.7倍和同向2.45倍联动，手掌在2.96秒前离场。"
+      ],
+      "duration_ms": 3100,
+      "preview_ms": 2000,
+      "aliases": [
+        "机械剪贴",
+        "拉带转轮",
+        "曲柄",
+        "连杆",
+        "纸齿轮",
+        "手掌"
+      ],
+      "behaviors": [
+        "react",
+        "rotate",
+        "linked"
+      ],
+      "retain": "转轮销的位置和连杆长度由同一角度计算，手掌夹点始终对齐纸带端头。",
+      "avoid": "不让连杆两端脱开，不给不同部件独立随机时钟，不使用原片帧。",
+      "analogy": "像拉动一条纸带，让旧式机械装置依次转起来。",
+      "reproduction": {
+        "presentation": "16:9画面，纸白底#f1eee6、炭黑#232420、朱红#c34430；剪纸保留撕边、纸纤维、印刷网点和贴近纸面的软影。英文与数字为Oswald粗体；每秒12格，所有画面由绝对时间决定。",
+        "objects": "透明手掌剪影、朱红纸带、八辐转轮、偏心销、纸连杆、小转轴与两片纸齿轮"
+      },
+      "source": {
+        "path": "catalog/effects/collage-film.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "factory": "crank-linked-turn",
+        "assets": [
+          "catalog/assets/collage-film/hand.png",
+          "catalog/assets/collage-film/flywheel.png"
+        ]
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后从头播放；支持暂停、重播、时间定位与整体倍速。",
+      "tempo_note": "每秒12格逐格绘制，动作保持原有先后关系；末尾静止。",
+      "assumptions": "1600×900设计坐标等比呈现在640×360逻辑画板；纸白、炭黑与少量朱红；字片用本地Oswald粗体字形。",
+      "id": "joint-rule-unfold",
+      "name": "连节折尺展开",
+      "category": "entrance",
+      "summary": "六节带刻度的纸尺沿连接点展开并停稳。",
+      "purpose": "六节带刻度的纸尺沿连接点展开并停稳。",
+      "objects": "六节交替浅深纸面、刻度、六个铆钉与末端铆钉",
+      "phases": [
+        "开始时六节纸尺左右折起，每节设计长度70像素，基础倾角负0.08弧度。",
+        "0.15–1.35秒展开：交替正负1.17弧度的附加倾角逐渐回零，上一节的末端始终是下一节的起点。",
+        "1.35秒后六节接近拉直，刻度和铆钉保持静止，停留到1.8秒。"
+      ],
+      "duration_ms": 1800,
+      "preview_ms": 1550,
+      "aliases": [
+        "折叠尺",
+        "关节展开",
+        "连节纸尺",
+        "折尺"
+      ],
+      "behaviors": [
+        "unfold",
+        "linked"
+      ],
+      "retain": "六节长度和连接点连续，细密刻度是图形结构的一部分，近纸阴影随纸片保留。",
+      "avoid": "不把每节平移拉开，不产生断开的铆接处。",
+      "analogy": "像打开一把折叠木尺，关节依次把长度带出来。",
+      "reproduction": {
+        "presentation": "16:9画面，纸白底#f1eee6、炭黑#232420、朱红#c34430；剪纸保留撕边、纸纤维、印刷网点和贴近纸面的软影。英文与数字为Oswald粗体；每秒12格，所有画面由绝对时间决定。",
+        "objects": "六节交替浅深纸面、刻度、六个铆钉与末端铆钉"
+      },
+      "source": {
+        "path": "catalog/effects/collage-film.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "factory": "joint-rule-unfold"
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后从头播放；支持暂停、重播、时间定位与整体倍速。",
+      "tempo_note": "每秒12格逐格绘制，动作保持原有先后关系；末尾静止。",
+      "assumptions": "1600×900设计坐标等比呈现在640×360逻辑画板；纸白、炭黑与少量朱红；字片用本地Oswald粗体字形。",
+      "id": "folded-step-rebound",
+      "name": "折纸支架受力回弹",
+      "category": "response",
+      "summary": "纸台下沉时折纸支架收紧，侧纸舌翻起后一起回弹。",
+      "purpose": "纸台下沉时折纸支架收紧，侧纸舌翻起后一起回弹。",
+      "objects": "三阶纸台、锯齿折叠支架、侧纸舌、每次触地的六片纸屑",
+      "phases": [
+        "三阶纸台从左到右抬高，每阶水平间隔384像素、垂直抬高35像素。",
+        "0.24、1.28、2.30秒依次受压；每次0.43秒内台面下沉13像素再恢复，支架深度由55收至32像素再展开，侧纸舌同时翻动。",
+        "每次受力弹起六片小纸屑，在0.63秒内落下淡去；2.93秒后保持全部纸台恢复的画面。"
+      ],
+      "duration_ms": 3100,
+      "preview_ms": 480,
+      "aliases": [
+        "受力纸台",
+        "折叠支撑",
+        "纸舌翻动",
+        "纸台回弹"
+      ],
+      "behaviors": [
+        "react",
+        "bounce",
+        "fold"
+      ],
+      "retain": "台面、折纸支撑与侧纸舌共用同一受力曲线，三次受力间隔固定。",
+      "avoid": "不用整个纸台等比例缩放替代折纸关节变形，不改变已停稳纸台位置。",
+      "analogy": "像踩过折纸搭起的小台阶，支撑压紧后弹回。",
+      "reproduction": {
+        "presentation": "16:9画面，纸白底#f1eee6、炭黑#232420、朱红#c34430；剪纸保留撕边、纸纤维、印刷网点和贴近纸面的软影。英文与数字为Oswald粗体；每秒12格，所有画面由绝对时间决定。",
+        "objects": "三阶纸台、锯齿折叠支架、侧纸舌、每次触地的六片纸屑"
+      },
+      "source": {
+        "path": "catalog/effects/collage-film.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "factory": "folded-step-rebound"
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后从头播放；支持暂停、重播、时间定位与整体倍速。",
+      "tempo_note": "每秒12格逐格绘制，动作保持原有先后关系；末尾静止。",
+      "assumptions": "1600×900设计坐标等比呈现在640×360逻辑画板；纸白、炭黑与少量朱红；字片用本地Oswald粗体字形。",
+      "id": "cutout-stride-leap",
+      "name": "剪影跑动与弹离",
+      "category": "connection",
+      "summary": "人物以八个姿态完成跑步，踩住纸台后压低蓄力，接续六个姿态翻身弹出。",
+      "purpose": "人物以八个姿态完成跑步，踩住纸台后压低蓄力，接续六个姿态翻身弹出。",
+      "objects": "八帧跑步图集、六帧受力弹离图集、两层淡印样、朱红弧形纸带",
+      "phases": [
+        "0.12–2.70秒人物沿横坐标257到1190、脚底682到612前进；每1.04秒依次切换八个完整跑步姿态，包含触地、承重、交叉步和蹬地。",
+        "2.70–3.08秒踩住第三阶纸台：先屈膝承重，再压低蓄力13像素；跑步阶段两层淡印样分别取此前0.16和0.08秒的真实姿态。",
+        "3.08秒起蹬伸并依次切到收腿、后仰和伸展姿态；腰部按横向440t+310t²、纵向-790t+330t²的路径弹出右上方，在4.58秒前出框，红纸带短暂跟随。"
+      ],
+      "duration_ms": 4600,
+      "preview_ms": 3250,
+      "aliases": [
+        "剪贴人物",
+        "逐格跑步",
+        "四姿态",
+        "跃起纸带",
+        "动作印样",
+        "剪影跑动与弹离",
+        "弹出画面",
+        "跑步过程帧",
+        "蓄力弹开"
+      ],
+      "behaviors": [
+        "path",
+        "discrete",
+        "jump",
+        "trail"
+      ],
+      "retain": "八帧跑步和六帧弹离均保留完整手脚；每个姿态校准脚底与腰部位置。先承重压低再蹬伸，随后弹出画面。两层淡印样透明度0.08与0.14，取真实过去姿态。",
+      "avoid": "不在两个固定跑姿间来回抖动，不用单一僵硬剪影平移代替跑动，不让图集边界切到手脚，不依赖上一次播放位置。",
+      "analogy": "像逐格摄影里的跑者踩到弹性纸台，先压低再被反作用力弹离。",
+      "reproduction": {
+        "presentation": "16:9画面，纸白底#f1eee6、炭黑#232420、朱红#c34430；剪纸保留撕边、纸纤维、印刷网点和贴近纸面的软影。英文与数字为Oswald粗体；每秒12格，所有画面由绝对时间决定。",
+        "objects": "八帧跑步图集、六帧受力弹离图集、两层淡印样、朱红弧形纸带"
+      },
+      "source": {
+        "path": "catalog/effects/collage-film.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "factory": "cutout-stride-leap",
+        "assets": [
+          "catalog/assets/collage-film/runner-run-cycle.png",
+          "catalog/assets/collage-film/runner-rebound.png"
+        ]
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后从头播放；支持暂停、重播、时间定位与整体倍速。",
+      "tempo_note": "每秒12格逐格绘制，动作保持原有先后关系；末尾静止。",
+      "assumptions": "1600×900设计坐标等比呈现在640×360逻辑画板；纸白、炭黑与少量朱红；字片用本地Oswald粗体字形。",
+      "id": "scraps-return-layout",
+      "name": "碎片散开归位",
+      "category": "layout",
+      "summary": "十片印刷碎纸先从中心散开，再回到海报边缘的固定位置。",
+      "purpose": "十片印刷碎纸先从中心散开，再回到海报边缘的固定位置。",
+      "objects": "十片带印刷字与线纹的碎纸，九片浅纸与一片朱红纸",
+      "phases": [
+        "0.18秒起十片碎纸以28毫秒间隔从834、471向各自的中间位置散开，每片展开0.64秒。",
+        "1.08秒起以35毫秒间隔开始回收，每片在0.84秒内从中间位置移向上边、右边或右下角的固定落点。",
+        "旋转同时收至固定小倾角，2.24秒后全部归位，保持到2.8秒；已经落定的纸片不继续漂移。"
+      ],
+      "duration_ms": 2800,
+      "preview_ms": 2600,
+      "aliases": [
+        "碎纸归位",
+        "印刷碎片",
+        "散开收拢",
+        "边缘排布"
+      ],
+      "behaviors": [
+        "scatter",
+        "gather",
+        "settle"
+      ],
+      "retain": "外散和回收分两阶段，落点固定且分布在海报边缘，保留印刷纹理和短阴影。",
+      "avoid": "不在末尾简单淡出，不让碎片持续随机游走。",
+      "analogy": "像将散落的剪报碎纸重新贴回海报边缘。",
+      "reproduction": {
+        "presentation": "16:9画面，纸白底#f1eee6、炭黑#232420、朱红#c34430；剪纸保留撕边、纸纤维、印刷网点和贴近纸面的软影。英文与数字为Oswald粗体；每秒12格，所有画面由绝对时间决定。",
+        "objects": "十片带印刷字与线纹的碎纸，九片浅纸与一片朱红纸"
+      },
+      "source": {
+        "path": "catalog/effects/collage-film.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "factory": "scraps-return-layout"
+      }
+    },
+    {
+      "kind": "composition",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [
+        "cutout-type-fold",
+        "crank-linked-turn",
+        "joint-rule-unfold",
+        "folded-step-rebound",
+        "cutout-stride-leap",
+        "scraps-return-layout"
+      ],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后从头播放；支持暂停、重播、时间定位与整体倍速。",
+      "tempo_note": "全长14秒，每秒12格；第一段到4.12秒，第二段到9.5秒，12–14秒完全定格。整体倍速保留两次转场和动作先后关系。",
+      "assumptions": "1600×900设计坐标等比呈现在640×360逻辑画板；纸白、炭黑与少量朱红；字片用本地Oswald粗体字形。",
+      "id": "collage-film-sequence",
+      "name": "剪贴联动与海报归位",
+      "category": "compositions",
+      "summary": "手掌牵引纸上机械，人物沿纸台奔跑跃起，最后汇成黑白剪贴海报。",
+      "purpose": "手掌牵引纸上机械，人物沿纸台奔跑跃起，最后汇成黑白剪贴海报。",
+      "objects": "手掌、红纸带、机械转轮与纸齿轮、折尺、剪贴字片、八帧跑步与六帧弹离人物、三阶折纸台、印刷碎纸、纸章",
+      "phases": [
+        "0–4.12秒：手掌拉红带，WISE字片落下，转轮和连杆联动；刻度纸片翻开、折尺展开，镜头推向转轮中心。",
+        "3.45–9.5秒：圆孔遮罩接入奔跑画面，MOTION字片进入；八帧人物完成跑步，6.70秒踩住第三阶纸台后压低，7.08秒蹬伸，接续六帧姿态翻身弹离，红纸带跟随出框。",
+        "8.65–14秒：斜切纸面接入海报，上下两行字片归位、跃起人物落在右侧，碎纸收回边缘，12–14秒稳定定格。"
+      ],
+      "duration_ms": 14000,
+      "preview_ms": 12000,
+      "aliases": [
+        "WISE MOTION",
+        "纸上工坊",
+        "剪贴短片",
+        "逐格拼贴",
+        "纸片联动",
+        "品牌海报"
+      ],
+      "behaviors": [
+        "sequence",
+        "linked",
+        "flip",
+        "discrete",
+        "transition"
+      ],
+      "retain": "14秒完整三段结构、每秒12格、纸白炭黑朱红配色、纸面纤维与网点；保留圆孔和斜切两次转场以及末尾两秒定格。",
+      "avoid": "不缩短为单段文字入场，不替换成视频播放，不添加音轨，不去掉折尺、受力纸台和碎片归位。",
+      "analogy": "把一座纸上机械工坊启动，让人物跑过纸台，最后重新拼成一张品牌海报。",
+      "reproduction": {
+        "presentation": "16:9画面，纸白底#f1eee6、炭黑#232420、朱红#c34430；剪纸保留撕边、纸纤维、印刷网点和贴近纸面的软影。英文与数字为Oswald粗体；每秒12格，所有画面由绝对时间决定。",
+        "objects": "手掌、红纸带、机械转轮与纸齿轮、折尺、剪贴字片、八帧跑步与六帧弹离人物、三阶折纸台、印刷碎纸、纸章"
+      },
+      "source": {
+        "path": "catalog/effects/collage-film.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "factory": "collage-film-sequence",
+        "assets": [
+          "catalog/assets/collage-film/hand.png",
+          "catalog/assets/collage-film/flywheel.png",
+          "catalog/assets/collage-film/runner-poses.png",
+          "catalog/assets/collage-film/runner-run-cycle.png",
+          "catalog/assets/collage-film/runner-rebound.png"
+        ]
+      }
+    },
+    {
+      "id": "capsule-type-sequence",
+      "name": "字母落定与碰撞炸出",
+      "kind": "composition",
+      "category": "compositions",
+      "duration_ms": 5000,
+      "preview_ms": 4400,
+      "summary": "饱满彩色字母先落入胶囊地面，银球撞入后掀起胶囊，并炸出第二行字母。",
+      "objects": "WISE与MOTION两行实体字母、5760根近景胶囊和远景胶囊、银色球、共享灯光与连贯镜头",
+      "phases": [
+        "0–1.55秒：WISE四字在0.34、0.51、0.68、0.85秒错峰落地，压缩回弹，脚下胶囊压陷并向外传出波纹。",
+        "1.42秒银球飞入，1.88秒撞击前方地面；胶囊翻转飞散，奶黄地面沿距离先后微微提亮；MOTION从约1.92秒开始自右向左炸起。",
+        "六个字母向外翻转，再回弹转正并排成前方第二行；胶囊约3.65秒全部归位，最后保持两行品牌画面至5秒。"
+      ],
+      "aliases": [
+        "WISE MOTION",
+        "多巴胺配色",
+        "彩色立体字",
+        "糖果字母",
+        "软质字母",
+        "银球碰撞",
+        "胶囊地面",
+        "炸出MOTION"
+      ],
+      "behaviors": [
+        "stagger",
+        "bounce",
+        "depth",
+        "particles",
+        "sequence"
+      ],
+      "actions": [
+        "soft-type-land",
+        "capsule-impact-scatter",
+        "type-burst-settle"
+      ],
+      "retain": "5秒完整时钟、三色光亮字母、胶囊地面、共享投影、轻微虚实、银球撞击和双行收尾；所有散开的胶囊回到自己的原位。",
+      "avoid": "不改成视频或平面贴图播放，不把整段裁剪当独立动作，不添加声音，不把设计轨迹描述为通用软体物理模拟。",
+      "tempo_note": "保留5秒快节奏，1.88秒碰撞，3.65秒后完整展示；播放速度整体缩放。",
+      "analogy": "先让第一行落在柔软地面上，再用一次撞击炸出第二行。",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、时间定位与整体倍速。",
+      "purpose": "饱满彩色字母先落入胶囊地面，银球撞入后掀起胶囊，并炸出第二行字母。",
+      "assumptions": "字形是自编三维曲面，例字固定为WISE和MOTION；运动为确定性的设计轨迹，颜色按线性空间计算。",
+      "source": {
+        "path": "catalog/effects/capsule-type.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的五秒多巴胺配色作品提取自编三维模型、材质、灯光与运动代码；完整组合保留源画面参数，独立动作按真实对象隔离，共用相同绘制函数。没有携带旧复刻素材、参考视频或第三方图形库。 根据后续画面对照，补齐画框外的远景胶囊，并使其淡入暖米色渐变背景。",
+        "factory": "capsule-type-sequence"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，1600×900绘制画面；饱满圆管字形使用亮粉、明黄、湖蓝，宽大白色灯板高光与凹口阴影表现光亮树脂质感。72×80根近景胶囊及向画框外延伸的远景胶囊铺成连续地面，地面始终奶黄色，碰撞后仅沿距离延迟微微提亮。银球保持金属反光，远处逐渐变密、虚化并淡入带柔光的暖米色渐变背景，不露出矩形地面边界。字母轮廓由三维曲面生成，不依赖字体或图片。",
+        "objects": "WISE与MOTION两行实体字母、5760根近景胶囊和远景胶囊、银色球、共享灯光与连贯镜头"
+      },
+      "recommendation": "饱满彩色字母先落入胶囊地面，银球撞入后掀起胶囊，并炸出第二行字母。"
+    },
+    {
+      "id": "soft-type-land",
+      "name": "立体字母错峰落定",
+      "kind": "action",
+      "category": "response",
+      "duration_ms": 1550,
+      "preview_ms": 1350,
+      "summary": "四个厚实彩色字母错峰下落，着地压缩回弹，并压出向外传播的地面波纹。",
+      "objects": "WISE四个实体字母与承托它们的密集胶囊地面",
+      "phases": [
+        "四字分别从各自落点上方进入，依次在0.34、0.51、0.68、0.85秒落地。",
+        "每次落地伴随纵向压缩、横向鼓起、轻微倾转与衰减回弹；对应地面压陷。",
+        "脚下波纹向外传播并衰减，四字在1.55秒前稳定。"
+      ],
+      "aliases": [
+        "饱满字母",
+        "三维字落地",
+        "软糖字母",
+        "错峰压缩回弹",
+        "立体字母落定"
+      ],
+      "behaviors": [
+        "stagger",
+        "bounce",
+        "depth",
+        "react"
+      ],
+      "actions": [],
+      "retain": "四次接触时刻、按实际字形底部定位、保体积缩放与倾转回弹；保留奶黄胶囊的受压与波纹。",
+      "avoid": "不加载银球与MOTION字母，不把字面高光替换成平面渐变，不把地面响应提前到接触前。",
+      "tempo_note": "完整演示1.55秒，四字间隔0.17秒着地；整体倍速保持先后关系。",
+      "analogy": "四颗饱满糖果依次落在柔软垫面上。",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、时间定位与整体倍速。",
+      "purpose": "四个厚实彩色字母错峰下落，着地压缩回弹，并压出向外传播的地面波纹。",
+      "assumptions": "字形是自编三维曲面，例字固定为WISE和MOTION；运动为确定性的设计轨迹，颜色按线性空间计算。",
+      "source": {
+        "path": "catalog/effects/capsule-type.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的五秒多巴胺配色作品提取自编三维模型、材质、灯光与运动代码；完整组合保留源画面参数，独立动作按真实对象隔离，共用相同绘制函数。没有携带旧复刻素材、参考视频或第三方图形库。 根据后续画面对照，补齐画框外的远景胶囊，并使其淡入暖米色渐变背景。",
+        "factory": "soft-type-land"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，1600×900绘制画面；饱满圆管字形使用亮粉、明黄、湖蓝，宽大白色灯板高光与凹口阴影表现光亮树脂质感。72×80根近景胶囊及向画框外延伸的远景胶囊铺成连续地面，地面始终奶黄色，碰撞后仅沿距离延迟微微提亮。银球保持金属反光，远处逐渐变密、虚化并淡入带柔光的暖米色渐变背景，不露出矩形地面边界。字母轮廓由三维曲面生成，不依赖字体或图片。",
+        "objects": "WISE四个实体字母与承托它们的密集胶囊地面"
+      },
+      "recommendation": "四个厚实彩色字母错峰下落，着地压缩回弹，并压出向外传播的地面波纹。"
+    },
+    {
+      "id": "capsule-impact-scatter",
+      "name": "碰撞掀起胶囊",
+      "kind": "action",
+      "category": "particles",
+      "duration_ms": 2550,
+      "preview_ms": 900,
+      "summary": "银球撞入密集胶囊地面，胶囊翻转飞散、落回原位，提亮波向外扩散。",
+      "objects": "银色球、72×80根胶囊与承托底面",
+      "phases": [
+        "演示0.07秒银球开始从右上方进入，0.53秒撞到前方右侧地面后弹出。",
+        "撞击后的波纹向外扩散，附近及前排胶囊以固定时差散开、旋转与弹跳，飞起时带亮粉、明黄、湖蓝三色。",
+        "飞起的原胶囊重新收回各自初始位置，约2.30秒全部归位；地面保持奶黄色并微微提亮，末段保持。"
+      ],
+      "aliases": [
+        "胶囊爆散",
+        "银球撞入",
+        "碰撞飞散归位",
+        "彩色胶囊",
+        "多巴胺胶囊"
+      ],
+      "behaviors": [
+        "particles",
+        "react",
+        "bounce",
+        "sequence"
+      ],
+      "actions": [],
+      "retain": "实际72×80胶囊阵列、固定随机分布、0.53秒碰撞、同一批胶囊的飞散与归位、距离延迟提亮。",
+      "avoid": "不显示两行字母，不保留隐去字母造成的压陷，不另加一批重复粒子，不在回拖时重新随机。",
+      "tempo_note": "独立演示2.55秒，使用完整组合1.35–3.90秒的银球与胶囊轨迹；只建立相关对象。",
+      "analogy": "一颗银球掀起一片彩色颗粒，颗粒随后各归其位。",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、时间定位与整体倍速。",
+      "purpose": "银球撞入密集胶囊地面，胶囊翻转飞散、落回原位，提亮波向外扩散。",
+      "assumptions": "字形是自编三维曲面，例字固定为WISE和MOTION；运动为确定性的设计轨迹，颜色按线性空间计算。",
+      "source": {
+        "path": "catalog/effects/capsule-type.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的五秒多巴胺配色作品提取自编三维模型、材质、灯光与运动代码；完整组合保留源画面参数，独立动作按真实对象隔离，共用相同绘制函数。没有携带旧复刻素材、参考视频或第三方图形库。 根据后续画面对照，补齐画框外的远景胶囊，并使其淡入暖米色渐变背景。",
+        "factory": "capsule-impact-scatter"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，1600×900绘制画面；饱满圆管字形使用亮粉、明黄、湖蓝，宽大白色灯板高光与凹口阴影表现光亮树脂质感。72×80根近景胶囊及向画框外延伸的远景胶囊铺成连续地面，地面始终奶黄色，碰撞后仅沿距离延迟微微提亮。银球保持金属反光，远处逐渐变密、虚化并淡入带柔光的暖米色渐变背景，不露出矩形地面边界。字母轮廓由三维曲面生成，不依赖字体或图片。",
+        "objects": "银色球、72×80根胶囊与承托底面"
+      },
+      "recommendation": "银球撞入密集胶囊地面，胶囊翻转飞散、落回原位，提亮波向外扩散。"
+    },
+    {
+      "id": "type-burst-settle",
+      "name": "立体字母炸出归位",
+      "kind": "action",
+      "category": "writing",
+      "duration_ms": 2000,
+      "preview_ms": 1700,
+      "summary": "六个实体字母从地面自右向左接续炸起，向外翻转后回弹转正，排成一行。",
+      "objects": "MOTION六个三维字母与胶囊承托地面",
+      "phases": [
+        "0.115–0.245秒，六字自右向左以0.026秒的间隔从地面接续出现并迅速长成。",
+        "每个字母沿0.64秒的抛起弧线向上向外展开，同时绕三个方向翻转。",
+        "字母转正收回各自位置，落地轻微压缩回弹；胶囊在落点压陷，尾段保持完整单行。"
+      ],
+      "aliases": [
+        "炸出文字",
+        "立体文字爆发",
+        "MOTION",
+        "字母抛起归位",
+        "彩色字母翻转"
+      ],
+      "behaviors": [
+        "stagger",
+        "depth",
+        "bounce",
+        "sequence"
+      ],
+      "actions": [],
+      "retain": "六字0.026秒错峰、三向翻转、向外展开与逐字归位、实际立体轮廓、三色树脂质感。",
+      "avoid": "不加载第一行字母和银球，不让无关胶囊凭空爆散，不用缩放平面文字替代实体字母。",
+      "tempo_note": "独立演示2秒，使用完整组合1.80–3.80秒的字母轨迹；起动、飞起与落定均保留原速度。",
+      "analogy": "六个彩色字母从地面弹出，在空中翻身，再组成一行标题。",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、时间定位与整体倍速。",
+      "purpose": "六个实体字母从地面自右向左接续炸起，向外翻转后回弹转正，排成一行。",
+      "assumptions": "字形是自编三维曲面，例字固定为WISE和MOTION；运动为确定性的设计轨迹，颜色按线性空间计算。",
+      "source": {
+        "path": "catalog/effects/capsule-type.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的五秒多巴胺配色作品提取自编三维模型、材质、灯光与运动代码；完整组合保留源画面参数，独立动作按真实对象隔离，共用相同绘制函数。没有携带旧复刻素材、参考视频或第三方图形库。 根据后续画面对照，补齐画框外的远景胶囊，并使其淡入暖米色渐变背景。",
+        "factory": "type-burst-settle"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，1600×900绘制画面；饱满圆管字形使用亮粉、明黄、湖蓝，宽大白色灯板高光与凹口阴影表现光亮树脂质感。72×80根近景胶囊及向画框外延伸的远景胶囊铺成连续地面，地面始终奶黄色，碰撞后仅沿距离延迟微微提亮。银球保持金属反光，远处逐渐变密、虚化并淡入带柔光的暖米色渐变背景，不露出矩形地面边界。字母轮廓由三维曲面生成，不依赖字体或图片。",
+        "objects": "MOTION六个三维字母与胶囊承托地面"
+      },
+      "recommendation": "六个实体字母从地面自右向左接续炸起，向外翻转后回弹转正，排成一行。"
+    },
+    {
+      "id": "tile-ring-unfold",
+      "name": "地块逐圈翻铺",
+      "kind": "action",
+      "category": "space",
+      "duration_ms": 1800,
+      "preview_ms": 1400,
+      "summary": "地块从中心向外逐圈翻开，最后叠出厚实的地基。",
+      "objects": "144块倒角地砖、中心四块铰接地砖、三层实体地基",
+      "phases": [
+        "先显示中心四块地砖，沿对角方向翻开并轻微回落。",
+        "外圈按到中心的方形距离依次翻落，保持接缝与统一厚度。",
+        "地砖铺满12×12网格后，三层地基向下展开并停稳。"
+      ],
+      "aliases": [
+        "地块铺展",
+        "地基",
+        "方块翻铺",
+        "动效绿洲"
+      ],
+      "behaviors": [
+        "depth",
+        "stagger",
+        "sequence"
+      ],
+      "actions": [],
+      "retain": "实体几何、同一位置的连续运动、暖沙色与青绿色原色插画。",
+      "avoid": "不先清空水面再换图，不用整片裁切替代独立动作，不使用视频或截图作为画面。",
+      "tempo_note": "150毫秒起动，1200毫秒完成主要变化，450毫秒保持最终状态。",
+      "analogy": "地块从中心向外逐圈翻开，最后叠出厚实的地基。",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、定位与倍速。",
+      "purpose": "地块从中心向外逐圈翻开，最后叠出厚实的地基。",
+      "assumptions": "原色空间插画；统一时钟计算模型与投影，每次定位得到相同画面。",
+      "source": {
+        "path": "catalog/effects/motion-oasis.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "factory": "tile-ring-unfold",
+        "extraction": "从已确认的动效绿洲代码模型中提取独立对象；独立动作与完整组合共用地块、退台建筑、水面绘制及波次计算，不依赖参考视频或本机工程路径。",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅；暖沙色背景、奶油色地基、珊瑚色建筑与青绿色水面，等距投影，保留原色插画的立体表面与柔和阴影。"
+      },
+      "recommendation": "地块从中心向外逐圈翻开，最后叠出厚实的地基。"
+    },
+    {
+      "id": "terraced-rise",
+      "name": "层台错峰生长",
+      "kind": "action",
+      "category": "shape",
+      "duration_ms": 1800,
+      "preview_ms": 1400,
+      "summary": "建筑从底部逐层抬升，后层内收形成种植露台。",
+      "objects": "五层退台建筑、成对楼板、立面窗框、绿植与屋顶遮阳架",
+      "phases": [
+        "底座先长出，第一层沿竖直方向抬升。",
+        "五层以90毫秒的原始错峰关系接续生长；每层向内退让，并同步显出窗框、楼板和绿植。",
+        "屋顶平台与遮阳架最后长出，建筑保持完整轮廓。"
+      ],
+      "aliases": [
+        "退台建筑",
+        "阶梯生长",
+        "空中花园",
+        "动效绿洲"
+      ],
+      "behaviors": [
+        "depth",
+        "stagger",
+        "sequence"
+      ],
+      "actions": [],
+      "retain": "实体几何、同一位置的连续运动、暖沙色与青绿色原色插画。",
+      "avoid": "不先清空水面再换图，不用整片裁切替代独立动作，不使用视频或截图作为画面。",
+      "tempo_note": "150毫秒起动，1200毫秒完成主要变化，450毫秒保持最终状态。",
+      "analogy": "建筑从底部逐层抬升，后层内收形成种植露台。",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、定位与倍速。",
+      "purpose": "建筑从底部逐层抬升，后层内收形成种植露台。",
+      "assumptions": "原色空间插画；统一时钟计算模型与投影，每次定位得到相同画面。",
+      "source": {
+        "path": "catalog/effects/motion-oasis.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "factory": "terraced-rise",
+        "extraction": "从已确认的动效绿洲代码模型中提取独立对象；独立动作与完整组合共用地块、退台建筑、水面绘制及波次计算，不依赖参考视频或本机工程路径。",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅；暖沙色背景、奶油色地基、珊瑚色建筑与青绿色水面，等距投影，保留原色插画的立体表面与柔和阴影。"
+      },
+      "recommendation": "建筑从底部逐层抬升，后层内收形成种植露台。"
+    },
+    {
+      "id": "water-wave-handoff",
+      "name": "水面随波换图",
+      "kind": "action",
+      "category": "environment",
+      "duration_ms": 5280,
+      "preview_ms": 2700,
+      "summary": "水格持续起伏，中心波与角落波交替扫过，波峰带着新旧动效逐渐接替。",
+      "objects": "26个立体水格、连续水纹、8种目录动效的水面投映",
+      "phases": [
+        "水面始终存在并微微起伏，图形随着第一轮波峰逐格显出。",
+        "每660毫秒交替从中心与角落发波；距离延迟为每格90毫秒，水面抬升与图形缩放同步。",
+        "每个水格独立接收波峰，新旧图形在同一水面交叠渐变，持续轮换8种动效。"
+      ],
+      "aliases": [
+        "水面起伏",
+        "逐渐切换",
+        "水池",
+        "按距离依次响应",
+        "网格波次传递",
+        "动效绿洲"
+      ],
+      "behaviors": [
+        "depth",
+        "stagger",
+        "sequence"
+      ],
+      "actions": [],
+      "retain": "实体几何、同一位置的连续运动、暖沙色与青绿色原色插画。",
+      "avoid": "不先清空水面再换图，不用整片裁切替代独立动作，不使用视频或截图作为画面。",
+      "tempo_note": "5280毫秒连续演示八轮传播，末帧保留水面与图形；重播从初始水面重新开始。",
+      "analogy": "水格持续起伏，中心波与角落波交替扫过，波峰带着新旧动效逐渐接替。",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、定位与倍速。",
+      "purpose": "水格持续起伏，中心波与角落波交替扫过，波峰带着新旧动效逐渐接替。",
+      "assumptions": "原色空间插画；统一时钟计算模型与投影，每次定位得到相同画面。",
+      "source": {
+        "path": "catalog/effects/motion-oasis.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "factory": "water-wave-handoff",
+        "extraction": "从已确认的动效绿洲代码模型中提取独立对象；独立动作与完整组合共用地块、退台建筑、水面绘制及波次计算，不依赖参考视频或本机工程路径。",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅；暖沙色背景、奶油色地基、珊瑚色建筑与青绿色水面，等距投影，保留原色插画的立体表面与柔和阴影。"
+      },
+      "recommendation": "水格持续起伏，中心波与角落波交替扫过，波峰带着新旧动效逐渐接替。"
+    },
+    {
+      "id": "motion-oasis-sequence",
+      "name": "地块铺展与动效绿洲",
+      "kind": "composition",
+      "category": "compositions",
+      "duration_ms": 3750,
+      "preview_ms": 3350,
+      "summary": "地块逐圈翻开，露台建筑与植被长出；水面起伏轮换目录动效，数据卡退场后显出MOTION OASIS。",
+      "objects": "12×12地块、三层实体地基、退台楼群、棕榈树、26个动效水格、三张目录数据卡与MOTION OASIS立体字",
+      "phases": [
+        "0–0.80秒：中心四块地砖翻开，外圈依距离翻铺，三层地基向下展开。",
+        "0.85–2.83秒：楼群、露台、树木逐次生长；水面持续起伏并交替传播中心波与角落波，三张数据卡显示当前目录的动作、插画和组合数量。",
+        "2.91–3.75秒：镜头拉远，MOTION OASIS逐字落定；中文为“让动效在城市发生”，水面继续换图。"
+      ],
+      "aliases": [
+        "MOTION OASIS",
+        "动效绿洲",
+        "OASIS",
+        "未来绿洲",
+        "城市生长",
+        "水面动效",
+        "catalog"
+      ],
+      "behaviors": [
+        "depth",
+        "stagger",
+        "sequence"
+      ],
+      "actions": [
+        "tile-ring-unfold",
+        "terraced-rise",
+        "water-wave-handoff",
+        "group-stagger",
+        "wave-grid"
+      ],
+      "retain": "3.75秒镜头与画面时序、原色建筑、细化棕榈树、连续起伏水面、逐格交叠换图、目录数量数据卡和MOTION OASIS收尾。",
+      "avoid": "不扩大天空、不加投影屏幕、不改变楼群布局；水面不清空，图形不等消失后才出现；不依赖参考视频。",
+      "tempo_note": "保留3.75秒完整时序，水波从1.40秒启动，每660毫秒发出一轮，3.22秒起显出中文收尾。",
+      "analogy": "一座逐层生长的城市，把水面变成不断换映的动效展场。",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、定位与倍速。",
+      "purpose": "地块逐圈翻开，露台建筑与植被长出；水面起伏轮换目录动效，数据卡退场后显出MOTION OASIS。",
+      "assumptions": "原色空间插画；统一时钟计算模型与投影，每次定位得到相同画面。",
+      "source": {
+        "path": "catalog/effects/motion-oasis.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "factory": "motion-oasis-sequence",
+        "extraction": "从已确认的动效绿洲代码模型中提取独立对象；独立动作与完整组合共用地块、退台建筑、水面绘制及波次计算，不依赖参考视频或本机工程路径。",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅；1066×600原色等距城市插画，暖沙色背景、奶油色地基、珊瑚色退台楼群、青绿色水面。镜头先跟随地块生长移动，再拉远交给左下方MOTION OASIS立体字。图形标题与数据卡保留作品字体、配色和位置。"
+      },
+      "recommendation": "地块逐圈翻开，露台建筑与植被长出；水面起伏轮换目录动效，数据卡退场后显出MOTION OASIS。"
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、时间定位与整体倍速。",
+      "assumptions": "图形为原生路径与固定种子印刷纹理；画面只由当前时间决定。英文标题使用包内Oswald Bold。",
+      "id": "geometry-turn-build",
+      "name": "图层进入与旋转累积",
+      "kind": "action",
+      "category": "layout",
+      "duration_ms": 2620,
+      "preview_ms": 2320,
+      "summary": "几何层从画外依次进入，共同旋转四分之一圈，继续叠加纹理并缩回完整构图。",
+      "purpose": "几何层从画外依次进入，共同旋转四分之一圈，继续叠加纹理并缩回完整构图。",
+      "objects": "橙色曲面、黑色斜面、左上弧形线纹、斜向细线、左右网点圆面、右侧疏密竖纹与暖纸底",
+      "phases": [
+        "0–0.78秒，橙色曲面、弧形线纹与黑色斜面依次进入；0.78–1.12秒图形组从−90度转到0度。",
+        "斜线、右网点、竖纹与左网点分别从1.08、1.27、1.45、1.63秒起进入，每层持续0.27–0.30秒；已有图层保留。",
+        "1.90秒七层进入完成，独立演示省去闪切等待；1.90–2.17秒从满幅图形缩回并上移至海报上部，停留0.45秒。"
+      ],
+      "aliases": [
+        "几何错峰进入",
+        "四分之一圈旋转",
+        "图层累积",
+        "满幅归位"
+      ],
+      "behaviors": [
+        "sequence",
+        "rotate",
+        "stagger",
+        "scale"
+      ],
+      "retain": "七层按各自固定轨迹进入；橙色0秒、弧线0.22秒、黑面0.48秒起动，持续0.34、0.34、0.30秒。位置减速曲线为1−(1−p)⁴；组旋转与缩放使用四次方对称加减速。",
+      "avoid": "只建立七个几何层与纸底，不创建标题，不播放快闪；不同时进入全部图形。",
+      "tempo_note": "独立2.62秒；0–1.90秒进入与旋转，1.90–2.17秒缩回上移，末停0.45秒；相对组合仅省去0.45秒闪切，动作速度相同。",
+      "analogy": "几何层从画外依次进入，共同旋转四分之一圈，继续叠加纹理并缩回完整构图。",
+      "recommendation": "几何层从画外依次进入，共同旋转四分之一圈，继续叠加纹理并缩回完整构图。",
+      "actions": [],
+      "source": {
+        "path": "catalog/effects/geometric-poster.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的印刷几何海报提取原生曲面、弧线、网点、纸纹与固定时钟。组合与独立动作共用绘制；横带间歇闪切复用已有18区、30格固定取值及0.45秒交接，增加几何海报示例；文字裁切升入沿用海报词组示例。字体为包内Oswald Bold，遵循OFL；画面不依赖生成图片、外部素材或来源工程路径。",
+        "factory": "geometry-turn-build"
+      },
+      "reproduction": {
+        "presentation": "横版1672×941画面等比展示；暖纸色#efeada、墨色#23241f、橙色#ee5427。几何区位于顶部654像素，固定种子的细颗粒附着在各印刷层。左上65圈变间距椭圆弧，橙色曲面横穿中部，右上黑色斜面，右侧疏密竖纹与渐变网点圆面，左下局部网点；保留贴边裁切与重叠关系。",
+        "objects": "橙色曲面、黑色斜面、左上弧形线纹、斜向细线、左右网点圆面、右侧疏密竖纹与暖纸底"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、时间定位与整体倍速。",
+      "assumptions": "图形为原生路径与固定种子印刷纹理；画面只由当前时间决定。英文标题使用包内Oswald Bold。",
+      "id": "geometric-poster-sequence",
+      "name": "几何旋转与海报成形",
+      "kind": "composition",
+      "category": "compositions",
+      "duration_ms": 4183.333333333334,
+      "preview_ms": 3650,
+      "summary": "印刷几何逐个进入、共同旋转并继续叠加；满幅横带间歇闪切结束后，图形缩回上移，再升入同字号标题。",
+      "purpose": "印刷几何逐个进入、共同旋转并继续叠加；满幅横带间歇闪切结束后，图形缩回上移，再升入同字号标题。",
+      "objects": "橙色曲面、黑色斜面、左上弧形线纹、斜向细线、左右网点圆面、右侧疏密竖纹；暖纸底与同字号WISE MOTION标题",
+      "phases": [
+        "0–0.78秒，橙色曲面、弧形线纹与黑色斜面依次进入；0.78–1.12秒图形组从−90度转到0度。",
+        "斜线、右网点、竖纹与左网点分别从1.08、1.27、1.45、1.63秒进入，1.90秒七层齐备；维持941/654倍满幅，1.90–2.35秒进行十八区间歇闪切，图形错位与七条碎带在结束时完全复原。 2.35–2.62秒才从满幅缩回并上移到海报上部，使用四次方对称加减速。",
+        "约2.703秒WISE、2.813秒MOTION分别从裁切框下方升入，持续0.35与0.40秒；保持相同字号与基线，约3.213秒完成，定格至4.183秒。"
+      ],
+      "aliases": [
+        "WISE MOTION",
+        "印刷几何海报",
+        "逐个进入海报",
+        "几何旋转",
+        "满幅间歇闪切",
+        "闪切后上移",
+        "横带局部切换",
+        "海报收尾"
+      ],
+      "behaviors": [
+        "sequence",
+        "rotate",
+        "stagger",
+        "flash",
+        "mask"
+      ],
+      "retain": "七层几何与固定纸纹，暖纸、黑墨、橙色三色。闪切全程保持941/654倍满幅，结束后才用0.27秒缩回并上移。交接持续0.45秒，p为交接进度、e为已过秒数，f=floor((16−0.45/2+e)×30)，固定取值h(n)=sin(n×127.1+311.7)×43758.5453的小数部分。画面分18条等高横带，第j条在p>0.92或h(j×3.7+f×0.131)<p×1.25−0.12时显露原构图，覆盖高度为画高×61/1080。仅在0.05<p<0.95时绘制错位构图和7条碎带；第k条碎带位置为(h(f+k)−200/1920)×画宽、h(2f+k)×画高，宽为(200+700h(3f+k))/1920×画宽，高为(6+40h(k+5f))/1080×画高；颜色依次为橙、墨、纸，透明度0.55、0.55、0.5。错位层按橙面、弧线、黑面、斜线、右网点、竖纹、左网点顺序，位移分别为(−38,26)、(48,12)、(−30,20)、(55,−18)、(−60,22)、(35,−16)、(28,−22)像素；转角分别为−8、12、7、−5、0、5、0度，等比缩放分别为1.075、1.055、1.035、1.04、1.08、1.035、1.10。标题按300像素字号测量后，以1590像素宽、250像素字高共同约束；基线为917减字形下伸量，两词同字号。",
+      "avoid": "不改变几何与排版，不用整图切片替代原生层，不提前上移，不交叉淡化闪切，不反转配色，结束不留碎带或错位。",
+      "tempo_note": "完整4.1833秒；0–1.90秒进入与旋转，1.90–2.35秒满幅闪切，2.35–2.62秒上移，约2.703秒起出标题，标题完成后停留0.97秒。",
+      "analogy": "印刷几何逐个进入、共同旋转并继续叠加；满幅横带间歇闪切结束后，图形缩回上移，再升入同字号标题。",
+      "recommendation": "印刷几何逐个进入、共同旋转并继续叠加；满幅横带间歇闪切结束后，图形缩回上移，再升入同字号标题。",
+      "actions": [
+        "geometry-turn-build",
+        "glitch-band-transition",
+        "mask-stagger-text"
+      ],
+      "source": {
+        "path": "catalog/effects/geometric-poster.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的印刷几何海报提取原生曲面、弧线、网点、纸纹与固定时钟。组合与独立动作共用绘制；横带间歇闪切复用已有18区、30格固定取值及0.45秒交接，增加几何海报示例；文字裁切升入沿用海报词组示例。字体为包内Oswald Bold，遵循OFL；画面不依赖生成图片、外部素材或来源工程路径。",
+        "factory": "geometric-poster-sequence"
+      },
+      "reproduction": {
+        "presentation": "横版1672×941画面等比展示；暖纸色#efeada、墨色#23241f、橙色#ee5427。几何区位于顶部654像素，固定种子的细颗粒附着在各印刷层。左上65圈变间距椭圆弧，橙色曲面横穿中部，右上黑色斜面，右侧疏密竖纹与渐变网点圆面，左下局部网点；保留贴边裁切与重叠关系。底部一行WISE MOTION使用Oswald Bold，同字号、同一基线。",
+        "objects": "橙色曲面、黑色斜面、左上弧形线纹、斜向细线、左右网点圆面、右侧疏密竖纹；暖纸底与同字号WISE MOTION标题"
+      },
+      "action_variants": {
+        "glitch-band-transition": "poster-cut",
+        "mask-stagger-text": "poster-words"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放，可暂停、重播、定位与调整整体速度。",
+      "assumptions": "使用固定的六条不对称回弹方向、确定性的粒子轨迹与自编曲面字形；重播和回拖不重新抽取方向，示例文字固定为MOTION，两个O为同心圆环。",
+      "source": {
+        "path": "catalog/effects/metal-impact.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从镀彩金属作品提取自主编写的球体、圆管字形、灯光与运动公式；以固定粒子继承球体颜色、爆散后落到解析字形表面的方式融合粒子汇聚。组合与独立动作共用真实绘制函数，不依赖原演示脚本、参考视频或图片。",
+        "factory": "metal-impact-type-sequence"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，1066×600设计坐标；深灰空间与柔和地面倒影，金、铜、粉、紫、蓝、绿六色镀彩金属，宽灯板反射和光滑轮廓。字母 O 使用外半径0.555、内半径0.295的同心圆环；两倍宽高取样后平滑合成。",
+        "objects": "一颗金属球、六颗镀彩金属球、753颗继承六色的金属粒子、MOTION圆管字形、地面倒影、移动灯板及两行品牌文案"
+      },
+      "id": "metal-impact-type-sequence",
+      "name": "金属弹开汇聚成字",
+      "kind": "composition",
+      "category": "compositions",
+      "duration_ms": 5300,
+      "preview_ms": 3500,
+      "summary": "单颗金属球落地分成六颗，大幅弹开后从各自位置沿弧线自然汇向中心；六色粒子从中心散射，再重新汇聚成字，扫光定格。",
+      "objects": "一颗金属球、六颗镀彩金属球、753颗继承六色的金属粒子、MOTION圆管字形、地面倒影、移动灯板及两行品牌文案",
+      "phases": [
+        "0–0.54秒：单球0.36秒落地，0.075秒内分成六颗；沿固定的不对称方向大幅弹开，约0.54秒散得最开，左右跨度约9.05、球心高差2.05、前后深差2.45。",
+        "0.54–1.30秒：六球从各自弹开的位置沿不同弧线连续回收，直接汇向同一个中心，中途不停下排队或再次冲撞；中心压聚0.05秒后，1.35–1.70秒散射出753颗六色金属粒子，约四分之三冲出画面四周。",
+        "1.70–2.80秒：同一批粒子沿弧线回收至字面；2.58–2.96秒字形实体逐渐填满，颗粒在收拢末段退去，两个O保留圆形中空。Oswald Bold的WISE MOTION与MAKE IDEAS MOVE于3.02–3.22秒渐入，3.10–4.36秒扫光，定格到5.30秒。"
+      ],
+      "aliases": [
+        "WISE MOTION",
+        "一落六弹",
+        "金属对撞",
+        "金属成字",
+        "六色金属",
+        "金属爆散",
+        "粒子汇聚",
+        "爆开成字",
+        "冲出画面",
+        "中心对撞",
+        "撞点散射",
+        "金属落地水平对撞成字"
+      ],
+      "behaviors": [
+        "sequence",
+        "bounce",
+        "scatter",
+        "gather",
+        "morph",
+        "light"
+      ],
+      "actions": [
+        "metal-drop-split",
+        "horizontal-metal-type",
+        "polished-metal-sweep"
+      ],
+      "retain": "5.3秒节奏、单点分裂、大幅错向回弹、0.76秒从各自散开位置沿弧线直接汇向中心、连续加减速、0.05秒中心压聚、六色粒子从中心向四周散射再汇聚、粒子与字面对齐、收拢末段直接形成实体字面、正圆O和光滑金属边缘。",
+      "avoid": "不先排成水平队列，不插入停顿和第二次冲撞，不让球体汇到中心后向外反弹，不生成皇冠或尖锐碎屑，不用液体塌陷替代金属回弹，不增加落位后的停留或整字透明叠加，不在最终字面保留散点，不添加声音。",
+      "tempo_note": "总长5.3秒；0.36秒落地、约0.54秒散得最开，0.76秒连续汇向中心；1.30秒到达中心，短顿0.05秒；1.70秒散射最远，2.80秒粒子抵达字面，2.96秒完成实体字面，4.36秒扫光结束。",
+      "analogy": "弹开的六颗金属球沿不同弧线被吸回同一个中心，释放为四散的珠粒，再由同一批珠粒拼成光滑字标。",
+      "purpose": "单颗金属球落地分成六颗，大幅弹开后从各自位置沿弧线自然汇向中心；六色粒子从中心散射，再重新汇聚成字，扫光定格。"
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放，可暂停、重播、定位与调整整体速度。",
+      "assumptions": "使用固定的六条不对称回弹方向、确定性的粒子轨迹与自编曲面字形；重播和回拖不重新抽取方向，示例文字固定为MOTION，两个O为同心圆环。",
+      "source": {
+        "path": "catalog/effects/metal-impact.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的镀彩金属作品提取自主编写的球体、圆管字形、灯光与运动公式；水平对撞修正后纳入，组合与独立动作共用真实绘制函数，不依赖原演示脚本、参考视频或图片。",
+        "factory": "metal-drop-split"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，1066×600设计坐标；深灰空间与柔和地面倒影，金、铜、粉、紫、蓝、绿六色镀彩金属，宽灯板反射和光滑轮廓。字母 O 使用外半径0.555、内半径0.295的同心圆环；两倍宽高取样后平滑合成。",
+        "objects": "一颗金属球、六颗等总体积小球及随运动变化的地面响应"
+      },
+      "id": "metal-drop-split",
+      "name": "落地分裂六球回弹",
+      "kind": "action",
+      "category": "response",
+      "duration_ms": 840,
+      "preview_ms": 540,
+      "summary": "一颗金属球快速落地，分成六颗沿不同高低与前后方向大幅回弹，停留在散开的姿态。",
+      "objects": "一颗金属球、六颗等总体积小球及随运动变化的地面响应",
+      "phases": [
+        "单球从上方加速落下，0.36秒接触地面，最大纵向压缩2%；0.075秒内由同一落点分成六颗半径0.305的小球。",
+        "六球沿六条固定的不对称路径散开，左右飞得更远、各自弹起高度和前后方向不同；约0.54秒左右跨度9.05、球心高差2.05、前后深差2.45，部分球短暂越过画面边缘。",
+        "独立预览在0.54秒散到最开后保持0.30秒，共0.84秒；六球保持高低与前后错落，不排成水平队列。完整组合直接从散开姿态接续弧线汇聚。"
+      ],
+      "aliases": [
+        "一分六",
+        "金属回弹",
+        "落地分裂",
+        "错向回弹",
+        "大幅散开"
+      ],
+      "behaviors": [
+        "bounce",
+        "split"
+      ],
+      "actions": [],
+      "retain": "大球半径0.55422178与六颗小球总体积相等；落差4.02、重力62.03703704；六条不对称散开方向保持固定，终点保留各自高低与前后位置。",
+      "avoid": "不添加归线排队或二次冲撞，不出现粒子、字母或扫光，不生成皇冠或细碎零件。",
+      "tempo_note": "总长0.84秒；0.36秒落地，约0.54秒散得最开，独立预览保持散开姿态0.30秒。",
+      "analogy": "金属球落地后分成六颗，像碰撞弹出的珠子各自蹦向不同方向。",
+      "purpose": "一颗金属球快速落地，分成六颗沿不同高低与前后方向大幅回弹，停留在散开的姿态。"
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放，可暂停、重播、定位与调整整体速度。",
+      "assumptions": "使用确定性的设计轨迹与自编曲面字形；示例文字固定为 MOTION，两个 O 为同心圆环。",
+      "source": {
+        "path": "catalog/effects/metal-impact.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从镀彩金属作品提取自主编写的球体、圆管字形、灯光与运动公式；以固定粒子继承球体颜色、爆散后落到解析字形表面的方式融合粒子汇聚。组合与独立动作共用真实绘制函数，不依赖原演示脚本、参考视频或图片。",
+        "factory": "horizontal-metal-type"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，1066×600设计坐标；深灰空间与柔和地面倒影，金、铜、粉、紫、蓝、绿六色镀彩金属，宽灯板反射和光滑轮廓。字母 O 使用外半径0.555、内半径0.295的同心圆环；两倍宽高取样后平滑合成。六色粒子从中心向四周散射，多数冲出画面；最大横向距离约为画面中心到边缘的2.45倍，纵向约3.58倍，再由同一批粒子回收成字。",
+        "objects": "高低与前后错落的六颗金属球、753颗六色金属粒子与由它们汇聚而成的MOTION六个字母"
+      },
+      "id": "horizontal-metal-type",
+      "name": "中心汇聚散射成字",
+      "kind": "action",
+      "category": "shape",
+      "duration_ms": 2960,
+      "preview_ms": 2520,
+      "summary": "六颗金属球从高低、前后错落的散开位置沿弧线直接汇向中心，短促压聚后向四周散射粒子，再回收汇聚为圆润立体字母。",
+      "objects": "高低与前后错落的六颗金属球、753颗六色金属粒子与由它们汇聚而成的MOTION六个字母",
+      "phases": [
+        "从六球散得最开的姿态开始，用0.76秒沿不同弧线直接汇向中心（0,0.33,0），中途没有水平队列、停顿或第二次冲撞；到达后在中心压住0.05秒。",
+        "0.81–1.16秒：753颗六色金属粒子从半径0.305的同一中心向四周散射，每种颜色分布在四个方向；约四分之三冲出画面，少量留在画面内延续动势，散开时粒径最多放大65%。",
+        "1.16–2.26秒：同一批粒子沿弧线回收至字面；2.04–2.42秒字形实体逐渐填满，颗粒在收拢末段退去，两个O保持圆形中空；定格至2.96秒。"
+      ],
+      "aliases": [
+        "水平碰撞",
+        "六球成字",
+        "回弹字标",
+        "水平对撞回弹成字",
+        "金属爆散",
+        "粒子汇聚",
+        "冲出画面",
+        "中心对撞",
+        "撞点散射",
+        "水平对撞爆散成字"
+      ],
+      "behaviors": [
+        "scatter",
+        "gather",
+        "morph"
+      ],
+      "actions": [],
+      "retain": "从散开姿态直接连续汇聚、0.76秒空间弧线、0.05秒中心压聚、每种颜色都从中心向四周散射、同一批粒子冲出画面再回收、粒子投影与字面对齐、收拢末段直接形成实体字面、两个正圆O，汇聚结束无残留散点。",
+      "avoid": "不播放前置落地，不先排成水平队列，不插入停顿与二次冲撞，不让球体汇到中心后反弹，不按左右分组反射粒子，不用尖锐碎屑或白色火花替代金属粒子，不增加落位后的停留或整字透明叠加，不加尾句或扫光。",
+      "tempo_note": "总长2.96秒；0.76秒汇到中心、0.81秒开始散射、1.16秒达到最远、2.26秒粒子抵达字面，2.42秒形成完整实体字面，余下保持。",
+      "analogy": "散开的六颗金属球各自沿弧线被吸向同一个中心，释放为四散珠粒，再收拢拼成六个金属字母。",
+      "purpose": "六颗金属球从高低、前后错落的散开位置沿弧线直接汇向中心，短促压聚后向四周散射粒子，再回收汇聚为圆润立体字母。"
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放，可暂停、重播、定位与调整整体速度。",
+      "assumptions": "使用确定性的设计轨迹与自编曲面字形；示例文字固定为 MOTION，两个 O 为同心圆环。",
+      "source": {
+        "path": "catalog/effects/metal-impact.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的镀彩金属作品提取自主编写的球体、圆管字形、灯光与运动公式；水平对撞修正后纳入，组合与独立动作共用真实绘制函数，不依赖原演示脚本、参考视频或图片。",
+        "factory": "polished-metal-sweep"
+      },
+      "reproduction": {
+        "presentation": "16:9画幅，1066×600设计坐标；深灰空间与柔和地面倒影，金、铜、粉、紫、蓝、绿六色镀彩金属，宽灯板反射和光滑轮廓。字母 O 使用外半径0.555、内半径0.295的同心圆环；两倍宽高取样后平滑合成。",
+        "objects": "六色 MOTION 金属字形、柔和地面倒影与移动反射灯板"
+      },
+      "id": "polished-metal-sweep",
+      "name": "抛光金属字面扫光",
+      "kind": "action",
+      "category": "lighting",
+      "duration_ms": 2200,
+      "preview_ms": 560,
+      "summary": "圆润金属字形保持不动，斜向光带与宽灯板反射由左向右扫过，随后定格。",
+      "objects": "六色 MOTION 金属字形、柔和地面倒影与移动反射灯板",
+      "phases": [
+        "六个金属字母已经排定，两个O保持正圆内外轮廓。",
+        "0–1.26秒：斜向光带由左向右扫过，宽灯板反射跟随变化，字面保持柔亮暗带。",
+        "光带离开后，保持字形和抛光反射至2.20秒。"
+      ],
+      "aliases": [
+        "金属扫光",
+        "抛光反射",
+        "字面高光"
+      ],
+      "behaviors": [
+        "light",
+        "focus"
+      ],
+      "actions": [],
+      "retain": "光带横向位置从-3.15到3.15，倾斜系数0.24；主光带宽0.15、软光晕宽0.43，连续高光与平滑边缘。",
+      "avoid": "不移动或变形字母，不播放落地对撞，不用平面文字渐变替代曲面反射，不添加底部文案。",
+      "tempo_note": "扫光1.26秒，之后静止0.94秒，共2.20秒。",
+      "analogy": "摄影棚的大灯板平移，抛光字面上的反射跟着掠过。",
+      "purpose": "圆润金属字形保持不动，斜向光带与宽灯板反射由左向右扫过，随后定格。"
+    },
+    {
+      "id": "seed-sprout-bloom",
+      "name": "落种即生长成冠",
+      "kind": "action",
+      "category": "shape",
+      "duration_ms": 2000,
+      "preview_ms": 1750,
+      "summary": "种子加速落下，触地便长出细茎和完整球形冠毛。",
+      "objects": "一粒种子、无叶细茎、96枚完整蒲公英冠毛",
+      "phases": [
+        "种子从上方落向右下，画面同时由七成放大到满幅。",
+        "约0.77秒种子触地，立即长出细茎；细茎顶端逐渐绽出96枚冠毛。",
+        "球形花冠展开并轻微蓄力，保持即将向外释放的完整造型。"
+      ],
+      "aliases": [
+        "种子落地",
+        "发芽",
+        "蒲公英",
+        "无叶",
+        "生长"
+      ],
+      "behaviors": [
+        "fall",
+        "grow",
+        "reveal"
+      ],
+      "actions": [],
+      "retain": "种子加速落下，触地便长出细茎和完整球形冠毛。 保留原几何、群体旋转、形态交接与每秒60帧的实际时间安排。",
+      "avoid": "蒲公英不加叶子或根，群体旋转不改成单颗自转，圆形触地不压扁，片尾不加中文；不替换真实字形。",
+      "tempo_note": "逐帧驱动；实际播放时间经固定平滑曲线换算，保留各段衔接、落点和末尾停留。",
+      "analogy": "同一个视觉主体接力变化，把生长、群飞、照明和文字连接起来。",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、定位与倍速。",
+      "purpose": "种子加速落下，触地便长出细茎和完整球形冠毛。",
+      "assumptions": "自有代码绘制，独立动作与完整组合共用实际图形、轨迹和时间换算；素材在实例内准备。",
+      "source": {
+        "path": "catalog/effects/seed-bloom-brand.js",
+        "factory": "seed-sprout-bloom",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的8.2秒品牌动效提取实际绘制源码。冠毛、气流和蝶翼复用目录自有几何；Outfit Medium字形遵循SIL OFL 1.1。目录播放与Remotion帧组件共用绘制和独立实例，不依赖原工程、视频、图片或联网字体。",
+        "remotion": {
+          "component": "catalog/remotion/seed-bloom-brand.jsx",
+          "files": [
+            "catalog/effects/seed-bloom-brand.js",
+            "catalog/remotion/seed-bloom-brand.jsx",
+            "catalog/remotion/seed-bloom-brand-source.json",
+            "catalog/fonts/OFL-Outfit.txt",
+            "LICENSE"
+          ],
+          "packages": {
+            "@remotion/cli": "4.0.529",
+            "remotion": "4.0.529",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 2132,
+          "height": 1200,
+          "fps": 60
+        }
+      },
+      "reproduction": {
+        "presentation": "1066×600横向画幅，内部绘制2132×1200，等比缩放。米白#F1EBDD、浅绿#DCE4BA、陶土橙#DA795B、墨绿#243B36随形态交接换色，最后为近黑#151D1B。主体奶油白#F4EEDD；片尾使用Outfit Medium矢量字形和正圆O，自然字宽与右下圆点对齐。"
+      },
+      "recommendation": "种子加速落下，触地便长出细茎和完整球形冠毛。"
+    },
+    {
+      "id": "flock-turn-gather",
+      "name": "散开旋转化蝶汇聚",
+      "kind": "action",
+      "category": "particles",
+      "duration_ms": 2100,
+      "preview_ms": 1060,
+      "summary": "花冠径向散开，整群旋转并化成小蝴蝶，振翅飞向同一目标形成白日盘。",
+      "objects": "96枚冠毛、小蝴蝶、径向细气流与白色太阳",
+      "phases": [
+        "花冠同时向外释放，494根细气流和98枚微尘跟随散开。",
+        "同一批对象在飞行中化成小蝴蝶，整群旋转225度；单蝶只振翅并随各自飞行方向转向。",
+        "蝶群沿弧线飞向右上方，逐个抵达并融成白色太阳。"
+      ],
+      "aliases": [
+        "整体旋转",
+        "蝴蝶群",
+        "蒲公英炸开",
+        "群蝶",
+        "汇成太阳"
+      ],
+      "behaviors": [
+        "scatter",
+        "rotate",
+        "gather"
+      ],
+      "actions": [],
+      "retain": "花冠径向散开，整群旋转并化成小蝴蝶，振翅飞向同一目标形成白日盘。 保留原几何、群体旋转、形态交接与每秒60帧的实际时间安排。",
+      "avoid": "蒲公英不加叶子或根，群体旋转不改成单颗自转，圆形触地不压扁，片尾不加中文；不替换真实字形。",
+      "tempo_note": "逐帧驱动；实际播放时间经固定平滑曲线换算，保留各段衔接、落点和末尾停留。",
+      "analogy": "同一个视觉主体接力变化，把生长、群飞、照明和文字连接起来。",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、定位与倍速。",
+      "purpose": "花冠径向散开，整群旋转并化成小蝴蝶，振翅飞向同一目标形成白日盘。",
+      "assumptions": "自有代码绘制，独立动作与完整组合共用实际图形、轨迹和时间换算；素材在实例内准备。",
+      "source": {
+        "path": "catalog/effects/seed-bloom-brand.js",
+        "factory": "flock-turn-gather",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的8.2秒品牌动效提取实际绘制源码。冠毛、气流和蝶翼复用目录自有几何；Outfit Medium字形遵循SIL OFL 1.1。目录播放与Remotion帧组件共用绘制和独立实例，不依赖原工程、视频、图片或联网字体。",
+        "remotion": {
+          "component": "catalog/remotion/seed-bloom-brand.jsx",
+          "files": [
+            "catalog/effects/seed-bloom-brand.js",
+            "catalog/remotion/seed-bloom-brand.jsx",
+            "catalog/remotion/seed-bloom-brand-source.json",
+            "catalog/fonts/OFL-Outfit.txt",
+            "LICENSE"
+          ],
+          "packages": {
+            "@remotion/cli": "4.0.529",
+            "remotion": "4.0.529",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 2132,
+          "height": 1200,
+          "fps": 60
+        }
+      },
+      "reproduction": {
+        "presentation": "1066×600横向画幅，内部绘制2132×1200，等比缩放。米白#F1EBDD、浅绿#DCE4BA、陶土橙#DA795B、墨绿#243B36随形态交接换色，最后为近黑#151D1B。主体奶油白#F4EEDD；片尾使用Outfit Medium矢量字形和正圆O，自然字宽与右下圆点对齐。"
+      },
+      "recommendation": "花冠径向散开，整群旋转并化成小蝴蝶，振翅飞向同一目标形成白日盘。"
+    },
+    {
+      "id": "sunbeam-circle-rebound",
+      "name": "沿光束触地回弹成圆",
+      "kind": "action",
+      "category": "response",
+      "duration_ms": 1566.666667,
+      "preview_ms": 950,
+      "summary": "白色太阳照出光束，收光后沿束落到地面，保持正圆回弹到画面中心。",
+      "objects": "16束交错日芒、白色日盘、光束、地面细线和圆形O",
+      "phases": [
+        "日盘带八长八短的16束渐细光芒和薄亮边，向地面投下光束。",
+        "日芒收起，白色光核沿束加速落下；触地即回弹，始终保持正圆。",
+        "反弹同时打开内孔，圆形O上移并减速落在画面正中心。"
+      ],
+      "aliases": [
+        "太阳光束",
+        "触地回弹",
+        "太阳变O",
+        "正圆",
+        "日芒"
+      ],
+      "behaviors": [
+        "move",
+        "bounce",
+        "morph"
+      ],
+      "actions": [],
+      "retain": "白色太阳照出光束，收光后沿束落到地面，保持正圆回弹到画面中心。 保留原几何、群体旋转、形态交接与每秒60帧的实际时间安排。",
+      "avoid": "蒲公英不加叶子或根，群体旋转不改成单颗自转，圆形触地不压扁，片尾不加中文；不替换真实字形。",
+      "tempo_note": "逐帧驱动；实际播放时间经固定平滑曲线换算，保留各段衔接、落点和末尾停留。",
+      "analogy": "同一个视觉主体接力变化，把生长、群飞、照明和文字连接起来。",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、定位与倍速。",
+      "purpose": "白色太阳照出光束，收光后沿束落到地面，保持正圆回弹到画面中心。",
+      "assumptions": "自有代码绘制，独立动作与完整组合共用实际图形、轨迹和时间换算；素材在实例内准备。",
+      "source": {
+        "path": "catalog/effects/seed-bloom-brand.js",
+        "factory": "sunbeam-circle-rebound",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的8.2秒品牌动效提取实际绘制源码。冠毛、气流和蝶翼复用目录自有几何；Outfit Medium字形遵循SIL OFL 1.1。目录播放与Remotion帧组件共用绘制和独立实例，不依赖原工程、视频、图片或联网字体。",
+        "remotion": {
+          "component": "catalog/remotion/seed-bloom-brand.jsx",
+          "files": [
+            "catalog/effects/seed-bloom-brand.js",
+            "catalog/remotion/seed-bloom-brand.jsx",
+            "catalog/remotion/seed-bloom-brand-source.json",
+            "catalog/fonts/OFL-Outfit.txt",
+            "LICENSE"
+          ],
+          "packages": {
+            "@remotion/cli": "4.0.529",
+            "remotion": "4.0.529",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 2132,
+          "height": 1200,
+          "fps": 60
+        }
+      },
+      "reproduction": {
+        "presentation": "1066×600横向画幅，内部绘制2132×1200，等比缩放。米白#F1EBDD、浅绿#DCE4BA、陶土橙#DA795B、墨绿#243B36随形态交接换色，最后为近黑#151D1B。主体奶油白#F4EEDD；片尾使用Outfit Medium矢量字形和正圆O，自然字宽与右下圆点对齐。"
+      },
+      "recommendation": "白色太阳照出光束，收光后沿束落到地面，保持正圆回弹到画面中心。"
+    },
+    {
+      "id": "circle-expand-wordmark",
+      "name": "圆形扩黑与字标展开",
+      "kind": "action",
+      "category": "transition",
+      "duration_ms": 2533.333333,
+      "preview_ms": 1750,
+      "summary": "圆形O放大铺满近黑背景，内孔成为飞行圆点，字标向两侧展开并落定。",
+      "objects": "中心圆形O、WISE MOTION真实矢量字标和陶土橙圆点",
+      "phases": [
+        "中心圆形O扩大并转为近黑，外圈覆盖画面，内孔收成陶土橙圆点。",
+        "同一圆点沿上方弧线飞向右下，字标从中央向两侧揭示并由1.08倍轻缩至原大。",
+        "圆点下沿对齐N的底边，字标采用Outfit Medium自然字宽；完成后保持一秒。"
+      ],
+      "aliases": [
+        "O扩黑",
+        "中心揭示",
+        "片尾",
+        "圆点落位",
+        "WISE MOTION"
+      ],
+      "behaviors": [
+        "scale",
+        "reveal",
+        "settle"
+      ],
+      "actions": [],
+      "retain": "圆形O放大铺满近黑背景，内孔成为飞行圆点，字标向两侧展开并落定。 保留原几何、群体旋转、形态交接与每秒60帧的实际时间安排。",
+      "avoid": "蒲公英不加叶子或根，群体旋转不改成单颗自转，圆形触地不压扁，片尾不加中文；不替换真实字形。",
+      "tempo_note": "逐帧驱动；实际播放时间经固定平滑曲线换算，保留各段衔接、落点和末尾停留。",
+      "analogy": "同一个视觉主体接力变化，把生长、群飞、照明和文字连接起来。",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、定位与倍速。",
+      "purpose": "圆形O放大铺满近黑背景，内孔成为飞行圆点，字标向两侧展开并落定。",
+      "assumptions": "自有代码绘制，独立动作与完整组合共用实际图形、轨迹和时间换算；素材在实例内准备。",
+      "source": {
+        "path": "catalog/effects/seed-bloom-brand.js",
+        "factory": "circle-expand-wordmark",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的8.2秒品牌动效提取实际绘制源码。冠毛、气流和蝶翼复用目录自有几何；Outfit Medium字形遵循SIL OFL 1.1。目录播放与Remotion帧组件共用绘制和独立实例，不依赖原工程、视频、图片或联网字体。",
+        "remotion": {
+          "component": "catalog/remotion/seed-bloom-brand.jsx",
+          "files": [
+            "catalog/effects/seed-bloom-brand.js",
+            "catalog/remotion/seed-bloom-brand.jsx",
+            "catalog/remotion/seed-bloom-brand-source.json",
+            "catalog/fonts/OFL-Outfit.txt",
+            "LICENSE"
+          ],
+          "packages": {
+            "@remotion/cli": "4.0.529",
+            "remotion": "4.0.529",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 2132,
+          "height": 1200,
+          "fps": 60
+        }
+      },
+      "reproduction": {
+        "presentation": "1066×600横向画幅，内部绘制2132×1200，等比缩放。米白#F1EBDD、浅绿#DCE4BA、陶土橙#DA795B、墨绿#243B36随形态交接换色，最后为近黑#151D1B。主体奶油白#F4EEDD；片尾使用Outfit Medium矢量字形和正圆O，自然字宽与右下圆点对齐。"
+      },
+      "recommendation": "圆形O放大铺满近黑背景，内孔成为飞行圆点，字标向两侧展开并落定。"
+    },
+    {
+      "id": "seed-bloom-brand-sequence",
+      "name": "生长化蝶与光形字标",
+      "kind": "composition",
+      "category": "compositions",
+      "duration_ms": 8200,
+      "preview_ms": 7480,
+      "summary": "种子落地生长为蒲公英，炸开旋转化蝶，汇成太阳；光束回弹成O，扩黑接WISE MOTION字标。",
+      "objects": "种子、无叶蒲公英、96只小蝴蝶、16束日芒的太阳、光束、圆形O、WISE MOTION矢量字标与陶土橙圆点",
+      "phases": [
+        "0–2.00秒：画面推近，种子触地立即生长；96枚完整冠毛展开成蒲公英。",
+        "2.00–5.67秒：花冠炸开，整体旋转225度并化为小蝴蝶；蝶群汇成白色太阳，太阳沿光束触地并回弹成中心圆形O。",
+        "5.67–8.20秒：O放大转黑、内孔接飞行圆点；字标从中间展开，7.20秒全部落定，圆点下沿与N底边对齐并保持1秒。"
+      ],
+      "aliases": [
+        "WISE MOTION",
+        "完整品牌动效",
+        "蒲公英化蝶",
+        "蝴蝶太阳",
+        "种子生长",
+        "光束回弹",
+        "品牌片尾"
+      ],
+      "behaviors": [
+        "grow",
+        "scatter",
+        "gather",
+        "sequence"
+      ],
+      "actions": [
+        "seed-sprout-bloom",
+        "dandelion-radial-release",
+        "flock-turn-gather",
+        "sunbeam-circle-rebound",
+        "circle-expand-wordmark"
+      ],
+      "retain": "种子落地生长为蒲公英，炸开旋转化蝶，汇成太阳；光束回弹成O，扩黑接WISE MOTION字标。 保留原几何、群体旋转、形态交接与每秒60帧的实际时间安排。",
+      "avoid": "蒲公英不加叶子或根，群体旋转不改成单颗自转，圆形触地不压扁，片尾不加中文；不替换真实字形。",
+      "tempo_note": "逐帧驱动；实际播放时间经固定平滑曲线换算，保留各段衔接、落点和末尾停留。",
+      "analogy": "同一个视觉主体接力变化，把生长、群飞、照明和文字连接起来。",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、定位与倍速。",
+      "purpose": "种子落地生长为蒲公英，炸开旋转化蝶，汇成太阳；光束回弹成O，扩黑接WISE MOTION字标。",
+      "assumptions": "自有代码绘制，独立动作与完整组合共用实际图形、轨迹和时间换算；素材在实例内准备。",
+      "source": {
+        "path": "catalog/effects/seed-bloom-brand.js",
+        "factory": "seed-bloom-brand-sequence",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的8.2秒品牌动效提取实际绘制源码。冠毛、气流和蝶翼复用目录自有几何；Outfit Medium字形遵循SIL OFL 1.1。目录播放与Remotion帧组件共用绘制和独立实例，不依赖原工程、视频、图片或联网字体。",
+        "remotion": {
+          "component": "catalog/remotion/seed-bloom-brand.jsx",
+          "files": [
+            "catalog/effects/seed-bloom-brand.js",
+            "catalog/remotion/seed-bloom-brand.jsx",
+            "catalog/remotion/seed-bloom-brand-source.json",
+            "catalog/fonts/OFL-Outfit.txt",
+            "LICENSE"
+          ],
+          "packages": {
+            "@remotion/cli": "4.0.529",
+            "remotion": "4.0.529",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 2132,
+          "height": 1200,
+          "fps": 60
+        }
+      },
+      "reproduction": {
+        "presentation": "1066×600横向画幅，内部绘制2132×1200，等比缩放。米白#F1EBDD、浅绿#DCE4BA、陶土橙#DA795B、墨绿#243B36随形态交接换色，最后为近黑#151D1B。主体奶油白#F4EEDD；片尾使用Outfit Medium矢量字形和正圆O，自然字宽与右下圆点对齐。"
+      },
+      "recommendation": "种子落地生长为蒲公英，炸开旋转化蝶，汇成太阳；光束回弹成O，扩黑接WISE MOTION字标。"
     }
   ],
   "redirects": {
@@ -19253,7 +22226,9 @@
     "history-notes-hop": "note-hop-illustration",
     "history-recovered-weave-trail": "thread-weave",
     "history-recovered-weave-grow": "thread-weave",
-    "hud-telemetry-sync": "hud-range-readout"
+    "hud-telemetry-sync": "hud-range-readout",
+    "grid-bend-spread": "grid-flow-unfold",
+    "multivortex-release": "grid-flow-unfold"
   },
   "variant_redirects": {
     "material-label-stagger": "material",

@@ -13,6 +13,13 @@ async function output(relative, content) {
   } else await writeFile(target, content);
 }
 const registry = JSON.parse(await readFile(path.join(root, 'catalog/registry.json'), 'utf8'));
+// Freeze actual frame components and painters for offline copy; never read a private project at runtime.
+const remotionFiles = {};
+for (const file of new Set(registry.effects.flatMap(e => e.source.remotion?.files || []))) {
+  if (path.isAbsolute(file) || file.split('/').includes('..')) throw new Error('复制源码路径越界：' + file);
+  remotionFiles[file] = await readFile(path.join(root, file), 'utf8');
+}
+await output('catalog/remotion-sources.js', '/* Generated from registered Remotion source files. AGPL-3.0-only. */\nglobalThis.MotionRemotionSources = ' + JSON.stringify(remotionFiles).replace(/</g, '\\u003c') + ';\n');
 const {describe} = createRequire(import.meta.url)('../catalog/matching.js');
 await mkdir(path.join(root, 'references/effects'), {recursive: true});
 await output('catalog/registry-data.js', '/* 自动生成自 registry.json；请修改权威定义后运行 node scripts/build.mjs。AGPL-3.0-only */\nglobalThis.MotionRegistry = ' + JSON.stringify(registry) + ';\n');
@@ -42,6 +49,7 @@ for (const c of registry.categories) {
       const {id,label,...fields}=variant;
       detail.push('## 示例：'+label, '', describe({...e,...fields,variant_id:id,variant_name:label},{},registry), '', `使用同一动作定义，设置 \`variant_id: "${id}"\`；目录和相关动作弹窗均可切换。`, '');
     }
+    if(e.source.remotion)detail.push('## Remotion 复用', '', `- [逐帧画面组件](../../${e.source.remotion.component})与目录共用实际绘制源码。`, '- 目录“复制源码”提供完整独立工程、固定依赖版本、内嵌矢量与许可；“复制提示词”按 Remotion 当前帧驱动画面。', `- 输出画幅 ${e.source.remotion.width}×${e.source.remotion.height}，每秒 ${e.source.remotion.fps} 帧；等比保留逻辑画板，无外部图片、声音或字体请求。`, '');
     await output(`references/effects/${e.id}.md`, detail.join('\n'));
   }
 }

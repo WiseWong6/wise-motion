@@ -17,7 +17,7 @@
 对应参考：本地目录「蒲公英主体」
 源码：catalog/effects/history-nature.js 中的 dandelion-subject-illustration
 来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
-关键假设：透明底；保持原冠毛、细茎和种子的曲线与相对比例，整体居中并在下方预留播放条空间；冠毛保持细线，不随物件放大而增粗。
+关键假设：透明底；保持原冠毛、细茎和种子的曲线与相对比例，整体居中并在下方预留播放条空间；线宽与轮廓整体等比缩放，不再单独削细冠毛或细茎。
 
 ## 调整方式
 
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/history-nature.js)，注册名称：`dandelion-subject-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 直接复用 scenes/dandelion-scene/assets/js/dandelion.js 的 floret 原绘制；主体使用 filamentState(4.5)，种子使用原十一道冠毛；保留原线宽、曲线、配色与种子轮廓，仅对整体做等比缩放和居中。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 这是一个插画单图，可作为组合片段的图形素材复用。

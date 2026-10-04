@@ -74,4 +74,8 @@
     };
   }
   for(const [id,cfg] of Object.entries(settings))F[id]=root=>make(root,cfg);
+  const defaultBandCut = F['glitch-band-transition'];
+  F['glitch-band-transition'] = (root, K, definition) => definition?.variant_id === 'poster-cut'
+    ? globalThis.WiseGeometricPoster.make(root, K, definition, 'intermittent')
+    : defaultBandCut(root, K, definition);
 })(globalThis.MotionFactories);

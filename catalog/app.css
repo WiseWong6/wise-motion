@@ -946,3 +946,5 @@ html[data-theme="dark"] .step-btn { color:#fff; }
   /* 悬停文字沿用系统高亮文字色，盖过上方的夜间图标回退。 */
   :root .playbar .icon-btn:hover,:root .playbar .icon-btn:active { color:HighlightText; }
 }
+/* 缩略图只展示画面；书页等内部控件的点击统一交给目录条目。 */
+.effect-item > .thumb { pointer-events: none; }

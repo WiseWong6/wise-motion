@@ -298,6 +298,10 @@
     const s=stage(root,'<defs><clipPath id="NAMESPACE-window"><rect x="50" y="120" width="540" height="95"/></clipPath></defs><g clip-path="url(#NAMESPACE-window)">'+list(6,i=>text('c'+i,170+i*60,185,'表达更加清楚'[i],44))+'</g>');
     return p=> {for(let i=0;i<6;i++){const q=smooth(section(p,.08+i*.075,.4+i*.075));s('c'+i,{transform:`translate(0 ${90*(1-q)})`});}};
   });
+  const standardMaskStagger = F['mask-stagger-text'];
+  F['mask-stagger-text'] = (root, K, definition) => definition?.variant_id === 'poster-words'
+    ? global.WiseGeometricPoster.make(root, K, definition, 'brand')
+    : standardMaskStagger(root, K, definition);
   register('stroke-draw',(root) => {
     const s=stage(root,'<path data-part="stroke" d="M96 180 H174 C188 180 190 162 204 162 S220 180 236 180 C248 180 250 194 258 194 S274 96 286 96 S308 254 320 254 S338 180 354 180 H378 C398 180 400 148 422 148 S450 180 470 180 H544" fill="none" stroke="var(--ink)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1 1"/>');
     return p=>{const q=smooth(section(p,.08,.85));s('stroke',{'stroke-dashoffset':1-q,opacity:q>0?1:0});};

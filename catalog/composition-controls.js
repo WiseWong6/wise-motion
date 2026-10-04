@@ -49,7 +49,8 @@
       if(panel.hidden) return;
       player=controller;duration=effect.duration_ms;mode=view?.mode==='solo' ? 'solo' : 'stack';
       selected=layers.findIndex(layer=>layer.id===view?.layer);
-      nodes=[...$('preview').querySelectorAll('[data-layer]')];
+      nodes=[...(controller.stage||$('preview')).querySelectorAll('[data-layer]')];
+      if(controller.ready)controller.ready.then(ok=>{if(ok&&player===controller){nodes=[...(controller.stage||$('preview')).querySelectorAll('[data-layer]')];paint();}});
       const esc=global.MotionKit.escape;
       list.innerHTML=layers.map(layer=>`<button type="button" class="composition-layer" data-composition-layer="${esc(layer.id)}" aria-pressed="false" aria-controls="preview" title="${esc(layer.detail)}"><span class="composition-row"><span>${esc(layer.name)}</span><small>${esc(layer.time)}</small></span><span class="composition-track" aria-hidden="true"><i style="left:${layer.start/effect.duration_ms*100}%;width:${(layer.end-layer.start)/effect.duration_ms*100}%"></i></span></button>`).join('');
       buttons=[...list.querySelectorAll('button')];paint();this.sync(controller.currentTime);

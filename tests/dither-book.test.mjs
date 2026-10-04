@@ -9,7 +9,7 @@ test('翻页书接入既有版式，真实交互与时间演示切换保留纸�
   const env=await environment(true,{staticPreview:true}),{w}=env,d=w.document,one=id=>d.getElementById(id),timer=clock();
   try{
     d.querySelector('[data-effect="dither-lab-book"]').click();
-    assert.equal(one('preview-title').textContent,'绕脊翻页');assert.equal(one('book-panel').hidden,false);
+    assert.equal(one('preview-title').textContent,data.effects.find(e=>e.id==='dither-lab-book').name);assert.equal(one('book-panel').hidden,false);
     assert.equal(w.MotionRuntime.instanceCount,1);assert.equal(one('book-timeline').getAttribute('aria-pressed'),'true');
     assert.match(one('preview-source').textContent,/效果参考 Amicro/);
     for(const [key,value] of [['padding',22],['radius',31],['crease',27]]){
@@ -17,14 +17,15 @@ test('翻页书接入既有版式，真实交互与时间演示切换保留纸�
     }
     assert.equal(env.root.querySelector('.wm-book').style.getPropertyValue('--book-pad'),'22px');
     assert.match(one('prompt').textContent,/图片留白 22 像素，图片圆角 31 像素，书脊阴影 27%/);
-    assert.match(one('code').textContent,/"paper_settings"/);
+    const settingsMatch=one('code').textContent.match(/const settings = (\{[\s\S]*?\});/);assert.ok(settingsMatch);
+    assert.deepEqual(JSON.parse(settingsMatch[1]).bookSettings,{padding:22,radius:31,crease:27});
     w.anime.engine.pause();w.requestAnimationFrame=timer.requestFrame;w.cancelAnimationFrame=timer.cancelFrame;w.performance.now=timer.now;
     one('book-interactive').click();assert.equal(d.querySelector('.playbar').hidden,true);
     assert.equal(env.root.getAttribute('aria-hidden'),'false');assert.equal(one('ins-tempo').closest('.ins-section').hidden,true);
     const first=Number(env.root.querySelector('.wm-book').dataset.index);
     env.root.dispatchEvent(new w.KeyboardEvent('keydown',{key:'ArrowRight',bubbles:true,cancelable:true}));
     timer.advance(450);assert.equal(Number(env.root.querySelector('.wm-book').dataset.index),(first+1)%6);
-    assert.equal(one('preview-title').textContent,'绕脊翻页');
+    assert.equal(one('preview-title').textContent,data.effects.find(e=>e.id==='dither-lab-book').name);
     one('book-prev').click();timer.advance(450);assert.equal(Number(env.root.querySelector('.wm-book').dataset.index),first);
     one('book-timeline').click();assert.equal(d.querySelector('.playbar').hidden,false);
     assert.equal(env.root.querySelector('.wm-book').style.getPropertyValue('--book-radius'),'31px');

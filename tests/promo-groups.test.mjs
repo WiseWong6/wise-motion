@@ -196,7 +196,7 @@ test('粒子画布分支绘制完整同批点阵、两层辉光与四张固定�
 });
 
 for(const [oldId,targetId] of Object.entries(migrations)){
-  test('旧入口 '+oldId+' 直接打开正式动作，复制代码只需要包内脚本',async()=>{
+  test('旧入口 '+oldId+' 直接打开正式动作，复制代码携带正式绘制依赖与组件',async()=>{
     const env=await environment(true,{staticPreview:true,hash:'#history-'+oldId,lazyHistory:true});
     try{
       const {w}=env,d=w.document,definition=effect(targetId);
@@ -208,8 +208,11 @@ for(const [oldId,targetId] of Object.entries(migrations)){
       assert.ok(d.querySelector(`script[src="${definition.source.path.replace(/^catalog\//,'')}"]`),'正式页面应引用新动作源码');
       assert.equal(d.querySelectorAll('#preview video').length,0,'正式预览不能仍播放原视频');
       const code=d.getElementById('code').textContent;
-      assert.ok(code.includes(`<script src="${definition.source.path}"></script>`));
-      assert.ok(code.includes('MotionRuntime.create'));
+      assert.ok(code.split('\n').includes(definition.source.path),'复制说明必须完整列出实际绘制源码');
+      assert.ok(code.includes("import {WiseMotionEffect,getEffectMetadata} from 'wise-motion-remotion';"));
+      assert.ok(code.includes('export const Effect = () => <WiseMotionEffect {...settings} />;'));
+      const settingsMatch=code.match(/const settings = (\{[\s\S]*?\});/);assert.ok(settingsMatch);
+      assert.equal(JSON.parse(settingsMatch[1]).effectId,targetId,'复制组件须使用当前正式动作');
       assert.ok(!code.includes('MotionHistoryRuntime'));
       assert.ok(!code.includes('extracted-media'));assert.ok(!code.includes(sourceFile));
       const duration=definition.duration_ms,time=definition.preview_ms;

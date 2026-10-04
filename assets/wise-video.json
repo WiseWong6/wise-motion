@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "authorities": {
+    "brief": "BRIEF.md",
+    "storyboard": "STORYBOARD.md",
+    "script": null,
+    "design": "frame.md",
+    "audioTiming": null,
+    "composition": "index.html"
+  },
+  "timing": {
+    "authority": "visual",
+    "state": "draft",
+    "source": null
+  },
+  "cues": [],
+  "assetLocks": [],
+  "continuity": [],
+  "baseline": {
+    "protected": true,
+    "ref": "file:delivery/approved-baseline.mp4#sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "variants": {
+    "default": "default",
+    "active": "default",
+    "restoreDefaultAfterBuild": true,
+    "items": [
+      {
+        "id": "default",
+        "output": "delivery/video-final.mp4",
+        "allowedDiffs": []
+      }
+    ]
+  },
+  "review": {
+    "previewStatus": "pending",
+    "renderAuthorized": false
+  }
+}
