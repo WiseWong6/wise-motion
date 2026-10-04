@@ -1,11 +1,8 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
 import {readFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
-import {history} from './history.mjs';
 const {rank, describe} = createRequire(import.meta.url)('../catalog/matching.js');
 const data = JSON.parse(await readFile(new URL('../catalog/registry.json', import.meta.url), 'utf8'));
-const original=await history(data);
-data.effects.push(...original.recipes);
 const query = process.argv.slice(2).join(' ').trim();
 if (!query) { console.error('用法：node scripts/match.mjs "两排卡片反向持续滚动，不要轮播"'); process.exitCode = 1; }
 else {

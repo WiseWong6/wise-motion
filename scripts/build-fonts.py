@@ -16,13 +16,18 @@ sources = {'Light': 'SourceHanSansCN-Light.otf', 'Regular': 'SourceHanSansSC-Reg
 for weight, filename in sources.items():
     target = root / 'catalog/fonts' / f'WiseMotionSans-{weight}.woff2'
     if not args.check:
+        # 补字时保留已有字符，避免删减旧示例或本机预览使用的字形。
+        existing = set()
+        if target.exists():
+            with TTFont(target) as previous:
+                existing = set(previous.getBestCmap())
         font = TTFont(Path.home() / 'Library/Fonts' / filename)
         options = subset.Options()
         options.name_IDs = ['*']
         options.name_legacy = True
         options.name_languages = ['*']
         sub = subset.Subsetter(options=options)
-        sub.populate(unicodes=used & set(font.getBestCmap()))
+        sub.populate(unicodes=(used | existing) & set(font.getBestCmap()))
         sub.subset(font)
         names = {1: 'Wise Motion Sans', 2: weight, 3: f'WiseMotionSans-{weight}',
                  4: f'Wise Motion Sans {weight}', 6: f'WiseMotionSans-{weight}',

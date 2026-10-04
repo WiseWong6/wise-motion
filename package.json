@@ -9,16 +9,18 @@
   },
   "scripts": {
     "build": "node scripts/build.mjs && node scripts/build-remotion.mjs",
-    "check": "node scripts/check.mjs",
-    "test": "node scripts/check.mjs && node --test tests/*.test.mjs",
+    "check": "node scripts/check.mjs && npm run check:fonts",
+    "check:fonts": "python3 scripts/build-fonts.py --check",
+    "build:history": "node scripts/build-history.mjs",
+    "check:history": "node scripts/build-history.mjs --check",
+    "test": "npm run check && npm run check:history && node --test tests/*.test.mjs",
     "build:remotion": "node scripts/build-remotion.mjs",
     "check:remotion": "node --test tests/remotion-clock.test.mjs tests/remotion-adapter-regressions.test.mjs tests/remotion-resource-boundaries.test.mjs tests/remotion-production.test.mjs",
     "render": "node scripts/render-remotion.mjs"
   },
   "devDependencies": {
     "jsdom": "30.1.1",
-    "esbuild": "0.28.2",
-    "pngjs": "7.0.0"
+    "esbuild": "0.28.2"
   },
   "exports": "./dist/index.mjs",
   "files": [
