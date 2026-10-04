@@ -523,18 +523,18 @@
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Bold.woff2",
-      "bytes": 530544,
-      "sha256": "a2c07ff52ae75a26d5abeb1c414c763111989e402d46e58fc0a9b9516fdcab26"
+      "bytes": 536716,
+      "sha256": "d21ab8d3cf94cd866a2c6fefd7847dbe385fb12bd35d470a915a9af6ba467631"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Light.woff2",
-      "bytes": 500764,
-      "sha256": "6e091158d4b4d3a89c892ac88df7a8626c495eb46e4fdff6bf1ed07d6e02d551"
+      "bytes": 506524,
+      "sha256": "3f8bcf8e71c94eab6fc7cecc168581e2ce987410d033aa24254a305d45fb23da"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Regular.woff2",
-      "bytes": 513404,
-      "sha256": "9a3f4006e99c0c7a4298ea579f99c729fe38febc25f3e61ec44acc3158e510fb"
+      "bytes": 520752,
+      "sha256": "c751dfbcbbd776a9423d515d1636a0187f0da66de4d0f90831229d4bc54fb69b"
     },
     {
       "path": "catalog/history-data.js",
@@ -550,11 +550,6 @@
       "path": "catalog/history.css",
       "bytes": 1242,
       "sha256": "51b0e008ab0b10a9ed1b6e7fcc0cf2858ff3665ef3d785c52592f385c831dae2"
-    },
-    {
-      "path": "catalog/index.html",
-      "bytes": 20015,
-      "sha256": "ac5fe30fc6f1f7a12a528a5a5bb159d15b21a16f4cfd5b8510c49cb6b5acef52"
     },
     {
       "path": "catalog/local-preview.js",

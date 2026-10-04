@@ -1,8 +1,12 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
-import {cp,mkdir,realpath,readFile,readdir,lstat} from 'node:fs/promises';
+import {cp,mkdir,realpath,readdir,lstat,rm} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 const root=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
+// 素材副本供帧组件读取；完整目录页面只保留在源码的 catalog 中。
+export function isAssetFile(relativePath){
+ return !['catalog/index.html','catalog/remotion-player.js'].includes(relativePath.split(path.sep).join('/'));
+}
 const contains=(parent,child)=>child===parent||child.startsWith(parent+path.sep);
 async function canonicalPath(value){
  const absolute=path.resolve(value);
@@ -44,7 +48,9 @@ export async function validateAssetDestination(destination=path.join(root,'publi
 export async function installAssets(destination){
  const target=await validateAssetDestination(destination);
  await mkdir(target,{recursive:true});
- for(const name of ['catalog','vendor'])await cp(path.join(root,name),path.join(target,name),{recursive:true,force:true,filter:p=>!p.endsWith('remotion-player.js')});
+ for(const name of ['catalog','vendor'])await cp(path.join(root,name),path.join(target,name),{recursive:true,force:true,filter:p=>isAssetFile(path.relative(root,p))});
+ // 旧版曾复制首页但没有播放器，更新时移除这一个已知失效入口。
+ await rm(path.join(target,'catalog/index.html'),{force:true});
  return target;
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){

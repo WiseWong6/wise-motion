@@ -6,7 +6,6 @@ import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
-import {history} from './history.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('catalog/registry.json'));
@@ -126,7 +125,10 @@ for (const [, resource] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
   assert.ok(!/^(https?:|\/\/)/.test(resource), '目录引用远程资源：' + resource);
   assert.ok((await stat(path.resolve(root, 'catalog', resource))).isFile(), '缺少目录资源：' + resource);
 }
-const historical=await history(data);
+// 普通检查只读随源码提供的退役记录；原始档案一致性由 check:history 检查。
+const historyContext={};
+vm.runInNewContext(await read('catalog/history-data.js'),historyContext);
+const historical=historyContext.MotionHistory;
 assert.equal(historical.counts.reviewed,311);assert.equal(historical.counts.recipes,0);
 assert.equal(historical.counts.entries,0);assert.equal(historical.counts.document,0);
 assert.equal(historical.excluded.length,311);
