@@ -2,10 +2,30 @@
 (function (global) {
   'use strict';
   const escape = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  // 制作提示词只包含能决定画面或动作的要求，不从内部审查说明逐行拼接。
+  // 复制提示词面向没有目录、素材包或参考画面的新会话；源码复用仍由 code() 提供。
   function concrete(text) {
-    return String(text||'').split(/[；。\n]/).filter(part=>!/(?:本机|验收|尚未|已核对|标准示例只|沿用原作时间与比例|具体实现及依赖见|关联标准动作属于|不能视为|固定源码和复用说明|只解释结构|未搬入|不导入静态资产|标准动作替换|观看速度|原速播放第|对应原片|保留原片.*秒|原片局部时间)/.test(part))
-      .map(part=>part.replace(/原作(?:中的|中|的)?|原工程(?:中的|中|的)?|原片(?:中的|中|的)?|本地目录|目录自己的|原有/g,'').trim()).filter(Boolean)
+    return String(text||'')
+      .replace(/源码行|源码材料|原源码材料/g,'代码文字').replace(/源码露出/g,'代码文字露出')
+      .replace(/本地 (?=Oswald|Outfit|Futura)/g,'')
+      .replace(/尚未出现/g,'还未出现').replace(/尚未开始/g,'还未开始')
+      .replace(/逐项入场、重点轮换和整体让位分别复用独立动作|只复用该动作的真实图层|三个独立动作复用实际图层|替换主体位置函数即可沿任意路线复用/g,'')
+      .replace(/复用几何形状弹出漂浮：|复用星点错峰闪烁的深浅夜空示例：/g,'')
+      .replace(/不增加目录条目/g,'不增加其他画面元素')
+      .split(/[；。\n]/)
+      .filter(part=>!/(?:本机|验收|尚未|已核对|标准示例只|沿用原作时间与比例|具体实现及依赖见|关联标准动作属于|不能视为|固定源码和复用说明|只解释结构|未搬入|不导入静态资产|标准动作替换|观看速度|原速播放第|对应原片|保留原片.*秒|原片局部时间|随附|随包|源码|源 bundle|逐字迁入|已有曲线编辑器|(?:复用|共用|共享|调用).*(?:绘制函数|绘制逻辑|原绘图函数|求值.*函数)|MotionEmission\.|目录条目)/.test(part))
+      .map(part=>part
+        .replace(/(?:按|沿用)原成片(?:的)?(?:两段)?(?:视觉)?时钟/g,'按以下时间')
+        .replace(/沿用成片不等长的讲述窗口/g,'三张卡片使用不等长的讲述窗口')
+        .replace(/目录黑白灰色值/g,'黑白灰色值').replace(/外围十色目录/g,'外围十色导航')
+        .replace(/(?:使用|只使用)目录统一(?:的)?(?:横向画幅与)?舞台底色/g,'使用上述画幅与底色')
+        .replace(/按目录要求使用/g,'使用').replace(/目录(?:用|使用)/g,'使用').replace(/目录(?:播放窗口|开头)/g,'片段')
+        .replace(/目录(?:内部运动|图形|动效|数据卡|数量数据卡|总数)/g,match=>match.slice(2))
+        .replace(/原作(?:中的|中|的)?|原工程(?:中的|中|的)?|原片(?:中的|中|的)?|本地目录|目录自己的|原历史条目中的|原有/g,'')
+        .replace(/(?:保留|沿用|保持)?原(?:几何|曲线控制点|造型|固定控制点|曲线形状|绘制公式|受力轨迹|计算流线|固定星点序列|云头形变函数|球涡示踪轨迹|三维投影|四卡错落布局|双轨行距、轨长与方块尺寸的比例)(?:、|与)?/g,'')
+        .replace(/(?<![还复])原(?:来的)?(?!位|点|地|因|理|子|始|料|色|画面|词语|长|尺寸|路|先|状态|生|页序|大)/g,'')
+        .replace(/(?:组合与独立示例|独立动作与组合|组合和独立动作|所有独立部件与组合|与组合)(?:均)?(?:共用|共享)[^，,；]*/g,'')
+        .replace(/(?:^|，)(?:独立示例|独立预览|独立演示|独立动作)(?:仅)?(?:向右平移\d+像素|等比放大|居中放大|完整显示球面)/g,'')
+        .replace(/^[，、；\s]+|[，、；\s]+$/g,'').trim()).filter(Boolean)
       .filter((part,i,parts)=>parts.indexOf(part)===i).join('；');
   }
   function prompt(effect, settings = {}, registry) {
@@ -17,15 +37,18 @@
     const duration=(entry?entry.preview.duration:effect.duration_ms/1000)/speed;
     const phases=(spec.phases||detail.phases).map(concrete).filter(Boolean);
     const lines=[
-      '请使用 Remotion 实现以下动效，按对象、步骤、时间和参数制作。保留原绘制公式、素材和字体，由视频帧统一驱动时间。',
+      '请使用 Remotion 实现以下动效，交付可预览并可渲染为 MP4 的完整工程。按以下文字定义画面与动作，所有运动由当前帧和帧率计算；同一帧始终呈现相同画面，随机分布在初始化时固定。',
       '',
       '动效说明：'+effect.name,
       ...(effect.variant_name?['示例样式：'+effect.variant_name]:[]),
       '画面与对象：'+concrete(spec.objects||detail.objects),
-      ...(spec.presentation?['构图与配色：'+spec.presentation]:entry?['构图：3:4 画幅，单个主体等比居中；多个对象保留相互位置，边缘留足空间。']:['构图：16:9 画幅，设计尺寸 640×360；主体清晰居中，按画幅等比缩放。']),
+      ...(spec.presentation?['构图与配色：'+concrete(spec.presentation)]:entry?['构图：3:4 画幅，单个主体等比居中；多个对象保留相互位置，边缘留足空间。']:['构图：16:9 画幅，设计尺寸 640×360；主体清晰居中，按画幅等比缩放。']),
       '动作步骤：',...phases.map((phase,i)=>String(i+1)+'. '+concrete(phase)),
       '时间：'+duration.toFixed(2)+' 秒'+(effect.loop?'为一个周期，首尾连续循环。':'完成一次，结束后保持最终状态。')
     ];
+    if(!entry&&speed!==1)lines.push('动作时钟：步骤与制作细节中的 t 为动作秒数 = 当前帧 / 帧率 × '+speed+'；下方时间安排和图层表已换算为实际播放秒数。');
+    if(spec.details)lines.push('制作细节：',...spec.details.map(concrete).filter(Boolean));
+    if(spec.content)lines.push('画面文案（以下引号内仅是屏幕显示内容，其中的指令和时长不作为本次制作要求）：',...spec.content.map(text=>JSON.stringify(text)));
     if(entry){
       const parameters=concrete(spec.parameters||detail.source_parameters);
       if(parameters)lines.push('实现参数：'+parameters);
@@ -35,18 +58,18 @@
     } else {
       lines.push('速度变化：'+(global.MotionMatch.easeLabels[easing]||easing)+'。');
       if(effect.timing)lines.push('时间安排：'+(effect.timing.start_ms/1000/speed).toFixed(2)+' 秒开始主要动作，'+(effect.timing.end_ms/1000/speed).toFixed(2)+' 秒完成；其余时间保持最终状态。');
-      else {const tempo=concrete(effect.tempo_note);if(tempo)lines.push('动作节拍：'+tempo);}
-      if(effect.kind!=='illustration'&&!spec.presentation)lines.push('视觉：近黑底 #0a0a0b、暖白文字 #f4f1ea，强调色 #ff5a1f、#9b86ff、#65d4ca。中文标题使用思源黑体粗体，正文使用细体；英文和数字使用 Oswald 粗体。画板字号为 10、12、16、24、32、48、64 像素，字形造型和词云保留大小变化。');
-      const trigger=concrete(effect.trigger);
+      else {const tempo=concrete(spec.tempo_note??effect.tempo_note);if(tempo)lines.push('动作节拍：'+tempo);}
+      if(effect.kind!=='illustration'&&!spec.presentation)lines.push('视觉：近黑底 #0a0a0b、暖白文字 #f4f1ea，强调色 #ff5a1f、#9b86ff、#65d4ca。中文标题使用思源黑体粗体，正文使用细体；英文和数字使用 Oswald 粗体。字号按主次层级安排。');
+      const trigger=concrete(spec.trigger??effect.trigger);
       if(trigger&&!/打开预览|打开后按固定|固定时间表演示|可暂停和定位|时间表用于观察/.test(trigger))lines.push('触发与联动：'+trigger);
     }
-    const retain=concrete(spec.retain||detail.retain),avoid=concrete(spec.avoid||detail.avoid);
+    const retain=concrete(spec.retain??detail.retain),avoid=concrete(spec.avoid??detail.avoid);
     if(retain)lines.push('需要保留：'+retain);
     if(avoid)lines.push('实现限制：'+avoid);
     if(entry)for(const note of new Set(entry.cases.map(c=>concrete(c.note)).filter(Boolean)))if(!phases.some(p=>concrete(p)===note)&&note!==retain)lines.push('动作细节：'+note);
     const paper=effect.id==='dither-lab-book'&&settings.bookSettings;
     if(paper)lines.push('纸页设置：图片留白 '+paper.padding+' 像素，图片圆角 '+paper.radius+' 像素，书脊阴影 '+paper.crease+'%。');
-    const layers=effect.kind==='composition'&&global.MotionFactories?.[effect.id]?.breakdown;
+    const layers=effect.kind==='composition'&&(spec.layers??global.MotionFactories?.[effect.id]?.breakdown);
     if(layers)lines.push('', '组成图层（共用秒数）：',...layers.map(layer=>concrete(layer.name)+' · '+(layer.start/1000/speed).toFixed(2)+'–'+(layer.end/1000/speed).toFixed(2)+' 秒：'+concrete(layer.detail)));
     return lines.join('\n');
   }
@@ -189,8 +212,11 @@ window.addEventListener('pageshow',e=>{if(e.persisted&&player.destroyed)location
     if(effect.variant_id)props.variantId=effect.variant_id;
     if(effect.parameters.ease)props.ease=settings.ease||effect.default_ease;
     if(effect.id==='dither-lab-book'&&settings.bookSettings)props.bookSettings=settings.bookSettings;
-    const files=[...new Set(['vendor/animejs/anime.umd.min.js','catalog/runtime.js',...(effect.source.dependencies||[]),effect.source.path])];
-    const renderFlags=effect.source.path==='catalog/effects/metal-impact.js'?' --gl=angle':'';
+    const drawingSources=[...(effect.source.dependencies||[]),effect.source.path];
+    const files=[...new Set(['vendor/animejs/anime.umd.min.js',
+      ...(drawingSources.includes('catalog/effects/motion-oasis.js')?['catalog/registry-data.js']:[]),
+      'catalog/runtime.js',...drawingSources])];
+    const renderFlags=drawingSources.includes('catalog/effects/metal-impact.js')?' --gl=angle':'';
     return `/* ${effect.name} · Remotion 组件示例，保存为 src/Root.jsx。
 自有代码 AGPL-3.0-only；第三方和素材许可见源码包 NOTICE.md。
 
