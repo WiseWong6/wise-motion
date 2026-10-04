@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {DEFAULT_FPS, effectDefinitions, getEffectMetadata, normalizeSpeed, resolveEffect, sampleEffectTime} from '../remotion/clock.mjs';
-import {createFrameDocument, FRAME_SCRIPTS} from '../remotion/frame-document.mjs';
+import {createFrameDocument, FRAME_SCRIPTS, frameScriptsFor} from '../remotion/frame-document.mjs';
 
 const regular = {id:'test', duration_ms:1000, loop:false};
 const loop = {...regular, loop:true};
@@ -113,4 +113,26 @@ test('素材根地址嵌入页面前转义，不允许注入新属性', () => {
   assert.ok(!html.includes(' onload="bad'));
   assert.throws(() => createFrameDocument({assetBaseUrl:''}));
   assert.throws(() => createFrameDocument({assetBaseUrl:'file:///project',theme:'unknown'}));
+});
+
+test('普通预览不载入无关绘制，组合保留依赖，目录数据场景保留真实统计', () => {
+  const normal = frameScriptsFor(resolveEffect('stagger-in'));
+  assert.deepEqual(normal, ['vendor/animejs/anime.umd.min.js', 'catalog/runtime.js', 'catalog/effects/entrance.js']);
+  const composition = frameScriptsFor(resolveEffect('result-anchors'));
+  for (const name of ['illustrations', 'kimi-illustrations', 'claude-tile-illustrations', 'paper-showcase']) {
+    assert.ok(composition.includes('catalog/effects/' + name + '.js'));
+  }
+  assert.ok(!composition.includes('catalog/effects/rasengan-illustrations.js'));
+  assert.ok(frameScriptsFor(resolveEffect('motion-oasis-sequence')).includes('catalog/registry-data.js'));
+  for (const effect of effectDefinitions) {
+    for (const variant of effect.variants || [null]) {
+      const definition = resolveEffect(effect.id, variant?.id);
+      const scripts = frameScriptsFor(definition);
+      assert.ok(scripts.includes(definition.source.path), effect.id);
+      assert.ok((definition.source.dependencies || []).every(file => scripts.includes(file)), effect.id);
+      assert.equal(new Set(scripts).size, scripts.length);
+    }
+  }
+  assert.throws(() => frameScriptsFor({id:'missing'}), /绘制来源/);
+  assert.throws(() => frameScriptsFor({source:{path:'catalog/effects/not-registered.js'}}), /未登记/);
 });

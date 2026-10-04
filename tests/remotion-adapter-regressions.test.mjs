@@ -117,3 +117,12 @@ test('异步准备后的翻页工作台恢复页码和纸张设置，取消切�
   }finally{workbench.destroy();w.close();}
  }
 });
+
+test('无声目录从首次挂载即静音，避免等待没有音轨的音频设备',()=>{
+ const h=browserHarness();try{
+  assert.equal(h.tree.props.initiallyMuted,true);
+  assert.equal(h.tree.props.numberOfSharedAudioTags,0);
+  h.controller.play();h.controller.seek(500);
+  assert.equal(h.tree.props.initiallyMuted,true);
+ }finally{h.close();}
+});

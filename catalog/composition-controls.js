@@ -3,7 +3,7 @@
   'use strict';
   const $ = id => document.getElementById(id);
   const panel=$('composition-panel'),list=$('composition-layers'),status=$('composition-status');
-  let layers=[],nodes=[],buttons=[],player=null,selected=-1,mode='stack',duration=0;
+  let layers=[],nodes=[],buttons=[],player=null,selected=-1,mode='stack',duration=0,paintVersion=0;
   function isolate(targets,visible) {
     for(const node of targets) {
       const show=!visible||visible.has(node.dataset.layer)||targets.some(child=>visible.has(child.dataset.layer)&&node.contains(child));
@@ -17,7 +17,16 @@
   }
   function paint() {
     const visible=selected<0 ? null : new Set((mode==='solo' ? [layers[selected]] : layers.slice(0,selected+1)).map(layer=>layer.id));
-    isolate(nodes,visible);
+    const current=player,version=++paintVersion,prepare=selected<0?current?.ensureVideo:current?.ensureCode;
+    if(prepare){
+      // 本机视频没有可拆的图层；绘制器就绪后，重新取得当前时刻的真实节点。
+      Promise.resolve(prepare.call(current)).then(ok=>{
+        if(current!==player||version!==paintVersion||current.destroyed)return;
+        if(!ok){status.textContent='当前画面准备失败，请重新选择动效。';return;}
+        nodes=[...(current.stage||$('preview')).querySelectorAll('[data-layer]')];
+        isolate(nodes,visible);
+      }).catch(error=>{if(current===player&&version===paintVersion)status.textContent='当前画面准备失败：'+error.message;});
+    }else isolate(nodes,visible);
     buttons.forEach((button,index)=>{
       button.setAttribute('aria-pressed',String(index===selected));
       button.dataset.included=String(!visible || visible.has(layers[index].id));

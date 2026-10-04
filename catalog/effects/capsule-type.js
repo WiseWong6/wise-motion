@@ -78,42 +78,66 @@ function motionPose(j,t){
   y:mix(.28,.66-minYs[glyph]*scale*squash,grow)+hop+bounce,z:mix(mix(4.60,3.35+(j%2)*.28,spread),4.60,settle),
   scale,squash,rotation:quat((-.85+j*.08)*spin,(j-2.5)*.35*spin,(j-2.5)*.20*spin)};
 }
-function displacement(x,z,t,channels){
+// Distances and contact footprints belong to the fixed field, not to a frame.
+// Keep their original double precision; only the final instance upload is Float32.
+for(const p of capsules){
+ p.wiseContacts=centers.map((center,j)=>{
+  const dx=p.x-center,dz=p.z,width=j===0?1.2:j===1?.38:.80;
+  return {distance:Math.hypot(dx,dz*1.08),contact:Math.exp(-Math.pow(dx/width,4)-dz*dz/1.05)};
+ });
+ p.impactDistance=Math.hypot(p.x-5.25,p.z-4.60);
+ p.motionContacts=motionCenters.map((center,j)=>{
+  const dx=p.x-center,dz=p.z-4.60;
+  return Math.exp(-Math.pow(dx/(j===3?.30:.90),4)-dz*dz/.42);
+ });
+ p.burstAngle=Math.atan2((p.z-4.60)*2.5,p.x*.35);
+ p.burstCos=Math.cos(p.burstAngle);p.burstSin=Math.sin(p.burstAngle);
+}
+function fieldTiming(t,channels){
+ const wise=channels.wise===false?[]:hits.map(hit=>{
+  const age=t-hit;
+  return age<0?null:{travel:age*5.6,press:.16*(1-Math.exp(-age*20)),decay:Math.exp(-age*1.25),entry:phase(age,0,.07)};
+ });
+ const age=t-IMPACT,impact=channels.impact===false||age<0?null:{travel:age*9.0,decay:Math.exp(-age*1.4),entry:phase(age,0,.04)};
+ const motion=channels.motion===false?[]:motionGlyphs.map((_,j)=>{
+  const age=t-motionLaunch(j)-.64;
+  return age<0?null:.10*phase(age,0,.10);
+ });
+ return {wise,impact,motion};
+}
+function displacement(p,timing){
  let q=0;
- if(channels.wise!==false)for(let j=0;j<4;j++){
-  const age=t-hits[j];if(age<0)continue;
-  const dx=x-centers[j],dz=z,dist=Math.hypot(dx,dz*1.08),width=j===0?1.2:j===1?.38:.80;
-  const contact=Math.exp(-Math.pow(dx/width,4)-dz*dz/1.05);
-  q-=.16*(1-Math.exp(-age*20))*contact;
-  const wave=dist-age*5.6;
-  q+=Math.sin(wave*7)*Math.exp(-wave*wave/1.0)*Math.exp(-age*1.25)*.16*phase(age,0,.07);
+ for(let j=0;j<timing.wise.length;j++){
+  const frame=timing.wise[j];if(!frame)continue;
+  const fixed=p.wiseContacts[j],wave=fixed.distance-frame.travel;
+  q-=frame.press*fixed.contact;
+  q+=Math.sin(wave*7)*Math.exp(-wave*wave/1.0)*frame.decay*.16*frame.entry;
  }
- const age=t-IMPACT;if(channels.impact!==false&&age>=0){const dist=Math.hypot(x-5.25,z-4.60),wave=dist-age*9.0;q+=Math.cos(wave*5.5)*Math.exp(-wave*wave/1.2)*Math.exp(-age*1.4)*.38*phase(age,0,.04);}
- // Each emerged letter settles onto the same field at the end of its arc.
- if(channels.motion!==false)for(let j=0;j<6;j++){const age=t-motionLaunch(j)-.64;if(age<0)continue;const dx=x-motionCenters[j],dz=z-4.60;
-  q-=.10*phase(age,0,.10)*Math.exp(-Math.pow(dx/(j===3?.30:.90),4)-dz*dz/.42);
- }
-
+ if(timing.impact){const frame=timing.impact,wave=p.impactDistance-frame.travel;q+=Math.cos(wave*5.5)*Math.exp(-wave*wave/1.2)*frame.decay*.38*frame.entry;}
+ for(let j=0;j<timing.motion.length;j++)if(timing.motion[j]!==null)q-=timing.motion[j]*p.motionContacts[j];
  return clamp(q,-.34,.44);
 }
 function quat(ax,ay,az){const sx=Math.sin(ax/2),cx=Math.cos(ax/2),sy=Math.sin(ay/2),cy=Math.cos(ay/2),sz=Math.sin(az/2),cz=Math.cos(az/2);return [sx*cy*cz-cx*sy*sz,cx*sy*cz+sx*cy*sz,cx*cy*sz-sx*sy*cz,cx*cy*cz+sx*sy*sz];}
 function fieldAt(t,channels){
- const values=new Float32Array(capsules.length*14);let k=0,airborne=0;
+ const values=new Float32Array(capsules.length*14),timing=fieldTiming(t,channels);let k=0,airborne=0;
  for(const p of capsules){
-  const height=.76+displacement(p.x,p.z,t,channels),sy=(height-.018)/4;
-  let x=p.x,y=(height+.018)/2,z=p.z,rotation=[0,0,0,1],scale=[.147,sy,.147];
+  const height=.76+displacement(p,timing),sy=(height-.018)/4;
+  let x=p.x,y=(height+.018)/2,z=p.z,rotation=null;
   const delay=Math.min(p.distance*.018,.20),age=t-IMPACT-delay-p.n*.025,returning=phase(t,2.75+p.n*.1,3.55+p.n*.1);
   if(channels.impact!==false&&p.burst&&age>0&&returning<1){
-   const a=Math.atan2((p.z-4.60)*2.5,p.x*.35),velocity=p.n>.55?4.5+p.n*3.4:1.8+p.n*1.8,flight=Math.max(0,velocity*age-8.2*age*age);
+   const velocity=p.n>.55?4.5+p.n*3.4:1.8+p.n*1.8,flight=Math.max(0,velocity*age-8.2*age*age);
    const land=velocity/8.2,after=Math.max(0,age-land),rebound=after>0?Math.abs(Math.sin(after*12))*Math.exp(-after*8)*.25:0;
    const spread=(2.2+p.n*2.5)*Math.min(age,.58),fade=1-returning;
-   x+=Math.cos(a)*spread*fade;z+=Math.sin(a)*spread*fade;y+=(flight+rebound)*fade;
-   rotation=quat(age*(3+p.n*4)*fade,age*2*fade,Math.sin(a)*age*4*fade);if(flight*fade>.1)airborne++;
+   x+=p.burstCos*spread*fade;z+=p.burstSin*spread*fade;y+=(flight+rebound)*fade;
+   rotation=quat(age*(3+p.n*4)*fade,age*2*fade,p.burstSin*age*4*fade);if(flight*fade>.1)airborne++;
   }
   const colorWave=channels.impact===false?0:phase(t,IMPACT+p.distance/13,IMPACT+.32+p.distance/13),tone=.96+p.n*.06;
   const pigment=[palette.pink,palette.yellow,palette.cyan][p.id%3],confetti=channels.impact!==false&&p.burst?phase(age,0,.12)*(1-returning):0;
-  const color=palette.fieldStart.map((v,j)=>mix(mix(v,palette.fieldEnd[j],colorWave),pigment[j],confetti)*tone);
-  values.set([x,y,z,...scale,...rotation,...color,.37],k);k+=14;
+  values[k++]=x;values[k++]=y;values[k++]=z;
+  values[k++]=.147;values[k++]=sy;values[k++]=.147;
+  values[k++]=rotation?rotation[0]:0;values[k++]=rotation?rotation[1]:0;values[k++]=rotation?rotation[2]:0;values[k++]=rotation?rotation[3]:1;
+  for(let j=0;j<3;j++)values[k++]=mix(mix(palette.fieldStart[j],palette.fieldEnd[j],colorWave),pigment[j],confetti)*tone;
+  values[k++]=.37;
  }return {values,airborne};
 }
 function frameAt(seconds,channels={}){
@@ -160,7 +184,7 @@ function lathe(capsule=false,lon=12,lat=10){
  return {positions:new Float32Array(p),normals:new Float32Array(n),indices:new Uint16Array(indices)};
 }
 function glyphMesh(id){
- const step=.07,min=[-1.75,-.62,-.84],count=[52,54,25],positions=[],normals=[],occlusion=[],cache=new Map();
+ const step=.07,min=[-1.75,-.62,-.84],count=[52,54,25],positions=[],normals=[],occlusion=[],indices=[],cache=new Map();
  const [nx,ny,nz]=count,values=new Float32Array(nx*ny*nz),index=(x,y,z)=>(z*ny+y)*nx+x,point=(x,y,z)=>[min[0]+x*step,min[1]+y*step,min[2]+z*step];
  for(let z=0;z<nz;z++)for(let y=0;y<ny;y++)for(let x=0;x<nx;x++)values[index(x,y,z)]=model.glyphDistance(id,point(x,y,z));
  const corners=[[0,0,0],[1,0,0],[1,1,0],[0,1,0],[0,0,1],[1,0,1],[1,1,1],[0,1,1]],tetra=[[0,5,1,6],[0,1,2,6],[0,2,3,6],[0,3,7,6],[0,7,4,6],[0,4,5,6]];
@@ -174,9 +198,12 @@ function glyphMesh(id){
     const sample=p.map((v,k)=>v+n[k]*distance),clearance=model.glyphDistance(id,sample)/metric;
     cavity+=Math.max(0,1-clearance/distance)*weight;
    }
-   record={p,n,ao:clamp(1-cavity*.85,.52,1)};cache.set(key,record);
+   record={p,n,ao:clamp(1-cavity*.85,.52,1),index:positions.length/3};cache.set(key,record);
+   positions.push(...record.p);normals.push(...record.n);occlusion.push(record.ao);
   }
-  positions.push(...record.p);normals.push(...record.n);occlusion.push(record.ao);
+  // Adjacent triangles already share the same computed vertex record. Keep
+  // the original triangle order but transform that vertex only once on GPU.
+  indices.push(record.index);
  }
  for(let z=0;z<nz-1;z++)for(let y=0;y<ny-1;y++)for(let x=0;x<nx-1;x++){
   const ps=corners.map(c=>point(x+c[0],y+c[1],z+c[2])),ds=corners.map(c=>values[index(x+c[0],y+c[1],z+c[2])]);if(ds.every(v=>v>0)||ds.every(v=>v<=0))continue;
@@ -187,7 +214,7 @@ function glyphMesh(id){
    else{const a=edge(ins[0],outs[0]),b=edge(ins[0],outs[1]),c=edge(ins[1],outs[0]),d=edge(ins[1],outs[1]);for(const p of [a,b,c,c,b,d])vertex(p);}
   }
  }
- return {positions:new Float32Array(positions),normals:new Float32Array(normals),occlusion:new Float32Array(occlusion)};
+ return {positions:new Float32Array(positions),normals:new Float32Array(normals),occlusion:new Float32Array(occlusion),indices:new Uint16Array(indices)};
 }
 let geometry;
 function meshes(ids=model.paths.map((_,i)=>i)){
@@ -201,7 +228,7 @@ async function prepare(ids,cancelled){
 // Extend the physical foreground with low-detail distant capsules. Cull by the
 // current camera and fade to the same sky before the finite outer boundary.
 const fringeBounds={minX:-48.96,maxX:48.96,minZ:-57.8,maxZ:23.12,fadeEnd:48};
-let fringePoints;
+let fringePoints,fringeView,fringeProjection,visibleFringe;
 function fringeAt(state,channels={}){
  if(channels.field===false)return new Float32Array();
  if(!fringePoints){fringePoints=[];for(let z=-170;z<68;z++)for(let x=-144;x<144;x++){
@@ -209,16 +236,29 @@ function fringeAt(state,channels={}){
   const px=(x+.5)*.34,pz=(z+.5)*.34,n=Math.sin(x*127.1+z*311.7+91.3)*43758.5453123;
   fringePoints.push([px,pz,.96+(n-Math.floor(n))*.06,Math.hypot(px-5.25,(pz-4.60)*1.15)]);
  }}
- const output=[],m=state.vp,v=state.view,t=state.time;
- for(const [x,z,tone,distance] of fringePoints){
-  const depth=-(v[2]*x+v[6]*.389+v[10]*z+v[14]);if(depth<.1||depth>fringeBounds.fadeEnd+2)continue;
-  const w=m[3]*x+m[7]*.389+m[11]*z+m[15],sx=(m[0]*x+m[4]*.389+m[8]*z+m[12])/w,sy=(m[1]*x+m[5]*.389+m[9]*z+m[13])/w;
-  if(Math.abs(sx)>1.08||Math.abs(sy)>1.08)continue;
-  const wave=channels.impact===false?0:phase(t,1.88+distance/13,2.20+distance/13);
-  const color=palette.fieldStart.map((value,i)=>mix(value,palette.fieldEnd[i],wave)*tone);
-  output.push(x,.389,z,.147,.1855,.147,0,0,0,1,...color,.37);
+ const m=state.vp,v=state.view,t=state.time;
+ // The final camera hold still has animated pigment. Reuse only visibility,
+ // never the colors or timing, and retain the original point order.
+ if(!fringeView||!v.every((value,i)=>value===fringeView[i])||!m.every((value,i)=>value===fringeProjection[i])){
+  visibleFringe=[];
+  for(const point of fringePoints){
+   const [x,z]=point,depth=-(v[2]*x+v[6]*.389+v[10]*z+v[14]);if(depth<.1||depth>fringeBounds.fadeEnd+2)continue;
+   const w=m[3]*x+m[7]*.389+m[11]*z+m[15],sx=(m[0]*x+m[4]*.389+m[8]*z+m[12])/w,sy=(m[1]*x+m[5]*.389+m[9]*z+m[13])/w;
+   if(Math.abs(sx)>1.08||Math.abs(sy)>1.08)continue;
+   visibleFringe.push(point);
+  }
+  fringeView=v.slice();fringeProjection=m.slice();
  }
- return new Float32Array(output);
+ const output=new Float32Array(visibleFringe.length*14);let k=0;
+ for(const [x,z,tone,distance] of visibleFringe){
+  const wave=channels.impact===false?0:phase(t,1.88+distance/13,2.20+distance/13);
+  output[k++]=x;output[k++]=.389;output[k++]=z;
+  output[k++]=.147;output[k++]=.1855;output[k++]=.147;
+  output[k++]=0;output[k++]=0;output[k++]=0;output[k++]=1;
+  for(let i=0;i<3;i++)output[k++]=mix(palette.fieldStart[i],palette.fieldEnd[i],wave)*tone;
+  output[k++]=.37;
+ }
+ return output;
 }
 function frameDraws(t,channels={}){const state=sceneAt(t,channels),draws=channels.field===false?[]:[{mesh:'floor',instances:new Float32Array([0,0,0,1,1,1,0,0,0,1,...palette.floor,.68]),metal:0,kind:0},{mesh:'pill',instances:state.fieldInstances,metal:.025,kind:1}];
  state.letters.forEach((l,i)=>{if(l.visible)draws.push({mesh:'letter'+i,instances:new Float32Array([l.x,l.y,0,1/Math.sqrt(l.squash),l.squash,1/Math.sqrt(l.squash),...model.quat(0,l.twist,l.tilt),...model.wiseColors[i],.23]),metal:0,kind:2});});
@@ -293,7 +333,7 @@ for(int i=0;i<12;i++){float a=float(i)*.5235988;vec4 c=texture2D(u_image,v_uv+ve
 vec2 p=v_uv-.5;float vignette=1.0-.16*dot(p,p);float grain=fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233)))*43758.5453)-.5;gl_FragColor=vec4(color/weight*vignette+grain/510.0,1.0);}`;
 const api={duration:DURATION,sceneAt,frameDraws,fringeAt,fringeBounds,meshes,prepare,model,sources:{sky:skySource,vertex:vertexSource,fragment:fragmentSource,shadow:shadowSource,postVertex,post:postSource}};scope.WiseMotion3D=api;
 function createPainter(canvas,gl,ids){
- let ext,programs,gpu,instanceBuffer,quadBuffer,shadowTarget,colorTarget,targetSize;
+ let ext,programs,gpu,instanceBuffers=[],quadBuffer,shadowTarget,colorTarget,targetSize;
  const resources={Shader:new Set(),Program:new Set(),Buffer:new Set(),Texture:new Set(),Framebuffer:new Set(),Renderbuffer:new Set()};
  const keep=(kind,value)=>{if(!value)throw Error('图形资源创建失败');resources[kind].add(value);return value;};
  const drop=(kind,value)=>{if(resources[kind].delete(value)&&!gl.isContextLost())gl['delete'+kind](value);};
@@ -304,13 +344,20 @@ function program(v,f){const vs=compile(gl.VERTEX_SHADER,v),fs=compile(gl.FRAGMEN
 function buffer(data,type=gl.ARRAY_BUFFER){const b=keep('Buffer',gl.createBuffer());gl.bindBuffer(type,b);gl.bufferData(type,data,gl.STATIC_DRAW);return b;}
 function target(width,height,unit){const texture=keep('Texture',gl.createTexture());gl.activeTexture(gl.TEXTURE0+unit);gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,width,height,0,gl.RGBA,gl.UNSIGNED_BYTE,null);const fb=keep('Framebuffer',gl.createFramebuffer()),depth=keep('Renderbuffer',gl.createRenderbuffer());gl.bindFramebuffer(gl.FRAMEBUFFER,fb);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,texture,0);gl.bindRenderbuffer(gl.RENDERBUFFER,depth);gl.renderbufferStorage(gl.RENDERBUFFER,gl.DEPTH_COMPONENT16,width,height);gl.framebufferRenderbuffer(gl.FRAMEBUFFER,gl.DEPTH_ATTACHMENT,gl.RENDERBUFFER,depth);if(gl.checkFramebufferStatus(gl.FRAMEBUFFER)!==gl.FRAMEBUFFER_COMPLETE)throw Error('离屏画面不可用');return {texture,fb,depth,width,height};}
 function removeTarget(t){if(!t)return;drop('Texture',t.texture);drop('Framebuffer',t.fb);drop('Renderbuffer',t.depth);}
-function setup(){ext=gl.getExtension('ANGLE_instanced_arrays');programs={sky:program(postVertex,skySource),main:program(vertexSource,fragmentSource),shadow:program(vertexSource,shadowSource),post:program(postVertex,postSource)};gpu={};const g=meshes(ids);for(const [name,m] of Object.entries({...g,letters:undefined,...Object.fromEntries(ids.map(i=>['letter'+i,g.letters[i]]))})){if(!m)continue;gpu[name]={p:buffer(m.positions),n:buffer(m.normals),ao:m.occlusion?buffer(m.occlusion):null,index:m.indices?buffer(m.indices,gl.ELEMENT_ARRAY_BUFFER):null,count:m.indices?m.indices.length:m.positions.length/3};}instanceBuffer=buffer(new Float32Array(1));quadBuffer=buffer(new Float32Array([-1,-1,0,3,-1,0,-1,3,0]));shadowTarget=target(1024,1024,0);gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,shadowTarget.texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);colorTarget=null;targetSize=[0,0];}
+function setup(){ext=gl.getExtension('ANGLE_instanced_arrays');programs={sky:program(postVertex,skySource),main:program(vertexSource,fragmentSource),shadow:program(vertexSource,shadowSource),post:program(postVertex,postSource)};gpu={};const g=meshes(ids);for(const [name,m] of Object.entries({...g,letters:undefined,...Object.fromEntries(ids.map(i=>['letter'+i,g.letters[i]]))})){if(!m)continue;gpu[name]={p:buffer(m.positions),n:buffer(m.normals),ao:m.occlusion?buffer(m.occlusion):null,index:m.indices?buffer(m.indices,gl.ELEMENT_ARRAY_BUFFER):null,count:m.indices?m.indices.length:m.positions.length/3};}quadBuffer=buffer(new Float32Array([-1,-1,0,3,-1,0,-1,3,0]));shadowTarget=target(1024,1024,0);gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,shadowTarget.texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);colorTarget=null;targetSize=[0,0];}
 function matrices(p,state,shadow){gl.useProgram(p.p);gl.uniformMatrix4fv(p.uniforms.vp,false,new Float32Array(shadow?lightMatrix:state.vp));gl.uniformMatrix4fv(p.uniforms.view,false,new Float32Array(state.view));gl.uniformMatrix4fv(p.uniforms.lightMatrix,false,new Float32Array(lightMatrix));gl.uniform3fv(p.uniforms.eye,state.eye);gl.uniform1i(p.uniforms.shadow,0);gl.uniform1f(p.uniforms.time,state.time);gl.uniform2f(p.uniforms.resolution,canvas.width,canvas.height);}
 function draw(draw,p){const m=gpu[draw.mesh];gl.bindBuffer(gl.ARRAY_BUFFER,m.p);gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,3,gl.FLOAT,false,0,0);gl.bindBuffer(gl.ARRAY_BUFFER,m.n);gl.enableVertexAttribArray(1);gl.vertexAttribPointer(1,3,gl.FLOAT,false,0,0);if(m.ao){gl.bindBuffer(gl.ARRAY_BUFFER,m.ao);gl.enableVertexAttribArray(6);gl.vertexAttribPointer(6,1,gl.FLOAT,false,0,0);}else{gl.disableVertexAttribArray(6);gl.vertexAttrib1f(6,1);}if(m.index)gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,m.index);gl.uniform1f(p.uniforms.metal,draw.metal);gl.uniform1f(p.uniforms.kind,draw.kind);const count=draw.instances.length/14;
- if(ext){gl.bindBuffer(gl.ARRAY_BUFFER,instanceBuffer);gl.bufferData(gl.ARRAY_BUFFER,draw.instances,gl.DYNAMIC_DRAW);let offset=0;[3,3,4,4].forEach((size,j)=>{const at=j+2;gl.enableVertexAttribArray(at);gl.vertexAttribPointer(at,size,gl.FLOAT,false,56,offset);ext.vertexAttribDivisorANGLE(at,1);offset+=size*4;});if(m.index)ext.drawElementsInstancedANGLE(gl.TRIANGLES,m.count,gl.UNSIGNED_SHORT,0,count);else ext.drawArraysInstancedANGLE(gl.TRIANGLES,0,m.count,count);for(let a=2;a<6;a++){ext.vertexAttribDivisorANGLE(a,0);gl.disableVertexAttribArray(a);}}
+ if(ext){gl.bindBuffer(gl.ARRAY_BUFFER,draw.instanceBuffer);let offset=0;[3,3,4,4].forEach((size,j)=>{const at=j+2;gl.enableVertexAttribArray(at);gl.vertexAttribPointer(at,size,gl.FLOAT,false,56,offset);ext.vertexAttribDivisorANGLE(at,1);offset+=size*4;});if(m.index)ext.drawElementsInstancedANGLE(gl.TRIANGLES,m.count,gl.UNSIGNED_SHORT,0,count);else ext.drawArraysInstancedANGLE(gl.TRIANGLES,0,m.count,count);for(let a=2;a<6;a++){ext.vertexAttribDivisorANGLE(a,0);gl.disableVertexAttribArray(a);}}
  else{for(let a=2;a<6;a++)gl.disableVertexAttribArray(a);for(let i=0;i<count;i++){let at=i*14;gl.vertexAttrib3fv(2,draw.instances.subarray(at,at+3));gl.vertexAttrib3fv(3,draw.instances.subarray(at+3,at+6));gl.vertexAttrib4fv(4,draw.instances.subarray(at+6,at+10));gl.vertexAttrib4fv(5,draw.instances.subarray(at+10,at+14));if(m.index)gl.drawElements(gl.TRIANGLES,m.count,gl.UNSIGNED_SHORT,0);else gl.drawArrays(gl.TRIANGLES,0,m.count);}}
 }
-function render(t,channels){if(!colorTarget)return;const {state,draws}=frameDraws(t,channels);gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.disable(gl.BLEND);gl.disable(gl.CULL_FACE);gl.disable(gl.DITHER);gl.bindFramebuffer(gl.FRAMEBUFFER,shadowTarget.fb);gl.viewport(0,0,1024,1024);gl.clearColor(1,1,1,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);matrices(programs.shadow,state,true);for(const d of draws)if(d.castShadow!==false)draw(d,programs.shadow);
+function render(t,channels){if(!colorTarget)return;const {state,draws}=frameDraws(t,channels);
+ // Shadow and color passes use identical instances. Upload each batch once,
+ // retaining a separate reusable buffer so a later draw cannot overwrite it.
+ if(ext)for(let i=0;i<draws.length;i++){
+  const draw=draws[i];draw.instanceBuffer=instanceBuffers[i]||(instanceBuffers[i]=keep('Buffer',gl.createBuffer()));
+  gl.bindBuffer(gl.ARRAY_BUFFER,draw.instanceBuffer);gl.bufferData(gl.ARRAY_BUFFER,draw.instances,gl.DYNAMIC_DRAW);
+ }
+ gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.disable(gl.BLEND);gl.disable(gl.CULL_FACE);gl.disable(gl.DITHER);gl.bindFramebuffer(gl.FRAMEBUFFER,shadowTarget.fb);gl.viewport(0,0,1024,1024);gl.clearColor(1,1,1,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);matrices(programs.shadow,state,true);for(const d of draws)if(d.castShadow!==false)draw(d,programs.shadow);
  gl.bindFramebuffer(gl.FRAMEBUFFER,colorTarget.fb);gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(.95,.90,.76,1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.disable(gl.DEPTH_TEST);gl.useProgram(programs.sky.p);gl.bindBuffer(gl.ARRAY_BUFFER,quadBuffer);gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,3,gl.FLOAT,false,0,0);for(let a=1;a<7;a++)gl.disableVertexAttribArray(a);gl.drawArrays(gl.TRIANGLES,0,3);gl.enable(gl.DEPTH_TEST);
  gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,shadowTarget.texture);matrices(programs.main,state,false);for(const d of draws)draw(d,programs.main);
  gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.disable(gl.DEPTH_TEST);gl.useProgram(programs.post.p);const u=programs.post.uniforms;gl.activeTexture(gl.TEXTURE1);gl.bindTexture(gl.TEXTURE_2D,colorTarget.texture);gl.uniform1i(u.image,1);gl.uniform2f(u.resolution,canvas.width,canvas.height);gl.uniform1f(u.focus,state.focus);gl.uniform1f(u.aperture,state.aperture);gl.bindBuffer(gl.ARRAY_BUFFER,quadBuffer);gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,3,gl.FLOAT,false,0,0);for(let a=1;a<7;a++)gl.disableVertexAttribArray(a);gl.drawArrays(gl.TRIANGLES,0,3);

@@ -59,3 +59,30 @@ test('图形上下文丢失后拒绝输出成功帧',async()=>{
   session.destroy();assert.equal(h.w.HTMLCanvasElement.prototype.getContext,h.original);
  }finally{h.close();}
 });
+
+test('实时播放只在新图片加载和解码期间等待，暖帧、错误及销毁保持正确',async()=>{
+ const dom=new JSDOM(createFrameDocument({assetBaseUrl:'file:///independent-project/public/wise-motion/'}),{runScripts:'outside-only'}),w=dom.window;
+ const requests=[];let source='',waits=0;
+ w.Image=class {set src(value){this.url=value;requests.push(this);}decode(){return new Promise(resolve=>{this.decoded=resolve;});}};
+ w.anime={engine:{pause(){}}};w.MotionRuntime={disposeAll(){}};
+ w.MotionKit={prepareStage(){},createRenderer(stage){const image=w.document.createElement('img');return ()=>{if(source){image.src=source;stage.append(image);}};}};
+ w.eval(w.document.querySelector('script').textContent);
+ const tick=()=>new Promise(resolve=>setImmediate(resolve));
+ try{
+  const session=await w.__wiseMotionCreateSession({definition:{id:'image-fixture',duration_ms:2000,default_ease:'linear'}});
+  await session.draw(0,0,'playback',undefined,()=>{waits++;});assert.equal(waits,0);
+  source='first.png';let done=false;
+  const first=session.draw(100,100,'playback',undefined,()=>{waits++;}).then(()=>{done=true;});await tick();
+  assert.equal(waits,1);assert.equal(done,false);assert.equal(session.stage.dataset.remotionTime,'0');
+  const queued=session.draw(150,150,'playback',undefined,()=>{waits++;});
+  assert.equal(waits,2,'快速定位的新帧须接管上一帧尚未完成的等待');
+  requests[0].onload();await tick();assert.equal(done,false,'下载完成但尚未解码仍须等待');
+  requests[0].decoded();await first;await queued;assert.equal(session.stage.dataset.remotionTime,'150');
+  await session.draw(200,200,'playback',undefined,()=>{waits++;});assert.equal(waits,2);assert.equal(requests.length,1,'已准备图片不能重复加载或阻塞暖帧');
+  source='missing.png';const failed=session.draw(300,300,'playback',undefined,()=>{waits++;});const rejected=assert.rejects(failed,/无法加载/);await tick();
+  requests[1].onerror();await rejected;assert.equal(waits,3);assert.equal(session.stage.dataset.remotionTime,'200');
+  source='pending.png';const pending=session.draw(400,400,'playback',undefined,()=>{waits++;});const cancelled=assert.rejects(pending,/销毁/);await tick();
+  session.destroy();requests[2].onload();await tick();requests[2].decoded();await cancelled;
+  assert.equal(session.stage.dataset.remotionTime,'200');assert.equal(session.stage.childElementCount,0);
+ }finally{w.__wiseMotionSession?.destroy();w.close();}
+});

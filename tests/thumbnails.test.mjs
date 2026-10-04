@@ -4,6 +4,32 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {environment,data,historicalDrawingFixture} from './helpers.mjs';
 import {historyTestData} from './history-fixture.mjs';
+
+test('缺失或抛错的绘制器明确标注缩略图失败，其他条目仍能绘制', async () => {
+  const env = await environment();
+  try {
+    await load(env, 'thumbnails.js');
+    const {w} = env;
+    const missing = data.effects.find(effect => effect.id === 'fade-rise');
+    const broken = data.effects.find(effect => effect.id === 'stagger-in');
+    const good = data.effects.find(effect => effect.id === 'scale-in');
+    assert.ok(good);
+    delete w.MotionFactories[missing.id];
+    w.MotionFactories[broken.id] = () => { throw new Error('测试绘制失败'); };
+    const hosts = [missing, broken, good].map(effect => {
+      const host = w.document.createElement('div'); w.document.body.append(host);
+      w.MotionThumbs.attach(host, effect); return host;
+    });
+    env.reveal(); await w.MotionThumbs.whenIdle();
+    assert.equal(hosts[0].textContent, '预览暂不可用');
+    assert.match(hosts[0].title, /缺少效果源码/);
+    assert.equal(hosts[1].textContent, '预览暂不可用');
+    assert.equal(hosts[1].title, '测试绘制失败');
+    assert.ok(hosts[2].querySelector('.motion-stage'));
+    w.MotionThumbs.disposeAll();
+    assert.ok(hosts.every(host => host.childElementCount === 0));
+  } finally { env.close(); }
+});
 const tick=()=>new Promise(resolve=>setTimeout(resolve,0));
 async function load(env,...files){
   for(const file of files)env.w.eval(await readFile(new URL('../catalog/'+file,import.meta.url),'utf8'));

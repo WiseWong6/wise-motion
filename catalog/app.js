@@ -272,6 +272,12 @@
   }
 
   function syncPlayer(state) {
+    const previewMode=state.previewMode || controller?.previewMode, note=$('preview-mode');
+    if(note.hidden===!!previewMode)note.hidden=!previewMode;
+    if(previewMode){
+      const label=state.error ? '预览准备失败：'+state.error.message : state.preparing ? '正在准备预览…' : previewMode==='video' ? '本机视频预览；组合拆解使用绘制代码。' : '绘制代码预览。';
+      if(note.textContent!==label)note.textContent=label;
+    }
     MotionComposition.sync(state.time);
     $('scrub').value = state.time / state.duration * 1000;
     fillTrack($('scrub'));
@@ -408,7 +414,7 @@
     controller = effect.id==='dither-lab-book'
       ? WiseDitherWorkbench.create($('preview'),effect,{onUpdate:syncPlayer,onSettingsChange:updateOutputs,
         mode:preserved?.bookMode,paperSettings:preserved?.bookSettings,pageIndex:preserved?.bookIndex})
-      : effect.kind==='recipe' ? MotionHistoryRuntime.create($('preview'),effect,{onUpdate:syncPlayer,caseId:effect.selected_entry.id}) : MotionRuntime.create($('preview'), effect, {onUpdate:syncPlayer});
+      : effect.kind==='recipe' ? MotionHistoryRuntime.create($('preview'),effect,{onUpdate:syncPlayer,caseId:effect.selected_entry.id}) : (globalThis.MotionLocalPreview||MotionRuntime).create($('preview'), effect, {onUpdate:syncPlayer});
     controller.setSpeed(Number($('speed').value));
     controller.setEase($('ease').value);
     MotionComposition.select(effect,controller,preserved?.compositionView);

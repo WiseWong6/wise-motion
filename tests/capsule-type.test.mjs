@@ -15,7 +15,7 @@ const hash=data=>createHash('sha256').update(Buffer.from(data.buffer,data.byteOf
 async function environment({unsupported=false,shaderFailure=false,html='<div></div>',exported=false}={}){
  const dom=new JSDOM(html,{url:'file:///relocated/wise-motion/demo.html',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;
  w.ResizeObserver=class{observe(){}disconnect(){}};w.CSS.supports=()=>false;
- const contexts=new Map(),events=[],snapshots=[];let next=0;
+ const contexts=new Map(),events=[],snapshots=[],uploads=[];let next=0;
  w.HTMLCanvasElement.prototype.getContext=function(type){
   if(type==='2d')return {drawImage:canvas=>snapshots.push(canvas)};
   if(unsupported)return null;
@@ -27,7 +27,7 @@ async function environment({unsupported=false,shaderFailure=false,html='<div></d
    getShaderParameter:()=>!shaderFailure,getProgramParameter:()=>true,getShaderInfoLog:()=> '模拟材质编译失败',getProgramInfoLog:()=>'',
    checkFramebufferStatus:()=>gl.FRAMEBUFFER_COMPLETE,isContextLost:()=>lost,
    bindBuffer:(type,value)=>bindings.set(type,value),
-   bufferData:(type,value)=>data.set(bindings.get(type),hash(value)),
+   bufferData:(type,value,usage)=>{const digest=hash(value);data.set(bindings.get(type),digest);if(usage===gl.DYNAMIC_DRAW)uploads.push({buffer:bindings.get(type),digest});},
    vertexAttribPointer:(id,...args)=>attributes.set(id,{buffer:bindings.get(gl.ARRAY_BUFFER),args}),
    getUniformLocation:(p,name)=>name,
    uniform1f:(key,value)=>{uniforms[key]=value;},uniform1i:(key,value)=>{uniforms[key]=value;},
@@ -42,7 +42,7 @@ async function environment({unsupported=false,shaderFailure=false,html='<div></d
  const files=['vendor/animejs/anime.umd.min.js','catalog/runtime.js','catalog/matching.js','catalog/export.js','catalog/effects/capsule-type.js'];
  if(exported)for(const script of w.document.scripts)w.eval(script.src?await read(script.getAttribute('src')):script.textContent);
  else for(const file of files)w.eval(await read(file));
- return {w,contexts,events,snapshots,close(){w.MotionRuntime.disposeAll();w.anime.engine.pause();w.close();}};
+ return {w,contexts,events,snapshots,uploads,close(){w.MotionRuntime.disposeAll();w.anime.engine.pause();w.close();}};
 }
 function player(env,e=composition){const root=env.w.document.createElement('div');env.w.document.body.append(root);const p=env.w.MotionRuntime.create(root,e,{autoplay:false});return {root,p,canvas:root.querySelector('canvas')};}
 function trace(env,p,t){const start=env.events.length;p.seek(t);return JSON.stringify(env.events.slice(start));}
@@ -88,6 +88,9 @@ test('模型准备期间保留暂停与定位，四个入口共享绘制并释�
    assert.equal(p.preparing,true);assert.equal(await p.ready,true);assert.equal(p.paused,true);assert.equal(p.currentTime,e.preview_ms);assert.equal(p.speed,1.5);
    for(const t of [0,e.preview_ms,e.duration_ms]){const before=trace(env,p,t);p.seek(e.duration_ms-t);assert.equal(trace(env,p,t),before,e.name+'乱序重播不改变图形指令');}
    if(e.kind==='composition'){
+    const uploadStart=env.uploads.length,eventStart=env.events.length;p.seek(2300);
+    const uploadCount=env.uploads.length-uploadStart,drawCount=env.events.slice(eventStart).filter(event=>event.method.endsWith('-instanced')).length;
+    assert.ok(uploadCount>0);assert.equal(drawCount,uploadCount*2-1,'每批实例只上传一次，再供阴影和主画面共用；远景不投影');
     p.seek(2300);const before=trace(env,p,2300);root.querySelector('[data-layer="wise"]').setAttribute('data-composition-hidden','');await tick();assert.notEqual(trace(env,p,2300),before);
     root.querySelector('[data-layer="wise"]').removeAttribute('data-composition-hidden');await tick();assert.equal(trace(env,p,2300),before);
     const ctx=env.contexts.get(canvas);ctx.lose();canvas.dispatchEvent(new env.w.Event('webglcontextlost',{cancelable:true}));p.seek(4100);ctx.restore();canvas.dispatchEvent(new env.w.Event('webglcontextrestored'));assert.equal(canvas.dataset.sourceTime,'4.1');assert.ok(ctx.live.size>0);
@@ -130,4 +133,53 @@ test('远景覆盖整个可见地面，在边界出现前完全融入渐变背�
  const state=core.sceneAt(2.87),fringe=core.fringeAt(state);assert.ok(fringe.length>0);assert.equal(fringe.length%14,0);
  for(let i=0;i<fringe.length;i+=14){const x=fringe[i],z=fringe[i+2];assert.ok(Math.abs(x)>12.24||Math.abs(z)>13.6,'不与近景胶囊重叠');}
  assert.equal(hash(core.fringeAt(state)),hash(fringe));assert.match(core.sources.sky,/backdrop/);assert.match(core.sources.fragment,/backdrop\(gl_FragCoord/);
+});
+
+test('缓存保留完整组合和三个动作的原始实例数值，停镜后回拖仍一致',()=>{
+ const context=vm.createContext({Math});vm.runInContext(source,context);const core=context.WiseCapsuleType;
+ const channels=[{},...['wise','impact','motion'].map(part=>({wise:part==='wise',impact:part==='impact',motion:part==='motion'}))];
+ const times=[0,.34,.85,1.42,1.88,2.3,2.87,3.45,4.2,5,3.6,1.9,5];
+ // Byte hashes from the frozen pre-optimization drawing model, including the
+ // exact ordered foreground, far field, letter and ball instance arrays.
+ const expected=[
+  '984da07fdd48b7e75ea764f199d2d601b99c00dfe8ebfdb089c1015ce411e824',
+  '77222a59c2a0a76c91cd20860671ef713b961ec726c2ece63de0ee0ed0eb7add',
+  '5c9d89125e59b3b6ce9676c4fef886e5401557a41842629eac4eb21bb7ffcf92',
+  '53ae22af950c5ffeeacc728d913de955e27d615f3c0dd5dbff3959b5d61be9b1'
+ ];
+ channels.forEach((setting,i)=>{
+  const digest=createHash('sha256');
+  for(const time of times)for(const draw of core.frameDraws(time,setting).draws)digest.update(Buffer.from(draw.instances.buffer));
+  assert.equal(digest.digest('hex'),expected[i]);
+ });
+ const frame=core.frameDraws(4.2),before=frame.draws.map(draw=>hash(draw.instances));
+ core.frameDraws(0);core.frameDraws(5,{wise:false,impact:false,motion:false});
+ assert.deepEqual(frame.draws.map(draw=>hash(draw.instances)),before,'另一个实例或后续帧不能覆盖已返回的取样');
+});
+
+test('共享顶点不减三角形，展开后的字形、法线与凹面光照逐字节保留',()=>{
+ const context=vm.createContext({Math});vm.runInContext(source,context);const letters=context.WiseCapsuleType.meshes().letters;
+ const expected=[
+  '5d6a530e611c4b3f78d664f97e22d34e52ecbe91d1cc13b73b1ce75c0859f491',
+  'f873dd2a2cf173c31dc26e1b7c601fa9e003e94546358975f64ce832897c28d6',
+  '726b42e87b3aa31c8e3da712add1e3090823d7c75a1c042d420331b2df44d3ef',
+  '9084dc399ac67bf32a6be019b3c04e3b12671d76d0a7dd63aa729282b66f5bf2',
+  'f3bf46b99c8841cdbc5d5f3f13e4907981b420fce43856325d8074764eba31ec',
+  'af0507015f6e2d0c2f9b1fb0c535195a532d791bdc9046983737bb83311a50f6',
+  '4760b81d9cd62a64e7767002e1f59f2dbea35231ea8208c608bc3b53c1654044',
+  '59f1fd473e0005ed559c226b13067333cf8f225a798abb9def7b1844dde86996'
+ ];
+ let storedVertices=0,expandedVertices=0;
+ letters.forEach((mesh,i)=>{
+  assert.ok(mesh.positions.length/3<65536,'共享顶点地址必须适合 16 位索引');
+  const digest=createHash('sha256');
+  for(const [key,width] of [['positions',3],['normals',3],['occlusion',1]]){
+   const expanded=new Float32Array(mesh.indices.length*width);
+   for(let j=0;j<mesh.indices.length;j++)for(let k=0;k<width;k++)expanded[j*width+k]=mesh[key][mesh.indices[j]*width+k];
+   digest.update(Buffer.from(expanded.buffer));
+  }
+  assert.equal(digest.digest('hex'),expected[i]);
+  storedVertices+=mesh.positions.length/3;expandedVertices+=mesh.indices.length;
+ });
+ assert.equal(expandedVertices,703944);assert.equal(storedVertices,117338);
 });

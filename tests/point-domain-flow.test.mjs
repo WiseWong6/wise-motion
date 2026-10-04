@@ -1,6 +1,7 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
 import {environment,data} from './helpers.mjs';
 const composition=data.effects.find(e=>e.id==='point-domain-flow-sequence');
@@ -101,5 +102,76 @@ test('删除独立光点条目，网格到多涡流线合为连续9.2秒动作�
   assert.equal(root.querySelectorAll('canvas').length,1);p.destroy();
   const rows=w.MotionFactories[composition.id].breakdown;assert.equal(rows.find(r=>r.id==='light').actions.length,0);
   for(const id of ['grid','flow'])assert.equal(rows.find(r=>r.id===id).actions[0],merged.id);
+ }finally{env.close();}
+});
+
+// 记录实际提交给画布的笔画与文字，忽略等价的路径重建及文字测量次数。
+function performanceCanvas(w,{recordCommands=false}={}){
+ const contexts=[],cache=new WeakMap();let widthScale=1;
+ w.HTMLCanvasElement.prototype.getContext=function(){
+  if(cache.has(this))return cache.get(this);
+  const canvas=this;let style={font:'10px sans-serif',globalAlpha:1},transforms=[],stack=[],currentPath=[],hash=createHash('sha256');
+  const commands=[];
+  const record=(op,args)=>{const keys=op==='stroke'?['globalAlpha','globalCompositeOperation','filter','shadowBlur','shadowColor','strokeStyle','lineWidth','lineDash','lineDashOffset']:op==='clip'||op==='clearRect'?[]:['globalAlpha','globalCompositeOperation','filter','shadowBlur','shadowColor',...(op==='drawImage'?[]:['fillStyle']),...(op==='fillText'?['font']:[])];const command={op,args,style:Object.fromEntries(keys.map(k=>[k,style[k]])),transforms};hash.update(JSON.stringify(command)+'\n');if(recordCommands)commands.push(command);};
+  const api={canvas,commands,measures:0,segments:0,reset(){hash=createHash('sha256');this.measures=0;this.segments=0;commands.length=0;},digest(){return hash.copy().digest('hex');},
+   save(){stack.push({style:{...style},transforms:transforms.slice()});},restore(){const saved=stack.pop();if(saved){style=saved.style;transforms=saved.transforms;}},
+   measureText(value){this.measures++;return {width:String(value).length*(parseFloat(style.font.match(/([\d.]+)px/)?.[1])||10)*.6*widthScale};},
+   beginPath(){currentPath=[];},moveTo(...a){currentPath.push(['moveTo',...a]);},lineTo(...a){this.segments++;currentPath.push(['lineTo',...a]);},arc(...a){currentPath.push(['arc',...a]);},rect(...a){currentPath.push(['rect',...a]);},closePath(){currentPath.push(['closePath']);},
+   stroke(){record('stroke',currentPath);},fill(){record('fill',currentPath);},clip(){record('clip',currentPath);},fillText(...a){record('fillText',a);},fillRect(...a){record('fillRect',a);},clearRect(...a){record('clearRect',a);},
+   setLineDash(a){style.lineDash=a.slice();},setTransform(...a){transforms=[['setTransform',...a]];},translate(...a){transforms.push(['translate',...a]);},rotate(...a){transforms.push(['rotate',...a]);},scale(...a){transforms.push(['scale',...a]);},transform(...a){transforms.push(['transform',...a]);},
+   createRadialGradient(...a){const stops=[];return {type:'radial',args:a,stops,addColorStop(...s){stops.push(s);}};},createLinearGradient(...a){const stops=[];return {type:'linear',args:a,stops,addColorStop(...s){stops.push(s);}};},
+   createImageData:(width,height)=>({data:new Uint8ClampedArray(width*height*4),width,height}),putImageData(){},drawImage(image,...a){record('drawImage',[image.width,image.height,...a]);}
+  };
+  const ctx=new Proxy(api,{get:(o,k)=>k in o?o[k]:style[k],set(o,k,value){if(k in o)o[k]=value;else style[k]=value;return true;}});
+  cache.set(canvas,ctx);contexts.push(ctx);return ctx;
+ };
+ return {contexts,setWidthScale(value){widthScale=value;}};
+}
+
+test('第三次向右通道只绘一排文字，上下边界随原时序保留',async()=>{
+ const env=await environment();try{
+  const {w}=env;performanceCanvas(w,{recordCommands:true});
+  const ctx=w.document.createElement('canvas').getContext('2d'),painter=w.WisePointDomainFlow.createPainter(w.document);
+  const phrase='不要自作主张。不要解释推理。只回答被问到的问题。Always follow the format. Do not exceed 200 words。只能这样。';
+  try{for(const [time,gap] of [[13.28,13],[13.4,13],[13.8,10],[15.1,10]]){
+   ctx.reset();painter.drawLayer(ctx,'constraints',time);
+   const visible=time>13.29,letters=ctx.commands.filter(c=>c.op==='fillText'&&c.args[0]===phrase);
+   assert.equal(letters.length,visible?1:0,`${time}秒通道文字不能重复或提前出现`);
+   const {P,scale}=painter.pose(time);
+   for(const side of [-1,1]){
+    const expectedPath=[['moveTo',...P(333,189+side*gap)],['lineTo',...P(460,189+side*gap)]];
+    const lines=ctx.commands.filter(c=>c.op==='stroke'&&c.style.strokeStyle==='#e5e6e7'&&JSON.stringify(c.args)===JSON.stringify(expectedPath));
+    assert.equal(lines.length,visible?1:0,`${time}秒${side<0?'上':'下'}边界必须保留原位置与出现时刻`);
+    if(visible){assert.equal(lines[0].style.lineWidth,.68*scale);assert.equal(lines[0].style.globalAlpha,letters[0].style.globalAlpha);}
+   }
+  }}finally{painter.destroy();}
+ }finally{env.close();}
+});
+
+test('字宽与径向静态系数复用，暖帧仍提交相同绘制并支持乱序定位',async()=>{
+ const env=await environment();try{
+  const {w}=env,{contexts}=performanceCanvas(w),root=w.document.createElement('div'),draw=w.MotionFactories[composition.id](root,w.MotionKit,{...composition,poster_only:true});await draw.ready;
+  const ctx=contexts.find(c=>c.canvas===root.querySelector('canvas:not([data-layer])'));
+  // 优化前冻结源码的画布绘制记录；保留原笔画顺序、样式、变换和全部点坐标。
+  // 15.1 秒仅更新用户要求移除的通道下排重复文字，其余时刻沿用原基准。
+  const expected={"9300":"2aec1cc132027aba5f6de1faa9da2e60891282205e311d7a7148341a95aff1c6","11400":"5f8f6154825aacbdf682c3fee468f29d9bce410450c44f9f7cf17058612f5992","15100":"4ab1d51a804e953800052c46d6a59d78851bd6c98c76bedc1e3c378da1a43125","17700":"0f400ac9761c735be8855259a6be3b5c69af373562aa29380fdd78ea0d2f1f8a","21200":"c98ac7b0ab23d06f1804dbdb408e8b48e35d4f9ee02a17b150fe167d09ca7d6e","23400":"245bb8d7f208dd66b826d18a5791db32505d69243b6e3d0265b5ff37bc5a3c57"};
+  for(const time of [9300,11400,15100,17700,21200,23400]){ctx.reset();draw(time,{force:true});assert.equal(ctx.digest(),expected[time],String(time));}
+  ctx.reset();draw(11400,{force:true});assert.equal(ctx.measures,0,'已准备字体的重复字宽不应重新测量');
+  for(const time of [23400,9300,21200,15100,21200]){ctx.reset();draw(time,{force:true});assert.equal(ctx.digest(),expected[time],String(time));}
+  assert.ok(ctx.segments<320*76*2,'细线的第二遍虚线描边不应重建同一路径');draw.destroy();
+ }finally{env.close();}
+});
+
+test('字体就绪会清除准备阶段字宽，画布间缓存独立',async()=>{
+ const env=await environment();try{
+  const {w}=env,record=performanceCanvas(w);let resolveFonts;
+  Object.defineProperty(w.document,'fonts',{configurable:true,value:{ready:new Promise(resolve=>{resolveFonts=resolve;})}});
+  const action=fresh.find(e=>e.id==='text-plane-tilt'),first=w.document.createElement('div'),draw=w.MotionFactories[action.id](first,w.MotionKit,{...action,poster_only:true}),ctx=record.contexts[0];
+  draw(2000);assert.ok(ctx.measures>0);record.setWidthScale(1.1);ctx.reset();draw(2000,{force:true});assert.equal(ctx.measures,0);
+  resolveFonts();await draw.ready;assert.ok(ctx.measures>0,'字体准备完成必须重新测量');ctx.reset();draw(2000,{force:true});const readyFrame=ctx.digest();
+  const second=w.document.createElement('div'),other=w.MotionFactories[action.id](second,w.MotionKit,{...action,poster_only:true});await other.ready;
+  const otherContext=record.contexts.find(c=>c.canvas===second.querySelector('canvas'));otherContext.reset();other(2000,{force:true});assert.ok(otherContext.measures>0);assert.equal(otherContext.digest(),readyFrame);draw.destroy();other.destroy();
+  const painter=w.WisePointDomainFlow.createPainter(w.document);ctx.reset();painter.drawLayer(ctx,'plane',11.4);assert.ok(ctx.measures>0);ctx.reset();painter.drawLayer(ctx,'plane',11.4);assert.equal(ctx.measures,0);painter.destroy();
+  const replacement=w.WisePointDomainFlow.createPainter(w.document);ctx.reset();replacement.drawLayer(ctx,'plane',11.4);assert.ok(ctx.measures>0,'直接使用的绘制器销毁后也应释放字宽缓存');replacement.destroy();
  }finally{env.close();}
 });

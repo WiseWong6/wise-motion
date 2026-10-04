@@ -36,6 +36,24 @@ test('完整城市任意定位保持几何一致，水面厚度与图形高度�
  assert.equal(e.gallery.metadata.counts.action,data.effects.filter(x=>x.kind==='action').length);
  assert.equal(e.gallery.metadata.total,data.effects.length);e.dispose();
 });
+
+test('静止构件复用几何，暖缓存与新实例的绘制指令保持一致',()=>{
+ let normalCalls=0;
+ const countedMath=Object.create(Math);
+ countedMath.hypot=(...values)=>{normalCalls++;return Math.hypot(...values);};
+ const isolated={MotionFactories:{},Math:countedMath};runInNewContext(source,isolated);
+ const engine=isolated.WiseMotionOasis.createEngine(data),r=recorder();
+ const cold=r.hash(c=>engine.render(c,3.5));const coldCalls=normalCalls;normalCalls=0;
+ const warm=r.hash(c=>engine.render(c,3.5));
+ assert.deepEqual(warm,cold,'复用模型不能改变路径、颜色渐变或绘制顺序');
+ assert.ok(normalCalls<coldCalls*.75,`重复计算应减少，首次 ${coldCalls} 次，复用后 ${normalCalls} 次`);
+ for(const time of [2.7,3.5,.5,3.5,3.51]){
+  const freshEngine=isolated.WiseMotionOasis.createEngine(data);
+  assert.equal(r.hash(c=>engine.render(c,time)).value,r.hash(c=>freshEngine.render(c,time)).value,'跳转和实例之间不能串用几何');
+  freshEngine.dispose();
+ }
+ engine.dispose();
+});
 test('两种波次按距离传播，交接时旧图保留，新图已在运动',()=>{
  const e=scope.WiseMotionOasis.createEngine(data),g=e.gallery;
  for(let round=1;round<7;round++){

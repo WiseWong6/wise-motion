@@ -7,3 +7,6 @@ node_modules/
 # 可重新生成的 Remotion 本地素材与临时导出缓存
 public/
 .render-bundle/
+
+# 只用于本机目录预览，不进入 Git、视频素材包或发布资源。
+.local-previews/
