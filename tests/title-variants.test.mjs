@@ -1,5 +1,6 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
 import test from 'node:test';
+import {getEffectMetadata} from '../remotion/clock.mjs';
 import assert from 'node:assert/strict';
 import {readFile,stat} from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
@@ -60,7 +61,11 @@ test('主预览切换示例从头播放，说明和实际复制同步，离开�
       assert.equal(d.getElementById('preview-summary').textContent,resolved.summary);
       const prompt=d.getElementById('prompt').textContent,code=d.getElementById('code').textContent;
       assert.notEqual(prompt,previousPrompt);assert.notEqual(code,previousCode);
-      assert.match(code,new RegExp('"variant_id"\\s*:\\s*"'+id+'"'));assert.match(code,new RegExp('"duration_ms"\\s*:\\s*'+durations[id]));
+      const settingsMatch=code.match(/const settings = (\{[\s\S]*?\});/);assert.ok(settingsMatch);
+      const settings=JSON.parse(settingsMatch[1]);assert.equal(settings.effectId,effect.id);assert.equal(settings.variantId,id);
+      assert.ok(code.includes('const meta = getEffectMetadata(settings.effectId,settings);'));
+      assert.equal(getEffectMetadata(settings.effectId,settings).durationMs,durations[id]);
+      assert.ok(code.includes('durationInFrames={meta.durationInFrames}'));
       click(d,'#copy-prompt');await Promise.resolve();assert.equal(copied.at(-1),prompt);
       click(d,'#copy-code');await Promise.resolve();assert.equal(copied.at(-1),code);
       previousPrompt=prompt;previousCode=code;assert.equal(env.listeners.size,observers);

@@ -1,0 +1,23 @@
+{
+  "logical_size": [
+    1066,
+    600
+  ],
+  "internal_size": [
+    2132,
+    1200
+  ],
+  "fps": 60,
+  "duration_seconds": 8.2,
+  "sources": {
+    "brand-vectors.js": "a4070b4de38ef4b6f217f86281981eb155e522fb966286c60493504691d5bc2d",
+    "nature-artwork.js": "723b34317baaf6a3dc843eb8f68c7b28321fc106f004daedd016f72d7b6e1a28",
+    "sunlight-outro.js": "4c495f1588b1a46c8ec9d4cdeb19758a22465aa0ae8f9bf7b4ffae38b8601481",
+    "morph-scene.js": "a3808d8c67413b104b3e40a7779124ad4a8685e0a6cd7f385dbafcecb5f9d443",
+    "movie.js": "b00cdb8a6a10a157a5b91e5ce16ad2e98316be431be8640b7da16b7d14fa1181"
+  },
+  "program_license": "AGPL-3.0-only",
+  "font": "Outfit Medium vector outlines; SIL OFL 1.1",
+  "assets": [],
+  "note": "Code-drawn textures and glyphs are bundled with the renderer; no external images, audio, fonts or source-project access at runtime."
+}

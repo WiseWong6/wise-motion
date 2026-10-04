@@ -17,7 +17,7 @@
     const duration=(entry?entry.preview.duration:effect.duration_ms/1000)/speed;
     const phases=(spec.phases||detail.phases).map(concrete).filter(Boolean);
     const lines=[
-      '请实现以下动效，按对象、步骤、时间和参数制作。',
+      '请使用 Remotion 实现以下动效，按对象、步骤、时间和参数制作。保留原绘制公式、素材和字体，由视频帧统一驱动时间。',
       '',
       '动效说明：'+effect.name,
       ...(effect.variant_name?['示例样式：'+effect.variant_name]:[]),
@@ -53,7 +53,39 @@
   function code(effect, settings = {}) {
     if(effect.kind==='recipe')return historySource(effect,settings);
     effect = global.MotionKit.resolveVariant(effect, settings.variantId || effect.variant_id);
+    if(effect.source.remotion)return remotionSource(effect,settings);
+    return catalogCode(effect,settings);
+  }
+  function remotionSource(effect,settings){
+    const spec=effect.source.remotion,speed=Math.min(2,Math.max(.5,Number(settings.speed)||1));
+    const files=Object.fromEntries(spec.files.map(file=>{
+      const content=global.MotionRemotionSources?.[file];
+      if(typeof content!=='string')throw Error('缺少已打包的绘制源码：'+file);
+      return [file,content];
+    }));
+    const durationInFrames=Math.ceil(Math.round(effect.duration_ms/1000*spec.fps*1e6)/1e6/speed);
+    files['package.json']=JSON.stringify({name:'seed-bloom-motion',private:true,type:'module',scripts:{studio:'remotion studio index.jsx',render:'remotion render index.jsx Motion out/motion.mp4'},dependencies:spec.packages},null,2)+'\n';
+    files['index.jsx']=`import React from 'react';
+import {Composition, registerRoot} from 'remotion';
+import {SeedBloomBrand} from './${spec.component}';
+const Root=()=> <Composition id="Motion" component={SeedBloomBrand}
+  width={${spec.width}} height={${spec.height}} fps={${spec.fps}} durationInFrames={${durationInFrames}}
+  defaultProps={${JSON.stringify({effectId:effect.id,speed})}} />;
+registerRoot(Root);
+`;
+    files['README.md']='# '+effect.name+'\n\n运行 npm install，再运行 npm run studio 或 npm run render。\n\n画幅 '+spec.width+'×'+spec.height+'；每秒 '+spec.fps+' 帧；'+durationInFrames+' 帧。图形、材质与 Outfit Medium 矢量轮廓已内嵌；无外部图片、声音或运行时字体。保持原逻辑画板1066×600，改画幅时等比容纳。\n\n自有程序 AGPL-3.0-only，见 LICENSE；字形 SIL OFL 1.1，见 catalog/fonts/OFL-Outfit.txt。Remotion、React 等依赖遵循各自软件包附带许可。\n';
+    const lines=['# '+effect.name+' · Remotion 完整工程','','将以下文件按标题路径保存到同一空目录。'];
+    for(const [file,content]of Object.entries(files)){
+      const fence='`'.repeat(Math.max(3,...Array.from(content.matchAll(/`+/g),m=>m[0].length+1)));
+      const language=/\.jsx?$/.test(file)?'jsx':file.endsWith('.json')?'json':'';
+      lines.push('','## '+file,'',fence+language,content,fence);
+    }
+    return lines.join('\n');
+  }
+  function catalogCode(effect, settings = {}) {
+    effect = global.MotionKit.resolveVariant(effect, settings.variantId || effect.variant_id);
     const definition = {id:effect.id, duration_ms:effect.duration_ms, loop:effect.loop, default_ease:effect.default_ease, parameters:effect.parameters};
+    if(effect.id==='motion-oasis-sequence'&&global.WiseMotionOasis)definition.catalog_data=global.WiseMotionOasis.catalogData(global.MotionRegistry);
     if(effect.variant_id)definition.variant_id=effect.variant_id;
     if(effect.timing)definition.timing=effect.timing;
     if(effect.id==='dither-lab-book' && settings.bookSettings)definition.paper_settings=settings.bookSettings;
@@ -120,7 +152,7 @@
     return lines.join('\n');
   }
   function previewCode(effect,settings={}){
-    return effect.kind==='recipe'?historyCode(effect,settings):code(effect,settings);
+    return effect.kind==='recipe'?historyCode(effect,settings):catalogCode(effect,settings);
   }
   function historyCode(effect,settings){
     const json=v=>JSON.stringify(v).replace(/</g,'\\u003c');
@@ -149,5 +181,41 @@ window.MotionDemo=player;window.addEventListener('pagehide',()=>player.destroy()
 window.addEventListener('pageshow',e=>{if(e.persisted&&player.destroyed)location.reload();});
 </script></body></html>`;
   }
-  global.MotionExport = {prompt, code, previewCode};
+  function remotionCode(effect, settings = {}) {
+    if(effect.kind==='recipe')return historySource(effect,settings);
+    effect=global.MotionKit.resolveVariant(effect,settings.variantId||effect.variant_id);
+    if(effect.source.remotion)return remotionSource(effect,settings);
+    const props={effectId:effect.id,speed:Math.min(2,Math.max(.5,Number(settings.speed)||1)),theme:document.documentElement.dataset.theme||'dark'};
+    if(effect.variant_id)props.variantId=effect.variant_id;
+    if(effect.parameters.ease)props.ease=settings.ease||effect.default_ease;
+    if(effect.id==='dither-lab-book'&&settings.bookSettings)props.bookSettings=settings.bookSettings;
+    const files=[...new Set(['vendor/animejs/anime.umd.min.js','catalog/runtime.js',...(effect.source.dependencies||[]),effect.source.path])];
+    const renderFlags=effect.source.path==='catalog/effects/metal-impact.js'?' --gl=angle':'';
+    return `/* ${effect.name} · Remotion 组件示例，保存为 src/Root.jsx。
+自有代码 AGPL-3.0-only；第三方和素材许可见源码包 NOTICE.md。
+
+先从 Wise Motion 工程执行 npm run build:remotion && npm pack，得到完整源码包。
+在独立目标工程安装该 .tgz 文件，以及相同版本的依赖：
+npm install --save-exact ./wise-motion-remotion-0.1.3.tgz react@19.3.0 react-dom@19.3.0 remotion@4.0.532 @remotion/cli@4.0.532
+node node_modules/wise-motion-remotion/scripts/install-assets.mjs public/wise-motion
+将 src/index.jsx 写为：import {registerRoot} from 'remotion'; import {Root} from './Root'; registerRoot(Root);
+npx remotion render src/index.jsx Effect output.mp4${renderFlags}
+
+组件内部仍使用原绘制代码；这些实际文件和全部字体、图片、材质随包携带：
+${files.join('\n')}
+素材明细见包内 ASSET-MANIFEST.json。安装后只访问目标工程 public/wise-motion，
+不依赖原目录或本机绝对地址。视频使用固定演示动作；时钟为每秒 60 帧。
+*/
+import React from 'react';
+import {Composition} from 'remotion';
+import {WiseMotionEffect,getEffectMetadata} from 'wise-motion-remotion';
+const settings = ${JSON.stringify(props,null,2)};
+const meta = getEffectMetadata(settings.effectId,settings);
+export const Effect = () => <WiseMotionEffect {...settings} />;
+export const Root = () => <Composition id="Effect" component={Effect}
+  width={meta.width} height={meta.height} fps={meta.fps}
+  durationInFrames={meta.durationInFrames} />;
+`;
+  }
+  global.MotionExport = {prompt, code, previewCode, remotionCode};
 })(globalThis);

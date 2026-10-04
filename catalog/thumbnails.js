@@ -97,7 +97,7 @@
       const stage = document.createElement('div');
       stage.className = 'motion-stage';
       global.MotionKit.prepareStage(stage, effect);
-      if(factory.requiresPreparation){
+      if(factory.requiresPreparation || global.MotionKit.resolveVariant(effect).requires_preparation){
         host.prepend(stage);frame(host);preparedFrame(host,effect,state,stage);return;
       }
       const render = global.MotionKit.createRenderer(stage, effect);

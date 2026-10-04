@@ -1,0 +1,680 @@
+{
+  "purpose": "实际绘制依赖、字体和素材，随包提供并复制到目标工程 public/wise-motion",
+  "files": [
+    {
+      "path": "catalog/app.css",
+      "bytes": 55199,
+      "sha256": "97236c9871ee46072b318ea98a38637174ab364a4447e65e68054944f02d6bb2"
+    },
+    {
+      "path": "catalog/app.js",
+      "bytes": 52435,
+      "sha256": "b6719b058ea9917230950bd85db31cc660a67702fe3e4a102613daea58ce7ca1"
+    },
+    {
+      "path": "catalog/assets/collage-film/SOURCE.json",
+      "bytes": 12053,
+      "sha256": "fc7b7cd569d882bc4c12ea605dc75afce9a286fce5d3577d03e756b5b3860b2b"
+    },
+    {
+      "path": "catalog/assets/collage-film/flywheel.png",
+      "bytes": 2443300,
+      "sha256": "d3a3b2bbf0fcfb5c93ba4ca4c64a50465ce1d1a0e614e54332a92a23d2dbc458"
+    },
+    {
+      "path": "catalog/assets/collage-film/hand.png",
+      "bytes": 2340294,
+      "sha256": "29d44260836294ed0f07d4e64a3fd79c337dacc22ac86e1993a18efca9714463"
+    },
+    {
+      "path": "catalog/assets/collage-film/runner-poses.png",
+      "bytes": 1449585,
+      "sha256": "f98d27a418ad8debd77b3eac508e9de22fa1b5f7294b76a542855fa37a3b6066"
+    },
+    {
+      "path": "catalog/assets/collage-film/runner-rebound.png",
+      "bytes": 2076995,
+      "sha256": "f6441c3d204df6ab7fdce72f93bbad46dc42b4e8bf5a1b468e92d6be928c26d5"
+    },
+    {
+      "path": "catalog/assets/collage-film/runner-run-cycle.png",
+      "bytes": 1546289,
+      "sha256": "0f15f64d77a57a6c41e49da07e0529e09a4c9e492a88f3035435ea199dae1875"
+    },
+    {
+      "path": "catalog/assets/cyanotype/SOURCE.json",
+      "bytes": 2837,
+      "sha256": "f57a9e02b9f71b2cef71644aeeac7eb03551abf62ac6aa481b04e2a73fc1df71"
+    },
+    {
+      "path": "catalog/assets/cyanotype/botanical-atlas.png",
+      "bytes": 3394393,
+      "sha256": "be8f2242bcfac15e0a4e558d3525e162dcaa7809b1d193a89017954de1dceb3a"
+    },
+    {
+      "path": "catalog/assets/material-evolution/SOURCE.json",
+      "bytes": 1362,
+      "sha256": "5a1534977b44f66d0512803f70bbfaa508d4b010fecd6b3841a3987958e0c6c5"
+    },
+    {
+      "path": "catalog/assets/material-evolution/atlas-engraving.png",
+      "bytes": 2518989,
+      "sha256": "d7674b59eb14d079b618b92d9145b873572b117bf4dd73565bf3559b4df9aade"
+    },
+    {
+      "path": "catalog/assets/material-evolution/fiber.png",
+      "bytes": 2209058,
+      "sha256": "1ffbef3659dfc9b0caf4f1f0513fccedd59bd6ec702f410c15f6a4e89fbd78fd"
+    },
+    {
+      "path": "catalog/assets/material-evolution/key-shapes.js",
+      "bytes": 6522769,
+      "sha256": "79fc0d4461624454cb7acae5dac4cf41c3996f9cb72e6f82f756b7d82d0efb67"
+    },
+    {
+      "path": "catalog/assets/material-evolution/moon.png",
+      "bytes": 1470152,
+      "sha256": "88b93ce0d9605640a2d20df8bad1b447d92eb5696cc8b481f04fb94a587acc74"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/SOURCE.json",
+      "bytes": 516,
+      "sha256": "203790fd7098da85c62cd396046bb3fc41cde2730e915e82f1e98c1793b793ad"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/THREE-LICENSE.txt",
+      "bytes": 1081,
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/coffee-bean.png",
+      "bytes": 1458808,
+      "sha256": "fd30c26d018a64ad5f88bc4d99033cb8e34de936f7c1811dfbcee6790e86115f"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/notes/assets/score-clean.svg",
+      "bytes": 91997,
+      "sha256": "887be82c355d784f5c4e55879de568ef45209e815cc6b5c3ecaa9beb9e4b701e"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/notes/assets/score-data.json",
+      "bytes": 29542,
+      "sha256": "5d601106a02ef9790070169e9d108206ba4901ab46e25263f73a1abeebedf7ae"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/notes/assets/来源.md",
+      "bytes": 3232,
+      "sha256": "81a9854d1506540bb8fa3b6b68e470e4fb94f34d5a3fd4204a163cad591094d3"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/notes/src/butterfly.js",
+      "bytes": 3249,
+      "sha256": "485ce153bce38d27192141f97a1463ba78fc8e8af797d47d0b14ec75a05e1321"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/notes/src/isolated-scene.js",
+      "bytes": 11248,
+      "sha256": "5745eabb24dd7c24f57a90de574226611e07b6d8ea349aab7e3ef5016c680ac7"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/notes/src/motion.js",
+      "bytes": 5803,
+      "sha256": "60b3461b9ca5109a1358dbb072e070ef26ddee869712f407120fc52d27325a78"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/notes/src/note-glow.js",
+      "bytes": 1018,
+      "sha256": "fedebb23a17de63454c1ae52602296a575ba878a5fcca4691ef3afadba931c52"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/notes/src/orb.js",
+      "bytes": 1673,
+      "sha256": "dde1dbe1b95b9a9cfafb92e5c256512581d3ebf154b263a8adf178c46ab24614"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/notes/src/trail.js",
+      "bytes": 7959,
+      "sha256": "b477e793511e4eec897fc226e8c1c0a4f777e3ccc301d1b376a90ed7393148bb"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/notes/vendor/lunar-butterfly-geometry.js",
+      "bytes": 8463,
+      "sha256": "481ca6d4537060fb92544231f0efaf328ad69a9ae9820c0944a8be0acd645608"
+    },
+    {
+      "path": "catalog/assets/particle-scenes/notes-source.js",
+      "bytes": 833649,
+      "sha256": "230572a1c37ce45014e66638ef46e4010699528a361d444e3623931331073cf3"
+    },
+    {
+      "path": "catalog/assets/selfie-phone.png",
+      "bytes": 1221745,
+      "sha256": "5844e1ca554a9480593142d618f6653b3916961052c2150f3ec02be8064397ea"
+    },
+    {
+      "path": "catalog/assets/stack-flick/background-generation.json",
+      "bytes": 4974,
+      "sha256": "2871f24bba0bd9317adecc75f26f2f3a2c3683b4b3d190a920a0d94bb291957b"
+    },
+    {
+      "path": "catalog/assets/stack-flick/desk-background.png",
+      "bytes": 1471571,
+      "sha256": "89018e57e749d9daa9894459102b646fc8a8c78ccd9de8caeef47cfe43518acf"
+    },
+    {
+      "path": "catalog/assets/stack-flick/generation.json",
+      "bytes": 2492,
+      "sha256": "595db3624c0b4a779b2760aef272421691a6a0ff288871c4f999d1f42a42bb86"
+    },
+    {
+      "path": "catalog/assets/stack-flick/map-paper.png",
+      "bytes": 2421307,
+      "sha256": "b96f9e16213ff35e062855ebcbceb5be150c70df28f35ec1cace3d8e26192cf6"
+    },
+    {
+      "path": "catalog/book-controls.css",
+      "bytes": 480,
+      "sha256": "fe1681580f70e803f4b61c5311c4bfd392b5e97441502b29d8a3669bbf0bc6ef"
+    },
+    {
+      "path": "catalog/book-controls.js",
+      "bytes": 7108,
+      "sha256": "b4df68ad5851816e211c916ce398754d4a680b81ee6275231aad2ded74d7d763"
+    },
+    {
+      "path": "catalog/composition-controls.js",
+      "bytes": 4619,
+      "sha256": "393f802264012722f5895b20566c6d4f49ec9e2b97eeb2107622f7682ec065e4"
+    },
+    {
+      "path": "catalog/dropdown.js",
+      "bytes": 7303,
+      "sha256": "391e5d6f1f95be7acfe3089bd9ab1fa096e3193b5cbfb9621259fd8823ddea95"
+    },
+    {
+      "path": "catalog/effects/attention.js",
+      "bytes": 6570,
+      "sha256": "8988eea44f2bca61ec859514ffeddd5a1525f6a29c261c4c7ac61aab1f048276"
+    },
+    {
+      "path": "catalog/effects/capsule-type.js",
+      "bytes": 36785,
+      "sha256": "9c30ddc7add632e39257ece47dc101fa4c86c038b2afed10f1f15170da14fb00"
+    },
+    {
+      "path": "catalog/effects/cat-mouth.js",
+      "bytes": 45452,
+      "sha256": "3d4d9b72e8498c6ab42addc56fbc69b73d66267e471eb1993d339f064ecb6b15"
+    },
+    {
+      "path": "catalog/effects/claude-tile-illustrations.js",
+      "bytes": 78816,
+      "sha256": "410182c9a555233af47b25512d77af6ba5b928fdb43c1795037e151e28faa61a"
+    },
+    {
+      "path": "catalog/effects/collage-film.js",
+      "bytes": 33603,
+      "sha256": "862d513522dcd76173d99bbe3c899a441e11584303374d3455da446126bfd300"
+    },
+    {
+      "path": "catalog/effects/compositions.js",
+      "bytes": 8261,
+      "sha256": "cc7277c275ba05b3432928beac114f57dd23315c31ef0acba64efc894ea729ca"
+    },
+    {
+      "path": "catalog/effects/concept-diagram.js",
+      "bytes": 8072,
+      "sha256": "519fd5121b6d0fcf6e65c41ce2e4f90d54848fbcfeb63c8cf9e28d7212cbc797"
+    },
+    {
+      "path": "catalog/effects/continuous.js",
+      "bytes": 6137,
+      "sha256": "f748edee2b7d72c246146064b62a8ae51d2bc0d8f314b5a4663cf7ea7acd06c4"
+    },
+    {
+      "path": "catalog/effects/crt-collapse.js",
+      "bytes": 4061,
+      "sha256": "384549b4cce186bb6f76de4add652d1f4b2e5d5985481a9c435bb792ee570462"
+    },
+    {
+      "path": "catalog/effects/cyanotype.js",
+      "bytes": 5083,
+      "sha256": "115374badab488c2d0e114dca311310689792e73e28ec44a834d4791eb8b7ea8"
+    },
+    {
+      "path": "catalog/effects/data-comparisons.js",
+      "bytes": 14811,
+      "sha256": "d8e6c1f57773a1f7d4e2ffc1c56c5074df76c1389fe24ee53c8a467c0e0ba50b"
+    },
+    {
+      "path": "catalog/effects/data-motion.js",
+      "bytes": 222125,
+      "sha256": "e9360d7b9cbef72802ab738fd8ccdfc7503194348a88ddf4c27745dc78404888"
+    },
+    {
+      "path": "catalog/effects/dither-book.js",
+      "bytes": 18761,
+      "sha256": "a445612746e7798ac3a6d7b118f91c1cfe2f5ea926a3c7cb51cfcfff04102f9a"
+    },
+    {
+      "path": "catalog/effects/door-halftone.js",
+      "bytes": 2762,
+      "sha256": "1aaff2718bc282940de9540f67a08beabd725c0017f52efbfabf317b72c47633"
+    },
+    {
+      "path": "catalog/effects/emission-trails.js",
+      "bytes": 23744,
+      "sha256": "8df0d9ecf593702d3fe1f809cc4c354ad6acd0c92d18b656d87cfc768c582ecb"
+    },
+    {
+      "path": "catalog/effects/encore-dance.js",
+      "bytes": 21580,
+      "sha256": "08701feba1173097c75ce16a96e8af957c1810a22b06e81440ac1c699564ceb8"
+    },
+    {
+      "path": "catalog/effects/entrance.js",
+      "bytes": 4401,
+      "sha256": "f97ebc4b286d82a31b4bd81790a09172601d8981857a9a1c1269358fd82cc712"
+    },
+    {
+      "path": "catalog/effects/environment.js",
+      "bytes": 1170,
+      "sha256": "02e8521ed4b288c48e6e19d9de341a737fee66070ed009dcc377ae1ee4d23f86"
+    },
+    {
+      "path": "catalog/effects/flow-bands.js",
+      "bytes": 1109,
+      "sha256": "ea404deb5d8c8f319a9ad19ff4456e59647e44f7a7b95fe48d0efb6b75b4d681"
+    },
+    {
+      "path": "catalog/effects/geometric-poster.js",
+      "bytes": 25902,
+      "sha256": "8bec54f784c677cc497d40917e3ac035d615d0af1f2cd4e7368f423d03100851"
+    },
+    {
+      "path": "catalog/effects/glass-light.js",
+      "bytes": 28926,
+      "sha256": "996d7c5fc1cc0a1127841dad443519ce9540c59d5599cef79176a0fa62d34a97"
+    },
+    {
+      "path": "catalog/effects/glyph-code-fill.js",
+      "bytes": 3168,
+      "sha256": "223b8f610c1e8d3c0af83ad9f41dfeeba546667a65c1c3ee3c2066da17945984"
+    },
+    {
+      "path": "catalog/effects/history-nature.js",
+      "bytes": 151843,
+      "sha256": "924c581e03272c8a54d82a06ffcc79e58d3bf4ad538b97d363f14bbef2e5f7fd"
+    },
+    {
+      "path": "catalog/effects/history-patterns.js",
+      "bytes": 59454,
+      "sha256": "d61d484e020b2b45bc4d2faf0a8653e0ed458aa4171be399ad69f43ef1570537"
+    },
+    {
+      "path": "catalog/effects/hud-targeting.js",
+      "bytes": 184517,
+      "sha256": "368ea462fb9a9b8641ef37222be896897ef7c0d54aaf271139bd033e30fe89fb"
+    },
+    {
+      "path": "catalog/effects/illustrations.js",
+      "bytes": 22214,
+      "sha256": "30641d554b6ed02a78037e66a0b9479c8e7364985b78cf843dd39ec05e23124a"
+    },
+    {
+      "path": "catalog/effects/kimi-illustrations.js",
+      "bytes": 20454,
+      "sha256": "aeef6f45d0d7e37992f2a29750c2b965f033ef5d3e40d25c6481831fa6291216"
+    },
+    {
+      "path": "catalog/effects/letter-ripple.js",
+      "bytes": 39504,
+      "sha256": "00ffae15b917df911f9033c9b5fc766157125bce40b02d36a4700c47d9f8069c"
+    },
+    {
+      "path": "catalog/effects/letter-settle.js",
+      "bytes": 115333,
+      "sha256": "e999ad0d45c0aa4e81344dc9a5108a562e420ea331bfb1e92b23ac4b457215a3"
+    },
+    {
+      "path": "catalog/effects/live-code-readout.js",
+      "bytes": 2603,
+      "sha256": "6f9bd3095900b0605a6ef8e299819de0ac256cdf9cddbebdf4576fc919208ba3"
+    },
+    {
+      "path": "catalog/effects/material-evolution.js",
+      "bytes": 88984,
+      "sha256": "8dd684331a352d6fe00685102be794d1221759582f9ad4a42a5eda740ea0bdc9"
+    },
+    {
+      "path": "catalog/effects/math-formula-drift.js",
+      "bytes": 2054,
+      "sha256": "b5a362f1f34bb330e3a9f64df73786824c6822eef807911f413d44d78ad8ba9d"
+    },
+    {
+      "path": "catalog/effects/metal-impact.js",
+      "bytes": 31931,
+      "sha256": "8333f79768ccc73a2407be75f36a743a3c45adefd6d33792404c50ee02df1ffe"
+    },
+    {
+      "path": "catalog/effects/motion-oasis.js",
+      "bytes": 64221,
+      "sha256": "a3b2ce302ef17ad8062040b20041d299bab2b563d4a038fee8469639845f5ba0"
+    },
+    {
+      "path": "catalog/effects/osmanthus-motion.js",
+      "bytes": 213808,
+      "sha256": "89c33037432446d55c4b792033c78275806cd40cced62dea6f7e234b0e08aad1"
+    },
+    {
+      "path": "catalog/effects/paper-showcase.js",
+      "bytes": 22043,
+      "sha256": "86cbf87a955b2dab718ebb144eb43c1a47704e1df2ed7fac00262091a7d9048a"
+    },
+    {
+      "path": "catalog/effects/particle-scenes.js",
+      "bytes": 8941,
+      "sha256": "5dfc7f981262255d916ad80ca32b37c37d8e2f4c48d2b01b3c2c0becc3ee3583"
+    },
+    {
+      "path": "catalog/effects/point-domain-flow.js",
+      "bytes": 119002,
+      "sha256": "11afe0c1fe02358b93c3fe9e72dcbd7a2724abe76fc07f4c8a5a8dee57a295e2"
+    },
+    {
+      "path": "catalog/effects/promo-particles.js",
+      "bytes": 28072,
+      "sha256": "43a176d094bbd8aeb2afe4295582424d273335d1fe2602edcc33f261d95b0684"
+    },
+    {
+      "path": "catalog/effects/radial-branch-flow.js",
+      "bytes": 8229,
+      "sha256": "d3a585412aa9c13bbc2ebd75ebc63ee72ccd5d402d5e970c686cc57e689c9abc"
+    },
+    {
+      "path": "catalog/effects/rasengan-illustrations.js",
+      "bytes": 3396913,
+      "sha256": "4710ffef50ce5c814b01672a15929a5aa4536d647cbe0a2084d3bde52605b0e5"
+    },
+    {
+      "path": "catalog/effects/rect-wave-field.js",
+      "bytes": 1800,
+      "sha256": "8834aa4f233d0671566fdd32a0aaa7177ccfde549c1fafe3242e8fd2914d9266"
+    },
+    {
+      "path": "catalog/effects/reel-flat-gen.js",
+      "bytes": 25687,
+      "sha256": "cb5d8654837467746b1db8ed33c748481251d3bc5cff6e6044ef78fd64a89736"
+    },
+    {
+      "path": "catalog/effects/reel-grit-key.js",
+      "bytes": 20271,
+      "sha256": "baaab21842af020866a9ae20e3c01d8e8ee5fbc87bb182f98bb8c6565a2571e8"
+    },
+    {
+      "path": "catalog/effects/reel-neon.js",
+      "bytes": 22099,
+      "sha256": "e2cde8b9f4bfe03db227f1c6dd5101e184c3b98763b0da51b8e108e5326071b3"
+    },
+    {
+      "path": "catalog/effects/reel-opening.js",
+      "bytes": 11596,
+      "sha256": "346a69b9e71d1f0feaa5fa14501cb5416575d06395e3e14e9756e648b8f6f05f"
+    },
+    {
+      "path": "catalog/effects/reel-paper.js",
+      "bytes": 20168,
+      "sha256": "4f8716b9a0a2291153e370ca714b57ec01ef940efcf7a8f0ab1ef071b27a421a"
+    },
+    {
+      "path": "catalog/effects/reel-prompt-outro.js",
+      "bytes": 46806,
+      "sha256": "23b94aef0a1551c431cb51bc2760026d7a76a006dcde13ec85517d0853ecf472"
+    },
+    {
+      "path": "catalog/effects/reel-transitions.js",
+      "bytes": 6235,
+      "sha256": "956ae7db95fd7eff711630708801a4f57d3d2b2282fdfb00c13505ab51a2bc95"
+    },
+    {
+      "path": "catalog/effects/seed-bloom-brand.js",
+      "bytes": 61200,
+      "sha256": "90e0124da28b5353e2653b864dde0a813a1a2b27274dd08b74fe3026104dc293"
+    },
+    {
+      "path": "catalog/effects/selfie-phone.js",
+      "bytes": 1160,
+      "sha256": "d0419204d0ff711acb1c41834ffc9fb89117c3b2c1816e43a96353ade9591ca7"
+    },
+    {
+      "path": "catalog/effects/settle-grow-spread.js",
+      "bytes": 253230,
+      "sha256": "9adf80b2bdb4fc54ef0ee3d2d6335f0628fc1327f2a8fe0bcadd2554a55cc32d"
+    },
+    {
+      "path": "catalog/effects/space.js",
+      "bytes": 11793,
+      "sha256": "14cc5f73ca669b26edb3d8ff3b2984ec8de85b2f40a2b4f6e7f255aceea112e3"
+    },
+    {
+      "path": "catalog/effects/step-hop.js",
+      "bytes": 3231,
+      "sha256": "fae1d0e4701317d46c7fd8e21488bbfe11b6c552b269050299803eba9eb5b486"
+    },
+    {
+      "path": "catalog/effects/theme-color-cycle.js",
+      "bytes": 2623,
+      "sha256": "497a4d4f82ec89af7bb64d47012b8504b67cd431c75434109e2ffff0b7a79963"
+    },
+    {
+      "path": "catalog/effects/thread-weave.js",
+      "bytes": 24182,
+      "sha256": "caca950f3ff1a73f67ad51da72dc9dd0737fafb6ac8d2fd179640ef920494493"
+    },
+    {
+      "path": "catalog/effects/transition.js",
+      "bytes": 5678,
+      "sha256": "d71e73556ee42a3de3a5d178ef3c23c6e6d1bbb017cc6d91ef30de37b23687ed"
+    },
+    {
+      "path": "catalog/effects/word-slam.js",
+      "bytes": 2999,
+      "sha256": "ba78ca01837928e9a5ad1ef6b10ca870d9bf252de58fd6be8cefadb203a29c37"
+    },
+    {
+      "path": "catalog/export.js",
+      "bytes": 17484,
+      "sha256": "6ae337587258938a5707bb76d01ba1db94666991974d0f4c2e8ee5c8704f9444"
+    },
+    {
+      "path": "catalog/fonts/OFL-Letter.txt",
+      "bytes": 5171,
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+    },
+    {
+      "path": "catalog/fonts/OFL-Oswald.txt",
+      "bytes": 4390,
+      "sha256": "0687c51a3126ae6963389181135a2eaea02f2e88f31230d27409952f28e84da5"
+    },
+    {
+      "path": "catalog/fonts/OFL-Outfit.txt",
+      "bytes": 4389,
+      "sha256": "c676351bf8576b9aba743cd5eaa8c0e7ee0d51f805d720447b4df4ddb6a2e416"
+    },
+    {
+      "path": "catalog/fonts/OFL.txt",
+      "bytes": 4463,
+      "sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2"
+    },
+    {
+      "path": "catalog/fonts/Oswald-Bold.woff2",
+      "bytes": 12112,
+      "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+    },
+    {
+      "path": "catalog/fonts/Outfit-latin-500.woff2",
+      "bytes": 13400,
+      "sha256": "6ffbc6f6b80e5dfdedc1a1756ea89eb2ab722bc37ba280c3fb247c899881ae62"
+    },
+    {
+      "path": "catalog/fonts/WiseMotionLetter-Regular.woff2",
+      "bytes": 8590272,
+      "sha256": "e1ca0fffb7571276ab1e0068d88f597ccee3e10f49b7f3f968cba41fcabf168c"
+    },
+    {
+      "path": "catalog/fonts/WiseMotionSans-Bold.woff2",
+      "bytes": 530544,
+      "sha256": "a2c07ff52ae75a26d5abeb1c414c763111989e402d46e58fc0a9b9516fdcab26"
+    },
+    {
+      "path": "catalog/fonts/WiseMotionSans-Light.woff2",
+      "bytes": 500764,
+      "sha256": "6e091158d4b4d3a89c892ac88df7a8626c495eb46e4fdff6bf1ed07d6e02d551"
+    },
+    {
+      "path": "catalog/fonts/WiseMotionSans-Regular.woff2",
+      "bytes": 513404,
+      "sha256": "9a3f4006e99c0c7a4298ea579f99c729fe38febc25f3e61ec44acc3158e510fb"
+    },
+    {
+      "path": "catalog/history-data.js",
+      "bytes": 54499,
+      "sha256": "4a74dc5a99a748a5f52e15c4021646551fa12964d2b125a53fedf4b0010e88b7"
+    },
+    {
+      "path": "catalog/history-runtime.js",
+      "bytes": 6844,
+      "sha256": "af5475dfed8c63895877b51548c275c3db62225374684f3d6140d126d036cfb7"
+    },
+    {
+      "path": "catalog/history.css",
+      "bytes": 1242,
+      "sha256": "51b0e008ab0b10a9ed1b6e7fcc0cf2858ff3665ef3d785c52592f385c831dae2"
+    },
+    {
+      "path": "catalog/index.html",
+      "bytes": 19904,
+      "sha256": "a5d463ece877f0bb0adac84e7402740fb8a4d094c5677edfc132308beb4807a4"
+    },
+    {
+      "path": "catalog/matching.js",
+      "bytes": 9322,
+      "sha256": "4113e60f9bfb9a790b3734bd7f294c37fe09a6d00ba464e0299a48efcd2ead39"
+    },
+    {
+      "path": "catalog/player-glass.js",
+      "bytes": 1495,
+      "sha256": "a6a841688b279376f9a8e0c6da222f61ec0ccf9699108199edf69edf23ebbb7c"
+    },
+    {
+      "path": "catalog/registry-data.js",
+      "bytes": 820909,
+      "sha256": "7d656add74536832eedf8522753a03cf2d87d6e6b222eb4a5d18221aa3a5ff14"
+    },
+    {
+      "path": "catalog/registry.json",
+      "bytes": 1015184,
+      "sha256": "2760d1e28816c24401e1c0cdc2b2a9db607a6a6ca3a6f82b2449c7ee5662545e"
+    },
+    {
+      "path": "catalog/related-preview.js",
+      "bytes": 6477,
+      "sha256": "57e68709abf201bf382477615520b152c19c1320976169ac5435935d14550af6"
+    },
+    {
+      "path": "catalog/remotion/seed-bloom-brand-source.json",
+      "bytes": 857,
+      "sha256": "19b9e4e88a0dc470c54aa2ec7128d74a328108385adf75cc3587212555e293dd"
+    },
+    {
+      "path": "catalog/remotion/seed-bloom-brand.jsx",
+      "bytes": 1391,
+      "sha256": "0356ac4f7be3adf330d796a3477a830108b281a0b936e8dad1bf2d443b3a2e6d"
+    },
+    {
+      "path": "catalog/remotion-sources.js",
+      "bytes": 104662,
+      "sha256": "e53a47ab19504650a4a76fff03b2481b88c3d0e6b79c1e8954a4f2d4ac2fe589"
+    },
+    {
+      "path": "catalog/runtime.js",
+      "bytes": 11576,
+      "sha256": "c9b5e39ed36d0dced1537a74f2456589ed4b64c872be3dad168903561f4fbd52"
+    },
+    {
+      "path": "catalog/scenes.css",
+      "bytes": 15471,
+      "sha256": "308b9044512449751423681f1202b0fde4422a12e888baa8af363d1b556ce917"
+    },
+    {
+      "path": "catalog/thumbnails.js",
+      "bytes": 9045,
+      "sha256": "a38ab0d33b9e56af696607d38ae6a5171112437b793c4af82a038e6c70cb134b"
+    },
+    {
+      "path": "catalog/wise-avatar.webp",
+      "bytes": 151938,
+      "sha256": "d92ea825be49d5a1d452b74dd735954804dde709e8f19c36dc5fb58c9d6c33cf"
+    },
+    {
+      "path": "vendor/animejs/LICENSE.md",
+      "bytes": 1075,
+      "sha256": "3f3e835a9952cfc2a6ca836fb95b3257c981f24fa3ef51249055acb09931897b"
+    },
+    {
+      "path": "vendor/animejs/SOURCE.json",
+      "bytes": 856,
+      "sha256": "cc62c9bd4cf6a5d1a6edcc7e250854b103eb7653b15a8f9e0789eefeff93af99"
+    },
+    {
+      "path": "vendor/animejs/anime.umd.js",
+      "bytes": 429444,
+      "sha256": "141b818417c67df8467fdc6bd5a32e77ddb1b520e86d2fee496b1e43ba8b8ec9"
+    },
+    {
+      "path": "vendor/animejs/anime.umd.min.js",
+      "bytes": 118043,
+      "sha256": "8d5b3a58a1f64023a04a4cedeef135a2263b18da04b35177ac13438a0bad033b"
+    },
+    {
+      "path": "vendor/heroicons/LICENSE",
+      "bytes": 1071,
+      "sha256": "60e0b68c0f35c078eef3a5d29419d0b03ff84ec1df9c3f9d6e39a519a5ae7985"
+    },
+    {
+      "path": "vendor/heroicons/SOURCE.json",
+      "bytes": 3674,
+      "sha256": "64c610cb6c563e24987926e62f66a69ab5f833cd06e20dc2af407c219fd6898f"
+    },
+    {
+      "path": "vendor/heroicons/icons.js",
+      "bytes": 18164,
+      "sha256": "ca66d1deb894ee9313999fee293b538bb4c0bd3aa3c1d04278425ca8865e1495"
+    },
+    {
+      "path": "vendor/liquid-glass/LICENSE",
+      "bytes": 1068,
+      "sha256": "b79a118386f46c7ef7469df5abcc0d3b49b19e6497d6788642247d9a109d4341"
+    },
+    {
+      "path": "vendor/liquid-glass/SOURCE.json",
+      "bytes": 862,
+      "sha256": "dddda1266c95c6d6d9ae541c822a75d7f3c8a8508e89b4c1e1c81193999f3ed9"
+    },
+    {
+      "path": "vendor/liquid-glass/liquid-glass.js",
+      "bytes": 9241,
+      "sha256": "4c721f284ec2ca09236cd9a1daa487837eb0df8207899c629807d718d4197c5e"
+    },
+    {
+      "path": "vendor/lucide/LICENSE",
+      "bytes": 3208,
+      "sha256": "b495047bd93a9b06913511076f504daba17d5bbeb3e0650f3bb53a4220329c57"
+    },
+    {
+      "path": "vendor/lucide/SOURCE.json",
+      "bytes": 635,
+      "sha256": "dc71e9a635db8e71e4a938ac5ec7372eab1c2f4bbd9779bb5d7d54923550eda1"
+    }
+  ]
+}

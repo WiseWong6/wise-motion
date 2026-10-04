@@ -1,14 +1,43 @@
 {
-  "name": "wise-motion",
-  "version": "0.1.0",
+  "name": "wise-motion-remotion",
+  "version": "0.1.3",
   "private": true,
-  "description": "讲清动效需求，匹配本地动作参考与源码",
+  "description": "理解意图，设计动效，参考改良与发散组合，并按请求制作",
   "license": "AGPL-3.0-only",
-  "engines": {"node": "^24.15.0 || >=26"},
-  "scripts": {
-    "build": "node scripts/build.mjs",
-    "check": "node scripts/check.mjs",
-    "test": "node scripts/check.mjs && node --test tests/*.test.mjs"
+  "engines": {
+    "node": "^24.15.0 || >=26"
   },
-  "devDependencies": {"jsdom": "30.1.1"}
+  "scripts": {
+    "build": "node scripts/build.mjs && node scripts/build-remotion.mjs",
+    "check": "node scripts/check.mjs",
+    "test": "node scripts/check.mjs && node --test tests/*.test.mjs",
+    "build:remotion": "node scripts/build-remotion.mjs",
+    "check:remotion": "node --test tests/remotion-clock.test.mjs tests/remotion-adapter-regressions.test.mjs tests/remotion-resource-boundaries.test.mjs tests/remotion-production.test.mjs",
+    "render": "node scripts/render-remotion.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "30.1.1",
+    "esbuild": "0.28.2",
+    "pngjs": "7.0.0"
+  },
+  "exports": "./dist/index.mjs",
+  "files": [
+    "dist",
+    "catalog",
+    "vendor",
+    "scripts/install-assets.mjs",
+    "LICENSE",
+    "NOTICE.md",
+    "REMOTION.md",
+    "ASSET-MANIFEST.json"
+  ],
+  "dependencies": {
+    "remotion": "4.0.532",
+    "@remotion/player": "4.0.532",
+    "@remotion/renderer": "4.0.532",
+    "@remotion/bundler": "4.0.532",
+    "@remotion/cli": "4.0.532",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  }
 }

@@ -2,6 +2,25 @@
  * 基于本机展示片独立绘制并经用户精修确认；无原片像素或媒体依赖。 */
 (function(global){
 'use strict';
+// Exact Oswald Bold outlines from catalog/fonts/Oswald-Bold.woff2; SIL OFL 1.1, see fonts/OFL-Oswald.txt.
+const wordmarkGlyphs={"W":{"advance":697,"path":[["M",125,0],["L",27,810],["L",179,810],["L",227,338],["L",288,809],["L",407,809],["L",471,341],["L",520,810],["L",670,810],["L",573,0],["L",417,0],["L",348,489],["L",283,0],["Z"]]},"I":{"advance":301,"path":[["M",61,0],["L",61,810],["L",240,810],["L",240,0],["Z"]]},"S":{"advance":514,"path":[["M",275,-12],["Q",160,-12,103.5,49.0],["Q",47,110,42,245],["L",195,268],["Q",197,189,214.5,156.5],["Q",232,124,266,124],["Q",294,124,302.5,143.0],["Q",311,162,311,183],["Q",311,233,287.0,267.5],["Q",263,302,222,337],["L",152,398],["Q",106,437,74.5,486.5],["Q",43,536,43,609],["Q",43,712,104.0,766.5],["Q",165,821,270,821],["Q",335,821,374.5,799.0],["Q",414,777,434.5,741.5],["Q",455,706,462.5,666.5],["Q",470,627,471,591],["L",317,572],["Q",316,626,307.5,658.0],["Q",299,690,264,690],["Q",239,690,227.5,669.0],["Q",216,648,216,627],["Q",216,582,237.5,553.5],["Q",259,525,294,494],["L",361,435],["Q",414,390,450.5,333.0],["Q",487,276,487,192],["Q",487,135,461.0,88.5],["Q",435,42,387.5,15.0],["Q",340,-12,275,-12],["Z"]]},"E":{"advance":447,"path":[["M",60,0],["L",60,810],["L",424,810],["L",424,688],["L",239,688],["L",239,487],["L",380,487],["L",380,363],["L",239,363],["L",239,121],["L",426,121],["L",426,0],["Z"]]},"M":{"advance":704,"path":[["M",57,0],["L",71,810],["L",263,810],["L",352,339],["L",448,810],["L",633,810],["L",647,0],["L",520,0],["L",505,539],["L",411,0],["L",298,0],["L",198,543],["L",186,0],["Z"]]},"T":{"advance":445,"path":[["M",133,0],["L",133,677],["L",11,677],["L",11,810],["L",434,810],["L",434,677],["L",313,677],["L",313,0],["Z"]]},"N":{"advance":561,"path":[["M",60,0],["L",60,810],["L",186,810],["L",352,420],["L",352,810],["L",500,810],["L",500,0],["L",379,0],["L",213,420],["L",213,0],["Z"]]}};
+const wordmarkScale=56/810,wordmarkRadius=28.1,wordmarkStroke=11.4;
+const wordmarkLetters=[];let wordmarkAdvance=0;
+for(const letter of 'WISE MOTION'){
+ if(letter===' '){wordmarkAdvance+=16;continue;}
+ const width=letter==='O'?wordmarkRadius*2:wordmarkGlyphs[letter].advance*wordmarkScale;
+ wordmarkLetters.push({letter,x:wordmarkAdvance,width});wordmarkAdvance+=width+8;
+}
+const wordmarkLeft=(1066-(wordmarkAdvance-8))/2;
+for(const item of wordmarkLetters)item.x+=wordmarkLeft;
+const wordmarkOs=wordmarkLetters.filter(item=>item.letter==='O').map(item=>item.x+wordmarkRadius);
+function paintWordmarkLetter(c,item){
+ c.save();c.translate(item.x,332);c.scale(wordmarkScale,-wordmarkScale);c.beginPath();
+ for(const [op,...n]of wordmarkGlyphs[item.letter].path){
+  if(op==='M')c.moveTo(...n);else if(op==='L')c.lineTo(...n);else if(op==='Q')c.quadraticCurveTo(...n);else if(op==='C')c.bezierCurveTo(...n);else c.closePath();
+ }
+ c.fill();c.restore();
+}
 function createPainter(doc=global.document){
 
 const W=1066,H=600,TAU=Math.PI*2,clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)),mix=(a,b,q)=>a+(b-a)*q,ease=v=>{v=clamp(v);return v*v*(3-2*v)},p=(t,a,b)=>ease((t-a)/(b-a));
@@ -72,25 +91,22 @@ function refract(c,t,x,y,w,h,angle,opacity=1){
  lc.putImageData(out,0,0);c.save();c.globalAlpha*=opacity;c.translate(x,y);c.rotate(angle);c.filter='blur(.45px)';c.drawImage(lens,-ww/2,-hh/2);c.restore();
 }
 function ring(c,x,y,r,t,opacity=1){alpha(c,opacity,()=>{light(c,x,y+6,r*1.56,r*1.33,'58,227,255',.26);const g=c.createLinearGradient(x-r,y-r,x+r,y+r);g.addColorStop(0,'#f4f9ffed');g.addColorStop(.3,'#d7eaffaf');g.addColorStop(.6,'#89c5fff0');g.addColorStop(.88,'#ecffffe8');g.addColorStop(1,'#5dafda8f');circle(c,x,y,r,null,g,2.2);circle(c,x,y,r-5.3,null,'#ceefffa2',1.4);circle(c,x,y,r-2.5,null,'#659bca3b',1.1)})}
-// Thin letterforms traced as vectors: consistent across browsers and operating systems.
+// Oswald Bold glyphs keep their original outlines; both O letters are true circles.
 function wordmark(c,t){
  const a=p(t,2.48,2.79);alpha(c,a,()=>{
-  c.save();c.strokeStyle='#f2f0fc';c.lineWidth=2.7;c.lineCap='round';c.lineJoin='round';c.beginPath();
-  // WISE: the same cap height as the two circular O letterforms.
-  c.moveTo(231,276);c.lineTo(245,332);c.lineTo(259,291);c.lineTo(273,332);c.lineTo(287,276);
-  c.moveTo(300,276);c.lineTo(318,276);c.moveTo(309,276);c.lineTo(309,332);c.moveTo(300,332);c.lineTo(318,332);
-  c.moveTo(375,280);c.bezierCurveTo(360,271,334,274,334,289);c.bezierCurveTo(334,304,376,300,376,318);c.bezierCurveTo(376,335,347,337,333,327);
-  c.moveTo(433,276);c.lineTo(393,276);c.lineTo(393,332);c.lineTo(433,332);c.moveTo(393,303);c.lineTo(426,303);
-  // MOTION leaves the first O open for the arriving glass bubble.
-  c.moveTo(475,332);c.lineTo(475,276);c.lineTo(502.5,316);c.lineTo(530,276);c.lineTo(530,332);
-  c.moveTo(621,276);c.lineTo(665,276);c.moveTo(643,276);c.lineTo(643,332);
-  c.moveTo(679,276);c.lineTo(697,276);c.moveTo(688,276);c.lineTo(688,332);c.moveTo(679,332);c.lineTo(697,332);
-  c.moveTo(767.1,304);c.arc(739,304,28.1,0,TAU);
-  c.moveTo(783,332);c.lineTo(783,276);c.lineTo(835,332);c.lineTo(835,276);
-  c.stroke();c.restore();
+  c.save();c.fillStyle='#f2f0fc';
+  for(const item of wordmarkLetters){
+   if(item.letter!=='O')paintWordmarkLetter(c,item);
+   else if(item.x+wordmarkRadius!==wordmarkOs[0])circle(c,item.x+wordmarkRadius,304,wordmarkRadius-wordmarkStroke/2,null,'#f2f0fc',wordmarkStroke);
+  }
+  c.restore();
  });
- // The lens finishes at (577,304), becoming the first O in MOTION.
- ring(c,577,304,28.1,t,p(t,2.7,2.88));
+ // The first circular O takes over from the lens at the exact same center and diameter.
+ alpha(c,p(t,2.7,2.88),()=>{
+  const x=wordmarkOs[0];light(c,x,310,44,38,'58,227,255',.22);
+  const g=c.createLinearGradient(x-28,276,x+28,332);g.addColorStop(0,'#f4f9ff');g.addColorStop(.55,'#d2eaff');g.addColorStop(1,'#91dafa');
+  circle(c,x,304,wordmarkRadius-wordmarkStroke/2,null,g,wordmarkStroke);
+ });
  alpha(c,p(t,2.92,3.07),()=>{
   c.save();c.textAlign='center';c.textBaseline='alphabetic';c.fillStyle='#d7daed';c.font='300 16px Arial,"PingFang SC",sans-serif';c.fillText('Motion with meaning.',533,375);
   c.fillStyle='#d0d2e9';c.font='300 14px "PingFang SC",sans-serif';c.fillText('让每一次运动，都有意义。',533,405);c.restore();
@@ -112,7 +128,7 @@ function render(c,t){t=clamp(t,0,3.65);drawInner(t);
 
 const layerKeys=['background','wordmark','listening','chat','focus','lens','aperture'];
 function reset(c){c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.filter='none';c.clearRect(0,0,W,H);}
-function lensPose(t){return keys(t,[[1.64,453,353,38,47,-.16],[1.75,455,357,60,56,-.15],[1.8333,502,353,95,56,-.27],[1.90,534,331,103,81,-.14],[2.0,544,293,207,128,-.04],[2.0833,558,284,232,123,-.02],[2.25,564,280,253,132,-.015],[2.35,587,284,229,124,-.015],[2.45,586,290,211,116,-.012],[2.6,585,301,150,95,-.008],[2.75,577,304,81,74,0],[2.85,577,304,58,58,0]]);}
+function lensPose(t){return keys(t,[[1.64,453,353,38,47,-.16],[1.75,455,357,60,56,-.15],[1.8333,502,353,95,56,-.27],[1.90,534,331,103,81,-.14],[2.0,544,293,207,128,-.04],[2.0833,558,284,232,123,-.02],[2.25,564,280,253,132,-.015],[2.35,587,284,229,124,-.015],[2.45,586,290,211,116,-.012],[2.6,585,301,150,95,-.008],[2.75,wordmarkOs[0],304,81,74,0],[2.85,wordmarkOs[0],304,wordmarkRadius*2,wordmarkRadius*2,0]]);}
 function drawLayers(layers,t){
  t=clamp(t,0,3.65);for(const key of layerKeys)reset(layers[key]);
  reset(bc);background(layers.background,t);bc.drawImage(layers.background.canvas,0,0);
@@ -189,7 +205,7 @@ function makeCard(root,kit,definition,key){
  render.destroy=(preserve=false)=>{if(dead)return;dead=true;if(!preserve){node.width=1;node.height=1;root.replaceChildren();}};
  return render;
 }
-global.WiseGlassLight={createPainter,parts,cards,duration:3650};
+global.WiseGlassLight={createPainter,parts,cards,duration:3650,brand:{label:'WISE MOTION',family:'Oswald',weight:700,capHeight:56,oCenters:wordmarkOs.map(x=>[x,304]),oRadius:wordmarkRadius,oStroke:wordmarkStroke}};
 const F=global.MotionFactories;
 if(F){
  F['glass-interface-sequence']=(root,kit,def)=>make(root,kit,def);
@@ -197,7 +213,7 @@ if(F){
  for(const [key,id]of cards)F[id]=(root,kit,def)=>makeCard(root,kit,def,key);
  F['glass-interface-sequence'].breakdown=[
   {id:'background',name:'弥散光场',actions:['diffuse-light-drift'],start:0,end:3650,time:'0–3.65 秒',detail:'十四组紫蓝与青色光团按固定位置、椭圆范围和颜色渐变叠加，给玻璃提供透入的环境光。'},
-  {id:'wordmark',name:'细线字标',actions:[],start:2480,end:3480,time:'2.48–3.48 秒',detail:'WISE MOTION 细线字标位于卡片后方，气泡收拢后成为 MOTION 的第一个 O，底部出现双语短句。'},
+  {id:'wordmark',name:'粗体字标',actions:[],start:2480,end:3480,time:'2.48–3.48 秒',detail:'WISE MOTION 的 Oswald Bold 字标位于卡片后方，气泡收拢后成为 MOTION 的第一个 O，底部出现双语短句。'},
   {id:'listening',name:'后方语音卡',actions:['glass-card-stagger','glass-voice-card-illustration'],start:0,end:2780,time:'0–2.78 秒',detail:'语音卡先进入并保留青色光点，波形按同一时间变化；退出时向左上移动。'},
   {id:'chat',name:'中间对话卡',actions:['glass-card-stagger','glass-dialogue-card-illustration'],start:0,end:2840,time:'0–2.84 秒',detail:'对话卡采样后方光场和卡片，再叠少量着色；回复与按钮按固定次序出现。'},
   {id:'focus',name:'前景控制卡',actions:['glass-card-stagger','glass-control-card-illustration'],start:0,end:2860,time:'0–2.86 秒',detail:'控制卡从左下移入，左侧保持暗部、右侧透入蓝光；开关开启后滑杆读数升至74%。'},

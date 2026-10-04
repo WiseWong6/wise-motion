@@ -1,0 +1,13 @@
+{
+  "tool": "Codex 内置 image_gen.imagegen",
+  "date": "2026-10-02",
+  "usage": "三栏蓝晒纸面图集；浏览器按比例裁取三张纸面，未修改生成图片像素。",
+  "prompt": "Use case: photorealistic-natural.\nAsset type: a production texture atlas for a botanical cyanotype motion study, ONE wide image containing exactly three adjacent equal-width portrait cyanotype print faces, filling the canvas from edge to edge. Overall aspect ratio 3:2. The three panels are each 1:2 portrait rectangles: panel one occupies precisely the left third, panel two the middle third, panel three the right third. No gutters, no margins, no frames, no white paper border, no text, no labels, no lettering, no shadows, no perspective. It will be divided into three independent blue printed-paper faces by the animation renderer.\nEach panel is an extraordinarily detailed nineteenth-century seaweed cyanotype photogram, not a drawing or icon. Rich indigo / Prussian blue, slightly green cast, with soft ivory and pale cyan plant exposure. Real translucent overlapping fronds, faint capillary filaments, irregular microscopic ramification, natural exposure variations and cotton paper fibers, subtle chemical mottling. Natural asymmetry. Restrained midtones, fine structures must remain discernible at small size. Do not make branches thick white strokes. All three paper backgrounds have the same deep Prussian blue family with nuanced organic density. Full bleed blue.\nLeft third: a botanical specimen plate with five separate small seaweed specimens arranged loosely without overlapping, each showing different delicate branching, including wispy hairlike roots at top and a broader pressed leaf-shaped branching alga below. The specimens together fill most of the narrow panel height.\nMiddle third: one large fan of fernlike marine algae, main stem starts bottom right, fine branches spread to the left and upward, dense tiny feathery branchlets with realistic varying translucency, a little breathing room at edges.\nRight third: one tall, airy seaweed specimen, stem starting near bottom center, sparse lower stems expanding into intricately branching fine filaments near the upper third, not a repeated symmetrical Christmas tree.\nPhotography of authentic handmade prints scanned flat, intimate material detail, no 3D objects, no additional props. Three equally sized images only. Do not show a page layout or UI. No flat vector shapes, no generic leaf icons, no coarse grain overlay, no drop shadows. This is a fresh independently generated material asset.",
+  "sha256": "be8f2242bcfac15e0a4e558d3525e162dcaa7809b1d193a89017954de1dceb3a",
+  "asset": "botanical-atlas.png",
+  "dimensions": [
+    1536,
+    1024
+  ],
+  "note": "独立生成的植物蓝晒图集，生成文件原样保存；未使用原片帧作素材。"
+}

@@ -3,3 +3,7 @@ node_modules/
 *.log
 
 .playwright-cli/
+
+# 可重新生成的 Remotion 本地素材与临时导出缓存
+public/
+.render-bundle/

@@ -10,9 +10,10 @@ const query = process.argv.slice(2).join(' ').trim();
 if (!query) { console.error('用法：node scripts/match.mjs "两排卡片反向持续滚动，不要轮播"'); process.exitCode = 1; }
 else {
   const matches = rank(data, query);
-  if (!matches.length) { console.log('本地目录没有满足当前结构或禁项的参考。请拆解对象、动作和联动后，再定向查找有明确许可的源码。'); }
+  if (!matches.length) { console.log('词语检索没有找到满足当前结构或禁项的直接参考。这不限制设计：可从表达目的与对象关系发散，或借用其他参考改良、组合；需要外部实现依据时再定向查证。'); }
   else {
     const best = matches[0];
-    console.log(`推荐：${best.effect.name}\n匹配要求：${best.matched.join('、')}\n依据：${best.reason}\n已排除：${best.excluded.join('、') || '没有识别到明确禁项'}\n\n${describe(best.effect, {}, data)}`);
+    console.log('检索结果只供参考，可以改良、跨类组合或另起设计；参考默认值不是用户要求。');
+    console.log(`参考候选：${best.effect.name}\n匹配要求：${best.matched.join('、')}\n依据：${best.reason}\n已排除：${best.excluded.join('、') || '没有识别到明确禁项'}\n\n${describe(best.effect, {}, data)}`);
   }
 }

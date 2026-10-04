@@ -1180,10 +1180,10 @@ function waveform(ctx,x,y,age){
   });
  };
  F['dandelion-subject-illustration']=(root,K,def)=>{
-  const render=svgFactory(root,def,ctx=>{const j=J();ctx.translate(320,116);ctx.scale(1.25,1.25);j.floret(ctx,0,0,42,0,1,j.filamentState(4.5));},'0 0 640 360',.5);render(0);return ()=>{};
+  const render=svgFactory(root,def,ctx=>{const j=J();ctx.translate(320,116);ctx.scale(1.25,1.25);j.floret(ctx,0,0,42,0,1,j.filamentState(4.5));},'0 0 640 360');render(0);return ()=>{};
  };
  F['dandelion-seed-illustration']=(root,K,def)=>{
-  const render=svgFactory(root,def,ctx=>{const j=J();ctx.translate(320,128);ctx.scale(6,6);j.floret(ctx,0,0,8,0,1);},'0 0 640 360',1/9);render(0);return ()=>{};
+  const render=svgFactory(root,def,ctx=>{const j=J();ctx.translate(320,116);ctx.scale(1.25,1.25);j.floret(ctx,0,0,35,0,1);},'0 0 640 360');render(0);return ()=>{};
  };
 
 })();

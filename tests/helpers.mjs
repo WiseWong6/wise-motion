@@ -51,7 +51,7 @@ export async function environment(withApp = false, options = {}) {
   };
   w.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
   w.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new w.Event('close')); };
-  const sources = ['vendor/animejs/anime.umd.min.js','catalog/registry-data.js','catalog/matching.js','catalog/runtime.js', ...[...new Set(data.effects.map(e => e.source.path))]];
+  const sources = ['vendor/animejs/anime.umd.min.js','catalog/registry-data.js','catalog/remotion-sources.js','catalog/matching.js','catalog/runtime.js', ...[...new Set(data.effects.map(e => e.source.path))]];
   if (withApp) {
     // 按正式页面的真实引用加载，避免测试替页面补齐漏引的效果源码。
     sources.length = 0;
@@ -59,7 +59,8 @@ export async function environment(withApp = false, options = {}) {
       const file = 'catalog/' + script.getAttribute('src');
       // 历史数据在浏览器中按需加载；测试无网络，提前提供这份数据。
       if (file === 'catalog/app.js'&&!options.lazyHistory) sources.push('catalog/history-data.js');
-      sources.push(file);
+      // jsdom检查原绘制和目录结构；实际Remotion播放另由浏览器检查。
+      if(file !== 'catalog/remotion-player.js') sources.push(file);
     }
   }
   for (const file of sources) {

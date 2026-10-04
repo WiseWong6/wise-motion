@@ -56,7 +56,7 @@ test('旧历史入口转入压缩回弹，切换两种示例同步播放、提�
     assert.equal(w.MotionRuntime.runningCount,1);assert.equal(value(d.getElementById('preview'),'ry'),32);
     assert.match(d.getElementById('prompt').textContent,/落地回弹/);
     assert.ok(!d.getElementById('prompt').textContent.includes('0.022R'));
-    assert.ok(d.getElementById('code').textContent.includes('"variant_id": "drop"'));
+    assert.ok(d.getElementById('code').textContent.includes('"variantId": "drop"'));
     select.value='contact';select.dispatchEvent(new w.Event('change',{bubbles:true}));
     assert.equal(value(d.getElementById('preview'),'ry'),64);assert.equal(w.MotionRuntime.instanceCount,1);
   }finally{env.close();}

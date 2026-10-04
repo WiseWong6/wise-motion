@@ -106,7 +106,7 @@ test('三栏目录筛选与节奏输出一致，相关弹窗不替换主预览�
     click('#toggle-play'); assert.equal(w.MotionRuntime.runningCount,0);
     const speed = d.getElementById('speed'); speed.value = 2; speed.dispatchEvent(new w.Event('input'));
     assert.match(d.getElementById('prompt').textContent,/4\.00 秒/);
-    assert.match(d.getElementById('code').textContent,/player\.setSpeed\(2\)/);
+    assert.match(d.getElementById('code').textContent,/"speed"\s*:\s*2/);
     assert.equal(d.getElementById('composition-panel').hidden,true);
     const duration = w.MotionRegistry.effects.find(effect => effect.id === 'dual-scroll').duration_ms;
     const elapsed = Number(d.getElementById('time-current').textContent);
@@ -212,12 +212,12 @@ test('右栏名称与两个输出共用复制按钮，复制失败时选中对�
     assert.notEqual(copied,name('fade-rise'));
     d.querySelector('[data-effect="fade-rise"]').click();
     d.getElementById('copy-prompt').click(); await settle();
-    assert.match(copied,/请实现以下动效/); assert.doesNotMatch(copied,/来源与许可：/); assert.match(copied,/需要保留：/);
+    assert.match(copied,/请使用 Remotion 实现以下动效/); assert.doesNotMatch(copied,/来源与许可：/); assert.match(copied,/需要保留：/);
     d.getElementById('tab-code').click();
     assert.ok(!d.getElementById('panel-code').hidden); assert.ok(d.getElementById('panel-prompt').hidden);
     assert.equal(d.getElementById('copy-code').getAttribute('aria-label'),'复制代码');
     d.getElementById('copy-code').click(); await settle();
-    assert.match(copied,/<!doctype html>/); assert.match(copied,/catalog\/effects\/entrance\.js/);
+    assert.match(copied,/import \{Composition\} from 'remotion'/); assert.match(copied,/catalog\/effects\/entrance\.js/);
     assert.equal(d.querySelectorAll('textarea').length,0); assert.equal(d.getElementById('copy-status-code').textContent,'');
     Object.defineProperty(w.navigator,'clipboard',{configurable:true,value:{writeText:async text=>{copied=text;}}});
     titleCopy.click(); await settle();

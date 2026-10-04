@@ -9,6 +9,8 @@
     let savedTime = 0, savedPlaying = false, speed = 1, ease = definition.default_ease;
     let paper = {...{padding:10,radius:20,crease:11},...options.paperSettings};
     let interactiveState = {index:0,busy:false,paused:false};
+    let restoredPage = options.mode==='interactive'&&Number.isFinite(options.pageIndex) ? options.pageIndex : null;
+    let modeRequest = 0;
     function on(target, type, callback) {
       target.addEventListener(type,callback); handlers.push(()=>target.removeEventListener(type,callback));
     }
@@ -20,7 +22,7 @@
       }
       if (book) book.setSettings(paper);
       else {
-        const shell = root.querySelector('.wm-book');
+        const shell = (timer.stage||root).querySelector('.wm-book');
         if (!shell) return;
         shell.style.setProperty('--book-pad',paper.padding+'px');
         shell.style.setProperty('--book-radius',paper.radius+'px');
@@ -43,10 +45,17 @@
         : '下方播放条可暂停、重播和拖动时间；纸页设置即时生效。';
     }
     function makeTimer() {
-      return MotionRuntime.create(root,{...definition,paper_settings:paper},{onUpdate:options.onUpdate});
+      const current=MotionRuntime.create(root,{...definition,paper_settings:paper},{onUpdate:options.onUpdate});
+      current.ready?.then(ok=>{if(ok&&!destroyed&&current===timer)paintPaper();});
+      return current;
     }
     function makeBook(index) {
-      book = WiseDitherBook.create(root.querySelector('.motion-stage'),{
+      const stage=timer.stage||root.querySelector('.motion-stage');
+      if(!stage)throw new Error('翻页书仍在准备，请稍后切换交互');
+      const frame=stage.ownerDocument.defaultView.frameElement;
+      if(frame)frame.removeAttribute('aria-hidden');
+      const bookApi=stage.ownerDocument.defaultView.WiseDitherBook||WiseDitherBook;
+      book = bookApi.create(stage,{
         interactive:true,intro:false,settings:paper,
         onUpdate(state){
           interactiveState=state;
@@ -57,11 +66,15 @@
       book.renderState({index,flip:null,entrance:1});
     }
     function setMode(next) {
-      if (destroyed || next===mode || !['interactive','timeline'].includes(next)) return;
+      if (destroyed || !['interactive','timeline'].includes(next)) return;
+      const request=++modeRequest;
+      if(next===mode)return;
+      if (next==='interactive'&&timer.preparing) {timer.ready.then(ok=>{if(ok&&!destroyed&&request===modeRequest)setMode(next);});return;}
       if (next==='interactive') {
         savedTime=timer.currentTime; savedPlaying=!timer.paused; timer.pause();
         const state=WiseDitherBook.demoAt(savedTime);
-        makeBook(state.flip ? state.flip.from+state.flip.direction : state.index);
+        makeBook(restoredPage??(state.flip ? state.flip.from+state.flip.direction : state.index));
+        restoredPage=null;
       } else {
         book.destroy(); book=null; timer.destroy(); timer=makeTimer();
         timer.setSpeed(speed); timer.setEase(ease); timer.seek(savedTime);
@@ -90,7 +103,6 @@
     paintMode(); paintPaper();
     if (options.mode==='interactive') {
       setMode('interactive');
-      if (Number.isFinite(options.pageIndex))book.renderState({index:options.pageIndex,flip:null,entrance:1});
     }
     return {
       setMode,
@@ -106,7 +118,7 @@
         one('book-panel').hidden=true;document.querySelector('.playbar').hidden=false;
         one('ins-tempo').closest('.ins-section').hidden=false;root.setAttribute('aria-hidden','true');root.removeAttribute('tabindex');
       },
-      get mode(){return mode;},get paperSettings(){return {...paper};},
+      get ready(){return timer.ready;},get preparing(){return timer.preparing;},get stage(){return timer.stage;},get mode(){return mode;},get paperSettings(){return {...paper};},
       get pageIndex(){return book ? interactiveState.index : WiseDitherBook.demoAt(timer.currentTime).index;},
       get currentTime(){return timer.currentTime;},get speed(){return speed;},
       get paused(){return book ? !interactiveState.busy || interactiveState.paused : timer.paused;},

@@ -260,7 +260,7 @@
     if (!selected || !controller) return;
     const values = settings();
     $('prompt').textContent = MotionExport.prompt(selected, values, data);
-    $('code').textContent = MotionExport.code(selected, values);
+    $('code').textContent = MotionExport.remotionCode(selected, values);
     document.querySelectorAll('.copy-status').forEach(element => { element.textContent = ''; });
   }
 

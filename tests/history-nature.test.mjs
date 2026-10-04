@@ -62,13 +62,15 @@ function strokeContext(){
  const c={lines,save(){stack.push({...state});},restore(){state=stack.pop();},translate(x,y){state.transform+=` translate(${x} ${y})`;},scale(x,y){state.transform+=` scale(${x} ${y})`;},rotate(a){state.transform+=` rotate(${a*180/Math.PI})`;},beginPath(){path='';},moveTo(x,y){path+=`M${x} ${y}`;},lineTo(x,y){path+=`L${x} ${y}`;},quadraticCurveTo(...n){path+='Q'+n.join(' ');},ellipse(){},fill(){},stroke(){lines.push({d:path,transform:state.transform,alpha:state.globalAlpha,width:state.lineWidth,color:state.strokeStyle});}};
  for(const k of ['globalAlpha','lineWidth','strokeStyle','fillStyle'])Object.defineProperty(c,k,{get:()=>state[k],set:v=>{state[k]=v;}});return c;
 }
-test('蒲公英原曲线保持，放大插画仍为细冠毛',async()=>{
- const o={window:{JourneyAir:class{},JourneyClouds:class{},JourneyWater:class{},JourneyEncounters:class{}}};vm.createContext(o);vm.runInContext(await readFile(scenes+'motion-catalog/source-projects/dandelion-scene/assets/js/dandelion.js','utf8'),o);const j=new o.window.DandelionJourney();
+test('蒲公英插画与 scenes 原作逐笔一致，整体等比缩放不单改线宽',async()=>{
+ const o={window:{JourneyAir:class{},JourneyClouds:class{},JourneyWater:class{},JourneyEncounters:class{}}};vm.createContext(o);vm.runInContext(await readFile(scenes+'dandelion-scene/assets/js/dandelion.js','utf8'),o);const j=new o.window.DandelionJourney();
+ const isolated=await readFile(scenes+'motion-catalog/isolated-player.js','utf8');
+ assert.match(isolated,/function seed\([^\n]+floret\(c,0,0,35,/, '独立种子的来源调用已变化，需要重新对照');
  const env=await environment();try{
   const {w}=env,root=w.document.getElementById('root'),e=def('dandelion-radial-release'),render=w.MotionFactories[e.id](root,w.MotionKit,e);for(const ms of [0,249,250,400,800,1000,400]){render(ms);near(+root.firstElementChild.dataset.radius,j.openingEvent(1.4+ms/1000).radius);}
-  for(const [id,r,scale,y,hairs,thin] of [['dandelion-subject-illustration',42,1.25,116,137,.5],['dandelion-seed-illustration',8,6,128,11,1/9]]){
-   const ar=w.document.createElement('div'),still=w.MotionFactories[id](ar,w.MotionKit,def(id));still(0);const ctx=strokeContext();ctx.translate(320,y);ctx.scale(scale,scale);j.floret(ctx,0,0,r,0,1,hairs===137?j.filamentState(4.5):null);ctx.lines.forEach(line=>line.width*=thin);
-   const actual=[...ar.querySelectorAll('path[stroke]')].map(n=>({d:n.getAttribute('d'),transform:n.getAttribute('transform'),alpha:+n.getAttribute('opacity'),width:+n.getAttribute('stroke-width'),color:n.getAttribute('stroke')}));assert.equal(hash(JSON.stringify(actual)),hash(JSON.stringify(ctx.lines)),'原冠毛曲线、颜色、透明度或线宽有差异');assert.equal(actual.length,hairs+1);assert.ok(actual.every(line=>line.width*scale<.6),'冠毛放大后变成粗杆');assert.equal(ar.querySelectorAll('path:not([stroke])').length,1);
+  for(const [id,r,scale,y,hairs] of [['dandelion-subject-illustration',42,1.25,116,137],['dandelion-seed-illustration',35,1.25,116,37]]){
+   const ar=w.document.createElement('div'),still=w.MotionFactories[id](ar,w.MotionKit,def(id));still(0);const ctx=strokeContext();ctx.translate(320,y);ctx.scale(scale,scale);j.floret(ctx,0,0,r,0,1,hairs===137?j.filamentState(4.5):null);
+   const actual=[...ar.querySelectorAll('path[stroke]')].map(n=>({d:n.getAttribute('d'),transform:n.getAttribute('transform'),alpha:+n.getAttribute('opacity'),width:+n.getAttribute('stroke-width'),color:n.getAttribute('stroke')}));assert.equal(hash(JSON.stringify(actual)),hash(JSON.stringify(ctx.lines)),'原冠毛曲线、颜色、透明度或线宽有差异');assert.equal(actual.length,hairs+1);assert.equal(ar.querySelectorAll('path:not([stroke])').length,1);
    const before=frameMarkup(ar);for(const ms of [0,1500,3000]){still(ms);assert.equal(frameMarkup(ar),before);}
   }
  }finally{env.close();}
