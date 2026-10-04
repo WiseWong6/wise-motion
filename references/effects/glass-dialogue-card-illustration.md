@@ -7,12 +7,12 @@
 对象：WISE 标题、圆形光点、创作请求、四行回复与两个按钮
 动作阶段：
 1. 直接显示完整卡片。
-2. 保留固定文字、控件状态与透入卡面的紫蓝光感。
+2. 保留固定文字、控件状态与透入卡面的黑银光感。
 3. 保持静态画面，定位与重播不改变内容。
 节奏：1.00 秒完成一次；1 倍速度；匀速。静态插画，定位、倍速与重播均保持同一画面。
 触发与联动：打开即显示静态完整插画；可复制到包内独立页面。
-现实类比：透光对话卡单独居中，保留紫蓝透光材质和完整控件，卡片外为透明背景。
-需要保留：卡片原比例为578×414，保持圆角、透光、局部高光与控件层次；等比居中放入1066×600画板，最大宽800、高456。主对话卡标题 WISE；用户说 Bring this idea to life.；回复依次为 Start with a clear idea.、Give every move a purpose.、Let the details catch light.、Make the next frame matter.；按钮为 Build a scene 与 Explore a variation。
+现实类比：透光对话卡以立体侧转姿态居中，保留黑银透光材质和完整控件，卡片外为透明背景。
+需要保留：卡片原比例为578×414，保持圆角、透光、局部高光与控件层次；等比居中放入1066×600画板，最大宽760、高420。主对话卡标题 WISE；用户说 Bring this idea to life.；回复依次为 Start with a clear idea.、Give every move a purpose.、Let the details catch light.、Make the next frame matter.；按钮为 Build a scene 与 Explore a variation。 展示时向右侧转24度、俯仰8度、平面旋转负3度，透视焦距1250、前后表面相距10像素，正面最大基准宽760、高420；以真实空间投影显示圆角侧壁。
 明确排除：不携带其他两张卡片、凸泡、完整背景、字标或转场；不以截图替代绘制，不添加外部网络依赖。
 对应参考：本地目录「玻璃对话卡」
 源码：catalog/effects/glass-light.js 中的 glass-dialogue-card-illustration

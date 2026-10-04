@@ -293,8 +293,8 @@
     },
     {
       "path": "catalog/effects/glass-light.js",
-      "bytes": 28926,
-      "sha256": "996d7c5fc1cc0a1127841dad443519ce9540c59d5599cef79176a0fa62d34a97"
+      "bytes": 45877,
+      "sha256": "a79c1a9f45df398f545b9541a6cdcc69737b876df2578222ad0810d4f5bcb26f"
     },
     {
       "path": "catalog/effects/glyph-code-fill.js",
@@ -523,18 +523,18 @@
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Bold.woff2",
-      "bytes": 536716,
-      "sha256": "d21ab8d3cf94cd866a2c6fefd7847dbe385fb12bd35d470a915a9af6ba467631"
+      "bytes": 537780,
+      "sha256": "2de6ae5f68c1d1f416d7c08e36a68f4c959132c361c89e9d1596fe6583f6ea7d"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Light.woff2",
-      "bytes": 506524,
-      "sha256": "3f8bcf8e71c94eab6fc7cecc168581e2ce987410d033aa24254a305d45fb23da"
+      "bytes": 507652,
+      "sha256": "0d84ffb0dd700b52a7065144031646da64dac14d3acbd28b5d32bce46c53caa4"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Regular.woff2",
-      "bytes": 520752,
-      "sha256": "c751dfbcbbd776a9423d515d1636a0187f0da66de4d0f90831229d4bc54fb69b"
+      "bytes": 520476,
+      "sha256": "fab88c3a72d30484f968b6dd3b36b469996104abffe98cf5e14db2e8e5b3ee76"
     },
     {
       "path": "catalog/history-data.js",
@@ -568,13 +568,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 871906,
-      "sha256": "76ae47c5aecd40d6a663b09e823ba41cfd08f54604b2fac9d6f1b9c165b4f467"
+      "bytes": 884334,
+      "sha256": "9b6630c47d539d55d4df340818e145f42ef7e7382a23eab5fc0d3fa52c6d3949"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1072412,
-      "sha256": "729aab94f6e430a96106ed91082aa8e82fa106fa4e17e6af86ed6fd91b48428e"
+      "bytes": 1086628,
+      "sha256": "784a20fd835f9f987d0b2b73dc131bac523e398f458087ea3fa6d1a13ffdf0a2"
     },
     {
       "path": "catalog/related-preview.js",

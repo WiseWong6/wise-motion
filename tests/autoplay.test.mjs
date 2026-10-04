@@ -9,7 +9,7 @@ const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 
 test('全部插画正常自动播放，系统偏好变化不干预，手动和后台暂停仍有效',async()=>{
   // 不使用静帧夹具：系统偏好为 true，实际加载正式页面并等待真实计时器推进。
-  const illustrations=data.effects.filter(e=>e.kind==='illustration');assert.equal(illustrations.length,58);
+  const illustrations=data.effects.filter(e=>e.kind==='illustration');assert.equal(illustrations.length,61);
   const env=await environment(true,{hash:'#'+illustrations[0].id});
   try{
     const {w,media}=env,d=w.document,scrub=d.getElementById('scrub');
