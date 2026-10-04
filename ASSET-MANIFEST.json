@@ -8,8 +8,8 @@
     },
     {
       "path": "catalog/app.js",
-      "bytes": 52435,
-      "sha256": "b6719b058ea9917230950bd85db31cc660a67702fe3e4a102613daea58ce7ca1"
+      "bytes": 52936,
+      "sha256": "fb45ae062a7dc6e4759084d60112549c688cfc88a0742a0dd6f249c4398b0312"
     },
     {
       "path": "catalog/assets/collage-film/SOURCE.json",
@@ -183,8 +183,8 @@
     },
     {
       "path": "catalog/composition-controls.js",
-      "bytes": 4619,
-      "sha256": "393f802264012722f5895b20566c6d4f49ec9e2b97eeb2107622f7682ec065e4"
+      "bytes": 5357,
+      "sha256": "d0e9b84556ce4f891e74d3ef80cf03fda23afdf56bd8c3e73d41dba0d8a709df"
     },
     {
       "path": "catalog/dropdown.js",
@@ -198,8 +198,8 @@
     },
     {
       "path": "catalog/effects/capsule-type.js",
-      "bytes": 36785,
-      "sha256": "9c30ddc7add632e39257ece47dc101fa4c86c038b2afed10f1f15170da14fb00"
+      "bytes": 39038,
+      "sha256": "8dda724b84ef223b2454b2693cc3e904612bcf823ebe1a2e6a89af71c0724a1f"
     },
     {
       "path": "catalog/effects/cat-mouth.js",
@@ -358,8 +358,8 @@
     },
     {
       "path": "catalog/effects/motion-oasis.js",
-      "bytes": 64221,
-      "sha256": "a3b2ce302ef17ad8062040b20041d299bab2b563d4a038fee8469639845f5ba0"
+      "bytes": 68160,
+      "sha256": "6d4efaec1319d41163b4d91835be6ab0c7d3b2827357a052b7bb3a2e232b1b2a"
     },
     {
       "path": "catalog/effects/osmanthus-motion.js",
@@ -378,8 +378,8 @@
     },
     {
       "path": "catalog/effects/point-domain-flow.js",
-      "bytes": 119002,
-      "sha256": "11afe0c1fe02358b93c3fe9e72dcbd7a2724abe76fc07f4c8a5a8dee57a295e2"
+      "bytes": 120798,
+      "sha256": "8e49c514d89d5557c5b77517b6d6671bab44fe3ff74c0c5055674bac0961d8f2"
     },
     {
       "path": "catalog/effects/promo-particles.js",
@@ -553,8 +553,13 @@
     },
     {
       "path": "catalog/index.html",
-      "bytes": 19904,
-      "sha256": "a5d463ece877f0bb0adac84e7402740fb8a4d094c5677edfc132308beb4807a4"
+      "bytes": 20015,
+      "sha256": "ac5fe30fc6f1f7a12a528a5a5bb159d15b21a16f4cfd5b8510c49cb6b5acef52"
+    },
+    {
+      "path": "catalog/local-preview.js",
+      "bytes": 13973,
+      "sha256": "923548b4ddf59b28ce5b010e931d3ada2590d978b2a384279ba63808c6ce3c06"
     },
     {
       "path": "catalog/matching.js",
@@ -578,8 +583,8 @@
     },
     {
       "path": "catalog/related-preview.js",
-      "bytes": 6477,
-      "sha256": "57e68709abf201bf382477615520b152c19c1320976169ac5435935d14550af6"
+      "bytes": 6506,
+      "sha256": "f29e6f0f68e395ace6da2f82c290d01878dfc052580c5b36eb9db0c24351f326"
     },
     {
       "path": "catalog/remotion/seed-bloom-brand-source.json",
@@ -608,8 +613,8 @@
     },
     {
       "path": "catalog/thumbnails.js",
-      "bytes": 9045,
-      "sha256": "a38ab0d33b9e56af696607d38ae6a5171112437b793c4af82a038e6c70cb134b"
+      "bytes": 9172,
+      "sha256": "89281b4f58a73f0381ac430131c7f2c878a991d1a9f233d4c034de60577c71b3"
     },
     {
       "path": "catalog/wise-avatar.webp",

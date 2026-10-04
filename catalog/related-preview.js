@@ -28,7 +28,7 @@
       host.setAttribute('aria-label',selected.name);
       player=selected.kind==='recipe'
         ?global.MotionHistoryRuntime.create(host,selected,{caseId:selected.selected_entry.id,onUpdate:sync})
-        :global.MotionRuntime.create(host,selected,{onUpdate:sync});
+        :(global.MotionLocalPreview||global.MotionRuntime).create(host,selected,{onUpdate:sync});
       player.setSpeed(main?.speed||1);
       // 点击明确请求观看该动作：独立从头播放，不继承主组合的时刻或隐藏层。
       player.restart();

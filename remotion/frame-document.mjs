@@ -65,6 +65,19 @@ export const FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/dither-book.js"
 ]);
 export const FRAME_STYLES = Object.freeze(['catalog/scenes.css', 'catalog/app.css', 'catalog/history.css', 'catalog/book-controls.css']);
+// 未指定条目时保留完整加载，供基准检查和兼容调用使用。
+// 指定条目只加载它声明的真实依赖；不能靠整套目录掩盖漏报的依赖。
+export function frameScriptsFor(definition) {
+  if (!definition) return FRAME_SCRIPTS;
+  const source = definition.source;
+  if (!source?.path || !Array.isArray(source.dependencies ?? [])) throw new TypeError('动效缺少有效的绘制来源');
+  const required = new Set(['vendor/animejs/anime.umd.min.js', 'catalog/runtime.js',
+    ...(source.dependencies || []), source.path]);
+  // 这组场景从真实目录统计数据生成图表，其他绘制器不读取目录清单。
+  if (required.has('catalog/effects/motion-oasis.js')) required.add('catalog/registry-data.js');
+  for (const file of required) if (!FRAME_SCRIPTS.includes(file)) throw new Error('未登记的动效绘制依赖：' + file);
+  return FRAME_SCRIPTS.filter(file => required.has(file));
+}
 const escapeAttribute = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
 // 此函数完整运行在独立 iframe 内。不得捕获外部变量。
@@ -88,6 +101,7 @@ function bootstrapFrame() {
     let destroyed = false;
     let renderer;
     const preparedImages = new Map();
+    const pendingImages = new Set();
     // 新画布绘制的原目录有静默降级提示；导出必须明确失败，不能把提示或空画布当作成功帧。
     // 仅保护指定画布绘制来源，成功的上下文和所有绘制参数原样传回原函数。
     const strictCanvasSources = ['catalog/effects/metal-impact.js', 'catalog/effects/geometric-poster.js', 'catalog/effects/motion-oasis.js', 'catalog/effects/seed-bloom-brand.js'];
@@ -121,9 +135,11 @@ function bootstrapFrame() {
         image.src = url;
       });
       preparedImages.set(url, job);
+      pendingImages.add(job);
+      job.then(() => pendingImages.delete(job), () => pendingImages.delete(job));
       return job;
     };
-    const prepareImages = async (includeBackgrounds = false) => {
+    const prepareImages = async (includeBackgrounds = false, onWait) => {
       const jobs = [];
       for (const element of stage.querySelectorAll('img,image')) {
         jobs.push(loadImage(element.currentSrc || element.getAttribute('src') || element.getAttribute('href') || element.getAttribute('xlink:href')));
@@ -134,6 +150,7 @@ function bootstrapFrame() {
           for (const match of (value || '').matchAll(/url\(["']?([^"')]+)["']?\)/g)) jobs.push(loadImage(match[1]));
         }
       }
+      if (jobs.some(job => pendingImages.has(job))) onWait?.();
       await Promise.all(jobs);
       ensureAlive();
     };
@@ -141,13 +158,15 @@ function bootstrapFrame() {
     const session = {
       stage, doc: document, window,
       get destroyed() { return destroyed; },
-      draw(time, elapsed = time, sampleMode = 'playback', ease = options.ease) {
+      draw(time, elapsed = time, sampleMode = 'playback', ease = options.ease, onWait) {
         if (!Number.isFinite(time) || !Number.isFinite(elapsed)) return Promise.reject(new TypeError('绘制时间必须是有限数字'));
         if (sampleMode !== 'playback' && sampleMode !== 'exact') return Promise.reject(new TypeError('取样方式必须为 playback 或 exact'));
+        // 快速定位会清理上一帧的等待句柄；新帧须接管尚未完成的素材等待。
+        if (pendingImages.size) onWait?.();
         const job = pending.then(async () => {
           ensureAlive();
           renderer(time, {ease: ease || definition.default_ease, duration: definition.duration_ms, elapsed, playback: sampleMode === 'playback'});
-          await prepareImages();
+          await prepareImages(false, onWait);
           ensureAlive();
           stage.dataset.remotionTime = String(time);
           stage.dataset.remotionElapsed = String(elapsed);
@@ -165,6 +184,7 @@ function bootstrapFrame() {
         window.anime.engine?.pause();
         if (!preserve) stage.replaceChildren();
         preparedImages.clear();
+        pendingImages.clear();
       }
     };
     // 让父组件在初始化尚未完成时也能立即释放昂贵的材质准备。
@@ -190,7 +210,7 @@ function bootstrapFrame() {
   };
 }
 
-export function createFrameDocument({assetBaseUrl, theme = 'dark'}) {
+export function createFrameDocument({assetBaseUrl, theme = 'dark', definition}) {
   if (!assetBaseUrl || typeof assetBaseUrl !== 'string') throw new TypeError('必须提供素材根地址');
   if (theme !== 'dark' && theme !== 'light') throw new TypeError('外观必须为 dark 或 light');
   const base = assetBaseUrl.replace(/\/?$/, '/');
@@ -200,6 +220,6 @@ export function createFrameDocument({assetBaseUrl, theme = 'dark'}) {
 ${FRAME_STYLES.map(path => `<link rel="stylesheet" href="${url(path)}">`).join('\n')}
 <style>html,body{margin:0;padding:0;width:640px;height:360px;overflow:hidden}#wise-motion-viewport{position:relative;width:640px;height:360px;min-width:0;min-height:0;border:0;border-radius:0;margin:0;box-shadow:none}.motion-stage{transform:translate(-50%,-50%) scale(1)}</style>
 </head><body><div id="wise-motion-viewport" class="motion-viewport"><div class="motion-stage"></div></div>
-${FRAME_SCRIPTS.map(path => `<script src="${url(path)}"><\/script>`).join('\n')}
+${frameScriptsFor(definition).map(path => `<script src="${url(path)}"><\/script>`).join('\n')}
 </body></html>`;
 }

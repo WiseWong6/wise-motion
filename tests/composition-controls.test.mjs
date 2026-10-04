@@ -112,3 +112,26 @@ test('单层查看时复制的提示词与代码仍包含完整组合，不导�
     assertLayers(d,['spiral']);assert.equal(w.MotionRuntime.instanceCount,1);
   }finally{env.close();}
 });
+
+test('本机视频切到拆解后重新取得真实图层，快速选择以最后一次为准',async()=>{
+  const env=await setup();
+  try{
+    const {w}=env,d=w.document,effect=w.MotionRegistry.effects.find(item=>item.id==='paper-spiral-sequence');
+    let stage=d.createElement('div'),resolveCode,pauses=0;
+    const loaded=new Promise(resolve=>{resolveCode=resolve;});
+    const player={currentTime:3900,destroyed:false,pause(){pauses++;},
+      get stage(){return stage;},ensureCode(){return loaded;},ensureVideo(){return Promise.resolve(true);}};
+    w.MotionComposition.select(effect,player);await settle();
+    click(d,'[data-composition-mode="solo"]');
+    click(d,'[data-composition-layer="disc"]');
+    click(d,'[data-composition-layer="spiral"]');
+    stage=d.createElement('div');
+    for(const id of ids){const layer=d.createElement('div');layer.dataset.layer=id;stage.append(layer);}
+    resolveCode(true);await settle();
+    assert.ok(pauses>=3,'查看拆解须暂停原视频');
+    assert.equal(player.currentTime,3900);
+    for(const layer of stage.children)assert.equal(layer.hasAttribute('data-composition-hidden'),layer.dataset.layer!=='spiral');
+    click(d,'#composition-full');await settle();
+    assert.equal(stage.querySelectorAll('[data-composition-hidden]').length,0);
+  }finally{env.close();}
+});

@@ -91,7 +91,7 @@
       painted.add(host);historyFrame(host,effect,state);return;
     }
     const factory = global.MotionFactories?.[effect.id];
-    if (!factory) return;
+    if (!factory) { unavailable(host,state,'缺少效果源码：'+effect.id); return; }
     painted.add(host);
     try {
       const stage = document.createElement('div');
@@ -105,9 +105,9 @@
       finally { render.destroy?.(true); }
       host.prepend(stage);
       frame(host);
-    } catch (_) {
-      // 单个效果画不出来时保留占位底色，不影响其余卡片。
-      painted.delete(host);
+    } catch (error) {
+      // 真实绘制失败必须可见，不能用空底色掩盖缺失的实现或依赖。
+      unavailable(host,state,error.message||'动效预览绘制失败。');
     }
   }
 

@@ -59,8 +59,9 @@ export async function environment(withApp = false, options = {}) {
       const file = 'catalog/' + script.getAttribute('src');
       // 历史数据在浏览器中按需加载；测试无网络，提前提供这份数据。
       if (file === 'catalog/app.js'&&!options.lazyHistory) sources.push('catalog/history-data.js');
-      // jsdom检查原绘制和目录结构；实际Remotion播放另由浏览器检查。
-      if(file !== 'catalog/remotion-player.js') sources.push(file);
+      // jsdom检查原绘制和目录结构；Remotion与可选本机视频由专项测试及浏览器检查。
+      // jsdom没有媒体解码器，这里不把无媒体能力误判为视频准备中。
+      if(file !== 'catalog/remotion-player.js'&&file !== 'catalog/local-preview.js') sources.push(file);
     }
   }
   for (const file of sources) {

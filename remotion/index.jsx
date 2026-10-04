@@ -23,13 +23,16 @@ export function WiseMotionEffect({effectId, variantId, definition, speed = 1, ea
   themeRef.current = theme;
   callbacks.current = {onReady, onFrame, onError};
   const [failure, setFailure] = useState(null);
-  const resolved = resolveEffect(definition ?? effectId, variantId);
-  if (bookSettings) resolved.paper_settings = {...resolved.paper_settings, ...bookSettings};
-  const definitionJson = JSON.stringify(resolved);
+  const resolved = useMemo(() => {
+    const effect = resolveEffect(definition ?? effectId, variantId);
+    if (bookSettings) effect.paper_settings = {...effect.paper_settings, ...bookSettings};
+    return effect;
+  }, [definition, effectId, variantId, bookSettings]);
+  const definitionJson = useMemo(() => JSON.stringify(resolved), [resolved]);
   const defaultBase = assetBaseUrl ?? staticFile('wise-motion');
   const base = typeof document === 'undefined' ? defaultBase : new URL(defaultBase.replace(/\/?$/, '/'), document.baseURI).href;
   if (theme !== 'dark' && theme !== 'light') throw new TypeError('外观必须为 dark 或 light');
-  const source = useMemo(() => createFrameDocument({assetBaseUrl: base}), [base]);
+  const source = useMemo(() => createFrameDocument({assetBaseUrl: base, definition: resolved}), [base, resolved]);
   const sample = sampleEffectTime(resolved, frame, fps, {speed, sampleMode});
   if (timeOverrideMs !== undefined) {
     if (!Number.isFinite(timeOverrideMs) || timeOverrideMs < 0 || timeOverrideMs > resolved.duration_ms) throw new TypeError('指定时间必须在动效时长内');
@@ -85,13 +88,16 @@ export function WiseMotionEffect({effectId, variantId, definition, speed = 1, ea
     if (!holder) return;
     let active = true;
     let released = false;
-    const handle = delayRender('Wise Motion ' + resolved.id + ' 第 ' + frame + ' 帧', {timeoutInMilliseconds: 180000});
-    const playback = delayPlayback();
-    const release = () => { if (!released) { released = true; continueRender(handle); playback.unblock(); } };
+    // 普通同步绘制无需暂停播放时钟；只为首次准备或未完成的图片加载等待。
+    // 视频导出始终等待每帧完成，与目录实时播放分开处理。
+    const handle = isRendering ? delayRender('Wise Motion ' + resolved.id + ' 第 ' + frame + ' 帧', {timeoutInMilliseconds: 180000}) : null;
+    let playback = !holder.notified ? delayPlayback() : null;
+    const waitForAsset = () => { if (!released && !playback) playback = delayPlayback(); };
+    const release = () => { if (!released) { released = true; if (handle !== null) continueRender(handle); playback?.unblock(); } };
     holder.ready.then(async session => {
       if (!active || holder.disposed) return;
       session.doc.documentElement.dataset.theme = theme;
-      await session.draw(sample.time, sample.elapsed, sampleMode, ease);
+      await session.draw(sample.time, sample.elapsed, sampleMode, ease, waitForAsset);
       if (!active || holder.disposed) return;
       iframeRef.current.style.visibility = 'visible';
       if (isRendering) {

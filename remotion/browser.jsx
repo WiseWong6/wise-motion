@@ -69,12 +69,13 @@ export function create(root, supplied, options = {}) {
     const props={effectId:definition.id,variantId:definition.variant_id,definition,assetBaseUrl:options.assetBaseUrl||scriptBase,
       width:640,height:360,theme,ease,speed:1,sampleMode,timeOverrideMs,elapsedOverrideMs,
       bookSettings:definition.paper_settings,onReady,onFrame,onError:fail};
+    // 目录没有音轨；避免逐帧等待时反复唤醒音频设备。
     reactRoot.render(<Player ref={playerRef} component={WiseMotionEffect} inputProps={props}
       durationInFrames={definition.loop ? 2147483647 : metadata.durationInFrames}
       compositionWidth={640} compositionHeight={360} fps={FPS} playbackRate={speed}
       initialFrame={seekFrame} controls={false} autoPlay={false} clickToPlay={false}
       doubleClickToFullscreen={false} spaceKeyToPlayOrPause={false} moveToBeginningWhenEnded={false}
-      numberOfSharedAudioTags={0} style={{width:'100%',height:'100%'}}
+      initiallyMuted={true} numberOfSharedAudioTags={0} style={{width:'100%',height:'100%'}}
       errorFallback={({error:reason})=>{queueMicrotask(()=>fail(reason));return <div role="alert" style={{color:'#f4f1ea',background:'#151517',padding:24}}>动效准备失败：{reason.message}</div>;}}
     />);
   }

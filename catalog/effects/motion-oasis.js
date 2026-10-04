@@ -241,11 +241,43 @@ function createEngine(registry) {
   const rgbCache = new Map();
   function rgb(hex) { if (!rgbCache.has(hex)) rgbCache.set(hex, [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16))); return rgbCache.get(hex); }
   function colorMix(a, b, p) { return '#' + rgb(a).map((v, i) => Math.round(mix(v, rgb(b)[i], p)).toString(16).padStart(2, '0')).join(''); }
-  function shade(hex, k) { return 'rgb(' + rgb(hex).map(v => Math.round(clamp(v * k, 0, 255))).join(',') + ')'; }
+  // Thousands of coplanar faces share the same light/color pair. Keep only the
+  // current frame's resolved colors, without changing any rounding or paint order.
+  const shadeCache = new Map();
+  function shade(hex, k) {
+    let levels = shadeCache.get(hex);
+    if (!levels) shadeCache.set(hex, levels = new Map());
+    if (!levels.has(k)) levels.set(k, 'rgb(' + rgb(hex).map(v => Math.round(clamp(v * k, 0, 255))).join(',') + ')');
+    return levels.get(k);
+  }
   // A fixed orthographic camera: horizontal directions stay parallel at +/-30 degrees.
   const VIEW = [1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)];
   const LIGHT = [-.30, -.42, .856];
   let camera, faces, faceCount, vertexCount, lit, palette, now, waterHeights, surfaceLayer = 0;
+  let geometryCapture = null;
+  const geometryCaches = [];
+  // Each primitive call keeps just its latest model. Once growth has settled,
+  // retain its exact world vertices/light values and only reproject for the live
+  // camera. Moving water and palms still rebuild whenever their inputs change.
+  function cachedGeometry(build) {
+    const cache = {cursor:0, entries:[]}; geometryCaches.push(cache);
+    return function (...args) {
+      const index = cache.cursor++, previous = cache.entries[index];
+      if (args.some(value => typeof value === 'function')) { cache.entries[index] = undefined; return build(...args); }
+      if (previous && args.length === previous.args.length && args.every((value, i) => value === previous.args[i])) {
+        for (const shape of previous.shapes) {
+          if (shape.line) emitStroke(shape.v, shape.color, shape.width, shape.glow, shape.depth);
+          else emitFace(shape.v, shape.color, shape.brightness, shape.depth, shape.options);
+        }
+        return;
+      }
+      const capture = [], outer = geometryCapture; geometryCapture = capture;
+      try { build(...args); } finally { geometryCapture = outer; }
+      cache.entries[index] = {args, shapes:capture};
+    };
+  }
+  function beginGeometry() { for (const cache of geometryCaches) cache.cursor = 0; }
+  function endGeometry() { for (const cache of geometryCaches) cache.entries.length = cache.cursor; }
   // WiseMotion: the ground settles first, districts respond outward, the landmark
   // accumulates terraces, then live systems hand the focus to their data cards.
   const THEME = { sand: '#e5c7a0', cream: '#fff0d8', coral: '#e57f61', teal: '#4aa99b', ink: '#255c60', water: '#61c8bf', green: '#85aa6a' };
@@ -270,24 +302,45 @@ function createEngine(registry) {
   }
   function depth(v) { return (v[0] + v[1] + v[2]) / Math.sqrt(3); }
   function normal(v) {
+    const a = v[0];
     for (let k = 1; k < v.length - 1; k++) {
-      const a = v[0], u = v[k].map((q, i) => q - a[i]), w = v[k + 1].map((q, i) => q - a[i]);
-      const n = [u[1] * w[2] - u[2] * w[1], u[2] * w[0] - u[0] * w[2], u[0] * w[1] - u[1] * w[0]], len = Math.hypot(...n);
-      if (len > .00001) return n.map(q => q / len);
+      const b = v[k], c = v[k + 1];
+      const ux = b[0] - a[0], uy = b[1] - a[1], uz = b[2] - a[2];
+      const wx = c[0] - a[0], wy = c[1] - a[1], wz = c[2] - a[2];
+      const nx = uy * wz - uz * wy, ny = uz * wx - ux * wz, nz = ux * wy - uy * wx;
+      const len = Math.hypot(nx, ny, nz);
+      if (len > .00001) return [nx / len, ny / len, nz / len];
     }
     return null;
   }
-  function face(v, color, options = {}) {
-    const n = normal(v); if (!n || n.reduce((q, a, i) => q + a * VIEW[i], 0) < .001) return;
-    const p = v.map(project), xs = p.map(a => a[0]), ys = p.map(a => a[1]);
-    if (Math.max(...xs) < -25 || Math.min(...xs) > W + 25 || Math.max(...ys) < -60 || Math.min(...ys) > H + 40) return;
-    const sunlight = Math.max(0, n.reduce((q, a, i) => q + a * LIGHT[i], 0));
-    const brightness = options.emissive ? 1 : .69 + sunlight * .34 + .045 * (n[1] - n[0]);
-    faces.push({ p, color, brightness, layer: surfaceLayer, depth: v.reduce((q, a) => q + depth(a), 0) / v.length + (options.bias || 0), ...options });
+  function emitFace(v, color, brightness, totalDepth, options) {
+    const p = new Array(v.length);
+    let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (let i = 0; i < v.length; i++) {
+      const point = p[i] = project(v[i]);
+      minX = Math.min(minX, point[0]); maxX = Math.max(maxX, point[0]);
+      minY = Math.min(minY, point[1]); maxY = Math.max(maxY, point[1]);
+    }
+    if (maxX < -25 || minX > W + 25 || maxY < -60 || minY > H + 40) return;
+    faces.push({ p, color, brightness, layer: surfaceLayer, depth: totalDepth, ...options });
     faceCount++; vertexCount += v.length;
   }
+  function face(v, color, options = {}) {
+    const n = normal(v); if (!n || ((0 + n[0] * VIEW[0]) + n[1] * VIEW[1]) + n[2] * VIEW[2] < .001) return;
+    const sunlight = Math.max(0, ((0 + n[0] * LIGHT[0]) + n[1] * LIGHT[1]) + n[2] * LIGHT[2]);
+    const brightness = options.emissive ? 1 : .69 + sunlight * .34 + .045 * (n[1] - n[0]);
+    let totalDepth = 0; for (let i = 0; i < v.length; i++) totalDepth += depth(v[i]);
+    totalDepth = totalDepth / v.length + (options.bias || 0);
+    if (geometryCapture) geometryCapture.push({v,color,brightness,depth:totalDepth,options});
+    emitFace(v, color, brightness, totalDepth, options);
+  }
+  function emitStroke(v, color, width, glow, totalDepth) {
+    faces.push({ p: v.map(project), color, width, glow, line: true, layer: surfaceLayer, depth: totalDepth });
+  }
   function stroke(v, color, width = 1, glow = 0, bias = .2) {
-    faces.push({ p: v.map(project), color, width, glow, line: true, layer: surfaceLayer, depth: v.reduce((q, a) => q + depth(a), 0) / v.length + bias });
+    const totalDepth = v.reduce((q, a) => q + depth(a), 0) / v.length + bias;
+    if (geometryCapture) geometryCapture.push({v,color,width,glow,line:true,depth:totalDepth});
+    emitStroke(v, color, width, glow, totalDepth);
   }
   function surfaceArt(center, paint) {
     const p = project(center), u = project([center[0] + 1, center[1], center[2]]), v = project([center[0], center[1] + 1, center[2]]);
@@ -331,14 +384,34 @@ function createEngine(registry) {
     }
     if (cap) face(top, topColor, { top: true, emissive });
   }
+  // Unit mesh coordinates are independent of position, size, time and camera.
+  // Cache only the few mesh resolutions used by this scene, not rendered frames.
+  const sphereMeshes = new Map(), domeMeshes = new Map();
   function sphere(x, y, z, rx, ry, rz, color, count = 8, rings = 4) {
-    const at = (i, j) => { const a = i / count * PI * 2, b = -.5 * PI + j / rings * PI; return [x + Math.cos(a) * Math.cos(b) * rx, y + Math.sin(a) * Math.cos(b) * ry, z + Math.sin(b) * rz]; };
-    for (let j = 0; j < rings; j++) for (let i = 0; i < count; i++) face([at(i, j), at(i + 1, j), at(i + 1, j + 1), at(i, j + 1)], color, { soft: true });
+    const key = count + ':' + rings;
+    let mesh = sphereMeshes.get(key);
+    if (!mesh) {
+      mesh = Array.from({length:rings + 1}, (_, j) => Array.from({length:count + 1}, (_, i) => {
+        const a = i / count * PI * 2, b = -.5 * PI + j / rings * PI;
+        return [Math.cos(a) * Math.cos(b), Math.sin(a) * Math.cos(b), Math.sin(b)];
+      }));
+      sphereMeshes.set(key, mesh);
+    }
+    const points = mesh.map(row => row.map(v => [x + v[0] * rx, y + v[1] * ry, z + v[2] * rz]));
+    for (let j = 0; j < rings; j++) for (let i = 0; i < count; i++) face([points[j][i], points[j][i + 1], points[j + 1][i + 1], points[j + 1][i]], color, { soft: true });
   }
   function dome(x, y, z, r, h, color) {
     const n = 20, rings = 5;
-    const at = (i, j) => { const a = i / n * PI * 2, b = j / rings * PI * .5; return [x + Math.cos(a) * Math.cos(b) * r, y + Math.sin(a) * Math.cos(b) * r, z + Math.sin(b) * h]; };
-    for (let j = 0; j < rings; j++) for (let i = 0; i < n; i++) face([at(i, j), at(i + 1, j), at(i + 1, j + 1), at(i, j + 1)], color);
+    let mesh = domeMeshes.get(n);
+    if (!mesh) {
+      mesh = Array.from({length:rings + 1}, (_, j) => Array.from({length:n + 1}, (_, i) => {
+        const a = i / n * PI * 2, b = j / rings * PI * .5;
+        return [Math.cos(a) * Math.cos(b), Math.sin(a) * Math.cos(b), Math.sin(b)];
+      }));
+      domeMeshes.set(n, mesh);
+    }
+    const points = mesh.map(row => row.map(v => [x + v[0] * r, y + v[1] * r, z + v[2] * h]));
+    for (let j = 0; j < rings; j++) for (let i = 0; i < n; i++) face([points[j][i], points[j][i + 1], points[j + 1][i + 1], points[j + 1][i]], color);
   }
   function groundShadow(c, x, y, rx, ry, opacity) {
     c.save(); c.translate(x, y); c.scale(rx, ry);
@@ -830,8 +903,8 @@ function createEngine(registry) {
   }
   function render(c, t, visible) {
     const show = key => !visible || visible.has(key);
-    now = t; camera = cameraAt(t); faces = []; faceCount = 0; vertexCount = 0; waterHeights = [];
-    palette = phase(t, 2.25, 2.366667); lit = phase(t, 2.01, 2.25); materialCache.clear();
+    beginGeometry(); now = t; camera = cameraAt(t); faces = []; faceCount = 0; vertexCount = 0; waterHeights = [];
+    palette = phase(t, 2.25, 2.366667); lit = phase(t, 2.01, 2.25); materialCache.clear(); shadeCache.clear();
     const bg = c.createLinearGradient(170, 80, 260, H);
     bg.addColorStop(0, colorMix('#eee5d5', '#f6e4c5', phase(t, 1.55, 2.68)));
     bg.addColorStop(.58, colorMix('#dfd5c4', '#ebc99f', phase(t, 1.55, 2.68)));
@@ -849,12 +922,13 @@ function createEngine(registry) {
     if (show('landscape')) cloud(c, 741 + phase(t, 2.75, 3.05) * 163, 66 + phase(t, 2.75, 3.05) * 21, .75, phase(t, 1.66, 1.98));
     if (show('landscape') && t > 2.83) cloud(c, 108, 80, .92, phase(t, 2.83, 3.13));
     if (show('data')) dataCards(c, t); if (show('brand')) brand(c, t);
+    endGeometry();
     render.stats = { time: now, tiles, faces: faceCount, vertices: vertexCount, waterHeights, palette, lit, camera: { ...camera } };
   }
   function drawAction(c, part, ms) {
     const p = clamp((ms - 150) / 1200);
     const t = part === 'ground' ? p * .81 : part === 'buildings' ? 1.52 + p * .77 : .95 + ms / 1000;
-    now = t; palette = 1; lit = 1; faces = []; faceCount = 0; vertexCount = 0; waterHeights = []; surfaceLayer = 0; materialCache.clear();
+    beginGeometry(); now = t; palette = 1; lit = 1; faces = []; faceCount = 0; vertexCount = 0; waterHeights = []; surfaceLayer = 0; materialCache.clear(); shadeCache.clear();
     c.fillStyle = '#f1d5af'; c.fillRect(0, 0, W, H);
     let tiles = 0;
     if (part === 'ground') {
@@ -869,10 +943,13 @@ function createEngine(registry) {
       window.OpusWaterGallery.render(t, {surfaceArt});
     }
     drawFaces(c);
+    endGeometry();
     render.stats = {time:t,part,tiles,faces:faceCount,vertices:vertexCount,waterHeights,camera:{...camera}};
   }
+  box = cachedGeometry(box); block = cachedGeometry(block); cylinder = cachedGeometry(cylinder);
+  sphere = cachedGeometry(sphere); dome = cachedGeometry(dome); prism = cachedGeometry(prism);
   window.Opus.Scene02 = {render,drawAction,inspect:()=>render.stats,tilePose,tileType,cameraAt,
-    dispose:()=>{faces=[];rgbCache.clear();materialCache.clear();render.stats=null;}};
+    dispose:()=>{faces=[];for(const cache of geometryCaches){cache.entries.length=0;cache.cursor=0;}geometryCapture=null;rgbCache.clear();materialCache.clear();shadeCache.clear();sphereMeshes.clear();domeMeshes.clear();render.stats=null;}};
 })();
 
   return {...window.Opus.Scene02, gallery:window.OpusWaterGallery};

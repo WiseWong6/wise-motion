@@ -70,6 +70,20 @@ var FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/dither-book.js"
 ]);
 var FRAME_STYLES = Object.freeze(["catalog/scenes.css", "catalog/app.css", "catalog/history.css", "catalog/book-controls.css"]);
+function frameScriptsFor(definition) {
+  if (!definition) return FRAME_SCRIPTS;
+  const source = definition.source;
+  if (!source?.path || !Array.isArray(source.dependencies ?? [])) throw new TypeError("\u52A8\u6548\u7F3A\u5C11\u6709\u6548\u7684\u7ED8\u5236\u6765\u6E90");
+  const required = /* @__PURE__ */ new Set([
+    "vendor/animejs/anime.umd.min.js",
+    "catalog/runtime.js",
+    ...source.dependencies || [],
+    source.path
+  ]);
+  if (required.has("catalog/effects/motion-oasis.js")) required.add("catalog/registry-data.js");
+  for (const file of required) if (!FRAME_SCRIPTS.includes(file)) throw new Error("\u672A\u767B\u8BB0\u7684\u52A8\u6548\u7ED8\u5236\u4F9D\u8D56\uFF1A" + file);
+  return FRAME_SCRIPTS.filter((file) => required.has(file));
+}
 var escapeAttribute = (value) => String(value).replace(/[&<>"']/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
 function bootstrapFrame() {
   "use strict";
@@ -90,6 +104,7 @@ function bootstrapFrame() {
     let destroyed = false;
     let renderer;
     const preparedImages = /* @__PURE__ */ new Map();
+    const pendingImages = /* @__PURE__ */ new Set();
     const strictCanvasSources = ["catalog/effects/metal-impact.js", "catalog/effects/geometric-poster.js", "catalog/effects/motion-oasis.js", "catalog/effects/seed-bloom-brand.js"];
     const strictCanvas = [definition.source?.path, ...definition.source?.dependencies || []].some((path) => strictCanvasSources.includes(path));
     const canvasPrototype = window.HTMLCanvasElement?.prototype;
@@ -124,9 +139,11 @@ function bootstrapFrame() {
         image.src = url;
       });
       preparedImages.set(url, job);
+      pendingImages.add(job);
+      job.then(() => pendingImages.delete(job), () => pendingImages.delete(job));
       return job;
     };
-    const prepareImages = async (includeBackgrounds = false) => {
+    const prepareImages = async (includeBackgrounds = false, onWait) => {
       const jobs = [];
       for (const element of stage.querySelectorAll("img,image")) {
         jobs.push(loadImage(element.currentSrc || element.getAttribute("src") || element.getAttribute("href") || element.getAttribute("xlink:href")));
@@ -137,6 +154,7 @@ function bootstrapFrame() {
           for (const match of (value || "").matchAll(/url\(["']?([^"')]+)["']?\)/g)) jobs.push(loadImage(match[1]));
         }
       }
+      if (jobs.some((job) => pendingImages.has(job))) onWait?.();
       await Promise.all(jobs);
       ensureAlive();
     };
@@ -148,13 +166,14 @@ function bootstrapFrame() {
       get destroyed() {
         return destroyed;
       },
-      draw(time, elapsed = time, sampleMode = "playback", ease = options.ease) {
+      draw(time, elapsed = time, sampleMode = "playback", ease = options.ease, onWait) {
         if (!Number.isFinite(time) || !Number.isFinite(elapsed)) return Promise.reject(new TypeError("\u7ED8\u5236\u65F6\u95F4\u5FC5\u987B\u662F\u6709\u9650\u6570\u5B57"));
         if (sampleMode !== "playback" && sampleMode !== "exact") return Promise.reject(new TypeError("\u53D6\u6837\u65B9\u5F0F\u5FC5\u987B\u4E3A playback \u6216 exact"));
+        if (pendingImages.size) onWait?.();
         const job = pending.then(async () => {
           ensureAlive();
           renderer(time, { ease: ease || definition.default_ease, duration: definition.duration_ms, elapsed, playback: sampleMode === "playback" });
-          await prepareImages();
+          await prepareImages(false, onWait);
           ensureAlive();
           stage.dataset.remotionTime = String(time);
           stage.dataset.remotionElapsed = String(elapsed);
@@ -173,6 +192,7 @@ function bootstrapFrame() {
         window.anime.engine?.pause();
         if (!preserve) stage.replaceChildren();
         preparedImages.clear();
+        pendingImages.clear();
       }
     };
     window.__wiseMotionSession = session;
@@ -196,7 +216,7 @@ function bootstrapFrame() {
     }
   };
 }
-function createFrameDocument({ assetBaseUrl, theme = "dark" }) {
+function createFrameDocument({ assetBaseUrl, theme = "dark", definition }) {
   if (!assetBaseUrl || typeof assetBaseUrl !== "string") throw new TypeError("\u5FC5\u987B\u63D0\u4F9B\u7D20\u6750\u6839\u5730\u5740");
   if (theme !== "dark" && theme !== "light") throw new TypeError("\u5916\u89C2\u5FC5\u987B\u4E3A dark \u6216 light");
   const base = assetBaseUrl.replace(/\/?$/, "/");
@@ -206,7 +226,7 @@ function createFrameDocument({ assetBaseUrl, theme = "dark" }) {
 ${FRAME_STYLES.map((path) => `<link rel="stylesheet" href="${url(path)}">`).join("\n")}
 <style>html,body{margin:0;padding:0;width:640px;height:360px;overflow:hidden}#wise-motion-viewport{position:relative;width:640px;height:360px;min-width:0;min-height:0;border:0;border-radius:0;margin:0;box-shadow:none}.motion-stage{transform:translate(-50%,-50%) scale(1)}</style>
 </head><body><div id="wise-motion-viewport" class="motion-viewport"><div class="motion-stage"></div></div>
-${FRAME_SCRIPTS.map((path) => `<script src="${url(path)}"><\/script>`).join("\n")}
+${frameScriptsFor(definition).map((path) => `<script src="${url(path)}"><\/script>`).join("\n")}
 </body></html>`;
 }
 
@@ -22539,13 +22559,16 @@ function WiseMotionEffect({
   themeRef.current = theme;
   callbacks.current = { onReady, onFrame, onError };
   const [failure, setFailure] = useState(null);
-  const resolved = resolveEffect(definition ?? effectId, variantId);
-  if (bookSettings) resolved.paper_settings = { ...resolved.paper_settings, ...bookSettings };
-  const definitionJson = JSON.stringify(resolved);
+  const resolved = useMemo(() => {
+    const effect = resolveEffect(definition ?? effectId, variantId);
+    if (bookSettings) effect.paper_settings = { ...effect.paper_settings, ...bookSettings };
+    return effect;
+  }, [definition, effectId, variantId, bookSettings]);
+  const definitionJson = useMemo(() => JSON.stringify(resolved), [resolved]);
   const defaultBase = assetBaseUrl ?? staticFile("wise-motion");
   const base = typeof document === "undefined" ? defaultBase : new URL(defaultBase.replace(/\/?$/, "/"), document.baseURI).href;
   if (theme !== "dark" && theme !== "light") throw new TypeError("\u5916\u89C2\u5FC5\u987B\u4E3A dark \u6216 light");
-  const source = useMemo(() => createFrameDocument({ assetBaseUrl: base }), [base]);
+  const source = useMemo(() => createFrameDocument({ assetBaseUrl: base, definition: resolved }), [base, resolved]);
   const sample = sampleEffectTime(resolved, frame, fps, { speed, sampleMode });
   if (timeOverrideMs !== void 0) {
     if (!Number.isFinite(timeOverrideMs) || timeOverrideMs < 0 || timeOverrideMs > resolved.duration_ms) throw new TypeError("\u6307\u5B9A\u65F6\u95F4\u5FC5\u987B\u5728\u52A8\u6548\u65F6\u957F\u5185");
@@ -22604,19 +22627,22 @@ function WiseMotionEffect({
     if (!holder) return;
     let active = true;
     let released = false;
-    const handle = delayRender("Wise Motion " + resolved.id + " \u7B2C " + frame + " \u5E27", { timeoutInMilliseconds: 18e4 });
-    const playback = delayPlayback();
+    const handle = isRendering ? delayRender("Wise Motion " + resolved.id + " \u7B2C " + frame + " \u5E27", { timeoutInMilliseconds: 18e4 }) : null;
+    let playback = !holder.notified ? delayPlayback() : null;
+    const waitForAsset = () => {
+      if (!released && !playback) playback = delayPlayback();
+    };
     const release = () => {
       if (!released) {
         released = true;
-        continueRender(handle);
-        playback.unblock();
+        if (handle !== null) continueRender(handle);
+        playback?.unblock();
       }
     };
     holder.ready.then(async (session) => {
       if (!active || holder.disposed) return;
       session.doc.documentElement.dataset.theme = theme;
-      await session.draw(sample.time, sample.elapsed, sampleMode, ease);
+      await session.draw(sample.time, sample.elapsed, sampleMode, ease, waitForAsset);
       if (!active || holder.disposed) return;
       iframeRef.current.style.visibility = "visible";
       if (isRendering) {
