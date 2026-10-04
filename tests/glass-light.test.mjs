@@ -5,6 +5,87 @@ import {readFile} from 'node:fs/promises';
 import {environment,data} from './helpers.mjs';
 const ids=['glass-interface-sequence','diffuse-light-drift','glass-card-stagger','convex-glass-lens'];
 
+test('六卡以真实透视侧转，前景阅读窗完整，全段逐帧空间状态连续',async()=>{
+ const env=await environment();try{
+  const {sample,project,specs,perimeter,thickness}=env.w.WiseGlassLight.spatial;
+  assert.equal(env.w.WiseGlassLight.duration,7200);
+  const musicAt=t=>sample(t).cards.find(card=>card.key==='music').pose;
+  assert.ok(musicAt(1.446)[2]<musicAt(1.8)[2],'前移不再冲过目标后回弹');
+  assert.ok(musicAt(1.9)[2]>musicAt(1.8)[2],'展示时仍轻微前行，不停住再启动');
+  const voiceAt=t=>sample(t).cards.find(card=>card.key==='listening').pose;
+  assert.ok(voiceAt(0)[0]<-800);assert.ok(voiceAt(.35)[0]<voiceAt(.65)[0],'语音卡从左向右进入');
+  assert.equal(thickness,10);assert.equal(perimeter(520,300,36).length,36);
+  const pose=[0,0,120,8,48,-5,1],near=[project([-260,-150,0],pose),project([-260,150,0],pose)],far=[project([260,-150,0],pose),project([260,150,0],pose)];
+  const length=([a,b])=>Math.hypot(a[0]-b[0],a[1]-b[1]);assert.ok(length(near)>length(far),'近边必须更大，不能只做平面剪切');
+  assert.ok(length([near[0],project([-260,-150,-10],pose)])>4,'侧转确实露出前后表面的间距');
+  assert.throws(()=>project([0,0,0],[0,0,1250,0,0,0,1]));
+  const previous=new Map();let maxJump=0;
+  for(let frame=0;frame<=432;frame++){
+   const state=sample(frame/60);assert.equal(state.cards.length,6);
+   for(let i=1;i<6;i++)assert.ok(state.cards[i].depth>=state.cards[i-1].depth);
+   for(const card of state.cards){
+    const [w,h]=specs[card.key],points=[[-w/2,-h/2,0],[w/2,-h/2,0],[w/2,h/2,0],[-w/2,h/2,0]].map(v=>project(v,card.pose,state.camera));
+    assert.ok(points.flat().every(Number.isFinite));assert.ok(card.opacity>=0&&card.opacity<=1);
+    if(previous.has(card.key))points.forEach((p,i)=>{const old=previous.get(card.key)[i];maxJump=Math.max(maxJump,Math.hypot(p[0]-old[0],p[1]-old[1]));});previous.set(card.key,points);
+   }
+  }
+  assert.ok(maxJump<65,'相邻帧不能跳变');
+  for(const [time,key]of [[1.8,'music'],[2.65,'weather'],[3.5,'controls'],[5.2,'chat']]){
+   const state=sample(time),card=state.cards.at(-1);assert.equal(card.key,key);assert.equal(card.opacity,1);
+   const [w,h]=specs[key];for(const v of [[-w/2,-h/2,0],[w/2,-h/2,0],[w/2,h/2,0],[-w/2,h/2,0]]){const [x,y]=project(v,card.pose,state.camera);assert.ok(x>25&&x<1041&&y>15&&y<585,key+' 阅读窗不得裁切');}
+   const first=JSON.stringify(state);sample(7.2);sample(0);assert.equal(JSON.stringify(sample(time)),first,'乱序定位不得依赖前一帧');
+  }
+  assert.ok(sample(7.2).cards.every(card=>card.opacity===0));
+ }finally{env.close();}
+});
+
+test('卡面动效按展示顺序衔接，滑杆有界、对话逐条输出，蓝牙为贯穿中轴的双三角',async()=>{
+ const env=await environment();try{
+  const {content,bluetoothPaths}=env.w.WiseGlassLight.spatial;
+  assert.ok(content(1.8).ripplePhase>content(1.1).ripplePhase);
+  assert.ok(content(1.8).musicProgress>content(1.1).musicProgress);
+  assert.ok(content(3.15).brightness>content(2.7).brightness);
+  assert.ok(content(3.55).volume>content(3.1).volume);
+  for(let frame=0;frame<=432;frame++){
+   const state=content(frame/60);for(const key of ['brightness','volume'])assert.ok(state[key]>=0&&state[key]<=1);
+   state.replies.forEach((value,i)=>{assert.ok(value>=0&&value<=1);if(i&&value>0)assert.equal(state.replies[i-1],1,'上一行结束才输出下一行');});
+  }
+  assert.ok(content(4.4).replies[0]>0&&content(4.4).replies[0]<1);
+  assert.ok(content(5.3).replies.every(q=>q===1));
+  const initial=JSON.stringify(content(3.2));content(7.2);content(0);assert.equal(JSON.stringify(content(3.2)),initial);
+  const paths=JSON.parse(JSON.stringify(bluetoothPaths));
+  assert.deepEqual(paths[0].slice(0,2),[[0,-10],[0,10]],'中轴完整');
+  for(const [a,b]of [[paths[0][2],paths[0][3]],[paths[1][0],paths[1][1]]])assert.deepEqual(a.map((v,i)=>v+b[i]),[0,0],'两条斜线穿过中心');
+ }finally{env.close();}
+});
+
+test('空间网格、折射与拆解可反复取样，销毁释放所有卡面缓冲',async()=>{
+ const env=await environment();try{
+  const {w}=env,contexts=[],cache=new WeakMap(),canvasIds=new WeakMap();let serial=0;
+  const identify=canvas=>{if(!canvasIds.has(canvas))canvasIds.set(canvas,++serial);return canvasIds.get(canvas);};
+  w.HTMLCanvasElement.prototype.getContext=function(){
+   if(cache.has(this))return cache.get(this);
+   const trace=[],target={canvas:this,trace,globalAlpha:1,
+    createLinearGradient:()=>({addColorStop(){}}),createRadialGradient:()=>({addColorStop(){}}),getTransform:()=>({a:1,b:0,c:0,d:1,e:0,f:0}),
+    getImageData:(x,y,width,height)=>({data:new Uint8ClampedArray(width*height*4),width,height}),createImageData:(width,height)=>({data:new Uint8ClampedArray(width*height*4),width,height}),
+    drawImage(image,...args){trace.push(['image',identify(image),...args]);},
+    setTransform(...args){assert.ok(args.every(n=>typeof n!=='number'||Number.isFinite(n)));trace.push(['transform',...args]);}
+   },ctx=new Proxy(target,{get:(o,k)=>k in o?o[k]:(...args)=>{if(['moveTo','lineTo','arc'].includes(k))trace.push([k,...args]);}});
+   identify(this);cache.set(this,ctx);contexts.push(ctx);return ctx;
+  };
+  const painter=w.WiseGlassLight.createPainter(w.document),out=w.document.createElement('canvas'),c=out.getContext('2d');
+  painter.render(c,5.2); // Prepare all six material textures before comparing draw commands.
+  const capture=t=>{contexts.forEach(c=>{c.trace.length=0;});painter.render(c,t);return JSON.stringify(contexts.map(c=>c.trace));};
+  const first=capture(5.2);capture(7.2);capture(0);assert.equal(capture(5.2),first);
+  const keys=['background','aperture','wordmark','listening','chat','focus','music','weather','controls','lens'];
+  const layers=Object.fromEntries(keys.map(key=>{const node=w.document.createElement('canvas');node.width=1066;node.height=600;return [key,node.getContext('2d')];}));
+  const separate=painter.drawLayers(layers,5.2),full=painter.render(c,5.2);assert.equal(JSON.stringify(separate),JSON.stringify(full));
+  for(const key of ['music','weather','controls'])assert.ok(layers[key].trace.some(row=>row[0]==='image'),'拆解必须绘制新增卡片');
+  const protectedCanvases=new Set([out,...Object.values(layers).map(ctx=>ctx.canvas)]);painter.destroy();
+  for(const ctx of contexts)if(!protectedCanvases.has(ctx.canvas))assert.equal(ctx.canvas.width,1,'离屏卡面应释放');
+ }finally{env.close();}
+});
+
 test('玻璃组合与三个独立动作可反复定位，各实例互不影响并能释放',async()=>{
  const env=await environment();try{
   const {w}=env,roots=ids.map(()=>w.document.createElement('div'));
@@ -12,7 +93,7 @@ test('玻璃组合与三个独立动作可反复定位，各实例互不影响�
   for(let i=0;i<players.length;i++){
    const e=data.effects.find(x=>x.id===ids[i]),player=players[i];player.seek(e.preview_ms);const first=roots[i].innerHTML;
    player.seek(e.duration_ms);player.seek(0);player.seek(e.preview_ms);assert.equal(roots[i].innerHTML,first,e.name);
-   assert.equal(roots[i].querySelectorAll('canvas[data-layer]').length,i===0?7:1);
+   assert.equal(roots[i].querySelectorAll('canvas[data-layer]').length,i===0?10:1);
   }
   const standalone=roots[3].innerHTML;players[0].seek(3100);assert.equal(roots[3].innerHTML,standalone,'组合定位不能改动独立凸泡');
   const original=roots[0].querySelector('canvas:not([data-layer])'),layer=roots[0].querySelector('[data-layer="chat"]');
@@ -32,15 +113,15 @@ test('玻璃拆解对应真实独立动作，复制页携带正式绘制源码�
   assert.deepEqual([...new Set(rows.flatMap(row=>Array.from(row.actions)))].sort(),[...comp.actions].sort());
   for(const id of ids){const e=data.effects.find(x=>x.id===id),code=w.MotionExport.code(e,{speed:.75}),prompt=w.MotionExport.prompt(e,{},data);
    assert.match(code,/catalog\/effects\/glass-light\.js/);assert.doesNotMatch(code,/opus-glass-refinement|reference\.mp4|frames\//);
-   assert.match(prompt,/紫.*蓝|紫蓝/);assert.doesNotMatch(prompt,/强调色 #ff5a1f/);
+   assert.match(prompt,/黑银/);assert.doesNotMatch(prompt,/强调色 #ff5a1f/);
   }
   const root=w.document.createElement('div'),draw=w.MotionFactories[comp.id](root,w.MotionKit,comp);draw(comp.preview_ms);
   draw.destroy(true);assert.equal(root.querySelectorAll('canvas').length,1,'缩略图只保留最终像素面');draw(0);assert.equal(root.querySelectorAll('canvas').length,1);
  }finally{env.close();}
 });
 
-const cardIds=['glass-voice-card-illustration','glass-dialogue-card-illustration','glass-control-card-illustration'];
-test('三张透光卡作为独立插画登记，透明居中、静态定位和导出保持一致',async()=>{
+const cardIds=['glass-voice-card-illustration','glass-dialogue-card-illustration','glass-control-card-illustration','glass-music-card-illustration','glass-weather-card-illustration','glass-controls-card-illustration'];
+test('六张玻璃卡作为独立插画登记，透明居中、静态定位和导出保持一致',async()=>{
  const env=await environment();try{
   const {w}=env;w.eval(await readFile(new URL('../catalog/export.js',import.meta.url),'utf8'));
   for(const id of cardIds){
@@ -60,31 +141,55 @@ test('三张透光卡作为独立插画登记，透明居中、静态定位和�
  }finally{env.close();}
 });
 
-test('WISE 创作文案由共用绘制输出，片尾光环与 MOTION 的首个 O 在同一位置',async()=>{
+test('WISE 创作文案共用绘制，片尾统一参考字体并由原生 O 接管凸泡',async()=>{
  const env=await environment();try{
-  const {w}=env,contexts=[],cache=new WeakMap();
+  const {w}=env,contexts=[],colors=[],lensFrames=[],cache=new WeakMap();
   w.HTMLCanvasElement.prototype.getContext=function(){
    if(cache.has(this))return cache.get(this);
    const trace=[],ctx=new Proxy({canvas:this,globalAlpha:1,trace,
-    createRadialGradient:()=>({addColorStop(){}}),createLinearGradient:()=>({addColorStop(){}}),
+    createRadialGradient:()=>({addColorStop(offset,color){colors.push(color);}}),createLinearGradient:()=>({addColorStop(offset,color){colors.push(color);}}),
     getTransform:()=>({a:1,b:0,c:0,d:1,e:0,f:0}),
     fillText(value,x,y){trace.push({type:'text',value,x,y});},
     arc(x,y,r){trace.push({type:'arc',x,y,r});},
+    quadraticCurveTo(...values){trace.push({type:'glyph-curve',values});},
     getImageData:(x,y,width,height)=>({data:new Uint8ClampedArray(width*height*4),width,height}),
-    createImageData:(width,height)=>({data:new Uint8ClampedArray(width*height*4),width,height})
-   },{get:(o,k)=>k in o?o[k]:()=>{}});
+    createImageData:(width,height)=>({data:new Uint8ClampedArray(width*height*4),width,height}),
+    putImageData(frame){lensFrames.push(frame);}
+   },{get:(o,k)=>k in o?o[k]:()=>{},set:(o,k,v)=>{if(['fillStyle','strokeStyle','shadowColor'].includes(k)&&typeof v==='string')colors.push(v);o[k]=v;return true;}});
    cache.set(this,ctx);contexts.push(ctx);return ctx;
   };
   const painter=w.WiseGlassLight.createPainter(w.document),canvas=w.document.createElement('canvas'),ctx=canvas.getContext('2d');
-  for(const key of ['listening','chat','focus'])painter.drawCard(ctx,key);
+  for(const key of ['listening','chat','focus','music','weather','controls'])painter.drawCard(ctx,key);
   const words=contexts.flatMap(c=>c.trace).filter(x=>x.type==='text').map(x=>x.value);
   for(const word of ['Voice input','WISE','Bring this idea to life.','Start with a clear idea.','Give every move a purpose.','Let the details catch light.','Make the next frame matter.','Build a scene','Explore a variation','Create','Light'])assert.ok(words.includes(word),word);
+  for(const word of ['AFTER HOURS','WISE RADIO','1:24','−2:16','CUPERTINO','21°','PARTLY CLOUDY','CONTROL CENTER','FOCUS','ON'])assert.ok(words.includes(word),word);
   assert.ok(!words.includes('Aurora'));assert.ok(!words.some(x=>/Sunday|family|calendar/.test(x)));
-  contexts.forEach(c=>{c.trace.length=0;});const end=painter.render(ctx,3.1),marks=contexts.flatMap(c=>c.trace),arcs=marks.filter(x=>x.type==='arc');
-  const brand=w.WiseGlassLight.brand;assert.equal(brand.family,'Oswald');assert.equal(brand.weight,700);
-  assert.ok(arcs.some(x=>x.x===end.lens[0]&&x.y===end.lens[1]&&x.r+brand.oStroke/2===end.lens[2]/2),'气泡落点与首个 O 的圆心、外径重合');
-  assert.ok(arcs.some(x=>x.x===brand.oCenters[1][0]&&x.y===brand.oCenters[1][1]&&x.r===brand.oRadius-brand.oStroke/2),'第二个 O 仍完整且为同样大小的正圆');
+  contexts.forEach(c=>{c.trace.length=0;});painter.render(ctx,4.4);
+  const partial=contexts.flatMap(c=>c.trace).filter(x=>x.type==='text').map(x=>x.value);
+  assert.ok(partial.some(value=>value.startsWith('Start')&&value!=='Start with a clear idea.'),'实际绘制逐字输出而不是整行突然出现');
+  assert.ok(!partial.includes('Give every move a purpose.'),'后续行等待前一行结束');
+  contexts.forEach(c=>{c.trace.length=0;});const end=painter.render(ctx,7),marks=contexts.flatMap(c=>c.trace),arcs=marks.filter(x=>x.type==='arc');
+  const brand=w.WiseGlassLight.brand;assert.equal(brand.family,'Helvetica Neue');assert.equal(brand.weight,700);
+  const reference=JSON.parse((await readFile(new URL('../catalog/effects/reel-opening.js',import.meta.url),'utf8')).match(/const glyphs = (.*);/)[1]);
+  for(const letter of 'MOTION'){
+   assert.equal(brand.glyphs[letter].advance,reference[letter].width);
+   assert.deepEqual(Array.from(brand.glyphs[letter].bounds),reference[letter].bounds,'沿用参考字标的原生字形比例');
+  }
+  assert.equal(brand.scale,56/714);assert.equal(brand.tracking,-20*brand.scale);
+  assert.deepEqual(Array.from(end.lens.slice(0,2)),Array.from(brand.oCenters[0]),'凸泡对准真实 O 的中心');
+  assert.ok(!arcs.some(x=>x.r>20),'片尾不得用圆圈代替任一字母');
+  const expectedCurves=Array.from(brand.letters).reduce((n,item)=>n+brand.glyphs[item.letter].path.filter(row=>row[0]==='Q').length,0);
+  assert.equal(marks.filter(x=>x.type==='glyph-curve').length,expectedCurves,'所有字母包括两个 O 均绘制真实轮廓');
   for(const value of ['Motion with meaning.','让每一次运动，都有意义。'])assert.ok(marks.some(x=>x.type==='text'&&x.value===value&&x.x===533));
+  // Exercise the optical pass and both aperture transitions, including the final dot.
+  for(const time of [0,.3,1.8,2.65,3.5,4.3,5.2,6.25,7.2])painter.render(ctx,time);
+  for(const color of colors){
+   const hex=color.match(/^#([\da-f]{3,8})$/i),rgba=color.match(/^rgba?\(([^)]+)\)$/);
+   const rgb=hex?(hex[1].length<=4?[...hex[1].slice(0,3)].map(n=>parseInt(n+n,16)):[0,2,4].map(i=>parseInt(hex[1].slice(i,i+2),16))):rgba?rgba[1].split(',').slice(0,3).map(Number):null;
+   assert.ok(rgb,'颜色应为明确的中性值：'+color);assert.equal(rgb[0],rgb[1],color);assert.equal(rgb[1],rgb[2],color);
+  }
+  assert.ok(lensFrames.length,'实际执行凸泡的像素折射');
+  for(const {data} of lensFrames)for(let i=0;i<data.length;i+=4){assert.equal(data[i],data[i+1]);assert.equal(data[i+1],data[i+2]);}
   painter.destroy();
  }finally{env.close();}
 });
