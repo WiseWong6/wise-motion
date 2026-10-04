@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify the unified Wise Motion skill and optional wise-video compatibility links."""
+"""Verify the Wise Motion source, project entry, and project dependencies."""
 
 from __future__ import annotations
 
@@ -182,29 +182,16 @@ def verify(repo_root: Path) -> tuple[list[str], list[str]]:
         skill_root = repo_root / ".agents/skills"
         current = skill_root / "wise-motion"
         if not current.is_symlink() or current.resolve() != motion_root:
-            errors.append("旧项目的 wise-motion 入口没有直接链接到统一技能")
-        compatibility = skill_root / "wise-video-director"
-        policy_value(compatibility / "agents/openai.yaml", False, errors)
-        try:
-            text = (compatibility / "SKILL.md").read_text(encoding="utf-8")
-            if "../wise-motion/SKILL.md" not in text:
-                errors.append("旧导演兼容入口没有指向统一技能")
-            for name in ("references", "scripts", "assets"):
-                link = compatibility / name
-                if not link.is_symlink() or link.resolve() != motion_root / name:
-                    errors.append(f"旧导演 {name} 没有直接链接到新权威")
-        except OSError as exc:
-            errors.append(f"无法读取旧导演兼容入口：{exc}")
+            errors.append("项目的 wise-motion 入口没有直接链接到统一技能")
         dependency_errors, dependency_notes = verify_legacy_dependency(repo_root)
         errors.extend(dependency_errors)
         notes.extend(dependency_notes)
-        notes.append("旧项目兼容入口只转发规则，第三方快照仍留原安装位置")
     return errors, notes
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--repo-root", default=str(Path(__file__).resolve().parent.parent), help="统一技能根；传 wise-video 根时同时检查兼容入口及原第三方快照")
+    parser.add_argument("--repo-root", default=str(Path(__file__).resolve().parent.parent), help="统一技能根；传 wise-video 根时同时检查项目入口及第三方快照")
     parser.add_argument("--json", action="store_true", help="输出机器可读 JSON")
     args = parser.parse_args()
 

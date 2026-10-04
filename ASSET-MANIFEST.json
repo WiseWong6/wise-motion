@@ -483,8 +483,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 17484,
-      "sha256": "6ae337587258938a5707bb76d01ba1db94666991974d0f4c2e8ee5c8704f9444"
+      "bytes": 20642,
+      "sha256": "ab1b4406b1027c8dcb9312b71a8ceb09aa35c6a5c30146b3983bf000f1011bbd"
     },
     {
       "path": "catalog/fonts/OFL-Letter.txt",
@@ -573,13 +573,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 820909,
-      "sha256": "7d656add74536832eedf8522753a03cf2d87d6e6b222eb4a5d18221aa3a5ff14"
+      "bytes": 871906,
+      "sha256": "76ae47c5aecd40d6a663b09e823ba41cfd08f54604b2fac9d6f1b9c165b4f467"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1015184,
-      "sha256": "2760d1e28816c24401e1c0cdc2b2a9db607a6a6ca3a6f82b2449c7ee5662545e"
+      "bytes": 1072412,
+      "sha256": "729aab94f6e430a96106ed91082aa8e82fa106fa4e17e6af86ed6fd91b48428e"
     },
     {
       "path": "catalog/related-preview.js",
