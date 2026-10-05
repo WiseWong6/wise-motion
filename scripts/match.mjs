@@ -4,8 +4,9 @@ import {createRequire} from 'node:module';
 const {rank, describe} = createRequire(import.meta.url)('../catalog/matching.js');
 const data = JSON.parse(await readFile(new URL('../catalog/registry.json', import.meta.url), 'utf8'));
 const query = process.argv.slice(2).join(' ').trim();
-if (!query) { console.error('用法：node scripts/match.mjs "两排卡片反向持续滚动，不要轮播"'); process.exitCode = 1; }
+if (!query) { console.error('先理解并转译用户需求，再输入动作描述与禁项。\n用法：node scripts/match.mjs "两排卡片反向持续滚动，不要轮播"'); process.exitCode = 1; }
 else {
+  console.log('此命令只检索转译后的动作描述，不负责理解用户意图；采用候选前须回到原话与上下文核对。');
   const matches = rank(data, query);
   if (!matches.length) { console.log('词语检索没有找到满足当前结构或禁项的直接参考。这不限制设计：可从表达目的与对象关系发散，或借用其他参考改良、组合；需要外部实现依据时再定向查证。'); }
   else {

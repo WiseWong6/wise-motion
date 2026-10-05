@@ -33,7 +33,7 @@ const countedPage=page.replace(/(<button\b[^>]*data-kind="(action|composition|il
 });
 if(seenTabs.size!==tabKinds.length)throw new Error('目录页签数量节点缺失');
 await output('catalog/index.html',countedPage);
-const index = ['# 本地动效索引', '', '此索引和每项说明由 `catalog/registry.json` 生成。先按行为找候选，再读取候选说明和对应源码。明确禁项优先于视觉相似。', '', `页面入口：\`catalog/index.html\`。${registry.effects.filter(e=>e.kind==='action').length} 个单个动作、${registry.effects.filter(e=>e.kind==='illustration').length} 个插画单图、${registry.effects.filter(e=>e.kind==='composition').length} 个组合片段。`, '', '历史页签已下线；已迁入条目从正式目录使用。出处与迁移依据见 [历史来源与维护](history.md)。'];
+const index = ['# 本地动效索引', '', '此索引和每项说明由 `catalog/registry.json` 生成。先按 [导演设计方法](director-design.md) 理解并转译需求，明确表达目的、画面变化、动作关系与约束，再按转译结果找候选；读取候选说明和拟采用项的源码，回到原意核对。名称或词语命中仅提供线索，明确禁项优先于视觉相似。', '', `页面入口：\`catalog/index.html\`。${registry.effects.filter(e=>e.kind==='action').length} 个单个动作、${registry.effects.filter(e=>e.kind==='illustration').length} 个插画单图、${registry.effects.filter(e=>e.kind==='composition').length} 个组合片段。`, '', '历史页签已下线；已迁入条目从正式目录使用。出处与迁移依据见 [历史来源与维护](history.md)。'];
 for (const c of registry.categories) {
   index.push('', '## ' + c.name, '', ...(c.description ? [c.description, ''] : []), '| 参考 | 用途与动作 | 行为线索 | 说明 |', '|---|---|---|---|');
   for (const e of registry.effects.filter(x => x.category === c.id)) {
