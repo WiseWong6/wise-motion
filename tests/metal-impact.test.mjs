@@ -98,9 +98,9 @@ test('六色粒子从同一中心向四周散射，再沿原粒子身份汇聚�
   assert.ok(glyphDistance(x-centers[p.letter],y-.52,z,p.letter)<0,'终点位于真正的金属字面内');
   if(p.letter===1||p.letter===4)assert.ok(Math.hypot(x-centers[p.letter],y-.52)>.295,'O 的圆形中空不能被粒子填满');
  }
- for(const t of [0,1.30,1.35,2.96,3.5,5.3])assert.equal(particleFrame(t).length,0);
+ for(const t of [0,1.30,1.35,2.74,2.96,3.5,5.3])assert.equal(particleFrame(t).length,0);
  for(const part of ['drop','sweep'])assert.equal(particleFrame(1.50,part).length,0);
- for(let ms=1351;ms<2960;ms+=7){
+ for(let ms=1351;ms<2740;ms+=7){
   const frame=particleFrame(ms/1000);assert.equal(frame.length,particles.length*6);
   assert.equal(hash(frame),hash(particleFrame(ms/1000)),'同一时刻回拖必须完全一致');
   for(let i=0;i<frame.length;i+=6){
@@ -131,16 +131,20 @@ test('六色粒子从同一中心向四周散射，再沿原粒子身份汇聚�
  for(let ms=1750;ms<=2550;ms+=50){const count=outside(particleFrame(ms/1000));assert.ok(count<=lastOutside,'回收不能突然再次向画外跳动');lastOutside=count;}
  assert.equal(lastOutside,0,'成字前全部粒子已回到画面');
  const points=frame=>Array.from({length:frame.length/6},(_,i)=>Array.from(frame.slice(i*6,i*6+3)));
- for(const [time,key]of [[1.3500001,'start'],[1.70,'burst'],[2.82,'target']]){
+ for(const [time,key]of [[1.3500001,'start'],[1.70,'burst']]){
   const actual=points(particleFrame(time)),expected=particles.map(p=>p[key]).sort((a,b)=>a[2]-b[2]);
   expected.forEach((p,i)=>assert.ok(Math.hypot(...p.map((v,k)=>v-actual[i][k]))<1e-6,'粒子没有更换身份或跳到新位置'));
  }
- const settled=particleFrame(2.82),late=particleFrame(2.94);
- for(let i=0;i<settled.length;i+=6){
-  assert.deepEqual(Array.from(late.slice(i,i+3)),Array.from(settled.slice(i,i+3)),'成字末段粒子保持原落点');
-  assert.ok(late[i+5]<settled[i+5],'字面填满时粒子退出');
+ const visible=frame=>Array.from(frame).filter((_,i)=>i%6===5).filter(alpha=>alpha>.001).length;
+ let lastVisible=particles.length;
+ for(let ms=2350;ms<=2700;ms+=10){
+  const count=visible(particleFrame(ms/1000));
+  assert.ok(count<=lastVisible,'粒子融入金属后不能重新出现');lastVisible=count;
  }
- assert.ok(particleFrame(2.959)[5]<.0001,'成字前粒子透明度连续降至零');
+ const midAlpha=Array.from(particleFrame(2.50)).filter((_,i)=>i%6===5);
+ assert.ok(midAlpha.some(alpha=>alpha<.5)&&midAlpha.some(alpha=>alpha>.99),'较早抵达的粒子先融入金属，仍在回收的粒子继续可见');
+ assert.equal(visible(particleFrame(2.70)),0,'全部粒子必须在落定前融入金属，不能形成完整粒子字后继续停留');
+ assert.equal(particleFrame(2.82).length,0,'原先粒子字停留时刻只保留实体金属');
 
 });
 

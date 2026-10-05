@@ -573,8 +573,8 @@
     },
     {
       "path": "catalog/effects/metal-impact.js",
-      "bytes": 31931,
-      "sha256": "8333f79768ccc73a2407be75f36a743a3c45adefd6d33792404c50ee02df1ffe"
+      "bytes": 32769,
+      "sha256": "e7ea87c030102d2310581e47a00d93f524134e56ed1d6ff6e3bb8af26f4d32b5"
     },
     {
       "path": "catalog/effects/motion-oasis.js",
@@ -783,13 +783,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1114434,
-      "sha256": "b4ac10fd1dfe8343a7b80c8a681d52f46c874699997608ab13d7378dbc5c396e"
+      "bytes": 1116363,
+      "sha256": "5151d5f2a9901b72dc9975f1528f559cc7df0fe8a3df732587722ad88e05d3df"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1374497,
-      "sha256": "c6b83ffd4e5491529b9e2da040715f51e153d72cc611ea10c416b16ae4b3dcc0"
+      "bytes": 1376502,
+      "sha256": "09108268e7582af02b1ccc1ca363223df957caa42148e56ea124eb07df811046"
     },
     {
       "path": "catalog/related-preview.js",
