@@ -17,7 +17,7 @@
 对应参考：本地目录「字色依次轮换」
 源码：catalog/effects/reel-opening.js 中的 char-color-cycle
 来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
-关键假设：按本机 Claude 动效演进史的原源码重写，固定 MOTION 使用原 Helvetica Neue Bold 矢量字形，字幕保留原等宽样式；夜间恢复原配色，白天适配明底，纹理沿用目录的静态薄层。
+关键假设：按本机 Claude 动效演进史的原源码重写，固定 MOTION 使用随包 Oswald Bold 矢量字形，英文字幕统一使用 Oswald Bold；夜间恢复原配色，白天适配明底，纹理沿用目录的静态薄层。
 
 ## 调整方式
 

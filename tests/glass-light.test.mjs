@@ -205,13 +205,13 @@ test('六张卡共用苹果空间内容，短信气泡逐字出现，片尾由�
   assert.ok(partial.some(value=>value.startsWith('Yes')&&value!=='Yes, at 6:30.'),'实际短信逐字输出而不是整条突然出现');
   assert.ok(!partial.includes('I booked a table for us.'),'后续消息等待上一条结束');
   contexts.forEach(c=>{c.trace.length=0;});const end=painter.render(ctx,7),marks=contexts.flatMap(c=>c.trace),arcs=marks.filter(x=>x.type==='arc');
-  const brand=w.WiseGlassLight.brand;assert.equal(brand.family,'Helvetica Neue');assert.equal(brand.weight,700);
+  const brand=w.WiseGlassLight.brand;assert.equal(brand.family,'Oswald');assert.equal(brand.weight,700);
   const reference=JSON.parse((await readFile(new URL('../catalog/effects/reel-opening.js',import.meta.url),'utf8')).match(/const glyphs = (.*);/)[1]);
   for(const letter of 'MOTION'){
    assert.equal(brand.glyphs[letter].advance,reference[letter].width);
-   assert.deepEqual(Array.from(brand.glyphs[letter].bounds),reference[letter].bounds,'沿用参考字标的原生字形比例');
+   assert.deepEqual(Array.from(brand.glyphs[letter].bounds),reference[letter].bounds,'玻璃字标与开场共用随包 Oswald 字形');
   }
-  assert.equal(brand.scale,56/714);assert.equal(brand.tracking,-20*brand.scale);
+  assert.equal(brand.scale,56/810);assert.equal(brand.tracking,-20*brand.scale);
   assert.deepEqual(Array.from(end.lens.slice(0,2)),Array.from(brand.oCenters[0]),'凸泡对准真实 O 的中心');
   assert.ok(!arcs.some(x=>x.r>20),'片尾不得用圆圈代替任一字母');
   const expectedCurves=Array.from(brand.letters).reduce((n,item)=>n+brand.glyphs[item.letter].path.filter(row=>row[0]==='Q').length,0);

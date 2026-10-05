@@ -1,12 +1,12 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
 (function (F) {
   'use strict';
-  // 固定 MOTION 字标保留原片 Helvetica Neue Bold 轮廓和字距。
-  // 路径与镜头共用原片 1920×1080 坐标，不依赖加载字体后测量，也不另画一个 O。
-  const glyphs = {"M":{"width":907,"bounds":[69,0,838,714],"path":"M69 714V0H216V501H218L393 0H514L689 506H691V0H838V714H617L459 223H457L290 714Z"},"O":{"width":778,"bounds":[38,-16,740,731],"path":"M195 354Q195 401 205.5 445.0Q216 489 239.0 523.5Q262 558 299.0 578.5Q336 599 389 599Q442 599 479.0 578.5Q516 558 539.0 523.5Q562 489 572.5 445.0Q583 401 583 354Q583 309 572.5 266.5Q562 224 539.0 190.0Q516 156 479.0 135.5Q442 115 389 115Q336 115 299.0 135.5Q262 156 239.0 190.0Q216 224 205.5 266.5Q195 309 195 354ZM38 354Q38 276 62.0 208.5Q86 141 131.0 91.0Q176 41 241.5 12.5Q307 -16 389 -16Q472 -16 537.0 12.5Q602 41 647.0 91.0Q692 141 716.0 208.5Q740 276 740 354Q740 434 716.0 502.5Q692 571 647.0 622.0Q602 673 537.0 702.0Q472 731 389 731Q307 731 241.5 702.0Q176 673 131.0 622.0Q86 571 62.0 502.5Q38 434 38 354Z"},"T":{"width":611,"bounds":[13,0,598,714],"path":"M227 582V0H384V582H598V714H13V582Z"},"I":{"width":295,"bounds":[69,0,226,714],"path":"M69 714V0H226V714Z"},"N":{"width":741,"bounds":[69,0,672,714],"path":"M69 714V0H216V478H218L515 0H672V714H525V235H523L225 714Z"}};
+  // 固定 MOTION 字标采用随包 Oswald Bold，生成入口为 scripts/build-brand-outlines.py。
+  // 保持大写字高与基线；镜头从实际 O 的中心穿过，不在播放时测量字形。
+  const glyphs = {"M":{"width":704,"bounds":[57,0,647,810],"path":"M57 0 71 810H263L352 339L448 810H633L647 0H520L505 539L411 0H298L198 543L186 0Z"},"O":{"width":586,"bounds":[49,-12,537,821],"path":"M292 -12Q201 -12 148.0 20.0Q95 52 72.0 112.0Q49 172 49 255V556Q49 640 72.0 699.0Q95 758 148.0 789.5Q201 821 292 821Q384 821 437.5 789.5Q491 758 514.0 699.0Q537 640 537 556V255Q537 172 514.0 112.0Q491 52 437.5 20.0Q384 -12 292 -12ZM292 115Q320 115 333.0 129.0Q346 143 350.0 165.0Q354 187 354 210V600Q354 624 350.0 645.5Q346 667 333.0 681.0Q320 695 292 695Q266 695 253.0 681.0Q240 667 236.0 645.5Q232 624 232 600V210Q232 187 235.5 165.0Q239 143 251.5 129.0Q264 115 292 115Z"},"T":{"width":445,"bounds":[11,0,434,810],"path":"M133 0V677H11V810H434V677H313V0Z"},"I":{"width":301,"bounds":[61,0,240,810],"path":"M61 0V810H240V0Z"},"N":{"width":561,"bounds":[60,0,500,810],"path":"M60 0V810H186L352 420V810H500V0H379L213 420V0Z"}};
   const colors = ['var(--accent)', 'var(--cycle-pink)', 'var(--cycle-red)', 'var(--yellow)', 'var(--teal)', 'var(--blue)', 'var(--reel-last)'];
   const subtitle = 'A 60-SECOND EVOLUTION OF MOTION DESIGN';
-  const focus = {x:741.3, y:527};
+  const glyphScale = 714*.3/810;
   const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
   const prog = (t, a, b) => clamp((t-a)/(b-a));
   const outExpo = p => p >= 1 ? 1 : 1-Math.pow(2,-10*p);
@@ -24,13 +24,16 @@
   const text = (part, value, x, y, size, track, fill, extra='') =>
     `<text data-part="${part}" x="${x}" y="${y}" font-size="${globalThis.MotionKit.textSize(Math.max(10,size/3),1/3)}" letter-spacing="${track}" fill="${fill}" style="font-family:Oswald,sans-serif;font-weight:700" ${extra}>${value}</text>`;
   const items = [];
-  let letterX = 358.5, serial = 0;
+  const wordWidth=[...'MOTION'].reduce((width,ch)=>width+glyphs[ch].width*glyphScale,0)-6*5;
+  let letterX = (1920-wordWidth)/2, serial = 0;
   for (const ch of 'MOTION') {
     items.push({ch, x:letterX});
-    letterX += glyphs[ch].width*.3-6;
+    letterX += glyphs[ch].width*glyphScale-6;
   }
+  const [left,bottom,right,top]=glyphs.O.bounds;
+  const focus={x:items[1].x+(left+right)/2*glyphScale,y:635-(bottom+top)/2*glyphScale};
   const letterPaths = () => items.map(({ch,x},i) =>
-    `<g data-letter="${i}" transform="translate(${x} 635)"><path data-glyph="${ch}" d="${glyphs[ch].path}" transform="scale(0.3 -0.3)"/></g>`).join('');
+    `<g data-letter="${i}" transform="translate(${x} 635)"><path data-glyph="${ch}" d="${glyphs[ch].path}" transform="scale(${glyphScale} ${-glyphScale})"/></g>`).join('');
 
   // 点阵合并成一个路径，只在显现数量变化时写入；不为数百个点创建独立节点。
   const dots = [];
@@ -73,7 +76,7 @@
       `<defs><clipPath id="${id}-letters"><rect x="58.5" y="320" width="1803" height="405"/></clipPath>`+
       (withTransition ? `<clipPath id="${id}-iris" clipPathUnits="userSpaceOnUse"><circle data-part="iris" cx="960" cy="540" r="0"/></clipPath><clipPath id="${id}-label"><rect x="920" y="44" width="940" height="36"/></clipPath>` : '')+'</defs>'+
       '<path data-part="dots" fill="var(--reel-dot)" opacity=".08"/>'+
-      '<g data-part="word" data-font="Helvetica Neue Bold" fill="var(--ink)">'+
+      '<g data-part="word" data-font="Oswald Bold" fill="var(--ink)">'+
       '<rect data-part="ruler" x="960" y="661" width="0" height="4" fill="var(--reel-line)"/>'+
       `<g clip-path="url(#${id}-letters)">${letterPaths()}</g>`+
       text('start-year','1959',0,707,22,4,'var(--reel-muted)','opacity="0"')+

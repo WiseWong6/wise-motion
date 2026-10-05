@@ -1,7 +1,7 @@
 {
   "description": "精修后的笔墨与材质演变：固定书法与字标轮廓、灰阶透明素材。",
   "code_license": "AGPL-3.0-only",
-  "graphic_rights": "key-shapes.js 为参考画面的矢量轮廓，原图形与字形来源仍需核对；fiber.webp、moon.webp、atlas-engraving.webp 为 Codex 内置工具依据参考生成的素材，输出归属按生成时适用的服务条款处理。生成素材不等于直接复制原片帧，也不单独证明参考内容已获授权；参考内容的原有权利保留原状，自有代码许可不改写这些材料的权利。",
+  "graphic_rights": "key-shapes.js 的37个开头书法姿态和27个结尾字形姿态由 Kimi AI 发布的原片帧提取；未查到覆盖这些轮廓公开再分发的许可。三个 WebP 图片由 Codex 内置工具依据参考生成，输出归属按生成时适用条款处理；自有绘制代码的 AGPL-3.0-only 不改写原片图形权利。",
   "runtime": "本地普通脚本及图片按需载入；不包含原视频或JPG截图。",
   "files": [
     {
@@ -33,15 +33,29 @@
     }
   ],
   "reference": {
-    "name": "Kimi K3 开源发布宣传片（open weights）",
+    "name": "Kimi K3 (open weights)",
     "url": "https://www.youtube.com/watch?v=5GlCGOXUYHg",
     "provided_by": "用户",
-    "provided_on": "2026-10-05"
+    "provided_on": "2026-10-05",
+    "publisher": "Kimi AI / Moonshot AI",
+    "channel": "https://www.youtube.com/@KimiMoonshot",
+    "verified_on": "2026-10-06",
+    "verification": "YouTube公开页面及嵌入元数据确认标题、发布者和15秒片长；简介列模型权重、技术报告与博客，没有提供轮廓素材的再分发许可。"
   },
   "materials": {
     "key-shapes.js": {
       "type": "参考帧矢量轮廓",
-      "description": "开头37个书法姿态及结尾27个字形姿态；原图形与字形权利保留原状。"
+      "description": "开头37个书法姿态及结尾27个字形姿态，来自原片帧的灰阶阈值与轮廓提取，非独立生图。",
+      "extraction": "原制作脚本 trace-key-shapes.py 对参考帧做裁切、七层灰阶阈值、轮廓查找与多边形近似；正式目录保留其轮廓数据。",
+      "calligraphy_reference": {
+        "name": "吴叡隶书道德经卷（故宫博物院）",
+        "url": "https://www.dpm.org.cn/collection/handwriting/229075.html",
+        "scope": "原制作记录中的笔法参考；未直接使用馆藏单字图，实际固定轮廓仍从宣传片帧提取。"
+      },
+      "license_status": "原片发布者已确认；片中具体书法设计、字标的独立作者、字体与公开再分发授权尚未查到。",
+      "model_license_reference": "https://github.com/MoonshotAI/Kimi-K3/blob/main/LICENSE",
+      "model_license_scope": "Kimi K3 License列举模型权重、参数、配置、推理及训练代码和相关文档，没有明确授予宣传片字形轮廓的再分发权。",
+      "youtube_license_reference": "https://support.google.com/youtube/answer/2797468?hl=en"
     },
     "fiber.webp": {
       "type": "依据参考生成",
