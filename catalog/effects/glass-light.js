@@ -253,10 +253,15 @@ function controlCenter(c,t,row,motion=null,material=true){pose(c,row,()=>{
  });
  rr(c,24,278,342,58,29,'#ffffff12','#ffffff20');icon(c,'moon',54,307,23);uiText(c,'FOCUS',81,314,21);uiText(c,'ON',314,313,18,'#bcbcbc');
 });}
-function drawCard(c,key){
+function drawCard(c,key,time){
  reset(c);
  const spec=spatialCardSpecs[key];
  if(!spec)throw new Error('未知玻璃卡片：'+key);
+ if(time!==undefined){
+  const state=spatialCardsAt(time),card=state.cards.find(item=>item.key===key);
+  drawSpatialCard(c,key,card.pose,state.camera,card.opacity,cardMotionAt(state.t));
+  return;
+ }
  const [w,h]=spec,scale=Math.min(760/w,420/h);
  drawSpatialCard(c,key,[0,0,35,8,-24,-3,scale]);
 }
@@ -382,10 +387,14 @@ function makeCard(root,kit,definition,key){
  node.setAttribute('role','img');node.setAttribute('aria-label',cards.find(row=>row[0]===key)[2]);
  Object.assign(node.style,{width:'640px',height:'360px',background:'transparent'});root.replaceChildren(node);
  const c=node.getContext('2d');
- if(c){const painter=createPainter(doc);try{painter.drawCard(c,key);}finally{painter.destroy();}}
- // A single illustration is drawn once; seeking never adds a scene or redraw loop.
- let dead=false;const render=()=>{};
- render.destroy=(preserve=false)=>{if(dead)return;dead=true;if(!preserve){node.width=1;node.height=1;root.replaceChildren();}};
+ const painter=c?createPainter(doc):null;
+ let dead=false,last;const render=ms=>{
+  if(dead)return;
+  const time=Math.max(0,Math.min(spatialDuration,ms/1000));if(time===last)return;last=time;
+  node.dataset.sourceTime=String(time);painter?.drawCard(c,key,time);
+ };
+ render(0);
+ render.destroy=(preserve=false)=>{if(dead)return;dead=true;painter?.destroy();if(!preserve){node.width=1;node.height=1;root.replaceChildren();}};
  return render;
 }
 global.WiseGlassLight={createPainter,parts,cards,duration:spatialDuration*1000,spatial:{sample:spatialCardsAt,project:projectGlassPoint,perimeter:glassPerimeter,specs:spatialCardSpecs,thickness:glassThickness,content:cardMotionAt,bluetoothPaths},brand:{label:'WISE MOTION',family:'Helvetica Neue',weight:700,capHeight:56,scale:wordmarkScale,tracking:wordmarkTracking,baseline:wordmarkBaseline,glyphs:wordmarkGlyphs,letters:wordmarkLetters,oCenters:wordmarkOs.map(x=>[x,wordmarkOY]),oBounds:wordmarkOBounds}};

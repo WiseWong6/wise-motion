@@ -40,7 +40,7 @@
     if (definition.variant_id) stage.dataset.variant = definition.variant_id;
     for (const [role,size] of Object.entries(type)) stage.style.setProperty('--type-'+role, size+'px');
     // 以稳定标识判断，独立导出的定义没有目录分类；缩略图与主预览保持一致。
-    if (definition.id.endsWith('-illustration')) stage.dataset.art = 'original';
+    if ((definition.source?.factory || definition.id).endsWith('-illustration')) stage.dataset.art = 'original';
   }
   // 同一个动作的不同原作示例，共用目录入口，各自保留时长和绘制。
   function resolveVariant(definition, variantId = definition.variant_id) {
@@ -51,7 +51,7 @@
   }
   function createRenderer(stage, definition) {
     definition = resolveVariant(definition);
-    const factory = factories[definition.id];
+    const factory = factories[definition.source?.factory || definition.id];
     if (!factory) throw new Error('缺少效果源码：' + definition.id);
     const timing = definition.timing;
     if (!timing) return factory(stage, kit, definition);
@@ -90,7 +90,7 @@
   const live = new Set();
   function create(root, definition, options = {}) {
     definition = resolveVariant(definition);
-    if (!factories[definition.id]) throw new Error('缺少效果源码：' + definition.id);
+    if (!factories[definition.source?.factory || definition.id]) throw new Error('缺少效果源码：' + definition.id);
     root.innerHTML = '<div class="motion-stage"></div>';
     const stage = root.firstElementChild;
     prepareStage(stage, definition);

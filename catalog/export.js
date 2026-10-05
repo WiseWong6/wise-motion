@@ -110,6 +110,7 @@ registerRoot(Root);
   function catalogCode(effect, settings = {}) {
     effect = global.MotionKit.resolveVariant(effect, settings.variantId || effect.variant_id);
     const definition = {id:effect.id, duration_ms:effect.duration_ms, loop:effect.loop, default_ease:effect.default_ease, parameters:effect.parameters};
+    if(effect.source.factory!==effect.id)definition.source={factory:effect.source.factory};
     if(effect.id==='motion-oasis-sequence'&&global.WiseMotionOasis)definition.catalog_data=global.WiseMotionOasis.catalogData(global.MotionRegistry);
     if(effect.variant_id)definition.variant_id=effect.variant_id;
     if(effect.timing)definition.timing=effect.timing;

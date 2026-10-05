@@ -421,8 +421,12 @@
     $('ease-label').hidden = !effect.parameters.ease;
     const related = effect.kind==='recipe' ? effect.actions : effect.actions.length ? effect.actions : data.effects.filter(e => e.kind==='composition'&&e.actions.includes(effect.id)).map(e => e.id);
     $('related').innerHTML = related.length
-      ? `<p class="field-label" style="margin-top:18px">${effect.kind==='recipe' ? '提炼的组成动作' : effect.actions.length ? '相关动作' : '使用这个动作的组合'}</p><div class="related-chips">${related.map(rid => `<button type="button" class="btn" aria-haspopup="dialog" data-related="${rid}">${MotionKit.escape(data.effects.find(e => e.id === rid).name)}</button>`).join('')}</div>`
+      ? `<p class="field-label" style="margin-top:18px">${effect.kind==='recipe' ? '提炼的组成动作' : effect.kind==='illustration'&&effect.actions.length ? '插画包含的动作' : effect.actions.length ? '相关动作' : '使用这个动作的组合'}</p><div class="related-chips">${related.map(rid => `<button type="button" class="btn" aria-haspopup="dialog" data-related="${rid}">${MotionKit.escape(data.effects.find(e => e.id === rid).name)}</button>`).join('')}</div>`
       : '';
+    if(effect.kind==='illustration'&&effect.actions.length){
+      const compositions=data.effects.filter(e=>e.kind==='composition'&&e.actions.includes(effect.id));
+      if(compositions.length)$('related').innerHTML+=`<p class="field-label" style="margin-top:18px">使用这幅插画的组合</p><div class="related-chips">${compositions.map(e=>`<button type="button" class="btn" aria-haspopup="dialog" data-related="${e.id}">${MotionKit.escape(e.name)}</button>`).join('')}</div>`;
+    }
     const historyRelated=effect.kind==='recipe'?effect.related_history.filter(rid=>data.effects.some(e=>e.id===rid)):[];
     if(historyRelated.length)$('related').innerHTML+=`<p class="field-label" style="margin-top:18px">关联原作配方</p><div class="related-chips">${historyRelated.map(rid=>`<button type="button" class="btn" aria-haspopup="dialog" data-related="${rid}">${MotionKit.escape(data.effects.find(e=>e.id===rid).name)}</button>`).join('')}</div>`;
     renderHistoryDetails(effect);

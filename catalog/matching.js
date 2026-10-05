@@ -52,13 +52,15 @@
     return registry.effects.flatMap(e => {
       if (explicit.includes(e.id) || prohibited.some(([, test]) => test(e))) return [];
       // “持续滚动”是结构要求，不能用相似视觉代替。
-      const nameMatch=[e.name,...(e.previous_names||[])].find(name=>text.includes(name.toLowerCase()));
+      const names=[e.name,...(e.previous_names||[])];
+      const nameMatch=names.find(name=>text.includes(name.toLowerCase()));
       const exact=!!nameMatch||positive.trim()===e.history_id;
       const patterns=e.kind==='recipe'?e.actions:[e.id];
       if (!exact && isScroll && !patterns.some(id=>(scrollTarget?[scrollTarget]:['seamless-scroll','dual-scroll']).includes(id))) return [];
       if (!exact && isScroll && isDual && !patterns.includes('dual-scroll')) return [];
       let score = 0; const matched = [];
-      if (nameMatch) { score += 20; matched.push(nameMatch); }
+      // 完整名称与旧名称优先于名称片段，避免插画的关联动作抢走原入口。
+      if (nameMatch) { score += names.some(name=>text===name.toLowerCase()) ? 40 : 20; matched.push(nameMatch); }
       // 来源名称常是长标题；输入 Claude 等片名片段也应找到，不区分英文大小写。
       for (const word of new Set([...e.aliases,...(e.original_sources||[])])) {
         const term=word.toLowerCase();

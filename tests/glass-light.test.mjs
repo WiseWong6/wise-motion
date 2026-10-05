@@ -70,7 +70,7 @@ test('空间网格、折射与拆解可反复取样，销毁释放所有卡面�
     getImageData:(x,y,width,height)=>({data:new Uint8ClampedArray(width*height*4),width,height}),createImageData:(width,height)=>({data:new Uint8ClampedArray(width*height*4),width,height}),
     drawImage(image,...args){trace.push(['image',identify(image),...args]);},
     setTransform(...args){assert.ok(args.every(n=>typeof n!=='number'||Number.isFinite(n)));trace.push(['transform',...args]);}
-   },ctx=new Proxy(target,{get:(o,k)=>k in o?o[k]:(...args)=>{if(['moveTo','lineTo','arc'].includes(k))trace.push([k,...args]);}});
+   },ctx=new Proxy(target,{get:(o,k)=>k in o?o[k]:(...args)=>{if(['moveTo','lineTo','arc','fillRect','fillText'].includes(k))trace.push([k,...args]);}});
    identify(this);cache.set(this,ctx);contexts.push(ctx);return ctx;
   };
   const painter=w.WiseGlassLight.createPainter(w.document),out=w.document.createElement('canvas'),c=out.getContext('2d');
@@ -81,6 +81,28 @@ test('空间网格、折射与拆解可反复取样，销毁释放所有卡面�
   const layers=Object.fromEntries(keys.map(key=>{const node=w.document.createElement('canvas');node.width=1066;node.height=600;return [key,node.getContext('2d')];}));
   const separate=painter.drawLayers(layers,5.2),full=painter.render(c,5.2);assert.equal(JSON.stringify(separate),JSON.stringify(full));
   for(const key of ['music','weather','controls'])assert.ok(layers[key].trace.some(row=>row[0]==='image'),'拆解必须绘制新增卡片');
+  // 单卡入口逐时刻对照原空间绘制，包括离屏卡面上的波形、文字、滑杆和涟漪。
+  out.width=1066;out.height=600;
+  const canonical=items=>items.filter(ctx=>ctx.trace.length).map(ctx=>JSON.stringify([
+   ctx.canvas.width,ctx.canvas.height,ctx.trace.map(row=>row[0]==='image'?['image',...row.slice(2)]:row)
+  ])).sort();
+  const referenceContexts=[...contexts];
+  for(const [key,id]of w.WiseGlassLight.cards){
+   const start=contexts.length,root=w.document.createElement('div'),definition=data.effects.find(e=>e.id===id);
+   const draw=w.MotionFactories[id](root,w.MotionKit,definition),owned=contexts.slice(start),frames=[];
+   for(const time of [.3,.8,1.8,2.65,3.5,5.2,.8]){
+    contexts.forEach(ctx=>{ctx.trace.length=0;});draw(time*1000);const actual=canonical(owned);
+    contexts.forEach(ctx=>{ctx.trace.length=0;});c.setTransform(1,0,0,1,0,0);
+    const state=w.WiseGlassLight.spatial.sample(time),card=state.cards.find(item=>item.key===key);
+    painter.drawSpatialCard(c,key,card.pose,state.camera,card.opacity,w.WiseGlassLight.spatial.content(time));
+    assert.deepEqual(actual,canonical(referenceContexts),id+' @ '+time);frames.push(JSON.stringify(actual));
+   }
+   assert.equal(frames[1],frames[6]);assert.ok(new Set(frames).size>3,id+' 必须改变真实绘图命令');
+   const node=root.firstElementChild;draw.destroy(true);for(const ctx of owned)if(ctx.canvas!==node)assert.equal(ctx.canvas.width,1);
+   const kept=node.width;draw(1200);assert.equal(node.width,kept);
+   // 缩略图保留的表面由调用方持有，不计入离屏缓冲释放检查。
+   node.width=1;
+  }
   const protectedCanvases=new Set([out,...Object.values(layers).map(ctx=>ctx.canvas)]);painter.destroy();
   for(const ctx of contexts)if(!protectedCanvases.has(ctx.canvas))assert.equal(ctx.canvas.width,1,'离屏卡面应释放');
  }finally{env.close();}
@@ -121,7 +143,7 @@ test('玻璃拆解对应真实独立动作，复制页携带正式绘制源码�
 });
 
 const cardIds=['glass-voice-card-illustration','glass-dialogue-card-illustration','glass-control-card-illustration','glass-music-card-illustration','glass-weather-card-illustration','glass-controls-card-illustration'];
-test('六张玻璃卡作为独立插画登记，透明居中、静态定位和导出保持一致',async()=>{
+test('六张玻璃卡作为独立插画登记，透明背景、动态定位和导出保持一致',async()=>{
  const env=await environment();try{
   const {w}=env;w.eval(await readFile(new URL('../catalog/export.js',import.meta.url),'utf8'));
   for(const id of cardIds){
@@ -130,9 +152,9 @@ test('六张玻璃卡作为独立插画登记，透明居中、静态定位和�
    const player=w.MotionRuntime.create(root,def,{autoplay:false}),node=root.querySelector('canvas');
    assert.equal(root.querySelectorAll('canvas').length,1);assert.equal(node.className,'pattern-canvas');
    assert.equal(node.style.background,'transparent');assert.equal(node.width,1066);assert.equal(node.height,600);
-   const initial=root.innerHTML;for(const t of [1000,500,0,700]){player.seek(t);assert.equal(root.innerHTML,initial);}
+   const frames=[];for(const t of [1000,500,0,700,1000]){player.seek(t);assert.equal(+node.dataset.sourceTime,t/1000);frames.push(root.innerHTML);}assert.equal(frames[0],frames[4]);assert.notEqual(frames[0],frames[1]);
    const code=w.MotionExport.code(def),prompt=w.MotionExport.prompt(def,{},data);
-   assert.match(code,/catalog\/effects\/glass-light\.js/);assert.match(prompt,/透明/);assert.match(prompt,/静态/);
+   assert.match(code,/catalog\/effects\/glass-light\.js/);assert.match(prompt,/透明/);assert.doesNotMatch(prompt,/保持静态|固定展示状态/);
    player.destroy();assert.equal(node.width,1);assert.equal(root.childElementCount,0);
    const draw=w.MotionFactories[id](root,w.MotionKit,def);draw.destroy(true);assert.equal(root.querySelectorAll('canvas').length,1);
    root.remove();

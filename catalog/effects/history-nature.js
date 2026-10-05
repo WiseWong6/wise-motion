@@ -772,7 +772,7 @@ function background(c) { ctx.fillStyle = colorOf([c]); ctx.fillRect(0, 0, W, H);
  function drawDrive(target,t,vehicleOnly){
   ctx=drawingContext=target;ctx.lineCap='round';ctx.lineJoin='round';doFill=true;doStroke=false;styleStack.length=0;
 
-  if(vehicleOnly){translate(320,260);scale(CAR_SCALE);drawXiaokuiCar(2,0,0);return;}
+  if(vehicleOnly){translate(320,260+vehicleBob(t));scale(CAR_SCALE);drawXiaokuiCar(t,driveDistance(t)/CAR_SCALE,0);return;}
   for(let i=BALLOON_COUNT-1;i>=0;i--)drawBalloon(i,t,'strings');
   for(let i=BALLOON_COUNT-1;i>=0;i--)drawBalloon(i,t,'body');
   const car=vehiclePose(t);push();translate(car.x,car.y);scale(CAR_SCALE);drawXiaokuiCar(t,driveDistance(t)/CAR_SCALE,0);pop();
@@ -783,9 +783,7 @@ function background(c) { ctx.fillStyle = colorOf([c]); ctx.fillRect(0, 0, W, H);
   svg.dataset.firstX=String(balloonState(0,t).p.x);svg.dataset.firstY=String(balloonState(0,t).p.y);
   svg.dataset.firstEndX=String(balloonString(0,t).end.x);svg.dataset.firstEndY=String(balloonString(0,t).end.y);
  },'0 360 900 850');
- F['drive-car-illustration']=(root,K,def)=>{
-  const render=svgFactory(root,def,ctx=>drawDrive(ctx,2,true));render(0);return ()=>{};
- };
+ F['drive-car-illustration']=(root,K,def)=>svgFactory(root,def,(ctx,t)=>drawDrive(ctx,t,true));
 })();
 
 /* 原蒲公英主体、种子、开场气流与青蛙落水 */
@@ -1179,12 +1177,18 @@ function waveform(ctx,x,y,age){
    j.drifting(ctx,{time,courseAt:course});svg.dataset.sourceTime=String(time);
   });
  };
- F['dandelion-subject-illustration']=(root,K,def)=>{
-  const render=svgFactory(root,def,ctx=>{const j=J();ctx.translate(320,116);ctx.scale(1.25,1.25);j.floret(ctx,0,0,42,0,1,j.filamentState(4.5));},'0 0 640 360');render(0);return ()=>{};
- };
- F['dandelion-seed-illustration']=(root,K,def)=>{
-  const render=svgFactory(root,def,ctx=>{const j=J();ctx.translate(320,116);ctx.scale(1.25,1.25);j.floret(ctx,0,0,35,0,1);},'0 0 640 360');render(0);return ()=>{};
- };
+ F['dandelion-subject-illustration']=(root,K,def)=>svgFactory(root,def,(ctx,t,svg)=>{
+  const j=J(),time=2.35+Math.min(2.4,Math.max(0,t-.15)),pose=j.subjectPose(time,course),unfold=j.entryProgress(time);
+  const strands=j.filamentState(time).map((f,i)=>({...f,opacity:f.opacity*(i%13===0?1:unfold)}));
+  const sourceOpacity=(.55+.45*Math.hypot(j.heroSeed.x,j.heroSeed.y)/112)*.85;
+  // 跟随冠毛中心取景，保留原半径、转向、展开和透明度；不带旅行背景。
+  ctx.translate(320,158);ctx.scale(1.05,1.05);
+  j.floret(ctx,0,0,pose.radius,pose.angle,(sourceOpacity+(1-sourceOpacity)*unfold)*j.openingGrowth(j.heroSeed,time),strands);
+  svg.dataset.sourceTime=String(time);
+ });
+ F['dandelion-seed-illustration']=(root,K,def)=>svgFactory(root,def,(ctx,t)=>{
+  ctx.translate(320,116);ctx.scale(1.25,1.25);J().floret(ctx,0,0,35,Math.sin(t*1.4)*.16,1);
+ });
 
 })();
 
@@ -1369,6 +1373,7 @@ function paintMoonRaster(raster,progress){
 }
  function moonProgress(t){return arrivals.reduce((sum,e)=>sum+smooth((t-e.start)/(e.end-e.start)),0)/arrivals.length;}
  function moonFactory(root,K,def,still){
+  root.dataset.art='original';
   root.innerHTML='<canvas class="pattern-canvas" width="640" height="360" aria-hidden="true"></canvas>';
   const canvas=root.firstElementChild,density=Math.min(4,Math.max(1,global.devicePixelRatio||1));canvas.width=640*density;canvas.height=360*density;
   const ctx=canvas.getContext('2d');if(!ctx)return ()=>{};ctx.setTransform(density,0,0,density,0,0);
@@ -1380,7 +1385,7 @@ function paintMoonRaster(raster,progress){
   };render(0);render.destroy=()=>{texture.width=texture.height=1;};return render;
  }
  F['moon-event-fill']=(root,K,def)=>moonFactory(root,K,def,false);
- F['osmanthus-moon-illustration']=(root,K,def)=>moonFactory(root,K,def,true);
+ F['osmanthus-moon-illustration']=(root,K,def)=>moonFactory(root,K,def,false);
 })();
 
 /* 原夕阳与波面受光倒影 */
@@ -1837,7 +1842,12 @@ function drawSun(ctx, x, y, opacity, behindHorizon = false, eyeOpen = 0, body = 
  F['sunset-sun-illustration']=(root,K,def)=>{
   root.innerHTML='<canvas class="pattern-canvas" width="640" height="360" aria-hidden="true"></canvas>';
   const canvas=root.firstElementChild,density=Math.min(4,Math.max(1,global.devicePixelRatio||1));canvas.width=640*density;canvas.height=360*density;
-  const ctx=canvas.getContext('2d');if(!ctx)return ()=>{};ctx.setTransform(density,0,0,density,0,0);sunBrush??=makeSunBrush();ctx.clearRect(0,0,640,360);ctx.save();ctx.translate(320,162);ctx.scale(2.2,2.2);drawSun(ctx,0,0,1);ctx.restore();return ()=>{};
+  const ctx=canvas.getContext('2d');if(!ctx)return ()=>{};ctx.setTransform(density,0,0,density,0,0);sunBrush??=makeSunBrush();
+  let last;const render=ms=>{
+   const time=24.5+Math.min(3.1,Math.max(0,ms/1000-.15));if(time===last)return;last=time;
+   const body=sunDeformationAt(time);ctx.clearRect(0,0,640,360);ctx.save();ctx.translate(320,162);ctx.scale(2.2,2.2);
+   drawSun(ctx,0,sunR*(1-body.y),1,false,0,body);ctx.restore();canvas.dataset.sourceTime=String(time);
+  };render(0);return render;
  };
 })();
 })(globalThis);

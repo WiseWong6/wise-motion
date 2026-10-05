@@ -9,8 +9,8 @@ import assert from 'node:assert/strict';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('catalog/registry.json'));
-assert.equal(data.effects.length, 316);
-assert.equal(data.effects.filter(x => x.kind === 'action').length, 230);
+assert.equal(data.effects.length, 360);
+assert.equal(data.effects.filter(x => x.kind === 'action').length, 274);
 assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 61);
 assert.equal(data.effects.filter(x => x.kind === 'composition').length, 25);
 assert.equal(new Set(data.effects.map(x => x.id)).size, data.effects.length);
@@ -48,7 +48,7 @@ for (const e of data.effects) {
     }
   }
   assert.equal(typeof e.loop, 'boolean');
-  assert.equal(e.source.factory, e.id);
+  assert.ok(typeof e.source.factory === 'string' && e.source.factory.length, e.id+' 缺少绘制入口');
   assert.equal(e.source.origin, 'original');
   assert.equal(e.source.license, 'AGPL-3.0-only');
   assert.equal(e.source.library, 'animejs@4.5.0');
@@ -57,8 +57,12 @@ for (const e of data.effects) {
   assert.ok((await stat(path.join(root, e.source.path))).isFile());
   assert.ok(e.parameters.speed.min <= e.parameters.speed.default && e.parameters.speed.default <= e.parameters.speed.max);
   if (e.parameters.ease) assert.ok(e.parameters.ease.options.includes(e.default_ease));
-  if (e.kind !== 'composition') assert.equal(e.actions.length, 0);
-  else { assert.ok(e.actions.length,e.id+' 未关联独立动作'); for (const id of e.actions) assert.ok(data.effects.some(x => x.id === id && ['action','illustration'].includes(x.kind)), e.id + ' 的关联参考无效：' + id); }
+  if (e.kind === 'action') assert.equal(e.actions.length, 0);
+  else {
+    if(e.kind === 'composition')assert.ok(e.actions.length,e.id+' 未关联独立动作');
+    assert.equal(new Set(e.actions).size,e.actions.length,e.id+' 的关联重复');
+    for (const id of e.actions) assert.ok(data.effects.some(x => x.id === id && (e.kind==='illustration' ? x.kind==='action' : ['action','illustration'].includes(x.kind))), e.id + ' 的关联参考无效：' + id);
+  }
   if (e.variants) {
     assert.ok(e.variants.length>1);
     assert.equal(new Set(e.variants.map(v=>v.id)).size,e.variants.length);
@@ -81,8 +85,21 @@ for (const e of data.effects) {
 }
 const factories = {}; const context = vm.createContext({MotionFactories: factories});
 for (const file of files) vm.runInContext(await read(file), context, {filename:file});
-assert.deepEqual(Object.keys(factories).sort(), data.effects.map(x => x.id).sort());
+const drawings=data.effects.flatMap(e=>[e,...(e.variants||[]).map(({id,label,...fields})=>({...e,...fields}))]);
+assert.deepEqual(Object.keys(factories).sort(), [...new Set(drawings.map(x => x.source.factory))].sort());
 assert.ok(Object.values(factories).every(x => typeof x === 'function'));
+for(const e of drawings){
+  const source=e.source,owner=data.effects.find(x=>x.id===source.factory);
+  assert.ok(owner,e.id+' 的绘制入口未登记');
+  if(source.factory!==e.id){
+    assert.equal(owner.source.path,source.path,e.id+' 的共享绘制来源不一致');
+    assert.ok(owner.kind==='illustration'&&owner.actions.includes(e.id),e.id+' 未与源插画关联');
+  }
+  for(const file of [source.path,...(source.dependencies||[]),...(source.assets||[])]){
+    assert.ok(file.startsWith('catalog/')&&!file.includes('..'),e.id+' 的示例资源路径无效');
+    assert.ok((await stat(path.join(root,file))).isFile(),e.id+' 的示例资源缺失：'+file);
+  }
+}
 for (const effect of data.effects.filter(e=>e.kind==='composition')) {
   const layers=factories[effect.id].breakdown;
   assert.ok(layers?.length,effect.id+' 缺少真实拆解');
@@ -152,4 +169,4 @@ const build = spawnSync(process.execPath, [path.join(root, 'scripts/build.mjs'),
 assert.equal(build.status, 0, build.stderr);
 const markdown = ['README.md','SKILL.md','NOTICE.md','references/index.md','references/history.md','references/method.md','references/sources.md','references/runtime-interface.md','references/material-refinement.md','references/apple-hig.md','tests/manual.md', ...data.effects.map(e => 'references/effects/' + e.id + '.md')];
 for (const file of markdown) for (const [, link] of (await read(file)).matchAll(/\]\(([^)]+)\)/g)) if (!/^(https?:|#)/.test(link)) assert.ok((await stat(path.resolve(root, path.dirname(file), link))).isFile(), file + ' 的链接缺失：' + link);
-console.log('检查通过：230 个动作、61 个插画单图、25 个组合、0 条历史配方与 0 个案例；定义、来源路径、生成文件、许可和脚本语法完整。');
+console.log('检查通过：274 个动作、61 个插画单图、25 个组合、0 条历史配方与 0 个案例；定义、关联动作、共享绘制、来源路径、生成文件、许可和脚本语法完整。');

@@ -27,26 +27,37 @@ async function originalMoon(){
  const source=await readFile(scenes+'august-night-osmanthus/scene.js','utf8');vm.runInContext(source.replace('new p5(p=>{','globalThis.model={moonProgress,moonTravelers,createMoonRaster,paintMoonRaster,moon,VIEW};\nnew p5(p=>{'),sandbox);
  const m=sandbox.model;m.moon.r=90;m.VIEW.scale=1;return m;
 }
-test('月面按原八十四个抵达事件渐满，月貌及透明柔边逐像素一致，满月静止',async()=>{
+test('月面按原八十四个抵达事件渐满，月貌及透明柔边逐像素一致，插画恢复相同盈满动作',async()=>{
  const env=await environment();try{
   const {w}=env,contexts=canvasContexts(w),o=await originalMoon(),raster=o.createMoonRaster(1,1,w.devicePixelRatio||1),root=w.document.getElementById('root'),e=def('moon-event-fill');assert.equal(o.moonTravelers.length,84);
   const render=w.MotionFactories[e.id](root,w.MotionKit,e),canvas=root.firstElementChild,ctx=contexts.get(canvas);
   for(const ms of [0,450,1300,2900,4500,5700,1300]){render(ms);const progress=o.moonProgress(11.5+ms/1000);near(+canvas.dataset.progress,progress);assert.equal(hash(contexts.get(ctx.draws.at(-1)[0]).image.data),hash(o.paintMoonRaster(raster,progress)));}
   render(0);assert.equal(+canvas.dataset.progress,0);render(e.duration_ms);assert.equal(+canvas.dataset.progress,1);const texture=ctx.draws.at(-1)[0];render.destroy();assert.equal(texture.width,1);
-  const ar=w.document.createElement('div'),a=def('osmanthus-moon-illustration'),still=w.MotionFactories[a.id](ar,w.MotionKit,a),ac=contexts.get(ar.firstElementChild),pixels=contexts.get(ac.draws.at(-1)[0]).image.data;
-  assert.equal(hash(pixels),hash(o.paintMoonRaster(raster,1)));assert.equal(pixels[3],0);const count=ac.draws.length;for(const ms of [0,1200,3000])still(ms);assert.equal(ac.draws.length,count);still.destroy();
+  const ar=w.document.createElement('div'),a=def('osmanthus-moon-illustration'),draw=w.MotionFactories[a.id](ar,w.MotionKit,a),ac=contexts.get(ar.firstElementChild),frames=[],artRaster=o.createMoonRaster(1,1,w.devicePixelRatio||1);
+  for(const ms of [0,1300,2900,5700,1300]){
+   draw(ms);const pixels=contexts.get(ac.draws.at(-1)[0]).image.data;
+   assert.equal(hash(pixels),hash(o.paintMoonRaster(artRaster,o.moonProgress(11.5+ms/1000))));assert.equal(pixels[3],0);frames.push(hash(pixels));
+  }assert.equal(frames[1],frames[4]);assert.equal(new Set(frames).size,4);draw.destroy();
+
  }finally{env.close();}
 });
 test('太阳路径及海面受光缓冲与原夕阳一致，独立太阳保留渐变与透明圆周',async()=>{
  const env=await environment();try{
   const {w}=env,contexts=canvasContexts(w),o={width:900,height:1200,window:{devicePixelRatio:1},document:w.document,pixelDensity:()=>1,SceneSound:class{}};w.document.body.dataset.aspect='3:4';vm.createContext(o);vm.runInContext(await readFile(scenes+'ocean-sunset/sketch.js','utf8'),o);
   vm.runInContext(`sceneStyle='warm';palette=SCENE_STYLES.warm;horizonY=Math.round(height*.76);sunX=width*.5;sunR=Math.min(width*.0456,height*.054);sunY=horizonY-sunR*.76;pickupTime=findPickupTime();waterContacts=findWaterContacts();sunExitTime=findSunExitTime();
-   const next=seededRandom(860214);waterRows=Array.from({length:72},(_,i)=>({depth:Math.pow((i+.15+next()*.7)/72,1.7),phase:next()*Math.PI*2,weight:.65+next()*.7}));globalThis.model={flightAt,drawWaterReflection,makeSunBrush,field:()=>waterReflectionField};`,o);
+   const next=seededRandom(860214);waterRows=Array.from({length:72},(_,i)=>({depth:Math.pow((i+.15+next()*.7)/72,1.7),phase:next()*Math.PI*2,weight:.65+next()*.7}));globalThis.model={flightAt,sunDeformationAt,drawWaterReflection,makeSunBrush,field:()=>waterReflectionField};`,o);
   const root=w.document.getElementById('root'),e=def('sunset-water-reflection'),render=w.MotionFactories[e.id](root,w.MotionKit,e),canvas=root.firstElementChild,ctx=contexts.get(canvas),fingerprints=new Set();
   for(const ms of [0,2800,7700,14000,2800]){render(ms);const time=12+ms/1000*1.5,story=o.model.flightAt(time);near(+canvas.dataset.elevation,story.light.elevation);near(+canvas.dataset.sunX,story.sunX);o.model.drawWaterReflection(context(),story,time);const pixels=contexts.get(ctx.draws.at(-1)[0]).image.data;assert.equal(hash(pixels),hash(o.model.field().image.data));fingerprints.add(hash(pixels));}
   assert.equal(fingerprints.size,4);
-  const ar=w.document.createElement('div'),a=def('sunset-sun-illustration'),still=w.MotionFactories[a.id](ar,w.MotionKit,a),ac=contexts.get(ar.firstElementChild),texture=ac.draws.at(-1)[0],expected=o.model.makeSunBrush();
-  assert.equal(hash(contexts.get(texture).image.data),hash(contexts.get(expected.canvas).image.data));assert.equal(contexts.get(texture).image.data[3],0);const count=ac.draws.length;for(const ms of [0,1500,3000])still(ms);assert.equal(ac.draws.length,count);
+  const ar=w.document.createElement('div'),a=def('sunset-sun-illustration'),draw=w.MotionFactories[a.id](ar,w.MotionKit,a),ac=contexts.get(ar.firstElementChild),texture=ac.draws.at(-1)[0],expected=o.model.makeSunBrush();
+  assert.equal(hash(contexts.get(texture).image.data),hash(contexts.get(expected.canvas).image.data));assert.equal(contexts.get(texture).image.data[3],0);
+  const initial=ac.draws.at(-1).slice(1),frames=[];
+  for(const ms of [0,600,1250,2300,3700,600]){
+   draw(ms);const body=o.model.sunDeformationAt(24.5+Math.min(3.1,Math.max(0,ms/1000-.15))),[,x,y,width,height]=ac.draws.at(-1);
+   near(width,initial[2]*body.x);near(height,initial[3]*body.y);near(x,initial[0]*body.x);
+   near(y,900*.0456*(1-body.y)+initial[1]*body.y);frames.push([x,y,width,height]);
+  }assert.deepEqual(frames[1],frames[5]);assert.ok(new Set(frames.map(JSON.stringify)).size>3);
+
  }finally{env.close();}
 });
 test('三十五只气球按原次序松开，位置和绳尾与原函数一致，定位可重复',async()=>{
@@ -55,6 +66,25 @@ test('三十五只气球按原次序松开，位置和绳尾与原函数一致�
   const {w}=env,root=w.document.getElementById('root'),e=def('drive-balloon-release'),render=w.MotionFactories[e.id](root,w.MotionKit,e);
   for(const t of [0,1.0999,1.1,1.1001,2,4.4,7.731,8]){render(t*1000);const svg=root.firstElementChild,p=o.model.balloonState(0,t).p,end=o.model.balloonString(0,t).end;near(+svg.dataset.firstX,p.x);near(+svg.dataset.firstY,p.y);near(+svg.dataset.firstEndX,end.x);near(+svg.dataset.firstEndY,end.y);assert.equal(+svg.dataset.released,Array.from({length:35},(_,i)=>t>o.model.release(i)).filter(Boolean).length);assert.equal(svg.querySelectorAll('radialGradient').length,35);}
   render(e.preview_ms);const before=frameMarkup(root);render(0);render(e.preview_ms);assert.equal(frameMarkup(root),before);
+ }finally{env.close();}
+});
+test('汽车轮毂、方向盘和轻微起伏逐时刻对照原驾驶曲线',async()=>{
+ const o={XIAOKUI_MEOW:{frames:1,rate:1}};vm.createContext(o);
+ vm.runInContext(await readFile(scenes+'xiaokui-balloon-drive/xiaokui-car.js','utf8'),o);
+ vm.runInContext(await readFile(scenes+'xiaokui-balloon-drive/scene.js','utf8')+'\nglobalThis.motion={driveDistance,vehicleBob,xiaokuiSteering,CAR_SCALE};',o);
+ const env=await environment();try{
+  const {w}=env,root=w.document.getElementById('root'),e=def('drive-car-illustration'),draw=w.MotionFactories[e.id](root,w.MotionKit,e),frames=[];
+  for(const t of [0,.3,.6,1.4,2.5,3,.6]){
+   draw(t*1000);const transforms=[...root.querySelectorAll('path')].map(n=>n.getAttribute('transform'));
+   for(const center of [426,976]){
+    const path=transforms.find(value=>value.includes(`translate(${center} 1078)`));
+    const angle=+path.match(new RegExp(`translate\\(${center} 1078\\) rotate\\(([^)]+)`))[1];
+    near(angle,o.motion.driveDistance(t)/o.motion.CAR_SCALE/(96*.52)*180/Math.PI);
+   }
+   const driver=transforms.find(value=>value.includes('translate(763 854) rotate('));
+   near(+driver.match(/translate\(763 854\) rotate\(([^)]+)/)[1],o.motion.xiaokuiSteering(t)*.55*180/Math.PI);
+   near(+transforms[0].match(/translate\(320 ([^)]+)/)[1],260+o.motion.vehicleBob(t));frames.push(frameMarkup(root));
+  }assert.equal(frames[2],frames[6]);assert.ok(new Set(frames).size>4);
  }finally{env.close();}
 });
 function strokeContext(){
@@ -68,11 +98,21 @@ test('蒲公英插画与 scenes 原作逐笔一致，整体等比缩放不单改
  assert.match(isolated,/function seed\([^\n]+floret\(c,0,0,35,/, '独立种子的来源调用已变化，需要重新对照');
  const env=await environment();try{
   const {w}=env,root=w.document.getElementById('root'),e=def('dandelion-radial-release'),render=w.MotionFactories[e.id](root,w.MotionKit,e);for(const ms of [0,249,250,400,800,1000,400]){render(ms);near(+root.firstElementChild.dataset.radius,j.openingEvent(1.4+ms/1000).radius);}
-  for(const [id,r,scale,y,hairs] of [['dandelion-subject-illustration',42,1.25,116,137],['dandelion-seed-illustration',35,1.25,116,37]]){
-   const ar=w.document.createElement('div'),still=w.MotionFactories[id](ar,w.MotionKit,def(id));still(0);const ctx=strokeContext();ctx.translate(320,y);ctx.scale(scale,scale);j.floret(ctx,0,0,r,0,1,hairs===137?j.filamentState(4.5):null);
-   const actual=[...ar.querySelectorAll('path[stroke]')].map(n=>({d:n.getAttribute('d'),transform:n.getAttribute('transform'),alpha:+n.getAttribute('opacity'),width:+n.getAttribute('stroke-width'),color:n.getAttribute('stroke')}));assert.equal(hash(JSON.stringify(actual)),hash(JSON.stringify(ctx.lines)),'原冠毛曲线、颜色、透明度或线宽有差异');assert.equal(actual.length,hairs+1);assert.equal(ar.querySelectorAll('path:not([stroke])').length,1);
-   const before=frameMarkup(ar);for(const ms of [0,1500,3000]){still(ms);assert.equal(frameMarkup(ar),before);}
+  for(const id of ['dandelion-subject-illustration','dandelion-seed-illustration']){
+   const ar=w.document.createElement('div'),draw=w.MotionFactories[id](ar,w.MotionKit,def(id)),subject=id.includes('subject'),frames=[];
+   for(const ms of [0,450,1200,2500,3000,1200]){
+    draw(ms);const ctx=strokeContext();
+    if(subject){
+     const time=2.35+Math.min(2.4,Math.max(0,ms/1000-.15)),pose=j.subjectPose(time,w.MotionDandelion.course),unfold=j.entryProgress(time),sourceOpacity=(.55+.45*Math.hypot(j.heroSeed.x,j.heroSeed.y)/112)*.85;
+     ctx.translate(320,158);ctx.scale(1.05,1.05);
+     j.floret(ctx,0,0,pose.radius,pose.angle,(sourceOpacity+(1-sourceOpacity)*unfold)*j.openingGrowth(j.heroSeed,time),j.filamentState(time).map((f,i)=>({...f,opacity:f.opacity*(i%13===0?1:unfold)})));
+    }else{ctx.translate(320,116);ctx.scale(1.25,1.25);j.floret(ctx,0,0,35,Math.sin(ms/1000*1.4)*.16,1);}
+    const actual=[...ar.querySelectorAll('path[stroke]')].map(n=>({d:n.getAttribute('d'),transform:n.getAttribute('transform'),alpha:+n.getAttribute('opacity'),width:+n.getAttribute('stroke-width'),color:n.getAttribute('stroke')}));
+    assert.equal(hash(JSON.stringify(actual)),hash(JSON.stringify(ctx.lines)),id+' 原冠毛曲线、角度、透明度和线宽');
+    assert.equal(ar.querySelectorAll('path:not([stroke])').length,1);frames.push(frameMarkup(ar));
+   }assert.equal(frames[2],frames[5]);assert.ok(new Set(frames).size>3);
   }
+
  }finally{env.close();}
 });
 test('无帆木船保留原船壳及归灯，纸飞机按原曲线折翼，渐变坐标不重复偏移',async()=>{

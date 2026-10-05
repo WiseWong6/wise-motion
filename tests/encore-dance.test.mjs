@@ -51,18 +51,21 @@ test('雨中曲历史入口已迁移到正式动作，六项独立导出均能�
   }finally{env.close();}
  }
 });
-test('独立伞插画保留原伞路径与遮挡，透明背景下定位不改变画面，导出可用',async()=>{
+test('独立伞插画保留原伞路径与遮挡，透明背景下恢复整段编舞，导出可用',async()=>{
  const env=await environment(true,{hash:'#encore-umbrella-illustration'});try{
   const e=data.effects.find(e=>e.id==='encore-umbrella-illustration'),root=env.w.document.createElement('div');
   assert.equal(env.w.document.querySelector('.effect-item[aria-current="true"]').dataset.effect,e.id);
   assert.equal(env.w.document.querySelector('[data-kind="illustration"]').getAttribute('aria-pressed'),'true');
   const render=env.w.MotionFactories[e.id](root,env.w.MotionKit,e);render(0);
-  const pose={x:0,y:0,angle:0,roll:0},b=U.bounds(pose);pose.x=320-(b.minX+b.maxX)/2;pose.y=180-(b.minY+b.maxY)/2;
-  lines=[];state={transform:'',globalAlpha:1};stack=[];U.draw(ctx,pose);
-  const actual=[...root.querySelectorAll('path[stroke]')].map(n=>({d:n.getAttribute('d'),transform:n.getAttribute('transform'),alpha:Number(n.getAttribute('opacity')),width:Number(n.getAttribute('stroke-width')),color:n.getAttribute('stroke')}));
-  assert.deepEqual(actual,lines);assert.equal(actual.length,12);assert.equal(root.querySelectorAll('path:not([stroke])').length,1);
-  assert.ok(!root.querySelector('rect,image,radialGradient'));
-  const before=frameMarkup(root);for(const ms of [1500,3000,0]){render(ms);assert.equal(frameMarkup(root),before);}
+  const frames=[];
+  for(const ms of [0,1800,6700,11300,15100,18400,22400,e.duration_ms,11300]){
+   render(ms);const pose=D.sample(ms/1000);
+   lines=[];state={transform:'',globalAlpha:1};stack=[];U.draw(ctx,pose);
+   const actual=[...root.querySelectorAll('path[stroke]')].map(n=>({d:n.getAttribute('d'),transform:n.getAttribute('transform'),alpha:Number(n.getAttribute('opacity')),width:Number(n.getAttribute('stroke-width')),color:n.getAttribute('stroke')}));
+   assert.deepEqual(actual,lines);assert.equal(actual.length,12);assert.equal(root.querySelectorAll('path:not([stroke])').length,1);
+   assert.ok(!root.querySelector('rect,image,radialGradient'));frames.push(frameMarkup(root));
+  }
+  assert.equal(frames[3],frames[8]);assert.ok(new Set(frames).size>6);
   const html=env.w.MotionExport.code(e),dom=new JSDOM(html,{url:'file:///wise-motion/demo.html',runScripts:'outside-only',pretendToBeVisual:true});try{
    const w=dom.window;w.ResizeObserver=class{observe(){}disconnect(){}};w.matchMedia=()=>({matches:false});
    for(const s of w.document.querySelectorAll('script'))w.eval(s.src?await readFile(new URL('../'+s.getAttribute('src'),import.meta.url),'utf8'):s.textContent);
