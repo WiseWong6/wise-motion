@@ -52,7 +52,7 @@ vec2 un(vec2 a,vec2 b,float k){float h=sat(.5+.5*(b.x-a.x)/k);return vec2(mix(b.
   const float GRAVITY=62.03703704;
   const float IMPACT=1.30;
   const float RELEASE=1.35;
-  const float SETTLED=2.96;
+  const float SETTLED=2.74;
   const float DROP_HEIGHT=4.02;
   // Position, speed and acceleration meet at rest at both ends of each motion.
   float motionEase(float q){q=sat(q);return clamp(q*q*q*(q*(q*6.-15.)+10.),0.,1.);}
@@ -128,8 +128,8 @@ vec2 un(vec2 a,vec2 b,float k){float h=sat(.5+.5*(b.x-a.x)/k);return vec2(mix(b.
     // Only the compact impact core remains while particles scatter from this same centre.
     float remain=1.-motionEase((phase-RELEASE)/.095);
     if(remain>.001)result=vec2(length(p-impactCenter())-BALL_RADIUS*remain,coreMaterial(p));
-    // Restore the compact solid-surface handoff while the particles finish gathering.
-    float fuse=motionEase((phase-2.58)/.38);
+    // Grow solid metal while incoming particles are absorbed, before they form a dotted word.
+    float fuse=motionEase((phase-2.26)/.48);
     if(fuse>0.){
       vec2 letters=wordmark(p);letters.x+=.14*(1.-fuse);
       if(letters.x<result.x)result=letters;
@@ -143,8 +143,9 @@ vec2 un(vec2 a,vec2 b,float k){float h=sat(.5+.5*(b.x-a.x)/k);return vec2(mix(b.
   }
   vec3 metalColor(float material){
     float k=clamp((material+1.5)/.6,0.,5.);
-    vec3 a=vec3(.98,.76,.38),b=vec3(.95,.49,.32),c=vec3(.94,.46,.62);
-    vec3 d=vec3(.68,.51,.90),f=vec3(.39,.68,.94),g=vec3(.41,.84,.70);
+    // Rich coloured plating: the coating carries the hue, reflection cards carry the brightness.
+    vec3 a=vec3(1.,.58,.035),b=vec3(1.,.22,.045),c=vec3(1.,.045,.39);
+    vec3 d=vec3(.50,.055,1.),f=vec3(.025,.36,1.),g=vec3(.025,.96,.40);
     if(k<1.)return mix(a,b,k);if(k<2.)return mix(b,c,k-1.);
     if(k<3.)return mix(c,d,k-2.);if(k<4.)return mix(d,f,k-3.);return mix(f,g,k-4.);
   }
@@ -189,17 +190,18 @@ vec2 un(vec2 a,vec2 b,float k){float h=sat(.5+.5*(b.x-a.x)/k);return vec2(mix(b.
   vec3 metalEnvironment(vec3 r,vec3 p){
     float sweep=e(3.18,4.36,phase);
     float keyX=mix(-.52,.20,sweep);
-    float key=(1.-e(.18,.30,abs(r.x-keyX)))*(1.-e(.25,.37,abs(r.y-.51)));
-    float strip=(1.-e(.055,.145,abs(r.x-.70)))*e(-.35,.02,r.y);
+    float key=(1.-e(.22,.27,abs(r.x-keyX)))*(1.-e(.28,.33,abs(r.y-.51)));
+    float strip=(1.-e(.065,.095,abs(r.x-.70)))*e(-.35,.02,r.y);
     float cardY=-.17+.052*sin(r.x*4.8+p.x*.12);
-    float card=exp(-pow((r.y-cardY)/.155,2.));
-    float blackFlag=exp(-pow((r.y-.095)/.110,2.));
+    float card=1.-e(.055,.105,abs(r.y-cardY));
+    float blackFlag=exp(-pow((r.y-.095)/.085,2.));
     float top=exp(-pow((r.y-.91)/.145,2.));
-    float edge=(1.-e(.075,.175,abs(r.x+.82)))*e(-.38,.14,r.y);
-    vec3 env=mix(vec3(.032,.041,.057),vec3(.21,.24,.29),e(-.6,.9,r.y));
-    env*=1.-.80*blackFlag;
-    env+=vec3(2.2,2.12,1.97)*key+vec3(1.38,1.51,1.68)*strip;
-    env+=vec3(.89,.94,1.04)*card+vec3(.64,.69,.78)*top+vec3(.91,.68,.48)*edge;
+    float edge=(1.-e(.085,.120,abs(r.x+.82)))*e(-.38,.14,r.y);
+    vec3 env=mix(vec3(.065,.072,.085),vec3(.48,.50,.55),e(-.6,.9,r.y));
+    env*=1.-.90*blackFlag;
+    // Bright neutral studio cards, separated by dark flags, read as polished electroplate.
+    env+=vec3(4.8,4.65,4.45)*key+vec3(3.2,3.35,3.6)*strip;
+    env+=vec3(2.35,2.45,2.65)*card+vec3(1.15,1.22,1.35)*top+vec3(2.25,2.02,1.75)*edge;
     return env;
   }
   vec2 sceneInterval(vec3 ro,vec3 rd){
@@ -234,10 +236,11 @@ vec2 un(vec2 a,vec2 b,float k){float h=sat(.5+.5*(b.x-a.x)/k);return vec2(mix(b.
     depth=surfaceHit(ro,rd);if(depth<0.)return vec4(0.);
     vec3 p=ro+rd*depth,n=normal(p),tint=metalColor(map(p).y);
     float facing=max(dot(n,-rd),0.);
-    vec3 conductor=tint+(vec3(1.)-tint)*pow(1.-facing,5.);
+    // Grazing reflections retain the coating hue instead of drawing a neutral-white outline.
+    vec3 conductor=tint+(vec3(1.)-tint)*(.10*pow(1.-facing,5.));
     vec3 r=reflect(rd,n);
-    // A small, symmetric reflection footprint softens grazing glints without surface noise.
-    float roughness=.055+.035*pow(1.-facing,2.);
+    // Tight symmetric reflections keep the plated surface crisp without noisy single rays.
+    float roughness=.018+.012*pow(1.-facing,2.);
     vec3 dx=vec3(roughness,0.,0.),dy=dx.yxy,dz=dx.yyx;
     vec3 reflection=metalEnvironment(r,p)*.40;
     reflection+=metalEnvironment(normalize(r+dx),p)*.10;
@@ -246,18 +249,24 @@ vec2 un(vec2 a,vec2 b,float k){float h=sat(.5+.5*(b.x-a.x)/k);return vec2(mix(b.
     reflection+=metalEnvironment(normalize(r-dy),p)*.10;
     reflection+=metalEnvironment(normalize(r+dz),p)*.10;
     reflection+=metalEnvironment(normalize(r-dz),p)*.10;
-    vec3 shade=reflection*conductor+tint*.018;
+    vec3 shade=reflection*conductor+tint*.055;
+    // A thin neutral glint sits on the strongest lamp reflection, not across the whole coating.
+    float faceGlint=e(.12,.42,facing);
+    float lampGlint=e(3.6,5.4,max(reflection.r,max(reflection.g,reflection.b)))*faceGlint;
+    shade+=vec3(.72,.75,.80)*lampGlint;
     vec3 light=normalize(vec3(-3.,5.,4.));
     float spec=pow(max(dot(reflect(-light,n),-rd),0.),48.);
     shade+=conductor*spec*.065;
     float sweep=e(3.10,4.36,phase),beamX=mix(-3.15,3.15,sweep);
     float beamCoordinate=p.x+.24*(p.y-.52)-beamX;
     float beam=exp(-pow(beamCoordinate/.15,2.));
+    float beamCore=exp(-pow(beamCoordinate/.042,2.));
     float halo=exp(-pow(beamCoordinate/.43,2.));
     float shine=sin(sweep*3.14159265)*(.28+.72*facing);
-    shade+=vec3(1.30,1.38,1.48)*(beam*.92+halo*.13)*shine;
+    shade+=conductor*(beam*1.20+halo*.18)*shine;
+    shade+=vec3(1.30,1.38,1.48)*beamCore*.72*shine*faceGlint;
     // A continuous highlight shoulder avoids flat, clipped-white slivers at the metal rim.
-    shade=vec3(1.)-exp(-max(shade,0.)*.90);
+    shade=vec3(1.)-exp(-max(shade,0.)*1.12);
     return vec4(shade,1.);
   }
   void main(){
@@ -355,14 +364,15 @@ const metalParticles=(()=>{
  return Object.freeze(list.map(p=>Object.freeze(p)));
 })();
 function particleFrame(time,part){
- if(part==='drop'||part==='sweep'||time<=1.35||time>=2.96)return new Float32Array(0);
+ if(part==='drop'||part==='sweep'||time<=1.35||time>=2.74)return new Float32Array(0);
  const burst=particleSmooth((time-1.35)/.35),appear=particleSmooth((time-1.35)/.028);
- const melt=particleSmooth((time-2.80)/.16),shrink=1-.86*particleSmooth((time-2.78)/.18);
  const frame=metalParticles.map(p=>{
   const gather=particleSmooth((time-1.70-p.delay)/.98),arc=gather>0&&gather<1?Math.sin(Math.PI*gather):0;
+  // Each arriving bead is absorbed before reaching rest; there is no complete particle-word hold.
+  const absorb=ease(.86,.985,gather),shrink=1-.90*absorb;
   const pos=p.start.map((v,k)=>(v+(p.burst[k]-v)*burst)*(1-gather)+p.target[k]*gather);
   pos[1]+=.28*arc;pos[2]+=p.bend*arc;
-  return [...pos,p.radius*(1+.65*burst*(1-gather))*shrink,p.letter*.6-1.5,appear*(1-melt)];
+  return [...pos,p.radius*(1+.65*burst*(1-gather))*shrink,p.letter*.6-1.5,appear*(1-absorb)];
  });
  frame.sort((a,b)=>a[2]-b[2]);return new Float32Array(frame.flat());
 }
@@ -538,8 +548,8 @@ for(const part of parts){factories[part.id]=(root,K,definition)=>make(root,K,def
 factories['metal-impact-type-sequence']=(root,K,definition)=>make(root,K,definition);
 factories['metal-impact-type-sequence'].requiresPreparation=true;
 factories['metal-impact-type-sequence'].breakdown=[
- {id:'body',name:'金属主体与地面响应',actions:['metal-drop-split','horizontal-metal-type'],start:0,end:5300,time:'0–5.3秒',detail:'单球落地后分成六颗，沿高低、左右、前后不同的固定方向大幅散开，从各自弹开的位置沿不同弧线连续回收，用0.76秒直接汇向同一个中心，短促压聚后从中心向四周散射，主体不再反弹；多数金属粒子冲出画面四周，少量留在画面内延续动势；同一批粒子沿弧线回收至字面，字形实体逐渐填满，颗粒在收拢末段退去，形成光滑字母。'},
- {id:'sweep',name:'宽灯板与字面扫光',actions:['polished-metal-sweep'],start:3100,end:5300,time:'3.10–5.3秒',detail:'宽灯板映出柔和金属亮暗带，斜向光带由左向右扫过固定字形，保持光滑边缘。'},
+ {id:'body',name:'金属主体与地面响应',actions:['metal-drop-split','horizontal-metal-type'],start:0,end:5300,time:'0–5.3秒',detail:'单球落地后分成六颗，沿高低、左右、前后不同的固定方向大幅散开，从各自弹开的位置沿不同弧线连续回收，用0.76秒直接汇向同一个中心，短促压聚后从中心向四周散射，主体不再反弹；多数金属粒子冲出画面四周，少量留在画面内延续动势；同一批粒子沿弧线回收时直接融入长出的金属字面，2.74秒完成实体字形，不出现完整粒子字再换材质。'},
+ {id:'sweep',name:'宽灯板与字面扫光',actions:['polished-metal-sweep'],start:3100,end:5300,time:'3.10–5.3秒',detail:'鲜艳彩色电镀字面保留浓郁底色，明亮灯板与深色反射形成清晰对比；斜向彩色亮带带着窄白光由左向右扫过固定字形，保持光滑边缘。'},
  {id:'caption',name:'品牌尾句',actions:[],start:3020,end:5300,time:'3.02–5.3秒',detail:'Oswald Bold 两行英文 WISE MOTION 与 MAKE IDEAS MOVE 渐入并保持。'}
 ];
 global.WiseMetalImpact={sources,fragmentFor,phaseAt,parts,particles:metalParticles,particleFrame,glyphDistance,particleVertex,particleFragment};
