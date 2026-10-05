@@ -578,8 +578,8 @@
     },
     {
       "path": "catalog/effects/motion-oasis.js",
-      "bytes": 68160,
-      "sha256": "6d4efaec1319d41163b4d91835be6ab0c7d3b2827357a052b7bb3a2e232b1b2a"
+      "bytes": 69701,
+      "sha256": "fa6091d82729a13530b39cc0c3b6bb99b414c70da03c0e26c3bb165b198a9a77"
     },
     {
       "path": "catalog/effects/osmanthus-motion.js",
@@ -783,13 +783,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1124050,
-      "sha256": "500caed958692450590ee9f23d3054705f4a2687b3311e74a18a96797291e08e"
+      "bytes": 1124978,
+      "sha256": "565088a7dfbe5389fc076deb0937110c5d51b01c9a41be8f9f7fbcbb7e5b781c"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1384576,
-      "sha256": "ce53449d8177469eacf192979f621681a57904276a02a34d9aa5d525b3de50e2"
+      "bytes": 1385504,
+      "sha256": "d832efbac041c5c94cf722c30405e1982461cf48e2c32552ae5fa45d5e0d809c"
     },
     {
       "path": "catalog/related-preview.js",

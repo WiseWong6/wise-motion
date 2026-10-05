@@ -250,10 +250,10 @@ function createEngine(registry) {
     if (!levels.has(k)) levels.set(k, 'rgb(' + rgb(hex).map(v => Math.round(clamp(v * k, 0, 255))).join(',') + ')');
     return levels.get(k);
   }
-  // A fixed orthographic camera: horizontal directions stay parallel at +/-30 degrees.
-  const VIEW = [1 / Math.sqrt(3), 1 / Math.sqrt(3), 1 / Math.sqrt(3)];
+  // Keep the elevation while turning from the corner view to the front edge.
+  const SIN_PITCH = 1 / Math.sqrt(3), COS_PITCH = Math.sqrt(2 / 3);
   const LIGHT = [-.30, -.42, .856];
-  let camera, faces, faceCount, vertexCount, lit, palette, now, waterHeights, surfaceLayer = 0;
+  let camera, cameraBasis, faces, faceCount, vertexCount, lit, palette, now, waterHeights, surfaceLayer = 0;
   let geometryCapture = null;
   const geometryCaches = [];
   // Each primitive call keeps just its latest model. Once growth has settled,
@@ -266,8 +266,8 @@ function createEngine(registry) {
       if (args.some(value => typeof value === 'function')) { cache.entries[index] = undefined; return build(...args); }
       if (previous && args.length === previous.args.length && args.every((value, i) => value === previous.args[i])) {
         for (const shape of previous.shapes) {
-          if (shape.line) emitStroke(shape.v, shape.color, shape.width, shape.glow, shape.depth);
-          else emitFace(shape.v, shape.color, shape.brightness, shape.depth, shape.options);
+          if (shape.line) emitStroke(shape.v, shape.color, shape.width, shape.glow, shape.bias);
+          else emitFace(shape.v, shape.color, shape.brightness, shape.normal, shape.options);
         }
         return;
       }
@@ -293,14 +293,31 @@ function createEngine(registry) {
     return keys.at(-1).slice(1);
   }
   function cameraAt(t) {
-    const [x, y, scale] = interpolate(t, [[0, 533, 335, 1.05], [.20, 533, 335, 1.75], [.3, 533, 335, 1.75], [.533333, 501.5, 330, 1.503], [.6, 506, 330, 1.392], [.7, 526.44, 331.8, 1.266], [.75, 553.2, 334.6, 1.225], [.766667, 574.2, 337, 1.208], [.783333, 610.72, 341, 1.178], [.85, 673, 348.4, 1.152], [.933333, 729.98, 357.2, 1.125], [.95, 732.5, 358, 1.125], [1.016667, 720.1, 361.1, 1.115], [1.1, 688.4, 363.5, 1.115], [1.183333, 638.88, 365.5, 1.117], [1.35, 516, 369, 1.12], [1.75, 365, 388, 1.135], [2.25, 503.9, 438.6, 1.062], [2.366667, 465, 436, 1.085], [2.5, 428, 433, 1.108], [2.7, 394, 430, 1.115], [2.816667, 394, 430, 1.115], [3.116667, 723.8, 291, .61], [3.75, 723.8, 291, .61]]);
-    return { x, y, scale };
+    // Overlapping moves keep the camera flowing through growth; each move has
+    // zero velocity and acceleration at its ends, including the final hold.
+    const move = (a, b) => { const p = clamp((t - a) / (b - a)); return p * p * p * (10 + p * (-15 + p * 6)); };
+    const opening = move(0, .26), unfold = move(.24, .92);
+    const growth = move(.86, 2.05), gallery = move(1.80, 2.55), ending = move(2.45, 3.10), turn = move(3.16, 3.65);
+    return {
+      x: mix(mix(533 + 26 * unfold - 72 * growth - 36 * gallery, 560, ending), 533, turn),
+      y: mix(mix(322 - 44 * unfold + 46 * growth + 12 * gallery, 190, ending), 213, turn),
+      scale: mix(mix(1.10 + .35 * opening - .50 * unfold + .13 * growth + .02 * gallery, .56, ending), .70, turn),
+      yaw: mix(PI / 4, PI / 2, turn)
+    };
   }
-  function project(v) {
-    return [camera.x + (v[0] - v[1]) / Math.sqrt(2) * camera.scale,
-      camera.y + ((v[0] + v[1] - 12 * S) / Math.sqrt(6) - v[2] * Math.sqrt(2 / 3)) * camera.scale];
+  function basisAt(pose) {
+    const yaw = pose.yaw ?? PI / 4, sin = Math.sin(yaw), cos = Math.cos(yaw);
+    return {sin, cos, view:[sin * COS_PITCH, cos * COS_PITCH, SIN_PITCH]};
   }
-  function depth(v) { return (v[0] + v[1] + v[2]) / Math.sqrt(3); }
+  function setCamera(pose) { camera = pose; cameraBasis = basisAt(pose); }
+  function projectWith(v, pose, basis) {
+    const x = v[0] - 6 * S, y = v[1] - 6 * S;
+    return [pose.x + (x * basis.cos - y * basis.sin) * pose.scale,
+      pose.y + ((x * basis.sin + y * basis.cos) * SIN_PITCH - v[2] * COS_PITCH) * pose.scale];
+  }
+  function project(v) { return projectWith(v, camera, cameraBasis); }
+  function projectAt(v, t) { const pose = cameraAt(t); return projectWith(v, pose, basisAt(pose)); }
+  function depth(v) { return v[0] * cameraBasis.view[0] + v[1] * cameraBasis.view[1] + v[2] * cameraBasis.view[2]; }
   function normal(v) {
     const a = v[0];
     for (let k = 1; k < v.length - 1; k++) {
@@ -313,7 +330,8 @@ function createEngine(registry) {
     }
     return null;
   }
-  function emitFace(v, color, brightness, totalDepth, options) {
+  function emitFace(v, color, brightness, n, options) {
+    if (n[0] * cameraBasis.view[0] + n[1] * cameraBasis.view[1] + n[2] * cameraBasis.view[2] < .001) return;
     const p = new Array(v.length);
     let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
     for (let i = 0; i < v.length; i++) {
@@ -322,25 +340,26 @@ function createEngine(registry) {
       minY = Math.min(minY, point[1]); maxY = Math.max(maxY, point[1]);
     }
     if (maxX < -25 || minX > W + 25 || maxY < -60 || minY > H + 40) return;
+    const totalDepth = v.reduce((sum, point) => sum + depth(point), 0) / v.length + (options.bias || 0);
     faces.push({ p, color, brightness, layer: surfaceLayer, depth: totalDepth, ...options });
     faceCount++; vertexCount += v.length;
   }
   function face(v, color, options = {}) {
-    const n = normal(v); if (!n || ((0 + n[0] * VIEW[0]) + n[1] * VIEW[1]) + n[2] * VIEW[2] < .001) return;
+    const n = normal(v); if (!n) return;
     const sunlight = Math.max(0, ((0 + n[0] * LIGHT[0]) + n[1] * LIGHT[1]) + n[2] * LIGHT[2]);
     const brightness = options.emissive ? 1 : .69 + sunlight * .34 + .045 * (n[1] - n[0]);
-    let totalDepth = 0; for (let i = 0; i < v.length; i++) totalDepth += depth(v[i]);
-    totalDepth = totalDepth / v.length + (options.bias || 0);
-    if (geometryCapture) geometryCapture.push({v,color,brightness,depth:totalDepth,options});
-    emitFace(v, color, brightness, totalDepth, options);
+    // Cache all world faces. Visibility and painter order belong to the live
+    // viewing direction, so a turn or a backwards seek cannot reuse old culling.
+    if (geometryCapture) geometryCapture.push({v,color,brightness,normal:n,options});
+    emitFace(v, color, brightness, n, options);
   }
-  function emitStroke(v, color, width, glow, totalDepth) {
+  function emitStroke(v, color, width, glow, bias) {
+    const totalDepth = v.reduce((sum, point) => sum + depth(point), 0) / v.length + bias;
     faces.push({ p: v.map(project), color, width, glow, line: true, layer: surfaceLayer, depth: totalDepth });
   }
   function stroke(v, color, width = 1, glow = 0, bias = .2) {
-    const totalDepth = v.reduce((q, a) => q + depth(a), 0) / v.length + bias;
-    if (geometryCapture) geometryCapture.push({v,color,width,glow,line:true,depth:totalDepth});
-    emitStroke(v, color, width, glow, totalDepth);
+    if (geometryCapture) geometryCapture.push({v,color,width,glow,line:true,bias});
+    emitStroke(v, color, width, glow, bias);
   }
   function surfaceArt(center, paint) {
     const p = project(center), u = project([center[0] + 1, center[1], center[2]]), v = project([center[0], center[1] + 1, center[2]]);
@@ -882,28 +901,44 @@ function createEngine(registry) {
       label(c, a.unit, 15 + width, 87, 15, '#49695b', 500); c.restore();
     }
   }
+  function brandFrameAt(t) {
+    const origin = [800, 640, -100], p = projectAt(origin, t);
+    const u = projectAt([origin[0], origin[1] - 1, origin[2]], t);
+    const v = projectAt([origin[0], origin[1], origin[2] - 1], t);
+    return [u[0] - p[0], u[1] - p[1], v[0] - p[0], v[1] - p[1], ...p];
+  }
   function brand(c, t) {
-    if (t < 2.91) return;
-    // Letters stand on an isometric plane; their extrusion is drawn behind each face.
-    c.save(); c.translate(69, 473); c.transform(.87, -.47, .61, .53, 0, 0);
-    const word = 'MOTION OASIS'; let pen = 0; c.font = '900 54px Arial';
+    if (t < 2.86) return;
+    // The title follows the front edge as the city turns right, then settles
+    // below the entire base with its supporting copy on horizontal baselines.
+    c.save(); c.transform(...brandFrameAt(t));
+    const word = 'MOTION OASIS'; let pen = 0; c.font = '900 84px Arial';
+    const widths = [...word].map(letter => c.measureText(letter).width);
+    const fit = Math.min(1, 620 / (widths.reduce((sum, width) => sum + width, 0) - 2 * (word.length - 1)));
+    c.save(); c.scale(fit, 1);
     for (let i = 0; i < word.length; i++) {
-      const p = phase(t, 2.91 + i * .020, 3.05 + i * .020);
-      c.save(); c.translate(pen, -(1 - p) * (92 + i * 5)); c.globalAlpha = p;
-      for (let j = 12; j > 0; j--) label(c, word[i], -j * .36, j, 54, '#8a5c3e', 900);
-      label(c, word[i], -.4, -.5, 54, '#cc8b58', 900); label(c, word[i], 0, 0, 54, '#315e57', 900); c.restore();
-      c.font = '900 54px Arial'; pen += c.measureText(word[i]).width - 1.5;
+      const p = phase(t, 2.86 + i * .010, 2.96 + i * .010);
+      c.save(); c.translate(pen, -(1 - p) * (64 + i * 2)); c.globalAlpha = p;
+      for (let j = 12; j > 0; j--) label(c, word[i], -j * .36, j, 84, '#8a5c3e', 900);
+      label(c, word[i], -.4, -.5, 84, '#cc8b58', 900); label(c, word[i], 0, 0, 84, '#315e57', 900); c.restore();
+      pen += widths[i] - 2;
     }
-    const caption = phase(t, 3.22, 3.44); if (caption > 0) {
-      c.globalAlpha = caption; c.strokeStyle = '#718775'; c.lineWidth = 1.2; c.beginPath(); c.moveTo(-4, 21); c.lineTo(pen + 6, 21); c.stroke();
-      label(c, '让动效在城市发生', 5, 48, 24, '#325f55', 500);
-      label(c, `WISE MOTION · ${Object.values(window.OpusWaterGallery.metadata.counts).reduce((sum, n) => sum + n, 0)} IDEAS`, 20, 71, 11.5, '#7c8975'); c.fillStyle = '#92f6e6'; c.beginPath(); c.arc(5, 67, 3.2, 0, PI * 2); c.fill();
+    c.restore();
+    const caption = phase(t, 2.99, 3.09); if (caption > 0) {
+      c.save(); c.globalAlpha = caption; c.strokeStyle = '#718775'; c.lineWidth = 1.8; c.beginPath(); c.moveTo(0, 24); c.lineTo(620, 24); c.stroke();
+      label(c, '让动效在城市发生', 0, 64, 38, '#325f55', 500);
+      c.restore();
+    }
+    const footer = phase(t, 3.01, 3.13); if (footer > 0) {
+      c.save(); c.globalAlpha = footer;
+      label(c, `WISE MOTION · ${Object.values(window.OpusWaterGallery.metadata.counts).reduce((sum, n) => sum + n, 0)} IDEAS`, 20, 104, 18, '#7c8975'); c.fillStyle = '#92f6e6'; c.beginPath(); c.arc(4, 99, 5, 0, PI * 2); c.fill();
+      c.restore();
     }
     c.restore();
   }
   function render(c, t, visible) {
     const show = key => !visible || visible.has(key);
-    beginGeometry(); now = t; camera = cameraAt(t); faces = []; faceCount = 0; vertexCount = 0; waterHeights = [];
+    beginGeometry(); now = t; setCamera(cameraAt(t)); faces = []; faceCount = 0; vertexCount = 0; waterHeights = [];
     palette = phase(t, 2.25, 2.366667); lit = phase(t, 2.01, 2.25); materialCache.clear(); shadeCache.clear();
     const bg = c.createLinearGradient(170, 80, 260, H);
     bg.addColorStop(0, colorMix('#eee5d5', '#f6e4c5', phase(t, 1.55, 2.68)));
@@ -932,13 +967,13 @@ function createEngine(registry) {
     c.fillStyle = '#f1d5af'; c.fillRect(0, 0, W, H);
     let tiles = 0;
     if (part === 'ground') {
-      camera = {x:533,y:275,scale:.86};
+      setCamera({x:533,y:275,scale:.86});
       groundShadow(c,533,525,355,29,.17); tiles = ground(t);
     } else if (part === 'buildings') {
-      camera = {x:516,y:514,scale:1.90};
+      setCamera({x:516,y:514,scale:1.90});
       groundShadow(c,533,510,150,25,.16); centralTower(t);
     } else {
-      camera = {x:206,y:215,scale:1.30};
+      setCamera({x:206,y:215,scale:1.30});
       tiles = ground(t, false, true); surfaceLayer = .70;
       window.OpusWaterGallery.render(t, {surfaceArt});
     }
@@ -948,7 +983,7 @@ function createEngine(registry) {
   }
   box = cachedGeometry(box); block = cachedGeometry(block); cylinder = cachedGeometry(cylinder);
   sphere = cachedGeometry(sphere); dome = cachedGeometry(dome); prism = cachedGeometry(prism);
-  window.Opus.Scene02 = {render,drawAction,inspect:()=>render.stats,tilePose,tileType,cameraAt,
+  window.Opus.Scene02 = {render,drawAction,inspect:()=>render.stats,tilePose,tileType,cameraAt,projectAt,brandFrameAt,
     dispose:()=>{faces=[];for(const cache of geometryCaches){cache.entries.length=0;cache.cursor=0;}geometryCapture=null;rgbCache.clear();materialCache.clear();shadeCache.clear();sphereMeshes.clear();domeMeshes.clear();render.stats=null;}};
 })();
 
@@ -960,7 +995,7 @@ const breakdown = [
   {id:'landscape',name:'植被与环境',actions:[],start:850,end:3750,time:'0.85–3.75秒',detail:'台地、花圃、曲干棕榈树、遮阳架和云朵构成城市环境。'},
   {id:'water',name:'水波与动效换映',actions:['water-wave-handoff','group-stagger','wave-grid'],start:880,end:3750,time:'0.88–3.75秒',detail:'26个水格持续起伏，中心与角落交替发波，按距离依次抬升；八种动效随波峰交叠切换。'},
   {id:'data',name:'目录数据卡',actions:[],start:2366.666667,end:2833.333334,time:'2.37–2.83秒',detail:'三张数据卡从当前目录统计动作、插画和组合数量，并连到实际水面位置。'},
-  {id:'brand',name:'立体英文收尾',actions:[],start:2910,end:3750,time:'2.91–3.75秒',detail:'MOTION OASIS逐字落在倾斜平面上，中文与目录总数随后出现。'}
+  {id:'brand',name:'立体英文收尾',actions:[],start:2860,end:3750,time:'2.86–3.75秒',detail:'数据卡退场后，MOTION OASIS与中文出现在地块右前方；3.16–3.65秒随地块向右旋转至正面，最终文案在地块下方居中，文字与地块正面边缘均水平。'}
 ];
 function make(root,kit,definition={},part) {
   const doc=root.ownerDocument,box=doc.createElement('div'),canvas=doc.createElement('canvas');

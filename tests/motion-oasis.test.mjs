@@ -26,7 +26,7 @@ function recorder(){
 }
 test('完整城市任意定位保持几何一致，水面厚度与图形高度连续对应',()=>{
  const e=scope.WiseMotionOasis.createEngine(data),r=recorder();
- const times=[0,.11,.32,.54,.79,.95,1.4,1.82,2.24,2.48,2.70,2.89,3.12,3.5,3.75];
+ const times=[0,.11,.32,.54,.79,.95,1.4,1.82,2.24,2.48,2.70,2.89,3.12,3.32,3.5,3.61,3.75];
  const samples=times.map(t=>r.hash(c=>e.render(c,t)).value);
  for(let i=times.length-1;i>=0;i--)assert.equal(r.hash(c=>e.render(c,times[i])).value,samples[i]);
  for(let frame=54;frame<=225;frame++){
@@ -35,6 +35,77 @@ test('完整城市任意定位保持几何一致，水面厚度与图形高度�
  }
  assert.equal(e.gallery.metadata.counts.action,data.effects.filter(x=>x.kind==='action').length);
  assert.equal(e.gallery.metadata.total,data.effects.length);e.dispose();
+});
+
+test('镜头逐帧平顺，文案出现后向右转正，末尾保持正面构图',()=>{
+ const e=scope.WiseMotionOasis.createEngine(data);
+ let previous=e.cameraAt(0);
+ for(let frame=1;frame<=225;frame++){
+  const current=e.cameraAt(frame/60);
+  assert.ok(Object.values(current).every(Number.isFinite));
+  assert.ok(Math.hypot(current.x-previous.x,current.y-previous.y)<16,'每帧横移与升降不能突然跃动');
+  assert.ok(Math.abs(current.scale-previous.scale)<.05,'每帧缩放不能突然跳变');
+  assert.ok(current.yaw>=Math.PI/4&&current.yaw<=Math.PI/2);
+  assert.ok(current.yaw>=previous.yaw,'收尾持续向右旋转，不反向或折返');
+  previous=current;
+ }
+ const step=1e-6;
+ for(const time of [.24,.26,.86,.92,1.80,2.05,2.45,2.55,3.10,3.16,3.65]){
+  const before=e.cameraAt(time-step),at=e.cameraAt(time),after=e.cameraAt(time+step);
+  for(const key of ['x','y','scale','yaw'])assert.ok(Math.abs((at[key]-before[key])/step-(after[key]-at[key])/step)<.01,'运镜衔接的速度必须连续');
+ }
+ const ending=e.cameraAt(3.75);
+ for(const time of [3.65,3.70,3.75])assert.deepEqual(e.cameraAt(time),ending,'整体转正后镜头保持停稳');
+ assert.equal(e.cameraAt(3.13).yaw,Math.PI/4);assert.equal(ending.yaw,Math.PI/2);
+ const frontLeft=e.projectAt([660,660,0],3.75),frontRight=e.projectAt([660,0,0],3.75),backLeft=e.projectAt([0,660,0],3.75);
+ assert.equal(frontLeft[1],frontRight[1],'地块正面边缘水平');assert.equal(frontLeft[0],backLeft[0],'地块不再以对角朝向画面');
+ e.dispose();
+});
+
+test('数据卡先消失，文案随地块向右转正，最终位于地块下方',()=>{
+ const e=scope.WiseMotionOasis.createEngine(data),texts=[],stack=[];
+ let matrix=[1,0,0,1,0,0],font='',alpha=1;
+ const compose=([a,b,c,d,x,y])=>{
+  const [u,v,w,z,tx,ty]=matrix;
+  matrix=[u*a+w*b,v*a+z*b,u*c+w*d,v*c+z*d,u*x+w*y+tx,v*x+z*y+ty];
+ };
+ const size=()=>Number(font.match(/([\d.]+)px/)[1]);
+ const width=s=>[...s].reduce((n,char)=>n+size()*(/[\u4e00-\u9fff]/.test(char)?1:.7),0);
+ const ctx=new Proxy({
+  save(){stack.push({matrix:[...matrix],font,alpha});},restore(){({matrix,font,alpha}=stack.pop());},
+  translate(x,y){compose([1,0,0,1,x,y]);},scale(x,y){compose([x,0,0,y,0,0]);},transform(...values){compose(values);},
+  measureText:s=>({width:width(s)}),
+  fillText(text,x,y){
+   if(alpha<=0)return;
+   const [a,b,c,d,tx,ty]=matrix,w=width(text),h=size();
+   const points=[[x,y-h],[x+w,y-h],[x+w,y+h*.25],[x,y+h*.25]].map(([u,v])=>[a*u+c*v+tx,b*u+d*v+ty]);
+   texts.push({text,matrix:[...matrix],points});
+  },
+  createLinearGradient:()=>({addColorStop(){}}),createRadialGradient:()=>({addColorStop(){}})
+ },{get:(o,k)=>o[k]||(()=>{}),set:(o,k,v)=>{if(k==='font')font=v;if(k==='globalAlpha')alpha=v;return true;}});
+ const labels=new Set(['brand','data']);
+ e.render(ctx,2.82,labels);assert.ok(texts.some(entry=>entry.text==='ACTIONS'));assert.ok(!texts.some(entry=>entry.text==='M'));
+ texts.length=0;e.render(ctx,2.85,labels);assert.equal(texts.length,0,'卡片退完后才出文案');
+ e.render(ctx,2.88,labels);assert.ok(texts.some(entry=>entry.text==='M'));assert.ok(!texts.some(entry=>entry.text==='ACTIONS'));
+ const tilted=e.brandFrameAt(3.13);assert.ok(tilted[1]<-.1,'文案沿右前方斜边出现，随右转逐渐放平');
+ const turned=e.brandFrameAt(3.75);assert.equal(turned[1],0);assert.equal(turned[2],0);
+ for(let frame=172;frame<=225;frame++){
+  texts.length=0;e.render(ctx,frame/60,new Set(['brand']));
+  for(const entry of texts)for(const [x,y] of entry.points)assert.ok(x>=28&&x<=1066-28&&y>=28&&y<=600-24,'文案入场与旋转过程不能越出画面');
+ }
+ texts.length=0;e.render(ctx,3.75,labels);
+ const cityBottom=Math.max(...[[663,663,-77],[663,-3,-77]].map(point=>e.projectAt(point,3.75)[1]));
+ for(const entry of texts)for(const [x,y] of entry.points){
+  assert.ok(x>=28&&x<=1066-28,'文案须保留画幅边距');
+  assert.ok(y>=cityBottom+18&&y<=550,'所有文案须位于地块底边下方并保留间距');
+ }
+ const titleStart=e.brandFrameAt(3.75)[4],titleEnd=titleStart+620*e.cameraAt(3.75).scale;
+ assert.ok(Math.abs((titleStart+titleEnd)/2-e.cameraAt(3.75).x)<1e-8,'整组文案在地块下方居中');
+ const caption=texts.find(entry=>entry.text==='让动效在城市发生');
+ const count=texts.find(entry=>entry.text.startsWith('WISE MOTION'));
+ assert.ok(caption&&count);assert.equal(caption.matrix[1],0);assert.equal(caption.matrix[2],0);assert.equal(count.matrix[1],0);assert.equal(count.matrix[2],0);
+ assert.ok(count.text.includes(String(data.effects.length)));assert.equal(stack.length,0);
+ e.dispose();
 });
 
 test('静止构件复用几何，暖缓存与新实例的绘制指令保持一致',()=>{
@@ -47,7 +118,7 @@ test('静止构件复用几何，暖缓存与新实例的绘制指令保持一�
  const warm=r.hash(c=>engine.render(c,3.5));
  assert.deepEqual(warm,cold,'复用模型不能改变路径、颜色渐变或绘制顺序');
  assert.ok(normalCalls<coldCalls*.75,`重复计算应减少，首次 ${coldCalls} 次，复用后 ${normalCalls} 次`);
- for(const time of [2.7,3.5,.5,3.5,3.51]){
+ for(const time of [2.7,3.75,.5,3.5,3.13,3.75]){
   const freshEngine=isolated.WiseMotionOasis.createEngine(data);
   assert.equal(r.hash(c=>engine.render(c,time)).value,r.hash(c=>freshEngine.render(c,time)).value,'跳转和实例之间不能串用几何');
   freshEngine.dispose();
