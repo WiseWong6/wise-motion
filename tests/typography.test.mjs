@@ -67,7 +67,7 @@ import json, sys
 from fontTools.ttLib import TTFont
 fonts=[TTFont(path) for path in sys.argv[1:]]
 print(json.dumps([{chr(n):f['hmtx'].metrics[name][0]/f['head'].unitsPerEm for n,name in f.getBestCmap().items()} for f in fonts],ensure_ascii=False))
-`,...['Oswald-Bold','WiseMotionSans-Light','WiseMotionSans-Bold'].map(name=>new URL('../catalog/fonts/'+name+'.woff2',import.meta.url).pathname)],{encoding:'utf8',maxBuffer:4*1024*1024});
+`,...['Oswald-Bold','SourceHanSansSC-Light','SourceHanSansSC-Bold'].map(name=>new URL('../catalog/fonts/'+name+'.woff2',import.meta.url).pathname)],{encoding:'utf8',maxBuffer:4*1024*1024});
   assert.equal(measured.status,0,measured.stderr);
   const [latin,chinese,bold]=JSON.parse(measured.stdout);
   const width=(text,size,spacing=0)=>Array.from(text).reduce((n,ch)=>n+(latin[ch]??chinese[ch])*size+spacing,0);
@@ -102,7 +102,7 @@ print(json.dumps([{chr(n):f['hmtx'].metrics[name][0]/f['head'].unitsPerEm for n,
     const sign=part('sign'),first=part('digit0-a'),second=part('digit1-a'),percent=part('percent');
     const size=Number(part('readout').getAttribute('font-size')),gap=size*.04;
     assert.ok(bold['−'],'负号必须有本地粗体字形');
-    assert.equal(sign.getAttribute('font-family'),'Wise Motion Sans,sans-serif');
+    assert.equal(sign.getAttribute('font-family'),'Source Han Sans SC,sans-serif');
     assert.ok(Number(sign.getAttribute('x'))+bold['−']*size+gap<=Number(first.getAttribute('x')),'负号不能压住首位数字');
     const digitWidth=Math.max(...[...'0123456789'].map(ch=>latin[ch]))*size;
     for(const [left,right]of [[first,second],[second,percent]]){

@@ -4,7 +4,7 @@
   'use strict';
   const F=global.MotionFactories=global.MotionFactories||{};
   const ink='#1C1A16',blue='#1D4E89',kraft='#C7B694';
-  const mono='Oswald, "Wise Motion Sans", sans-serif';
+  const mono='Oswald, "Source Han Sans SC", sans-serif';
   const cn='"STFangsong", "FangSong", "Songti SC", "Courier New", serif';
   const clamp=x=>Math.max(0,Math.min(1,x));
   const seg=(t,a,b)=>clamp((t-a)/(b-a));

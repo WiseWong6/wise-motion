@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "catalog/app.css",
-      "bytes": 55199,
-      "sha256": "97236c9871ee46072b318ea98a38637174ab364a4447e65e68054944f02d6bb2"
+      "bytes": 55162,
+      "sha256": "30733dcb6d6da5bb04e6ca61f4df522279438bc47b6526b37f60e3af6ba52f71"
     },
     {
       "path": "catalog/app.js",
@@ -82,6 +82,11 @@
       "sha256": "db4b2b82bacb29673c7f598c205acec0c6446bcf8ce1038ed1a2f49c03016b90"
     },
     {
+      "path": "catalog/assets/civilization-growth/civilization-atlas.mjs",
+      "bytes": 1394,
+      "sha256": "eb6f74878fa0b695d718c52c0964bcd53c36baeceddc3b4e50cc80a51bbe1106"
+    },
+    {
       "path": "catalog/assets/civilization-growth/civilization/exploration.mjs",
       "bytes": 729,
       "sha256": "a5ba9e2acd855d07de0d42a4f623b6e2bfa85a3cf3cf2d4b50ccb774e94f07de"
@@ -130,11 +135,6 @@
       "path": "catalog/assets/civilization-growth/civilization/wheels.mjs",
       "bytes": 1413,
       "sha256": "f3fd9ed8dcfb422ff6cc85f6ee4475286b6753825840d74ed17ce502debce563"
-    },
-    {
-      "path": "catalog/assets/civilization-growth/civilization-atlas.mjs",
-      "bytes": 1394,
-      "sha256": "eb6f74878fa0b695d718c52c0964bcd53c36baeceddc3b4e50cc80a51bbe1106"
     },
     {
       "path": "catalog/assets/civilization-growth/cursive-data.mjs",
@@ -312,6 +312,11 @@
       "sha256": "185ecf1270a19a2f212b5b2c7784ba6fdbcac52d6fc0458a15419bd5683a5814"
     },
     {
+      "path": "catalog/assets/particle-scenes/notes-source.js",
+      "bytes": 833649,
+      "sha256": "230572a1c37ce45014e66638ef46e4010699528a361d444e3623931331073cf3"
+    },
+    {
       "path": "catalog/assets/particle-scenes/notes/assets/score-clean.svg",
       "bytes": 91997,
       "sha256": "887be82c355d784f5c4e55879de568ef45209e815cc6b5c3ecaa9beb9e4b701e"
@@ -362,11 +367,6 @@
       "sha256": "481ca6d4537060fb92544231f0efaf328ad69a9ae9820c0944a8be0acd645608"
     },
     {
-      "path": "catalog/assets/particle-scenes/notes-source.js",
-      "bytes": 833649,
-      "sha256": "230572a1c37ce45014e66638ef46e4010699528a361d444e3623931331073cf3"
-    },
-    {
       "path": "catalog/assets/selfie-phone.webp",
       "bytes": 698886,
       "sha256": "d0cd0465e6534e5079e6a43952f48e2de0fd5b2f711dc02390c2f85ed8e90a93"
@@ -413,8 +413,8 @@
     },
     {
       "path": "catalog/effects/attention.js",
-      "bytes": 6570,
-      "sha256": "8988eea44f2bca61ec859514ffeddd5a1525f6a29c261c4c7ac61aab1f048276"
+      "bytes": 6572,
+      "sha256": "2707be3fd3d09671f4c53294cb3c3e5eca36864fbdd8905c4d6d69012d4c0960"
     },
     {
       "path": "catalog/effects/capsule-type.js",
@@ -438,8 +438,8 @@
     },
     {
       "path": "catalog/effects/claude-tile-illustrations.js",
-      "bytes": 78816,
-      "sha256": "410182c9a555233af47b25512d77af6ba5b928fdb43c1795037e151e28faa61a"
+      "bytes": 78818,
+      "sha256": "a1d6552b7eec955af644cef05b7c641be4c3647530b1c8b6a9da0a43a8abf5a5"
     },
     {
       "path": "catalog/effects/collage-film.js",
@@ -473,8 +473,8 @@
     },
     {
       "path": "catalog/effects/data-comparisons.js",
-      "bytes": 14811,
-      "sha256": "d8e6c1f57773a1f7d4e2ffc1c56c5074df76c1389fe24ee53c8a467c0e0ba50b"
+      "bytes": 14813,
+      "sha256": "82f1a39135491ae00aba93cfedff52e1afea683c739ee2b639306e908a38d38e"
     },
     {
       "path": "catalog/effects/data-motion.js",
@@ -483,8 +483,8 @@
     },
     {
       "path": "catalog/effects/dither-book.js",
-      "bytes": 18761,
-      "sha256": "a445612746e7798ac3a6d7b118f91c1cfe2f5ea926a3c7cb51cfcfff04102f9a"
+      "bytes": 18742,
+      "sha256": "aeec307131c6d7da2158807aecf402c83b77960d16599f6539aa066f9b8c6a78"
     },
     {
       "path": "catalog/effects/door-halftone.js",
@@ -528,8 +528,8 @@
     },
     {
       "path": "catalog/effects/glyph-code-fill.js",
-      "bytes": 3168,
-      "sha256": "223b8f610c1e8d3c0af83ad9f41dfeeba546667a65c1c3ee3c2066da17945984"
+      "bytes": 3170,
+      "sha256": "424d327e3806082cf454675ffc4a54992105bc02de1c08949348ab16ac88d78a"
     },
     {
       "path": "catalog/effects/history-nature.js",
@@ -538,28 +538,28 @@
     },
     {
       "path": "catalog/effects/history-patterns.js",
-      "bytes": 59454,
-      "sha256": "d61d484e020b2b45bc4d2faf0a8653e0ed458aa4171be399ad69f43ef1570537"
+      "bytes": 59458,
+      "sha256": "7a6165c99a46c5dd9082ff3dc1f23fb08392835d5b6f9006b44ec5e875f1dc21"
     },
     {
       "path": "catalog/effects/hud-targeting.js",
-      "bytes": 188728,
-      "sha256": "432b3b19ac14f03dd273e2632803e4be7cb6dd26021fab238c3e079534ce0a40"
+      "bytes": 188734,
+      "sha256": "9474136647f2a2d082594686ae20ec29fe5105fc19bf027243c5b2a048b38147"
     },
     {
       "path": "catalog/effects/illustrations.js",
-      "bytes": 22428,
-      "sha256": "c426e3c6af34b182cff49c25e3230e4a1c8324b5c76ae4cef6baa4ca4b14e045"
+      "bytes": 22432,
+      "sha256": "d60fbb80f478ff896ba88ad1d3064363f7dabebb05329a92071799198844d717"
     },
     {
       "path": "catalog/effects/kimi-illustrations.js",
-      "bytes": 20454,
-      "sha256": "aeef6f45d0d7e37992f2a29750c2b965f033ef5d3e40d25c6481831fa6291216"
+      "bytes": 20456,
+      "sha256": "8ce5f5a833fb9b875c168c408058fceb3842f935f2acd7ab0b484a9bad2bbd11"
     },
     {
       "path": "catalog/effects/letter-ripple.js",
-      "bytes": 39504,
-      "sha256": "00ffae15b917df911f9033c9b5fc766157125bce40b02d36a4700c47d9f8069c"
+      "bytes": 39497,
+      "sha256": "ae8a7d955e14b452e9a8d84f2e0fdb2de98327958a5634c2871c91c555cb0ec4"
     },
     {
       "path": "catalog/effects/letter-settle.js",
@@ -578,8 +578,8 @@
     },
     {
       "path": "catalog/effects/math-formula-drift.js",
-      "bytes": 2054,
-      "sha256": "b5a362f1f34bb330e3a9f64df73786824c6822eef807911f413d44d78ad8ba9d"
+      "bytes": 2056,
+      "sha256": "8def569fd0b3975dddc7f44f236986b4542547771a7c395a2a42ddc207e84a6e"
     },
     {
       "path": "catalog/effects/metal-impact.js",
@@ -598,8 +598,8 @@
     },
     {
       "path": "catalog/effects/paper-showcase.js",
-      "bytes": 22237,
-      "sha256": "9d731014b66d0ed36cb1d02c32a67b1c7a99c319ef8ed6a3bf1b6a50b2409a53"
+      "bytes": 22239,
+      "sha256": "8a3269cc549d022d48b4f6c773b4f75641d28165397f5602fbdf0d2e6097c3fa"
     },
     {
       "path": "catalog/effects/particle-scenes.js",
@@ -643,8 +643,8 @@
     },
     {
       "path": "catalog/effects/reel-neon.js",
-      "bytes": 22099,
-      "sha256": "e2cde8b9f4bfe03db227f1c6dd5101e184c3b98763b0da51b8e108e5326071b3"
+      "bytes": 22101,
+      "sha256": "b6887771c9a862dc33533b2e1abdaf2aa80f40cd8d5adbf0ef910639c9cb4267"
     },
     {
       "path": "catalog/effects/reel-opening.js",
@@ -658,8 +658,8 @@
     },
     {
       "path": "catalog/effects/reel-prompt-outro.js",
-      "bytes": 46806,
-      "sha256": "23b94aef0a1551c431cb51bc2760026d7a76a006dcde13ec85517d0853ecf472"
+      "bytes": 46808,
+      "sha256": "25c33b2a8eed69cc7c1131d813debfe3e2c733ce93a49e7649366b328bc01a1c"
     },
     {
       "path": "catalog/effects/reel-transitions.js",
@@ -717,6 +717,11 @@
       "sha256": "a8835c19ed7c68cbc4e0a3d1189648122f6059e3da12058af78932c3e5d4a1ce"
     },
     {
+      "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
+      "bytes": 9795056,
+      "sha256": "b970f649a614a496b5c72adeb92a5ced30901747f07aa18f2438f2a6536a1b1f"
+    },
+    {
       "path": "catalog/fonts/OFL-Letter.txt",
       "bytes": 5171,
       "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
@@ -747,24 +752,19 @@
       "sha256": "6ffbc6f6b80e5dfdedc1a1756ea89eb2ab722bc37ba280c3fb247c899881ae62"
     },
     {
-      "path": "catalog/fonts/WiseMotionLetter-Regular.woff2",
-      "bytes": 8590272,
-      "sha256": "e1ca0fffb7571276ab1e0068d88f597ccee3e10f49b7f3f968cba41fcabf168c"
+      "path": "catalog/fonts/SourceHanSansSC-Bold.woff2",
+      "bytes": 12816312,
+      "sha256": "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
     },
     {
-      "path": "catalog/fonts/WiseMotionSans-Bold.woff2",
-      "bytes": 558560,
-      "sha256": "fa2a523bf5e38aade216db65c20afc4d816ff1264c1259208d5858c592558395"
+      "path": "catalog/fonts/SourceHanSansSC-Light.woff2",
+      "bytes": 11128356,
+      "sha256": "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
     },
     {
-      "path": "catalog/fonts/WiseMotionSans-Light.woff2",
-      "bytes": 526180,
-      "sha256": "22f8ea3eecc6ceac0125564572f1bf81cdb4935c1c25c3a218af50c40563787a"
-    },
-    {
-      "path": "catalog/fonts/WiseMotionSans-Regular.woff2",
-      "bytes": 542116,
-      "sha256": "48cfe6b31aa63d1fa35a0ec7a3c32b48830e487d21e6bf07488019c26fdeab72"
+      "path": "catalog/fonts/SourceHanSansSC-Regular.woff2",
+      "bytes": 12118576,
+      "sha256": "61bdd20c0f526fc8ef9e63333720effe8c81a7f41bcd7f9c0780a47bcfa22721"
     },
     {
       "path": "catalog/history-data.js",
@@ -807,6 +807,11 @@
       "sha256": "f29e6f0f68e395ace6da2f82c290d01878dfc052580c5b36eb9db0c24351f326"
     },
     {
+      "path": "catalog/remotion-sources.js",
+      "bytes": 1573982,
+      "sha256": "99b1d90f98bd25253d947791e360e973207457fe67da5592ab2ce929078349ec"
+    },
+    {
       "path": "catalog/remotion/civilization-growth.jsx",
       "bytes": 1829,
       "sha256": "8ccdda14dc9429f461e5911e527bb0b60ba2dead012f9b4f29db93d5a1228f9a"
@@ -822,19 +827,14 @@
       "sha256": "0356ac4f7be3adf330d796a3477a830108b281a0b936e8dad1bf2d443b3a2e6d"
     },
     {
-      "path": "catalog/remotion-sources.js",
-      "bytes": 1573982,
-      "sha256": "99b1d90f98bd25253d947791e360e973207457fe67da5592ab2ce929078349ec"
-    },
-    {
       "path": "catalog/runtime.js",
       "bytes": 11668,
       "sha256": "26ec791d47cd6ffa87edc629503bede99061a330ba6edecb2b060323841a360c"
     },
     {
       "path": "catalog/scenes.css",
-      "bytes": 15471,
-      "sha256": "308b9044512449751423681f1202b0fde4422a12e888baa8af363d1b556ce917"
+      "bytes": 15422,
+      "sha256": "6283b30715e4841408df3d25db30399c10d99d51a41e06f1f9284eee479c428b"
     },
     {
       "path": "catalog/thumbnails.js",

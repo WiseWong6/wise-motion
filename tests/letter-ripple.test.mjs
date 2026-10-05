@@ -107,11 +107,11 @@ test('正式入口、缩略图、旧名搜索和导出完整，定位稳定且�
 test('去掉蓝底后前景与原适配器逐像素一致，字体一致，前进与回拖无残影', {skip:!native},async()=>{
   const originalFont=files.find(f=>f.file.endsWith('.ttf')).file;
   assert.ok(native.GlobalFonts.registerFromPath(originalFont,'Completed WenKai'));
-  assert.ok(native.GlobalFonts.registerFromPath(new URL('../catalog/fonts/WiseMotionLetter-Regular.woff2',import.meta.url).pathname,'Wise Motion Letter'));
+  assert.ok(native.GlobalFonts.registerFromPath(new URL('../catalog/fonts/LXGWWenKai-Regular.woff2',import.meta.url).pathname,'LXGW WenKai'));
   const text='那些凌晨时分敲下的代码，是不会说谎的星星。';
   const pixels=canvas=>Buffer.from(canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data);
   const sha=canvas=>createHash('sha256').update(pixels(canvas)).digest('hex');
-  const fontImages=['Completed WenKai','Wise Motion Letter'].map(f=>{
+  const fontImages=['Completed WenKai','LXGW WenKai'].map(f=>{
     const c=native.createCanvas(500,60),g=c.getContext('2d');g.font=`400 17.82px "${f}"`;g.fillText(text,10,35);return pixels(c);
   });
   assert.ok(fontImages[0].equals(fontImages[1]),'原字体和本地打包字体的绘制不同');

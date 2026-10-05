@@ -56,10 +56,10 @@ NASA 月貌数值与下表中的 AI 生成月面图片是两份不同材料，�
 
 | 字体或字形 | 使用范围 | 许可与材料 |
 | --- | --- | --- |
-| 思源黑体 Light、Regular、Bold | 目录中文；字符子集更名为 Wise Motion Sans | SIL OFL 1.1，见 [原许可](catalog/fonts/OFL.txt)。 |
+| 思源黑体 Light、Regular、Bold | 目录中文；保留原字体名称及完整字符，使用网页格式 | SIL OFL 1.1，见 [原许可](catalog/fonts/OFL.txt)。 |
 | Outfit Medium | 界面数字与生长化蝶字标；保留原字形轮廓 | SIL OFL 1.1，见 [原许可](catalog/fonts/OFL-Outfit.txt)。 |
 | Oswald Bold | 品牌文字、英文、数字、标题及部分字标轮廓 | SIL OFL 1.1，见 [原许可](catalog/fonts/OFL-Oswald.txt)。 |
-| 霞鹜文楷 | 水波文字与星月来信字形；网页字体更名为 Wise Motion Letter | SIL OFL 1.1，见 [原许可](catalog/fonts/OFL-Letter.txt)。 |
+| 霞鹜文楷 | 水波文字与星月来信字形；保留原字体名称，使用网页格式 | SIL OFL 1.1，见 [原许可](catalog/fonts/OFL-Letter.txt)。 |
 | Liu Jian Mao Cao 草书 | 薪火生长与文明聚字的草书字形 | [SIL OFL 1.1](catalog/assets/civilization-growth/OFL-Cursive.txt)，来源见 [素材记录](catalog/assets/civilization-growth/SOURCE.json)。 |
 | 文明组合的衬线字形 | 组合中的衬线字形轮廓 | [SIL OFL 1.1](catalog/assets/civilization-growth/OFL-Serif.txt)。 |
 | I.顏體 / I.Ngaan | “火炎焱燚”轮廓与固定网格墨点 | **GPL-2.0-or-later**，保留王漢宗与 Ichiten Fonts Project 原版权。原字库、许可及生成程序见 [生成材料](vendor/calligraphy/README.md)。 |

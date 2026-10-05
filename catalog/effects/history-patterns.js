@@ -103,7 +103,7 @@
       <text x="400" y="14" text-anchor="middle" dominant-baseline="text-before-edge" font-family="Oswald, sans-serif" font-weight="700" font-size="${K.textSize('caption',.6)}" fill="var(--muted)">creative-session</text>
       ${rows.map((row,i)=>`<g data-part="terminal-row${i}" data-terminal-code-row="${i}">
         <text x="30" y="${87+i*72}" dominant-baseline="text-before-edge" font-size="${codeSize}" fill="var(--accent)">›</text>
-        ${row.tokens.map(token=>`<text x="${token.x}" y="${87+i*72}" fill="${token.color}" dominant-baseline="text-before-edge" xml:space="preserve" style="white-space:pre">${token.runs.map(run=>`<tspan data-part="${run.part}" font-size="${codeSize}" font-weight="${run.latin?700:300}" font-family="${run.latin?'Oswald':'Wise Motion Sans'}, sans-serif">${K.escape(run.value)}</tspan>`).join('')}</text>`).join('')}
+        ${row.tokens.map(token=>`<text x="${token.x}" y="${87+i*72}" fill="${token.color}" dominant-baseline="text-before-edge" xml:space="preserve" style="white-space:pre">${token.runs.map(run=>`<tspan data-part="${run.part}" font-size="${codeSize}" font-weight="${run.latin?700:300}" font-family="${run.latin?'Oswald':'Source Han Sans SC'}, sans-serif">${K.escape(run.value)}</tspan>`).join('')}</text>`).join('')}
         <rect data-part="terminal-cursor${i}" y="${90+i*72}" width="10" height="29" fill="var(--teal)"/>
       </g>`).join('')}
       <g data-part="terminal-status"><rect x="-55" y="300" width="110" height="28" fill="url(#NAMESPACE-terminal-beam)"/><rect x="-18" y="320" width="36" height="4" fill="var(--accent)" fill-opacity=".58"/></g>
@@ -589,7 +589,7 @@
     const labels=['看见问题','理解原因','确定做法'];
     const details=['先把问题看清楚','再找到其中的联系','让做法有据可循'];
     // 同一轴线逐层加入，已出现的内容留在原位；中文用本地思源黑体。
-    const s=stage(root,'<g font-family="Wise Motion Sans,sans-serif">'+
+    const s=stage(root,'<g font-family="Source Han Sans SC,sans-serif">'+
       '<text x="172" y="68" font-size="24" font-weight="700" fill="var(--ink)">让每一步都有依据</text>'+
       list(2,i=>'<line data-part="join'+i+'" x1="144" y1="'+(139+i*74)+'" x2="144" y2="'+(191+i*74)+'" stroke="var(--path)" stroke-width=".85" pathLength="1" stroke-dasharray="1 1"/>')+
       list(3,i=>{

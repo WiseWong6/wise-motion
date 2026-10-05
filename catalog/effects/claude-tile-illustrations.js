@@ -12,7 +12,7 @@
   const F=global.MotionFactories=global.MotionFactories||{};
   const SVG='http://www.w3.org/2000/svg';
   const W=442.5,H=227.5,TAU=Math.PI*2;
-  const MONO='Oswald, "Wise Motion Sans", sans-serif';
+  const MONO='Oswald, "Source Han Sans SC", sans-serif';
   const C={white:'var(--ink)',soft:'var(--muted)',accent:'#d97757'};
   const WH=a=>`rgba(236,235,231,${a})`;
   const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));

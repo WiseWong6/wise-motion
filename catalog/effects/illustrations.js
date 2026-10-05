@@ -104,7 +104,7 @@
     // 仅将原绘图画布转成矢量图；纸内的密排字、流水号和章节线均属于物件。
     const rng=seed=>{let a=seed>>>0;return()=>{a|=0;a=(a+0x6D2B79F5)|0;let t=Math.imul(a^a>>>15,1|a);t=(t+Math.imul(t^t>>>7,61|t))^t;return((t^t>>>14)>>>0)/4294967296;};};
     const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;');
-    const text=(value,x,y,size,opacity=1,center=false,spacing=0,color='#1c1a16')=>`<text x="${x}" y="${y}" font-size="${size}" fill="${color}" fill-opacity="${opacity}" text-anchor="${center?'middle':'start'}" letter-spacing="${spacing}"${/^[0-9]+$/.test(value)?' font-family="Oswald, Wise Motion Sans, sans-serif" font-weight="700"':''}>${esc(value)}</text>`;
+    const text=(value,x,y,size,opacity=1,center=false,spacing=0,color='#1c1a16')=>`<text x="${x}" y="${y}" font-size="${size}" fill="${color}" fill-opacity="${opacity}" text-anchor="${center?'middle':'start'}" letter-spacing="${spacing}"${/^[0-9]+$/.test(value)?' font-family="Oswald, Source Han Sans SC, sans-serif" font-weight="700"':''}>${esc(value)}</text>`;
     const words='档案 token 上下文 卷宗 账册 页边 印刷 纤维 墨迹 栏目 书页 合集 装订 枝叶 卷帙 架位 编目 索引 批注 源流 羊皮 宣纸 抄写 完整 保留 逐字 全宗 文库 架签 入藏 序列 连绵 持续 百万 千万 计数 度量 长度 全貌 整体 无损 窗口 注视 段落 文献 记忆 检索 条目 副本 行款 叶码 读者 校勘 见证'.split(' ');
     const sections=['长卷','不断序列','无尽之页','逐字实录','页边笔记','跨度编目','一叶连绵','完整在握','全貌','入藏注记'];
     const R=rng(77),P=rng(42),fiberPaths=Array(8).fill('');
@@ -153,7 +153,7 @@
       <filter id="NS-roll-shadow" x="-10%" y="-100%" width="120%" height="400%"><feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#30302b" flood-opacity=".16"/></filter>
     </defs><g transform="translate(188 32) scale(.3)">
       <rect data-part="paper" x="80" y="40" width="720" height="0" fill="#F4F1E8" filter="url(#NS-paper-shadow)"/>
-      <g data-part="sheet" clip-path="url(#NS-paper)"><g data-part="content" transform="translate(80 40)"><g clip-path="url(#NS-sheet)">${texture}<g fill="#30302e" font-family="Wise Motion Sans, sans-serif" font-weight="300">${body}</g></g></g><rect data-part="edge-shade" x="80" width="720" height="28" fill="url(#NS-edge)"/></g>
+      <g data-part="sheet" clip-path="url(#NS-paper)"><g data-part="content" transform="translate(80 40)"><g clip-path="url(#NS-sheet)">${texture}<g fill="#30302e" font-family="Source Han Sans SC, sans-serif" font-weight="300">${body}</g></g></g><rect data-part="edge-shade" x="80" width="720" height="28" fill="url(#NS-edge)"/></g>
       <rect data-part="roll" x="70" y="22" width="740" height="36" rx="18" fill="url(#NS-roll)" filter="url(#NS-roll-shadow)"/>
       <rect data-part="roll-highlight" x="74" width="732" height="2" fill="#fffffa" fill-opacity=".4"/>
     </g>`);

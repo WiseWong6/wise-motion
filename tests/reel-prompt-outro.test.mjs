@@ -57,7 +57,7 @@ test('输入框按原尺寸、描边、工具、推近与发送时刻复现，�
   const e=await env();try{
     const root=e.w.document.getElementById('root'),p=e.w.MotionRuntime.create(root,definition('prompt-to-core-sequence')),part=n=>root.querySelector(`[data-part="${n}"]`);
     assert.equal(art.prompt,shared.window.SHARED.PROMPT);
-    for(const n of root.querySelectorAll('text')){if(n.closest('[data-char]')){assert.match(n.getAttribute('style'),/Wise Motion Sans/);assert.match(n.getAttribute('style'),/font-weight:300/);}else{assert.match(n.getAttribute('style'),/font-family:Oswald/);assert.match(n.getAttribute('style'),/font-weight:700/);}}
+    for(const n of root.querySelectorAll('text')){if(n.closest('[data-char]')){assert.match(n.getAttribute('style'),/Source Han Sans SC/);assert.match(n.getAttribute('style'),/font-weight:300/);}else{assert.match(n.getAttribute('style'),/font-family:Oswald/);assert.match(n.getAttribute('style'),/font-weight:700/);}}
     assert.deepEqual(art.credits.map(r=>r.font),['HelveticaNeue-Bold','Oswald-Bold','Oswald-Bold']);assert.equal(art.layout.length,110);assert.equal(Math.max(...art.layout.map(c=>c.line)),2);
     for(const label of ['claude new','master','This Mac','Claude Opus 5.5 1M Medium','Plan New Idea','Multitask','Motion, from a prompt.'])assert.ok(root.textContent.includes(label));
     for(const t of [0,.2,.6,.9,1.4,2.8,4.6,5,5.125,5.24,5.49,5.8]){

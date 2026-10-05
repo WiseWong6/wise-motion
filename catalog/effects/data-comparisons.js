@@ -143,7 +143,7 @@ F['reduction-dimension']=(root,K,def)=>{
       <g data-part="dimension" fill="none" stroke="var(--muted)" stroke-width=".9"><path data-part="extensions"/><path data-part="dimension-line"/><path data-part="ticks" stroke-width="1.3"/></g>
       <text x="1380" y="704" font-size="${size('body',scale)}" font-weight="300" fill="var(--ink)">耗时减少</text>
       <g data-part="readout" fill="var(--accent)" font-size="${num}" font-weight="700">
-        <text data-part="sign" x="${x}" y="${y}" font-family="Wise Motion Sans,sans-serif">−</text>
+        <text data-part="sign" x="${x}" y="${y}" font-family="Source Han Sans SC,sans-serif">−</text>
         ${list(2,i=>`<g clip-path="url(#NS-digits)"><text data-part="digit${i}-a" x="${start+pitch*i}" y="${y}">0</text><text data-part="digit${i}-b" x="${start+pitch*i}" y="${y+L}">1</text></g>`)}
         <text data-part="percent" x="${start+pitch*2+num*.04}" y="${y}">%</text>
       </g>

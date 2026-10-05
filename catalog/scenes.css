@@ -1,5 +1,5 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
-@font-face{font-family:'Wise Motion Letter';src:url('fonts/WiseMotionLetter-Regular.woff2') format('woff2');font-style:normal;font-weight:400;font-display:block}
+@font-face{font-family:'LXGW WenKai';src:url('fonts/LXGWWenKai-Regular.woff2') format('woff2');font-style:normal;font-weight:400;font-display:block}
 /* 普通示例参照展示片 56 秒：近黑、暖白细线与少量彩色强调。白天保留色相并调整明度。
    插画保留物件原色；纹理为静态薄层，不增加播放计时或逐帧绘制。 */
 .motion-viewport,.motion-stage {
@@ -62,7 +62,7 @@ html[data-theme="light"] .motion-viewport,html[data-theme="light"] .motion-stage
   --plant:#087f75; --pond:#e3dfd8; --zoom:#eeeae3; --grain-opacity:.018; --vignette:rgba(60,45,30,.025);
 }
 .motion-viewport{position:relative;overflow:hidden;aspect-ratio:16/9;background:var(--stage);border-radius:18px;isolation:isolate}
-.motion-stage{position:absolute;top:50%;left:50%;width:640px;height:360px;transform-origin:center;overflow:hidden;background:var(--stage);font-family:var(--font,"Oswald","Wise Motion Sans",sans-serif);font-weight:300;color:var(--ink);perspective:1000px;isolation:isolate}
+.motion-stage{position:absolute;top:50%;left:50%;width:640px;height:360px;transform-origin:center;overflow:hidden;background:var(--stage);font-family:var(--font,"Oswald","Source Han Sans SC",sans-serif);font-weight:300;color:var(--ink);perspective:1000px;isolation:isolate}
 .motion-stage *{box-sizing:border-box}
 .motion-stage > .pattern-svg,.motion-stage > .pattern-canvas{display:block;width:640px;height:360px}
 .tile{position:absolute;left:200px;top:92px;width:240px;height:196px;padding:30px;background:var(--card);color:var(--card-ink);border:.65px solid var(--card-edge);border-radius:8px;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
@@ -93,13 +93,13 @@ html[data-theme="light"] .motion-viewport,html[data-theme="light"] .motion-stage
 .shared-panel{background:color-mix(in srgb,var(--panel),var(--panel-alt) var(--object-progress,0%))}
 .shared-icon{position:absolute;left:256px;top:116px;display:block;width:128px;height:128px;transform-origin:center;background:none;border:0;box-shadow:none}
 .layout-card{position:absolute;background:var(--card);border:.65px solid var(--card-edge);border-radius:6px;box-shadow:var(--card-shadow);padding:16px;display:flex;align-items:center;gap:12px;font-size:var(--type-body);color:var(--card-muted)}.layout-card b{height:22px;width:22px;display:grid;place-items:center;border-radius:4px;background:var(--badge);color:var(--badge-ink);font-size:var(--type-caption)}
-.motion-stage[data-effect="zoom-transition"] .zoom-target,.motion-stage[data-effect="zoom-transition"] .headline{font-family:"Wise Motion Sans","Source Han Sans SC","Source Han Sans CN",sans-serif;font-weight:700}
+.motion-stage[data-effect="zoom-transition"] .zoom-target,.motion-stage[data-effect="zoom-transition"] .headline{font-family:"Source Han Sans SC","Source Han Sans CN",sans-serif;font-weight:700}
 .zoom-board{position:absolute;inset:40px 60px 70px;background:var(--zoom);border-radius:12px;transform-origin:50% 50%;display:flex;align-items:center;justify-content:center}.zoom-target{width:154px;height:118px;border-radius:9px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-size:var(--type-title)}
 .landscape{position:absolute;inset:0;overflow:hidden;background:linear-gradient(var(--sky-0),var(--sky-1))}.sun{position:absolute;left:452px;top:64px;width:54px;height:54px;border-radius:50%;background:var(--sun)}.hill{position:absolute;bottom:-60px;left:-180px;width:1000px;height:280px;border-radius:50% 50% 0 0;background:var(--hill)}.hill.mid{bottom:-140px;background:var(--hill-mid);height:330px}.hill.near{bottom:-190px;background:var(--hill-near);height:300px}
 .strip-row{position:absolute;top:60px;width:100%;height:136px;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}.strip-row.lower{top:212px}
 .subtitle-block{position:absolute;left:135px;top:100px;display:flex;gap:14px}.subtitle-cell{width:82px;height:82px;border-radius:9px;background:var(--card);box-shadow:var(--card-shadow);display:grid;place-items:center;font-size:var(--type-title);color:var(--card-muted);font-weight:700}.subtitle-cell.is-on{color:var(--card-ink)}.statement{position:absolute;top:238px;left:40px;width:560px;font-size:var(--type-title);font-weight:700;text-align:center;letter-spacing:-.04em}
 .product-title{position:absolute;top:82px;width:100%;text-align:center;font-size:var(--type-heading);letter-spacing:-.055em;font-weight:700}.feature-card{position:absolute;top:192px;width:138px;height:116px;background:var(--card);color:var(--feature-ink);border:.65px solid var(--card-edge);border-radius:6px;box-shadow:var(--card-shadow);padding:23px;font-size:var(--type-body)}.feature-card small{display:block;margin-top:16px;font-size:var(--type-caption);color:var(--feature-muted)}
-.motion-stage[data-effect="button-press-status"] .action-button{font-family:"Wise Motion Sans","Source Han Sans SC","Source Han Sans CN",sans-serif;font-weight:700}
+.motion-stage[data-effect="button-press-status"] .action-button{font-family:"Source Han Sans SC","Source Han Sans CN",sans-serif;font-weight:700}
 .operation{position:absolute;left:190px;top:137px;width:260px;text-align:center}.action-button{height:64px;width:220px;margin:auto;background:var(--accent);border-radius:9px;color:var(--accent-ink);display:grid;place-items:center;font-size:var(--type-body);box-shadow:0 8px 18px color-mix(in srgb,var(--accent) 16%,transparent)}.progress-track{margin:23px 20px;width:220px;height:5px;background:var(--track);border-radius:3px;overflow:hidden}.progress-fill{width:100%;height:100%;background:var(--accent);transform-origin:left}.result{font-size:var(--type-body);color:var(--result)}.pointer{position:absolute;width:22px;height:30px;background:var(--pointer);clip-path:polygon(0 0,100% 68%,58% 73%,38% 100%);left:0;top:0}
 
 /* 薄颗粒和暗角只覆盖普通示例，内容不受滤镜改色，插画图形不叠此层。 */

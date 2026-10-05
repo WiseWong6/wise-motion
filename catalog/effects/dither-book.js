@@ -48,7 +48,7 @@
     '.wm-book__art{position:absolute;inset:var(--book-pad);overflow:hidden;border-radius:var(--book-radius);background:var(--book-art);box-shadow:0 2px 12px #0000000f;pointer-events:none}',
     '.wm-book__art svg{display:block;width:100%;height:100%}',
     '.wm-book__caption{font-family:inherit;font-weight:300}',
-    '.wm-book__number{font-family:Oswald,var(--font,"Wise Motion Sans","Source Han Sans CN","Source Han Sans SC","Noto Sans SC",sans-serif);font-weight:700;font-variant-numeric:tabular-nums}',
+    '.wm-book__number{font-family:Oswald,var(--font,"Source Han Sans SC","Source Han Sans CN","Noto Sans SC",sans-serif);font-weight:700;font-variant-numeric:tabular-nums}',
     '.wm-book__grain{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply;opacity:.32;background-image:radial-gradient(#68686850 .45px,transparent .8px),radial-gradient(#ffffff90 .6px,transparent 1px);background-size:3px 3px,7px 5px;background-position:0 0,2px 1px}',
     '.wm-book__crease{position:absolute;top:0;bottom:0;width:19%;pointer-events:none}',
     '.wm-book__paper[data-edge="left"] .wm-book__crease{right:0;background:linear-gradient(to left,rgba(0,0,0,var(--book-crease)),rgba(0,0,0,calc(var(--book-crease)/4)) 34%,transparent)}',

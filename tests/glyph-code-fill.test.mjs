@@ -88,7 +88,7 @@ test('多个预览的裁剪标识互不干扰，独立导出只依赖本地脚�
     const aIds=new Set([...a.querySelectorAll('[id]')].map(n=>n.id));
     assert.ok([...b.querySelectorAll('[id]')].every(n=>!aIds.has(n.id)));
     assert.equal(frameMarkup(a),frameMarkup(b));
-    assert.equal(a.querySelector('[data-glyph]').getAttribute('font-family'),'Wise Motion Sans,sans-serif');
+    assert.equal(a.querySelector('[data-glyph]').getAttribute('font-family'),'Source Han Sans SC,sans-serif');
     assert.equal(a.querySelector('[data-code-texture]').getAttribute('font-family'),'Oswald,sans-serif');
     w.eval(await readFile(new URL('../catalog/export.js',import.meta.url),'utf8'));
     const output=w.MotionExport.code({...definition,name:'字形内代码填充',source:{path:'catalog/effects/glyph-code-fill.js'}});

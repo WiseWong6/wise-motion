@@ -1,25 +1,25 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
-/* 思源黑体 CN/SC 的 Light、Regular、Bold 子集。OFL 要求修改后不用保留字体名 Source，族名改为 Wise Motion Sans。许可见 fonts/OFL.txt。 */
+/* 思源黑体 Light、Regular、Bold：保留原名、完整字符与字体数据，仅压缩为网页格式。许可见 fonts/OFL.txt。 */
 @font-face {
-  font-family:"Wise Motion Sans";
+  font-family:"Source Han Sans SC";
   font-style:normal;
   font-weight:300;
   font-display:swap;
-  src:url("fonts/WiseMotionSans-Light.woff2") format("woff2");
+  src:url("fonts/SourceHanSansSC-Light.woff2") format("woff2");
 }
 @font-face {
-  font-family:"Wise Motion Sans";
+  font-family:"Source Han Sans SC";
   font-style:normal;
   font-weight:400;
   font-display:swap;
-  src:url("fonts/WiseMotionSans-Regular.woff2") format("woff2");
+  src:url("fonts/SourceHanSansSC-Regular.woff2") format("woff2");
 }
 @font-face {
-  font-family:"Wise Motion Sans";
+  font-family:"Source Han Sans SC";
   font-style:normal;
   font-weight:700;
   font-display:swap;
-  src:url("fonts/WiseMotionSans-Bold.woff2") format("woff2");
+  src:url("fonts/SourceHanSansSC-Bold.woff2") format("woff2");
 }
 /* 所有英文与数字用 Oswald Bold。保留拉丁字符子集，未改字形，许可见 fonts/OFL-Oswald.txt。 */
 @font-face {
@@ -84,7 +84,7 @@
   --preview-max:1440px; --stage-nav-size:44px;
   --stage-gutter:clamp(20px,2.5vw,48px); --stage-chrome:172px;
   /* 拉丁字形始终选本地 Oswald Bold；中文正文 Light，动效内中文主标题、分类与章节标题 Bold。 */
-  --font:"Oswald","Wise Motion Sans","Source Han Sans CN","Source Han Sans SC","Noto Sans SC",sans-serif;
+  --font:"Oswald","Source Han Sans SC","Source Han Sans CN","Noto Sans SC",sans-serif;
   --mono:var(--font);
 }
 @media (prefers-color-scheme:light) {

@@ -53,7 +53,7 @@
   };
   F['word-focus'] = (root, M) => {
     const words=['梳理关系','判断结构','组合组件'];
-    const s=M.scene(root,'<div class="keyword-line" style="position:absolute;left:40px;top:158px;width:560px;display:flex;justify-content:center;gap:44px;font-family:Wise Motion Sans,sans-serif;font-size:var(--type-title);line-height:1.4;font-weight:700">'+words.map(word=>`<span class="keyword" style="position:relative;white-space:nowrap;color:var(--ink)">${word}<i aria-hidden="true" style="position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:1px;background:var(--accent);transform-origin:left center;opacity:0"></i></span>`).join('')+'</div>');
+    const s=M.scene(root,'<div class="keyword-line" style="position:absolute;left:40px;top:158px;width:560px;display:flex;justify-content:center;gap:44px;font-family:Source Han Sans SC,sans-serif;font-size:var(--type-title);line-height:1.4;font-weight:700">'+words.map(word=>`<span class="keyword" style="position:relative;white-space:nowrap;color:var(--ink)">${word}<i aria-hidden="true" style="position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:1px;background:var(--accent);transform-origin:left center;opacity:0"></i></span>`).join('')+'</div>');
     const nodes=s.all('.keyword'),lines=nodes.map(el=>el.querySelector('i'));
     const style=(el,key,value)=>{if(el.style[key]!==value)el.style[key]=value;};
     return t=>nodes.forEach((el,i)=>{
