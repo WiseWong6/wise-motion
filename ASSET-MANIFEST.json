@@ -49,7 +49,7 @@
     {
       "path": "catalog/assets/civilization-growth/SOURCE.json",
       "bytes": 9218,
-      "sha256": "c837d13bfe5fff744f28e04fd1c7bd9fda963c089102763a10f0aa0a76f1d9d5"
+      "sha256": "d7eb66dfaba4e085153db11a689c71e13410e99fd4c6ecf2d0d87bd1239e3d83"
     },
     {
       "path": "catalog/assets/civilization-growth/assets.mjs",
@@ -93,8 +93,8 @@
     },
     {
       "path": "catalog/assets/civilization-growth/civilization/handoff.mjs",
-      "bytes": 1892,
-      "sha256": "556a8318a285a58a81d9c3fce69b66f831e0d18e3b62f7be63f144749f292a4c"
+      "bytes": 1902,
+      "sha256": "163da1236067ec0e0b4438acab2f90101d45aa1cb1e7c770d8120885ecd2b2d1"
     },
     {
       "path": "catalog/assets/civilization-growth/civilization/ink-parts.mjs",
@@ -183,8 +183,8 @@
     },
     {
       "path": "catalog/assets/civilization-growth/four-flowers.mjs",
-      "bytes": 2718,
-      "sha256": "710ff4cb1bf3a759fbfd7fac04771fefefc8fb9a7ab7067ab23f6d6c18f0b3b6"
+      "bytes": 2992,
+      "sha256": "d1aceb1b51f4b38e8b5489ab477d08025e463d785cadb49ea1fcf3d772de80f8"
     },
     {
       "path": "catalog/assets/civilization-growth/four-sprouts.mjs",
@@ -418,8 +418,8 @@
     },
     {
       "path": "catalog/effects/civilization-growth.js",
-      "bytes": 1434129,
-      "sha256": "034b87c439c3c99e79538c1c13371daea5f2bb19018cbf113f3e1bb2d64ef1c0"
+      "bytes": 1434445,
+      "sha256": "adc566c626e0df7f1a1ab583e30c6070f836a0a4559eac9fba464ed2aff3602c"
     },
     {
       "path": "catalog/effects/civilization-images.js",
@@ -813,8 +813,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 1573416,
-      "sha256": "e529168247dbd05232cd29f6b99abaf3d8115efb51a50da719ae7faf706c7b9e"
+      "bytes": 1573705,
+      "sha256": "b20860e2a1235f91fee9cbf68f1a23f70df35c8be612547e6ef36033647a063c"
     },
     {
       "path": "catalog/runtime.js",

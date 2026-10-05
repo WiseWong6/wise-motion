@@ -1,5 +1,5 @@
-import {drawFlowers,drawFlowerHead,FLOWER_DURATION} from '../four-flowers.mjs';
-import {stemPoint,drawShoot,sproutState,SPROUT_DURATION} from '../four-sprouts.mjs';
+import {drawFlowers,drawFlowerHead,flowerHeadPoint,FLOWER_DURATION} from '../four-flowers.mjs';
+import {drawShoot,sproutState,SPROUT_DURATION} from '../four-sprouts.mjs';
 import {drawOneSeed,seedPose,SEED_DURATION} from '../fire-05.mjs';
 import {smooth,mix} from '../math.mjs';
 import {PLATE,paperRepair} from './ink-parts.mjs';
@@ -9,7 +9,7 @@ export const FLOWER_PAPER=[[289,16,89,108],[382,16,89,108],[289,129,89,98],[382,
 export function clearPrintedFlowers(ctx){for(const box of FLOWER_PAPER)paperRepair(ctx,c=>c.rect(...box),box);}
 export function flowerExitFlash(t){return [[.10,.16],[.27,.33]].some(([a,b])=>t>=a&&t<b)?.20:1;}
 export function handoffPose(t,c){
- const from=stemPoint(c,1,{elongation:1,clock:11.7+t}),to=FLOWER_TARGETS[c],p=smooth(t,.34+c*.02,1+c*.02);
+ const from=flowerHeadPoint(c,{elongation:1,clock:11.7+t}),to=FLOWER_TARGETS[c],p=smooth(t,.34+c*.02,1+c*.02);
  return {x:mix(from[0],to[0],p),y:mix(from[1],to[1],p)-Math.sin(Math.PI*p)*(15+c*2),scale:mix(1,.44,p),opacity:flowerExitFlash(t),bodyOpacity:1-smooth(t,.40+c*.02,.88+c*.02),from};
 }
 export function drawHandoff(ctx,assets,t){

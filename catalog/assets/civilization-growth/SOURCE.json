@@ -121,8 +121,8 @@
     },
     {
       "path": "civilization/handoff.mjs",
-      "bytes": 1892,
-      "sha256": "556a8318a285a58a81d9c3fce69b66f831e0d18e3b62f7be63f144749f292a4c"
+      "bytes": 1902,
+      "sha256": "163da1236067ec0e0b4438acab2f90101d45aa1cb1e7c770d8120885ecd2b2d1"
     },
     {
       "path": "civilization/ink-parts.mjs",
@@ -211,8 +211,8 @@
     },
     {
       "path": "four-flowers.mjs",
-      "bytes": 2718,
-      "sha256": "710ff4cb1bf3a759fbfd7fac04771fefefc8fb9a7ab7067ab23f6d6c18f0b3b6"
+      "bytes": 2992,
+      "sha256": "d1aceb1b51f4b38e8b5489ab477d08025e463d785cadb49ea1fcf3d772de80f8"
     },
     {
       "path": "four-sprouts.mjs",
