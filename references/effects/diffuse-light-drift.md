@@ -13,11 +13,11 @@
 触发与联动：打开后按固定时间演示，可暂停、重播及任意定位。
 现实类比：银白与灰色光团在固定椭圆范围内渐变叠加，形成缓慢流动的透光背景。
 需要保留：1066×600画板；十四个高斯衰减光团相加，渐变中心和范围固定，颜色按1.1至3.45秒的局部表插值。
-明确排除：不画色块分界，不用整幅随机闪烁代替光团渐变。
+明确排除：不画色块分界，不用整幅随机闪烁代替光团渐变。 界面统一采用苹果空间风格；对话使用短信或 Siri，不使用创作助手对话。
 对应参考：本地目录「弥散光团流动」
 源码：catalog/effects/glass-light.js 中的 diffuse-light-drift
 来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
-关键假设：保留已确认的黑银光场、原界面文字比例与柔光气泡；以自主代码表现光照和折射，未携带原片媒体。
+关键假设：以苹果空间界面为视觉方向，使用自编光照绘制与固定时间插值，不携带官方图片或视频。
 
 ## 调整方式
 
@@ -30,7 +30,9 @@
 
 - [原码提取与接入源码](../../catalog/effects/glass-light.js)，注册名称：`diffuse-light-drift`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
-- [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
+- [效果参考：Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)；使用固定版本 Anime.js 4.5.0 的计时器。
 - 从本机玻璃效果精修的自主绘制源码提取；仅采用几何、颜色和时间参数，没有原片图片、视频或第三方运行代码。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
+
+补充效果参考：[Apple 液态玻璃设计](https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/)。

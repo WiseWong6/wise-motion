@@ -100,7 +100,7 @@ Copyright © 2026 Wise Wong.
 
 牵丝织形合并自有织风原作的双梭牵丝与羽丝织造，固定节拍和完整绘制函数随源码提供；保留原金属材质、蓝色背景与动作关系，无图片或声音资源。
 
-透光浮层与折射、三个独立动作及三张卡片插画从本机玻璃效果精修的自主绘制源码提取，视觉参考用户提供的 Opus 能力展示片。仅纳入自主代码、几何与光照参数，没有原片图像、视频、声音或第三方程序；视觉参考本身的原有权利不因接入而重新授权。完整组合保留已确认的紫蓝配色、界面文字比例与光照折射；品牌与文案按用户要求改为 WISE 创作主题，片尾为 WISE MOTION。片尾文字由包内 Oswald Bold 的实际字形轮廓绘制，相关字形保留 SIL OFL 1.1（`catalog/fonts/OFL-Oswald.txt`）；两个 O 为按用户要求绘制的正圆。
+玻璃卡片显现折射、三个独立动作及六张卡片插画统一参考 [Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)，玻璃材质补充参考 [Apple 液态玻璃设计](https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/)。Siri、短信、系统设置、音乐、天气与控制中心由本项目独立绘制，采用黑银玻璃、系统无衬线文字和固定演示信息；未携带官方图片、视频、声音或第三方界面程序。完整组合、独立动作与插画共用空间运动、光照和实际画面采样。片尾 WISE MOTION 保留 Helvetica Neue Bold 字形轮廓，随包不含字体文件，相关轮廓分发条件待核实；自有适配代码许可不覆盖视觉参考、品牌或字体权利。来源范围、历史制作记录和独立播放条依赖见 [素材记录](catalog/assets/glass-light/SOURCE.json)。
 
 剪贴联动与海报归位及六个独立动作来自本机原创剪贴短片的最新丰富版本，完整组合与各动作共用绘制函数。手掌、机械转轮、四姿态人物、八帧跑步与六帧弹离图集均由 Codex 内置 image_gen.imagegen 独立生成，原文件未经像素编辑；生成提示词、尺寸与校验值见 [素材来源记录](catalog/assets/collage-film/SOURCE.json)。纸纤维、撕边、印刷碎片、纸齿轮、折尺与支架由本地代码绘制。目录版英文与数字使用包内 Oswald Bold（SIL OFL 1.1），不携带原短片使用的系统字体；原短片与导出视频保留在制作记录目录。自有绘制和目录适配代码使用 AGPL-3.0-only。
 

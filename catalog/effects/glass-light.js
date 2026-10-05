@@ -1,5 +1,10 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
- * 基于本机展示片独立绘制并经用户精修确认；无原片像素或媒体依赖。 */
+ * 苹果空间界面由本项目独立绘制；视觉参考与许可说明见 NOTICE.md。 */
+/* 六张卡片、空间错层及折射统一参考 Apple Vision Pro 与 visionOS 空间界面。
+ * https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/
+ * 玻璃材质补充参考 Apple 液态玻璃设计。
+ * https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/
+ * 目录播放条另使用 Deepika Rao 的 Liquid Glass（MIT），见 vendor/liquid-glass/SOURCE.json；本动画不调用该程序。 */
 (function(global){
 'use strict';
 // Fixed Helvetica Neue Bold outlines: MOTION exactly matches reel-opening.js.
@@ -98,7 +103,7 @@ function canvas(w=W,h=H){const v=doc.createElement('canvas');v.width=w;v.height=
 function rr(c,x,y,w,h,r,fill,stroke,width=1){c.beginPath();c.roundRect(x,y,w,h,Math.min(r,h/2,w/2));if(fill){c.fillStyle=fill;c.fill()}if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.stroke()}}
 function line(c,x,y,a,b,color,width=1){c.beginPath();c.moveTo(x,y);c.lineTo(a,b);c.strokeStyle=color;c.lineWidth=width;c.stroke()}
 function circle(c,x,y,r,fill,stroke,width=1){c.beginPath();c.arc(x,y,r,0,TAU);if(fill){c.fillStyle=fill;c.fill()}if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.stroke()}}
-function text(c,s,x,y,size,color='#f5f5f5',weight=400){c.font=`${weight} ${size}px Arial,"PingFang SC",sans-serif`;c.textBaseline='alphabetic';c.textAlign='left';c.fillStyle=color;c.fillText(s,x,y)}
+function text(c,s,x,y,size,color='#f5f5f5',weight=400){c.font=`${weight} ${size}px "Helvetica Neue",Arial,"PingFang SC",sans-serif`;c.textBaseline='alphabetic';c.textAlign='left';c.fillStyle=color;c.fillText(s,x,y)}
 function alpha(c,a,fn){if(a<=0)return;c.save();c.globalAlpha*=clamp(a);fn();c.restore()}
 function light(c,x,y,rx,ry,col,opacity=1,falloff=.5){c.save();c.translate(x,y);c.scale(1,ry/rx);const g=c.createRadialGradient(0,0,0,0,0,rx);g.addColorStop(0,`rgba(${col},${opacity})`);g.addColorStop(falloff,`rgba(${col},${opacity*.48})`);g.addColorStop(1,`rgba(${col},0)`);c.fillStyle=g;c.fillRect(-rx,-rx,rx*2,rx*2);c.restore()}
 const bg=canvas(),bgc=bg.getContext('2d'),base=canvas(),bc=base.getContext('2d',{willReadFrequently:true}),paneSource=canvas(),pc=paneSource.getContext('2d'),lens=canvas(320,180),lc=lens.getContext('2d');
@@ -137,10 +142,46 @@ function pose(c,row,fn){const [x,y,s,a]=row;c.save();c.translate(x,y);c.transfor
 const chatPos=[[0,156,153,1.11,-.025],[.15,158,153,1.11,-.025],[.35,168,149,1.12,-.025],[.65,296,120,.91,-.024],[1.1,402,99,.75,-.023],[1.55,413,-30,.93,-.008],[1.75,413,-80,.968,.001],[1.83,412,-70,.967,.001],[1.95,397,6,.92,.003],[2.0833,378,51,.918,-.018],[2.25,374,69,.915,-.018],[2.45,374,76,.915,-.018],[2.6,426,49,.956,-.004],[2.65,539,49,.975,-.01],[2.7833,727,58,.975,-.01],[2.84,1300,43,.975,-.01]];
 const focusPos=[[0,-620,678,1.07,-.012],[.35,-54,553,1.07,-.012],[.65,-22,446,1.03,-.012],[1.1,152,368,.884,-.014],[1.55,96,298,1.122,-.012],[1.75,81,273,1.166,-.012],[1.9,77,282,1.161,-.012],[2.0833,64,373,1.105,-.012],[2.25,63,389,1.101,-.012],[2.45,57,393,1.114,-.012],[2.6,36,467,1.085,-.012],[2.65,-112,526,1.12,-.012],[2.7833,-335,652,1.12,-.012],[2.86,-1100,810,1.12,-.012]];
 const listenPos=[[0,103,166,1.04,.018],[.15,102,166,1.04,.018],[.35,64,120,1.04,.018],[.65,186,91,.92,.019],[1.1,294,71,.77,.023],[1.55,278,-20,.934,.020],[1.75,273,-67,.967,.020],[1.9,269,-45,.963,.020],[2.0833,252,25,.90,.019],[2.25,249,38,.91,.020],[2.45,245,37,.91,.019],[2.6,60,-8,.91,.02],[2.65,-198,-30,.91,.02],[2.78,-680,-110,.91,.02]];
-function listening(c,t,row=keys(t,listenPos),motion=null,material=true){alpha(c,1-p(t,2.43,2.72),()=>pose(c,row,()=>{if(material)glass(c,300,148,28,'listen');const fade=p(t,.10,.38)*(1-p(t,2.47,2.63));alpha(c,fade,()=>{text(c,'Voice input',23,37,15,'#f0f0f0',550);text(c,'0:'+String(Math.min(9,Math.floor((t+.03)*3.5)+2)).padStart(2,'0'),116,37,12,'#cccccc');for(let i=0;i<30;i++){const h=8+Math.pow(Math.sin(i*.51+(motion?motion.waveTime:t)*8),2)*27*(i<26?1:.55);rr(c,29+i*6.4,89-h/2,3.1,h,1.5,i>26?'#cfcfcf69':'#e0e0e0cd')}alpha(c,p(t,.68,.97),()=>text(c,'“…give this idea motion”',23,127,12,'#cbcbcb'));});light(c,139,85,68,64,'195,195,195',.32);light(c,140,85,19,23,'225,225,225',.50)}))}
-function mainCard(c,t,row=keys(t,chatPos),motion=null,material=true){pose(c,row,()=>{if(material)glass(c,578,414,38,'chat');alpha(c,1-p(t,2.43,2.64),()=>{orb(c,43,43,12);text(c,'WISE',66,49,18,'#f4f4f4',550);text(c,motion?(motion.replies[3]<1?'shaping':'ready'):t<.24?'ready':t<.83?'shaping':'ready',511,49,14,'#bfbfbf');rr(c,269,93,271,45,23,'#dadada26','#dddddd16',1);text(c,'Bring this idea to life.',287,123,17,'#f5f5f5');if(motion?motion.replies[0]<1:t<.72)alpha(c,motion?1-motion.replies[0]:p(t,.37,.51)*(1-p(t,.59,.73)),()=>{rr(c,28,162,59,34,17,'#e1e1e120');for(let i=0;i<3;i++)circle(c,45+i*12,179,3.3,'#e0e0e0')});['Start with a clear idea.','Give every move a purpose.','Let the details catch light.','Make the next frame matter.'].forEach((s,i)=>{const q=motion?motion.replies[i]:p(t,.61+i*.12,.86+i*.12);alpha(c,motion?Math.min(1,q*5):q,()=>text(c,motion?s.slice(0,Math.floor(s.length*q)):s,31,183+10*p(t,1.3,1.7)*(1-p(t,1.95,2.16))+i*34+4*(1-q),20,'#f6f6f6'))});alpha(c,motion?motion.replies[3]:p(t,1.08,1.27),()=>{const buttonY=345-12*p(t,1.96,2.16);rr(c,70,buttonY,133,36,18,'#e1e1e132','#dadada16');text(c,'Build a scene',83,buttonY+24,14);rr(c,212,buttonY,156,36,18,'#dfdfdf2a','#e4e4e416');text(c,'Explore a variation',226,buttonY+24,14)});})})}
+function listening(c,t,row=keys(t,listenPos),motion=null,material=true){alpha(c,1-p(t,2.43,2.72),()=>pose(c,row,()=>{
+ if(material)glass(c,300,148,28,'listen');
+ alpha(c,p(t,.10,.38)*(1-p(t,2.47,2.63)),()=>{
+  orb(c,38,35,12);text(c,'Siri',60,41,19,'#f5f5f5',600);text(c,'Listening…',194,40,13,'#cccccc');
+  for(let i=0;i<30;i++){const h=8+Math.pow(Math.sin(i*.51+(motion?motion.waveTime:t)*8),2)*27*(i<26?1:.55);rr(c,29+i*6.4,83-h/2,3.1,h,1.5,i>26?'#cfcfcf69':'#e0e0e0cd');}
+  alpha(c,p(t,.68,.97),()=>text(c,'“Siri, play some music.”',23,127,15,'#dedede'));
+ });light(c,139,83,68,64,'195,195,195',.32);light(c,140,83,19,23,'225,225,225',.50);
+}))}
+function mainCard(c,t,row=keys(t,chatPos),motion=null,material=true){pose(c,row,()=>{
+ if(material)glass(c,578,414,38,'chat');
+ alpha(c,1-p(t,2.43,2.64),()=>{
+  line(c,31,35,23,43,'#f5f5f5',2);line(c,23,43,31,51,'#f5f5f5',2);text(c,'Messages',43,49,17);
+  circle(c,260,42,17,'#ffffff20');icon(c,'person',260,42,22);text(c,'Alex',286,49,19,'#f5f5f5',600);
+  line(c,24,76,554,76,'#ffffff18');text(c,'Today 9:41',252,101,12,'#bcbcbc');
+  rr(c,280,119,270,43,21,'#eeeeee');text(c,'Are we still meeting today?',296,147,17,'#242424');
+  const replies=['Yes, at 6:30.','I booked a table for us.',"I’ll send you the address.",'See you there.'];
+  if(motion?motion.replies[0]<1:t<.72)alpha(c,motion?1-motion.replies[0]:p(t,.37,.51)*(1-p(t,.59,.73)),()=>{
+   rr(c,28,178,59,34,17,'#ffffff20');for(let i=0;i<3;i++)circle(c,45+i*12,195,3.3,'#e0e0e0');
+  });
+  replies.forEach((value,i)=>{
+   const q=motion?motion.replies[i]:p(t,.61+i*.12,.86+i*.12),y=178+i*40,width=[140,211,222,152][i];
+   alpha(c,motion?Math.min(1,q*5):q,()=>{
+    rr(c,28,y,width,34,17,'#ffffff20');text(c,motion?value.slice(0,Math.floor(value.length*q)):value,42,y+23,17);
+   });
+  });
+  circle(c,38,374,14,'#ffffff1c');line(c,32,374,44,374,'#dedede',1.7);line(c,38,368,38,380,'#dedede',1.7);
+  rr(c,65,356,485,36,18,'#ffffff09','#ffffff32');text(c,'iMessage',82,380,16,'#bcbcbc');
+  circle(c,530,374,12,'#ededed');icon(c,'up',530,374,18,'#242424');
+ });
+})}
 function knob(c,x,y,r,col){const g=c.createRadialGradient(x-r*.2,y-r*.35,.4,x,y,r);g.addColorStop(0,col==='silver'?'#cacaca':'#ffffff');g.addColorStop(.8,col==='silver'?'#b1b1b1':'#f4f4f4');g.addColorStop(1,col==='silver'?'#cfcfcf':'#d3d3d3');c.save();c.shadowColor='#0d0d0d77';c.shadowBlur=3;c.shadowOffsetY=1;circle(c,x,y,r,g,'#f7f7f7d0',.8);c.restore()}
-function focus(c,t,row=keys(t,focusPos),motion=null,material=true){pose(c,row,()=>{if(material)glass(c,356,202,30,'focus');alpha(c,1-p(t,2.45,2.68),()=>{circle(c,39,73,10,'#f4f4f4');circle(c,43,69,8.2,'#292929');text(c,'Create',62,75,19,'#f7f7f7',500);text(c,'Space for your next idea',62,94,12,'#c4c4c4');const on=p(t,1.32,1.5);const track=c.createLinearGradient(269,54,326,89);track.addColorStop(0,on>.01?'#aaaaaaa1':'#9696964d');track.addColorStop(.65,on>.01?'#9e9e9e91':'#9696964d');track.addColorStop(1,on>.01?'#c6c6c686':'#aaaaaa42');rr(c,269,54,61,35,19,track,'#cacaca4b',1);knob(c,284+31*on,71.5,14,on>.95&&t>1.65&&t<1.88?'silver':'white');line(c,25,114,331,114,'#c0c0c014',1);circle(c,32,147,6,null,'#ebebeb',1.15);for(let i=0;i<8;i++){const a=i*TAU/8;line(c,32+Math.cos(a)*9,147+Math.sin(a)*9,32+Math.cos(a)*12,147+Math.sin(a)*12,'#dcdcdc',1.1)}text(c,'Light',62,153,18,'#f7f7f7');const value=Math.round(mix(30,74,p(t,1.5,1.75)));line(c,157,148,330,148,'#9a9a9a80',2.7);knob(c,157+173*value/100,148,7.8,'white');text(c,value+'%',306,169,11,'#cccccc');})})}
+function focus(c,t,row=keys(t,focusPos),motion=null,material=true){pose(c,row,()=>{
+ if(material)glass(c,356,202,30,'focus');
+ alpha(c,1-p(t,2.45,2.68),()=>{
+  text(c,'Settings',25,35,19,'#f5f5f5',600);icon(c,'moon',35,77,24);text(c,'Do Not Disturb',60,81,17);text(c,'Until this evening',60,101,12,'#bcbcbc');
+  const on=p(t,1.32,1.5);rr(c,280,61,50,30,15,on>.5?'#dedede':'#ffffff28');knob(c,295+20*on,76,12,'white');
+  line(c,25,118,331,118,'#ffffff18');icon(c,'sun',34,145,23);text(c,'Brightness',58,151,17);
+  const value=Math.round(mix(30,74,p(t,1.5,1.75)));line(c,159,146,323,146,'#ffffff35',3);line(c,159,146,159+164*value/100,146,'#eeeeee',3);knob(c,159+164*value/100,146,8,'white');text(c,value+'%',300,174,12,'#bcbcbc');
+ });
+})}
 // A bounded pixel pass maps scene light through a convex capsule.
 // Depth comes from broad directional light, without a dark rim or stroked outline.
 function refract(c,t,x,y,w,h,angle,opacity=1){
@@ -191,15 +232,19 @@ function drawPart(c,key,t){
  c.filter='blur(.35px)';c.drawImage(base,0,0);c.filter='none';
  if(key==='lens')refract(c,t,...lensPose(t),p(t,1.62,1.67)*(1-p(t,2.77,2.9)));
 }
-// Three static iOS-inspired studies share the optical material, but keep their own
-// information hierarchy: media transport, glanceable weather, grouped controls.
+// Apple spatial panels share optical material and system typography while keeping
+// their own information hierarchy: media transport, weather and grouped controls.
 function uiText(c,value,x,y,size,color='#f5f5f5'){
- c.save();c.font=`700 ${size}px Oswald,"Wise Motion Sans",sans-serif`;c.textBaseline='alphabetic';c.textAlign='left';c.fillStyle=color;c.fillText(value,x,y);c.restore();
+ c.save();text(c,value,x,y,size,color,500);c.restore();
 }
 function icon(c,name,x,y,size=24,color='#f5f5f5'){
  c.save();c.translate(x,y);c.scale(size/24,size/24);c.strokeStyle=color;c.fillStyle=color;c.lineWidth=1.7;c.lineCap='round';c.lineJoin='round';
  const path=(points,fill=false)=>{c.beginPath();points.forEach(([a,b],i)=>i?c.lineTo(a,b):c.moveTo(a,b));if(fill){c.closePath();c.fill();}else c.stroke();};
- if(name==='sun'){
+ if(name==='person'){
+  circle(c,0,-4,3.5,color);c.beginPath();c.arc(0,8,7,Math.PI,TAU);c.fill();
+ }else if(name==='up'){
+  path([[0,7],[0,-7]]);path([[-5,-2],[0,-7],[5,-2]]);
+ }else if(name==='sun'){
   circle(c,0,0,4,null,color,1.7);for(let i=0;i<8;i++){const a=i*TAU/8;line(c,Math.cos(a)*7,Math.sin(a)*7,Math.cos(a)*10,Math.sin(a)*10,color,1.7);}
  }else if(name==='cloud'){
   c.beginPath();c.moveTo(-7,6);c.bezierCurveTo(-15,6,-13,-3,-7,-3);c.bezierCurveTo(-6,-12,6,-12,8,-3);c.bezierCurveTo(16,-3,16,6,8,6);c.closePath();c.stroke();
@@ -225,22 +270,22 @@ function musicCard(c,t,row,motion=null,material=true){pose(c,row,()=>{
  if(material)glass(c,520,300,36,'music');
  const cover=c.createLinearGradient(28,28,114,114);cover.addColorStop(0,'#a5a5a5');cover.addColorStop(.45,'#343434');cover.addColorStop(1,'#141414');rr(c,28,28,86,86,18,cover,'#ffffff30');
  c.save();c.beginPath();c.roundRect(28,28,86,86,18);c.clip();if(motion){for(let i=0;i<3;i++){const q=(motion.ripplePhase+i/3)%1;alpha(c,Math.sin(Math.PI*q)*(1-q)*motion.rippleStrength,()=>circle(c,71,71,5+66*q,null,'#ffffff',1.4+1.2*(1-q)));}light(c,71,71,20,20,'210,210,210',.14*motion.rippleStrength);}else{for(let i=0;i<7;i++)circle(c,97,72,15+i*9,null,'#ffffff28',1.2);}c.restore();
- uiText(c,'AFTER HOURS',136,64,28);uiText(c,'WISE RADIO',136,94,18,'#bcbcbc');icon(c,'output',476,69,26);
+ uiText(c,'After Hours',136,64,28);uiText(c,'Apple Music',136,94,18,'#bcbcbc');icon(c,'output',476,69,26);
  const progressX=motion?30+460*motion.musicProgress:208;line(c,30,152,490,152,'#ffffff25',4);line(c,30,152,progressX,152,'#eeeeee',4);circle(c,progressX,152,4,'#fff');
  uiText(c,'1:24',30,181,16,'#bcbcbc');uiText(c,'−2:16',451,181,16,'#bcbcbc');
  icon(c,'previous',172,231,29);icon(c,'pause',260,231,38);icon(c,'next',348,231,29);
 });}
 function weatherCard(c,t,row,motion=null,material=true){pose(c,row,()=>{
  if(material)glass(c,320,360,36,'weather');
- uiText(c,'CUPERTINO',28,49,24);uiText(c,'21°',26,126,72);
+ uiText(c,'Cupertino',28,49,24);uiText(c,'21°',26,126,72);
  icon(c,'sun',260,100,46);icon(c,'cloud',259,127,50);
- uiText(c,'PARTLY CLOUDY',29,165,18,'#d3d3d3');uiText(c,'H:24°  L:16°',29,192,18,'#bcbcbc');
+ uiText(c,'Partly Cloudy',29,165,18,'#d3d3d3');uiText(c,'H:24°  L:16°',29,192,18,'#bcbcbc');
  line(c,28,217,292,217,'#ffffff24');
- const hours=['NOW','15','16','17','18'],temps=['21°','22°','23°','22°','20°'];
+ const hours=['Now','15','16','17','18'],temps=['21°','22°','23°','22°','20°'];
  hours.forEach((hour,i)=>{const x=30+i*55;uiText(c,hour,x,247,16,'#bcbcbc');icon(c,i===0||i===4?'cloud':'sun',x+13,278,23);uiText(c,temps[i],x+1,318,21);});
 });}
 function controlCenter(c,t,row,motion=null,material=true){pose(c,row,()=>{
- if(material)glass(c,390,360,38,'controls');uiText(c,'CONTROL CENTER',28,46,24);
+ if(material)glass(c,390,360,38,'controls');uiText(c,'Control Center',28,46,24);
  // Connectivity is a grouped surface; two active circles use a light fill.
  rr(c,24,68,190,190,28,'#ffffff0b','#ffffff16');
  [['airplane',76,121,false],['wifi',162,121,true],['bluetooth',76,207,true],['output',162,207,false]].forEach(([name,x,y,on])=>{
@@ -251,7 +296,7 @@ function controlCenter(c,t,row,motion=null,material=true){pose(c,row,()=>{
   c.save();c.beginPath();c.roundRect(x,68,60,190,30);c.clip();c.fillStyle='#ffffff15';c.fillRect(x,68,60,190);const fill=c.createLinearGradient(x,68,x+60,258);fill.addColorStop(0,'#fcfcfc');fill.addColorStop(1,'#c8c8c8');c.fillStyle=fill;c.fillRect(x,68+190*(1-value),60,190*value);c.restore();
   rr(c,x,68,60,190,30,null,'#ffffff35');icon(c,name,x+30,226,24,value>.23?'#303030':'#f5f5f5');
  });
- rr(c,24,278,342,58,29,'#ffffff12','#ffffff20');icon(c,'moon',54,307,23);uiText(c,'FOCUS',81,314,21);uiText(c,'ON',314,313,18,'#bcbcbc');
+ rr(c,24,278,342,58,29,'#ffffff12','#ffffff20');icon(c,'moon',54,307,23);uiText(c,'Focus',81,314,21);uiText(c,'On',314,313,18,'#bcbcbc');
 });}
 function drawCard(c,key,time){
  reset(c);
@@ -381,7 +426,7 @@ function make(root,kit,definition={},only){
  render.destroy=(preserve=false)=>{if(dead)return;dead=true;observer?.disconnect();painter?.destroy();for(const layer of Object.values(layers)){layer.node.width=1;layer.node.height=1;layer.c=null;}layerHost?.remove();full.node.style.visibility='visible';if(!preserve){full.node.width=1;full.node.height=1;root.replaceChildren();}full.c=null;};
  render(0);return render;
 }
-const cards=[['listening','glass-voice-card-illustration','透光语音卡'],['chat','glass-dialogue-card-illustration','透光对话卡'],['focus','glass-control-card-illustration','透光创作卡'],['music','glass-music-card-illustration','黑银音乐卡'],['weather','glass-weather-card-illustration','黑银天气卡'],['controls','glass-controls-card-illustration','黑银控制中心']];
+const cards=[['listening','glass-voice-card-illustration','Siri 空间卡'],['chat','glass-dialogue-card-illustration','短信空间卡'],['focus','glass-control-card-illustration','系统设置空间卡'],['music','glass-music-card-illustration','音乐空间卡'],['weather','glass-weather-card-illustration','天气空间卡'],['controls','glass-controls-card-illustration','控制中心空间卡']];
 function makeCard(root,kit,definition,key){
  const doc=root.ownerDocument,node=doc.createElement('canvas');node.width=1066;node.height=600;node.className='pattern-canvas';node.dataset.card=key;
  node.setAttribute('role','img');node.setAttribute('aria-label',cards.find(row=>row[0]===key)[2]);
@@ -407,9 +452,9 @@ if(F){
   {id:'background',name:'黑银环境光',actions:['diffuse-light-drift'],start:0,end:7200,time:'0–7.2 秒',detail:'银灰弥散光与顶部柔光构成暗色环境，亮度克制，衬托玻璃侧壁和白色界面。'},
   {id:'aperture',name:'地面柔光与投影',actions:[],start:0,end:6400,time:'0–6.4 秒',detail:'投影按六张卡的空间位置、距离和显隐变化，在卡片下方建立高度参照。'},
   {id:'wordmark',name:'粗体字标',actions:[],start:5450,end:7200,time:'5.45–7.2 秒',detail:'卡片退出时 WISE MOTION 在后方显现；凸泡在第一个 O 中心淡出，由原生字形接管，双语短句随后出现。'},
-  {id:'listening',name:'语音玻璃卡',actions:['glass-card-stagger','glass-voice-card-illustration'],start:0,end:6400,time:'0–6.4 秒',detail:'语音卡从左向右滑入，波形变化后留在左后方，圆角前后表面连接为有厚度的玻璃边缘。'},
-  {id:'chat',name:'对话玻璃卡',actions:['glass-card-stagger','glass-dialogue-card-illustration'],start:0,end:6400,time:'0–6.4 秒',detail:'先建立主体，展示新增控件时退到左后方，4.9秒前后再次向前，四行回复逐行逐字输出后承接凸泡折射。'},
-  {id:'focus',name:'创作玻璃卡',actions:['glass-card-stagger','glass-control-card-illustration'],start:0,end:6400,time:'0–6.4 秒',detail:'创作卡在左下方提供前后错层参照，保持开关和74%滑杆状态，随后侧转退出。'},
+  {id:'listening',name:'Siri 空间卡',actions:['glass-card-stagger','glass-voice-card-illustration'],start:0,end:6400,time:'0–6.4 秒',detail:'Siri 从左向右滑入，银白语音光球和监听波形随时间变化，播放音乐的语音指令随后出现；圆角前后表面连接为有厚度的玻璃边缘。'},
+  {id:'chat',name:'短信空间卡',actions:['glass-card-stagger','glass-dialogue-card-illustration'],start:0,end:6400,time:'0–6.4 秒',detail:'短信窗口含联系人、时间、左右消息气泡与底部输入栏；4.9秒前后再次向前，四条日常回复逐条逐字输出后承接凸泡折射。'},
+  {id:'focus',name:'系统设置空间卡',actions:['glass-card-stagger','glass-control-card-illustration'],start:0,end:6400,time:'0–6.4 秒',detail:'系统设置在左下方提供空间层次，展示勿扰开关和74%亮度滑杆，随后侧转退出。'},
   {id:'music',name:'音乐玻璃卡',actions:['glass-card-stagger','glass-music-card-illustration'],start:0,end:6400,time:'0–6.4 秒',detail:'1.05–1.9秒从右后方沿空间弧线来到前景，封面三圈涟漪扩散淡出，进度同步推进，再让位给天气卡。'},
   {id:'weather',name:'天气玻璃卡',actions:['glass-card-stagger','glass-weather-card-illustration'],start:0,end:6400,time:'0–6.4 秒',detail:'1.9–2.75秒向前并向另一侧轻转，让当前温度和小时预报清楚可读，随后退回右侧。'},
   {id:'controls',name:'玻璃控制中心',actions:['glass-card-stagger','glass-controls-card-illustration'],start:0,end:6400,time:'0–6.4 秒',detail:'2.75–3.6秒来到前景，亮度先上升再回落，音量稍后跟随，蓝牙图标采用竖直中轴与交叉双三角；随后参与六卡展开。'},
