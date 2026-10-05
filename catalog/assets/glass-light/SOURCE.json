@@ -16,13 +16,23 @@
     "scope": "目录页面底部播放条；不参与玻璃卡片动画的绘制。"
   },
   "wordmark": {
-    "family": "Helvetica Neue Bold",
-    "source": "字形轮廓由 Helvetica Neue Bold 字库提取；随包不含字体文件。",
-    "status": "字形轮廓分发条件待核实。"
+    "family": "Oswald Bold",
+    "source": "由随包 Oswald-Bold.woff2 生成固定 WISE MOTION 字标；与 MOTION 开场及 CLAUDE 片尾字标采用同一字体。",
+    "font_file": "catalog/fonts/Oswald-Bold.woff2",
+    "font_sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302",
+    "license": "SIL OFL 1.1",
+    "license_file": "catalog/fonts/OFL-Oswald.txt",
+    "generator": "scripts/build-brand-outlines.py",
+    "status": "已替换原 Helvetica Neue Bold 轮廓，采用随包开放字体；原大写高度、基线与动画节奏保留，位置按新字宽计算。"
   },
   "additional_visual_reference": {
     "name": "Apple 液态玻璃设计",
     "url": "https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/",
     "scope": "六张卡片共用的玻璃材质、柔和高光与透光层次。"
+  },
+  "interface_typography": {
+    "english": "Oswald Bold",
+    "chinese": "思源黑体 / Source Han Sans SC",
+    "licenses": "catalog/fonts/OFL-Oswald.txt 与 catalog/fonts/OFL.txt"
   }
 }

@@ -34,10 +34,10 @@ Copyright © 2026 Wise Wong. 更新日期：2026 年 10 月 6 日。
 
 | 材料 | 作者或来源 | 使用范围与许可状态 | 详细记录 |
 | --- | --- | --- | --- |
-| 月貌数值（LunarNearside，北向上） | NASA / GSFC / Arizona State University | 用于月面逐渐盈满及金色满月插画，保留原机构署名与资料权利；原下载页及适用条件待核实。 | [月貌来源](catalog/assets/history-nature/SOURCE.json)、[NASA 媒体规则](https://www.nasa.gov/nasa-brand-center/images-and-media/)、[LROC 使用条款](https://lroc.im-ldi.com/about/terms) |
-| 《晴天》谱曲与指弹编配 | 曲作者：周杰伦；编配：罗翔 Steven Law | 用于谱面与音符数据。谱源公开可查看，未据此确认再分发许可；教程署名与谱曲授权分别处理。目录示例不播放音频。 | [谱面、编配与软件来源](catalog/assets/particle-scenes/notes/assets/来源.md) |
+| 月貌数值（LunarNearside，北向上） | NASA / GSFC / Arizona State University | 原下载地址已找回；128×128 灰度值与原工程逐值一致。LROC 允许署名用于新闻及教育；非 PDS 归档图片的商业使用需事先许可，现有展示图取样未取得此许可。 | [原图下载](https://assets.science.nasa.gov/dynamicimage/assets/science/psd/lunar-science/internal_resources/352/LunarNearside.jpeg?w=1024&h=1024&fit=clip)、[月貌来源与处理](catalog/assets/history-nature/SOURCE.json)、[LROC 使用条款](https://lroc.im-ldi.com/about/terms) |
+| 《晴天》谱曲与指弹编配 | 曲作者：周杰伦；编配：罗翔 Steven Law | 当前包包含谱面图及 102 个派生音符事件，不含歌曲录音或演奏音频。五线谱绘制功能本身不涉及歌曲授权；本份具体谱曲与编配的公开再分发许可未查到。 | [谱面、编配与软件来源](catalog/assets/particle-scenes/notes/assets/来源.md) |
 | 广东 21 市分区几何轮廓 | 高德开放平台，经阿里云 DataV.GeoAtlas 提供 | 用于地图分区着色；与 Wise PPT 内置的 21 市边界逐点核对一致。官方说明限定学习与交流用途，保留原数据的使用条件。 | [地图数据工具](https://datav.aliyun.com/portal/school/atlas/area_selector)、[官方来源与使用说明](https://help.aliyun.com/zh/datav/datav-7-0/user-guide/datav-geoatlas-widgets/) |
-| 参考片中的书法与 KIMI 字标姿态轮廓 | Kimi K3 open weights 参考画面 | 用于材质演变组合及七个单段；原图形、字形的具体来源与使用条件待核实。 | [图形输入记录](catalog/assets/material-evolution/SOURCE.json) |
+| 参考片中的书法与 KIMI 字标姿态轮廓 | Kimi AI 发布的 [Kimi K3 (open weights)](https://www.youtube.com/watch?v=5GlCGOXUYHg) | 37 个开头书法姿态、27 个结尾字形姿态从原片帧提取，用于材质演变组合及七个单段。发布者及提取方法已核实；具体设计作者、字体与轮廓再分发许可尚未查到。模型权重许可未明确覆盖这些宣传片图形。 | [图形输入与核对记录](catalog/assets/material-evolution/SOURCE.json)、[模型许可适用范围](https://github.com/MoonshotAI/Kimi-K3/blob/main/LICENSE) |
 
 NASA 月貌数值与下表中的 AI 生成月面图片是两份不同材料，分别记录来源。
 
@@ -58,12 +58,11 @@ NASA 月貌数值与下表中的 AI 生成月面图片是两份不同材料，�
 | --- | --- | --- |
 | 思源黑体 Light、Regular、Bold | 目录中文；保留原字体名称及完整字符，使用网页格式 | SIL OFL 1.1，见 [原许可](catalog/fonts/OFL.txt)。 |
 | Outfit Medium | 界面数字与生长化蝶字标；保留原字形轮廓 | SIL OFL 1.1，见 [原许可](catalog/fonts/OFL-Outfit.txt)。 |
-| Oswald Bold | 品牌文字、英文、数字、标题及部分字标轮廓 | SIL OFL 1.1，见 [原许可](catalog/fonts/OFL-Oswald.txt)。 |
+| Oswald Bold | 品牌文字、英文、数字、标题；包括 WISE MOTION、MOTION 和 CLAUDE 固定字标轮廓 | SIL OFL 1.1，见 [原许可](catalog/fonts/OFL-Oswald.txt)；固定字标由 [生成程序](scripts/build-brand-outlines.py) 从随包字体生成。 |
 | 霞鹜文楷 | 水波文字与星月来信字形；保留原字体名称，使用网页格式 | SIL OFL 1.1，见 [原许可](catalog/fonts/OFL-Letter.txt)。 |
 | Liu Jian Mao Cao 草书 | 薪火生长与文明聚字的草书字形 | [SIL OFL 1.1](catalog/assets/civilization-growth/OFL-Cursive.txt)，来源见 [素材记录](catalog/assets/civilization-growth/SOURCE.json)。 |
 | 文明组合的衬线字形 | 组合中的衬线字形轮廓 | [SIL OFL 1.1](catalog/assets/civilization-growth/OFL-Serif.txt)。 |
 | I.顏體 / I.Ngaan | “火炎焱燚”轮廓与固定网格墨点 | **GPL-2.0-or-later**，保留王漢宗与 Ichiten Fonts Project 原版权。原字库、许可及生成程序见 [生成材料](vendor/calligraphy/README.md)。 |
-| Helvetica Neue Bold 轮廓 | 玻璃组合片尾 WISE MOTION 字标 | 字形由字库提取，未打包字体文件；轮廓分发条件待核实。见 [字标记录](catalog/assets/glass-light/SOURCE.json)。 |
 
 I.顏體字库及派生字形保留 GPL-2.0-or-later；自有提取程序采用 AGPL-3.0-only。运行 `python3 vendor/calligraphy/prepare-calligraphy.py --check` 可用随包材料验证现有四字数据。
 
@@ -87,10 +86,9 @@ Remotion、React 等视频复用依赖由目标工程安装，版本和接入方
 
 | 对象 | 当前待办 |
 | --- | --- |
-| NASA 月貌数值 | 补齐与现有数值对应的原下载页及适用使用条件。候选官方页面尚未确认为原来源。 |
-| Kimi 材质片的书法与字标轮廓 | 核对具体图形、字形来源及可分发条件。 |
-| 玻璃片尾 Helvetica Neue Bold 轮廓 | 核对字形轮廓的分发条件。 |
-| 《晴天》谱曲与编配 | 核对公开分发当前谱面及派生音符数据的授权条件。 |
+| NASA 月貌数值 | 来源与处理已核实；若需覆盖商业再分发，取得现有展示图的相应许可，或改用已确认属于公有领域的 PDS 归档数据。 |
+| Kimi 材质片的原片轮廓 | 发布者与提取方法已核实；补齐覆盖这 64 个原片姿态轮廓的再分发许可，或采用独立制作的替代图形。 |
+| 《晴天》谱面与音符数据 | 仅核对本份具体歌曲与编配的再分发许可；不涉及通用五线谱功能。当前没有音频，静音不替代曲谱许可。 |
 | 广东分区几何 | 来源已核实；高德数据的公开再分发授权尚未核实。 |
 
 以上事项按具体材料处理，不扩大为对全部项目制作成果的归属判断。

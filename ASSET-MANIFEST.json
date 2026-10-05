@@ -263,18 +263,18 @@
     },
     {
       "path": "catalog/assets/glass-light/SOURCE.json",
-      "bytes": 1541,
-      "sha256": "eb8c179f2e27c79e3e36dc07bf7313b87cde518ed79d9ca4deacdecc0b1bbd57"
+      "bytes": 2147,
+      "sha256": "e70fb0efd09af3a5baeaa0b5f318b324da3e5f52aa049729c080b9d26171d1bb"
     },
     {
       "path": "catalog/assets/history-nature/SOURCE.json",
-      "bytes": 947,
-      "sha256": "fdc54b6d519a596aa7a4b482864139538910cebe07be1ad8eb9917a60b30a7c5"
+      "bytes": 1769,
+      "sha256": "966b21dafc714072d5120384afa599d37863580955ffbe1035cf2e64a538fe0a"
     },
     {
       "path": "catalog/assets/material-evolution/SOURCE.json",
-      "bytes": 2725,
-      "sha256": "3b635c3bc9c65a27f88e87b7334b2792ba9c39ae56b5f6278310549524162c7a"
+      "bytes": 3974,
+      "sha256": "fd17efb91b2765eff42ea9d42b548884b37cdb74b28e94d0d827c0ab3b776e71"
     },
     {
       "path": "catalog/assets/material-evolution/atlas-engraving.webp",
@@ -328,8 +328,8 @@
     },
     {
       "path": "catalog/assets/particle-scenes/notes/assets/来源.md",
-      "bytes": 3603,
-      "sha256": "70e9a9b59d0a7b46d7cd3958199ce1deffd868f4b2c3539d132f39f23827f704"
+      "bytes": 4406,
+      "sha256": "d0d7968ee96416a93091e85214dae888187b32830044257562c72f438aeddba8"
     },
     {
       "path": "catalog/assets/particle-scenes/notes/src/butterfly.js",
@@ -523,8 +523,8 @@
     },
     {
       "path": "catalog/effects/glass-light.js",
-      "bytes": 46594,
-      "sha256": "d74637674a53a6d5704011331b98f15ab655398fdb748a7ab034a2c3fd0cb3b7"
+      "bytes": 45876,
+      "sha256": "3f8cd6430edba6cf21bceb92b9156d9b1d87b2680df12c10d0a7a93d643d0915"
     },
     {
       "path": "catalog/effects/glyph-code-fill.js",
@@ -648,8 +648,8 @@
     },
     {
       "path": "catalog/effects/reel-opening.js",
-      "bytes": 11596,
-      "sha256": "346a69b9e71d1f0feaa5fa14501cb5416575d06395e3e14e9756e648b8f6f05f"
+      "bytes": 11722,
+      "sha256": "6917d6dca1ba3347b77f39b158fec3b8b516aaa6e0f85de2c55b425be40845ab"
     },
     {
       "path": "catalog/effects/reel-paper.js",
@@ -658,8 +658,8 @@
     },
     {
       "path": "catalog/effects/reel-prompt-outro.js",
-      "bytes": 46808,
-      "sha256": "25c33b2a8eed69cc7c1131d813debfe3e2c733ce93a49e7649366b328bc01a1c"
+      "bytes": 45798,
+      "sha256": "9243a18ad4725f18a254945f0c952d003a78392e20af46b12372fec36974650f"
     },
     {
       "path": "catalog/effects/reel-transitions.js",
@@ -793,13 +793,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1146335,
-      "sha256": "42a34c69a1a12b6d4c891261f22735b382e6b21652a1ad56a4a7c6c051b22f6e"
+      "bytes": 1146654,
+      "sha256": "1d2bfaaca0c7bfbbd98362a489422c0fc9558d2181f516b2b4dd7bba81d334ba"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1411252,
-      "sha256": "2a2f6a5cf86420b58df23b01da968fd34c6819304492e8b5eab91ebfd5d9e2e1"
+      "bytes": 1411571,
+      "sha256": "bc5553320e6b802cf743da32f5df7ed23e68c7adcf6e7274724e83f7fe5ab109"
     },
     {
       "path": "catalog/related-preview.js",

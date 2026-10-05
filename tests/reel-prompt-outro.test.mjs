@@ -39,7 +39,7 @@ function original(scene,time){
     measureText(s){
       const size=+this.font.match(/([\d.]+)px/)[1],track=parseFloat(this.letterSpacing)||0;
       if(this.font.includes('PingFang SC')&&s.length===1)return {width:art.layout.find(c=>c.ch===s).w*size/21.5};
-      const r=[...art.credits,...art.promptLabels].find(r=>size===r.size&&r.text.startsWith(s));
+      const r=[...art.credits,...art.promptLabels].find(r=>(size===r.size||r.id==='headline'&&size===230)&&r.text.startsWith(s));
       if(r){const width=s===r.text?r.width+(r.track||0):s.length?r.letters[s.length].x-r.x0:0;return {width};}
       return {width:s.length*(size*.6+track)};
     },
@@ -58,7 +58,7 @@ test('输入框按原尺寸、描边、工具、推近与发送时刻复现，�
     const root=e.w.document.getElementById('root'),p=e.w.MotionRuntime.create(root,definition('prompt-to-core-sequence')),part=n=>root.querySelector(`[data-part="${n}"]`);
     assert.equal(art.prompt,shared.window.SHARED.PROMPT);
     for(const n of root.querySelectorAll('text')){if(n.closest('[data-char]')){assert.match(n.getAttribute('style'),/Source Han Sans SC/);assert.match(n.getAttribute('style'),/font-weight:300/);}else{assert.match(n.getAttribute('style'),/font-family:Oswald/);assert.match(n.getAttribute('style'),/font-weight:700/);}}
-    assert.deepEqual(art.credits.map(r=>r.font),['HelveticaNeue-Bold','Oswald-Bold','Oswald-Bold']);assert.equal(art.layout.length,110);assert.equal(Math.max(...art.layout.map(c=>c.line)),2);
+    assert.deepEqual(art.credits.map(r=>r.font),['Oswald-Bold','Oswald-Bold','Oswald-Bold']);assert.equal(art.layout.length,110);assert.equal(Math.max(...art.layout.map(c=>c.line)),2);
     for(const label of ['claude new','master','This Mac','Claude Opus 5.5 1M Medium','Plan New Idea','Multitask','Motion, from a prompt.'])assert.ok(root.textContent.includes(label));
     for(const t of [0,.2,.6,.9,1.4,2.8,4.6,5,5.125,5.24,5.49,5.8]){
       p.seek(t*1000);const ref=original('sPrompt',t),box=ref.events.find(x=>x.kind==='fill'&&x.path[0]?.[0]==='roundRect'&&x.path[0][1]===45);
@@ -197,7 +197,7 @@ test('片尾只保留完成态时间轴的缩小下移，七色色带与落款�
       [...root.querySelectorAll('[data-segment]')].forEach((n,i)=>{['x','y','width','height'].forEach((key,k)=>near(+n.getAttribute(key),bands[i].args[k]));assert.equal(n.getAttribute('fill'),bands[i].fillStyle);});
       const headline=ref.events.filter(x=>x.kind==='text'&&x.font.includes('230px'));
       const letters=[...root.querySelectorAll('[data-credit="headline"] [data-letter]')].filter(n=>n.getAttribute('visibility')==='visible');
-      assert.equal(letters.length,headline.length);letters.forEach((n,i)=>{const a=nums(n.getAttribute('transform'));near(a[0],headline[i].x);near(a[1],headline[i].y);});
+      assert.equal(letters.length,headline.length);letters.forEach((n,i)=>{const a=nums(n.getAttribute('transform'));near(a[0],art.credits[0].letters[i].x);near(a[1],440+(headline[i].y-440)*art.credits[0].size/230);});
       near(+root.querySelector('[data-part="fade"]').getAttribute('opacity'),nums(ref.events.at(-1).fillStyle)[3]);
     }
     p.destroy();

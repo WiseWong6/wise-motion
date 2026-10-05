@@ -13,7 +13,7 @@ const sourceMath=source.slice(source.indexOf('const clamp ='),source.indexOf('co
 const original={};
 runInNewContext(sourceMath+'; globalThis.reference={E,prog};',original);
 
-// 字形路径均为绝对坐标；检查轮廓宽高，避免把原来的圆润 O 再替换为窄长字形。
+// 字形改用 Oswald；检查原生 O 比例、居中和镜头内孔位置。
 function outlineSize(path){
   const points=[];let x=0,y=0;
   for(const [,command,raw] of path.matchAll(/([MLCQHVZ])([^MLCQHVZ]*)/g)){
@@ -33,13 +33,14 @@ test('开场先展开尺度横线，再进入原字形、年份刻度与打字�
     const part=name=>root.querySelector(`[data-part="${name}"]`),ruler=part('ruler'),ticks=[...root.querySelectorAll('[data-tick]')];
     assert.equal(root.querySelector('svg').getAttribute('viewBox'),'0 0 1920 1080');
     assert.equal(letters.length,6);assert.equal(ticks.length,7);
-    assert.equal(part('word').dataset.font,'Helvetica Neue Bold');
+    assert.equal(part('word').dataset.font,'Oswald Bold');
     assert.deepEqual(letters.map(n=>n.firstElementChild.dataset.glyph),[...'MOTION']);
     const oSize=outlineSize(letters[1].firstElementChild.getAttribute('d'));
-    assert.ok(oSize.width/oSize.height>.9&&oSize.width/oSize.height<1.05,'O 应保持原版圆润比例');
+    close(oSize.width/oSize.height,488/833);
     assert.equal(letters[1].firstElementChild.getAttribute('d'),letters[4].firstElementChild.getAttribute('d'));
-    const widths=[907,778,611,295,778,741];let x=358.5;
-    letters.forEach((node,i)=>{close(numbers(node)[0],x);assert.deepEqual(numbers(node.firstElementChild),[.3,-.3]);x+=widths[i]*.3-6;});
+    const widths=[704,586,445,301,586,561],scale=714*.3/810;
+    let x=(1920-(widths.reduce((sum,w)=>sum+w*scale,0)-30))/2;
+    letters.forEach((node,i)=>{close(numbers(node)[0],x);assert.deepEqual(numbers(node.firstElementChild),[scale,-scale]);x+=widths[i]*scale-6;});
     assert.equal(part('start-year').textContent,'1959');assert.equal(part('end-year').textContent,'2026');
     assert.match(part('heading').textContent,/SHOWREEL\s*·\s*2026/);
     assert.ok(part('caret'));assert.ok(part('dots'));
@@ -83,9 +84,10 @@ test('字母穿越携带尺度组共同放大，并以奶油圆边打开原版�
   try{
     const {w}=env,root=w.document.getElementById('root'),effect=get('letter-hole-zoom');
     const player=w.MotionRuntime.create(root,effect),group=root.querySelector('[data-part="word"]'),iris=root.querySelector('[data-part="iris"]'),edge=root.querySelector('[data-part="iris-edge"]');
-    const letters=[...group.querySelectorAll('[data-letter]')],focus={x:741.3,y:527};
+    const letters=[...group.querySelectorAll('[data-letter]')],scale=714*.3/810;
+    const focus={x:numbers(letters[1])[0]+293*scale,y:635-404.5*scale};
     assert.equal(letters[1].firstElementChild.dataset.glyph,'O');assert.equal(letters[4].firstElementChild.dataset.glyph,'O');
-    assert.ok(outlineSize(letters[1].firstElementChild.getAttribute('d')).width/outlineSize(letters[1].firstElementChild.getAttribute('d')).height>.9);
+    close(outlineSize(letters[1].firstElementChild.getAttribute('d')).width/outlineSize(letters[1].firstElementChild.getAttribute('d')).height,488/833);
     for(const name of ['ruler','start-year','end-year','subtitle','caret'])assert.ok(group.querySelector(`[data-part="${name}"]`),`${name} 应随文字一起放大`);
     assert.equal(group.querySelectorAll('[data-tick]').length,7);
     assert.ok(!group.contains(root.querySelector('[data-part="dots"]')),'背景点阵不随文字放大');

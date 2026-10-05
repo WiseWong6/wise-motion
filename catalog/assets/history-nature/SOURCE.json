@@ -2,12 +2,19 @@
   "name": "月相动作与金色满月插画的月貌数值",
   "attribution": "NASA/GSFC/Arizona State University",
   "source_label": "LunarNearside，北向上",
-  "source_status": "原工程保留机构署名，但未保留可核实的下载页。",
+  "source_status": "已从原制作工程的历史说明找回实际下载地址；正式目录的16384个灰度值与原工程逐值一致。",
   "original_data_sha256": "12671df97464b4b4fcd81eec6405791883a5f1863c4955db215db242818931b6",
-  "candidate_reference": "https://science.nasa.gov/image-article/apod-2025-july-20-lunar-nearside/",
-  "candidate_status": "官方同类月面拼接图；未确认与现有128×128数值对应，不能作为已经核实的原下载来源。",
   "usage_policy": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
   "lroc_terms": "https://lroc.im-ldi.com/about/terms",
   "code_license_scope": "AGPL-3.0-only仅覆盖自有适配程序，不改写月貌资料权利。",
-  "separate_material": "material-evolution/moon.webp 是参考片经 AI 重建的图片，不是本份 NASA 数值。"
+  "separate_material": "material-evolution/moon.webp 是参考片经 AI 重建的图片，不是本份 NASA 数值。",
+  "source_url": "https://assets.science.nasa.gov/dynamicimage/assets/science/psd/lunar-science/internal_resources/352/LunarNearside.jpeg?w=1024&h=1024&fit=clip",
+  "processing": "原工程记录：按正面圆盘中心采样，局部平均至128×128灰度；运行时平滑插值并映射到暖白或金色。原临时源图已删除，未重新从当前下载图重建取样。",
+  "data_sha256": "5eb1a8ecd693621f4bdf78125947236c83dcbc6678c79289030433eafefc11d5",
+  "usage_conditions": {
+    "educational_and_news": "LROC允许新闻机构及教育用途署名使用，署名NASA/GSFC/Arizona State University；NASA通用规则另要求不暗示机构背书。",
+    "commercial": "LROC明确要求非PDS归档图像的商业使用事先取得许可；现有源图来自NASA公开展示地址，没有取得对应PDS归档产品或商业再分发许可。",
+    "license_status": "不能仅凭NASA署名将本份展示图取样数据标为MIT、AGPL或公有领域。"
+  },
+  "verified_on": "2026-10-06"
 }
