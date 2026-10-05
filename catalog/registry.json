@@ -3994,7 +3994,18 @@
         "百分数",
         "进度读数",
         "进度条与读数同步",
-        "填充读数"
+        "填充读数",
+        "圆环帧数计数",
+        "帧数",
+        "环形计数器",
+        "帧计数",
+        "FRAME COUNTER",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙",
+        "帧数环形计数器",
+        "环形计数"
       ],
       "behaviors": [
         "count",
@@ -4046,7 +4057,101 @@
         "source_end_ms": 3400,
         "start_ms": 150,
         "end_ms": 1350
-      }
+      },
+      "variants": [
+        {
+          "summary": "进度条与右侧小字号百分数由同一个进度值同步更新。",
+          "purpose": "进度线和百分数由同一个进度值更新。",
+          "objects": "进度条与右侧百分数",
+          "phases": [
+            "进度从零开始。",
+            "线长与读数同时增长。",
+            "一起到达完成状态。"
+          ],
+          "retain": "百分数固定在进度条右侧，字号较小；填充长度与读数由同一个进度值更新。",
+          "avoid": "不要使用两个独立时钟使读数与线长错位。",
+          "duration_ms": 1800,
+          "preview_ms": 1038,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/history-patterns.js",
+            "factory": "progress-readout",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/"
+          },
+          "tempo_note": "约零点一五秒起动，主要动作 1.2 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
+          "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+          "analogy": "进度线和百分数由同一个进度值更新。",
+          "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+          "id": "default",
+          "label": "原有示例",
+          "timing": {
+            "source_duration_ms": 4000,
+            "source_preview_ms": 2640,
+            "source_start_ms": 480,
+            "source_end_ms": 3400,
+            "start_ms": 150,
+            "end_ms": 1350
+          }
+        },
+        {
+          "summary": "中央四位帧数按原每秒六十帧前进，橙色圆弧按原三十秒总帧数同步增长。",
+          "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+          "objects": "四位帧数与橙色圆弧",
+          "phases": [
+            "直接呈现原图块中的独立插画。",
+            "中央四位帧数按原每秒六十帧前进，橙色圆弧按原三十秒总帧数同步增长。",
+            "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+          ],
+          "retain": "中央四位帧数按原每秒六十帧前进，橙色圆弧按原三十秒总帧数同步增长。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+          "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+          "duration_ms": 3000,
+          "preview_ms": 2200,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/claude-tile-illustrations.js",
+            "factory": "claude-frame-counter-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+            "original_symbol": "TILES[15]"
+          },
+          "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+          "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。",
+          "analogy": "中央四位帧数按原每秒六十帧前进，橙色圆弧按原三十秒总帧数同步增长。",
+          "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+          "id": "frame-ring",
+          "label": "圆环帧数",
+          "timing": null,
+          "reproduction": {
+            "presentation": "16:9 画幅，保留圆环帧数计数的构图、配色与材质，运动由原时间关系驱动。"
+          }
+        }
+      ]
     },
     {
       "id": "live-code-readout",
@@ -4808,7 +4913,11 @@
         "固定挂点摆动",
         "悬挂",
         "摆动",
-        "挂点"
+        "挂点",
+        "蒲公英种子",
+        "蒲公英",
+        "小种子",
+        "脱落种子"
       ],
       "behaviors": [
         "continuous",
@@ -4849,6 +4958,115 @@
       ],
       "previous_names": [
         "固定挂点摆动"
+      ],
+      "variants": [
+        {
+          "id": "standard",
+          "label": "标准示例",
+          "summary": "主体绕固定悬挂点往返摆动，挂点不移动。",
+          "purpose": "主体绕固定悬挂点往返摆动，挂点不移动。",
+          "objects": "挂点、连杆和悬挂主体",
+          "phases": [
+            "挂点固定且主体自然垂下。",
+            "主体围绕挂点左右摆动。",
+            "往返保持相同连接关系。"
+          ],
+          "behaviors": [
+            "continuous",
+            "move"
+          ],
+          "retain": "主体绕固定悬挂点往返摆动，挂点不移动。",
+          "avoid": "不要把整体上下移动当成悬挂摆动。",
+          "duration_ms": 4000,
+          "loop": true,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/history-patterns.js",
+            "factory": "pivot-swing",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/"
+          },
+          "demo_mode": "fixed-timeline",
+          "preview_ms": 2640,
+          "recommendation": "适合主体绕固定悬挂点往返摆动，挂点不移动。保留对象关系和先后顺序。",
+          "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
+          "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+          "analogy": "主体绕固定悬挂点往返摆动，挂点不移动。",
+          "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+          "domains": [
+            "animation"
+          ]
+        },
+        {
+          "id": "dandelion-seed",
+          "label": "蒲公英种子",
+          "summary": "三十七道冠毛的蒲公英种子绕冠毛中心轻轻往返摆动，保留原弯曲细茎与米色种子。",
+          "purpose": "将原作物件提炼为独立可复用插画。",
+          "objects": "三十七道原冠毛、弯曲细茎、细长米色种子",
+          "phases": [
+            "种子冠毛中心保持固定。",
+            "整个种子按原正弦曲线绕中心轻摆。",
+            "保留连续摆动的角度关系，重播与定位可重复。"
+          ],
+          "behaviors": [
+            "rotate"
+          ],
+          "retain": "保留原独立种子半径三十五、三十七道冠毛、毛尖短线、弯曲细茎和细长米色种子形状。",
+          "avoid": "不带原场景、背景、字幕、音频或外围控件。",
+          "duration_ms": 3000,
+          "preview_ms": 1650,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/history-nature.js",
+            "factory": "dandelion-seed-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "extraction": "沿用 isolated-player.js 的 seed 调用：半径35、角度sin(t*1.4)*0.16；复用原 floret 的37道冠毛、原线宽和种子轮廓，仅整体居中及等比缩放。",
+            "original_path": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/dandelion.js",
+            "original_files": [
+              "/Users/wisewong/Documents/Developer/scenes/motion-catalog/isolated-player.js",
+              "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/dandelion.js"
+            ]
+          },
+          "demo_mode": "fixed-timeline",
+          "domains": [
+            "animation",
+            "document"
+          ],
+          "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+          "analogy": "原目录独立种子：三十七道细冠毛、弯曲细茎与细长米色种子。",
+          "assumptions": "透明底；保持原冠毛、细茎和种子的曲线与相对比例，整体居中并在下方预留播放条空间；线宽与轮廓整体等比缩放，不再单独削细冠毛或细茎。",
+          "tempo_note": "三秒独立示例，角度为sin(1.4t)×0.16弧度，沿用原种子示例。",
+          "recommendation": "需要此原作造型或动作关系时直接复用。",
+          "timing": null,
+          "reproduction": {
+            "presentation": "640×360透明画板，冠毛中心(320,116)，原半径35、整体等比缩放1.25倍。保留37道奶油白细冠毛、弯曲细茎与米色细长种子。",
+            "retain": "时间t以秒计，整个种子围绕冠毛中心转动sin(1.4t)×0.16弧度；中心不移动，曲线、线宽和种子轮廓共同转动。"
+          }
+        }
       ]
     },
     {
@@ -4875,7 +5093,11 @@
         "负重逐段形变",
         "贴底拉压",
         "先拉长再压扁",
-        "接触点固定回弹"
+        "接触点固定回弹",
+        "暖色太阳",
+        "太阳",
+        "夕阳",
+        "暖色日盘"
       ],
       "behaviors": [
         "bounce",
@@ -4996,6 +5218,61 @@
           "reproduction": {
             "presentation": "640×360 横向画板。主体初始半径 32 像素、横向中心 320；地面位于 y=285。近黑底、暖白主体、灰色地面，保留从上方落下、接触压扁和离地拉长。"
           }
+        },
+        {
+          "id": "sunset-sun",
+          "label": "暖色太阳",
+          "summary": "暖色太阳按原受力曲线先拉长、再压扁、最后小幅回弹，保留渐变与柔和圆周。",
+          "purpose": "将原作物件提炼为独立可复用插画。",
+          "objects": "暖黄到橘红的原太阳圆盘",
+          "phases": [
+            "原日盘底部固定，受力拉长。",
+            "纵向压扁、横向变宽，横纵比例互为倒数。",
+            "一次小幅回弹后恢复圆形。"
+          ],
+          "behaviors": [
+            "deform"
+          ],
+          "retain": "保留原暖色太阳渐变、像素覆盖率和透明柔边；不增加表情、手脚或新纹理。",
+          "avoid": "不带原场景、背景、字幕、音频或外围控件。",
+          "duration_ms": 3700,
+          "preview_ms": 1250,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/history-nature.js",
+            "factory": "sunset-sun-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "extraction": "复用原 sunDeformationAt 的三段形变与 drawSun 的原渐变，按固定底部接触点展示；不带飞机、绳索或海面。",
+            "original_path": "/Users/wisewong/Documents/Developer/scenes/ocean-sunset/sketch.js"
+          },
+          "demo_mode": "fixed-timeline",
+          "domains": [
+            "animation",
+            "document"
+          ],
+          "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+          "analogy": "原夕阳中的暖色日盘，上亮下暗，保留原渐变和柔和圆周。",
+          "assumptions": "透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。",
+          "tempo_note": "等待零点一五秒，播放原二十四点五至二十七点六秒的三段形变，末尾保持零点四五秒。",
+          "recommendation": "需要此原作造型或动作关系时直接复用。",
+          "reproduction": {
+            "presentation": "640×360透明画板，暖色日盘初始中心(320,162)，保留原渐变和柔边；原尺寸等比放大2.2倍。",
+            "retain": "原时间u=24.5+clamp(t−0.15,0,3.1)；纵向比例y=1+0.06L−0.09C+0.022R，横向比例x=1/y。L、C、R分别是原拉长、压扁和回弹窗口；中心随y补偿，底部固定。"
+          },
+          "timing": null
         }
       ]
     },
@@ -5160,7 +5437,12 @@
         "轮子随行程滚动",
         "车轮",
         "滚动距离",
-        "行程滚动"
+        "行程滚动",
+        "小葵敞篷车",
+        "汽车",
+        "敞篷车",
+        "蓝色汽车",
+        "小葵"
       ],
       "behaviors": [
         "move",
@@ -5211,6 +5493,124 @@
       "previous_names": [
         "轮子随行程滚动",
         "行程滚动"
+      ],
+      "variants": [
+        {
+          "id": "standard",
+          "label": "标准示例",
+          "summary": "主体平移时，轮子的转角由实际行程除以半径得出。",
+          "purpose": "主体平移时，轮子的转角由实际行程除以半径得出。",
+          "objects": "主体和轮子",
+          "phases": [
+            "车轮在起点等待。",
+            "平移与转角按半径联动。",
+            "停下后轮子也停下。"
+          ],
+          "behaviors": [
+            "move",
+            "rotation3d",
+            "react"
+          ],
+          "retain": "主体平移时，轮子的转角由实际行程除以半径得出。",
+          "avoid": "不要让轮子用独立频率旋转产生打滑。",
+          "duration_ms": 1800,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/history-patterns.js",
+            "factory": "rolling-distance",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/"
+          },
+          "demo_mode": "fixed-timeline",
+          "preview_ms": 1046,
+          "recommendation": "适合主体平移时，轮子的转角由实际行程除以半径得出。保留对象关系和先后顺序。",
+          "tempo_note": "约零点一五秒起动，主要动作 1.2 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
+          "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+          "analogy": "主体平移时，轮子的转角由实际行程除以半径得出。",
+          "assumptions": "这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+          "domains": [
+            "animation"
+          ],
+          "timing": {
+            "source_duration_ms": 4000,
+            "source_preview_ms": 2640,
+            "source_start_ms": 400,
+            "source_end_ms": 3400,
+            "start_ms": 150,
+            "end_ms": 1350
+          }
+        },
+        {
+          "id": "drive-car",
+          "label": "小葵敞篷车",
+          "summary": "蓝色敞篷车内的小葵持续驾驶，车轮随行程转动、方向盘轻摆，车身沿原曲线微微起伏。",
+          "purpose": "将原作物件提炼为独立可复用插画。",
+          "objects": "原蓝色敞篷车、完整小葵、方向盘、三孔轮毂",
+          "phases": [
+            "原车身和驾驶猫完整出现。",
+            "车轮按每秒360的行程推进，方向盘随原正弦曲线转动。",
+            "车身保持轻微起伏；定位和回放不积累转角。"
+          ],
+          "behaviors": [
+            "rotate",
+            "move"
+          ],
+          "retain": "保留批准造型的全部原曲线、车色、驾驶猫、方向盘、车灯、轮毂与弧形保险杠。",
+          "avoid": "不带原场景、背景、字幕、音频或外围控件。",
+          "duration_ms": 3000,
+          "preview_ms": 1650,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/history-nature.js",
+            "factory": "drive-car-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "extraction": "直接复用 drawXiaokuiCar、driveDistance、vehicleBob，恢复真实时间和行程；独立跟车取景仅移除背景和气球。",
+            "original_files": [
+              "/Users/wisewong/Documents/Developer/scenes/xiaokui-balloon-drive/xiaokui-car.js",
+              "/Users/wisewong/Documents/Developer/scenes/xiaokui-balloon-drive/scene.js"
+            ]
+          },
+          "demo_mode": "fixed-timeline",
+          "domains": [
+            "animation",
+            "document"
+          ],
+          "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+          "analogy": "原小葵坐在蓝色敞篷车内，保留车身、方向盘、车轮和驾驶姿态。",
+          "assumptions": "透明底，跟车取景固定横向中心；车轮仍按原行程转动，车身保留原竖向轻微起伏。",
+          "tempo_note": "三秒驾驶片段，使用原行驶速度、转向和车身起伏。",
+          "recommendation": "需要此原作造型或动作关系时直接复用。",
+          "timing": null,
+          "reproduction": {
+            "presentation": "640×360透明画板，完整蓝色敞篷车与驾驶猫居中偏上；车色#0077FF、暗部#064DDD，猫毛#958878，保留原车轮和方向盘细节。",
+            "retain": "跟车取景固定x=320，y=260+sin(9t)×0.7+sin(3.2t)×0.45。车身整体缩放0.64；轮子转角=(360t/0.64)/(96×0.52)弧度；转向基础角=sin(2.1t)×0.14+sin(0.85t)×0.035，驾驶动作随原基础角联动。"
+          }
+        }
       ]
     },
     {
@@ -6449,7 +6849,17 @@
         "代码逐字写出",
         "语法着色打字",
         "终端逐行输入代码",
-        "逐行键入"
+        "逐行键入",
+        "命令窗口",
+        "终端打字",
+        "命令行打字",
+        "终端输入",
+        "档案色终端窗口",
+        "终端插画",
+        "日志窗口",
+        "代码终端",
+        "Kimi 插画",
+        "终端命令与日志"
       ],
       "behaviors": [
         "text",
@@ -6503,7 +6913,99 @@
         "source_end_ms": 2500,
         "start_ms": 150,
         "end_ms": 2550
-      }
+      },
+      "variants": [
+        {
+          "summary": "石墨灰终端窗口轻微上移淡入，三行带语法配色的代码依次逐字输入，方块光标闪烁，底部状态光带横扫。",
+          "purpose": "将代码按行、按字写出，让观众看清输入过程并保留完整代码。",
+          "objects": "带三色窗口按钮的终端、三行代码、方块光标与底部状态光带",
+          "phases": [
+            "终端窗口上移一小段并淡入。",
+            "三行代码按相同间距开始逐字输入，未完成行的方块光标闪烁，底部光带横向扫描。",
+            "全部代码保留，光标消失，窗口和底部光带在末尾静止。"
+          ],
+          "retain": "保留原石墨灰窗体、标题栏、红黄绿圆点、三行原代码及语法配色。按原半秒行间隔、每秒五十字输入，保留方块光标和底部状态光带；中文正文细体，英文沿用原紧凑字形。",
+          "avoid": "不带原场景标题、旁白和影片背景，不替换已有的命令与日志终端，不将行间错峰改成整行闪现，不在文字增加时重新居中。",
+          "duration_ms": 3000,
+          "preview_ms": 2775,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/history-patterns.js",
+            "factory": "terminal-code",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/"
+          },
+          "tempo_note": "约零点一五秒起动，主要动作 2.4 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
+          "assumptions": "核对原教程开场中的单窗终端、文字规则与主题色后独立重写。窗体等比缩为六成并居中，外部使用目录底色。保留原窗口比例、文案与配色；中文使用目录细体，英文和数字使用目录已打包的原字形。固定示例字距从原字体计算，不在播放时反复测量。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+          "analogy": "终端里写下想法和动效，再敲出创建语句。",
+          "trigger": "打开预览后，终端进入并逐行输入代码；支持暂停、重播与拖动。",
+          "id": "default",
+          "label": "原有示例",
+          "timing": {
+            "source_duration_ms": 3000,
+            "source_preview_ms": 2600,
+            "source_start_ms": 0,
+            "source_end_ms": 2500,
+            "start_ms": 150,
+            "end_ms": 2550
+          }
+        },
+        {
+          "summary": "终端窗口保持固定，命令随光标逐字输入，日志和调试状态按原顺序出现，完成后停住。",
+          "purpose": "复用原终端的命令输入与输出节奏，保留原窗口样式。",
+          "objects": "终端窗口与九行输出",
+          "phases": [
+            "固定终端窗口内，命令随光标逐字输入。",
+            "日志逐行输出，调试省略号随原节拍变化。",
+            "通过状态显现，完整终端内容停住。"
+          ],
+          "retain": "保留原终端窗口样式、逐字命令输入、日志顺序、调试省略号和方块光标；窗口位置、比例及清晰度固定。",
+          "avoid": "不带窗口入场、缩小后退、变淡、柔焦或前景标题，去掉原场景背景与文稿。",
+          "duration_ms": 3000,
+          "preview_ms": 2900,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/kimi-illustrations.js",
+            "factory": "terminal-window-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/"
+          },
+          "tempo_note": "三秒内完成命令输入与日志输出，末尾留清晰停留；速度只改变整体快慢。",
+          "assumptions": "复用 Kimi 中文正本的原窗口、命令与日志，仅保留打字输出片段；窗口自始至终固定，使用目录统一画板和底色。",
+          "analogy": "终端窗口保持固定，命令随光标逐字输入，日志和调试状态按原顺序出现，完成后停住。",
+          "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+          "id": "command-log",
+          "label": "命令与日志",
+          "timing": null,
+          "reproduction": {
+            "presentation": "16:9 画幅，保留命令窗口的构图、配色与材质，运动由原时间关系驱动。"
+          }
+        }
+      ]
     },
     {
       "id": "theme-card-layout",
@@ -7803,7 +8305,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "contour-draw-fill"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2400,
       "recommendation": "适合单独展示原工程的插画图形。",
@@ -7870,7 +8374,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "narrowing-flow-accelerate"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2400,
       "recommendation": "适合单独展示原工程的插画图形。",
@@ -7937,7 +8443,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "window-step-connect"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2400,
       "recommendation": "适合单独展示原工程的插画图形。",
@@ -8004,7 +8512,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "inward-curve-flow"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2400,
       "recommendation": "适合单独展示原工程的插画图形。",
@@ -8070,7 +8580,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "card-compress-merge"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2400,
       "recommendation": "适合单独展示原工程的插画图形。",
@@ -8137,7 +8649,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "wire-ring-build-turn"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2400,
       "recommendation": "适合单独展示原工程的插画图形。",
@@ -8204,7 +8718,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "point-link-hit"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2800,
       "recommendation": "适合展示选择、分发或连接建立，直接复用点阵插画。",
@@ -8271,7 +8787,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "scroll-unroll-feed"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2400,
       "recommendation": "适用于长文、档案或账册的开卷展示；可替换正文，保留纸面、卷辊与滚动视窗的同步关系。",
@@ -8302,23 +8820,25 @@
           "step": 0.25
         }
       },
-      "actions": [],
+      "actions": [
+        "bar-sweep"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation",
         "document"
       ],
-      "trigger": "按固定时间表演示；可暂停、重播和拖动时间。",
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
       "id": "steel-ruler-illustration",
       "name": "金属钢尺",
       "category": "illustration-object",
-      "summary": "横放的深灰金属钢尺，保留亮边、三档刻度、数字和蚀刻说明。",
-      "purpose": "独立复用钢尺物件的原材质和刻度细节。",
+      "summary": "横放金属钢尺沿原扫动曲线从下向上穿过画板，保留完整刻度、金属亮边和蚀刻字。",
+      "purpose": "复用钢尺主体及原场景切换时的扫动。",
       "objects": "一把深灰金属钢尺",
       "phases": [
-        "钢尺完整显示在画板中央。",
-        "保留金属渐变、亮边、长中短三档刻度和刻度数字。",
-        "整段保持固定位置与尺寸。"
+        "钢尺在画板下缘外等待。",
+        "沿原先慢后快再慢的曲线扫过画板。",
+        "从上缘完全离开，结束本次扫动。"
       ],
       "aliases": [
         "金属钢尺插画",
@@ -8329,29 +8849,39 @@
         "金属刻度"
       ],
       "behaviors": [
-        "illustration",
-        "hold"
+        "move"
       ],
       "retain": "保留原深灰金属四色渐变、边缘亮线、完整一百三十六条刻度、十四个数字标签、蚀刻字和物件阴影。",
-      "avoid": "只纳入钢尺物件；不带横扫、画面切换、旧镜定格、裁剪分割、页面背景、字幕或声音。",
-      "duration_ms": 3000,
-      "preview_ms": 1500,
-      "recommendation": "需要金属钢尺物件时直接复用；插画自身保持静止。",
-      "tempo_note": "三秒静态展示，无入退场与扫换；可调观看速度。",
-      "analogy": "放在桌面上的不锈钢直尺。",
-      "assumptions": "按本机 Naive 纸墨图谱的 Ruler.tsx 独立转写，原竖尺横放并等比适配画板，标签方向随横放重排、字号补偿至可读；保留原金属配色与刻度。只提供插画，不提取转场。原工程只读。",
+      "avoid": "只保留钢尺及扫动，不带原页面、旧镜定格、裁剪切换、字幕或声音。",
+      "duration_ms": 1200,
+      "preview_ms": 433.3333333333,
+      "recommendation": "需要金属钢尺扫过画面的物件示例时直接复用。",
+      "tempo_note": "等待零点一五秒，按原每秒30帧、18帧片段的首末位置扫过，末尾保持空场。",
+      "analogy": "一把金属直尺从画面一侧扫到另一侧。",
+      "assumptions": "原竖尺横放后，原横扫方向随物件一起旋转为纵扫；保持原金属细节、控制曲线及完整进出边界，画板范围适配为640×360。",
       "source": {
         "path": "catalog/effects/illustrations.js",
         "factory": "steel-ruler-illustration",
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
+        "reference_url": "https://animejs.com/documentation/",
+        "original_files": [
+          "/Users/wisewong/Documents/Developer/wise-video/Naive-NO.5-Flash/promo-atelier/src/atelier/Ruler.tsx",
+          "/Users/wisewong/Documents/Developer/wise-video/Naive-NO.5-Flash/promo-atelier/src/Main.tsx",
+          "/Users/wisewong/Documents/Developer/wise-video/Naive-NO.5-Flash/promo-atelier/src/timing.ts",
+          "/Users/wisewong/Documents/Developer/wise-video/Naive-NO.5-Flash/promo-atelier/src/theme.ts"
+        ],
+        "extraction": "物件来自 Ruler.tsx，扫动来自 Main.tsx 的 Entry；使用原三次曲线(0.65,0,0.35,1)和18帧/30帧每秒时序，转为横尺纵扫，只移除页面裁剪。"
       },
       "previous_names": [
         "金属钢尺插画",
         "金属刻度"
-      ]
+      ],
+      "reproduction": {
+        "presentation": "640×360透明画板，横尺原几何1120×124、整体比例0.46，横坐标62.4。金属四色渐变、136条刻度与14个数字标签完整保留。",
+        "retain": "令p=clamp((t−0.15)/(17/30),0,1)，q为三次曲线(0.65,0,0.35,1)在p的输出。尺顶y=364.6−426.24q，固定尺寸；原10像素边界余量和124像素宽度同乘0.46，保证从下方完整进入、从上方完整离开。"
+      }
     },
     {
       "id": "smoke-ring-illustration",
@@ -8404,7 +8934,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "particle-torus-roll"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2600,
       "recommendation": "适合独立复用烟圈粒子插画，保留原图形结构与细线比例。",
@@ -8473,7 +9005,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "vortex-line-roll"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2600,
       "recommendation": "适合独立复用涡环剖面插画，保留原图形结构与细线比例。",
@@ -8542,7 +9076,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "plume-rise-curl"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2600,
       "recommendation": "适合独立复用蘑菇云粒子插画，保留原图形结构与细线比例。",
@@ -8611,7 +9147,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "spherical-vortex-flow"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2600,
       "recommendation": "适合独立复用球涡流线插画，保留原图形结构与细线比例。",
@@ -8680,7 +9218,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "spiral-inward-flow"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2600,
       "recommendation": "适合独立复用台风螺旋插画，保留原图形结构与细线比例。",
@@ -8749,7 +9289,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "differential-orbit-turn"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2600,
       "recommendation": "适合独立复用螺旋星系插画，保留原图形结构与细线比例。",
@@ -8817,7 +9359,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "energy-vortex-wrap"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2600,
       "recommendation": "适合独立复用螺旋丸插画，保留原图形结构与细线比例。",
@@ -8885,7 +9429,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "arc-branch-flicker"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2600,
       "recommendation": "适合独立复用分叉电弧插画，保留原图形结构与细线比例。",
@@ -8950,7 +9496,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "fade-drop"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2900,
       "recommendation": "需要原片档案桌风格的独立插画时直接复用。",
@@ -9017,7 +9565,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "stagger-drop"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2900,
       "recommendation": "需要原片档案桌风格的独立插画时直接复用。",
@@ -9032,7 +9582,10 @@
       "previous_names": [
         "档案桌绘图工具",
         "绘图器具"
-      ]
+      ],
+      "action_variants": {
+        "stagger-drop": "tools"
+      }
     },
     {
       "id": "archive-folder-illustration",
@@ -9082,7 +9635,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "slide-type-reveal"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2900,
       "recommendation": "需要原片档案桌风格的独立插画时直接复用。",
@@ -9146,7 +9701,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "stagger-drop"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2900,
       "recommendation": "需要原片档案桌风格的独立插画时直接复用。",
@@ -9161,7 +9718,10 @@
       "previous_names": [
         "散页档案卡",
         "散页卡组"
-      ]
+      ],
+      "action_variants": {
+        "stagger-drop": "paper-cards"
+      }
     },
     {
       "id": "chart-card-illustration",
@@ -9210,7 +9770,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "tilt-drop-settle"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2900,
       "recommendation": "需要原片档案桌风格的独立插画时直接复用。",
@@ -9275,7 +9837,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "pop-pulse-ring"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2900,
       "recommendation": "需要原片档案桌风格的独立插画时直接复用。",
@@ -9343,7 +9907,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "terminal-code"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2900,
       "recommendation": "需要终端输入和日志输出时，直接复用此项。",
@@ -9358,7 +9924,10 @@
       "previous_names": [
         "终端打字",
         "终端命令与日志"
-      ]
+      ],
+      "action_variants": {
+        "terminal-code": "command-log"
+      }
     },
     {
       "id": "archive-box-illustration",
@@ -9409,7 +9978,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "lid-open-float"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2900,
       "recommendation": "需要原片档案桌风格的独立插画时直接复用。",
@@ -10167,7 +10738,9 @@
           "step": 0.25
         }
       },
-      "actions": [],
+      "actions": [
+        "striped-rise-pulse"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation"
@@ -10526,7 +11099,9 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "dot-mask-reveal"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation",
@@ -12736,7 +13311,16 @@
         "流线连续游动",
         "演进史待验收",
         "Claude 动效演进史",
-        "噪声流线连续游动"
+        "噪声流线连续游动",
+        "游动流线",
+        "噪声流场",
+        "流线",
+        "流场",
+        "FLOW FIELD",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙"
       ],
       "behaviors": [
         "move",
@@ -12779,6 +13363,93 @@
       "original_scene": "claude-showreel-2026/sGen",
       "previous_names": [
         "噪声流线连续游动"
+      ],
+      "variants": [
+        {
+          "summary": "220 条紫色流线在连续变化的噪声场中蜿蜒，起点缓慢向右漂移；独立展示随深浅主题调整颜色与背景。",
+          "purpose": "以清晰的连续流线展示同一噪声场中的方向变化。",
+          "objects": "220 条由 10 个短步连接的紫色流线",
+          "phases": [
+            "每条线从固定种子位置开始，在同一噪声场取方向。",
+            "起点每秒向右漂移 50 像素，线段逐步按各自当前位置重新取方向。",
+            "越过画板右边的起点回到左边，整片流场连续变化。"
+          ],
+          "retain": "保留原 220 组固定种子、每段 14 像素、10 步路径和原时间关系；独立展示使用随主题调整的紫色、90% 不透明度及标准画板约 1.2 像素线宽。",
+          "avoid": "不改成随机抖动，不与点阵位置共用错误坐标；独立展示增强对比时，组合背景仍保留原有淡线层次。",
+          "duration_ms": 8000,
+          "preview_ms": 2200,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/reel-flat-gen.js",
+            "factory": "generative-flow-field",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/"
+          },
+          "tempo_note": "保留原场景 0–8 秒时钟、每秒 50 像素横移和噪声时间变化。",
+          "assumptions": "按本机动效演进史原绘制源码独立实现，原工程只读。独立流线使用目录深浅背景与更清晰的主题紫色，组合仍保留原 16% 紫色背景流线；220 条路径坐标与时钟共用原函数。没有声音、外部视频和网络依赖。",
+          "analogy": "像一片顺着缓慢变化的气流游动的细丝。",
+          "trigger": "按固定时间表播放，可暂停、重播和任意拖动定位。",
+          "id": "default",
+          "label": "原有示例",
+          "timing": null
+        },
+        {
+          "summary": "一百四十条短流线从固定起点出发，每条沿连续变化的方向走十八步。",
+          "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+          "objects": "一百四十条十八步流线",
+          "phases": [
+            "直接呈现原图块中的独立插画。",
+            "一百四十条短流线从固定起点出发，每条沿连续变化的方向走十八步。",
+            "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+          ],
+          "retain": "一百四十条短流线从固定起点出发，每条沿连续变化的方向走十八步。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+          "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+          "duration_ms": 3000,
+          "preview_ms": 2200,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/claude-tile-illustrations.js",
+            "factory": "claude-flow-field-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+            "original_symbol": "TILES[2]"
+          },
+          "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+          "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。",
+          "analogy": "一百四十条短流线从固定起点出发，每条沿连续变化的方向走十八步。",
+          "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+          "id": "fixed-streams",
+          "label": "固定起点流线",
+          "timing": null,
+          "reproduction": {
+            "presentation": "16:9 画幅，保留游动流线的构图、配色与材质，运动由原时间关系驱动。"
+          }
+        }
       ]
     },
     {
@@ -14945,7 +15616,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[0]"
       },
-      "actions": [],
+      "actions": [
+        "curve-phase-shift"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15015,7 +15688,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[1]"
       },
-      "actions": [],
+      "actions": [
+        "wireframe-axis-turn"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15083,7 +15758,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[2]"
       },
-      "actions": [],
+      "actions": [
+        "generative-flow-field"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15097,7 +15774,10 @@
       ],
       "previous_names": [
         "噪声流场"
-      ]
+      ],
+      "action_variants": {
+        "generative-flow-field": "fixed-streams"
+      }
     },
     {
       "id": "claude-pendulum-wave-illustration",
@@ -15152,7 +15832,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[3]"
       },
-      "actions": [],
+      "actions": [
+        "pendulum-phase-wave"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15222,7 +15904,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[4]"
       },
-      "actions": [],
+      "actions": [
+        "spiral-point-turn"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15292,7 +15976,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[5]"
       },
-      "actions": [],
+      "actions": [
+        "beat-ring-pulse"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15362,7 +16048,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[6]"
       },
-      "actions": [],
+      "actions": [
+        "hud-spectrum-bars"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15377,7 +16065,10 @@
       "previous_names": [
         "音频频谱",
         "频谱起伏"
-      ]
+      ],
+      "action_variants": {
+        "hud-spectrum-bars": "audio-spectrum"
+      }
     },
     {
       "id": "claude-warp-illustration",
@@ -15432,7 +16123,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[7]"
       },
-      "actions": [],
+      "actions": [
+        "radial-speed-lines"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15502,7 +16195,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[8]"
       },
-      "actions": [],
+      "actions": [
+        "grid-wave-scale"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15572,7 +16267,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[9]"
       },
-      "actions": [],
+      "actions": [
+        "branch-angle-sway"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15640,7 +16337,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[10]"
       },
-      "actions": [],
+      "actions": [
+        "glyph-rain-fall"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15709,7 +16408,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[11]"
       },
-      "actions": [],
+      "actions": [
+        "hex-radial-pulse"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15779,7 +16480,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[12]"
       },
-      "actions": [],
+      "actions": [
+        "multi-orbit-drift"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15849,7 +16552,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[13]"
       },
-      "actions": [],
+      "actions": [
+        "terrain-line-wave"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15917,7 +16622,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[14]"
       },
-      "actions": [],
+      "actions": [
+        "proximity-link-drift"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -15986,7 +16693,9 @@
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
         "original_symbol": "TILES[15]"
       },
-      "actions": [],
+      "actions": [
+        "progress-readout"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 2200,
       "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
@@ -16001,7 +16710,10 @@
       "previous_names": [
         "帧数环形计数器",
         "环形计数"
-      ]
+      ],
+      "action_variants": {
+        "progress-readout": "frame-ring"
+      }
     },
     {
       "kind": "action",
@@ -16845,7 +17557,9 @@
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "提取本机「小猫加工厂」cat.js 的原路径、花纹、表情绘制与 timeline.js 的小葵叫声开合曲线；原绘图调用转换为独立 SVG，不依赖原工程、图片或声音。"
       },
-      "actions": [],
+      "actions": [
+        "mouth-open-react"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 740,
       "recommendation": "需要带嘴部表情的完整小葵插画时直接复用。",
@@ -16903,7 +17617,8 @@
         "雨中曲",
         "雨中曲返场",
         "雨伞",
-        "雨伞围绕弯钩连续转动三圈，弯钩支点轻移，整体尺寸保持。"
+        "雨伞围绕弯钩连续转动三圈，弯钩支点轻移，整体尺寸保持。",
+        "细线雨伞"
       ],
       "behaviors": [
         "path",
@@ -16966,7 +17681,8 @@
         "雨中曲",
         "雨中曲返场",
         "雨伞",
-        "雨伞按原节拍轻跳碎步，落地后从真实接触点溅起水花与涟漪。"
+        "雨伞按原节拍轻跳碎步，落地后从真实接触点溅起水花与涟漪。",
+        "细线雨伞"
       ],
       "behaviors": [
         "path",
@@ -17029,7 +17745,8 @@
         "雨中曲",
         "雨中曲返场",
         "雨伞",
-        "雨伞沿原抛物线腾空翻转，以伞尖落地，机身尺寸保持固定。"
+        "雨伞沿原抛物线腾空翻转，以伞尖落地，机身尺寸保持固定。",
+        "细线雨伞"
       ],
       "behaviors": [
         "path",
@@ -17092,7 +17809,8 @@
         "雨中曲",
         "雨中曲返场",
         "雨伞",
-        "伞尖固定在地面，伞面绕伞轴回旋四圈，伞轴轻微摇摆。"
+        "伞尖固定在地面，伞面绕伞轴回旋四圈，伞轴轻微摇摆。",
+        "细线雨伞"
       ],
       "behaviors": [
         "rotate",
@@ -17154,7 +17872,8 @@
         "雨中曲",
         "雨中曲返场",
         "雨伞",
-        "雨伞沿真实外轮廓滚过水面，位移与接触边缘一致，沿途留下轻水纹。"
+        "雨伞沿真实外轮廓滚过水面，位移与接触边缘一致，沿途留下轻水纹。",
+        "细线雨伞"
       ],
       "behaviors": [
         "path",
@@ -17217,7 +17936,8 @@
         "雨中曲",
         "雨中曲返场",
         "雨伞",
-        "雨伞反弹腾空飞旋，伞沿水珠继承离开瞬间的运动速度，留下连续短轨迹。"
+        "雨伞反弹腾空飞旋，伞沿水珠继承离开瞬间的运动速度，留下连续短轨迹。",
+        "细线雨伞"
       ],
       "behaviors": [
         "path",
@@ -17245,13 +17965,13 @@
       "name": "细线雨伞",
       "kind": "illustration",
       "category": "illustration-object",
-      "summary": "乳白细线勾勒撑开的圆弧伞面、八根伞骨、直杆与弯钩，保留原伞面遮挡。",
+      "summary": "细线雨伞沿原编舞完成勾柄、点地、飞起、立尖、滚动与甩水姿态，保留伞面遮挡。",
       "purpose": "将雨中曲的原雨伞独立提炼为可复用的透明底插画。",
       "objects": "圆弧伞面、八根伞骨、直杆、弯钩与伞沿细点",
       "phases": [
-        "完整雨伞居中呈现。",
-        "保持原伞面曲率、伞骨遮挡与弯钩比例。",
-        "透明背景下保持静止。"
+        "伞沿原勾柄和点地节奏移动。",
+        "飞起、立尖和滚动依照原编舞衔接。",
+        "完成甩水姿态并停在原结尾；只保留伞本身。"
       ],
       "aliases": [
         "伞",
@@ -17263,11 +17983,12 @@
         "弯钩伞"
       ],
       "behaviors": [
-        "hold"
+        "move",
+        "rotate"
       ],
       "retain": "直接保留原圆弧伞面、八根伞骨的前后遮挡、直杆、弯钩、乳白线色与原尺寸比例。",
       "avoid": "不包含雨景、雨丝、水花、倒影、尾迹或动作。",
-      "duration_ms": 3000,
+      "duration_ms": 24543,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -17286,16 +18007,27 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "直接复用已迁入的雨中曲原伞绘制函数，保留原伞面、伞骨遮挡及伞柄；仅绘制独立雨伞，移除场景与动作。"
+        "extraction": "复用 EncoreDance.sample 与 EncoreUmbrella.draw，恢复完整原编舞；仅移除雨景、水花、倒影和声音。",
+        "original_files": [
+          "/Users/wisewong/Documents/Developer/scenes/未完成/singintherain-encore/app/choreography.js",
+          "/Users/wisewong/Documents/Developer/scenes/未完成/singintherain-encore/app/umbrella.js"
+        ]
       },
-      "actions": [],
+      "actions": [
+        "encore-hook",
+        "encore-tap",
+        "encore-flight",
+        "encore-tip",
+        "encore-roll",
+        "encore-shed"
+      ],
       "demo_mode": "fixed-timeline",
-      "preview_ms": 1800,
+      "preview_ms": 11300,
       "recommendation": "需要原雨中曲伞造型作为独立插画时复用，可与其他动作组合。",
-      "tempo_note": "静态插画全程保持；播放与定位不改变伞体。",
-      "trigger": "打开预览后显示完整雨伞插画。",
+      "tempo_note": "完整保留原二十四点五四三秒编舞，六段动作分别可在动作目录复用。",
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
       "analogy": "把雨中曲中的伞单独取出，作为透明底的线描物件。",
-      "assumptions": "采用原伞绘制函数，只调整居中位置；透明矢量图，不依赖原工程或图片。",
+      "assumptions": "透明底，只绘制原伞；保留1280×800画板内的原位置、角度和翻转，等比显示，不带雨滴、水面和倒影。",
       "domains": [
         "animation",
         "document"
@@ -17320,7 +18052,8 @@
         "月相",
         "月亮渐圆",
         "月牙渐盈成满月",
-        "金叶化蝶"
+        "金叶化蝶",
+        "金色满月"
       ],
       "behaviors": [
         "light",
@@ -17570,13 +18303,13 @@
       "name": "金色满月",
       "kind": "illustration",
       "category": "illustration-nature",
-      "summary": "原金叶化蝶中的金色满月，保留真实正面月貌明暗和柔和圆周。",
+      "summary": "金色月面由原八十四个抵达事件逐渐照亮，最终形成完整满月，保留真实月貌与柔边。",
       "purpose": "将原作物件提炼为独立可复用插画。",
       "objects": "原月貌、金色受光面和透明圆周",
       "phases": [
-        "完整物件居中呈现。",
-        "保持原轮廓、比例与细节。",
-        "透明背景下保持静止。"
+        "开始时月面未受光，背景可透出。",
+        "原抵达事件逐个贡献进度，明暗交界沿椭圆弧向左推进。",
+        "最后一只蝴蝶抵达后形成完整满月。"
       ],
       "aliases": [
         "金色满月",
@@ -17585,12 +18318,12 @@
         "金叶化蝶"
       ],
       "behaviors": [
-        "hold"
+        "reveal"
       ],
       "retain": "保留原 NASA/GSFC/Arizona State University 正面月貌数据、原色彩取样与边缘柔化。",
       "avoid": "不带原场景、背景、字幕、音频或外围控件。",
-      "duration_ms": 3000,
-      "preview_ms": 1650,
+      "duration_ms": 5700,
+      "preview_ms": 5700,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -17609,25 +18342,26 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+        "extraction": "复用原 moonProgress 与月貌像素绘制，取消固定满月进度，恢复八十四个抵达事件聚合的光照变化。",
+        "original_path": "/Users/wisewong/Documents/Developer/scenes/august-night-osmanthus/scene.js"
       },
-      "actions": [],
+      "actions": [
+        "moon-event-fill"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation",
         "document"
       ],
-      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
       "analogy": "原金叶化蝶中的金色满月，保留真实正面月貌明暗和柔和圆周。",
       "assumptions": "透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。",
-      "tempo_note": "静态插画全程保持；播放与定位不改变物件。",
+      "tempo_note": "对应原片十一点五至十七点二秒，五点七秒内逐渐盈满。",
       "recommendation": "需要此原作造型或动作关系时直接复用。",
       "previous_names": [],
       "reproduction": {
-        "retain": "暖灰月面、圆形柔边、明暗陨坑与桂花枝的前后层次",
-        "details": [
-          "月亮用完整正圆，底色暖灰#d6d0b9；固定随机种子布置大小不等的浅深灰斑块与环形陨坑，左侧较亮，边缘柔化；桂花枝以棕色弯枝、深绿尖椭圆叶和四瓣淡黄色小花构成，遮住月面局部边缘"
-        ]
+        "presentation": "640×360透明画板，月面中心(320,162)，保留金色真实月貌、陨坑明暗与透明柔边。",
+        "retain": "光照进度由八十四个抵达事件分别平滑累加，再取平均；明暗分界沿椭圆弧移动，最终形成满月。"
       }
     },
     {
@@ -17635,13 +18369,13 @@
       "name": "暖色太阳",
       "kind": "illustration",
       "category": "illustration-nature",
-      "summary": "原夕阳中的暖色日盘，上亮下暗，保留原渐变和柔和圆周。",
+      "summary": "暖色太阳按原受力曲线先拉长、再压扁、最后小幅回弹，保留渐变与柔和圆周。",
       "purpose": "将原作物件提炼为独立可复用插画。",
       "objects": "暖黄到橘红的原太阳圆盘",
       "phases": [
-        "完整物件居中呈现。",
-        "保持原轮廓、比例与细节。",
-        "透明背景下保持静止。"
+        "原日盘底部固定，受力拉长。",
+        "纵向压扁、横向变宽，横纵比例互为倒数。",
+        "一次小幅回弹后恢复圆形。"
       ],
       "aliases": [
         "暖色太阳",
@@ -17650,12 +18384,12 @@
         "暖色日盘"
       ],
       "behaviors": [
-        "hold"
+        "deform"
       ],
       "retain": "保留原暖色太阳渐变、像素覆盖率和透明柔边；不增加表情、手脚或新纹理。",
       "avoid": "不带原场景、背景、字幕、音频或外围控件。",
-      "duration_ms": 3000,
-      "preview_ms": 1650,
+      "duration_ms": 3700,
+      "preview_ms": 1250,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -17674,20 +18408,30 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+        "extraction": "复用原 sunDeformationAt 的三段形变与 drawSun 的原渐变，按固定底部接触点展示；不带飞机、绳索或海面。",
+        "original_path": "/Users/wisewong/Documents/Developer/scenes/ocean-sunset/sketch.js"
       },
-      "actions": [],
+      "actions": [
+        "squash-bounce"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation",
         "document"
       ],
-      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
       "analogy": "原夕阳中的暖色日盘，上亮下暗，保留原渐变和柔和圆周。",
       "assumptions": "透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。",
-      "tempo_note": "静态插画全程保持；播放与定位不改变物件。",
+      "tempo_note": "等待零点一五秒，播放原二十四点五至二十七点六秒的三段形变，末尾保持零点四五秒。",
       "recommendation": "需要此原作造型或动作关系时直接复用。",
-      "previous_names": []
+      "previous_names": [],
+      "reproduction": {
+        "presentation": "640×360透明画板，暖色日盘初始中心(320,162)，保留原渐变和柔边；原尺寸等比放大2.2倍。",
+        "retain": "原时间u=24.5+clamp(t−0.15,0,3.1)；纵向比例y=1+0.06L−0.09C+0.022R，横向比例x=1/y。L、C、R分别是原拉长、压扁和回弹窗口；中心随y补偿，底部固定。"
+      },
+      "action_variants": {
+        "squash-bounce": "sunset-sun"
+      }
     },
     {
       "id": "forward-boat-illustration",
@@ -17737,7 +18481,9 @@
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
       },
-      "actions": [],
+      "actions": [
+        "body-pendant-sway"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation",
@@ -17799,7 +18545,9 @@
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
       },
-      "actions": [],
+      "actions": [
+        "wing-fold-sway"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation",
@@ -17819,13 +18567,13 @@
       "name": "小葵敞篷车",
       "kind": "illustration",
       "category": "illustration-object",
-      "summary": "原小葵坐在蓝色敞篷车内，保留车身、方向盘、车轮和驾驶姿态。",
+      "summary": "蓝色敞篷车内的小葵持续驾驶，车轮随行程转动、方向盘轻摆，车身沿原曲线微微起伏。",
       "purpose": "将原作物件提炼为独立可复用插画。",
       "objects": "原蓝色敞篷车、完整小葵、方向盘、三孔轮毂",
       "phases": [
-        "完整物件居中呈现。",
-        "保持原轮廓、比例与细节。",
-        "透明背景下保持静止。"
+        "原车身和驾驶猫完整出现。",
+        "车轮按每秒360的行程推进，方向盘随原正弦曲线转动。",
+        "车身保持轻微起伏；定位和回放不积累转角。"
       ],
       "aliases": [
         "小葵敞篷车",
@@ -17835,7 +18583,8 @@
         "小葵"
       ],
       "behaviors": [
-        "hold"
+        "rotate",
+        "move"
       ],
       "retain": "保留批准造型的全部原曲线、车色、驾驶猫、方向盘、车灯、轮毂与弧形保险杠。",
       "avoid": "不带原场景、背景、字幕、音频或外围控件。",
@@ -17859,33 +18608,46 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+        "extraction": "直接复用 drawXiaokuiCar、driveDistance、vehicleBob，恢复真实时间和行程；独立跟车取景仅移除背景和气球。",
+        "original_files": [
+          "/Users/wisewong/Documents/Developer/scenes/xiaokui-balloon-drive/xiaokui-car.js",
+          "/Users/wisewong/Documents/Developer/scenes/xiaokui-balloon-drive/scene.js"
+        ]
       },
-      "actions": [],
+      "actions": [
+        "rolling-distance"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation",
         "document"
       ],
-      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
       "analogy": "原小葵坐在蓝色敞篷车内，保留车身、方向盘、车轮和驾驶姿态。",
-      "assumptions": "透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。",
-      "tempo_note": "静态插画全程保持；播放与定位不改变物件。",
+      "assumptions": "透明底，跟车取景固定横向中心；车轮仍按原行程转动，车身保留原竖向轻微起伏。",
+      "tempo_note": "三秒驾驶片段，使用原行驶速度、转向和车身起伏。",
       "recommendation": "需要此原作造型或动作关系时直接复用。",
-      "previous_names": []
+      "previous_names": [],
+      "action_variants": {
+        "rolling-distance": "drive-car"
+      },
+      "reproduction": {
+        "presentation": "640×360透明画板，完整蓝色敞篷车与驾驶猫居中偏上；车色#0077FF、暗部#064DDD，猫毛#958878，保留原车轮和方向盘细节。",
+        "retain": "跟车取景固定x=320，y=260+sin(9t)×0.7+sin(3.2t)×0.45。车身整体缩放0.64；轮子转角=(360t/0.64)/(96×0.52)弧度；转向基础角=sin(2.1t)×0.14+sin(0.85t)×0.035，驾驶动作随原基础角联动。"
+      }
     },
     {
       "id": "dandelion-subject-illustration",
       "name": "蒲公英主体",
       "kind": "illustration",
       "category": "illustration-nature",
-      "summary": "原蒲公英旅行主体：密集半圆冠毛、细茎与下端种子。",
+      "summary": "蒲公英主体从少量冠毛展开为密集伞状，沿原曲线转向并长大。",
       "purpose": "将原作物件提炼为独立可复用插画。",
       "objects": "一百三十七道原冠毛、细茎、种子",
       "phases": [
-        "完整物件居中呈现。",
-        "保持原轮廓、比例与细节。",
-        "透明背景下保持静止。"
+        "保留原主种子少量可见的冠毛。",
+        "其余冠毛按原展开进度渐显，主体半径和角度同步变化。",
+        "展开到原旅行姿态，保持细茎与种子的原曲线。"
       ],
       "aliases": [
         "蒲公英主体",
@@ -17894,12 +18656,14 @@
         "主种子"
       ],
       "behaviors": [
-        "hold"
+        "reveal",
+        "rotate",
+        "scale"
       ],
       "retain": "保留原一百三十七道冠毛的形状、尖端、线宽，细茎曲线和下端种子轮廓。",
       "avoid": "不带原场景、背景、字幕、音频或外围控件。",
       "duration_ms": 3000,
-      "preview_ms": 1650,
+      "preview_ms": 2500,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -17918,34 +18682,40 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "直接复用 scenes/dandelion-scene/assets/js/dandelion.js 的 floret 原绘制；主体使用 filamentState(4.5)，种子使用原十一道冠毛；保留原线宽、曲线、配色与种子轮廓，仅对整体做等比缩放和居中。",
+        "extraction": "使用原 subjectPose、entryProgress、filamentState 和 floret，恢复原 flow 中的冠毛展开与转向；仅跟随中心取景。",
         "original_path": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/dandelion.js"
       },
-      "actions": [],
+      "actions": [
+        "filament-unfold-turn"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation",
         "document"
       ],
-      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
       "analogy": "原蒲公英旅行主体：密集半圆冠毛、细茎与下端种子。",
-      "assumptions": "透明底；保持原冠毛、细茎和种子的曲线与相对比例，整体居中并在下方预留播放条空间；线宽与轮廓整体等比缩放，不再单独削细冠毛或细茎。",
-      "tempo_note": "静态插画全程保持；播放与定位不改变物件。",
+      "assumptions": "透明底，跟随冠毛中心取景，放在(320,158)并等比放大1.05倍；保留原半径、转角和冠毛透明度，移除整体旅行背景。",
+      "tempo_note": "等待零点一五秒，播放原二点三五至四点七五秒，末尾保持零点四五秒。",
       "recommendation": "需要此原作造型或动作关系时直接复用。",
-      "previous_names": []
+      "previous_names": [],
+      "reproduction": {
+        "presentation": "透明底，跟随冠毛中心取景，放在(320,158)并等比放大1.05倍；保留原半径、转角和冠毛透明度，移除整体旅行背景。",
+        "retain": "原时间u=2.35+clamp(t−0.15,0,2.4)。展开q=S(2.35,4.75,u)，S为q²(3−2q)的平滑函数；第i根冠毛透明度乘以i能被13整除时的1、否则乘以q。原半径和转角由主体轨迹同一时刻取样。137根冠毛、弯曲细茎和米色种子整体等比缩放，不单独修改线宽。"
+      }
     },
     {
       "id": "dandelion-seed-illustration",
       "name": "蒲公英种子",
       "kind": "illustration",
       "category": "illustration-nature",
-      "summary": "原目录独立种子：三十七道细冠毛、弯曲细茎与细长米色种子。",
+      "summary": "三十七道冠毛的蒲公英种子绕冠毛中心轻轻往返摆动，保留原弯曲细茎与米色种子。",
       "purpose": "将原作物件提炼为独立可复用插画。",
       "objects": "三十七道原冠毛、弯曲细茎、细长米色种子",
       "phases": [
-        "完整物件居中呈现。",
-        "保持原轮廓、比例与细节。",
-        "透明背景下保持静止。"
+        "种子冠毛中心保持固定。",
+        "整个种子按原正弦曲线绕中心轻摆。",
+        "保留连续摆动的角度关系，重播与定位可重复。"
       ],
       "aliases": [
         "蒲公英种子",
@@ -17954,7 +18724,7 @@
         "脱落种子"
       ],
       "behaviors": [
-        "hold"
+        "rotate"
       ],
       "retain": "保留原独立种子半径三十五、三十七道冠毛、毛尖短线、弯曲细茎和细长米色种子形状。",
       "avoid": "不带原场景、背景、字幕、音频或外围控件。",
@@ -17978,25 +18748,34 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "沿用 scenes/motion-catalog/isolated-player.js 中 seed 的 floret 半径三十五调用；绘制函数来自 scenes/dandelion-scene/assets/js/dandelion.js，保留三十七道冠毛、原线宽与细长种子轮廓，静态呈现，仅整体居中与等比缩放。",
+        "extraction": "沿用 isolated-player.js 的 seed 调用：半径35、角度sin(t*1.4)*0.16；复用原 floret 的37道冠毛、原线宽和种子轮廓，仅整体居中及等比缩放。",
         "original_path": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/dandelion.js",
         "original_files": [
           "/Users/wisewong/Documents/Developer/scenes/motion-catalog/isolated-player.js",
           "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/dandelion.js"
         ]
       },
-      "actions": [],
+      "actions": [
+        "pivot-swing"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation",
         "document"
       ],
-      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
       "analogy": "原目录独立种子：三十七道细冠毛、弯曲细茎与细长米色种子。",
       "assumptions": "透明底；保持原冠毛、细茎和种子的曲线与相对比例，整体居中并在下方预留播放条空间；线宽与轮廓整体等比缩放，不再单独削细冠毛或细茎。",
-      "tempo_note": "静态插画全程保持；播放与定位不改变物件。",
+      "tempo_note": "三秒独立示例，角度为sin(1.4t)×0.16弧度，沿用原种子示例。",
       "recommendation": "需要此原作造型或动作关系时直接复用。",
-      "previous_names": []
+      "previous_names": [],
+      "action_variants": {
+        "pivot-swing": "dandelion-seed"
+      },
+      "reproduction": {
+        "presentation": "640×360透明画板，冠毛中心(320,116)，原半径35、整体等比缩放1.25倍。保留37道奶油白细冠毛、弯曲细茎与米色细长种子。",
+        "retain": "时间t以秒计，整个种子围绕冠毛中心转动sin(1.4t)×0.16弧度；中心不移动，曲线、线宽和种子轮廓共同转动。"
+      }
     },
     {
       "kind": "action",
@@ -18840,7 +19619,18 @@
       ],
       "aliases": [
         "频谱柱列跳动",
-        "第八段频谱柱列跳动"
+        "第八段频谱柱列跳动",
+        "起伏频谱柱",
+        "频谱",
+        "音频柱",
+        "声音可视化",
+        "SPECTRUM",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙",
+        "音频频谱",
+        "频谱起伏"
       ],
       "behaviors": [
         "count",
@@ -18879,7 +19669,95 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
-      }
+      },
+      "variants": [
+        {
+          "summary": "密集频谱柱沿共同基线上下跳动，高峰与低谷不断变化。",
+          "purpose": "密集频谱柱沿共同基线上下跳动，高峰与低谷不断变化。",
+          "objects": "51根等间距细柱、固定基线与面板",
+          "phases": [
+            "频谱区域淡入。",
+            "51根柱按固定采样时钟改变高度。",
+            "共同基线保持稳定，各频段形成不同高低峰。"
+          ],
+          "retain": "51根柱，间距3.1，线宽1.1；高度为8加固定采样值的三次方乘61；每秒8次更新，不使用实时随机数。 独立示例去掉编号与面板标题，采用四边闭合细框与四角短线；框线宽0.6，角线长7、线宽0.9；外框紧贴内容范围留出均衡间距，整体居中。",
+          "avoid": "不混入其它仪表，不拉伸低分辨率画面，不用实时随机数；保持可暂停、回拖和重播。 不显示面板标题，不留下单侧缺边的外框。",
+          "duration_ms": 3000,
+          "preview_ms": 1500,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/hud-targeting.js",
+            "factory": "hud-spectrum-bars",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
+          },
+          "tempo_note": "总长3秒，等待0.15秒后开始，末尾静止0.45秒；按统一时间计算每次画面。",
+          "assumptions": "中文仪表组件以代码绘制；斜距使用原片可读帧采样，其余遥测、波形、频谱和字符为固定演示数据。独立示例放大自身内容，按实际显示像素绘制；组合保留原有整体布局。",
+          "analogy": "密集频谱柱沿共同基线上下跳动，高峰与低谷不断变化。",
+          "trigger": "打开后按固定时间演示，可暂停、重播及任意定位。",
+          "id": "default",
+          "label": "原有示例",
+          "timing": null
+        },
+        {
+          "summary": "三十二根柱条使用原片声音分析值起伏，柱高与明暗随频段强度变化。",
+          "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+          "objects": "三十二根频谱柱",
+          "phases": [
+            "直接呈现原图块中的独立插画。",
+            "三十二根柱条使用原片声音分析值起伏，柱高与明暗随频段强度变化。",
+            "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+          ],
+          "retain": "三十二根柱条使用原片声音分析值起伏，柱高与明暗随频段强度变化。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+          "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+          "duration_ms": 3000,
+          "preview_ms": 2200,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/claude-tile-illustrations.js",
+            "factory": "claude-spectrum-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+            "original_symbol": "TILES[6]"
+          },
+          "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+          "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。",
+          "analogy": "三十二根柱条使用原片声音分析值起伏，柱高与明暗随频段强度变化。",
+          "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+          "id": "audio-spectrum",
+          "label": "声音频谱",
+          "timing": null,
+          "reproduction": {
+            "presentation": "16:9 画幅，保留起伏频谱柱的构图、配色与材质，运动由原时间关系驱动。"
+          }
+        }
+      ]
     },
     {
       "id": "hud-data-stream",
@@ -19254,7 +20132,9 @@
           "step": 0.25
         }
       },
-      "actions": [],
+      "actions": [
+        "filament-shed-drift"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation",
@@ -19327,7 +20207,9 @@
           "step": 0.25
         }
       },
-      "actions": [],
+      "actions": [
+        "timed-point-hop"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation",
@@ -19578,7 +20460,37 @@
       "aliases": [
         "玻璃拟态",
         "透光浮层",
-        "错层卡片"
+        "错层卡片",
+        "玻璃语音卡",
+        "语音玻璃卡",
+        "WISE 语音",
+        "监听卡",
+        "透光语音卡",
+        "玻璃对话卡",
+        "WISE 对话",
+        "创作玻璃卡",
+        "玻璃对话框",
+        "透光对话卡",
+        "玻璃控制卡",
+        "创作开关",
+        "光感滑杆",
+        "透光创作卡",
+        "黑银音乐卡",
+        "iOS 音乐",
+        "音乐播放器",
+        "锁屏播放卡",
+        "黑银玻璃",
+        "横向播放器",
+        "黑银天气卡",
+        "iOS 天气",
+        "天气组件",
+        "温度卡",
+        "天气小组件",
+        "黑银控制中心",
+        "iOS 控制中心",
+        "系统控件",
+        "亮度音量",
+        "胶囊滑杆"
       ],
       "purpose": "六张黑银玻璃卡在空间中侧转、前后穿行，音乐、天气与控制中心依次靠近镜头。",
       "loop": false,
@@ -19614,7 +20526,405 @@
       "reproduction": {
         "presentation": "黑银光学风格，六张玻璃卡以针孔透视在三维空间中错层运动；侧转露出圆角侧壁，高光随朝向移动，白色文字保持清晰。 卡面内容随主时间变化，材料缓存与动态内容分开绘制；独立插画仍为固定完整画面。",
         "objects": "语音、对话、创作、音乐、天气与控制中心六张玻璃卡"
-      }
+      },
+      "variants": [
+        {
+          "id": "standard",
+          "label": "标准示例",
+          "summary": "六张黑银玻璃卡在空间中侧转、前后穿行，音乐、天气与控制中心依次靠近镜头。",
+          "objects": "语音、对话、创作、音乐、天气与控制中心六张玻璃卡",
+          "phases": [
+            "语音卡从左向右滑入并显示波形，其他卡从远处侧转展开。",
+            "音乐、天气和控制中心依次平滑交接，展示时继续轻微漂移；音乐封面涟漪扩散，亮度和音量错开变化。",
+            "对话卡接回主体，四行回复逐行逐字输出。保留透视与厚度，不带字标和凸泡。"
+          ],
+          "retain": "与完整组合共用0至5.35秒的空间位姿。设计画板1066×600，透视焦距1250；正面8×6网格，侧壁厚10像素；保留三轴旋转、深度排序、随朝向变化的反光以及各卡原始长宽比例。 每次交接约0.5秒，以连续平滑曲线连接，展示阶段保留6像素横移、3像素上移和8像素前移；各卡相差16毫秒进入，不做反复回弹。 语音卡从左向右进场并显示波形；音乐封面三圈涟漪以1.35秒周期向外扩散并淡出，前景时增强，进度同步推进；控制面板亮度先由32%升至86%再回74%，音量稍后由18%升至66%再回46%；蓝牙保持竖直中轴与交叉双三角。对话下方四行从4.28秒起按0.25秒间隔逐行逐字输出，每行0.21秒。",
+          "avoid": "不用不透明色块代替透光，不让三张卡共用同一移动轨迹。",
+          "duration_ms": 5950,
+          "preview_ms": 3600,
+          "behaviors": [
+            "stagger",
+            "depth",
+            "scale"
+          ],
+          "purpose": "六张黑银玻璃卡在空间中侧转、前后穿行，音乐、天气与控制中心依次靠近镜头。",
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "demo_mode": "fixed-timeline",
+          "domains": [
+            "animation",
+            "interface"
+          ],
+          "trigger": "打开后按固定时间演示，可暂停、重播及任意定位。",
+          "analogy": "六张黑银玻璃卡在空间中侧转、前后穿行，音乐、天气与控制中心依次靠近镜头。",
+          "assumptions": "复用完整玻璃组合中六卡展开与交接的真实绘制；独立动作不带字标与凸泡。",
+          "tempo_note": "开头等待0.15秒，展示5.35秒空间交接，结尾保留0.45秒；卡片连续平滑滑行，音乐、天气和控制中心按0.85秒间隔交接；卡面变化随前景顺序依次发生，所有运动由同一帧时刻计算。",
+          "source": {
+            "path": "catalog/effects/glass-light.js",
+            "factory": "glass-card-stagger",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "extraction": "从本机玻璃效果精修的自主绘制源码提取；仅采用几何、颜色和时间参数，没有原片图片、视频或第三方运行代码。"
+          },
+          "reproduction": {
+            "presentation": "黑银光学风格，六张玻璃卡以针孔透视在三维空间中错层运动；侧转露出圆角侧壁，高光随朝向移动，白色文字保持清晰。 卡面内容随主时间变化，材料缓存与动态内容分开绘制；独立插画仍为固定完整画面。",
+            "objects": "语音、对话、创作、音乐、天气与控制中心六张玻璃卡"
+          }
+        },
+        {
+          "id": "glass-voice-card",
+          "label": "玻璃语音卡",
+          "summary": "玻璃语音卡保留原空间运动，语音波形随监听时间变化；卡外透明。",
+          "purpose": "独立复用 WISE 创作界面中的玻璃卡片。",
+          "objects": "语音标题、九秒时码、三十条波形、银白光点与提示句",
+          "phases": [
+            "沿原空间轨迹进入画板，保持真实透视和玻璃厚度。",
+            "语音波形随监听时间变化；位置、角度和卡内变化使用同一时钟。",
+            "沿原轨迹退场，卡外始终透明。"
+          ],
+          "behaviors": [
+            "move",
+            "rotate"
+          ],
+          "retain": "保留原卡片比例、圆角、十像素厚度、焦距1250、黑银材质和完整控件；使用 spatialCardsAt 的位置、旋转、比例、透明度与镜头参数，并使用 cardMotionAt 的内部状态。语音波形随监听时间变化。",
+          "avoid": "只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。",
+          "duration_ms": 7200,
+          "preview_ms": 1100,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/glass-light.js",
+            "factory": "glass-voice-card-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。"
+          },
+          "demo_mode": "fixed-timeline",
+          "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+          "analogy": "玻璃语音卡保留原空间运动，语音波形随监听时间变化；卡外透明。",
+          "assumptions": "沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。",
+          "tempo_note": "七点二秒原空间时序，包含入场、展示和退场；定位直接求对应时刻。",
+          "domains": [
+            "interface",
+            "document"
+          ],
+          "reproduction": {
+            "presentation": "透明画板1066×600，按640×360等比展示。单张黑银玻璃卡使用原卡片尺寸与厚度，白色文字、中性银灰高光。",
+            "objects": "语音标题、九秒时码、三十条波形、银白光点与提示句",
+            "retain": "语音波形随监听时间变化；保留原位置、透视侧转与出入场次序。"
+          },
+          "timing": null
+        },
+        {
+          "id": "glass-dialogue-card",
+          "label": "玻璃对话卡",
+          "summary": "玻璃对话卡保留原空间运动，四行回复按原顺序逐字出现；卡外透明。",
+          "purpose": "独立复用 WISE 创作界面中的玻璃卡片。",
+          "objects": "WISE 标题、圆形光点、创作请求、四行回复与两个按钮",
+          "phases": [
+            "沿原空间轨迹进入画板，保持真实透视和玻璃厚度。",
+            "四行回复按原顺序逐字出现；位置、角度和卡内变化使用同一时钟。",
+            "沿原轨迹退场，卡外始终透明。"
+          ],
+          "behaviors": [
+            "move",
+            "rotate"
+          ],
+          "retain": "保留原卡片比例、圆角、十像素厚度、焦距1250、黑银材质和完整控件；使用 spatialCardsAt 的位置、旋转、比例、透明度与镜头参数，并使用 cardMotionAt 的内部状态。四行回复按原顺序逐字出现。",
+          "avoid": "只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。",
+          "duration_ms": 7200,
+          "preview_ms": 5200,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/glass-light.js",
+            "factory": "glass-dialogue-card-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。"
+          },
+          "demo_mode": "fixed-timeline",
+          "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+          "analogy": "玻璃对话卡保留原空间运动，四行回复按原顺序逐字出现；卡外透明。",
+          "assumptions": "沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。",
+          "tempo_note": "七点二秒原空间时序，包含入场、展示和退场；定位直接求对应时刻。",
+          "domains": [
+            "interface",
+            "document"
+          ],
+          "reproduction": {
+            "presentation": "透明画板1066×600，按640×360等比展示。单张黑银玻璃卡使用原卡片尺寸与厚度，白色文字、中性银灰高光。",
+            "objects": "WISE 标题、圆形光点、创作请求、四行回复与两个按钮",
+            "retain": "四行回复按原顺序逐字出现；保留原位置、透视侧转与出入场次序。"
+          },
+          "timing": null
+        },
+        {
+          "id": "glass-control-card",
+          "label": "玻璃控制卡",
+          "summary": "玻璃控制卡保留原空间运动，完整创作控件随卡片侧转和移位；卡外透明。",
+          "purpose": "独立复用 WISE 创作界面中的玻璃卡片。",
+          "objects": "月牙图标、创作开关、光感滑杆、太阳图标与百分比",
+          "phases": [
+            "沿原空间轨迹进入画板，保持真实透视和玻璃厚度。",
+            "完整创作控件随卡片侧转和移位；位置、角度和卡内变化使用同一时钟。",
+            "沿原轨迹退场，卡外始终透明。"
+          ],
+          "behaviors": [
+            "move",
+            "rotate"
+          ],
+          "retain": "保留原卡片比例、圆角、十像素厚度、焦距1250、黑银材质和完整控件；使用 spatialCardsAt 的位置、旋转、比例、透明度与镜头参数，并使用 cardMotionAt 的内部状态。完整创作控件随卡片侧转和移位。",
+          "avoid": "只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。",
+          "duration_ms": 7200,
+          "preview_ms": 4300,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/glass-light.js",
+            "factory": "glass-control-card-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。"
+          },
+          "demo_mode": "fixed-timeline",
+          "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+          "analogy": "玻璃控制卡保留原空间运动，完整创作控件随卡片侧转和移位；卡外透明。",
+          "assumptions": "沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。",
+          "tempo_note": "七点二秒原空间时序，包含入场、展示和退场；定位直接求对应时刻。",
+          "domains": [
+            "interface",
+            "document"
+          ],
+          "reproduction": {
+            "presentation": "透明画板1066×600，按640×360等比展示。单张黑银玻璃卡使用原卡片尺寸与厚度，白色文字、中性银灰高光。",
+            "objects": "月牙图标、创作开关、光感滑杆、太阳图标与百分比",
+            "retain": "完整创作控件随卡片侧转和移位；保留原位置、透视侧转与出入场次序。"
+          },
+          "timing": null
+        },
+        {
+          "id": "glass-music-card",
+          "label": "黑银音乐卡",
+          "summary": "黑银音乐卡保留原空间运动，封面涟漪扩散，播放进度前进；卡外透明。",
+          "purpose": "独立复用黑银光学风格的音乐播放卡。",
+          "objects": "圆角专辑封面、歌曲与电台名称、播放进度、剩余时长、上一首、暂停、下一首和音频输出图标",
+          "phases": [
+            "沿原空间轨迹进入画板，保持真实透视和玻璃厚度。",
+            "封面涟漪扩散，播放进度前进；位置、角度和卡内变化使用同一时钟。",
+            "沿原轨迹退场，卡外始终透明。"
+          ],
+          "behaviors": [
+            "move",
+            "rotate"
+          ],
+          "retain": "保留原卡片比例、圆角、十像素厚度、焦距1250、黑银材质和完整控件；使用 spatialCardsAt 的位置、旋转、比例、透明度与镜头参数，并使用 cardMotionAt 的内部状态。封面涟漪扩散，播放进度前进。",
+          "avoid": "只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。",
+          "duration_ms": 7200,
+          "preview_ms": 1800,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/glass-light.js",
+            "factory": "glass-music-card-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
+            "reference": {
+              "name": "Apple 液态玻璃设计",
+              "url": "https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/"
+            }
+          },
+          "demo_mode": "fixed-timeline",
+          "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+          "analogy": "黑银音乐卡保留原空间运动，封面涟漪扩散，播放进度前进；卡外透明。",
+          "assumptions": "沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。",
+          "tempo_note": "七点二秒原空间时序，包含入场、展示和退场；定位直接求对应时刻。",
+          "domains": [
+            "interface",
+            "document"
+          ],
+          "reproduction": {
+            "presentation": "透明画板1066×600，按640×360等比展示。单张黑银玻璃卡使用原卡片尺寸与厚度，白色文字、中性银灰高光。",
+            "objects": "圆角专辑封面、歌曲与电台名称、播放进度、剩余时长、上一首、暂停、下一首和音频输出图标",
+            "retain": "封面涟漪扩散，播放进度前进；保留原位置、透视侧转与出入场次序。"
+          },
+          "timing": null
+        },
+        {
+          "id": "glass-weather-card",
+          "label": "黑银天气卡",
+          "summary": "黑银天气卡保留原空间运动，天气卡从后方移到前景并侧转；卡外透明。",
+          "purpose": "独立复用黑银光学风格的天气信息卡。",
+          "objects": "城市、当前温度、晴间多云图标、高低温、五列小时天气和温度",
+          "phases": [
+            "沿原空间轨迹进入画板，保持真实透视和玻璃厚度。",
+            "天气卡从后方移到前景并侧转；位置、角度和卡内变化使用同一时钟。",
+            "沿原轨迹退场，卡外始终透明。"
+          ],
+          "behaviors": [
+            "move",
+            "rotate"
+          ],
+          "retain": "保留原卡片比例、圆角、十像素厚度、焦距1250、黑银材质和完整控件；使用 spatialCardsAt 的位置、旋转、比例、透明度与镜头参数，并使用 cardMotionAt 的内部状态。天气卡从后方移到前景并侧转。",
+          "avoid": "只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。",
+          "duration_ms": 7200,
+          "preview_ms": 2600,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/glass-light.js",
+            "factory": "glass-weather-card-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
+            "reference": {
+              "name": "Apple 液态玻璃设计",
+              "url": "https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/"
+            }
+          },
+          "demo_mode": "fixed-timeline",
+          "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+          "analogy": "黑银天气卡保留原空间运动，天气卡从后方移到前景并侧转；卡外透明。",
+          "assumptions": "沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。",
+          "tempo_note": "七点二秒原空间时序，包含入场、展示和退场；定位直接求对应时刻。",
+          "domains": [
+            "interface",
+            "document"
+          ],
+          "reproduction": {
+            "presentation": "透明画板1066×600，按640×360等比展示。单张黑银玻璃卡使用原卡片尺寸与厚度，白色文字、中性银灰高光。",
+            "objects": "城市、当前温度、晴间多云图标、高低温、五列小时天气和温度",
+            "retain": "天气卡从后方移到前景并侧转；保留原位置、透视侧转与出入场次序。"
+          },
+          "timing": null
+        },
+        {
+          "id": "glass-controls-card",
+          "label": "黑银控制中心",
+          "summary": "黑银控制中心保留原空间运动，亮度和音量按原顺序升降；卡外透明。",
+          "purpose": "独立复用黑银光学风格的系统控制面板。",
+          "objects": "四个圆形连接按钮、亮度与音量竖向胶囊滑杆、底部专注模式横条",
+          "phases": [
+            "沿原空间轨迹进入画板，保持真实透视和玻璃厚度。",
+            "亮度和音量按原顺序升降；位置、角度和卡内变化使用同一时钟。",
+            "沿原轨迹退场，卡外始终透明。"
+          ],
+          "behaviors": [
+            "move",
+            "rotate"
+          ],
+          "retain": "保留原卡片比例、圆角、十像素厚度、焦距1250、黑银材质和完整控件；使用 spatialCardsAt 的位置、旋转、比例、透明度与镜头参数，并使用 cardMotionAt 的内部状态。亮度和音量按原顺序升降。",
+          "avoid": "只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。",
+          "duration_ms": 7200,
+          "preview_ms": 3500,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/glass-light.js",
+            "factory": "glass-controls-card-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
+            "reference": {
+              "name": "Apple 液态玻璃设计",
+              "url": "https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/"
+            }
+          },
+          "demo_mode": "fixed-timeline",
+          "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+          "analogy": "黑银控制中心保留原空间运动，亮度和音量按原顺序升降；卡外透明。",
+          "assumptions": "沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。",
+          "tempo_note": "七点二秒原空间时序，包含入场、展示和退场；定位直接求对应时刻。",
+          "domains": [
+            "interface",
+            "document"
+          ],
+          "reproduction": {
+            "presentation": "透明画板1066×600，按640×360等比展示。单张黑银玻璃卡使用原卡片尺寸与厚度，白色文字、中性银灰高光。",
+            "objects": "四个圆形连接按钮、亮度与音量竖向胶囊滑杆、底部专注模式横条",
+            "retain": "亮度和音量按原顺序升降；保留原位置、透视侧转与出入场次序。"
+          },
+          "timing": null
+        }
+      ]
     },
     {
       "id": "convex-glass-lens",
@@ -19769,13 +21079,13 @@
       "name": "玻璃语音卡",
       "kind": "illustration",
       "category": "illustration-interface",
-      "summary": "透光语音卡以立体侧转姿态居中，保留黑银透光材质和完整控件，卡片外为透明背景。",
+      "summary": "玻璃语音卡保留原空间运动，语音波形随监听时间变化；卡外透明。",
       "purpose": "独立复用 WISE 创作界面中的玻璃卡片。",
       "objects": "语音标题、九秒时码、三十条波形、银白光点与提示句",
       "phases": [
-        "直接显示完整卡片。",
-        "保留固定文字、控件状态与透入卡面的黑银光感。",
-        "保持静态画面，定位与重播不改变内容。"
+        "沿原空间轨迹进入画板，保持真实透视和玻璃厚度。",
+        "语音波形随监听时间变化；位置、角度和卡内变化使用同一时钟。",
+        "沿原轨迹退场，卡外始终透明。"
       ],
       "aliases": [
         "语音玻璃卡",
@@ -19784,12 +21094,13 @@
         "透光语音卡"
       ],
       "behaviors": [
-        "focus"
+        "move",
+        "rotate"
       ],
-      "retain": "卡片原比例为300×148，保持圆角、透光、局部高光与控件层次；等比居中放入1066×600画板，最大宽760、高420。Voice input；0:09；“…give this idea motion”。 展示时向右侧转24度、俯仰8度、平面旋转负3度，透视焦距1250、前后表面相距10像素，正面最大基准宽760、高420；以真实空间投影显示圆角侧壁。",
-      "avoid": "不携带其他两张卡片、凸泡、完整背景、字标或转场；不以截图替代绘制，不添加外部网络依赖。",
-      "duration_ms": 1000,
-      "preview_ms": 500,
+      "retain": "保留原卡片比例、圆角、十像素厚度、焦距1250、黑银材质和完整控件；使用 spatialCardsAt 的位置、旋转、比例、透明度与镜头参数，并使用 cardMotionAt 的内部状态。语音波形随监听时间变化。",
+      "avoid": "只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。",
+      "duration_ms": 7200,
+      "preview_ms": 1100,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -19808,38 +21119,44 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "与透光浮层与折射共用卡片绘制函数，独立等比居中，背景仅在卡片内部提供透光着色；不使用原片图片、视频或声音。"
+        "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。"
       },
-      "actions": [],
+      "actions": [
+        "glass-card-stagger"
+      ],
       "demo_mode": "fixed-timeline",
-      "trigger": "打开即显示静态完整插画；可复制到包内独立页面。",
-      "analogy": "透光语音卡以立体侧转姿态居中，保留黑银透光材质和完整控件，卡片外为透明背景。",
-      "assumptions": "一张完整卡片保留自身文案和控件，固定展示状态，不依赖其他图层。",
-      "tempo_note": "静态插画，定位、倍速与重播均保持同一画面。",
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+      "analogy": "玻璃语音卡保留原空间运动，语音波形随监听时间变化；卡外透明。",
+      "assumptions": "沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。",
+      "tempo_note": "七点二秒原空间时序，包含入场、展示和退场；定位直接求对应时刻。",
       "domains": [
         "interface",
         "document"
       ],
       "reproduction": {
-        "presentation": "透明画板上只放一张黑银玻璃卡，原始比例300×148，等比居中；保留界面无衬线文字比例，卡外完全透明。 黑银光学配色：近黑背景、银灰透光、白色文字与中性高光；不出现紫、绿、青或彩色色散。 使用固定侧转姿态与十像素厚侧壁，按针孔透视绘制；外部透明。",
-        "objects": "语音标题、九秒时码、三十条波形、银白光点与提示句。Voice input；0:09；“…give this idea motion”。"
+        "presentation": "透明画板1066×600，按640×360等比展示。单张黑银玻璃卡使用原卡片尺寸与厚度，白色文字、中性银灰高光。",
+        "objects": "语音标题、九秒时码、三十条波形、银白光点与提示句",
+        "retain": "语音波形随监听时间变化；保留原位置、透视侧转与出入场次序。"
       },
       "previous_names": [
         "透光语音卡"
-      ]
+      ],
+      "action_variants": {
+        "glass-card-stagger": "glass-voice-card"
+      }
     },
     {
       "id": "glass-dialogue-card-illustration",
       "name": "玻璃对话卡",
       "kind": "illustration",
       "category": "illustration-interface",
-      "summary": "透光对话卡以立体侧转姿态居中，保留黑银透光材质和完整控件，卡片外为透明背景。",
+      "summary": "玻璃对话卡保留原空间运动，四行回复按原顺序逐字出现；卡外透明。",
       "purpose": "独立复用 WISE 创作界面中的玻璃卡片。",
       "objects": "WISE 标题、圆形光点、创作请求、四行回复与两个按钮",
       "phases": [
-        "直接显示完整卡片。",
-        "保留固定文字、控件状态与透入卡面的黑银光感。",
-        "保持静态画面，定位与重播不改变内容。"
+        "沿原空间轨迹进入画板，保持真实透视和玻璃厚度。",
+        "四行回复按原顺序逐字出现；位置、角度和卡内变化使用同一时钟。",
+        "沿原轨迹退场，卡外始终透明。"
       ],
       "aliases": [
         "WISE 对话",
@@ -19848,12 +21165,13 @@
         "透光对话卡"
       ],
       "behaviors": [
-        "focus"
+        "move",
+        "rotate"
       ],
-      "retain": "卡片原比例为578×414，保持圆角、透光、局部高光与控件层次；等比居中放入1066×600画板，最大宽760、高420。主对话卡标题 WISE；用户说 Bring this idea to life.；回复依次为 Start with a clear idea.、Give every move a purpose.、Let the details catch light.、Make the next frame matter.；按钮为 Build a scene 与 Explore a variation。 展示时向右侧转24度、俯仰8度、平面旋转负3度，透视焦距1250、前后表面相距10像素，正面最大基准宽760、高420；以真实空间投影显示圆角侧壁。",
-      "avoid": "不携带其他两张卡片、凸泡、完整背景、字标或转场；不以截图替代绘制，不添加外部网络依赖。",
-      "duration_ms": 1000,
-      "preview_ms": 500,
+      "retain": "保留原卡片比例、圆角、十像素厚度、焦距1250、黑银材质和完整控件；使用 spatialCardsAt 的位置、旋转、比例、透明度与镜头参数，并使用 cardMotionAt 的内部状态。四行回复按原顺序逐字出现。",
+      "avoid": "只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。",
+      "duration_ms": 7200,
+      "preview_ms": 5200,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -19872,38 +21190,44 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "与透光浮层与折射共用卡片绘制函数，独立等比居中，背景仅在卡片内部提供透光着色；不使用原片图片、视频或声音。"
+        "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。"
       },
-      "actions": [],
+      "actions": [
+        "glass-card-stagger"
+      ],
       "demo_mode": "fixed-timeline",
-      "trigger": "打开即显示静态完整插画；可复制到包内独立页面。",
-      "analogy": "透光对话卡以立体侧转姿态居中，保留黑银透光材质和完整控件，卡片外为透明背景。",
-      "assumptions": "一张完整卡片保留自身文案和控件，固定展示状态，不依赖其他图层。",
-      "tempo_note": "静态插画，定位、倍速与重播均保持同一画面。",
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+      "analogy": "玻璃对话卡保留原空间运动，四行回复按原顺序逐字出现；卡外透明。",
+      "assumptions": "沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。",
+      "tempo_note": "七点二秒原空间时序，包含入场、展示和退场；定位直接求对应时刻。",
       "domains": [
         "interface",
         "document"
       ],
       "reproduction": {
-        "presentation": "透明画板上只放一张黑银玻璃卡，原始比例578×414，等比居中；保留界面无衬线文字比例，卡外完全透明。 黑银光学配色：近黑背景、银灰透光、白色文字与中性高光；不出现紫、绿、青或彩色色散。 使用固定侧转姿态与十像素厚侧壁，按针孔透视绘制；外部透明。",
-        "objects": "WISE 标题、圆形光点、创作请求、四行回复与两个按钮。主对话卡标题 WISE；用户说 Bring this idea to life.；回复依次为 Start with a clear idea.、Give every move a purpose.、Let the details catch light.、Make the next frame matter.；按钮为 Build a scene 与 Explore a variation。"
+        "presentation": "透明画板1066×600，按640×360等比展示。单张黑银玻璃卡使用原卡片尺寸与厚度，白色文字、中性银灰高光。",
+        "objects": "WISE 标题、圆形光点、创作请求、四行回复与两个按钮",
+        "retain": "四行回复按原顺序逐字出现；保留原位置、透视侧转与出入场次序。"
       },
       "previous_names": [
         "透光对话卡"
-      ]
+      ],
+      "action_variants": {
+        "glass-card-stagger": "glass-dialogue-card"
+      }
     },
     {
       "id": "glass-control-card-illustration",
       "name": "玻璃控制卡",
       "kind": "illustration",
       "category": "illustration-interface",
-      "summary": "透光创作卡以立体侧转姿态居中，保留黑银透光材质和完整控件，卡片外为透明背景。",
+      "summary": "玻璃控制卡保留原空间运动，完整创作控件随卡片侧转和移位；卡外透明。",
       "purpose": "独立复用 WISE 创作界面中的玻璃卡片。",
       "objects": "月牙图标、创作开关、光感滑杆、太阳图标与百分比",
       "phases": [
-        "直接显示完整卡片。",
-        "保留固定文字、控件状态与透入卡面的黑银光感。",
-        "保持静态画面，定位与重播不改变内容。"
+        "沿原空间轨迹进入画板，保持真实透视和玻璃厚度。",
+        "完整创作控件随卡片侧转和移位；位置、角度和卡内变化使用同一时钟。",
+        "沿原轨迹退场，卡外始终透明。"
       ],
       "aliases": [
         "玻璃控制卡",
@@ -19912,12 +21236,13 @@
         "透光创作卡"
       ],
       "behaviors": [
-        "focus"
+        "move",
+        "rotate"
       ],
-      "retain": "卡片原比例为356×202，保持圆角、透光、局部高光与控件层次；等比居中放入1066×600画板，最大宽760、高420。Create；Space for your next idea；Light；74%。开关开启，滑杆停在74%。 展示时向右侧转24度、俯仰8度、平面旋转负3度，透视焦距1250、前后表面相距10像素，正面最大基准宽760、高420；以真实空间投影显示圆角侧壁。",
-      "avoid": "不携带其他两张卡片、凸泡、完整背景、字标或转场；不以截图替代绘制，不添加外部网络依赖。",
-      "duration_ms": 1000,
-      "preview_ms": 500,
+      "retain": "保留原卡片比例、圆角、十像素厚度、焦距1250、黑银材质和完整控件；使用 spatialCardsAt 的位置、旋转、比例、透明度与镜头参数，并使用 cardMotionAt 的内部状态。完整创作控件随卡片侧转和移位。",
+      "avoid": "只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。",
+      "duration_ms": 7200,
+      "preview_ms": 4300,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -19936,25 +21261,31 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "与透光浮层与折射共用卡片绘制函数，独立等比居中，背景仅在卡片内部提供透光着色；不使用原片图片、视频或声音。"
+        "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。"
       },
-      "actions": [],
+      "actions": [
+        "glass-card-stagger"
+      ],
       "demo_mode": "fixed-timeline",
-      "trigger": "打开即显示静态完整插画；可复制到包内独立页面。",
-      "analogy": "透光创作卡以立体侧转姿态居中，保留黑银透光材质和完整控件，卡片外为透明背景。",
-      "assumptions": "一张完整卡片保留自身文案和控件，固定展示状态，不依赖其他图层。",
-      "tempo_note": "静态插画，定位、倍速与重播均保持同一画面。",
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+      "analogy": "玻璃控制卡保留原空间运动，完整创作控件随卡片侧转和移位；卡外透明。",
+      "assumptions": "沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。",
+      "tempo_note": "七点二秒原空间时序，包含入场、展示和退场；定位直接求对应时刻。",
       "domains": [
         "interface",
         "document"
       ],
       "reproduction": {
-        "presentation": "透明画板上只放一张黑银玻璃卡，原始比例356×202，等比居中；保留界面无衬线文字比例，卡外完全透明。 黑银光学配色：近黑背景、银灰透光、白色文字与中性高光；不出现紫、绿、青或彩色色散。 使用固定侧转姿态与十像素厚侧壁，按针孔透视绘制；外部透明。",
-        "objects": "月牙图标、创作开关、光感滑杆、太阳图标与百分比。Create；Space for your next idea；Light；74%。开关开启，滑杆停在74%。"
+        "presentation": "透明画板1066×600，按640×360等比展示。单张黑银玻璃卡使用原卡片尺寸与厚度，白色文字、中性银灰高光。",
+        "objects": "月牙图标、创作开关、光感滑杆、太阳图标与百分比",
+        "retain": "完整创作控件随卡片侧转和移位；保留原位置、透视侧转与出入场次序。"
       },
       "previous_names": [
         "透光创作卡"
-      ]
+      ],
+      "action_variants": {
+        "glass-card-stagger": "glass-control-card"
+      }
     },
     {
       "id": "cyanotype",
@@ -22769,13 +24100,13 @@
       "name": "黑银音乐卡",
       "kind": "illustration",
       "category": "illustration-interface",
-      "summary": "参照 iOS 层级与圆角绘制的黑银音乐播放卡，银白高光与中性透光形成玻璃厚度，卡外透明，侧转露出厚度。",
+      "summary": "黑银音乐卡保留原空间运动，封面涟漪扩散，播放进度前进；卡外透明。",
       "purpose": "独立复用黑银光学风格的音乐播放卡。",
       "objects": "圆角专辑封面、歌曲与电台名称、播放进度、剩余时长、上一首、暂停、下一首和音频输出图标",
       "phases": [
-        "直接显示完整卡片。",
-        "按信息层级呈现固定文字、图标和控件状态。",
-        "保持静态画面，定位与重播不改变内容。"
+        "沿原空间轨迹进入画板，保持真实透视和玻璃厚度。",
+        "封面涟漪扩散，播放进度前进；位置、角度和卡内变化使用同一时钟。",
+        "沿原轨迹退场，卡外始终透明。"
       ],
       "aliases": [
         "iOS 音乐",
@@ -22785,12 +24116,13 @@
         "横向播放器"
       ],
       "behaviors": [
-        "focus"
+        "move",
+        "rotate"
       ],
-      "retain": "卡片原比例为520×300，等比居中放入1066×600透明画板，最大宽760、高420；共用黑银玻璃材质，圆角连续、内容清晰。AFTER HOURS；WISE RADIO；1:24；−2:16；固定进度约39%。 展示时向右侧转24度、俯仰8度、平面旋转负3度，透视焦距1250、前后表面相距10像素，正面最大基准宽760、高420；以真实空间投影显示圆角侧壁。",
-      "avoid": "不加入紫绿青色调、其他卡片或完整背景，不请求网络或使用截图替代绘制。",
-      "duration_ms": 1000,
-      "preview_ms": 500,
+      "retain": "保留原卡片比例、圆角、十像素厚度、焦距1250、黑银材质和完整控件；使用 spatialCardsAt 的位置、旋转、比例、透明度与镜头参数，并使用 cardMotionAt 的内部状态。封面涟漪扩散，播放进度前进。",
+      "avoid": "只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。",
+      "duration_ms": 7200,
+      "preview_ms": 1800,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -22809,25 +24141,31 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "自编 iOS 风格静态卡片，与既有玻璃卡共用材质绘制；图标均以几何线条绘制，没有复制系统截图、图标资源或第三方媒体。",
+        "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
         "reference": {
           "name": "Apple 液态玻璃设计",
           "url": "https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/"
         }
       },
-      "actions": [],
+      "actions": [
+        "glass-card-stagger"
+      ],
       "demo_mode": "fixed-timeline",
-      "trigger": "打开即显示静态完整插画；可复制到包内独立页面。",
-      "analogy": "参照 iOS 层级与圆角绘制的黑银音乐播放卡，银白高光与中性透光形成玻璃厚度，卡外透明，侧转露出厚度。",
-      "assumptions": "参照 iOS 的控件形状与信息层级自主绘制；数据与播放状态为固定示例，不连接设备、播放器或天气服务。",
-      "tempo_note": "静态插画，定位、倍速与重播均保持同一画面。",
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+      "analogy": "黑银音乐卡保留原空间运动，封面涟漪扩散，播放进度前进；卡外透明。",
+      "assumptions": "沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。",
+      "tempo_note": "七点二秒原空间时序，包含入场、展示和退场；定位直接求对应时刻。",
       "domains": [
         "interface",
         "document"
       ],
       "reproduction": {
-        "presentation": "透明画板中只绘制一张520×300黑银玻璃卡，等比居中；卡内采样银灰光场并轻度模糊，卡外完全透明。细白边缘与局部银白高光表现厚度；文字与控件只用黑白灰。 使用固定侧转姿态与十像素厚侧壁，按针孔透视绘制；外部透明。",
-        "objects": "圆角专辑封面、歌曲与电台名称、播放进度、剩余时长、上一首、暂停、下一首和音频输出图标。AFTER HOURS；WISE RADIO；1:24；−2:16；固定进度约39%。"
+        "presentation": "透明画板1066×600，按640×360等比展示。单张黑银玻璃卡使用原卡片尺寸与厚度，白色文字、中性银灰高光。",
+        "objects": "圆角专辑封面、歌曲与电台名称、播放进度、剩余时长、上一首、暂停、下一首和音频输出图标",
+        "retain": "封面涟漪扩散，播放进度前进；保留原位置、透视侧转与出入场次序。"
+      },
+      "action_variants": {
+        "glass-card-stagger": "glass-music-card"
       }
     },
     {
@@ -22835,13 +24173,13 @@
       "name": "黑银天气卡",
       "kind": "illustration",
       "category": "illustration-interface",
-      "summary": "参照 iOS 层级与圆角绘制的黑银天气信息卡，银白高光与中性透光形成玻璃厚度，卡外透明，侧转露出厚度。",
+      "summary": "黑银天气卡保留原空间运动，天气卡从后方移到前景并侧转；卡外透明。",
       "purpose": "独立复用黑银光学风格的天气信息卡。",
       "objects": "城市、当前温度、晴间多云图标、高低温、五列小时天气和温度",
       "phases": [
-        "直接显示完整卡片。",
-        "按信息层级呈现固定文字、图标和控件状态。",
-        "保持静态画面，定位与重播不改变内容。"
+        "沿原空间轨迹进入画板，保持真实透视和玻璃厚度。",
+        "天气卡从后方移到前景并侧转；位置、角度和卡内变化使用同一时钟。",
+        "沿原轨迹退场，卡外始终透明。"
       ],
       "aliases": [
         "iOS 天气",
@@ -22851,12 +24189,13 @@
         "天气小组件"
       ],
       "behaviors": [
-        "focus"
+        "move",
+        "rotate"
       ],
-      "retain": "卡片原比例为320×360，等比居中放入1066×600透明画板，最大宽760、高420；共用黑银玻璃材质，圆角连续、内容清晰。CUPERTINO；21°；PARTLY CLOUDY；H:24° L:16°；NOW、15、16、17、18；21°、22°、23°、22°、20°。 展示时向右侧转24度、俯仰8度、平面旋转负3度，透视焦距1250、前后表面相距10像素，正面最大基准宽760、高420；以真实空间投影显示圆角侧壁。",
-      "avoid": "不加入紫绿青色调、其他卡片或完整背景，不请求网络或使用截图替代绘制。",
-      "duration_ms": 1000,
-      "preview_ms": 500,
+      "retain": "保留原卡片比例、圆角、十像素厚度、焦距1250、黑银材质和完整控件；使用 spatialCardsAt 的位置、旋转、比例、透明度与镜头参数，并使用 cardMotionAt 的内部状态。天气卡从后方移到前景并侧转。",
+      "avoid": "只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。",
+      "duration_ms": 7200,
+      "preview_ms": 2600,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -22875,25 +24214,31 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "自编 iOS 风格静态卡片，与既有玻璃卡共用材质绘制；图标均以几何线条绘制，没有复制系统截图、图标资源或第三方媒体。",
+        "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
         "reference": {
           "name": "Apple 液态玻璃设计",
           "url": "https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/"
         }
       },
-      "actions": [],
+      "actions": [
+        "glass-card-stagger"
+      ],
       "demo_mode": "fixed-timeline",
-      "trigger": "打开即显示静态完整插画；可复制到包内独立页面。",
-      "analogy": "参照 iOS 层级与圆角绘制的黑银天气信息卡，银白高光与中性透光形成玻璃厚度，卡外透明，侧转露出厚度。",
-      "assumptions": "参照 iOS 的控件形状与信息层级自主绘制；数据与播放状态为固定示例，不连接设备、播放器或天气服务。",
-      "tempo_note": "静态插画，定位、倍速与重播均保持同一画面。",
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+      "analogy": "黑银天气卡保留原空间运动，天气卡从后方移到前景并侧转；卡外透明。",
+      "assumptions": "沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。",
+      "tempo_note": "七点二秒原空间时序，包含入场、展示和退场；定位直接求对应时刻。",
       "domains": [
         "interface",
         "document"
       ],
       "reproduction": {
-        "presentation": "透明画板中只绘制一张320×360黑银玻璃卡，等比居中；卡内采样银灰光场并轻度模糊，卡外完全透明。细白边缘与局部银白高光表现厚度；文字与控件只用黑白灰。 使用固定侧转姿态与十像素厚侧壁，按针孔透视绘制；外部透明。",
-        "objects": "城市、当前温度、晴间多云图标、高低温、五列小时天气和温度。CUPERTINO；21°；PARTLY CLOUDY；H:24° L:16°；NOW、15、16、17、18；21°、22°、23°、22°、20°。"
+        "presentation": "透明画板1066×600，按640×360等比展示。单张黑银玻璃卡使用原卡片尺寸与厚度，白色文字、中性银灰高光。",
+        "objects": "城市、当前温度、晴间多云图标、高低温、五列小时天气和温度",
+        "retain": "天气卡从后方移到前景并侧转；保留原位置、透视侧转与出入场次序。"
+      },
+      "action_variants": {
+        "glass-card-stagger": "glass-weather-card"
       }
     },
     {
@@ -22901,13 +24246,13 @@
       "name": "黑银控制中心",
       "kind": "illustration",
       "category": "illustration-interface",
-      "summary": "参照 iOS 层级与圆角绘制的黑银系统控制面板，银白高光与中性透光形成玻璃厚度，卡外透明，侧转露出厚度。",
+      "summary": "黑银控制中心保留原空间运动，亮度和音量按原顺序升降；卡外透明。",
       "purpose": "独立复用黑银光学风格的系统控制面板。",
       "objects": "四个圆形连接按钮、亮度与音量竖向胶囊滑杆、底部专注模式横条",
       "phases": [
-        "直接显示完整卡片。",
-        "按信息层级呈现固定文字、图标和控件状态。",
-        "保持静态画面，定位与重播不改变内容。"
+        "沿原空间轨迹进入画板，保持真实透视和玻璃厚度。",
+        "亮度和音量按原顺序升降；位置、角度和卡内变化使用同一时钟。",
+        "沿原轨迹退场，卡外始终透明。"
       ],
       "aliases": [
         "iOS 控制中心",
@@ -22917,12 +24262,13 @@
         "黑银玻璃"
       ],
       "behaviors": [
-        "focus"
+        "move",
+        "rotate"
       ],
-      "retain": "卡片原比例为390×360，等比居中放入1066×600透明画板，最大宽760、高420；共用黑银玻璃材质，圆角连续、内容清晰。CONTROL CENTER；FOCUS；ON；Wi-Fi 与蓝牙为亮色启用状态，亮度74%，音量46%。 展示时向右侧转24度、俯仰8度、平面旋转负3度，透视焦距1250、前后表面相距10像素，正面最大基准宽760、高420；以真实空间投影显示圆角侧壁。",
-      "avoid": "不加入紫绿青色调、其他卡片或完整背景，不请求网络或使用截图替代绘制。",
-      "duration_ms": 1000,
-      "preview_ms": 500,
+      "retain": "保留原卡片比例、圆角、十像素厚度、焦距1250、黑银材质和完整控件；使用 spatialCardsAt 的位置、旋转、比例、透明度与镜头参数，并使用 cardMotionAt 的内部状态。亮度和音量按原顺序升降。",
+      "avoid": "只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。",
+      "duration_ms": 7200,
+      "preview_ms": 3500,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -22941,26 +24287,3022 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "自编 iOS 风格静态卡片，与既有玻璃卡共用材质绘制；图标均以几何线条绘制，没有复制系统截图、图标资源或第三方媒体。",
+        "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
         "reference": {
           "name": "Apple 液态玻璃设计",
           "url": "https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/"
         }
       },
-      "actions": [],
+      "actions": [
+        "glass-card-stagger"
+      ],
       "demo_mode": "fixed-timeline",
-      "trigger": "打开即显示静态完整插画；可复制到包内独立页面。",
-      "analogy": "参照 iOS 层级与圆角绘制的黑银系统控制面板，银白高光与中性透光形成玻璃厚度，卡外透明，侧转露出厚度。",
-      "assumptions": "参照 iOS 的控件形状与信息层级自主绘制；数据与播放状态为固定示例，不连接设备、播放器或天气服务。",
-      "tempo_note": "静态插画，定位、倍速与重播均保持同一画面。",
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+      "analogy": "黑银控制中心保留原空间运动，亮度和音量按原顺序升降；卡外透明。",
+      "assumptions": "沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。",
+      "tempo_note": "七点二秒原空间时序，包含入场、展示和退场；定位直接求对应时刻。",
       "domains": [
         "interface",
         "document"
       ],
       "reproduction": {
-        "presentation": "透明画板中只绘制一张390×360黑银玻璃卡，等比居中；卡内采样银灰光场并轻度模糊，卡外完全透明。细白边缘与局部银白高光表现厚度；文字与控件只用黑白灰。 使用固定侧转姿态与十像素厚侧壁，按针孔透视绘制；外部透明。",
-        "objects": "四个圆形连接按钮、亮度与音量竖向胶囊滑杆、底部专注模式横条。CONTROL CENTER；FOCUS；ON；Wi-Fi 与蓝牙为亮色启用状态，亮度74%，音量46%。"
+        "presentation": "透明画板1066×600，按640×360等比展示。单张黑银玻璃卡使用原卡片尺寸与厚度，白色文字、中性银灰高光。",
+        "objects": "四个圆形连接按钮、亮度与音量竖向胶囊滑杆、底部专注模式横条",
+        "retain": "亮度和音量按原顺序升降；保留原位置、透视侧转与出入场次序。"
+      },
+      "action_variants": {
+        "glass-card-stagger": "glass-controls-card"
       }
+    },
+    {
+      "id": "contour-draw-fill",
+      "name": "轮廓描绘显色",
+      "kind": "action",
+      "category": "connection",
+      "summary": "熊猫、兔子、猫、汽车、帆船和火箭按原轮廓先描线，再显现排线与墨色。",
+      "purpose": "熊猫、兔子、猫、汽车、帆船和火箭按原轮廓先描线，再显现排线与墨色。",
+      "objects": "三只动物与三种载具的轮廓、五官和排线",
+      "phases": [
+        "六幅插画依次开始描线。",
+        "轮廓完成后，五官、结构细节与排线显现。",
+        "完整六幅插画保留。"
+      ],
+      "aliases": [
+        "轮廓描绘显色",
+        "线描动物与载具",
+        "动物插画",
+        "熊猫",
+        "兔子",
+        "猫",
+        "描线排线",
+        "汽车",
+        "帆船",
+        "火箭",
+        "任务图谱标",
+        "动物与载具插画",
+        "动物与载具描绘",
+        "轮廓描绘"
+      ],
+      "behaviors": [
+        "draw",
+        "sequence"
+      ],
+      "retain": "熊猫、兔子、猫、汽车、帆船和火箭按原轮廓先描线，再显现排线与墨色。",
+      "avoid": "保留插画主体，去掉原场景外围标题、数值、注释和背景版面。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/illustrations.js",
+        "factory": "animal-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2400,
+      "recommendation": "适合单独展示原工程的插画图形。",
+      "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "熊猫、兔子、猫、汽车、帆船和火箭按原轮廓先描线，再显现排线与墨色。",
+      "assumptions": "从本机原工程提取图形关系与路径，改为独立静态页面播放器；沿用目录黑白细线，纸卷内容用细线示意。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "narrowing-flow-accelerate",
+      "name": "缩口流线加速",
+      "kind": "action",
+      "category": "particles",
+      "summary": "收口管形与十五束流线逐步画出，流动标记经过窄口时加速。",
+      "purpose": "收口管形与十五束流线逐步画出，流动标记经过窄口时加速。",
+      "objects": "原管壁、流线与连续性控制的流动标记",
+      "phases": [
+        "管壁和流线按原顺序描出。",
+        "流动标记进入管道，在窄口加速。",
+        "扩散段放慢，持续流过。"
+      ],
+      "aliases": [
+        "缩口流线加速",
+        "缩口管道流线",
+        "文氏管",
+        "流场",
+        "收口管道",
+        "流体",
+        "文氏管流场插画",
+        "文氏管流场",
+        "缩口流场"
+      ],
+      "behaviors": [
+        "draw",
+        "sequence",
+        "continuous"
+      ],
+      "retain": "收口管形与十五束流线逐步画出，流动标记经过窄口时加速。",
+      "avoid": "保留插画主体，去掉原场景外围标题、数值、注释和背景版面。",
+      "duration_ms": 3000,
+      "loop": true,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/illustrations.js",
+        "factory": "venturi-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2400,
+      "recommendation": "适合单独展示原工程的插画图形。",
+      "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "收口管形与十五束流线逐步画出，流动标记经过窄口时加速。",
+      "assumptions": "从本机原工程提取图形关系与路径，改为独立静态页面播放器；沿用目录黑白细线，纸卷内容用细线示意。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "window-step-connect",
+      "name": "窗口步进连线",
+      "kind": "action",
+      "category": "connection",
+      "summary": "左侧线圈窗口等距步进，右侧选定线圈以弧线桥接到终点。",
+      "purpose": "左侧线圈窗口等距步进，右侧选定线圈以弧线桥接到终点。",
+      "objects": "两组线圈、局部窗口和远距连接弧线",
+      "phases": [
+        "两侧词流线圈成形。",
+        "左侧窗口步进，右侧远距连接依次描出。",
+        "两侧保持同一时间推进。"
+      ],
+      "aliases": [
+        "窗口步进连线",
+        "线圈窗口连线",
+        "双联注意力",
+        "滑动窗口",
+        "稀疏连接",
+        "线圈",
+        "双联注意力插画",
+        "双联注意力图",
+        "双联映射"
+      ],
+      "behaviors": [
+        "draw",
+        "sequence",
+        "continuous"
+      ],
+      "retain": "左侧线圈窗口等距步进，右侧选定线圈以弧线桥接到终点。",
+      "avoid": "保留插画主体，去掉原场景外围标题、数值、注释和背景版面。",
+      "duration_ms": 3000,
+      "loop": true,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/illustrations.js",
+        "factory": "attention-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2400,
+      "recommendation": "适合单独展示原工程的插画图形。",
+      "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "左侧线圈窗口等距步进，右侧选定线圈以弧线桥接到终点。",
+      "assumptions": "从本机原工程提取图形关系与路径，改为独立静态页面播放器；沿用目录黑白细线，纸卷内容用细线示意。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "inward-curve-flow",
+      "name": "光点沿弧内聚",
+      "kind": "action",
+      "category": "connection",
+      "summary": "十六个端点沿椭圆排布，曲线汇入中心，光点持续向内传递。",
+      "purpose": "十六个端点沿椭圆排布，曲线汇入中心，光点持续向内传递。",
+      "objects": "椭圆、十六条汇聚曲线和移动光点",
+      "phases": [
+        "椭圆与十六个端点显现。",
+        "曲线依次描向中心。",
+        "光点沿曲线持续汇入。"
+      ],
+      "aliases": [
+        "光点沿弧内聚",
+        "环形光点汇聚",
+        "查询头",
+        "汇聚环",
+        "十六路汇聚",
+        "椭圆分布",
+        "查询头汇聚环插画",
+        "环形端点汇聚",
+        "环点汇聚"
+      ],
+      "behaviors": [
+        "draw",
+        "sequence",
+        "continuous"
+      ],
+      "retain": "十六个端点沿椭圆排布，曲线汇入中心，光点持续向内传递。",
+      "avoid": "保留插画主体，去掉原场景外围标题、数值、注释和背景版面。",
+      "duration_ms": 3000,
+      "loop": true,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/illustrations.js",
+        "factory": "heads-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2400,
+      "recommendation": "适合单独展示原工程的插画图形。",
+      "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "十六个端点沿椭圆排布，曲线汇入中心，光点持续向内传递。",
+      "assumptions": "从本机原工程提取图形关系与路径，改为独立静态页面播放器；沿用目录黑白细线，纸卷内容用细线示意。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "card-compress-merge",
+      "name": "卡片压缩合并",
+      "kind": "action",
+      "category": "layout",
+      "summary": "四组小卡片下沉压缩，内部行距收拢，合入两个长框。",
+      "purpose": "四组小卡片下沉压缩，内部行距收拢，合入两个长框。",
+      "objects": "四组卡片、内部细线和两个承接长框",
+      "phases": [
+        "四组卡片错开显现。",
+        "卡内行距收拢，卡片下沉压缩。",
+        "两个长框形成，短光段沿细线传递。"
+      ],
+      "aliases": [
+        "卡片压缩合并",
+        "阶段卡",
+        "并融",
+        "多步归一",
+        "卡片压缩",
+        "阶段卡并融插画",
+        "阶段卡片压缩合并",
+        "阶段合并"
+      ],
+      "behaviors": [
+        "draw",
+        "sequence"
+      ],
+      "retain": "四组小卡片下沉压缩，内部行距收拢，合入两个长框。",
+      "avoid": "保留插画主体，去掉原场景外围标题、数值、注释和背景版面。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/illustrations.js",
+        "factory": "stage-merge-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2400,
+      "recommendation": "适合单独展示原工程的插画图形。",
+      "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "四组小卡片下沉压缩，内部行距收拢，合入两个长框。",
+      "assumptions": "从本机原工程提取图形关系与路径，改为独立静态页面播放器；沿用目录黑白细线，纸卷内容用细线示意。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "wire-ring-build-turn",
+      "name": "线框生成自转",
+      "kind": "action",
+      "category": "space",
+      "summary": "沿用原工程网格与透视关系，环面线框逐线生成并自转。",
+      "purpose": "沿用原工程网格与透视关系，环面线框逐线生成并自转。",
+      "objects": "原比例的环面网格",
+      "phases": [
+        "固定次序的线条逐步生成。",
+        "环面沿固定轴转动，前后线条按深度变化。",
+        "保持自转。"
+      ],
+      "aliases": [
+        "线框生成自转",
+        "旋转圆环线框",
+        "环面",
+        "线框",
+        "立体环",
+        "几何插画",
+        "环面线框插画",
+        "环面线框自转",
+        "环面线框"
+      ],
+      "behaviors": [
+        "draw",
+        "sequence",
+        "continuous"
+      ],
+      "retain": "沿用原工程网格与透视关系，环面线框逐线生成并自转。",
+      "avoid": "保留插画主体，去掉原场景外围标题、数值、注释和背景版面。",
+      "duration_ms": 3000,
+      "loop": true,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/illustrations.js",
+        "factory": "torus-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2400,
+      "recommendation": "适合单独展示原工程的插画图形。",
+      "tempo_note": "示例保留各阶段的速度关系；速度控件只改变整体快慢。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "沿用原工程网格与透视关系，环面线框逐线生成并自转。",
+      "assumptions": "从本机原工程提取图形关系与路径，改为独立静态页面播放器；沿用目录黑白细线，纸卷内容用细线示意。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "point-link-hit",
+      "name": "点阵连线命中",
+      "kind": "action",
+      "category": "connection",
+      "summary": "点阵从上到下逐行显现，左侧方块由近及远连向十六个目标，命中的点变蓝并轻弹。",
+      "purpose": "展示点阵建立后，从一个入口选择多个目标的图形关系。",
+      "objects": "三十二列、二十八行点阵，左侧方块、十六条细线和十六个固定目标点",
+      "phases": [
+        "二十八行点阵从上到下错峰显现。",
+        "左侧方块弹出，十六条细线由近及远长向目标。",
+        "连线抵达后，目标点变蓝、轻弹并出现细环，最终停住。"
+      ],
+      "aliases": [
+        "点阵连线命中",
+        "点阵连线",
+        "点阵插画",
+        "点阵逐行出现并连中目标",
+        "专家点阵",
+        "路由点阵",
+        "命中目标",
+        "点阵显现与目标连线"
+      ],
+      "behaviors": [
+        "sequence",
+        "draw",
+        "response"
+      ],
+      "retain": "保留原点阵密度、十六个目标的位置和远近顺序、连接先于命中、蓝色细线和目标轻弹。",
+      "avoid": "去掉下方路由记录、方法与网格说明，以及原场景标题、右侧数值、背景道具和纸底。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/illustrations.js",
+        "factory": "dot-route-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2800,
+      "recommendation": "适合展示选择、分发或连接建立，直接复用点阵插画。",
+      "tempo_note": "三秒内完成点阵显现、连线生长与命中，末尾留四百毫秒静止画面；速度控件只改变整体快慢。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "整片点阵先建立，再从一个入口依次连中不同位置的目标。",
+      "assumptions": "从本机 kimi-k3-promo 第二场景提取点阵几何、固定目标及局部动作；整体居中缩放，使用目录底色与明暗墨色，连接与命中保留原蓝色。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "scroll-unroll-feed",
+      "name": "卷轴展开上卷",
+      "kind": "action",
+      "category": "entrance",
+      "summary": "暖色账册向下展开，密排正文与流水号同步上移，卷辊沿纸张下缘移动、变薄后停住。",
+      "purpose": "将历史原作的长卷账册独立展示，保留纸面材质、密排字、章节分隔和开卷滚动关系。",
+      "objects": "暖色纸面、正文、流水号、章节分隔、渐变卷辊与细亮边",
+      "phases": [
+        "卷辊在固定纸头下方出现。",
+        "纸面向下展开，卷辊贴着下缘变薄；正文稍后开始上移。",
+        "纸面先展开到位，正文滚到目标段后静止。"
+      ],
+      "aliases": [
+        "卷轴展开上卷",
+        "纸卷展开",
+        "纸卷",
+        "卷轴",
+        "展开",
+        "长纸",
+        "纸卷插画",
+        "长卷展开",
+        "账册展开",
+        "密排正文",
+        "纸卷向下展开"
+      ],
+      "behaviors": [
+        "draw",
+        "sequence"
+      ],
+      "retain": "保留原账册七百二十比九百的展开比例、密排正文、左侧流水号、章节分隔和暖纸底色。卷辊始终贴住下缘，厚度由三十六变为十五，正文滚动距离为一千一百；展开和滚动共享原时间关系。",
+      "avoid": "不把正文替换成示意横线，不让卷辊脱离纸张下缘；不带外围大标题、百万读数、刻度尺、场景背景或声音。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/illustrations.js",
+        "factory": "paper-scroll-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2400,
+      "recommendation": "适用于长文、档案或账册的开卷展示；可替换正文，保留纸面、卷辊与滚动视窗的同步关系。",
+      "tempo_note": "保留原三十帧每秒的动作曲线：零至二十四帧展开，七至三十二帧滚动。目录开头留零点一五秒，结束静止；速度控件只改变整体快慢。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "一卷密密印字的账册向下打开，纸筒越滚越薄，内容快速流过后停在目标段落。",
+      "assumptions": "依据本机 Naive 纸墨图谱当前原组件适配为独立矢量图，保留纸张原色、正文内容、字号比例、固定纹理、分隔线及卷辊明暗；细纤维合并绘制，未复刻逐像素噪点。中文采用目录细体，纯数字使用目录粗体；仅居中缩放纸卷，不携带原场景外围内容，原工程只读。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "particle-torus-roll",
+      "name": "粒子环面翻卷",
+      "kind": "action",
+      "category": "particles",
+      "summary": "细小粒子围成有厚度的烟圈，沿环管剖面持续翻卷。",
+      "purpose": "将螺旋丸视频中的烟圈粒子作为可独立播放、定位和复制的图形参考。",
+      "objects": "烟圈、环管剖面、固定身份的细粒子",
+      "phases": [
+        "粒子烟圈从淡到清晰。",
+        "每个粒子保持环心方位，在环管的小剖面内翻卷。",
+        "保持同一烟圈轮廓，末尾停住。"
+      ],
+      "aliases": [
+        "粒子环面翻卷",
+        "烟圈翻卷",
+        "烟圈",
+        "烟环",
+        "环形粒子",
+        "内部翻卷",
+        "螺旋丸插画",
+        "螺旋丸视频图形",
+        "烟圈粒子插画",
+        "烟圈粒子翻卷",
+        "烟环翻卷"
+      ],
+      "behaviors": [
+        "illustration",
+        "continuous",
+        "depth"
+      ],
+      "retain": "固定粒子身份、原环径与厚度、剖面翻卷方向及细粒子层次；不把小剖面翻卷替换成整环转盘。",
+      "avoid": "去掉原片纸底、字幕、人物、章节文案、全页辅助标尺与声音；只保留图形，使用目录自己的底色。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/rasengan-illustrations.js",
+        "factory": "smoke-ring-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2600,
+      "recommendation": "适合独立复用烟圈粒子插画，保留原图形结构与细线比例。",
+      "tempo_note": "固定三秒：前三百毫秒显现，图形运动至二点六秒，末尾保持四百毫秒；只调整整体速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "细小粒子围成有厚度的烟圈，沿环管剖面持续翻卷。",
+      "assumptions": "提取本机螺旋丸原工程的几何、固定粒子与短窗轨迹；在目录十六比九画板内等比居中，石墨线随明暗主题，螺旋丸与电弧保留原蓝色家族。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "vortex-line-roll",
+      "name": "流线绕环翻卷",
+      "kind": "action",
+      "category": "particles",
+      "summary": "十六个剖面环和六圈环向细线构成涡环，短流线沿剖面翻卷。",
+      "purpose": "将螺旋丸视频中的涡环剖面作为可独立播放、定位和复制的图形参考。",
+      "objects": "十六个剖面环、六圈环向线、二十八条短流线",
+      "phases": [
+        "涡环细线显现，露出环管厚度。",
+        "短流线在固定剖面中沿小环翻卷。",
+        "维持透视与内部循环，末尾停住。"
+      ],
+      "aliases": [
+        "流线绕环翻卷",
+        "涡环流线翻卷",
+        "涡环",
+        "涡环剖面",
+        "剖面环",
+        "环管流线",
+        "螺旋丸插画",
+        "螺旋丸视频图形",
+        "涡环剖面插画",
+        "涡环剖面流动",
+        "涡环剖流"
+      ],
+      "behaviors": [
+        "illustration",
+        "continuous",
+        "depth"
+      ],
+      "retain": "原环管比例、十六剖面与六圈细线、原三维投影、细线粗细和前后明暗；区别于整环面网格自转。",
+      "avoid": "去掉原片纸底、字幕、人物、章节文案、全页辅助标尺与声音；只保留图形，使用目录自己的底色。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/rasengan-illustrations.js",
+        "factory": "vortex-ring-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2600,
+      "recommendation": "适合独立复用涡环剖面插画，保留原图形结构与细线比例。",
+      "tempo_note": "固定三秒：前三百毫秒显现，图形运动至二点六秒，末尾保持四百毫秒；只调整整体速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "十六个剖面环和六圈环向细线构成涡环，短流线沿剖面翻卷。",
+      "assumptions": "提取本机螺旋丸原工程的几何、固定粒子与短窗轨迹；在目录十六比九画板内等比居中，石墨线随明暗主题，螺旋丸与电弧保留原蓝色家族。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "plume-rise-curl",
+      "name": "粒子上升翻卷",
+      "kind": "action",
+      "category": "particles",
+      "summary": "上升的细粒子进入云头，云顶向外铺开、边缘向下卷回。",
+      "purpose": "将螺旋丸视频中的蘑菇云粒子作为可独立播放、定位和复制的图形参考。",
+      "objects": "原云头粒子、上升气柱与短尾迹",
+      "phases": [
+        "云头与细窄气柱同时显现。",
+        "气柱粒子向上进入云顶，云顶边缘逐渐卷下。",
+        "保留有厚度的云帽轮廓，末尾停住。"
+      ],
+      "aliases": [
+        "粒子上升翻卷",
+        "蘑菇云翻升",
+        "蘑菇云",
+        "云头",
+        "上升气柱",
+        "卷边",
+        "螺旋丸插画",
+        "螺旋丸视频图形",
+        "蘑菇云粒子插画",
+        "蘑菇云上升翻卷",
+        "云体翻升"
+      ],
+      "behaviors": [
+        "illustration",
+        "continuous",
+        "depth"
+      ],
+      "retain": "原云头形变函数、原球涡示踪轨迹、云头与气柱的空间连接和细粒子比例；保留云帽厚度。",
+      "avoid": "去掉原片纸底、字幕、人物、章节文案、全页辅助标尺与声音；只保留图形，使用目录自己的底色。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/rasengan-illustrations.js",
+        "factory": "mushroom-cloud-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2600,
+      "recommendation": "适合独立复用蘑菇云粒子插画，保留原图形结构与细线比例。",
+      "tempo_note": "固定三秒：前三百毫秒显现，图形运动至二点六秒，末尾保持四百毫秒；只调整整体速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "上升的细粒子进入云头，云顶向外铺开、边缘向下卷回。",
+      "assumptions": "提取本机螺旋丸原工程的几何、固定粒子与短窗轨迹；在目录十六比九画板内等比居中，石墨线随明暗主题，螺旋丸与电弧保留原蓝色家族。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "spherical-vortex-flow",
+      "name": "球内涡流循环",
+      "kind": "action",
+      "category": "particles",
+      "summary": "球内二十四条支撑流线保持轮廓，六十四条短尾迹沿原球涡轨迹流动。",
+      "purpose": "将螺旋丸视频中的球涡流线作为可独立播放、定位和复制的图形参考。",
+      "objects": "四层球涡流线与六十四个示踪点",
+      "phases": [
+        "嵌套流线和示踪点显现。",
+        "短尾迹在球内沿原轨迹上下翻卷。",
+        "支撑流线维持球状轮廓，末尾停住。"
+      ],
+      "aliases": [
+        "球内涡流循环",
+        "球形涡流",
+        "球涡",
+        "希尔球涡",
+        "球内翻卷",
+        "球体流线",
+        "螺旋丸插画",
+        "螺旋丸视频图形",
+        "球涡流线插画",
+        "球涡流线循环",
+        "球涡循环"
+      ],
+      "behaviors": [
+        "illustration",
+        "continuous",
+        "depth"
+      ],
+      "retain": "原计算流线、实际冻结轨迹、四层支撑关系、原细线与透视；相机固定，不用镜头旋转冒充流动。",
+      "avoid": "去掉原片纸底、字幕、人物、章节文案、全页辅助标尺与声音；只保留图形，使用目录自己的底色。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/rasengan-illustrations.js",
+        "factory": "hill-vortex-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2600,
+      "recommendation": "适合独立复用球涡流线插画，保留原图形结构与细线比例。",
+      "tempo_note": "固定三秒：前三百毫秒显现，图形运动至二点六秒，末尾保持四百毫秒；只调整整体速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "球内二十四条支撑流线保持轮廓，六十四条短尾迹沿原球涡轨迹流动。",
+      "assumptions": "提取本机螺旋丸原工程的几何、固定粒子与短窗轨迹；在目录十六比九画板内等比居中，石墨线随明暗主题，螺旋丸与电弧保留原蓝色家族。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "spiral-inward-flow",
+      "name": "螺旋流线内聚",
+      "kind": "action",
+      "category": "particles",
+      "summary": "六条细螺旋臂弯向中心，短尾迹沿原螺旋路径向内流动。",
+      "purpose": "将螺旋丸视频中的台风螺旋作为可独立播放、定位和复制的图形参考。",
+      "objects": "六条螺旋主线、九十六条错相尾迹",
+      "phases": [
+        "六条螺旋臂显现。",
+        "主线继续弯曲，短尾迹沿主线向内流动。",
+        "保持中心空隙及臂间间隔，末尾停住。"
+      ],
+      "aliases": [
+        "螺旋流线内聚",
+        "台风",
+        "六臂螺旋",
+        "螺旋流线",
+        "旋涡",
+        "螺旋丸插画",
+        "螺旋丸视频图形",
+        "台风螺旋插画",
+        "台风螺旋内流",
+        "螺旋内流"
+      ],
+      "behaviors": [
+        "illustration",
+        "continuous",
+        "depth"
+      ],
+      "retain": "原六臂角度、弯曲函数、中心空隙、尾迹相位和倾斜视角；这是原片流动示意，不是天气模拟。",
+      "avoid": "去掉原片纸底、字幕、人物、章节文案、全页辅助标尺与声音；只保留图形，使用目录自己的底色。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/rasengan-illustrations.js",
+        "factory": "cyclone-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2600,
+      "recommendation": "适合独立复用台风螺旋插画，保留原图形结构与细线比例。",
+      "tempo_note": "固定三秒：前三百毫秒显现，图形运动至二点六秒，末尾保持四百毫秒；只调整整体速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "六条细螺旋臂弯向中心，短尾迹沿原螺旋路径向内流动。",
+      "assumptions": "提取本机螺旋丸原工程的几何、固定粒子与短窗轨迹；在目录十六比九画板内等比居中，石墨线随明暗主题，螺旋丸与电弧保留原蓝色家族。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "differential-orbit-turn",
+      "name": "星点异速绕转",
+      "kind": "action",
+      "category": "particles",
+      "summary": "原六臂细星点组成倾斜星盘，不同半径的星点按原轨道继续转动。",
+      "purpose": "将螺旋丸视频中的螺旋星系作为可独立播放、定位和复制的图形参考。",
+      "objects": "六条疏密变化的星臂与细星点",
+      "phases": [
+        "细星点显现为六臂星盘。",
+        "各星点保持原身份与半径，沿原轨道转动。",
+        "保持星臂间暗隙和倾斜星盘，末尾停住。"
+      ],
+      "aliases": [
+        "星点异速绕转",
+        "旋转星系",
+        "螺旋星系",
+        "星系",
+        "星盘",
+        "星臂",
+        "螺旋丸插画",
+        "螺旋丸视频图形",
+        "螺旋星系插画",
+        "螺旋星系旋转",
+        "星系旋流"
+      ],
+      "behaviors": [
+        "illustration",
+        "continuous",
+        "depth"
+      ],
+      "retain": "原固定星点序列、六臂宽度和间隙、半径对应的转速；每臂分层抽取四分之一星点，减少绘制量。",
+      "avoid": "去掉原片纸底、字幕、人物、章节文案、全页辅助标尺与声音；只保留图形，使用目录自己的底色。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/rasengan-illustrations.js",
+        "factory": "spiral-galaxy-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2600,
+      "recommendation": "适合独立复用螺旋星系插画，保留原图形结构与细线比例。",
+      "tempo_note": "固定三秒：前三百毫秒显现，图形运动至二点六秒，末尾保持四百毫秒；只调整整体速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "原六臂细星点组成倾斜星盘，不同半径的星点按原轨道继续转动。",
+      "assumptions": "提取本机螺旋丸原工程的几何、固定粒子与短窗轨迹；在目录十六比九画板内等比居中，石墨线随明暗主题，螺旋丸与电弧保留原蓝色家族。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "energy-vortex-wrap",
+      "name": "流线球形缠绕",
+      "kind": "action",
+      "category": "particles",
+      "summary": "细蓝流线沿原受力球涡轨迹缠绕，窄亮芯与蓝色线身共同构成球形。",
+      "purpose": "将螺旋丸视频中的螺旋丸作为可独立播放、定位和复制的图形参考。",
+      "objects": "原球涡短尾迹、补充示踪线和窄亮芯",
+      "phases": [
+        "蓝色流线和窄亮芯显现。",
+        "保留原受力流场的绕轴与翻卷，流线缠绕成球。",
+        "保持蓝色球状线团，末尾停住。"
+      ],
+      "aliases": [
+        "流线球形缠绕",
+        "蓝色能量球",
+        "螺旋丸",
+        "蓝色球涡",
+        "缠绕流线",
+        "能量球",
+        "螺旋丸插画",
+        "螺旋丸视频图形",
+        "螺旋丸流线",
+        "能量流球"
+      ],
+      "behaviors": [
+        "illustration",
+        "continuous",
+        "depth"
+      ],
+      "retain": "原受力轨迹、三维投影、蓝色线身、少量窄亮芯与细线比例；不增加实体球背景。；使用原光照累计、密度补偿和完整流线采样，不替换成蓝色描线。",
+      "avoid": "去掉原片纸底、字幕、人物、章节文案、全页辅助标尺与声音；只保留图形，使用目录自己的底色。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/rasengan-illustrations.js",
+        "factory": "rasengan-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2600,
+      "recommendation": "适合独立复用螺旋丸插画，保留原图形结构与细线比例。",
+      "tempo_note": "固定三秒：前三百毫秒显现，图形运动至二点六秒，末尾保持四百毫秒；只调整整体速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "细蓝流线沿原受力球涡轨迹缠绕，窄亮芯与蓝色线身共同构成球形。",
+      "assumptions": "提取本机螺旋丸原工程的几何、固定粒子与短窗轨迹；在目录十六比九画板内等比居中，石墨线随明暗主题，螺旋丸与电弧保留原蓝色家族。 螺旋丸与电弧使用原浮点光照画布，仅适配尺寸与分辨率；浏览器不支持时使用细线兼容图。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "arc-branch-flicker",
+      "name": "电弧分叉闪动",
+      "kind": "action",
+      "category": "lighting",
+      "summary": "沿螺旋丸原流线生成折角电弧，主弧闪动并向两侧分叉。",
+      "purpose": "将螺旋丸视频中的分叉电弧作为可独立播放、定位和复制的图形参考。",
+      "objects": "蓝色球涡线团、折角主弧、支弧和细分支",
+      "phases": [
+        "蓝色球涡与折角电弧显现。",
+        "主弧沿原球内路径闪动，两侧生成支弧及细分支。",
+        "球体轮廓和电弧保持同一位置，末尾停住。"
+      ],
+      "aliases": [
+        "电弧分叉闪动",
+        "球形分叉电弧",
+        "分叉电弧",
+        "球状闪电",
+        "电弧",
+        "闪电球",
+        "螺旋丸插画",
+        "螺旋丸视频图形",
+        "分叉电弧插画",
+        "分叉电弧闪动"
+      ],
+      "behaviors": [
+        "illustration",
+        "continuous",
+        "depth"
+      ],
+      "retain": "原折角与分叉函数、分支长度、闪动相位、球内路径及蓝亮色层；这是原片艺术表现，不是放电求解。；使用原电弧光效和分支生长节奏，保留窄白芯、亮蓝外缘与光晕。",
+      "avoid": "去掉原片纸底、字幕、人物、章节文案、全页辅助标尺与声音；只保留图形，使用目录自己的底色。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/rasengan-illustrations.js",
+        "factory": "lightning-orb-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2600,
+      "recommendation": "适合独立复用分叉电弧插画，保留原图形结构与细线比例。",
+      "tempo_note": "固定三秒：前三百毫秒显现，图形运动至二点六秒，末尾保持四百毫秒；只调整整体速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "沿螺旋丸原流线生成折角电弧，主弧闪动并向两侧分叉。",
+      "assumptions": "提取本机螺旋丸原工程的几何、固定粒子与短窗轨迹；在目录十六比九画板内等比居中，石墨线随明暗主题，螺旋丸与电弧保留原蓝色家族。 螺旋丸与电弧使用原浮点光照画布，仅适配尺寸与分辨率；浏览器不支持时使用细线兼容图。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "fade-drop",
+      "name": "淡入下落",
+      "kind": "action",
+      "category": "entrance",
+      "summary": "米白照片卡落入，深蓝底上保留原月面、二十六个环形山与月相暗部。",
+      "purpose": "独立复用 Kimi 原片的插画对象，保留原图形样式。",
+      "objects": "照片卡、蓝晒底框、月面与图注",
+      "phases": [
+        "照片卡从上方轻落。",
+        "原月面与蓝晒卡完整显现。",
+        "保留轻微倾斜，停在完整图形。"
+      ],
+      "aliases": [
+        "淡入下落",
+        "月相照片卡",
+        "月亮插画",
+        "月相",
+        "蓝晒",
+        "Kimi 插画",
+        "月相蓝晒卡",
+        "月相纸卡"
+      ],
+      "behaviors": [
+        "sequence",
+        "response"
+      ],
+      "retain": "保留原相框比例、月面渐变、固定月坑分布、暗部弧线和图注。",
+      "avoid": "去掉外围场景文稿、原页面背景、虚化杂物、相机晃动与音效；保留插画自身的标签和窗口内容。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/kimi-illustrations.js",
+        "factory": "moon-card-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2900,
+      "recommendation": "需要原片档案桌风格的独立插画时直接复用。",
+      "tempo_note": "三秒内完成局部动作并停住；整体速度可调，原动作的先后关系保持。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "米白照片卡落入，深蓝底上保留原月面、二十六个环形山与月相暗部。",
+      "assumptions": "从本机 kimi-k3-promo 原场景提取，只重新居中并等比适配画板；物件沿用原配色、轮廓和细节，画板采用目录统一底色。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "stagger-drop",
+      "name": "错峰下落",
+      "kind": "action",
+      "category": "entrance",
+      "summary": "放大镜、圆规、铅笔、标尺和回形针依次落位，保留原金属、木质和石墨颜色。",
+      "purpose": "独立复用 Kimi 原片的插画对象，保留原图形样式。",
+      "objects": "五件桌面绘图工具",
+      "phases": [
+        "工具从上方短距离落下。",
+        "按原片错峰间隔依次就位。",
+        "保留各自角度与尺寸关系，停住。"
+      ],
+      "aliases": [
+        "错峰下落",
+        "绘图工具",
+        "绘图道具",
+        "放大镜",
+        "圆规",
+        "铅笔",
+        "标尺",
+        "回形针",
+        "Kimi 插画",
+        "档案桌绘图工具",
+        "绘图器具",
+        "散页纸卡",
+        "散页",
+        "卷宗",
+        "档案卡",
+        "纸页插画",
+        "散页档案卡",
+        "散页卡组"
+      ],
+      "behaviors": [
+        "sequence",
+        "response"
+      ],
+      "retain": "保留原工具轮廓、相对粗细、角度和材质色；只将桌面空档收拢。",
+      "avoid": "去掉外围场景文稿、原页面背景、虚化杂物、相机晃动与音效；保留插画自身的标签和窗口内容。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/kimi-illustrations.js",
+        "factory": "drafting-tools-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2900,
+      "recommendation": "需要原片档案桌风格的独立插画时直接复用。",
+      "tempo_note": "三秒内完成局部动作并停住；整体速度可调，原动作的先后关系保持。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "放大镜、圆规、铅笔、标尺和回形针依次落位，保留原金属、木质和石墨颜色。",
+      "assumptions": "从本机 kimi-k3-promo 原场景提取，只重新居中并等比适配画板；物件沿用原配色、轮廓和细节，画板采用目录统一底色。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      },
+      "variants": [
+        {
+          "summary": "放大镜、圆规、铅笔、标尺和回形针依次落位，保留原金属、木质和石墨颜色。",
+          "purpose": "独立复用 Kimi 原片的插画对象，保留原图形样式。",
+          "objects": "五件桌面绘图工具",
+          "phases": [
+            "工具从上方短距离落下。",
+            "按原片错峰间隔依次就位。",
+            "保留各自角度与尺寸关系，停住。"
+          ],
+          "retain": "保留原工具轮廓、相对粗细、角度和材质色；只将桌面空档收拢。",
+          "avoid": "去掉外围场景文稿、原页面背景、虚化杂物、相机晃动与音效；保留插画自身的标签和窗口内容。",
+          "duration_ms": 3000,
+          "preview_ms": 2900,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/kimi-illustrations.js",
+            "factory": "drafting-tools-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/"
+          },
+          "tempo_note": "三秒内完成局部动作并停住；整体速度可调，原动作的先后关系保持。",
+          "assumptions": "从本机 kimi-k3-promo 原场景提取，只重新居中并等比适配画板；物件沿用原配色、轮廓和细节，画板采用目录统一底色。",
+          "analogy": "放大镜、圆规、铅笔、标尺和回形针依次落位，保留原金属、木质和石墨颜色。",
+          "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+          "id": "tools",
+          "label": "绘图工具",
+          "timing": null,
+          "reproduction": {
+            "presentation": "16:9 画幅，保留绘图工具的构图、配色与材质，运动由原时间关系驱动。"
+          }
+        },
+        {
+          "summary": "四张编号散页错落落位，保留原纸色、细小印刷行、页码和第二张上的回形针。",
+          "purpose": "独立复用 Kimi 原片的插画对象，保留原图形样式。",
+          "objects": "四张散页与一枚回形针",
+          "phases": [
+            "四张散页按原时差依次落入。",
+            "保留原编号、页码和固定印刷行。",
+            "回形针在第二张就位后出现，整组停住。"
+          ],
+          "retain": "保留原四卡错落布局、纸色、薄线、文字密度和回形针位置。",
+          "avoid": "去掉外围场景文稿、原页面背景、虚化杂物、相机晃动与音效；保留插画自身的标签和窗口内容。",
+          "duration_ms": 3000,
+          "preview_ms": 2900,
+          "loop": false,
+          "default_ease": "linear",
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          },
+          "source": {
+            "path": "catalog/effects/kimi-illustrations.js",
+            "factory": "folio-cards-illustration",
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/"
+          },
+          "tempo_note": "三秒内完成局部动作并停住；整体速度可调，原动作的先后关系保持。",
+          "assumptions": "从本机 kimi-k3-promo 原场景提取，只重新居中并等比适配画板；物件沿用原配色、轮廓和细节，画板采用目录统一底色。",
+          "analogy": "四张编号散页错落落位，保留原纸色、细小印刷行、页码和第二张上的回形针。",
+          "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+          "id": "paper-cards",
+          "label": "散页纸卡",
+          "timing": null,
+          "reproduction": {
+            "presentation": "16:9 画幅，保留散页纸卡的构图、配色与材质，运动由原时间关系驱动。"
+          }
+        }
+      ]
+    },
+    {
+      "id": "slide-type-reveal",
+      "name": "侧移落定打字",
+      "kind": "action",
+      "category": "entrance",
+      "summary": "牛皮纸档案夹由右侧落定，侧缘保留六个竖向标签，内部标题逐字出现。",
+      "purpose": "独立复用 Kimi 原片的插画对象，保留原图形样式。",
+      "objects": "档案夹与六个分类标签",
+      "phases": [
+        "档案夹由右侧短距离进入。",
+        "纸夹转角保持原样，侧标签随主体落定。",
+        "夹内标题逐字出现，完整图形停住。"
+      ],
+      "aliases": [
+        "侧移落定打字",
+        "牛皮纸档案夹",
+        "文件夹",
+        "档案插画",
+        "牛皮纸",
+        "标签页",
+        "Kimi 插画",
+        "折页纸夹"
+      ],
+      "behaviors": [
+        "sequence",
+        "response"
+      ],
+      "retain": "保留原牛皮纸色、六个侧标签、竖向标签字、夹内标题及倾斜角度。",
+      "avoid": "去掉外围场景文稿、原页面背景、虚化杂物、相机晃动与音效；保留插画自身的标签和窗口内容。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/kimi-illustrations.js",
+        "factory": "archive-folder-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2900,
+      "recommendation": "需要原片档案桌风格的独立插画时直接复用。",
+      "tempo_note": "三秒内完成局部动作并停住；整体速度可调，原动作的先后关系保持。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "牛皮纸档案夹由右侧落定，侧缘保留六个竖向标签，内部标题逐字出现。",
+      "assumptions": "从本机 kimi-k3-promo 原场景提取，只重新居中并等比适配画板；物件沿用原配色、轮廓和细节，画板采用目录统一底色。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "tilt-drop-settle",
+      "name": "斜落回正",
+      "kind": "action",
+      "category": "entrance",
+      "summary": "米白图纸卡从上方落入，保留原虚线网格、蓝色双笔折线、九个数据点与峰值细环。",
+      "purpose": "独立复用 Kimi 原片的插画对象，保留原图形样式。",
+      "objects": "信号图纸卡",
+      "phases": [
+        "图纸卡从上方转入。",
+        "蓝色手绘折线与细网格随卡片出现。",
+        "保留九个固定数据点与峰值标记，卡片落定。"
+      ],
+      "aliases": [
+        "斜落回正",
+        "手绘折线图卡",
+        "手绘图表",
+        "信号卡",
+        "图纸",
+        "Kimi 插画",
+        "手绘信号图卡",
+        "手绘图卡"
+      ],
+      "behaviors": [
+        "sequence",
+        "response"
+      ],
+      "retain": "保留原固定种子折线、主笔与偏移淡笔、虚线网格、坐标箭头和峰值细环。",
+      "avoid": "去掉外围场景文稿、原页面背景、虚化杂物、相机晃动与音效；保留插画自身的标签和窗口内容。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/kimi-illustrations.js",
+        "factory": "chart-card-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2900,
+      "recommendation": "需要原片档案桌风格的独立插画时直接复用。",
+      "tempo_note": "三秒内完成局部动作并停住；整体速度可调，原动作的先后关系保持。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "米白图纸卡从上方落入，保留原虚线网格、蓝色双笔折线、九个数据点与峰值细环。",
+      "assumptions": "从本机 kimi-k3-promo 原场景提取，只重新居中并等比适配画板；物件沿用原配色、轮廓和细节，画板采用目录统一底色。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "pop-pulse-ring",
+      "name": "轻弹显现扩圈",
+      "kind": "action",
+      "category": "attention",
+      "summary": "蓝色光圈轻弹显现，细环和十二个刻度围住渐变虹膜，出现一次向外扩散的脉冲环。",
+      "purpose": "独立复用 Kimi 原片的插画对象，保留原图形样式。",
+      "objects": "光圈、刻度、虹膜与瞳孔",
+      "phases": [
+        "光圈从小到大轻弹显现。",
+        "外圈扩散一次，中心保留细微呼吸。",
+        "保留原渐变虹膜和高光，停在完整图形。"
+      ],
+      "aliases": [
+        "轻弹显现扩圈",
+        "光圈眼形",
+        "光圈",
+        "眼睛插画",
+        "虹膜",
+        "感知插画",
+        "Kimi 插画",
+        "蓝色光圈眼睛",
+        "光圈目形"
+      ],
+      "behaviors": [
+        "sequence",
+        "response"
+      ],
+      "retain": "保留原十二刻度、双环、虹膜渐变、瞳孔高光和到达脉冲。",
+      "avoid": "去掉外围场景文稿、原页面背景、虚化杂物、相机晃动与音效；保留插画自身的标签和窗口内容。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/kimi-illustrations.js",
+        "factory": "aperture-eye-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2900,
+      "recommendation": "需要原片档案桌风格的独立插画时直接复用。",
+      "tempo_note": "三秒内完成局部动作并停住；整体速度可调，原动作的先后关系保持。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "蓝色光圈轻弹显现，细环和十二个刻度围住渐变虹膜，出现一次向外扩散的脉冲环。",
+      "assumptions": "从本机 kimi-k3-promo 原场景提取，只重新居中并等比适配画板；物件沿用原配色、轮廓和细节，画板采用目录统一底色。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "lid-open-float",
+      "name": "开盖浮出",
+      "kind": "action",
+      "category": "entrance",
+      "summary": "牛皮纸档案盒落位，左侧盒盖转开，七个带蓝点的文件块从盒内错峰升到上方两排。",
+      "purpose": "独立复用 Kimi 原片的插画对象，保留原图形样式。",
+      "objects": "档案盒、盒盖、内腔、标签与七个文件块",
+      "phases": [
+        "档案盒落定，左侧盒盖打开。",
+        "内腔、纸边和蓝色辉光随开盖显现。",
+        "七个文件块按原固定轨迹升起，排成四个与三个两行后停住。"
+      ],
+      "aliases": [
+        "开盖浮出",
+        "档案盒开盖浮页",
+        "档案盒",
+        "开盒",
+        "文件浮出",
+        "开源文件",
+        "Kimi 插画",
+        "档案盒开启与文件浮出",
+        "档案盒开盖与文件浮出",
+        "开盒浮页"
+      ],
+      "behaviors": [
+        "sequence",
+        "response"
+      ],
+      "retain": "保留原盒盖左缘转轴、纸色、缝线、内腔与标签、文件块七个身份及四加三布局。",
+      "avoid": "去掉外围场景文稿、原页面背景、虚化杂物、相机晃动与音效；保留插画自身的标签和窗口内容。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/kimi-illustrations.js",
+        "factory": "archive-box-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2900,
+      "recommendation": "需要原片档案桌风格的独立插画时直接复用。",
+      "tempo_note": "三秒内完成局部动作并停住；整体速度可调，原动作的先后关系保持。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "牛皮纸档案盒落位，左侧盒盖转开，七个带蓝点的文件块从盒内错峰升到上方两排。",
+      "assumptions": "从本机 kimi-k3-promo 原场景提取，只重新居中并等比适配画板；物件沿用原配色、轮廓和细节，画板采用目录统一底色。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "duration_ms": 6000,
+      "preview_ms": 2600,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后播放；可暂停、重播和任意定位。",
+      "assumptions": "按本机 Claude 动效演进史原片 10–16 秒及 sNeon 源码重写；深浅模式均保留原霓虹色，独立动作与组合共用原位置、大小和计时。省去文字、转场和声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "tempo_note": "保留原片六秒时间，太阳上升用前 1.3 秒，其余运动持续至段尾；播放倍率只改变观看速度。",
+      "id": "striped-rise-pulse",
+      "name": "条纹升起脉动",
+      "category": "entrance",
+      "summary": "渐变太阳从地平线下升起，下半部条纹持续向下移动，圆盘随节拍轻微胀缩。",
+      "purpose": "独立复用太阳上升、条纹下移与外围泛光共同构成的霓虹图形。",
+      "objects": "黄粉紫渐变圆日、下半部水平缺口和粉色泛光",
+      "phases": [
+        "圆日在地平线以下，泛光先映入天空。",
+        "圆日减速升起，下半部条纹同时纵向滚动。",
+        "升起到位后条纹继续下移，圆盘按半秒节拍微微胀缩。"
+      ],
+      "aliases": [
+        "条纹升起脉动",
+        "条纹太阳升起",
+        "条纹落日",
+        "霓虹条纹太阳",
+        "Claude 条纹太阳",
+        "Claude 动效演进史",
+        "条纹升圆"
+      ],
+      "behaviors": [
+        "appear",
+        "move",
+        "pulse"
+      ],
+      "retain": "保留 250 像素圆日半径、1.3 秒上升、每秒 22 像素条纹下移、逐级加宽的间隙、地平线裁剪、原渐变与外围泛光。",
+      "avoid": "不把条纹改成横向扫描，不只平移整个圆盘，不抹去细条纹与渐变。",
+      "analogy": "太阳从远处升起，底部像被向下流动的细缝分开。",
+      "recommendation": "需要完整的霓虹太阳图形时使用；与网格地面、错峰星点可以原位叠加。",
+      "source": {
+        "path": "catalog/effects/reel-neon.js",
+        "factory": "striped-sun-rise",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "original_scene": "claude-showreel-2026/sNeon",
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "dot-mask-reveal",
+      "name": "点阵纵向显现",
+      "kind": "action",
+      "category": "entrance",
+      "summary": "门形标志由固定间距的灰色圆点填充，从上往下逐渐显出，最后保留完整轮廓。",
+      "purpose": "独立复用原片门形标志的点阵插画与显现过程。",
+      "objects": "门形标志、固定点阵和自上而下推进的揭示窗口",
+      "phases": [
+        "门形标志从透明开始，顶部点阵率先显出。",
+        "揭示窗口向下推进，整体淡入完成，点距与轮廓始终不变。",
+        "完整门形点阵停留，不消散也不循环。"
+      ],
+      "aliases": [
+        "点阵纵向显现",
+        "门形点阵",
+        "门形标志点阵揭示",
+        "门形标志",
+        "点阵标志",
+        "半色调标志",
+        "Naive 标志",
+        "门形标志点阵显现"
+      ],
+      "behaviors": [
+        "reveal",
+        "opacity"
+      ],
+      "retain": "保留原门形轮廓、固定圆点直径和间距、从上往下揭示与整体淡入的先后关系。",
+      "avoid": "不改成粒子聚拢或散开，不描边替代点阵填充；省去外围型号、参数表、题签和声音。",
+      "duration_ms": 1600,
+      "preview_ms": 1150,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/door-halftone.js",
+        "factory": "door-halftone-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "recommendation": "需要原片门形点阵标志插画时直接使用；保留原轮廓与点阵材质。",
+      "tempo_note": "开头停留零点一五秒，随后一秒完成原作第 4 至 34 帧的揭示，前零点四秒同步淡入；末尾静止零点四五秒。播放速度整体调整。",
+      "trigger": "打开预览后播放一次，可暂停、重播和任意定位。",
+      "analogy": "印在纸上的门形标志从上边开始逐行露出。",
+      "assumptions": "从本机 Naive-NO.5-Flash 的 Overview.tsx 提取门形标志点阵，保持原路径、4.6 倍轮廓缩放、1.5 点距、0.38 点半径、246 高度揭示窗口和两条原速度曲线，只将标志移到目录画板中央。灰墨映射为目录前景色以兼容明暗主题。门形为原工程记录的 Naive AI 标志，图形权利保持原归属；原工程与素材只读。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "curve-phase-shift",
+      "name": "交织曲线游动",
+      "kind": "action",
+      "category": "shape",
+      "summary": "一条细线按横向三次、纵向四次的正弦关系绕出交错曲线，横向相位持续前进。",
+      "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+      "objects": "三比四频率曲线",
+      "phases": [
+        "直接呈现原图块中的独立插画。",
+        "一条细线按横向三次、纵向四次的正弦关系绕出交错曲线，横向相位持续前进。",
+        "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+      ],
+      "aliases": [
+        "交织曲线游动",
+        "交织曲线",
+        "李萨如",
+        "交错曲线",
+        "闭合曲线",
+        "LISSAJOUS",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙",
+        "李萨如曲线",
+        "周期交织"
+      ],
+      "behaviors": [
+        "continuous",
+        "illustration"
+      ],
+      "retain": "一条细线按横向三次、纵向四次的正弦关系绕出交错曲线，横向相位持续前进。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+      "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/claude-tile-illustrations.js",
+        "factory": "claude-lissajous-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+        "original_symbol": "TILES[0]"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2200,
+      "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
+      "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "一条细线按横向三次、纵向四次的正弦关系绕出交错曲线，横向相位持续前进。",
+      "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "wireframe-axis-turn",
+      "name": "线框双轴旋转",
+      "kind": "action",
+      "category": "space",
+      "summary": "立方体的八个顶点和十二条边沿两条轴同时旋转，远近透视跟着角度变化。",
+      "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+      "objects": "八顶点、十二边线框",
+      "phases": [
+        "直接呈现原图块中的独立插画。",
+        "立方体的八个顶点和十二条边沿两条轴同时旋转，远近透视跟着角度变化。",
+        "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+      ],
+      "aliases": [
+        "线框双轴旋转",
+        "旋转立方线框",
+        "立方体",
+        "立体线框",
+        "双轴旋转",
+        "WIREFRAME",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙",
+        "旋转线框立方体",
+        "立方线框"
+      ],
+      "behaviors": [
+        "continuous",
+        "illustration"
+      ],
+      "retain": "立方体的八个顶点和十二条边沿两条轴同时旋转，远近透视跟着角度变化。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+      "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/claude-tile-illustrations.js",
+        "factory": "claude-wireframe-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+        "original_symbol": "TILES[1]"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2200,
+      "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
+      "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "立方体的八个顶点和十二条边沿两条轴同时旋转，远近透视跟着角度变化。",
+      "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "pendulum-phase-wave",
+      "name": "异频摆动成波",
+      "kind": "action",
+      "category": "response",
+      "summary": "十八个圆点按不同频率左右摆动，逐渐组成聚拢与散开的波形。",
+      "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+      "objects": "十八个错频摆动圆点",
+      "phases": [
+        "直接呈现原图块中的独立插画。",
+        "十八个圆点按不同频率左右摆动，逐渐组成聚拢与散开的波形。",
+        "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+      ],
+      "aliases": [
+        "异频摆动成波",
+        "摆点波浪",
+        "摆锤",
+        "错频摆动",
+        "摆动波",
+        "PENDULUM WAVE",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙",
+        "摆锤波",
+        "多摆成波"
+      ],
+      "behaviors": [
+        "continuous",
+        "illustration"
+      ],
+      "retain": "十八个圆点按不同频率左右摆动，逐渐组成聚拢与散开的波形。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+      "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/claude-tile-illustrations.js",
+        "factory": "claude-pendulum-wave-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+        "original_symbol": "TILES[3]"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2200,
+      "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
+      "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "十八个圆点按不同频率左右摆动，逐渐组成聚拢与散开的波形。",
+      "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "spiral-point-turn",
+      "name": "螺旋点阵旋转",
+      "kind": "action",
+      "category": "space",
+      "summary": "四百二十个方点按黄金角和平方根半径排成叶序螺旋，整组缓慢旋转。",
+      "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+      "objects": "四百二十个叶序方点",
+      "phases": [
+        "直接呈现原图块中的独立插画。",
+        "四百二十个方点按黄金角和平方根半径排成叶序螺旋，整组缓慢旋转。",
+        "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+      ],
+      "aliases": [
+        "螺旋点阵旋转",
+        "旋转螺旋点阵",
+        "叶序",
+        "黄金角",
+        "螺旋点阵",
+        "PHYLLOTAXIS",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙",
+        "叶序螺旋点阵",
+        "叶序点阵"
+      ],
+      "behaviors": [
+        "continuous",
+        "illustration"
+      ],
+      "retain": "四百二十个方点按黄金角和平方根半径排成叶序螺旋，整组缓慢旋转。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+      "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/claude-tile-illustrations.js",
+        "factory": "claude-phyllotaxis-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+        "original_symbol": "TILES[4]"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2200,
+      "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
+      "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "四百二十个方点按黄金角和平方根半径排成叶序螺旋，整组缓慢旋转。",
+      "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "beat-ring-pulse",
+      "name": "同心环随拍伸缩",
+      "kind": "action",
+      "category": "environment",
+      "summary": "八道橙色同心环按原鼓点强度共同伸缩，同时缓慢向外推进。",
+      "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+      "objects": "八道橙色同心环",
+      "phases": [
+        "直接呈现原图块中的独立插画。",
+        "八道橙色同心环按原鼓点强度共同伸缩，同时缓慢向外推进。",
+        "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+      ],
+      "aliases": [
+        "同心环随拍伸缩",
+        "节拍同心光环",
+        "鼓点",
+        "同心环",
+        "音频响应",
+        "KICK RINGS",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙",
+        "鼓点扩散环",
+        "节拍扩环"
+      ],
+      "behaviors": [
+        "continuous",
+        "illustration"
+      ],
+      "retain": "八道橙色同心环按原鼓点强度共同伸缩，同时缓慢向外推进。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+      "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/claude-tile-illustrations.js",
+        "factory": "claude-kick-rings-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+        "original_symbol": "TILES[5]"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2200,
+      "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
+      "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "八道橙色同心环按原鼓点强度共同伸缩，同时缓慢向外推进。",
+      "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "radial-speed-lines",
+      "name": "放射光线加速",
+      "kind": "action",
+      "category": "particles",
+      "summary": "一百六十根短线按固定方向从中心向外加速伸展，抵达边缘后从中心重新出现。",
+      "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+      "objects": "一百六十根放射短线",
+      "phases": [
+        "直接呈现原图块中的独立插画。",
+        "一百六十根短线按固定方向从中心向外加速伸展，抵达边缘后从中心重新出现。",
+        "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+      ],
+      "aliases": [
+        "放射光线加速",
+        "放射加速光线",
+        "星线",
+        "空间跃迁",
+        "放射流线",
+        "WARP",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙",
+        "跃迁星线",
+        "纵深星线"
+      ],
+      "behaviors": [
+        "continuous",
+        "illustration"
+      ],
+      "retain": "一百六十根短线按固定方向从中心向外加速伸展，抵达边缘后从中心重新出现。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+      "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/claude-tile-illustrations.js",
+        "factory": "claude-warp-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+        "original_symbol": "TILES[7]"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2200,
+      "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
+      "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "一百六十根短线按固定方向从中心向外加速伸展，抵达边缘后从中心重新出现。",
+      "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "grid-wave-scale",
+      "name": "点阵起伏缩放",
+      "kind": "action",
+      "category": "shape",
+      "summary": "十二行、二十二列方点在正弦波中上下起伏，大小沿另一组波动变化。",
+      "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+      "objects": "十二行二十二列方点",
+      "phases": [
+        "直接呈现原图块中的独立插画。",
+        "十二行、二十二列方点在正弦波中上下起伏，大小沿另一组波动变化。",
+        "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+      ],
+      "aliases": [
+        "点阵起伏缩放",
+        "方块波浪",
+        "正弦波",
+        "波动点阵",
+        "方点阵列",
+        "SINE GRID",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙",
+        "正弦波点阵",
+        "周期波阵"
+      ],
+      "behaviors": [
+        "continuous",
+        "illustration"
+      ],
+      "retain": "十二行、二十二列方点在正弦波中上下起伏，大小沿另一组波动变化。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+      "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/claude-tile-illustrations.js",
+        "factory": "claude-sine-grid-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+        "original_symbol": "TILES[8]"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2200,
+      "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
+      "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "十二行、二十二列方点在正弦波中上下起伏，大小沿另一组波动变化。",
+      "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "branch-angle-sway",
+      "name": "分叉枝干摆动",
+      "kind": "action",
+      "category": "shape",
+      "summary": "九层左右分叉形成五百一十一段树枝，分叉角度随时间轻轻张合。",
+      "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+      "objects": "九层、五百一十一段分枝",
+      "phases": [
+        "直接呈现原图块中的独立插画。",
+        "九层左右分叉形成五百一十一段树枝，分叉角度随时间轻轻张合。",
+        "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+      ],
+      "aliases": [
+        "分叉枝干摆动",
+        "分叉树形",
+        "分形",
+        "树枝",
+        "分叉树",
+        "FRACTAL TREE",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙",
+        "分形树",
+        "递归枝形"
+      ],
+      "behaviors": [
+        "continuous",
+        "illustration"
+      ],
+      "retain": "九层左右分叉形成五百一十一段树枝，分叉角度随时间轻轻张合。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+      "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/claude-tile-illustrations.js",
+        "factory": "claude-fractal-tree-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+        "original_symbol": "TILES[9]"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2200,
+      "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
+      "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "九层左右分叉形成五百一十一段树枝，分叉角度随时间轻轻张合。",
+      "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "glyph-rain-fall",
+      "name": "字符异速下落",
+      "kind": "action",
+      "category": "writing",
+      "summary": "三十列字符以不同速度向下流动，每列带八个逐渐变淡的尾部字符。",
+      "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+      "objects": "三十列、每列八个字符",
+      "phases": [
+        "直接呈现原图块中的独立插画。",
+        "三十列字符以不同速度向下流动，每列带八个逐渐变淡的尾部字符。",
+        "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+      ],
+      "aliases": [
+        "字符异速下落",
+        "字符雨幕",
+        "字符雨",
+        "数字雨",
+        "字符流",
+        "GLYPH RAIN",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙"
+      ],
+      "behaviors": [
+        "continuous",
+        "illustration"
+      ],
+      "retain": "三十列字符以不同速度向下流动，每列带八个逐渐变淡的尾部字符。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+      "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/claude-tile-illustrations.js",
+        "factory": "claude-glyph-rain-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+        "original_symbol": "TILES[10]"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2200,
+      "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
+      "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "三十列字符以不同速度向下流动，每列带八个逐渐变淡的尾部字符。",
+      "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "hex-radial-pulse",
+      "name": "六角脉冲扩散",
+      "kind": "action",
+      "category": "environment",
+      "summary": "十行、十六列六边形按离中心的距离错开缩放与明暗，形成向外移动的脉冲。",
+      "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+      "objects": "十行十六列六边形",
+      "phases": [
+        "直接呈现原图块中的独立插画。",
+        "十行、十六列六边形按离中心的距离错开缩放与明暗，形成向外移动的脉冲。",
+        "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+      ],
+      "aliases": [
+        "六角脉冲扩散",
+        "六角扩散波",
+        "六边形",
+        "蜂窝",
+        "距离脉冲",
+        "HEX PULSE",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙",
+        "六边形脉冲",
+        "六角脉冲"
+      ],
+      "behaviors": [
+        "continuous",
+        "illustration"
+      ],
+      "retain": "十行、十六列六边形按离中心的距离错开缩放与明暗，形成向外移动的脉冲。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+      "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/claude-tile-illustrations.js",
+        "factory": "claude-hex-pulse-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+        "original_symbol": "TILES[11]"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2200,
+      "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
+      "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "十行、十六列六边形按离中心的距离错开缩放与明暗，形成向外移动的脉冲。",
+      "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "multi-orbit-drift",
+      "name": "多轨异速环绕",
+      "kind": "action",
+      "category": "connection",
+      "summary": "五个圆点沿不同大小的椭圆轨道绕中心运行，外侧圆点速度更慢。",
+      "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+      "objects": "中心圆与五道椭圆轨道",
+      "phases": [
+        "直接呈现原图块中的独立插画。",
+        "五个圆点沿不同大小的椭圆轨道绕中心运行，外侧圆点速度更慢。",
+        "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+      ],
+      "aliases": [
+        "多轨异速环绕",
+        "多轨圆点环绕",
+        "轨道",
+        "椭圆环绕",
+        "行星环绕",
+        "ORBITS",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙",
+        "轨道环绕",
+        "多轨环绕"
+      ],
+      "behaviors": [
+        "continuous",
+        "illustration"
+      ],
+      "retain": "五个圆点沿不同大小的椭圆轨道绕中心运行，外侧圆点速度更慢。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+      "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/claude-tile-illustrations.js",
+        "factory": "claude-orbits-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+        "original_symbol": "TILES[12]"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2200,
+      "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
+      "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "五个圆点沿不同大小的椭圆轨道绕中心运行，外侧圆点速度更慢。",
+      "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "terrain-line-wave",
+      "name": "层叠地形起伏",
+      "kind": "action",
+      "category": "shape",
+      "summary": "二十二条地形轮廓随噪声起伏，中央山峰更高，前层轮廓遮住后层。",
+      "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+      "objects": "二十二层地形轮廓",
+      "phases": [
+        "直接呈现原图块中的独立插画。",
+        "二十二条地形轮廓随噪声起伏，中央山峰更高，前层轮廓遮住后层。",
+        "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+      ],
+      "aliases": [
+        "层叠地形起伏",
+        "起伏地形线",
+        "地形",
+        "噪声山峰",
+        "层叠山线",
+        "TERRAIN",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙",
+        "起伏地形",
+        "起伏网面"
+      ],
+      "behaviors": [
+        "continuous",
+        "illustration"
+      ],
+      "retain": "二十二条地形轮廓随噪声起伏，中央山峰更高，前层轮廓遮住后层。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+      "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/claude-tile-illustrations.js",
+        "factory": "claude-terrain-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+        "original_symbol": "TILES[13]"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2200,
+      "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
+      "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "二十二条地形轮廓随噪声起伏，中央山峰更高，前层轮廓遮住后层。",
+      "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "proximity-link-drift",
+      "name": "漂移近点连线",
+      "kind": "action",
+      "category": "connection",
+      "summary": "四十个点按固定噪声轨迹漂移，距离小于八十时出现连线，距离越近线越清晰。",
+      "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
+      "objects": "四十点与距离触发连线",
+      "phases": [
+        "直接呈现原图块中的独立插画。",
+        "四十个点按固定噪声轨迹漂移，距离小于八十时出现连线，距离越近线越清晰。",
+        "保持二点六秒时刻的图形，末尾停留四百毫秒。"
+      ],
+      "aliases": [
+        "漂移近点连线",
+        "漂移点线网络",
+        "点线网络",
+        "近邻连线",
+        "漂移节点",
+        "PLEXUS",
+        "Claude 插画",
+        "算法图块",
+        "算法图块逐格铺开",
+        "生成算法瓦片墙"
+      ],
+      "behaviors": [
+        "continuous",
+        "response"
+      ],
+      "retain": "四十个点按固定噪声轨迹漂移，距离小于八十时出现连线，距离越近线越清晰。 保留原图块的完整采样数量、比例、裁剪范围和局部时钟。",
+      "avoid": "去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/claude-tile-illustrations.js",
+        "factory": "claude-plexus-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
+        "original_symbol": "TILES[14]"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2200,
+      "recommendation": "需要独立的生成算法插画时，可直接复用这项原图形。",
+      "tempo_note": "保留原图块零至二点六秒的内部时钟，末尾停留四百毫秒；只调整整体播放速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停、重播与定位。",
+      "analogy": "四十个点按固定噪声轨迹漂移，距离小于八十时出现连线，距离越近线越清晰。",
+      "assumptions": "提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "mouth-open-react",
+      "name": "嘴部随声开合",
+      "kind": "action",
+      "category": "response",
+      "summary": "灰白小葵站定，嘴部按原叫声的轻重张开与收回，耳朵随表情稍向外折，身体与花纹保持。",
+      "purpose": "独立复用原小葵插画与叫声口型，不携带加工厂场景。",
+      "objects": "完整灰白小葵、非对称花纹、眼鼻、牙齿与舌头",
+      "phases": [
+        "小葵站定，嘴部闭合。",
+        "从零点二四秒开始，嘴部按预存叫声强弱张合，耳朵随表情微折。",
+        "一点四四秒闭嘴，保持站姿至一点七秒结束。"
+      ],
+      "aliases": [
+        "嘴部随声开合",
+        "小猫张嘴",
+        "小葵",
+        "猫咪",
+        "猫咪口型",
+        "随声张合",
+        "猫咪叫声对应的口型",
+        "猫咪随叫声张合嘴"
+      ],
+      "behaviors": [
+        "continuous",
+        "react"
+      ],
+      "retain": "保留小葵原头身比例、灰白花纹、眼鼻位置、牙齿与舌头，开合强弱和耳朵表情沿用原叫声曲线。",
+      "avoid": "不添加加工厂、机器、传送带、原字幕或音效；不让猫咪走离画面，不改变身体比例与花纹。",
+      "duration_ms": 1700,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/cat-mouth.js",
+        "factory": "cat-mouth-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "提取本机「小猫加工厂」cat.js 的原路径、花纹、表情绘制与 timeline.js 的小葵叫声开合曲线；原绘图调用转换为独立 SVG，不依赖原工程、图片或声音。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 740,
+      "recommendation": "需要带嘴部表情的完整小葵插画时直接复用。",
+      "tempo_note": "保留原一点七秒口型片段：零点二四秒开口，一点四四秒闭嘴，之后停住。",
+      "trigger": "打开预览后按预存叫声强弱数据播放一次；可暂停、重播与定位。",
+      "analogy": "叫声强弱同时驱动嘴部开合与轻微耳部表情，站姿保持。",
+      "assumptions": "固定使用原灰白小葵；只显示猫咪与原口型，不读取麦克风、不附带音频。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "body-pendant-sway",
+      "name": "主体挂件错相摆动",
+      "kind": "action",
+      "category": "response",
+      "summary": "原暖木船体轻摇，敞舱、横座和归灯保留；帆已去除。",
+      "purpose": "将原作物件提炼为独立可复用插画。",
+      "objects": "原暖木船体、敞舱、横座、慢摆归灯",
+      "phases": [
+        "原木船居中轻摇。",
+        "归灯沿原延迟曲线慢摆，敞舱始终清晰。",
+        "完成原四秒轮次后停住。"
+      ],
+      "aliases": [
+        "主体挂件错相摆动",
+        "木船轻摇",
+        "轻摇随摆",
+        "船",
+        "木船",
+        "无帆木船",
+        "归舟"
+      ],
+      "behaviors": [
+        "rotate",
+        "deform"
+      ],
+      "retain": "保留原船壳厚度、木色渐变、横座、细线与归灯慢摆；移除帆、桅杆、帆索和小旗。",
+      "avoid": "不带原场景、背景、字幕、音频或外围控件。",
+      "duration_ms": 4000,
+      "preview_ms": 2200,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "forward-boat-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "analogy": "原暖木船体轻摇，敞舱、横座和归灯保留；帆已去除。",
+      "assumptions": "透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "tempo_note": "四秒完成原船体与归灯的小幅周期，单次播放后停住。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "id": "wing-fold-sway",
+      "name": "双翼轻折偏转",
+      "kind": "action",
+      "category": "shape",
+      "summary": "原黄纸飞机保持朝前，双翼轻折、短折脊与机身微偏转保持。",
+      "purpose": "将原作物件提炼为独立可复用插画。",
+      "objects": "原黄纸面、明暗双翼、短折脊和白色翼缘",
+      "phases": [
+        "纸飞机保持朝前，翼根固定。",
+        "外侧翼缘按原错拍曲线轻折，机身微偏转。",
+        "完成原四秒轮次后停住。"
+      ],
+      "aliases": [
+        "双翼轻折偏转",
+        "纸飞机折翼",
+        "折翼前行",
+        "纸飞机",
+        "黄色纸飞机",
+        "晴日纸飞机"
+      ],
+      "behaviors": [
+        "rotate",
+        "deform"
+      ],
+      "retain": "保留原宽翼、双色渐变、短折脊、固定翼根与两侧错拍折动。",
+      "avoid": "不带原场景、背景、字幕、音频或外围控件。",
+      "duration_ms": 4000,
+      "preview_ms": 2200,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "forward-plane-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后呈现独立插画；动态物件可暂停与定位。",
+      "analogy": "原黄纸飞机保持朝前，双翼轻折、短折脊与机身微偏转保持。",
+      "assumptions": "透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "tempo_note": "四秒完成原纸面与姿态的小幅周期，单次播放后停住。",
+      "recommendation": "需要此原作造型或动作关系时直接复用。",
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后播放一次，可暂停、定位和重播；全程静音。",
+      "recommendation": "复用随包提供的完整绘制与绝对时间函数。",
+      "id": "filament-shed-drift",
+      "name": "冠毛脱落飘散",
+      "kind": "action",
+      "category": "particles",
+      "summary": "蒲公英冠毛陆续脱落，主体逐渐稀疏，脱落种子保持原起伏与旋转。",
+      "purpose": "蒲公英冠毛陆续脱落，主体逐渐稀疏，脱落种子保持原起伏与旋转。",
+      "objects": "一百三十七道冠毛组成的蒲公英主体，以及从真实冠毛连接处脱落的种子。",
+      "phases": [
+        "原动作时钟 u=5.6+clamp(t−0.15,0,3.8)，保留 3.8 秒片段。固定种子序列不重新随机生成；原所有图形共用平移 (194,−50) 与等比缩放 0.28。",
+        "第 i 个脱落种子的冠毛槽位=(29i) mod 137，出生时刻 b=4.65+0.485i。主体冠毛在各自出生后的 0.12 秒内退出；主体半径=42−已脱落数量×0.22。出生位置由该时刻主体位置、旋转、半径及对应冠毛方向共同求出。",
+        "年龄 a=u−b；存活 3.3 秒。X=出生X+侧号×19a+sin(1.7a+相位)×9a，Y=出生Y+[distance(u)−distance(b)]×0.52+16a²；旋转=出生角度+侧号×0.95a+0.55sin(2a+相位)。半径=原尺寸×(1−0.075a)，透明度=S(0,0.14,a)×[1−S(2.25,3.3,a)]。distance、冠毛曲线和飞行轨迹使用随附源码中的原函数。"
+      ],
+      "aliases": [
+        "冠毛脱落飘散",
+        "蒲公英脱落飘散",
+        "脱落飘动",
+        "蒲公英绒毛脱落",
+        "种子脱落并飘动",
+        "风过之处"
+      ],
+      "behaviors": [
+        "move"
+      ],
+      "retain": "复用 history-nature.js 内完整 DandelionJourney 冠毛、细茎和种子曲线；releasePose、driftingPose 与 drifting 从原作逐字迁入，出生位置保持历史姿态，主体稀疏与独立种子数量对应。",
+      "avoid": "不把冠毛改成直线图标，不改出生位置，不用当前主体位置带动已经脱落的种子，不添加文字或声音。",
+      "duration_ms": 4400,
+      "preview_ms": 2500,
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "seed-shedding-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [],
+        "original_files": [
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/source-projects/dandelion-scene/assets/js/dandelion.js"
+        ],
+        "extraction": "复用 history-nature.js 内完整 DandelionJourney 冠毛、细茎和种子曲线；releasePose、driftingPose 与 drifting 从原作逐字迁入，出生位置保持历史姿态，主体稀疏与独立种子数量对应。"
+      },
+      "analogy": "蒲公英冠毛陆续脱落，主体逐渐稀疏，脱落种子保持原起伏与旋转。",
+      "assumptions": "16:9，640×360，底色 #526957，冠毛和细茎保留原奶油白。保持主体在上、种子向下飘动的原纵向构图，用统一缩放完整放入横画板，不把纵向下落压成横向平移。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。",
+        "retain": "137枚完整冠毛、奶油白细茎和种子；冠毛由放射弯丝组成，中心细柄伸出约2.1倍冠毛半径，不能只画圆点",
+        "details": [
+          "公式中的S(a,b,t)：先把(t−a)/(b−a)限制在0–1为v，再求v²(3−2v)；距离函数distance(t)=620×[2.6I((t−2.2)/2.6)+max(0,t−4.8)−3.5I((t−25)/3.5)−max(0,t−28.5)]，I(x)=v³−v⁴/2，v为x限制到0–1；出生时记录位置与角度，飘落位置只按该时刻和当前时刻求值",
+          "冠毛奶油白#fffde9，线宽0.85；大冠毛37根弯丝、小冠毛11根弯丝，均匀辐射成扇圆，中心接弯曲种柄；细茎与中心花托一起缓慢摇摆，落下的冠毛保持完整结构"
+        ]
+      },
+      "tempo_note": "总长 4.4 秒，起始等待 0.15 秒，动作结束后保持 0.45 秒。"
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "trigger": "打开后播放一次，可暂停、定位和重播；全程静音。",
+      "recommendation": "复用随包提供的完整绘制与绝对时间函数。",
+      "id": "timed-point-hop",
+      "name": "沿点跳跃留光",
+      "kind": "action",
+      "category": "connection",
+      "summary": "白色亮芯带紫色柔雾，沿真实谱面音符起跳、落点和留光。",
+      "purpose": "白色亮芯带紫色柔雾，沿真实谱面音符起跳、落点和留光。",
+      "objects": "完整谱纸、第一声部亮芯、沿历史轨迹留下的光带、实际符头轮廓亮边。",
+      "phases": [
+        "动作秒数 u=clamp(t−0.15,0,8)，按随附 score-data.json 中的音符时刻、位置与时值播放八秒。以第一声部的同拍事件分组，最高音作为支撑点；第二声部亮芯隐藏，谱面保留。",
+        "每步开始在原符头停留 min(0.03,0.14×步长) 秒。余下时间进度 q，水平与纵深沿 q²(3−2q) 插值，离地高度=0.035+4×H×q(1−q)×3.3；H=0.72+0.46×clamp((步长−0.15)/0.15)。不压扁或拉长亮芯。",
+        "保留原 createOrb 的白亮芯、紫色雾光、落点短增亮，createTrail 的历史路径与消退，以及 createNoteGlow 按真实符头路径绘制的柔光。镜头使用 cameraPose 的连续谱面进度、42 度视角和 −0.16 弧度倾角，保持光点跳起时镜头不跟着上下晃。"
+      ],
+      "aliases": [
+        "沿点跳跃留光",
+        "谱面光点跳跃",
+        "沿点跳跃",
+        "光点逐音跳弧",
+        "光点沿音符跳跃",
+        "音符跳动"
+      ],
+      "behaviors": [
+        "move"
+      ],
+      "retain": "直接使用本地 notes-source.js 中完整原谱面、光点、尾迹和光照绘制，只将输出尺寸接入横画板；源 bundle 内嵌谱面矢量、音符数据与 Three.js。依赖全部随包，无网络、音频或原工程路径；Three.js 的 MIT 许可保留。",
+      "avoid": "不改成单个圆点在简线跳动，不替换真实谱面，不减少亮芯与柔雾层，不拉伸原纵横比例，不播放音乐。",
+      "duration_ms": 8600,
+      "preview_ms": 4150,
+      "source": {
+        "path": "catalog/effects/particle-scenes.js",
+        "factory": "note-hop-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [
+          "catalog/assets/particle-scenes/SOURCE.json",
+          "catalog/assets/particle-scenes/THREE-LICENSE.txt",
+          "catalog/assets/particle-scenes/notes/assets/score-clean.svg",
+          "catalog/assets/particle-scenes/notes/assets/score-data.json",
+          "catalog/assets/particle-scenes/notes/assets/来源.md",
+          "catalog/assets/particle-scenes/notes/src/butterfly.js",
+          "catalog/assets/particle-scenes/notes/src/isolated-scene.js",
+          "catalog/assets/particle-scenes/notes/src/motion.js",
+          "catalog/assets/particle-scenes/notes/src/note-glow.js",
+          "catalog/assets/particle-scenes/notes/src/orb.js",
+          "catalog/assets/particle-scenes/notes/src/trail.js",
+          "catalog/assets/particle-scenes/notes/vendor/lunar-butterfly-geometry.js",
+          "catalog/assets/particle-scenes/notes-source.js"
+        ],
+        "original_files": [
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/notes/src/motion.js",
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/notes/src/orb.js",
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/notes/src/trail.js",
+          "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/notes/src/isolated-scene.js"
+        ],
+        "extraction": "直接使用本地 notes-source.js 中完整原谱面、光点、尾迹和光照绘制，只将输出尺寸接入横画板；源 bundle 内嵌谱面矢量、音符数据与 Three.js。依赖全部随包，无网络、音频或原工程路径；Three.js 的 MIT 许可保留。"
+      },
+      "analogy": "白色亮芯带紫色柔雾，沿真实谱面音符起跳、落点和留光。",
+      "assumptions": "16:9，640×360，按横画板重新计算透视宽高比，不拉伸竖版画面。保留 #25212b 暗紫环境、原灰色谱纸、白色亮芯及 #c9a0ff 紫色柔雾、符头亮边和原光带。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。",
+        "phases": [
+          "开头静置0.15秒，随后两颗白亮光点在两行五线谱上依次跳跃8秒，最后停留0.45秒；横向镜头随谱面进度匀速移动",
+          "每跳先停留min(0.03,该跳时长×0.14)秒；剩余时间以v²(3−2v)移动到下个符头；垂直高度=0.035+4Hq(1−q)×3.3，其中q是移动进度，H=0.72+0.46×clamp((时长−0.15)/0.15,0,1)",
+          "白亮芯外叠#c9a0ff紫色柔雾，落点短促增亮，历史位置形成逐渐消退的光带；符头各自有柔光；透视视角42度，画面倾角−0.16弧度，镜头只沿谱面移动、不跟随光点上下跳"
+        ],
+        "retain": "两行五线谱、连续镜头、白芯紫光、落点亮边及带衰减的尾迹",
+        "details": [
+          "谱面为灰白长纸、深灰五线谱，两个谱表上下分开；每组五根细线等距，符头为倾斜黑椭圆并接竖直符干；按固定节拍等距布置音符，用音高决定相对于五线谱的位置",
+          "第1行符头（落点时刻秒，x，z，时值秒）：(0.775,44.35,21.195,0.375),(1.15,49.85,17.595,0.375),(1.525,55.35,21.195,0.375),(2.65,73.55,17.595,0.375),(3.025,79.05,21.195,0.375),(4.15,97.48,17.595,0.375),(4.525,102.98,21.195,0.375),(5.275,113.98,17.595,0.375),(6.025,124.98,17.595,0.375),(6.775,137.91,21.195,0.375),(7.15,143.41,17.595,0.375),(7.525,148.91,21.195,0.375)；横向位置使用x、谱面纵向使用z，符头宽2.26高1.91；纸面宽432.8、高42.4，保持同一比例",
+          "第2行符头（落点时刻秒，x，z，时值秒）：(0.4,38.85,28.395,0.375),(1.9,60.85,30.195,0.375),(2.275,66.35,29.295,0.187),(2.4619999999999997,69.95,28.395,0.187),(3.4,86.48,32.895,0.375),(3.775,91.98,29.295,0.375),(4.9,108.48,32.895,0.375),(5.65,119.48,33.795,0.375),(6.4,132.41,28.395,0.375),(7.9,154.41,30.195,0.375),(8.275,159.91,29.295,0.187),(8.462,163.51,28.395,0.187)；横向位置使用x、谱面纵向使用z，符头宽2.26高1.91；纸面宽432.8、高42.4，保持同一比例",
+          "首次落点前0.166667秒，光点由高1.835降到0.035并显出；相邻时刻间连续跳跃；更早时隐藏；光点投影跟随透视镜头，白芯外扩紫雾，尾迹保留短时历史位置并平滑消退"
+        ]
+      },
+      "tempo_note": "总长 8.6 秒，起始等待 0.15 秒，动作结束后保持 0.45 秒。"
     },
     {
       "kind": "action",
@@ -24255,6 +28597,138 @@
         ],
         "retain": "保留固定纸底、真实字形、图形比例、同一批花朵与粒子身份；所有状态由时间确定。",
         "avoid": "不改成图片轮播，不追加说明字幕，不使用活字收尾，不把三火四火叠成实心书法，不让字标再次收走。"
+      }
+    },
+    {
+      "id": "filament-unfold-turn",
+      "name": "冠毛展开转向",
+      "kind": "action",
+      "category": "shape",
+      "summary": "蒲公英主体从少量冠毛展开为密集伞状，沿原曲线转向并长大。",
+      "purpose": "蒲公英主体从少量冠毛展开为密集伞状，沿原曲线转向并长大。",
+      "objects": "一百三十七道原冠毛、细茎、种子",
+      "phases": [
+        "保留原主种子少量可见的冠毛。",
+        "其余冠毛按原展开进度渐显，主体半径和角度同步变化。",
+        "展开到原旅行姿态，保持细茎与种子的原曲线。"
+      ],
+      "aliases": [
+        "冠毛展开转向",
+        "蒲公英主体",
+        "冠毛展开"
+      ],
+      "behaviors": [
+        "reveal",
+        "rotate",
+        "scale"
+      ],
+      "retain": "保留原一百三十七道冠毛的形状、尖端、线宽，细茎曲线和下端种子轮廓。",
+      "avoid": "不带原场景、背景、字幕、音频或外围控件。",
+      "duration_ms": 3000,
+      "preview_ms": 2500,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/history-nature.js",
+        "factory": "dandelion-subject-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "使用原 subjectPose、entryProgress、filamentState 和 floret，恢复原 flow 中的冠毛展开与转向；仅跟随中心取景。",
+        "original_path": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/dandelion.js"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+      "analogy": "原蒲公英旅行主体：密集半圆冠毛、细茎与下端种子。",
+      "assumptions": "透明底，跟随冠毛中心取景，放在(320,158)并等比放大1.05倍；保留原半径、转角和冠毛透明度，移除整体旅行背景。",
+      "tempo_note": "等待零点一五秒，播放原二点三五至四点七五秒，末尾保持零点四五秒。",
+      "recommendation": "使用独立动作时可直接复制本示例，保留原主体与时间关系。",
+      "previous_names": [],
+      "reproduction": {
+        "presentation": "透明底，跟随冠毛中心取景，放在(320,158)并等比放大1.05倍；保留原半径、转角和冠毛透明度，移除整体旅行背景。",
+        "retain": "原时间u=2.35+clamp(t−0.15,0,2.4)。展开q=S(2.35,4.75,u)，S为q²(3−2q)的平滑函数；第i根冠毛透明度乘以i能被13整除时的1、否则乘以q。原半径和转角由主体轨迹同一时刻取样。137根冠毛、弯曲细茎和米色种子整体等比缩放，不单独修改线宽。"
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按时间播放，可暂停、定位和重播；全程静音。",
+      "id": "bar-sweep",
+      "name": "长条扫过",
+      "category": "connection",
+      "summary": "横放金属钢尺沿原扫动曲线从下向上穿过画板，保留完整刻度、金属亮边和蚀刻字。",
+      "purpose": "横放金属钢尺沿原扫动曲线从下向上穿过画板，保留完整刻度、金属亮边和蚀刻字。",
+      "objects": "一把深灰金属钢尺",
+      "phases": [
+        "钢尺在画板下缘外等待。",
+        "沿原先慢后快再慢的曲线扫过画板。",
+        "从上缘完全离开，结束本次扫动。"
+      ],
+      "aliases": [
+        "长条扫过",
+        "金属钢尺",
+        "钢尺扫过",
+        "直尺扫动"
+      ],
+      "behaviors": [
+        "move"
+      ],
+      "retain": "保留原深灰金属四色渐变、边缘亮线、完整一百三十六条刻度、十四个数字标签、蚀刻字和物件阴影。",
+      "avoid": "只保留钢尺及扫动，不带原页面、旧镜定格、裁剪切换、字幕或声音。",
+      "duration_ms": 1200,
+      "preview_ms": 433.3333333333,
+      "recommendation": "使用独立动作时可直接复制本示例，保留原主体与时间关系。",
+      "tempo_note": "等待零点一五秒，按原每秒30帧、18帧片段的首末位置扫过，末尾保持空场。",
+      "analogy": "一把金属直尺从画面一侧扫到另一侧。",
+      "assumptions": "原竖尺横放后，原横扫方向随物件一起旋转为纵扫；保持原金属细节、控制曲线及完整进出边界，画板范围适配为640×360。",
+      "source": {
+        "path": "catalog/effects/illustrations.js",
+        "factory": "steel-ruler-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "original_files": [
+          "/Users/wisewong/Documents/Developer/wise-video/Naive-NO.5-Flash/promo-atelier/src/atelier/Ruler.tsx",
+          "/Users/wisewong/Documents/Developer/wise-video/Naive-NO.5-Flash/promo-atelier/src/Main.tsx",
+          "/Users/wisewong/Documents/Developer/wise-video/Naive-NO.5-Flash/promo-atelier/src/timing.ts",
+          "/Users/wisewong/Documents/Developer/wise-video/Naive-NO.5-Flash/promo-atelier/src/theme.ts"
+        ],
+        "extraction": "物件来自 Ruler.tsx，扫动来自 Main.tsx 的 Entry；使用原三次曲线(0.65,0,0.35,1)和18帧/30帧每秒时序，转为横尺纵扫，只移除页面裁剪。"
+      },
+      "previous_names": [],
+      "reproduction": {
+        "presentation": "640×360透明画板，横尺原几何1120×124、整体比例0.46，横坐标62.4。金属四色渐变、136条刻度与14个数字标签完整保留。",
+        "retain": "令p=clamp((t−0.15)/(17/30),0,1)，q为三次曲线(0.65,0,0.35,1)在p的输出。尺顶y=364.6−426.24q，固定尺寸；原10像素边界余量和124像素宽度同乘0.46，保证从下方完整进入、从上方完整离开。"
       }
     }
   ],

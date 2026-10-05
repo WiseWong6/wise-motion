@@ -8,8 +8,8 @@
     },
     {
       "path": "catalog/app.js",
-      "bytes": 53978,
-      "sha256": "437994d641490357c9ec2198871470fd89c6dd4804ca66af51deab4782478239"
+      "bytes": 54548,
+      "sha256": "2e3e466ddf991c19bcedb7a7ad9989100d351dbd1e97cd638e59f8323bdfbb28"
     },
     {
       "path": "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
@@ -488,8 +488,8 @@
     },
     {
       "path": "catalog/effects/encore-dance.js",
-      "bytes": 21580,
-      "sha256": "08701feba1173097c75ce16a96e8af957c1810a22b06e81440ac1c699564ceb8"
+      "bytes": 21737,
+      "sha256": "dfec92a5cd7f05a58f17553300abcfbe49b012b9c449451ca7f8564f62f85132"
     },
     {
       "path": "catalog/effects/entrance.js",
@@ -513,8 +513,8 @@
     },
     {
       "path": "catalog/effects/glass-light.js",
-      "bytes": 45877,
-      "sha256": "a79c1a9f45df398f545b9541a6cdcc69737b876df2578222ad0810d4f5bcb26f"
+      "bytes": 46160,
+      "sha256": "072357337c3f6090625cda39604d62979a203151923993943ee5149dc7f49c22"
     },
     {
       "path": "catalog/effects/glyph-code-fill.js",
@@ -523,8 +523,8 @@
     },
     {
       "path": "catalog/effects/history-nature.js",
-      "bytes": 151843,
-      "sha256": "924c581e03272c8a54d82a06ffcc79e58d3bf4ad538b97d363f14bbef2e5f7fd"
+      "bytes": 152532,
+      "sha256": "dcbeb01d82ee819caabefff3809a5bd55732619ca12e24df791aaecc3dfcd9ac"
     },
     {
       "path": "catalog/effects/history-patterns.js",
@@ -538,8 +538,8 @@
     },
     {
       "path": "catalog/effects/illustrations.js",
-      "bytes": 22214,
-      "sha256": "30641d554b6ed02a78037e66a0b9479c8e7364985b78cf843dd39ec05e23124a"
+      "bytes": 22428,
+      "sha256": "c426e3c6af34b182cff49c25e3230e4a1c8324b5c76ae4cef6baa4ca4b14e045"
     },
     {
       "path": "catalog/effects/kimi-illustrations.js",
@@ -703,8 +703,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 20990,
-      "sha256": "fc2bc9b29d146c21c19f6563559b7ea3b0f0df9a0fe694b7a935707e657290ff"
+      "bytes": 21082,
+      "sha256": "a8835c19ed7c68cbc4e0a3d1189648122f6059e3da12058af78932c3e5d4a1ce"
     },
     {
       "path": "catalog/fonts/OFL-Letter.txt",
@@ -743,18 +743,18 @@
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Bold.woff2",
-      "bytes": 556148,
-      "sha256": "2614705e4b1d71d1ddfe69f62870c2c5639e484bcc4009471479c1fe91293923"
+      "bytes": 556332,
+      "sha256": "494bdb5bd7638f29812ad9328decc59f182da95031022a24a738eb35a4ff9ca7"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Light.woff2",
-      "bytes": 524152,
-      "sha256": "bc8eda9441cd37e648c3f10e5520fbcfe4f053f59bfbe8183c71dcc11bcd7083"
+      "bytes": 523748,
+      "sha256": "ab4b1d7fe424fcfe236596ec782a5161381f74df33233c5349e6c75434fabd6a"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Regular.woff2",
-      "bytes": 539720,
-      "sha256": "df38a984326984c49caafd6dce7e74ec67034c2e257714498741ef7c5a20f34b"
+      "bytes": 539172,
+      "sha256": "a48f1fa4db06b4e9990d24a2c14d00d1aaa5ef8172732522e600eddec0043759"
     },
     {
       "path": "catalog/history-data.js",
@@ -773,8 +773,8 @@
     },
     {
       "path": "catalog/matching.js",
-      "bytes": 9322,
-      "sha256": "4113e60f9bfb9a790b3734bd7f294c37fe09a6d00ba464e0299a48efcd2ead39"
+      "bytes": 9501,
+      "sha256": "c2e1f14a914d0913bfbd488b4172f9bbc07243415d8131b3ff0687764ff3cfde"
     },
     {
       "path": "catalog/player-glass.js",
@@ -783,13 +783,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 951173,
-      "sha256": "e1995a825d470c57eadb4c7bfc94e1f5d297cd8febde9d2f7aaf0c2a690363c8"
+      "bytes": 1115426,
+      "sha256": "2393f27461a316eb8584f2e6cda8d315048cf67cf3d05cebb8e5b2a58b0a6a92"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1168098,
-      "sha256": "d01ffdd551d239e20b3d3ba242f9d2e5f176b01248d76a55ae61c90b0236a91f"
+      "bytes": 1375594,
+      "sha256": "ed7359b279e5e57efeb1402b5da623a1b3140266aa65a99845fc3bcf0d5f4816"
     },
     {
       "path": "catalog/related-preview.js",
@@ -818,8 +818,8 @@
     },
     {
       "path": "catalog/runtime.js",
-      "bytes": 11576,
-      "sha256": "c9b5e39ed36d0dced1537a74f2456589ed4b64c872be3dad168903561f4fbd52"
+      "bytes": 11668,
+      "sha256": "26ec791d47cd6ffa87edc629503bede99061a330ba6edecb2b060323841a360c"
     },
     {
       "path": "catalog/scenes.css",
@@ -828,8 +828,8 @@
     },
     {
       "path": "catalog/thumbnails.js",
-      "bytes": 9172,
-      "sha256": "89281b4f58a73f0381ac430131c7f2c878a991d1a9f233d4c034de60577c71b3"
+      "bytes": 9252,
+      "sha256": "eaaefbc57ffff9a07d62028662b519d487d16d4744f8755228ad2b836b386cad"
     },
     {
       "path": "catalog/wise-avatar.webp",

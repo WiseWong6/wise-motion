@@ -345,13 +345,15 @@ local.EncoreScene = (() => {
 
  const F=global.MotionFactories=global.MotionFactories||{};
  // 独立伞插画直接复用原伞面与遮挡，只绘制物件本身。
- F['encore-umbrella-illustration']=(root)=>{
+ F['encore-umbrella-illustration']=(root,K,def)=>{
   const prefix='encore-umbrella-'+(++serial);
-  const U=local.EncoreUmbrella,pose={x:0,y:0,angle:0,roll:0},b=U.bounds(pose);
-  pose.x=320-(b.minX+b.maxX)/2;pose.y=180-(b.minY+b.maxY)/2;
-  drawing.reset(prefix);U.draw(drawing,pose);
-  root.innerHTML='<svg class="pattern-svg" width="640" height="360" viewBox="0 0 640 360" aria-hidden="true">'+drawing.markup()+'</svg>';
-  return ()=>{};
+  root.innerHTML='<svg class="pattern-svg" width="640" height="360" viewBox="0 0 1280 800" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>';
+  const svg=root.firstElementChild;let last;
+  return ms=>{
+   const time=Math.max(0,Math.min(def.duration_ms,ms))/1000;if(time===last)return;last=time;
+   const pose=local.EncoreDance.sample(time);drawing.reset(prefix);local.EncoreUmbrella.draw(drawing,pose);
+   svg.innerHTML=drawing.markup();svg.dataset.sourceTime=String(time);
+  };
  };
  const clips=[['encore-hook',0,3.81],['encore-tap',4.678,9.373],['encore-flight',9.373,13.064],['encore-tip',13.064,17],['encore-roll',17,20.752],['encore-shed',20.752,24.543]];
  let serial=0;

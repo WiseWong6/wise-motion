@@ -167,8 +167,9 @@
     };
   });
   register('steel-ruler-illustration',make=>{
-    // 只提取原钢尺的金属材质、三档刻度和蚀刻字；横放便于在目录中查看。
-    make(`<defs><linearGradient id="NS-steel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#2a2a27"/><stop offset=".18" stop-color="#3d3d39"/><stop offset=".55" stop-color="#353531"/><stop offset="1" stop-color="#262623"/></linearGradient>
+    // 原竖尺与横向扫动一起旋转为横尺纵扫，保持原控制曲线、材质和刻度。
+    const inOut=global.anime.cubicBezier(.65,0,.35,1);
+    const s=make(`<defs><linearGradient id="NS-steel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#2a2a27"/><stop offset=".18" stop-color="#3d3d39"/><stop offset=".55" stop-color="#353531"/><stop offset="1" stop-color="#262623"/></linearGradient>
       <filter id="NS-shadow" x="-8%" y="-70%" width="116%" height="240%"><feDropShadow dx="0" dy="18" stdDeviation="17" flood-color="#1e1a12" flood-opacity=".28"/></filter></defs>
       <g data-part="ruler" transform="translate(62.4 151.48) scale(.46)">
         <rect width="1120" height="124" fill="url(#NS-steel)" stroke="#000" stroke-opacity=".35" filter="url(#NS-shadow)"/>
@@ -176,6 +177,9 @@
         ${list(136,i=>{const major=i%10===0,len=major?34:i%5===0?22:12,x=30+i*8;return `<g data-steel-tick="${i}"><path d="M${x} 0v${len}" stroke="#d9d6cc" stroke-width="${major?1.3:.8}" opacity="${major?.9:.65}"/>${major?`<text x="${x}" y="64" text-anchor="middle" fill="#d9d6cc" font-size="${global.MotionKit.textSize('micro',.46)}" font-weight="700" opacity=".85">${i/10}</text>`:''}</g>`;})}
         <text x="560" y="103" text-anchor="middle" fill="#cfccc2" font-size="${global.MotionKit.textSize('micro',.46)}" font-weight="700" letter-spacing="6" opacity=".75">STEEL · 0.5 MM · STAINLESS</text>
       </g>`);
-    return ()=>{};
+    return p=>{
+      const q=inOut(clamp((p*1200-150)/(17000/30)));
+      s('ruler',{transform:`translate(62.4 ${360+10*.46-(360+(20+124)*.46)*q}) scale(.46)`});
+    };
   });
 })(globalThis);

@@ -7,7 +7,7 @@ import vm from 'node:vm';
 import {environment, data} from './helpers.mjs';
 
 const source=new URL('../../../../scenes/Rasengan/physics/hill-bubble-video/',import.meta.url);
-const ids=data.effects.filter(e=>e.source.path.endsWith('rasengan-illustrations.js')).map(e=>e.id);
+const ids=data.effects.filter(e=>e.kind==='illustration'&&e.source.path.endsWith('rasengan-illustrations.js')).map(e=>e.id);
 let original;
 async function oracle(){
   if(original)return original;

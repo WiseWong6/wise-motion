@@ -38,14 +38,14 @@ test('贴底三段形变逐时刻对应原源码，接触点、面积和单次�
   }finally{env.close();}
 });
 
-test('旧历史入口转入压缩回弹，切换两种示例同步播放、提示词和源码',async()=>{
+test('旧历史入口转入压缩回弹，原示例与暖色太阳同步播放、提示词和源码',async()=>{
   const env=await environment(true,{hash:'#history-sunset-load-deform',lazyHistory:true});
   try{
     const {w}=env,d=w.document,select=d.getElementById('effect-variant');
     assert.equal(d.querySelector('script[src="history-data.js"]'),null);
     assert.equal(d.querySelector('#preview .motion-stage').dataset.effect,'squash-bounce');
     assert.equal(d.querySelector('#preview .motion-stage').dataset.variant,'contact');
-    assert.deepEqual([...select.options].map(option=>option.value),['contact','drop']);
+    assert.deepEqual([...select.options].map(option=>option.value),['contact','drop','sunset-sun']);
     assert.equal(select.value,'contact');assert.equal(w.MotionRuntime.instanceCount,1);
     assert.equal(w.MotionMatch.rank(data,'逐段形变')[0].effect.id,'squash-bounce');
     assert.match(d.getElementById('prompt').textContent,/0\.06L−0\.09C\+0\.022R/);
@@ -57,6 +57,12 @@ test('旧历史入口转入压缩回弹，切换两种示例同步播放、提�
     assert.match(d.getElementById('prompt').textContent,/落地回弹/);
     assert.ok(!d.getElementById('prompt').textContent.includes('0.022R'));
     assert.ok(d.getElementById('code').textContent.includes('"variantId": "drop"'));
+    select.value='sunset-sun';select.dispatchEvent(new w.Event('change',{bubbles:true}));
+    assert.equal(d.querySelector('#preview .motion-stage').dataset.variant,'sunset-sun');
+    assert.equal(d.querySelector('#preview .motion-stage').dataset.art,'original');
+    assert.ok(d.querySelector('#preview canvas'));assert.match(d.getElementById('prompt').textContent,/暖色/);
+    assert.ok(d.getElementById('code').textContent.includes('"variantId": "sunset-sun"'));
+    assert.equal(w.MotionRuntime.instanceCount,1);
     select.value='contact';select.dispatchEvent(new w.Event('change',{bubbles:true}));
     assert.equal(value(d.getElementById('preview'),'ry'),64);assert.equal(w.MotionRuntime.instanceCount,1);
   }finally{env.close();}

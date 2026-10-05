@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import vm from 'node:vm';
 import {history,state} from '../scripts/history.mjs';
-import {environment,data,motionTime} from './helpers.mjs';
+import {environment,data,motionTime,frameMarkup} from './helpers.mjs';
 
 const effect=id=>data.effects.find(e=>e.id===id);
 const node=(root,id)=>root.querySelector(`[data-part="${id}"]`);
@@ -178,7 +178,7 @@ test('SFT 天平直接对照原绘制器和成片时钟，微调块、余摆、�
   }finally{env.close();}
 });
 
-test('钢尺保留完整刻度和金属配色，整段静止，双实例标识独立',async()=>{
+test('钢尺保留完整刻度和金属配色，沿原曲线扫过，双实例标识独立',async()=>{
   const source=await readFile('/Users/wisewong/Documents/Developer/wise-video/Naive-NO.5-Flash/promo-atelier/src/atelier/Ruler.tsx','utf8');
   const env=await environment();
   try{
@@ -188,7 +188,12 @@ test('钢尺保留完整刻度和金属配色，整段静止，双实例标识�
     for(const [i,n]of ticks.entries())assert.equal(n.querySelector('path').getAttribute('d'),`M${30+i*8} 0v${i%10===0?34:i%5===0?22:12}`);
     for(const stop of root.querySelectorAll('linearGradient stop'))assert.ok(source.includes(stop.getAttribute('stop-color')));
     assert.ok(root.textContent.includes('STEEL · 0.5 MM · STAINLESS'));
-    const frame=root.innerHTML;for(const ms of [0,900,2500,3000]){p.seek(ms);assert.equal(root.innerHTML,frame);}
+    const frames=[];for(const ms of [0,250,433.333,600,900,1200,250]){
+      p.seek(ms);const q=env.w.anime.cubicBezier(.65,0,.35,1)(Math.max(0,Math.min(1,(ms-150)/(17000/30))));
+      const y=+root.querySelector('[data-part="ruler"]').getAttribute('transform').match(/translate\(62.4 ([^)]+)/)[1];
+      assert.ok(Math.abs(y-(364.6-426.24*q))<1e-8);
+      frames.push(frameMarkup(root));
+    }assert.equal(frames[1],frames[6]);assert.ok(new Set(frames).size>3);
     const ids=[...root.querySelectorAll('[id]')].map(n=>n.id);assert.ok(![...other.querySelectorAll('[id]')].some(n=>ids.includes(n.id)));
     assert.equal(root.querySelectorAll('video,image,canvas').length,0);p.destroy();q.destroy();
   }finally{env.close();}

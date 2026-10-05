@@ -90,7 +90,8 @@
     if(effect.kind==='recipe'){
       painted.add(host);historyFrame(host,effect,state);return;
     }
-    const factory = global.MotionFactories?.[effect.id];
+    effect = global.MotionKit.resolveVariant(effect);
+    const factory = global.MotionFactories?.[effect.source?.factory || effect.id];
     if (!factory) { unavailable(host,state,'缺少效果源码：'+effect.id); return; }
     painted.add(host);
     try {
