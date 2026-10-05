@@ -2,7 +2,7 @@
 (function(global){
 'use strict';
 const DEFAULT_TEXT='那些凌晨时分敲下的代码，是不会说谎的星星。';
-const font='400 17.82px "Wise Motion Letter"';
+const font='400 17.82px "LXGW WenKai"';
 // 原历史适配器从 126 件物品中每隔九件选一件；固定一次原生成过程以支持回拖。
 const originals=[
 {"type":"symbol","x":338.08380454955625,"y":614.2467268845066,"kind":"notes","r":8.917234342801384,"outline":false,"start":1.4485873647929315,"speed":33.127103808122875,"revealDuration":1.1666666666666667,"hasTrail":false,"layer":2,"luminosity":0.7,"endX":402.32016,"endY":453.36984,"gust":3.16275543813128,"wave":1.2944798259995878,"depthEnd":3.0684399366844444,"nearScale":0.6721677647903562,"phase":1.400802541048524,"spin":-0.5805877204053105,"material":"silver","duration":5.249414082823528,"flashAt":2.4147304780988232,"flashGap":1.9947773514729408,"settle":{"accent":false,"anchor":false,"period":5.398025373229757,"offset":3.7787870472297067,"scale":0.31891579038463536,"color":"rgb(221,240,255)","radius":0.32448501156643034,"brightness":0.6571220043231734,"twinkleSize":4.98415,"twinkleGain":0.72,"c1":{"x":349.64634853063615,"y":545.0696655241688},"c2":{"x":393.9694337914423,"y":488.01529112721505}}},

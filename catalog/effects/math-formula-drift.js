@@ -11,7 +11,7 @@
     for(const [key,value] of Object.entries({class:'pattern-svg',width:640,height:360,viewBox:'0 0 640 360','aria-hidden':'true'}))svg.setAttribute(key,value);
     const nodes=equations.map((equation,i)=>{
       const node=doc.createElementNS(svg.namespaceURI,'text');
-      for(const [key,value] of Object.entries({'data-equation':i,y:(120+hash(i*7.7)*840)/3,'font-family':'Oswald, "Wise Motion Sans", sans-serif','font-weight':700,'font-style':'italic','font-size':(28+hash(i*5)*30)/3,fill:'var(--muted)',opacity:.25+.2*hash(i*2),'text-anchor':'middle','dominant-baseline':'middle'}))node.setAttribute(key,value);
+      for(const [key,value] of Object.entries({'data-equation':i,y:(120+hash(i*7.7)*840)/3,'font-family':'Oswald, "Source Han Sans SC", sans-serif','font-weight':700,'font-style':'italic','font-size':(28+hash(i*5)*30)/3,fill:'var(--muted)',opacity:.25+.2*hash(i*2),'text-anchor':'middle','dominant-baseline':'middle'}))node.setAttribute(key,value);
       node.textContent=equation;svg.appendChild(node);return node;
     });
     root.replaceChildren(svg);let previous=NaN,disposed=false;

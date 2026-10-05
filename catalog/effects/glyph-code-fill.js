@@ -30,7 +30,7 @@
     // 填充与外描边共用同一个字形，避免字体或位置不同造成漏色。
     root.innerHTML=`<svg class="pattern-svg" width="640" height="360" viewBox="0 0 640 360" aria-hidden="true">
       <defs>
-        <text id="${id}-shape" data-glyph x="320" y="180" text-anchor="middle" dominant-baseline="central" font-family="Wise Motion Sans,sans-serif" font-weight="700" font-size="${460/3}">代码</text>
+        <text id="${id}-shape" data-glyph x="320" y="180" text-anchor="middle" dominant-baseline="central" font-family="Source Han Sans SC,sans-serif" font-weight="700" font-size="${460/3}">代码</text>
         <clipPath id="${id}-clip" clipPathUnits="userSpaceOnUse"><use href="#${id}-shape"/></clipPath>
       </defs>
       <g data-code-texture clip-path="url(#${id}-clip)" font-family="Oswald,sans-serif" font-weight="700" font-size="7" dominant-baseline="text-before-edge" xml:space="preserve">

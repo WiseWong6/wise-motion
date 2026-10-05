@@ -114,7 +114,7 @@
         return '<g class="result-explanation" data-catalog-effect="'+elements[i].id+'" filter="url(#'+id+'-annotation)">'+
           '<rect x="-.35" y="-.35" width="'+(c.bw+.7)+'" height="'+(c.bh+.7)+'" rx="3.5" fill="none" stroke="#fafbf3" stroke-opacity=".6" stroke-width=".35"/>'+
           '<rect width="'+c.bw+'" height="'+c.bh+'" rx="3.2" fill="#eeeddf" fill-opacity=".91" stroke="#353d31" stroke-opacity=".55" stroke-width=".28"/>'+
-          '<text font-family="Wise Motion Sans,system-ui,sans-serif" font-size="'+fs+'" fill="#172015">'+c.label.map((text,j)=>'<tspan x="6" y="'+fixed(y+j*lineHeight)+'">'+text+'</tspan>').join('')+'</text></g>';
+          '<text font-family="Source Han Sans SC,system-ui,sans-serif" font-size="'+fs+'" fill="#172015">'+c.label.map((text,j)=>'<tspan x="6" y="'+fixed(y+j*lineHeight)+'">'+text+'</tspan>').join('')+'</text></g>';
       }).join('')+'</g>');
     // 调用当前目录的绘制方法，完整图形直接进入；后续内部运动仍由同一播放时间驱动。
     const catalog=q.all('.result-catalog-art').map((viewport,i)=>{

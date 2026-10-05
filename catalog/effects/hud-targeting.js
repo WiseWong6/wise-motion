@@ -9,7 +9,7 @@
   const mix=(a,b,t)=>a+(b-a)*t;
   const n=i=>{const a=Math.sin(i*127.1+311.7)*43758.5453123;return a-Math.floor(a);};
   const progress=(t,a,b)=>ease((t-a)/(b-a));
-  const font='"Wise Motion Sans","PingFang SC",sans-serif';
+  const font='"Source Han Sans SC","PingFang SC",sans-serif';
   function text(c,s,x,y,size,color='#dce0e6',weight=400,align='left',maxWidth){
     const chinese=/[\u3400-\u9fff]/.test(s);
     c.fillStyle=color;c.font=`${chinese?(size>=24?700:300):700} ${size}px ${chinese?font:'"Oswald",sans-serif'}`;
@@ -353,7 +353,7 @@
   lock:'圆形镜缘与十字测距准星显现，中心红点对准目标；锁定目标与坐标移到下方，保持瞄准中心清楚。'
  };
  function prepareFonts(doc){
-  return doc?.fonts?.load?Promise.all([doc.fonts.load('700 24px "Oswald"','0077.9'),doc.fonts.load('300 12px "Wise Motion Sans"','观测斜距公里相对强度峰值热力采样窗口'),doc.fonts.load('700 26px "Wise Motion Sans"','锁定目标')]):Promise.resolve();
+  return doc?.fonts?.load?Promise.all([doc.fonts.load('700 24px "Oswald"','0077.9'),doc.fonts.load('300 12px "Source Han Sans SC"','观测斜距公里相对强度峰值热力采样窗口'),doc.fonts.load('700 26px "Source Han Sans SC"','锁定目标')]):Promise.resolve();
  }
  function zoomLayout(key){
   if(['globe','rings','lock'].includes(key))return [533,300,1.24];

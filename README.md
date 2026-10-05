@@ -121,7 +121,7 @@ npm run render -- stagger-in stagger-in.mp4
 
 预览按条目加载原绘制文件及其声明的依赖，组合按原顺序加载相关绘制；缩略图绘制失败会明确显示原因。需要全量核对真实实现和依赖时，运行 `node scripts/audit-catalog.mjs --output ../../maintenance/wise-motion-performance/current.json`。检查使用 Remotion 配套浏览器直接打开本地文件，不启动服务、不截图，覆盖全部条目与变体的实际绘制、重复定位、加载前后画面数据、复制代码及打包素材。它不代替完整动画的人工观看。
 
-目录新增文字后，用 `python3 scripts/build-fonts.py` 补齐三种字重的本地字体子集，再用 `npm run check:fonts` 核对全部汉字覆盖；该项已纳入日常检查和测试。补字会保留已有字符。补字需要本机思源黑体和 FontTools；日常字体检查只需要 Python 和 FontTools，不读取原始字体。字体保留 OFL 许可并使用 Wise Motion Sans 独立族名。界面正文及列表名称使用细体，品牌、当前动作标题和章节标题保留粗体。
+本地字体保留思源黑体和霞鹜文楷的原始名称、完整字符与字体数据，仅压缩为网页格式，原 OFL 许可随包提供。需要重新导出时运行 `python3 scripts/build-fonts.py`；导出需要本机原字体和 FontTools。`npm run check:fonts` 核对原字体名称及目录汉字覆盖，日常检查只读取随包字体，不读取本机原字体。界面正文及列表名称使用细体，品牌、当前动作标题和章节标题保留粗体。
 
 ## 存储与许可
 

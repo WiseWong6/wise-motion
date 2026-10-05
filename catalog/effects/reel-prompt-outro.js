@@ -16,7 +16,7 @@
   const hash=n=>{const s=Math.sin(n*127.1+311.7)*43758.5453;return s-Math.floor(s);};
   const set=(node,key,value)=>{const s=String(value);if(node.getAttribute(key)!==s)node.setAttribute(key,s);};
   const escape=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const font={sans:'Oswald,sans-serif',cn:"'Wise Motion Sans','PingFang SC',sans-serif",avenir:'Oswald,sans-serif',mono:'Oswald,sans-serif'};
+  const font={sans:'Oswald,sans-serif',cn:"'Source Han Sans SC','PingFang SC',sans-serif",avenir:'Oswald,sans-serif',mono:'Oswald,sans-serif'};
   const text=(value,x,y,size,fill,extra='',family='sans')=>`<text x="${x}" y="${y}" font-size="${size}" fill="${fill}" style="font-family:${font[family]};font-weight:${family==='cn'?300:700}" ${extra}>${escape(value)}</text>`;
   const chevron=(x,y,s,color)=>`<path d="M${x-s} ${y-s*.5}L${x} ${y+s*.5}L${x+s} ${y-s*.5}" fill="none" stroke="${color}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`;
   let serial=0;

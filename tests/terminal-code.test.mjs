@@ -27,7 +27,7 @@ import json, sys
 from fontTools.ttLib import TTFont
 fonts=[TTFont(path) for path in sys.argv[1:]]
 print(json.dumps([{chr(n):f['hmtx'].metrics[name][0]/f['head'].unitsPerEm for n,name in f.getBestCmap().items()} for f in fonts],ensure_ascii=False))
-`,new URL('../catalog/fonts/Oswald-Bold.woff2',import.meta.url).pathname,new URL('../catalog/fonts/WiseMotionSans-Light.woff2',import.meta.url).pathname],{encoding:'utf8',maxBuffer:4*1024*1024});
+`,new URL('../catalog/fonts/Oswald-Bold.woff2',import.meta.url).pathname,new URL('../catalog/fonts/SourceHanSansSC-Light.woff2',import.meta.url).pathname],{encoding:'utf8',maxBuffer:4*1024*1024});
   assert.equal(fontMetrics.status,0,fontMetrics.stderr);
   const [latin,body]=JSON.parse(fontMetrics.stdout),displayWidth=str=>Array.from(str).reduce((n,ch)=>n+(16/.6)*(/[0-9A-Za-z.\-]/.test(ch)?latin[ch]:body[ch]),0);
   const ease=p=>{p=Math.min(1,Math.max(0,p));return p<.5?4*p**3:1-(-2*p+2)**3/2;};

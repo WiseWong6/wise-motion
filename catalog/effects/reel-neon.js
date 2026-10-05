@@ -126,7 +126,7 @@
   function captionLayer(options={}){
     const o={...captionPresets.neon,...options};
     return `<g data-layer="caption" aria-label="${escape(o.text)}" fill="${o.color}"${o.centered?' transform="translate(960 540) scale(2) translate(-960 -951.2)"':''}>
-      <text data-part="caption-text" y="${o.y}" font-size="${o.size}" letter-spacing="${o.track}" lengthAdjust="spacingAndGlyphs" xml:space="preserve" style="font-family:Oswald,'Wise Motion Sans',sans-serif;font-weight:700;font-kerning:none;font-variant-ligatures:none;white-space:pre"></text>
+      <text data-part="caption-text" y="${o.y}" font-size="${o.size}" letter-spacing="${o.track}" lengthAdjust="spacingAndGlyphs" xml:space="preserve" style="font-family:Oswald,'Source Han Sans SC',sans-serif;font-weight:700;font-kerning:none;font-variant-ligatures:none;white-space:pre"></text>
       <rect data-part="caption-caret" y="${o.y-o.size*.8}" width="${Math.max(2,o.size*.08)}" height="${o.size*.95}" visibility="hidden"/></g>`;
   }
   function captionMotion(root,options={}){

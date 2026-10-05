@@ -129,7 +129,7 @@ test('数据读数和英文标签使用粗体，中文解释保持细体',async(
       player.destroy();
     }
     const css=await readFile(new URL('../catalog/app.css',import.meta.url),'utf8');
-    assert.match(css,/--font:"Oswald","Wise Motion Sans"/);
+    assert.match(css,/--font:"Oswald","Source Han Sans SC"/);
     const face=css.match(/@font-face\s*\{[^}]*font-family:"Oswald"[^}]*\}/)[0];
     assert.match(face,/font-weight:700/);assert.match(face,/Oswald-Bold\.woff2/);
   }finally{env.close();}
