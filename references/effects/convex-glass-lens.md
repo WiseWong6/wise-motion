@@ -30,7 +30,7 @@
 
 - [原码提取与接入源码](../../catalog/effects/glass-light.js)，注册名称：`convex-glass-lens`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
-- [效果参考：Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)；使用固定版本 Anime.js 4.5.0 的计时器。
+- 效果参考 [Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)。
 - 从本机玻璃效果精修的自主绘制源码提取；仅采用几何、颜色和时间参数，没有原片图片、视频或第三方运行代码。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

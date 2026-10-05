@@ -1,4 +1,7 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* result-anchors（KIMI K3 宣传片复刻）：复刻自 Kimi AI 的 Meet Kimi K3。
+ * https://www.youtube.com/watch?v=bn0atstgavo
+ * 官方背景：https://www.kimi.com/en/blog/kimi-k3 */
 /* 纸面与成果样例：原生绘制与独立生成的纸面素材，不使用原片像素。每一帧仅由传入时间决定。 */
 (function (global) {
   'use strict';

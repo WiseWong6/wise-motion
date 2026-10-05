@@ -2,6 +2,8 @@
  * 黄金矩形、文字雨幕与打铁花均为本地几何绘制，不读取视频或参考图片。
  * 组合与独立动作调用相同的部件绘制函数；全部位置由绝对时间决定。
  */
+/* 黄金矩形递归生长及其直接拆分动作：复刻至 @陈与小金 老师，已取得授权（用户于2026-10-05确认）。
+ * https://www.xiaohongshu.com/user/profile/674ae141000000001c019796?xsec_token=AB4_JtYTs33ywlUEE_Mx8jkB1aDCvusqnUmnJNp5ZZLwE%3D&xsec_source=pc_search */
 (function(global){'use strict';
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x)),mix=(a,b,t)=>a+(b-a)*t;
 const smooth=(t,a,b)=>{const q=clamp((t-a)/(b-a));return q*q*(3-2*q);};

@@ -1,0 +1,13 @@
+{
+  "name": "月相动作与金色满月插画的月貌数值",
+  "attribution": "NASA/GSFC/Arizona State University",
+  "source_label": "LunarNearside，北向上",
+  "source_status": "原工程保留机构署名，但未保留可核实的下载页。",
+  "original_data_sha256": "12671df97464b4b4fcd81eec6405791883a5f1863c4955db215db242818931b6",
+  "candidate_reference": "https://science.nasa.gov/image-article/apod-2025-july-20-lunar-nearside/",
+  "candidate_status": "官方同类月面拼接图；未确认与现有128×128数值对应，不能作为已经核实的原下载来源。",
+  "usage_policy": "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+  "lroc_terms": "https://lroc.im-ldi.com/about/terms",
+  "code_license_scope": "AGPL-3.0-only仅覆盖自有适配程序，不改写月貌资料权利。",
+  "separate_material": "material-evolution/moon.webp 是参考片经 AI 重建的图片，不是本份 NASA 数值。"
+}

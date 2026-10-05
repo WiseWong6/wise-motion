@@ -352,9 +352,10 @@
     } else if (source.origin === 'adapted' && upstream?.name && upstream?.url && upstream?.license && upstream?.license_url) {
       lines.push(`AI 改编自 ${sourceLink(upstream.name, upstream.url)} 的代码，遵循 ${sourceLink(upstream.license, upstream.license_url)} 许可。`);
     } else if (source.origin === 'original') {
-      const reference = source.reference;
-      if (reference?.name && reference?.url) {
-        lines.push(`效果参考 ${sourceLink(reference.name, reference.url)}。`);
+      const references = [source.reference, ...(source.additional_references || [])].filter(reference => reference?.name);
+      for (const reference of references) {
+        const author = reference.url ? sourceLink(reference.name, reference.url) : MotionKit.escape(reference.name);
+        lines.push(`${MotionKit.escape(reference.credit_prefix || '效果参考')} ${author}${reference.credit_suffix ? ' ' + MotionKit.escape(reference.credit_suffix) : '。'}`);
       }
     } else {
       lines.push('代码来源与协议待核实。');

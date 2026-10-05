@@ -30,7 +30,7 @@
 
 - [原码提取与接入源码](../../catalog/effects/glass-light.js)，注册名称：`glass-control-card-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
-- [效果参考：Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)；使用固定版本 Anime.js 4.5.0 的计时器。
+- 效果参考 [Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)。
 - 与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[透光卡片错层](glass-card-stagger.md)。

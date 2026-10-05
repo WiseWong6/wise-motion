@@ -1,4 +1,6 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* 谱面光点跳跃与沿点跳跃留光：复刻自 @言说心事 老师的教程。
+ * https://www.xiaohongshu.com/user/profile/6926ff85000000003702b1c1?xsec_token=ABiobWDdNSX_CX9Vf091D7iZ9SeSMSlAk4oyjghnynYPQ%3D&xsec_source=pc_search */
 /* 原料斗绘制与音符插画的本地接入；不运行原页面，不加载声音。 */
 (function(global){
  'use strict';

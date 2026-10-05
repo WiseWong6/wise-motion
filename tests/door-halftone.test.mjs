@@ -20,16 +20,22 @@ function bezier(x,curve){
 }
 const near=(a,b)=>assert.ok(Math.abs(a-b)<.001,`${a} 与 ${b} 不一致`);
 
-test('门形轮廓、点距、缩放与两条显现曲线保持原作，回拖和结束状态稳定',async()=>{
+test('WISE MOTION 替换第三方轮廓，保留实际点阵材质与显现曲线，回拖和结束状态稳定',async()=>{
   const curve=name=>theme.match(new RegExp('const '+name+' = Easing.bezier\\(([^)]+)\\)'))[1].split(',').map(Number);
   const env=await environment();
   try{
     const {w}=env,root=w.document.getElementById('root'),player=w.MotionRuntime.create(root,effect);
-    const path=root.querySelector('[data-door]'),mark=root.querySelector('[data-mark]'),rect=root.querySelector('[data-reveal]');
+    const mark=root.querySelector('[data-mark]'),rect=root.querySelector('[data-reveal]');
     const pattern=root.querySelector('pattern'),dot=pattern.querySelector('circle');
-    assert.equal(path.getAttribute('d'),source.match(/const DOOR_PATH = '([^']+)'/)[1]);
-    assert.equal(path.getAttribute('transform'),'scale(4.6) translate(-8 -6)');
-    for(const [node,attrs]of [[pattern,{width:1.5,height:1.5}],[dot,{cx:.75,cy:.75,r:.38}],[rect,{x:0,y:0,width:240}]])for(const [key,value]of Object.entries(attrs))assert.equal(n(node,key),value);
+    assert.equal(mark.dataset.wordmark,'WISE MOTION');
+    assert.equal(mark.dataset.fontLicense,'OFL-1.1');
+    assert.deepEqual([...root.querySelectorAll('[data-word]')].map(node=>node.dataset.word),['WISE','MOTION']);
+    const original=source.match(/const DOOR_PATH = '([^']+)'/)[1];
+    assert.ok(!root.innerHTML.includes(original),'目录画面不应再携带第三方标志轮廓');
+    assert.ok(!(await readFile(new URL('../catalog/effects/door-halftone.js',import.meta.url),'utf8')).includes(original));
+    assert.equal(root.querySelector('[data-door]'),null);
+    assert.equal(effect.source.graphic_license,'OFL-1.1');
+    for(const [node,attrs]of [[pattern,{width:6.9,height:6.9}],[dot,{cx:3.45,cy:3.45,r:1.748}],[rect,{x:0,y:0,width:360}]])for(const [key,value]of Object.entries(attrs))assert.equal(n(node,key),value);
     const nodes=[...root.querySelectorAll('*')];
     player.seek(0);const start=root.innerHTML;assert.equal(n(mark,'opacity'),0);assert.equal(n(rect,'height'),0);
     player.seek(150);assert.equal(root.innerHTML,start);

@@ -24,7 +24,8 @@ for(const [from,variant] of Object.entries(data.variant_redirects||{})){
 assert.equal(data.license, 'AGPL-3.0-only');
 const files = new Set();
 for (const e of data.effects) {
-  for (const key of ['id','name','kind','category','summary','purpose','objects','phases','aliases','behaviors','retain','avoid','duration_ms','default_ease','parameters','source','actions','trigger','analogy','assumptions','tempo_note']) assert.ok(e[key], e.id + ' 缺少 ' + key);
+  for (const key of ['id','name','kind','category','summary','purpose','objects','phases','aliases','behaviors','retain','avoid','duration_ms','default_ease','parameters','source','actions','trigger','analogy','assumptions','tempo_note','recommendation']) assert.ok(e[key], e.id + ' 缺少 ' + key);
+  assert.ok(typeof e.recommendation === 'string' && e.recommendation.trim(), e.id + ' 的推荐说明不能为空');
   assert.ok(data.categories.some(c => c.id === e.category));
   assert.ok(['action','illustration','composition'].includes(e.kind));
   assert.equal(e.kind === 'composition', (e.category === 'compositions' || e.category.startsWith('composition-')));
@@ -52,6 +53,11 @@ for (const e of data.effects) {
   assert.equal(e.source.origin, 'original');
   assert.equal(e.source.license, 'AGPL-3.0-only');
   assert.equal(e.source.library, 'animejs@4.5.0');
+  for(const reference of [e.source.reference,...(e.source.additional_references||[])].filter(Boolean)){
+    assert.ok(typeof reference.name==='string'&&reference.name.trim(),e.id+' 缺少参考来源名称');
+    if(reference.url)assert.equal(new URL(reference.url).protocol,'https:',e.id+' 的参考来源必须使用 HTTPS');
+    for(const key of ['credit_prefix','credit_suffix'])if(reference[key]!==undefined)assert.ok(typeof reference[key]==='string'&&reference[key].trim(),e.id+' 的署名文字无效');
+  }
   assert.ok(e.source.path.startsWith('catalog/effects/'));
   assert.ok(!e.source.path.includes('..'));
   assert.ok((await stat(path.join(root, e.source.path))).isFile());
@@ -167,6 +173,6 @@ for (const dir of ['catalog','catalog/effects','scripts','tests']) {
 }
 const build = spawnSync(process.execPath, [path.join(root, 'scripts/build.mjs'), '--check'], {encoding:'utf8'});
 assert.equal(build.status, 0, build.stderr);
-const markdown = ['README.md','SKILL.md','NOTICE.md','references/index.md','references/history.md','references/method.md','references/sources.md','references/runtime-interface.md','references/material-refinement.md','references/apple-hig.md','tests/manual.md', ...data.effects.map(e => 'references/effects/' + e.id + '.md')];
+const markdown = ['README.md','SKILL.md','NOTICE.md','CATALOG-STATS.md','references/index.md','references/history.md','references/method.md','references/sources.md','references/runtime-interface.md','references/material-refinement.md','references/apple-hig.md','tests/manual.md', ...data.effects.map(e => 'references/effects/' + e.id + '.md')];
 for (const file of markdown) for (const [, link] of (await read(file)).matchAll(/\]\(([^)]+)\)/g)) if (!/^(https?:|#)/.test(link)) assert.ok((await stat(path.resolve(root, path.dirname(file), link))).isFile(), file + ' 的链接缺失：' + link);
-console.log('检查通过：274 个动作、61 个插画单图、25 个组合、0 条历史配方与 0 个案例；定义、关联动作、共享绘制、来源路径、生成文件、许可和脚本语法完整。');
+console.log(`检查通过：${data.effects.filter(x => x.kind === 'action').length} 个动作、${data.effects.filter(x => x.kind === 'illustration').length} 个插画单图、${data.effects.filter(x => x.kind === 'composition').length} 个组合；定义、关联动作、共享绘制、来源路径、生成文件、许可文件和脚本语法完整。`);

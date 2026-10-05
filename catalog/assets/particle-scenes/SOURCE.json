@@ -4,5 +4,12 @@
   "entry": "notes-source.js",
   "readable_source": "notes/src/isolated-scene.js",
   "runtime_dependencies": "Three.js 已内嵌在 notes-source.js；MIT 许可见 THREE-LICENSE.txt；不发起网络请求。",
-  "assets": "coffee-bean.webp 为原透明素材，未修改像素。谱面及原素材权利保留原状。"
+  "assets": "coffee-bean.webp 为原透明素材，未修改像素。谱面及原素材权利保留原状。",
+  "note_motion_reference": {
+    "name": "@言说心事",
+    "url": "https://www.xiaohongshu.com/user/profile/6926ff85000000003702b1c1?xsec_token=ABiobWDdNSX_CX9Vf091D7iZ9SeSMSlAk4oyjghnynYPQ%3D&xsec_source=pc_search",
+    "credit_prefix": "复刻自",
+    "credit_suffix": "老师的教程",
+    "scope": "谱面光点跳跃插画与沿点跳跃留光动作的教程参考；谱曲及编配另见 notes/assets/来源.md。"
+  }
 }

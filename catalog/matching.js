@@ -6,7 +6,8 @@
     [/两排|双排|上下两行|上下两排/, ['dual-scroll'], '两排同时运动'],
     [/反向|相反方向/, ['dual-scroll'], '方向相反'],
     [/持续|一直|不停|循环|无缝/, ['seamless-scroll', 'dual-scroll', 'curve-path', 'orbit', 'float', 'parallax', 'follow'], '持续运动'],
-    [/依次|逐项|逐个|一个接一个|按顺序/, ['stagger-in', 'type-reveal', 'title-content'], '保留先后顺序'],
+    [/依次|逐项|逐个|逐张|一个接一个|按顺序/, ['stagger-in', 'group-expand', 'type-reveal', 'title-content'], '保留先后顺序'],
+    [/逐句|一句一句/, ['subtitle-focus'], '逐句呈现并切换重点'],
     [/三连(?:图标)?错峰|三个图标依次浮入/, ['stagger-in'], '三个图标等间隔错开进入'],
     [/标题.*内容|先.*标题|主张.*内容/, ['title-content'], '标题先于内容'],
     [/环绕|绕着|绕中心/, ['orbit'], '围绕中心运动'],
@@ -18,6 +19,13 @@
     [/变形|圆.*方/, ['shape-morph'], '同一图形改变轮廓'],
     [/操作|点击|处理.*结果|反馈/, ['interface-feedback'], '操作、处理和结果依次发生'],
     [/切换|转场/, ['wipe', 'shared-object', 'zoom-transition'], '连接两个画面']
+  ];
+  // 材质只从正向的名称、用途和别名识别，不把“不要金属”或排除说明当成要求。
+  const materials = [
+    [/金属|镀金|镀银|抛光|铬/, /金属|镀金|镀银|抛光|铬|钢尺/, '金属材质'],
+    [/玻璃|透光|折射/, /玻璃|透光|折射/, '玻璃与折射'],
+    [/纸面|纸片|纸张|纸墨|纸质/, /纸面|纸片|纸张|纸墨|纸质|纸卷/, '纸面材质'],
+    [/墨迹|书法|笔墨/, /墨迹|书法|笔墨|草楷/, '笔墨材质']
   ];
   const exclusions = [
     [/轮播|逐张切换|逐张轮换|一张一张切换/, e => e.behaviors.includes('discrete'), '逐张切换'],
@@ -32,6 +40,7 @@
     [/上下|起伏/, e => e.id === 'float', '上下起伏'],
     [/环境|涟漪/, e => e.behaviors.includes('react'), '环境回应']
   ];
+  for (const [pattern, support, label] of materials) exclusions.push([pattern, e => support.test([e.name,e.summary,e.purpose,...e.aliases].join(' ')), label]);
   function parse(query) {
     const denied = [];
     // 否定只作用于当前短句，不能把后面的正向需求一起删掉。
@@ -67,11 +76,18 @@
         if(text&&term&&(text.includes(term)||term.includes(text))){score+=3;matched.push(word);}
       }
       for (const [pattern, ids, label] of terms) if (pattern.test(positive) && patterns.some(id=>ids.includes(id))) { score += 5; matched.push(label); }
+      if (/卡片|六卡|六张/.test(positive) && /依次|逐张|逐项|逐个|按顺序/.test(positive) && /放大|缩放/.test(positive) && patterns.includes('group-expand')) {
+        score += 15; matched.push('卡片按顺序放大并保留布局');
+      }
+      const content=[e.name,e.summary,e.purpose,...e.aliases].join(' ');
+      for (const [pattern, support, label] of materials) if (pattern.test(positive) && support.test(content)) {
+        score += (e.kind === 'illustration' ? 3 : 7) + (support.test(e.name) ? 4 : 0); matched.push(label);
+      }
       if(scrollTarget&&patterns.includes(scrollTarget)){score+=15;matched.push('保留滚动与停留的具体关系');}
       if (!score) return [];
       if (!isDual && e.id === 'seamless-scroll' && isScroll) score += 3;
       if (/卡片/.test(positive) && e.id === 'fade-rise' && /自然|轻轻/.test(positive)) score += 4;
-      return [{effect: e, score, matched: [...new Set(matched)], excluded: prohibited.map(x => x[2]), reason: e.recommendation}];
+      return [{effect: e, score, matched: [...new Set(matched)], excluded: prohibited.map(x => x[2]), reason: e.recommendation || e.purpose || e.summary}];
     }).sort((a, b) => b.score - a.score || a.effect.id.localeCompare(b.effect.id));
   }
   const easeLabels = {linear: '匀速', outCubic: '末尾减速', inOutCubic: '平缓加速、减速', inOutSine: '平缓加速、减速', spring: '轻微回弹', outBounce:'回弹缓出', outElastic:'弹性缓出', outSine:'正弦缓出'};
