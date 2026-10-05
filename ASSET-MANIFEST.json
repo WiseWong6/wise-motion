@@ -12,6 +12,221 @@
       "sha256": "437994d641490357c9ec2198871470fd89c6dd4804ca66af51deab4782478239"
     },
     {
+      "path": "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
+      "bytes": 3703,
+      "sha256": "ced6cd0107d17d403e854a1820b7485449429bfa9e79298a2321bfa01e934e3f"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
+      "bytes": 17984,
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/GROWTH-PROMPT.txt",
+      "bytes": 2940,
+      "sha256": "161b233948937661cff7036a1977aa0e9f218a884fb418267cd5495aa7551ea4"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/OFL-Cursive.txt",
+      "bytes": 4406,
+      "sha256": "ff56684b0212481e7c3886c26d5a655de9b211c8119e5ccc756138a97b066acc"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/OFL-Oswald.txt",
+      "bytes": 4390,
+      "sha256": "0687c51a3126ae6963389181135a2eaea02f2e88f31230d27409952f28e84da5"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/OFL-Serif.txt",
+      "bytes": 4463,
+      "sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/SOURCE.json",
+      "bytes": 9255,
+      "sha256": "1048d0725d701103ffa84ac7644aacce5fc42fea0a3c5d27df277b4b64119620"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/assets.mjs",
+      "bytes": 1102,
+      "sha256": "166018a4153de38d61ba7e3916f0bc6e109e3156310708e7586a463477b2d9c2"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/botanical-texture.mjs",
+      "bytes": 2098,
+      "sha256": "4b6ffa53186409356d7647ffd370dbe57594542eb7b1194200445d34cd9dbe2e"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/brand-final.mjs",
+      "bytes": 2649,
+      "sha256": "c0ec39242e17178832a7e7b4e0b75b89d886cd4f09efe5487c1a9c414440e534"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/calligraphy-data.mjs",
+      "bytes": 1023381,
+      "sha256": "9d2e8e80d9bce49f8ce80ff325e29d7daf1e196e101a27af1933be1779973389"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/calligraphy.mjs",
+      "bytes": 1399,
+      "sha256": "13960301a6cc1d35636abdc6765dedf4fca72f3e0ab870091ac4ce660faea607"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/catalog-entry.mjs",
+      "bytes": 2302,
+      "sha256": "db4b2b82bacb29673c7f598c205acec0c6446bcf8ce1038ed1a2f49c03016b90"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/civilization/exploration.mjs",
+      "bytes": 729,
+      "sha256": "a5ba9e2acd855d07de0d42a4f623b6e2bfa85a3cf3cf2d4b50ccb774e94f07de"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/civilization/fire.mjs",
+      "bytes": 1289,
+      "sha256": "924e9e4f47e7ca6c4c02ab4f9ce5cd6fe42868a12e538aed4e085deb483f47b0"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/civilization/handoff.mjs",
+      "bytes": 1892,
+      "sha256": "556a8318a285a58a81d9c3fce69b66f831e0d18e3b62f7be63f144749f292a4c"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/civilization/ink-parts.mjs",
+      "bytes": 2209,
+      "sha256": "2ce9ff198cb3bab76bcdc407f366474d4a5ae362770d4ac54271162b98559967"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/civilization/loom.mjs",
+      "bytes": 1671,
+      "sha256": "4a5ec9058d246703d1942cd807775bb8a521d901cc861659f12e3fa12516ca62"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/civilization/observatory.mjs",
+      "bytes": 1137,
+      "sha256": "349a4db1cbad02ef64956d8e2c34b1ae5ef749bafd5b84e81b475804da859667"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/civilization/pendulum.mjs",
+      "bytes": 1159,
+      "sha256": "c4df703651e4d74916237c0d5512fbdbf5b2440882d4a4907ce3ee19778fd8b0"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/civilization/piston.mjs",
+      "bytes": 1017,
+      "sha256": "ac8d458c1be7a0c3abfece47d8db671d18ecb4bba1a4d7ccbacada0d2033cdd0"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/civilization/reveal.mjs",
+      "bytes": 2744,
+      "sha256": "a4b4d0b9d10c35ee56d8c3807b0db05d0e899c00e5c4547abbd6f29e02484f6f"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/civilization/wheels.mjs",
+      "bytes": 1413,
+      "sha256": "f3fd9ed8dcfb422ff6cc85f6ee4475286b6753825840d74ed17ce502debce563"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/civilization-atlas.mjs",
+      "bytes": 1394,
+      "sha256": "eb6f74878fa0b695d718c52c0964bcd53c36baeceddc3b4e50cc80a51bbe1106"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/civilization-image.mjs",
+      "bytes": 4867198,
+      "sha256": "f8cf9d12814dc4ca1a456f0781384a9565882dd4d09686d92180638603d13c42"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/cursive-data.mjs",
+      "bytes": 92849,
+      "sha256": "e1818aaeedcb719088b2d3b853ffd285e43336de3d0df7c02d9918913443e03e"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/engine.mjs",
+      "bytes": 2732,
+      "sha256": "23f9c63b6dc09dbd64bcb8c95b3f294257b206ce6bbdcd00edb86ee796a52ec4"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/fire-01.mjs",
+      "bytes": 2441,
+      "sha256": "c1154757d3a3ed036da4b88a9f2b509923fab4179db160658b8cb946cb0f2a3c"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/fire-05.mjs",
+      "bytes": 2614,
+      "sha256": "0fe2c5be01dc0334d60a2b7e56288b29c5c9b8ecdc95b428ac45391976655023"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/fire-material-bridge.mjs",
+      "bytes": 2330,
+      "sha256": "1824f518b3379acd306b6d1ace27e5bdd8b5e612206cfd9122b8192bd251f02f"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/fire-material-field.mjs",
+      "bytes": 4169,
+      "sha256": "b75a322bd19bdf52715eadb944feb0cbf67b84b41736f530ee5d27e74a3e1bf4"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/fire-particle-relay.mjs",
+      "bytes": 2974,
+      "sha256": "deb0120b588393958759ef84ceb560ec3d0ade50227dd0a222f6c18a26b25041"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/fire-wire-relay.mjs",
+      "bytes": 2367,
+      "sha256": "0624919ca8aedacf61845980eb51a2b4423949da0cfb5704855b0dc0162b9d86"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/font-data.mjs",
+      "bytes": 14794,
+      "sha256": "2dcd41d6abf8ebbab3704af9eb94083fc53984905f3dd2cb2f27b1e27feffea5"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/four-flowers.mjs",
+      "bytes": 2718,
+      "sha256": "710ff4cb1bf3a759fbfd7fac04771fefefc8fb9a7ab7067ab23f6d6c18f0b3b6"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/four-sprouts.mjs",
+      "bytes": 3731,
+      "sha256": "1d1e1bc5c95f826846264964f390a8317814f46c14fac267fac8dd9554227bf4"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/growth-image.mjs",
+      "bytes": 2326184,
+      "sha256": "b54e154cc00e91bc77184658b79a37580e947f26eaabeb8881ce5b81317c9bde"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/growth-regions.mjs",
+      "bytes": 1040,
+      "sha256": "291be440f684c6557c04424206bceb47aaed38188c505055f78585dbcf47c57a"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/math.mjs",
+      "bytes": 1265,
+      "sha256": "efae1c69e988ed57b155617f34b232c67198cd63bf884f6ee0cdc49e9b1c9184"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/paper.mjs",
+      "bytes": 2613,
+      "sha256": "8ba9eedb1ad55231ec3897b12e8b16b74552084d00583bdfc321a077466ea20b"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/particle-word-library.mjs",
+      "bytes": 28181,
+      "sha256": "a4415540b75123169255cbcb571766e3e9b65cb4e0cdc3c32da3580bb67f3e91"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/plant-flashes.mjs",
+      "bytes": 679,
+      "sha256": "9d204e17ef7c4fa317c74b089d4afbfb58f578faf70093cefcefb40767a3f811"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/render.mjs",
+      "bytes": 1112,
+      "sha256": "88744cc15f730d7a54deac185d0b84a181f1a70f5149d953c9eeb5e393427bcc"
+    },
+    {
       "path": "catalog/assets/collage-film/SOURCE.json",
       "bytes": 12053,
       "sha256": "fc7b7cd569d882bc4c12ea605dc75afce9a286fce5d3577d03e756b5b3860b2b"
@@ -205,6 +420,11 @@
       "path": "catalog/effects/cat-mouth.js",
       "bytes": 45452,
       "sha256": "3d4d9b72e8498c6ab42addc56fbc69b73d66267e471eb1993d339f064ecb6b15"
+    },
+    {
+      "path": "catalog/effects/civilization-growth.js",
+      "bytes": 8627307,
+      "sha256": "51703b177de22ebd717701fed4089f004a7dbf6fb6eba7354a32102db592d317"
     },
     {
       "path": "catalog/effects/claude-tile-illustrations.js",
@@ -483,8 +703,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 20642,
-      "sha256": "ab1b4406b1027c8dcb9312b71a8ceb09aa35c6a5c30146b3983bf000f1011bbd"
+      "bytes": 20990,
+      "sha256": "fc2bc9b29d146c21c19f6563559b7ea3b0f0df9a0fe694b7a935707e657290ff"
     },
     {
       "path": "catalog/fonts/OFL-Letter.txt",
@@ -523,18 +743,18 @@
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Bold.woff2",
-      "bytes": 541160,
-      "sha256": "e276150b505aa2d393435cc469cbc3c8b8876bdc564acf4e243a74a5cc75d838"
+      "bytes": 556148,
+      "sha256": "2614705e4b1d71d1ddfe69f62870c2c5639e484bcc4009471479c1fe91293923"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Light.woff2",
-      "bytes": 509544,
-      "sha256": "d52c99e0550f41b432c9ec59b917bcba2096372030734d570a71e0937de07d09"
+      "bytes": 524152,
+      "sha256": "bc8eda9441cd37e648c3f10e5520fbcfe4f053f59bfbe8183c71dcc11bcd7083"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Regular.woff2",
-      "bytes": 524052,
-      "sha256": "b755c779ce59b4a1804b85d0dadb6cc718a303a979d218095c7d80eb0a058fed"
+      "bytes": 539720,
+      "sha256": "df38a984326984c49caafd6dce7e74ec67034c2e257714498741ef7c5a20f34b"
     },
     {
       "path": "catalog/history-data.js",
@@ -563,18 +783,23 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 885991,
-      "sha256": "ec9fd9494a600def630ed5a03fd19b959d1bc28745edf52ba680920eff5bb27c"
+      "bytes": 951173,
+      "sha256": "e1995a825d470c57eadb4c7bfc94e1f5d297cd8febde9d2f7aaf0c2a690363c8"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1088973,
-      "sha256": "a610808980becdee2ccf1354574fc62043f81af475fa1ad65823e81c46e4a1b1"
+      "bytes": 1168098,
+      "sha256": "d01ffdd551d239e20b3d3ba242f9d2e5f176b01248d76a55ae61c90b0236a91f"
     },
     {
       "path": "catalog/related-preview.js",
       "bytes": 6506,
       "sha256": "f29e6f0f68e395ace6da2f82c290d01878dfc052580c5b36eb9db0c24351f326"
+    },
+    {
+      "path": "catalog/remotion/civilization-growth.jsx",
+      "bytes": 1785,
+      "sha256": "780908e53d46c19ea7cef2e609dc1f3991bddecd529db373b25caa2873002857"
     },
     {
       "path": "catalog/remotion/seed-bloom-brand-source.json",
@@ -588,8 +813,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 104662,
-      "sha256": "e53a47ab19504650a4a76fff03b2481b88c3d0e6b79c1e8954a4f2d4ac2fe589"
+      "bytes": 8766362,
+      "sha256": "b6e13b46f2590f75c4553c3ed7e9ddfb99d006e45f0b3cb35776d09f5c5fcdf9"
     },
     {
       "path": "catalog/runtime.js",

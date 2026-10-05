@@ -5,6 +5,8 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const checking = process.argv.includes('--check');
+const {buildCivilization} = await import('./build-civilization.mjs');
+await buildCivilization(checking);
 async function output(relative, content) {
   const target = path.join(root, relative);
   if (checking) {

@@ -46,3 +46,5 @@ npm run render -- stagger-in stagger-in.mp4
 `npm run check` 检查目录结构与字体覆盖；`npm test` 还包含原绘制与历史迁移回归，需保留私有历史档案；模拟页面测试使用原同步绘制器，实际 Remotion 页面另有浏览器和视频验收。新增或修改动效须按影响范围重新验证，不能用结构检查代替真实观看。
 
 独立迁移副本、原版基准与回退副本保留在私有维护目录，具体位置见本次交付记录。正式替换不修改既有非 Remotion 视频项目，也不恢复已清空的历史。
+
+薪火生长与文明聚字及六个分段提供独立的 `CivilizationGrowth` 逐帧组件，位于 `catalog/remotion/civilization-growth.jsx`。复制源码包含全部内嵌图片、真实书法轮廓、纸纹、字体、粒子公式和许可，使用 Remotion 4.0.532；原 Kimi 笔墨成形材质演变保留。

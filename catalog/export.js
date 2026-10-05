@@ -87,16 +87,18 @@
       return [file,content];
     }));
     const durationInFrames=Math.ceil(Math.round(effect.duration_ms/1000*spec.fps*1e6)/1e6/speed);
-    files['package.json']=JSON.stringify({name:'seed-bloom-motion',private:true,type:'module',scripts:{studio:'remotion studio index.jsx',render:'remotion render index.jsx Motion out/motion.mp4'},dependencies:spec.packages},null,2)+'\n';
+    const componentExport=spec.export_name||'SeedBloomBrand';
+    files['package.json']=JSON.stringify({name:spec.package_name||'seed-bloom-motion',private:true,type:'module',scripts:{studio:'remotion studio index.jsx',render:'remotion render index.jsx Motion out/motion.mp4'},dependencies:spec.packages},null,2)+'\n';
     files['index.jsx']=`import React from 'react';
 import {Composition, registerRoot} from 'remotion';
-import {SeedBloomBrand} from './${spec.component}';
-const Root=()=> <Composition id="Motion" component={SeedBloomBrand}
+import {${componentExport}} from './${spec.component}';
+const Root=()=> <Composition id="Motion" component={${componentExport}}
   width={${spec.width}} height={${spec.height}} fps={${spec.fps}} durationInFrames={${durationInFrames}}
   defaultProps={${JSON.stringify({effectId:effect.id,speed})}} />;
 registerRoot(Root);
 `;
     files['README.md']='# '+effect.name+'\n\n运行 npm install，再运行 npm run studio 或 npm run render。\n\n画幅 '+spec.width+'×'+spec.height+'；每秒 '+spec.fps+' 帧；'+durationInFrames+' 帧。图形、材质与 Outfit Medium 矢量轮廓已内嵌；无外部图片、声音或运行时字体。保持原逻辑画板1066×600，改画幅时等比容纳。\n\n自有程序 AGPL-3.0-only，见 LICENSE；字形 SIL OFL 1.1，见 catalog/fonts/OFL-Outfit.txt。Remotion、React 等依赖遵循各自软件包附带许可。\n';
+    if(spec.reuse_notes)files['README.md']='# '+effect.name+'\n\n运行 npm install，再运行 npm run studio 或 npm run render。\n\n画幅 '+spec.width+'×'+spec.height+'；每秒 '+spec.fps+' 帧；'+durationInFrames+' 帧。\n\n'+spec.reuse_notes+'\n';
     const lines=['# '+effect.name+' · Remotion 完整工程','','将以下文件按标题路径保存到同一空目录。'];
     for(const [file,content]of Object.entries(files)){
       const fence='`'.repeat(Math.max(3,...Array.from(content.matchAll(/`+/g),m=>m[0].length+1)));
