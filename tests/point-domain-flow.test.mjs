@@ -1,177 +1,214 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// 记录真实提交的画布指令，验证几何、时钟、复用与资源释放；不代替视觉验收。
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createHash} from 'node:crypto';
 import {readFile} from 'node:fs/promises';
-import {environment,data} from './helpers.mjs';
+import {createHash} from 'node:crypto';
+import {JSDOM} from 'jsdom';
+import {data,environment} from './helpers.mjs';
+const read=file=>readFile(new URL('../'+file,import.meta.url),'utf8');
 const composition=data.effects.find(e=>e.id==='point-domain-flow-sequence');
 const fresh=data.effects.filter(e=>e.source.path==='catalog/effects/point-domain-flow.js');
-
-function recordingCanvas(w){
- const cache=new WeakMap(),contexts=[];
- w.HTMLCanvasElement.prototype.getContext=function(){
-  if(cache.has(this))return cache.get(this);
-  const trace=[],stack=[],ctx=new Proxy({canvas:this,font:'10px sans-serif',globalAlpha:1,trace,
-   save(){stack.push({font:this.font,globalAlpha:this.globalAlpha});},restore(){Object.assign(this,stack.pop()||{});},
-   createRadialGradient:()=>({addColorStop(){}}),createLinearGradient:()=>({addColorStop(){}}),
-   createImageData:(width,height)=>({data:new Uint8ClampedArray(width*height*4),width,height}),
-   measureText(value){return {width:String(value).length*(parseFloat(this.font.match(/([\d.]+)px/)?.[1])||10)*.6};},
-   fillText(value,x,y){trace.push({type:'text',value,x,y,font:this.font});},
-   arc(x,y,r){trace.push({type:'arc',x,y,r});},clip(){trace.push({type:'clip'});}
-  },{get:(o,k)=>k in o?o[k]:()=>{}});
-  cache.set(this,ctx);contexts.push(ctx);return ctx;
- };
- return contexts;
+function recorder(w){
+ const contexts=[],cache=new WeakMap();let pathCount=0;
+ class Shape{constructor(){this.hash=7;this.count=0;}add(op,args){this.count++;for(const n of args){assert.ok(Number.isFinite(n));this.hash=(Math.imul(this.hash,31)+(Math.round(n*1e6)|0))|0;}this.hash=(this.hash+op)|0;}moveTo(...a){this.add(1,a);}lineTo(...a){this.add(2,a);}}
+ w.Path2D=class extends Shape{constructor(){super();pathCount++;}};
+ w.HTMLCanvasElement.prototype.getContext=function(kind,options){if(cache.has(this))return cache.get(this);let style={font:'10px sans-serif',fillStyle:'#000000',strokeStyle:'#000000',globalAlpha:1},stack=[],transform=[],path=new Shape(),commands=[];
+ const numbers=a=>{for(const n of a)if(typeof n==='number')assert.ok(Number.isFinite(n));};
+ const record=(op,a)=>{numbers(a);commands.push([op,a,{...style},transform.slice()]);};
+ const api={canvas:this,options,reset(){commands=[];},get commands(){return commands;},digest(){return createHash('sha256').update(JSON.stringify(commands)).digest('hex');},save(){stack.push([{...style},transform.slice()]);},restore(){assert.ok(stack.length);[style,transform]=stack.pop();},beginPath(){path=new Shape();},moveTo(...a){path.moveTo(...a);},lineTo(...a){path.lineTo(...a);},arc(...a){path.add(3,a);},rect(...a){path.add(4,a);},closePath(){path.add(5,[]);},stroke(p){const s=p||path;record('stroke',[s.hash,s.count]);},fill(){record('fill',[path.hash,path.count]);},clip(){record('clip',[path.hash,path.count]);},fillRect(...a){record('rect',a);},clearRect(...a){record('clear',a);},fillText(...a){record('text',a);},setLineDash(a){style.dash=[...a];},setTransform(...a){numbers(a);transform=[['set',...a]];},translate(...a){numbers(a);transform.push(['translate',...a]);},rotate(...a){numbers(a);transform.push(['rotate',...a]);},scale(...a){numbers(a);transform.push(['scale',...a]);},transform(...a){numbers(a);transform.push(['matrix',...a]);},measureText(s){const size=Number(style.font.match(/([\d.]+)px/)?.[1]||10);return {width:[...s].reduce((v,c)=>v+(c.charCodeAt(0)>255?1:.58)*size,0)};},createRadialGradient(...a){const stops=[];return {a,stops,addColorStop(...s){stops.push(s);}};},createLinearGradient(...a){const stops=[];return {a,stops,addColorStop(...s){stops.push(s);}};},createImageData(width,height){return {data:new Uint8ClampedArray(width*height*4)};},putImageData(){},drawImage(image,...a){record('image',[image.width,image.height,...a]);}};
+ const ctx=new Proxy(api,{get:(o,k)=>k in o?o[k]:style[k],set(o,k,v){if(k in o)o[k]=v;else style[k]=v;return true;}});cache.set(this,ctx);contexts.push(ctx);return ctx;};
+ return {contexts,get paths(){return pathCount;}};
 }
 
-test('337至425帧两条亮线停在文字内侧，终点保留笔触余量',async()=>{
- const env=await environment();try{
-  for(let frame=337;frame<=425;frame++)for(const trace of env.w.WisePointDomainFlow.traceGeometry((frame-1)/30)){
-   assert.ok(trace.clearance.every(v=>v>=2.1-1e-8),`第${frame}帧第${trace.index+1}条亮线越界`);
-  }
-  const stopped=env.w.WisePointDomainFlow.traceGeometry(13);
-  assert.ok(stopped[0].hitParameter<1&&stopped[1].hitParameter<.8,'终点应由文字厚度决定，不沿用穿字终点');
-  for(const index of [0,1])assert.equal(stopped[index].progress,1);
-  assert.ok(stopped[1].tip[0]>205,'第二条亮线应留在竖排字的右侧');
- }finally{env.close();}
-});
-
-test('触边火花实际绘制更大并受边界裁切，叙事字幕不进入任何段落',async()=>{
- const env=await environment();try{
-  const {w}=env,contexts=recordingCanvas(w),root=w.document.createElement('div');
-  const action=data.effects.find(e=>e.id==='boundary-curve-stop'),draw=w.MotionFactories[action.id](root,w.MotionKit,{...action,poster_only:true});
-  contexts.forEach(c=>{c.trace.length=0;});draw((13-11.2)*1000);
-  const traces=contexts.flatMap(c=>c.trace),sparks=traces.filter(x=>x.type==='arc'&&x.r>=.55&&x.r<=1.75);
-  assert.equal(sparks.length,160);assert.ok(sparks.reduce((s,x)=>s+x.r,0)/sparks.length>1);
-  assert.ok(traces.some(x=>x.type==='clip'),'火花须与亮线一起限制在文字内侧');draw.destroy();
-  const full=w.MotionFactories[composition.id](root,w.MotionKit,{...composition,poster_only:true});
-  for(const time of [1,3.8,5.4,8.8,11.4,13.0,15.1,17.7,21.2,23.4])full(time*1000);
-  assert.ok(!contexts.flatMap(c=>c.trace).some(x=>x.type==='text'&&/Songti SC|Source Han Serif/.test(x.font)),'整片不可出现原底部叙事字幕');
-  assert.ok(contexts.flatMap(c=>c.trace).some(x=>x.type==='text'&&x.value.includes('不要那样')),'作为边界的文字须保留');full.destroy();
- }finally{env.close();}
-});
-
-test('七个独立动作只建自身节点；组合有真实部件，任意定位和销毁不互相干扰',async()=>{
- const env=await environment();try{
-  const {w}=env,roots=fresh.map(()=>w.document.createElement('div')),players=fresh.map((e,i)=>w.MotionRuntime.create(roots[i],{...e,poster_only:true},{autoplay:false}));
-  await Promise.all(players.map(p=>p.ready));
-  for(let i=0;i<fresh.length;i++){
-   const e=fresh[i],p=players[i];p.seek(e.preview_ms);const first=roots[i].innerHTML;
-   p.seek(e.duration_ms);p.seek(0);p.seek(e.preview_ms);assert.equal(roots[i].innerHTML,first,e.name);
-   if(e.kind==='action')assert.equal(roots[i].querySelectorAll('canvas').length,1,e.name+'不能携带完整组合的画布');
-  }
-  const i=fresh.findIndex(e=>e.kind==='composition'),root=roots[i],canvas=root.querySelector('canvas:not([data-layer])'),layers=[...root.querySelectorAll('[data-layer]')];
-  assert.deepEqual([...new Set(layers.map(n=>n.dataset.layer))].sort(),Array.from(w.MotionFactories[composition.id].breakdown,r=>r.id).sort());
-  const other=roots[0].innerHTML;players[i].seek(12800);assert.equal(roots[0].innerHTML,other);
-  layers[0].setAttribute('data-composition-hidden','');await Promise.resolve();assert.equal(canvas.style.visibility,'hidden');
-  layers[0].removeAttribute('data-composition-hidden');await Promise.resolve();assert.equal(canvas.style.visibility,'visible');
-  const all=roots.flatMap(r=>[...r.querySelectorAll('canvas')]);players.forEach(p=>p.destroy());
-  assert.equal(w.MotionRuntime.instanceCount,0);assert.equal(w.MotionRuntime.runningCount,0);
-  assert.ok(all.every(c=>c.width===1&&c.height===1));assert.ok(roots.every(r=>r.childElementCount===0));
- }finally{env.close();}
-});
-
-test('星点复用为新示例；原示例保留，复制页带齐绘制依赖与实际画面说明',async()=>{
- const env=await environment();try{
-  const {w}=env;w.eval(await readFile(new URL('../catalog/export.js',import.meta.url),'utf8'));
-  const stars=data.effects.find(e=>e.id==='star-twinkle'),old=w.document.createElement('div'),night=w.document.createElement('div');
-  const original=w.MotionRuntime.create(old,stars,{autoplay:false}),variant=w.MotionRuntime.create(night,{...stars,variant_id:'layered-night'},{autoplay:false});
-  assert.ok(old.querySelector('[data-star]')||old.querySelector('svg'),'默认星点仍调用原固定星点绘制');assert.equal(night.querySelectorAll('canvas').length,1);
-  const code=w.MotionExport.code(stars,{variantId:'layered-night'});
-  assert.ok(code.indexOf('catalog/effects/reel-neon.js')<code.indexOf('catalog/effects/point-domain-flow.js'),'旧绘制须先注册，再接入星点新示例');
-  const prompt=w.MotionExport.prompt(composition,{},data);
-  assert.match(prompt,/暖棕|暖色/);assert.match(prompt,/字幕/);assert.match(prompt,/160/);assert.doesNotMatch(prompt,/强调色 #ff5a1f/);
-  assert.deepEqual([...new Set(w.MotionFactories[composition.id].breakdown.flatMap(row=>Array.from(row.actions)))].sort(),[...composition.actions].sort());
-  original.destroy();variant.destroy();
- }finally{env.close();}
-});
-
-
-test('删除独立光点条目，网格到多涡流线合为连续9.2秒动作，旧书签可定位合并条目',async()=>{
- const env=await environment();try{
-  const {w}=env,merged=data.effects.find(e=>e.id==='grid-flow-unfold');
-  for(const id of ['warm-light-anchor','grid-bend-spread','multivortex-release']){
-   assert.ok(!data.effects.some(e=>e.id===id));assert.equal(w.MotionFactories[id],undefined);assert.ok(!composition.actions.includes(id));
-  }
-  assert.equal(merged.duration_ms,9200);assert.deepEqual(merged.source_clock,[500/30,776/30]);
-  assert.equal(data.redirects['grid-bend-spread'],merged.id);assert.equal(data.redirects['multivortex-release'],merged.id);
-  assert.ok(merged.aliases.includes('网格铺展弯曲')&&merged.aliases.includes('多涡流线展开'));
-  assert.equal(w.MotionFactories[merged.id].requiresPreparation,true);
-  const root=w.document.createElement('div'),p=w.MotionRuntime.create(root,{...merged,poster_only:true},{autoplay:false});await p.ready;
-  for(const time of [0,6000,7199,7500,9000,9200]){p.seek(time);assert.equal(root.querySelector('[data-part]').dataset.part,'grid-flow');assert.ok(Math.abs(Number(root.querySelector('[data-part]').dataset.time)-Math.min(775/30,500/30+time/1000))<.00004);}
-  assert.equal(root.querySelectorAll('canvas').length,1);p.destroy();
-  const rows=w.MotionFactories[composition.id].breakdown;assert.equal(rows.find(r=>r.id==='light').actions.length,0);
-  for(const id of ['grid','flow'])assert.equal(rows.find(r=>r.id===id).actions[0],merged.id);
- }finally{env.close();}
-});
-
-// 记录实际提交给画布的笔画与文字，忽略等价的路径重建及文字测量次数。
-function performanceCanvas(w,{recordCommands=false}={}){
- const contexts=[],cache=new WeakMap();let widthScale=1;
- w.HTMLCanvasElement.prototype.getContext=function(){
-  if(cache.has(this))return cache.get(this);
-  const canvas=this;let style={font:'10px sans-serif',globalAlpha:1},transforms=[],stack=[],currentPath=[],hash=createHash('sha256');
-  const commands=[];
-  const record=(op,args)=>{const keys=op==='stroke'?['globalAlpha','globalCompositeOperation','filter','shadowBlur','shadowColor','strokeStyle','lineWidth','lineDash','lineDashOffset']:op==='clip'||op==='clearRect'?[]:['globalAlpha','globalCompositeOperation','filter','shadowBlur','shadowColor',...(op==='drawImage'?[]:['fillStyle']),...(op==='fillText'?['font']:[])];const command={op,args,style:Object.fromEntries(keys.map(k=>[k,style[k]])),transforms};hash.update(JSON.stringify(command)+'\n');if(recordCommands)commands.push(command);};
-  const api={canvas,commands,measures:0,segments:0,reset(){hash=createHash('sha256');this.measures=0;this.segments=0;commands.length=0;},digest(){return hash.copy().digest('hex');},
-   save(){stack.push({style:{...style},transforms:transforms.slice()});},restore(){const saved=stack.pop();if(saved){style=saved.style;transforms=saved.transforms;}},
-   measureText(value){this.measures++;return {width:String(value).length*(parseFloat(style.font.match(/([\d.]+)px/)?.[1])||10)*.6*widthScale};},
-   beginPath(){currentPath=[];},moveTo(...a){currentPath.push(['moveTo',...a]);},lineTo(...a){this.segments++;currentPath.push(['lineTo',...a]);},arc(...a){currentPath.push(['arc',...a]);},rect(...a){currentPath.push(['rect',...a]);},closePath(){currentPath.push(['closePath']);},
-   stroke(){record('stroke',currentPath);},fill(){record('fill',currentPath);},clip(){record('clip',currentPath);},fillText(...a){record('fillText',a);},fillRect(...a){record('fillRect',a);},clearRect(...a){record('clearRect',a);},
-   setLineDash(a){style.lineDash=a.slice();},setTransform(...a){transforms=[['setTransform',...a]];},translate(...a){transforms.push(['translate',...a]);},rotate(...a){transforms.push(['rotate',...a]);},scale(...a){transforms.push(['scale',...a]);},transform(...a){transforms.push(['transform',...a]);},
-   createRadialGradient(...a){const stops=[];return {type:'radial',args:a,stops,addColorStop(...s){stops.push(s);}};},createLinearGradient(...a){const stops=[];return {type:'linear',args:a,stops,addColorStop(...s){stops.push(s);}};},
-   createImageData:(width,height)=>({data:new Uint8ClampedArray(width*height*4),width,height}),putImageData(){},drawImage(image,...a){record('drawImage',[image.width,image.height,...a]);}
-  };
-  const ctx=new Proxy(api,{get:(o,k)=>k in o?o[k]:style[k],set(o,k,value){if(k in o)o[k]=value;else style[k]=value;return true;}});
-  cache.set(canvas,ctx);contexts.push(ctx);return ctx;
- };
- return {contexts,setWidthScale(value){widthScale=value;}};
+async function env(){
+ const dom=new JSDOM('<!doctype html><div id="root"></div>',{url:'file:///wise-motion/catalog/index.html',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;
+ w.ResizeObserver=class{observe(){}disconnect(){}};const rec=recorder(w);
+ for(const file of ['vendor/animejs/anime.umd.min.js','catalog/runtime.js','catalog/effects/reel-neon.js','catalog/effects/point-domain-flow.js'])w.eval(await read(file));
+ return {w,rec,close(){w.MotionRuntime.disposeAll();w.anime.engine.pause();w.close();}};
 }
-
-test('第三次向右通道只绘一排文字，上下边界随原时序保留',async()=>{
- const env=await environment();try{
-  const {w}=env;performanceCanvas(w,{recordCommands:true});
-  const ctx=w.document.createElement('canvas').getContext('2d'),painter=w.WisePointDomainFlow.createPainter(w.document);
-  const phrase='不要自作主张。不要解释推理。只回答被问到的问题。Always follow the format. Do not exceed 200 words。只能这样。';
-  try{for(const [time,gap] of [[13.28,13],[13.4,13],[13.8,10],[15.1,10]]){
-   ctx.reset();painter.drawLayer(ctx,'constraints',time);
-   const visible=time>13.29,letters=ctx.commands.filter(c=>c.op==='fillText'&&c.args[0]===phrase);
-   assert.equal(letters.length,visible?1:0,`${time}秒通道文字不能重复或提前出现`);
-   const {P,scale}=painter.pose(time);
-   for(const side of [-1,1]){
-    const expectedPath=[['moveTo',...P(333,189+side*gap)],['lineTo',...P(460,189+side*gap)]];
-    const lines=ctx.commands.filter(c=>c.op==='stroke'&&c.style.strokeStyle==='#e5e6e7'&&JSON.stringify(c.args)===JSON.stringify(expectedPath));
-    assert.equal(lines.length,visible?1:0,`${time}秒${side<0?'上':'下'}边界必须保留原位置与出现时刻`);
-    if(visible){assert.equal(lines[0].style.lineWidth,.68*scale);assert.equal(lines[0].style.globalAlpha,letters[0].style.globalAlpha);}
-   }
-  }}finally{painter.destroy();}
- }finally{env.close();}
+async function setup(){const e=await env(),root=e.w.document.getElementById('root'),draw=e.w.MotionFactories[composition.id](root,e.w.MotionKit,composition);await draw.ready;const ctx=e.rec.contexts[0];return {...e,root,draw,ctx,at(ms,state){draw(e.w.WisePointDomainFlow.toPlaybackTime(ms),state);},close(){draw.destroy();e.close();}};}
+test('正方形共用已绘网格，顺序拼接不重叠，弧线位于所属格内',async()=>{
+ const e=await setup();try{const a=e.w.WisePointDomainFlow;assert.deepEqual(Array.from(a.goldenTiles,t=>t.size),[1,1,2,3,5,8]);let area=0;
+ for(let i=0;i<6;i++){const tile=a.goldenTiles[i],g=a.goldenGeometry(i),timing=a.tileTimings[i];area+=tile.size**2;assert.ok(a.tileGridReady(timing.start,i));assert.equal(a.tileReveal(timing.start-.001,i),0);assert.equal(a.tileReveal(timing.end,i),1);if(i)assert.ok(timing.start>a.tileTimings[i-1].end);
+  for(const [x,y]of g.arc){assert.ok(x>=g.square[0][0]-1e-9&&x<=g.square[1][0]+1e-9);assert.ok(y>=g.square[0][1]-1e-9&&y<=g.square[2][1]+1e-9);}
+  for(const [x,y]of g.square){assert.ok(Math.abs((x*130/a.GRID_STEP+a.gridLattice.xOffset)-Math.round(x*130/a.GRID_STEP+a.gridLattice.xOffset))<1e-8);assert.ok(Math.abs((y*130/a.GRID_STEP+a.gridLattice.yOffset)-Math.round(y*130/a.GRID_STEP+a.gridLattice.yOffset))<1e-8);}
+  if(i<5)assert.ok(Math.hypot(...g.arc.at(-1).map((v,j)=>v-a.goldenGeometry(i+1).arc[0][j]))<1e-9);
+  for(let j=0;j<i;j++){const other=a.goldenTiles[j];assert.ok(Math.min(tile.x+tile.size,other.x+other.size)<=Math.max(tile.x,other.x)||Math.min(tile.y+tile.size,other.y+other.size)<=Math.max(tile.y,other.y));}
+ }
+ const seedTiming=a.tileTimings[0];for(const fraction of [.35,.65,.88]){e.ctx.reset();e.at((seedTiming.start+(seedTiming.end-seedTiming.start)*fraction)*1000,{force:true});const outlines=e.ctx.commands.filter(c=>c[0]==='stroke'&&c[2].strokeStyle==='#d9dfeb');assert.equal(outlines.length,1);assert.equal(outlines[0][1][1],5);}
+ assert.equal(area,13*8);assert.ok(a.SCAN_START>a.tileTimings.at(-1).end);assert.ok(a.SCAN_DURATION>.5);
+ for(let j=0;j<36;j++){const at=a.SCAN_START+j/36*a.SCAN_DURATION;assert.equal(a.innerScanState(at-.001).nodes[j],0);assert.ok(a.innerScanState(at+.001).nodes[j]>.1);}
+ e.ctx.reset();e.at(2500,{force:true});assert.ok(e.ctx.commands.some(c=>c[0]==='stroke'&&c[2].strokeStyle==='#d9dfeb'));
+ e.ctx.reset();e.at(3500,{force:true});assert.ok(e.ctx.commands.some(c=>c[0]==='stroke'&&c[2].strokeStyle==='#e8fff5'));
+ }finally{e.close();}
 });
 
-test('字宽与径向静态系数复用，暖帧仍提交相同绘制并支持乱序定位',async()=>{
- const env=await environment();try{
-  const {w}=env,{contexts}=performanceCanvas(w),root=w.document.createElement('div'),draw=w.MotionFactories[composition.id](root,w.MotionKit,{...composition,poster_only:true});await draw.ready;
-  const ctx=contexts.find(c=>c.canvas===root.querySelector('canvas:not([data-layer])'));
-  // 优化前冻结源码的画布绘制记录；保留原笔画顺序、样式、变换和全部点坐标。
-  // 15.1 秒仅更新用户要求移除的通道下排重复文字，其余时刻沿用原基准。
-  const expected={"9300":"2aec1cc132027aba5f6de1faa9da2e60891282205e311d7a7148341a95aff1c6","11400":"5f8f6154825aacbdf682c3fee468f29d9bce410450c44f9f7cf17058612f5992","15100":"4ab1d51a804e953800052c46d6a59d78851bd6c98c76bedc1e3c378da1a43125","17700":"0f400ac9761c735be8855259a6be3b5c69af373562aa29380fdd78ea0d2f1f8a","21200":"c98ac7b0ab23d06f1804dbdb408e8b48e35d4f9ee02a17b150fe167d09ca7d6e","23400":"245bb8d7f208dd66b826d18a5791db32505d69243b6e3d0265b5ff37bc5a3c57"};
-  for(const time of [9300,11400,15100,17700,21200,23400]){ctx.reset();draw(time,{force:true});assert.equal(ctx.digest(),expected[time],String(time));}
-  ctx.reset();draw(11400,{force:true});assert.equal(ctx.measures,0,'已准备字体的重复字宽不应重新测量');
-  for(const time of [23400,9300,21200,15100,21200]){ctx.reset();draw(time,{force:true});assert.equal(ctx.digest(),expected[time],String(time));}
-  assert.ok(ctx.segments<320*76*2,'细线的第二遍虚线描边不应重建同一路径');draw.destroy();
- }finally{env.close();}
+test('地震让字符离地、落地与衰减反弹，镜头只作小幅震颤',async()=>{
+ const e=await setup();try{const a=e.w.WisePointDomainFlow,painter=a.createPainter(e.w.document);assert.equal(a.glyphQuake(6.9,3,306,188).height,0);let heights=[];for(let t=7;t<9.5;t+=.005)heights.push(a.glyphQuake(t,3,306,188).height);assert.ok(Math.max(...heights)>3);let peaks=0;for(let i=1;i<heights.length-1;i++)if(heights[i]>heights[i-1]&&heights[i]>heights[i+1])peaks++;assert.ok(peaks>=3);assert.equal(a.glyphQuake(9.5,3,306,188).height,0);
+ let centers=[];for(let ms=7000;ms<=8000;ms+=25){const state=painter.pose(a.toSourceTime(ms)/1000);assert.equal(state.pitch,0);centers.push(state.center);}assert.ok(Math.max(...centers.map(p=>p[0]))-Math.min(...centers.map(p=>p[0]))<13);assert.ok(Math.max(...centers.map(p=>p[1]))-Math.min(...centers.map(p=>p[1]))<9);
+ for(let t=7;t<8.8;t+=.03){const q=a.quakeTremor(t);assert.ok(Math.abs(q[0])<1.5&&Math.abs(q[1])<1);for(let id=0;id<10;id++){const s=a.glyphQuake(t,id,306,188);assert.ok(s.height>=0&&s.height<25);assert.ok(Object.values(s).every(Number.isFinite));}}
+ let previous=a.glyphQuake(6.99,3,306,188);for(let t=6.992;t<9.2;t+=.002){const current=a.glyphQuake(t,3,306,188);assert.ok(Math.abs(current.lateral-previous.lateral)<.18);assert.ok(Math.abs(current.angle-previous.angle)<.04);previous=current;}painter.destroy();
+ }finally{e.close();}
 });
 
-test('字体就绪会清除准备阶段字宽，画布间缓存独立',async()=>{
- const env=await environment();try{
-  const {w}=env,record=performanceCanvas(w);let resolveFonts;
-  Object.defineProperty(w.document,'fonts',{configurable:true,value:{ready:new Promise(resolve=>{resolveFonts=resolve;})}});
-  const action=fresh.find(e=>e.id==='text-plane-tilt'),first=w.document.createElement('div'),draw=w.MotionFactories[action.id](first,w.MotionKit,{...action,poster_only:true}),ctx=record.contexts[0];
-  draw(2000);assert.ok(ctx.measures>0);record.setWidthScale(1.1);ctx.reset();draw(2000,{force:true});assert.equal(ctx.measures,0);
-  resolveFonts();await draw.ready;assert.ok(ctx.measures>0,'字体准备完成必须重新测量');ctx.reset();draw(2000,{force:true});const readyFrame=ctx.digest();
-  const second=w.document.createElement('div'),other=w.MotionFactories[action.id](second,w.MotionKit,{...action,poster_only:true});await other.ready;
-  const otherContext=record.contexts.find(c=>c.canvas===second.querySelector('canvas'));otherContext.reset();other(2000,{force:true});assert.ok(otherContext.measures>0);assert.equal(otherContext.digest(),readyFrame);draw.destroy();other.destroy();
-  const painter=w.WisePointDomainFlow.createPainter(w.document);ctx.reset();painter.drawLayer(ctx,'plane',11.4);assert.ok(ctx.measures>0);ctx.reset();painter.drawLayer(ctx,'plane',11.4);assert.equal(ctx.measures,0);painter.destroy();
-  const replacement=w.WisePointDomainFlow.createPainter(w.document);ctx.reset();replacement.drawLayer(ctx,'plane',11.4);assert.ok(ctx.measures>0,'直接使用的绘制器销毁后也应释放字宽缓存');replacement.destroy();
- }finally{env.close();}
+test('文字沿正方向流动，同字保持连续，竖排字不整体转九十度',async()=>{
+ const e=await setup();try{const a=e.w.WisePointDomainFlow;for(const lane of [5,18,45,72,106]){const first=a.rainGlyphs('审美节奏构图层次',500,13.5,1,lane),next=a.rainGlyphs('审美节奏构图层次',500,13.5,1.1,lane);for(const glyph of first){const after=next.find(g=>g.index===glyph.index);if(!after)continue;assert.equal(after.char,glyph.char);assert.ok(after.at>glyph.at);assert.ok(Math.abs(after.at-glyph.at-glyph.speed*.1)<1e-7);}assert.ok(new Set(first.map(g=>g.alpha)).size>=7);}
+ e.ctx.reset();e.at(11500,{force:true});const glyphImages=e.ctx.commands.filter(c=>c[0]==='image'&&c[1][0]===1024);assert.ok(glyphImages.length>20);assert.ok(!glyphImages.some(c=>c[3].some(t=>t[0]==='rotate'&&Math.abs(t[1]-Math.PI/2)<1e-8)));
+ }finally{e.close();}
+});
+
+test('三处文字字号颜色相同，第三次轨迹朝右下且分别到达对应边界',async()=>{
+ const e=await setup();try{const api=e.w.WisePointDomainFlow;for(const [i,{stop}]of api.traces.entries()){const geom=api.traceGeometry(stop)[i];assert.ok(Math.abs(geom.clearance[i]-2.1)<1e-6);assert.ok(Math.min(...geom.clearance)>2.09999);assert.ok(api.sparkGeometry(api.impactBanks[i],.15).length>=350);}
+ const third=api.traceGeometry(api.traces[2].stop)[2].tip;assert.ok(third[0]>395&&third[1]>295);const before=api.traceGeometry(api.traces[2].start)[2].tip;assert.ok(third[0]-before[0]>70&&third[1]-before[1]>80);
+ e.ctx.reset();e.at(14000,{force:true});const texts=e.ctx.commands.filter(c=>c[0]==='text'&&['不够高级。','不够流畅。','没有质感。'].includes(c[1][0]));assert.equal(texts.length,3);assert.equal(new Set(texts.map(c=>c[2].font)).size,1);assert.equal(new Set(texts.map(c=>c[2].fillStyle)).size,1);assert.ok(texts.every(c=>c[2].fillStyle==='#eeeef1'));
+ for(const ms of api.traces.map(t=>(t.stop+.18)*1000)){e.ctx.reset();e.at(ms,{force:true});assert.ok(e.ctx.commands.filter(c=>c[0]==='stroke'&&c[2].strokeStyle==='#ffdda0').length>=4);}
+ }finally{e.close();}
+});
+
+test('铁花使用分叉弧线亮尾，成圆段没有旋转辐条，保留320条径向线，末段亮点沿黄金弧线流动',async t=>{
+ const e=await setup();try{const a=e.w.WisePointDomainFlow;assert.equal(a.impactBanks[0].length,480);assert.equal(a.flowerBanks[0].length,360);const sparks=a.sparkGeometry(a.impactBanks[0],.3);assert.ok(sparks.some(p=>Math.hypot(p.head[0]-p.back[0],p.head[1]-p.back[1])>3));assert.ok(a.impactBanks[0].some(p=>p.birth>.16));
+ for(const ms of [17000,18500,21500]){e.ctx.reset();e.at(ms,{force:true});assert.ok(e.ctx.commands.some(c=>c[0]==='stroke'&&c[2].strokeStyle==='#dd772b'));}
+ e.ctx.reset();e.at(22500,{force:true});assert.equal(e.ctx.commands.filter(c=>c[0]==='stroke'&&['#92a5a5','#b9a28b'].includes(c[2].strokeStyle)).length,320);
+ e.ctx.reset();e.at(26000,{force:true});assert.equal(e.ctx.commands.filter(c=>c[0]==='rect'&&c[2].fillStyle==='#fff1cf').length,144);
+ t.diagnostic('每处撞击480条主粒子和分叉轨迹；中心成圆每轮360条轨迹，分组绘制亮尾，无逐粒子模糊。');
+ }finally{e.close();}
+});
+
+test('波次按空间距离传递，远点延后、同距离同步，文字和细网格共用起伏表面',async()=>{
+ const e=await env();try{const a=e.w.WisePointDomainFlow,w=a.waveProfiles[0],time=w.at+.2;assert.ok(a.gridWave(time,320,184)>4);assert.equal(a.gridWave(time,510,184),0);assert.ok(Math.abs(a.gridWave(w.at+.7,370,184)-a.gridWave(w.at+.7,320,234))<1e-10);assert.ok(a.gridWave(w.at+1.2,510,184)>4);assert.equal(a.gridWave(24.3,320,184),0);
+ for(const t of [17.4,20.4,21.1,22.7]){const state=a.gridState(t),p=state.P(320,184),z=a.gridWave(t,320,184);assert.ok(Math.abs(p[1]-(state.core[1]-z))<1e-9);assert.ok(Math.abs(p[0]-(state.core[0]+z*.14))<1e-9);}
+
+ }finally{e.close();}
+});
+
+test('画面可乱序重现、字形与弧线不重建，销毁后释放画布',async t=>{
+ const e=await setup();try{const api=e.w.WisePointDomainFlow,prepared=api.glyphStats(e.ctx),paths=e.rec.paths,values=[0,1000,1600,3500,6300,9300,11800,12950,13980,15100,16600,17300,20500,22500,23940,24700,25866.666666666668,26833.333333333336],digests=new Map();
+ assert.equal(e.ctx.options.alpha,false);assert.equal(e.ctx.options.willReadFrequently,undefined);
+ for(const ms of values){e.ctx.reset();e.at(ms,{force:true});digests.set(ms,e.ctx.digest());}
+ for(const ms of values.toReversed()){e.ctx.reset();e.at(ms,{force:true});assert.equal(e.ctx.digest(),digests.get(ms),String(ms));}
+ assert.equal(api.glyphStats(e.ctx).glyphs,prepared.glyphs);assert.equal(e.rec.paths,paths);assert.ok(prepared.bytes<=64*1024*1024);assert.throws(()=>e.at(NaN),/有限数字/);
+ const canvases=e.rec.contexts.map(c=>c.canvas);e.draw.destroy();assert.ok(canvases.every(c=>c.width===1&&c.height===1));assert.equal(e.root.childElementCount,0);t.diagnostic(`提前准备${prepared.glyphs}个字形，模拟缓存${prepared.bytes/1024/1024} MiB；不代表实机帧率或实测显存。`);
+ }finally{e.close();}
+});
+
+test('放大压到2秒并立即接平面，回缩进行到一半前不出现完整图形',async()=>{
+ const e=await setup();try{const a=e.w.WisePointDomainFlow,painter=a.createPainter(e.w.document);
+ assert.ok(Math.abs(a.toSourceTime(6200)-256/30*1000)<1e-9);assert.ok(Math.abs(a.duration-21133.333333333336)<1e-7);assert.equal(composition.duration_ms,a.duration);
+ for(const ms of [0,4200,5000,6200,8000,12000,14333.333333333334,14334,16000,19000,a.duration])assert.ok(Math.abs(a.toPlaybackTime(a.toSourceTime(ms))-ms)<1e-9);
+ // 14.333秒之前保持原速；之后每播放1秒，原生长时钟推进1.5秒。
+ const growthStart=a.toPlaybackTime(a.NATURE_START*1000);assert.ok(Math.abs(growthStart-14333.333333333334)<1e-8);assert.ok(Math.abs(a.toSourceTime(growthStart+1000)-a.toSourceTime(growthStart)-1500)<1e-8);assert.ok(Math.abs(a.toPlaybackTime(26000)-a.toPlaybackTime(23000)-2000)<1e-8);assert.ok(Math.abs(a.toSourceTime(12000)-(12000+256/30*1000-6200))<1e-8);assert.equal(a.frames,634);
+ assert.ok(painter.pose(a.toSourceTime(5800)/1000).zoom>6);assert.ok('intro' in painter.pose(a.toSourceTime(6201)/1000));
+ for(const t of [14.2,14.35,14.5,14.8]){const state=painter.pose(t);assert.equal(a.returnAppearance(t,state).alpha,0);e.ctx.reset();e.at(t*1000,{force:true});assert.ok(!e.ctx.commands.some(c=>c[0]==='stroke'&&c[2].strokeStyle==='#d9dfeb'));}
+ const state=painter.pose(15.3);assert.ok(state.scale<.4);assert.ok(a.returnAppearance(15.3,state).alpha>.9);e.ctx.reset();e.at(15300,{force:true});assert.ok(e.ctx.commands.some(c=>c[0]==='stroke'&&c[2].strokeStyle==='#d9dfeb'));painter.destroy();
+ }finally{e.close();}
+});
+
+
+test('第一块方格始终以光点为中心，回缩描边贴合文字正方形，两次镜头交接位置连续',async()=>{
+ const e=await setup();try{const a=e.w.WisePointDomainFlow,painter=a.createPainter(e.w.document),close=(p,q,tolerance=1e-7)=>assert.ok(Math.hypot(p[0]-q[0],p[1]-q[1])<tolerance,`${p} / ${q}`);
+ const g=a.goldenGeometry(0),mean=g.square.slice(0,4).reduce((out,p)=>out.map((v,i)=>v+p[i]/4),[0,0]);close(mean,[0,0]);
+ const opening=painter.pose(3.8);close(opening.P(opening.cx,opening.cy),opening.origin);
+ for(const t of [11.2,14.8,15.1,15.45,16.4]){const state=painter.pose(t),points=[[0,0],[1,0],[1,1],[0,1]].map(p=>a.planeGridPoint(state,...p)),center=points.reduce((out,p)=>out.map((v,i)=>v+p[i]/4),[0,0]);close(center,state.center);
+  const lengths=points.map((p,i)=>Math.hypot(p[0]-points[(i+1)%4][0],p[1]-points[(i+1)%4][1]));assert.ok(Math.max(...lengths)-Math.min(...lengths)<1e-8);assert.ok(Math.abs(lengths[0]-a.PLANE_STEP*state.viewScale)<1e-7);
+ }
+ // 检查实际绘出的回缩正方形，而不只检查辅助函数。
+ const state=painter.pose(15.4),shape=new e.w.Path2D();[[0,0],[1,0],[1,1],[0,1],[0,0]].map(p=>a.planeGridPoint(state,...p)).forEach((p,i)=>i?shape.lineTo(...p):shape.moveTo(...p));e.ctx.reset();e.at(15400,{force:true});assert.ok(e.ctx.commands.some(c=>c[0]==='stroke'&&c[2].strokeStyle==='#d9dfeb'&&c[1][0]===shape.hash));
+ const cut=256/30,before=painter.pose(cut-1e-8),after=painter.pose(cut);for(const [x,y]of [[0,0],[1,0],[1,1],[0,1]])close(before.P(before.cx+(x-.5)*a.GRID_STEP,before.cy+(y-.5)*a.GRID_STEP),a.planeGridPoint(after,x,y),.001);
+ const cut2=500/30,before2=painter.pose(cut2-1e-8),after2=painter.pose(cut2);for(const [x,y]of [[0,0],[1,0],[1,1],[0,1],[-3,-5],[10,3]])close(a.planeGridPoint(before2,x,y),a.gridTilePoint(after2,x,y,cut2),.001);
+ for(let i=1;i<6;i++)assert.equal(a.returnTileReveal(14.98,i),0);painter.destroy();
+ }finally{e.close();}
+});
+
+test('每条动作线先延伸、停驻蓄亮，再发出火花，停顿期间端点不移动',async()=>{
+ const e=await setup();try{const a=e.w.WisePointDomainFlow,painter=a.createPainter(e.w.document);
+ for(const [i,tr]of a.traces.entries()){
+  const extending=a.traceGeometry((tr.start+tr.arrive)/2)[i],held=a.traceGeometry(tr.arrive+.02)[i],late=a.traceGeometry(tr.stop-.001)[i],burst=a.traceGeometry(tr.stop+.01)[i];assert.equal(extending.phase,'extend');assert.ok(extending.progress>0&&extending.progress<1);assert.equal(held.phase,'hold');assert.equal(late.phase,'hold');assert.equal(burst.phase,'spark');assert.ok(tr.stop-tr.arrive>=.25);assert.deepEqual(Array.from(held.tip),Array.from(late.tip));assert.ok(late.charge>held.charge);assert.ok(held.sparkAge<0);
+  for(const [t,hasSpark]of [[tr.stop-.001,false],[tr.stop+.15,true]]){e.ctx.reset();painter.drawLayer(e.ctx,'constraints',t,painter.pose(t));const iron=e.ctx.commands.some(c=>c[0]==='stroke'&&c[2].strokeStyle==='#ffdda0');if(i===0||hasSpark)assert.equal(iron,hasSpark);}
+ }painter.destroy();
+ }finally{e.close();}
+});
+
+test('黄金矩形逐层分割，两千余个矩形比例正确、方格不相互覆盖、弧线不越过所属方格',async()=>{
+ const e=await setup();try{const a=e.w.WisePointDomainFlow;assert.deepEqual(Array.from(a.mainGoldenTiles,t=>t.size),[1,1,2,3,5,8,13,21,34,55]);assert.ok(a.natureRectangles.length>=2000);assert.ok(a.natureArcs.length>=9000);
+ const box=pts=>[Math.min(...pts.map(p=>p[0])),Math.min(...pts.map(p=>p[1])),Math.max(...pts.map(p=>p[0])),Math.max(...pts.map(p=>p[1]))];
+ for(const r of a.natureRectangles){assert.ok(Math.abs(r.width/r.height-a.PHI)<1e-9);const outer=box(r.outline),cells=[];
+  for(const id of r.squares){const sq=a.natureSquares[id],b=box(a.natureGeometry[sq.guide].local);assert.ok(b[0]>=outer[0]-1e-8&&b[1]>=outer[1]-1e-8&&b[2]<=outer[2]+1e-8&&b[3]<=outer[3]+1e-8);
+   for(const c of cells){const overlap=Math.max(0,Math.min(b[2],c[2])-Math.max(b[0],c[0]))*Math.max(0,Math.min(b[3],c[3])-Math.max(b[1],c[1]));assert.ok(overlap<1e-8);}cells.push(b);
+  }
+ }
+ for(const line of a.natureGeometry){const sq=a.natureSquares[line.owner];assert.equal(a.natureProgress(line.at-.001,line),0);assert.equal(a.natureProgress(line.at+line.duration,line),1);
+  for(const p of line.local){const x=p[0]-sq.center[0],y=p[1]-sq.center[1],u=(x*sq.u[0]+y*sq.u[1])/(sq.size*sq.size),v=(x*sq.v[0]+y*sq.v[1])/(sq.size*sq.size);assert.ok(u>=-1e-8&&u<=1+1e-8&&v>=-1e-8&&v<=1+1e-8);}
+  for(const p of line.points)assert.ok(p.every(Number.isFinite)&&p[0]>12&&p[0]<628&&p[1]>8&&p[1]<352);
+ }
+ for(const t of [a.NATURE_START,17,17.3,17.8,18.25,24.8]){const m=a.natureCamera(t);assert.ok(Math.abs(Math.hypot(m.a,m.b)-Math.hypot(m.c,m.d))<1e-9);assert.ok(Math.abs(m.a*m.c+m.b*m.d)<1e-9);}
+ assert.ok(Math.max(...a.natureGeometry.map(l=>l.at+l.duration))<25.7);
+ }finally{e.close();}
+});
+
+test('每一条新增线从已画出的父级边或弧线接出，父级完成后才开始，不在空处独立出现',async()=>{
+ const e=await setup();try{const a=e.w.WisePointDomainFlow,dist=(p,x,y)=>{const dx=y[0]-x[0],dy=y[1]-x[1],u=Math.max(0,Math.min(1,((p[0]-x[0])*dx+(p[1]-x[1])*dy)/(dx*dx+dy*dy||1)));return Math.hypot(p[0]-x[0]-u*dx,p[1]-x[1]-u*dy);};
+ for(const l of a.natureGeometry){if(l.at<a.NATURE_START)continue;assert.ok(l.parentLine>=0&&l.parentLine<l.id);const parent=a.natureGeometry[l.parentLine];assert.ok(l.at>=parent.at+parent.duration-1e-8);let gap=Infinity;for(let i=1;i<parent.local.length;i++)gap=Math.min(gap,dist(l.local[0],parent.local[i-1],parent.local[i]));assert.ok(gap<1e-7,`新增线 ${l.id} 离已有线 ${gap}`);}
+ const main=a.natureSquares.filter(s=>s.main);assert.equal(main.length,10);for(let i=1;i<main.length;i++){const before=a.natureGeometry[main[i-1].line].local.at(-1),next=a.natureGeometry[main[i].line].local[0];assert.ok(Math.hypot(before[0]-next[0],before[1]-next[1])<1e-8);}
+ // 检查生长过程的可见点，边缘允许半个细描边的误差。
+ for(let t=a.NATURE_START;t<=18.3;t+=.1){const state=a.gridState(t);for(const l of a.natureGeometry){const q=a.natureProgress(t,l);if(q===0)continue;const last=Math.floor(q*(l.local.length-1));for(let i=0;i<=last;i++){const p=a.naturePoint(0,l.local[i],t,state);assert.ok(p[0]>=-.25&&p[0]<=640.25&&p[1]>=-.25&&p[1]<=360.25);}}}
+ }finally{e.close();}
+});
+
+test('原来的黄金弧线与铁花持续保留，递归密度不断增加，生长和成形均合并绘制',async()=>{
+ const e=await setup();try{const a=e.w.WisePointDomainFlow,painter=a.createPainter(e.w.document),close=(p,q,tolerance=1e-6)=>assert.ok(Math.hypot(p[0]-q[0],p[1]-q[1])<tolerance),main=a.natureSquares.filter(s=>s.main).slice(0,6);
+ const before=painter.pose(a.NATURE_START-1e-8),after=painter.pose(a.NATURE_START);
+ for(let tile=0;tile<6;tile++){const old=a.goldenGeometry(tile).arc,line=a.natureGeometry[main[tile].line];assert.equal(line.local.length,old.length);for(let i=0;i<old.length;i++){const local=Array.from(old[i],v=>v*130/a.GRID_STEP);close(line.local[i],local);close(a.naturePoint(0,local,a.NATURE_START,after),a.planeGridPoint(before,local[0]+.5,local[1]+.5),.001);}}
+ let previous=0;for(let t=a.NATURE_START;t<26.82;t+=.125){const state=painter.pose(t),count=a.natureArcs.filter(l=>a.natureProgress(t,l)>0).length;assert.ok(count>=previous);previous=count;for(const sq of main){const line=a.natureGeometry[sq.line];assert.equal(a.natureProgress(t,line),1);assert.ok(a.natureAlpha(line,t)>.85);}const f=a.flowerState(t,state);assert.ok(f.alpha>=.27);close(f.center,a.natureFocus(t,state));}
+ assert.equal(previous,a.natureArcs.length);
+ for(const t of [17,18.15,19,20,21,22.12,23.3,24.5,25.4,26.2]){e.ctx.reset();painter.drawLayer(e.ctx,'flow',t,painter.pose(t));const strokes=e.ctx.commands.filter(c=>c[0]==='stroke');assert.ok(strokes.length<=240,`${t}秒描边 ${strokes.length} 次`);assert.ok(strokes.some(c=>c[2].strokeStyle==='#efd7ae'&&c[2].globalAlpha>.85));}
+ for(const t of [24.2,25.1,26.2]){e.ctx.reset();painter.drawLayer(e.ctx,'fibres',t,painter.pose(t));assert.ok(e.ctx.commands.some(c=>c[0]==='stroke'&&c[2].strokeStyle==='#ffdda0'&&c[2].globalAlpha>0));}painter.destroy();
+ }finally{e.close();}
+});
+
+test('正式组合与已验收候选在21个代表时刻提交相同画布指令',async()=>{
+ const expected=JSON.parse(await read('tests/fixtures/golden-growth-accepted.json'));
+ const e=await setup();try{for(const [ms,hash]of Object.entries(expected.frames)){e.ctx.reset();e.draw(Number(ms),{force:true});assert.equal(e.ctx.digest(),hash,ms+'毫秒画面与验收版不同');}}finally{e.close();}
+});
+
+test('七个动作只创建自己的画布，共用组合加速时钟并支持倒序定位与释放',async()=>{
+ const e=await env();try{const {w,rec}=e,api=w.WisePointDomainFlow;
+ for(const def of fresh.filter(x=>x.kind==='action')){
+  const spec=api.specs.find(s=>s.id===def.id),root=w.document.createElement('div'),draw=w.MotionFactories[def.id](root,w.MotionKit,def);await draw.ready;
+  const ctx=rec.contexts.find(c=>c.canvas===root.querySelector('canvas'));
+  assert.equal(root.querySelectorAll('canvas').length,1,def.name);
+  assert.ok(Math.abs(def.duration_ms-(api.toPlaybackTime(spec.clock[1]*1000)-api.toPlaybackTime(spec.clock[0]*1000)))<1e-7);
+  const hashes=new Map();for(const ms of [0,def.preview_ms,def.duration_ms]){ctx.reset();draw(ms,{force:true});hashes.set(ms,ctx.digest());const source=Math.min(805/30,spec.clock[1]-1/30000,api.toSourceTime(api.toPlaybackTime(spec.clock[0]*1000)+ms)/1000);assert.ok(Math.abs(Number(root.querySelector('[data-part]').dataset.time)-source)<.000001);}
+  for(const [ms,hash]of [...hashes].reverse()){ctx.reset();draw(ms,{force:true});assert.equal(ctx.digest(),hash,def.name);}
+  draw.destroy();assert.equal(root.childElementCount,0);assert.equal(ctx.canvas.width,1);
+ }
+ }finally{e.close();}
+});
+
+test('组合拆解具有真实透明图层，切换后保留时刻，字体与路径销毁不残留',async()=>{
+ const e=await setup();try{const {w,root,draw,rec}=e,rows=w.MotionFactories[composition.id].breakdown,api=w.WisePointDomainFlow;
+ assert.deepEqual([...new Set(rows.flatMap(r=>Array.from(r.actions)))].sort(),[...composition.actions].sort());
+ assert.deepEqual([...new Set([...root.querySelectorAll('[data-layer]')].map(c=>c.dataset.layer))].sort(),Array.from(rows,r=>r.id).sort());
+ for(const row of rows){const spec=api.specs.find(s=>s.key===row.id);assert.equal(row.start,api.toPlaybackTime(spec.clock[0]*1000));assert.equal(row.end,api.toPlaybackTime(spec.clock[1]*1000));}
+ draw(19000);const canvas=root.querySelector('canvas:not([data-layer])'),layer=root.querySelector('[data-layer]');layer.setAttribute('data-composition-hidden','');await Promise.resolve();assert.equal(canvas.style.visibility,'hidden');
+ for(const c of rec.contexts.filter(c=>c.canvas.hasAttribute('data-layer')))assert.notEqual(c.options?.alpha,false,'拆解图层必须透明');
+ layer.removeAttribute('data-composition-hidden');await Promise.resolve();assert.equal(canvas.style.visibility,'visible');
+ draw.destroy();assert.ok(rec.contexts.every(c=>c.canvas.width===1&&c.canvas.height===1));assert.equal(root.childElementCount,0);
+ }finally{e.close();}
+});
+
+test('星点保留原示例，正式入口与复制提示词使用新图案且无旧视频覆盖',async()=>{
+ const e=await env();try{const {w}=e;w.MotionRegistry=data;w.eval(await read('catalog/matching.js'));w.eval(await read('catalog/export.js')); const stars=data.effects.find(e=>e.id==='star-twinkle'),root=w.document.createElement('div');
+ const original=w.MotionRuntime.create(root,stars,{autoplay:false});assert.ok(root.querySelector('[data-star]')||root.querySelector('svg'));original.destroy();
+ const def=w.MotionKit.resolveVariant({...stars,variant_id:'layered-night'}),variant=w.MotionRuntime.create(root,def,{autoplay:false});await variant.ready;assert.equal(root.querySelectorAll('canvas').length,1);assert.equal(def.duration_ms,composition.duration_ms);variant.destroy();
+ const prompt=w.MotionExport.prompt(composition,{},data);for(const term of ['黄金','打铁花','2002','21.133333','字幕'])assert.ok(prompt.includes(term),term);assert.doesNotMatch(prompt,/多涡流场|三圈文字圆|160颗/);
+ const code=w.MotionExport.code(stars,{variantId:'layered-night'});assert.ok(code.indexOf('catalog/effects/reel-neon.js')<code.indexOf('catalog/effects/point-domain-flow.js'));
+ const page=await read('catalog/index.html');assert.match(page,/effects\/point-domain-flow.js/);assert.doesNotMatch(page,/local-preview.js/);
+ for(const id of ['grid-bend-spread','multivortex-release'])assert.equal(data.redirects[id],'grid-flow-unfold');
+ }finally{e.close();}
+});
+
+test('目录旧书签直接显示新版名称、时长、真实拆解与复制代码',async()=>{
+ const e=await environment(true,{staticPreview:true,hash:'#point-domain-flow-sequence'});try{const {w}=e,d=w.document;assert.equal(d.querySelector('.effect-item[aria-current="true"]').dataset.effect,composition.id);assert.ok(d.getElementById('prompt').textContent.includes('黄金矩形递归生长'));assert.ok(d.getElementById('code').textContent.includes('point-domain-flow.js'));assert.equal(d.querySelectorAll('[data-composition-layer]').length,w.MotionFactories[composition.id].breakdown.length);assert.equal(w.MotionRuntime.instanceCount,1);
+ }finally{e.close();}
 });

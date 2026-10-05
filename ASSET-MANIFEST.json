@@ -8,8 +8,8 @@
     },
     {
       "path": "catalog/app.js",
-      "bytes": 52936,
-      "sha256": "fb45ae062a7dc6e4759084d60112549c688cfc88a0742a0dd6f249c4398b0312"
+      "bytes": 53978,
+      "sha256": "437994d641490357c9ec2198871470fd89c6dd4804ca66af51deab4782478239"
     },
     {
       "path": "catalog/assets/collage-film/SOURCE.json",
@@ -378,8 +378,8 @@
     },
     {
       "path": "catalog/effects/point-domain-flow.js",
-      "bytes": 120798,
-      "sha256": "8e49c514d89d5557c5b77517b6d6671bab44fe3ff74c0c5055674bac0961d8f2"
+      "bytes": 63109,
+      "sha256": "f4571320a02771bb89874f88f366135aa8e2413f2648528b8402fd6e26e1518e"
     },
     {
       "path": "catalog/effects/promo-particles.js",
@@ -523,18 +523,18 @@
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Bold.woff2",
-      "bytes": 537780,
-      "sha256": "2de6ae5f68c1d1f416d7c08e36a68f4c959132c361c89e9d1596fe6583f6ea7d"
+      "bytes": 541160,
+      "sha256": "e276150b505aa2d393435cc469cbc3c8b8876bdc564acf4e243a74a5cc75d838"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Light.woff2",
-      "bytes": 507652,
-      "sha256": "0d84ffb0dd700b52a7065144031646da64dac14d3acbd28b5d32bce46c53caa4"
+      "bytes": 509544,
+      "sha256": "d52c99e0550f41b432c9ec59b917bcba2096372030734d570a71e0937de07d09"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Regular.woff2",
-      "bytes": 520476,
-      "sha256": "fab88c3a72d30484f968b6dd3b36b469996104abffe98cf5e14db2e8e5b3ee76"
+      "bytes": 524052,
+      "sha256": "b755c779ce59b4a1804b85d0dadb6cc718a303a979d218095c7d80eb0a058fed"
     },
     {
       "path": "catalog/history-data.js",
@@ -552,11 +552,6 @@
       "sha256": "51b0e008ab0b10a9ed1b6e7fcc0cf2858ff3665ef3d785c52592f385c831dae2"
     },
     {
-      "path": "catalog/local-preview.js",
-      "bytes": 13973,
-      "sha256": "923548b4ddf59b28ce5b010e931d3ada2590d978b2a384279ba63808c6ce3c06"
-    },
-    {
       "path": "catalog/matching.js",
       "bytes": 9322,
       "sha256": "4113e60f9bfb9a790b3734bd7f294c37fe09a6d00ba464e0299a48efcd2ead39"
@@ -568,13 +563,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 884334,
-      "sha256": "9b6630c47d539d55d4df340818e145f42ef7e7382a23eab5fc0d3fa52c6d3949"
+      "bytes": 885991,
+      "sha256": "ec9fd9494a600def630ed5a03fd19b959d1bc28745edf52ba680920eff5bb27c"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1086628,
-      "sha256": "784a20fd835f9f987d0b2b73dc131bac523e398f458087ea3fa6d1a13ffdf0a2"
+      "bytes": 1088973,
+      "sha256": "a610808980becdee2ccf1354574fc62043f81af475fa1ad65823e81c46e4a1b1"
     },
     {
       "path": "catalog/related-preview.js",
