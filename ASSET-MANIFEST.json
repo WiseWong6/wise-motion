@@ -262,6 +262,11 @@
       "sha256": "f30c40e763c2c66d6bb96ab09201b97d7b8fb17b2f38bcba3347f6c94f548351"
     },
     {
+      "path": "catalog/assets/glass-light/SOURCE.json",
+      "bytes": 2008,
+      "sha256": "43be0209a3f956ef1d333f084b914c95b080767da3960d4a30ec6b145d16b169"
+    },
+    {
       "path": "catalog/assets/material-evolution/SOURCE.json",
       "bytes": 1364,
       "sha256": "99f70ea14d48e67bdbf19c7e08de95d2be2eeaa2a6a96e722ad80fa1c6fbcac6"
@@ -513,8 +518,8 @@
     },
     {
       "path": "catalog/effects/glass-light.js",
-      "bytes": 46160,
-      "sha256": "072357337c3f6090625cda39604d62979a203151923993943ee5149dc7f49c22"
+      "bytes": 46594,
+      "sha256": "d74637674a53a6d5704011331b98f15ab655398fdb748a7ab034a2c3fd0cb3b7"
     },
     {
       "path": "catalog/effects/glyph-code-fill.js",
@@ -743,18 +748,18 @@
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Bold.woff2",
-      "bytes": 558296,
-      "sha256": "4ee2b2400e151236ae8dd258d50d31f7ba50d67196a252b2d21e3b39fd5ff2a9"
+      "bytes": 558564,
+      "sha256": "bd99d9b14a4f38a8562d5e68d3728915c1b770807506bbd6e7b5576ddfab862f"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Light.woff2",
-      "bytes": 525176,
-      "sha256": "e6898962e283e2fb0c7ff203b96a30f9cf9b2291230ac93a407b978e0e4eb9cc"
+      "bytes": 525856,
+      "sha256": "6d1f7843e596d1d64bcb4ca857880f9ed77c3c0cb2d91064851455c43ffc8508"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Regular.woff2",
-      "bytes": 540512,
-      "sha256": "b187b004959a23bc07072591e328ada97487a84d7b28ad0b4283fb3061435d68"
+      "bytes": 541756,
+      "sha256": "9fea800eea0ccc0b8e4fed8118b8e07afd116d184bed52810d1d667e612bbea9"
     },
     {
       "path": "catalog/history-data.js",
@@ -783,13 +788,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1124978,
-      "sha256": "565088a7dfbe5389fc076deb0937110c5d51b01c9a41be8f9f7fbcbb7e5b781c"
+      "bytes": 1137556,
+      "sha256": "8437952481d1058cb62b3e35ddde694588fc4712193faa26bfb8478f026a2992"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1385504,
-      "sha256": "d832efbac041c5c94cf722c30405e1982461cf48e2c32552ae5fa45d5e0d809c"
+      "bytes": 1400364,
+      "sha256": "77fe800ca90171c3e8f8fc129436806a179723f049add083c8ce8da1585d8488"
     },
     {
       "path": "catalog/related-preview.js",

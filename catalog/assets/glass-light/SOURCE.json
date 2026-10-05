@@ -1,0 +1,39 @@
+{
+  "name": "玻璃卡片显现折射及直接拆分动作、六张插画",
+  "code_license": "AGPL-3.0-only",
+  "visual_reference": {
+    "name": "Apple Vision Pro 空间界面",
+    "public_url": "https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/",
+    "scope": "完整组合、六张卡片及直接拆分动作统一采用苹果空间界面；语音为 Siri、对话为短信、其余为系统设置、音乐、天气与控制中心。"
+  },
+  "implementation": "六张苹果空间卡片、空间投影、几何、光照与像素采样采用本项目独立绘制代码；短信、音乐和天气信息为固定演示数据，不携带官方媒体。目录玻璃播放条的第三方程序单独记录。",
+  "separate_player_dependency": {
+    "name": "Liquid Glass",
+    "author": "Deepika Rao",
+    "repository": "https://github.com/deepika-builds/liquid-glass",
+    "license": "MIT",
+    "source_record": "vendor/liquid-glass/SOURCE.json",
+    "scope": "目录页面底部播放条；不参与玻璃卡片动画的绘制。"
+  },
+  "wordmark": {
+    "family": "Helvetica Neue Bold",
+    "source": "字形轮廓由 Helvetica Neue Bold 字库提取；随包不含字体文件。",
+    "status": "字形轮廓分发条件待核实。"
+  },
+  "additional_visual_reference": {
+    "name": "Apple 液态玻璃设计",
+    "url": "https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/",
+    "scope": "六张卡片共用的玻璃材质、柔和高光与透光层次。"
+  },
+  "historical_visual_reference": {
+    "name": "Opus 能力展示片（网络复刻）",
+    "public_url": "https://weixin.qq.com/sph/AysV6Wqz8m",
+    "attribution": "Vincent 的 AI 实验场",
+    "credit_role": "收集并复刻",
+    "scope": "玻璃卡片早期制作阶段的视觉参考；现行六张卡片统一采用上述苹果空间界面参考。",
+    "source_confirmation": {
+      "provided_by": "项目维护者",
+      "date": "2026-10-06"
+    }
+  }
+}

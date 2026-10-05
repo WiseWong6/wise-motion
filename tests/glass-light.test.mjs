@@ -39,7 +39,7 @@ test('六卡以真实透视侧转，前景阅读窗完整，全段逐帧空间�
  }finally{env.close();}
 });
 
-test('卡面动效按展示顺序衔接，滑杆有界、对话逐条输出，蓝牙为贯穿中轴的双三角',async()=>{
+test('苹果空间卡按展示顺序衔接，滑杆有界、短信逐条输出，蓝牙为贯穿中轴的双三角',async()=>{
  const env=await environment();try{
   const {content,bluetoothPaths}=env.w.WiseGlassLight.spatial;
   assert.ok(content(1.8).ripplePhase>content(1.1).ripplePhase);
@@ -135,7 +135,16 @@ test('玻璃拆解对应真实独立动作，复制页携带正式绘制源码�
   assert.deepEqual([...new Set(rows.flatMap(row=>Array.from(row.actions)))].sort(),[...comp.actions].sort());
   for(const id of ids){const e=data.effects.find(x=>x.id===id),code=w.MotionExport.code(e,{speed:.75}),prompt=w.MotionExport.prompt(e,{},data);
    assert.match(code,/catalog\/effects\/glass-light\.js/);assert.doesNotMatch(code,/opus-glass-refinement|reference\.mp4|frames\//);
-   assert.match(prompt,/黑银/);assert.doesNotMatch(prompt,/强调色 #ff5a1f/);
+   assert.match(prompt,/黑银/);assert.match(prompt,/苹果空间/);assert.doesNotMatch(prompt,/强调色 #ff5a1f|WISE 创作|Opus|旧三卡/);
+  }
+  for(const e of data.effects.filter(e=>e.source.path==='catalog/effects/glass-light.js')){
+   for(const def of [e,...(e.variants||[]).map(v=>w.MotionKit.resolveVariant(e,v.id))]){
+    assert.equal(def.source.reference.name,'Apple Vision Pro 空间界面');
+    assert.equal(def.source.reference.url,'https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/');
+    assert.ok(def.source.additional_references.every(ref=>ref.url.startsWith('https://www.apple.com/')));
+    assert.doesNotMatch(JSON.stringify(def),/Opus|WISE 创作|原三卡|新增三卡|固定完整画面/);
+    const prompt=w.MotionExport.prompt(def,{},data);assert.match(prompt,/苹果空间/);
+   }
   }
   const root=w.document.createElement('div'),draw=w.MotionFactories[comp.id](root,w.MotionKit,comp);draw(comp.preview_ms);
   draw.destroy(true);assert.equal(root.querySelectorAll('canvas').length,1,'缩略图只保留最终像素面');draw(0);assert.equal(root.querySelectorAll('canvas').length,1);
@@ -163,7 +172,7 @@ test('六张玻璃卡作为独立插画登记，透明背景、动态定位和�
  }finally{env.close();}
 });
 
-test('WISE 创作文案共用绘制，片尾统一参考字体并由原生 O 接管凸泡',async()=>{
+test('六张卡共用苹果空间内容，短信气泡逐字出现，片尾由原生 O 接管凸泡',async()=>{
  const env=await environment();try{
   const {w}=env,contexts=[],colors=[],lensFrames=[],cache=new WeakMap();
   w.HTMLCanvasElement.prototype.getContext=function(){
@@ -172,6 +181,7 @@ test('WISE 创作文案共用绘制，片尾统一参考字体并由原生 O 接
     createRadialGradient:()=>({addColorStop(offset,color){colors.push(color);}}),createLinearGradient:()=>({addColorStop(offset,color){colors.push(color);}}),
     getTransform:()=>({a:1,b:0,c:0,d:1,e:0,f:0}),
     fillText(value,x,y){trace.push({type:'text',value,x,y});},
+    roundRect(x,y,width,height,radius){trace.push({type:'bubble',x,y,width,height,radius});},
     arc(x,y,r){trace.push({type:'arc',x,y,r});},
     quadraticCurveTo(...values){trace.push({type:'glyph-curve',values});},
     getImageData:(x,y,width,height)=>({data:new Uint8ClampedArray(width*height*4),width,height}),
@@ -183,13 +193,17 @@ test('WISE 创作文案共用绘制，片尾统一参考字体并由原生 O 接
   const painter=w.WiseGlassLight.createPainter(w.document),canvas=w.document.createElement('canvas'),ctx=canvas.getContext('2d');
   for(const key of ['listening','chat','focus','music','weather','controls'])painter.drawCard(ctx,key);
   const words=contexts.flatMap(c=>c.trace).filter(x=>x.type==='text').map(x=>x.value);
-  for(const word of ['Voice input','WISE','Bring this idea to life.','Start with a clear idea.','Give every move a purpose.','Let the details catch light.','Make the next frame matter.','Build a scene','Explore a variation','Create','Light'])assert.ok(words.includes(word),word);
-  for(const word of ['AFTER HOURS','WISE RADIO','1:24','−2:16','CUPERTINO','21°','PARTLY CLOUDY','CONTROL CENTER','FOCUS','ON'])assert.ok(words.includes(word),word);
-  assert.ok(!words.includes('Aurora'));assert.ok(!words.some(x=>/Sunday|family|calendar/.test(x)));
+  for(const word of ['Siri','Listening…','“Siri, play some music.”','Messages','Alex','Today 9:41','Are we still meeting today?','Yes, at 6:30.','I booked a table for us.','I’ll send you the address.','See you there.','iMessage','Settings','Do Not Disturb','Brightness'])assert.ok(words.includes(word),word);
+  for(const word of ['After Hours','Apple Music','1:24','−2:16','Cupertino','21°','Partly Cloudy','Control Center','Focus','On'])assert.ok(words.includes(word),word);
+  assert.ok(!words.some(value=>/WISE|Bring this idea|Start with|Build a scene|Explore a variation|Create|Voice input|Aurora/.test(value)),'卡面不能带回创作助手内容');
+  const bubbles=contexts.flatMap(c=>c.trace).filter(x=>x.type==='bubble');
+  for(const y of [178,218,258,298])assert.ok(bubbles.some(x=>x.x===28&&x.y===y&&x.height===34),'每条收到的短信有独立气泡');
+  assert.ok(bubbles.some(x=>x.x===280&&x.y===119),'发送消息在右侧');
+  assert.ok(bubbles.some(x=>x.x===65&&x.y===356),'输入栏保留在底部');
   contexts.forEach(c=>{c.trace.length=0;});painter.render(ctx,4.4);
   const partial=contexts.flatMap(c=>c.trace).filter(x=>x.type==='text').map(x=>x.value);
-  assert.ok(partial.some(value=>value.startsWith('Start')&&value!=='Start with a clear idea.'),'实际绘制逐字输出而不是整行突然出现');
-  assert.ok(!partial.includes('Give every move a purpose.'),'后续行等待前一行结束');
+  assert.ok(partial.some(value=>value.startsWith('Yes')&&value!=='Yes, at 6:30.'),'实际短信逐字输出而不是整条突然出现');
+  assert.ok(!partial.includes('I booked a table for us.'),'后续消息等待上一条结束');
   contexts.forEach(c=>{c.trace.length=0;});const end=painter.render(ctx,7),marks=contexts.flatMap(c=>c.trace),arcs=marks.filter(x=>x.type==='arc');
   const brand=w.WiseGlassLight.brand;assert.equal(brand.family,'Helvetica Neue');assert.equal(brand.weight,700);
   const reference=JSON.parse((await readFile(new URL('../catalog/effects/reel-opening.js',import.meta.url),'utf8')).match(/const glyphs = (.*);/)[1]);
