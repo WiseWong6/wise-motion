@@ -1,0 +1,268 @@
+{
+  "description": "草书火归楷，墨点与线结构递增，横排闪变种子、植物与花卉，四花缩拢收入文明群像，群像闪烁散点聚成 WISE MOTION。",
+  "code_license": "AGPL-3.0-only",
+  "sources": {
+    "cursive": {
+      "name": "Liu Jian Mao Cao",
+      "description": "Liu Jian Mao Cao 真实草书字库；本片只提取火字矢量轮廓。",
+      "source": "https://github.com/google/fonts/tree/main/ofl/liujianmaocao",
+      "license": "SIL Open Font License 1.1",
+      "sha256": "cab396b91a5b7c0b4005a35891180d06e6751f5ac261fe680aec65c1ae209033"
+    },
+    "regular": {
+      "family": "I.顏體 / I.Ngaan",
+      "authorPage": "https://founder.acgvlyric.org/iu/doku.php/造字:開源字型_i.顏體",
+      "download": "https://raw.githubusercontent.com/yuleshow/chinese-fonts/master/I.Ngaan.ttf",
+      "sha256": "7aba8f5bb77ea7e0fc37c0e5e709bd8e1d49b44a3c91eb503f426562602f9c2a",
+      "license": "GPL-2.0-or-later",
+      "scope": "四字真实字库轮廓；不是颜真卿墨迹原件",
+      "copyright": "(C) Dr. Hann-Tzong Wang, 1999-2004; (C) Ichiten Fonts Project, 2013-14. This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public Linense as published by the Free Software Foundation; either version 2 of the License, or any later version."
+    },
+    "growth": {
+      "generator": "Codex内置 image_gen.imagegen",
+      "sha256": "5dbd0f0cefb74497081a5de9a26a2718458bdd76bbbf2be131b4b0acef5882f2",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "prompt": "GROWTH-PROMPT.txt",
+      "parts": 16
+    },
+    "civilization": {
+      "stage": "已接入文明群像动画的固定版画层，局部机关由代码独立控制",
+      "direction": "文明的创造延续：取火、器物、文字、机械与探索",
+      "generator": "Codex内置 image_gen.imagegen",
+      "size": [
+        1672,
+        941
+      ],
+      "mode": "RGB",
+      "sha256": "cf601b29c88be80381d38c4837ab4ebe25761e93f7c3cf08159563ecf980b28c",
+      "prompt": "CIVILIZATION-PROMPT.txt",
+      "review": "已查看生成结果：画面密度提高、中心空洞消失，四朵花移为左上小组，取火、耕种、器物、文字、机械与探索可辨识。当前图为整体构图稿，非已分层动画素材。",
+      "animation": "civilization-atlas.mjs 与 civilization/",
+      "imageBytesChanged": false
+    }
+  },
+  "files": [
+    {
+      "path": "CIVILIZATION-PROMPT.txt",
+      "bytes": 3703,
+      "sha256": "ced6cd0107d17d403e854a1820b7485449429bfa9e79298a2321bfa01e934e3f"
+    },
+    {
+      "path": "GPL-Calligraphy.txt",
+      "bytes": 17984,
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6"
+    },
+    {
+      "path": "GROWTH-PROMPT.txt",
+      "bytes": 2940,
+      "sha256": "161b233948937661cff7036a1977aa0e9f218a884fb418267cd5495aa7551ea4"
+    },
+    {
+      "path": "OFL-Cursive.txt",
+      "bytes": 4406,
+      "sha256": "ff56684b0212481e7c3886c26d5a655de9b211c8119e5ccc756138a97b066acc"
+    },
+    {
+      "path": "OFL-Oswald.txt",
+      "bytes": 4390,
+      "sha256": "0687c51a3126ae6963389181135a2eaea02f2e88f31230d27409952f28e84da5"
+    },
+    {
+      "path": "OFL-Serif.txt",
+      "bytes": 4463,
+      "sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2"
+    },
+    {
+      "path": "assets.mjs",
+      "bytes": 1102,
+      "sha256": "166018a4153de38d61ba7e3916f0bc6e109e3156310708e7586a463477b2d9c2"
+    },
+    {
+      "path": "botanical-texture.mjs",
+      "bytes": 2098,
+      "sha256": "4b6ffa53186409356d7647ffd370dbe57594542eb7b1194200445d34cd9dbe2e"
+    },
+    {
+      "path": "brand-final.mjs",
+      "bytes": 2649,
+      "sha256": "c0ec39242e17178832a7e7b4e0b75b89d886cd4f09efe5487c1a9c414440e534"
+    },
+    {
+      "path": "calligraphy-data.mjs",
+      "bytes": 1023381,
+      "sha256": "9d2e8e80d9bce49f8ce80ff325e29d7daf1e196e101a27af1933be1779973389"
+    },
+    {
+      "path": "calligraphy.mjs",
+      "bytes": 1399,
+      "sha256": "13960301a6cc1d35636abdc6765dedf4fca72f3e0ab870091ac4ce660faea607"
+    },
+    {
+      "path": "catalog-entry.mjs",
+      "bytes": 2302,
+      "sha256": "db4b2b82bacb29673c7f598c205acec0c6446bcf8ce1038ed1a2f49c03016b90"
+    },
+    {
+      "path": "civilization/exploration.mjs",
+      "bytes": 729,
+      "sha256": "a5ba9e2acd855d07de0d42a4f623b6e2bfa85a3cf3cf2d4b50ccb774e94f07de"
+    },
+    {
+      "path": "civilization/fire.mjs",
+      "bytes": 1289,
+      "sha256": "924e9e4f47e7ca6c4c02ab4f9ce5cd6fe42868a12e538aed4e085deb483f47b0"
+    },
+    {
+      "path": "civilization/handoff.mjs",
+      "bytes": 1892,
+      "sha256": "556a8318a285a58a81d9c3fce69b66f831e0d18e3b62f7be63f144749f292a4c"
+    },
+    {
+      "path": "civilization/ink-parts.mjs",
+      "bytes": 2209,
+      "sha256": "2ce9ff198cb3bab76bcdc407f366474d4a5ae362770d4ac54271162b98559967"
+    },
+    {
+      "path": "civilization/loom.mjs",
+      "bytes": 1671,
+      "sha256": "4a5ec9058d246703d1942cd807775bb8a521d901cc861659f12e3fa12516ca62"
+    },
+    {
+      "path": "civilization/observatory.mjs",
+      "bytes": 1137,
+      "sha256": "349a4db1cbad02ef64956d8e2c34b1ae5ef749bafd5b84e81b475804da859667"
+    },
+    {
+      "path": "civilization/pendulum.mjs",
+      "bytes": 1159,
+      "sha256": "c4df703651e4d74916237c0d5512fbdbf5b2440882d4a4907ce3ee19778fd8b0"
+    },
+    {
+      "path": "civilization/piston.mjs",
+      "bytes": 1017,
+      "sha256": "ac8d458c1be7a0c3abfece47d8db671d18ecb4bba1a4d7ccbacada0d2033cdd0"
+    },
+    {
+      "path": "civilization/reveal.mjs",
+      "bytes": 2744,
+      "sha256": "a4b4d0b9d10c35ee56d8c3807b0db05d0e899c00e5c4547abbd6f29e02484f6f"
+    },
+    {
+      "path": "civilization/wheels.mjs",
+      "bytes": 1413,
+      "sha256": "f3fd9ed8dcfb422ff6cc85f6ee4475286b6753825840d74ed17ce502debce563"
+    },
+    {
+      "path": "civilization-atlas.mjs",
+      "bytes": 1394,
+      "sha256": "eb6f74878fa0b695d718c52c0964bcd53c36baeceddc3b4e50cc80a51bbe1106"
+    },
+    {
+      "path": "civilization-image.mjs",
+      "bytes": 4867198,
+      "sha256": "f8cf9d12814dc4ca1a456f0781384a9565882dd4d09686d92180638603d13c42"
+    },
+    {
+      "path": "cursive-data.mjs",
+      "bytes": 92849,
+      "sha256": "e1818aaeedcb719088b2d3b853ffd285e43336de3d0df7c02d9918913443e03e"
+    },
+    {
+      "path": "engine.mjs",
+      "bytes": 2732,
+      "sha256": "23f9c63b6dc09dbd64bcb8c95b3f294257b206ce6bbdcd00edb86ee796a52ec4"
+    },
+    {
+      "path": "fire-01.mjs",
+      "bytes": 2441,
+      "sha256": "c1154757d3a3ed036da4b88a9f2b509923fab4179db160658b8cb946cb0f2a3c"
+    },
+    {
+      "path": "fire-05.mjs",
+      "bytes": 2614,
+      "sha256": "0fe2c5be01dc0334d60a2b7e56288b29c5c9b8ecdc95b428ac45391976655023"
+    },
+    {
+      "path": "fire-material-bridge.mjs",
+      "bytes": 2330,
+      "sha256": "1824f518b3379acd306b6d1ace27e5bdd8b5e612206cfd9122b8192bd251f02f"
+    },
+    {
+      "path": "fire-material-field.mjs",
+      "bytes": 4169,
+      "sha256": "b75a322bd19bdf52715eadb944feb0cbf67b84b41736f530ee5d27e74a3e1bf4"
+    },
+    {
+      "path": "fire-particle-relay.mjs",
+      "bytes": 2974,
+      "sha256": "deb0120b588393958759ef84ceb560ec3d0ade50227dd0a222f6c18a26b25041"
+    },
+    {
+      "path": "fire-wire-relay.mjs",
+      "bytes": 2367,
+      "sha256": "0624919ca8aedacf61845980eb51a2b4423949da0cfb5704855b0dc0162b9d86"
+    },
+    {
+      "path": "font-data.mjs",
+      "bytes": 14794,
+      "sha256": "2dcd41d6abf8ebbab3704af9eb94083fc53984905f3dd2cb2f27b1e27feffea5"
+    },
+    {
+      "path": "four-flowers.mjs",
+      "bytes": 2718,
+      "sha256": "710ff4cb1bf3a759fbfd7fac04771fefefc8fb9a7ab7067ab23f6d6c18f0b3b6"
+    },
+    {
+      "path": "four-sprouts.mjs",
+      "bytes": 3731,
+      "sha256": "1d1e1bc5c95f826846264964f390a8317814f46c14fac267fac8dd9554227bf4"
+    },
+    {
+      "path": "growth-image.mjs",
+      "bytes": 2326184,
+      "sha256": "b54e154cc00e91bc77184658b79a37580e947f26eaabeb8881ce5b81317c9bde"
+    },
+    {
+      "path": "growth-regions.mjs",
+      "bytes": 1040,
+      "sha256": "291be440f684c6557c04424206bceb47aaed38188c505055f78585dbcf47c57a"
+    },
+    {
+      "path": "math.mjs",
+      "bytes": 1265,
+      "sha256": "efae1c69e988ed57b155617f34b232c67198cd63bf884f6ee0cdc49e9b1c9184"
+    },
+    {
+      "path": "paper.mjs",
+      "bytes": 2613,
+      "sha256": "8ba9eedb1ad55231ec3897b12e8b16b74552084d00583bdfc321a077466ea20b"
+    },
+    {
+      "path": "particle-word-library.mjs",
+      "bytes": 28181,
+      "sha256": "a4415540b75123169255cbcb571766e3e9b65cb4e0cdc3c32da3580bb67f3e91"
+    },
+    {
+      "path": "plant-flashes.mjs",
+      "bytes": 679,
+      "sha256": "9d204e17ef7c4fa317c74b089d4afbfb58f578faf70093cefcefb40767a3f811"
+    },
+    {
+      "path": "render.mjs",
+      "bytes": 1112,
+      "sha256": "88744cc15f730d7a54deac185d0b84a181f1a70f5149d953c9eeb5e393427bcc"
+    }
+  ],
+  "particle_equations": {
+    "source": "catalog/effects/promo-particles.js",
+    "sha256": "43a176d094bbd8aeb2afe4295582424d273335d1fe2602edcc33f261d95b0684",
+    "adaptation": "隔离注册空间；保留7000粒子、目标与运动公式。新增真实图像墨点出发、纸底和字标停留。"
+  }
+}

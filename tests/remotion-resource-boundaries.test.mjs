@@ -27,6 +27,7 @@ for(const item of [
  {id:'geometric-poster-sequence',path:'catalog/effects/geometric-poster.js',type:'2d'},
  {id:'motion-oasis-sequence',path:'catalog/effects/motion-oasis.js',type:'2d'},
  {id:'seed-bloom-brand-sequence',path:'catalog/effects/seed-bloom-brand.js',type:'2d'},
+ {id:'civilization-growth-sequence',path:'catalog/effects/civilization-growth.js',type:'2d'},
  {id:'rapid-cut',path:'catalog/effects/transition.js',dependencies:['catalog/effects/geometric-poster.js'],type:'2d'}
 ])test(item.id+' 的画布不可用时明确失败并恢复资源接口',async()=>{
  const h=harness(item);try{

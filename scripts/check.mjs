@@ -9,10 +9,10 @@ import assert from 'node:assert/strict';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('catalog/registry.json'));
-assert.equal(data.effects.length, 309);
-assert.equal(data.effects.filter(x => x.kind === 'action').length, 224);
+assert.equal(data.effects.length, 316);
+assert.equal(data.effects.filter(x => x.kind === 'action').length, 230);
 assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 61);
-assert.equal(data.effects.filter(x => x.kind === 'composition').length, 24);
+assert.equal(data.effects.filter(x => x.kind === 'composition').length, 25);
 assert.equal(new Set(data.effects.map(x => x.id)).size, data.effects.length);
 for(const [from,to] of Object.entries(data.redirects||{})){
   assert.ok(!data.effects.some(e=>e.id===from),'旧书签不应覆盖现有条目');
@@ -152,4 +152,4 @@ const build = spawnSync(process.execPath, [path.join(root, 'scripts/build.mjs'),
 assert.equal(build.status, 0, build.stderr);
 const markdown = ['README.md','SKILL.md','NOTICE.md','references/index.md','references/history.md','references/method.md','references/sources.md','references/runtime-interface.md','references/material-refinement.md','references/apple-hig.md','tests/manual.md', ...data.effects.map(e => 'references/effects/' + e.id + '.md')];
 for (const file of markdown) for (const [, link] of (await read(file)).matchAll(/\]\(([^)]+)\)/g)) if (!/^(https?:|#)/.test(link)) assert.ok((await stat(path.resolve(root, path.dirname(file), link))).isFile(), file + ' 的链接缺失：' + link);
-console.log('检查通过：224 个动作、61 个插画单图、24 个组合、0 条历史配方与 0 个案例；定义、来源路径、生成文件、许可和脚本语法完整。');
+console.log('检查通过：230 个动作、61 个插画单图、25 个组合、0 条历史配方与 0 个案例；定义、来源路径、生成文件、许可和脚本语法完整。');

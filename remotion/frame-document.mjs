@@ -62,6 +62,7 @@ export const FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/reel-flat-gen.js",
   "catalog/effects/reel-prompt-outro.js",
   "catalog/effects/material-evolution.js",
+  "catalog/effects/civilization-growth.js",
   "catalog/effects/dither-book.js"
 ]);
 export const FRAME_STYLES = Object.freeze(['catalog/scenes.css', 'catalog/app.css', 'catalog/history.css', 'catalog/book-controls.css']);
@@ -104,7 +105,7 @@ function bootstrapFrame() {
     const pendingImages = new Set();
     // 新画布绘制的原目录有静默降级提示；导出必须明确失败，不能把提示或空画布当作成功帧。
     // 仅保护指定画布绘制来源，成功的上下文和所有绘制参数原样传回原函数。
-    const strictCanvasSources = ['catalog/effects/metal-impact.js', 'catalog/effects/geometric-poster.js', 'catalog/effects/motion-oasis.js', 'catalog/effects/seed-bloom-brand.js'];
+    const strictCanvasSources = ['catalog/effects/metal-impact.js', 'catalog/effects/geometric-poster.js', 'catalog/effects/motion-oasis.js', 'catalog/effects/seed-bloom-brand.js', 'catalog/effects/civilization-growth.js'];
     const strictCanvas = [definition.source?.path, ...(definition.source?.dependencies || [])].some(path => strictCanvasSources.includes(path));
     const canvasPrototype = window.HTMLCanvasElement?.prototype;
     const nativeGetContext = canvasPrototype?.getContext;
