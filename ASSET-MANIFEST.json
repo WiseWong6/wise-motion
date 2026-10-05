@@ -533,8 +533,8 @@
     },
     {
       "path": "catalog/effects/hud-targeting.js",
-      "bytes": 184517,
-      "sha256": "368ea462fb9a9b8641ef37222be896897ef7c0d54aaf271139bd033e30fe89fb"
+      "bytes": 188728,
+      "sha256": "432b3b19ac14f03dd273e2632803e4be7cb6dd26021fab238c3e079534ce0a40"
     },
     {
       "path": "catalog/effects/illustrations.js",
@@ -743,18 +743,18 @@
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Bold.woff2",
-      "bytes": 556332,
-      "sha256": "494bdb5bd7638f29812ad9328decc59f182da95031022a24a738eb35a4ff9ca7"
+      "bytes": 558296,
+      "sha256": "4ee2b2400e151236ae8dd258d50d31f7ba50d67196a252b2d21e3b39fd5ff2a9"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Light.woff2",
-      "bytes": 523748,
-      "sha256": "ab4b1d7fe424fcfe236596ec782a5161381f74df33233c5349e6c75434fabd6a"
+      "bytes": 525176,
+      "sha256": "e6898962e283e2fb0c7ff203b96a30f9cf9b2291230ac93a407b978e0e4eb9cc"
     },
     {
       "path": "catalog/fonts/WiseMotionSans-Regular.woff2",
-      "bytes": 539172,
-      "sha256": "a48f1fa4db06b4e9990d24a2c14d00d1aaa5ef8172732522e600eddec0043759"
+      "bytes": 540512,
+      "sha256": "b187b004959a23bc07072591e328ada97487a84d7b28ad0b4283fb3061435d68"
     },
     {
       "path": "catalog/history-data.js",
@@ -783,13 +783,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1116363,
-      "sha256": "5151d5f2a9901b72dc9975f1528f559cc7df0fe8a3df732587722ad88e05d3df"
+      "bytes": 1124050,
+      "sha256": "500caed958692450590ee9f23d3054705f4a2687b3311e74a18a96797291e08e"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1376502,
-      "sha256": "09108268e7582af02b1ccc1ca363223df957caa42148e56ea124eb07df811046"
+      "bytes": 1384576,
+      "sha256": "ce53449d8177469eacf192979f621681a57904276a02a34d9aa5d525b3de50e2"
     },
     {
       "path": "catalog/related-preview.js",
