@@ -1,15 +1,27 @@
 {
   "origin": "用户本机小猫加工厂、蒲公英和音符跳动项目",
-  "notes_bundle_change": "只将固定 600×800 输出改为当前画板宽高；其余编译内容逐字保留。",
+  "notes_bundle_change": "输出尺寸接入当前画板；谱面及音符输入替换为公有领域古老旋律的项目独立排谱，三维绘制、光点、运动、尾迹与释放程序保持原实现。",
   "entry": "notes-source.js",
   "readable_source": "notes/src/isolated-scene.js",
   "runtime_dependencies": "Three.js 已内嵌在 notes-source.js；MIT 许可见 THREE-LICENSE.txt；不发起网络请求。",
-  "assets": "coffee-bean.webp 为原透明素材，未修改像素。谱面及原素材权利保留原状。",
+  "assets": "coffee-bean.webp 为原透明素材，未修改像素。现行谱面为项目独立排谱，古老旋律公有领域，新排谱 AGPL-3.0-only。",
   "note_motion_reference": {
     "name": "@言说心事",
     "url": "https://www.xiaohongshu.com/user/profile/6926ff85000000003702b1c1?xsec_token=ABiobWDdNSX_CX9Vf091D7iZ9SeSMSlAk4oyjghnynYPQ%3D&xsec_source=pc_search",
     "credit_prefix": "复刻自",
     "credit_suffix": "老师的教程",
     "scope": "谱面光点跳跃插画与沿点跳跃留光动作的教程参考；谱曲及编配另见 notes/assets/来源.md。"
+  },
+  "score": {
+    "name": "小星星（古老旋律）",
+    "melody": "Ah, vous dirai-je, maman",
+    "melody_rights": "public-domain",
+    "arrangement": "Wise Motion 独立排谱与简单二声部伴奏",
+    "license": "AGPL-3.0-only",
+    "historical_reference": "https://kv.mozarteum.at/de/work/zwolf-variationen-in-c-uber-4057",
+    "generator": "scripts/build-public-score.mjs",
+    "event_count": 44,
+    "verified_on": "2026-10-06",
+    "replaces": "晴天 / Steven Law 编配的谱面及派生音符；不再分发。"
   }
 }

@@ -273,8 +273,8 @@
     },
     {
       "path": "catalog/assets/material-evolution/SOURCE.json",
-      "bytes": 3974,
-      "sha256": "fd17efb91b2765eff42ea9d42b548884b37cdb74b28e94d0d827c0ab3b776e71"
+      "bytes": 4500,
+      "sha256": "07afc147e81df902461689274f58c884e030a87b206dac682bfc8c9b76533b62"
     },
     {
       "path": "catalog/assets/material-evolution/atlas-engraving.webp",
@@ -288,8 +288,8 @@
     },
     {
       "path": "catalog/assets/material-evolution/key-shapes.js",
-      "bytes": 6522769,
-      "sha256": "79fc0d4461624454cb7acae5dac4cf41c3996f9cb72e6f82f756b7d82d0efb67"
+      "bytes": 3771128,
+      "sha256": "16e0510894cfc15d38b11383ccd4acbf4fa0c0ccaa1bf87dc991a9be2683fcf6"
     },
     {
       "path": "catalog/assets/material-evolution/moon.webp",
@@ -298,8 +298,8 @@
     },
     {
       "path": "catalog/assets/particle-scenes/SOURCE.json",
-      "bytes": 948,
-      "sha256": "25abaebc52a0955d66c85cd155c0de67b259de41a1774bb1d0bd09af174d092e"
+      "bytes": 1627,
+      "sha256": "5f23f6ce420a1c0442301728142274a42feda32f5e4400a7caed084763e155aa"
     },
     {
       "path": "catalog/assets/particle-scenes/THREE-LICENSE.txt",
@@ -313,23 +313,23 @@
     },
     {
       "path": "catalog/assets/particle-scenes/notes-source.js",
-      "bytes": 833649,
-      "sha256": "230572a1c37ce45014e66638ef46e4010699528a361d444e3623931331073cf3"
+      "bytes": 849395,
+      "sha256": "422bc9e005c6eb919ccaff74d8f31b5c2a1579aa4de89cf6d377628b6a82e7d2"
     },
     {
       "path": "catalog/assets/particle-scenes/notes/assets/score-clean.svg",
-      "bytes": 91997,
-      "sha256": "887be82c355d784f5c4e55879de568ef45209e815cc6b5c3ecaa9beb9e4b701e"
+      "bytes": 109343,
+      "sha256": "fb26f14e3ef84061ececfd7d4507365d29f3f077db85e5ac55ff2c4178111524"
     },
     {
       "path": "catalog/assets/particle-scenes/notes/assets/score-data.json",
-      "bytes": 29542,
-      "sha256": "5d601106a02ef9790070169e9d108206ba4901ab46e25263f73a1abeebedf7ae"
+      "bytes": 17009,
+      "sha256": "4a4af0caa935a88ba8e41660916c2a8d481396c75707f63efe05d255f5f0b6ec"
     },
     {
       "path": "catalog/assets/particle-scenes/notes/assets/来源.md",
-      "bytes": 4406,
-      "sha256": "d0d7968ee96416a93091e85214dae888187b32830044257562c72f438aeddba8"
+      "bytes": 2015,
+      "sha256": "b51c59cf771bdbda6f2417828020ebd851397309b0c78116d9c1d4c505055f67"
     },
     {
       "path": "catalog/assets/particle-scenes/notes/src/butterfly.js",
@@ -338,8 +338,8 @@
     },
     {
       "path": "catalog/assets/particle-scenes/notes/src/isolated-scene.js",
-      "bytes": 11248,
-      "sha256": "5745eabb24dd7c24f57a90de574226611e07b6d8ea349aab7e3ef5016c680ac7"
+      "bytes": 11242,
+      "sha256": "e72071206d5a23c982770f4f22aa162e624a3110df65c4f33048660d955e2a26"
     },
     {
       "path": "catalog/assets/particle-scenes/notes/src/motion.js",
@@ -573,8 +573,8 @@
     },
     {
       "path": "catalog/effects/material-evolution.js",
-      "bytes": 89218,
-      "sha256": "3f944d57f80fa0f1b43b6db9b3bf6802cfb8992f2d16434887c711312c7760b0"
+      "bytes": 89179,
+      "sha256": "ce458a6824c83e83e345c95938f6b5ee99550195585bc481977b42c50e554b5b"
     },
     {
       "path": "catalog/effects/math-formula-drift.js",
@@ -793,13 +793,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1146654,
-      "sha256": "1d2bfaaca0c7bfbbd98362a489422c0fc9558d2181f516b2b4dd7bba81d334ba"
+      "bytes": 1146300,
+      "sha256": "0e120a04088275b0f62a063f65a483de38feaa59528064050c3ff254fc62e415"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1411571,
-      "sha256": "bc5553320e6b802cf743da32f5df7ed23e68c7adcf6e7274724e83f7fe5ab109"
+      "bytes": 1411769,
+      "sha256": "718836e78ea2fa1177d8d3175dfb5b4b9e6fec6fc14fde440643b508679f0349"
     },
     {
       "path": "catalog/related-preview.js",

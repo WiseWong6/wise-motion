@@ -1,8 +1,8 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
- * 保留本机精修后的真实绘制、独立笔形和材料过渡。原片图形权利不由代码许可授予。 */
+ * 保留精修绘制与材料过渡；书法笔画依据古帖重新定义，英文轮廓由随包开放字体生成。 */
 /* KIMI K3 开源宣传片复刻及其七个单段：效果参考 Kimi K3 open weights。
  * https://www.youtube.com/watch?v=5GlCGOXUYHg
- * 自有程序许可不覆盖参考书法、品牌字形及原片设计的权利。 */
+ * 现行书法与字标数据由 scripts/build-material-glyphs.py 生成；参考片仅作动作与材质参考。 */
 (function (global) {
  'use strict';
  const factories=global.MotionFactories=global.MotionFactories||{},parts={};
@@ -891,22 +891,22 @@ function drawGlyph(ctx,frame,opacity=1){
  }
  ctx.save();ctx.globalAlpha=opacity;ctx.drawImage(source,160,0,312,360);ctx.restore();
 }
-// 紧凑横笔参考：书法字典标注的柳公权「一」（具体碑帖未注明）。
-// https://ishufa.net/i/shufa%2Fk%2F103081.gif
-// 手工重构斜入笔、中段提锋、右端顿收的上下边；不嵌入参考图片。
+// 横笔与开头采用同一古帖参考；独立定义起笔、提锋与顿收的上下边。
+// https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P
+// 这里是动画用颜体参考笔形，不截取馆藏图片或现代字库。
 const bandX=[210,216,223,232,244,262,284,306,328,350,372,390,401,412,422,428,430];
 const bandLeft=bandX[0],bandWidth=bandX.at(-1)-bandLeft;
-const bandTop=[190,184,179,176,175,172,170,167,165,163,160,157,159,166,174,179,184];
-const bandBottom=[194,198,201,206,205,201,199,197,195,192,192,194,196,197,193,190,186];
+const bandTop=[188,182,177,175,175,174,173,171,169,168,167,165,165,168,172,178,184];
+const bandBottom=[197,201,206,208,207,204,202,201,200,199,198,198,200,202,201,195,189];
 function edgeAt(values,x,xs=bandX){let i=1;while(i<xs.length-1&&x>xs[i])i++;return mix(values[i-1],values[i],clamp((x-xs[i-1])/(xs[i]-xs[i-1])));}
 function bandPoint(x,v,inset=0){const top=edgeAt(bandTop,x),bottom=edgeAt(bandBottom,x),padding=Math.min(inset,(bottom-top)/2);return [x,mix(top+padding,bottom-padding,v)];}
 // 二的上短横与下长横分别保留落笔厚度、向右抬升和收笔肩。
 const shortX=[275.1,280.6,288.5,299.5,312.1,323.9,335.8,345.2,353.9,359.4];
-const shortTop=[130,123.5,121.4,118.5,117,114.1,112,118.5,129.3,138];
-const shortBottom=[135.1,148.8,156.1,159,155.3,152.4,149.6,146.7,144.5,141.6];
+const shortTop=[128,124,122,119,118,116,114,117,124,132];
+const shortBottom=[135,143,148,150,148,146,145,143,140,136];
 const longX=[213.5,220.1,229.5,244.6,263.4,286,312.4,338.8,367.1,385.9,395.3,404.7,414.2,425.5,434];
-const longTop=[215,213.2,212.3,207.7,202.3,197.8,195.1,191.5,191.5,189.7,187.9,189.7,198.7,206.8,219.5];
-const longBottom=[230.3,242.1,252,255.6,252.9,246.6,241.2,235.7,233.9,233.9,235.7,240.3,243,240.3,225.8];
+const longTop=[216,212,210,207,205,200,197,194,192,190,190,193,200,209,218];
+const longBottom=[230,239,246,251,249,243,240,238,237,237,239,241,244,241,225];
 function strokePoint(u,v,xs,top,bottom){const x=mix(xs[0],xs.at(-1),u);return [x,mix(edgeAt(top,x,xs),edgeAt(bottom,x,xs),v)];}
 let particles=null,characters=null,buckets=null;
 function particleData(){

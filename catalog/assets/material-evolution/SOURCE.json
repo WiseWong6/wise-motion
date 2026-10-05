@@ -1,14 +1,14 @@
 {
   "description": "精修后的笔墨与材质演变：固定书法与字标轮廓、灰阶透明素材。",
   "code_license": "AGPL-3.0-only",
-  "graphic_rights": "key-shapes.js 的37个开头书法姿态和27个结尾字形姿态由 Kimi AI 发布的原片帧提取；未查到覆盖这些轮廓公开再分发的许可。三个 WebP 图片由 Codex 内置工具依据参考生成，输出归属按生成时适用条款处理；自有绘制代码的 AGPL-3.0-only 不改写原片图形权利。",
+  "graphic_rights": "书法参考古代颜真卿《多宝塔碑》，笔画路径由本项目独立定义，按 AGPL-3.0-only 提供；英文、数字及片尾 WISE MOTION 字标由随包 Oswald Bold 生成并保留 SIL OFL 1.1。当前 key-shapes.js 不再使用原片帧提取的轮廓。三个 WebP 图片由 Codex 内置工具依据参考生成，输出归属按生成时适用条款处理。",
   "runtime": "本地普通脚本及图片按需载入；不包含原视频或JPG截图。",
   "files": [
     {
       "file": "key-shapes.js",
-      "bytes": 6522769,
-      "sha256": "79fc0d4461624454cb7acae5dac4cf41c3996f9cb72e6f82f756b7d82d0efb67",
-      "source_type": "reference-vector-contours"
+      "bytes": 3771128,
+      "sha256": "16e0510894cfc15d38b11383ccd4acbf4fa0c0ccaa1bf87dc991a9be2683fcf6",
+      "source_type": "project-drawn-calligraphy-and-open-font-outlines"
     },
     {
       "file": "fiber.webp",
@@ -44,18 +44,30 @@
   },
   "materials": {
     "key-shapes.js": {
-      "type": "参考帧矢量轮廓",
-      "description": "开头37个书法姿态及结尾27个字形姿态，来自原片帧的灰阶阈值与轮廓提取，非独立生图。",
-      "extraction": "原制作脚本 trace-key-shapes.py 对参考帧做裁切、七层灰阶阈值、轮廓查找与多边形近似；正式目录保留其轮廓数据。",
+      "type": "独立书法笔画与开放字体轮廓",
+      "description": "37个开头书法姿态、27个结尾字形姿态，保留原动作切换时刻；不读取宣传片或其轮廓。",
+      "generator": "scripts/build-material-glyphs.py",
+      "generator_license": "AGPL-3.0-only",
       "calligraphy_reference": {
-        "name": "吴叡隶书道德经卷（故宫博物院）",
-        "url": "https://www.dpm.org.cn/collection/handwriting/229075.html",
-        "scope": "原制作记录中的笔法参考；未直接使用馆藏单字图，实际固定轮廓仍从宣传片帧提取。"
+        "name": "唐颜真卿书多宝塔碑墨拓",
+        "author": "颜真卿",
+        "collection": "国立故宫博物院，台北",
+        "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P",
+        "scope": "观察古帖道字结构、提按及起收笔后，独立定义动画用笔画和毛边；不是直接截取真迹扫描字形，也不是从宣传片或现代书法字库描边。",
+        "image_use_conditions": "馆藏低阶图像 CC0，中阶图像 CC BY 4.0；公开使用无需申请、不限用途。",
+        "credit": "唐颜真卿书多宝塔碑墨拓。国立故宫博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+        "verified_on": "2026-10-06"
       },
-      "license_status": "原片发布者已确认；片中具体书法设计、字标的独立作者、字体与公开再分发授权尚未查到。",
-      "model_license_reference": "https://github.com/MoonshotAI/Kimi-K3/blob/main/LICENSE",
-      "model_license_scope": "Kimi K3 License列举模型权重、参数、配置、推理及训练代码和相关文档，没有明确授予宣传片字形轮廓的再分发权。",
-      "youtube_license_reference": "https://support.google.com/youtube/answer/2797468?hl=en"
+      "font": {
+        "name": "Oswald Bold",
+        "file": "catalog/fonts/Oswald-Bold.woff2",
+        "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302",
+        "license": "SIL-OFL-1.1",
+        "license_file": "catalog/fonts/OFL-Oswald.txt",
+        "scope": "所有英文、数字和最终 WISE MOTION 字标"
+      },
+      "license_status": "现行笔画为项目独立制作；古帖及馆藏图像的开放使用条件已核实；字体许可随包保留。",
+      "replaced_material": "原37个书法姿态和27个字标姿态的原片帧提取轮廓已全部替换。"
     },
     "fiber.webp": {
       "type": "依据参考生成",

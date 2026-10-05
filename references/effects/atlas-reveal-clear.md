@@ -31,6 +31,8 @@
 - [原码提取与接入源码](../../catalog/effects/material-evolution.js)，注册名称：`atlas-reveal-clear`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 效果参考 [Kimi K3 开源发布宣传片（open weights）](https://www.youtube.com/watch?v=5GlCGOXUYHg)。
-- 从2026年10月2日精修的Kimi开源发布片独立动画源码迁入，共用实际绘制函数和固定排程；开头37个书法姿态、结尾27个字形姿态使用选定画面的矢量轮廓与墨色，纤维球、月面及版画采用此前经Codex内置图片工具重建的透明素材；运行时不读取原片视频或JPG截图，不把轮廓及素材声明为独立原创图形。 AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 沿用精修的材质演变绘制函数与七段固定排程。开头37个书法姿态依据颜真卿多宝塔碑结构独立定义笔画，结尾27个书法试样、数字与英文姿态由独立笔画及随包 Oswald Bold 生成，最终字标为 WISE MOTION；当前不读取或分发原片帧提取轮廓。纤维球、月面及版画保留 Codex 内置图片工具依据参考生成的素材，详见 catalog/assets/material-evolution/SOURCE.json。自有程序和笔画按 AGPL-3.0-only 提供，字体保留 SIL OFL 1.1，Kimi 原片保留动作与材质参考署名。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
+
+补充效果参考：[颜真卿多宝塔碑墨拓（国立故宫博物院，台北；开放图像）](https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P)。
