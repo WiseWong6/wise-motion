@@ -1,6 +1,6 @@
 interface:
   display_name: "Wise Motion"
-  short_description: "理解意图并设计画面，新动效用 Remotion，保留旧作的维护路线"
-  default_prompt: "使用 $wise-motion，理解我的意图，按技能流程完成设计、动效实现或视频制作，并交付检查结果。"
+  short_description: "先理解并转译需求，再匹配动作与设计画面；新动效用 Remotion"
+  default_prompt: "使用 $wise-motion，先结合上下文理解我的需求，转译为画面变化、动作关系与约束，再匹配参考并完成设计、动效实现或视频制作，交付检查结果。"
 policy:
   allow_implicit_invocation: false
