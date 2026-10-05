@@ -84,7 +84,7 @@ test('实际分段各自构建自己的绘制节点，共享大字形资料而�
  try{
   const sphere=e.w.MotionFactories['spheres-material-merge'](e.root,{},definition('spheres-material-merge'));
   await sphere.ready;
-  assert.equal(e.requests.length,0,'球体无需载入六兆字形资料');
+  assert.equal(e.requests.length,0,'球体无需载入书法与字标资料');
   assert.equal(e.imageLoads.length,2);assert.equal(e.root.querySelectorAll('.fiber-sphere').length,3);
   assert.equal(e.root.querySelectorAll('.atlas-object,.wire-lines,.ending-shape').length,0);
   sphere(2000/3);assert.match(e.root.querySelector('.fiber-sphere[data-sphere="1"]').getAttribute('transform'),/scale\(1\.7364 1\.5078\)/,'合体仍保留原片压扁的实测半径');
@@ -202,7 +202,7 @@ test('独立材质接续只准备实际桥接画布和纤维素材，不建立�
  const e=setup();let draw;
  try{
   draw=e.w.MotionFactories['material-form-chain'](e.root,{},definition('material-form-chain'));await draw.ready;
-  assert.equal(e.requests.length,0,'截取圆柱末态不应载入开头六兆字形数据');
+  assert.equal(e.requests.length,0,'截取圆柱末态不应载入开头书法字形数据');
   assert.equal(e.imageLoads.length,1);assert.ok(e.imageLoads[0].endsWith('/material-evolution/fiber.webp'));
   const bridge=e.root.querySelector('.bridge-ball-layer');assert.ok(bridge);
   assert.equal(e.root.querySelectorAll('canvas').length,1,'在场只保留实际像素球画布');

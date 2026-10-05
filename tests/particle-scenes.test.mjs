@@ -41,13 +41,31 @@ test('蒲公英冠毛身份、脱落姿态与漂移逐时刻对应原作，回�
  }finally{env.close();}
 });
 
-test('音符插画保留完整原渲染包，只修改输出尺寸；可读源码与许可随包提供',async()=>{
+test('音符插画替换谱面输入并保留完整绘制、运动与资源释放程序，许可随包提供',async()=>{
  const original=await readFile(source+'packs/completed/notes-source.js','utf8'),actual=await readFile(new URL('../catalog/assets/particle-scenes/notes-source.js',import.meta.url),'utf8');
- assert.equal(actual,original.replace('Ym(t,600,800,e,s)','Ym(t,t.width,t.height,e,s)'));
+ const stripScore=text=>text.replace(/\/\* wise-score:start \*\/[\s\S]*?\/\* wise-score:end \*\//,'SCORE_INPUT').replace(/var ce=[\s\S]*?;var Yd=`[\s\S]*?`;/,'SCORE_INPUT');
+ assert.equal(stripScore(actual),stripScore(original.replace('Ym(t,600,800,e,s)','Ym(t,t.width,t.height,e,s)')));
  for(const name of ['motion.js','orb.js','trail.js','note-glow.js','isolated-scene.js']){
-  assert.equal(await readFile(new URL('../catalog/assets/particle-scenes/notes/src/'+name,import.meta.url),'utf8'),await readFile(source+'packs/completed/source/notes/src/'+name,'utf8'));
+  const old=await readFile(source+'packs/completed/source/notes/src/'+name,'utf8');
+  assert.equal(await readFile(new URL('../catalog/assets/particle-scenes/notes/src/'+name,import.meta.url),'utf8'),old.replace('辅助谱也是当前《晴天》的真实小节','辅助谱复用当前古老旋律的小节'));
  }
  assert.match(await readFile(new URL('../catalog/assets/particle-scenes/THREE-LICENSE.txt',import.meta.url),'utf8'),/Permission is hereby granted/);
+});
+
+test('公开谱面、实际落点与离线包使用同一古老旋律，不再携带原晴天曲谱',async()=>{
+ const file=name=>readFile(new URL('../catalog/assets/particle-scenes/'+name,import.meta.url),'utf8');
+ const d=JSON.parse(await file('notes/assets/score-data.json')),svg=await file('notes/assets/score-clean.svg'),bundle=await file('notes-source.js');
+ const embedded=bundle.match(/\/\* wise-score:start \*\/var ce=([\s\S]*?);var Yd=([\s\S]*?);\/\* wise-score:end \*\//);
+ assert.ok(embedded);assert.deepEqual(JSON.parse(embedded[1]),d);assert.equal(JSON.parse(embedded[2]),svg);
+ assert.equal(d.melody_rights,'public-domain');assert.equal(d.events.length,44);
+ assert.deepEqual(d.events.filter(e=>e.staff===1).slice(0,7).map(e=>e.pitch),[60,60,67,67,69,69,67]);
+ const dom=new JSDOM(svg,{contentType:'image/svg+xml'});
+ try{
+  assert.equal(dom.window.document.querySelectorAll('g.measure').length,8);
+  assert.equal(dom.window.document.querySelectorAll('g.note').length,d.events.length);
+  for(const e of d.events){const node=dom.window.document.getElementById(e.id);assert.equal(Number(node.dataset.x),e.x);assert.equal(Number(node.dataset.z),e.z);assert.ok(d.noteheadGlyphs[e.glyph]);assert.ok(e.time>=d.entrance&&e.time+e.duration<=d.musicEnd);}
+ }finally{dom.window.close();}
+ assert.doesNotMatch(bundle,/晴天|Steven Law|E0A4-w1p0iuxj|qingtian|\\u6674\\u5929/);
 });
 
 function canvasStub(w){

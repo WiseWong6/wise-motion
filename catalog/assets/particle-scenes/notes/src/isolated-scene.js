@@ -19,7 +19,7 @@ export async function createScene(canvas,width=data.videoWidth,height=data.video
  const scene=new THREE.Scene();scene.background=new THREE.Color('#25212b');const camera=new THREE.PerspectiveCamera(42,width/height,2,600);
  const paperMargin=28,c=document.createElement('canvas');c.width=Math.min(8192,renderer.capabilities.maxTextureSize);c.height=Math.round(c.width*(data.height+paperMargin*2)/data.width);const ctx=c.getContext('2d');ctx.fillStyle='#a7a1a0';ctx.fillRect(0,0,c.width,c.height);
  const image=new Image();image.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(svg);await image.decode();
- // 辅助谱也是当前《晴天》的真实小节，只印在纸上，不参与播放和光圈定位。
+ // 辅助谱复用当前古老旋律的小节，只印在纸上，不参与播放和光圈定位。
  const engraving=new DOMParser().parseFromString(svg,'image/svg+xml');
  const units=data.width/Number(engraving.documentElement.getAttribute('viewBox').split(/\s+/)[2]);
  const pageOffset=Number(engraving.querySelector('.page-margin').getAttribute('transform').match(/[-\d.]+/)[0]);
