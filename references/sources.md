@@ -1,6 +1,6 @@
 # 来源核对与收录规范
 
-核对日期：2026 年 10 月 5 日。公开署名、素材归属与许可汇总以 [署名、来源与说明](../NOTICE.md) 为统一入口；本文规定来源记录、目录显示与外部资源收录方式。
+核对日期：2026 年 10 月 6 日。公开署名、素材归属与许可汇总以 [署名、来源与说明](../NOTICE.md) 为统一入口；本文规定来源记录、目录显示与外部资源收录方式。
 
 ## 一、来源记录与目录显示
 
@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | 本项目实现 | `source.origin: original`，保留绘制入口与项目代码许可；素材另设来源记录。 | 无具体外部来源时隐藏来源区，不重复显示自行开发声明。 |
 | 第三方代码改编 | 记录具体上游程序、固定版本、原许可、许可链接及修改范围。 | 依据完整时显示“AI 改编自……的代码，遵循……许可”。未知许可不得标为 MIT。 |
-| 作品或视觉参考 | 使用 `source.reference`；多个参考使用 `source.additional_references`。名称、链接与署名文字按实际出处记录。 | 显示“效果参考”“视觉参考”或明确的复刻署名；切换示例时采用该示例的实际来源。 |
+| 具体作品复刻或视觉参考 | 使用 `source.reference`；多个参考使用 `source.additional_references`。名称、链接与署名文字按实际出处记录。 | 显示“效果参考”“视觉参考”或明确的复刻署名；切换示例时采用该示例的实际来源。 |
 | 字体、图片、谱面与原始数据 | 在对应素材目录保留 `SOURCE.json`、作者信息、原许可和文件校验记录。 | 完整材料记录汇入署名说明；项目代码许可不覆盖外部材料。 |
 
 `source.origin` 描述实现来源，不证明所有视觉内容的原创归属。`source.reference_url` 是动画库接口文档入口，不作为具体动作设计来源。参考链接与代码许可分别记录；公开可访问、免费使用或免费商用不直接证明可以随包再分发。
@@ -34,8 +34,7 @@
 | Jitter | 模板用于商业作品的条件，不等于源模板或编辑器的再分发许可。 | 参考分类与行为；未打包模板、导出资源或程序。见 [模板归属与许可](https://help.jitter.video/en/articles/16599058-templates-ownership-and-licensing)。 |
 | LottieFiles | 播放程序与动画文件分别有许可；素材条款包含同条款要求、竞争库限制，帮助说明对独立再分发另有限制。 | 暂不批量内置社区动画；逐个核对 [正式素材许可](https://lottiefiles.com/page/license) 与 [许可帮助](https://help.lottiefiles.com/animation-licensing-basics-)。 |
 | Lottie 播放程序 | 程序的 MIT 许可不覆盖动画、字体或图片。 | 本版未内置；原许可见 [lottie-web](https://github.com/airbnb/lottie-web/blob/master/LICENSE.md)。 |
-| Amicro | 仓库根目录为 MIT；翻页书具体组件另标 Apache-2.0，文件级许可须单独核对。 | 参考 [界面入口](https://amicro.vercel.app/) 与 [翻页书](https://amicro.vercel.app/3d)；代码、矢量插图和纸纹由项目实现。见 [固定组件与许可](https://github.com/Subhan-code/Amicro--Micro-transitions-/blob/43c29ce9cdd16459e3eab4992381b8d35b38776a/src/components/dither-charts/DitherBook.tsx)。 |
-| Amotion | 未核实公开源码与再分发许可。 | 仅参考 [编辑器](https://www.amotion.app/editor) 的通用面板组织，不引入其程序或媒体。 |
+| Amicro 立体翻页书 | 仓库根目录为 MIT；翻页书具体组件另标 Apache-2.0。 | [翻页书](https://amicro.vercel.app/3d)用于具体效果参考；代码、矢量插图和纸纹由项目实现。见 [参考组件的原许可](https://github.com/Subhan-code/Amicro--Micro-transitions-/blob/43c29ce9cdd16459e3eab4992381b8d35b38776a/src/components/dither-charts/DitherBook.tsx)。 |
 | 社区教程与分享 | 按具体作品分别记录作者、来源与授权；不可从平台入口推导整个平台素材许可。 | 已确认的老师署名与作品范围见 [作品署名汇总](../NOTICE.md)。其他分享仅保留 [来源线索](https://www.xiaohongshu.com/s/poster?bgimg=https%3A%2F%2Fsns-redskillhub-s1.xhscdn.com%2Fred_app_image%2F1040g4m83241q07jpna005qelo9nsok378rohtb8%3Fsign%3D325e417b90d2f36dd545ce4f0d4a692d%26t%3D6c66710a&deeplink=xhsdiscover%3A%2F%2FminiTool%2F6a675ed61ed11800159c9d47%3Fsource%3Dh5%26page_key%3D28%26xhsMpScreenMode%3Dfull&code=031jeZFa1xQ5xM0p4AGa18RYP04jeZFv&state=wx_oauth)。 |
 
 ## 四、收录与离线使用要求
