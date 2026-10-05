@@ -36,7 +36,7 @@ Copyright © 2026 Wise Wong. 更新日期：2026 年 10 月 6 日。
 | --- | --- | --- | --- |
 | 月貌数值（LunarNearside，北向上） | NASA / GSFC / Arizona State University | 用于月面逐渐盈满及金色满月插画，保留原机构署名与资料权利；原下载页及适用条件待核实。 | [月貌来源](catalog/assets/history-nature/SOURCE.json)、[NASA 媒体规则](https://www.nasa.gov/nasa-brand-center/images-and-media/)、[LROC 使用条款](https://lroc.im-ldi.com/about/terms) |
 | 《晴天》谱曲与指弹编配 | 曲作者：周杰伦；编配：罗翔 Steven Law | 用于谱面与音符数据。谱源公开可查看，未据此确认再分发许可；教程署名与谱曲授权分别处理。目录示例不播放音频。 | [谱面、编配与软件来源](catalog/assets/particle-scenes/notes/assets/来源.md) |
-| 广东分区几何轮廓 | PPT 制作工程内嵌地图 | 仅使用路径坐标；原始几何来源与许可待核实。 | 见附录中的 PPT 制作工程记录 |
+| 广东 21 市分区几何轮廓 | 高德开放平台，经阿里云 DataV.GeoAtlas 提供 | 用于地图分区着色；与 Wise PPT 内置的 21 市边界逐点核对一致。官方说明限定学习与交流用途，保留原数据的使用条件。 | [地图数据工具](https://datav.aliyun.com/portal/school/atlas/area_selector)、[官方来源与使用说明](https://help.aliyun.com/zh/datav/datav-7-0/user-guide/datav-geoatlas-widgets/) |
 | 参考片中的书法与 KIMI 字标姿态轮廓 | Kimi K3 open weights 参考画面 | 用于材质演变组合及七个单段；原图形、字形的具体来源与使用条件待核实。 | [图形输入记录](catalog/assets/material-evolution/SOURCE.json) |
 
 NASA 月貌数值与下表中的 AI 生成月面图片是两份不同材料，分别记录来源。
@@ -91,7 +91,7 @@ Remotion、React 等视频复用依赖由目标工程安装，版本和接入方
 | Kimi 材质片的书法与字标轮廓 | 核对具体图形、字形来源及可分发条件。 |
 | 玻璃片尾 Helvetica Neue Bold 轮廓 | 核对字形轮廓的分发条件。 |
 | 《晴天》谱曲与编配 | 核对公开分发当前谱面及派生音符数据的授权条件。 |
-| 广东分区几何 | 核对原始地理数据来源与许可。 |
+| 广东分区几何 | 来源已核实；高德数据的公开再分发授权尚未核实。 |
 
 以上事项按具体材料处理，不扩大为对全部项目制作成果的归属判断。
 
