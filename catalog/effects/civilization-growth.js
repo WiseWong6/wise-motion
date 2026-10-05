@@ -583,8 +583,14 @@
   // catalog/assets/civilization-growth/four-flowers.mjs
   var FLOWER_DURATION = 2.4;
   var FLOWERS = PLANTS.map((p, c) => ({ id: c, plantId: c, petals: [16, 8, 5, 4][c], radius: [34, 37, 33, 37][c], turn: [-0.14, 0.16, -0.06, 0.1][c] }));
+  var BUD_HEIGHT = 21;
+  var BUD_CENTER = 3 - BUD_HEIGHT / 2;
   function flowerState(t, c) {
     return { elongation: smooth(t, 0.05 + c * 0.03, 0.9 + c * 0.04), bud: smooth(t, 0.28 + c * 0.035, 0.65 + c * 0.035) * (1 - smooth(t, 0.9 + c * 0.045, 1.32 + c * 0.045)), open: smooth(t, 0.67 + c * 0.07, 1.87 + c * 0.07) };
+  }
+  function flowerHeadPoint(c, { elongation = 1, clock = 11.7 } = {}) {
+    const [x, y] = stemPoint(c, 1, { elongation, clock }), angle = FLOWERS[c].turn;
+    return [x - Math.sin(angle) * BUD_CENTER, y + Math.cos(angle) * BUD_CENTER];
   }
   function flowerPetalPoint(c, u, v, { open = 1, clock = 11.7 } = {}) {
     const f2 = FLOWERS[c], dx = (u - 0.5) * 2, dy = (v - 0.5) * 2, r = Math.hypot(dx, dy), a = Math.atan2(dy, dx), rim = Math.min(1, r) ** 2;
@@ -593,17 +599,17 @@
     return [Math.cos(a + twist) * r * f2.radius * spread, Math.sin(a + twist) * r * f2.radius * spread * (0.48 + 0.52 * open) + (1 - open) * rim * f2.radius * 0.24];
   }
   function drawFlowerHead(ctx, c, t, assets) {
-    const s = flowerState(t, c), clock = 9.3 + t, [x, y] = stemPoint(c, 1, { elongation: s.elongation, clock });
+    const s = flowerState(t, c), clock = 9.3 + t, [x, y] = flowerHeadPoint(c, { elongation: s.elongation, clock });
     if (s.bud <= 0 && s.open <= 0) return;
     if (!assets?.growth) throw new Error("\u82B1\u6735\u7248\u753B\u5C1A\u672A\u51C6\u5907\u5B8C\u6210");
     ctx.save();
     ctx.translate(x, y);
     ctx.rotate(FLOWERS[c].turn);
     if (s.bud > 0) {
-      const box = GROWTH_REGIONS[12 + c].source, h = 21, w = h * box[2] / box[3];
+      const box = GROWTH_REGIONS[12 + c].source, h = BUD_HEIGHT, w = h * box[2] / box[3];
       ctx.save();
       ctx.globalAlpha *= s.bud;
-      ctx.drawImage(assets.growth, ...box, -w / 2, -h + 3, w, h);
+      ctx.drawImage(assets.growth, ...box, -w / 2, -h / 2, w, h);
       ctx.restore();
     }
     if (s.open > 0) {
@@ -999,7 +1005,7 @@
     return [[0.1, 0.16], [0.27, 0.33]].some(([a, b]) => t >= a && t < b) ? 0.2 : 1;
   }
   function handoffPose(t, c) {
-    const from = stemPoint(c, 1, { elongation: 1, clock: 11.7 + t }), to = FLOWER_TARGETS[c], p = smooth(t, 0.34 + c * 0.02, 1 + c * 0.02);
+    const from = flowerHeadPoint(c, { elongation: 1, clock: 11.7 + t }), to = FLOWER_TARGETS[c], p = smooth(t, 0.34 + c * 0.02, 1 + c * 0.02);
     return { x: mix(from[0], to[0], p), y: mix(from[1], to[1], p) - Math.sin(Math.PI * p) * (15 + c * 2), scale: mix(1, 0.44, p), opacity: flowerExitFlash(t), bodyOpacity: 1 - smooth(t, 0.4 + c * 0.02, 0.88 + c * 0.02), from };
   }
   function drawHandoff(ctx, assets, t) {
