@@ -5,7 +5,8 @@ import path from 'node:path';
 const root=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
 // 素材副本供帧组件读取；完整目录页面只保留在源码的 catalog 中。
 export function isAssetFile(relativePath){
- return !['catalog/index.html','catalog/remotion-player.js'].includes(relativePath.split(path.sep).join('/'));
+ const normalized=relativePath.split(path.sep).join('/');
+ return path.basename(relativePath)!=='.DS_Store'&&!['catalog/index.html','catalog/remotion-player.js'].includes(normalized);
 }
 const contains=(parent,child)=>child===parent||child.startsWith(parent+path.sep);
 async function canonicalPath(value){

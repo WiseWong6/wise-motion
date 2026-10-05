@@ -111,6 +111,8 @@ npm run render -- stagger-in stagger-in.mp4
 
 ## 存储与许可
 
+“薪火生长与文明聚字”的两张原图集中保存在 `catalog/effects/civilization-images.js`，播放时读取同一份数据；复制完整工程时按需还原这个文件并随组件提供。构建后的播放文件和复制源码索引不再重复保存图片，原图内容、离线直开与独立工程能力保持不变。
+
 原作与历史审查记录用于追溯和迁移测试，不随正式动效包分发。业务状态放在私有根目录的 `state/wise-motion`，与可复用技能代码分开。
 
 自有技能与源码为 **AGPLv3**；第三方 Anime.js 4.5.0 继续使用 **MIT**，保留原许可与版权。见 [版权说明](NOTICE.md) 与 [完整许可](LICENSE)。

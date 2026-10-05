@@ -1,5 +1,6 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
 import test from 'node:test';
+import {losslessWebpDimensions} from './image-assets.mjs';
 import assert from 'node:assert/strict';
 import {readFile,stat} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -39,12 +40,12 @@ async function setup({gate=Promise.resolve(),fail=false,html='<div id="root"></d
 }
 function player(env,entry=composition){const root=env.w.document.createElement('div');env.w.document.body.append(root);const p=env.w.MotionRuntime.create(root,entry,{autoplay:false});return {root,p,canvas:root.querySelector('canvas')};}
 
-test('剪贴素材保留原始文件、准确来源与离线可迁移路径',async()=>{
+test('剪贴素材保留原始像素、准确来源与离线可迁移路径',async()=>{
  const source=JSON.parse(await read('catalog/assets/collage-film/SOURCE.json'));
  assert.equal(source.tool,'Codex 内置 image_gen.imagegen');assert.equal(source.assets.length,5);
- for(const asset of source.assets){const bytes=await readFile(new URL('../catalog/assets/collage-film/'+asset.file,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),asset.sha256);assert.deepEqual([bytes.readUInt32BE(16),bytes.readUInt32BE(20)],asset.dimensions);assert.ok(asset.prompt.length>100);}
+ for(const asset of source.assets){const bytes=await readFile(new URL('../catalog/assets/collage-film/'+asset.file,import.meta.url));assert.equal(createHash('sha256').update(bytes).digest('hex'),asset.sha256);assert.deepEqual(losslessWebpDimensions(bytes),asset.dimensions);assert.ok(asset.prompt.length>100);}
  const env=await setup();try{
-  const {p}=player(env);assert.equal(await p.ready,true);assert.deepEqual(env.images.map(im=>im.src),['hand.png','flywheel.png','runner-poses.png','runner-run-cycle.png','runner-rebound.png'].map(name=>'file:///relocated/wise-motion/catalog/assets/collage-film/'+name));
+  const {p}=player(env);assert.equal(await p.ready,true);assert.deepEqual(env.images.map(im=>im.src),['hand.webp','flywheel.webp','runner-poses.webp','runner-run-cycle.webp','runner-rebound.webp'].map(name=>'file:///relocated/wise-motion/catalog/assets/collage-film/'+name));
   const prompt=env.w.MotionExport.prompt(composition,{},registry);assert.match(prompt,/14\.00 秒/);assert.match(prompt,/12格/);assert.match(prompt,/3\.45/);assert.doesNotMatch(prompt,/\/Users\/|验收|file:|PaperImpact/);
   const code=env.w.MotionExport.code(composition);for(const [,resource]of code.matchAll(/(?:src|href)="([^"]+)"/g))assert.ok((await stat(new URL('../'+resource,import.meta.url))).isFile());
   const demo=await setup({html:code,url:'file:///relocated/wise-motion/demo.html',exported:true});try{assert.equal(await demo.w.MotionDemo.ready,true);demo.w.MotionDemo.pause();assert.equal(demo.images[0].src,env.images[0].src);demo.w.dispatchEvent(new demo.w.Event('pagehide'));assert.equal(demo.w.MotionRuntime.instanceCount,0);}finally{demo.close();}
@@ -75,7 +76,7 @@ test('完整组合与六个部件任意回拖确定、保留12帧节奏与两秒
 test('拆解选择在当前时刻重绘真实部件；独立动作只加载自身所需素材',async()=>{
  const env=await setup();try{
   const {p,root,canvas}=player(env);await p.ready;p.seek(1800);const full=env.trace(canvas);
-  root.querySelector('[data-layer="mechanics"]').setAttribute('data-composition-hidden','');await Promise.resolve();const hidden=env.trace(canvas);assert.notEqual(hidden,full);assert.ok(!hidden.includes('/flywheel.png')&&!hidden.includes('/hand.png'));
+  root.querySelector('[data-layer="mechanics"]').setAttribute('data-composition-hidden','');await Promise.resolve();const hidden=env.trace(canvas);assert.notEqual(hidden,full);assert.ok(!hidden.includes('/flywheel.webp')&&!hidden.includes('/hand.webp'));
   root.querySelector('[data-layer="mechanics"]').removeAttribute('data-composition-hidden');await Promise.resolve();assert.equal(env.trace(canvas),full);
   const allowed=new Set(env.w.MotionFactories[composition.id].breakdown.flatMap(row=>Array.from(row.actions)));assert.deepEqual([...allowed].sort(),composition.actions.slice().sort());p.destroy();
   for(const e of entries.filter(e=>e.kind==='action')){const start=env.images.length,{p}=player(env,e);await p.ready;const loaded=env.images.slice(start).map(im=>im.src.split('/').pop());assert.deepEqual(loaded,(e.source.assets||[]).map(name=>name.split('/').pop()),e.name+'不加载整段素材');p.destroy();}
@@ -102,8 +103,8 @@ test('跑步实际使用八格，蓄力与弹离接续六格，图集取样不�
  const env=await setup();try{
   const effect=entries.find(e=>e.id==='cutout-stride-leap'),{p,canvas}=player(env,effect);await p.ready;
   const samples=file=>JSON.parse(env.trace(canvas)).filter(call=>call[0]==='drawImage'&&call[1].endsWith(file));
-  const poses=new Set();for(let ms=120;ms<1160;ms+=55){p.seek(ms);for(const row of samples('runner-run-cycle.png'))poses.add(row.slice(2,6).join(','));}assert.equal(poses.size,8);
-  const rebound=new Set();for(const ms of [2750,2950,3190,3380,3550,3790]){p.seek(ms);const rows=samples('runner-rebound.png');assert.equal(rows.length,1);rebound.add(rows[0].slice(2,6).join(','));}assert.equal(rebound.size,6);
-  p.seek(4590);assert.equal(samples('runner-rebound.png').length,0,'人物要真正离开画面');p.destroy();
+  const poses=new Set();for(let ms=120;ms<1160;ms+=55){p.seek(ms);for(const row of samples('runner-run-cycle.webp'))poses.add(row.slice(2,6).join(','));}assert.equal(poses.size,8);
+  const rebound=new Set();for(const ms of [2750,2950,3190,3380,3550,3790]){p.seek(ms);const rows=samples('runner-rebound.webp');assert.equal(rows.length,1);rebound.add(rows[0].slice(2,6).join(','));}assert.equal(rebound.size,6);
+  p.seek(4590);assert.equal(samples('runner-rebound.webp').length,0,'人物要真正离开画面');p.destroy();
  }finally{env.close();}
 });

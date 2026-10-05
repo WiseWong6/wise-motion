@@ -147,7 +147,7 @@
   };
 
   F['stack-flick']=(root,K,definition)=>{
-    const id='paper-stack-'+(++instance),asset=assetURL('map-paper.png',root.ownerDocument),background=assetURL('desk-background.png',root.ownerDocument);
+    const id='paper-stack-'+(++instance),asset=assetURL('map-paper.webp',root.ownerDocument),background=assetURL('desk-background.webp',root.ownerDocument);
     const languages=[['未来已来',27],['build the future',23],['construire demain',22],['construye el futuro',21],['未来をつくる',26],['die Zukunft gestalten',19],['creare il futuro',23],['미래를 만들다',25],['construir o futuro',22],['építi a jövőt',25],['让想法成形',27],['未来，从这里开始',25]];
     // 这些位置在整段中固定；新页盖在旧页上面，已有边角逐层留下。
     const resting=[[-6,7,7,1.03],[3,-9,-11,1.02],[-10,5,2,.98],[7,5,21,1.04],[0,-7,-7,1.01],[5,2,17,.98],[-8,-1,-19,1.03],[4,4,6,1.04],[7,-7,14,.96],[-5,-3,-9,1.02],[2,5,-3,1.01],[0,0,5,1]];

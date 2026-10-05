@@ -115,7 +115,7 @@ function hopper(s) {
   };
   render.ready=new Promise((resolve,reject)=>{
    const img=new Image();img.onload=()=>{if(!disposed){paint=beanRenderer(ctx,img);render(time*1000+150);}resolve();};
-   img.onerror=()=>reject(Error('豆粒素材加载失败'));img.src=assetURL('coffee-bean.png');
+   img.onerror=()=>reject(Error('豆粒素材加载失败'));img.src=assetURL('coffee-bean.webp');
   });
   render.destroy=preserve=>{disposed=true;paint?.dispose();if(!preserve)canvas.width=canvas.height=1;};
   return render;

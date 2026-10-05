@@ -203,7 +203,7 @@ test('独立材质接续只准备实际桥接画布和纤维素材，不建立�
  try{
   draw=e.w.MotionFactories['material-form-chain'](e.root,{},definition('material-form-chain'));await draw.ready;
   assert.equal(e.requests.length,0,'截取圆柱末态不应载入开头六兆字形数据');
-  assert.equal(e.imageLoads.length,1);assert.ok(e.imageLoads[0].endsWith('/material-evolution/fiber.png'));
+  assert.equal(e.imageLoads.length,1);assert.ok(e.imageLoads[0].endsWith('/material-evolution/fiber.webp'));
   const bridge=e.root.querySelector('.bridge-ball-layer');assert.ok(bridge);
   assert.equal(e.root.querySelectorAll('canvas').length,1,'在场只保留实际像素球画布');
   assert.equal(e.canvases.length,3,'只能建立能力探测、实际桥接和离屏像素拼图三个画布');

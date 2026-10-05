@@ -1,5 +1,6 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
 import test from 'node:test';
+import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import vm from 'node:vm';
@@ -14,7 +15,11 @@ test('十二颗豆粒的出生、落点、旋转和下料逐时刻对应原模�
  const env=await environment();try{
   for(let t=0;t<1.6;t+=.007)assert.deepEqual(plain(env.w.MotionParticles.hopperBeans(t)),plain(original.FactoryTimeline.hopperBeans(t)));
   assert.equal(env.w.MotionParticles.hopperBeans(1.433).length,0);
-  assert.deepEqual(await readFile(new URL('../catalog/assets/particle-scenes/coffee-bean.png',import.meta.url)),await readFile(source+'packs/completed/assets/coffee-bean.png'));
+  const records=JSON.parse(await readFile(new URL('../catalog/assets/WEBP-SOURCES.json',import.meta.url),'utf8'));
+  const record=records.assets.find(a=>a.target==='catalog/assets/particle-scenes/coffee-bean.webp');
+  const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+  assert.equal(hash(await readFile(source+'packs/completed/assets/coffee-bean.png')),record.original_sha256);
+  assert.equal(hash(await readFile(new URL('../'+record.target,import.meta.url))),record.sha256);
  }finally{env.close();}
 });
 
@@ -92,7 +97,7 @@ test('三项迁入后分类、旧书签和导出一致，剔除项无历史入�
     const out=dom.window;out.ResizeObserver=class{observe(){}disconnect(){}};out.HTMLCanvasElement.prototype.getContext=()=>null;
     for(const script of out.document.querySelectorAll('script'))out.eval(script.src?await readFile(new URL('../'+script.getAttribute('src'),import.meta.url),'utf8'):script.textContent);
     out.MotionDemo.pause();out.MotionDemo.seek(e.preview_ms);const frame=frameMarkup(out.document.querySelector('.motion-stage'));out.MotionDemo.seek(0);out.MotionDemo.seek(e.preview_ms);assert.equal(frameMarkup(out.document.querySelector('.motion-stage')),frame);
-    if(id!=='seed-shedding-illustration')assert.equal(out.MotionParticles.assetURL('coffee-bean.png'),'file:///wise-motion/catalog/assets/particle-scenes/coffee-bean.png');
+    if(id!=='seed-shedding-illustration')assert.equal(out.MotionParticles.assetURL('coffee-bean.webp'),'file:///wise-motion/catalog/assets/particle-scenes/coffee-bean.webp');
    }finally{dom.window.MotionRuntime?.disposeAll();dom.window.anime?.engine.pause();dom.window.close();}
   }finally{env.close();}
  }

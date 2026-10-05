@@ -58,7 +58,7 @@
  const paperDefs=(id='kimi-paper')=>`<filter id="${id}-grain" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency=".043 .037" numOctaves="3" seed="19"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="linear" slope=".018"/></feComponentTransfer><feBlend in="SourceGraphic" mode="multiply"/></filter><filter id="${id}-paper-soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation=".23"/></filter><filter id="${id}-paper-stains" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.25"/></filter>`;
  const paperMarkup=(id='kimi-paper')=>`<g class="kimi-paper"><rect width="640" height="360" fill="#e2e3dd"/><rect class="paper-mottle" width="640" height="360" fill="#e2e3dd" opacity=".12" filter="url(#${id}-grain)"/><g class="paper-stains" fill="#7e8075" filter="url(#${id}-paper-stains)">${stains}</g><g class="paper-flecks" fill="#74796b" filter="url(#${id}-paper-soft)">${flecks}</g><path class="paper-fibers" d="${fibers}" stroke="#818578" opacity=".056" stroke-width=".28" stroke-linecap="round" fill="none" filter="url(#${id}-paper-soft)"/></g>`;
  const moonDefs=id=>`<filter id="${id}-moon-tonal" color-interpolation-filters="sRGB"><feComponentTransfer><feFuncR type="linear" slope="1.15" intercept=".01"/><feFuncG type="linear" slope="1.15" intercept=".01"/><feFuncB type="linear" slope="1.15" intercept=".01"/></feComponentTransfer></filter><clipPath id="${id}-moon-clip"><circle r="80"/></clipPath><linearGradient class="moon-shadow-gradient" id="${id}-moon-shadow"><stop offset="0" stop-color="#000" stop-opacity=".94"/><stop offset=".31" stop-color="#000" stop-opacity=".925"/><stop offset=".5" stop-color="#000" stop-opacity=".85"/><stop offset=".67" stop-color="#000" stop-opacity=".54"/><stop offset=".87" stop-color="#000" stop-opacity=".07"/><stop offset="1" stop-color="#000" stop-opacity=".06"/></linearGradient>`;
- const moonMarkup=id=>`<g class="moon-surface" clip-path="url(#${id}-moon-clip)"><image class="moon-texture" filter="url(#${id}-moon-tonal)" href="${assetURL('moon.png')}" x="-100.4" y="-100.1" width="200.65" height="200.65" style="mix-blend-mode:multiply"/><circle class="moon-shade" r="80" fill="url(#${id}-moon-shadow)" opacity="1"/></g>`;
+ const moonMarkup=id=>`<g class="moon-surface" clip-path="url(#${id}-moon-clip)"><image class="moon-texture" filter="url(#${id}-moon-tonal)" href="${assetURL('moon.webp')}" x="-100.4" y="-100.1" width="200.65" height="200.65" style="mix-blend-mode:multiply"/><circle class="moon-shade" r="80" fill="url(#${id}-moon-shadow)" opacity="1"/></g>`;
  const marginalia=(page=16)=>`<g fill="#31322d" font-family="Arial,sans-serif"><g opacity=".53" font-size="1.7"><text x="22" y="291" letter-spacing=".15">TOPIC 1. DAO</text><text x="22" y="294">Taoism/Daoism</text><text x="22" y="297">the path</text><text x="22" y="300" font-size="1.45">It is, rather, the principle</text><text x="22" y="302" font-size="1.45">underlying everything that exists.</text><text x="22" y="309" letter-spacing=".15">TOPIC 2. TAOISM/DAOISM</text><text x="22" y="312">No action</text><text x="22" y="315">the path</text><text x="22" y="318" font-size="1.4">understood as a method, a lifestyle,</text><text x="22" y="320" font-size="1.4">or a collection of personal expressions</text></g><g opacity=".5" text-anchor="end" font-size="2" letter-spacing=".22"><text x="617" y="29">FORM NO STRUCTURE</text><text x="617" y="33" font-size="1.5">Struct</text><text x="617" y="36" font-size="1.5">Brush</text><text x="617" y="41" font-size="1.5" letter-spacing="0">It does not have a defined structure</text><text x="617" y="45" font-size="1.7">CULTURAL ACCEPTED</text><text x="617" y="48" font-size="1.4" letter-spacing="0">socially integrated, they are governed</text><text x="617" y="58" font-size="1.4">Reg.2568</text></g><g font-size="2.45" letter-spacing=".3" opacity=".65"><text x="605" y="325">PAG. ${page}</text><text x="88" y="350">65.62</text><text x="128" y="350">75.45</text><text x="173" y="350">92.76</text><text x="285" y="350">85.96</text><text x="548" y="350">55.32</text><text x="586" y="350">81.94</text></g></g>`;
  material.paper={paperDefs,paperMarkup,moonDefs,moonMarkup,marginalia};
 }());
@@ -203,7 +203,7 @@
     const shared=material.paper,id=uid('spheres'),moonId=id+'-moon';
     const textureDefs=`<filter id="${id}-fiber-motion" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB"><feTurbulence class="fiber-flow-noise" type="fractalNoise" baseFrequency=".049 .053" numOctaves="2" seed="27" result="flow"/><feDisplacementMap class="fiber-flow-warp" in="SourceGraphic" in2="flow" scale=".55" xChannelSelector="R" yChannelSelector="G"/></filter><filter id="${id}-moon-soft"><feGaussianBlur class="moon-appearance-blur" stdDeviation=".55"/></filter>`;
     // PNG 的浅外缘比估读注册半径淡，补偿 5% 显示尺寸，缩放中心仍为亮心。
-    const image=`<image class="fiber-image" href="${assetURL('fiber.png')}" x="-67.0747" y="-66.9688" width="132.878" height="132.878"/>`;
+    const image=`<image class="fiber-image" href="${assetURL('fiber.webp')}" x="-67.0747" y="-66.9688" width="132.878" height="132.878"/>`;
     const variants=['rotate(-7) scale(-1 1)','rotate(0)','rotate(11) scale(1 -1)'];
     const fiberMarkup=i=>`<g class="fiber-sphere" data-sphere="${i}"><g><g class="fiber-drift"><g class="fiber-variant" transform="${variants[i]}">${image}</g></g><path class="fiber-threads-a" d="${threads(47+i*11)}" fill="none" stroke="#f1f0ea" stroke-width=".12" opacity=".10"/><path class="fiber-threads-b" d="${threads(171+i*13)}" fill="none" stroke="#deded7" stroke-width=".10" opacity=".09"/></g></g>`;
     root.dataset.art='original';
@@ -254,7 +254,7 @@
 
   const F = parts;
   const SOURCE_DURATION = 2650;
-  const SHEET = assetURL('atlas-engraving.png');
+  const SHEET = assetURL('atlas-engraving.webp');
   const clamp = value => Math.max(0, Math.min(1, value));
   const number = value => Number(value.toFixed(4));
   const ease = value => { const p = clamp(value); return p * p * (3 - 2 * p); };
@@ -686,7 +686,7 @@
     const ballCodeNodes=Array.from(root.querySelectorAll('.bridge-ball-code'));
     const canvas=query('.bridge-ball-layer'),ctx=canvas.getContext('2d',{willReadFrequently:true});
     const mosaic=document.createElement('canvas'),mctx=mosaic.getContext('2d',{willReadFrequently:true});
-    const sphere=material.images.get('fiber.png');
+    const sphere=material.images.get('fiber.webp');
     let sphereHeadRenderer=null,sphereHeadRoot=null,sphereHead=null;
     // 末端共享下一段完整圆球的首帧主体与纤维方向，独立停帧和组合交接均不留缺口。
     if(F['spheres-unite']){
@@ -982,9 +982,9 @@ parts['release-ending']=root=>{
   {id:'brush-glyph-build',name:'书法笔形生成',part:'brush-writing',start:0,end:2500,sourceDuration:2500,keys:true,warm:[1800],detail:'保留七档墨色和独立笔画姿态，相邻姿态加权显影。'},
   {id:'glyph-bar-collapse',name:'字形聚为书法横带',part:'glyph-particles',start:2500,end:3550,sourceDuration:1050,keys:true,warm:[200,850,1000],detail:'竖向小字符沿各笔位置收拢成具有独立上下边的斜向横带。'},
   {id:'dots-lines-cylinders',name:'颗粒横笔接点阵圆柱',part:'dots-wireframe',start:3550,end:6100,sourceDuration:2550,keys:true,warm:[150,2150],detail:'同一颗粒场先形成独立长短横笔，再按列补点和空间连线。'},
-  {id:'material-form-chain',name:'字符网格接像素纤维球',part:'kimi-open-bridge',start:6100,end:8100,sourceDuration:2000,images:['fiber.png'],warm:[200,1995],detail:'圆柱沿网格交接字符、环柄、棋盘和像素球，末帧接入真实纤维球。'},
-  {id:'spheres-material-merge',name:'纤维球合为月面',part:'spheres-unite',start:8100,end:9250,sourceDuration:1250,images:['fiber.png','moon.png'],warm:[500,800],detail:'三球保留各自半径和内层流向，合体后快速换为月面并缩小下移。'},
-  {id:'atlas-reveal-clear',name:'版画图鉴显影清场',part:'atlas-expand',start:9250,end:356/30*1000,sourceDuration:2650,images:['moon.png','atlas-engraving.png'],warm:[750,1150,1550],detail:'三十七个独立轮廓分区显影，曲面及仪器内部连续运动后清场。'},
+  {id:'material-form-chain',name:'字符网格接像素纤维球',part:'kimi-open-bridge',start:6100,end:8100,sourceDuration:2000,images:['fiber.webp'],warm:[200,1995],detail:'圆柱沿网格交接字符、环柄、棋盘和像素球，末帧接入真实纤维球。'},
+  {id:'spheres-material-merge',name:'纤维球合为月面',part:'spheres-unite',start:8100,end:9250,sourceDuration:1250,images:['fiber.webp','moon.webp'],warm:[500,800],detail:'三球保留各自半径和内层流向，合体后快速换为月面并缩小下移。'},
+  {id:'atlas-reveal-clear',name:'版画图鉴显影清场',part:'atlas-expand',start:9250,end:356/30*1000,sourceDuration:2650,images:['moon.webp','atlas-engraving.webp'],warm:[750,1150,1550],detail:'三十七个独立轮廓分区显影，曲面及仪器内部连续运动后清场。'},
   {id:'glyph-cut-ending',name:'字形快切与字标收束',part:'release-ending',start:356/30*1000,end:15054,sourceDuration:15054-356/30*1000,keys:true,warm:[12500-356/30*1000],detail:'按独立矢量轮廓切换字符、数字、字标和发布短句，末段进入黑场。'}
  ];
  const duration=15054,compositionId='material-evolution-sequence';

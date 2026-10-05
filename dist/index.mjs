@@ -62,6 +62,7 @@ var FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/point-domain-flow.js",
   "catalog/effects/motion-oasis.js",
   "catalog/effects/seed-bloom-brand.js",
+  "catalog/effects/civilization-images.js",
   "catalog/effects/reel-transitions.js",
   "catalog/effects/reel-grit-key.js",
   "catalog/effects/reel-flat-gen.js",
@@ -16980,9 +16981,9 @@ var registry_default = {
         factory: "brush-glyph-build",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
-          "catalog/assets/material-evolution/fiber.png",
-          "catalog/assets/material-evolution/moon.png",
-          "catalog/assets/material-evolution/atlas-engraving.png"
+          "catalog/assets/material-evolution/fiber.webp",
+          "catalog/assets/material-evolution/moon.webp",
+          "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
         rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002"
       },
@@ -17059,9 +17060,9 @@ var registry_default = {
         factory: "glyph-bar-collapse",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
-          "catalog/assets/material-evolution/fiber.png",
-          "catalog/assets/material-evolution/moon.png",
-          "catalog/assets/material-evolution/atlas-engraving.png"
+          "catalog/assets/material-evolution/fiber.webp",
+          "catalog/assets/material-evolution/moon.webp",
+          "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
         rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002"
       },
@@ -17143,9 +17144,9 @@ var registry_default = {
         factory: "dots-lines-cylinders",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
-          "catalog/assets/material-evolution/fiber.png",
-          "catalog/assets/material-evolution/moon.png",
-          "catalog/assets/material-evolution/atlas-engraving.png"
+          "catalog/assets/material-evolution/fiber.webp",
+          "catalog/assets/material-evolution/moon.webp",
+          "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
         rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002"
       },
@@ -17228,9 +17229,9 @@ var registry_default = {
         factory: "material-form-chain",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
-          "catalog/assets/material-evolution/fiber.png",
-          "catalog/assets/material-evolution/moon.png",
-          "catalog/assets/material-evolution/atlas-engraving.png"
+          "catalog/assets/material-evolution/fiber.webp",
+          "catalog/assets/material-evolution/moon.webp",
+          "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
         rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002"
       },
@@ -17312,9 +17313,9 @@ var registry_default = {
         factory: "spheres-material-merge",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
-          "catalog/assets/material-evolution/fiber.png",
-          "catalog/assets/material-evolution/moon.png",
-          "catalog/assets/material-evolution/atlas-engraving.png"
+          "catalog/assets/material-evolution/fiber.webp",
+          "catalog/assets/material-evolution/moon.webp",
+          "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
         rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002"
       },
@@ -17396,9 +17397,9 @@ var registry_default = {
         factory: "atlas-reveal-clear",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
-          "catalog/assets/material-evolution/fiber.png",
-          "catalog/assets/material-evolution/moon.png",
-          "catalog/assets/material-evolution/atlas-engraving.png"
+          "catalog/assets/material-evolution/fiber.webp",
+          "catalog/assets/material-evolution/moon.webp",
+          "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
         rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002"
       },
@@ -17481,9 +17482,9 @@ var registry_default = {
         factory: "glyph-cut-ending",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
-          "catalog/assets/material-evolution/fiber.png",
-          "catalog/assets/material-evolution/moon.png",
-          "catalog/assets/material-evolution/atlas-engraving.png"
+          "catalog/assets/material-evolution/fiber.webp",
+          "catalog/assets/material-evolution/moon.webp",
+          "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
         rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002"
       },
@@ -17573,9 +17574,9 @@ var registry_default = {
         factory: "material-evolution-sequence",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
-          "catalog/assets/material-evolution/fiber.png",
-          "catalog/assets/material-evolution/moon.png",
-          "catalog/assets/material-evolution/atlas-engraving.png"
+          "catalog/assets/material-evolution/fiber.webp",
+          "catalog/assets/material-evolution/moon.webp",
+          "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
         rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002"
       },
@@ -20333,7 +20334,7 @@ var registry_default = {
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
-          "catalog/assets/particle-scenes/coffee-bean.png"
+          "catalog/assets/particle-scenes/coffee-bean.webp"
         ],
         original_files: [
           "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/cat/timeline.js",
@@ -21570,7 +21571,7 @@ var registry_default = {
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
-          "catalog/assets/cyanotype/botanical-atlas.png",
+          "catalog/assets/cyanotype/botanical-atlas.webp",
           "catalog/assets/cyanotype/SOURCE.json"
         ]
       },
@@ -21831,8 +21832,8 @@ var registry_default = {
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
-          "catalog/assets/stack-flick/map-paper.png",
-          "catalog/assets/stack-flick/desk-background.png",
+          "catalog/assets/stack-flick/map-paper.webp",
+          "catalog/assets/stack-flick/desk-background.webp",
           "catalog/assets/stack-flick/generation.json",
           "catalog/assets/stack-flick/background-generation.json"
         ]
@@ -22580,8 +22581,8 @@ var registry_default = {
         reference_url: "https://animejs.com/documentation/",
         factory: "crank-linked-turn",
         assets: [
-          "catalog/assets/collage-film/hand.png",
-          "catalog/assets/collage-film/flywheel.png"
+          "catalog/assets/collage-film/hand.webp",
+          "catalog/assets/collage-film/flywheel.webp"
         ]
       }
     },
@@ -22772,8 +22773,8 @@ var registry_default = {
         reference_url: "https://animejs.com/documentation/",
         factory: "cutout-stride-leap",
         assets: [
-          "catalog/assets/collage-film/runner-run-cycle.png",
-          "catalog/assets/collage-film/runner-rebound.png"
+          "catalog/assets/collage-film/runner-run-cycle.webp",
+          "catalog/assets/collage-film/runner-rebound.webp"
         ]
       }
     },
@@ -22920,11 +22921,11 @@ var registry_default = {
         reference_url: "https://animejs.com/documentation/",
         factory: "collage-film-sequence",
         assets: [
-          "catalog/assets/collage-film/hand.png",
-          "catalog/assets/collage-film/flywheel.png",
-          "catalog/assets/collage-film/runner-poses.png",
-          "catalog/assets/collage-film/runner-run-cycle.png",
-          "catalog/assets/collage-film/runner-rebound.png"
+          "catalog/assets/collage-film/hand.webp",
+          "catalog/assets/collage-film/flywheel.webp",
+          "catalog/assets/collage-film/runner-poses.webp",
+          "catalog/assets/collage-film/runner-run-cycle.webp",
+          "catalog/assets/collage-film/runner-rebound.webp"
         ]
       }
     },
@@ -27590,7 +27591,9 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        dependencies: [],
+        dependencies: [
+          "catalog/effects/civilization-images.js"
+        ],
         assets: [
           "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
           "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
@@ -27616,7 +27619,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/civilization/reveal.mjs",
           "catalog/assets/civilization-growth/civilization/wheels.mjs",
           "catalog/assets/civilization-growth/civilization-atlas.mjs",
-          "catalog/assets/civilization-growth/civilization-image.mjs",
           "catalog/assets/civilization-growth/cursive-data.mjs",
           "catalog/assets/civilization-growth/engine.mjs",
           "catalog/assets/civilization-growth/fire-01.mjs",
@@ -27628,7 +27630,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/font-data.mjs",
           "catalog/assets/civilization-growth/four-flowers.mjs",
           "catalog/assets/civilization-growth/four-sprouts.mjs",
-          "catalog/assets/civilization-growth/growth-image.mjs",
           "catalog/assets/civilization-growth/growth-regions.mjs",
           "catalog/assets/civilization-growth/math.mjs",
           "catalog/assets/civilization-growth/paper.mjs",
@@ -27642,6 +27643,7 @@ var registry_default = {
           export_name: "CivilizationGrowth",
           package_name: "civilization-growth-motion",
           files: [
+            "catalog/effects/civilization-images.js",
             "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
             "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
             "catalog/assets/civilization-growth/GROWTH-PROMPT.txt",
@@ -27665,7 +27667,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/civilization/reveal.mjs",
             "catalog/assets/civilization-growth/civilization/wheels.mjs",
             "catalog/assets/civilization-growth/civilization-atlas.mjs",
-            "catalog/assets/civilization-growth/civilization-image.mjs",
             "catalog/assets/civilization-growth/cursive-data.mjs",
             "catalog/assets/civilization-growth/engine.mjs",
             "catalog/assets/civilization-growth/fire-01.mjs",
@@ -27677,7 +27678,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/font-data.mjs",
             "catalog/assets/civilization-growth/four-flowers.mjs",
             "catalog/assets/civilization-growth/four-sprouts.mjs",
-            "catalog/assets/civilization-growth/growth-image.mjs",
             "catalog/assets/civilization-growth/growth-regions.mjs",
             "catalog/assets/civilization-growth/math.mjs",
             "catalog/assets/civilization-growth/paper.mjs",
@@ -27766,7 +27766,9 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        dependencies: [],
+        dependencies: [
+          "catalog/effects/civilization-images.js"
+        ],
         assets: [
           "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
           "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
@@ -27792,7 +27794,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/civilization/reveal.mjs",
           "catalog/assets/civilization-growth/civilization/wheels.mjs",
           "catalog/assets/civilization-growth/civilization-atlas.mjs",
-          "catalog/assets/civilization-growth/civilization-image.mjs",
           "catalog/assets/civilization-growth/cursive-data.mjs",
           "catalog/assets/civilization-growth/engine.mjs",
           "catalog/assets/civilization-growth/fire-01.mjs",
@@ -27804,7 +27805,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/font-data.mjs",
           "catalog/assets/civilization-growth/four-flowers.mjs",
           "catalog/assets/civilization-growth/four-sprouts.mjs",
-          "catalog/assets/civilization-growth/growth-image.mjs",
           "catalog/assets/civilization-growth/growth-regions.mjs",
           "catalog/assets/civilization-growth/math.mjs",
           "catalog/assets/civilization-growth/paper.mjs",
@@ -27818,6 +27818,7 @@ var registry_default = {
           export_name: "CivilizationGrowth",
           package_name: "civilization-growth-motion",
           files: [
+            "catalog/effects/civilization-images.js",
             "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
             "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
             "catalog/assets/civilization-growth/GROWTH-PROMPT.txt",
@@ -27841,7 +27842,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/civilization/reveal.mjs",
             "catalog/assets/civilization-growth/civilization/wheels.mjs",
             "catalog/assets/civilization-growth/civilization-atlas.mjs",
-            "catalog/assets/civilization-growth/civilization-image.mjs",
             "catalog/assets/civilization-growth/cursive-data.mjs",
             "catalog/assets/civilization-growth/engine.mjs",
             "catalog/assets/civilization-growth/fire-01.mjs",
@@ -27853,7 +27853,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/font-data.mjs",
             "catalog/assets/civilization-growth/four-flowers.mjs",
             "catalog/assets/civilization-growth/four-sprouts.mjs",
-            "catalog/assets/civilization-growth/growth-image.mjs",
             "catalog/assets/civilization-growth/growth-regions.mjs",
             "catalog/assets/civilization-growth/math.mjs",
             "catalog/assets/civilization-growth/paper.mjs",
@@ -27942,7 +27941,9 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        dependencies: [],
+        dependencies: [
+          "catalog/effects/civilization-images.js"
+        ],
         assets: [
           "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
           "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
@@ -27968,7 +27969,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/civilization/reveal.mjs",
           "catalog/assets/civilization-growth/civilization/wheels.mjs",
           "catalog/assets/civilization-growth/civilization-atlas.mjs",
-          "catalog/assets/civilization-growth/civilization-image.mjs",
           "catalog/assets/civilization-growth/cursive-data.mjs",
           "catalog/assets/civilization-growth/engine.mjs",
           "catalog/assets/civilization-growth/fire-01.mjs",
@@ -27980,7 +27980,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/font-data.mjs",
           "catalog/assets/civilization-growth/four-flowers.mjs",
           "catalog/assets/civilization-growth/four-sprouts.mjs",
-          "catalog/assets/civilization-growth/growth-image.mjs",
           "catalog/assets/civilization-growth/growth-regions.mjs",
           "catalog/assets/civilization-growth/math.mjs",
           "catalog/assets/civilization-growth/paper.mjs",
@@ -27994,6 +27993,7 @@ var registry_default = {
           export_name: "CivilizationGrowth",
           package_name: "civilization-growth-motion",
           files: [
+            "catalog/effects/civilization-images.js",
             "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
             "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
             "catalog/assets/civilization-growth/GROWTH-PROMPT.txt",
@@ -28017,7 +28017,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/civilization/reveal.mjs",
             "catalog/assets/civilization-growth/civilization/wheels.mjs",
             "catalog/assets/civilization-growth/civilization-atlas.mjs",
-            "catalog/assets/civilization-growth/civilization-image.mjs",
             "catalog/assets/civilization-growth/cursive-data.mjs",
             "catalog/assets/civilization-growth/engine.mjs",
             "catalog/assets/civilization-growth/fire-01.mjs",
@@ -28029,7 +28028,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/font-data.mjs",
             "catalog/assets/civilization-growth/four-flowers.mjs",
             "catalog/assets/civilization-growth/four-sprouts.mjs",
-            "catalog/assets/civilization-growth/growth-image.mjs",
             "catalog/assets/civilization-growth/growth-regions.mjs",
             "catalog/assets/civilization-growth/math.mjs",
             "catalog/assets/civilization-growth/paper.mjs",
@@ -28118,7 +28116,9 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        dependencies: [],
+        dependencies: [
+          "catalog/effects/civilization-images.js"
+        ],
         assets: [
           "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
           "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
@@ -28144,7 +28144,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/civilization/reveal.mjs",
           "catalog/assets/civilization-growth/civilization/wheels.mjs",
           "catalog/assets/civilization-growth/civilization-atlas.mjs",
-          "catalog/assets/civilization-growth/civilization-image.mjs",
           "catalog/assets/civilization-growth/cursive-data.mjs",
           "catalog/assets/civilization-growth/engine.mjs",
           "catalog/assets/civilization-growth/fire-01.mjs",
@@ -28156,7 +28155,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/font-data.mjs",
           "catalog/assets/civilization-growth/four-flowers.mjs",
           "catalog/assets/civilization-growth/four-sprouts.mjs",
-          "catalog/assets/civilization-growth/growth-image.mjs",
           "catalog/assets/civilization-growth/growth-regions.mjs",
           "catalog/assets/civilization-growth/math.mjs",
           "catalog/assets/civilization-growth/paper.mjs",
@@ -28170,6 +28168,7 @@ var registry_default = {
           export_name: "CivilizationGrowth",
           package_name: "civilization-growth-motion",
           files: [
+            "catalog/effects/civilization-images.js",
             "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
             "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
             "catalog/assets/civilization-growth/GROWTH-PROMPT.txt",
@@ -28193,7 +28192,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/civilization/reveal.mjs",
             "catalog/assets/civilization-growth/civilization/wheels.mjs",
             "catalog/assets/civilization-growth/civilization-atlas.mjs",
-            "catalog/assets/civilization-growth/civilization-image.mjs",
             "catalog/assets/civilization-growth/cursive-data.mjs",
             "catalog/assets/civilization-growth/engine.mjs",
             "catalog/assets/civilization-growth/fire-01.mjs",
@@ -28205,7 +28203,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/font-data.mjs",
             "catalog/assets/civilization-growth/four-flowers.mjs",
             "catalog/assets/civilization-growth/four-sprouts.mjs",
-            "catalog/assets/civilization-growth/growth-image.mjs",
             "catalog/assets/civilization-growth/growth-regions.mjs",
             "catalog/assets/civilization-growth/math.mjs",
             "catalog/assets/civilization-growth/paper.mjs",
@@ -28297,7 +28294,9 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        dependencies: [],
+        dependencies: [
+          "catalog/effects/civilization-images.js"
+        ],
         assets: [
           "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
           "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
@@ -28323,7 +28322,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/civilization/reveal.mjs",
           "catalog/assets/civilization-growth/civilization/wheels.mjs",
           "catalog/assets/civilization-growth/civilization-atlas.mjs",
-          "catalog/assets/civilization-growth/civilization-image.mjs",
           "catalog/assets/civilization-growth/cursive-data.mjs",
           "catalog/assets/civilization-growth/engine.mjs",
           "catalog/assets/civilization-growth/fire-01.mjs",
@@ -28335,7 +28333,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/font-data.mjs",
           "catalog/assets/civilization-growth/four-flowers.mjs",
           "catalog/assets/civilization-growth/four-sprouts.mjs",
-          "catalog/assets/civilization-growth/growth-image.mjs",
           "catalog/assets/civilization-growth/growth-regions.mjs",
           "catalog/assets/civilization-growth/math.mjs",
           "catalog/assets/civilization-growth/paper.mjs",
@@ -28349,6 +28346,7 @@ var registry_default = {
           export_name: "CivilizationGrowth",
           package_name: "civilization-growth-motion",
           files: [
+            "catalog/effects/civilization-images.js",
             "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
             "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
             "catalog/assets/civilization-growth/GROWTH-PROMPT.txt",
@@ -28372,7 +28370,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/civilization/reveal.mjs",
             "catalog/assets/civilization-growth/civilization/wheels.mjs",
             "catalog/assets/civilization-growth/civilization-atlas.mjs",
-            "catalog/assets/civilization-growth/civilization-image.mjs",
             "catalog/assets/civilization-growth/cursive-data.mjs",
             "catalog/assets/civilization-growth/engine.mjs",
             "catalog/assets/civilization-growth/fire-01.mjs",
@@ -28384,7 +28381,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/font-data.mjs",
             "catalog/assets/civilization-growth/four-flowers.mjs",
             "catalog/assets/civilization-growth/four-sprouts.mjs",
-            "catalog/assets/civilization-growth/growth-image.mjs",
             "catalog/assets/civilization-growth/growth-regions.mjs",
             "catalog/assets/civilization-growth/math.mjs",
             "catalog/assets/civilization-growth/paper.mjs",
@@ -28476,7 +28472,9 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        dependencies: [],
+        dependencies: [
+          "catalog/effects/civilization-images.js"
+        ],
         assets: [
           "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
           "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
@@ -28502,7 +28500,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/civilization/reveal.mjs",
           "catalog/assets/civilization-growth/civilization/wheels.mjs",
           "catalog/assets/civilization-growth/civilization-atlas.mjs",
-          "catalog/assets/civilization-growth/civilization-image.mjs",
           "catalog/assets/civilization-growth/cursive-data.mjs",
           "catalog/assets/civilization-growth/engine.mjs",
           "catalog/assets/civilization-growth/fire-01.mjs",
@@ -28514,7 +28511,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/font-data.mjs",
           "catalog/assets/civilization-growth/four-flowers.mjs",
           "catalog/assets/civilization-growth/four-sprouts.mjs",
-          "catalog/assets/civilization-growth/growth-image.mjs",
           "catalog/assets/civilization-growth/growth-regions.mjs",
           "catalog/assets/civilization-growth/math.mjs",
           "catalog/assets/civilization-growth/paper.mjs",
@@ -28528,6 +28524,7 @@ var registry_default = {
           export_name: "CivilizationGrowth",
           package_name: "civilization-growth-motion",
           files: [
+            "catalog/effects/civilization-images.js",
             "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
             "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
             "catalog/assets/civilization-growth/GROWTH-PROMPT.txt",
@@ -28551,7 +28548,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/civilization/reveal.mjs",
             "catalog/assets/civilization-growth/civilization/wheels.mjs",
             "catalog/assets/civilization-growth/civilization-atlas.mjs",
-            "catalog/assets/civilization-growth/civilization-image.mjs",
             "catalog/assets/civilization-growth/cursive-data.mjs",
             "catalog/assets/civilization-growth/engine.mjs",
             "catalog/assets/civilization-growth/fire-01.mjs",
@@ -28563,7 +28559,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/font-data.mjs",
             "catalog/assets/civilization-growth/four-flowers.mjs",
             "catalog/assets/civilization-growth/four-sprouts.mjs",
-            "catalog/assets/civilization-growth/growth-image.mjs",
             "catalog/assets/civilization-growth/growth-regions.mjs",
             "catalog/assets/civilization-growth/math.mjs",
             "catalog/assets/civilization-growth/paper.mjs",
@@ -28666,7 +28661,9 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        dependencies: [],
+        dependencies: [
+          "catalog/effects/civilization-images.js"
+        ],
         assets: [
           "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
           "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
@@ -28692,7 +28689,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/civilization/reveal.mjs",
           "catalog/assets/civilization-growth/civilization/wheels.mjs",
           "catalog/assets/civilization-growth/civilization-atlas.mjs",
-          "catalog/assets/civilization-growth/civilization-image.mjs",
           "catalog/assets/civilization-growth/cursive-data.mjs",
           "catalog/assets/civilization-growth/engine.mjs",
           "catalog/assets/civilization-growth/fire-01.mjs",
@@ -28704,7 +28700,6 @@ var registry_default = {
           "catalog/assets/civilization-growth/font-data.mjs",
           "catalog/assets/civilization-growth/four-flowers.mjs",
           "catalog/assets/civilization-growth/four-sprouts.mjs",
-          "catalog/assets/civilization-growth/growth-image.mjs",
           "catalog/assets/civilization-growth/growth-regions.mjs",
           "catalog/assets/civilization-growth/math.mjs",
           "catalog/assets/civilization-growth/paper.mjs",
@@ -28718,6 +28713,7 @@ var registry_default = {
           export_name: "CivilizationGrowth",
           package_name: "civilization-growth-motion",
           files: [
+            "catalog/effects/civilization-images.js",
             "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
             "catalog/assets/civilization-growth/GPL-Calligraphy.txt",
             "catalog/assets/civilization-growth/GROWTH-PROMPT.txt",
@@ -28741,7 +28737,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/civilization/reveal.mjs",
             "catalog/assets/civilization-growth/civilization/wheels.mjs",
             "catalog/assets/civilization-growth/civilization-atlas.mjs",
-            "catalog/assets/civilization-growth/civilization-image.mjs",
             "catalog/assets/civilization-growth/cursive-data.mjs",
             "catalog/assets/civilization-growth/engine.mjs",
             "catalog/assets/civilization-growth/fire-01.mjs",
@@ -28753,7 +28748,6 @@ var registry_default = {
             "catalog/assets/civilization-growth/font-data.mjs",
             "catalog/assets/civilization-growth/four-flowers.mjs",
             "catalog/assets/civilization-growth/four-sprouts.mjs",
-            "catalog/assets/civilization-growth/growth-image.mjs",
             "catalog/assets/civilization-growth/growth-regions.mjs",
             "catalog/assets/civilization-growth/math.mjs",
             "catalog/assets/civilization-growth/paper.mjs",

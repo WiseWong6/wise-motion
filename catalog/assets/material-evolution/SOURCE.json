@@ -11,23 +11,23 @@
       "source_type": "reference-vector-contours"
     },
     {
-      "file": "fiber.png",
-      "bytes": 2209058,
-      "sha256": "1ffbef3659dfc9b0caf4f1f0513fccedd59bd6ec702f410c15f6a4e89fbd78fd",
+      "file": "fiber.webp",
+      "bytes": 1347840,
+      "sha256": "731c6c6614cc911e18d35a1f472f8eda60384c2e89bf284eccf2bf1aadc09c64",
       "source_type": "reference-based-generated-texture",
       "tool": "image_gen.imagegen"
     },
     {
-      "file": "moon.png",
-      "bytes": 1470152,
-      "sha256": "88b93ce0d9605640a2d20df8bad1b447d92eb5696cc8b481f04fb94a587acc74",
+      "file": "moon.webp",
+      "bytes": 972736,
+      "sha256": "3693f3d6df25fbc17c169259c2e3467052c943b22de40637358afddba617db0b",
       "source_type": "reference-based-generated-texture",
       "tool": "image_gen.imagegen"
     },
     {
-      "file": "atlas-engraving.png",
-      "bytes": 2518989,
-      "sha256": "d7674b59eb14d079b618b92d9145b873572b117bf4dd73565bf3559b4df9aade",
+      "file": "atlas-engraving.webp",
+      "bytes": 1593640,
+      "sha256": "24ae24b1fdc30bd858cd981e503e8e5f6e8b58daa6bf1093c11df7499145dfbc",
       "source_type": "reference-based-generated-texture",
       "tool": "image_gen.imagegen"
     }

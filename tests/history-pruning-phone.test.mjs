@@ -21,13 +21,13 @@ test('手机插画在目录和根目录导出页面中指向同一个包内透�
  try{
   const effect=data.effects.find(e=>e.id==='selfie-phone-illustration');const d=env.w.document;
   assert.equal(d.querySelector('[data-kind="illustration"]').getAttribute('aria-pressed'),'true');
-  assert.equal(d.querySelector('#preview image').getAttribute('href'),'file:///wise-motion/catalog/assets/selfie-phone.png');
+  assert.equal(d.querySelector('#preview image').getAttribute('href'),'file:///wise-motion/catalog/assets/selfie-phone.webp');
   const html=env.w.MotionExport.code(effect);const dom=new JSDOM(html,{url:'file:///wise-motion/demo.html',runScripts:'outside-only'});
   try{dom.window.eval(await readFile(new URL('../catalog/effects/selfie-phone.js',import.meta.url),'utf8'));
    const root=dom.window.document.getElementById('motion');const render=dom.window.MotionFactories[effect.id](root);
    const before=root.innerHTML;render(0);render(3000);assert.equal(root.innerHTML,before);
-   assert.equal(root.querySelector('image').getAttribute('href'),'file:///wise-motion/catalog/assets/selfie-phone.png');
+   assert.equal(root.querySelector('image').getAttribute('href'),'file:///wise-motion/catalog/assets/selfie-phone.webp');
   }finally{dom.window.close();}
-  assert.ok((await stat(new URL('../catalog/assets/selfie-phone.png',import.meta.url))).size>0);
+  assert.ok((await stat(new URL('../catalog/assets/selfie-phone.webp',import.meta.url))).size>0);
  }finally{env.close();}
 });

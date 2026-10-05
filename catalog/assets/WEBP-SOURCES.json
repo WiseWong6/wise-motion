@@ -1,0 +1,186 @@
+{
+  "description": "独立图片的无损 WebP 编码来源记录；保留原始文件校验值，图片颜色及透明度不变。",
+  "encoder": "cwebp 1.6.0",
+  "options": [
+    "-lossless",
+    "-exact",
+    "-m",
+    "6",
+    "-q",
+    "100",
+    "-metadata",
+    "all"
+  ],
+  "verification": "转换时逐张核对尺寸、解码后的完整 RGBA 字节及 ICC 色彩配置；完全一致。rgba_sha256 为逐行 RGBA 字节的 SHA-256。",
+  "assets": [
+    {
+      "source": "catalog/assets/collage-film/flywheel.png",
+      "target": "catalog/assets/collage-film/flywheel.webp",
+      "original_bytes": 2443300,
+      "bytes": 1457596,
+      "original_sha256": "d3a3b2bbf0fcfb5c93ba4ca4c64a50465ce1d1a0e614e54332a92a23d2dbc458",
+      "sha256": "7f179e7f0c6aa5b032c9e0faf2bdaceb0c9514b371e6eca3713553790d692aec",
+      "rgba_sha256": "b8733dc6233144935968da2c610f510594e757025a89bf0a0f7f9ac6eaefe222",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "source": "catalog/assets/collage-film/hand.png",
+      "target": "catalog/assets/collage-film/hand.webp",
+      "original_bytes": 2340294,
+      "bytes": 1361054,
+      "original_sha256": "29d44260836294ed0f07d4e64a3fd79c337dacc22ac86e1993a18efca9714463",
+      "sha256": "8710ed7829001764930c370439dfbdf5e3ab87ea261ea40e14611e931f549d75",
+      "rgba_sha256": "1875dade8fb2cabc5ddddc3c855a3f5cc28577a74652a0a7a67bb798e76a73e3",
+      "dimensions": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "source": "catalog/assets/collage-film/runner-poses.png",
+      "target": "catalog/assets/collage-film/runner-poses.webp",
+      "original_bytes": 1449585,
+      "bytes": 857788,
+      "original_sha256": "f98d27a418ad8debd77b3eac508e9de22fa1b5f7294b76a542855fa37a3b6066",
+      "sha256": "f77232e2a016a33e3f21f3a42d98f93f79b5b709d7c3053aec1ca558340fa04b",
+      "rgba_sha256": "871329a7ae4a5f9582ab47bc157c5fdeeb10fc391d5d223ef3cc3908b931b139",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "source": "catalog/assets/collage-film/runner-rebound.png",
+      "target": "catalog/assets/collage-film/runner-rebound.webp",
+      "original_bytes": 2076995,
+      "bytes": 1249864,
+      "original_sha256": "f6441c3d204df6ab7fdce72f93bbad46dc42b4e8bf5a1b468e92d6be928c26d5",
+      "sha256": "d215e531c7b195c07a9147b33b2ce7a05d72effbbdc623b4f77828ee9d90c67a",
+      "rgba_sha256": "813227b35fec6a71d5c5db01af99bc715f622359eefd618e9f4402bcec26d3ce",
+      "dimensions": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "source": "catalog/assets/collage-film/runner-run-cycle.png",
+      "target": "catalog/assets/collage-film/runner-run-cycle.webp",
+      "original_bytes": 1546289,
+      "bytes": 979522,
+      "original_sha256": "0f15f64d77a57a6c41e49da07e0529e09a4c9e492a88f3035435ea199dae1875",
+      "sha256": "3f99d1d0cfd6e1aa421b3a1c4aaa476470a328d8615adfa4c3d4097dd8cabd07",
+      "rgba_sha256": "dab79a6f4ef743c625772ecea40695b34e4b4beebdef53e09ec7149d9f60a08a",
+      "dimensions": [
+        1774,
+        887
+      ]
+    },
+    {
+      "source": "catalog/assets/cyanotype/botanical-atlas.png",
+      "target": "catalog/assets/cyanotype/botanical-atlas.webp",
+      "original_bytes": 3394393,
+      "bytes": 2186746,
+      "original_sha256": "be8f2242bcfac15e0a4e558d3525e162dcaa7809b1d193a89017954de1dceb3a",
+      "sha256": "f30c40e763c2c66d6bb96ab09201b97d7b8fb17b2f38bcba3347f6c94f548351",
+      "rgba_sha256": "b492f2b4ff95cb6a9c3a95ab45b945edc4d209d86a977b40949bbad12e0af11c",
+      "dimensions": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "source": "catalog/assets/material-evolution/atlas-engraving.png",
+      "target": "catalog/assets/material-evolution/atlas-engraving.webp",
+      "original_bytes": 2518989,
+      "bytes": 1593640,
+      "original_sha256": "d7674b59eb14d079b618b92d9145b873572b117bf4dd73565bf3559b4df9aade",
+      "sha256": "24ae24b1fdc30bd858cd981e503e8e5f6e8b58daa6bf1093c11df7499145dfbc",
+      "rgba_sha256": "18ef4c0ecc2fc5d8bec9a2337bfa23fc7229173fef419ddbfa81716fd81130c2",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    {
+      "source": "catalog/assets/material-evolution/fiber.png",
+      "target": "catalog/assets/material-evolution/fiber.webp",
+      "original_bytes": 2209058,
+      "bytes": 1347840,
+      "original_sha256": "1ffbef3659dfc9b0caf4f1f0513fccedd59bd6ec702f410c15f6a4e89fbd78fd",
+      "sha256": "731c6c6614cc911e18d35a1f472f8eda60384c2e89bf284eccf2bf1aadc09c64",
+      "rgba_sha256": "4180eebd341ebe7108184c9d98eda9c6d225a13bd83cd44f243c4c1f14c10d0b",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "source": "catalog/assets/material-evolution/moon.png",
+      "target": "catalog/assets/material-evolution/moon.webp",
+      "original_bytes": 1470152,
+      "bytes": 972736,
+      "original_sha256": "88b93ce0d9605640a2d20df8bad1b447d92eb5696cc8b481f04fb94a587acc74",
+      "sha256": "3693f3d6df25fbc17c169259c2e3467052c943b22de40637358afddba617db0b",
+      "rgba_sha256": "5d77ae8f6b9e5ece9d7de7a370bec0fd1db5f1a2e00428639bd616c16a967563",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "source": "catalog/assets/particle-scenes/coffee-bean.png",
+      "target": "catalog/assets/particle-scenes/coffee-bean.webp",
+      "original_bytes": 1458808,
+      "bytes": 947274,
+      "original_sha256": "fd30c26d018a64ad5f88bc4d99033cb8e34de936f7c1811dfbcee6790e86115f",
+      "sha256": "185ecf1270a19a2f212b5b2c7784ba6fdbcac52d6fc0458a15419bd5683a5814",
+      "rgba_sha256": "576e293b4d478f6a64ac57a4fd3cee2fdce06cfa53d75edcc36e478872e837eb",
+      "dimensions": [
+        1254,
+        1254
+      ]
+    },
+    {
+      "source": "catalog/assets/selfie-phone.png",
+      "target": "catalog/assets/selfie-phone.webp",
+      "original_bytes": 1221745,
+      "bytes": 698886,
+      "original_sha256": "5844e1ca554a9480593142d618f6653b3916961052c2150f3ec02be8064397ea",
+      "sha256": "d0cd0465e6534e5079e6a43952f48e2de0fd5b2f711dc02390c2f85ed8e90a93",
+      "rgba_sha256": "208683d578e7254296d36e9076f0c93320325b09b5f0c1f6d816bb339de195b8",
+      "dimensions": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "source": "catalog/assets/stack-flick/desk-background.png",
+      "target": "catalog/assets/stack-flick/desk-background.webp",
+      "original_bytes": 1471571,
+      "bytes": 987780,
+      "original_sha256": "89018e57e749d9daa9894459102b646fc8a8c78ccd9de8caeef47cfe43518acf",
+      "sha256": "77d16e58a6565722d15a64ee6860361c74b8c2d64f111f6b359178f48021fdb7",
+      "rgba_sha256": "0f787ad2bd14eec01504a99354839589e677d1c5cd11ed72f1b77f464fe11e7b",
+      "dimensions": [
+        1672,
+        941
+      ]
+    },
+    {
+      "source": "catalog/assets/stack-flick/map-paper.png",
+      "target": "catalog/assets/stack-flick/map-paper.webp",
+      "original_bytes": 2421307,
+      "bytes": 1603098,
+      "original_sha256": "b96f9e16213ff35e062855ebcbceb5be150c70df28f35ec1cace3d8e26192cf6",
+      "sha256": "b9b4383b04db81c2ada6db2073a6ae09219ae0a50cb474491d91e67a48165059",
+      "rgba_sha256": "d83df288bf6831808e9abc9116cf3e2d244070805f4c8c2333b4e0b0380eb1f7",
+      "dimensions": [
+        1536,
+        1024
+      ]
+    }
+  ]
+}
