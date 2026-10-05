@@ -263,8 +263,8 @@
     },
     {
       "path": "catalog/assets/glass-light/SOURCE.json",
-      "bytes": 2008,
-      "sha256": "43be0209a3f956ef1d333f084b914c95b080767da3960d4a30ec6b145d16b169"
+      "bytes": 1541,
+      "sha256": "eb8c179f2e27c79e3e36dc07bf7313b87cde518ed79d9ca4deacdecc0b1bbd57"
     },
     {
       "path": "catalog/assets/history-nature/SOURCE.json",

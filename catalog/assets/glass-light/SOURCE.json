@@ -24,16 +24,5 @@
     "name": "Apple 液态玻璃设计",
     "url": "https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/",
     "scope": "六张卡片共用的玻璃材质、柔和高光与透光层次。"
-  },
-  "historical_visual_reference": {
-    "name": "Opus 能力展示片（网络复刻）",
-    "public_url": "https://weixin.qq.com/sph/AysV6Wqz8m",
-    "attribution": "Vincent 的 AI 实验场",
-    "credit_role": "收集并复刻",
-    "scope": "玻璃卡片早期制作阶段的视觉参考；现行六张卡片统一采用上述苹果空间界面参考。",
-    "source_confirmation": {
-      "provided_by": "项目维护者",
-      "date": "2026-10-06"
-    }
   }
 }

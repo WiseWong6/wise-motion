@@ -25,7 +25,6 @@ Copyright © 2026 Wise Wong. 更新日期：2026 年 10 月 6 日。
 | KIMI K3 宣传片复刻 | 宣传片复刻 | 复刻自 Kimi AI 的 [Meet Kimi K3](https://www.youtube.com/watch?v=bn0atstgavo)；补充资料见 [官方博客](https://www.kimi.com/en/blog/kimi-k3)。组合内复用的公共插画保留各自来源。 |
 | Siri、短信、系统设置、音乐、天气与控制中心六张空间卡及相关光照、折射、错层动作 | 界面视觉参考 | 统一参考 [Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)，玻璃材质补充参考 [Apple 液态玻璃设计](https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/)。界面由本项目独立绘制，示例数据与使用范围见 [卡片来源记录](catalog/assets/glass-light/SOURCE.json)。 |
 | 玻璃卡片显现折射完整组合 | 组合参考 | 六张卡片统一采用苹果空间界面；语音使用 Siri，对话使用短信。组合与独立条目共用本项目绘制代码及相同参考来源。 |
-| 玻璃卡片早期制作阶段 | 历史视觉参考 | 参考网络上的 [Opus 能力展示片](https://weixin.qq.com/sph/AysV6Wqz8m)，由 **Vincent 的 AI 实验场** 博主收集并复刻。现行六张卡片的参考来源见上述苹果空间界面记录。 |
 
 目录底部的玻璃播放条采用第三方程序，列于第四部分；其 MIT 许可适用于该程序，不覆盖上述卡片的视觉参考。
 
