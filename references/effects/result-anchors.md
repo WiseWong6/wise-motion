@@ -30,7 +30,7 @@
 
 - [自编源码](../../catalog/effects/paper-showcase.js)，注册名称：`result-anchors`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
-- [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
+- 复刻自 [Kimi AI · Meet Kimi K3](https://www.youtube.com/watch?v=bn0atstgavo)。
 - 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[字符雨幕](claude-glyph-rain-illustration.md)、[多轨圆点环绕](claude-orbits-illustration.md)、[起伏地形线](claude-terrain-illustration.md)、[档案盒开盖浮页](archive-box-illustration.md)、[手绘折线图卡](chart-card-illustration.md)、[散页纸卡](folio-cards-illustration.md)、[旋转圆环线框](torus-illustration.md)、[月相照片卡](moon-card-illustration.md)、[游动流线](claude-flow-field-illustration.md)。

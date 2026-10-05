@@ -1,65 +1,56 @@
-# 来源与许可评估
+# 来源核对与收录规范
 
-核对日期：2026-10-01。本包对“可商用”与“开源且可再分发”分开判断。来源入口或动画库的许可不能自动覆盖官网界面、演示代码、页面图片、社区作品或付费素材。
+核对日期：2026 年 10 月 5 日。公开署名、素材归属与许可汇总以 [署名、来源与说明](../NOTICE.md) 为统一入口；本文规定来源记录、目录显示与外部资源收录方式。
 
-| 来源 | 核实结果 | 本包处理 |
-|---|---|---|
-| Anime.js | 固定版本 4.5.0 的程序为 MIT，可使用、修改及再分发，并保留许可与版权声明。 | 内置未修改的普通脚本。样例自行编写，不复制远程图片与调试依赖。 |
-| GSAP | 官方提供免费商业使用，但采用专用许可并带用途限制；不符合本包严格的开源筛选。 | 保留动作和技术参考入口，未打包程序或示例。 |
-| Jitter | 官方帮助说明允许模板用于商业作品；未核实模板对应的程序源码为可内置的开源代码。 | 借鉴分类与行为，未打包模板、导出资源或程序。 |
-| LottieFiles | 播放程序和动画文件分别有许可。社区动画的正式许可与帮助说明对独立再分发的表述有差异。 | 暂不批量内置社区动画；如需个别动画，核对具体文件来源、许可和附带素材。 |
-| Amotion | 编辑器可访问；未核实公开源码与再分发许可。 | 借鉴用户指定的三栏交互结构，保留链接；程序许可状态为未知，未复制程序。 |
-| Amicro | 仓库根目录为 MIT；3D Dither Lab Book 的具体组件文件另标注 Apache-2.0，不能用根目录许可覆盖。 | 翻页书只参考动作与空间关系，代码、矢量插图和纸纹重新实现；未内置其程序或素材。 |
-| 小红书分享 | 当前未读到具体内容，不能判断作品或程序授权。 | 仅保留用户分享的来源，不复制素材，不推断授权。 |
+## 一、来源记录与目录显示
 
-## Anime.js：已经内置
+| 记录对象 | 记录方式 | 目录显示 |
+| --- | --- | --- |
+| 本项目实现 | `source.origin: original`，保留绘制入口与项目代码许可；素材另设来源记录。 | 无具体外部来源时隐藏来源区，不重复显示自行开发声明。 |
+| 第三方代码改编 | 记录具体上游程序、固定版本、原许可、许可链接及修改范围。 | 依据完整时显示“AI 改编自……的代码，遵循……许可”。未知许可不得标为 MIT。 |
+| 作品或视觉参考 | 使用 `source.reference`；多个参考使用 `source.additional_references`。名称、链接与署名文字按实际出处记录。 | 显示“效果参考”“视觉参考”或明确的复刻署名；切换示例时采用该示例的实际来源。 |
+| 字体、图片、谱面与原始数据 | 在对应素材目录保留 `SOURCE.json`、作者信息、原许可和文件校验记录。 | 完整材料记录汇入署名说明；项目代码许可不覆盖外部材料。 |
 
-- [官方仓库固定版本](https://github.com/juliangarnier/anime/tree/v4.5.0) · [固定版本许可](https://github.com/juliangarnier/anime/blob/v4.5.0/LICENSE.md) · [官方文档](https://animejs.com/documentation/)。
-- npm 包固定为 `animejs@4.5.0`。下载出处、压缩包校验值和各文件校验值见 [来源记录](../vendor/animejs/SOURCE.json)。
-- `anime.umd.min.js` 为目录实际使用的 118,043 字节脚本；另保留未压缩的 `anime.umd.js` 供查阅。两者均未修改。
-- [原 MIT 许可及版权声明](../vendor/animejs/LICENSE.md) 随包保留。
-- 官方样例存在跨文件模块、远程图片和调试面板依赖。本包不搬运整页，使用原库计时器和速度曲线，自编无素材依赖的效果。
-- 每项效果在统一定义中标记 `origin: original`；不存在冒称官方样例的改编。
+`source.origin` 描述实现来源，不证明所有视觉内容的原创归属。`source.reference_url` 是动画库接口文档入口，不作为具体动作设计来源。参考链接与代码许可分别记录；公开可访问、免费使用或免费商用不直接证明可以随包再分发。
 
-## 仅作为参考入口
+作品署名以明确确认的信息为准，不从教程链接推导授权，也不将原作者作品改标为项目许可。待核实事项集中列于署名说明，未取得公开链接时保留来源名称，不生成虚构链接。
 
-- GSAP：[官网](https://gsap.com/) · [官方许可](https://gsap.com/community/standard-license/)。免费商用不等于使用无用途限制的开源许可。
-- Jitter：[官网](https://jitter.video/) · [模板归属与许可](https://help.jitter.video/en/articles/16599058-templates-ownership-and-licensing)。可参考出现、文字、转场等行为；商用导出权不等于可分发编辑器或源模板。
-- LottieFiles：[官网](https://lottiefiles.com/) · [正式素材许可](https://lottiefiles.com/page/license) · [许可帮助说明](https://help.lottiefiles.com/animation-licensing-basics-)。正式许可含同条款要求与竞争库限制；帮助说明对独立再分发有更严格措辞。当前不把它们合并成“所有文件可随意内置”的结论。
-- Lottie 播放程序：[airbnb/lottie-web 的 MIT 许可](https://github.com/airbnb/lottie-web/blob/master/LICENSE.md)。程序许可不能覆盖播放的动画、字体和图片；本版未内置此播放器。
-- Amicro：[参考入口](https://amicro.vercel.app/)。仅参考浏览和复制路径，未内置第三方代码。
-- 翻页书：[原版效果](https://amicro.vercel.app/3d) · [固定版本组件与文件级许可](https://github.com/Subhan-code/Amicro--Micro-transitions-/blob/43c29ce9cdd16459e3eab4992381b8d35b38776a/src/components/dither-charts/DitherBook.tsx)。本地对应“立体翻页书”，保留固定书脊、双面纸张、入场快翻与三项纸页设置；使用自绘本地图形，无远程图片或纸纹依赖。
-- Amotion：[编辑器入口](https://www.amotion.app/editor)。未知许可保持未知，不据能访问、免费使用或编辑器外观推断开放源码。
-- [用户分享的小红书来源](https://www.xiaohongshu.com/s/poster?bgimg=https%3A%2F%2Fsns-redskillhub-s1.xhscdn.com%2Fred_app_image%2F1040g4m83241q07jpna005qelo9nsok378rohtb8%3Fsign%3D325e417b90d2f36dd545ce4f0d4a692d%26t%3D6c66710a&deeplink=xhsdiscover%3A%2F%2FminiTool%2F6a675ed61ed11800159c9d47%3Fsource%3Dh5%26page_key%3D28%26xhsMpScreenMode%3Dfull&code=031jeZFa1xQ5xM0p4AGa18RYP04jeZFv&state=wx_oauth)。当前尚未读到具体作品；只保留来源线索。
+## 二、已内置的程序与图标
 
-## 页面来源标识
+| 项目 | 固定版本与原许可 | 接入范围 |
+| --- | --- | --- |
+| Anime.js | [4.5.0 固定版本](https://github.com/juliangarnier/anime/tree/v4.5.0)、[MIT](../vendor/animejs/LICENSE.md)、[来源记录](../vendor/animejs/SOURCE.json) | 保留未修改的压缩与未压缩脚本，用于计时器与速度曲线；效果由项目绘制。 |
+| Heroicons | [2.2.0](https://github.com/tailwindlabs/heroicons/tree/v2.2.0)、[MIT](../vendor/heroicons/LICENSE)、[来源记录](../vendor/heroicons/SOURCE.json) | 所用轮廓图标合并为普通脚本，保留原路径。 |
+| Lucide / Feather | [Lucide 1.8.0](https://github.com/lucide-icons/lucide/tree/1.8.0)、[ISC 与部分 MIT 原声明](../vendor/lucide/LICENSE)、[来源记录](../vendor/lucide/SOURCE.json) | 界面内联图标；不得将整套图标统一标为 MIT。 |
+| Liquid Glass | [Deepika Rao 上游仓库](https://github.com/deepika-builds/liquid-glass)、[MIT](../vendor/liquid-glass/LICENSE)、[固定来源记录](../vendor/liquid-glass/SOURCE.json) | 目录玻璃播放条；仅增加能力保护、失败处理与销毁清理。卡片动画采用独立绘制代码。 |
 
-标准动作在右侧描述下方展示有依据的第三方来源。直接复制或改编的候选只有在具体上游代码、许可与链接齐全时，才写“AI 改编自……的代码，遵循……许可”；明确的第三方效果参考使用独立的 source.reference 记录，显示“效果参考……”。历史配方另外展示原作出处与抽象结论。所有页面均不展示本地自有内容的自行开发声明；未知许可不标成 MIT。
+其余字体、音符绘制包和视频复用依赖见 [署名、来源与说明](../NOTICE.md)；各依赖按自身原许可记录。
 
-当前标准参考的 source.origin 为 original，表示本地自有实现，不代表全部由 AI 原创。用户已确认其中包含参考其自行开发的内容，尤其“主体与环境”；不得把这些动作归给 Anime.js 或其他第三方网站。现有 source.reference_url 为动画库文档入口，供查询播放接口使用，不是具体动作的设计或代码来源证据。历史配方使用 history 标记，与自有示例分开记录。
+## 三、外部参考入口与收录边界
 
-本地自有内容不展示“自行开发”声明，没有具体第三方来源的标准动作隐藏整个来源区；历史配方保留原作来源区。页面不再显示全局界面样式参考句或每项重复的动画库许可。项目自身的 AGPL-3.0-only、动画库的 MIT 及界面参考记录继续保留在完整许可、版权说明和本文中，没有变更任何代码的许可。
+| 来源 | 已核对的边界 | 本包处理与出处 |
+| --- | --- | --- |
+| GSAP | 免费商业使用采用专用许可并含用途限制，未按本包的开源筛选纳入。 | 保留 [技术入口](https://gsap.com/) 与 [官方许可](https://gsap.com/community/standard-license/)，未打包程序或示例。 |
+| Jitter | 模板用于商业作品的条件，不等于源模板或编辑器的再分发许可。 | 参考分类与行为；未打包模板、导出资源或程序。见 [模板归属与许可](https://help.jitter.video/en/articles/16599058-templates-ownership-and-licensing)。 |
+| LottieFiles | 播放程序与动画文件分别有许可；素材条款包含同条款要求、竞争库限制，帮助说明对独立再分发另有限制。 | 暂不批量内置社区动画；逐个核对 [正式素材许可](https://lottiefiles.com/page/license) 与 [许可帮助](https://help.lottiefiles.com/animation-licensing-basics-)。 |
+| Lottie 播放程序 | 程序的 MIT 许可不覆盖动画、字体或图片。 | 本版未内置；原许可见 [lottie-web](https://github.com/airbnb/lottie-web/blob/master/LICENSE.md)。 |
+| Amicro | 仓库根目录为 MIT；翻页书具体组件另标 Apache-2.0，文件级许可须单独核对。 | 参考 [界面入口](https://amicro.vercel.app/) 与 [翻页书](https://amicro.vercel.app/3d)；代码、矢量插图和纸纹由项目实现。见 [固定组件与许可](https://github.com/Subhan-code/Amicro--Micro-transitions-/blob/43c29ce9cdd16459e3eab4992381b8d35b38776a/src/components/dither-charts/DitherBook.tsx)。 |
+| Amotion | 未核实公开源码与再分发许可。 | 仅参考 [编辑器](https://www.amotion.app/editor) 的通用面板组织，不引入其程序或媒体。 |
+| 社区教程与分享 | 按具体作品分别记录作者、来源与授权；不可从平台入口推导整个平台素材许可。 | 已确认的老师署名与作品范围见 [作品署名汇总](../NOTICE.md)。其他分享仅保留 [来源线索](https://www.xiaohongshu.com/s/poster?bgimg=https%3A%2F%2Fsns-redskillhub-s1.xhscdn.com%2Fred_app_image%2F1040g4m83241q07jpna005qelo9nsok378rohtb8%3Fsign%3D325e417b90d2f36dd545ce4f0d4a692d%26t%3D6c66710a&deeplink=xhsdiscover%3A%2F%2FminiTool%2F6a675ed61ed11800159c9d47%3Fsource%3Dh5%26page_key%3D28%26xhsMpScreenMode%3Dfull&code=031jeZFa1xQ5xM0p4AGa18RYP04jeZFv&state=wx_oauth)。 |
 
-Amotion 当前只用于参考通用界面原则，没有公开源码授权证据；正式目录没有引入它的程序、图形或媒体素材。界面参考记录与动作代码来源分开保留。新增候选先核实对应文件的许可，再决定直接改编或自行实现，不能仅凭代码可访问就复制。
+## 四、收录与离线使用要求
 
-现有界面另使用 [Heroicons 2.2.0](https://github.com/tailwindlabs/heroicons/tree/v2.2.0) 的 MIT 图标，以及 [Lucide 1.8.0](https://github.com/lucide-icons/lucide/tree/1.8.0) 的内联图标。Lucide 原许可含 ISC 与部分 Feather 来源图标的 MIT 声明，已保留 [完整原许可](../vendor/lucide/LICENSE) 和 [来源记录](../vendor/lucide/SOURCE.json)，不能一概写成 MIT。
+1. 新增第三方材料时保留固定版本、文件级许可、修改说明、运行时依赖与校验记录；代码和素材分别核对。
+2. 修改上游代码时保留原版权并标注改编；只有参考链接时，不登记为已许可的内置程序。
+3. 目录读取本地普通脚本、矢量轮廓、字体与生成图片，没有运行时远程素材；静态入口无需联网或服务器。外部参考只在本地缺口或明确需求下定向查阅。
+4. 正式条目及数量以 [统一目录统计](../CATALOG-STATS.md) 为准。历史入口已下线，原作与迁移记录用于追溯，不作为新的公开素材授权依据。
 
-## 内置判断与联网负担
+## 五、播放条液态玻璃接入
 
-本版可完整内置：需求方法、86 项统一定义、自编效果源码、播放接口、Anime.js 原程序及许可、已保留许可的图标与本地字体。目录使用代码绘制的图形，没有运行时远程素材。静态页面从普通本地脚本读数据，打开时无需联网。
+玻璃程序为 Deepika Rao 的 Liquid Glass，保留上游尺寸感知位移图与三色通道折射，以普通本地脚本加载。参数沿用上游默认值：位移 −112、色散 6、内边 0.07、图模糊 12、背景模糊 3；只在尺寸变化时重建位移图。
 
-暂不内置：Jitter 模板、GSAP 程序、LottieFiles 社区素材、Amotion 程序及小红书资源。它们的入口用于遇到本地缺口时定向查找，不在常见需求匹配中自动访问。
+Chromium 浏览器使用背景位移；Safari、Firefox 降级为磨砂。减少透明度、增强对比或强制颜色模式下停用折射。桌面播放条浮于预览下沿，窄屏移至画面下方；仅过滤材质层，避免额外厚模糊覆盖透镜边缘。浏览器实现边界见 [Aave 实现说明](https://aave.com/design/building-glass-for-the-web)，视觉方向见 [界面设计说明](apple-hig.md)。
 
-扩充目录时，必须新增固定版本、文件级许可证据、修改说明和运行时依赖记录。若第三方代码已经修改，标记改编并保留上游版权；若许可没有说明再分发，则先保留参考链接。
+## 六、作品与素材的详细记录
 
-## 本机历史配方
-
-动画与文稿历史按逐条审查对应表编译到目录；权威快照与审查保存在私有状态目录。289 条配方保留 311 个案例的本机视频或绘制入口，3 条静态资产与声音排程记录因范围排除。自有适配代码使用 AGPLv3；历史原代码、素材与依赖不因被引用而改变许可，迁出前仍需逐项核实。没有复制原作视频、字体、图片、声音或第三方库。
-
-## 播放条液态玻璃源码
-
-2026-10-01 查阅实际源码和许可后，接入 [Deepika Rao 的 Liquid Glass](https://github.com/deepika-builds/liquid-glass)，使用 MIT 许可，固定来源与文件校验见 [来源记录](../vendor/liquid-glass/SOURCE.json)。本地适配仅补充能力保护、失败和销毁清理；保留其尺寸感知位移图和三色通道折射。作为普通本地脚本加载，无需框架、网络请求或服务器；未安装仓库中的技能。
-
-同时比较了 [rdev/liquid-glass-react](https://github.com/rdev/liquid-glass-react) 和 [DevSam7t3/liquid-glass](https://github.com/DevSam7t3/liquid-glass)。前者围绕 React，后者源码为多个 TypeScript 文件；当前原生静态页面优先选择独立脚本方案。浏览器边界参考 [Aave 的实现说明](https://aave.com/design/building-glass-for-the-web)：通过背景 SVG 滤镜折射主要适用于 Chromium；直接过滤内容是另一种跨浏览器实现，不能简单当成相同的背景滤镜。
-
-本次已接入的方案在 Chrome 等 Chromium 浏览器执行真实背景位移，在 Safari、Firefox 退回普通磨砂；减少透明度、增强对比、强制颜色时停用折射。只在面板改变尺寸时重建位移图，不在每帧生成。光学参数使用上游默认值（位移 −112、色散 6、内边 0.07、图模糊 12、背景模糊 3）；播放条上不再叠厚模糊或额外高光层，否则边缘透镜会被盖住。玻璃后面是预览画面本身，桌面端整条浮在画面下沿之内；网站仍是黑白灰，不会凭空出现参考照片里的彩色透光。窄屏回落到画面下方。
+作品署名及公开待办集中维护在 [署名、来源与说明](../NOTICE.md)。素材记录分别位于 [材质演变](../catalog/assets/material-evolution/SOURCE.json)、[玻璃卡片](../catalog/assets/glass-light/SOURCE.json)、[谱面动作](../catalog/assets/particle-scenes/SOURCE.json)、[NASA 月貌](../catalog/assets/history-nature/SOURCE.json) 与 [书法生成材料](../vendor/calligraphy/README.md)；生成图集和字体许可入口统一由署名说明索引。

@@ -30,7 +30,7 @@
 
 - [原码提取与接入源码](../../catalog/effects/particle-scenes.js)，共享绘制入口：`note-hop-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
-- [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
+- 复刻自 [@言说心事](https://www.xiaohongshu.com/user/profile/6926ff85000000003702b1c1?xsec_token=ABiobWDdNSX_CX9Vf091D7iZ9SeSMSlAk4oyjghnynYPQ%3D&xsec_source=pc_search) 老师的教程
 - 直接使用本地 notes-source.js 中完整原谱面、光点、尾迹和光照绘制，只将输出尺寸接入横画板；源 bundle 内嵌谱面矢量、音符数据与 Three.js。依赖全部随包，无网络、音频或原工程路径；Three.js 的 MIT 许可保留。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

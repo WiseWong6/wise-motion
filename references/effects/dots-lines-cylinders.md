@@ -30,7 +30,7 @@
 
 - [原码提取与接入源码](../../catalog/effects/material-evolution.js)，注册名称：`dots-lines-cylinders`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
-- [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
+- 效果参考 [Kimi K3 开源发布宣传片（open weights）](https://www.youtube.com/watch?v=5GlCGOXUYHg)。
 - 从2026年10月2日精修的Kimi开源发布片独立动画源码迁入，共用实际绘制函数和固定排程；开头37个书法姿态、结尾27个字形姿态使用选定画面的矢量轮廓与墨色，纤维球、月面及版画采用此前经Codex内置图片工具重建的透明素材；运行时不读取原片视频或JPG截图，不把轮廓及素材声明为独立原创图形。 AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

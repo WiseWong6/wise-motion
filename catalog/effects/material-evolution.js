@@ -1,5 +1,8 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
  * 保留本机精修后的真实绘制、独立笔形和材料过渡。原片图形权利不由代码许可授予。 */
+/* KIMI K3 开源宣传片复刻及其七个单段：效果参考 Kimi K3 open weights。
+ * https://www.youtube.com/watch?v=5GlCGOXUYHg
+ * 自有程序许可不覆盖参考书法、品牌字形及原片设计的权利。 */
 (function (global) {
  'use strict';
  const factories=global.MotionFactories=global.MotionFactories||{},parts={};

@@ -1,0 +1,30 @@
+{
+  "name": "I.顏體 / I.Ngaan",
+  "license": "GPL-2.0-or-later",
+  "copyright": "(C) Dr. Hann-Tzong Wang, 1999-2004; (C) Ichiten Fonts Project, 2013-14. This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public Linense as published by the Free Software Foundation; either version 2 of the License, or any later version.",
+  "download": "https://raw.githubusercontent.com/yuleshow/chinese-fonts/master/I.Ngaan.ttf",
+  "author_page": "https://founder.acgvlyric.org/iu/doku.php/造字:開源字型_i.顏體",
+  "font_sha256": "7aba8f5bb77ea7e0fc37c0e5e709bd8e1d49b44a3c91eb503f426562602f9c2a",
+  "derivative": "catalog/assets/civilization-growth/calligraphy-data.mjs",
+  "generator": "prepare-calligraphy.py",
+  "generator_license": "AGPL-3.0-only",
+  "modifications": "保留原字库；提取火炎焱燚四字轮廓，曲线采样并生成固定网格墨点。",
+  "files": {
+    "GPL-2.0.txt": {
+      "bytes": 17984,
+      "sha256": "edaef632cbb643e4e7a221717a6c441a4c1a7c918e6e4d56debc3d8739b233f6"
+    },
+    "I.Ngaan.ttf": {
+      "bytes": 8953760,
+      "sha256": "7aba8f5bb77ea7e0fc37c0e5e709bd8e1d49b44a3c91eb503f426562602f9c2a"
+    },
+    "prepare-calligraphy.py": {
+      "bytes": 3594,
+      "sha256": "7095f13b277487609dd9af5b44ff0c9e35e99a7b54fc5a032378e8049b4bae6b"
+    },
+    "README.md": {
+      "bytes": 1290,
+      "sha256": "201820075bcc38560933728a575015342c69026c3ad21a5f671b8bb1ed88b455"
+    }
+  }
+}

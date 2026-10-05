@@ -149,10 +149,17 @@ test('本地动作不误标第三方来源，明确的代码改编和样式参�
       for (const card of d.querySelectorAll('#effects-list [data-effect]')) {
         card.click();
         visited++;
-        const reference=w.MotionRegistry.effects.find(e=>e.id===card.dataset.effect).source.reference;
-        if(reference){
-          assert.match(source.textContent,/效果参考/);assert.ok(source.textContent.includes(reference.name));assert.ok(!block.hidden);
-          assert.equal(source.querySelector('a').href,reference.url);
+        const effect=w.MotionKit.resolveVariant(w.MotionRegistry.effects.find(e=>e.id===card.dataset.effect));
+        const references=[effect.source.reference,...(effect.source.additional_references||[])].filter(Boolean);
+        if(references.length){
+          for(const reference of references){
+            assert.ok(source.textContent.includes(reference.credit_prefix || '效果参考'),card.dataset.effect+'：'+source.textContent);
+            assert.ok(source.textContent.includes(reference.name));assert.ok(!block.hidden);
+            if(reference.credit_suffix)assert.ok(source.textContent.includes(reference.credit_suffix));
+            const link=[...source.querySelectorAll('a')].find(a=>a.textContent===reference.name);
+            if(reference.url)assert.equal(link?.href,reference.url);
+            else assert.equal(link,undefined);
+          }
         }else{
           assert.equal(source.textContent, '', card.dataset.effect);assert.ok(block.hidden, card.dataset.effect);
         }
@@ -160,6 +167,15 @@ test('本地动作不误标第三方来源，明确的代码改编和样式参�
     }
     assert.equal(visited, data.effects.length);
     d.querySelector('[data-kind="action"]').click();
+    d.querySelector('[data-effect="glass-card-stagger"]').click();
+    const glass=w.MotionRegistry.effects.find(e=>e.id==='glass-card-stagger');
+    for(const variant of glass.variants){
+      const select=d.getElementById('effect-variant');
+      select.value=variant.id;select.dispatchEvent(new w.Event('change'));
+      const reference=w.MotionKit.resolveVariant(glass,variant.id).source.reference;
+      assert.ok(source.textContent.includes(reference.name),variant.label+' 应保留实际来源');
+      if(reference.url)assert.equal(source.querySelector('a')?.href,reference.url);
+    }
     const effect = w.MotionRegistry.effects.find(e => e.id === 'fade-rise');
     effect.source.origin = 'adapted';
     effect.source.upstream = {name:'授权示例',url:'https://example.com/source',license:'MIT',license_url:'https://example.com/license'};

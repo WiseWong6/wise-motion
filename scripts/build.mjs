@@ -38,6 +38,19 @@ await output('catalog/registry-data.js', '/* 自动生成自 registry.json；请
 // 首屏三个页签数量从正式目录生成。
 const tabKinds=['action','composition','illustration'];
 const tabCounts=Object.fromEntries(tabKinds.map(kind=>[kind,registry.effects.filter(effect=>effect.kind===kind).length]));
+const countSummary=`目录有 ${tabCounts.action} 个单个动作、${tabCounts.illustration} 个插画单图、${tabCounts.composition} 个组合片段，共 ${registry.effects.length} 项；数量由目录定义自动生成，详见 [目录统计](CATALOG-STATS.md)。`;
+const readme=await readFile(path.join(root,'README.md'),'utf8');
+const countBlock=/<!-- catalog-counts:start -->[\s\S]*?<!-- catalog-counts:end -->/g;
+if([...readme.matchAll(countBlock)].length!==1)throw new Error('README 目录统计位置须唯一');
+await output('README.md',readme.replace(countBlock,()=>`<!-- catalog-counts:start -->\n${countSummary}\n<!-- catalog-counts:end -->`));
+await output('CATALOG-STATS.md',[
+  '# 目录统计', '',
+  '数量的唯一来源为 [目录定义](catalog/registry.json)，本页及 README 概览由 `npm run build` 自动生成，`npm run check` 核对一致性。请勿手工维护数字。', '',
+  '| 类别 | 数量 |', '| --- | ---: |',
+  `| 单个动作 | ${tabCounts.action} |`, `| 插画单图 | ${tabCounts.illustration} |`,
+  `| 组合片段 | ${tabCounts.composition} |`, `| 合计 | ${registry.effects.length} |`, '',
+  '这里统计目录条目，不统计原创作品数量、资产权利归属或跨模型制作效果。', ''
+].join('\n'));
 const seenTabs=new Set();
 const page=await readFile(path.join(root,'catalog/index.html'),'utf8');
 const countedPage=page.replace(/(<button\b[^>]*data-kind="(action|composition|illustration)"[^>]*>[^<]*<span class="pill-count">)\d+(<\/span>)/g,(_,before,kind,after)=>{
@@ -51,7 +64,7 @@ for (const c of registry.categories) {
   index.push('', '## ' + c.name, '', ...(c.description ? [c.description, ''] : []), '| 参考 | 用途与动作 | 行为线索 | 说明 |', '|---|---|---|---|');
   for (const e of registry.effects.filter(x => x.category === c.id)) {
     index.push(`| ${e.name} | ${e.summary} | ${e.aliases.join('、')} | [按需读取](effects/${e.id}.md) |`);
-    const detail = [`# ${e.name}`, '', '以下动效说明由统一定义生成。示例对象和时长是可调整的假设，结构要求需要保留。', '', describe(e, {}, registry), '', '## 调整方式', '', `播放速度：${e.parameters.speed.min}–${e.parameters.speed.max} 倍。`, e.parameters.ease ? `速度变化：${e.parameters.ease.options.map(x => ({linear:'匀速',outCubic:'末尾减速',inOutCubic:'平缓加速、减速',inOutSine:'平缓往返',spring:'轻微回弹',outBounce:'回弹缓出',outElastic:'弹性缓出',outSine:'正弦缓出'}[x])).join('、')}。` : e.tempo_note, '', `预览定位：${e.preview_ms} 毫秒。固定演示总长：${e.duration_ms} 毫秒。`, '', '## 源码与使用', '', `- [${e.source.extraction ? "原码提取与接入源码" : "自编源码"}](../../${e.source.path})，${e.source.factory===e.id?"注册名称":"共享绘制入口"}：\`${e.source.factory}\`。`, '- [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。', e.source.reference ? `- [效果参考：${e.source.reference.name}](${e.source.reference.url})；使用固定版本 Anime.js 4.5.0 的计时器。` : `- [Anime.js 官方文档](${e.source.reference_url})；使用固定版本 4.5.0 的计时器与速度曲线。`, e.source.extraction ? '- '+e.source.extraction+'许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。' : '- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。', '', e.actions.length ? '所用动作：' + e.actions.map(id => `[${registry.effects.find(x => x.id === id).name}](${id}.md)`).join('、') + '。' : e.kind === 'composition' ? '这是一个组合片段；目录的组合拆解对照原画，相关动作弹窗播放已登记的独立动作。' : e.kind === 'illustration' ? '这是一个插画单图，可作为组合片段的图形素材复用。' : '这是一个单个动作，可在组合片段中复用。', ''];
+    const detail = [`# ${e.name}`, '', '以下动效说明由统一定义生成。示例对象和时长是可调整的假设，结构要求需要保留。', '', describe(e, {}, registry), '', '## 调整方式', '', `播放速度：${e.parameters.speed.min}–${e.parameters.speed.max} 倍。`, e.parameters.ease ? `速度变化：${e.parameters.ease.options.map(x => ({linear:'匀速',outCubic:'末尾减速',inOutCubic:'平缓加速、减速',inOutSine:'平缓往返',spring:'轻微回弹',outBounce:'回弹缓出',outElastic:'弹性缓出',outSine:'正弦缓出'}[x])).join('、')}。` : e.tempo_note, '', `预览定位：${e.preview_ms} 毫秒。固定演示总长：${e.duration_ms} 毫秒。`, '', '## 源码与使用', '', `- [${e.source.extraction ? "原码提取与接入源码" : "自编源码"}](../../${e.source.path})，${e.source.factory===e.id?"注册名称":"共享绘制入口"}：\`${e.source.factory}\`。`, '- [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。', e.source.reference ? `- ${e.source.reference.credit_prefix || '效果参考'} ${e.source.reference.url ? `[${e.source.reference.name}](${e.source.reference.url})` : e.source.reference.name}${e.source.reference.credit_suffix ? ' ' + e.source.reference.credit_suffix : '。'}` : `- [Anime.js 官方文档](${e.source.reference_url})；使用固定版本 4.5.0 的计时器与速度曲线。`, e.source.extraction ? '- '+e.source.extraction+'许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。' : '- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。', '', e.actions.length ? '所用动作：' + e.actions.map(id => `[${registry.effects.find(x => x.id === id).name}](${id}.md)`).join('、') + '。' : e.kind === 'composition' ? '这是一个组合片段；目录的组合拆解对照原画，相关动作弹窗播放已登记的独立动作。' : e.kind === 'illustration' ? '这是一个插画单图，可作为组合片段的图形素材复用。' : '这是一个单个动作，可在组合片段中复用。', ''];
     for (const reference of e.source.additional_references||[])detail.push(`补充效果参考：[${reference.name}](${reference.url})。`, '');
     for (const variant of e.variants||[]) {
       const {id,label,...fields}=variant;
