@@ -430,7 +430,7 @@
     controller = effect.id==='dither-lab-book'
       ? WiseDitherWorkbench.create($('preview'),effect,{onUpdate:syncPlayer,onSettingsChange:updateOutputs,
         mode:preserved?.bookMode,paperSettings:preserved?.bookSettings,pageIndex:preserved?.bookIndex})
-      : effect.kind==='recipe' ? MotionHistoryRuntime.create($('preview'),effect,{onUpdate:syncPlayer,caseId:effect.selected_entry.id}) : (globalThis.MotionLocalPreview||MotionRuntime).create($('preview'), effect, {onUpdate:syncPlayer});
+      : effect.kind==='recipe' ? MotionHistoryRuntime.create($('preview'),effect,{onUpdate:syncPlayer,caseId:effect.selected_entry.id}) : MotionRuntime.create($('preview'), effect, {onUpdate:syncPlayer});
     controller.setSpeed(Number($('speed').value));
     controller.setEase($('ease').value);
     MotionComposition.select(effect,controller,preserved?.compositionView);
