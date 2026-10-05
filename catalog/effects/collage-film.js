@@ -420,11 +420,11 @@ function loadAsset(name){
 const ready=(async()=>{
  await doc.fonts?.load('700 270px Oswald');if(dead)return;
  fiber=paperFibers(W,H,331);
- if(!only||only==='mechanics')[hand,wheel]=await Promise.all([loadAsset('hand.png'),loadAsset('flywheel.png')]);
+ if(!only||only==='mechanics')[hand,wheel]=await Promise.all([loadAsset('hand.webp'),loadAsset('flywheel.webp')]);
  if(dead)return;
- if(!only)runner=await loadAsset('runner-poses.png');
+ if(!only)runner=await loadAsset('runner-poses.webp');
  if(dead)return;
- if(!only||only==='runner')[runnerRun,runnerRebound]=await Promise.all([loadAsset('runner-run-cycle.png'),loadAsset('runner-rebound.png')]);
+ if(!only||only==='runner')[runnerRun,runnerRebound]=await Promise.all([loadAsset('runner-run-cycle.webp'),loadAsset('runner-rebound.webp')]);
  if(dead)return;
  if(!only||only==='type'){
   wise=wordData('WISE',611);motion=wordData('MOTION',719);

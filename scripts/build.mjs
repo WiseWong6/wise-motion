@@ -16,11 +16,22 @@ async function output(relative, content) {
 const registry = JSON.parse(await readFile(path.join(root, 'catalog/registry.json'), 'utf8'));
 // Freeze actual frame components and painters for offline copy; never read a private project at runtime.
 const remotionFiles = {};
+const sharedImagesFile = 'catalog/effects/civilization-images.js';
+let sharedImagesSource;
 for (const file of new Set(registry.effects.flatMap(e => e.source.remotion?.files || []))) {
   if (path.isAbsolute(file) || file.split('/').includes('..')) throw new Error('复制源码路径越界：' + file);
-  remotionFiles[file] = await readFile(path.join(root, file), 'utf8');
+  const content = await readFile(path.join(root, file), 'utf8');
+  if (file === sharedImagesFile) sharedImagesSource = content;
+  else remotionFiles[file] = content;
 }
-await output('catalog/remotion-sources.js', '/* Generated from registered Remotion source files. AGPL-3.0-only. */\nglobalThis.MotionRemotionSources = ' + JSON.stringify(remotionFiles).replace(/</g, '\\u003c') + ';\n');
+// 图片数据只存一份；用户复制独立工程时才重新组装共享图片文件。
+const sharedImageParts = sharedImagesSource?.match(/^([\s\S]*?Object\.freeze\()(\{[^\n]+\})(\);\n)$/);
+if (!sharedImageParts || JSON.stringify(JSON.parse(sharedImageParts[2])) !== sharedImageParts[2]) throw new Error('共享图片文件格式不完整：' + sharedImagesFile);
+const sharedImageCopy = `Object.defineProperty(globalThis.MotionRemotionSources, ${JSON.stringify(sharedImagesFile)}, {enumerable:true,get(){
+  if(!globalThis.WiseCivilizationImages)throw new Error('文明聚字的共享图片尚未加载');
+  return ${JSON.stringify(sharedImageParts[1])}+JSON.stringify(globalThis.WiseCivilizationImages)+${JSON.stringify(sharedImageParts[3])};
+}});\n`;
+await output('catalog/remotion-sources.js', '/* Generated from registered Remotion source files. AGPL-3.0-only. */\nglobalThis.MotionRemotionSources = ' + JSON.stringify(remotionFiles).replace(/</g, '\\u003c') + ';\n' + sharedImageCopy);
 const {describe} = createRequire(import.meta.url)('../catalog/matching.js');
 await mkdir(path.join(root, 'references/effects'), {recursive: true});
 await output('catalog/registry-data.js', '/* 自动生成自 registry.json；请修改权威定义后运行 node scripts/build.mjs。AGPL-3.0-only */\nglobalThis.MotionRegistry = ' + JSON.stringify(registry) + ';\n');

@@ -12,6 +12,11 @@
       "sha256": "2e3e466ddf991c19bcedb7a7ad9989100d351dbd1e97cd638e59f8323bdfbb28"
     },
     {
+      "path": "catalog/assets/WEBP-SOURCES.json",
+      "bytes": 7217,
+      "sha256": "1c0eff71a3256f6b9e97eaa3706f5b1eb1e55b23e127d2cd208bb4aa88f6e29a"
+    },
+    {
       "path": "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
       "bytes": 3703,
       "sha256": "ced6cd0107d17d403e854a1820b7485449429bfa9e79298a2321bfa01e934e3f"
@@ -43,13 +48,13 @@
     },
     {
       "path": "catalog/assets/civilization-growth/SOURCE.json",
-      "bytes": 9255,
-      "sha256": "1048d0725d701103ffa84ac7644aacce5fc42fea0a3c5d27df277b4b64119620"
+      "bytes": 9218,
+      "sha256": "c837d13bfe5fff744f28e04fd1c7bd9fda963c089102763a10f0aa0a76f1d9d5"
     },
     {
       "path": "catalog/assets/civilization-growth/assets.mjs",
-      "bytes": 1102,
-      "sha256": "166018a4153de38d61ba7e3916f0bc6e109e3156310708e7586a463477b2d9c2"
+      "bytes": 1117,
+      "sha256": "5f5e7f3dc9f5018ae428343af2bb561dee79356d34289571fffe7e9773f635be"
     },
     {
       "path": "catalog/assets/civilization-growth/botanical-texture.mjs",
@@ -132,11 +137,6 @@
       "sha256": "eb6f74878fa0b695d718c52c0964bcd53c36baeceddc3b4e50cc80a51bbe1106"
     },
     {
-      "path": "catalog/assets/civilization-growth/civilization-image.mjs",
-      "bytes": 4867198,
-      "sha256": "f8cf9d12814dc4ca1a456f0781384a9565882dd4d09686d92180638603d13c42"
-    },
-    {
       "path": "catalog/assets/civilization-growth/cursive-data.mjs",
       "bytes": 92849,
       "sha256": "e1818aaeedcb719088b2d3b853ffd285e43336de3d0df7c02d9918913443e03e"
@@ -192,11 +192,6 @@
       "sha256": "1d1e1bc5c95f826846264964f390a8317814f46c14fac267fac8dd9554227bf4"
     },
     {
-      "path": "catalog/assets/civilization-growth/growth-image.mjs",
-      "bytes": 2326184,
-      "sha256": "b54e154cc00e91bc77184658b79a37580e947f26eaabeb8881ce5b81317c9bde"
-    },
-    {
       "path": "catalog/assets/civilization-growth/growth-regions.mjs",
       "bytes": 1040,
       "sha256": "291be440f684c6557c04424206bceb47aaed38188c505055f78585dbcf47c57a"
@@ -228,58 +223,58 @@
     },
     {
       "path": "catalog/assets/collage-film/SOURCE.json",
-      "bytes": 12053,
-      "sha256": "fc7b7cd569d882bc4c12ea605dc75afce9a286fce5d3577d03e756b5b3860b2b"
+      "bytes": 12115,
+      "sha256": "4c3bb61e2359fa4bf4b699ba1793565496b2a9158e2a3bf8857ae8897786cc6d"
     },
     {
-      "path": "catalog/assets/collage-film/flywheel.png",
-      "bytes": 2443300,
-      "sha256": "d3a3b2bbf0fcfb5c93ba4ca4c64a50465ce1d1a0e614e54332a92a23d2dbc458"
+      "path": "catalog/assets/collage-film/flywheel.webp",
+      "bytes": 1457596,
+      "sha256": "7f179e7f0c6aa5b032c9e0faf2bdaceb0c9514b371e6eca3713553790d692aec"
     },
     {
-      "path": "catalog/assets/collage-film/hand.png",
-      "bytes": 2340294,
-      "sha256": "29d44260836294ed0f07d4e64a3fd79c337dacc22ac86e1993a18efca9714463"
+      "path": "catalog/assets/collage-film/hand.webp",
+      "bytes": 1361054,
+      "sha256": "8710ed7829001764930c370439dfbdf5e3ab87ea261ea40e14611e931f549d75"
     },
     {
-      "path": "catalog/assets/collage-film/runner-poses.png",
-      "bytes": 1449585,
-      "sha256": "f98d27a418ad8debd77b3eac508e9de22fa1b5f7294b76a542855fa37a3b6066"
+      "path": "catalog/assets/collage-film/runner-poses.webp",
+      "bytes": 857788,
+      "sha256": "f77232e2a016a33e3f21f3a42d98f93f79b5b709d7c3053aec1ca558340fa04b"
     },
     {
-      "path": "catalog/assets/collage-film/runner-rebound.png",
-      "bytes": 2076995,
-      "sha256": "f6441c3d204df6ab7fdce72f93bbad46dc42b4e8bf5a1b468e92d6be928c26d5"
+      "path": "catalog/assets/collage-film/runner-rebound.webp",
+      "bytes": 1249864,
+      "sha256": "d215e531c7b195c07a9147b33b2ce7a05d72effbbdc623b4f77828ee9d90c67a"
     },
     {
-      "path": "catalog/assets/collage-film/runner-run-cycle.png",
-      "bytes": 1546289,
-      "sha256": "0f15f64d77a57a6c41e49da07e0529e09a4c9e492a88f3035435ea199dae1875"
+      "path": "catalog/assets/collage-film/runner-run-cycle.webp",
+      "bytes": 979522,
+      "sha256": "3f99d1d0cfd6e1aa421b3a1c4aaa476470a328d8615adfa4c3d4097dd8cabd07"
     },
     {
       "path": "catalog/assets/cyanotype/SOURCE.json",
-      "bytes": 2837,
-      "sha256": "f57a9e02b9f71b2cef71644aeeac7eb03551abf62ac6aa481b04e2a73fc1df71"
+      "bytes": 2874,
+      "sha256": "be9798274ece2140699aa0a664e92025c0333cfd416d672afddbd8ec87bf23ef"
     },
     {
-      "path": "catalog/assets/cyanotype/botanical-atlas.png",
-      "bytes": 3394393,
-      "sha256": "be8f2242bcfac15e0a4e558d3525e162dcaa7809b1d193a89017954de1dceb3a"
+      "path": "catalog/assets/cyanotype/botanical-atlas.webp",
+      "bytes": 2186746,
+      "sha256": "f30c40e763c2c66d6bb96ab09201b97d7b8fb17b2f38bcba3347f6c94f548351"
     },
     {
       "path": "catalog/assets/material-evolution/SOURCE.json",
-      "bytes": 1362,
-      "sha256": "5a1534977b44f66d0512803f70bbfaa508d4b010fecd6b3841a3987958e0c6c5"
+      "bytes": 1364,
+      "sha256": "99f70ea14d48e67bdbf19c7e08de95d2be2eeaa2a6a96e722ad80fa1c6fbcac6"
     },
     {
-      "path": "catalog/assets/material-evolution/atlas-engraving.png",
-      "bytes": 2518989,
-      "sha256": "d7674b59eb14d079b618b92d9145b873572b117bf4dd73565bf3559b4df9aade"
+      "path": "catalog/assets/material-evolution/atlas-engraving.webp",
+      "bytes": 1593640,
+      "sha256": "24ae24b1fdc30bd858cd981e503e8e5f6e8b58daa6bf1093c11df7499145dfbc"
     },
     {
-      "path": "catalog/assets/material-evolution/fiber.png",
-      "bytes": 2209058,
-      "sha256": "1ffbef3659dfc9b0caf4f1f0513fccedd59bd6ec702f410c15f6a4e89fbd78fd"
+      "path": "catalog/assets/material-evolution/fiber.webp",
+      "bytes": 1347840,
+      "sha256": "731c6c6614cc911e18d35a1f472f8eda60384c2e89bf284eccf2bf1aadc09c64"
     },
     {
       "path": "catalog/assets/material-evolution/key-shapes.js",
@@ -287,14 +282,14 @@
       "sha256": "79fc0d4461624454cb7acae5dac4cf41c3996f9cb72e6f82f756b7d82d0efb67"
     },
     {
-      "path": "catalog/assets/material-evolution/moon.png",
-      "bytes": 1470152,
-      "sha256": "88b93ce0d9605640a2d20df8bad1b447d92eb5696cc8b481f04fb94a587acc74"
+      "path": "catalog/assets/material-evolution/moon.webp",
+      "bytes": 972736,
+      "sha256": "3693f3d6df25fbc17c169259c2e3467052c943b22de40637358afddba617db0b"
     },
     {
       "path": "catalog/assets/particle-scenes/SOURCE.json",
-      "bytes": 516,
-      "sha256": "203790fd7098da85c62cd396046bb3fc41cde2730e915e82f1e98c1793b793ad"
+      "bytes": 517,
+      "sha256": "9dcddec313d9bdabccc1dec9d4ff57f7ce9520e34a0eea5c641bb025211328d7"
     },
     {
       "path": "catalog/assets/particle-scenes/THREE-LICENSE.txt",
@@ -302,9 +297,9 @@
       "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
     },
     {
-      "path": "catalog/assets/particle-scenes/coffee-bean.png",
-      "bytes": 1458808,
-      "sha256": "fd30c26d018a64ad5f88bc4d99033cb8e34de936f7c1811dfbcee6790e86115f"
+      "path": "catalog/assets/particle-scenes/coffee-bean.webp",
+      "bytes": 947274,
+      "sha256": "185ecf1270a19a2f212b5b2c7784ba6fdbcac52d6fc0458a15419bd5683a5814"
     },
     {
       "path": "catalog/assets/particle-scenes/notes/assets/score-clean.svg",
@@ -362,29 +357,29 @@
       "sha256": "230572a1c37ce45014e66638ef46e4010699528a361d444e3623931331073cf3"
     },
     {
-      "path": "catalog/assets/selfie-phone.png",
-      "bytes": 1221745,
-      "sha256": "5844e1ca554a9480593142d618f6653b3916961052c2150f3ec02be8064397ea"
+      "path": "catalog/assets/selfie-phone.webp",
+      "bytes": 698886,
+      "sha256": "d0cd0465e6534e5079e6a43952f48e2de0fd5b2f711dc02390c2f85ed8e90a93"
     },
     {
       "path": "catalog/assets/stack-flick/background-generation.json",
-      "bytes": 4974,
-      "sha256": "2871f24bba0bd9317adecc75f26f2f3a2c3683b4b3d190a920a0d94bb291957b"
+      "bytes": 4990,
+      "sha256": "380684ca231e4c25b838e97298f63fe6b23118ca8852dde063ed9eb54c7e1475"
     },
     {
-      "path": "catalog/assets/stack-flick/desk-background.png",
-      "bytes": 1471571,
-      "sha256": "89018e57e749d9daa9894459102b646fc8a8c78ccd9de8caeef47cfe43518acf"
+      "path": "catalog/assets/stack-flick/desk-background.webp",
+      "bytes": 987780,
+      "sha256": "77d16e58a6565722d15a64ee6860361c74b8c2d64f111f6b359178f48021fdb7"
     },
     {
       "path": "catalog/assets/stack-flick/generation.json",
-      "bytes": 2492,
-      "sha256": "595db3624c0b4a779b2760aef272421691a6a0ff288871c4f999d1f42a42bb86"
+      "bytes": 2537,
+      "sha256": "857b0b7b90d5455920f6a1bfabcee4518c1afc325c858617a0b54f01ad4f6fb5"
     },
     {
-      "path": "catalog/assets/stack-flick/map-paper.png",
-      "bytes": 2421307,
-      "sha256": "b96f9e16213ff35e062855ebcbceb5be150c70df28f35ec1cace3d8e26192cf6"
+      "path": "catalog/assets/stack-flick/map-paper.webp",
+      "bytes": 1603098,
+      "sha256": "b9b4383b04db81c2ada6db2073a6ae09219ae0a50cb474491d91e67a48165059"
     },
     {
       "path": "catalog/book-controls.css",
@@ -423,8 +418,13 @@
     },
     {
       "path": "catalog/effects/civilization-growth.js",
-      "bytes": 8627307,
-      "sha256": "51703b177de22ebd717701fed4089f004a7dbf6fb6eba7354a32102db592d317"
+      "bytes": 1434129,
+      "sha256": "034b87c439c3c99e79538c1c13371daea5f2bb19018cbf113f3e1bb2d64ef1c0"
+    },
+    {
+      "path": "catalog/effects/civilization-images.js",
+      "bytes": 7193460,
+      "sha256": "ac951d36810f8e44d1f875e544bc635b04e8c2cf6ed76ed53ed650d4879df2e8"
     },
     {
       "path": "catalog/effects/claude-tile-illustrations.js",
@@ -433,8 +433,8 @@
     },
     {
       "path": "catalog/effects/collage-film.js",
-      "bytes": 33603,
-      "sha256": "862d513522dcd76173d99bbe3c899a441e11584303374d3455da446126bfd300"
+      "bytes": 33608,
+      "sha256": "5c2f09bcfb6ae1d68cbd63f0d10d95af910fade72e45ce784b10d9aa8c5a7371"
     },
     {
       "path": "catalog/effects/compositions.js",
@@ -458,8 +458,8 @@
     },
     {
       "path": "catalog/effects/cyanotype.js",
-      "bytes": 5083,
-      "sha256": "115374badab488c2d0e114dca311310689792e73e28ec44a834d4791eb8b7ea8"
+      "bytes": 5085,
+      "sha256": "eefa09c06de71098ab90400b15baf0b995b3c744c1544cbad4187d3236fa0d49"
     },
     {
       "path": "catalog/effects/data-comparisons.js",
@@ -563,8 +563,8 @@
     },
     {
       "path": "catalog/effects/material-evolution.js",
-      "bytes": 88984,
-      "sha256": "8dd684331a352d6fe00685102be794d1221759582f9ad4a42a5eda740ea0bdc9"
+      "bytes": 88993,
+      "sha256": "1c214174ad82551897301d25027ad1879e02df6a0206f831057c2eeac7103ec4"
     },
     {
       "path": "catalog/effects/math-formula-drift.js",
@@ -588,13 +588,13 @@
     },
     {
       "path": "catalog/effects/paper-showcase.js",
-      "bytes": 22043,
-      "sha256": "86cbf87a955b2dab718ebb144eb43c1a47704e1df2ed7fac00262091a7d9048a"
+      "bytes": 22045,
+      "sha256": "47e47410d3516051f41840f969febacbd02b6408945dd42e11b807c2e4dca88b"
     },
     {
       "path": "catalog/effects/particle-scenes.js",
-      "bytes": 8941,
-      "sha256": "5dfc7f981262255d916ad80ca32b37c37d8e2f4c48d2b01b3c2c0becc3ee3583"
+      "bytes": 8942,
+      "sha256": "cc19e01a42d0342beb18be8242da892ebc7f65be623013ecb096bccb9f89ecb6"
     },
     {
       "path": "catalog/effects/point-domain-flow.js",
@@ -663,8 +663,8 @@
     },
     {
       "path": "catalog/effects/selfie-phone.js",
-      "bytes": 1160,
-      "sha256": "d0419204d0ff711acb1c41834ffc9fb89117c3b2c1816e43a96353ade9591ca7"
+      "bytes": 1164,
+      "sha256": "ce1e7d157db001dc34694596380a953d11543ae0affccfc7d95c6f3a006098dd"
     },
     {
       "path": "catalog/effects/settle-grow-spread.js",
@@ -783,13 +783,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1115426,
-      "sha256": "2393f27461a316eb8584f2e6cda8d315048cf67cf3d05cebb8e5b2a58b0a6a92"
+      "bytes": 1114434,
+      "sha256": "b4ac10fd1dfe8343a7b80c8a681d52f46c874699997608ab13d7378dbc5c396e"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1375594,
-      "sha256": "ed7359b279e5e57efeb1402b5da623a1b3140266aa65a99845fc3bcf0d5f4816"
+      "bytes": 1374497,
+      "sha256": "c6b83ffd4e5491529b9e2da040715f51e153d72cc611ea10c416b16ae4b3dcc0"
     },
     {
       "path": "catalog/related-preview.js",
@@ -798,8 +798,8 @@
     },
     {
       "path": "catalog/remotion/civilization-growth.jsx",
-      "bytes": 1785,
-      "sha256": "780908e53d46c19ea7cef2e609dc1f3991bddecd529db373b25caa2873002857"
+      "bytes": 1829,
+      "sha256": "8ccdda14dc9429f461e5911e527bb0b60ba2dead012f9b4f29db93d5a1228f9a"
     },
     {
       "path": "catalog/remotion/seed-bloom-brand-source.json",
@@ -813,8 +813,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 8766362,
-      "sha256": "b6e13b46f2590f75c4553c3ed7e9ddfb99d006e45f0b3cb35776d09f5c5fcdf9"
+      "bytes": 1573416,
+      "sha256": "e529168247dbd05232cd29f6b99abaf3d8115efb51a50da719ae7faf706c7b9e"
     },
     {
       "path": "catalog/runtime.js",

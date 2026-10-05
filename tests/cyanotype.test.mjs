@@ -1,5 +1,6 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
 import test from 'node:test';
+import {losslessWebpDimensions} from './image-assets.mjs';
 import assert from 'node:assert/strict';
 import {readFile,stat} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -25,15 +26,15 @@ function normalize(stage){
 }
 
 test('纸面显影使用完整的本地图集，主目录与导出页均能按源码位置找到素材',async()=>{
-  const bytes=await readFile(new URL('../catalog/assets/cyanotype/botanical-atlas.png',import.meta.url));
+  const bytes=await readFile(new URL('../catalog/assets/cyanotype/botanical-atlas.webp',import.meta.url));
   const record=JSON.parse(await source('catalog/assets/cyanotype/SOURCE.json'));
   assert.equal(createHash('sha256').update(bytes).digest('hex'),record.sha256);
-  assert.deepEqual([bytes.readUInt32BE(16),bytes.readUInt32BE(20)],[1536,1024]);
+  assert.deepEqual(losslessWebpDimensions(bytes),[1536,1024]);
   assert.equal(record.tool,'Codex 内置 image_gen.imagegen');assert.ok(record.prompt);
   const index=await source('catalog/index.html');assert.match(index,/src="effects\/cyanotype\.js"/);
   for(const {url,html,expected} of [
-    {url:'file:///relocated/wise-motion/catalog/index.html',html:'<div id="root"></div><script src="effects/cyanotype.js"></script>',expected:'file:///relocated/wise-motion/catalog/assets/cyanotype/botanical-atlas.png'},
-    {url:'file:///relocated/wise-motion/demo.html',html:'<div id="root"></div><script src="catalog/effects/cyanotype.js"></script>',expected:'file:///relocated/wise-motion/catalog/assets/cyanotype/botanical-atlas.png'}
+    {url:'file:///relocated/wise-motion/catalog/index.html',html:'<div id="root"></div><script src="effects/cyanotype.js"></script>',expected:'file:///relocated/wise-motion/catalog/assets/cyanotype/botanical-atlas.webp'},
+    {url:'file:///relocated/wise-motion/demo.html',html:'<div id="root"></div><script src="catalog/effects/cyanotype.js"></script>',expected:'file:///relocated/wise-motion/catalog/assets/cyanotype/botanical-atlas.webp'}
   ]){
     let decoded;const env=await setup({url,html,decode:image=>{decoded=image.src;return Promise.resolve();}});
     try{

@@ -4,5 +4,5 @@
   "entry": "notes-source.js",
   "readable_source": "notes/src/isolated-scene.js",
   "runtime_dependencies": "Three.js 已内嵌在 notes-source.js；MIT 许可见 THREE-LICENSE.txt；不发起网络请求。",
-  "assets": "coffee-bean.png 为原透明素材，未修改像素。谱面及原素材权利保留原状。"
+  "assets": "coffee-bean.webp 为原透明素材，未修改像素。谱面及原素材权利保留原状。"
 }

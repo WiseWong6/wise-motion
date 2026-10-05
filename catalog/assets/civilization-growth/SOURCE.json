@@ -81,8 +81,8 @@
     },
     {
       "path": "assets.mjs",
-      "bytes": 1102,
-      "sha256": "166018a4153de38d61ba7e3916f0bc6e109e3156310708e7586a463477b2d9c2"
+      "bytes": 1117,
+      "sha256": "5f5e7f3dc9f5018ae428343af2bb561dee79356d34289571fffe7e9773f635be"
     },
     {
       "path": "botanical-texture.mjs",
@@ -165,11 +165,6 @@
       "sha256": "eb6f74878fa0b695d718c52c0964bcd53c36baeceddc3b4e50cc80a51bbe1106"
     },
     {
-      "path": "civilization-image.mjs",
-      "bytes": 4867198,
-      "sha256": "f8cf9d12814dc4ca1a456f0781384a9565882dd4d09686d92180638603d13c42"
-    },
-    {
       "path": "cursive-data.mjs",
       "bytes": 92849,
       "sha256": "e1818aaeedcb719088b2d3b853ffd285e43336de3d0df7c02d9918913443e03e"
@@ -225,11 +220,6 @@
       "sha256": "1d1e1bc5c95f826846264964f390a8317814f46c14fac267fac8dd9554227bf4"
     },
     {
-      "path": "growth-image.mjs",
-      "bytes": 2326184,
-      "sha256": "b54e154cc00e91bc77184658b79a37580e947f26eaabeb8881ce5b81317c9bde"
-    },
-    {
       "path": "growth-regions.mjs",
       "bytes": 1040,
       "sha256": "291be440f684c6557c04424206bceb47aaed38188c505055f78585dbcf47c57a"
@@ -264,5 +254,11 @@
     "source": "catalog/effects/promo-particles.js",
     "sha256": "43a176d094bbd8aeb2afe4295582424d273335d1fe2602edcc33f261d95b0684",
     "adaptation": "隔离注册空间；保留7000粒子、目标与运动公式。新增真实图像墨点出发、纸底和字标停留。"
+  },
+  "shared_images": {
+    "path": "catalog/effects/civilization-images.js",
+    "bytes": 7193460,
+    "sha256": "ac951d36810f8e44d1f875e544bc635b04e8c2cf6ed76ed53ed650d4879df2e8",
+    "purpose": "两张图片保持原始内容，播放及复制完整工程共用一份。"
   }
 }

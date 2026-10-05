@@ -1,5 +1,6 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
 import React,{useRef,useState,useEffect,useLayoutEffect} from 'react';
+import '../effects/civilization-images.js';
 import {AbsoluteFill,useCurrentFrame,useVideoConfig,useDelayRender} from 'remotion';
 import {loadAssets,paintEffect,sequenceId,definitionFor} from '../assets/civilization-growth/engine.mjs';
 export function CivilizationGrowth({effectId=sequenceId,speed=1}){

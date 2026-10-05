@@ -57,6 +57,7 @@ export const FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/point-domain-flow.js",
   "catalog/effects/motion-oasis.js",
   "catalog/effects/seed-bloom-brand.js",
+  "catalog/effects/civilization-images.js",
   "catalog/effects/reel-transitions.js",
   "catalog/effects/reel-grit-key.js",
   "catalog/effects/reel-flat-gen.js",

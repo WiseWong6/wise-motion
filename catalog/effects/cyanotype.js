@@ -9,9 +9,9 @@
   let instance=0;
   const scriptURL=typeof document==='undefined'?'':document.currentScript?.src||[...document.scripts].find(s=>s.src.endsWith('/effects/cyanotype.js'))?.src||'';
   function assetURL(doc){
-    if(scriptURL)return new URL('../assets/cyanotype/botanical-atlas.png',scriptURL).href;
+    if(scriptURL)return new URL('../assets/cyanotype/botanical-atlas.webp',scriptURL).href;
     const directory=/\/catalog\/[^/]*$/.test(new URL(doc.baseURI).pathname)?'assets/':'catalog/assets/';
-    return new URL(directory+'cyanotype/botanical-atlas.png',doc.baseURI).href;
+    return new URL(directory+'cyanotype/botanical-atlas.webp',doc.baseURI).href;
   }
   F.cyanotype=(root,K,definition)=>{
     root.dataset.art='original';

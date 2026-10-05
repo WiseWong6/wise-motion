@@ -41,7 +41,7 @@ for (const item of manifest.files) {
 await mkdir(path.dirname(output), {recursive: true});
 const host = output + '.host.html';
 const base = pathToFileURL(root + path.sep).href;
-const hostScripts = ['vendor/animejs/anime.umd.min.js', 'catalog/registry-data.js', 'catalog/runtime.js', 'catalog/remotion-sources.js', 'catalog/export.js'];
+const hostScripts = ['vendor/animejs/anime.umd.min.js', 'catalog/registry-data.js', 'catalog/runtime.js', 'catalog/effects/civilization-images.js', 'catalog/remotion-sources.js', 'catalog/export.js'];
 await writeFile(host, '<!doctype html><meta charset="utf-8"><body>' + hostScripts.map(name => `<script src="${base + name}"></script>`).join(''));
 const report = {createdAt: new Date().toISOString(), source: root,
   scope: '实际加载、绘制、乱序重复定位、画面数据对比、复制源码和打包素材完整性；不等同于逐条人工观看',
