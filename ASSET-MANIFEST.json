@@ -8,8 +8,8 @@
     },
     {
       "path": "catalog/app.js",
-      "bytes": 54839,
-      "sha256": "e50e98b5a1b147be87925968fab3e1119edd79b6df70ea6c65160157a3bb4d09"
+      "bytes": 56089,
+      "sha256": "5889f092bb9f34101892223d19ca72299ed3a47de2bb6cd9dbbc6520c803131f"
     },
     {
       "path": "catalog/assets/WEBP-SOURCES.json",
@@ -82,11 +82,6 @@
       "sha256": "db4b2b82bacb29673c7f598c205acec0c6446bcf8ce1038ed1a2f49c03016b90"
     },
     {
-      "path": "catalog/assets/civilization-growth/civilization-atlas.mjs",
-      "bytes": 1394,
-      "sha256": "eb6f74878fa0b695d718c52c0964bcd53c36baeceddc3b4e50cc80a51bbe1106"
-    },
-    {
       "path": "catalog/assets/civilization-growth/civilization/exploration.mjs",
       "bytes": 729,
       "sha256": "a5ba9e2acd855d07de0d42a4f623b6e2bfa85a3cf3cf2d4b50ccb774e94f07de"
@@ -135,6 +130,11 @@
       "path": "catalog/assets/civilization-growth/civilization/wheels.mjs",
       "bytes": 1413,
       "sha256": "f3fd9ed8dcfb422ff6cc85f6ee4475286b6753825840d74ed17ce502debce563"
+    },
+    {
+      "path": "catalog/assets/civilization-growth/civilization-atlas.mjs",
+      "bytes": 1394,
+      "sha256": "eb6f74878fa0b695d718c52c0964bcd53c36baeceddc3b4e50cc80a51bbe1106"
     },
     {
       "path": "catalog/assets/civilization-growth/cursive-data.mjs",
@@ -312,11 +312,6 @@
       "sha256": "185ecf1270a19a2f212b5b2c7784ba6fdbcac52d6fc0458a15419bd5683a5814"
     },
     {
-      "path": "catalog/assets/particle-scenes/notes-source.js",
-      "bytes": 849395,
-      "sha256": "422bc9e005c6eb919ccaff74d8f31b5c2a1579aa4de89cf6d377628b6a82e7d2"
-    },
-    {
       "path": "catalog/assets/particle-scenes/notes/assets/score-clean.svg",
       "bytes": 109343,
       "sha256": "fb26f14e3ef84061ececfd7d4507365d29f3f077db85e5ac55ff2c4178111524"
@@ -367,6 +362,11 @@
       "sha256": "481ca6d4537060fb92544231f0efaf328ad69a9ae9820c0944a8be0acd645608"
     },
     {
+      "path": "catalog/assets/particle-scenes/notes-source.js",
+      "bytes": 849395,
+      "sha256": "422bc9e005c6eb919ccaff74d8f31b5c2a1579aa4de89cf6d377628b6a82e7d2"
+    },
+    {
       "path": "catalog/assets/selfie-phone.webp",
       "bytes": 698886,
       "sha256": "d0cd0465e6534e5079e6a43952f48e2de0fd5b2f711dc02390c2f85ed8e90a93"
@@ -403,8 +403,8 @@
     },
     {
       "path": "catalog/composition-controls.js",
-      "bytes": 5357,
-      "sha256": "d0e9b84556ce4f891e74d3ef80cf03fda23afdf56bd8c3e73d41dba0d8a709df"
+      "bytes": 5737,
+      "sha256": "84bfdfb761758ac97a324f1bf1ad2a1fa25821a955783e242fd2339049c96eea"
     },
     {
       "path": "catalog/dropdown.js",
@@ -782,6 +782,11 @@
       "sha256": "51b0e008ab0b10a9ed1b6e7fcc0cf2858ff3665ef3d785c52592f385c831dae2"
     },
     {
+      "path": "catalog/lazy.js",
+      "bytes": 2586,
+      "sha256": "8bc179c7cd7af88a27a9bbfb36b10bbe0e4c79f9919d70cee1552c1de72601dd"
+    },
+    {
       "path": "catalog/matching.js",
       "bytes": 10848,
       "sha256": "779cd8ba1bd7c335c2a3331f6d7a5319af55907feb90b6bd8854acbea2918065"
@@ -807,11 +812,6 @@
       "sha256": "f29e6f0f68e395ace6da2f82c290d01878dfc052580c5b36eb9db0c24351f326"
     },
     {
-      "path": "catalog/remotion-sources.js",
-      "bytes": 1573982,
-      "sha256": "99b1d90f98bd25253d947791e360e973207457fe67da5592ab2ce929078349ec"
-    },
-    {
       "path": "catalog/remotion/civilization-growth.jsx",
       "bytes": 1829,
       "sha256": "8ccdda14dc9429f461e5911e527bb0b60ba2dead012f9b4f29db93d5a1228f9a"
@@ -827,6 +827,11 @@
       "sha256": "0356ac4f7be3adf330d796a3477a830108b281a0b936e8dad1bf2d443b3a2e6d"
     },
     {
+      "path": "catalog/remotion-sources.js",
+      "bytes": 1573982,
+      "sha256": "99b1d90f98bd25253d947791e360e973207457fe67da5592ab2ce929078349ec"
+    },
+    {
       "path": "catalog/runtime.js",
       "bytes": 11668,
       "sha256": "26ec791d47cd6ffa87edc629503bede99061a330ba6edecb2b060323841a360c"
@@ -838,8 +843,8 @@
     },
     {
       "path": "catalog/thumbnails.js",
-      "bytes": 9252,
-      "sha256": "eaaefbc57ffff9a07d62028662b519d487d16d4744f8755228ad2b836b386cad"
+      "bytes": 9652,
+      "sha256": "c9d4ba4d4df83ef2bc5167d945987bf65151cce6eda247636632eb118747da62"
     },
     {
       "path": "catalog/wise-avatar.webp",

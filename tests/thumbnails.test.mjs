@@ -5,6 +5,26 @@ import {readFile} from 'node:fs/promises';
 import {environment,data,historicalDrawingFixture} from './helpers.mjs';
 import {historyTestData} from './history-fixture.mjs';
 
+test('缩略图观察侧栏滚动区并提前准备附近卡片，远处卡片保持未绘制', async () => {
+  const env = await environment(true, {staticPreview: true});
+  try {
+    const {w} = env, d = w.document, list = d.getElementById('effects-list');
+    const observer = env.observers.find(item => item.nodes.has(list.querySelector('.thumb')));
+    assert.equal(observer.options.root, list, '提前范围须应用到真正滚动的侧栏');
+    assert.equal(observer.options.rootMargin, '320px 0px');
+    const nearby = d.querySelector('[data-effect="scale-in"] .thumb');
+    const distant = d.querySelector('[data-effect="countdown-dial"] .thumb');
+    assert.equal(d.querySelectorAll('.thumb .motion-stage').length, 0);
+    observer.callback([{target: nearby, isIntersecting: true}, {target: distant, isIntersecting: false}]);
+    await w.MotionThumbs.whenIdle();
+    assert.ok(nearby.querySelector('.motion-stage'));
+    assert.equal(distant.childElementCount, 0);
+    assert.equal(w.MotionRuntime.instanceCount, 1, '预备缩略图不能新增播放器');
+    assert.ok(!observer.nodes.has(nearby));
+    assert.ok(observer.nodes.has(distant));
+  } finally { env.close(); }
+});
+
 test('缺失或抛错的绘制器明确标注缩略图失败，其他条目仍能绘制', async () => {
   const env = await environment();
   try {

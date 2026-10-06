@@ -53,6 +53,11 @@
     isolate(root,ids) { isolate([...root.querySelectorAll('[data-layer]')],ids?new Set(ids):null); },
     select(effect,controller,view) {
       player=null;layers=effect.kind==='composition' ? global.MotionFactories[effect.id]?.breakdown || [] : [];
+      if(effect.kind==='composition'&&!layers.length){
+        // 拆解清单来自尚未载入的绘制文件；载入后只在仍是同一个预览时重新建立。
+        const wait=global.MotionLazy?.ensure(effect);
+        if(wait)wait.then(()=>{if(!controller.destroyed&&global.MotionFactories[effect.id]?.breakdown)this.select(effect,controller,view);},()=>{});
+      }
       panel.hidden=!layers.length;
       nodes=[];buttons=[];list.replaceChildren();
       if(panel.hidden) return;

@@ -96,7 +96,11 @@ test('源时间映射交给原绘制核心，取样模块不再次缩放', () =>
 test('隔离页保持全部效果脚本的原始加载顺序，排除目录控制脚本', async () => {
   const html = await readFile(new URL('../catalog/index.html', import.meta.url), 'utf8');
   const originals = [...html.matchAll(/<script src="(effects\/[^\"]+)"/g)].map(match => 'catalog/' + match[1]);
-  assert.deepEqual(FRAME_SCRIPTS.filter(path => path.startsWith('catalog/effects/')), originals);
+  const lazy = (await readFile(new URL('../catalog/lazy.js', import.meta.url), 'utf8')).match(/EFFECT_FILES = \[([^\]]+)\]/)[1].match(/effects\/[^']+/g).map(file => 'catalog/' + file);
+  assert.equal(lazy.length, 3);
+  const frameEffects = FRAME_SCRIPTS.filter(path => path.startsWith('catalog/effects/'));
+  assert.deepEqual(frameEffects.filter(path => !lazy.includes(path)), originals, '目录页同步载入的绘制与隔离页顺序一致');
+  assert.deepEqual(frameEffects.filter(path => lazy.includes(path)).sort(), lazy.slice().sort(), '按需载入的绘制仍在隔离页里');
   assert.ok(!FRAME_SCRIPTS.includes('catalog/app.js'));
   assert.ok(!FRAME_SCRIPTS.includes('catalog/player-glass.js'));
   const document = createFrameDocument({assetBaseUrl:'file:///project/',theme:'light'});
