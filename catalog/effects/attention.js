@@ -1,17 +1,51 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
 (function (F) {
-  F['count-up'] = (root, M) => {
+  F['count-up'] = (root, M, definition) => {
+    if (definition?.content) {
+      const value=M.slot(definition,'value',128), from=M.slot(definition,'from',0), decimals=M.slot(definition,'decimals',0);
+      const prefix=M.slot(definition,'prefix',''), suffix=M.slot(definition,'suffix',''), caption=M.slot(definition,'caption','每一步，走向确定的结果。');
+      const format=M.slot(definition,'format','integer');
+      const number=n=>{
+        if(format==='integer')return String(Math.round(n));
+        if(format==='thousands')return n.toLocaleString('en-US',{minimumFractionDigits:decimals,maximumFractionDigits:decimals});
+        if(format==='compact'){
+          const units=[[1,''],[1e3,'K'],[1e6,'M'],[1e9,'B'],[1e12,'T']];
+          let index=0;while(index<units.length-1&&Math.abs(n)>=units[index+1][0])index++;
+          if(index<units.length-1&&Math.abs(Number((n/units[index][0]).toFixed(decimals)))>=1000)index++;
+          return (n/units[index][0]).toFixed(decimals)+units[index][1];
+        }
+        return n.toFixed(decimals);
+      };
+      const label=n=>prefix+number(n)+suffix, family=M.textFont(label(value)+label(from));
+      return M.textReady(root,[{family,text:label(value)+label(from)},{family:'Source Han Sans SC',weight:300,text:caption}],()=>{
+        const s=M.scene(root,'<div class="big-number"></div><div class="number-caption"></div>');
+        const samples=[from,value,0,...[1e3,1e6,1e9,1e12].flatMap(n=>[n-1,-n+1])].filter(n=>n>=Math.min(from,value)&&n<=Math.max(from,value));
+        const width=Math.max(...samples.flatMap(n=>Array.from({length:10},(_,digit)=>M.measureText(root,prefix+number(n).replace(/[0-9]/g,String(digit))+suffix,64,family))),1), size=Math.min(64,64*544/width);
+        if(size<24)throw new Error('数值与单位太长，请缩短前缀或后缀');
+        s.one('.big-number').style.fontFamily='"'+family+'"';s.one('.big-number').style.fontSize=size+'px';
+        const note=s.one('.number-caption');note.textContent=caption;note.style.fontFamily='"Source Han Sans SC"';note.style.fontWeight='300';
+        if(M.measureText(root,caption,12,'Source Han Sans SC',300)>544)throw new Error('说明文字超出画板，请缩短 caption');
+        return (t,o)=>{s.one('.big-number').textContent=label(M.mix(from,value,M.clamp(M.span(t,200,2600,o.ease))));};
+      });
+    }
     const s = M.scene(root, '<div class="big-number">0</div><div class="number-caption">每一步，走向确定的结果。</div>');
     return (t, o) => { s.one('.big-number').textContent = String(Math.round(M.clamp(M.span(t, 200, 2600, o.ease)) * 128)); };
   };
   // 沿用原地址的 Oswald 字体、短距落位与匀速逐字写出，保留整行占位。
-  F['type-reveal'] = (root, M) => {
-    const text = 'WISE MOTION';
+  F['type-reveal'] = (root, M, definition) => {
+    const text = M.slot(definition, 'text', 'WISE MOTION');
+    const custom=Boolean(definition?.content),family=M.textFont(text);
+    const setup=()=>{
     const chars = typeof Intl.Segmenter === 'function'
       ? [...new Intl.Segmenter(undefined, {granularity:'grapheme'}).segment(text)].map(x=>x.segment)
       : Array.from(text);
     const s = M.scene(root, '<div class="headline" style="font-family:Oswald,sans-serif;font-weight:700;font-size:var(--type-heading);letter-spacing:.2px;color:var(--ink)"><span class="type-line" style="position:relative;display:inline-block"><span aria-hidden="true" style="visibility:hidden">WISE MOTION</span><span class="typed-text" style="position:absolute;inset:0;text-align:left;white-space:pre" aria-label="WISE MOTION"></span></span></div>');
     const line=s.one('.type-line'),typed=s.one('.typed-text');
+    if(custom){
+      line.querySelector('[aria-hidden]').textContent=text;typed.setAttribute('aria-label',text);
+      const headline=s.one('.headline'),width=M.measureText(root,text,48,family)+Math.max(0,chars.length-1)*.2;
+      headline.style.fontFamily='"'+family+'"';headline.style.fontSize=Math.min(48,48*544/Math.max(1,width))+'px';
+    }
     const duration=Math.max(720,chars.length*52);
     let previous=-1;
     return t=>{
@@ -20,6 +54,8 @@
       const count=Math.min(chars.length,Math.floor(M.clamp((t-240)/duration)*chars.length));
       if(count!==previous){typed.textContent=chars.slice(0,count).join('');previous=count;}
     };
+    };
+    return custom?M.textReady(root,[{family,text}],setup):setup();
   };
   // 仅保留原配色页上半部分；尺寸比例和着色节拍沿用原作，底色由目录提供。
   F['tone-grow'] = (root, M) => {
@@ -51,10 +87,11 @@
       });
     });
   };
-  F['word-focus'] = (root, M) => {
-    const words=['梳理关系','判断结构','组合组件'];
-    const s=M.scene(root,'<div class="keyword-line" style="position:absolute;left:40px;top:158px;width:560px;display:flex;justify-content:center;gap:44px;font-family:Source Han Sans SC,sans-serif;font-size:var(--type-title);line-height:1.4;font-weight:700">'+words.map(word=>`<span class="keyword" style="position:relative;white-space:nowrap;color:var(--ink)">${word}<i aria-hidden="true" style="position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:1px;background:var(--accent);transform-origin:left center;opacity:0"></i></span>`).join('')+'</div>');
+  F['word-focus'] = (root, M, definition) => M.contentReady(root, definition, () => {
+    const words=M.slot(definition,'words',['梳理关系','判断结构','组合组件']);
+    const s=M.scene(root,'<div class="keyword-line" style="position:absolute;left:40px;top:158px;width:560px;display:flex;justify-content:center;gap:44px;font-family:Source Han Sans SC,sans-serif;font-size:var(--type-title);line-height:1.4;font-weight:700">'+words.map(word=>`<span class="keyword" style="position:relative;white-space:nowrap;color:var(--ink)">${M.escape(word)}<i aria-hidden="true" style="position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:1px;background:var(--accent);transform-origin:left center;opacity:0"></i></span>`).join('')+'</div>');
     const nodes=s.all('.keyword'),lines=nodes.map(el=>el.querySelector('i'));
+    if(definition?.content) nodes.forEach((node,i)=>M.fitText(root,node,words[i],150,24,16));
     const style=(el,key,value)=>{if(el.style[key]!==value)el.style[key]=value;};
     return t=>nodes.forEach((el,i)=>{
       const at=200+i*560.748;
@@ -67,7 +104,7 @@
       style(lines[i],'transform',`scaleX(${grow})`);
       style(lines[i],'opacity',String(t>at+100?fade:0));
     });
-  };
+  });
   F['focus-zoom'] = (root, M) => {
     const s = M.scene(root, M.cardSet(3)); const cards = s.all('.mini-card'); cards.forEach((c, i) => { c.style.left = `${148 + i * 118}px`; c.style.top = '125px'; });
     return (t, o) => { const p = M.span(t, 600, 2200, o.ease); cards.forEach((c, i) => M.pose(c, {scale: i === 1 ? 1 + p * .38 : 1 - p * .08, opacity: i === 1 ? 1 : 1 - p * .58, x: i === 1 ? 0 : (i - 1) * p * 18})); };

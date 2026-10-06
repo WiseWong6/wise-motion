@@ -11,7 +11,7 @@ const meta=getEffectMetadata('stagger-in');
 const Scene=()=> <WiseMotionEffect effectId="stagger-in" />;
 ```
 
-参数：effectId、variantId、speed（0.5–2）、ease、theme（dark/light）、assetBaseUrl、bookSettings、width、height。
+参数：effectId、variantId、speed（0.5–2）、ease、theme（dark/light）、assetBaseUrl、bookSettings、content、transparent、width、height。
 默认帧率60。`sampleMode="playback"`保留原绘制的逐格取样；`exact`用于目录精确定位。末尾停留及循环累计时间保留。
 `getEffectMetadata`返回时长、帧数、尺寸和循环标记。非循环帧数包含准确结尾的一帧，循环不重复结尾。
 `onReady`在字体、素材及首个目标帧准备完成后触发；加载失败报错，视频导出中断。
@@ -25,6 +25,41 @@ node node_modules/wise-motion-remotion/scripts/install-assets.mjs public/wise-mo
 全部素材明细与校验值在 `ASSET-MANIFEST.json`。素材副本不提供目录首页；浏览请打开源码中的 `catalog/index.html`。目标工程的Remotion依赖需和包版本一致。
 目录中的“复制代码”提供完整Composition例子和安装步骤。`Sequence`能控制每个组件的起点；多个组件用独立画板，互不覆盖。
 翻页书在目录中保留真实交互；导出组件总是固定演示动作。
+
+## 自定义内容
+
+`content` 是当前组件实例的内容配置；同一动效的多个镜头可传不同文字。只换内容不需要改素材副本。字段、类型和长度错误在装配及组件入口报错；绘制等待本地字体加载并测量字宽，过宽时报错。省略内容、传空对象或显式传入全部默认值，均保持原默认绘制；不改变动作公式和时间表。
+
+```jsx
+<WiseMotionEffect effectId="word-slam" content={{words: ['开始', '聚焦', '完成']}} />
+<WiseMotionEffect effectId="type-reveal" content={{text: '让想法动起来'}} />
+<WiseMotionEffect effectId="count-up" content={{value: 1000000, format: 'compact', suffix: ' tokens'}} />
+<WiseMotionEffect effectId="count-up" content={{value: 1, prefix: 'NO.'}} />
+<WiseMotionEffect effectId="terminal-code" variantId="default" content={{
+  title: '创作终端',
+  lines: [[['const ', 'muted'], ['idea = "新画面";', 'teal']], [['render(idea);', 'ink']]],
+}} />
+```
+
+| 动效 | 支持字段与限制 |
+| --- | --- |
+| 撞字 `word-slam` | `words`：1–8 项，每项最多 16 字；保留切词节拍，少于八词时停在末词 |
+| 逐字显现 `type-reveal` | `text`：最多 13 字，保证原打字时钟内完成；自动适配字宽 |
+| 计数 `count-up` | `value` 目标数、`from` 起点（均为 ±1 万亿内有限数字）、`prefix`/`suffix`（各最多 16 字）、`caption`（最多 44 字）、`decimals`（0–6）、`format` |
+| 代码终端 `terminal-code/default` | `title` 最多 32 字；`lines` 1–3 行，每行最多 60 字，由 `[文字, 色调]` 对组成，色调仅 `ink`、`muted`、`teal`；实际字宽超出最小字号承载范围仍会报错 |
+| 日志终端 `terminal-code/command-log` | `title` 最多 40 字；`lines` 必须九行纯文字，首行最多 20 字、其他行最多 40 字；保留原先后顺序、调试状态、成功状态和颜色 |
+
+第二批支持标题卡片、错峰卡片、词语强调、百分比柱图、时间轴、按钮反馈和粒子聚字，字段与数量见 [内容覆盖表](references/quickstart.md#内容覆盖与边界)。默认值、记录字段和字数限制以 `show.mjs <id>` 为准。
+
+`transparent={true}` 仅开放给当前登记的逐字显现、计数、词语强调，关闭页面外壳的底色、暗角和颗粒。不能通过透明底审计的动效会拒绝该属性。单镜默认不变；多层计划、定位框与独立原创组件见 [一镜多层](references/quickstart.md#一镜多层)。
+
+数字格式 `integer` 为整数（小数位须为 0），`decimal` 固定小数位，`thousands` 加英文千分位，`compact` 使用 K/M/B/T。内容对象不接受未登记字段、换行和控制字符。不支持的动效传入非空内容会报错，不会静默忽略。内容槽没有通用字体或颜色参数；中文使用包内思源黑体，纯英文/数字使用 Oswald，罕见字符另行核对。
+
+分镜中将同一个内容对象填入 `effect.content`，`plan.mjs check` 验证后由 `build` 传给组件。`show.mjs <id> --variant <样式 id>` 列出当前样式的默认值、限制和真实绘制路径。只换内容可标 `reuse`；改动作代码才标 `tweak`，只看过参考后重写仍标 `original`。
+
+素材安装在 `.wise-motion-assets.json` 记录已装文件。重装前检查全部文件，发现本地改动会停止，防止静默覆盖；明确需要替换这些改动时才使用 `--overwrite`。配置放在项目源码或计划里，与公共素材分开保存。
+
+`wise-motion-remotion` 是本项目现有绘制代码与 Remotion 适配器的交付包，不是另外下载的一套动效。安装包是复用入口之一；复制源码并自行接入也可以，但要连同依赖、字体、加载逻辑和许可处理。仅全原创且未引用组件的工程无需安装它。
 
 ## 蝴蝶插画与圆形转场
 

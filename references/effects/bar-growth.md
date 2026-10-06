@@ -34,3 +34,40 @@
 - 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
+
+### 可替换内容
+
+通过组件 `content` 或分镜 `effect.content` 为当前镜头赋值；字段含义与字体、宽度限制见 [组件说明](../../REMOTION.md)。默认内容如下：
+
+```json
+{
+  "items": [
+    {
+      "label": "MMLU",
+      "value": 92
+    },
+    {
+      "label": "HEVAL",
+      "value": 87
+    },
+    {
+      "label": "GSM8K",
+      "value": 81
+    },
+    {
+      "label": "BBH",
+      "value": 76
+    },
+    {
+      "label": "TRUTH",
+      "value": 68
+    },
+    {
+      "label": "ARC",
+      "value": 61
+    }
+  ]
+}
+```
+
+- items（六组百分比）：6–6 项，字段 {"label":{"type":"text","max_chars":10},"value":{"type":"number","min":0,"max":100,"integer":true}}。

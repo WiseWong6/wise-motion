@@ -1,4 +1,108 @@
 /* Wise Motion Remotion 接入 · 自有代码 AGPL-3.0-only；第三方许可见 NOTICE.md。 */
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __commonJS = (cb, mod) => function __require() {
+  try {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  } catch (e) {
+    throw mod = 0, e;
+  }
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+
+// catalog/content.js
+var require_content = __commonJS({
+  "catalog/content.js"(exports, module) {
+    (function(global) {
+      "use strict";
+      const own = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
+      const plain = (value) => value !== null && typeof value === "object" && !Array.isArray(value) && Object.prototype.toString.call(value) === "[object Object]" && (Object.getPrototypeOf(value) === null || Object.getPrototypeOf(value)?.constructor?.name === "Object");
+      const count = (value) => Array.from(value).length;
+      function validateContent2(effect, content) {
+        if (content === void 0) return;
+        const fail = (message) => {
+          throw new TypeError(`${effect.name || effect.id}\uFF1A${message}`);
+        };
+        if (!plain(content)) fail("content \u5FC5\u987B\u662F\u5185\u5BB9\u5BF9\u8C61");
+        const slots = new Map((effect.content_slots || []).map((slot) => [slot.id, slot]));
+        const text = (value, slot, label) => {
+          if (typeof value !== "string") fail(`${label} \u5FC5\u987B\u662F\u6587\u5B57`);
+          if (/[\r\n\u0000-\u001f\u007f]/.test(value)) fail(`${label} \u5FC5\u987B\u662F\u5355\u884C\u6587\u5B57\uFF0C\u4E0D\u80FD\u5305\u542B\u63A7\u5236\u5B57\u7B26`);
+          if (!slot.allow_empty && !value.trim()) fail(`${label} \u4E0D\u80FD\u4E3A\u7A7A`);
+          if (count(value) > slot.max_chars) fail(`${label} \u6700\u591A ${slot.max_chars} \u5B57`);
+          if (slot.charset === "particle" && /[^\x20-\x7e\u3400-\u9fff，。！？、：；（）《》]/.test(value)) fail(`${label} \u652F\u6301\u5E38\u7528\u6C49\u5B57\u3001\u62C9\u4E01\u5B57\u6BCD\u3001\u6570\u5B57\u53CA\u4E2D\u82F1\u6587\u6807\u70B9\uFF0C\u4E0D\u652F\u6301\u8868\u60C5\u6216\u5176\u4ED6\u5B57\u7B26\u96C6`);
+          if (slot.charset === "latin" && /[^\x20-\x7e]/.test(value)) fail(`${label} \u53EA\u652F\u6301\u62C9\u4E01\u5B57\u6BCD\u3001\u6570\u5B57\u548C\u5E38\u7528\u82F1\u6587\u7B26\u53F7`);
+          if (slot.options && !slot.options.includes(value)) fail(`${label} \u53EF\u9009\uFF1A${slot.options.join("\u3001")}`);
+        };
+        for (const key of Reflect.ownKeys(content)) {
+          if (typeof key !== "string" || !slots.has(key)) fail(`\u6CA1\u6709\u540D\u4E3A ${String(key)} \u7684\u5185\u5BB9\u69FD`);
+          const slot = slots.get(key), value = content[key], label = slot.label || key;
+          if (slot.type === "text") text(value, slot, label);
+          else if (slot.type === "number") {
+            if (!Number.isFinite(value) || value < slot.min || value > slot.max || slot.integer && !Number.isInteger(value)) fail(`${label} \u5FC5\u987B\u662F ${slot.min} \u81F3 ${slot.max} \u7684${slot.integer ? "\u6574\u6570" : "\u6709\u9650\u6570\u5B57"}`);
+          } else if (slot.type === "records") {
+            if (!Array.isArray(value) || value.length < slot.min_items || value.length > slot.max_items) fail(`${label} \u9700\u8981 ${slot.min_items} \u81F3 ${slot.max_items} \u9879`);
+            for (const [i, record] of value.entries()) {
+              if (!plain(record) || Reflect.ownKeys(record).some((key2) => !own(slot.fields, key2)) || Object.keys(slot.fields).some((key2) => !own(record, key2))) fail(`${label}\u7B2C ${i + 1} \u9879\u5FC5\u987B\u5305\u542B\u4E14\u4EC5\u5305\u542B ${Object.keys(slot.fields).join("\u3001")}`);
+              validateContent2({ id: effect.id, name: `${label}\u7B2C ${i + 1} \u9879`, content_slots: Object.entries(slot.fields).map(([id, field]) => ({ id, ...field })) }, record);
+            }
+          } else if (slot.type === "text-list" || slot.type === "code-lines") {
+            if (!Array.isArray(value) || value.length < slot.min_items || value.length > slot.max_items) fail(`${label} \u9700\u8981 ${slot.min_items} \u81F3 ${slot.max_items} \u9879`);
+            for (let i = 0; i < value.length; i++) {
+              const line = value[i];
+              if (slot.type === "text-list") text(line, slot, `${label}\u7B2C ${i + 1} \u9879`);
+              else {
+                if (!Array.isArray(line) || !line.length || line.length > 30) fail(`${label}\u7B2C ${i + 1} \u884C\u9700\u8981\u6587\u5B57\u4E0E\u8272\u8C03\u5BF9`);
+                for (const token of line) {
+                  if (!Array.isArray(token) || token.length !== 2 || !["ink", "muted", "teal"].includes(token[1])) fail(`${label}\u8272\u8C03\u53EA\u652F\u6301 ink\u3001muted\u3001teal`);
+                  text(token[0], { ...slot, allow_empty: true }, label);
+                }
+                text(line.map((token) => token[0]).join(""), slot, `${label}\u7B2C ${i + 1} \u884C`);
+              }
+            }
+          } else fail(`\u4E0D\u652F\u6301\u7684\u5185\u5BB9\u69FD\u7C7B\u578B ${slot.type}`);
+        }
+        if (effect.id === "count-up" && (content.format ?? "integer") === "integer" && (content.decimals ?? 0) !== 0) fail("\u6574\u6570\u683C\u5F0F\u4E0D\u80FD\u8BBE\u7F6E\u5C0F\u6570\u4F4D\uFF1B\u8BF7\u9009\u62E9 decimal\u3001thousands \u6216 compact");
+        if (effect.id === "terminal-code" && effect.variant_id === "command-log" && content.lines && count(content.lines[0]) > 20) fail("\u9996\u884C\u547D\u4EE4\u6700\u591A 20 \u5B57\uFF0C\u624D\u80FD\u5728\u4E0B\u4E00\u6761\u65E5\u5FD7\u51FA\u73B0\u524D\u5B8C\u6210\u8F93\u5165");
+      }
+      function withContent2(effect, content = effect.content) {
+        validateContent2(effect, content);
+        const result = { ...effect };
+        delete result.content;
+        if (content === void 0) return result;
+        const values = {};
+        for (const slot of effect.content_slots || []) {
+          if (own(content, slot.id) && JSON.stringify(content[slot.id]) !== JSON.stringify(slot.default)) values[slot.id] = JSON.parse(JSON.stringify(content[slot.id]));
+        }
+        if (Object.keys(values).length) result.content = values;
+        return result;
+      }
+      const readSlot = (definition, id, fallback) => definition?.content && own(definition.content, id) ? definition.content[id] : fallback;
+      const api = { validateContent: validateContent2, withContent: withContent2, readSlot };
+      if (typeof module === "object" && module.exports) module.exports = api;
+      else global.MotionContent = api;
+    })(globalThis);
+  }
+});
 
 // remotion/index.jsx
 import React3, { useLayoutEffect as useLayoutEffect2, useMemo, useRef as useRef2, useState } from "react";
@@ -8,6 +112,7 @@ import { staticFile as staticFile2, useBufferState, useCurrentFrame as useCurren
 var FRAME_SCRIPTS = Object.freeze([
   "vendor/animejs/anime.umd.min.js",
   "catalog/registry-data.js",
+  "catalog/content.js",
   "catalog/runtime.js",
   "catalog/history-runtime.js",
   "catalog/effects/entrance.js",
@@ -81,6 +186,7 @@ function frameScriptsFor(definition) {
   if (!source?.path || !Array.isArray(source.dependencies ?? [])) throw new TypeError("\u52A8\u6548\u7F3A\u5C11\u6709\u6548\u7684\u7ED8\u5236\u6765\u6E90");
   const required = /* @__PURE__ */ new Set([
     "vendor/animejs/anime.umd.min.js",
+    "catalog/content.js",
     "catalog/runtime.js",
     ...source.dependencies || [],
     source.path
@@ -221,15 +327,16 @@ function bootstrapFrame() {
     }
   };
 }
-function createFrameDocument({ assetBaseUrl, theme = "dark", definition }) {
+function createFrameDocument({ assetBaseUrl, theme = "dark", definition, transparent = false }) {
   if (!assetBaseUrl || typeof assetBaseUrl !== "string") throw new TypeError("\u5FC5\u987B\u63D0\u4F9B\u7D20\u6750\u6839\u5730\u5740");
   if (theme !== "dark" && theme !== "light") throw new TypeError("\u5916\u89C2\u5FC5\u987B\u4E3A dark \u6216 light");
+  if (typeof transparent !== "boolean") throw new TypeError("transparent \u5FC5\u987B\u4E3A\u5E03\u5C14\u503C");
   const base = assetBaseUrl.replace(/\/?$/, "/");
   const url = (path) => escapeAttribute(base + path);
   return `<!doctype html><html lang="zh-CN" data-theme="${theme}"><head><meta charset="utf-8"><meta name="viewport" content="width=640,initial-scale=1"><base href="${url("catalog/")}">
 <script>(${bootstrapFrame.toString()})()<\/script>
 ${FRAME_STYLES.map((path) => `<link rel="stylesheet" href="${url(path)}">`).join("\n")}
-<style>html,body{margin:0;padding:0;width:640px;height:360px;overflow:hidden}#wise-motion-viewport{position:relative;width:640px;height:360px;min-width:0;min-height:0;border:0;border-radius:0;margin:0;box-shadow:none}.motion-stage{transform:translate(-50%,-50%) scale(1)}</style>
+<style>html,body{margin:0;padding:0;width:640px;height:360px;overflow:hidden}#wise-motion-viewport{position:relative;width:640px;height:360px;min-width:0;min-height:0;border:0;border-radius:0;margin:0;box-shadow:none}.motion-stage{transform:translate(-50%,-50%) scale(1)}${transparent ? "html{color-scheme:normal!important}html,body,#wise-motion-viewport,.motion-stage{background:transparent!important}.motion-stage::before,.motion-stage::after{display:none!important}" : ""}</style>
 </head><body><div id="wise-motion-viewport" class="motion-viewport"><div class="motion-stage"></div></div>
 ${frameScriptsFor(definition).map((path) => `<script src="${url(path)}"><\/script>`).join("\n")}
 </body></html>`;
@@ -682,7 +789,23 @@ var registry_default = {
         source_end_ms: 2e3,
         start_ms: 150,
         end_ms: 1350
-      }
+      },
+      content_slots: [
+        {
+          id: "labels",
+          label: "\u56DB\u5F20\u5361\u7247\u6807\u9898",
+          type: "text-list",
+          default: [
+            "\u60F3\u6CD5",
+            "\u5185\u5BB9",
+            "\u7EC6\u8282",
+            "\u7ED3\u679C"
+          ],
+          max_chars: 12,
+          min_items: 4,
+          max_items: 4
+        }
+      ]
     },
     {
       id: "group-expand",
@@ -1514,7 +1637,76 @@ var registry_default = {
         source_end_ms: 2600,
         start_ms: 150,
         end_ms: 1350
-      }
+      },
+      content_slots: [
+        {
+          id: "value",
+          label: "\u7ED3\u675F\u6570\u503C",
+          type: "number",
+          default: 128,
+          min: -1e12,
+          max: 1e12
+        },
+        {
+          id: "from",
+          label: "\u5F00\u59CB\u6570\u503C",
+          type: "number",
+          default: 0,
+          min: -1e12,
+          max: 1e12
+        },
+        {
+          id: "decimals",
+          label: "\u5C0F\u6570\u4F4D\u6570",
+          type: "number",
+          default: 0,
+          min: 0,
+          max: 6,
+          integer: true
+        },
+        {
+          id: "prefix",
+          label: "\u6570\u503C\u524D\u7F00",
+          type: "text",
+          default: "",
+          max_chars: 16,
+          charset: "any",
+          allow_empty: true
+        },
+        {
+          id: "suffix",
+          label: "\u6570\u503C\u540E\u7F00",
+          type: "text",
+          default: "",
+          max_chars: 16,
+          charset: "any",
+          allow_empty: true
+        },
+        {
+          id: "caption",
+          label: "\u8BF4\u660E\u6587\u5B57",
+          type: "text",
+          default: "\u6BCF\u4E00\u6B65\uFF0C\u8D70\u5411\u786E\u5B9A\u7684\u7ED3\u679C\u3002",
+          max_chars: 44,
+          charset: "any",
+          allow_empty: true
+        },
+        {
+          id: "format",
+          label: "\u6570\u503C\u683C\u5F0F",
+          type: "text",
+          default: "integer",
+          max_chars: 16,
+          charset: "any",
+          options: [
+            "integer",
+            "decimal",
+            "thousands",
+            "compact"
+          ]
+        }
+      ],
+      layer: "overlay-ok"
     },
     {
       id: "type-reveal",
@@ -1593,7 +1785,18 @@ var registry_default = {
       ],
       reproduction: {
         retain: "WISE MOTION\u4F7F\u7528Oswald Bold\uFF0C\u77ED\u8DDD\u843D\u4F4D\u4E0E\u5300\u901F\u5199\u5B57\uFF1B\u5B8C\u6574\u884C\u5BBD\u56FA\u5B9A\uFF0C\u5DF2\u5199\u51FA\u7684\u5B57\u4FDD\u6301"
-      }
+      },
+      content_slots: [
+        {
+          id: "text",
+          label: "\u9010\u5B57\u663E\u793A\u7684\u6587\u5B57",
+          type: "text",
+          default: "WISE MOTION",
+          max_chars: 13,
+          charset: "any"
+        }
+      ],
+      layer: "overlay-ok"
     },
     {
       id: "word-focus",
@@ -1667,7 +1870,23 @@ var registry_default = {
       previous_names: [
         "\u5173\u952E\u8BCD\u5F3A\u8C03",
         "\u5212\u7EBF\u5F3A\u8C03"
-      ]
+      ],
+      content_slots: [
+        {
+          id: "words",
+          label: "\u4F9D\u6B21\u5F3A\u8C03\u7684\u4E09\u4E2A\u8BCD",
+          type: "text-list",
+          default: [
+            "\u68B3\u7406\u5173\u7CFB",
+            "\u5224\u65AD\u7ED3\u6784",
+            "\u7EC4\u5408\u7EC4\u4EF6"
+          ],
+          max_chars: 16,
+          min_items: 3,
+          max_items: 3
+        }
+      ],
+      layer: "overlay-ok"
     },
     {
       id: "focus-zoom",
@@ -3327,7 +3546,47 @@ var registry_default = {
         source_end_ms: 4e3,
         start_ms: 150,
         end_ms: 2550
-      }
+      },
+      content_slots: [
+        {
+          id: "title",
+          label: "\u6807\u9898",
+          type: "text",
+          default: "\u597D\u60F3\u6CD5\uFF0C\u4ECE\u8FD9\u91CC\u5F00\u59CB\u3002",
+          max_chars: 30
+        },
+        {
+          id: "cards",
+          label: "\u4E09\u5F20\u5361\u7247",
+          type: "records",
+          default: [
+            {
+              title: "\u8868\u8FBE",
+              description: "\u8BA9\u5185\u5BB9\u88AB\u770B\u89C1"
+            },
+            {
+              title: "\u8282\u594F",
+              description: "\u8BA9\u5185\u5BB9\u88AB\u770B\u89C1"
+            },
+            {
+              title: "\u91CD\u70B9",
+              description: "\u8BA9\u5185\u5BB9\u88AB\u770B\u89C1"
+            }
+          ],
+          fields: {
+            title: {
+              type: "text",
+              max_chars: 12
+            },
+            description: {
+              type: "text",
+              max_chars: 18
+            }
+          },
+          min_items: 3,
+          max_items: 3
+        }
+      ]
     },
     {
       id: "interface-feedback",
@@ -3419,7 +3678,29 @@ var registry_default = {
         source_end_ms: 6100,
         start_ms: 150,
         end_ms: 3750
-      }
+      },
+      content_slots: [
+        {
+          id: "states",
+          label: "\u6309\u94AE\u4E09\u4E2A\u9636\u6BB5",
+          type: "text-list",
+          default: [
+            "\u5F00\u59CB\u6574\u7406",
+            "\u6B63\u5728\u6574\u7406",
+            "\u6574\u7406\u5B8C\u6210"
+          ],
+          max_chars: 12,
+          min_items: 3,
+          max_items: 3
+        },
+        {
+          id: "result",
+          label: "\u5B8C\u6210\u63D0\u793A",
+          type: "text",
+          default: "\u2713 \u5DF2\u6574\u7406\u5B8C\u6210",
+          max_chars: 24
+        }
+      ]
     },
     {
       id: "rigid-rebound",
@@ -4699,6 +4980,16 @@ var registry_default = {
         "\u753B\u9762\u8F89\u5149\u4E0E\u80F6\u7247\u566A\u70B9",
         "\u964D\u91C7\u6837\u8F89\u5149\u4E0E\u566A\u70B9\u94FE",
         "\u8F89\u5149\u4E0E\u566A\u70B9"
+      ],
+      content_slots: [
+        {
+          id: "text",
+          label: "\u5355\u884C\u7C92\u5B50\u6587\u5B57",
+          type: "text",
+          default: "WISE MOTION",
+          max_chars: 64,
+          charset: "particle"
+        }
       ]
     },
     {
@@ -4917,7 +5208,28 @@ var registry_default = {
         start_ms: 150,
         end_ms: 3750
       },
-      original_scene: "claude-showreel-2026/sGrit"
+      original_scene: "claude-showreel-2026/sGrit",
+      content_slots: [
+        {
+          id: "words",
+          label: "\u4F9D\u6B21\u649E\u5165\u7684\u8BCD",
+          type: "text-list",
+          default: [
+            "CUT",
+            "SCRATCH",
+            "BLEED",
+            "LAYER",
+            "DISTORT",
+            "EXPOSE",
+            "REPEAT",
+            "OBSESS"
+          ],
+          min_items: 1,
+          max_items: 8,
+          max_chars: 16,
+          charset: "any"
+        }
+      ]
     },
     {
       id: "page-cover",
@@ -7198,7 +7510,98 @@ var registry_default = {
             source_end_ms: 2500,
             start_ms: 150,
             end_ms: 2550
-          }
+          },
+          content_slots: [
+            {
+              id: "lines",
+              label: "\u9010\u884C\u8F93\u5165\u7684\u4EE3\u7801",
+              type: "code-lines",
+              default: [
+                [
+                  [
+                    "const ",
+                    "ink"
+                  ],
+                  [
+                    "idea",
+                    "ink"
+                  ],
+                  [
+                    " = ",
+                    "muted"
+                  ],
+                  [
+                    '"\u4E00\u4E2A\u753B\u9762"',
+                    "teal"
+                  ],
+                  [
+                    ";",
+                    "muted"
+                  ]
+                ],
+                [
+                  [
+                    "const ",
+                    "ink"
+                  ],
+                  [
+                    "motion",
+                    "ink"
+                  ],
+                  [
+                    " = ",
+                    "muted"
+                  ],
+                  [
+                    '"\u8BA9\u5B83\u52A8\u8D77\u6765"',
+                    "teal"
+                  ],
+                  [
+                    ";",
+                    "muted"
+                  ]
+                ],
+                [
+                  [
+                    "create",
+                    "ink"
+                  ],
+                  [
+                    "(",
+                    "muted"
+                  ],
+                  [
+                    "idea",
+                    "ink"
+                  ],
+                  [
+                    ", ",
+                    "muted"
+                  ],
+                  [
+                    "motion",
+                    "ink"
+                  ],
+                  [
+                    ");",
+                    "muted"
+                  ]
+                ]
+              ],
+              min_items: 1,
+              max_items: 3,
+              max_chars: 60,
+              charset: "any"
+            },
+            {
+              id: "title",
+              label: "\u7A97\u53E3\u6807\u9898",
+              type: "text",
+              default: "creative-session",
+              max_chars: 32,
+              charset: "any"
+            }
+          ]
         },
         {
           summary: "\u7EC8\u7AEF\u7A97\u53E3\u4FDD\u6301\u56FA\u5B9A\uFF0C\u547D\u4EE4\u968F\u5149\u6807\u9010\u5B57\u8F93\u5165\uFF0C\u65E5\u5FD7\u548C\u8C03\u8BD5\u72B6\u6001\u6309\u539F\u987A\u5E8F\u51FA\u73B0\uFF0C\u5B8C\u6210\u540E\u505C\u4F4F\u3002",
@@ -7241,7 +7644,128 @@ var registry_default = {
           timing: null,
           reproduction: {
             presentation: "16:9 \u753B\u5E45\uFF0C\u4FDD\u7559\u547D\u4EE4\u7A97\u53E3\u7684\u6784\u56FE\u3001\u914D\u8272\u4E0E\u6750\u8D28\uFF0C\u8FD0\u52A8\u7531\u539F\u65F6\u95F4\u5173\u7CFB\u9A71\u52A8\u3002"
-          }
+          },
+          content_slots: [
+            {
+              id: "lines",
+              label: "\u4E5D\u884C\u547D\u4EE4\u4E0E\u65E5\u5FD7\uFF08\u4FDD\u7559\u539F\u987A\u5E8F\u548C\u65F6\u949F\uFF09",
+              type: "text-list",
+              default: [
+                "$ kimi --model k3",
+                "\u25B8 \u4EFB\u52A1\uFF1A\u590D\u73B0 I\u2013Love\u2013Q \u666E\u9002\u5173\u7CFB",
+                "\u25B8 \u626B\u63CF 20+ \u7BC7\u8BBA\u6587 \u2026 ok",
+                "\u25B8 \u5B9E\u73B0\u6570\u503C\u7BA1\u7EBF",
+                "\u25B8 [\u626B\u63CF] 300+ \u4E2A\u72B6\u6001\u65B9\u7A0B",
+                "\u25B8 [\u4FEE\u590D] \u5DF2\u53D1\u8868\u516C\u5F0F\u4E2D\u7684\u4E0D\u4E00\u81F4",
+                "Kimi \u6B63\u5728\u8C03\u8BD5",
+                "\u2713 \u751F\u6210 3,000+ \u884C\u2014\u2014\u7BA1\u7EBF\u9A8C\u8BC1\u901A\u8FC7",
+                "\u2713 47 \u9879\u6D4B\u8BD5\u901A\u8FC7 \xB7 0 \u5931\u8D25"
+              ],
+              min_items: 9,
+              max_items: 9,
+              max_chars: 40,
+              charset: "any"
+            },
+            {
+              id: "title",
+              label: "\u7A97\u53E3\u6807\u9898",
+              type: "text",
+              default: "kimi-code \u2014 agent session",
+              max_chars: 40,
+              charset: "any"
+            }
+          ]
+        }
+      ],
+      content_slots: [
+        {
+          id: "lines",
+          label: "\u9010\u884C\u8F93\u5165\u7684\u4EE3\u7801",
+          type: "code-lines",
+          default: [
+            [
+              [
+                "const ",
+                "ink"
+              ],
+              [
+                "idea",
+                "ink"
+              ],
+              [
+                " = ",
+                "muted"
+              ],
+              [
+                '"\u4E00\u4E2A\u753B\u9762"',
+                "teal"
+              ],
+              [
+                ";",
+                "muted"
+              ]
+            ],
+            [
+              [
+                "const ",
+                "ink"
+              ],
+              [
+                "motion",
+                "ink"
+              ],
+              [
+                " = ",
+                "muted"
+              ],
+              [
+                '"\u8BA9\u5B83\u52A8\u8D77\u6765"',
+                "teal"
+              ],
+              [
+                ";",
+                "muted"
+              ]
+            ],
+            [
+              [
+                "create",
+                "ink"
+              ],
+              [
+                "(",
+                "muted"
+              ],
+              [
+                "idea",
+                "ink"
+              ],
+              [
+                ", ",
+                "muted"
+              ],
+              [
+                "motion",
+                "ink"
+              ],
+              [
+                ");",
+                "muted"
+              ]
+            ]
+          ],
+          min_items: 1,
+          max_items: 3,
+          max_chars: 60,
+          charset: "any"
+        },
+        {
+          id: "title",
+          label: "\u7A97\u53E3\u6807\u9898",
+          type: "text",
+          default: "creative-session",
+          max_chars: 32,
+          charset: "any"
         }
       ]
     },
@@ -8155,7 +8679,54 @@ var registry_default = {
         source_end_ms: 1160,
         start_ms: 150,
         end_ms: 1350
-      }
+      },
+      content_slots: [
+        {
+          id: "items",
+          label: "\u516D\u7EC4\u767E\u5206\u6BD4",
+          type: "records",
+          default: [
+            {
+              label: "MMLU",
+              value: 92
+            },
+            {
+              label: "HEVAL",
+              value: 87
+            },
+            {
+              label: "GSM8K",
+              value: 81
+            },
+            {
+              label: "BBH",
+              value: 76
+            },
+            {
+              label: "TRUTH",
+              value: 68
+            },
+            {
+              label: "ARC",
+              value: 61
+            }
+          ],
+          fields: {
+            label: {
+              type: "text",
+              max_chars: 10
+            },
+            value: {
+              type: "number",
+              min: 0,
+              max: 100,
+              integer: true
+            }
+          },
+          min_items: 6,
+          max_items: 6
+        }
+      ]
     },
     {
       id: "sector-appear",
@@ -8453,7 +9024,67 @@ var registry_default = {
         start_ms: 150,
         end_ms: 1950
       },
-      original_scene: "claude-showreel-2026/sOutro"
+      original_scene: "claude-showreel-2026/sOutro",
+      content_slots: [
+        {
+          id: "items",
+          label: "\u4E03\u4E2A\u65F6\u95F4\u8282\u70B9",
+          type: "records",
+          default: [
+            {
+              date: "1959",
+              line1: "THE TITLE",
+              line2: "SEQUENCE"
+            },
+            {
+              date: "1981",
+              line1: "BROADCAST",
+              line2: "& NEON"
+            },
+            {
+              date: "1995",
+              line1: "THE NERVOUS",
+              line2: "TYPE"
+            },
+            {
+              date: "2003",
+              line1: "KEYFRAMES",
+              line2: "FOR EVERYONE"
+            },
+            {
+              date: "2014",
+              line1: "MOTION AS",
+              line2: "INTERFACE"
+            },
+            {
+              date: "2020",
+              line1: "CODE IS",
+              line2: "THE CAMERA"
+            },
+            {
+              date: "2026",
+              line1: "PROMPT TO",
+              line2: "MOTION"
+            }
+          ],
+          fields: {
+            date: {
+              type: "text",
+              max_chars: 8
+            },
+            line1: {
+              type: "text",
+              max_chars: 14
+            },
+            line2: {
+              type: "text",
+              max_chars: 14
+            }
+          },
+          min_items: 7,
+          max_items: 7
+        }
+      ]
     },
     {
       id: "dimension-line",
@@ -15681,7 +16312,22 @@ var registry_default = {
         source_end_ms: 5300,
         start_ms: 150,
         end_ms: 1950
-      }
+      },
+      content_slots: [
+        {
+          id: "states",
+          label: "\u6309\u94AE\u4E09\u4E2A\u9636\u6BB5",
+          type: "text-list",
+          default: [
+            "\u5F00\u59CB\u6574\u7406",
+            "\u6B63\u5728\u6574\u7406",
+            "\u6574\u7406\u5B8C\u6210"
+          ],
+          max_chars: 12,
+          min_items: 3,
+          max_items: 3
+        }
+      ]
     },
     {
       id: "progress-fill-exit",
@@ -30149,6 +30795,9 @@ function sampleEffectTime(effect, frame, fps = DEFAULT_FPS, options = {}) {
 }
 var effectDefinitions = registry_default.effects;
 
+// remotion/index.jsx
+var import_content = __toESM(require_content());
+
 // catalog/remotion/butterfly.jsx
 import React, { useLayoutEffect, useRef } from "react";
 import { AbsoluteFill, staticFile, useCurrentFrame, useDelayRender, useVideoConfig } from "remotion";
@@ -30622,14 +31271,17 @@ function WiseMotionCircularReveal({ seconds, variantId = "paper-expand", speed =
 }
 
 // remotion/index.jsx
+var { validateContent, withContent } = import_content.default;
 var asError = (reason) => reason instanceof Error ? reason : new Error(reason?.message || String(reason));
 function WiseMotionEffect({
   effectId,
   variantId,
   definition,
+  content,
   speed = 1,
   ease,
   theme = "dark",
+  transparent = false,
   assetBaseUrl,
   bookSettings,
   width = 640,
@@ -30654,15 +31306,16 @@ function WiseMotionEffect({
   callbacks.current = { onReady, onFrame, onError };
   const [failure, setFailure] = useState(null);
   const resolved = useMemo(() => {
-    const effect = resolveEffect(definition ?? effectId, variantId);
+    const effect = import_content.default.withContent(resolveEffect(definition ?? effectId, variantId), content);
     if (bookSettings) effect.paper_settings = { ...effect.paper_settings, ...bookSettings };
     return effect;
-  }, [definition, effectId, variantId, bookSettings]);
+  }, [definition, effectId, variantId, bookSettings, content]);
   const definitionJson = useMemo(() => JSON.stringify(resolved), [resolved]);
   const defaultBase = assetBaseUrl ?? staticFile2("wise-motion");
   const base = typeof document === "undefined" ? defaultBase : new URL(defaultBase.replace(/\/?$/, "/"), document.baseURI).href;
   if (theme !== "dark" && theme !== "light") throw new TypeError("\u5916\u89C2\u5FC5\u987B\u4E3A dark \u6216 light");
-  const source = useMemo(() => createFrameDocument({ assetBaseUrl: base, definition: resolved }), [base, resolved]);
+  if (transparent && resolved.layer !== "overlay-ok") throw new TypeError("\u8BE5\u52A8\u6548\u5C1A\u672A\u901A\u8FC7\u900F\u660E\u53E0\u5C42\u5BA1\u8BA1\uFF1A" + resolved.id);
+  const source = useMemo(() => createFrameDocument({ assetBaseUrl: base, definition: resolved, transparent }), [base, resolved, transparent]);
   const sample = sampleEffectTime(resolved, frame, fps, { speed, sampleMode });
   if (timeOverrideMs !== void 0) {
     if (!Number.isFinite(timeOverrideMs) || timeOverrideMs < 0 || timeOverrideMs > resolved.duration_ms) throw new TypeError("\u6307\u5B9A\u65F6\u95F4\u5FC5\u987B\u5728\u52A8\u6548\u65F6\u957F\u5185");
@@ -30796,5 +31449,7 @@ export {
   getEffectMetadata,
   normalizeSpeed,
   resolveEffect,
-  sampleEffectTime
+  sampleEffectTime,
+  validateContent,
+  withContent
 };

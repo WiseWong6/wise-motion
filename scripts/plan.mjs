@@ -7,11 +7,13 @@ import {readFile, writeFile, mkdir, realpath} from 'node:fs/promises';
 import path from 'node:path';
 import {createRequire} from 'node:module';
 import {fileURLToPath} from 'node:url';
+import {layerStatus} from './layer-status.mjs';
 
 const root = path.resolve(fileURLToPath(new URL('../', import.meta.url)));
 const require = createRequire(import.meta.url);
 const {rank} = require('../catalog/matching.js');
-const {getEffectMetadata} = await import('../remotion/clock.mjs');
+const {getEffectMetadata, resolveEffect} = await import('../remotion/clock.mjs');
+const {validateContent} = require('../catalog/content.js');
 const registry = JSON.parse(await readFile(path.join(root, 'catalog/registry.json'), 'utf8'));
 const byId = new Map(registry.effects.map(e => [e.id, e]));
 
@@ -40,13 +42,13 @@ export function createPlan(text, options = {}) {
   const shots = splitSubtitles(text).map((subtitle, index) => {
     const chars = visibleChars(subtitle);
     const hints = rank(registry, subtitle).filter(m => m.effect.kind !== 'illustration').slice(0, 3)
-      .map(m => ({id: m.effect.id, name: m.effect.name, clue: m.matched.join('、')}));
+      .map(m => ({id: m.effect.id, name: m.effect.name, clue: m.matched.join('、'), content_slots: (m.effect.content_slots||[]).map(slot=>slot.id), variants: (m.effect.variants||[]).map(v=>({id:v.id,content_slots:(v.content_slots||m.effect.content_slots||[]).map(slot=>slot.id)}))}));
     return {
       id: 's' + String(index + 1).padStart(2, '0'), subtitle,
       seconds: Math.max(1.5, round1(chars / 5 + 0.6)),
       subject: '', from: '', to: '', meaning: '', hold: '', handoff: '',
       candidates: hints,
-      effect: {mode: '', id: '', variant: '', speed: null, source: '', prompt: ''}
+      effect: {mode: '', id: '', variant: '', speed: null, source: '', prompt: '', content: {}, nearest: '', why: ''}
     };
   });
   return {version: 1, title: options.title || '', fps, width, height,
@@ -54,45 +56,93 @@ export function createPlan(text, options = {}) {
 }
 
 /* 返回 {errors, warnings}；errors 为空才算通过。 */
-export function checkPlan(plan) {
+export function checkPlan(plan, {expanded = false} = {}) {
   const errors = [], warnings = [];
   const problem = (shot, message) => errors.push(`${shot.id || '?'}：${message}`);
   const caution = (shot, message) => warnings.push(`${shot.id || '?'}：${message}`);
   if (!plan || plan.version !== 1 || !Array.isArray(plan.shots) || !plan.shots.length) return {errors: ['计划缺少 version:1 或 shots'], warnings};
+  if(plan.shots.some(shot=>!shot||typeof shot!=='object'||Array.isArray(shot)))return {errors:['每个镜头必须是对象'],warnings};
+  for(const shot of plan.shots){
+    if(typeof shot.id!=='string'||!shot.id.trim())problem(shot,'镜头编号必须是非空文字');
+    if(typeof shot.subtitle!=='string')problem(shot,'字幕必须是文字');
+  }
   if (!Number.isFinite(plan.fps) || plan.fps < 1 || plan.fps > 120) errors.push('fps 必须是 1 到 120 的数字');
-  if (!(plan.width > 0 && plan.height > 0)) errors.push('width 和 height 必须是正数');
-  const ids = new Set(), uses = new Map();
+  if (![plan.width,plan.height].every(value=>Number.isSafeInteger(value)&&value>0)) errors.push('width 和 height 必须是有限正整数');
+  if(plan.shots.some(shot=>shot.layers !== undefined)) {
+    const expanded=[];
+    for(const shot of plan.shots){
+      if(shot.layers === undefined){expanded.push(shot);continue;}
+      if(shot.effect !== undefined)problem(shot,'effect 与 layers 二选一，不能同时填写');
+      if(!Array.isArray(shot.layers)||shot.layers.length<1||shot.layers.length>3){problem(shot,'layers 需要 1 至 3 层');continue;}
+      const roles=['background','main','overlay'],seen=new Set();let previous=-1;
+      for(const layer of shot.layers){
+        if(!layer||typeof layer!=='object'){problem(shot,'每层必须是对象');continue;}
+        const order=roles.indexOf(layer.role);
+        if(order<0||order<=previous||seen.has(layer.role))problem(shot,'层按 background、main、overlay 顺序排列，每种最多一层');
+        previous=order;seen.add(layer.role);
+        if(layer.role!=='background'){
+          if(layer.mode==='original')problem(shot,'当前原创层只支持 background；上层使用通过透明审计的目录动效');
+          else {try {if(layerStatus(resolveEffect(layer.id,layer.variant||undefined))!=='overlay-ok')problem(shot,'上层未通过当前源码的透明审计：'+layer.id);}catch(error){problem(shot,error.message);}}
+        }
+        if(layer.box!==undefined){const b=layer.box;
+          if(!b||!['x','y','width','height'].every(key=>Number.isFinite(b[key]))||b.x<0||b.y<0||b.width<=0||b.height<=0||b.x+b.width>plan.width||b.y+b.height>plan.height)problem(shot,'box 的位置和尺寸必须在画板内');
+        }
+        const {layers,...single}=shot;expanded.push({...single,id:shot.id+'/'+layer.role,effect:layer});
+      }
+      if(!seen.has('main'))problem(shot,'layers 必须有 main 主体层');
+      caution(shot,'叠层共用镜头时长；请核对 box 内文字的可读大小、重叠和停留，透明审计不代表构图通过');
+    }
+    const checked=checkPlan({...plan,shots:expanded},{expanded:true});
+    return {errors:[...errors,...checked.errors],warnings:[...warnings,...checked.warnings]};
+  }
+  const ids = new Set(), uses = new Map(), originals = [];
   for (const shot of plan.shots) {
     if (!shot.id || ids.has(shot.id)) problem(shot, '镜头编号缺失或重复');
     ids.add(shot.id);
     if (!String(shot.subtitle || '').trim()) problem(shot, '字幕为空');
-    if (!(shot.seconds > 0)) problem(shot, 'seconds 必须是正数');
+    if (!(Number.isFinite(shot.seconds)&&shot.seconds>0)) problem(shot, 'seconds 必须是有限正数');
     for (const [field, label] of DESIGN_FIELDS) if (!String(shot[field] || '').trim()) problem(shot, `没有填写「${label}」（${field}）`);
     const need = visibleChars(shot.subtitle || '') / READ_CHARS_PER_SECOND + 0.3;
     if (shot.seconds > 0 && shot.seconds < need) caution(shot, `字幕 ${visibleChars(shot.subtitle)} 字，按每秒 ${READ_CHARS_PER_SECOND} 字至少需要约 ${need.toFixed(1)} 秒，当前 ${shot.seconds} 秒；有配音时以实测词点为准`);
 
     const effect = shot.effect || {};
+    if(!expanded&&effect.box!==undefined)problem(shot,'box 仅用于 layers 中的层');
     if (!MODES.includes(effect.mode)) { problem(shot, `effect.mode 必须是 ${MODES.join(' / ')}`); continue; }
-    if (effect.speed != null && !(effect.speed >= 0.5 && effect.speed <= 2)) problem(shot, 'effect.speed 必须在 0.5 到 2 之间，或留空自动计算');
+    if (effect.speed != null && !(Number.isFinite(effect.speed) && effect.speed >= 0.5 && effect.speed <= 2)) problem(shot, 'effect.speed 必须在 0.5 到 2 之间，或留空自动计算');
     const found = effect.id ? byId.get(effect.id) : null;
     if (effect.mode === 'original') {
+      if (effect.content !== undefined && (typeof effect.content !== 'object' || effect.content === null || Array.isArray(effect.content) || Object.keys(effect.content).length)) problem(shot, '原创镜头不能填目录 content；使用目录内容槽时应选择 reuse 或 tweak');
       if (String(effect.prompt || '').trim().length < 20) problem(shot, '原创镜头必须在 effect.prompt 写出可观察的动作提示词（至少 20 字）：对象、起止状态、方向、节奏');
+      const nearest = effect.nearest ? byId.get(effect.nearest) : null;
+      if ((!nearest || nearest.kind === 'illustration') && effect.nearest !== null) problem(shot, '原创镜头必须在 effect.nearest 填目录里最接近的动作 id；检索后确实无候选时填 null，并在 why 写清检索内容和缺口');
+      if (String(effect.why || '').trim().length < 15) problem(shot, '原创镜头必须在 effect.why 说明最接近的候选核心动作为什么不能表达这一镜（至少 15 字）');
+      if(effect.component!==undefined && (!effect.component || !/^\.{1,2}\/[A-Za-z0-9_./-]+\.(jsx|tsx|js|mjs)$/.test(effect.component.path||'') || !/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(effect.component.export||''))) problem(shot,'原创 component 需要相对生成文件的源码路径 path 和导出名称 export');
+      originals.push(shot.id);
       if (effect.id && !found) problem(shot, `effect.id「${effect.id}」不在目录里；原创镜头可留空`);
       continue;
     }
     if (!found) { problem(shot, `effect.id「${effect.id || ''}」不在目录里；用 node scripts/match.mjs 检索，再用 show.mjs 确认`); continue; }
+    let selected;
+    try { selected = resolveEffect(found.id, effect.variant || undefined); validateContent(selected, effect.content); }
+    catch (error) { problem(shot, error.message); continue; }
+    if(selected.content_slots?.length){
+      const values=Object.fromEntries(selected.content_slots.map(slot=>[slot.id,effect.content?.[slot.id]??slot.default]));
+      caution(shot, `人工核对画面内容与字幕是否对应（${JSON.stringify(values)}）；脚本只验证内容格式和时长，不判断语义一致`);
+    }
     if (found.kind === 'illustration') problem(shot, `「${found.name}」是插画素材，不是动作；请改选动作或组合`);
-    if (effect.source !== sourceTag(found)) problem(shot, `effect.source 应为「${sourceTag(found)}」；先运行 node scripts/show.mjs ${found.id} 并阅读源码，再原样填写`);
+    if (effect.source !== sourceTag(selected)) problem(shot, `effect.source 应为「${sourceTag(selected)}」；先运行 node scripts/show.mjs ${found.id}${effect.variant ? ' --variant '+effect.variant : ''} 并阅读源码，再原样填写`);
     if (effect.mode === 'tweak' && String(effect.prompt || '').trim().length < 20) problem(shot, '微调必须在改代码前于 effect.prompt 写清改什么（至少 20 字）');
     if (effect.variant && !(found.variants || []).some(v => v.id === effect.variant)) problem(shot, `variant「${effect.variant}」不存在；可选：${(found.variants || []).map(v => v.id).join('、') || '无'}`);
     uses.set(found.id, (uses.get(found.id) || 0) + 1);
     if (shot.seconds > 0 && plan.fps > 0) {
       const base = getEffectMetadata(found.id, {fps: plan.fps, variantId: effect.variant || undefined});
       const seconds = base.durationMs / 1000;
-      if (!found.loop && shot.seconds < seconds / 2 - 1e-9) problem(shot, `镜头 ${shot.seconds} 秒短于动效最快速度（2 倍）所需的 ${(seconds / 2).toFixed(2)} 秒，会被截断；加长镜头或换更短的动效`);
-      else if (!found.loop && shot.seconds > seconds * 2 + 1) caution(shot, `动效最慢（0.5 倍）约 ${(seconds * 2).toFixed(1)} 秒，之后停在末帧 ${(shot.seconds - seconds * 2).toFixed(1)} 秒；确认这是有内容的阅读停留`);
+      if (!base.loop && Number.isFinite(effect.speed) && shot.seconds < seconds / effect.speed - 1 / plan.fps) problem(shot, '镜头短于指定速度所需时长，会被截断；延长镜头或提高 speed');
+      else if (!base.loop && shot.seconds < seconds / 2 - 1e-9) problem(shot, `镜头 ${shot.seconds} 秒短于动效最快速度（2 倍）所需的 ${(seconds / 2).toFixed(2)} 秒，会被截断；加长镜头或换更短的动效`);
+      else if (!base.loop && shot.seconds > seconds * 2 + 1) caution(shot, `动效最慢（0.5 倍）约 ${(seconds * 2).toFixed(1)} 秒，之后停在末帧 ${(shot.seconds - seconds * 2).toFixed(1)} 秒；确认这是有内容的阅读停留`);
     }
   }
+  if (originals.length) warnings.push(`原创镜头 ${originals.join('、')}：人工核对候选与不适用原因；检查脚本不能判断动作是否合适，不设置原创比例要求。只参考节奏后重写的仍标为原创`);
   for (const [id, count] of uses) if (count >= 3) warnings.push(`「${byId.get(id).name}」用了 ${count} 次；整片节奏会重复，考虑换成同类的其他动效`);
   return {errors, warnings};
 }
@@ -113,36 +163,53 @@ export function buildJsx(plan) {
   const {errors} = checkPlan(plan);
   if (errors.length) throw new Error('计划未通过检查，不能装配：\n' + errors.join('\n'));
   let from = 0;
-  const pending = [], tweak = [], reuse = [], rows = [];
+  const pending = [], tweak = [], reuse = [], rows = [], imports = [];
   for (const shot of plan.shots) {
-    const {frames, speed, variantId} = shotTiming(plan, shot);
-    const label = `${shot.id} ${shot.subtitle.replace(/\*\//g, '').slice(0, 24)}`;
-    if (shot.effect.mode === 'original' || !shot.effect.id) {
-      pending.push(shot.id);
-      rows.push(`      {/* ${label}：原创镜头，待实现 */}\n      <Sequence from={${from}} durationInFrames={${frames}} name=${JSON.stringify(shot.id)}>\n        <AbsoluteFill style={{background: '#111'}} />\n      </Sequence>`);
-    } else {
-      (shot.effect.mode === 'tweak' ? tweak : reuse).push({id: shot.id, effectId: shot.effect.id, file: shot.effect.source.split('#')[0]});
-      const props = [`effectId="${shot.effect.id}"`, variantId ? `variantId="${variantId}"` : '', `speed={${speed}}`, `width={${plan.width}}`, `height={${plan.height}}`].filter(Boolean).join(' ');
-      rows.push(`      {/* ${label} */}\n      <Sequence from={${from}} durationInFrames={${frames}} name=${JSON.stringify(shot.id)}>\n        <WiseMotionEffect ${props} />\n      </Sequence>`);
+    const frames=Math.max(1,Math.round(shot.seconds*plan.fps));
+    for(const effect of shot.layers||[shot.effect]){
+      const name=shot.layers ? shot.id+'/'+effect.role : shot.id;
+      const {speed, variantId}=shotTiming(plan,{...shot,effect});
+      const label=`${name} ${shot.subtitle.slice(0,24)}`.replace(/\*\//g,'').replace(/[\r\n]/g,' ');
+      let node;
+      if(effect.mode==='original'){
+        if(effect.component){
+          const alias='Original'+imports.length;
+          imports.push(`import {${effect.component.export} as ${alias}} from ${JSON.stringify(effect.component.path)};`);
+          node=`<${alias} />`;
+        }else{
+          pending.push(name);
+          node=`<PendingOriginal name=${JSON.stringify(name)} />`;
+        }
+      }else{
+        (effect.mode==='tweak'?tweak:reuse).push({id:name,effectId:effect.id,file:effect.source.split('#')[0]});
+        const box=(shot.layers&&effect.box)||{width:plan.width,height:plan.height};
+        const props=[`effectId="${effect.id}"`,variantId?`variantId="${variantId}"`:'',effect.content!==undefined?`content={${JSON.stringify(effect.content)}}`:'',shot.layers&&effect.role!=='background'?'transparent={true}':'',`speed={${speed}}`,`width={${box.width}}`,`height={${box.height}}`].filter(Boolean).join(' ');
+        node=`<WiseMotionEffect ${props} />`;
+      }
+      if(shot.layers){const b=effect.box||{x:0,y:0,width:plan.width,height:plan.height};node=`<div style={${JSON.stringify({position:'absolute',left:b.x,top:b.y,width:b.width,height:b.height,overflow:'hidden'})}}>${node}</div>`;}
+      rows.push(`      {/* ${label}${effect.mode==='original'&&!effect.component?'：原创镜头，待实现':''} */}
+      <Sequence from={${from}} durationInFrames={${frames}} name=${JSON.stringify(name)}>
+        ${node}
+      </Sequence>`);
     }
     from += frames;
   }
+  const usesPackage = tweak.length + reuse.length > 0;
   const source = `import React from 'react';
 import {AbsoluteFill, Composition, Sequence, registerRoot} from 'remotion';
-import {WiseMotionEffect} from 'wise-motion-remotion';
-
-// 由 scripts/plan.mjs build 生成：镜头顺序、帧数和速度都来自分镜计划；改计划后重新生成，不手改帧数。
+${usesPackage ? "import {WiseMotionEffect} from 'wise-motion-remotion';\n" : ''}${imports.join('\n')}
+${pending.length ? "const PendingOriginal = ({name}) => {throw new Error('原创镜头尚未实现：'+name+'；请在计划中填写 component');};" : ''}
+// 镜头顺序、帧数和速度来自计划；原创组件保存在独立文件，重新 build 不会覆盖。
 const Video = () => (
   <AbsoluteFill style={{background: '#111'}}>
 ${rows.join('\n')}
   </AbsoluteFill>
 );
-
 registerRoot(() => (
   <Composition id="Promo" component={Video} width={${plan.width}} height={${plan.height}} fps={${plan.fps}} durationInFrames={${from}} />
 ));
 `;
-  return {source, totalFrames: from, pending, tweak, reuse};
+  return {source, totalFrames: from, pending, tweak, reuse, usesPackage};
 }
 
 function within(base, target) {
@@ -187,14 +254,14 @@ async function main(argv) {
     process.exitCode = errors.length ? 1 : 0;
   } else if (command === 'build' && input && output) {
     const plan = JSON.parse(await readFile(input, 'utf8'));
-    const {source, totalFrames, pending, tweak, reuse} = buildJsx(plan);
+    const {source, totalFrames, pending, tweak, reuse, usesPackage} = buildJsx(plan);
     const written = await writeOutside(output, source);
     console.log(`已生成：${written}\n总长 ${totalFrames} 帧（${(totalFrames / plan.fps).toFixed(1)} 秒，${plan.fps} 帧每秒）。`);
-    if (pending.length) console.log(`仍有原创镜头待实现：${pending.join('、')}（已留黑底占位）。`);
+    if (pending.length) console.log(`仍有原创镜头待实现：${pending.join('、')}（渲染时会明确报错；在计划中填 component 引用独立实现后重新 build）。`);
     const files = list => [...new Set(list.map(item => 'public/wise-motion/' + item.file))].join('、');
-    if (tweak.length) console.log(`仍有微调镜头待改：${tweak.map(item => item.id).join('、')}。现在装配的是原动效，画面里的文字、数字还是示例内容；到目标工程里编辑 ${files(tweak)}，改成你的内容后重新渲染检查。`);
-    if (reuse.length) console.log(`复用镜头 ${reuse.map(item => item.id).join('、')} 按原样装配：动效自带的文字和图形不会变成你的字幕；若内容与镜头不符，改选 tweak。`);
-    console.log('目标工程需安装 wise-motion-remotion 并运行 scripts/install-assets.mjs，见 REMOTION.md。');
+    if (tweak.length) console.log(`微调镜头 ${tweak.map(item => item.id).join('、')}：计划中的 content 已装配；核对是否仍有提示词要求的其他改动。超出内容槽的修改才需要编辑副本：${files(tweak)}。生成成功不代表这些额外修改已完成。`);
+    if (reuse.length) console.log(`复用镜头 ${reuse.map(item => item.id).join('、')} 已按所填 content 装配；未填的内容沿用目录示例，不会自动变成字幕。`);
+    console.log(usesPackage ? '目标工程需安装 wise-motion-remotion 并运行 scripts/install-assets.mjs，见 REMOTION.md。' : '没有镜头直接引用目录组件，生成文件不依赖 wise-motion-remotion；原创镜头按计划实现。');
   } else {
     console.error('用法：\n  node scripts/plan.mjs init 字幕.txt [计划.json]\n  node scripts/plan.mjs check 计划.json\n  node scripts/plan.mjs build 计划.json src/index.jsx');
     process.exitCode = 1;

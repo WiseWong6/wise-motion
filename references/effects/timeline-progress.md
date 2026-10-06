@@ -34,3 +34,51 @@
 - 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
+
+### 可替换内容
+
+通过组件 `content` 或分镜 `effect.content` 为当前镜头赋值；字段含义与字体、宽度限制见 [组件说明](../../REMOTION.md)。默认内容如下：
+
+```json
+{
+  "items": [
+    {
+      "date": "1959",
+      "line1": "THE TITLE",
+      "line2": "SEQUENCE"
+    },
+    {
+      "date": "1981",
+      "line1": "BROADCAST",
+      "line2": "& NEON"
+    },
+    {
+      "date": "1995",
+      "line1": "THE NERVOUS",
+      "line2": "TYPE"
+    },
+    {
+      "date": "2003",
+      "line1": "KEYFRAMES",
+      "line2": "FOR EVERYONE"
+    },
+    {
+      "date": "2014",
+      "line1": "MOTION AS",
+      "line2": "INTERFACE"
+    },
+    {
+      "date": "2020",
+      "line1": "CODE IS",
+      "line2": "THE CAMERA"
+    },
+    {
+      "date": "2026",
+      "line1": "PROMPT TO",
+      "line2": "MOTION"
+    }
+  ]
+}
+```
+
+- items（七个时间节点）：7–7 项，字段 {"date":{"type":"text","max_chars":8},"line1":{"type":"text","max_chars":14},"line2":{"type":"text","max_chars":14}}。

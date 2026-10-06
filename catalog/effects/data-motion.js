@@ -8,7 +8,7 @@ const weight=t=>/[A-Za-z0-9]/.test(String(t))&&!/[\u3400-\u9fff]/.test(String(t)
 const font=(role,scale=1)=>global.MotionKit.textSize(role,scale);
 const text=(id,x,y,t,size=16)=>`<text data-part="${id}" x="${x}" y="${y}" text-anchor="middle" fill="var(--ink)" font-size="${font(size)}" font-weight="${weight(t)}">${t}</text>`;
 const line=(id,x,y,X,Y,extra='')=>`<line data-part="${id}" x1="${x}" y1="${y}" x2="${X}" y2="${Y}" stroke="var(--ink)" ${extra.includes('stroke-width=')?'':'stroke-width=".8"'} ${extra}/>`;
-function reg(id,setup){F[id]=(root,K,def)=>{const ns='data-motion-'+(++serial);const make=html=>{root.innerHTML=`<svg class="pattern-svg" width="640" height="360" viewBox="0 0 640 360" aria-hidden="true">${html.replaceAll('NS',ns)}</svg>`;const nodes=new Map([...root.querySelectorAll('[data-part]')].map(n=>[n.dataset.part,n]));return (id,attrs)=>{const n=nodes.get(id);for(const [k,v]of Object.entries(attrs||{})){const value=String(v);if(n.getAttribute(k)!==value)n.setAttribute(k,value);}return n;};};const render=setup(make);return (t,state)=>render(clamp(t/def.duration_ms),state);};}
+function reg(id,setup){F[id]=(root,K,def)=>{const ns='data-motion-'+(++serial);const make=html=>{root.innerHTML=`<svg class="pattern-svg" width="640" height="360" viewBox="0 0 640 360" aria-hidden="true">${html.replaceAll('NS',ns)}</svg>`;const nodes=new Map([...root.querySelectorAll('[data-part]')].map(n=>[n.dataset.part,n]));return (id,attrs)=>{const n=nodes.get(id);for(const [k,v]of Object.entries(attrs||{})){const value=String(v);if(n.getAttribute(k)!==value)n.setAttribute(k,value);}return n;};};return K.contentReady(root,def,()=>{const render=setup(make,K,def,root);return (t,state)=>render(clamp(t/def.duration_ms),state);});};}
 // 原 Dim 标注原语：固定两侧引出线，中线与斜记从中心向两端展开，过半后留出数值空位。
 reg('dimension-line',make=>{
   const x1=140,x2=500,y=180,size=20,label='240 mm',mid=(x1+x2)/2;
@@ -72,8 +72,8 @@ reg('leader-callout',make=>{
 });
 // PPT 升级配色视频第二页：分别提取六柱基准、三段调用构成与八周趋势。
 // 几何、数据、排线和局部顺序依据原 index.html / specZoneS02；移除场景等待与页壳。
-reg('bar-growth',make=>{
-  const values=[92,87,81,76,68,61],names=['MMLU','HEVAL','GSM8K','BBH','TRUTH','ARC'];
+reg('bar-growth',(make,K,def,root)=>{
+  const items=K.slot(def,'items',[92,87,81,76,68,61].map((value,i)=>({label:['MMLU','HEVAL','GSM8K','BBH','TRUTH','ARC'][i],value}))),values=items.map(item=>item.value),names=items.map(item=>K.escape(item.label));
   const baseline=285,height=232;
   const s=make(`<defs><pattern id="NS-benchmark-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="7" stroke="var(--blue)" stroke-width=".7" opacity=".55"/></pattern></defs>`+
     line('axis-y',134,37,134,baseline,'opacity=".7" pathLength="1" stroke-dasharray="1 1"')+
@@ -83,6 +83,7 @@ reg('bar-growth',make=>{
         `<text data-part="v${i}" x="${x+17}" y="${y-8}" text-anchor="middle" fill="${i===0?'var(--blue)':'var(--ink)'}" font-size="${font('caption')}" font-weight="700">${values[i]}%</text>`+
         `<text data-part="label${i}" x="${x+17}" y="308" text-anchor="middle" fill="var(--muted)" font-size="${font('caption')}" font-weight="700">${names[i]}</text>`;
     }));
+  if(def.content)items.forEach((item,i)=>K.fitText(root,s('label'+i),item.label,52,12,10));
   return p=>{const t=p*3;
     s('axis-y',{'stroke-dashoffset':1-ease(part(t,0,.34))});
     s('axis-x',{'stroke-dashoffset':1-ease(part(t,.04,.38))});
@@ -235,7 +236,7 @@ reg('benchmark-columns',make=>{
     });
   };
 });
-reg('timeline-progress',make=>{
+reg('timeline-progress',(make,K,def,root)=>{
   // 展示片 54–57 秒的七个年份节点；保留原建立、轻弹和暖白线推进，不带署名退场。
   const eras=[
     ['1959',['THE TITLE','SEQUENCE'],'#ff5a1f'],['1981',['BROADCAST','& NEON'],'#ff2bd6'],
@@ -251,6 +252,13 @@ reg('timeline-progress',make=>{
     eras.map(([year,name,color],i)=>`<g data-part="group${i}"><circle data-part="n${i}" cx="${x+i*step}" cy="${y}" r="4.2" fill="var(--stage)" stroke="${color}" stroke-width="1"/>`+
       `<text x="${x+i*step}" y="163" text-anchor="middle" fill="var(--muted)" font-family="Oswald,sans-serif" font-size="${font('micro')}" font-weight="700" letter-spacing=".28">${name.map((line,row)=>`<tspan x="${x+i*step}" y="${151+row*12}">${line}${row===0?' ':''}</tspan>`).join('')}</text>`+
       `<text x="${x+i*step}" y="202" text-anchor="middle" fill="var(--ink)" font-family="Oswald,sans-serif" font-size="${font('body')}" font-weight="700">${year}</text></g>`).join(''));
+  if(def.content){
+    const items=K.slot(def,'items',eras.map(([date,lines])=>({date,line1:lines[0],line2:lines[1]})));
+    items.forEach((item,i)=>{const nodes=s('group'+i).querySelectorAll('text'),lines=nodes[0].querySelectorAll('tspan');
+      [item.line1,item.line2].forEach((value,j)=>{lines[j].textContent=value;K.fitText(root,lines[j],value,72,10,10);});
+      nodes[1].textContent=item.date;K.fitText(root,nodes[1],item.date,72,16,12);
+    });
+  }
   return p=>{
     const t=p*3,build=inOut(part(t,.3,1.2)),advance=inOut(part(t,.8,2.2));
     s('base',{x2:x+w*build,opacity:build>0?1:0});

@@ -13,6 +13,12 @@ async function output(relative, content) {
     if (await readFile(target, 'utf8') !== content) throw new Error('生成文件与权威定义不同：' + relative + '；请运行 node scripts/build.mjs');
   } else await writeFile(target, content);
 }
+function contentNotes(effect){
+  if(!effect.content_slots?.length)return [];
+  return ['### 可替换内容', '', '通过组件 `content` 或分镜 `effect.content` 为当前镜头赋值；字段含义与字体、宽度限制见 [组件说明](../../REMOTION.md)。默认内容如下：', '', '```json',
+    JSON.stringify(Object.fromEntries(effect.content_slots.map(slot=>[slot.id,slot.default])),null,2),'```','',
+    ...effect.content_slots.map(slot=>`- ${slot.id}（${slot.label}）：${slot.type==='records'?`${slot.min_items}–${slot.max_items} 项，字段 ${JSON.stringify(slot.fields)}`:slot.type==='number'?`${slot.min} 至 ${slot.max}${slot.integer?'，整数':''}`:`${slot.min_items!==undefined?`${slot.min_items}–${slot.max_items} 项，每项`:''}最多 ${slot.max_chars} 字`}${slot.options?'；可选 '+slot.options.join('、'):''}。`),''];
+}
 const registry = JSON.parse(await readFile(path.join(root, 'catalog/registry.json'), 'utf8'));
 // Freeze actual frame components and painters for offline copy; never read a private project at runtime.
 const remotionFiles = {};
@@ -66,9 +72,11 @@ for (const c of registry.categories) {
     index.push(`| ${e.name} | ${e.summary} | ${e.aliases.join('、')} | [按需读取](effects/${e.id}.md) |`);
     const detail = [`# ${e.name}`, '', '以下动效说明由统一定义生成。示例对象和时长是可调整的假设，结构要求需要保留。', '', describe(e, {}, registry), '', '## 调整方式', '', `播放速度：${e.parameters.speed.min}–${e.parameters.speed.max} 倍。`, e.parameters.ease ? `速度变化：${e.parameters.ease.options.map(x => ({linear:'匀速',outCubic:'末尾减速',inOutCubic:'平缓加速、减速',inOutSine:'平缓往返',spring:'轻微回弹',outBounce:'回弹缓出',outElastic:'弹性缓出',outSine:'正弦缓出'}[x])).join('、')}。` : e.tempo_note, '', `预览定位：${e.preview_ms} 毫秒。固定演示总长：${e.duration_ms} 毫秒。`, '', '## 源码与使用', '', `- [${e.source.extraction ? "原码提取与接入源码" : "自编源码"}](../../${e.source.path})，${e.source.factory===e.id?"注册名称":"共享绘制入口"}：\`${e.source.factory}\`。`, '- [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。', e.source.reference ? `- ${e.source.reference.credit_prefix || '效果参考'} ${e.source.reference.url ? `[${e.source.reference.name}](${e.source.reference.url})` : e.source.reference.name}${e.source.reference.credit_suffix ? ' ' + e.source.reference.credit_suffix : '。'}` : `- [Anime.js 官方文档](${e.source.reference_url})；使用固定版本 4.5.0 的计时器与速度曲线。`, e.source.extraction ? '- '+e.source.extraction+'许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。' : '- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。', '', e.actions.length ? '所用动作：' + e.actions.map(id => `[${registry.effects.find(x => x.id === id).name}](${id}.md)`).join('、') + '。' : e.kind === 'composition' ? '这是一个组合片段；目录的组合拆解对照原画，相关动作弹窗播放已登记的独立动作。' : e.kind === 'illustration' ? '这是一个插画单图，可作为组合片段的图形素材复用。' : '这是一个单个动作，可在组合片段中复用。', ''];
     for (const reference of e.source.additional_references||[])detail.push(`补充效果参考：[${reference.name}](${reference.url})。`, '');
+    if(!e.variants?.length)detail.push(...contentNotes(e));
     for (const variant of e.variants||[]) {
       const {id,label,...fields}=variant;
       detail.push('## 示例：'+label, '', describe({...e,...fields,variant_id:id,variant_name:label},{},registry), '', `使用同一动作定义，设置 \`variant_id: "${id}"\`；目录和相关动作弹窗均可切换。`, '');
+      detail.push(...contentNotes({...e,...fields}));
     }
     if(e.source.remotion)detail.push('## Remotion 复用', '', `- [逐帧画面组件](../../${e.source.remotion.component})与目录共用实际绘制源码。`, '- 目录“复制源码”提供完整独立工程、固定依赖版本、内嵌矢量与许可；“复制提示词”按 Remotion 当前帧驱动画面。', `- 输出画幅 ${e.source.remotion.width}×${e.source.remotion.height}，每秒 ${e.source.remotion.fps} 帧；等比保留逻辑画板，无外部图片、声音或字体请求。`, '');
     await output(`references/effects/${e.id}.md`, detail.join('\n'));

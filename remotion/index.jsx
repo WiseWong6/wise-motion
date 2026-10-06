@@ -3,6 +3,8 @@ import React, {useLayoutEffect, useMemo, useRef, useState} from 'react';
 import {staticFile, useBufferState, useCurrentFrame, useDelayRender, useRemotionEnvironment, useVideoConfig} from 'remotion';
 import {createFrameDocument} from './frame-document.mjs';
 import {resolveEffect, sampleEffectTime} from './clock.mjs';
+import contentApi from '../catalog/content.js';
+export const {validateContent, withContent} = contentApi;
 export {DEFAULT_FPS, MOTION_WIDTH, MOTION_HEIGHT, effectDefinitions, getEffectMetadata, normalizeSpeed, resolveEffect, sampleEffectTime} from './clock.mjs';
 export {WiseMotionButterfly, butterflyMotion} from '../catalog/remotion/butterfly.jsx';
 export {WiseMotionCircularReveal, circularReveal} from '../catalog/remotion/circular-reveal.jsx';
@@ -10,8 +12,8 @@ export {WiseMotionCircularReveal, circularReveal} from '../catalog/remotion/circ
 const asError = reason => reason instanceof Error ? reason : new Error(reason?.message || String(reason));
 
 /** An isolated original painter whose only playback clock is Remotion's current frame. */
-export function WiseMotionEffect({effectId, variantId, definition, speed = 1, ease,
-  theme = 'dark', assetBaseUrl, bookSettings, width = 640, height = 360,
+export function WiseMotionEffect({effectId, variantId, definition, content, speed = 1, ease,
+  theme = 'dark', transparent = false, assetBaseUrl, bookSettings, width = 640, height = 360,
   sampleMode = 'playback', timeOverrideMs, elapsedOverrideMs, onReady, onFrame, onError}) {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
@@ -26,15 +28,16 @@ export function WiseMotionEffect({effectId, variantId, definition, speed = 1, ea
   callbacks.current = {onReady, onFrame, onError};
   const [failure, setFailure] = useState(null);
   const resolved = useMemo(() => {
-    const effect = resolveEffect(definition ?? effectId, variantId);
+    const effect = contentApi.withContent(resolveEffect(definition ?? effectId, variantId), content);
     if (bookSettings) effect.paper_settings = {...effect.paper_settings, ...bookSettings};
     return effect;
-  }, [definition, effectId, variantId, bookSettings]);
+  }, [definition, effectId, variantId, bookSettings, content]);
   const definitionJson = useMemo(() => JSON.stringify(resolved), [resolved]);
   const defaultBase = assetBaseUrl ?? staticFile('wise-motion');
   const base = typeof document === 'undefined' ? defaultBase : new URL(defaultBase.replace(/\/?$/, '/'), document.baseURI).href;
   if (theme !== 'dark' && theme !== 'light') throw new TypeError('外观必须为 dark 或 light');
-  const source = useMemo(() => createFrameDocument({assetBaseUrl: base, definition: resolved}), [base, resolved]);
+  if (transparent && resolved.layer !== 'overlay-ok') throw new TypeError('该动效尚未通过透明叠层审计：' + resolved.id);
+  const source = useMemo(() => createFrameDocument({assetBaseUrl: base, definition: resolved, transparent}), [base, resolved, transparent]);
   const sample = sampleEffectTime(resolved, frame, fps, {speed, sampleMode});
   if (timeOverrideMs !== undefined) {
     if (!Number.isFinite(timeOverrideMs) || timeOverrideMs < 0 || timeOverrideMs > resolved.duration_ms) throw new TypeError('指定时间必须在动效时长内');

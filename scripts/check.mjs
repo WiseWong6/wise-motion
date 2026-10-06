@@ -6,6 +6,8 @@ import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
+import contentApi from '../catalog/content.js';
+import {resolveEffect} from '../remotion/clock.mjs';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('catalog/registry.json'));
@@ -22,6 +24,13 @@ for(const [from,variant] of Object.entries(data.variant_redirects||{})){
   assert.ok(data.effects.find(e=>e.id===data.redirects[from])?.variants?.some(v=>v.id===variant),'旧书签对应示例缺失：'+from);
 }
 assert.equal(data.license, 'AGPL-3.0-only');
+for(const effect of data.effects){
+  for(const variant of effect.variants||[{}]){
+    const definition=resolveEffect(effect.id,variant.id),slots=definition.content_slots||[];
+    assert.equal(new Set(slots.map(slot=>slot.id)).size,slots.length,effect.id+' 内容槽重名');
+    contentApi.validateContent(definition,Object.fromEntries(slots.map(slot=>[slot.id,slot.default])));
+  }
+}
 const files = new Set();
 for (const e of data.effects) {
   for (const key of ['id','name','kind','category','summary','purpose','objects','phases','aliases','behaviors','retain','avoid','duration_ms','default_ease','parameters','source','actions','trigger','analogy','assumptions','tempo_note','recommendation']) assert.ok(e[key], e.id + ' 缺少 ' + key);

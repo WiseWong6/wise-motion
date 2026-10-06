@@ -82,7 +82,7 @@
         "id": "terminal-code",
         "variant": "command-log",
         "speed": null,
-        "source": "catalog/effects/history-patterns.js#terminal-code",
+        "source": "catalog/effects/kimi-illustrations.js#terminal-window-illustration",
         "prompt": "把终端里的示例命令换成 node scripts/show.mjs stagger-in，日志换成源码路径与提示词两行；窗口、光标和逐字节奏保持不变。"
       }
     },

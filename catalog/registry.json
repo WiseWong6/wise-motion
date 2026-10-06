@@ -444,7 +444,23 @@
         "source_end_ms": 2000,
         "start_ms": 150,
         "end_ms": 1350
-      }
+      },
+      "content_slots": [
+        {
+          "id": "labels",
+          "label": "四张卡片标题",
+          "type": "text-list",
+          "default": [
+            "想法",
+            "内容",
+            "细节",
+            "结果"
+          ],
+          "max_chars": 12,
+          "min_items": 4,
+          "max_items": 4
+        }
+      ]
     },
     {
       "id": "group-expand",
@@ -1276,7 +1292,76 @@
         "source_end_ms": 2600,
         "start_ms": 150,
         "end_ms": 1350
-      }
+      },
+      "content_slots": [
+        {
+          "id": "value",
+          "label": "结束数值",
+          "type": "number",
+          "default": 128,
+          "min": -1000000000000.0,
+          "max": 1000000000000.0
+        },
+        {
+          "id": "from",
+          "label": "开始数值",
+          "type": "number",
+          "default": 0,
+          "min": -1000000000000.0,
+          "max": 1000000000000.0
+        },
+        {
+          "id": "decimals",
+          "label": "小数位数",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 6,
+          "integer": true
+        },
+        {
+          "id": "prefix",
+          "label": "数值前缀",
+          "type": "text",
+          "default": "",
+          "max_chars": 16,
+          "charset": "any",
+          "allow_empty": true
+        },
+        {
+          "id": "suffix",
+          "label": "数值后缀",
+          "type": "text",
+          "default": "",
+          "max_chars": 16,
+          "charset": "any",
+          "allow_empty": true
+        },
+        {
+          "id": "caption",
+          "label": "说明文字",
+          "type": "text",
+          "default": "每一步，走向确定的结果。",
+          "max_chars": 44,
+          "charset": "any",
+          "allow_empty": true
+        },
+        {
+          "id": "format",
+          "label": "数值格式",
+          "type": "text",
+          "default": "integer",
+          "max_chars": 16,
+          "charset": "any",
+          "options": [
+            "integer",
+            "decimal",
+            "thousands",
+            "compact"
+          ]
+        }
+      ],
+      "layer": "overlay-ok"
     },
     {
       "id": "type-reveal",
@@ -1355,7 +1440,18 @@
       ],
       "reproduction": {
         "retain": "WISE MOTION使用Oswald Bold，短距落位与匀速写字；完整行宽固定，已写出的字保持"
-      }
+      },
+      "content_slots": [
+        {
+          "id": "text",
+          "label": "逐字显示的文字",
+          "type": "text",
+          "default": "WISE MOTION",
+          "max_chars": 13,
+          "charset": "any"
+        }
+      ],
+      "layer": "overlay-ok"
     },
     {
       "id": "word-focus",
@@ -1429,7 +1525,23 @@
       "previous_names": [
         "关键词强调",
         "划线强调"
-      ]
+      ],
+      "content_slots": [
+        {
+          "id": "words",
+          "label": "依次强调的三个词",
+          "type": "text-list",
+          "default": [
+            "梳理关系",
+            "判断结构",
+            "组合组件"
+          ],
+          "max_chars": 16,
+          "min_items": 3,
+          "max_items": 3
+        }
+      ],
+      "layer": "overlay-ok"
     },
     {
       "id": "focus-zoom",
@@ -3089,7 +3201,47 @@
         "source_end_ms": 4000,
         "start_ms": 150,
         "end_ms": 2550
-      }
+      },
+      "content_slots": [
+        {
+          "id": "title",
+          "label": "标题",
+          "type": "text",
+          "default": "好想法，从这里开始。",
+          "max_chars": 30
+        },
+        {
+          "id": "cards",
+          "label": "三张卡片",
+          "type": "records",
+          "default": [
+            {
+              "title": "表达",
+              "description": "让内容被看见"
+            },
+            {
+              "title": "节奏",
+              "description": "让内容被看见"
+            },
+            {
+              "title": "重点",
+              "description": "让内容被看见"
+            }
+          ],
+          "fields": {
+            "title": {
+              "type": "text",
+              "max_chars": 12
+            },
+            "description": {
+              "type": "text",
+              "max_chars": 18
+            }
+          },
+          "min_items": 3,
+          "max_items": 3
+        }
+      ]
     },
     {
       "id": "interface-feedback",
@@ -3181,7 +3333,29 @@
         "source_end_ms": 6100,
         "start_ms": 150,
         "end_ms": 3750
-      }
+      },
+      "content_slots": [
+        {
+          "id": "states",
+          "label": "按钮三个阶段",
+          "type": "text-list",
+          "default": [
+            "开始整理",
+            "正在整理",
+            "整理完成"
+          ],
+          "max_chars": 12,
+          "min_items": 3,
+          "max_items": 3
+        },
+        {
+          "id": "result",
+          "label": "完成提示",
+          "type": "text",
+          "default": "✓ 已整理完成",
+          "max_chars": 24
+        }
+      ]
     },
     {
       "id": "rigid-rebound",
@@ -4461,6 +4635,16 @@
         "画面辉光与胶片噪点",
         "降采样辉光与噪点链",
         "辉光与噪点"
+      ],
+      "content_slots": [
+        {
+          "id": "text",
+          "label": "单行粒子文字",
+          "type": "text",
+          "default": "WISE MOTION",
+          "max_chars": 64,
+          "charset": "particle"
+        }
       ]
     },
     {
@@ -4679,7 +4863,28 @@
         "start_ms": 150,
         "end_ms": 3750
       },
-      "original_scene": "claude-showreel-2026/sGrit"
+      "original_scene": "claude-showreel-2026/sGrit",
+      "content_slots": [
+        {
+          "id": "words",
+          "label": "依次撞入的词",
+          "type": "text-list",
+          "default": [
+            "CUT",
+            "SCRATCH",
+            "BLEED",
+            "LAYER",
+            "DISTORT",
+            "EXPOSE",
+            "REPEAT",
+            "OBSESS"
+          ],
+          "min_items": 1,
+          "max_items": 8,
+          "max_chars": 16,
+          "charset": "any"
+        }
+      ]
     },
     {
       "id": "page-cover",
@@ -6960,7 +7165,98 @@
             "source_end_ms": 2500,
             "start_ms": 150,
             "end_ms": 2550
-          }
+          },
+          "content_slots": [
+            {
+              "id": "lines",
+              "label": "逐行输入的代码",
+              "type": "code-lines",
+              "default": [
+                [
+                  [
+                    "const ",
+                    "ink"
+                  ],
+                  [
+                    "idea",
+                    "ink"
+                  ],
+                  [
+                    " = ",
+                    "muted"
+                  ],
+                  [
+                    "\"一个画面\"",
+                    "teal"
+                  ],
+                  [
+                    ";",
+                    "muted"
+                  ]
+                ],
+                [
+                  [
+                    "const ",
+                    "ink"
+                  ],
+                  [
+                    "motion",
+                    "ink"
+                  ],
+                  [
+                    " = ",
+                    "muted"
+                  ],
+                  [
+                    "\"让它动起来\"",
+                    "teal"
+                  ],
+                  [
+                    ";",
+                    "muted"
+                  ]
+                ],
+                [
+                  [
+                    "create",
+                    "ink"
+                  ],
+                  [
+                    "(",
+                    "muted"
+                  ],
+                  [
+                    "idea",
+                    "ink"
+                  ],
+                  [
+                    ", ",
+                    "muted"
+                  ],
+                  [
+                    "motion",
+                    "ink"
+                  ],
+                  [
+                    ");",
+                    "muted"
+                  ]
+                ]
+              ],
+              "min_items": 1,
+              "max_items": 3,
+              "max_chars": 60,
+              "charset": "any"
+            },
+            {
+              "id": "title",
+              "label": "窗口标题",
+              "type": "text",
+              "default": "creative-session",
+              "max_chars": 32,
+              "charset": "any"
+            }
+          ]
         },
         {
           "summary": "终端窗口保持固定，命令随光标逐字输入，日志和调试状态按原顺序出现，完成后停住。",
@@ -7003,7 +7299,128 @@
           "timing": null,
           "reproduction": {
             "presentation": "16:9 画幅，保留命令窗口的构图、配色与材质，运动由原时间关系驱动。"
-          }
+          },
+          "content_slots": [
+            {
+              "id": "lines",
+              "label": "九行命令与日志（保留原顺序和时钟）",
+              "type": "text-list",
+              "default": [
+                "$ kimi --model k3",
+                "▸ 任务：复现 I–Love–Q 普适关系",
+                "▸ 扫描 20+ 篇论文 … ok",
+                "▸ 实现数值管线",
+                "▸ [扫描] 300+ 个状态方程",
+                "▸ [修复] 已发表公式中的不一致",
+                "Kimi 正在调试",
+                "✓ 生成 3,000+ 行——管线验证通过",
+                "✓ 47 项测试通过 · 0 失败"
+              ],
+              "min_items": 9,
+              "max_items": 9,
+              "max_chars": 40,
+              "charset": "any"
+            },
+            {
+              "id": "title",
+              "label": "窗口标题",
+              "type": "text",
+              "default": "kimi-code — agent session",
+              "max_chars": 40,
+              "charset": "any"
+            }
+          ]
+        }
+      ],
+      "content_slots": [
+        {
+          "id": "lines",
+          "label": "逐行输入的代码",
+          "type": "code-lines",
+          "default": [
+            [
+              [
+                "const ",
+                "ink"
+              ],
+              [
+                "idea",
+                "ink"
+              ],
+              [
+                " = ",
+                "muted"
+              ],
+              [
+                "\"一个画面\"",
+                "teal"
+              ],
+              [
+                ";",
+                "muted"
+              ]
+            ],
+            [
+              [
+                "const ",
+                "ink"
+              ],
+              [
+                "motion",
+                "ink"
+              ],
+              [
+                " = ",
+                "muted"
+              ],
+              [
+                "\"让它动起来\"",
+                "teal"
+              ],
+              [
+                ";",
+                "muted"
+              ]
+            ],
+            [
+              [
+                "create",
+                "ink"
+              ],
+              [
+                "(",
+                "muted"
+              ],
+              [
+                "idea",
+                "ink"
+              ],
+              [
+                ", ",
+                "muted"
+              ],
+              [
+                "motion",
+                "ink"
+              ],
+              [
+                ");",
+                "muted"
+              ]
+            ]
+          ],
+          "min_items": 1,
+          "max_items": 3,
+          "max_chars": 60,
+          "charset": "any"
+        },
+        {
+          "id": "title",
+          "label": "窗口标题",
+          "type": "text",
+          "default": "creative-session",
+          "max_chars": 32,
+          "charset": "any"
         }
       ]
     },
@@ -7917,7 +8334,54 @@
         "source_end_ms": 1160,
         "start_ms": 150,
         "end_ms": 1350
-      }
+      },
+      "content_slots": [
+        {
+          "id": "items",
+          "label": "六组百分比",
+          "type": "records",
+          "default": [
+            {
+              "label": "MMLU",
+              "value": 92
+            },
+            {
+              "label": "HEVAL",
+              "value": 87
+            },
+            {
+              "label": "GSM8K",
+              "value": 81
+            },
+            {
+              "label": "BBH",
+              "value": 76
+            },
+            {
+              "label": "TRUTH",
+              "value": 68
+            },
+            {
+              "label": "ARC",
+              "value": 61
+            }
+          ],
+          "fields": {
+            "label": {
+              "type": "text",
+              "max_chars": 10
+            },
+            "value": {
+              "type": "number",
+              "min": 0,
+              "max": 100,
+              "integer": true
+            }
+          },
+          "min_items": 6,
+          "max_items": 6
+        }
+      ]
     },
     {
       "id": "sector-appear",
@@ -8215,7 +8679,67 @@
         "start_ms": 150,
         "end_ms": 1950
       },
-      "original_scene": "claude-showreel-2026/sOutro"
+      "original_scene": "claude-showreel-2026/sOutro",
+      "content_slots": [
+        {
+          "id": "items",
+          "label": "七个时间节点",
+          "type": "records",
+          "default": [
+            {
+              "date": "1959",
+              "line1": "THE TITLE",
+              "line2": "SEQUENCE"
+            },
+            {
+              "date": "1981",
+              "line1": "BROADCAST",
+              "line2": "& NEON"
+            },
+            {
+              "date": "1995",
+              "line1": "THE NERVOUS",
+              "line2": "TYPE"
+            },
+            {
+              "date": "2003",
+              "line1": "KEYFRAMES",
+              "line2": "FOR EVERYONE"
+            },
+            {
+              "date": "2014",
+              "line1": "MOTION AS",
+              "line2": "INTERFACE"
+            },
+            {
+              "date": "2020",
+              "line1": "CODE IS",
+              "line2": "THE CAMERA"
+            },
+            {
+              "date": "2026",
+              "line1": "PROMPT TO",
+              "line2": "MOTION"
+            }
+          ],
+          "fields": {
+            "date": {
+              "type": "text",
+              "max_chars": 8
+            },
+            "line1": {
+              "type": "text",
+              "max_chars": 14
+            },
+            "line2": {
+              "type": "text",
+              "max_chars": 14
+            }
+          },
+          "min_items": 7,
+          "max_items": 7
+        }
+      ]
     },
     {
       "id": "dimension-line",
@@ -15443,7 +15967,22 @@
         "source_end_ms": 5300,
         "start_ms": 150,
         "end_ms": 1950
-      }
+      },
+      "content_slots": [
+        {
+          "id": "states",
+          "label": "按钮三个阶段",
+          "type": "text-list",
+          "default": [
+            "开始整理",
+            "正在整理",
+            "整理完成"
+          ],
+          "max_chars": 12,
+          "min_items": 3,
+          "max_items": 3
+        }
+      ]
     },
     {
       "id": "progress-fill-exit",

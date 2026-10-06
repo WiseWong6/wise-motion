@@ -57,6 +57,12 @@ player.destroy();
 
 需要载入本地字形数据或图片的工厂，可提供 `render.ready` 准备完成的承诺。播放器的 `ready` 成功返回 `true`，失败或提前销毁返回 `false`；`preparing` 表示仍在准备，`error` 保存准备失败的原因。准备期间计时器不前进，播放操作只保留意图，暂停取消意图，定位与倍速保留最新值；完成后恢复该时刻，再按最后的播放意图继续。此时 `paused` 和运行实例数按用户的播放意图计算，便于按钮、页面隐藏和相关动作弹窗正确暂停。失败会在画板显示原因，迟到的准备结果不会复活已销毁的实例。已有同步工厂保持原行为。
 
+## 每个实例的内容
+
+先用 `MotionKit.resolveVariant` 选定样式，再用 `MotionContent.withContent(definition, content)` 校验并复制当前实例的内容；加载顺序中 `catalog/content.js` 在 `catalog/runtime.js` 之前。入口也会校验 `definition.content`，未知字段、类型、行数和字数错误立即报错。
+
+支持项与字段见 [组件说明](../REMOTION.md)；内容定义的唯一来源为目录中的 `content_slots`。绘制器通过 `MotionKit.slot(definition, id, fallback)` 读取；没传或传入默认值时沿用原画面路径。自定义文字使用 `textReady` 等字体就绪再测量，直接调用 `createRenderer` 的使用者也须等待返回绘制器的 `ready`。不得改写共享定义或共享素材文件来为单个镜头换文案。
+
 ## 同一动作的示例样式
 
 有多个原作示例的普通动作在 `variants` 中记录各自说明、时长与代表时刻，目录仅保留一个条目。`MotionKit.resolveVariant(definition, variantId)` 返回所选示例的有效定义；播放器和绘制入口也会按 `variant_id` 解析，未指定时使用第一项。切换样式先销毁旧实例，再从头播放；提示词和复制代码保留当前样式。

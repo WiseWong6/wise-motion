@@ -422,14 +422,19 @@
       "sha256": "84bfdfb761758ac97a324f1bf1ad2a1fa25821a955783e242fd2339049c96eea"
     },
     {
+      "path": "catalog/content.js",
+      "bytes": 5384,
+      "sha256": "ebc91949143bbe4fd08287e8d88870ac23275d2ed8b46c11a69b33c9bbb2cc9d"
+    },
+    {
       "path": "catalog/dropdown.js",
       "bytes": 7303,
       "sha256": "391e5d6f1f95be7acfe3089bd9ab1fa096e3193b5cbfb9621259fd8823ddea95"
     },
     {
       "path": "catalog/effects/attention.js",
-      "bytes": 6572,
-      "sha256": "2707be3fd3d09671f4c53294cb3c3e5eca36864fbdd8905c4d6d69012d4c0960"
+      "bytes": 9627,
+      "sha256": "bafb4b2a1c577533a9707bd5adf8579d68978c52e35b28fb2fca2d74956333b3"
     },
     {
       "path": "catalog/effects/butterfly-motion.js",
@@ -478,8 +483,8 @@
     },
     {
       "path": "catalog/effects/compositions.js",
-      "bytes": 8261,
-      "sha256": "cc7277c275ba05b3432928beac114f57dd23315c31ef0acba64efc894ea729ca"
+      "bytes": 9766,
+      "sha256": "1d55d5f940be547cf76428c7796141df357c658c1c48f85e5cbfca7213328454"
     },
     {
       "path": "catalog/effects/concept-diagram.js",
@@ -508,8 +513,8 @@
     },
     {
       "path": "catalog/effects/data-motion.js",
-      "bytes": 535357,
-      "sha256": "a602055fef9b62b18caee822b46ed0187981e372bf6371c8b055719ae922776c"
+      "bytes": 536109,
+      "sha256": "8c3c68939074f913d7e54d0b44125b1e7a694f1f46a289e716c04eafa4ce36d8"
     },
     {
       "path": "catalog/effects/dither-book.js",
@@ -533,8 +538,8 @@
     },
     {
       "path": "catalog/effects/entrance.js",
-      "bytes": 4401,
-      "sha256": "f97ebc4b286d82a31b4bd81790a09172601d8981857a9a1c1269358fd82cc712"
+      "bytes": 4690,
+      "sha256": "0d5aa165559202283b5b1ec129898b362e7c25d20396a53f84a01d8798dfa4cf"
     },
     {
       "path": "catalog/effects/environment.js",
@@ -568,8 +573,8 @@
     },
     {
       "path": "catalog/effects/history-patterns.js",
-      "bytes": 59458,
-      "sha256": "7a6165c99a46c5dd9082ff3dc1f23fb08392835d5b6f9006b44ec5e875f1dc21"
+      "bytes": 61053,
+      "sha256": "9ec4d0a04b5fddc9393213f0b3cb6500230b52bfe6493487fa588f4201dcbb68"
     },
     {
       "path": "catalog/effects/hud-targeting.js",
@@ -583,8 +588,8 @@
     },
     {
       "path": "catalog/effects/kimi-illustrations.js",
-      "bytes": 20456,
-      "sha256": "8ce5f5a833fb9b875c168c408058fceb3842f935f2acd7ab0b484a9bad2bbd11"
+      "bytes": 21767,
+      "sha256": "97d91ba31cb0f98a11589e033c13d6334916370c1bff323b97d5a32c86767917"
     },
     {
       "path": "catalog/effects/letter-ripple.js",
@@ -643,8 +648,8 @@
     },
     {
       "path": "catalog/effects/promo-particles.js",
-      "bytes": 28072,
-      "sha256": "43a176d094bbd8aeb2afe4295582424d273335d1fe2602edcc33f261d95b0684"
+      "bytes": 30222,
+      "sha256": "653c34c66d40057f184c0ad9a9f678aa1c89b77f911a0bd9cd8adf5912a9c8e7"
     },
     {
       "path": "catalog/effects/radial-branch-flow.js",
@@ -738,13 +743,13 @@
     },
     {
       "path": "catalog/effects/word-slam.js",
-      "bytes": 2999,
-      "sha256": "ba78ca01837928e9a5ad1ef6b10ca870d9bf252de58fd6be8cefadb203a29c37"
+      "bytes": 3752,
+      "sha256": "141ca2e8b8d80788158f28a01f2b179bc50afaf3cfb56568c3df71f37bfabf5a"
     },
     {
       "path": "catalog/export.js",
-      "bytes": 21120,
-      "sha256": "c844297d393fd48cc0444db34dfe57719af2c16f751986fead9e17f703e62765"
+      "bytes": 22039,
+      "sha256": "fadee93b49f5984b82a790a716f3f9da47b92e94a4fe32a2738960b147d5b0b8"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -812,6 +817,11 @@
       "sha256": "51b0e008ab0b10a9ed1b6e7fcc0cf2858ff3665ef3d785c52592f385c831dae2"
     },
     {
+      "path": "catalog/layer-audit.json",
+      "bytes": 15848,
+      "sha256": "f383a8e7fecb6597ab3a8a8cfd8a8f6d4e725d94ca8e993f036e9a4c279d3ad8"
+    },
+    {
       "path": "catalog/lazy.js",
       "bytes": 2586,
       "sha256": "8bc179c7cd7af88a27a9bbfb36b10bbe0e4c79f9919d70cee1552c1de72601dd"
@@ -828,13 +838,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1166604,
-      "sha256": "ea23343c7f6348ac4866f03d141047cc178d954f87909ad3b4901c0a59da0ddb"
+      "bytes": 1172079,
+      "sha256": "2e42a0cbfac3127455c69af245c64d8c48786b8f786ecb44120245cb287cf94d"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1437556,
-      "sha256": "b88c8e57eb566106b6492f705ce8ad96b87ec2cc26ce71025190a6bf3e7e126a"
+      "bytes": 1450519,
+      "sha256": "7b7ff43a20c3c040a2078dc4c4a915d42c69715aea5992f7c8b50825f20190e3"
     },
     {
       "path": "catalog/related-preview.js",
@@ -873,8 +883,8 @@
     },
     {
       "path": "catalog/runtime.js",
-      "bytes": 11668,
-      "sha256": "26ec791d47cd6ffa87edc629503bede99061a330ba6edecb2b060323841a360c"
+      "bytes": 14263,
+      "sha256": "6b9a2166e7a5813616f579997af4396daf987fd7d14ae3ace140b96ab43d343b"
     },
     {
       "path": "catalog/scenes.css",

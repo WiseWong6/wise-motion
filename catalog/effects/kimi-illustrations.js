@@ -24,8 +24,11 @@
         const nodes=new Map([...root.querySelectorAll('[data-part]')].map(n=>[n.dataset.part,n]));
         return (name,attrs)=>{const n=nodes.get(name);for(const [k,v] of Object.entries(attrs||{})){const s=String(v);if(n.getAttribute(k)!==s)n.setAttribute(k,s);}return n;};
       };
-      const render=setup(make);
-      return ms=>render(Math.min(3000,Math.max(0,ms*3000/def.duration_ms))/1000);
+      const render=setup(make,K,def,root);
+      const draw=ms=>render(Math.min(3000,Math.max(0,ms*3000/def.duration_ms))/1000);
+      if(render.ready)draw.ready=render.ready;
+      if(render.destroy)draw.destroy=preserve=>render.destroy(preserve);
+      return draw;
     };
   }
   // 与原纸卡、道具相同的暖色阴影，只作用于物件，不铺原场景纸底。
@@ -109,21 +112,29 @@
   const terminalLines=[
     ['$ kimi --model k3',.50,'#7FA8D9',700],['▸ 任务：复现 I–Love–Q 普适关系',.90,'#D8D3C6'],['▸ 扫描 20+ 篇论文 … ok',1.26,'#D8D3C6'],['▸ 实现数值管线',1.62,'#D8D3C6'],['▸ [扫描] 300+ 个状态方程',1.98,'#D8D3C6'],['▸ [修复] 已发表公式中的不一致',2.34,'#D8D3C6'],['Kimi 正在调试',3.60,'#EAE6DA'],['✓ 生成 3,000+ 行——管线验证通过',4.60,'#8A9467',700],['✓ 47 项测试通过 · 0 失败',4.85,'#8A9467',700]
   ];
-  register('terminal-window-illustration',make=>{
+  register('terminal-window-illustration',(make,K,definition,root)=>{
+    const custom=Boolean(definition?.content),title=K.slot(definition,'title','kimi-code — agent session');
+    const values=K.slot(definition,'lines',null),customLines=values!==null,customTitle=Object.hasOwn(definition?.content||{},'title');
+    const lines=values?values.map((value,i)=>[value,...terminalLines[i].slice(1)]):terminalLines;
+    const rowFonts=lines.map(([value])=>K.textFont(value)),titleFont=K.textFont(title);
+    const setup=()=>{
+    if(customLines&&lines.some(([value,,color,weight],i)=>K.measureText(root,value+'...',25,rowFonts[i],weight||400)>1152))throw new Error('命令与日志文字过宽，请缩短 lines');
     // s5_agents 原窗口的宽高、标题栏、去饱和圆点与输出颜色全部保留。
-    const s=make(defs+`<g transform="translate(320 180) scale(.42)"><g data-part="window"><rect x="-620" y="-330" width="1240" height="660" rx="16" fill="#171512" filter="url(#NS-terminal-shadow)"/><clipPath id="NS-terminal"><rect x="-620" y="-330" width="1240" height="660" rx="16"/></clipPath><g clip-path="url(#NS-terminal)"><rect x="-620" y="-330" width="1240" height="46" fill="#201D18"/><rect x="-620" y="-330" width="1240" height="660" fill="url(#NS-terminal-sheen)"/></g><path d="M-620 -283.5H620" stroke="#e9e6dc" stroke-opacity=".08" stroke-width="1"/>`+['#B25A48','#C09B4D','#7C8F5A'].map((v,i)=>`<circle cx="${-590+i*26}" cy="-307" r="7" fill="${v}"/>`).join('')+text('kimi-code — agent session',0,-306,19,{align:'middle',baseline:'middle',font:mono,weight:400,fill:'rgba(216,211,198,.45)'})+terminalLines.map(([v,start,color,weight],i)=>text(v,-576,-234+i*54,25,{part:'row'+i,fill:color,weight:weight||400,font:mono,baseline:'middle'})).join('')+`<rect data-part="cursor" x="-573" y="-247" width="13" height="26" fill="#D8D3C6"/></g></g>`);
+    const s=make(defs+`<g transform="translate(320 180) scale(.42)"><g data-part="window"><rect x="-620" y="-330" width="1240" height="660" rx="16" fill="#171512" filter="url(#NS-terminal-shadow)"/><clipPath id="NS-terminal"><rect x="-620" y="-330" width="1240" height="660" rx="16"/></clipPath><g clip-path="url(#NS-terminal)"><rect x="-620" y="-330" width="1240" height="46" fill="#201D18"/><rect x="-620" y="-330" width="1240" height="660" fill="url(#NS-terminal-sheen)"/></g><path d="M-620 -283.5H620" stroke="#e9e6dc" stroke-opacity=".08" stroke-width="1"/>`+['#B25A48','#C09B4D','#7C8F5A'].map((v,i)=>`<circle cx="${-590+i*26}" cy="-307" r="7" fill="${v}"/>`).join('')+text(title,0,-306,19,{align:'middle',baseline:'middle',font:customTitle?titleFont:mono,weight:400,fill:'rgba(216,211,198,.45)'})+lines.map(([v,start,color,weight],i)=>text(v,-576,-234+i*54,25,{part:'row'+i,fill:color,weight:weight||400,font:customLines?rowFonts[i]:mono,baseline:'middle'})).join('')+`<rect data-part="cursor" x="-573" y="-247" width="13" height="26" fill="#D8D3C6"/></g></g>`);
     // 仅测量有变化的两行；静止缩略图不触发持续排版。
     const widths=new Map();
-    const width=(str,node)=>{if(widths.has(str))return widths.get(str);let v;try{v=node.getComputedTextLength();}catch(e){}if(!Number.isFinite(v)||v<=0)v=Array.from(str).reduce((n,c)=>n+(/[^\x00-\xff]/.test(c)?25:15),0);widths.set(str,v);return v;};
+    const width=(str,node)=>{const key=customLines?node.dataset.part+':'+str:str;if(widths.has(key))return widths.get(key);let v;if(customLines){const i=Number(node.dataset.part.slice(3));v=K.measureText(root,str,25,rowFonts[i],lines[i][3]||400);}else try{v=node.getComputedTextLength();}catch(e){}if(!Number.isFinite(v)||v<=0)v=Array.from(str).reduce((n,c)=>n+(/[^\x00-\xff]/.test(c)?25:15),0);widths.set(key,v);return v;};
     return clock=>{
       // 窗口固定，只播放原片命令输入、日志与光标；不带入场、后退或前景标题。
       const t=Math.min(clock*2,5.1);
       let last=0,debug='';
-      terminalLines.forEach(([v,start],i)=>{if(t>=start)last=i;let shown=v;if(i===0)shown=v.slice(0,Math.max(0,Math.floor((t-start)*50)));if(i===6){debug=t<3.6?'':t>=4.6?'...':['','.','..','...'][Math.floor((t-3.6)/.34)%4];shown=v+debug;}const n=s('row'+i,{opacity:seg(t,start,start+.12)});if(n.textContent!==shown)n.textContent=shown;});
+      lines.forEach(([v,start],i)=>{if(t>=start)last=i;let shown=v;if(i===0){const n=Math.max(0,Math.floor((t-start)*50));shown=customLines?Array.from(v).slice(0,n).join(''):v.slice(0,n);}if(i===6){debug=t<3.6?'':t>=4.6?'...':['','.','..','...'][Math.floor((t-3.6)/.34)%4];shown=v+debug;}const n=s('row'+i,{opacity:seg(t,start,start+.12)});if(n.textContent!==shown)n.textContent=shown;});
       let row=Math.min(last+1,9),x=-576;
-      if(t<.5){row=0;}else if(t<.5+terminalLines[0][0].length/50){row=0;x+=width(s('row0').textContent,s('row0'));}else if(t>=3.6&&t<4.6){row=6;x+=width(terminalLines[6][0]+debug,s('row6'));}
+      if(t<.5){row=0;}else if(t<.5+(customLines?Array.from(lines[0][0]).length:lines[0][0].length)/50){row=0;x+=width(s('row0').textContent,s('row0'));}else if(t>=3.6&&t<4.6){row=6;x+=width(lines[6][0]+debug,s('row6'));}
       s('cursor',{x:x+3,y:-234+row*54-13,opacity:t>=.25&&Math.floor(t*2.4)%2===0?.9:0});
     };
+    };
+    return custom?K.textReady(root,[...(customLines?lines.map(([text,,color,weight],i)=>({family:rowFonts[i],weight:weight||400,text})):[]),...(customTitle?[{family:titleFont,weight:400,text:title}]:[])],setup):setup();
   });
   register('archive-box-illustration',make=>{
     const R=rng(97),chips=Array.from({length:7},(_,i)=>{
