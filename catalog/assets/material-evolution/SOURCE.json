@@ -1,14 +1,14 @@
 {
   "description": "精修后的笔墨与材质演变：固定书法与字标轮廓、灰阶透明素材。",
   "code_license": "AGPL-3.0-only",
-  "graphic_rights": "书法参考古代颜真卿《多宝塔碑》，笔画路径由本项目独立定义，按 AGPL-3.0-only 提供；英文、数字及片尾 WISE MOTION 字标由随包 Oswald Bold 生成并保留 SIL OFL 1.1。当前 key-shapes.js 不再使用原片帧提取的轮廓。三个 WebP 图片由 Codex 内置工具依据参考生成，输出归属按生成时适用条款处理。",
+  "graphic_rights": "道字直接描摹颜真卿宋拓多宝佛塔碑册第二开左页原字，原页及描摹轮廓保留 CC BY 4.0 署名；一、二、三的横笔为项目动画笔形，程序按 AGPL-3.0-only 提供。英文、数字及片尾字标由 Oswald Bold 生成，保留 SIL OFL 1.1。三个 WebP 图片的生成来源保持原记录。",
   "runtime": "本地普通脚本及图片按需载入；不包含原视频或JPG截图。",
   "files": [
     {
       "file": "key-shapes.js",
-      "bytes": 3771128,
-      "sha256": "16e0510894cfc15d38b11383ccd4acbf4fa0c0ccaa1bf87dc991a9be2683fcf6",
-      "source_type": "project-drawn-calligraphy-and-open-font-outlines"
+      "bytes": 3869718,
+      "sha256": "c72a4e5aab358265061ccd659e3d70e8b66c4d1030f4e3bee14d0960f2fe678a",
+      "source_type": "traced-historical-rubbing-and-open-font-outlines"
     },
     {
       "file": "fiber.webp",
@@ -44,18 +44,26 @@
   },
   "materials": {
     "key-shapes.js": {
-      "type": "独立书法笔画与开放字体轮廓",
-      "description": "37个开头书法姿态、27个结尾字形姿态，保留原动作切换时刻；不读取宣传片或其轮廓。",
+      "type": "古帖原字描摹与开放字体轮廓",
+      "description": "37个开头姿态直接显现宋拓原字轮廓，片尾道字复用同一轮廓；一二三使用横笔动画的固定笔形，数字及英文字标由随包字体生成。保留27个片尾姿态及原有切换时刻。",
       "generator": "scripts/build-material-glyphs.py",
       "generator_license": "AGPL-3.0-only",
       "calligraphy_reference": {
-        "name": "唐颜真卿书多宝塔碑墨拓",
+        "name": "宋拓多寶佛塔碑 冊",
         "author": "颜真卿",
         "collection": "国立故宫博物院，台北",
-        "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P",
-        "scope": "观察古帖道字结构、提按及起收笔后，独立定义动画用笔画和毛边；不是直接截取真迹扫描字形，也不是从宣传片或现代书法字库描边。",
-        "image_use_conditions": "馆藏低阶图像 CC0，中阶图像 CC BY 4.0；公开使用无需申请、不限用途。",
-        "credit": "唐颜真卿书多宝塔碑墨拓。国立故宫博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+        "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P",
+        "scope": "直接描摹第二开左页“道樹萌牙”的道字；原页、字框坐标及处理方式随包保存。",
+        "source_record": "vendor/duobaota/SOURCE.json",
+        "source_file": "vendor/duobaota/page-02.jpg",
+        "crop_xywh": [
+          811,
+          902,
+          144,
+          143
+        ],
+        "image_use_conditions": "所用中阶图像及描摹轮廓为 CC BY 4.0。",
+        "credit": "宋拓多寶佛塔碑 冊。国立故宫博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
         "verified_on": "2026-10-06"
       },
       "font": {
@@ -66,8 +74,8 @@
         "license_file": "catalog/fonts/OFL-Oswald.txt",
         "scope": "所有英文、数字和最终 WISE MOTION 字标"
       },
-      "license_status": "现行笔画为项目独立制作；古帖及馆藏图像的开放使用条件已核实；字体许可随包保留。",
-      "replaced_material": "原37个书法姿态和27个字标姿态的原片帧提取轮廓已全部替换。"
+      "license_status": "道字为开放馆藏原字的直接描摹，保留 CC BY 4.0 来源、署名与修改说明；项目横笔及程序为 AGPL-3.0-only；Oswald 字体许可随包保留。",
+      "replaced_material": "原片提取轮廓已替换；此前用曲线拼凑的道字也已撤下，改用可逐像素核对来源的原帖轮廓。"
     },
     "fiber.webp": {
       "type": "依据参考生成",

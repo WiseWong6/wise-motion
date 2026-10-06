@@ -273,8 +273,8 @@
     },
     {
       "path": "catalog/assets/material-evolution/SOURCE.json",
-      "bytes": 4500,
-      "sha256": "07afc147e81df902461689274f58c884e030a87b206dac682bfc8c9b76533b62"
+      "bytes": 4725,
+      "sha256": "e12de16aa0629227a345464294ed600f6893ee49ebc5e7a47d29af102f6e40b6"
     },
     {
       "path": "catalog/assets/material-evolution/atlas-engraving.webp",
@@ -288,8 +288,8 @@
     },
     {
       "path": "catalog/assets/material-evolution/key-shapes.js",
-      "bytes": 3771128,
-      "sha256": "16e0510894cfc15d38b11383ccd4acbf4fa0c0ccaa1bf87dc991a9be2683fcf6"
+      "bytes": 3869718,
+      "sha256": "c72a4e5aab358265061ccd659e3d70e8b66c4d1030f4e3bee14d0960f2fe678a"
     },
     {
       "path": "catalog/assets/material-evolution/moon.webp",
@@ -573,8 +573,8 @@
     },
     {
       "path": "catalog/effects/material-evolution.js",
-      "bytes": 89179,
-      "sha256": "ce458a6824c83e83e345c95938f6b5ee99550195585bc481977b42c50e554b5b"
+      "bytes": 89144,
+      "sha256": "07cbf5adf0b9211384ffe75f5951bb2ea0505aa8d2792388c9e06c47cff17619"
     },
     {
       "path": "catalog/effects/math-formula-drift.js",
@@ -793,13 +793,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1146300,
-      "sha256": "0e120a04088275b0f62a063f65a483de38feaa59528064050c3ff254fc62e415"
+      "bytes": 1146479,
+      "sha256": "f2d46033874a8e976b74cfeffdd1fe8ab3b57beed16884d2ee5397be3453e5cc"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1411769,
-      "sha256": "718836e78ea2fa1177d8d3175dfb5b4b9e6fec6fc14fde440643b508679f0349"
+      "bytes": 1411948,
+      "sha256": "b71fe58e601429b1fc268ecec495b5676809caa24307316e784341ee75966a68"
     },
     {
       "path": "catalog/related-preview.js",
@@ -930,6 +930,21 @@
       "path": "vendor/lucide/SOURCE.json",
       "bytes": 635,
       "sha256": "dc71e9a635db8e71e4a938ac5ec7372eab1c2f4bbd9779bb5d7d54923550eda1"
+    },
+    {
+      "path": "vendor/duobaota/README.md",
+      "bytes": 1277,
+      "sha256": "c1f77dae99c14ff82c907a9fc3448e7e1ddafe1c186864ff6a6a1fded5e9bb27"
+    },
+    {
+      "path": "vendor/duobaota/SOURCE.json",
+      "bytes": 1274,
+      "sha256": "7c23d918781df2576b8e64959f4de6eb56b5f1fbc023eb019f9e5e354aaa192b"
+    },
+    {
+      "path": "vendor/duobaota/page-02.jpg",
+      "bytes": 781279,
+      "sha256": "03dda3c026e0792f3b0f98345d58c68bcda1989909dd8ffefdde01676d485c98"
     }
   ]
 }

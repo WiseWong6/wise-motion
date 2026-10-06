@@ -1,0 +1,29 @@
+{
+  "title": "宋拓多寶佛塔碑 冊",
+  "calligrapher": "颜真卿",
+  "collection": "国立故宫博物院，台北",
+  "source_url": "https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P",
+  "image_url": "https://iiifod.npm.gov.tw/iiif/2/K2D%2FK2D000019N000000002PAA/full/,2100/0/default.jpg",
+  "image_id": "K2D000019N000000002PAA",
+  "file": "page-02.jpg",
+  "width": 2800,
+  "height": 2100,
+  "bytes": 781279,
+  "sha256": "03dda3c026e0792f3b0f98345d58c68bcda1989909dd8ffefdde01676d485c98",
+  "license": "CC-BY-4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "credit": "宋拓多寶佛塔碑 冊。国立故宫博物院，台北，CC BY 4.0 @ www.npm.gov.tw",
+  "character": {
+    "text": "道",
+    "location": "第二开左页，自右数第三列、第五字；童遊下方、樹上方，原文道樹萌牙。",
+    "crop_xywh": [
+      811,
+      902,
+      144,
+      143
+    ]
+  },
+  "adaptation": "原页像素保持原样随包保存。生成程序对指定字框做七档灰度描边、去除细小扫描杂点与轻微轮廓平滑，等比放入动画画板；显现路径只控制原字轮廓的出现时刻，不重新设计字形。",
+  "generator": "scripts/build-material-glyphs.py",
+  "verified_on": "2026-10-06"
+}

@@ -8,7 +8,7 @@
 动作阶段：
 1. 0–6.10秒，0–2.50秒笔画接续组成道字，2.50–3.55秒道字拆成字符并压成一，3.55–6.10秒二的墨点转为三的乱线再形成三个圆柱。
 2. 6.10–11.866667秒，6.10–8.10秒圆柱经字符、点阵环柄和棋盘转为像素三球，8.10–9.25秒纤维三球合拢换成月面，9.25–11.866667秒月球带出图鉴、分件显影并整组清场。
-3. 11.866667–15.054秒，独立书法试样、数字与英文字标按固定节拍快切，WISE MOTION 先出现，补入 OPEN SOURCE 后停留，接成最终字标，最后直接黑屏。
+3. 11.866667–15.054秒，古帖道字与横笔试样、数字与英文字标按固定节拍快切，WISE MOTION 先出现，补入 OPEN SOURCE 后停留，接成最终字标，最后直接黑屏。
 节奏：15.05 秒完成一次；1 倍速度；匀速。整片15.054秒；分段边界为0、2.50、3.55、6.10、8.10、9.25、11.866667、15.054秒，每秒30个画面刻度，所有固定分布、显影和快切均由同一时间计算。
 触发与联动：打开预览后按固定顺序播放；可暂停、重播和定位时间。
 现实类比：同一个画面从墨迹开始，一路换成字符、点线、立体材料和科学图鉴，最后变成发布字标。
@@ -31,8 +31,8 @@
 - [原码提取与接入源码](../../catalog/effects/material-evolution.js)，注册名称：`material-evolution-sequence`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 效果参考 [Kimi K3 开源发布宣传片（open weights）](https://www.youtube.com/watch?v=5GlCGOXUYHg)。
-- 沿用精修的材质演变绘制函数与七段固定排程。开头37个书法姿态依据颜真卿多宝塔碑结构独立定义笔画，结尾27个书法试样、数字与英文姿态由独立笔画及随包 Oswald Bold 生成，最终字标为 WISE MOTION；当前不读取或分发原片帧提取轮廓。纤维球、月面及版画保留 Codex 内置图片工具依据参考生成的素材，详见 catalog/assets/material-evolution/SOURCE.json。自有程序和笔画按 AGPL-3.0-only 提供，字体保留 SIL OFL 1.1，Kimi 原片保留动作与材质参考署名。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三沿用动画横笔，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序和横笔为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[笔画接续成字](brush-glyph-build.md)、[字符压成横笔](glyph-bar-collapse.md)、[点线变圆柱](dots-lines-cylinders.md)、[形态连续重组](material-form-chain.md)、[球体合拢换材质](spheres-material-merge.md)、[群像显现清场](atlas-reveal-clear.md)、[字形快切收尾](glyph-cut-ending.md)。
 
-补充效果参考：[颜真卿多宝塔碑墨拓（国立故宫博物院，台北；开放图像）](https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P)。
+补充效果参考：[颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道字）](https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P)。

@@ -1,5 +1,5 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
- * 保留精修绘制与材料过渡；书法笔画依据古帖重新定义，英文轮廓由随包开放字体生成。 */
+ * 保留精修绘制与材料过渡；道字直接描摹宋拓原字并保留 CC BY 4.0 署名，英文轮廓由随包开放字体生成。 */
 /* KIMI K3 开源宣传片复刻及其七个单段：效果参考 Kimi K3 open weights。
  * https://www.youtube.com/watch?v=5GlCGOXUYHg
  * 现行书法与字标数据由 scripts/build-material-glyphs.py 生成；参考片仅作动作与材质参考。 */
@@ -891,9 +891,8 @@ function drawGlyph(ctx,frame,opacity=1){
  }
  ctx.save();ctx.globalAlpha=opacity;ctx.drawImage(source,160,0,312,360);ctx.restore();
 }
-// 横笔与开头采用同一古帖参考；独立定义起笔、提锋与顿收的上下边。
-// https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P
-// 这里是动画用颜体参考笔形，不截取馆藏图片或现代字库。
+// 一、二的横笔为项目动画笔形；道字原帖轮廓和片尾道字在 key-shapes.js 中。
+// 道字原页与字框：vendor/duobaota/SOURCE.json。横笔上下边保持固定。
 const bandX=[210,216,223,232,244,262,284,306,328,350,372,390,401,412,422,428,430];
 const bandLeft=bandX[0],bandWidth=bandX.at(-1)-bandLeft;
 const bandTop=[188,182,177,175,175,174,173,171,169,168,167,165,165,168,172,178,184];

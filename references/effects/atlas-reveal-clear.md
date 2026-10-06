@@ -31,8 +31,8 @@
 - [原码提取与接入源码](../../catalog/effects/material-evolution.js)，注册名称：`atlas-reveal-clear`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 效果参考 [Kimi K3 开源发布宣传片（open weights）](https://www.youtube.com/watch?v=5GlCGOXUYHg)。
-- 沿用精修的材质演变绘制函数与七段固定排程。开头37个书法姿态依据颜真卿多宝塔碑结构独立定义笔画，结尾27个书法试样、数字与英文姿态由独立笔画及随包 Oswald Bold 生成，最终字标为 WISE MOTION；当前不读取或分发原片帧提取轮廓。纤维球、月面及版画保留 Codex 内置图片工具依据参考生成的素材，详见 catalog/assets/material-evolution/SOURCE.json。自有程序和笔画按 AGPL-3.0-only 提供，字体保留 SIL OFL 1.1，Kimi 原片保留动作与材质参考署名。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三沿用动画横笔，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序和横笔为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 
-补充效果参考：[颜真卿多宝塔碑墨拓（国立故宫博物院，台北；开放图像）](https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P)。
+补充效果参考：[颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道字）](https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P)。

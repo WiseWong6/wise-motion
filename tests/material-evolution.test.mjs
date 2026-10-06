@@ -8,6 +8,19 @@ import {frameMarkup} from './helpers.mjs';
 
 const source=await readFile(new URL('../catalog/effects/material-evolution.js',import.meta.url),'utf8');
 const keys=await readFile(new URL('../catalog/assets/material-evolution/key-shapes.js',import.meta.url),'utf8');
+test('开头与片尾道字共用古帖轮廓，字形完整落在绘制和粒子采样范围内',()=>{
+ const context={};runInNewContext(keys,context);const data=context.WiseMaterialKeyShapes;
+ assert.equal(data.traced_character.text,'道');
+ assert.equal(data.traced_character.source_file,'vendor/duobaota/page-02.jpg');
+ const numbers=data.opening.at(-1).layers[0].path.match(/-?\d+(?:\.\d+)?/g).map(Number);
+ const ending=data.ending.find(pose=>pose.label==='道').shapes.flatMap(shape=>Array.from(shape.p,point=>Array.from(point)).flat());
+ assert.deepEqual(numbers,Array.from(ending),'片尾不能用另一套拼凑字形代替开头原字');
+ for(let i=0;i<numbers.length;i+=2){
+  assert.ok(numbers[i]>=176&&numbers[i]<=459,'完整道字不得超出粒子横向采样区');
+  assert.ok(numbers[i+1]>=27&&numbers[i+1]<=336,'完整道字不得超出粒子纵向采样区');
+ }
+ assert.ok(data.opening[0].layers.every(layer=>layer.path===''));
+});
 const ids=['brush-glyph-build','glyph-bar-collapse','dots-lines-cylinders','material-form-chain','spheres-material-merge','atlas-reveal-clear','glyph-cut-ending'];
 const starts=[0,2500,3550,6100,8100,9250,356/30*1000];
 const ends=[2500,3550,6100,8100,9250,356/30*1000,15054];

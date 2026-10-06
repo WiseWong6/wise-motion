@@ -4,9 +4,9 @@
 
 动效说明：字形快切收尾
 目的：用快速字形试样和清晰停留完成文字发布收尾，保持快切与阅读段的区别。
-对象：27个固定书法试样、数字、英文及 WISE MOTION 字标姿态；书法复用独立笔画，英文和数字由随包 Oswald Bold 生成；文案为 WISE MOTION 和 OPEN SOURCE，深黑墨色#070805，纸色#e3e4de，最后640×360纯黑画面。
+对象：27个固定书法试样、数字、英文及 WISE MOTION 字标姿态；道字复用宋拓描摹轮廓，一二三复用动画横笔，英文和数字由随包 Oswald Bold 生成；文案为 WISE MOTION 和 OPEN SOURCE，深黑墨色#070805，纸色#e3e4de，最后640×360纯黑画面。
 动作阶段：
-1. 0–1.333秒，按固定27个姿态的前段排程切换独立书法试样、数字与开放字体字标。
+1. 0–1.333秒，按固定27个姿态的前段排程切换古帖道字与横笔试样、数字与开放字体字标。
 2. 1.333–2.533秒，切成 WISE MOTION 并保持，1.767秒补入 OPEN SOURCE，保留两行清晰停留。
 3. 2.533–3.187333秒，切成中央 WISE MOTION 最终字标，约3.133秒直接切黑屏。
 节奏：3.19 秒完成一次；1 倍速度；匀速。总长3.187333秒，每秒30个画面刻度；姿态切换刻度为0、1、2、3、4、6、7、8、11、12、13、14、15、16、18、20、21、24、25、27、30、33、35、38、40、53、76；第94个刻度切黑屏，姿态之间直接切换。
@@ -31,8 +31,8 @@
 - [原码提取与接入源码](../../catalog/effects/material-evolution.js)，注册名称：`glyph-cut-ending`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 效果参考 [Kimi K3 开源发布宣传片（open weights）](https://www.youtube.com/watch?v=5GlCGOXUYHg)。
-- 沿用精修的材质演变绘制函数与七段固定排程。开头37个书法姿态依据颜真卿多宝塔碑结构独立定义笔画，结尾27个书法试样、数字与英文姿态由独立笔画及随包 Oswald Bold 生成，最终字标为 WISE MOTION；当前不读取或分发原片帧提取轮廓。纤维球、月面及版画保留 Codex 内置图片工具依据参考生成的素材，详见 catalog/assets/material-evolution/SOURCE.json。自有程序和笔画按 AGPL-3.0-only 提供，字体保留 SIL OFL 1.1，Kimi 原片保留动作与材质参考署名。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三沿用动画横笔，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序和横笔为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 
-补充效果参考：[颜真卿多宝塔碑墨拓（国立故宫博物院，台北；开放图像）](https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P)。
+补充效果参考：[颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道字）](https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P)。

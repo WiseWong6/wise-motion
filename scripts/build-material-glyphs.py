@@ -1,10 +1,10 @@
 # Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
-"""生成古帖参考的独立笔画与开放字体字标；不读取宣传片或其轮廓。"""
+"""直接描摹随包宋拓原页中的道字；笔画路径仅控制显现，不重新设计字形。生成需要 OpenCV、NumPy 和 FontTools。"""
 import argparse
 import json
-import math
-import re
 from pathlib import Path
+import cv2
+import numpy as np
 from fontTools.pens.basePen import BasePen
 from fontTools.ttLib import TTFont
 
@@ -13,67 +13,126 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--check', action='store_true')
 checking = parser.parse_args().check
 
-# 参考颜真卿《多宝塔碑》的道字结构及起收笔，自行定义动画笔画。
-# https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P
-# 馆藏图像开放条件：低阶 CC0、中阶 CC BY 4.0；本程序不取原图像素。
-# 四点是三次曲线的起点、控制点、控制点、终点；后三数为起、中、末宽。
-STROKES = [
-    ((286, 44), (294, 49), (301, 58), (302, 69), (9, 17, 11)),
-    ((353, 44), (351, 52), (344, 63), (331, 76), (14, 16, 4)),
-    ((271, 90), (296, 89), (339, 86), (378, 85), (11, 14, 18)),
-    ((303, 94), (298, 102), (291, 109), (282, 114), (12, 11, 5)),
-    ((274, 116), (272, 141), (272, 190), (274, 225), (14, 18, 17)),
-    ((278, 115), (303, 111), (342, 111), (369, 113), (12, 13, 18)),
-    ((373, 116), (374, 149), (374, 197), (371, 228), (17, 18, 21)),
-    ((278, 148), (301, 145), (336, 145), (366, 145), (9, 11, 13)),
-    ((278, 183), (301, 180), (337, 180), (366, 180), (9, 11, 13)),
-    ((278, 220), (302, 217), (339, 218), (367, 219), (12, 14, 17)),
-    ((207, 117), (221, 120), (232, 128), (233, 139), (7, 18, 10)),
-    ((207, 164), (219, 162), (234, 161), (241, 163), (10, 14, 17)),
-    ((239, 166), (235, 188), (218, 210), (229, 240), (17, 14, 16)),
-    ((219, 245), (258, 280), (329, 311), (445, 289), (10, 24, 3)),
-]
+# 宋拓册页第二开左页，“童遊”下方、“樹”上方的原字。
+# 原页随包保留，以下坐标直接截取原页像素；不重新设计字形。
+# https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P
+DAO_CROP = (811, 902, 144, 143)
+SAMPLE = 4
 OPENING_FRAMES = [1, 4, 5, 6, 10, 12, 13, 14, 15, 16, 17, 18, 20, 34, 36, 38, 40, 42, 44, 46, 47, 48, 50, 52, 53, 54, 55, 56, 58, 60, 64, 67, 70, 71, 73, 74, 76]
 ENDING_FRAMES = [357, 358, 359, 360, 361, 363, 364, 365, 368, 369, 370, 371, 372, 373, 375, 377, 378, 381, 382, 384, 387, 390, 392, 395, 397, 410, 433]
 COLORS = ['#c3c3c3', '#8c8c8c', '#5f5f5f', '#505050', '#3c3c3c', '#2d2d2d', '#202020']
 
 
 def number(n):
-    return round(n, 3)
+    return round(float(n), 3)
 
 
 def path(points):
     return ''.join(('M' if i == 0 else 'L') + str(number(x)) + ' ' + str(number(y)) for i, (x, y) in enumerate(points)) + 'Z'
 
 
-def brush(stroke, progress, inset):
-    a, b, c, d, widths = stroke
-    left, right = [], []
-    for i in range(41):
-        t = progress * i / 40
-        q = 1 - t
-        x, y = [q**3*a[j] + 3*q*q*t*b[j] + 3*q*t*t*c[j] + t**3*d[j] for j in [0, 1]]
-        dx, dy = [3*q*q*(b[j]-a[j]) + 6*q*t*(c[j]-b[j]) + 3*t*t*(d[j]-c[j]) for j in [0, 1]]
-        length = math.hypot(dx, dy)
-        nx, ny = -dy/length, dx/length
-        width = (q*q*widths[0] + 2*q*t*widths[1] + t*t*widths[2]) / 2 - inset
-        width = max(.5, width)
-        # 固定细微毛边及提按；没有随机源，也没有从原片采样。
-        edge = .3*math.sin(i*1.8 + a[0])
-        left.append((x + nx*(width + edge), y + ny*(width + edge)))
-        right.append((x - nx*(width - edge), y - ny*(width - edge)))
-    return path(left + right[::-1])
+def source_masks(filename, crop):
+    image = cv2.imread(str(ROOT / 'vendor/duobaota' / filename), cv2.IMREAD_GRAYSCALE)
+    if image is None:
+        raise SystemExit('缺少随包宋拓原页：' + filename)
+    x, y, w, h = crop
+    # 轻微平滑只去除扫描采样台阶；七档亮度保留拓本边缘及笔画内部纹理。
+    gray = cv2.GaussianBlur(image[y:y+h, x:x+w], (3, 3), .35)
+    gray = cv2.resize(gray, (w*SAMPLE, h*SAMPLE), interpolation=cv2.INTER_CUBIC)
+    masks = []
+    for level in [90, 100, 110, 120, 130, 140, 150]:
+        mask = np.uint8(gray >= level)*255
+        count, components, stats, _ = cv2.connectedComponentsWithStats(mask)
+        for i in range(1, count):
+            if stats[i, cv2.CC_STAT_AREA] < 4*SAMPLE*SAMPLE:
+                mask[components == i] = 0
+        masks.append(mask)
+    return masks
 
 
+def transform_for(mask, width=246, height=246, cx=320, cy=180):
+    ys, xs = np.nonzero(mask)
+    x0, y0, x1, y1 = xs.min(), ys.min(), xs.max(), ys.max()
+    scale = min(width/(x1-x0), height/(y1-y0))
+    return scale, cx-(x0+x1)*scale/2, cy-(y0+y1)*scale/2
+
+
+def contours(mask, transform):
+    scale, tx, ty = transform
+    found, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    result = []
+    for contour in found:
+        if abs(cv2.contourArea(contour)) < SAMPLE*SAMPLE*.75:
+            continue
+        points = cv2.approxPolyDP(contour, .55, True).reshape(-1, 2)
+        if len(points) >= 3:
+            result.append([[number(x*scale+tx), number(y*scale+ty)] for x, y in points])
+    return result
+
+
+# 这些路径只决定原字像素何时显现，不参与可见笔画造型。
+# 末帧完整使用原字轮廓；所有相交、粗细、收笔和留白来自拓本。
+REVEAL_GUIDES = [
+    [(51, 19), (65, 26), (64, 37)],
+    [(88, 13), (83, 26), (71, 38)],
+    [(41, 42), (69, 36), (104, 27)],
+    [(70, 40), (65, 52), (59, 63)],
+    [(60, 62), (60, 88), (60, 107)],
+    [(63, 61), (91, 54), (98, 60), (97, 82), (95, 111)],
+    [(65, 71), (82, 68)],
+    [(65, 88), (82, 83)],
+    [(60, 105), (96, 94)],
+    [(15, 31), (32, 37)],
+    [(12, 60), (22, 65)],
+    [(27, 79), (22, 82), (28, 97), (38, 102)],
+    [(14, 111), (51, 116), (90, 127), (130, 122)],
+]
+
+
+def reveal_times(shape):
+    yy, xx = np.indices(shape, dtype=float)
+    xx, yy = xx/SAMPLE, yy/SAMPLE
+    best = np.full(shape, np.inf)
+    times = np.zeros(shape)
+    for index, guide in enumerate(REVEAL_GUIDES):
+        guide = np.array(guide, dtype=float)
+        lengths = np.linalg.norm(np.diff(guide, axis=0), axis=1)
+        total, traveled = lengths.sum(), 0.
+        for a, b, length in zip(guide[:-1], guide[1:], lengths):
+            dx, dy = b-a
+            t = np.clip(((xx-a[0])*dx+(yy-a[1])*dy)/(length*length), 0, 1)
+            distance = (xx-a[0]-t*dx)**2+(yy-a[1]-t*dy)**2
+            take = distance < best
+            times[take] = index+(traveled+t[take]*length)/total
+            best[take] = distance[take]
+            traveled += length
+    return times
+
+
+dao_masks = source_masks('page-02.jpg', DAO_CROP)
+dao_transform = transform_for(dao_masks[0])
+arrival = reveal_times(dao_masks[0].shape)
 opening = []
 for frame in OPENING_FRAMES:
-    # 首部在前段接续，中段短停，走之旁随后接上；末态仍供粒子采样。
-    elapsed = min((frame-1)/19, 1)*10 if frame <= 34 else 10 + min((frame-34)/32, 1)*4
+    elapsed = min((frame-1)/19, 1)*9 if frame <= 34 else 9+min((frame-34)/32, 1)*4
+    visible = arrival <= elapsed
+    if frame == 1:
+        visible[:] = False
     layers = []
-    for j, color in enumerate(COLORS):
-        strokes = [brush(s, min(1, elapsed-i), j*.45) for i, s in enumerate(STROKES) if elapsed > i]
-        layers.append({'color': color, 'path': ''.join(strokes)})
+    for color, mask in zip(COLORS, dao_masks):
+        revealed = np.where(visible, mask, 0).astype(np.uint8)
+        layers.append({'color': color, 'path': ''.join(path(p) for p in contours(revealed, dao_transform))})
     opening.append({'frame': frame, 'layers': layers})
+
+# 片尾一、二、三沿用横笔动画的固定笔形与位置；不再取道字部件拼凑。
+def horizontal(xs, top, bottom):
+    points = list(zip(xs, top)) + list(zip(xs, bottom))[::-1]
+    return {'p': points, 'h': []}
+
+single = horizontal([210,216,223,232,244,262,284,306,328,350,372,390,401,412,422,428,430], [188,182,177,175,175,174,173,171,169,168,167,165,165,168,172,178,184], [197,201,206,208,207,204,202,201,200,199,198,198,200,202,201,195,189])
+
+def shifted_stroke(y, scale=1):
+    return {'p': [[number(320+(x-320)*scale), number(y+(v-185)*scale)] for x, v in single['p']], 'h': []}
 
 
 class Polygons(BasePen):
@@ -136,13 +195,14 @@ for i, (frame, label) in enumerate(zip(ENDING_FRAMES, labels)):
     if i == 0:
         shapes = [{'p': [[267.3, 212.3], [280.3, 212.3], [280.3, 215.8], [267.3, 215.8]], 'h': []}]
     elif i < 5:
-        # 试样继续使用同一独立书法笔画，不临时掺入现代书法字库。
-        selected = STROKES if i == 1 else [STROKES[2]] if i == 2 else [STROKES[2], STROKES[9]] if i == 3 else [STROKES[2], STROKES[8], STROKES[9]]
-        shapes = []
-        for stroke in selected:
-            points = brush(stroke, 1, 0)
-            values = [float(v) for v in re.findall(r'-?\d+(?:\.\d+)?', points)]
-            shapes.append({'p': [values[j:j+2] for j in range(0, len(values), 2)], 'h': []})
+        if i == 1:
+            shapes = [{'p': p, 'h': []} for p in contours(dao_masks[0], dao_transform)]
+        elif i == 2:
+            shapes = [single]
+        elif i == 3:
+            shapes = [shifted_stroke(132, .55), shifted_stroke(228)]
+        else:
+            shapes = [shifted_stroke(112, .75), shifted_stroke(182, .6), shifted_stroke(252)]
     elif i == 25:
         shapes = text('WISE MOTION', 30, 164) + text('OPEN SOURCE', 24, 207)
     elif i == 24:
@@ -154,14 +214,15 @@ for i, (frame, label) in enumerate(zip(ENDING_FRAMES, labels)):
     ending.append({'frame': frame, 'label': label, 'shapes': shapes})
 
 value = {'opening': opening, 'ending': ending,
-         'source': '开头依据颜真卿《多宝塔碑》结构独立定义笔画；结尾书法试样复用这些笔画，英文与数字由随包 Oswald Bold 生成；无原片提取轮廓。',
-         'license': 'AGPL-3.0-only; Oswald font outlines SIL-OFL-1.1',
+         'source': '道字直接描摹宋拓多宝佛塔碑册第二开左页的道树萌牙原字；原页与截取坐标随包保存，灰度描边不重新设计字形。一二三沿用横笔动画的项目笔形，英文和数字由 Oswald Bold 生成。',
+         'traced_character': {'text': '道', 'source_file': 'vendor/duobaota/page-02.jpg', 'crop': DAO_CROP, 'source_url': 'https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P', 'license': 'CC-BY-4.0'},
+         'license': 'AGPL-3.0-only; traced rubbing CC-BY-4.0; Oswald font outlines SIL-OFL-1.1',
          'generator': 'scripts/build-material-glyphs.py'}
-content = '/* Generated by scripts/build-material-glyphs.py; 自有笔画 AGPL-3.0-only；字体轮廓 SIL-OFL-1.1。 */\nglobalThis.WiseMaterialKeyShapes=' + json.dumps(value, ensure_ascii=False, separators=(',', ':')) + ';\n'
+content = '/* Generated by scripts/build-material-glyphs.py; 描摹道字 CC-BY-4.0（国立故宫博物院，台北）；程序及横笔 AGPL-3.0-only；字体轮廓 SIL-OFL-1.1。 */\nglobalThis.WiseMaterialKeyShapes=' + json.dumps(value, ensure_ascii=False, separators=(',', ':')) + ';\n'
 target = ROOT / 'catalog/assets/material-evolution/key-shapes.js'
 if checking:
     if target.read_text() != content:
         raise SystemExit('笔画与开放字体生成结果不一致')
 else:
     target.write_text(content)
-print('37 个独立书法姿态及 27 个开放字体收尾姿态' + ('已核对' if checking else '已生成'))
+print('37 个古帖描摹姿态及 27 个片尾姿态' + ('已核对' if checking else '已生成'))

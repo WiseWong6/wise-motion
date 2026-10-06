@@ -16748,7 +16748,7 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用精修的材质演变绘制函数与七段固定排程。开头37个书法姿态依据颜真卿多宝塔碑结构独立定义笔画，结尾27个书法试样、数字与英文姿态由独立笔画及随包 Oswald Bold 生成，最终字标为 WISE MOTION；当前不读取或分发原片帧提取轮廓。纤维球、月面及版画保留 Codex 内置图片工具依据参考生成的素材，详见 catalog/assets/material-evolution/SOURCE.json。自有程序和笔画按 AGPL-3.0-only 提供，字体保留 SIL OFL 1.1，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三沿用动画横笔，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序和横笔为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "brush-glyph-build",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -16765,13 +16765,13 @@
         },
         "additional_references": [
           {
-            "name": "颜真卿多宝塔碑墨拓（国立故宫博物院，台北；开放图像）",
-            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P"
+            "name": "颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道字）",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P"
           }
         ]
       },
       "reproduction": {
-        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e2e3dd，静态细纸纹，主体使用深灰至黑色墨迹。书法依据古帖结构独立定义，字标使用随包开放字体生成，保留笔画厚薄及固定构图比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。",
+        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e2e3dd，静态细纸纹，主体使用深灰至黑色墨迹。道字直接描摹宋拓原字，一二三沿用项目动画横笔；字标使用随包开放字体生成，保留笔画厚薄及固定构图比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。",
         "objects": "居中的书法矢量图形，主要墨迹位于横向160–472像素范围；37个固定书法姿态、每姿态7档固定灰墨、静态纸纹及角落小注。",
         "phases": [
           "0–0.63秒，墨迹从空白中出现，按选定轮廓形成横笔、弧笔与回转结构，保持实际墨色层次。",
@@ -16839,7 +16839,7 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用精修的材质演变绘制函数与七段固定排程。开头37个书法姿态依据颜真卿多宝塔碑结构独立定义笔画，结尾27个书法试样、数字与英文姿态由独立笔画及随包 Oswald Bold 生成，最终字标为 WISE MOTION；当前不读取或分发原片帧提取轮廓。纤维球、月面及版画保留 Codex 内置图片工具依据参考生成的素材，详见 catalog/assets/material-evolution/SOURCE.json。自有程序和笔画按 AGPL-3.0-only 提供，字体保留 SIL OFL 1.1，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三沿用动画横笔，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序和横笔为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "glyph-bar-collapse",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -16856,13 +16856,13 @@
         },
         "additional_references": [
           {
-            "name": "颜真卿多宝塔碑墨拓（国立故宫博物院，台北；开放图像）",
-            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P"
+            "name": "颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道字）",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P"
           }
         ]
       },
       "reproduction": {
-        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e2e3dd，静态细纸纹，主体使用深灰至黑色墨迹。书法依据古帖结构独立定义，字标使用随包开放字体生成，保留笔画厚薄及固定构图比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。",
+        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e2e3dd，静态细纸纹，主体使用深灰至黑色墨迹。道字直接描摹宋拓原字，一二三沿用项目动画横笔；字标使用随包开放字体生成，保留笔画厚薄及固定构图比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。",
         "objects": "由道字轮廓采样的竖向细字符、17400个固定编号墨点及独立定义的一笔横向书法轮廓；横笔参考颜真卿多宝塔碑的起收笔，覆盖横向210–430像素，上边165–188像素，下边189–208像素；左端轻入、中段稍细、右端顿收，整体紧凑并微向右上提。",
         "phases": [
           "0–0.36秒，完整道字墨迹淡去，小字符在0–0.20秒进入并保留每笔位置，字符高度5.4–6.5像素。",
@@ -16935,7 +16935,7 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用精修的材质演变绘制函数与七段固定排程。开头37个书法姿态依据颜真卿多宝塔碑结构独立定义笔画，结尾27个书法试样、数字与英文姿态由独立笔画及随包 Oswald Bold 生成，最终字标为 WISE MOTION；当前不读取或分发原片帧提取轮廓。纤维球、月面及版画保留 Codex 内置图片工具依据参考生成的素材，详见 catalog/assets/material-evolution/SOURCE.json。自有程序和笔画按 AGPL-3.0-only 提供，字体保留 SIL OFL 1.1，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三沿用动画横笔，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序和横笔为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "dots-lines-cylinders",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -16952,13 +16952,13 @@
         },
         "additional_references": [
           {
-            "name": "颜真卿多宝塔碑墨拓（国立故宫博物院，台北；开放图像）",
-            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P"
+            "name": "颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道字）",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P"
           }
         ]
       },
       "reproduction": {
-        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e2e3dd，静态细纸纹，主体使用深灰至黑色墨迹。书法依据古帖结构独立定义，字标使用随包开放字体生成，保留笔画厚薄及固定构图比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。",
+        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e2e3dd，静态细纸纹，主体使用深灰至黑色墨迹。道字直接描摹宋拓原字，一二三沿用项目动画横笔；字标使用随包开放字体生成，保留笔画厚薄及固定构图比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。",
         "objects": "17400个固定墨点，上短横与下长横各有独立书法上下边；三条线团的长度191、168、325像素，基线83、181、277像素，倾斜系数0.14、0.095、0.06；三个圆柱共462个固定顶点，每柱11排、每排14点。",
         "phases": [
           "0–0.45秒，横笔墨点重新分布为二的上短横与下长横，上横向右抬升，下横左端较厚、右端有收笔肩；两笔颗粒保持不同退散比例。",
@@ -17032,7 +17032,7 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用精修的材质演变绘制函数与七段固定排程。开头37个书法姿态依据颜真卿多宝塔碑结构独立定义笔画，结尾27个书法试样、数字与英文姿态由独立笔画及随包 Oswald Bold 生成，最终字标为 WISE MOTION；当前不读取或分发原片帧提取轮廓。纤维球、月面及版画保留 Codex 内置图片工具依据参考生成的素材，详见 catalog/assets/material-evolution/SOURCE.json。自有程序和笔画按 AGPL-3.0-only 提供，字体保留 SIL OFL 1.1，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三沿用动画横笔，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序和横笔为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "material-form-chain",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -17049,8 +17049,8 @@
         },
         "additional_references": [
           {
-            "name": "颜真卿多宝塔碑墨拓（国立故宫博物院，台北；开放图像）",
-            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P"
+            "name": "颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道字）",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P"
           }
         ]
       },
@@ -17128,7 +17128,7 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用精修的材质演变绘制函数与七段固定排程。开头37个书法姿态依据颜真卿多宝塔碑结构独立定义笔画，结尾27个书法试样、数字与英文姿态由独立笔画及随包 Oswald Bold 生成，最终字标为 WISE MOTION；当前不读取或分发原片帧提取轮廓。纤维球、月面及版画保留 Codex 内置图片工具依据参考生成的素材，详见 catalog/assets/material-evolution/SOURCE.json。自有程序和笔画按 AGPL-3.0-only 提供，字体保留 SIL OFL 1.1，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三沿用动画横笔，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序和横笔为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "spheres-material-merge",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -17145,8 +17145,8 @@
         },
         "additional_references": [
           {
-            "name": "颜真卿多宝塔碑墨拓（国立故宫博物院，台北；开放图像）",
-            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P"
+            "name": "颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道字）",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P"
           }
         ]
       },
@@ -17224,7 +17224,7 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用精修的材质演变绘制函数与七段固定排程。开头37个书法姿态依据颜真卿多宝塔碑结构独立定义笔画，结尾27个书法试样、数字与英文姿态由独立笔画及随包 Oswald Bold 生成，最终字标为 WISE MOTION；当前不读取或分发原片帧提取轮廓。纤维球、月面及版画保留 Codex 内置图片工具依据参考生成的素材，详见 catalog/assets/material-evolution/SOURCE.json。自有程序和笔画按 AGPL-3.0-only 提供，字体保留 SIL OFL 1.1，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三沿用动画横笔，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序和横笔为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "atlas-reveal-clear",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -17241,8 +17241,8 @@
         },
         "additional_references": [
           {
-            "name": "颜真卿多宝塔碑墨拓（国立故宫博物院，台北；开放图像）",
-            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P"
+            "name": "颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道字）",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P"
           }
         ]
       },
@@ -17321,7 +17321,7 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用精修的材质演变绘制函数与七段固定排程。开头37个书法姿态依据颜真卿多宝塔碑结构独立定义笔画，结尾27个书法试样、数字与英文姿态由独立笔画及随包 Oswald Bold 生成，最终字标为 WISE MOTION；当前不读取或分发原片帧提取轮廓。纤维球、月面及版画保留 Codex 内置图片工具依据参考生成的素材，详见 catalog/assets/material-evolution/SOURCE.json。自有程序和笔画按 AGPL-3.0-only 提供，字体保留 SIL OFL 1.1，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三沿用动画横笔，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序和横笔为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "glyph-cut-ending",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -17338,16 +17338,16 @@
         },
         "additional_references": [
           {
-            "name": "颜真卿多宝塔碑墨拓（国立故宫博物院，台北；开放图像）",
-            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P"
+            "name": "颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道字）",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P"
           }
         ]
       },
       "reproduction": {
-        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e3e4de，静态细纸纹，主体使用深灰至黑色墨迹。书法依据古帖结构独立定义，字标使用随包开放字体生成，保留笔画厚薄及固定构图比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。主体墨色#070805，末尾切为640×360纯黑画面。",
-        "objects": "27个固定书法试样、数字、英文及 WISE MOTION 字标姿态；书法复用独立笔画，英文和数字由随包 Oswald Bold 生成；文案为 WISE MOTION 和 OPEN SOURCE，深黑墨色#070805，纸色#e3e4de，最后640×360纯黑画面。",
+        "presentation": "16:9画幅，设计尺寸640×360，所有对象按画幅等比缩放；纸色#e3e4de，静态细纸纹，主体使用深灰至黑色墨迹。道字直接描摹宋拓原字，一二三沿用项目动画横笔；字标使用随包开放字体生成，保留笔画厚薄及固定构图比例；微字符、刻度与图内小注保持既定图形输入，不强改字体。如增加可编辑的拉丁文字和数字，使用Oswald粗体。主体墨色#070805，末尾切为640×360纯黑画面。",
+        "objects": "27个固定书法试样、数字、英文及 WISE MOTION 字标姿态；道字复用宋拓描摹轮廓，一二三复用动画横笔，英文和数字由随包 Oswald Bold 生成；文案为 WISE MOTION 和 OPEN SOURCE，深黑墨色#070805，纸色#e3e4de，最后640×360纯黑画面。",
         "phases": [
-          "0–1.333秒，按固定27个姿态的前段排程切换独立书法试样、数字与开放字体字标。",
+          "0–1.333秒，按固定27个姿态的前段排程切换古帖道字与横笔试样、数字与开放字体字标。",
           "1.333–2.533秒，切成 WISE MOTION 并保持，1.767秒补入 OPEN SOURCE，保留两行清晰停留。",
           "2.533–3.187333秒，切成中央 WISE MOTION 最终字标，约3.133秒直接切黑屏。"
         ],
@@ -17359,9 +17359,9 @@
       "category": "writing",
       "summary": "空纸上的字符、数字与字标轮廓按短促节拍快切，发布短句停留后接成最终字标，最后黑屏。",
       "purpose": "用快速字形试样和清晰停留完成文字发布收尾，保持快切与阅读段的区别。",
-      "objects": "27个固定书法试样、数字、英文及 WISE MOTION 字标姿态；书法复用独立笔画，英文和数字由随包 Oswald Bold 生成；文案为 WISE MOTION 和 OPEN SOURCE，深黑墨色#070805，纸色#e3e4de，最后640×360纯黑画面。",
+      "objects": "27个固定书法试样、数字、英文及 WISE MOTION 字标姿态；道字复用宋拓描摹轮廓，一二三复用动画横笔，英文和数字由随包 Oswald Bold 生成；文案为 WISE MOTION 和 OPEN SOURCE，深黑墨色#070805，纸色#e3e4de，最后640×360纯黑画面。",
       "phases": [
-        "0–1.333秒，按固定27个姿态的前段排程切换独立书法试样、数字与开放字体字标。",
+        "0–1.333秒，按固定27个姿态的前段排程切换古帖道字与横笔试样、数字与开放字体字标。",
         "1.333–2.533秒，切成 WISE MOTION 并保持，1.767秒补入 OPEN SOURCE，保留两行清晰停留。",
         "2.533–3.187333秒，切成中央 WISE MOTION 最终字标，约3.133秒直接切黑屏。"
       ],
@@ -17425,7 +17425,7 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用精修的材质演变绘制函数与七段固定排程。开头37个书法姿态依据颜真卿多宝塔碑结构独立定义笔画，结尾27个书法试样、数字与英文姿态由独立笔画及随包 Oswald Bold 生成，最终字标为 WISE MOTION；当前不读取或分发原片帧提取轮廓。纤维球、月面及版画保留 Codex 内置图片工具依据参考生成的素材，详见 catalog/assets/material-evolution/SOURCE.json。自有程序和笔画按 AGPL-3.0-only 提供，字体保留 SIL OFL 1.1，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三沿用动画横笔，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序和横笔为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "material-evolution-sequence",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -17442,22 +17442,22 @@
         },
         "additional_references": [
           {
-            "name": "颜真卿多宝塔碑墨拓（国立故宫博物院，台北；开放图像）",
-            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/36759?dep=P"
+            "name": "颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道字）",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P"
           }
         ]
       },
       "reproduction": {
-        "presentation": "16:9，640×360，纸色#e2e3dd，固定细纸纹，主体以深灰黑墨绘制；主字采用中国毛笔楷书，采用多宝塔碑参考的独立颜体笔画；如替换柳体，需重新定义整套一致的笔画；保留正确字形结构、起收笔、提按、飞白和少量毛边；细线、颗粒、交叉排线形成纤维和版画质感；字形与图形使用固定构图框、中心和间距；月面用固定灰斑与细陨坑表现；结尾纸色#e3e4de，最后直接切黑",
+        "presentation": "16:9，640×360，纸色#e2e3dd，固定细纸纹，主体以深灰黑墨绘制；主字采用中国毛笔楷书，道字使用多宝塔碑宋拓原字轮廓；如替换柳体，需重新定义整套一致的笔画；保留正确字形结构、起收笔、提按、飞白和少量毛边；细线、颗粒、交叉排线形成纤维和版画质感；字形与图形使用固定构图框、中心和间距；月面用固定灰斑与细陨坑表现；结尾纸色#e3e4de，最后直接切黑",
         "objects": "以中国书法汉字道、一、二、三为主体的37个笔画姿态、道字细字符、17400个固定墨点、三条乱线笔形、462个空间顶点、字符环柄与棋盘、纤维三球和月面、37组图鉴版画及27个结尾书法、数字及英文姿态，最终字标为 WISE MOTION。",
         "phases": [
           "0–6.10秒，0–2.50秒笔画接续组成道字，2.50–3.55秒道字拆成字符并压成一，3.55–6.10秒二的墨点转为三的乱线再形成三个圆柱。",
           "6.10–11.866667秒，6.10–8.10秒圆柱经字符、点阵环柄和棋盘转为像素三球，8.10–9.25秒纤维三球合拢换成月面，9.25–11.866667秒月球带出图鉴、分件显影并整组清场。",
-          "11.866667–15.054秒，独立书法试样、数字与英文字标按固定节拍快切，WISE MOTION 先出现，补入 OPEN SOURCE 后停留，接成最终字标，最后直接黑屏。"
+          "11.866667–15.054秒，古帖道字与横笔试样、数字与英文字标按固定节拍快切，WISE MOTION 先出现，补入 OPEN SOURCE 后停留，接成最终字标，最后直接黑屏。"
         ],
         "details": [
-          "汉字与笔法：开头明确写道、一、二、三，书法试样使用道、一、二、三的独立笔画，英文与数字采用随包 Oswald Bold，最终字标为 WISE MOTION。默认采用颜体楷书，笔画浑厚、结构端庄，也可整片统一改为骨力挺拔、结构紧劲的柳体楷书。使用明确符合所选书体且完整覆盖这些汉字的同一套书法字形，先确认完整字形再做笔画显影，保持笔顺与部件关系可辨识。禁止混用颜体与柳体，也不能用普通楷体加粗、行草、拉丁字母、黑体或随意拼出的抽象线条替代所选书体。",
-          "单字尺寸：开头道字和结尾道、一、二、三试样复用生成程序中的固定笔画坐标，按同一画板比例显示；不根据显影进度重新缩放。英文和数字从随包 Oswald Bold 按既定字号生成，按字宽与固定字距在640像素画板中居中，字形轮廓和构图坐标随包保存。",
+          "汉字与笔法：开头明确写道、一、二、三，道字试样复用宋拓描摹轮廓，一、二、三使用项目横笔，英文与数字采用随包 Oswald Bold，最终字标为 WISE MOTION。默认采用颜体楷书，笔画浑厚、结构端庄，也可整片统一改为骨力挺拔、结构紧劲的柳体楷书。使用明确符合所选书体且完整覆盖这些汉字的同一套书法字形，先确认完整字形再做笔画显影，保持笔顺与部件关系可辨识。禁止混用颜体与柳体，也不能用普通楷体加粗、行草、拉丁字母、黑体或随意拼出的抽象线条替代所选书体。",
+          "单字尺寸：道字依据宋拓原字完整轮廓确定一次等比缩放，放入246×246的边界框，以(320,180)为中心；全部显现姿态、片尾道字与粒子采样共用这一坐标。英文和数字按既定字号、字宽与固定字距居中。",
           "稳定标定：尺寸依据完整字形的可见墨迹边界，而不是字体字号或带空白的文件外框。每个完整字形只计算一次等比缩放和居中偏移，并固定到该字所有笔画、墨点及遮罩。显影、快切和材质变化时不根据当前可见部分重新居中或缩放，不每帧自动适配边界，不横纵分别拉伸。笔画逐渐增多不能让整个字呼吸缩放或左右跳动。",
           "字距与行距：片尾先显示字号30、基线164像素的 WISE MOTION，再补入字号24、基线207像素的 OPEN SOURCE，两行各自按完整字宽居中。最终字标改为字号72、基线209像素、字距2像素的 WISE MOTION。切换时采用预先生成的固定布局，不按每帧可见部分重新排版。用于材质过渡的小汉字保留固定网格。",
           "后续图形尺寸与间距：三个圆柱和三个球分别形成稳定的横向三件组，中心依次为(200,180)、(320,180)、(440,180)，中心间距固定120。圆柱统一高120、正面宽72，球体统一直径104，均围绕各自固定中心运动。圆柱转球时在本段指定动作中连续过渡尺寸，不能在材质切换瞬间额外缩放或重新排版。点阵、字符、棋盘和纤维纹理继承对应主体的中心与尺寸，三维投影允许自然变化，但镜头距离与整组缩放固定。",
@@ -17470,7 +17470,7 @@
             "name": "中国书法成字",
             "start": 0,
             "end": 2500,
-            "detail": "同一套颜体或柳体楷书的笔画逐步组成道字，完整字形的中心和等高标定固定"
+            "detail": "直接描摹的古帖道字按笔画方向逐步显现，原字轮廓、比例和完整字形中心固定。"
           },
           {
             "name": "汉字压成横笔",
@@ -17506,7 +17506,7 @@
             "name": "书法字标快切与片尾收束",
             "start": 11866.667,
             "end": 15054,
-            "detail": "独立绘制的书法、数字和英文按固定节拍快切，再显示 WISE MOTION 与 OPEN SOURCE，回到 WISE MOTION 并停留，最后切黑"
+            "detail": "古帖道字、动画横笔、数字和英文按固定节拍快切，再显示 WISE MOTION 与 OPEN SOURCE，回到 WISE MOTION 并停留，最后切黑"
           }
         ],
         "retain": "七段共用同一时间计算；前后段保留字符团、三个圆柱、三个球和月球的轮廓及位置承接，完整字形只做一次尺寸标定，图形使用预先确定的固定布局；保留快速切换、短暂停留、明确的压缩合拢动作和结尾黑屏。",
@@ -17521,7 +17521,7 @@
       "phases": [
         "0–6.10秒，0–2.50秒笔画接续组成道字，2.50–3.55秒道字拆成字符并压成一，3.55–6.10秒二的墨点转为三的乱线再形成三个圆柱。",
         "6.10–11.866667秒，6.10–8.10秒圆柱经字符、点阵环柄和棋盘转为像素三球，8.10–9.25秒纤维三球合拢换成月面，9.25–11.866667秒月球带出图鉴、分件显影并整组清场。",
-        "11.866667–15.054秒，独立书法试样、数字与英文字标按固定节拍快切，WISE MOTION 先出现，补入 OPEN SOURCE 后停留，接成最终字标，最后直接黑屏。"
+        "11.866667–15.054秒，古帖道字与横笔试样、数字与英文字标按固定节拍快切，WISE MOTION 先出现，补入 OPEN SOURCE 后停留，接成最终字标，最后直接黑屏。"
       ],
       "aliases": [
         "书法与材料重组",
