@@ -8,7 +8,7 @@ import {frameScriptsFor} from '../remotion/frame-document.mjs';
 
 const illustrations=data.effects.filter(e=>e.kind==='illustration');
 const animated=illustrations.filter(e=>e.actions.length);
-const staticIds=['selfie-phone-illustration'];
+const staticIds=['book-geometric-illustration','selfie-phone-illustration'];
 const definition=id=>data.effects.find(e=>e.id===id);
 const actionFor=(w,art)=>w.MotionKit.resolveVariant(definition(art.actions[0]),art.action_variants?.[art.actions[0]]);
 

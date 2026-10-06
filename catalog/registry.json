@@ -7307,12 +7307,253 @@
       }
     },
     {
-      "id": "dither-lab-book",
-      "name": "书脊翻页",
+      "id": "book-spine-turn",
+      "name": "绕书脊翻页",
       "kind": "action",
       "category": "space",
-      "summary": "纸页围绕固定书脊翻转，正反面内容与阴影连续承接。",
-      "purpose": "展示翻页、书脊固定和双面纸张的空间关系",
+      "summary": "纯纸页围绕固定书脊翻转，保留正反面与左右页的连续衔接。",
+      "purpose": "纯纸页围绕固定书脊翻转，保留正反面与左右页的连续衔接。",
+      "aliases": [
+        "翻页",
+        "绕脊翻页",
+        "书脊固定",
+        "双面纸页",
+        "书本翻转"
+      ],
+      "behaviors": [
+        "rotate",
+        "reveal",
+        "settle"
+      ],
+      "phases": [
+        "轻微调整书本俯视角度，同时连续快速翻十次。",
+        "向前翻两页，纸张绕书脊转过半周，正面切换为背面。",
+        "再向后翻两页，纸张沿原路回到右侧，恢复原页序。"
+      ],
+      "retain": "原书脊、纸页正反面、页序与翻页角度。",
+      "avoid": "不要把整本书一起旋转，不附加插画或纸纹。",
+      "duration_ms": 7600,
+      "loop": false,
+      "default_ease": "outCubic",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/dither-book.js",
+        "factory": "book-spine-turn",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://amicro.vercel.app/3d",
+        "reference": {
+          "name": "Amicro · 3D Dither Lab Book",
+          "url": "https://amicro.vercel.app/3d"
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 3390,
+      "recommendation": "需要绕书脊翻页时复用本条目；需要完整图稿册时用关联组合“插画翻页书”。",
+      "tempo_note": "入场快翻使用匀速，普通翻页先快后慢；调整播放速度保留阶段关系。",
+      "objects": "不附加插画与光影的纯色纸页",
+      "analogy": "纯纸页围绕固定书脊翻转，保留正反面与左右页的连续衔接。",
+      "trigger": "打开预览后按固定时间演示；可暂停、重播和定位。",
+      "assumptions": "从插画翻页书的自有实现抽取；与完整组合共用实际绘制函数，不复制参考网站的代码或素材。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "previous_names": []
+    },
+    {
+      "id": "book-geometric-illustration",
+      "name": "几何网点插画",
+      "kind": "illustration",
+      "category": "illustration-diagram",
+      "summary": "六幅可分别复用的网点与细线几何插画，共用翻页书的原矢量图。",
+      "purpose": "六幅可分别复用的网点与细线几何插画，共用翻页书的原矢量图。",
+      "aliases": [
+        "几何插画",
+        "网点插画",
+        "月相",
+        "山势",
+        "叶脉",
+        "拱廊",
+        "水纹",
+        "轨道"
+      ],
+      "behaviors": [
+        "illustration"
+      ],
+      "phases": [
+        "完整呈现所选的原几何插画。",
+        "保持网点、细线、原比例与图稿说明。",
+        "插画保持稳定，作为翻页书或其他画面的内容素材。"
+      ],
+      "retain": "原矢量路径、网点图案、细线、题名与数字。",
+      "avoid": "不要附加翻页或重绘成另一套图案。",
+      "duration_ms": 1000,
+      "loop": false,
+      "default_ease": "outCubic",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/dither-book.js",
+        "factory": "book-geometric-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://amicro.vercel.app/3d",
+        "reference": {
+          "name": "Amicro · 3D Dither Lab Book",
+          "url": "https://amicro.vercel.app/3d"
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 0,
+      "recommendation": "需要几何网点插画时复用本条目；需要完整图稿册时用关联组合“插画翻页书”。",
+      "tempo_note": "静态插画完整保留一秒，单独复用时可按需要延长。",
+      "objects": "月相、山势、叶脉、拱廊、水纹与轨道六幅矢量插画",
+      "analogy": "六幅可分别复用的网点与细线几何插画，共用翻页书的原矢量图。",
+      "trigger": "选择示例后完整呈现；六幅插画可分别复用。",
+      "assumptions": "从插画翻页书的自有实现抽取；与完整组合共用实际绘制函数，不复制参考网站的代码或素材。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "previous_names": [],
+      "variants": [
+        {
+          "id": "moon",
+          "label": "月相",
+          "summary": "原翻页书中的月相网点与细线插画。",
+          "duration_ms": 1000,
+          "preview_ms": 0
+        },
+        {
+          "id": "mountain",
+          "label": "山势",
+          "summary": "原翻页书中的山势网点与细线插画。",
+          "duration_ms": 1000,
+          "preview_ms": 0
+        },
+        {
+          "id": "leaf",
+          "label": "叶脉",
+          "summary": "原翻页书中的叶脉网点与细线插画。",
+          "duration_ms": 1000,
+          "preview_ms": 0
+        },
+        {
+          "id": "arch",
+          "label": "拱廊",
+          "summary": "原翻页书中的拱廊网点与细线插画。",
+          "duration_ms": 1000,
+          "preview_ms": 0
+        },
+        {
+          "id": "water",
+          "label": "水纹",
+          "summary": "原翻页书中的水纹网点与细线插画。",
+          "duration_ms": 1000,
+          "preview_ms": 0
+        },
+        {
+          "id": "orbit",
+          "label": "轨道",
+          "summary": "原翻页书中的轨道网点与细线插画。",
+          "duration_ms": 1000,
+          "preview_ms": 0
+        }
+      ]
+    },
+    {
+      "id": "book-paper-light",
+      "name": "纸张光影",
+      "kind": "action",
+      "category": "lighting",
+      "summary": "固定半翻纸页的姿态，单独展示纸纹、书脊渐变与正反面的明暗变化。",
+      "purpose": "固定半翻纸页的姿态，单独展示纸纹、书脊渐变与正反面的明暗变化。",
+      "aliases": [
+        "纸张光影",
+        "纸纹",
+        "书脊阴影",
+        "纸页明暗",
+        "翻页阴影",
+        "纸张质感"
+      ],
+      "behaviors": [
+        "shade",
+        "texture",
+        "follow"
+      ],
+      "phases": [
+        "建立固定半翻的纯纸页、页缘与书脊阴影。",
+        "正反面明暗按原翻页角度映射连续变化，纸页姿态保持。",
+        "回到原明暗端点，纸纹和书脊渐变持续保留。"
+      ],
+      "retain": "纸纹与阴影使用原实现，正反面阴影强度互相补偿。",
+      "avoid": "不加插画，不重新设计光源或让书本一起转动。",
+      "duration_ms": 7600,
+      "loop": false,
+      "default_ease": "outCubic",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/dither-book.js",
+        "factory": "book-paper-light",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://amicro.vercel.app/3d",
+        "reference": {
+          "name": "Amicro · 3D Dither Lab Book",
+          "url": "https://amicro.vercel.app/3d"
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 3390,
+      "recommendation": "需要纸张光影时复用本条目；需要完整图稿册时用关联组合“插画翻页书”。",
+      "tempo_note": "光影取原7.6秒翻页演示的角度变化；固定纸页姿态便于单独观察明暗。",
+      "objects": "原翻页书的纸纹、页缘、书脊渐变与正反面阴影",
+      "analogy": "固定半翻纸页的姿态，单独展示纸纹、书脊渐变与正反面的明暗变化。",
+      "trigger": "打开预览后按固定时间演示；可暂停、重播和定位。",
+      "assumptions": "从插画翻页书的自有实现抽取；与完整组合共用实际绘制函数，不复制参考网站的代码或素材。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "previous_names": []
+    },
+    {
+      "id": "dither-lab-book",
+      "name": "插画翻页书",
+      "kind": "composition",
+      "category": "composition-interface",
+      "summary": "绕书脊翻页、几何网点插画与纸张光影组合成可调节的图稿册。",
+      "purpose": "展示动作、插画与纸张光影怎样组成一本可配置的翻页书",
       "aliases": [
         "立体书",
         "翻页",
@@ -7321,7 +7562,11 @@
         "图稿",
         "3D Dither Lab Book",
         "立体翻页书",
-        "绕脊翻页"
+        "绕脊翻页",
+        "书脊翻页",
+        "翻页组合",
+        "插画图稿册",
+        "翻页 插画 光影"
       ],
       "behaviors": [
         "rotate",
@@ -7359,22 +7604,27 @@
           "url": "https://amicro.vercel.app/3d"
         }
       },
-      "actions": [],
+      "actions": [
+        "book-spine-turn",
+        "book-geometric-illustration",
+        "book-paper-light"
+      ],
       "demo_mode": "fixed-timeline",
       "preview_ms": 3390,
-      "recommendation": "适合书页、作品集和图稿浏览。保留固定书脊与纸张正反面的衔接。",
+      "recommendation": "适合图稿册、作品集与参数演示。需要完整书本时用本组合；只需翻页、几何插画或纸张光影时分别复用三个已关联的独立条目。",
       "tempo_note": "入场快翻使用匀速，普通翻页先快后慢；调整播放速度保留阶段关系。",
       "objects": "奶油色纸页与六幅自绘几何插图",
       "analogy": "翻阅一本有纸张厚度的图稿册",
       "trigger": "打开预览后按固定时间演示；右侧可切到交互翻页，点击左右书页或使用方向键。",
-      "assumptions": "画面使用本地矢量插图和程序绘制的纸纹。仅参考原组件的行为与空间关系，未移植其代码或图片。 图片留白、圆角和书脊阴影可在右侧调整，复制代码保留当前纸页设置。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+      "assumptions": "画面使用本地矢量插图和程序绘制的纸纹。仅参考原组件的行为与空间关系，未移植其代码或图片。 图片留白、圆角和书脊阴影可在右侧调整，复制代码保留当前纸页设置。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。 三个组成部分与本组合共用实际纸页结构、矢量图和光影函数，可在组合拆解中逐层查看。",
       "domains": [
         "animation",
         "document"
       ],
       "previous_names": [
         "立体翻页书",
-        "绕脊翻页"
+        "绕脊翻页",
+        "书脊翻页"
       ]
     },
     {

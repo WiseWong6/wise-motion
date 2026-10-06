@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
 import {environment as sharedEnvironment,data} from './helpers.mjs';
-async function environment(page=false){const env=await sharedEnvironment(page,{staticPreview:page});env.root=env.w.document.getElementById(page?'preview':'root');return env;}
+async function environment(page=false){const env=await sharedEnvironment(page,{staticPreview:page,...(page?{hash:'#dither-lab-book'}:{})});env.root=env.w.document.getElementById(page?'preview':'root');return env;}
 test('翻页书接入既有版式，真实交互与时间演示切换保留纸页设置和输出',async()=>{
   const env=await environment(true,{staticPreview:true}),{w}=env,d=w.document,one=id=>d.getElementById(id),timer=clock();
   try{
@@ -48,6 +48,7 @@ test('工作台隐藏或切换动效时暂停与释放真实翻页，方向键�
     Object.defineProperty(d,'hidden',{configurable:true,value:false});d.dispatchEvent(new w.Event('visibilitychange'));
     timer.advance(360);assert.equal(one('book-next').disabled,false);assert.equal(timer.pending,0);
     one('book-next').click();assert.equal(timer.pending,1);
+    d.querySelector('[data-kind="action"]').click();
     d.querySelector('[data-effect="fade-rise"]').click();assert.equal(one('book-panel').hidden,true);assert.equal(timer.pending,0);
     assert.equal(d.querySelector('.playbar').hidden,false);assert.equal(w.MotionRuntime.instanceCount,1);
     assert.equal(env.root.querySelector('.wm-book'),null);

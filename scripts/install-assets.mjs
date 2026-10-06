@@ -54,7 +54,9 @@ export async function installAssets(destination){
  await rm(path.join(target,'catalog/index.html'),{force:true});
  return target;
 }
-if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
+// 经 node_modules 符号链接（如 npm 安装本地目录）调用时，argv[1] 不是真实路径，须先解析再比较，否则会无提示地什么也不做。
+const invokedDirectly=process.argv[1]&&await realpath(process.argv[1]).then(file=>file===fileURLToPath(import.meta.url),()=>false);
+if(invokedDirectly){
  if(!process.argv[2])throw new Error('用法：node scripts/install-assets.mjs <目标工程/public/wise-motion>');
  console.log(await installAssets(process.argv[2]));
 }
