@@ -16,6 +16,16 @@ test('标准动作画面保持完整画板尺寸，不被页面图标样式缩�
     }
     const fullSize=svg=>{
       const size=w.getComputedStyle(svg);
+      const bookArt=svg.closest('.wm-book__illustration');
+      if(bookArt){
+        // 原书页插画使用自己的竖向窗口，SVG 填满窗口，保留原裁切比例。
+        assert.equal(w.getComputedStyle(bookArt).width,'220px');
+        assert.equal(w.getComputedStyle(bookArt).height,'275px');
+        assert.equal(size.width,'100%');assert.equal(size.height,'100%');
+        assert.equal(svg.getAttribute('viewBox'),'0 0 240 320');
+        assert.equal(svg.getAttribute('preserveAspectRatio'),'xMidYMid slice');
+        return;
+      }
       assert.equal(size.width,'640px',svg.parentElement.dataset.effect);
       assert.equal(size.height,'360px',svg.parentElement.dataset.effect);
     };
@@ -25,7 +35,7 @@ test('标准动作画面保持完整画板尺寸，不被页面图标样式缩�
       const scenes=[...d.querySelectorAll('.thumb .pattern-svg')];
       sceneCount+=scenes.length;scenes.forEach(fullSize);
     }
-    assert.equal(sceneCount,232);
+    assert.equal(sceneCount,233);
     d.querySelector('[data-kind="action"]').click();
     d.querySelector('[data-effect="rigid-rebound"]').click();
     fullSize(d.querySelector('#preview .pattern-svg'));

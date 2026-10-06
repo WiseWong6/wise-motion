@@ -11,7 +11,7 @@ test('插画单图独立计数、筛选和搜索，直达链接切到插画目�
     const {w} = env, d = w.document;
     const art = data.effects.filter(e=>e.kind==='illustration');
     const tab = d.querySelector('[data-kind="illustration"]');
-    assert.equal(art.length, 61);
+    assert.equal(art.length, 62);
     assert.equal(tab.getAttribute('aria-pressed'), 'true');
     assert.equal(tab.querySelector('.pill-count').textContent, String(art.length));
     assert.equal(d.querySelector('.effect-item[aria-current="true"]').dataset.effect, 'rasengan-illustration');
@@ -47,7 +47,7 @@ test('插画正式入口加载全部独立图形，缩略图可生成并可切�
     }
     filter.value='all';filter.dispatchEvent(new w.Event('change'));env.reveal();
     await w.MotionThumbs.whenIdle();
-    assert.equal(cards.length, 61);
+    assert.equal(cards.length, 62);
     for (const previous of cards) {
       const card=d.querySelector(`[data-effect="${previous.dataset.effect}"]`);
       assert.ok(card.querySelector('.thumb .pattern-svg,.thumb .pattern-canvas'), card.dataset.effect);
@@ -56,7 +56,7 @@ test('插画正式入口加载全部独立图形，缩略图可生成并可切�
       assert.equal(d.querySelector('#preview .motion-stage').dataset.effect, card.dataset.effect);
       assert.ok(d.querySelector('#preview .pattern-svg,#preview .pattern-canvas'), card.dataset.effect);
       assert.equal(d.querySelectorAll('#preview svg image,#preview svg foreignObject').length, card.dataset.effect === 'selfie-phone-illustration' ? 1 : 0);
-      if (!card.dataset.effect.endsWith('-illustration') || !['moon-card-illustration','drafting-tools-illustration','archive-folder-illustration','folio-cards-illustration','chart-card-illustration','aperture-eye-illustration','terminal-window-illustration','archive-box-illustration','paper-scroll-illustration','steel-ruler-illustration','claude-glyph-rain-illustration','claude-frame-counter-illustration'].includes(card.dataset.effect)) assert.equal(d.querySelectorAll('#preview svg text').length, 0);
+      if (!card.dataset.effect.endsWith('-illustration') || !['book-geometric-illustration','moon-card-illustration','drafting-tools-illustration','archive-folder-illustration','folio-cards-illustration','chart-card-illustration','aperture-eye-illustration','terminal-window-illustration','archive-box-illustration','paper-scroll-illustration','steel-ruler-illustration','claude-glyph-rain-illustration','claude-frame-counter-illustration'].includes(card.dataset.effect)) assert.equal(d.querySelectorAll('#preview svg text').length, 0);
       assert.equal(w.MotionRuntime.instanceCount, 1);
     }
     assert.ok(!w.MotionHistory.recipes.some(e => e.history_id === 'naive-dot-wordmark'));

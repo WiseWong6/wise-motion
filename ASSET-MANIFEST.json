@@ -483,8 +483,8 @@
     },
     {
       "path": "catalog/effects/dither-book.js",
-      "bytes": 18742,
-      "sha256": "aeec307131c6d7da2158807aecf402c83b77960d16599f6539aa066f9b8c6a78"
+      "bytes": 21968,
+      "sha256": "359ef0d1dad9b5ad943f73d929ccc72b5943c0e5832d92126d8e502b3ee7911f"
     },
     {
       "path": "catalog/effects/door-halftone.js",
@@ -798,13 +798,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1147120,
-      "sha256": "dd212d8c366ecc18325a3bc900de977ef73cfb43a00a245fa77765371e652da1"
+      "bytes": 1154131,
+      "sha256": "9549b2f264a52fcea5bee04ec72e4ceddae121a99391de920f07c749c4df4560"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1412656,
-      "sha256": "14db32a5450a9b892970df00fae105bdc04c2c93efef6c1c75e779cc16037837"
+      "bytes": 1421948,
+      "sha256": "1505ad41d7ddf73e07ba0c461c883e340b15ccb90a204fb8c94bd18d19deeb0b"
     },
     {
       "path": "catalog/related-preview.js",

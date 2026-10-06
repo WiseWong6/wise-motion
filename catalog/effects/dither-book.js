@@ -61,6 +61,8 @@
     '.wm-book__base--right .wm-book__hint{justify-content:flex-end}',
     '.wm-book__base:not(:disabled):hover .wm-book__hint,.wm-book__base:focus-visible .wm-book__hint{opacity:1}',
     '.wm-book__spine{position:absolute;left:calc(50% - 1px);top:0;bottom:0;width:2px;background:color-mix(in srgb,var(--card-edge) 45%,transparent);transform:translateZ(1px);pointer-events:none}',
+    '.wm-book [data-composition-hidden]{visibility:hidden!important}',
+    '.wm-book__illustration{position:relative;inset:auto;width:220px;height:275px;box-shadow:none}',
   ].join('\n');
   function art(index, prefix) {
     const dot = prefix + '-dot', fine = prefix + '-fine';
@@ -104,9 +106,10 @@
       titles[index] + '</text><text class="wm-book__number" x="210" y="304" text-anchor="end" font-size="' + global.MotionKit.textSize('caption',5/6) + '" fill="var(--book-muted)">' +
       String(index + 1).padStart(2, '0') + '</text></svg>';
   }
-  function paper(edge, extra) {
+  function paper(edge, extra, parts) {
     return '<div class="wm-book__paper ' + (extra || '') + '" data-edge="' + edge + '">' +
-      '<div class="wm-book__art"></div><div class="wm-book__grain"></div><div class="wm-book__crease"></div><div class="wm-book__shade"></div></div>';
+      (parts.has('art') ? '<div class="wm-book__art"></div>' : '') +
+      (parts.has('light') ? '<div class="wm-book__grain"></div><div class="wm-book__crease"></div><div class="wm-book__shade"></div>' : '') + '</div>';
   }
   function create(root, options) {
     options = options || {};
@@ -115,11 +118,12 @@
     const cancelFrame = options.cancelFrame || global.cancelAnimationFrame.bind(global);
     const now = options.now || (() => global.performance.now());
     const prefix = 'wm-book-' + (++serial);
+    const parts = new Set(options.parts || ['turn', 'art', 'light']);
     root.innerHTML = '<style>' + STYLE + '</style><div class="wm-book"><div class="wm-book__scene"><div class="wm-book__body">' +
-      '<div class="wm-book__cover"></div><div class="wm-book__edges"></div>' +
-      '<button class="wm-book__base wm-book__base--left" type="button" aria-label="点击左页，翻到上一页">' + paper('left') + '<span class="wm-book__hint">‹</span></button>' +
-      '<button class="wm-book__base wm-book__base--right" type="button" aria-label="点击右页，翻到下一页">' + paper('right') + '<span class="wm-book__hint">›</span></button>' +
-      '<div class="wm-book__spine"></div><div class="wm-book__leaf" hidden>' + paper('right', 'wm-book__front') + paper('left', 'wm-book__back') +
+      (parts.has('light') ? '<div class="wm-book__cover"></div><div class="wm-book__edges"></div>' : '') +
+      '<button class="wm-book__base wm-book__base--left" type="button" aria-label="点击左页，翻到上一页">' + paper('left', '', parts) + '<span class="wm-book__hint">‹</span></button>' +
+      '<button class="wm-book__base wm-book__base--right" type="button" aria-label="点击右页，翻到下一页">' + paper('right', '', parts) + '<span class="wm-book__hint">›</span></button>' +
+      (parts.has('light') ? '<div class="wm-book__spine"></div>' : '') + '<div class="wm-book__leaf" hidden>' + paper('right', 'wm-book__front', parts) + paper('left', 'wm-book__back', parts) +
       '</div></div></div></div>';
     const shell = root.querySelector('.wm-book');
     const body = root.querySelector('.wm-book__body');
@@ -127,6 +131,10 @@
     const right = root.querySelector('.wm-book__base--right');
     const leaf = root.querySelector('.wm-book__leaf');
     const papers = [left.firstElementChild, right.firstElementChild, leaf.firstElementChild, leaf.lastElementChild];
+    if (parts.has('turn')) body.dataset.layer = 'turn';
+    root.querySelectorAll('.wm-book__art').forEach(node => { node.dataset.layer = 'art'; });
+    root.querySelectorAll('.wm-book__cover,.wm-book__edges,.wm-book__grain,.wm-book__crease,.wm-book__shade,.wm-book__spine')
+      .forEach(node => { node.dataset.layer = 'light'; });
     const cache = [null, null, null, null];
     let destroyed = false, frame = null, animation = null;
     let state = {index: 0, flip: null, entrance: 1}, settings = {};
@@ -144,7 +152,14 @@
       if (cache[slot] === index) return;
       cache[slot] = index;
       papers[slot].dataset.page = String(index);
-      papers[slot].querySelector('.wm-book__art').innerHTML = art(index, prefix + '-' + slot);
+      const image = papers[slot].querySelector('.wm-book__art');
+      if (image) image.innerHTML = art(index, prefix + '-' + slot);
+    }
+    function paintLight(sweep) {
+      sweep = clamp(sweep, 0, 1);
+      const front = papers[2].querySelector('.wm-book__shade'), back = papers[3].querySelector('.wm-book__shade');
+      if (front) front.style.opacity = String(.36*sweep);
+      if (back) back.style.opacity = String(.36*(1-sweep));
     }
     function draw(next) {
       if (destroyed) return;
@@ -161,15 +176,13 @@
         content(3, flip.direction > 0 ? from : target);
         const sweep = flip.direction > 0 ? fraction : 1 - fraction;
         leaf.style.transform = 'translateZ(2px) rotateY(' + (-180*sweep) + 'deg)';
-        papers[2].querySelector('.wm-book__shade').style.opacity = String(.36*sweep);
-        papers[3].querySelector('.wm-book__shade').style.opacity = String(.36*(1-sweep));
+        paintLight(sweep);
       } else {
         content(0, state.index - 1); content(1, state.index);
         // Reset hidden geometry too, so seeking to the same time reconstructs all state.
         content(2, state.index); content(3, state.index);
         leaf.style.transform = 'translateZ(2px) rotateY(0deg)';
-        papers[2].querySelector('.wm-book__shade').style.opacity = '0';
-        papers[3].querySelector('.wm-book__shade').style.opacity = '.36';
+        paintLight(0);
       }
       left.disabled = right.disabled = !interactive || !!animation || !!flip;
       shell.dataset.index = String(state.index);
@@ -242,6 +255,7 @@
     const controller = {
       next: () => turn(1), prev: () => turn(-1), restartIntro, setSettings,
       renderState(next) { stopFrame(); animation = null; draw(next); },
+      renderLighting(sweep) { if (!destroyed) paintLight(sweep); },
       pause() {
         if (!animation || animation.paused || destroyed) return;
         stopFrame(); tick(now()); stopFrame();
@@ -271,6 +285,38 @@
   const factories = global.MotionFactories = global.MotionFactories || {};
   factories['dither-lab-book'] = function (root, kit, definition) {
     const book = create(root, {interactive: false, intro: false, settings: definition?.paper_settings});
-    return time => book.renderState(demoAt(time));
+    const render = time => book.renderState(demoAt(time));
+    render.destroy = preserve => book.destroy(preserve);
+    return render;
   };
+  factories['book-spine-turn'] = function (root, kit, definition) {
+    const book = create(root, {interactive: false, intro: false, settings: definition?.paper_settings, parts: ['turn']});
+    const render = time => book.renderState(demoAt(time));
+    render.destroy = preserve => book.destroy(preserve);
+    return render;
+  };
+  factories['book-geometric-illustration'] = function (root, kit, definition) {
+    const variants = ['moon','mountain','leaf','arch','water','orbit'];
+    const index = Math.max(0, variants.indexOf(definition?.variant_id || 'moon'));
+    const prefix = 'wm-book-' + (++serial) + '-illustration';
+    root.innerHTML = '<style>' + STYLE + '</style><div class="wm-book"><div class="wm-book__art wm-book__illustration" data-layer="art" data-page="' + index + '">' + art(index, prefix) + '</div></div>';
+    root.querySelector('svg').classList.add('pattern-svg');
+    return () => {};
+  };
+  factories['book-paper-light'] = function (root, kit, definition) {
+    const book = create(root, {interactive: false, intro: false, settings: definition?.paper_settings, parts: ['light']});
+    // 固定纸页姿态，只独立演示原翻页角度对应的明暗变化。
+    book.renderState({index: 4, flip: {from: 4, direction: 1, progress: .28}, entrance: 1});
+    const render = time => {
+      const flip = demoAt(time).flip;
+      book.renderLighting(flip ? (flip.direction > 0 ? flip.progress : 1 - flip.progress) : 0);
+    };
+    render.destroy = preserve => book.destroy(preserve);
+    return render;
+  };
+  factories['dither-lab-book'].breakdown = [
+    {id:'turn', name:'绕书脊翻页', actions:['book-spine-turn'], start:0, end:DURATION, time:'0–7.6 秒', detail:'纸页绕固定书脊翻转；左右基础页、活动页和正反面共用原翻页状态。'},
+    {id:'art', name:'几何网点插画', actions:['book-geometric-illustration'], start:0, end:DURATION, time:'0–7.6 秒', detail:'月相、山势、叶脉、拱廊、水纹和轨道六幅原插画，随纸页正反面承接。'},
+    {id:'light', name:'纸张光影', actions:['book-paper-light'], start:0, end:DURATION, time:'0–7.6 秒', detail:'纸纹、页缘、书脊渐变和活动页明暗；阴影强度沿用原翻页角度计算。'},
+  ];
 })(globalThis);

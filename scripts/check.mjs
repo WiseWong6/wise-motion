@@ -9,10 +9,10 @@ import assert from 'node:assert/strict';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('catalog/registry.json'));
-assert.equal(data.effects.length, 360);
-assert.equal(data.effects.filter(x => x.kind === 'action').length, 274);
-assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 61);
-assert.equal(data.effects.filter(x => x.kind === 'composition').length, 25);
+assert.equal(data.effects.length, 363);
+assert.equal(data.effects.filter(x => x.kind === 'action').length, 275);
+assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 62);
+assert.equal(data.effects.filter(x => x.kind === 'composition').length, 26);
 assert.equal(new Set(data.effects.map(x => x.id)).size, data.effects.length);
 for(const [from,to] of Object.entries(data.redirects||{})){
   assert.ok(!data.effects.some(e=>e.id===from),'旧书签不应覆盖现有条目');

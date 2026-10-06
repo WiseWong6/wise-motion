@@ -1,6 +1,6 @@
 interface:
   display_name: "Wise Motion"
   short_description: "先理解并转译需求，再匹配动作与设计画面；新动效用 Remotion"
-  default_prompt: "使用 $wise-motion，先结合上下文理解我的需求，转译为画面变化、动作关系与约束；有字幕或分镜时先走技能正文的字幕到成片入口，再比较候选、阅读源码，逐项完成设计或制作，交付检查结果。"
+  default_prompt: "使用 $wise-motion，先结合上下文理解我的需求，转译为画面变化、动作关系与约束；先读技能正文和快速上手；有字幕或分镜时用 plan.mjs 生成并检查分镜计划，用 match.mjs 与 show.mjs 比较候选并阅读源码，逐项完成设计或制作，如实交付检查结果。"
 policy:
   allow_implicit_invocation: false

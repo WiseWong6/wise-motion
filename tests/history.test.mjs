@@ -127,6 +127,8 @@ test('历史目录筛选与配方切换同步输出、源码和时长，前后�
     d.querySelector(`[data-effect="${next.id}"]`).click();await tick();
     assert.equal(w.MotionHistoryRuntime.instanceCount,1);
     const entry=next.entries[0];
+    // 播放条右侧显示剩余时间；暂停并回到起点，避免自动播放受测试负载影响。
+    const scrub=d.getElementById('scrub');scrub.value=0;scrub.dispatchEvent(new w.Event('input'));
     assert.equal(d.getElementById('time-total').textContent,entry.preview.duration.toFixed(1));
     assert.ok(d.getElementById('code').textContent.includes(env.w.MotionHistory.source_files[entry.code[0].file].content));
     // 提示词跟随保留配方切换；动作要求与内部审查说明分开核对。

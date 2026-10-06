@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "title": "Wise Motion 宣传片开头（示例）",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "note": "示例：每镜先填六个设计字段，再用 show.mjs 读源码，最后填写 effect。",
+  "shots": [
+    {
+      "id": "s01",
+      "subtitle": "opus 5.5做视频很强",
+      "seconds": 2.8,
+      "subject": "文字 opus 5.5",
+      "from": "屏幕空白",
+      "to": "大字撞入屏幕中央并留下残影",
+      "meaning": "观众记住一个强势的开场判断",
+      "hold": "最后一个词停住约 0.8 秒，字幕可读完",
+      "handoff": "旧词淡成残影，下一镜字幕从同一位置接上",
+      "candidates": [],
+      "effect": {
+        "mode": "tweak",
+        "id": "word-slam",
+        "variant": "",
+        "speed": null,
+        "source": "catalog/effects/word-slam.js#word-slam",
+        "prompt": "把词表换成 OPUS、5.5、VIDEO、STRONG 四个词，依次撞入同一位置并留下残影；撞击节奏、红色错位描边和残影保持不变。"
+      }
+    },
+    {
+      "id": "s02",
+      "subtitle": "但几乎没有稳定、不掺水的使用方式",
+      "seconds": 3.6,
+      "subject": "一行转折文字",
+      "from": "上一镜的残影还在",
+      "to": "文字从裁剪线下依次升起并停稳",
+      "meaning": "观众读到“没有稳定方式”这个落差",
+      "hold": "整行完整可读后停留 1 秒",
+      "handoff": "整行文字下沉淡出，让位给资产目录",
+      "candidates": [],
+      "effect": {
+        "mode": "tweak",
+        "id": "mask-stagger-text",
+        "variant": "standard",
+        "speed": null,
+        "source": "catalog/effects/history-patterns.js#mask-stagger-text",
+        "prompt": "把三行示例文字换成“但几乎没有稳定”“不掺水的使用方式”两行，仍由裁剪线下逐字升起并停稳；字号和停留时长不变。"
+      }
+    },
+    {
+      "id": "s03",
+      "subtitle": "把做过的动效沉淀成资产目录",
+      "seconds": 3.2,
+      "subject": "一组散落的动效图标",
+      "from": "散落在画面四周",
+      "to": "向中心缩拢并收进同一份目录",
+      "meaning": "观众理解“零散动效被收成一份资产”",
+      "hold": "收拢完成后保留目录 0.8 秒",
+      "handoff": "目录保持原位，下一镜的代码窗口从它旁边升起",
+      "candidates": [],
+      "effect": {
+        "mode": "reuse",
+        "id": "motifs-gather-atlas",
+        "variant": "",
+        "speed": null,
+        "source": "catalog/effects/civilization-growth.js#motifs-gather-atlas",
+        "prompt": ""
+      }
+    },
+    {
+      "id": "s04",
+      "subtitle": "逆向出提示词并且给出源码",
+      "seconds": 3,
+      "subject": "终端窗口里的提示词与源码",
+      "from": "空终端",
+      "to": "逐行敲出提示词，再接上源码路径",
+      "meaning": "观众看到“每个动效都有提示词和源码”",
+      "hold": "最后一行完整停留 0.8 秒",
+      "handoff": "光标停在末尾，窗口保持，下一镜从窗口里引出连线",
+      "candidates": [],
+      "effect": {
+        "mode": "tweak",
+        "id": "terminal-code",
+        "variant": "command-log",
+        "speed": null,
+        "source": "catalog/effects/history-patterns.js#terminal-code",
+        "prompt": "把终端里的示例命令换成 node scripts/show.mjs stagger-in，日志换成源码路径与提示词两行；窗口、光标和逐字节奏保持不变。"
+      }
+    },
+    {
+      "id": "s05",
+      "subtitle": "让AI基于我们的想法匹配动效",
+      "seconds": 3.4,
+      "subject": "三张想法卡片和一张动效卡片",
+      "from": "卡片各自独立",
+      "to": "连线依次建立并汇向动效卡片",
+      "meaning": "观众理解“想法被匹配到现成动效”",
+      "hold": "连线完成后停留 1 秒",
+      "handoff": "动效卡片放大成为下一镜的画面",
+      "candidates": [],
+      "effect": {
+        "mode": "tweak",
+        "id": "line-converge",
+        "variant": "",
+        "speed": null,
+        "source": "catalog/effects/history-patterns.js#line-converge",
+        "prompt": "把三张卡片的文字换成“想法”“字幕”“分镜”，汇聚点的卡片换成“动效”；连线顺序和停留保持不变。"
+      }
+    }
+  ]
+}
