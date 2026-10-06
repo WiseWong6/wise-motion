@@ -478,8 +478,8 @@
     },
     {
       "path": "catalog/effects/data-motion.js",
-      "bytes": 222125,
-      "sha256": "e9360d7b9cbef72802ab738fd8ccdfc7503194348a88ddf4c27745dc78404888"
+      "bytes": 535357,
+      "sha256": "a602055fef9b62b18caee822b46ed0187981e372bf6371c8b055719ae922776c"
     },
     {
       "path": "catalog/effects/dither-book.js",
@@ -798,13 +798,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1146962,
-      "sha256": "c16ff2ef8c92f6dffa8cc99e8b779e2075424b1a6875e249fffe1af2b707d643"
+      "bytes": 1147120,
+      "sha256": "dd212d8c366ecc18325a3bc900de977ef73cfb43a00a245fa77765371e652da1"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1412431,
-      "sha256": "f7b6aed100d2a4324da4a6e985a82dfd830b74b6fb0a3c166cd0ac04b947e22b"
+      "bytes": 1412656,
+      "sha256": "14db32a5450a9b892970df00fae105bdc04c2c93efef6c1c75e779cc16037837"
     },
     {
       "path": "catalog/related-preview.js",
@@ -915,6 +915,21 @@
       "path": "vendor/duobaota/page-10.jpg",
       "bytes": 764074,
       "sha256": "b20ed16ec17361055189f0b2351f2713dcfbc279d0507c7fe00b3b7c58b10f8f"
+    },
+    {
+      "path": "vendor/guangdong-map/ODbL-1.0.txt",
+      "bytes": 25289,
+      "sha256": "77d2692c3d64efdd4db18dce2407699baf62930e2b50d6e5ed90b48acf16b7c1"
+    },
+    {
+      "path": "vendor/guangdong-map/SOURCE.json",
+      "bytes": 1665,
+      "sha256": "d7345e83aa22c292baf50159aa7f49ec8984a07fa5d056ae8bd1e823ce542148"
+    },
+    {
+      "path": "vendor/guangdong-map/guangdong-cities.geojson",
+      "bytes": 749429,
+      "sha256": "080ef806aa299c7155e4dbfef808254ca70f6054cd723c8e17600456f8a12b07"
     },
     {
       "path": "vendor/heroicons/LICENSE",
