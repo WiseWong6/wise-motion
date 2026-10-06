@@ -7858,7 +7858,13 @@
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
+        "reference_url": "https://animejs.com/documentation/",
+        "reference": {
+          "name": "OpenStreetMap（开放街图）",
+          "url": "https://www.openstreetmap.org/copyright",
+          "credit_prefix": "地图数据：",
+          "credit_suffix": "；地图数据保留 ODbL 1.0 许可。"
+        }
       },
       "actions": [],
       "demo_mode": "fixed-timeline",
@@ -7867,7 +7873,7 @@
       "tempo_note": "约零点一五秒起动，主要动作 1.2 秒，末尾静止零点四五秒。保留原动作先后、错峰间距、回弹或逐字的相对关系；速度控件整体调整。",
       "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
       "analogy": "广东地图边界常驻，各地区依次填入灰阶。",
-      "assumptions": "广东分区轮廓引用用户本机原工程内嵌地图；灰阶与时序为示例，不表达真实区域统计。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。",
+      "assumptions": "广东 21 市陆地区域示意；灰阶与时序为示例，不表达真实区域统计。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；动作关系保留。",
       "domains": [
         "animation",
         "document"

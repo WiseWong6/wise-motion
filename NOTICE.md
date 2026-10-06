@@ -34,9 +34,9 @@ Copyright © 2026 Wise Wong. 更新日期：2026 年 10 月 6 日。
 
 | 材料 | 作者或来源 | 使用范围与许可状态 | 详细记录 |
 | --- | --- | --- | --- |
-| 月貌数值（LunarNearside，北向上） | NASA / GSFC / Arizona State University | 原下载地址已找回；128×128 灰度值与原工程逐值一致。LROC 允许署名用于新闻及教育；非 PDS 归档图片的商业使用需事先许可，现有展示图取样未取得此许可。 | [原图下载](https://assets.science.nasa.gov/dynamicimage/assets/science/psd/lunar-science/internal_resources/352/LunarNearside.jpeg?w=1024&h=1024&fit=clip)、[月貌来源与处理](catalog/assets/history-nature/SOURCE.json)、[LROC 使用条款](https://lroc.im-ldi.com/about/terms) |
+| 月貌数值（LunarNearside，北向上） | NASA / GSFC / Arizona State University | LROC 允许署名用于新闻及教育；非 PDS 归档图片的商业使用需事先许可，现有展示图取样未取得此许可。 | [原图下载](https://assets.science.nasa.gov/dynamicimage/assets/science/psd/lunar-science/internal_resources/352/LunarNearside.jpeg?w=1024&h=1024&fit=clip)、[月貌来源与处理](catalog/assets/history-nature/SOURCE.json)、[LROC 使用条款](https://lroc.im-ldi.com/about/terms) |
 | 《小星星》古老旋律与独立排谱 | 法国传统旋律 Ah, vous dirai-je, maman；排谱及简单伴奏：Wise Motion | 古老旋律为公有领域；本项目重新绘制谱面与 44 个音符事件，按 AGPL-3.0-only 提供。不复制现代编配、出版谱面、音乐字体或录音。《晴天》谱面及其音符数据已替换。 | [谱面、编配与软件来源](catalog/assets/particle-scenes/notes/assets/来源.md)、[莫扎特基金会的历史旋律记录](https://kv.mozarteum.at/de/work/zwolf-variationen-in-c-uber-4057) |
-| 广东 21 市分区几何轮廓 | 高德开放平台，经阿里云 DataV.GeoAtlas 提供 | 用于地图分区着色；与 Wise PPT 内置的 21 市边界逐点核对一致。官方说明限定学习与交流用途，保留原数据的使用条件。 | [地图数据工具](https://datav.aliyun.com/portal/school/atlas/area_selector)、[官方来源与使用说明](https://help.aliyun.com/zh/datav/datav-7-0/user-guide/datav-geoatlas-widgets/) |
+| 广东 21 市分区几何轮廓 | © OpenStreetMap contributors | 市界、海岸线及派生地图数据按 ODbL 1.0 提供；使用及再分发须保留署名与许可，公开使用的派生数据库按同一许可提供。 | [开放街图许可](https://www.openstreetmap.org/copyright)、[地图来源记录](vendor/guangdong-map/SOURCE.json)、[原许可](vendor/guangdong-map/ODbL-1.0.txt) |
 | 材质演变的书法笔画与片尾字形 | 颜真卿《宋拓多寶佛塔碑 冊》；国立故宫博物院，台北；动画处理：Wise Motion | “道”字直接描摹第二开左页“道樹萌牙”的原字，原页及描摹轮廓保留 CC BY 4.0 署名；灰度描边、去除细小杂点并等比缩放。一、二、三直接描摹同册第十开“一志”“春秋二時”“自三載”的完整原字，中段粒子与片尾共用这些轮廓，同样保留 CC BY 4.0 署名；英文、数字及 WISE MOTION 字标使用 Oswald Bold。 | [古帖与开放说明](https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P)、[原页、原字位置与处理说明](vendor/duobaota/README.md)、[生成记录](catalog/assets/material-evolution/SOURCE.json) |
 
 NASA 月貌数值与下表中的 AI 生成月面图片是两份不同材料，分别记录来源。
@@ -81,38 +81,3 @@ I.顏體字库及派生字形保留 GPL-2.0-or-later；自有提取程序采用 
 Remotion、React 等视频复用依赖由目标工程安装，版本和接入方式见 [Remotion 制作说明](REMOTION.md)，许可按各依赖原条款执行。开发检查使用的 jsdom 及其依赖仅用于测试，不进入目录运行时；其许可随开发依赖保留。
 
 第三方版权与许可文件保持原文。GSAP、Jitter、LottieFiles 等外部资源的收录边界见 [来源核对与收录规范](references/sources.md)。
-
-## 五、待核实与待补充事项
-
-| 对象 | 当前待办 |
-| --- | --- |
-| NASA 月貌数值 | 来源与处理已核实；若需覆盖商业再分发，取得现有展示图的相应许可，或改用已确认属于公有领域的 PDS 归档数据。 |
-| 广东分区几何 | 来源已核实；高德数据的公开再分发授权尚未核实。 |
-
-以上事项按具体材料处理，不扩大为对全部项目制作成果的归属判断。
-
-## 附录：项目内制作与适配来源
-
-以下工程名用于追溯制作来源；片名、模型名或品牌名不作为第三方版权归属的认定依据。自有绘制与目录适配代码按第一部分许可提供，外部素材、字体、谱曲和原始数据按第三部分分别记录。正式条目的绘制入口见目录定义及逐项说明，原始制作与迁移核对资料保留在项目制作记录中。
-
-| 制作来源 | 纳入内容与适配范围 |
-| --- | --- |
-| 需求方法文章 | 文章按独立表达整理，来源链接见 [需求方法](references/method.md)。 |
-| PPT 减法主题制作工程 | 广东分区路径、逐字呈现、主色与五级色阶、三层纸面镜头及六色固定版式；字标与文案适配为 WISE MOTION。 |
-| PPT 视频制作工程 | 关键词变红与下划线、三卡连线汇聚、六卡成组展开、三列九格跨页承接，以及配色页的柱条、环形分段与趋势折线。 |
-| Naive 主题制作工程 | 输入框退格改写、六节点时间线、三栏数据图、纸卷展开、快速切换、双向卡片传送带与金属钢尺；示例数据不构成当前评测结论。 |
-| Kimi 档案桌制作工程 | 点阵目标与连线、绘图道具、月相卡、档案夹、散页、手绘图表、光圈、终端、开盒文件及缩小落印；终端打字复用同一插画。 |
-| Claude 展示与动效演进制作工程 | 管流、线圈、汇聚环、阶段卡、环面、代码窗口读数、词语撞入换位、字形内代码填充、数学公式漂浮与图块墙聚焦。 |
-| Claude 信号展示段 | 环形频谱与双层波形保留原分析数值，经量化压缩；目录不携带或播放原音频。 |
-| 球涡与电弧演示工程 | 烟圈、涡环剖面、蘑菇云、球涡流线、台风螺旋、螺旋星系、螺旋丸与分叉电弧；保留固定几何及轨迹采样。 |
-| 动效教程制作工程 | 光球跳阶、概念逐步图解、词云呼吸、上移收拢、圆心涟漪、枝干光流、矩形点阵波浪、天平与匀速缓动对比；按目录画幅适配。 |
-| 简历视频制作工程 | 经历、方法、能力、数据四组论据图标，保留细线、配色与词点，改为横向单行排列。 |
-| 自然与主体制作工程 | 太阳、船、纸飞机、汽车、蒲公英、冠毛漂移、群粒落入及小猫料斗；月貌数值另按 NASA 来源记录。 |
-| 星月来信制作工程 | 水面明暗、字形位移、逐像素重采样、模糊淡出及符号飞行；使用保留 OFL 的霞鹜文楷字形。 |
-| 织风制作工程 | 双梭牵丝、羽丝织造与原金属材质、蓝色背景；固定节拍及绘制代码随包提供。 |
-| 玻璃卡片制作工程 | 六张苹果空间卡片、几何、空间投影、光照、像素采样与折射绘制；统一视觉参考列于第二部分。 |
-| 原创剪贴短片 | 剪贴联动与海报归位及六个直接动作；生成图集见第三部分，组合与独立动作共用绘制函数。 |
-| 镀彩金属与品牌制作工程 | 球体分裂、水平队列碰撞、圆管字形、光照与反射，以及种子、生长、化蝶与 WISE MOTION 字标；使用包内字体许可。 |
-| 笔墨材质与文明生长制作工程 | 固定时间表、字形与墨点、空间连线、材质接续、植物与文明版画；外部轮廓、生成图片和字库分别列于第三部分。 |
-
-历史目录入口已下线。已收录的正式动作、插画与组合沿用其逐项来源记录；原工程成片、声音、外围文稿与运行环境不作为整套资源随包提供。

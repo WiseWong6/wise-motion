@@ -17,7 +17,7 @@
 对应参考：本地目录「地图分区着色」
 源码：catalog/effects/data-motion.js 中的 map-paint
 来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
-关键假设：广东分区轮廓引用用户本机原工程内嵌地图；灰阶与时序为示例，不表达真实区域统计。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。
+关键假设：广东 21 市陆地区域示意；灰阶与时序为示例，不表达真实区域统计。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；动作关系保留。
 
 ## 调整方式
 
@@ -30,7 +30,7 @@
 
 - [自编源码](../../catalog/effects/data-motion.js)，注册名称：`map-paint`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
-- [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
+- 地图数据： [OpenStreetMap（开放街图）](https://www.openstreetmap.org/copyright) ；地图数据保留 ODbL 1.0 许可。
 - 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

@@ -1,0 +1,46 @@
+{
+  "name": "广东 21 市陆地区域示意",
+  "copyright": "© OpenStreetMap contributors",
+  "license": "ODbL-1.0",
+  "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "source": "https://www.openstreetmap.org/copyright",
+  "osm_timestamp": "2026-10-06T03:34:27Z",
+  "osm_endpoint": "https://overpass-api.de/api/interpreter",
+  "osm_relations": [
+    3287346,
+    3203994,
+    3464353,
+    3464829,
+    3282750,
+    3464719,
+    3463901,
+    3484419,
+    2689018,
+    3205802,
+    3209912,
+    3233743,
+    3282610,
+    3241970,
+    3032037,
+    3124223,
+    3464319,
+    3464878,
+    3244431,
+    3282749,
+    3032080
+  ],
+  "modifications": "沿市界与同一来源的海岸线生成陆地区域，统一简化共享边界并保留岛屿与孔洞；经纬度数据与内嵌矢量轮廓均保留 ODbL 1.0。绘制与动画代码按项目 AGPL-3.0-only 提供。",
+  "attribution_guidelines": "https://osmfoundation.org/wiki/Licence/Attribution_Guidelines",
+  "files": {
+    "guangdong-cities.geojson": {
+      "bytes": 749429,
+      "sha256": "080ef806aa299c7155e4dbfef808254ca70f6054cd723c8e17600456f8a12b07"
+    },
+    "ODbL-1.0.txt": {
+      "bytes": 25289,
+      "sha256": "77d2692c3d64efdd4db18dce2407699baf62930e2b50d6e5ed90b48acf16b7c1"
+    }
+  },
+  "boundary_query": "[out:json][date:\"2026-10-06T03:34:27Z\"];relation(id:3287346,3203994,3464353,3464829,3282750,3464719,3463901,3484419,2689018,3205802,3209912,3233743,3282610,3241970,3032037,3124223,3464319,3464878,3244431,3282749,3032080);out geom;",
+  "coastline_query": "[out:json][date:\"2026-10-06T03:34:27Z\"];way[\"natural\"=\"coastline\"](20.05,109.5,25.7,117.4);out geom;"
+}
