@@ -34,3 +34,21 @@
 - 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[按钮按压换态](button-press-status.md)、[进度填满淡出](progress-fill-exit.md)、[淡入上移](fade-rise.md)。
+
+### 可替换内容
+
+通过组件 `content` 或分镜 `effect.content` 为当前镜头赋值；字段含义与字体、宽度限制见 [组件说明](../../REMOTION.md)。默认内容如下：
+
+```json
+{
+  "states": [
+    "开始整理",
+    "正在整理",
+    "整理完成"
+  ],
+  "result": "✓ 已整理完成"
+}
+```
+
+- states（按钮三个阶段）：3–3 项，每项最多 12 字。
+- result（完成提示）：最多 24 字。

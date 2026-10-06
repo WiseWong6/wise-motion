@@ -31,7 +31,7 @@
       a:r()*TAU, sp:Math.pow(r(), .55)*1150+60, d:r(), c:(r()*3)|0, s:r()<.12?3:2, w:r()*TAU
     }));
   })();
-  const targets = (() => {
+  const makeTargets = outline => {
     const r = mulberry32(9), points = outline.map(p => p.slice());
     for (let i = points.length - 1; i > 0; i--) {
       const j = Math.floor(r() * (i + 1)); [points[i], points[j]] = [points[j], points[i]];
@@ -41,11 +41,12 @@
       points[i % points.length][0] + (r()-.5)*2.2/3,
       points[i % points.length][1] + (r()-.5)*2.2/3
     ]));
-  })();
+  };
+  const targets = makeTargets(outline);
   const buckets = [0,1,2].map(c => particles.flatMap((p, i) => p.c === c ? [i] : []));
   // dt 为触发之后的秒数；返回 640×360 画板坐标，不包含全画面震动。
-  function position(index, dt) {
-    const p = particles[index], target = targets[index], t = 26 + dt;
+  function position(index, dt, instanceTargets = targets) {
+    const p = particles[index], target = instanceTargets[index], t = 26 + dt;
     const r = p.sp * (1 - Math.exp(-3 * dt)) * 1.1 / 3;
     const angle = p.a + (p.d - .5) * 1.5 * (1 - Math.exp(-2 * dt));
     let x = CX + Math.cos(angle) * r * 1.3, y = CY + Math.sin(angle) * r * .85;
@@ -74,8 +75,31 @@
     value = String(value); if (node.getAttribute(key) !== value) node.setAttribute(key, value);
   };
   const fixed = v => String(Math.round(v * 10000) / 10000);
+  // 固定 2 倍采样画布，与设备像素比无关；按行扫描，默认字形仍走预存点阵。
+  function sampleOutline(root, text, family) {
+    const canvas=root.ownerDocument.createElement('canvas');canvas.width=W*2;canvas.height=H*2;
+    const ctx=canvas.getContext('2d',{willReadFrequently:true});
+    if(!ctx)throw new Error('粒子换字需要可用的画布');
+    ctx.font=`700 100px "${family}"`;ctx.letterSpacing="5px";
+    const m=ctx.measureText(text),inkWidth=m.actualBoundingBoxLeft+m.actualBoundingBoxRight,inkHeight=m.actualBoundingBoxAscent+m.actualBoundingBoxDescent;
+    if(!(inkWidth>0&&inkHeight>0))throw new Error('粒子文字没有可采样的字形');
+    const scale=Math.min(420/inkWidth,63/inkHeight),size=100*scale;
+    // 最少十行采样点，避免把长句缩成看不清的单线。
+    if(inkHeight*scale<35)throw new Error('粒子文字过宽，字形不足十行采样点，请缩短文字');
+    ctx.setTransform(2,0,0,2,0,0);ctx.font=`700 ${size}px "${family}"`;ctx.letterSpacing=(size*.05)+"px";ctx.fillStyle='#fff';
+    const at=ctx.measureText(text),x=CX-(at.actualBoundingBoxRight-at.actualBoundingBoxLeft)/2,y=CY+(at.actualBoundingBoxAscent-at.actualBoundingBoxDescent)/2;
+    ctx.fillText(text,x,y);
+    const data=ctx.getImageData(0,0,W*2,H*2).data,points=[];
+    for(let y=0;y<H;y+=3.5)for(let x=0;x<W;x+=3.5){
+      // 固定阈值；坐标半像素在 2 倍画布上为整数。
+      if(data[((y*2)*W*2+x*2)*4+3]>=128)points.push([x,y]);
+    }
+    canvas.width=canvas.height=1;
+    if(points.length<10)throw new Error('粒子字形采样过少，请改用更完整的文字');
+    return points;
+  }
   let serial = 0;
-  F['particle-word'] = (root) => {
+  const createParticle = (root, instanceTargets = targets) => {
     const id = 'motion-promo-particles-' + ++serial, doc = root.ownerDocument;
     root.innerHTML = `<svg class="pattern-svg" width="640" height="360" viewBox="0 0 640 360" aria-hidden="true">
       <defs>
@@ -147,7 +171,7 @@
       if (dt>=0) for (let b=0; b<3; b++) {
         ctx.fillStyle=colors[b+1];
         for (const i of buckets[b]) {
-          const [x,y]=position(i,Math.min(dt,3.5)), s=particles[i].s/3;
+          const [x,y]=position(i,Math.min(dt,3.5),instanceTargets), s=particles[i].s/3;
           ctx.fillRect(x-s/2,y-s/2,s,s);
         }
       }
@@ -177,7 +201,7 @@
     function drawFallback(dt, effects, colors, bar, opacity, coreRadius) {
       const paths=['','',''];
       if (dt>=0) for (let i=0;i<COUNT;i++) {
-        const [x,y]=position(i,Math.min(dt,3.5)),p=particles[i],s=p.s/3;
+        const [x,y]=position(i,Math.min(dt,3.5),instanceTargets),p=particles[i],s=p.s/3;
         paths[p.c]+=`M${fixed(x-s/2)} ${fixed(y-s/2)}h${fixed(s)}v${fixed(s)}h-${fixed(s)}z`;
       }
       nodes.paths.forEach((path,i)=>set(path,'d',paths[i]));
@@ -210,5 +234,10 @@
     };
     return render;
   };
-  Object.assign(F['particle-word'], {position, particles:Object.freeze(particles), targets:Object.freeze(targets), impact, sourceTrigger:26, trigger_ms:150});
+  F['particle-word'] = (root,M,definition) => {
+    if(!definition?.content)return createParticle(root);
+    const text=M.slot(definition,'text','WISE MOTION'),family=M.textFont(text);
+    return M.textReady(root,[{family,text}],()=>createParticle(root,makeTargets(sampleOutline(root,text,family))));
+  };
+  Object.assign(F['particle-word'], {sampleOutline, outline, makeTargets, position, particles:Object.freeze(particles), targets:Object.freeze(targets), impact, sourceTrigger:26, trigger_ms:150});
 })(globalThis);

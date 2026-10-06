@@ -30,6 +30,7 @@
   }
   function prompt(effect, settings = {}, registry) {
     effect = global.MotionKit.resolveVariant(effect, settings.variantId || effect.variant_id);
+    if(settings.content!==undefined||effect.content!==undefined)effect=global.MotionContent.withContent(effect,settings.content===undefined?effect.content:settings.content);
     const entry=effect.kind==='recipe'?(effect.entries.find(e=>e.id===settings.caseId)||effect.selected_entry||effect.entries[0]):null;
     const detail=entry?{...effect,...entry.definition}:effect, spec=detail.reproduction||{};
     const speed=Math.min(2,Math.max(.5,Number(settings.speed)||1));
@@ -76,6 +77,7 @@
   function code(effect, settings = {}) {
     if(effect.kind==='recipe')return historySource(effect,settings);
     effect = global.MotionKit.resolveVariant(effect, settings.variantId || effect.variant_id);
+    if(settings.content!==undefined||effect.content!==undefined)effect=global.MotionContent.withContent(effect,settings.content===undefined?effect.content:settings.content);
     if(effect.source.remotion)return remotionSource(effect,settings);
     return catalogCode(effect,settings);
   }
@@ -109,10 +111,12 @@ registerRoot(Root);
   }
   function catalogCode(effect, settings = {}) {
     effect = global.MotionKit.resolveVariant(effect, settings.variantId || effect.variant_id);
+    if(settings.content!==undefined||effect.content!==undefined)effect=global.MotionContent.withContent(effect,settings.content===undefined?effect.content:settings.content);
     const definition = {id:effect.id, duration_ms:effect.duration_ms, loop:effect.loop, default_ease:effect.default_ease, parameters:effect.parameters};
     if(effect.source.factory!==effect.id)definition.source={factory:effect.source.factory};
     if(effect.id==='motion-oasis-sequence'&&global.WiseMotionOasis)definition.catalog_data=global.WiseMotionOasis.catalogData(global.MotionRegistry);
     if(effect.variant_id)definition.variant_id=effect.variant_id;
+    if(effect.content){definition.content=effect.content;definition.content_slots=effect.content_slots;}
     if(effect.timing)definition.timing=effect.timing;
     if(effect.id==='dither-lab-book' && settings.bookSettings)definition.paper_settings=settings.bookSettings;
     const speed = Math.min(2, Math.max(.5, Number(settings.speed) || 1));
@@ -140,6 +144,7 @@ registerRoot(Root);
   <div id="motion" class="motion-viewport" aria-label="${escape(effect.name)}"></div>
   <div class="demo-controls"><button id="play" type="button">播放</button><button id="again" type="button">重播</button><input id="time" aria-label="定位时间" type="range" min="0" max="1000" value="0"><output id="readout"></output></div>
   <script src="vendor/animejs/anime.umd.min.js"></script>
+  <script src="catalog/content.js"></script>
   <script src="catalog/runtime.js"></script>
   ${[...new Set([...(effect.source.dependencies||[]),effect.source.path])].map(file=>`<script src="${escape(file)}"></script>`).join('\n  ')}
   <script>
@@ -210,15 +215,17 @@ window.addEventListener('pageshow',e=>{if(e.persisted&&player.destroyed)location
   function remotionCode(effect, settings = {}) {
     if(effect.kind==='recipe')return historySource(effect,settings);
     effect=global.MotionKit.resolveVariant(effect,settings.variantId||effect.variant_id);
+    if(settings.content!==undefined||effect.content!==undefined)effect=global.MotionContent.withContent(effect,settings.content===undefined?effect.content:settings.content);
     if(effect.source.remotion)return remotionSource(effect,settings);
     const props={effectId:effect.id,speed:Math.min(2,Math.max(.5,Number(settings.speed)||1)),theme:document.documentElement.dataset.theme||'dark'};
     if(effect.variant_id)props.variantId=effect.variant_id;
+    if(effect.content)props.content=effect.content;
     if(effect.parameters.ease)props.ease=settings.ease||effect.default_ease;
     if(effect.id==='dither-lab-book'&&settings.bookSettings)props.bookSettings=settings.bookSettings;
     const drawingSources=[...(effect.source.dependencies||[]),effect.source.path];
     const files=[...new Set(['vendor/animejs/anime.umd.min.js',
       ...(drawingSources.includes('catalog/effects/motion-oasis.js')?['catalog/registry-data.js']:[]),
-      'catalog/runtime.js',...drawingSources])];
+      'catalog/content.js','catalog/runtime.js',...drawingSources])];
     const renderFlags=drawingSources.includes('catalog/effects/metal-impact.js')?' --gl=angle':'';
     return `/* ${effect.name} · Remotion 组件示例，保存为 src/Root.jsx。
 自有代码 AGPL-3.0-only；第三方和素材许可见源码包 NOTICE.md。

@@ -3,6 +3,7 @@
 export const FRAME_SCRIPTS = Object.freeze([
   "vendor/animejs/anime.umd.min.js",
   "catalog/registry-data.js",
+  "catalog/content.js",
   "catalog/runtime.js",
   "catalog/history-runtime.js",
   "catalog/effects/entrance.js",
@@ -76,7 +77,7 @@ export function frameScriptsFor(definition) {
   if (!definition) return FRAME_SCRIPTS;
   const source = definition.source;
   if (!source?.path || !Array.isArray(source.dependencies ?? [])) throw new TypeError('动效缺少有效的绘制来源');
-  const required = new Set(['vendor/animejs/anime.umd.min.js', 'catalog/runtime.js',
+  const required = new Set(['vendor/animejs/anime.umd.min.js', 'catalog/content.js', 'catalog/runtime.js',
     ...(source.dependencies || []), source.path]);
   // 这组场景从真实目录统计数据生成图表，其他绘制器不读取目录清单。
   if (required.has('catalog/effects/motion-oasis.js')) required.add('catalog/registry-data.js');
@@ -215,15 +216,16 @@ function bootstrapFrame() {
   };
 }
 
-export function createFrameDocument({assetBaseUrl, theme = 'dark', definition}) {
+export function createFrameDocument({assetBaseUrl, theme = 'dark', definition, transparent = false}) {
   if (!assetBaseUrl || typeof assetBaseUrl !== 'string') throw new TypeError('必须提供素材根地址');
   if (theme !== 'dark' && theme !== 'light') throw new TypeError('外观必须为 dark 或 light');
+  if (typeof transparent !== 'boolean') throw new TypeError('transparent 必须为布尔值');
   const base = assetBaseUrl.replace(/\/?$/, '/');
   const url = path => escapeAttribute(base + path);
   return `<!doctype html><html lang="zh-CN" data-theme="${theme}"><head><meta charset="utf-8"><meta name="viewport" content="width=640,initial-scale=1"><base href="${url('catalog/')}">
 <script>(${bootstrapFrame.toString()})()<\/script>
 ${FRAME_STYLES.map(path => `<link rel="stylesheet" href="${url(path)}">`).join('\n')}
-<style>html,body{margin:0;padding:0;width:640px;height:360px;overflow:hidden}#wise-motion-viewport{position:relative;width:640px;height:360px;min-width:0;min-height:0;border:0;border-radius:0;margin:0;box-shadow:none}.motion-stage{transform:translate(-50%,-50%) scale(1)}</style>
+<style>html,body{margin:0;padding:0;width:640px;height:360px;overflow:hidden}#wise-motion-viewport{position:relative;width:640px;height:360px;min-width:0;min-height:0;border:0;border-radius:0;margin:0;box-shadow:none}.motion-stage{transform:translate(-50%,-50%) scale(1)}${transparent ? 'html{color-scheme:normal!important}html,body,#wise-motion-viewport,.motion-stage{background:transparent!important}.motion-stage::before,.motion-stage::after{display:none!important}' : ''}</style>
 </head><body><div id="wise-motion-viewport" class="motion-viewport"><div class="motion-stage"></div></div>
 ${frameScriptsFor(definition).map(path => `<script src="${url(path)}"><\/script>`).join('\n')}
 </body></html>`;

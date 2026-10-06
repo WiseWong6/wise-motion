@@ -16,5 +16,6 @@ const assetFiles=[];
 async function collect(directory){for(const entry of await readdir(path.join(root,directory),{withFileTypes:true})){const name=path.join(directory,entry.name);if(entry.isDirectory())await collect(name);else if(isAssetFile(name)){const bytes=await readFile(path.join(root,name));assetFiles.push({path:name,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')});}}}
 await collect('catalog');await collect('vendor');
 await writeFile(path.join(root,'ASSET-MANIFEST.json'),JSON.stringify({purpose:'实际绘制依赖、字体和素材，随包提供并复制到目标工程 public/wise-motion',files:assetFiles},null,2)+'\n');
-await installAssets(path.join(root,'public/wise-motion'));
+// 本目录的 public 是构建输出；独立项目安装默认保护其本地修改。
+await installAssets(path.join(root,'public/wise-motion'),{overwrite:true});
 console.log('已生成可复用组件、本地目录播放器和 Remotion 本地素材。');

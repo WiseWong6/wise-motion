@@ -7,6 +7,7 @@ import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {promisify} from 'node:util';
 import {createPlan, checkPlan, buildJsx, sourceTag, splitSubtitles} from '../scripts/plan.mjs';
+import {resolveEffect} from '../remotion/clock.mjs';
 import registry from '../catalog/registry.json' with {type: 'json'};
 
 const run = promisify(execFile);
@@ -35,7 +36,7 @@ test('随附的示例计划通过检查，且来源标记与目录一致', async
   const plan = await example();
   const {errors} = checkPlan(plan);
   assert.deepEqual(errors, []);
-  for (const shot of plan.shots) assert.equal(shot.effect.source, sourceTag(byId(shot.effect.id)));
+  for (const shot of plan.shots) assert.equal(shot.effect.source, sourceTag(resolveEffect(shot.effect.id,shot.effect.variant||undefined)));
 });
 
 test('检查拦截：未读源码、插画、微调无提示词、镜头过短', async () => {
@@ -77,7 +78,7 @@ test('装配：帧数连续，总长等于各镜之和，速度落在允许范�
 
 test('原创镜头在装配里留占位并被报告', async () => {
   const plan = await example();
-  plan.shots[1].effect = {mode: 'original', id: '', variant: '', speed: null, source: '', prompt: '一行字沿水平线从左向右依次出现，落位后整行保持 1 秒，不抖动。'};
+  plan.shots[1].effect = {mode: 'original', id: '', variant: '', speed: null, source: '', prompt: '一行字沿水平线从左向右依次出现，落位后整行保持 1 秒，不抖动。', nearest: 'type-reveal', why: '逐字显现是原位淡入，这一镜需要整行沿水平线推进。'};
   const {source, pending} = buildJsx(plan);
   assert.deepEqual(pending, ['s02']);
   assert.match(source, /原创镜头，待实现/);
@@ -137,4 +138,47 @@ test('全局目录链接可调用分镜与查看命令，且不能经链接写�
   } finally {
     await rm(dir, {recursive: true, force: true});
   }
+});
+
+test('原创必须说明候选判断；全部原创不引用组件包并提醒人工核对', async () => {
+  const plan = await example();
+  const blank = structuredClone(plan);
+  blank.shots[0].effect = {mode: 'original', id: '', variant: '', speed: null, source: '', prompt: '一行字沿水平线从左向右依次出现，落位后整行保持 1 秒，不抖动。'};
+  const {errors} = checkPlan(blank);
+  assert.ok(errors.some(message => message.includes('effect.nearest')));
+  assert.ok(errors.some(message => message.includes('effect.why')));
+
+  const all = structuredClone(plan);
+  for (const shot of all.shots) shot.effect = {mode: 'original', id: '', variant: '', speed: null, source: '', prompt: '一行字沿水平线从左向右依次出现，落位后整行保持 1 秒，不抖动。', nearest: 'type-reveal', why: '逐字显现是原位淡入，这一镜需要整行沿水平线推进。'};
+  const checked = checkPlan(all);
+  assert.deepEqual(checked.errors, []);
+  assert.ok(checked.warnings.some(message => message.includes('人工核对')));
+  const built = buildJsx(all);
+  assert.equal(built.usesPackage, false);
+  assert.ok(!built.source.includes('wise-motion-remotion'));
+  assert.equal(buildJsx(plan).usesPackage, true);
+});
+
+test('速选说明不再声称字体只覆盖目录出现过的汉字', async () => {
+  const text = await readFile(path.join(root, 'references/quickstart.md'), 'utf8');
+  assert.ok(!text.includes('只覆盖目录里出现过的汉字'));
+});
+
+
+test('分镜将实例内容传给组件，按变体检查内容和真实源码',async()=>{
+  const plan=await example(),shot=plan.shots[0];
+  shot.effect={mode:'reuse',id:'terminal-code',variant:'command-log',source:sourceTag(resolveEffect('terminal-code','command-log')),content:{title:'中文任务'},speed:null};
+  shot.seconds=4;
+  assert.deepEqual(checkPlan(plan).errors,[]);
+  assert.match(buildJsx(plan).source,/content=\{\{"title":"中文任务"\}\}/);
+  shot.effect.content={lines:['少了一行']};assert.ok(checkPlan(plan).errors.some(line=>line.includes('9')));
+  shot.effect.content={};shot.effect.variant='不存在';assert.ok(checkPlan(plan).errors.some(line=>line.includes('变体')));
+});
+
+test('确实无候选可以明确写 null；原创不能携带被忽略的内容配置',async()=>{
+  const plan=await example();
+  plan.shots[0].effect={mode:'original',nearest:null,why:'检索了空间地形变形动作，当前目录没有相应的结构变化。',prompt:'地形从平面向中央抬起成山峰，周边曲线随高度上升，最后保持一秒。'};
+  assert.deepEqual(checkPlan(plan).errors,[]);
+  plan.shots[0].effect.content={text:'不能静默丢弃'};
+  assert.ok(checkPlan(plan).errors.some(line=>line.includes('content')));
 });

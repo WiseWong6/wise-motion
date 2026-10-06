@@ -18,11 +18,12 @@
     s.one('.tile-symbol').innerHTML = '<svg data-motion-icon="cube" width="44" height="44" style="width:44px;height:44px" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9"/></svg>';
     return (t, o) => { const p = M.span(t, 150, 1300, o.ease); const bounce = Math.sin(M.clamp((t - 150) / 1150) * Math.PI) * .08; M.pose(s.one('.tile'), {scale: .66 + .34 * p + bounce, opacity: M.span(t, 100, 600)}); };
   };
-  F['stagger-in'] = (root, M) => {
+  F['stagger-in'] = (root, M, definition) => M.contentReady(root, definition, () => {
     const s = M.scene(root, M.cardSet());
     const cards = s.all('.mini-card'); cards.forEach((c, i) => { c.style.left = `${80 + i * 124}px`; c.style.top = '111px'; });
+    if (definition?.content) cards.forEach((card,i) => {const node=card.querySelector('strong'), label=M.slot(definition,'labels',['想法','内容','细节','结果'])[i]; node.textContent=label; M.fitText(root,node,label,72,16,12);});
     return (t, o) => F['stagger-in'].draw(M, cards, t, o);
-  };
+  });
   F['stagger-in'].draw = (M, nodes, t, o, {start = 200, end = 1100, gap = 300, distance = 44} = {}) =>
     nodes.map((node, i) => F['fade-rise'].draw(M, node, t, o, {start:start + i * gap, end:end + i * gap, distance}));
   F['group-expand'] = (root, M) => {

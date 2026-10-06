@@ -69,27 +69,42 @@
     };
   };
 
-  F['terminal-code'] = (root,K) => {
+  F['terminal-code'] = (root,K,definition) => {
+    const custom=Boolean(definition?.content);
+    const title=K.slot(definition,'title','creative-session');
+    const input=K.slot(definition,'lines',null),customCode=input!==null;
+    const family=K.textFont(input?input.flat().map(token=>token[0]).join(''):'一个画面让它动起来'),weight=family==='Oswald'?700:300;
+    const titleFamily=K.textFont(title);
+    const length=text=>customCode?Array.from(text).length:text.length;
+    const cut=(text,count)=>customCode?Array.from(text).slice(0,count).join(''):text.slice(0,count);
+    const setup=()=>{
     // 窗口与打字时钟沿用原作，代码统一为画板中的正文大小。
     // 字宽来自本地 Oswald Bold / 思源 Light；缩略图和播放都无需现场测量。
-    const codeSize=K.textSize('body',.6);
+    let codeSize=K.textSize('body',.6);
     const advances={' ':.221,'"':.415,'(':.315,')':.315,',':.25,';':.25,'=':.535,a:.46,c:.468,d:.503,e:.47,i:.265,m:.753,n:.507,o:.483,r:.383,s:.424,t:.351};
-    const width=value=>Array.from(value).reduce((sum,ch)=>sum+codeSize*(advances[ch]??1),0);
-    const code=[
+    const measured=new Map();
+    const width=value=>{if(!customCode)return Array.from(value).reduce((sum,ch)=>sum+codeSize*(advances[ch]??1),0);if(!measured.has(value))measured.set(value,K.measureText(root,value,codeSize,family,weight));return measured.get(value);};
+    const code=input?input.map(line=>line.map(([text,tone])=>[text,'var(--'+tone+')'])):[
       [['const ','var(--ink)'],['idea','var(--ink)'],[' = ','var(--muted)'],['"一个画面"','var(--teal)'],[';','var(--muted)']],
       [['const ','var(--ink)'],['motion','var(--ink)'],[' = ','var(--muted)'],['"让它动起来"','var(--teal)'],[';','var(--muted)']],
       [['create','var(--ink)'],['(','var(--muted)'],['idea','var(--ink)'],[', ','var(--muted)'],['motion','var(--ink)'],[');','var(--muted)']]
     ];
+    if(customCode){
+      const widest=Math.max(...code.map(line=>line.reduce((sum,[text])=>sum+width(text),0)),1);
+      codeSize=Math.min(codeSize,codeSize*670/widest);measured.clear();
+      if(codeSize<16)throw new Error('终端代码过宽，请缩短 lines 中的文字');
+    }
     const rows=code.map((tokens,i)=>{
       let pen=62,start=0;
       return {words:tokens.map(([value])=>value).join(''),tokens:tokens.map(([value,color],j)=>{
         const token={value,color,x:pen,start,runs:[]};let at=0;
-        for(const run of value.match(/[0-9A-Za-z.\-]+|[^0-9A-Za-z.\-]+/g)){
-          token.runs.push({value:run,start:at,part:`terminal-token${i}-${j}-${token.runs.length}`,latin:/[0-9A-Za-z.\-]/.test(run)});at+=run.length;
+        for(const run of (value.match(/[0-9A-Za-z.\-]+|[^0-9A-Za-z.\-]+/g)||[])){
+          token.runs.push({value:run,start:at,part:`terminal-token${i}-${j}-${token.runs.length}`,latin:/[0-9A-Za-z.\-]/.test(run)});at+=length(run);
         }
-        pen+=width(value);start+=value.length;return token;
+        pen+=width(value);start+=length(value);return token;
       })};
     });
+    const titleSize=custom?Math.min(K.textSize('caption',.6),500/Math.max(1,K.measureText(root,title,1,titleFamily))):K.textSize('caption',.6);
     const s=stage(root,`<g transform="translate(80 78) scale(.6)"><g data-part="terminal-window" font-weight="300">
       <defs>
         <clipPath id="NAMESPACE-terminal-bar"><rect width="800" height="340" rx="18"/></clipPath>
@@ -100,10 +115,10 @@
       <g clip-path="url(#NAMESPACE-terminal-bar)"><rect width="800" height="48" fill="var(--symbol)"/></g>
       <rect width="800" height="340" rx="18" fill="none" stroke="var(--card-edge)" stroke-width="1.5"/>
       ${['#ff5f56','#ffbd2e','#27c93f'].map((color,i)=>`<circle cx="${27+i*23}" cy="24" r="6" fill="${color}"/>`).join('')}
-      <text x="400" y="14" text-anchor="middle" dominant-baseline="text-before-edge" font-family="Oswald, sans-serif" font-weight="700" font-size="${K.textSize('caption',.6)}" fill="var(--muted)">creative-session</text>
+      <text x="400" y="14" text-anchor="middle" dominant-baseline="text-before-edge" font-family="${custom?titleFamily:'Oswald'}, sans-serif" font-weight="700" font-size="${titleSize}" fill="var(--muted)">${K.escape(title)}</text>
       ${rows.map((row,i)=>`<g data-part="terminal-row${i}" data-terminal-code-row="${i}">
         <text x="30" y="${87+i*72}" dominant-baseline="text-before-edge" font-size="${codeSize}" fill="var(--accent)">›</text>
-        ${row.tokens.map(token=>`<text x="${token.x}" y="${87+i*72}" fill="${token.color}" dominant-baseline="text-before-edge" xml:space="preserve" style="white-space:pre">${token.runs.map(run=>`<tspan data-part="${run.part}" font-size="${codeSize}" font-weight="${run.latin?700:300}" font-family="${run.latin?'Oswald':'Source Han Sans SC'}, sans-serif">${K.escape(run.value)}</tspan>`).join('')}</text>`).join('')}
+        ${row.tokens.map(token=>`<text x="${token.x}" y="${87+i*72}" fill="${token.color}" dominant-baseline="text-before-edge" xml:space="preserve" style="white-space:pre">${token.runs.map(run=>`<tspan data-part="${run.part}" font-size="${codeSize}" font-weight="${customCode?weight:run.latin?700:300}" font-family="${customCode?family:run.latin?'Oswald':'Source Han Sans SC'}, sans-serif">${K.escape(run.value)}</tspan>`).join('')}</text>`).join('')}
         <rect data-part="terminal-cursor${i}" y="${90+i*72}" width="10" height="29" fill="var(--teal)"/>
       </g>`).join('')}
       <g data-part="terminal-status"><rect x="-55" y="300" width="110" height="28" fill="url(#NAMESPACE-terminal-beam)"/><rect x="-18" y="320" width="36" height="4" fill="var(--accent)" fill-opacity=".58"/></g>
@@ -115,12 +130,14 @@
       rows.forEach((row,i)=>{
         const count=Math.max(0,Math.floor((t-.3-i*.5)*50));
         s('terminal-row'+i,{opacity:count?1:0});
-        for(const token of row.tokens)for(const run of token.runs)setText(s,run.part,run.value.slice(0,Math.max(0,count-token.start-run.start)));
-        s('terminal-cursor'+i,{x:62+width(row.words.slice(0,count)),opacity:count>0&&count<row.words.length&&Math.floor(t*8)%2===0?1:0});
+        for(const token of row.tokens)for(const run of token.runs)setText(s,run.part,cut(run.value,Math.max(0,count-token.start-run.start)));
+        s('terminal-cursor'+i,{x:62+(customCode?row.tokens.reduce((sum,token)=>sum+width(cut(token.value,Math.max(0,count-token.start))),0):width(row.words.slice(0,count))),opacity:count>0&&count<length(row.words)&&Math.floor(t*8)%2===0?1:0});
       });
       const travel=((t*.18%1)+1)%1;
       s('terminal-status',{transform:`translate(${36+728*travel} 0)`});
     };
+    };
+    return custom?K.textReady(root,[{family,weight,text:input?input.flat().map(token=>token[0]).join(''):'一个画面让它动起来'},{family:titleFamily,text:title}],setup):setup();
   };
 
   F['formula-evolve'] = (root,K) => {

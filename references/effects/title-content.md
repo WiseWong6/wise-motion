@@ -34,3 +34,30 @@
 - 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[错峰入场](stagger-in.md)。
+
+### 可替换内容
+
+通过组件 `content` 或分镜 `effect.content` 为当前镜头赋值；字段含义与字体、宽度限制见 [组件说明](../../REMOTION.md)。默认内容如下：
+
+```json
+{
+  "title": "好想法，从这里开始。",
+  "cards": [
+    {
+      "title": "表达",
+      "description": "让内容被看见"
+    },
+    {
+      "title": "节奏",
+      "description": "让内容被看见"
+    },
+    {
+      "title": "重点",
+      "description": "让内容被看见"
+    }
+  ]
+}
+```
+
+- title（标题）：最多 30 字。
+- cards（三张卡片）：3–3 项，字段 {"title":{"type":"text","max_chars":12},"description":{"type":"text","max_chars":18}}。

@@ -34,3 +34,27 @@
 - 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
+
+### 可替换内容
+
+通过组件 `content` 或分镜 `effect.content` 为当前镜头赋值；字段含义与字体、宽度限制见 [组件说明](../../REMOTION.md)。默认内容如下：
+
+```json
+{
+  "value": 128,
+  "from": 0,
+  "decimals": 0,
+  "prefix": "",
+  "suffix": "",
+  "caption": "每一步，走向确定的结果。",
+  "format": "integer"
+}
+```
+
+- value（结束数值）：-1000000000000 至 1000000000000。
+- from（开始数值）：-1000000000000 至 1000000000000。
+- decimals（小数位数）：0 至 6，整数。
+- prefix（数值前缀）：最多 16 字。
+- suffix（数值后缀）：最多 16 字。
+- caption（说明文字）：最多 44 字。
+- format（数值格式）：最多 16 字；可选 integer、decimal、thousands、compact。

@@ -1,5 +1,6 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
-import {cp,mkdir,realpath,readdir,lstat,rm} from 'node:fs/promises';
+import {cp,mkdir,realpath,readdir,lstat,rm,readFile,writeFile,rename} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 const root=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
@@ -46,17 +47,47 @@ export async function validateAssetDestination(destination=path.join(root,'publi
  }
  return target;
 }
-export async function installAssets(destination){
+export async function installAssets(destination,{overwrite=false}={}){
  const target=await validateAssetDestination(destination);
+ const record=path.join(target,'.wise-motion-assets.json');
+ for(const file of [record,record+'.tmp']){
+  try{const info=await lstat(file);if(!info.isFile()||info.nlink>1)throw new Error('素材记录不得是链接或目录：'+file);}
+  catch(error){if(error.code!=='ENOENT')throw error;}
+ }
+ let previous={};
+ try{previous=JSON.parse(await readFile(record,'utf8')).files||{};}
+ catch(error){if(error.code!=='ENOENT')throw new Error('无法读取已安装素材记录：'+error.message);}
+ const files={},conflicts=[];
+ const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
+ async function inspect(directory){
+  for(const entry of await readdir(path.join(root,directory),{withFileTypes:true})){
+   const relative=path.join(directory,entry.name);
+   if(entry.isDirectory()){await inspect(relative);continue;}
+   if(!isAssetFile(relative))continue;
+   const sourceHash=hash(await readFile(path.join(root,relative)));files[relative]=sourceHash;
+   try{
+    const file=path.join(target,relative),info=await lstat(file);
+    if(info.nlink>1)throw new Error('素材目标不得覆盖硬链接：'+file);
+    const current=hash(await readFile(file));
+    if(!overwrite&&current!==sourceHash&&current!==previous[relative])conflicts.push(relative);
+   }catch(error){if(error.code!=='ENOENT')throw error;}
+  }
+ }
+ // 全部检查通过再复制，避免发现冲突前已经覆盖部分项目文件。
+ await inspect('catalog');await inspect('vendor');
+ if(conflicts.length)throw new Error('以下素材副本有本地修改，安装未执行：\n'+conflicts.join('\n')+'\n请保留修改；明确要替换时才使用 --overwrite。内容配置应写在项目源码或计划中。');
  await mkdir(target,{recursive:true});
  for(const name of ['catalog','vendor'])await cp(path.join(root,name),path.join(target,name),{recursive:true,force:true,filter:p=>isAssetFile(path.relative(root,p))});
  // 旧版曾复制首页但没有播放器，更新时移除这一个已知失效入口。
  await rm(path.join(target,'catalog/index.html'),{force:true});
+ const pending=record+'.tmp';
+ await writeFile(pending,JSON.stringify({version:1,files},null,2)+'\n');
+ await rename(pending,record);
  return target;
 }
 // 经 node_modules 符号链接（如 npm 安装本地目录）调用时，argv[1] 不是真实路径，须先解析再比较，否则会无提示地什么也不做。
 const invokedDirectly=process.argv[1]&&await realpath(process.argv[1]).then(file=>file===fileURLToPath(import.meta.url),()=>false);
 if(invokedDirectly){
  if(!process.argv[2])throw new Error('用法：node scripts/install-assets.mjs <目标工程/public/wise-motion>');
- console.log(await installAssets(process.argv[2]));
+ console.log(await installAssets(process.argv[2],{overwrite:process.argv.includes('--overwrite')}));
 }

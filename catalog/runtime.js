@@ -51,6 +51,7 @@
   }
   function createRenderer(stage, definition) {
     definition = resolveVariant(definition);
+    if (definition.content !== undefined) definition = global.MotionContent.withContent(definition);
     const factory = factories[definition.source?.factory || definition.id];
     if (!factory) throw new Error('缺少效果源码：' + definition.id);
     const timing = definition.timing;
@@ -86,7 +87,43 @@
     const scale = Math.max(0.01, Math.floor(raw * 640 * dpr) / (640 * dpr));
     stage.style.transform = `translate(-50%,-50%) scale(${scale})`;
   }
-  const kit = {clamp, mix, ease, span, pose, scene, tile, cardSet, curve, escape, prepareStage, createRenderer, resolveVariant, type, textSize};
+  const slot = (definition, id, fallback) => definition?.content === undefined ? fallback : global.MotionContent.readSlot(definition, id, fallback);
+  const textFont = text => /[^\x20-\x7e]/.test(text) ? 'Source Han Sans SC' : 'Oswald';
+  function measureText(root, text, size, family, weight = 700) {
+    const ctx = root.ownerDocument.createElement('canvas').getContext('2d');
+    if (!ctx) throw new Error('无法测量自定义文字：需要画布环境');
+    ctx.font = `${weight} ${size}px "${family}"`;
+    return ctx.measureText(text).width;
+  }
+  function textReady(root, fonts, build) {
+    const set = root.ownerDocument.fonts;
+    if (!set) throw new Error('无法确认自定义文字的字体是否就绪');
+    let painter, last, destroyed = false;
+    const draw = (...args) => { last = args; if (painter && !destroyed) painter(...args); };
+    draw.ready = Promise.all(fonts.map(async ({family, weight = 700, text}) => {
+      const font = `${weight} 32px "${family}"`;
+      const loaded = await set.load(font, text || 'A');
+      if (!loaded.length || !set.check(font, text || 'A')) throw new Error('无法加载自定义文字字体：' + family);
+    })).then(() => { if (destroyed) return; painter = build(); if (last) painter(...last); });
+    draw.destroy = preserve => { destroyed = true; painter?.destroy?.(preserve); };
+    return draw;
+  }
+  // 只为自定义内容准备字体；默认路径保持原同步绘制。
+  function contentReady(root, definition, build) {
+    if (!definition?.content) return build();
+    const strings = value => typeof value === 'string' ? [value] : value && typeof value === 'object' ? Object.values(value).flatMap(strings) : [];
+    const text = strings(definition.content).join('');
+    return textReady(root, [300,700].flatMap(weight => ['Source Han Sans SC','Oswald'].map(family => ({family,weight,text}))), build);
+  }
+  function fitText(root, node, text, width, size, min = size, weight = 700) {
+    const family = textFont(text), measured = measureText(root, text, size, family, weight);
+    const fitted = Math.min(size, size * width / Math.max(1, measured));
+    if (fitted < min) throw new Error('文字过宽，请缩短内容：' + text);
+    node.style.fontFamily = '"' + family + '"'; node.style.fontWeight = String(weight);
+    node.style.fontSize = fitted + 'px'; node.style.whiteSpace = 'pre'; node.style.letterSpacing = '0px';
+    return fitted;
+  }
+  const kit = {clamp, mix, ease, span, pose, scene, tile, cardSet, curve, escape, prepareStage, createRenderer, resolveVariant, type, textSize, slot, textFont, measureText, textReady, contentReady, fitText};
   const live = new Set();
   function create(root, definition, options = {}) {
     definition = resolveVariant(definition);

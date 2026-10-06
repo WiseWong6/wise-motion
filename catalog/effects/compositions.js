@@ -49,15 +49,20 @@
       drawStatement(M, statement, t, o);
     };
   };
-  F['title-content'] = (root, M) => {
+  F['title-content'] = (root, M, definition) => M.contentReady(root, definition, () => {
     const s = M.scene(root, '<div class="product-title">好想法，从这里开始。</div>' + ['表达','节奏','重点'].map((word, i) => `<div class="feature-card" style="left:${98 + i * 154}px">${word}<small>让内容被看见</small></div>`).join('')), cards = s.all('.feature-card'), title = s.one('.product-title');
+    if(definition?.content){
+      const heading=M.slot(definition,'title','好想法，从这里开始。');title.textContent=heading;M.fitText(root,title,heading,544,48,24);
+      const items=M.slot(definition,'cards',['表达','节奏','重点'].map(title=>({title,description:'让内容被看见'})));
+      cards.forEach((card,i)=>{const item=items[i];card.innerHTML=M.escape(item.title)+'<small>'+M.escape(item.description)+'</small>';M.fitText(root,card,item.title,90,16,12);M.fitText(root,card.querySelector('small'),item.description,90,12,10,300);});
+    }
     tag(title,'title');tag(cards,'content');
     return (t, o) => {
       const reveal = M.span(t, 200, 1800, o.ease);
       title.style.clipPath = `inset(0 ${(1 - reveal) * 100}% 0 0)`;
       F['stagger-in'].draw(M, cards, t, o, {start:2000, end:3300, gap:350, distance:30});
     };
-  };
+  });
   const buttonMarkup = '<div class="action-button">开始整理</div>';
   const progressMarkup = '<div class="progress-track"><div class="progress-fill"></div></div>';
   const resultMarkup = '<div class="result">✓ 已整理完成</div>';
@@ -65,35 +70,43 @@
     const p = M.span(t, 300, 1600, o.ease);
     M.pose(node, {x: M.mix(460, 345, p), y: M.mix(276, 179, p), opacity: 1 - M.span(t, 2100, 2700)});
   }
-  function drawButton(M, node, t) {
+  function drawButton(M, node, t, labels = ['开始整理','正在整理','整理完成']) {
     const press = t < 1600 ? 0 : Math.sin(M.clamp((t - 1600) / 550) * Math.PI);
     M.pose(node, {scale: 1 - press * .045});
-    node.textContent = t < 2150 ? '开始整理' : t < 5300 ? '正在整理' : '整理完成';
+    node.textContent = t < 2150 ? labels[0] : t < 5300 ? labels[1] : labels[2];
   }
   function drawProgress(M, track, fill, t) {
     fill.style.transform = `scaleX(${M.span(t, 2150, 5300, 'linear')})`;
     M.pose(track, {opacity: M.span(t, 2150, 2500) * (1 - M.span(t, 5300, 5900))});
   }
-  F['button-press-status'] = (root, M) => {
-    const s = M.scene(root, '<div class="operation">' + buttonMarkup + '</div>'), button = s.one('.action-button');
-    return t => drawButton(M, button, t);
+  const buttonLabels = (root,M,definition,node) => {
+    const labels=M.slot(definition,'states',['开始整理','正在整理','整理完成']);
+    if(definition?.content) {const family=M.textFont(labels.join(''));labels.forEach(text=>{if(M.measureText(root,text,16,family)>188)throw new Error('按钮文字过宽，请缩短 states');});node.style.fontFamily='"'+family+'"';node.style.fontSize='16px';node.style.whiteSpace='pre';}
+    return labels;
   };
+  F['button-press-status'] = (root, M, definition) => M.contentReady(root, definition, () => {
+    const s = M.scene(root, '<div class="operation">' + buttonMarkup + '</div>'), button = s.one('.action-button');
+    const labels=buttonLabels(root,M,definition,button);
+    return t => drawButton(M, button, t, labels);
+  });
   F['progress-fill-exit'] = (root, M) => {
     // 保留原进度条的绝对落点；空按钮不属于这个动作，不创建占位按钮。
     const s = M.scene(root, '<div class="operation" style="padding-top:64px">' + progressMarkup + '</div>'), track = s.one('.progress-track'), fill = s.one('.progress-fill');
     return t => drawProgress(M, track, fill, t);
   };
-  F['interface-feedback'] = (root, M) => {
+  F['interface-feedback'] = (root, M, definition) => M.contentReady(root, definition, () => {
     const s = M.scene(root, '<div class="operation">' + buttonMarkup + progressMarkup + resultMarkup + '</div><div class="pointer"></div>');
     const pointer = s.one('.pointer'), button = s.one('.action-button'), track = s.one('.progress-track'), fill = s.one('.progress-fill'), result = s.one('.result');
+    const labels=buttonLabels(root,M,definition,button);
+    if(definition?.content){const text=M.slot(definition,'result','✓ 已整理完成');result.textContent=text;M.fitText(root,result,text,260,16,12);}
     for(const [node,id] of [[pointer,'pointer'],[button,'button'],[track,'progress'],[result,'result']])tag(node,id);
     return (t, o) => {
       drawPointer(M, pointer, t, o);
-      drawButton(M, button, t);
+      drawButton(M, button, t, labels);
       drawProgress(M, track, fill, t);
       F['fade-rise'].draw(M, result, t, o, {start:5300, end:6100, distance:10});
     };
-  };
+  });
   const subtitleClock=[200,9000,150,3750];
   F['subtitle-focus'].breakdown = [
     row('cells','字幕格呈现、切重点和让位',200,9000,'WISE 四个字格先错峰出现，再依次提亮；整组上移为陈述让位，最后下移放大。逐项入场、重点轮换和整体让位分别复用独立动作。',subtitleClock,['stagger-in','subtitle-cell-focus','subtitle-block-shift']),

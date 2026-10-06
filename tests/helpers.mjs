@@ -67,7 +67,7 @@ export async function environment(withApp = false, options = {}) {
   };
   w.HTMLDialogElement.prototype.showModal = function () { this.open = true; };
   w.HTMLDialogElement.prototype.close = function () { this.open = false; this.dispatchEvent(new w.Event('close')); };
-  const sources = ['vendor/animejs/anime.umd.min.js','catalog/registry-data.js','catalog/remotion-sources.js','catalog/matching.js','catalog/runtime.js', ...[...new Set(data.effects.flatMap(e => [...(e.source.dependencies||[]),e.source.path]))]];
+  const sources = ['vendor/animejs/anime.umd.min.js','catalog/registry-data.js','catalog/remotion-sources.js','catalog/matching.js','catalog/content.js','catalog/runtime.js', ...[...new Set(data.effects.flatMap(e => [...(e.source.dependencies||[]),e.source.path]))]];
   if (withApp) {
     // 按正式页面的真实引用加载，避免测试替页面补齐漏引的效果源码。
     sources.length = 0;

@@ -121,7 +121,7 @@ test('素材根地址嵌入页面前转义，不允许注入新属性', () => {
 
 test('普通预览不载入无关绘制，组合保留依赖，目录数据场景保留真实统计', () => {
   const normal = frameScriptsFor(resolveEffect('stagger-in'));
-  assert.deepEqual(normal, ['vendor/animejs/anime.umd.min.js', 'catalog/runtime.js', 'catalog/effects/entrance.js']);
+  assert.deepEqual(normal, ['vendor/animejs/anime.umd.min.js', 'catalog/content.js', 'catalog/runtime.js', 'catalog/effects/entrance.js']);
   const composition = frameScriptsFor(resolveEffect('result-anchors'));
   for (const name of ['illustrations', 'kimi-illustrations', 'claude-tile-illustrations', 'paper-showcase']) {
     assert.ok(composition.includes('catalog/effects/' + name + '.js'));

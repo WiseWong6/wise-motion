@@ -30,5 +30,22 @@ test('素材安装移除旧版失效首页，保留所有绘制依赖和目标�
   for(const file of [...FRAME_SCRIPTS,...FRAME_STYLES]){
    assert.ok(manifest.files.some(entry=>entry.path===file),'素材清单缺少绘制依赖：'+file);
   }
+  const modified=path.join(target,'catalog/effects/attention.js'),missing=path.join(target,'catalog/content.js');
+  const config=path.join(temporary,'plan.json'),saved=JSON.stringify({content:{text:'保留我的内容'}});
+  await writeFile(config,saved);
+  await writeFile(modified,'// 项目的本地修改');await rm(missing);
+  await assert.rejects(installAssets(target),/本地修改/);
+  assert.equal(await readFile(modified,'utf8'),'// 项目的本地修改');
+  await assert.rejects(stat(missing),{code:'ENOENT'}); // 冲突检查通过前不复制其它文件。
+  await installAssets(target,{overwrite:true});
+  assert.match(await readFile(modified,'utf8'),/count-up/);
+  assert.equal(await readFile(config,'utf8'),saved);
+  // 模拟目标还在上一版本：文件等于上次安装记录，允许正常更新。
+  const recordFile=path.join(target,'.wise-motion-assets.json');
+  const record=JSON.parse(await readFile(recordFile,'utf8'));
+  await writeFile(modified,'// 未经修改的旧版本');
+  record.files['catalog/effects/attention.js']=createHash('sha256').update('// 未经修改的旧版本').digest('hex');
+  await writeFile(recordFile,JSON.stringify(record));await installAssets(target);
+  assert.match(await readFile(modified,'utf8'),/count-up/);
  }finally{await rm(temporary,{recursive:true,force:true});}
 });
