@@ -1,5 +1,5 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
- * 保留精修绘制与材料过渡；道字直接描摹宋拓原字并保留 CC BY 4.0 署名，英文轮廓由随包开放字体生成。 */
+ * 保留精修绘制与材料过渡；道、一、二、三直接描摹宋拓原字并保留 CC BY 4.0 署名，英文轮廓由随包开放字体生成。 */
 /* KIMI K3 开源宣传片复刻及其七个单段：效果参考 Kimi K3 open weights。
  * https://www.youtube.com/watch?v=5GlCGOXUYHg
  * 现行书法与字标数据由 scripts/build-material-glyphs.py 生成；参考片仅作动作与材质参考。 */
@@ -891,21 +891,16 @@ function drawGlyph(ctx,frame,opacity=1){
  }
  ctx.save();ctx.globalAlpha=opacity;ctx.drawImage(source,160,0,312,360);ctx.restore();
 }
-// 一、二的横笔为项目动画笔形；道字原帖轮廓和片尾道字在 key-shapes.js 中。
-// 道字原页与字框：vendor/duobaota/SOURCE.json。横笔上下边保持固定。
-const bandX=[210,216,223,232,244,262,284,306,328,350,372,390,401,412,422,428,430];
+// 中段一、二与片尾共用宋拓原字；上下边界由原页像素生成。
+// 原页及字框：vendor/duobaota/SOURCE.json。
+const [one]=material.keyShapes.stroke_profiles['一'];
+const [twoTop,twoBottom]=material.keyShapes.stroke_profiles['二'];
+const bandX=one.x,bandTop=one.top,bandBottom=one.bottom;
 const bandLeft=bandX[0],bandWidth=bandX.at(-1)-bandLeft;
-const bandTop=[188,182,177,175,175,174,173,171,169,168,167,165,165,168,172,178,184];
-const bandBottom=[197,201,206,208,207,204,202,201,200,199,198,198,200,202,201,195,189];
-function edgeAt(values,x,xs=bandX){let i=1;while(i<xs.length-1&&x>xs[i])i++;return mix(values[i-1],values[i],clamp((x-xs[i-1])/(xs[i]-xs[i-1])));}
+function edgeAt(values,x,xs=bandX){let lo=1,hi=xs.length-1;while(lo<hi){const mid=(lo+hi)>>1;if(x>xs[mid])lo=mid+1;else hi=mid;}const i=lo;return mix(values[i-1],values[i],clamp((x-xs[i-1])/(xs[i]-xs[i-1])));}
 function bandPoint(x,v,inset=0){const top=edgeAt(bandTop,x),bottom=edgeAt(bandBottom,x),padding=Math.min(inset,(bottom-top)/2);return [x,mix(top+padding,bottom-padding,v)];}
-// 二的上短横与下长横分别保留落笔厚度、向右抬升和收笔肩。
-const shortX=[275.1,280.6,288.5,299.5,312.1,323.9,335.8,345.2,353.9,359.4];
-const shortTop=[128,124,122,119,118,116,114,117,124,132];
-const shortBottom=[135,143,148,150,148,146,145,143,140,136];
-const longX=[213.5,220.1,229.5,244.6,263.4,286,312.4,338.8,367.1,385.9,395.3,404.7,414.2,425.5,434];
-const longTop=[216,212,210,207,205,200,197,194,192,190,190,193,200,209,218];
-const longBottom=[230,239,246,251,249,243,240,238,237,237,239,241,244,241,225];
+const shortX=twoTop.x,shortTop=twoTop.top,shortBottom=twoTop.bottom;
+const longX=twoBottom.x,longTop=twoBottom.top,longBottom=twoBottom.bottom;
 function strokePoint(u,v,xs,top,bottom){const x=mix(xs[0],xs.at(-1),u);return [x,mix(edgeAt(top,x,xs),edgeAt(bottom,x,xs),v)];}
 let particles=null,characters=null,buckets=null;
 function particleData(){

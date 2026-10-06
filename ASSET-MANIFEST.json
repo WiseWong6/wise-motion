@@ -273,8 +273,8 @@
     },
     {
       "path": "catalog/assets/material-evolution/SOURCE.json",
-      "bytes": 4725,
-      "sha256": "e12de16aa0629227a345464294ed600f6893ee49ebc5e7a47d29af102f6e40b6"
+      "bytes": 6228,
+      "sha256": "22dcf2d243e8f4855b293203f865de4997c026fa24f388585a113ed16756ac57"
     },
     {
       "path": "catalog/assets/material-evolution/atlas-engraving.webp",
@@ -288,8 +288,8 @@
     },
     {
       "path": "catalog/assets/material-evolution/key-shapes.js",
-      "bytes": 3869718,
-      "sha256": "c72a4e5aab358265061ccd659e3d70e8b66c4d1030f4e3bee14d0960f2fe678a"
+      "bytes": 3939647,
+      "sha256": "4f05aa94b52c0bfdec613ffc6c15101804f458fc43a6b25e1573cb294e72520b"
     },
     {
       "path": "catalog/assets/material-evolution/moon.webp",
@@ -573,8 +573,8 @@
     },
     {
       "path": "catalog/effects/material-evolution.js",
-      "bytes": 89144,
-      "sha256": "07cbf5adf0b9211384ffe75f5951bb2ea0505aa8d2792388c9e06c47cff17619"
+      "bytes": 88698,
+      "sha256": "1fa07893531bd44953dccfd216717ad3eb477a629dfddbab059686b41cf9d638"
     },
     {
       "path": "catalog/effects/math-formula-drift.js",
@@ -793,13 +793,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1146479,
-      "sha256": "f2d46033874a8e976b74cfeffdd1fe8ab3b57beed16884d2ee5397be3453e5cc"
+      "bytes": 1146962,
+      "sha256": "c16ff2ef8c92f6dffa8cc99e8b779e2075424b1a6875e249fffe1af2b707d643"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1411948,
-      "sha256": "b71fe58e601429b1fc268ecec495b5676809caa24307316e784341ee75966a68"
+      "bytes": 1412431,
+      "sha256": "f7b6aed100d2a4324da4a6e985a82dfd830b74b6fb0a3c166cd0ac04b947e22b"
     },
     {
       "path": "catalog/related-preview.js",
@@ -892,6 +892,26 @@
       "sha256": "7095f13b277487609dd9af5b44ff0c9e35e99a7b54fc5a032378e8049b4bae6b"
     },
     {
+      "path": "vendor/duobaota/README.md",
+      "bytes": 1724,
+      "sha256": "917fd3f6248ae034351bd4a0c2e6ac3efab77535160745a97f1151d38db46b43"
+    },
+    {
+      "path": "vendor/duobaota/SOURCE.json",
+      "bytes": 3129,
+      "sha256": "4758af0a8e4d7232dfbfd17d7dab64700c122f4431c218e1d4edd6a70acdca8c"
+    },
+    {
+      "path": "vendor/duobaota/page-02.jpg",
+      "bytes": 781279,
+      "sha256": "03dda3c026e0792f3b0f98345d58c68bcda1989909dd8ffefdde01676d485c98"
+    },
+    {
+      "path": "vendor/duobaota/page-10.jpg",
+      "bytes": 764074,
+      "sha256": "b20ed16ec17361055189f0b2351f2713dcfbc279d0507c7fe00b3b7c58b10f8f"
+    },
+    {
       "path": "vendor/heroicons/LICENSE",
       "bytes": 1071,
       "sha256": "60e0b68c0f35c078eef3a5d29419d0b03ff84ec1df9c3f9d6e39a519a5ae7985"
@@ -930,21 +950,6 @@
       "path": "vendor/lucide/SOURCE.json",
       "bytes": 635,
       "sha256": "dc71e9a635db8e71e4a938ac5ec7372eab1c2f4bbd9779bb5d7d54923550eda1"
-    },
-    {
-      "path": "vendor/duobaota/README.md",
-      "bytes": 1277,
-      "sha256": "c1f77dae99c14ff82c907a9fc3448e7e1ddafe1c186864ff6a6a1fded5e9bb27"
-    },
-    {
-      "path": "vendor/duobaota/SOURCE.json",
-      "bytes": 1274,
-      "sha256": "7c23d918781df2576b8e64959f4de6eb56b5f1fbc023eb019f9e5e354aaa192b"
-    },
-    {
-      "path": "vendor/duobaota/page-02.jpg",
-      "bytes": 781279,
-      "sha256": "03dda3c026e0792f3b0f98345d58c68bcda1989909dd8ffefdde01676d485c98"
     }
   ]
 }
