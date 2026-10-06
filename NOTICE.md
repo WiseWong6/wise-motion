@@ -49,6 +49,7 @@ NASA 月貌数值与下表中的 AI 生成月面图片是两份不同材料，�
 | 剪贴短片图集 | 手掌、机械转轮、人物四姿态、八帧跑步及六帧弹离，由 Codex 内置图像生成工具独立生成；纸纤维、撕边、碎片与支架由代码绘制。 | [剪贴素材记录](catalog/assets/collage-film/SOURCE.json) |
 | 材质演变图片 | 纤维球、月面与科学版画图鉴，由 Codex 内置图像生成工具根据参考帧重建；来源按生成图片记录。 | [材质素材记录](catalog/assets/material-evolution/SOURCE.json) |
 | 生长与文明群像 | 植物、花卉和文明版画由 Codex 内置图像生成工具生成，局部机关由代码控制。 | [生长与文明素材记录](catalog/assets/civilization-growth/SOURCE.json) |
+| 版画蝴蝶与多彩翼图 | 用户已确认的两张透明图集由 Codex 内置图像生成工具制作；四翼、身体和触角末端按原图裁取，触角曲线由代码绘制。 | [蝴蝶素材记录](catalog/assets/butterfly/SOURCE.json) |
 
 上述记录保留制作方式、提示词、文件尺寸和校验信息。生成图片的制作归属与参考内容的使用条件分别记录。
 

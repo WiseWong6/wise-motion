@@ -4,7 +4,7 @@
 
 设计与源码选择见 [导演设计方法](references/director-design.md)，逐个开发与整合见 [阶段制作方法](references/pipeline-methodology.md)。
 
-输入字幕或分镜时，明确调用 `$wise-motion`，从 [SKILL.md](SKILL.md) 的“先照这五步做”入口开始。它把内容转成主体变化与动作关系，再完成分镜、候选比较、源码阅读和逐项制作；已有时间表继续沿用。
+明确调用 `$wise-motion`，从 [SKILL.md](SKILL.md) 的“先确定交付”开始，按请求选择参考、方案、静态画布或动效制作。需要新建分镜计划时再执行五步流程；已有故事板与时间表继续沿用。
 
 ## 直接打开目录
 
@@ -14,10 +14,10 @@
 
 本地目录直接通过 Remotion 播放当前源码，无需服务器。旧版专用视频缓存与播放入口已撤下，避免缓存画面与源码不一致。
 
-立体翻页书位于“空间与透视”。右侧可切换时间演示与交互翻页，调整图片留白、圆角和书脊阴影；复制代码保留当前纸页设置。使用自绘本地插图和纸纹，按左右书页或方向键翻页。
+完整翻页书以“插画翻页书”收录在“组合片段 → 界面与演示”，由绕书脊翻页、几何网点插画和纸张光影组成，三个部分仍可独立复用或逐层查看。在组合片段中搜索“绕书脊翻页”也能找到。右侧可切换时间演示与交互翻页，调整图片留白、圆角和书脊阴影；复制代码保留当前纸页设置。使用自绘本地插图和纸纹，按左右书页或方向键翻页。
 
 <!-- catalog-counts:start -->
-目录有 275 个单个动作、62 个插画单图、26 个组合片段，共 363 项；数量由目录定义自动生成，详见 [目录统计](CATALOG-STATS.md)。
+目录有 276 个单个动作、63 个插画单图、26 个组合片段，共 365 项；数量由目录定义自动生成，详见 [目录统计](CATALOG-STATS.md)。
 <!-- catalog-counts:end -->
 
 打开 `catalog/index.html` 即可，无需启动服务器。历史目录已清空；支持中文搜索、播放暂停、重播、时间定位、节奏比较和提示词／代码复制。正式目录无需本机历史工程；原作与迁移依据单独保留供追溯。
@@ -64,9 +64,9 @@
 
 ## 技能入口与选型
 
-全局使用时，将 `~/.agents/skills/wise-motion` 直接链接到技能的实际源码目录；本机 Codex 入口 `~/.codex/skills/wise-motion` 同样直连源码。各入口共用同一份技能与资料，不复制副本，也不经过其他工具的安装入口。
+全局使用时，将 `~/.agents/skills/wise-motion` 直接链接到技能的实际源码目录。Cursor 和 DeepSeek Harness 默认读取这个共享目录；Codex 的 `~/.codex/skills/wise-motion` 与 ZCode 的 `~/.zcode/skills/wise-motion` 同样直连源码。各入口共用同一份技能与资料。
 
-在任意项目明确调用 `$wise-motion`；全局可用不改变仅手动调用的规则。检索、查看与分镜命令可通过全局入口的绝对路径执行，分镜计划和装配结果应写入目标工程。
+在任意项目从工具的技能列表明确选择 Wise Motion；Codex 可用 `$wise-motion`，Cursor 可用 `/wise-motion`。正文的 `disable-model-invocation: true` 与 Codex 入口的 `allow_implicit_invocation: false` 保持手动调用。新增入口后刷新技能列表或新开会话。检索、查看与分镜命令可通过全局入口的绝对路径执行，分镜计划和装配结果应写入目标工程。
 
 - [SKILL.md](SKILL.md)：统一导演与参考入口，只手动调用。
 - [导演设计方法](references/director-design.md)：意图分析、构图、语义借鉴、改良、发散和随机组合。
@@ -95,7 +95,7 @@ node scripts/match.mjs "抛光金属字面扫光" --details
 
 需求理解与转译由 AI 先完成，词语匹配只辅助搜索；候选还须回到原话与上下文，核对目的、关系、因果和节奏，不能因名称命中或排名靠前就直接采用。现有动效都是参考：有匹配也可改良，没有匹配也可发散；可以跨类别随机组合，再按表达与可读性筛选。采用方案记录在动作计划，播放与导出不重新随机。只在确需外部依据或用户要求时定向联网。
 
-选出候选后，用 `show.mjs` 一次看全采用所需的事实（画面说明、源码与依赖大小、变体、可调节奏、权利和可粘贴的 Remotion 片段）；有字幕或分镜时用 `plan.mjs` 把它变成可检查的计划，再装配成 Remotion 工程。这三步是为较弱的模型准备的机械路径，完整说明和速选表见 [快速上手](references/quickstart.md)，示例计划见 [plan-example.json](references/plan-example.json)：
+选出候选后，用 `show.mjs` 查看画面说明、源码与依赖大小、变体、可调节奏、权利和可粘贴的 Remotion 片段，并阅读实际源码。新建字幕或多镜头视频工程时，用 `plan.mjs` 生成并检查计划，再装配成 Remotion 工程；只要参考或方案时交付选择理由和路径。制作步骤与速选表见 [快速上手](references/quickstart.md)，示例计划见 [plan-example.json](references/plan-example.json)：
 
 ```sh
 node scripts/show.mjs word-slam

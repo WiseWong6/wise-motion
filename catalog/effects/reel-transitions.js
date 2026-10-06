@@ -74,6 +74,10 @@
     };
   }
   for(const [id,cfg] of Object.entries(settings))F[id]=root=>make(root,cfg);
+  const defaultIris = F['iris-open-transition'];
+  F['iris-open-transition'] = (root, K, definition) => ['paper-expand', 'black-cover'].includes(definition?.variant_id)
+    ? globalThis.WiseCircularReveal.make(root, K, definition)
+    : defaultIris(root, K, definition);
   const defaultBandCut = F['glitch-band-transition'];
   F['glitch-band-transition'] = (root, K, definition) => definition?.variant_id === 'poster-cut'
     ? globalThis.WiseGeometricPoster.make(root, K, definition, 'intermittent')

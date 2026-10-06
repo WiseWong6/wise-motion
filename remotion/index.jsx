@@ -4,6 +4,8 @@ import {staticFile, useBufferState, useCurrentFrame, useDelayRender, useRemotion
 import {createFrameDocument} from './frame-document.mjs';
 import {resolveEffect, sampleEffectTime} from './clock.mjs';
 export {DEFAULT_FPS, MOTION_WIDTH, MOTION_HEIGHT, effectDefinitions, getEffectMetadata, normalizeSpeed, resolveEffect, sampleEffectTime} from './clock.mjs';
+export {WiseMotionButterfly, butterflyMotion} from '../catalog/remotion/butterfly.jsx';
+export {WiseMotionCircularReveal, circularReveal} from '../catalog/remotion/circular-reveal.jsx';
 
 const asError = reason => reason instanceof Error ? reason : new Error(reason?.message || String(reason));
 
