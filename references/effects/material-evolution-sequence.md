@@ -31,8 +31,8 @@
 - [原码提取与接入源码](../../catalog/effects/material-evolution.js)，注册名称：`material-evolution-sequence`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 效果参考 [Kimi K3 开源发布宣传片（open weights）](https://www.youtube.com/watch?v=5GlCGOXUYHg)。
-- 沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三沿用动画横笔，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序和横笔为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[笔画接续成字](brush-glyph-build.md)、[字符压成横笔](glyph-bar-collapse.md)、[点线变圆柱](dots-lines-cylinders.md)、[形态连续重组](material-form-chain.md)、[球体合拢换材质](spheres-material-merge.md)、[群像显现清场](atlas-reveal-clear.md)、[字形快切收尾](glyph-cut-ending.md)。
 
-补充效果参考：[颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道字）](https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P)。
+补充效果参考：[颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道、一、二、三）](https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P)。

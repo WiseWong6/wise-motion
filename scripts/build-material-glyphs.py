@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
-"""直接描摹随包宋拓原页中的道字；笔画路径仅控制显现，不重新设计字形。生成需要 OpenCV、NumPy 和 FontTools。"""
+"""直接描摹随包宋拓原页中的道、一、二、三；笔画路径仅控制显现，不重新设计字形。生成需要 OpenCV、NumPy 和 FontTools。"""
 import argparse
 import json
 from pathlib import Path
@@ -17,6 +17,7 @@ checking = parser.parse_args().check
 # 原页随包保留，以下坐标直接截取原页像素；不重新设计字形。
 # https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P
 DAO_CROP = (811, 902, 144, 143)
+NUMERAL_CROPS = {'一': (2080, 337, 140, 85), '二': (1625, 638, 140, 100), '三': (1780, 1350, 145, 122)}
 SAMPLE = 4
 OPENING_FRAMES = [1, 4, 5, 6, 10, 12, 13, 14, 15, 16, 17, 18, 20, 34, 36, 38, 40, 42, 44, 46, 47, 48, 50, 52, 53, 54, 55, 56, 58, 60, 64, 67, 70, 71, 73, 74, 76]
 ENDING_FRAMES = [357, 358, 359, 360, 361, 363, 364, 365, 368, 369, 370, 371, 372, 373, 375, 377, 378, 381, 382, 384, 387, 390, 392, 395, 397, 410, 433]
@@ -31,7 +32,7 @@ def path(points):
     return ''.join(('M' if i == 0 else 'L') + str(number(x)) + ' ' + str(number(y)) for i, (x, y) in enumerate(points)) + 'Z'
 
 
-def source_masks(filename, crop):
+def source_masks(filename, crop, minimum_area=4):
     image = cv2.imread(str(ROOT / 'vendor/duobaota' / filename), cv2.IMREAD_GRAYSCALE)
     if image is None:
         raise SystemExit('缺少随包宋拓原页：' + filename)
@@ -44,7 +45,7 @@ def source_masks(filename, crop):
         mask = np.uint8(gray >= level)*255
         count, components, stats, _ = cv2.connectedComponentsWithStats(mask)
         for i in range(1, count):
-            if stats[i, cv2.CC_STAT_AREA] < 4*SAMPLE*SAMPLE:
+            if stats[i, cv2.CC_STAT_AREA] < minimum_area*SAMPLE*SAMPLE:
                 mask[components == i] = 0
         masks.append(mask)
     return masks
@@ -124,15 +125,30 @@ for frame in OPENING_FRAMES:
         layers.append({'color': color, 'path': ''.join(path(p) for p in contours(revealed, dao_transform))})
     opening.append({'frame': frame, 'layers': layers})
 
-# 片尾一、二、三沿用横笔动画的固定笔形与位置；不再取道字部件拼凑。
-def horizontal(xs, top, bottom):
-    points = list(zip(xs, top)) + list(zip(xs, bottom))[::-1]
-    return {'p': points, 'h': []}
-
-single = horizontal([210,216,223,232,244,262,284,306,328,350,372,390,401,412,422,428,430], [188,182,177,175,175,174,173,171,169,168,167,165,165,168,172,178,184], [197,201,206,208,207,204,202,201,200,199,198,198,200,202,201,195,189])
-
-def shifted_stroke(y, scale=1):
-    return {'p': [[number(320+(x-320)*scale), number(y+(v-185)*scale)] for x, v in single['p']], 'h': []}
+# 三个数字各自直接取第十开完整原字，保持原字宽高比例和笔画间距。
+# 较大的去杂点门槛仅用于这些简单横笔，防止纸面小杂点变成额外笔画。
+numeral_shapes, stroke_profiles = {}, {}
+for label, crop in NUMERAL_CROPS.items():
+    mask = source_masks('page-10.jpg', crop, minimum_area=32)[0]
+    transform = transform_for(mask, width=220, height=220)
+    numeral_shapes[label] = [{'p': p, 'h': []} for p in contours(mask, transform)]
+    count, components, stats, centers = cv2.connectedComponentsWithStats(mask)
+    strokes = sorted(range(1, count), key=lambda i: centers[i][1])
+    if len(strokes) != '一二三'.index(label)+1:
+        raise SystemExit('原字笔画数量异常：' + label)
+    profiles = []
+    scale, tx, ty = transform
+    for component in strokes:
+        x0, _, width, _, _ = stats[component]
+        xs, top, bottom = [], [], []
+        for x in range(x0, x0+width):
+            ys = np.flatnonzero(components[:, x] == component)
+            if len(ys):
+                xs.append(number(x*scale+tx))
+                top.append(number(ys[0]*scale+ty))
+                bottom.append(number(ys[-1]*scale+ty))
+        profiles.append({'x': xs, 'top': top, 'bottom': bottom})
+    stroke_profiles[label] = profiles
 
 
 class Polygons(BasePen):
@@ -197,12 +213,8 @@ for i, (frame, label) in enumerate(zip(ENDING_FRAMES, labels)):
     elif i < 5:
         if i == 1:
             shapes = [{'p': p, 'h': []} for p in contours(dao_masks[0], dao_transform)]
-        elif i == 2:
-            shapes = [single]
-        elif i == 3:
-            shapes = [shifted_stroke(132, .55), shifted_stroke(228)]
         else:
-            shapes = [shifted_stroke(112, .75), shifted_stroke(182, .6), shifted_stroke(252)]
+            shapes = numeral_shapes[label]
     elif i == 25:
         shapes = text('WISE MOTION', 30, 164) + text('OPEN SOURCE', 24, 207)
     elif i == 24:
@@ -214,11 +226,13 @@ for i, (frame, label) in enumerate(zip(ENDING_FRAMES, labels)):
     ending.append({'frame': frame, 'label': label, 'shapes': shapes})
 
 value = {'opening': opening, 'ending': ending,
-         'source': '道字直接描摹宋拓多宝佛塔碑册第二开左页的道树萌牙原字；原页与截取坐标随包保存，灰度描边不重新设计字形。一二三沿用横笔动画的项目笔形，英文和数字由 Oswald Bold 生成。',
+         'source': '道字直接描摹宋拓多宝佛塔碑册第二开左页的道树萌牙原字；原页与截取坐标随包保存，灰度描边不重新设计字形。一二三直接描摹同册第十开原字，中段粒子和片尾共用原字轮廓，英文和数字由 Oswald Bold 生成。',
          'traced_character': {'text': '道', 'source_file': 'vendor/duobaota/page-02.jpg', 'crop': DAO_CROP, 'source_url': 'https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P', 'license': 'CC-BY-4.0'},
+         'traced_numerals': [{'text': label, 'source_file': 'vendor/duobaota/page-10.jpg', 'crop': crop, 'license': 'CC-BY-4.0'} for label, crop in NUMERAL_CROPS.items()],
+         'stroke_profiles': stroke_profiles,
          'license': 'AGPL-3.0-only; traced rubbing CC-BY-4.0; Oswald font outlines SIL-OFL-1.1',
          'generator': 'scripts/build-material-glyphs.py'}
-content = '/* Generated by scripts/build-material-glyphs.py; 描摹道字 CC-BY-4.0（国立故宫博物院，台北）；程序及横笔 AGPL-3.0-only；字体轮廓 SIL-OFL-1.1。 */\nglobalThis.WiseMaterialKeyShapes=' + json.dumps(value, ensure_ascii=False, separators=(',', ':')) + ';\n'
+content = '/* Generated by scripts/build-material-glyphs.py; 描摹道、一、二、三 CC-BY-4.0（国立故宫博物院，台北）；程序 AGPL-3.0-only；字体轮廓 SIL-OFL-1.1。 */\nglobalThis.WiseMaterialKeyShapes=' + json.dumps(value, ensure_ascii=False, separators=(',', ':')) + ';\n'
 target = ROOT / 'catalog/assets/material-evolution/key-shapes.js'
 if checking:
     if target.read_text() != content:

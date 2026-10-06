@@ -21,6 +21,29 @@ test('开头与片尾道字共用古帖轮廓，字形完整落在绘制和粒�
  }
  assert.ok(data.opening[0].layers.every(layer=>layer.path===''));
 });
+test('一二三保留原帖独立笔画和比例，中段与片尾采用同组来源',()=>{
+ const context={};runInNewContext(keys,context);const data=context.WiseMaterialKeyShapes;
+ assert.deepEqual(Array.from(data.traced_numerals,item=>item.text),['一','二','三']);
+ for(const [index,label] of ['一','二','三'].entries()){
+  const record=data.traced_numerals[index],pose=data.ending.find(item=>item.label===label);
+  assert.equal(record.source_file,'vendor/duobaota/page-10.jpg');
+  assert.equal(record.license,'CC-BY-4.0');
+  assert.equal(pose.frame,359+index,'替换字形不得改变原有切换时刻');
+  const strokes=data.stroke_profiles[label];assert.equal(strokes.length,index+1);
+  for(const stroke of strokes){
+   assert.equal(stroke.x.length,stroke.top.length);assert.equal(stroke.x.length,stroke.bottom.length);
+   assert.ok(stroke.x.every((x,i)=>Number.isFinite(x)&&(!i||x>stroke.x[i-1])));
+   assert.ok(stroke.top.every((y,i)=>Number.isFinite(y)&&y<=stroke.bottom[i]));
+  }
+  assert.ok(pose.shapes.every(shape=>shape.p.every(([x,y])=>x>=210&&x<=430&&y>90&&y<270)));
+ }
+ const two=data.stroke_profiles['二'],three=data.stroke_profiles['三'];
+ const width=stroke=>stroke.x.at(-1)-stroke.x[0];
+ assert.ok(width(two[0])<width(two[1])*.6,'二的上横应保留原帖较短的比例');
+ assert.ok(width(three[0])<width(three[1])&&width(three[1])<width(three[2]),'三的三横应保留各自原有长度');
+ assert.match(source,/material\.keyShapes\.stroke_profiles\['一'\]/);
+ assert.match(source,/material\.keyShapes\.stroke_profiles\['二'\]/);
+});
 const ids=['brush-glyph-build','glyph-bar-collapse','dots-lines-cylinders','material-form-chain','spheres-material-merge','atlas-reveal-clear','glyph-cut-ending'];
 const starts=[0,2500,3550,6100,8100,9250,356/30*1000];
 const ends=[2500,3550,6100,8100,9250,356/30*1000,15054];

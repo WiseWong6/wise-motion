@@ -23,7 +23,73 @@
       143
     ]
   },
-  "adaptation": "原页像素保持原样随包保存。生成程序对指定字框做七档灰度描边、去除细小扫描杂点与轻微轮廓平滑，等比放入动画画板；显现路径只控制原字轮廓的出现时刻，不重新设计字形。",
+  "adaptation": "原页像素保持原样随包保存。生成程序对指定字框做七档灰度描边、去除细小扫描杂点与轻微轮廓平滑，等比放入动画画板；显现路径只控制原字轮廓的出现时刻，不重新设计字形。一、二、三各取完整原字，去除小于32原像素面积的扫描杂点，等比缩放；粒子所用横笔上下边界由相同原字像素生成。",
   "generator": "scripts/build-material-glyphs.py",
-  "verified_on": "2026-10-06"
+  "verified_on": "2026-10-06",
+  "images": [
+    {
+      "file": "page-02.jpg",
+      "image_id": "K2D000019N000000002PAA",
+      "image_url": "https://iiifod.npm.gov.tw/iiif/2/K2D%2FK2D000019N000000002PAA/full/,2100/0/default.jpg",
+      "width": 2800,
+      "height": 2100,
+      "bytes": 781279,
+      "sha256": "03dda3c026e0792f3b0f98345d58c68bcda1989909dd8ffefdde01676d485c98"
+    },
+    {
+      "file": "page-10.jpg",
+      "image_id": "K2D000019N000000010PAA",
+      "image_url": "https://iiifod.npm.gov.tw/iiif/2/K2D%2FK2D000019N000000010PAA/full/,2100/0/default.jpg",
+      "width": 2800,
+      "height": 2100,
+      "bytes": 764074,
+      "sha256": "b20ed16ec17361055189f0b2351f2713dcfbc279d0507c7fe00b3b7c58b10f8f"
+    }
+  ],
+  "characters": [
+    {
+      "text": "道",
+      "location": "第二开左页，自右数第三列、第五字；童遊下方、樹上方，原文道樹萌牙。",
+      "crop_xywh": [
+        811,
+        902,
+        144,
+        143
+      ],
+      "file": "page-02.jpg"
+    },
+    {
+      "text": "一",
+      "file": "page-10.jpg",
+      "location": "第十开右页，自右数第一列、第一字，原文一志。",
+      "crop_xywh": [
+        2080,
+        337,
+        140,
+        85
+      ]
+    },
+    {
+      "text": "二",
+      "file": "page-10.jpg",
+      "location": "第十开右页，自右数第四列、第三字，原文春秋二時。",
+      "crop_xywh": [
+        1625,
+        638,
+        140,
+        100
+      ]
+    },
+    {
+      "text": "三",
+      "file": "page-10.jpg",
+      "location": "第十开右页，自右数第三列、第八字，原文自三載。",
+      "crop_xywh": [
+        1780,
+        1350,
+        145,
+        122
+      ]
+    }
+  ]
 }
