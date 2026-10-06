@@ -1,8 +1,8 @@
 /* Wise Motion Remotion 接入 · 自有代码 AGPL-3.0-only；第三方许可见 NOTICE.md。 */
 
 // remotion/index.jsx
-import React, { useLayoutEffect, useMemo, useRef, useState } from "react";
-import { staticFile, useBufferState, useCurrentFrame, useDelayRender, useRemotionEnvironment, useVideoConfig } from "remotion";
+import React3, { useLayoutEffect as useLayoutEffect2, useMemo, useRef as useRef2, useState } from "react";
+import { staticFile as staticFile2, useBufferState, useCurrentFrame as useCurrentFrame3, useDelayRender as useDelayRender2, useRemotionEnvironment, useVideoConfig as useVideoConfig3 } from "remotion";
 
 // remotion/frame-document.mjs
 var FRAME_SCRIPTS = Object.freeze([
@@ -64,6 +64,9 @@ var FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/seed-bloom-brand.js",
   "catalog/effects/civilization-images.js",
   "catalog/effects/reel-transitions.js",
+  "catalog/effects/circular-reveal.js",
+  "catalog/effects/butterfly-motion.js",
+  "catalog/effects/butterfly.js",
   "catalog/effects/reel-grit-key.js",
   "catalog/effects/reel-flat-gen.js",
   "catalog/effects/reel-prompt-outro.js",
@@ -7799,6 +7802,8 @@ var registry_default = {
         "\u7ACB\u4F53\u7FFB\u9875\u4E66",
         "\u7ED5\u810A\u7FFB\u9875",
         "\u4E66\u810A\u7FFB\u9875",
+        "\u7ED5\u4E66\u810A\u7FFB\u9875",
+        "\u7ED5\u4E66\u810A\u7FFB\u9875\u7EC4\u5408",
         "\u7FFB\u9875\u7EC4\u5408",
         "\u63D2\u753B\u56FE\u7A3F\u518C",
         "\u7FFB\u9875 \u63D2\u753B \u5149\u5F71"
@@ -12009,7 +12014,10 @@ var registry_default = {
         "\u5706\u5B54\u6269\u5F20\u8F6C\u573A",
         "Claude \u52A8\u6548\u6F14\u8FDB\u53F2",
         "\u51E0\u4F55\u906E\u7F69\u8F6C\u573A\u7EC4",
-        "\u5706\u5B54\u6269\u5F00"
+        "\u5706\u5B54\u6269\u5F00",
+        "\u7C73\u767D\u9875\u9762\u5C55\u5F00",
+        "\u9ED1\u8272\u5706\u9762\u8986\u76D6",
+        "\u5706\u5F62\u8F6C\u573A"
       ],
       behaviors: [
         "mask",
@@ -12019,7 +12027,7 @@ var registry_default = {
       avoid: "\u4E0D\u6539\u6210\u77E9\u5F62\u64E6\u9664\uFF0C\u4E0D\u628A\u65B0\u9875\u672C\u8EAB\u7F29\u653E",
       analogy: "\u5706\u5F62\u5F00\u53E3\u4ECE\u4E2D\u5FC3\u6269\u5F20\uFF0C\u6696\u767D\u8F6E\u5ED3\u6CBF\u8FB9\u7F18\u524D\u8FDB\uFF0C\u663E\u9732\u5B8C\u6574\u65B0\u9875\u3002",
       assumptions: "\u4FDD\u7559\u539F\u7247\u906E\u7F69\u5F62\u72B6\u3001\u968F\u673A\u6B21\u5E8F\u3001\u901F\u5EA6\u66F2\u7EBF\u4E0E\u4EA4\u63A5\u65F6\u957F\uFF0C\u524D\u540E\u4E24\u9875\u6362\u6210\u76EE\u5F55\u914D\u8272\u7684\u51E0\u4F55\u793A\u610F\uFF1B\u7EAF\u82F1\u6587\u91C7\u7528\u672C\u5730 Oswald Bold\uFF0C\u652F\u6301\u6DF1\u6D45\u4E3B\u9898\u3002\u539F\u89C6\u9891\u4E0E\u58F0\u97F3\u672A\u590D\u5236\u3002",
-      recommendation: "\u9700\u8981\u5706\u5B54\u6269\u5F20\u8F6C\u573A\u7684\u53D8\u5316\u5173\u7CFB\u65F6\u4F7F\u7528\u3002",
+      recommendation: "\u5706\u5F62\u5F00\u53E3\u6269\u5927\u4EA4\u63A5\u9875\u9762\u65F6\u4F7F\u7528\u3002\u6807\u51C6\u793A\u4F8B\u4FDD\u7559\u6696\u767D\u8FB9\u7F18\u8F6E\u5ED3\uFF1B\u7C73\u767D\u9875\u9762\u5C55\u5F00\u4E0E\u9ED1\u8272\u5706\u9762\u8986\u76D6\u4FDD\u7559\u65E0\u8F6E\u5ED3\u7684\u7AD6\u5E45\u5706\u9762\u548C\u66F4\u77ED\u7684\u4EA4\u63A5\u3002",
       tempo_note: "\u9759\u7F6E0.5\u79D2\uFF0C\u6309\u539F\u72470.8\u79D2\u4EA4\u63A5\uFF0C\u968F\u540E\u4FDD\u6301\u65B0\u9875\uFF1B\u603B\u957F1.8\u79D2\u3002",
       source: {
         path: "catalog/effects/reel-transitions.js",
@@ -12027,8 +12035,149 @@ var registry_default = {
         origin: "original",
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
-        reference_url: "https://animejs.com/documentation/"
-      }
+        reference_url: "https://animejs.com/documentation/",
+        dependencies: [
+          "catalog/effects/circular-reveal.js"
+        ]
+      },
+      variants: [
+        {
+          kind: "action",
+          loop: false,
+          default_ease: "linear",
+          parameters: {
+            speed: {
+              label: "\u64AD\u653E\u901F\u5EA6",
+              default: 1,
+              min: 0.5,
+              max: 2,
+              step: 0.25
+            }
+          },
+          actions: [],
+          demo_mode: "fixed-timeline",
+          domains: [
+            "animation"
+          ],
+          trigger: "\u6253\u5F00\u540E\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
+          previous_names: [
+            "\u5706\u5B54\u6269\u5F00"
+          ],
+          original_scene: "claude-showreel-2026/transClip",
+          category: "transition",
+          duration_ms: 1800,
+          preview_ms: 900,
+          summary: "\u5706\u5F62\u5F00\u53E3\u4ECE\u4E2D\u5FC3\u6269\u5F20\uFF0C\u6696\u767D\u8F6E\u5ED3\u6CBF\u8FB9\u7F18\u524D\u8FDB\uFF0C\u663E\u9732\u5B8C\u6574\u65B0\u9875\u3002",
+          purpose: "\u5706\u5F62\u5F00\u53E3\u4ECE\u4E2D\u5FC3\u6269\u5F20\uFF0C\u6696\u767D\u8F6E\u5ED3\u6CBF\u8FB9\u7F18\u524D\u8FDB\uFF0C\u663E\u9732\u5B8C\u6574\u65B0\u9875\u3002",
+          objects: "\u524D\u540E\u4E24\u5F20\u51E0\u4F55\u793A\u610F\u9875\u3001\u539F\u7247\u4EA4\u63A5\u906E\u7F69\u4E0E\u5FC5\u8981\u5149\u6548",
+          phases: [
+            "\u539F\u9875\u5148\u5B8C\u6574\u9759\u7F6E0.5\u79D2\u3002",
+            "\u5706\u5F62\u5F00\u53E3\u4ECE\u4E2D\u5FC3\u6269\u5F20\uFF0C\u6696\u767D\u8F6E\u5ED3\u6CBF\u8FB9\u7F18\u524D\u8FDB\uFF0C\u663E\u9732\u5B8C\u6574\u65B0\u9875\u3002",
+            "\u4FDD\u7559\u5B8C\u6574\u65B0\u9875\uFF0C\u4EA4\u63A5\u88C5\u9970\u505C\u6B62\u3002"
+          ],
+          aliases: [
+            "Claude \u8F6C\u573A",
+            "\u6F14\u8FDB\u53F2\u5F85\u9A8C\u6536",
+            "\u5706\u5B54\u6269\u5F20\u8F6C\u573A",
+            "Claude \u52A8\u6548\u6F14\u8FDB\u53F2",
+            "\u51E0\u4F55\u906E\u7F69\u8F6C\u573A\u7EC4",
+            "\u5706\u5B54\u6269\u5F00"
+          ],
+          behaviors: [
+            "mask",
+            "replacement"
+          ],
+          retain: "\u5F00\u53E3\u534A\u5F84\u3001\u539F\u59CB\u7F13\u5165\u7F13\u51FA\u66F2\u7EBF\u4E0E14\u50CF\u7D20\u6696\u767D\u8F6E\u5ED3",
+          avoid: "\u4E0D\u6539\u6210\u77E9\u5F62\u64E6\u9664\uFF0C\u4E0D\u628A\u65B0\u9875\u672C\u8EAB\u7F29\u653E",
+          analogy: "\u5706\u5F62\u5F00\u53E3\u4ECE\u4E2D\u5FC3\u6269\u5F20\uFF0C\u6696\u767D\u8F6E\u5ED3\u6CBF\u8FB9\u7F18\u524D\u8FDB\uFF0C\u663E\u9732\u5B8C\u6574\u65B0\u9875\u3002",
+          assumptions: "\u4FDD\u7559\u539F\u7247\u906E\u7F69\u5F62\u72B6\u3001\u968F\u673A\u6B21\u5E8F\u3001\u901F\u5EA6\u66F2\u7EBF\u4E0E\u4EA4\u63A5\u65F6\u957F\uFF0C\u524D\u540E\u4E24\u9875\u6362\u6210\u76EE\u5F55\u914D\u8272\u7684\u51E0\u4F55\u793A\u610F\uFF1B\u7EAF\u82F1\u6587\u91C7\u7528\u672C\u5730 Oswald Bold\uFF0C\u652F\u6301\u6DF1\u6D45\u4E3B\u9898\u3002\u539F\u89C6\u9891\u4E0E\u58F0\u97F3\u672A\u590D\u5236\u3002",
+          recommendation: "\u9700\u8981\u5706\u5B54\u6269\u5F20\u8F6C\u573A\u7684\u53D8\u5316\u5173\u7CFB\u65F6\u4F7F\u7528\u3002",
+          tempo_note: "\u9759\u7F6E0.5\u79D2\uFF0C\u6309\u539F\u72470.8\u79D2\u4EA4\u63A5\uFF0C\u968F\u540E\u4FDD\u6301\u65B0\u9875\uFF1B\u603B\u957F1.8\u79D2\u3002",
+          source: {
+            path: "catalog/effects/reel-transitions.js",
+            factory: "iris-open-transition",
+            origin: "original",
+            license: "AGPL-3.0-only",
+            library: "animejs@4.5.0",
+            reference_url: "https://animejs.com/documentation/",
+            dependencies: [
+              "catalog/effects/circular-reveal.js"
+            ]
+          },
+          id: "standard",
+          label: "\u6807\u51C6\u5706\u5B54\u5C55\u5F00"
+        },
+        {
+          id: "paper-expand",
+          label: "\u7C73\u767D\u9875\u9762\u5C55\u5F00",
+          summary: "\u7C73\u767D\u9875\u9762\u5C55\u5F00\uFF1A\u5706\u9762\u4ECE\u6307\u5B9A\u5706\u5FC3\u6269\u5927\u5230\u8986\u76D6\u6574\u9875\uFF0C\u524D\u540E\u753B\u9762\u672C\u8EAB\u4E0D\u7F29\u653E\u3002",
+          purpose: "\u7528\u8FDE\u7EED\u6269\u5927\u5706\u9762\u628A\u5F53\u524D\u9875\u4EA4\u7ED9\u4E0B\u4E00\u9875\u3002",
+          objects: "\u524D\u9875\u3001\u65B0\u9875\u6216\u7EAF\u8272\u8986\u76D6\u5C42\u3001\u5706\u5F62\u88C1\u5207\u8FB9\u754C",
+          phases: [
+            "\u539F\u9875\u4FDD\u63010.15\u79D2\u3002",
+            "\u5706\u9762\u4ECE(540,1180)\u51FA\u53D1\uFF0C\u6309\u4E94\u6B21\u7F13\u5165\u7F13\u51FA\u66F2\u7EBF\u57280.45\u79D2\u5185\u6269\u5927\u3002",
+            "\u534A\u5F84\u8FBE\u5230120%\u540E\u8986\u76D6\u5168\u9875\uFF0C\u4FDD\u63010.45\u79D2\u3002"
+          ],
+          retain: "1080\xD71440\u753B\u5E45\uFF0C\u5706\u5FC3(540,1180)\uFF0C\u989C\u8272#EEECE5\uFF0C\u8F6C\u573A0.45\u79D2\uFF0C\u5706\u9762\u534A\u5F84\u4ECE0\u5230120%\u3002",
+          avoid: "\u4E0D\u52A0\u53D1\u5149\u8F6E\u5ED3\uFF0C\u4E0D\u628A\u9875\u9762\u672C\u8EAB\u7F29\u653E\uFF0C\u4E0D\u6539\u6210\u4E2D\u5FC3\u95EA\u5149\u3002",
+          duration_ms: 1050,
+          preview_ms: 375,
+          loop: false,
+          source: {
+            path: "catalog/effects/reel-transitions.js",
+            factory: "iris-open-transition",
+            origin: "original",
+            license: "AGPL-3.0-only",
+            library: "animejs@4.5.0",
+            reference_url: "https://animejs.com/documentation/",
+            dependencies: [
+              "catalog/effects/circular-reveal.js"
+            ],
+            extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u89C6\u9891\u5706\u5F62\u8F6C\u573A\u63D0\u53D6\u5706\u5FC3\u3001\u4E94\u6B21\u7F13\u5165\u7F13\u51FA\u66F2\u7EBF\u548C120%\u7EC8\u6001\u534A\u5F84\uFF1B\u76EE\u5F55\u4E0E\u9010\u5E27\u7EC4\u4EF6\u5171\u7528\u53C2\u6570\u4E0E\u8BA1\u7B97\u3002"
+          },
+          tempo_note: "\u5F00\u59CB\u4FDD\u63010.15\u79D2\uFF0C\u8F6C\u573A0.45\u79D2\uFF0C\u5B8C\u6210\u540E\u4FDD\u63010.45\u79D2\u3002",
+          recommendation: "\u5DF2\u6709\u5B8C\u6574\u524D\u540E\u9875\u9762\u3001\u9700\u8981\u67D4\u548C\u5706\u9762\u4EA4\u63A5\u65F6\u7528\u6B64\u793A\u4F8B\uFF1B\u9700\u8981\u6696\u767D\u8FB9\u7F18\u8F6E\u5ED3\u65F6\u9009\u6807\u51C6\u5706\u5B54\u5C55\u5F00\u3002",
+          reproduction: {
+            presentation: "1080\xD71440\u7AD6\u5E45\uFF0C\u5706\u5FC3(540,1180)\uFF0C\u5C55\u5F00\u989C\u8272#EEECE5\u3002\u76EE\u5F55\u53EA\u7B49\u6BD4\u7F29\u5C0F\u5B8C\u6574\u753B\u5E45\u4E3A270\xD7360\u3002",
+            retain: "p=clamp(t/0.45,0,1)\uFF0Cq=p<0.5\u65F6\u4E3A16p\u2075\uFF0C\u5426\u5219\u4E3A1\u2212(\u22122p+2)\u2075/2\uFF1B\u5706\u5F62\u534A\u5F84\u4E3A120q%\uFF0C\u539F\u9875\u548C\u65B0\u9875\u4E0D\u7F29\u653E\u3002"
+          }
+        },
+        {
+          id: "black-cover",
+          label: "\u9ED1\u8272\u5706\u9762\u8986\u76D6",
+          summary: "\u9ED1\u8272\u5706\u9762\u8986\u76D6\uFF1A\u5706\u9762\u4ECE\u6307\u5B9A\u5706\u5FC3\u6269\u5927\u5230\u8986\u76D6\u6574\u9875\uFF0C\u524D\u540E\u753B\u9762\u672C\u8EAB\u4E0D\u7F29\u653E\u3002",
+          purpose: "\u7528\u8FDE\u7EED\u6269\u5927\u5706\u9762\u628A\u5F53\u524D\u9875\u4EA4\u7ED9\u4E0B\u4E00\u9875\u3002",
+          objects: "\u524D\u9875\u3001\u65B0\u9875\u6216\u7EAF\u8272\u8986\u76D6\u5C42\u3001\u5706\u5F62\u88C1\u5207\u8FB9\u754C",
+          phases: [
+            "\u539F\u9875\u4FDD\u63010.15\u79D2\u3002",
+            "\u5706\u9762\u4ECE(540,850)\u51FA\u53D1\uFF0C\u6309\u4E94\u6B21\u7F13\u5165\u7F13\u51FA\u66F2\u7EBF\u57280.4\u79D2\u5185\u6269\u5927\u3002",
+            "\u534A\u5F84\u8FBE\u5230120%\u540E\u8986\u76D6\u5168\u9875\uFF0C\u4FDD\u63010.45\u79D2\u3002"
+          ],
+          retain: "1080\xD71440\u753B\u5E45\uFF0C\u5706\u5FC3(540,850)\uFF0C\u989C\u8272#0A0A0B\uFF0C\u8F6C\u573A0.4\u79D2\uFF0C\u5706\u9762\u534A\u5F84\u4ECE0\u5230120%\u3002",
+          avoid: "\u4E0D\u52A0\u53D1\u5149\u8F6E\u5ED3\uFF0C\u4E0D\u628A\u9875\u9762\u672C\u8EAB\u7F29\u653E\uFF0C\u4E0D\u6539\u6210\u4E2D\u5FC3\u95EA\u5149\u3002",
+          duration_ms: 1e3,
+          preview_ms: 350,
+          loop: false,
+          source: {
+            path: "catalog/effects/reel-transitions.js",
+            factory: "iris-open-transition",
+            origin: "original",
+            license: "AGPL-3.0-only",
+            library: "animejs@4.5.0",
+            reference_url: "https://animejs.com/documentation/",
+            dependencies: [
+              "catalog/effects/circular-reveal.js"
+            ],
+            extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u89C6\u9891\u5706\u5F62\u8F6C\u573A\u63D0\u53D6\u5706\u5FC3\u3001\u4E94\u6B21\u7F13\u5165\u7F13\u51FA\u66F2\u7EBF\u548C120%\u7EC8\u6001\u534A\u5F84\uFF1B\u76EE\u5F55\u4E0E\u9010\u5E27\u7EC4\u4EF6\u5171\u7528\u53C2\u6570\u4E0E\u8BA1\u7B97\u3002"
+          },
+          tempo_note: "\u5F00\u59CB\u4FDD\u63010.15\u79D2\uFF0C\u8F6C\u573A0.4\u79D2\uFF0C\u5B8C\u6210\u540E\u4FDD\u63010.45\u79D2\u3002",
+          recommendation: "\u5DF2\u6709\u5B8C\u6574\u524D\u540E\u9875\u9762\u3001\u9700\u8981\u67D4\u548C\u5706\u9762\u4EA4\u63A5\u65F6\u7528\u6B64\u793A\u4F8B\uFF1B\u9700\u8981\u6696\u767D\u8FB9\u7F18\u8F6E\u5ED3\u65F6\u9009\u6807\u51C6\u5706\u5B54\u5C55\u5F00\u3002",
+          reproduction: {
+            presentation: "1080\xD71440\u7AD6\u5E45\uFF0C\u5706\u5FC3(540,850)\uFF0C\u5C55\u5F00\u989C\u8272#0A0A0B\u3002\u76EE\u5F55\u53EA\u7B49\u6BD4\u7F29\u5C0F\u5B8C\u6574\u753B\u5E45\u4E3A270\xD7360\u3002",
+            retain: "p=clamp(t/0.4,0,1)\uFF0Cq=p<0.5\u65F6\u4E3A16p\u2075\uFF0C\u5426\u5219\u4E3A1\u2212(\u22122p+2)\u2075/2\uFF1B\u5706\u5F62\u534A\u5F84\u4E3A120q%\uFF0C\u539F\u9875\u548C\u65B0\u9875\u4E0D\u7F29\u653E\u3002"
+          }
+        }
+      ]
     },
     {
       kind: "action",
@@ -24073,14 +24222,14 @@ var registry_default = {
       name: "\u5730\u5757\u94FA\u5C55\u4E0E\u52A8\u6548\u7EFF\u6D32",
       kind: "composition",
       category: "compositions",
-      duration_ms: 3750,
-      preview_ms: 3700,
-      summary: "\u5730\u5757\u9010\u5708\u7FFB\u5F00\uFF0C\u9732\u53F0\u5EFA\u7B51\u4E0E\u690D\u88AB\u957F\u51FA\uFF1B\u6C34\u9762\u8D77\u4F0F\u8F6E\u6362\u76EE\u5F55\u52A8\u6548\uFF0C\u6570\u636E\u5361\u9000\u573A\u540E\u663E\u51FAMOTION OASIS\u3002",
+      duration_ms: 4950,
+      preview_ms: 4900,
+      summary: "\u5730\u5757\u9010\u5708\u7FFB\u5F00\uFF0C\u9732\u53F0\u5EFA\u7B51\u4E0E\u690D\u88AB\u957F\u51FA\uFF1B\u6C34\u9762\u8F6E\u6362\u76EE\u5F55\u52A8\u6548\uFF0C\u8BFB\u5361\u540E\u968F\u5730\u5757\u7F29\u5C0F\u6DE1\u51FA\u6570\u636E\uFF0C\u5E95\u90E8\u663E\u51FAMOTION OASIS\u3002",
       objects: "12\xD712\u5730\u5757\u3001\u4E09\u5C42\u5B9E\u4F53\u5730\u57FA\u3001\u9000\u53F0\u697C\u7FA4\u3001\u68D5\u6988\u6811\u300126\u4E2A\u52A8\u6548\u6C34\u683C\u3001\u4E09\u5F20\u76EE\u5F55\u6570\u636E\u5361\u4E0EMOTION OASIS\u7ACB\u4F53\u5B57",
       phases: [
         "0\u20130.80\u79D2\uFF1A\u4E2D\u5FC3\u56DB\u5757\u5730\u7816\u7FFB\u5F00\uFF0C\u5916\u5708\u4F9D\u8DDD\u79BB\u7FFB\u94FA\uFF0C\u4E09\u5C42\u5730\u57FA\u5411\u4E0B\u5C55\u5F00\u3002",
-        "0.85\u20132.83\u79D2\uFF1A\u697C\u7FA4\u3001\u9732\u53F0\u3001\u6811\u6728\u9010\u6B21\u751F\u957F\uFF1B\u6C34\u9762\u6301\u7EED\u8D77\u4F0F\u5E76\u4EA4\u66FF\u4F20\u64AD\u4E2D\u5FC3\u6CE2\u4E0E\u89D2\u843D\u6CE2\uFF0C\u4E09\u5F20\u6570\u636E\u5361\u663E\u793A\u5F53\u524D\u76EE\u5F55\u7684\u52A8\u4F5C\u3001\u63D2\u753B\u548C\u7EC4\u5408\u6570\u91CF\u3002",
-        "2.83\u79D2\u6570\u636E\u5361\u9000\u573A\uFF1B2.86\u20133.13\u79D2MOTION OASIS\u3001\u4E2D\u6587\u201C\u8BA9\u52A8\u6548\u5728\u57CE\u5E02\u53D1\u751F\u201D\u4E0E\u76EE\u5F55\u603B\u6570\u5728\u5730\u5757\u53F3\u524D\u65B9\u51FA\u73B0\uFF1B3.16\u20133.65\u79D2\u5730\u5757\u4E0E\u6587\u6848\u4E00\u8D77\u5411\u53F3\u65CB\u8F6C\u81F3\u6B63\u9762\uFF0C\u6587\u6848\u6700\u7EC8\u5728\u5730\u5757\u4E0B\u65B9\u5C45\u4E2D\uFF0C\u672B\u5C3E\u505C\u7A33\uFF0C\u6C34\u9762\u7EE7\u7EED\u6362\u56FE\u3002"
+        "0.85\u20133.90\u79D2\uFF1A\u697C\u7FA4\u3001\u9732\u53F0\u3001\u6811\u6728\u9010\u6B21\u751F\u957F\uFF1B\u6C34\u9762\u6301\u7EED\u8D77\u4F0F\u5E76\u4EA4\u66FF\u4F20\u64AD\u4E2D\u5FC3\u6CE2\u4E0E\u89D2\u843D\u6CE2\u3002\u4E09\u5F20\u6570\u636E\u5361\u4ECE2.37\u79D2\u8D77\u4F9D\u6B21\u51FA\u73B0\uFF0C2.70\u20133.90\u79D2\u4FDD\u6301\u5730\u5757\u5C3A\u5BF8\u3001\u5B8C\u6574\u6570\u5B57\u4E0E\u5361\u9762\uFF0C\u4F9B\u9605\u8BFB\u3002",
+        "3.90\u20134.55\u79D2\uFF1A\u5730\u5757\u5E73\u7F13\u7F29\u5C0F\uFF0C\u6570\u636E\u5361\u3001\u77ED\u8FDE\u7EBF\u4E0E\u6807\u8BB0\u968F\u7F29\u5C0F\u8FDB\u5EA6\u540C\u6B65\u6DE1\u51FA\uFF1BMOTION OASIS\u3001\u4E2D\u6587\u201C\u8BA9\u52A8\u6548\u5728\u57CE\u5E02\u53D1\u751F\u201D\u4E0E\u76EE\u5F55\u603B\u6570\u540C\u6B65\u5728\u5730\u5757\u4E0B\u65B9\u6C34\u5E73\u5C45\u4E2D\u663E\u73B0\uFF0C\u5E76\u968F\u817E\u51FA\u7684\u7A7A\u95F4\u653E\u5927\u30024.55\u79D2\u5B8C\u6210\u4EA4\u63A5\uFF0C\u659C\u5411\u5730\u5757\u4E0D\u65CB\u8F6C\uFF0C\u6536\u5C3E\u4FDD\u6301\u81F34.95\u79D2\uFF0C\u6C34\u9762\u7EE7\u7EED\u6362\u56FE\u3002"
       ],
       aliases: [
         "MOTION OASIS",
@@ -24103,9 +24252,9 @@ var registry_default = {
         "group-stagger",
         "wave-grid"
       ],
-      retain: "3.75\u79D2\u5B8C\u6574\u65F6\u5E8F\u3001\u8FDE\u7EED\u63A8\u8FDB\u4E0E\u6A2A\u79FB\u3001\u6570\u636E\u5361\u9000\u573A\u540E\u5728\u5730\u5757\u53F3\u524D\u65B9\u663E\u51FA\u6587\u6848\u3001\u5730\u5757\u4E0E\u6587\u6848\u5171\u540C\u5411\u53F3\u8F6C\u6B63\u5E76\u5728\u5730\u5757\u4E0B\u65B9\u9648\u5217\u6587\u6848\u3001\u539F\u8272\u5EFA\u7B51\u3001\u7EC6\u5316\u68D5\u6988\u6811\u3001\u8FDE\u7EED\u8D77\u4F0F\u6C34\u9762\u3001\u9010\u683C\u4EA4\u53E0\u6362\u56FE\u548C\u76EE\u5F55\u6570\u91CF\u7EDF\u8BA1\u3002",
+      retain: "4.95\u79D2\u5B8C\u6574\u65F6\u5E8F\u3001\u5730\u5757\u94FA\u5C55\u4E0E\u697C\u7FA4\u751F\u957F\u3001\u8FDE\u7EED\u63A8\u8FDB\u4E0E\u6A2A\u79FB\u30012.70\u20133.90\u79D2\u4FDD\u6301\u5730\u5757\u5C3A\u5BF8\u548C\u5B8C\u6574\u6570\u636E\u5361\u4F9B\u9605\u8BFB\u3001\u52A8\u4F5C\u5361\u4EE5\u77ED\u76F4\u7EBF\u8FDE\u63A5\u5DE6\u524D\u65B9\u6C34\u683C\u30013.90\u20134.55\u79D2\u5730\u5757\u7F29\u5C0F\u4E0E\u5361\u7247\u6DE1\u51FA\u53CA\u5E95\u90E8\u6587\u6848\u663E\u73B0\u5171\u7528\u8FDB\u5EA6\u3001\u6587\u6848\u968F\u5E95\u90E8\u7A7A\u95F4\u653E\u5927\u5E76\u6C34\u5E73\u5C45\u4E2D\u3001\u6536\u5C3E\u4FDD\u6301\u659C\u5411\u5730\u5757\u800C\u4E0D\u65CB\u8F6C\u3001\u539F\u8272\u5EFA\u7B51\u3001\u7EC6\u5316\u68D5\u6988\u6811\u3001\u8FDE\u7EED\u8D77\u4F0F\u6C34\u9762\u3001\u9010\u683C\u4EA4\u53E0\u6362\u56FE\u548C\u76EE\u5F55\u6570\u91CF\u7EDF\u8BA1\u3002",
       avoid: "\u4E0D\u6269\u5927\u5929\u7A7A\u3001\u4E0D\u52A0\u6295\u5F71\u5C4F\u5E55\u3001\u4E0D\u6539\u53D8\u697C\u7FA4\u5E03\u5C40\uFF1B\u6C34\u9762\u4E0D\u6E05\u7A7A\uFF0C\u56FE\u5F62\u4E0D\u7B49\u6D88\u5931\u540E\u624D\u51FA\u73B0\uFF1B\u4E0D\u4F9D\u8D56\u53C2\u8003\u89C6\u9891\u3002",
-      tempo_note: "\u4FDD\u75593.75\u79D2\u5B8C\u6574\u65F6\u5E8F\uFF0C\u6C34\u6CE2\u4ECE1.40\u79D2\u542F\u52A8\uFF0C\u6BCF660\u6BEB\u79D2\u53D1\u51FA\u4E00\u8F6E\uFF1B2.83\u79D2\u6570\u636E\u5361\u9000\u573A\uFF0C2.86\u20133.13\u79D2\u663E\u51FA\u53F3\u524D\u65B9\u6587\u6848\uFF0C3.16\u20133.65\u79D2\u6574\u4F53\u5411\u53F3\u65CB\u8F6C\uFF0C\u5730\u5757\u6B63\u9762\u8FB9\u7F18\u4E0E\u4E0B\u65B9\u6587\u6848\u6700\u7EC8\u6C34\u5E73\uFF0C\u6700\u540E\u505C\u7A33\u3002",
+      tempo_note: "\u603B\u957F4.95\u79D2\uFF0C\u5730\u5757\u94FA\u5C55\u4E0E\u57CE\u5E02\u751F\u957F\u8282\u594F\u4FDD\u6301\u539F\u6837\uFF1B\u6C34\u6CE2\u4ECE1.40\u79D2\u542F\u52A8\uFF0C\u6BCF660\u6BEB\u79D2\u53D1\u51FA\u4E00\u8F6E\u3002\u4E09\u5F20\u6570\u636E\u5361\u4ECE2.37\u79D2\u8D77\u4F9D\u6B21\u51FA\u73B0\uFF0C2.70\u20133.90\u79D2\u4FDD\u6301\u5730\u5757\u5C3A\u5BF8\u3001\u5B8C\u6574\u6570\u5B57\u4E0E\u5361\u9762\u30023.90\u79D2\u5F00\u59CB\u7F29\u5C0F\u5730\u5757\uFF0C\u540C\u65F6\u6DE1\u51FA\u5361\u7247\u5E76\u663E\u51FA\u5E95\u90E8\u6587\u5B57\uFF1B4.55\u79D2\u5B8C\u6210\u4EA4\u63A5\uFF0C\u4FDD\u6301\u81F34.95\u79D2\uFF0C\u4E0D\u65CB\u8F6C\u3002",
       analogy: "\u4E00\u5EA7\u9010\u5C42\u751F\u957F\u7684\u57CE\u5E02\uFF0C\u628A\u6C34\u9762\u53D8\u6210\u4E0D\u65AD\u6362\u6620\u7684\u52A8\u6548\u5C55\u573A\u3002",
       loop: false,
       default_ease: "linear",
@@ -24123,7 +24272,7 @@ var registry_default = {
         "animation"
       ],
       trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u64AD\u653E\uFF1B\u652F\u6301\u6682\u505C\u3001\u91CD\u64AD\u3001\u5B9A\u4F4D\u4E0E\u500D\u901F\u3002",
-      purpose: "\u5730\u5757\u9010\u5708\u7FFB\u5F00\uFF0C\u9732\u53F0\u5EFA\u7B51\u4E0E\u690D\u88AB\u957F\u51FA\uFF1B\u6C34\u9762\u8D77\u4F0F\u8F6E\u6362\u76EE\u5F55\u52A8\u6548\uFF0C\u6570\u636E\u5361\u9000\u573A\u540E\u663E\u51FAMOTION OASIS\u3002",
+      purpose: "\u5730\u5757\u9010\u5708\u7FFB\u5F00\uFF0C\u9732\u53F0\u5EFA\u7B51\u4E0E\u690D\u88AB\u957F\u51FA\uFF1B\u6C34\u9762\u8F6E\u6362\u76EE\u5F55\u52A8\u6548\uFF0C\u8BFB\u5361\u540E\u968F\u5730\u5757\u7F29\u5C0F\u6DE1\u51FA\u6570\u636E\uFF0C\u5E95\u90E8\u663E\u51FAMOTION OASIS\u3002",
       assumptions: "\u539F\u8272\u7A7A\u95F4\u63D2\u753B\uFF1B\u7EDF\u4E00\u65F6\u949F\u8BA1\u7B97\u6A21\u578B\u4E0E\u6295\u5F71\uFF0C\u6BCF\u6B21\u5B9A\u4F4D\u5F97\u5230\u76F8\u540C\u753B\u9762\u3002",
       source: {
         path: "catalog/effects/motion-oasis.js",
@@ -24135,14 +24284,14 @@ var registry_default = {
         reference_url: "https://animejs.com/documentation/"
       },
       reproduction: {
-        presentation: "16:9\u753B\u5E45\uFF1B1066\xD7600\u7ACB\u4F53\u57CE\u5E02\u63D2\u753B\uFF0C\u6696\u6C99\u8272\u80CC\u666F\u3001\u5976\u6CB9\u8272\u5730\u57FA\u3001\u73CA\u745A\u8272\u9000\u53F0\u697C\u7FA4\u3001\u9752\u7EFF\u8272\u6C34\u9762\u3002\u955C\u5934\u5148\u4EE5\u659C\u89C6\u89C2\u5BDF\u5730\u5757\u94FA\u5C55\u4E0E\u57CE\u5E02\u751F\u957F\uFF0C\u518D\u5E73\u7F13\u62C9\u8FDC\u3002\u6570\u636E\u5361\u5B8C\u5168\u6D88\u5931\u540E\uFF0CMOTION OASIS\u7ACB\u4F53\u5B57\u53CA\u4E2D\u6587\u8BF4\u660E\u51FA\u73B0\u5728\u5730\u5757\u53F3\u524D\u65B9\uFF0C\u4E0E\u5730\u5757\u5171\u7528\u7A7A\u95F4\u65B9\u5411\uFF1B\u968F\u540E\u5730\u5757\u4E0E\u6587\u6848\u4E00\u8D77\u5411\u53F3\u65CB\u8F6C\u81F3\u6B63\u9762\uFF0C\u5730\u5757\u6B63\u9762\u8FB9\u7F18\u6C34\u5E73\uFF0C\u82F1\u6587\u3001\u4E2D\u6587\u4E0E\u6570\u91CF\u540C\u6B65\u8F6C\u4E3A\u6C34\u5E73\u9648\u5217\uFF0C\u6700\u7EC8\u6574\u7EC4\u6587\u6848\u5728\u5730\u5757\u4E0B\u65B9\u5C45\u4E2D\u5E76\u4E0E\u5730\u57FA\u4FDD\u7559\u95F4\u8DDD\uFF0C\u4FDD\u6301\u5B8C\u6574\u753B\u5E45\u3002\u6570\u5B57\u5361\u4E3A\u5976\u6CB9\u5E95\u6DF1\u7EFF\u5B57\uFF0C\u4F4D\u4E8E\u57CE\u5E02\u4E0A\u65B9\u4E09\u5904\u5E76\u4EE5\u7EC6\u7EBF\u8FDE\u63A5\u6C34\u9762\u3002",
+        presentation: "16:9\u753B\u5E45\uFF1B1066\xD7600\u7ACB\u4F53\u57CE\u5E02\u63D2\u753B\uFF0C\u6696\u6C99\u8272\u80CC\u666F\u3001\u5976\u6CB9\u8272\u5730\u57FA\u3001\u73CA\u745A\u8272\u9000\u53F0\u697C\u7FA4\u3001\u9752\u7EFF\u8272\u6C34\u9762\u3002\u4EE5\u659C\u89C6\u89C2\u5BDF\u5730\u5757\u94FA\u5C55\u4E0E\u57CE\u5E02\u751F\u957F\uFF0C\u5728\u6570\u636E\u5361\u51FA\u73B0\u524D\u6536\u6210\u5B8C\u6574\u57CE\u5E02\u6784\u56FE\uFF0C\u9605\u8BFB\u671F\u95F4\u5730\u5757\u4FDD\u6301\u5C3A\u5BF8\u4E0E\u4F4D\u7F6E\u3002\u6570\u5B57\u5361\u4E3A\u5976\u6CB9\u5E95\u6DF1\u7EFF\u5B57\uFF0C\u5206\u5E03\u5728\u57CE\u5E02\u4E24\u4FA7\u5E76\u4EE5\u7EC6\u7EBF\u8FDE\u63A5\u771F\u5B9E\u6C34\u683C\uFF1B\u52A8\u4F5C\u5361\u4ECE\u53F3\u4E0B\u89D2\u7528\u77ED\u76F4\u7EBF\u8FDE\u5230\u5DE6\u524D\u65B9\u6C34\u683C\u30022.70\u20133.90\u79D2\u4E09\u5F20\u5361\u4FDD\u7559\u5B8C\u6574\u6570\u5B57\u4E0E\u5361\u9762\uFF0C\u6C34\u9762\u7EE7\u7EED\u8D77\u4F0F\u6362\u56FE\u30023.90\u79D2\u5730\u5757\u5F00\u59CB\u7F29\u5C0F\uFF0C\u6570\u636E\u5361\u3001\u8FDE\u7EBF\u4E0E\u6807\u8BB0\u540C\u6B65\u6E10\u9690\uFF1BMOTION OASIS\u7ACB\u4F53\u5B57\u3001\u4E2D\u6587\u8BF4\u660E\u4E0E\u603B\u6570\u540C\u6B65\u5728\u5730\u5757\u4E0B\u65B9\u663E\u73B0\uFF0C\u968F\u5E95\u90E8\u7A7A\u95F4\u9010\u6E10\u653E\u5927\uFF0C\u4FDD\u6301\u6C34\u5E73\u5C45\u4E2D\u5E76\u4E0E\u5730\u57FA\u7559\u51FA\u95F4\u8DDD\u30024.55\u79D2\u5B8C\u6210\u4EA4\u63A5\uFF0C\u4FDD\u6301\u5B8C\u6574\u753B\u5E45\u81F34.95\u79D2\uFF0C\u5168\u7A0B\u4E0D\u65CB\u8F6C\u3002",
         phases: [
           "0\u20130.80\u79D2\uFF1A\u4E2D\u5FC3\u56DB\u5757\u5730\u7816\u7FFB\u5F00\uFF0C\u5916\u5708\u4F9D\u8DDD\u79BB\u7FFB\u94FA\uFF0C\u4E09\u5C42\u5730\u57FA\u5411\u4E0B\u5C55\u5F00\u3002",
-          "0.85\u20132.83\u79D2\uFF1A\u697C\u7FA4\u3001\u9732\u53F0\u3001\u6811\u6728\u9010\u6B21\u751F\u957F\uFF1B\u6C34\u9762\u6301\u7EED\u8D77\u4F0F\u5E76\u4EA4\u66FF\u4F20\u64AD\u4E2D\u5FC3\u6CE2\u4E0E\u89D2\u843D\u6CE2\uFF0C\u4E09\u5F20\u6570\u636E\u5361\u663E\u793A\u52A8\u4F5C224\u3001\u63D2\u753B58\u3001\u7EC4\u540824\u53CA\u603B\u6570306\u3002",
-          "2.83\u79D2\u6570\u636E\u5361\u9000\u573A\uFF1B2.86\u20133.13\u79D2MOTION OASIS\u3001\u4E2D\u6587\u201C\u8BA9\u52A8\u6548\u5728\u57CE\u5E02\u53D1\u751F\u201D\u4E0E\u76EE\u5F55\u603B\u6570\u5728\u5730\u5757\u53F3\u524D\u65B9\u51FA\u73B0\uFF1B3.16\u20133.65\u79D2\u5730\u5757\u4E0E\u6587\u6848\u4E00\u8D77\u5411\u53F3\u65CB\u8F6C\u81F3\u6B63\u9762\uFF0C\u6587\u6848\u6700\u7EC8\u5728\u5730\u5757\u4E0B\u65B9\u5C45\u4E2D\uFF0C\u672B\u5C3E\u505C\u7A33\uFF0C\u6C34\u9762\u7EE7\u7EED\u6362\u56FE\u3002"
+          "0.85\u20133.90\u79D2\uFF1A\u697C\u7FA4\u3001\u9732\u53F0\u3001\u6811\u6728\u9010\u6B21\u751F\u957F\uFF1B\u6C34\u9762\u6301\u7EED\u8D77\u4F0F\u5E76\u4EA4\u66FF\u4F20\u64AD\u4E2D\u5FC3\u6CE2\u4E0E\u89D2\u843D\u6CE2\u3002\u4E09\u5F20\u6570\u636E\u5361\u4ECE2.37\u79D2\u8D77\u4F9D\u6B21\u51FA\u73B0\uFF0C2.70\u20133.90\u79D2\u4FDD\u6301\u5730\u5757\u5C3A\u5BF8\u3001\u5B8C\u6574\u6570\u5B57\u4E0E\u5361\u9762\uFF0C\u4F9B\u9605\u8BFB\u3002",
+          "3.90\u20134.55\u79D2\uFF1A\u5730\u5757\u5E73\u7F13\u7F29\u5C0F\uFF0C\u6570\u636E\u5361\u3001\u77ED\u8FDE\u7EBF\u4E0E\u6807\u8BB0\u968F\u7F29\u5C0F\u8FDB\u5EA6\u540C\u6B65\u6DE1\u51FA\uFF1BMOTION OASIS\u3001\u4E2D\u6587\u201C\u8BA9\u52A8\u6548\u5728\u57CE\u5E02\u53D1\u751F\u201D\u4E0E\u76EE\u5F55\u603B\u6570\u540C\u6B65\u5728\u5730\u5757\u4E0B\u65B9\u6C34\u5E73\u5C45\u4E2D\u663E\u73B0\uFF0C\u5E76\u968F\u817E\u51FA\u7684\u7A7A\u95F4\u653E\u5927\u30024.55\u79D2\u5B8C\u6210\u4EA4\u63A5\uFF0C\u659C\u5411\u5730\u5757\u4E0D\u65CB\u8F6C\uFF0C\u6536\u5C3E\u4FDD\u6301\u81F34.95\u79D2\uFF0C\u6C34\u9762\u7EE7\u7EED\u6362\u56FE\u3002"
         ],
         details: [
-          "\u4E09\u5F20\u6570\u636E\u5361\u7684\u663E\u793A\u6587\u5B57\u4E3A\u201C\u52A8\u4F5C 224\u201D\u201C\u63D2\u753B 58\u201D\u201C\u7EC4\u5408 24\u201D\uFF1B\u6536\u5C3E\u603B\u6570\u4E3A\u201C306\u201D\uFF1B\u8FD9\u4E9B\u90FD\u662F\u672C\u7247\u56FA\u5B9A\u753B\u9762\u6587\u6848"
+          "\u4E09\u5F20\u6570\u636E\u5361\u7684\u663E\u793A\u6587\u5B57\u4E3A\u201C\u5355\u4E2A\u52A8\u4F5C 276\u79CD\u201D\u201C\u63D2\u753B\u5355\u56FE 63\u5E45\u201D\u201C\u7EC4\u5408\u7247\u6BB5 26\u7EC4\u201D\uFF1B\u6536\u5C3E\u603B\u6570\u4E3A\u201C365\u201D\uFF1B\u8FD9\u4E9B\u90FD\u662F\u672C\u7247\u56FA\u5B9A\u753B\u9762\u6587\u6848\u3002"
         ],
         layers: [
           {
@@ -24160,31 +24309,31 @@ var registry_default = {
           {
             name: "\u690D\u88AB\u4E0E\u73AF\u5883",
             start: 850,
-            end: 3750,
+            end: 4950,
             detail: "\u53F0\u5730\u3001\u82B1\u5703\u3001\u66F2\u5E72\u68D5\u6988\u6811\u3001\u906E\u9633\u67B6\u548C\u4E91\u6735\u6784\u6210\u57CE\u5E02\u73AF\u5883\u3002"
           },
           {
             name: "\u6C34\u6CE2\u4E0E\u52A8\u6548\u6362\u6620",
             start: 880,
-            end: 3750,
+            end: 4950,
             detail: "26\u4E2A\u6C34\u683C\u6301\u7EED\u8D77\u4F0F\uFF0C\u4E2D\u5FC3\u4E0E\u89D2\u843D\u4EA4\u66FF\u53D1\u6CE2\uFF0C\u6309\u8DDD\u79BB\u4F9D\u6B21\u62AC\u5347\uFF1B\u516B\u79CD\u52A8\u6548\u968F\u6CE2\u5CF0\u4EA4\u53E0\u5207\u6362\u3002"
           },
           {
             name: "\u76EE\u5F55\u6570\u636E\u5361",
             start: 2366.666667,
-            end: 2833.333334,
-            detail: "\u4E09\u5F20\u6570\u636E\u5361\u663E\u793A\u5236\u4F5C\u7EC6\u8282\u4E2D\u7ED9\u5B9A\u7684\u56FA\u5B9A\u6570\u5B57\uFF0C\u5E76\u7528\u7EC6\u7EBF\u8FDE\u5230\u6C34\u9762\u4F4D\u7F6E"
+            end: 4550,
+            detail: "\u4E09\u5F20\u6570\u636E\u5361\u663E\u793A\u5236\u4F5C\u7EC6\u8282\u4E2D\u7ED9\u5B9A\u7684\u6570\u5B57\uFF1B2.70\u20133.90\u79D2\u4FDD\u6301\u5730\u5757\u5C3A\u5BF8\u548C\u5B8C\u6574\u5361\u9762\uFF0C3.90\u20134.55\u79D2\u968F\u5730\u5757\u7F29\u5C0F\u540C\u6B65\u6DE1\u51FA\uFF0C\u8FDE\u7EBF\u4E0E\u6807\u8BB0\u4E00\u8D77\u6D88\u5931\u3002"
           },
           {
             name: "\u7ACB\u4F53\u82F1\u6587\u6536\u5C3E",
-            start: 2860,
-            end: 3750,
-            detail: "\u6570\u636E\u5361\u9000\u573A\u540E\uFF0CMOTION OASIS\u4E0E\u4E2D\u6587\u51FA\u73B0\u5728\u5730\u5757\u53F3\u524D\u65B9\uFF1B3.16\u20133.65\u79D2\u968F\u5730\u5757\u5411\u53F3\u65CB\u8F6C\u81F3\u6B63\u9762\uFF0C\u6700\u7EC8\u6587\u6848\u5728\u5730\u5757\u4E0B\u65B9\u5C45\u4E2D\uFF0C\u6587\u5B57\u4E0E\u5730\u5757\u6B63\u9762\u8FB9\u7F18\u5747\u6C34\u5E73\u3002"
+            start: 3900,
+            end: 4950,
+            detail: "3.90\u79D2\u5730\u5757\u5F00\u59CB\u7F29\u5C0F\u65F6\uFF0CMOTION OASIS\u4E0E\u4E2D\u6587\u540C\u6B65\u5728\u5730\u5757\u4E0B\u65B9\u663E\u73B0\uFF0C\u968F\u817E\u51FA\u7684\u7A7A\u95F4\u653E\u5927\u5E76\u4FDD\u6301\u6C34\u5E73\u5C45\u4E2D\uFF1B4.55\u79D2\u5B8C\u6210\u4EA4\u63A5\uFF0C\u5730\u5757\u4E0D\u65CB\u8F6C\uFF0C\u6C34\u9762\u7EE7\u7EED\u6362\u56FE\u3002"
           }
         ],
         avoid: "\u4E0D\u6269\u5927\u5929\u7A7A\u3001\u4E0D\u52A0\u6295\u5F71\u5C4F\u5E55\u3001\u4E0D\u6539\u53D8\u697C\u7FA4\u5E03\u5C40\uFF1B\u6C34\u9762\u4E0D\u6E05\u7A7A\uFF0C\u56FE\u5F62\u4E0D\u7B49\u6D88\u5931\u540E\u624D\u51FA\u73B0\u3002"
       },
-      recommendation: "\u5730\u5757\u9010\u5708\u7FFB\u5F00\uFF0C\u9732\u53F0\u5EFA\u7B51\u4E0E\u690D\u88AB\u957F\u51FA\uFF1B\u6C34\u9762\u8D77\u4F0F\u8F6E\u6362\u76EE\u5F55\u52A8\u6548\uFF0C\u6570\u636E\u5361\u9000\u573A\u540E\u663E\u51FAMOTION OASIS\u3002"
+      recommendation: "\u5730\u5757\u9010\u5708\u7FFB\u5F00\uFF0C\u9732\u53F0\u5EFA\u7B51\u4E0E\u690D\u88AB\u957F\u51FA\uFF1B\u6C34\u9762\u8F6E\u6362\u76EE\u5F55\u52A8\u6548\uFF0C\u8BFB\u5361\u540E\u968F\u5730\u5757\u7F29\u5C0F\u6DE1\u51FA\u6570\u636E\uFF0C\u5E95\u90E8\u663E\u51FAMOTION OASIS\u3002"
     },
     {
       loop: false,
@@ -29699,6 +29848,158 @@ var registry_default = {
         presentation: "640\xD7360\u900F\u660E\u753B\u677F\uFF0C\u6A2A\u5C3A\u539F\u51E0\u4F551120\xD7124\u3001\u6574\u4F53\u6BD4\u4F8B0.46\uFF0C\u6A2A\u5750\u680762.4\u3002\u91D1\u5C5E\u56DB\u8272\u6E10\u53D8\u3001136\u6761\u523B\u5EA6\u4E0E14\u4E2A\u6570\u5B57\u6807\u7B7E\u5B8C\u6574\u4FDD\u7559\u3002",
         retain: "\u4EE4p=clamp((t\u22120.15)/(17/30),0,1)\uFF0Cq\u4E3A\u4E09\u6B21\u66F2\u7EBF(0.65,0,0.35,1)\u5728p\u7684\u8F93\u51FA\u3002\u5C3A\u9876y=364.6\u2212426.24q\uFF0C\u56FA\u5B9A\u5C3A\u5BF8\uFF1B\u539F10\u50CF\u7D20\u8FB9\u754C\u4F59\u91CF\u548C124\u50CF\u7D20\u5BBD\u5EA6\u540C\u4E580.46\uFF0C\u4FDD\u8BC1\u4ECE\u4E0B\u65B9\u5B8C\u6574\u8FDB\u5165\u3001\u4ECE\u4E0A\u65B9\u5B8C\u6574\u79BB\u5F00\u3002"
       }
+    },
+    {
+      id: "butterfly-illustration",
+      name: "\u7248\u753B\u8774\u8776",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "\u84DD\u8272\u7248\u753B\u8774\u8776\u56DB\u7FFC\u7ED5\u56FA\u5B9A\u7FFC\u6839\u9519\u62CD\u5F00\u5408\uFF0C\u4E24\u6839\u89E6\u89D2\u968F\u632F\u7FC5\u5F2F\u66F2\uFF0C\u8EAB\u4F53\u8F7B\u6D6E\u3002",
+      purpose: "\u63D0\u4F9B\u4FDD\u7559\u7EB9\u7406\u548C\u7FC5\u8180\u7ED3\u6784\u7684\u53EF\u52A8\u8774\u8776\u63D2\u753B\u3002",
+      objects: "\u539F\u900F\u660E\u7248\u753B\u56FE\u96C6\u3001\u56DB\u7247\u5B8C\u6574\u7FC5\u8180\u3001\u8EAB\u4F53\u3001\u4E24\u6839\u66F2\u7EBF\u89E6\u89D2\u548C\u539F\u7EB9\u7406\u5C16\u7AEF",
+      phases: [
+        "\u56DB\u7247\u7FC5\u8180\u7ED5\u7FFC\u6839\u62AC\u8D77\uFF0C\u524D\u540E\u548C\u5DE6\u53F3\u7565\u6709\u9519\u62CD\u3002",
+        "\u7FC5\u8180\u7528\u8F83\u957F\u65F6\u95F4\u5C55\u5F00\uFF0C\u89E6\u89D2\u4E2D\u6BB5\u4E0E\u5C16\u7AEF\u5EF6\u8FDF\u56DE\u5E94\u3002",
+        "\u4FDD\u6301\u7EB9\u7406\u8D34\u5728\u7FFC\u9762\u4E0A\uFF0C\u8EAB\u4F53\u8F7B\u6D6E\uFF0C\u516D\u79D2\u9996\u5C3E\u8FDE\u7EED\u5FAA\u73AF\u3002"
+      ],
+      aliases: [
+        "\u8774\u8776",
+        "\u7248\u753B\u84DD\u8776",
+        "\u632F\u7FC5",
+        "\u6251\u7FFC",
+        "\u89E6\u89D2\u6446\u52A8",
+        "\u56DB\u7FFC\u9519\u62CD"
+      ],
+      behaviors: [
+        "rotate",
+        "continuous",
+        "follow"
+      ],
+      retain: "\u539F\u56DB\u7247\u7FFC\u56FE\u7684\u8F6E\u5ED3\u3001\u88C1\u53D6\u3001\u7FFC\u6839\u548C\u900F\u89C6\uFF0C\u89E6\u89D2\u6839\u90E8\u4E0E\u5934\u90E8\u8FDE\u63A5\uFF0C\u5C16\u7AEF\u7EB9\u7406\u8DDF\u968F\u66F2\u7EBF\u3002",
+      avoid: "\u4E0D\u8BA9\u6574\u5F20\u56FE\u7247\u5DE6\u53F3\u6643\u52A8\u5192\u5145\u632F\u7FC5\uFF0C\u4E0D\u6539\u53D8\u7FFC\u56FE\u6750\u8D28\uFF0C\u4E0D\u5E26\u5B57\u5E55\u6216\u58F0\u97F3\u3002",
+      duration_ms: 6e3,
+      preview_ms: 1120,
+      loop: true,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/butterfly.js",
+        factory: "butterfly-illustration",
+        dependencies: [
+          "catalog/effects/butterfly-motion.js"
+        ],
+        assets: [
+          "catalog/assets/butterfly/wing-atlas.png",
+          "catalog/assets/butterfly/ai-wing-atlas.png",
+          "catalog/assets/butterfly/SOURCE.json"
+        ],
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4FDD\u7559\u5DF2\u786E\u8BA4\u7684\u900F\u660E\u56FE\u96C6\u3001\u56DB\u7247\u7FC5\u8180\u7684\u56FA\u5B9A\u7FFC\u6839\u3001\u89E6\u89D2\u66F2\u7EBF\u53CA\u516D\u79D2\u8FD0\u52A8\u516C\u5F0F\u3002\u76EE\u5F55\u63D2\u753B\u3001\u5173\u8054\u52A8\u4F5C\u4E0E\u9010\u5E27\u7EC4\u4EF6\u5171\u7528\u540C\u4E00\u7ED8\u5236\u7A0B\u5E8F\uFF1B\u89C6\u9891\u901A\u8FC7\u53C2\u6570\u4FDD\u7559\u539F\u753B\u5E45\u548C\u914D\u8272\u3002"
+      },
+      actions: [
+        "hinged-wing-flap"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation",
+        "document"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u5E27\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\uFF1B\u56FE\u7247\u51C6\u5907\u5931\u8D25\u660E\u786E\u62A5\u9519\u3002",
+      analogy: "\u56DB\u7247\u7FFC\u9762\u59CB\u7EC8\u8FDE\u63A5\u5728\u8EAB\u4F53\u4E24\u4FA7\uFF0C\u89E6\u89D2\u50CF\u67D4\u8F6F\u7EC6\u6746\u56DE\u5E94\u6BCF\u6B21\u632F\u7FC5\u3002",
+      assumptions: "\u900F\u660E\u5E95\uFF0C\u4FDD\u75591080\xD71440\u539F\u903B\u8F91\u753B\u677F\uFF1B\u76EE\u5F55\u5728640\xD7360\u5185\u7B49\u6BD4\u91CD\u53D6\u666F\uFF0C\u89C6\u9891\u4F7F\u7528\u539F\u753B\u5E45\u3002\u84DD\u8776\u4E0E\u591A\u5F69\u7FFC\u56FE\u4F5C\u4E3A\u4E24\u4EFD\u672C\u5730\u7D20\u6750\u4FDD\u7559\uFF0C\u53EF\u7528\u53C2\u6570\u53E0\u5408\u5207\u6362\u3002",
+      tempo_note: "\u6BCF\u79D2\u4E24\u6B21\u5F00\u5408\uFF0C\u62AC\u7FFC\u5360\u5468\u671F36%\uFF0C\u5C55\u5F00\u536064%\uFF1B\u524D\u540E\u4E0E\u5DE6\u53F3\u5EF6\u8FDF0\u30010.018\u30010.052\u30010.07\u79D2\u3002\u6574\u4F53\u516D\u79D2\u5FAA\u73AF\u3002",
+      recommendation: "\u9700\u8981\u6709\u7248\u753B\u6750\u8D28\u7684\u53EF\u52A8\u8774\u8776\u65F6\u4F7F\u7528\u3002\u8981\u4FDD\u7559\u771F\u5B9E\u7FFC\u6839\u548C\u89E6\u89D2\u8054\u52A8\uFF0C\u9009\u62E9\u5173\u8054\u7684\u56DB\u7FFC\u52A8\u4F5C\uFF1B\u666E\u901A\u5E73\u9762\u6446\u52A8\u7528\u7ED5\u70B9\u6446\u52A8\u3002",
+      previous_names: [],
+      reproduction: {
+        presentation: "\u84DD\u8272\u7248\u753B\u900F\u660E\u56FE\u96C61536\xD71024\uFF1B\u539F\u903B\u8F91\u753B\u5E451080\xD71440\uFF0C\u4E3B\u4F53\u4E2D\u5FC3(550,862)\uFF0C\u6574\u4F53\u7F29\u653E0.60\uFF0C\u900F\u89C61800\u3002\u76EE\u5F55\u53EA\u5BF9\u6574\u4E2A\u4E3B\u4F53\u7B49\u6BD4\u7F29\u653E0.48\u5E76\u5C06\u7FFC\u6839\u9644\u8FD1\u53D6\u666F\u5230(320,180)\u3002",
+        retain: "\u632F\u7FC5\u7528\u4E94\u6B21\u5E73\u6ED1\u51FD\u6570q\xB3(6q\xB2\u221215q+10)\uFF1B\u6BCF\u5468\u671F0.5\u79D2\uFF0C\u524D\u7FFC\u89D2\u5EA68+62q\u5EA6\uFF0C\u540E\u7FFC10+52q\u5EA6\uFF1B\u5DE6\u53F3\u53CD\u5411\u7ED5\u7FFC\u6839\u8F6C\u52A8\uFF0C\u7FFC\u9762\u5185\u504F\u8F6C\u5206\u522B0.7q\u53CA1.1q\u5EA6\uFF0C\u4EAE\u5EA61\u22120.105q\u3002\u89E6\u89D2\u4E2D\u6BB5\u5EF6\u8FDF0.035\u79D2\uFF0C\u5C16\u7AEF\u5EF6\u8FDF0.085\u79D2\u3002"
+      }
+    },
+    {
+      id: "hinged-wing-flap",
+      name: "\u56DB\u7FFC\u9519\u62CD\u4E0E\u89E6\u89D2\u8DDF\u968F",
+      kind: "action",
+      category: "response",
+      summary: "\u84DD\u8272\u7248\u753B\u8774\u8776\u56DB\u7FFC\u7ED5\u56FA\u5B9A\u7FFC\u6839\u9519\u62CD\u5F00\u5408\uFF0C\u4E24\u6839\u89E6\u89D2\u968F\u632F\u7FC5\u5F2F\u66F2\uFF0C\u8EAB\u4F53\u8F7B\u6D6E\u3002",
+      purpose: "\u7528\u56FA\u5B9A\u7FFC\u6839\u7684\u7A7A\u95F4\u5F00\u5408\u4E0E\u67D4\u6027\u89E6\u89D2\u8054\u52A8\u8868\u73B0\u8FDE\u7EED\u632F\u7FC5\u3002",
+      objects: "\u539F\u900F\u660E\u7248\u753B\u56FE\u96C6\u3001\u56DB\u7247\u5B8C\u6574\u7FC5\u8180\u3001\u8EAB\u4F53\u3001\u4E24\u6839\u66F2\u7EBF\u89E6\u89D2\u548C\u539F\u7EB9\u7406\u5C16\u7AEF",
+      phases: [
+        "\u56DB\u7247\u7FC5\u8180\u7ED5\u7FFC\u6839\u62AC\u8D77\uFF0C\u524D\u540E\u548C\u5DE6\u53F3\u7565\u6709\u9519\u62CD\u3002",
+        "\u7FC5\u8180\u7528\u8F83\u957F\u65F6\u95F4\u5C55\u5F00\uFF0C\u89E6\u89D2\u4E2D\u6BB5\u4E0E\u5C16\u7AEF\u5EF6\u8FDF\u56DE\u5E94\u3002",
+        "\u4FDD\u6301\u7EB9\u7406\u8D34\u5728\u7FFC\u9762\u4E0A\uFF0C\u8EAB\u4F53\u8F7B\u6D6E\uFF0C\u516D\u79D2\u9996\u5C3E\u8FDE\u7EED\u5FAA\u73AF\u3002"
+      ],
+      aliases: [
+        "\u8774\u8776",
+        "\u7248\u753B\u84DD\u8776",
+        "\u632F\u7FC5",
+        "\u6251\u7FFC",
+        "\u89E6\u89D2\u6446\u52A8",
+        "\u56DB\u7FFC\u9519\u62CD"
+      ],
+      behaviors: [
+        "rotate",
+        "continuous",
+        "follow"
+      ],
+      retain: "\u539F\u56DB\u7247\u7FFC\u56FE\u7684\u8F6E\u5ED3\u3001\u88C1\u53D6\u3001\u7FFC\u6839\u548C\u900F\u89C6\uFF0C\u89E6\u89D2\u6839\u90E8\u4E0E\u5934\u90E8\u8FDE\u63A5\uFF0C\u5C16\u7AEF\u7EB9\u7406\u8DDF\u968F\u66F2\u7EBF\u3002",
+      avoid: "\u4E0D\u8BA9\u6574\u5F20\u56FE\u7247\u5DE6\u53F3\u6643\u52A8\u5192\u5145\u632F\u7FC5\uFF0C\u4E0D\u6539\u53D8\u7FFC\u56FE\u6750\u8D28\uFF0C\u4E0D\u5E26\u5B57\u5E55\u6216\u58F0\u97F3\u3002",
+      duration_ms: 6e3,
+      preview_ms: 1120,
+      loop: true,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/butterfly.js",
+        factory: "butterfly-illustration",
+        dependencies: [
+          "catalog/effects/butterfly-motion.js"
+        ],
+        assets: [
+          "catalog/assets/butterfly/wing-atlas.png",
+          "catalog/assets/butterfly/ai-wing-atlas.png",
+          "catalog/assets/butterfly/SOURCE.json"
+        ],
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4FDD\u7559\u5DF2\u786E\u8BA4\u7684\u900F\u660E\u56FE\u96C6\u3001\u56DB\u7247\u7FC5\u8180\u7684\u56FA\u5B9A\u7FFC\u6839\u3001\u89E6\u89D2\u66F2\u7EBF\u53CA\u516D\u79D2\u8FD0\u52A8\u516C\u5F0F\u3002\u76EE\u5F55\u63D2\u753B\u3001\u5173\u8054\u52A8\u4F5C\u4E0E\u9010\u5E27\u7EC4\u4EF6\u5171\u7528\u540C\u4E00\u7ED8\u5236\u7A0B\u5E8F\uFF1B\u89C6\u9891\u901A\u8FC7\u53C2\u6570\u4FDD\u7559\u539F\u753B\u5E45\u548C\u914D\u8272\u3002"
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation",
+        "document"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u5E27\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\uFF1B\u56FE\u7247\u51C6\u5907\u5931\u8D25\u660E\u786E\u62A5\u9519\u3002",
+      analogy: "\u56DB\u7247\u7FFC\u9762\u59CB\u7EC8\u8FDE\u63A5\u5728\u8EAB\u4F53\u4E24\u4FA7\uFF0C\u89E6\u89D2\u50CF\u67D4\u8F6F\u7EC6\u6746\u56DE\u5E94\u6BCF\u6B21\u632F\u7FC5\u3002",
+      assumptions: "\u900F\u660E\u5E95\uFF0C\u4FDD\u75591080\xD71440\u539F\u903B\u8F91\u753B\u677F\uFF1B\u76EE\u5F55\u5728640\xD7360\u5185\u7B49\u6BD4\u91CD\u53D6\u666F\uFF0C\u89C6\u9891\u4F7F\u7528\u539F\u753B\u5E45\u3002\u84DD\u8776\u4E0E\u591A\u5F69\u7FFC\u56FE\u4F5C\u4E3A\u4E24\u4EFD\u672C\u5730\u7D20\u6750\u4FDD\u7559\uFF0C\u53EF\u7528\u53C2\u6570\u53E0\u5408\u5207\u6362\u3002",
+      tempo_note: "\u6BCF\u79D2\u4E24\u6B21\u5F00\u5408\uFF0C\u62AC\u7FFC\u5360\u5468\u671F36%\uFF0C\u5C55\u5F00\u536064%\uFF1B\u524D\u540E\u4E0E\u5DE6\u53F3\u5EF6\u8FDF0\u30010.018\u30010.052\u30010.07\u79D2\u3002\u6574\u4F53\u516D\u79D2\u5FAA\u73AF\u3002",
+      recommendation: "\u9700\u8981\u56DB\u7247\u7FFC\u9762\u4FDD\u6301\u8FDE\u63A5\u5E76\u9519\u62CD\u5F00\u5408\u65F6\u4F7F\u7528\uFF0C\u5E26\u89E6\u89D2\u5F2F\u66F2\u548C\u7EB9\u7406\u672B\u7AEF\uFF1B\u53CC\u7FFC\u8F7B\u6298\u504F\u8F6C\u9002\u5408\u6574\u4F53\u66F4\u7B80\u5355\u7684\u7EB8\u98DE\u673A\u6446\u52A8\u3002",
+      previous_names: [],
+      reproduction: {
+        presentation: "\u84DD\u8272\u7248\u753B\u900F\u660E\u56FE\u96C61536\xD71024\uFF1B\u539F\u903B\u8F91\u753B\u5E451080\xD71440\uFF0C\u4E3B\u4F53\u4E2D\u5FC3(550,862)\uFF0C\u6574\u4F53\u7F29\u653E0.60\uFF0C\u900F\u89C61800\u3002\u76EE\u5F55\u53EA\u5BF9\u6574\u4E2A\u4E3B\u4F53\u7B49\u6BD4\u7F29\u653E0.48\u5E76\u5C06\u7FFC\u6839\u9644\u8FD1\u53D6\u666F\u5230(320,180)\u3002",
+        retain: "\u632F\u7FC5\u7528\u4E94\u6B21\u5E73\u6ED1\u51FD\u6570q\xB3(6q\xB2\u221215q+10)\uFF1B\u6BCF\u5468\u671F0.5\u79D2\uFF0C\u524D\u7FFC\u89D2\u5EA68+62q\u5EA6\uFF0C\u540E\u7FFC10+52q\u5EA6\uFF1B\u5DE6\u53F3\u53CD\u5411\u7ED5\u7FFC\u6839\u8F6C\u52A8\uFF0C\u7FFC\u9762\u5185\u504F\u8F6C\u5206\u522B0.7q\u53CA1.1q\u5EA6\uFF0C\u4EAE\u5EA61\u22120.105q\u3002\u89E6\u89D2\u4E2D\u6BB5\u5EF6\u8FDF0.035\u79D2\uFF0C\u5C16\u7AEF\u5EF6\u8FDF0.085\u79D2\u3002"
+      }
     }
   ],
   redirects: {
@@ -29848,6 +30149,478 @@ function sampleEffectTime(effect, frame, fps = DEFAULT_FPS, options = {}) {
 }
 var effectDefinitions = registry_default.effects;
 
+// catalog/remotion/butterfly.jsx
+import React, { useLayoutEffect, useRef } from "react";
+import { AbsoluteFill, staticFile, useCurrentFrame, useDelayRender, useVideoConfig } from "remotion";
+
+// catalog/effects/butterfly-motion.js
+(function(global) {
+  "use strict";
+  const DURATION = 6;
+  const ATLAS = { width: 1536, height: 1024 };
+  const STAGE = { width: 1080, height: 1440, x: 550, y: 862, scale: 0.6, perspective: 1800 };
+  const PARTS = [
+    { id: "left-hind", side: -1, hind: true, crop: [100, 530, 510, 470], pivot: [473, 35], root: [-16, 23], delay: 0.052 },
+    { id: "right-hind", side: 1, hind: true, crop: [936, 530, 510, 470], pivot: [28, 36], root: [16, 23], delay: 0.07 },
+    {
+      id: "left-fore",
+      side: -1,
+      hind: false,
+      crop: [0, 0, 640, 522],
+      pivot: [620, 501],
+      root: [-18, 0],
+      delay: 0,
+      clip: "polygon(0px 0px,600px 0px,600px 430px,638px 522px,0px 522px)"
+    },
+    {
+      id: "right-fore",
+      side: 1,
+      hind: false,
+      crop: [896, 0, 640, 522],
+      pivot: [17, 500],
+      root: [18, 0],
+      delay: 0.018,
+      clip: "polygon(40px 0px,640px 0px,640px 522px,0px 522px,40px 430px)"
+    }
+  ];
+  const BODY = { crop: [725, 334, 90, 341], pivot: [45, 88], root: [0, 0] };
+  const ANTENNAE = [
+    {
+      id: "left-antenna",
+      side: -1,
+      phase: 0,
+      root: [-14, -87],
+      controls: [[-36, -156], [-49, -224]],
+      tip: [-114, -293],
+      club: { id: "left-antenna-tip", crop: [610, 90, 52, 40], pivot: [46, 39] }
+    },
+    {
+      id: "right-antenna",
+      side: 1,
+      phase: 0.27,
+      root: [11, -87],
+      controls: [[33, -156], [45, -224]],
+      tip: [110, -293],
+      club: { id: "right-antenna-tip", crop: [876, 90, 52, 40], pivot: [4, 39] }
+    }
+  ];
+  const mod = (v, n) => (v % n + n) % n;
+  const smooth = (p) => p * p * p * (p * (p * 6 - 15) + 10);
+  const radians = (degrees) => degrees * Math.PI / 180;
+  function closedAt(seconds, delay = 0) {
+    const phase = mod((seconds - delay) * 2, 1);
+    return phase < 0.36 ? smooth(phase / 0.36) : 1 - smooth((phase - 0.36) / 0.64);
+  }
+  function antennaState(antenna, seconds) {
+    const t = mod(seconds, DURATION);
+    const { side, phase, root, controls, tip } = antenna;
+    const slow = 8 * Math.sin(2 * Math.PI * t / 3 + phase);
+    const bend = 4 * Math.sin(4 * Math.PI * (t - 0.035) + phase);
+    const tipBend = 6 * Math.sin(4 * Math.PI * (t - 0.085) + phase);
+    const c1 = controls[0];
+    const c2 = [
+      controls[1][0] + side * (0.35 * slow + 0.45 * bend),
+      controls[1][1] + 0.8 * Math.sin(4 * Math.PI * (t - 0.04) + phase)
+    ];
+    const end = [
+      tip[0] + side * (slow + tipBend),
+      tip[1] + 2 * Math.sin(4 * Math.PI * (t - 0.11) + phase)
+    ];
+    const tangent = Math.atan2(end[1] - c2[1], end[0] - c2[0]);
+    const restTangent = Math.atan2(tip[1] - controls[1][1], tip[0] - controls[1][0]);
+    return {
+      id: antenna.id,
+      root,
+      c1,
+      c2,
+      end,
+      tipRotation: (tangent - restTangent) * 180 / Math.PI,
+      path: `M ${root.join(" ")} C ${c1.join(" ")} ${c2.join(" ")} ${end.join(" ")}`
+    };
+  }
+  function butterflyState(seconds) {
+    const t = mod(seconds, DURATION);
+    return {
+      x: STAGE.x + 3 * Math.sin(2 * Math.PI * t / 6),
+      y: STAGE.y + 5 * Math.sin(2 * Math.PI * t / 2),
+      bank: -12 + 2.2 * Math.sin(2 * Math.PI * t / 6),
+      antennae: ANTENNAE.map((antenna) => antennaState(antenna, t)),
+      wings: PARTS.map((part) => {
+        const closed = closedAt(t, part.delay);
+        const angle = (part.hind ? 10 : 8) + (part.hind ? 52 : 62) * closed;
+        return {
+          id: part.id,
+          closed,
+          angle,
+          yaw: -part.side * angle,
+          // Small changes within the wing plane also rotate about the wing root.
+          roll: part.side * (part.hind ? 1.1 : 0.7) * closed,
+          brightness: 1 - 0.105 * closed
+        };
+      })
+    };
+  }
+  function localWingPoint(part, wing, point) {
+    const dx = point[0] - part.pivot[0], dy = point[1] - part.pivot[1];
+    const zAngle = radians(wing.roll), yaw = radians(wing.yaw);
+    const x0 = dx * Math.cos(zAngle) - dy * Math.sin(zAngle);
+    const y0 = dx * Math.sin(zAngle) + dy * Math.cos(zAngle);
+    return { x: part.root[0] + x0 * Math.cos(yaw), y: part.root[1] + y0, z: -x0 * Math.sin(yaw) };
+  }
+  function screenPoint(local, state) {
+    const angle = radians(state.bank), scale = STAGE.scale;
+    const x = scale * (local.x * Math.cos(angle) - local.y * Math.sin(angle));
+    const y = scale * (local.x * Math.sin(angle) + local.y * Math.cos(angle));
+    const z = scale * local.z, perspective = STAGE.perspective / (STAGE.perspective - z);
+    return { x: state.x + x * perspective, y: state.y + y * perspective, z };
+  }
+  global.WiseButterflyMotion = Object.freeze({ DURATION, ATLAS, STAGE, PARTS, BODY, ANTENNAE, closedAt, antennaState, butterflyState, localWingPoint, screenPoint });
+})(globalThis);
+
+// catalog/effects/butterfly.js
+(function(global) {
+  "use strict";
+  const scriptUrl = typeof document === "undefined" ? null : document.currentScript?.src;
+  const defaultAtlas = (doc) => scriptUrl ? new URL("../assets/butterfly/wing-atlas.png", scriptUrl).href : new URL("assets/butterfly/wing-atlas.png", doc.baseURI.includes("/catalog/") ? new URL("./", doc.baseURI) : new URL("catalog/", doc.baseURI)).href;
+  const NS = "http://www.w3.org/2000/svg";
+  const setStyle = (node, style) => Object.assign(node.style, style);
+  function mount(root, { atlasSrc, alternateSrc, catalogView = false } = {}) {
+    const doc = root.ownerDocument;
+    const { ATLAS, STAGE, PARTS, BODY, ANTENNAE, butterflyState } = global.WiseButterflyMotion;
+    const src = atlasSrc || defaultAtlas(doc), pending = [];
+    let destroyed = false;
+    function element(tag, style, parent, attributes = {}) {
+      const node = doc.createElement(tag);
+      setStyle(node, style);
+      for (const [name, value] of Object.entries(attributes)) node.setAttribute(name, value);
+      parent?.append(node);
+      return node;
+    }
+    function image(url, parent, crop) {
+      const [x, y] = crop;
+      const img = element("img", {
+        position: "absolute",
+        left: -x + "px",
+        top: -y + "px",
+        width: ATLAS.width + "px",
+        height: ATLAS.height + "px",
+        maxWidth: "none"
+      }, parent);
+      let stop;
+      const ready2 = new Promise((resolve, reject) => {
+        const clear = () => {
+          img.removeEventListener("load", loaded);
+          img.removeEventListener("error", failed);
+        };
+        const loaded = () => {
+          clear();
+          const decode = typeof img.decode === "function" ? img.decode() : Promise.resolve();
+          decode.then(resolve, reject);
+        };
+        const failed = () => {
+          clear();
+          reject(new Error("\u8774\u8776\u56FE\u96C6\u8BFB\u53D6\u5931\u8D25\uFF1A" + url));
+        };
+        stop = () => {
+          clear();
+          resolve();
+        };
+        img.addEventListener("load", loaded);
+        img.addEventListener("error", failed);
+        img.src = url;
+        if (img.complete && img.naturalWidth) loaded();
+      });
+      pending.push({ ready: ready2, stop });
+      return img;
+    }
+    function texture(part, parent, transform = "", hasAlternate = false) {
+      const [, , width, height] = part.crop, [px, py] = part.pivot;
+      const node = element(
+        "div",
+        {
+          position: "absolute",
+          left: part.root[0] - px + "px",
+          top: part.root[1] - py + "px",
+          width: width + "px",
+          height: height + "px",
+          transformOrigin: `${px}px ${py}px`,
+          transformStyle: "preserve-3d",
+          transform
+        },
+        parent,
+        { "data-part": part.id || "body" }
+      );
+      const cut = element("div", { position: "absolute", inset: "0", overflow: "hidden", clipPath: part.clip || "" }, node);
+      image(src, cut, part.crop);
+      let alternate, reveal;
+      if (hasAlternate && alternateSrc) {
+        alternate = element(
+          "div",
+          {
+            position: "absolute",
+            inset: "0",
+            opacity: "0",
+            maskImage: `url("${src}")`,
+            maskMode: "alpha",
+            maskSize: `${ATLAS.width}px ${ATLAS.height}px`,
+            maskPosition: `${-part.crop[0]}px ${-part.crop[1]}px`,
+            maskRepeat: "no-repeat"
+          },
+          cut,
+          { "data-wing-variant": "ai" }
+        );
+        image(alternateSrc, alternate, part.crop);
+        reveal = element(
+          "div",
+          { position: "absolute", inset: "0", display: "none" },
+          cut,
+          { "data-wing-reveal": "blue" }
+        );
+        image(src, reveal, part.crop);
+      }
+      return { node, cut, alternate, reveal };
+    }
+    const viewport = element("div", { position: "absolute", inset: "0", overflow: "hidden" }, null);
+    viewport.className = "pattern-dom";
+    root.replaceChildren(viewport);
+    const stage = catalogView ? element("div", {
+      position: "absolute",
+      width: "1080px",
+      height: "1440px",
+      left: "56px",
+      top: "-233.76px",
+      transform: "scale(.48)",
+      transformOrigin: "0 0"
+    }, viewport) : viewport;
+    const position = element("div", {
+      position: "absolute",
+      width: "0",
+      height: "0",
+      perspective: STAGE.perspective + "px",
+      perspectiveOrigin: "0px 0px",
+      transformStyle: "preserve-3d"
+    }, stage);
+    const bank = element("div", {
+      position: "absolute",
+      width: "0",
+      height: "0",
+      transformOrigin: "0px 0px",
+      transformStyle: "preserve-3d"
+    }, position);
+    const wings = PARTS.map((part) => texture(part, bank, "", true));
+    const antennae = element("div", {
+      position: "absolute",
+      width: "0",
+      height: "0",
+      transform: "translateZ(8px)",
+      transformStyle: "preserve-3d"
+    }, bank, { "data-part": "antennae" });
+    const svg = doc.createElementNS(NS, "svg");
+    for (const [name, value] of Object.entries({ width: 390, height: 280, viewBox: "-195 -350 390 280", "aria-hidden": "true" })) svg.setAttribute(name, value);
+    setStyle(svg, { position: "absolute", left: "-195px", top: "-350px", overflow: "visible" });
+    antennae.append(svg);
+    const paths = ANTENNAE.map((antenna) => {
+      const path = doc.createElementNS(NS, "path");
+      for (const [name, value] of Object.entries({ "data-part": antenna.id, fill: "none", stroke: "#24211D", "stroke-width": 3.1, "stroke-linecap": "round" })) path.setAttribute(name, value);
+      svg.append(path);
+      return path;
+    });
+    const tips = ANTENNAE.map((antenna) => texture({ ...antenna.club, root: antenna.tip }, antennae));
+    texture(BODY, bank, "translateZ(8px)");
+    function draw(seconds, {
+      selection = 1,
+      wingSelections,
+      revealFromRoot = false,
+      motionState,
+      background = "transparent"
+    } = {}) {
+      if (destroyed) return;
+      const state = motionState ?? butterflyState(seconds);
+      viewport.style.backgroundColor = background;
+      setStyle(position, { left: state.x + "px", top: state.y + "px" });
+      bank.style.transform = `rotateZ(${state.bank}deg) scale(${STAGE.scale})`;
+      wings.forEach((wing, i) => {
+        const pose = state.wings[i];
+        wing.node.style.transform = `rotateY(${pose.yaw}deg) rotateZ(${pose.roll}deg)`;
+        wing.cut.style.filter = pose.brightness === 1 ? "" : `brightness(${pose.brightness})`;
+        const chosen = wingSelections?.[i] ?? selection;
+        if (wing.alternate) wing.alternate.style.opacity = String(revealFromRoot ? chosen < 1 ? 1 : 0 : 1 - chosen);
+        if (wing.reveal) {
+          const active = revealFromRoot && chosen > 0 && chosen < 1;
+          wing.reveal.style.display = active ? "block" : "none";
+          const part = PARTS[i], [px, py] = part.pivot;
+          const radius = chosen * Math.hypot(Math.max(px, part.crop[2] - px), Math.max(py, part.crop[3] - py));
+          wing.reveal.style.clipPath = `circle(${radius}px at ${px}px ${py}px)`;
+        }
+      });
+      state.antennae.forEach((antenna, i) => {
+        paths[i].setAttribute("d", antenna.path);
+        const [px, py] = ANTENNAE[i].club.pivot;
+        setStyle(tips[i].node, {
+          left: antenna.end[0] - px + "px",
+          top: antenna.end[1] - py + "px",
+          transform: `rotateZ(${antenna.tipRotation}deg)`
+        });
+      });
+    }
+    const ready = Promise.all(pending.map((item) => item.ready));
+    ready.catch(() => {
+    });
+    draw(0);
+    function destroy(preserve = false) {
+      if (destroyed) return;
+      destroyed = true;
+      pending.forEach((item) => item.stop());
+      if (!preserve) viewport.remove();
+    }
+    return { draw, ready, destroy };
+  }
+  function make(root, K, definition) {
+    const instance = mount(root, { catalogView: true });
+    const draw = (ms, state = {}) => instance.draw((state.elapsed ?? ms) / 1e3);
+    draw.ready = instance.ready;
+    draw.destroy = (preserve) => instance.destroy(preserve);
+    return draw;
+  }
+  global.WiseButterfly = Object.freeze({ mount });
+  (global.MotionFactories ||= {})["butterfly-illustration"] = make;
+})(globalThis);
+
+// catalog/remotion/butterfly.jsx
+var butterflyMotion = globalThis.WiseButterflyMotion;
+function WiseMotionButterfly({
+  atlasSrc,
+  wingAtlasSrc,
+  selection = 1,
+  wingSelections,
+  revealFromRoot = false,
+  motionState,
+  background = "transparent",
+  seconds,
+  speed = 1
+}) {
+  const frame = useCurrentFrame(), { fps } = useVideoConfig();
+  const { delayRender, continueRender, cancelRender } = useDelayRender();
+  const root = useRef(null), renderer = useRef(null);
+  const src = atlasSrc || staticFile("wise-motion/catalog/assets/butterfly/wing-atlas.png");
+  const alternateSrc = wingAtlasSrc;
+  useLayoutEffect(() => {
+    let alive = true, released = false;
+    const handle = delayRender("\u8774\u8776\u56FE\u96C6\u51C6\u5907");
+    const release = () => {
+      if (!released) {
+        released = true;
+        continueRender(handle);
+      }
+    };
+    const instance = globalThis.WiseButterfly.mount(root.current, { atlasSrc: src, alternateSrc });
+    renderer.current = instance;
+    instance.ready.then(() => {
+      if (alive) release();
+    }).catch((error) => {
+      if (alive) {
+        release();
+        cancelRender(error);
+      }
+    });
+    return () => {
+      alive = false;
+      instance.destroy();
+      if (renderer.current === instance) renderer.current = null;
+      release();
+    };
+  }, [src, alternateSrc, delayRender, continueRender, cancelRender]);
+  useLayoutEffect(() => {
+    renderer.current?.draw(seconds ?? frame / fps * speed, { selection, wingSelections, revealFromRoot, motionState, background });
+  }, [src, alternateSrc, seconds, frame, fps, speed, selection, wingSelections, revealFromRoot, motionState, background]);
+  return /* @__PURE__ */ React.createElement(AbsoluteFill, { ref: root, "data-wise-motion-effect": "butterfly-illustration", style: { overflow: "hidden", background } });
+}
+
+// catalog/remotion/circular-reveal.jsx
+import React2 from "react";
+import { useCurrentFrame as useCurrentFrame2, useVideoConfig as useVideoConfig2 } from "remotion";
+
+// catalog/effects/circular-reveal.js
+(function(global) {
+  "use strict";
+  const presets = Object.freeze({
+    "paper-expand": { duration: 0.45, x: 540, y: 1180, background: "#EEECE5", before: "#0A0A0B" },
+    "black-cover": { duration: 0.4, x: 540, y: 850, background: "#0A0A0B", before: "#EEECE5" }
+  });
+  const quint = (p) => p < 0.5 ? 16 * p ** 5 : 1 - (-2 * p + 2) ** 5 / 2;
+  function sample(seconds, variantId = "paper-expand") {
+    const preset = presets[variantId];
+    if (!preset) throw new Error("\u672A\u77E5\u5706\u5F62\u8F6C\u573A\u793A\u4F8B\uFF1A" + variantId);
+    if (!Number.isFinite(seconds)) throw new TypeError("\u52A8\u4F5C\u65F6\u95F4\u5FC5\u987B\u662F\u6709\u9650\u79D2\u6570");
+    const progress = quint(Math.max(0, Math.min(1, seconds / preset.duration)));
+    return {
+      ...preset,
+      progress,
+      radiusPercent: progress * 120,
+      clipPath: `circle(${progress * 120}% at ${preset.x}px ${preset.y}px)`
+    };
+  }
+  function make(root, K, definition) {
+    const variant = definition.variant_id;
+    const preset = presets[variant];
+    if (!preset) throw new Error("\u672A\u77E5\u5706\u5F62\u8F6C\u573A\u793A\u4F8B\uFF1A" + variant);
+    const doc = root.ownerDocument;
+    const page = doc.createElement("div");
+    Object.assign(page.style, {
+      position: "absolute",
+      width: "1080px",
+      height: "1440px",
+      left: "185px",
+      top: "0",
+      transform: "scale(.25)",
+      transformOrigin: "0 0",
+      overflow: "hidden",
+      background: preset.before
+    });
+    const marker = doc.createElement("div");
+    Object.assign(marker.style, {
+      position: "absolute",
+      width: "300px",
+      height: "300px",
+      left: "390px",
+      top: "570px",
+      border: "6px solid #6675FF",
+      borderRadius: "50%"
+    });
+    page.append(marker);
+    const cover = doc.createElement("div");
+    cover.dataset.circleCover = "true";
+    Object.assign(cover.style, { position: "absolute", inset: "0", background: preset.background });
+    const square = marker.cloneNode();
+    Object.assign(square.style, { borderRadius: "0", transform: "rotate(45deg)" });
+    cover.append(square);
+    page.append(cover);
+    root.replaceChildren(page);
+    const draw = (ms) => {
+      cover.style.clipPath = sample((ms - 150) / 1e3, variant).clipPath;
+    };
+    draw(0);
+    return draw;
+  }
+  global.WiseCircularReveal = Object.freeze({ presets, sample, make });
+})(globalThis);
+
+// catalog/remotion/circular-reveal.jsx
+var circularReveal = globalThis.WiseCircularReveal;
+function WiseMotionCircularReveal({ seconds, variantId = "paper-expand", speed = 1, background, children }) {
+  const frame = useCurrentFrame2(), { fps } = useVideoConfig2();
+  const state = circularReveal.sample(seconds ?? frame / fps * speed, variantId);
+  return /* @__PURE__ */ React2.createElement(
+    "div",
+    {
+      "data-wise-motion-effect": "iris-open-transition",
+      "data-variant": variantId,
+      style: { position: "absolute", inset: 0, background: background ?? state.background, clipPath: state.clipPath }
+    },
+    children
+  );
+}
+
 // remotion/index.jsx
 var asError = (reason) => reason instanceof Error ? reason : new Error(reason?.message || String(reason));
 function WiseMotionEffect({
@@ -29868,15 +30641,15 @@ function WiseMotionEffect({
   onFrame,
   onError
 }) {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const { delayRender, continueRender, cancelRender } = useDelayRender();
+  const frame = useCurrentFrame3();
+  const { fps } = useVideoConfig3();
+  const { delayRender, continueRender, cancelRender } = useDelayRender2();
   const { isRendering } = useRemotionEnvironment();
   const { delayPlayback } = useBufferState();
-  const iframeRef = useRef(null);
-  const holderRef = useRef(null);
-  const callbacks = useRef({ onReady, onFrame, onError });
-  const themeRef = useRef(theme);
+  const iframeRef = useRef2(null);
+  const holderRef = useRef2(null);
+  const callbacks = useRef2({ onReady, onFrame, onError });
+  const themeRef = useRef2(theme);
   themeRef.current = theme;
   callbacks.current = { onReady, onFrame, onError };
   const [failure, setFailure] = useState(null);
@@ -29886,7 +30659,7 @@ function WiseMotionEffect({
     return effect;
   }, [definition, effectId, variantId, bookSettings]);
   const definitionJson = useMemo(() => JSON.stringify(resolved), [resolved]);
-  const defaultBase = assetBaseUrl ?? staticFile("wise-motion");
+  const defaultBase = assetBaseUrl ?? staticFile2("wise-motion");
   const base = typeof document === "undefined" ? defaultBase : new URL(defaultBase.replace(/\/?$/, "/"), document.baseURI).href;
   if (theme !== "dark" && theme !== "light") throw new TypeError("\u5916\u89C2\u5FC5\u987B\u4E3A dark \u6216 light");
   const source = useMemo(() => createFrameDocument({ assetBaseUrl: base, definition: resolved }), [base, resolved]);
@@ -29901,7 +30674,7 @@ function WiseMotionEffect({
     sample.elapsed = elapsedOverrideMs;
   }
   if (![width, height].every((value) => Number.isFinite(value) && value > 0)) throw new TypeError("\u753B\u9762\u5C3A\u5BF8\u5FC5\u987B\u662F\u6B63\u6570");
-  useLayoutEffect(() => {
+  useLayoutEffect2(() => {
     const iframe = iframeRef.current;
     iframe.style.visibility = "hidden";
     let accept, reject;
@@ -29943,7 +30716,7 @@ function WiseMotionEffect({
       reject(new Error("\u52A8\u6548\u521D\u59CB\u5316\u5DF2\u53D6\u6D88"));
     };
   }, [source, definitionJson]);
-  useLayoutEffect(() => {
+  useLayoutEffect2(() => {
     const holder = holderRef.current;
     if (!holder) return;
     let active = true;
@@ -29989,7 +30762,7 @@ function WiseMotionEffect({
   }, [source, definitionJson, frame, sample.time, sample.elapsed, sampleMode, ease, theme, delayRender, continueRender, cancelRender, delayPlayback, isRendering]);
   if (failure) throw failure;
   const scale = Math.min(width / 640, height / 360);
-  return /* @__PURE__ */ React.createElement("div", { "data-wise-motion-effect": resolved.id, style: { position: "relative", width, height, overflow: "hidden" } }, /* @__PURE__ */ React.createElement(
+  return /* @__PURE__ */ React3.createElement("div", { "data-wise-motion-effect": resolved.id, style: { position: "relative", width, height, overflow: "hidden" } }, /* @__PURE__ */ React3.createElement(
     "iframe",
     {
       ref: iframeRef,
@@ -30014,7 +30787,11 @@ export {
   DEFAULT_FPS,
   MOTION_HEIGHT,
   MOTION_WIDTH,
+  WiseMotionButterfly,
+  WiseMotionCircularReveal,
   WiseMotionEffect,
+  butterflyMotion,
+  circularReveal,
   effectDefinitions,
   getEffectMetadata,
   normalizeSpeed,

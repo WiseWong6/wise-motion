@@ -51,7 +51,7 @@ test('无效帧率、帧号和取样模式明确报错', () => {
 
 test('所有条目和变体可解析，元数据与末帧一致，原注册表不被改变', () => {
   const before = JSON.stringify(effectDefinitions);
-  assert.equal(effectDefinitions.length, 363);
+  assert.equal(effectDefinitions.length, 365);
   let count = 0;
   for (const effect of effectDefinitions) for (const variantId of effect.variants?.map(variant => variant.id) || [undefined]) {
     count++;
@@ -69,7 +69,7 @@ test('所有条目和变体可解析，元数据与末帧一致，原注册表�
       else assert.ok(end.elapsed < resolved.duration_ms, effect.id);
     }
   }
-  assert.equal(count, 389);
+  assert.equal(count, 393);
   assert.equal(JSON.stringify(effectDefinitions), before);
 });
 

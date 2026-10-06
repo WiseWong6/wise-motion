@@ -17,6 +17,21 @@
       "sha256": "1c0eff71a3256f6b9e97eaa3706f5b1eb1e55b23e127d2cd208bb4aa88f6e29a"
     },
     {
+      "path": "catalog/assets/butterfly/SOURCE.json",
+      "bytes": 780,
+      "sha256": "be191276dcd451d29494aa016a948ae0abffc9de1eef70630d571d95f8016c6b"
+    },
+    {
+      "path": "catalog/assets/butterfly/ai-wing-atlas.png",
+      "bytes": 2394399,
+      "sha256": "d81423abc263c4d56fc0fe57246483c782b9c12e2b25e5283902bcdd1310c958"
+    },
+    {
+      "path": "catalog/assets/butterfly/wing-atlas.png",
+      "bytes": 2353353,
+      "sha256": "30d981be48f5bb419fe25717d7dd5f33ba779b0e36d53e2e43d9fbdc19cbbab5"
+    },
+    {
       "path": "catalog/assets/civilization-growth/CIVILIZATION-PROMPT.txt",
       "bytes": 3703,
       "sha256": "ced6cd0107d17d403e854a1820b7485449429bfa9e79298a2321bfa01e934e3f"
@@ -417,6 +432,16 @@
       "sha256": "2707be3fd3d09671f4c53294cb3c3e5eca36864fbdd8905c4d6d69012d4c0960"
     },
     {
+      "path": "catalog/effects/butterfly-motion.js",
+      "bytes": 4809,
+      "sha256": "6155a9196611353f878d59c6a7a4152b5b38a89f4d3a19c3ce960e1dd8c4d542"
+    },
+    {
+      "path": "catalog/effects/butterfly.js",
+      "bytes": 7548,
+      "sha256": "83e8c730cb5cd4046b4b70385ed6813af33effbb1508ab7d1eccda8be76903d8"
+    },
+    {
       "path": "catalog/effects/capsule-type.js",
       "bytes": 39038,
       "sha256": "8dda724b84ef223b2454b2693cc3e904612bcf823ebe1a2e6a89af71c0724a1f"
@@ -425,6 +450,11 @@
       "path": "catalog/effects/cat-mouth.js",
       "bytes": 45452,
       "sha256": "3d4d9b72e8498c6ab42addc56fbc69b73d66267e471eb1993d339f064ecb6b15"
+    },
+    {
+      "path": "catalog/effects/circular-reveal.js",
+      "bytes": 2342,
+      "sha256": "377b10c20fbd86f7c7d4d86817fce50368a7b72b84f16c18f35c96f6f59bdc8d"
     },
     {
       "path": "catalog/effects/civilization-growth.js",
@@ -588,8 +618,8 @@
     },
     {
       "path": "catalog/effects/motion-oasis.js",
-      "bytes": 69701,
-      "sha256": "fa6091d82729a13530b39cc0c3b6bb99b414c70da03c0e26c3bb165b198a9a77"
+      "bytes": 70340,
+      "sha256": "6a4cb3e46710c79b8f69d50a0aba3507b20f965d9d33d4e7faf2c387be9a0312"
     },
     {
       "path": "catalog/effects/osmanthus-motion.js",
@@ -663,8 +693,8 @@
     },
     {
       "path": "catalog/effects/reel-transitions.js",
-      "bytes": 6235,
-      "sha256": "956ae7db95fd7eff711630708801a4f57d3d2b2282fdfb00c13505ab51a2bc95"
+      "bytes": 6506,
+      "sha256": "3d1a7a7daa6a3184e6d44737d65f99b970bd2e10a5a37e664b0b9d97387ae12c"
     },
     {
       "path": "catalog/effects/seed-bloom-brand.js",
@@ -713,8 +743,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 21082,
-      "sha256": "a8835c19ed7c68cbc4e0a3d1189648122f6059e3da12058af78932c3e5d4a1ce"
+      "bytes": 21120,
+      "sha256": "c844297d393fd48cc0444db34dfe57719af2c16f751986fead9e17f703e62765"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -798,18 +828,28 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1154131,
-      "sha256": "9549b2f264a52fcea5bee04ec72e4ceddae121a99391de920f07c749c4df4560"
+      "bytes": 1166604,
+      "sha256": "ea23343c7f6348ac4866f03d141047cc178d954f87909ad3b4901c0a59da0ddb"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1421948,
-      "sha256": "1505ad41d7ddf73e07ba0c461c883e340b15ccb90a204fb8c94bd18d19deeb0b"
+      "bytes": 1437556,
+      "sha256": "b88c8e57eb566106b6492f705ce8ad96b87ec2cc26ce71025190a6bf3e7e126a"
     },
     {
       "path": "catalog/related-preview.js",
       "bytes": 6506,
       "sha256": "f29e6f0f68e395ace6da2f82c290d01878dfc052580c5b36eb9db0c24351f326"
+    },
+    {
+      "path": "catalog/remotion/butterfly.jsx",
+      "bytes": 2020,
+      "sha256": "e33fbd63438769034ef612df779b955df5af4e30ffb8a04b737261754c6adf25"
+    },
+    {
+      "path": "catalog/remotion/circular-reveal.jsx",
+      "bytes": 838,
+      "sha256": "855a43641d8493bee6fad0fd0421c780b21dcdb27761b32fc49d04b165691fd7"
     },
     {
       "path": "catalog/remotion/civilization-growth.jsx",

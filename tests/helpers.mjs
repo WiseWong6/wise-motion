@@ -40,6 +40,12 @@ export async function environment(withApp = false, options = {}) {
   }
   // 只做结构与控制检查。jsdom 没有像素绘制能力，显式返回空值，避免能力探测噪声。
   w.HTMLCanvasElement.prototype.getContext = () => null;
+  // jsdom 无图片解码能力；结构检查视本地图片为已准备。异步边界另用独立环境测试。
+  if (!options.realImagePreparation) {
+    Object.defineProperty(w.HTMLImageElement.prototype, 'complete', {get: () => true, configurable: true});
+    Object.defineProperty(w.HTMLImageElement.prototype, 'naturalWidth', {get: () => 1536, configurable: true});
+    w.HTMLImageElement.prototype.decode = () => Promise.resolve();
+  }
   // jsdom 不渲染背景滤镜；播放器光学层的完整能力分支另用独立测试检查。
   w.CSS.supports = () => false;
   const listeners = new Set();

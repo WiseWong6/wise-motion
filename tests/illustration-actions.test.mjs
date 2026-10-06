@@ -13,7 +13,7 @@ const definition=id=>data.effects.find(e=>e.id===id);
 const actionFor=(w,art)=>w.MotionKit.resolveVariant(definition(art.actions[0]),art.action_variants?.[art.actions[0]]);
 
 test('全部动态插画都关联真实动作，同类示例合并且静态主体不虚构动作',()=>{
-  assert.equal(animated.length,60);
+  assert.equal(animated.length,61);
   assert.deepEqual(illustrations.filter(e=>!e.actions.length).map(e=>e.id).sort(),staticIds.sort());
   for(const art of animated)for(const id of art.actions)assert.equal(definition(id)?.kind,'action',art.id);
   assert.equal(definition('drafting-tools-illustration').actions[0],definition('folio-cards-illustration').actions[0]);

@@ -1,0 +1,25 @@
+{
+  "origin": "用户已确认的 Wise Motion 视频蝴蝶插画与振翅小样",
+  "created": "2026-10-06",
+  "image_source": "Codex 宿主内置 image_gen.imagegen；原透明图集直接复制，没有重绘或图像编辑",
+  "code_license": "AGPL-3.0-only",
+  "files": [
+    {
+      "path": "wing-atlas.png",
+      "bytes": 2353353,
+      "sha256": "30d981be48f5bb419fe25717d7dd5f33ba779b0e36d53e2e43d9fbdc19cbbab5"
+    },
+    {
+      "path": "ai-wing-atlas.png",
+      "bytes": 2394399,
+      "sha256": "d81423abc263c4d56fc0fe57246483c782b9c12e2b25e5283902bcdd1310c958"
+    }
+  ],
+  "motion": {
+    "file": "motion.mjs",
+    "sha256": "69f35c99f3f5d1f9606e81cf1a6ae49edcad9670072929ccea79b237d265263b",
+    "duration_seconds": 6,
+    "width": 1080,
+    "height": 1440
+  }
+}

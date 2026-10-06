@@ -16,6 +16,7 @@ async function environment(){
 const source=await readFile(new URL('../catalog/effects/motion-oasis.js',import.meta.url),'utf8');
 const scope={MotionFactories:{}};runInNewContext(source,scope);
 const fresh=data.effects.filter(e=>e.source.path==='catalog/effects/motion-oasis.js');
+const duration=data.effects.find(e=>e.id==='motion-oasis-sequence').duration_ms/1000;
 function recorder(){
  let hash,depth=0,calls=0;const state={},stack=[];
  const record=(key,args)=>{for(const v of args)if(typeof v==='number')assert.ok(Number.isFinite(v),key);hash?.update(key+JSON.stringify(args));calls++;};
@@ -26,10 +27,10 @@ function recorder(){
 }
 test('完整城市任意定位保持几何一致，水面厚度与图形高度连续对应',()=>{
  const e=scope.WiseMotionOasis.createEngine(data),r=recorder();
- const times=[0,.11,.32,.54,.79,.95,1.4,1.82,2.24,2.48,2.70,2.89,3.12,3.32,3.5,3.61,3.75];
+ const times=[0,.11,.32,.54,.79,.95,1.4,1.82,2.24,2.48,2.70,2.89,3.12,3.32,3.5,3.61,3.75,3.90,3.92,4.03,4.20,4.33,4.55,duration];
  const samples=times.map(t=>r.hash(c=>e.render(c,t)).value);
  for(let i=times.length-1;i>=0;i--)assert.equal(r.hash(c=>e.render(c,times[i])).value,samples[i]);
- for(let frame=54;frame<=225;frame++){
+ for(let frame=54;frame<=duration*60;frame++){
   const t=frame/60;e.render(r.ctx,t);const info=e.inspect();assert.equal(info.waterHeights.length,26);
   for(const cell of info.waterHeights){assert.ok(Math.abs(cell.bottom+8)<1e-8);assert.equal(cell.top,e.gallery.waterHeight(t,cell.i,cell.j));}
  }
@@ -37,32 +38,30 @@ test('完整城市任意定位保持几何一致，水面厚度与图形高度�
  assert.equal(e.gallery.metadata.total,data.effects.length);e.dispose();
 });
 
-test('镜头逐帧平顺，文案出现后向右转正，末尾保持正面构图',()=>{
+test('镜头逐帧平顺，收尾保持斜向构图，全程不旋转',()=>{
  const e=scope.WiseMotionOasis.createEngine(data);
  let previous=e.cameraAt(0);
- for(let frame=1;frame<=225;frame++){
+ for(let frame=1;frame<=duration*60;frame++){
   const current=e.cameraAt(frame/60);
   assert.ok(Object.values(current).every(Number.isFinite));
   assert.ok(Math.hypot(current.x-previous.x,current.y-previous.y)<16,'每帧横移与升降不能突然跃动');
   assert.ok(Math.abs(current.scale-previous.scale)<.05,'每帧缩放不能突然跳变');
-  assert.ok(current.yaw>=Math.PI/4&&current.yaw<=Math.PI/2);
-  assert.ok(current.yaw>=previous.yaw,'收尾持续向右旋转，不反向或折返');
+  assert.equal(current.yaw,Math.PI/4,'地块全程保留原斜向朝向');
   previous=current;
  }
  const step=1e-6;
- for(const time of [.24,.26,.86,.92,1.80,2.05,2.45,2.55,3.10,3.16,3.65]){
+ for(const time of [.24,.26,.86,.92,1.80,2.05,2.37,3.90,4.55]){
   const before=e.cameraAt(time-step),at=e.cameraAt(time),after=e.cameraAt(time+step);
   for(const key of ['x','y','scale','yaw'])assert.ok(Math.abs((at[key]-before[key])/step-(after[key]-at[key])/step)<.01,'运镜衔接的速度必须连续');
  }
- const ending=e.cameraAt(3.75);
- for(const time of [3.65,3.70,3.75])assert.deepEqual(e.cameraAt(time),ending,'整体转正后镜头保持停稳');
- assert.equal(e.cameraAt(3.13).yaw,Math.PI/4);assert.equal(ending.yaw,Math.PI/2);
- const frontLeft=e.projectAt([660,660,0],3.75),frontRight=e.projectAt([660,0,0],3.75),backLeft=e.projectAt([0,660,0],3.75);
- assert.equal(frontLeft[1],frontRight[1],'地块正面边缘水平');assert.equal(frontLeft[0],backLeft[0],'地块不再以对角朝向画面');
+ const ending=e.cameraAt(duration);
+ for(const time of [4.55,4.70,duration])assert.deepEqual(e.cameraAt(time),ending,'镜头拉远后保持停稳');
+ const frontLeft=e.projectAt([660,660,0],duration),frontRight=e.projectAt([660,0,0],duration),backLeft=e.projectAt([0,660,0],duration);
+ assert.ok(frontLeft[1]>frontRight[1],'地块右侧边缘保留斜向');assert.ok(frontLeft[0]>backLeft[0],'地块左侧边缘保留斜向');
  e.dispose();
 });
 
-test('数据卡先消失，文案随地块向右转正，最终位于地块下方',()=>{
+test('完整数据卡先停留阅读，地块缩小时卡片与底部文案同步交接',()=>{
  const e=scope.WiseMotionOasis.createEngine(data),texts=[],stack=[];
  let matrix=[1,0,0,1,0,0],font='',alpha=1;
  const compose=([a,b,c,d,x,y])=>{
@@ -79,32 +78,68 @@ test('数据卡先消失，文案随地块向右转正，最终位于地块下�
    if(alpha<=0)return;
    const [a,b,c,d,tx,ty]=matrix,w=width(text),h=size();
    const points=[[x,y-h],[x+w,y-h],[x+w,y+h*.25],[x,y+h*.25]].map(([u,v])=>[a*u+c*v+tx,b*u+d*v+ty]);
-   texts.push({text,matrix:[...matrix],points});
+   texts.push({text,matrix:[...matrix],points,alpha});
   },
   createLinearGradient:()=>({addColorStop(){}}),createRadialGradient:()=>({addColorStop(){}})
  },{get:(o,k)=>o[k]||(()=>{}),set:(o,k,v)=>{if(k==='font')font=v;if(k==='globalAlpha')alpha=v;return true;}});
  const labels=new Set(['brand','data']);
- e.render(ctx,2.82,labels);assert.ok(texts.some(entry=>entry.text==='ACTIONS'));assert.ok(!texts.some(entry=>entry.text==='M'));
- texts.length=0;e.render(ctx,2.85,labels);assert.equal(texts.length,0,'卡片退完后才出文案');
- e.render(ctx,2.88,labels);assert.ok(texts.some(entry=>entry.text==='M'));assert.ok(!texts.some(entry=>entry.text==='ACTIONS'));
- const tilted=e.brandFrameAt(3.13);assert.ok(tilted[1]<-.1,'文案沿右前方斜边出现，随右转逐渐放平');
- const turned=e.brandFrameAt(3.75);assert.equal(turned[1],0);assert.equal(turned[2],0);
- for(let frame=172;frame<=225;frame++){
-  texts.length=0;e.render(ctx,frame/60,new Set(['brand']));
-  for(const entry of texts)for(const [x,y] of entry.points)assert.ok(x>=28&&x<=1066-28&&y>=28&&y<=600-24,'文案入场与旋转过程不能越出画面');
+ let held;const reading=e.cameraAt(2.70);
+ for(let frame=162;frame<=234;frame++){
+  texts.length=0;e.render(ctx,frame/60,labels);
+  assert.deepEqual(texts.filter(entry=>/^\d+$/.test(entry.text)).map(entry=>entry.text),['action','illustration','composition'].map(kind=>String(e.gallery.metadata.counts[kind])),'完整数字须保留1.2秒');
+  assert.ok(!texts.some(entry=>entry.text==='M'),'读卡期间不能提前切到收尾文案');
+  assert.deepEqual(e.cameraAt(frame/60),reading,'读卡时保持地块尺寸，缩小放在阅读之后');
+  if(held)assert.deepEqual(texts,held,'阅读期间数字和卡面文字的位置与尺寸保持不变');else held=texts.map(entry=>({...entry}));
  }
- texts.length=0;e.render(ctx,3.75,labels);
- const cityBottom=Math.max(...[[663,663,-77],[663,-3,-77]].map(point=>e.projectAt(point,3.75)[1]));
+ let previousCardAlpha=1,previousTitleAlpha=0;
+ for(let frame=235;frame<273;frame++){
+  const t=frame/60;texts.length=0;e.render(ctx,t,labels);
+  const card=texts.find(entry=>entry.text==='ACTIONS'),title=texts.find(entry=>entry.text==='M');
+  assert.ok(card&&title,'缩小期间卡片与底部文字须同时交接，不能空等');
+  const shrinking=(reading.scale-e.cameraAt(t).scale)/(reading.scale-e.cameraAt(duration).scale);
+  assert.ok(Math.abs(card.alpha-(1-shrinking))<1e-8,'卡片透明度跟随地块缩小进度');
+  assert.ok(title.alpha>0&&title.alpha<=shrinking+1e-8,'地块开始缩小就显出底部文字');
+  assert.ok(card.alpha<=previousCardAlpha&&title.alpha>=previousTitleAlpha,'卡片持续淡出，文字持续显现');
+  previousCardAlpha=card.alpha;previousTitleAlpha=title.alpha;
+ }
+ texts.length=0;e.render(ctx,4.55,labels);assert.ok(!texts.some(entry=>entry.text==='ACTIONS'));assert.ok(texts.some(entry=>entry.text==='M'&&entry.alpha===1),'缩小结束时完成文字交接');
+ const horizontal=e.brandFrameAt(4.08);assert.equal(horizontal[1],0);assert.equal(horizontal[2],0);
+ for(let frame=235;frame<=duration*60;frame++){
+  texts.length=0;e.render(ctx,frame/60,new Set(['brand']));
+  for(const entry of texts)for(const [x,y] of entry.points)assert.ok(x>=28&&x<=1066-28&&y>=28&&y<=600-24,'文案入场过程不能越出画面');
+ }
+ texts.length=0;e.render(ctx,duration,labels);
+ const cityBottom=Math.max(...[[-3,-3,-77],[663,-3,-77],[663,663,-77],[-3,663,-77]].map(point=>e.projectAt(point,duration)[1]));
  for(const entry of texts)for(const [x,y] of entry.points){
   assert.ok(x>=28&&x<=1066-28,'文案须保留画幅边距');
   assert.ok(y>=cityBottom+18&&y<=550,'所有文案须位于地块底边下方并保留间距');
  }
- const titleStart=e.brandFrameAt(3.75)[4],titleEnd=titleStart+620*e.cameraAt(3.75).scale;
- assert.ok(Math.abs((titleStart+titleEnd)/2-e.cameraAt(3.75).x)<1e-8,'整组文案在地块下方居中');
+ const titleFrame=e.brandFrameAt(duration),titleStart=titleFrame[4],titleEnd=titleStart+620*titleFrame[0];
+ assert.ok(Math.abs((titleStart+titleEnd)/2-e.cameraAt(duration).x)<1e-8,'整组文案在地块下方居中');
  const caption=texts.find(entry=>entry.text==='让动效在城市发生');
  const count=texts.find(entry=>entry.text.startsWith('WISE MOTION'));
  assert.ok(caption&&count);assert.equal(caption.matrix[1],0);assert.equal(caption.matrix[2],0);assert.equal(count.matrix[1],0);assert.equal(count.matrix[2],0);
  assert.ok(count.text.includes(String(data.effects.length)));assert.equal(stack.length,0);
+ e.dispose();
+});
+
+test('动作卡以短直线从右下角连到左前方真实水格',()=>{
+ const e=scope.WiseMotionOasis.createEngine(data),paths=[];let points=[];
+ const ctx=new Proxy({
+  beginPath(){points=[];},moveTo(x,y){points.push([x,y]);},lineTo(x,y){points.push([x,y]);},
+  bezierCurveTo(){assert.fail('动作卡不再绕地块外侧弯行');},stroke(){if(points.length)paths.push([...points]);},
+  measureText:s=>({width:String(s).length*28}),
+  createLinearGradient:()=>({addColorStop(){}}),createRadialGradient:()=>({addColorStop(){}})
+ },{get:(o,k)=>o[k]||(()=>{}),set:()=>true});
+ e.render(ctx,3.5,new Set(['data']));
+ const [start,ring,marker]=paths[0],anchor=e.gallery.metadata.panels[0].center;
+ assert.equal(paths[0].length,3,'连线直接到标记点，不绕行');
+ assert.ok(Math.abs(start[0]-(39.5+152.1))<1e-8);
+ assert.ok(Math.abs(start[1]-(171.5+101.7-152.1/Math.sqrt(3)))<1e-8,'起点贴在斜卡面的右下角');
+ const i=Math.floor(anchor[0]/55),j=Math.floor(anchor[1]/55);
+ assert.equal(e.tileType(i,j),'water');assert.ok(i<9&&j===9,'落点位于左前方水面');
+ assert.deepEqual(marker,[...e.projectAt([anchor[0],anchor[1],e.gallery.waterHeight(3.5,i,j)+1.1],3.5)]);
+ assert.ok(Math.hypot(ring[0]-start[0],ring[1]-start[1])<300,'连线保留在卡片与附近水格之间');
  e.dispose();
 });
 
@@ -118,7 +153,7 @@ test('静止构件复用几何，暖缓存与新实例的绘制指令保持一�
  const warm=r.hash(c=>engine.render(c,3.5));
  assert.deepEqual(warm,cold,'复用模型不能改变路径、颜色渐变或绘制顺序');
  assert.ok(normalCalls<coldCalls*.75,`重复计算应减少，首次 ${coldCalls} 次，复用后 ${normalCalls} 次`);
- for(const time of [2.7,3.75,.5,3.5,3.13,3.75]){
+ for(const time of [2.7,duration,.5,3.5,4.13,duration]){
   const freshEngine=isolated.WiseMotionOasis.createEngine(data);
   assert.equal(r.hash(c=>engine.render(c,time)).value,r.hash(c=>freshEngine.render(c,time)).value,'跳转和实例之间不能串用几何');
   freshEngine.dispose();

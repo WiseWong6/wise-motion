@@ -9,9 +9,9 @@ import assert from 'node:assert/strict';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('catalog/registry.json'));
-assert.equal(data.effects.length, 363);
-assert.equal(data.effects.filter(x => x.kind === 'action').length, 275);
-assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 62);
+assert.equal(data.effects.length, 365);
+assert.equal(data.effects.filter(x => x.kind === 'action').length, 276);
+assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 63);
 assert.equal(data.effects.filter(x => x.kind === 'composition').length, 26);
 assert.equal(new Set(data.effects.map(x => x.id)).size, data.effects.length);
 for(const [from,to] of Object.entries(data.redirects||{})){

@@ -231,7 +231,7 @@ node node_modules/wise-motion-remotion/scripts/install-assets.mjs public/wise-mo
 npx remotion render src/index.jsx Effect output.mp4${renderFlags}
 
 组件内部仍使用原绘制代码；这些实际文件和全部字体、图片、材质随包携带：
-${files.join('\n')}
+${[...files, ...(effect.source.assets || [])].join('\n')}
 素材明细见包内 ASSET-MANIFEST.json。安装后只访问目标工程 public/wise-motion，
 不依赖原目录或本机绝对地址。视频使用固定演示动作；时钟为每秒 60 帧。
 */

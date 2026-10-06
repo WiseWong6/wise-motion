@@ -4,6 +4,13 @@
  */
 (function (global) {
 'use strict';
+const HANDOFF_START = 3.90;
+const HANDOFF_END = 4.55;
+const COMPOSITION_DURATION_MS = 4950;
+function handoffAt(t) {
+  const p = Math.max(0, Math.min(1, (t - HANDOFF_START) / (HANDOFF_END - HANDOFF_START)));
+  return p * p * p * (10 + p * (-15 + p * 6));
+}
 function createEngine(registry) {
   const window = {Opus:{}};
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only.
@@ -200,10 +207,10 @@ function createEngine(registry) {
       });
     }
   }
-  // Original data-card anchor positions; the water no longer uses three large decks.
+  // Each card connects to a real water tile near its side of the city.
   const panels = [
     { id: 'wave-grid', name: '网格波次传递', englishName: 'Grid Wave Propagation', kind: 'action',
-      center: [574.75, 52.25, 14], gridCenter: [10.45, .95], start: 1.80, actionStart: 1.99,
+      center: [302.5, 522.5, 14], gridCenter: [5.5, 9.5], start: 1.80, actionStart: 1.99,
       color: '#92ffdc', source: ROOT + 'catalog/effects/history-patterns.js',
       relationship: '35个圆点按到左上触发点的空间距离延迟响应，放大后回落。' },
     { id: 'claude-orbits-illustration', name: '多轨圆点环绕', englishName: 'Multi Orbit Dots', kind: 'illustration',
@@ -250,7 +257,7 @@ function createEngine(registry) {
     if (!levels.has(k)) levels.set(k, 'rgb(' + rgb(hex).map(v => Math.round(clamp(v * k, 0, 255))).join(',') + ')');
     return levels.get(k);
   }
-  // Keep the elevation while turning from the corner view to the front edge.
+  // Keep the elevation and diagonal view throughout the composition.
   const SIN_PITCH = 1 / Math.sqrt(3), COS_PITCH = Math.sqrt(2 / 3);
   const LIGHT = [-.30, -.42, .856];
   let camera, cameraBasis, faces, faceCount, vertexCount, lit, palette, now, waterHeights, surfaceLayer = 0;
@@ -297,12 +304,12 @@ function createEngine(registry) {
     // zero velocity and acceleration at its ends, including the final hold.
     const move = (a, b) => { const p = clamp((t - a) / (b - a)); return p * p * p * (10 + p * (-15 + p * 6)); };
     const opening = move(0, .26), unfold = move(.24, .92);
-    const growth = move(.86, 2.05), gallery = move(1.80, 2.55), ending = move(2.45, 3.10), turn = move(3.16, 3.65);
+    const growth = move(.86, 2.05), gallery = move(1.80, 2.37), ending = handoffAt(t);
     return {
-      x: mix(mix(533 + 26 * unfold - 72 * growth - 36 * gallery, 560, ending), 533, turn),
-      y: mix(mix(322 - 44 * unfold + 46 * growth + 12 * gallery, 190, ending), 213, turn),
-      scale: mix(mix(1.10 + .35 * opening - .50 * unfold + .13 * growth + .02 * gallery, .56, ending), .70, turn),
-      yaw: mix(PI / 4, PI / 2, turn)
+      x: mix(mix(533 + 26 * unfold - 72 * growth, 533, gallery), 533, ending),
+      y: mix(mix(322 - 44 * unfold + 46 * growth, 250, gallery), 190, ending),
+      scale: mix(mix(1.10 + .35 * opening - .50 * unfold + .13 * growth, .75, gallery), .56, ending),
+      yaw: PI / 4
     };
   }
   function basisAt(pose) {
@@ -864,9 +871,12 @@ function createEngine(registry) {
     c.font = `${weight} ${size}px Arial, "PingFang SC", sans-serif`; c.fillStyle = color; c.textAlign = align; c.textBaseline = 'alphabetic'; c.fillText(s, x, y);
   }
   function dataCards(c, t) {
-    const frame = t * 60 + 319;
+    // Reading holds the city and cards; their departure follows the same
+    // progress that shrinks the city and opens space for the supporting copy.
+    const departure = handoffAt(t);
+    const frame = t <= 2.7 ? t * 60 + 319 : 481 + 8 * departure;
     const cards = [
-      { slope: -1 / Math.sqrt(3), kind: 'action', unit: '种', cn: '单个动作', en: 'ACTIONS', color: THEME.teal, panel: 0, route: 'outer',
+      { slope: -1 / Math.sqrt(3), kind: 'action', unit: '种', cn: '单个动作', en: 'ACTIONS', color: THEME.teal, panel: 0, route: 'near',
         layout: [[467,90.1,182.4,82.4,99.8],[468,86,180,157.4,100.2],[469,79.9,178.8,169,100.3],[472,64.2,176.3,148.6,101.1],[481,39.5,171.5,152.1,101.7],[484,37.5,171.2,152.1,101.7],[486,35.5,170.8,129.5,101.7],[487,34.5,170.5,107.7,101.7],[488,33.5,170.2,73,101.7],[489,32.5,170,0,101.7]],
         values: [[467,1],[468,5],[469,9],[470,10],[471,11],[472,12]], digits: 0 },
       { slope: 1 / Math.sqrt(3), kind: 'illustration', unit: '幅', cn: '插画单图', en: 'ILLUSTRATIONS', color: '#d4ab63', panel: 1,
@@ -883,10 +893,9 @@ function createEngine(registry) {
       const [x,y,w,h] = interpolate(frame, a.layout), value = total * growth, n = value.toFixed(0);
       const anchor = catalog.panels[a.panel].center, waterZ = window.OpusWaterGallery.waterHeight(t, Math.floor(anchor[0] / S), Math.floor(anchor[1] / S));
       const marker = project([anchor[0], anchor[1], waterZ + 1.1]), ring = [marker[0], marker[1] - 15];
-      c.save(); c.strokeStyle = '#6b857d'; c.lineWidth = .85; c.beginPath();
-      c.moveTo(x, y + h);
-      if (a.route === 'outer') c.bezierCurveTo(x + 5, y + h + 190, ring[0] - 240, ring[1] + 145, ...ring);
-      else c.lineTo(...ring);
+      c.save(); c.globalAlpha = 1 - departure; c.strokeStyle = '#6b857d'; c.lineWidth = .85; c.beginPath();
+      c.moveTo(a.route === 'near' ? x + w : x, y + h + (a.route === 'near' ? a.slope * w : 0));
+      c.lineTo(...ring);
       c.lineTo(...marker); c.stroke();
       c.beginPath(); c.arc(...ring, 2.4, 0, PI * 2); c.fillStyle = '#fff8e8'; c.fill(); c.strokeStyle = '#708b82'; c.stroke();
       c.beginPath(); c.ellipse(...marker, 6.2, 2.9, 0, 0, PI * 2); c.fillStyle = a.color; c.fill(); c.strokeStyle = '#fffaed'; c.lineWidth = 1.2; c.stroke();
@@ -902,34 +911,32 @@ function createEngine(registry) {
     }
   }
   function brandFrameAt(t) {
-    const origin = [800, 640, -100], p = projectAt(origin, t);
-    const u = projectAt([origin[0], origin[1] - 1, origin[2]], t);
-    const v = projectAt([origin[0], origin[1], origin[2] - 1], t);
-    return [u[0] - p[0], u[1] - p[1], v[0] - p[0], v[1] - p[1], ...p];
+    const bottom = Math.max(...[[-3,-3,-77],[663,-3,-77],[663,663,-77],[-3,663,-77]].map(point => projectAt(point, t)[1]));
+    const scale = Math.min(.70, Math.max(0, (H - 50 - bottom - 24) / (84 + 104 + 18 * .25)));
+    return [scale, 0, 0, scale, cameraAt(t).x - 620 * scale / 2, bottom + 24 + 84 * scale];
   }
   function brand(c, t) {
-    if (t < 2.86) return;
-    // The title follows the front edge as the city turns right, then settles
-    // below the entire base with its supporting copy on horizontal baselines.
+    if (t <= HANDOFF_START) return;
+    // The copy appears as the city shrinks, using only the space released below.
     c.save(); c.transform(...brandFrameAt(t));
     const word = 'MOTION OASIS'; let pen = 0; c.font = '900 84px Arial';
     const widths = [...word].map(letter => c.measureText(letter).width);
     const fit = Math.min(1, 620 / (widths.reduce((sum, width) => sum + width, 0) - 2 * (word.length - 1)));
     c.save(); c.scale(fit, 1);
     for (let i = 0; i < word.length; i++) {
-      const p = phase(t, 2.86 + i * .010, 2.96 + i * .010);
+      const p = handoffAt(t) * phase(t, HANDOFF_START + i * .010, HANDOFF_START + .10 + i * .010);
       c.save(); c.translate(pen, -(1 - p) * (64 + i * 2)); c.globalAlpha = p;
       for (let j = 12; j > 0; j--) label(c, word[i], -j * .36, j, 84, '#8a5c3e', 900);
       label(c, word[i], -.4, -.5, 84, '#cc8b58', 900); label(c, word[i], 0, 0, 84, '#315e57', 900); c.restore();
       pen += widths[i] - 2;
     }
     c.restore();
-    const caption = phase(t, 2.99, 3.09); if (caption > 0) {
+    const caption = handoffAt(t) * phase(t, HANDOFF_START + .13, HANDOFF_START + .23); if (caption > 0) {
       c.save(); c.globalAlpha = caption; c.strokeStyle = '#718775'; c.lineWidth = 1.8; c.beginPath(); c.moveTo(0, 24); c.lineTo(620, 24); c.stroke();
       label(c, '让动效在城市发生', 0, 64, 38, '#325f55', 500);
       c.restore();
     }
-    const footer = phase(t, 3.01, 3.13); if (footer > 0) {
+    const footer = handoffAt(t) * phase(t, HANDOFF_START + .15, HANDOFF_START + .27); if (footer > 0) {
       c.save(); c.globalAlpha = footer;
       label(c, `WISE MOTION · ${Object.values(window.OpusWaterGallery.metadata.counts).reduce((sum, n) => sum + n, 0)} IDEAS`, 20, 104, 18, '#7c8975'); c.fillStyle = '#92f6e6'; c.beginPath(); c.arc(4, 99, 5, 0, PI * 2); c.fill();
       c.restore();
@@ -954,8 +961,8 @@ function createEngine(registry) {
     if (show('buildings')) { buildings.forEach(b => building(b, t)); centralTower(t); roundTower(t); glasshouse(t); }
     if (show('landscape')) { infrastructure(t); vehicles(t); }
     drawFaces(c);
-    if (show('landscape')) cloud(c, 741 + phase(t, 2.75, 3.05) * 163, 66 + phase(t, 2.75, 3.05) * 21, .75, phase(t, 1.66, 1.98));
-    if (show('landscape') && t > 2.83) cloud(c, 108, 80, .92, phase(t, 2.83, 3.13));
+    if (show('landscape')) cloud(c, 741 + handoffAt(t) * 163, 66 + handoffAt(t) * 21, .75, phase(t, 1.66, 1.98));
+    if (show('landscape') && t > HANDOFF_START) cloud(c, 108, 80, .92, handoffAt(t));
     if (show('data')) dataCards(c, t); if (show('brand')) brand(c, t);
     endGeometry();
     render.stats = { time: now, tiles, faces: faceCount, vertices: vertexCount, waterHeights, palette, lit, camera: { ...camera } };
@@ -992,10 +999,10 @@ function createEngine(registry) {
 const breakdown = [
   {id:'ground',name:'地块与地基',actions:['tile-ring-unfold'],start:0,end:800,time:'0–0.80秒',detail:'144块地砖由中心逐圈翻开，三层实体地基从底面向下展开。'},
   {id:'buildings',name:'退台楼群',actions:['terraced-rise'],start:1030,end:2290,time:'1.03–2.29秒',detail:'楼层按错峰关系从底部生长，楼板、窗框、种植露台与屋顶共用实体模型。'},
-  {id:'landscape',name:'植被与环境',actions:[],start:850,end:3750,time:'0.85–3.75秒',detail:'台地、花圃、曲干棕榈树、遮阳架和云朵构成城市环境。'},
-  {id:'water',name:'水波与动效换映',actions:['water-wave-handoff','group-stagger','wave-grid'],start:880,end:3750,time:'0.88–3.75秒',detail:'26个水格持续起伏，中心与角落交替发波，按距离依次抬升；八种动效随波峰交叠切换。'},
-  {id:'data',name:'目录数据卡',actions:[],start:2366.666667,end:2833.333334,time:'2.37–2.83秒',detail:'三张数据卡从当前目录统计动作、插画和组合数量，并连到实际水面位置。'},
-  {id:'brand',name:'立体英文收尾',actions:[],start:2860,end:3750,time:'2.86–3.75秒',detail:'数据卡退场后，MOTION OASIS与中文出现在地块右前方；3.16–3.65秒随地块向右旋转至正面，最终文案在地块下方居中，文字与地块正面边缘均水平。'}
+  {id:'landscape',name:'植被与环境',actions:[],start:850,end:COMPOSITION_DURATION_MS,time:'0.85–4.95秒',detail:'台地、花圃、曲干棕榈树、遮阳架和云朵构成城市环境。'},
+  {id:'water',name:'水波与动效换映',actions:['water-wave-handoff','group-stagger','wave-grid'],start:880,end:COMPOSITION_DURATION_MS,time:'0.88–4.95秒',detail:'26个水格持续起伏，中心与角落交替发波，按距离依次抬升；八种动效随波峰交叠切换。'},
+  {id:'data',name:'目录数据卡',actions:[],start:2366.666667,end:HANDOFF_END*1000,time:'2.37–4.55秒',detail:'三张数据卡从当前目录统计动作、插画和组合数量；2.70–3.90秒保留完整数字与卡面，3.90–4.55秒随地块缩小同步淡出，短连线与水面标记一起消失。'},
+  {id:'brand',name:'立体英文收尾',actions:[],start:HANDOFF_START*1000,end:COMPOSITION_DURATION_MS,time:'3.90–4.95秒',detail:'3.90秒地块开始缩小时，MOTION OASIS与中文同步在地块下方显现，随腾出的空间放大并保持水平居中；4.55秒完成交接，地块不旋转，水面继续换图。'}
 ];
 function make(root,kit,definition={},part) {
   const doc=root.ownerDocument,box=doc.createElement('div'),canvas=doc.createElement('canvas');
@@ -1010,7 +1017,7 @@ function make(root,kit,definition={},part) {
   const visible=()=>markers.some(n=>n.hasAttribute('data-composition-hidden'))?new Set(markers.filter(n=>!n.hasAttribute('data-composition-hidden')).map(n=>n.dataset.layer)):null;
   function render(ms) {
     if(dead)return;if(!Number.isFinite(ms))throw new TypeError('时间必须是有限数字');
-    last=Math.max(0,Math.min(ms,definition.duration_ms||(part==='water'?5280:part?1800:3750)));
+    last=Math.max(0,Math.min(ms,definition.duration_ms||(part==='water'?5280:part?1800:COMPOSITION_DURATION_MS)));
     box.dataset.part=part||'composition';box.dataset.time=last.toFixed(6);
     if(!ctx)return;
     ctx.setTransform(1280/1066,0,0,720/600,0,0);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';ctx.shadowBlur=0;ctx.shadowColor='rgba(0,0,0,0)';ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.filter='none';ctx.setLineDash([]);ctx.clearRect(0,0,1066,600);
