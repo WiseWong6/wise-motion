@@ -83,7 +83,7 @@
   const rememberedKind = readKind();
   const rememberedSelection = readSelection();
   let kind = rememberedKind || 'action', category = 'all', tab = 'prompt', selected = null, controller = null;
-  let debounce = null, resumeAfterVisible = false, lastPlayback = null, lastPaused = null;
+  let debounce = null, resumeAfterVisible = false, lastPlayback = null, lastPaused = null, outputVersion = 0;
   let navigationIds = [];
   const relatedPreview=MotionRelated.create({icon,getMain:()=>controller});
   const collapsed = new Set();
@@ -274,10 +274,31 @@
 
   function updateOutputs() {
     if (!selected || !controller) return;
+    const effect = selected, current = controller, version = ++outputVersion;
+    const isCurrent = () => selected === effect && controller === current && outputVersion === version && !current.destroyed;
     const values = settings();
-    $('prompt').textContent = MotionExport.prompt(selected, values, data);
-    $('code').textContent = MotionExport.remotionCode(selected, values);
+    // 提示词不依赖完整源码表；组合的图层说明在真实绘制文件就绪后补齐。
+    const paintPrompt = () => { if (isCurrent()) $('prompt').textContent = MotionExport.prompt(effect, settings(), data); };
+    paintPrompt();
+    const promptWait = effect.kind === 'composition' ? globalThis.MotionLazy?.ensure(effect) : null;
+    if (promptWait) promptWait.then(paintPrompt, () => {});
     document.querySelectorAll('.copy-status').forEach(element => { element.textContent = ''; });
+    // 普通条目的短用法无需源码表；完整独立工程只在代码页签打开时生成。
+    if (effect.source?.remotion && tab !== 'code') {
+      $('code').textContent = '';
+      $('copy-code').disabled = true;
+      return;
+    }
+    const wait = effect.source?.remotion ? globalThis.MotionLazy?.ensureCode(effect) : null;
+    if (wait) {
+      $('code').textContent = '正在准备源码…';
+      $('copy-code').disabled = true;
+      wait.then(() => { if (isCurrent()) updateOutputs(); },
+        error => { if (isCurrent()) $('code').textContent = '源码准备失败：' + error.message; });
+      return;
+    }
+    $('code').textContent = MotionExport.remotionCode(effect, values);
+    $('copy-code').disabled = false;
   }
 
   /* HIG: 轨道从最小值填到滑块。jsdom 下没有布局也不影响，这里只写 CSS 变量。 */
@@ -482,6 +503,7 @@
     });
     document.querySelectorAll('.copy-btn').forEach(button => button.resetCopyIcon?.());
     document.querySelectorAll('.copy-status').forEach(element => { element.textContent = ''; });
+    updateOutputs();
   }
 
   function setSection(name, open) {

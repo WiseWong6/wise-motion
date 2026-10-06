@@ -10,6 +10,7 @@ import {JSDOM} from 'jsdom';
 import {paintEffect,segments,sequenceId} from '../catalog/assets/civilization-growth/engine.mjs';
 import {artwork,recorder} from './civilization-recorder.mjs';
 import {frameScriptsFor} from '../remotion/frame-document.mjs';
+import {environment} from './helpers.mjs';
 const read=name=>readFile(new URL('../'+name,import.meta.url),'utf8');
 const sharedImagesFile='catalog/effects/civilization-images.js';
 const entries=JSON.parse(await read('catalog/registry.json')).effects.filter(e=>e.source.path==='catalog/effects/civilization-growth.js');
@@ -96,9 +97,12 @@ test('两张原图只保留一份；图片内容不变，页面与逐帧播放�
   for(const text of generated)assert.ok(!text.includes(uri),'生成文件不能再次内嵌图片');
  }
  const html=await read('catalog/index.html');
- const sources=[...html.matchAll(/<script src="([^"]+)"/g)].map(m=>'catalog/'+m[1]);
+ assert.ok(!html.includes('effects/civilization-images.js'),'目录首屏不同步载入大图，由 MotionLazy 按需载入');
  for(const e of entries){
-  for(const files of [sources,frameScriptsFor(e),frameScriptsFor()]){
+  const page=await environment(true,{staticPreview:true,lazyAssets:true});
+  let lazyFiles;
+  try{await page.w.MotionLazy.ensure(e);lazyFiles=page.lazyRequests.map(file=>'catalog/'+file);}finally{page.close();}
+  for(const files of [lazyFiles,frameScriptsFor(e),frameScriptsFor()]){
    assert.equal(files.filter(file=>file===sharedImagesFile).length,1);
    assert.ok(files.indexOf(sharedImagesFile)<files.indexOf(e.source.path));
   }

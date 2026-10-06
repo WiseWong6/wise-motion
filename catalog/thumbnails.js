@@ -91,6 +91,12 @@
       painted.add(host);historyFrame(host,effect,state);return;
     }
     effect = global.MotionKit.resolveVariant(effect);
+    const lazy = global.MotionLazy?.ensure(effect);
+    if (lazy) {
+      lazy.then(() => { if (current(host, state)) paint(host, effect); },
+        error => unavailable(host, state, error.message || '动效资源无法载入。'));
+      return;
+    }
     const factory = global.MotionFactories?.[effect.source?.factory || effect.id];
     if (!factory) { unavailable(host,state,'缺少效果源码：'+effect.id); return; }
     painted.add(host);
@@ -116,6 +122,7 @@
      不能靠回调闭包里的 effect——否则第一张卡片之后都会画成同一个场景。 */
   function watch(host, effect) {
     pending.set(host, effect);
+    // 侧栏自己滚动，提前范围必须扩展侧栏的边界，不能只扩展整个窗口。
     observer ||= new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
@@ -124,7 +131,7 @@
         pending.delete(entry.target);
         if (target) paint(entry.target, target);
       }
-    }, {rootMargin:'160px 0px'});
+    }, {root:document.getElementById('effects-list'),rootMargin:'320px 0px'});
     observer.observe(host);
   }
 

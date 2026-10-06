@@ -28,6 +28,16 @@ export async function environment(withApp = false, options = {}) {
   const dom = new JSDOM(html, {url:'file:///wise-motion/catalog/index.html'+(options.hash||''),runScripts:'outside-only',pretendToBeVisual:true});
   const w = dom.window;
   if (options.sessionStorage) Object.defineProperty(w, 'sessionStorage', {value:options.sessionStorage});
+  // 页面按需追加的脚本没有网络可取：直接从源码目录读取、执行，再触发 onload，并记录载入顺序。
+  const lazyRequests = [];
+  if (options.lazyAssets) {
+    w.document.head.append = node => {
+      if (node.tagName !== 'SCRIPT' || !node.src) return;
+      const relative = new URL(node.src).pathname.replace('/wise-motion/catalog/', '');
+      lazyRequests.push(relative);
+      readFile(new URL('../catalog/' + relative, import.meta.url), 'utf8').then(code => { w.eval(code); node.onload?.(); }, error => node.onerror?.(error));
+    };
+  }
   // 只做结构与控制检查。jsdom 没有像素绘制能力，显式返回空值，避免能力探测噪声。
   w.HTMLCanvasElement.prototype.getContext = () => null;
   // jsdom 不渲染背景滤镜；播放器光学层的完整能力分支另用独立测试检查。
@@ -44,7 +54,7 @@ export async function environment(withApp = false, options = {}) {
   // 既不改变页面默认表现，也让测试能主动触发绘制。
   const observers = [];
   w.IntersectionObserver = class {
-    constructor(callback) { this.callback = callback; this.nodes = new Set(); observers.push(this); }
+    constructor(callback, options) { this.callback = callback; this.options = options; this.nodes = new Set(); observers.push(this); }
     observe(node) { this.nodes.add(node); }
     unobserve(node) { this.nodes.delete(node); }
     disconnect() { this.nodes.clear(); }
@@ -59,12 +69,15 @@ export async function environment(withApp = false, options = {}) {
       const file = 'catalog/' + script.getAttribute('src');
       // 历史数据在浏览器中按需加载；测试无网络，提前提供这份数据。
       if (file === 'catalog/app.js'&&!options.lazyHistory) sources.push('catalog/history-data.js');
+      // 大体积素材在浏览器中按需载入；除非专项测试要检查载入过程，否则提前执行并登记为已就绪。
+      if (file === 'catalog/app.js'&&!options.lazyAssets) sources.push('catalog/effects/civilization-images.js','catalog/effects/rasengan-illustrations.js','catalog/effects/civilization-growth.js','catalog/remotion-sources.js','mark-lazy-loaded');
       // jsdom检查原绘制和目录结构；Remotion由专项测试检查。
       // jsdom没有媒体解码器，这里不把无媒体能力误判为视频准备中。
       if(file !== 'catalog/remotion-player.js') sources.push(file);
     }
   }
   for (const file of sources) {
+    if (file === 'mark-lazy-loaded') { w.MotionLazy.markLoaded(); continue; }
     w.eval(await readFile(new URL('../' + file, import.meta.url), 'utf8'));
     if(file==='catalog/history-data.js'&&options.historyFixture)w.MotionHistory=historyTestData();
   }
@@ -90,7 +103,7 @@ export async function environment(withApp = false, options = {}) {
     w.document.addEventListener('keydown',freezeSelection);
     w.addEventListener('pageshow',()=>{previousStage=w.document.getElementById('preview')?.firstElementChild;});
   }
-  return {dom,w,listeners,media,directoryMedia,reveal() {
+  return {dom,w,lazyRequests,listeners,media,directoryMedia,observers,reveal() {
     for (const observer of observers) observer.callback([...observer.nodes].map(target => ({target,isIntersecting:true})));
   },close() { w.MotionRuntime.disposeAll(); w.MotionHistoryRuntime?.disposeAll(); w.anime.engine.pause(); dom.window.close(); }};
 }
