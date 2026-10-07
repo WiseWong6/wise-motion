@@ -551,7 +551,18 @@ function tintHex(hex,k){
   // 离场动作保留原蓝色背景和路面标记，让镜头减速有地面参照。
   if(mode==='departure'){renderScene(t,'road');renderScene(t,'car');return;}
   if(mode==='balloons'){for(let i=BALLOON_COUNT-1;i>=0;i--)drawBalloon(i,t);return;}
-  const i=opt.color||0,p=balloonState(i,0).p;push();translate(W/2-p.x,H/2-p.y);scale(1);drawBalloon(i,0);pop();
+  // 独立插画提取松绳前的整簇气球，球体与柔绳仍使用原位置和画法。
+  const points=[];
+  for(let i=0;i<BALLOON_COUNT;i++){
+    const {p}=balloonState(i,0),r=40*balloonSize(i),{tip,end}=balloonString(i,0);
+    points.push(pt(p.x-r,p.y-r),pt(p.x+r,p.y+r),end,tip,
+      pt(end.x-20,end.y+(tip.y-end.y)*.36),pt(tip.x+10,tip.y-(tip.y-end.y)*.27));
+  }
+  const left=Math.min(...points.map(p=>p.x))-4,right=Math.max(...points.map(p=>p.x))+4;
+  const top=Math.min(...points.map(p=>p.y))-4,bottom=Math.max(...points.map(p=>p.y))+4;
+  const fit=Math.min((W-144)/(right-left),(H-144)/(bottom-top));
+  push();translate(W/2,H/2);scale(fit);translate(-(left+right)/2,-(top+bottom)/2);
+  renderScene(0,'balloons');pop();
  },inspect:t=>({car:vehiclePose(t),distance:driveDistance(t),camera:cameraTravel(t),departure:DEPART_AT,balloon:balloonState(0,t)})};
 
 }
@@ -560,6 +571,6 @@ function tintHex(hex,k){
 
 /* SCENE ENTRIES */
 WiseSceneRuntime.register("camera-lag-departure",{"family": "drive", "mode": "departure", "start": 9, "width": 900, "height": 1200});
-WiseSceneRuntime.register("drive-balloon-illustration",{"family": "drive", "mode": "balloon", "start": 0, "width": 900, "height": 1200, "color": 0, "variants": {"0": {"family": "drive", "mode": "balloon", "start": 0, "width": 900, "height": 1200, "color": 0}, "1": {"family": "drive", "mode": "balloon", "start": 0, "width": 900, "height": 1200, "color": 1}, "2": {"family": "drive", "mode": "balloon", "start": 0, "width": 900, "height": 1200, "color": 2}, "3": {"family": "drive", "mode": "balloon", "start": 0, "width": 900, "height": 1200, "color": 3}, "4": {"family": "drive", "mode": "balloon", "start": 0, "width": 900, "height": 1200, "color": 4}, "5": {"family": "drive", "mode": "balloon", "start": 0, "width": 900, "height": 1200, "color": 5}, "6": {"family": "drive", "mode": "balloon", "start": 0, "width": 900, "height": 1200, "color": 6}}});
+WiseSceneRuntime.register("drive-balloon-illustration",{"family":"drive","mode":"balloon","start":0,"width":900,"height":1200});
 WiseSceneRuntime.register("drive-road-illustration",{"family": "drive", "mode": "road", "start": 0, "width": 900, "height": 1200});
 WiseSceneRuntime.register("balloon-drive-journey",{"family": "drive", "mode": "full", "start": 0, "width": 900, "height": 1200, "breakdown": [{"id": "road", "name": "道路后退", "start": 0, "end": 14000, "time": "0—14秒", "detail": "蓝色路面与短标记按镜头走过的路程向后移动。", "actions": ["drive-road-illustration"]}, {"id": "exhaust", "name": "尾气产生与飘散", "start": 0, "end": 14000, "time": "0—14秒", "detail": "尾气从车尾产生后脱离，随后在历史位置扩散。", "actions": ["emission-drift"]}, {"id": "balloons", "name": "七色气球依次松绳", "start": 0, "end": 14000, "time": "0—14秒", "detail": "气球与绳尾先跟车，逐只松开后沿各自风向飘离，七色球形和反光保留。", "actions": ["drive-balloon-release", "drive-balloon-illustration"]}, {"id": "car", "name": "驾驶、轮转与离场", "start": 0, "end": 14000, "time": "0—14秒", "detail": "前爪和方向盘共同摆动，车轮转角对应路程；气球清空后镜头减速，汽车保持速度驶出。", "actions": ["rolling-distance", "camera-lag-departure", "drive-car-illustration"]}], "layers": ["road", "exhaust", "balloons", "car"]});

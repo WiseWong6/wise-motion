@@ -14,7 +14,7 @@
 现实类比：小葵驾车、车轮转动、气球逐只脱离，气球清空后镜头落后，汽车原速离场。
 需要保留：保留原轮廓、比例、材质、固定数据及时间关系；小葵驾车、车轮转动、气球逐只脱离，气球清空后镜头落后，汽车原速离场。
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
-对应参考：本地目录「把气球交给风」；所用动作：轮子随行程转动、逐个松脱飘离、释出扩散飘移、镜头落后后原速离场、小葵敞篷车、单只气球与绳尾、驾车道路
+对应参考：本地目录「把气球交给风」；所用动作：轮子随行程转动、逐个松脱飘离、释出扩散飘移、镜头落后后原速离场、小葵敞篷车、七色气球簇与绳尾、驾车道路
 源码：catalog/effects/scene-drive.js 中的 balloon-drive-journey
 来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
@@ -33,4 +33,4 @@
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
 - 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[轮子随行程转动](rolling-distance.md)、[逐个松脱飘离](drive-balloon-release.md)、[释出扩散飘移](emission-drift.md)、[镜头落后后原速离场](camera-lag-departure.md)、[小葵敞篷车](drive-car-illustration.md)、[单只气球与绳尾](drive-balloon-illustration.md)、[驾车道路](drive-road-illustration.md)。
+所用动作：[轮子随行程转动](rolling-distance.md)、[逐个松脱飘离](drive-balloon-release.md)、[释出扩散飘移](emission-drift.md)、[镜头落后后原速离场](camera-lag-departure.md)、[小葵敞篷车](drive-car-illustration.md)、[七色气球簇与绳尾](drive-balloon-illustration.md)、[驾车道路](drive-road-illustration.md)。

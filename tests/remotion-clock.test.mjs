@@ -69,7 +69,7 @@ test('所有条目和变体可解析，元数据与末帧一致，原注册表�
       else assert.ok(end.elapsed < resolved.duration_ms, effect.id);
     }
   }
-  assert.equal(count, 544);
+  assert.equal(count, 538);
   assert.equal(JSON.stringify(effectDefinitions), before);
 });
 
