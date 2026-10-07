@@ -473,6 +473,15 @@ html[data-theme="light"] { --thumbnail-art-filter:brightness(.48) saturate(1.25)
   transform-origin:50% 50%;
   filter:var(--thumbnail-art-filter);
 }
+/* 小卡片里的细粒子提高点径；保留原主题色、尾迹和主预览画法。 */
+.thumb .motion-stage[data-effect="plume-rise-curl"] > .pattern-svg {
+  transform:scale(1.1); transform-origin:50% 50%;
+}
+.thumb .motion-stage[data-effect="differential-orbit-turn"] > .pattern-svg {
+  transform:scale(1.3); transform-origin:50% 50%;
+}
+.thumb .motion-stage:is([data-effect="plume-rise-curl"],[data-effect="differential-orbit-turn"])
+  path[data-part^="point-"] { stroke-width:4.5; }
 .effect-name {
   padding:0 4px 3px; font-size:12px; line-height:1.35; color:var(--secondary);
   overflow:hidden; text-overflow:ellipsis; white-space:nowrap;

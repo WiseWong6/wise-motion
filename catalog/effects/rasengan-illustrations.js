@@ -999,7 +999,15 @@ function sourceRing(P, t, mode) {
 
   register('ring-construction-journey',(P,t)=>sourceRing(P,t));
   register('ring-construction',(P,t)=>sourceRing(P,t));
-  register('energy-density-growth',(P,t,alpha)=>{const p={...C.finale(t),centerY:900};field(P,p.time,p,alpha,true,true);},true);
+  // 独立增密动作覆盖保存轨迹的有效区间，开场已有尾迹，结尾也不越界停住。
+  const densityMotionStart=C.finale(0).time,densityTrackStart=packedFields.driven.start+C.finale(0).trail;
+  const densityTrackEnd=packedFields.driven.start+(packedFields.driven.steps-1)/packedFields.driven.hz;
+  const densityTrackRate=(densityTrackEnd-densityTrackStart)/(C.finale(24).time-densityMotionStart);
+  register('energy-density-growth',(P,t)=>{
+    const p={...C.finale(t),centerY:900};
+    p.time=densityTrackStart+(p.time-densityMotionStart)*densityTrackRate;
+    field(P,p.time,p,1,true,true);
+  },true);
   register('energy-discharge-journey',(P,t)=>{
     // 保存的能量轨迹从较晚时刻开始；先留出完整尾迹，避免开场采样全挤在同一点。
     const sourceTime=t*.5,p={...C.finale(sourceTime),centerY:900};

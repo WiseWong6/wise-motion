@@ -52,3 +52,22 @@ test('能量球开场可见，增密过程持续变化，电弧在后半段逐�
   assert.equal(new Set([...frames.values()]).size,frames.size,'各阶段不能因越界采样而停在同一幅画');
  }finally{draw?.destroy();env.close();}
 });
+
+test('独立能量增密从第一帧就形成球体，后半段不因轨迹越界而停住',async()=>{
+ const env=await environment(),{w}=env,root=w.document.getElementById('root');let draw;
+ try{
+  draw=w.MotionKit.createRenderer(root,data.effects.find(e=>e.id==='energy-density-growth'));
+  const frames=new Map();
+  for(const time of [0,1000,4000,8000,12000,18000,22000,24000,0,12000]){
+   draw(time);const paths=[...root.querySelectorAll('path')].filter(p=>+p.getAttribute('opacity')>0);
+   assert.ok(paths.length>0,'第一帧就应有流线');
+   const points=paths.flatMap(p=>[...p.getAttribute('d').matchAll(/[ML](-?\d+(?:\.\d+)?) (-?\d+(?:\.\d+)?)/g)].map(m=>[+m[1],+m[2]]));
+   const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);
+   assert.ok(Math.max(...xs)-Math.min(...xs)>300&&Math.max(...ys)-Math.min(...ys)>300,'流线应形成可见球体');
+   assert.ok(paths.every(p=>!p.dataset.part.startsWith('discharge-')),'独立增密不混入组合电弧');
+   const frame=JSON.stringify(paths.map(p=>[p.dataset.part,p.getAttribute('d')]));
+   if(frames.has(time))assert.equal(frame,frames.get(time),'回看必须还原相同画面');else frames.set(time,frame);
+  }
+  assert.equal(new Set(frames.values()).size,frames.size,'全程应持续翻卷，不能停在采样边界');
+ }finally{draw?.destroy();env.close();}
+});
