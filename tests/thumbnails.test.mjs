@@ -15,10 +15,16 @@ test('缩略图观察侧栏滚动区并提前准备附近卡片，远处卡片�
     const nearby = d.querySelector('[data-effect="scale-in"] .thumb');
     const distant = d.querySelector('[data-effect="countdown-dial"] .thumb');
     assert.equal(d.querySelectorAll('.thumb .motion-stage').length, 0);
+    assert.equal(list.getAttribute('aria-busy'), 'false', '卡片已挂入后，目录加载状态结束');
+    assert.equal(nearby.querySelectorAll('.thumb-loading .apple-pulse-dot').length, 3);
     observer.callback([{target: nearby, isIntersecting: true}, {target: distant, isIntersecting: false}]);
     await w.MotionThumbs.whenIdle();
     assert.ok(nearby.querySelector('.motion-stage'));
-    assert.equal(distant.childElementCount, 0);
+    assert.equal(nearby.querySelector('.thumb-loading'), null, '真实画面绘制完成才移除加载提示');
+    assert.equal(nearby.dataset.previewState, 'ready');
+    assert.equal(distant.querySelector('.motion-stage'), null);
+    assert.equal(distant.querySelectorAll('.thumb-loading .apple-pulse-dot').length, 3);
+    assert.equal(distant.dataset.previewState, 'loading');
     assert.equal(w.MotionRuntime.instanceCount, 1, '预备缩略图不能新增播放器');
     assert.ok(!observer.nodes.has(nearby));
     assert.ok(observer.nodes.has(distant));
@@ -43,6 +49,8 @@ test('缺失或抛错的绘制器明确标注缩略图失败，其他条目仍�
     env.reveal(); await w.MotionThumbs.whenIdle();
     assert.equal(hosts[0].textContent, '预览暂不可用');
     assert.match(hosts[0].title, /缺少效果源码/);
+    assert.equal(hosts[0].querySelector('.thumb-loading'), null);
+    assert.equal(hosts[0].dataset.previewState, 'error');
     assert.equal(hosts[1].textContent, '预览暂不可用');
     assert.equal(hosts[1].title, '测试绘制失败');
     assert.ok(hosts[2].querySelector('.motion-stage'));

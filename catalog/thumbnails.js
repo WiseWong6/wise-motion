@@ -18,31 +18,47 @@
   }
 
   const current = (host,state) => !suspended && state.active && states.get(host)===state && host.isConnected;
+  function loading(host){
+    const overlay=document.createElement('span');overlay.className='thumb-loading';overlay.setAttribute('aria-hidden','true');
+    const dots=document.createElement('span');dots.className='apple-pulse-dots';
+    for(let i=0;i<3;i++){
+      const dot=document.createElement('span');dot.className='apple-pulse-dot';dot.style.setProperty('--dot-index',String(i));dots.append(dot);
+    }
+    overlay.append(dots);host.append(overlay);host.dataset.previewState='loading';
+  }
+  function complete(host,state){
+    if(!current(host,state))return;
+    host.querySelector('.thumb-loading')?.remove();host.dataset.previewState='ready';
+  }
   function unavailable(host,state,message){
     if(!current(host,state))return;
     const note=document.createElement('span');note.className='history-placeholder';note.textContent='预览暂不可用';
-    host.replaceChildren(note);host.title=message;
+    host.replaceChildren(note);host.title=message;host.dataset.previewState='error';
   }
   function videoFrame(host,state,entry){
     const video=document.createElement('video');video.className='history-poster';
     video.muted=true;video.defaultMuted=true;video.volume=0;video.playsInline=true;video.preload='metadata';
     const fraction=typeof entry.preview.poster==='number'?Math.min(1,Math.max(0,entry.preview.poster)):.65;
+    const target=(entry.preview.start||0)+entry.preview.duration*fraction;
     const loaded=()=>{if(current(host,state)){video.pause();video.currentTime=(entry.preview.start||0)+entry.preview.duration*fraction;}};
+    const shown=()=>{if(!video.seeking&&Math.abs(video.currentTime-target)<.05)complete(host,state);};
     const failed=()=>unavailable(host,state,'原作视频不存在或浏览器不支持此格式。');
-    video.addEventListener('loadedmetadata',loaded);video.addEventListener('error',failed);
+    video.addEventListener('loadedmetadata',loaded);video.addEventListener('seeked',shown);video.addEventListener('loadeddata',shown);video.addEventListener('error',failed);
     state.cleanup.push(()=>{
-      video.removeEventListener('loadedmetadata',loaded);video.removeEventListener('error',failed);
+      video.removeEventListener('loadedmetadata',loaded);video.removeEventListener('seeked',shown);video.removeEventListener('loadeddata',shown);video.removeEventListener('error',failed);
       video.pause();video.removeAttribute('src');video.load();
     });
-    host.replaceChildren(video);video.src=entry.preview.file;
+    host.querySelector('img')?.remove();host.prepend(video);video.src=entry.preview.file;
   }
   function historyFrame(host,effect,state){
     const entry=effect.entries[0],preview=entry.preview;
     if(typeof preview.poster==='string'){
-      const img=document.createElement('img');img.src=preview.poster;img.alt='';img.className='history-poster';img.decoding='async';
+      const img=document.createElement('img');img.alt='';img.className='history-poster';img.decoding='async';
+      const shown=()=>complete(host,state);
       const failed=()=>{if(current(host,state))videoFrame(host,state,entry);};
-      img.addEventListener('error',failed,{once:true});state.cleanup.push(()=>img.removeEventListener('error',failed));
-      host.append(img);return;
+      img.addEventListener('load',shown,{once:true});img.addEventListener('error',failed,{once:true});
+      state.cleanup.push(()=>{img.removeEventListener('load',shown);img.removeEventListener('error',failed);});
+      host.prepend(img);img.src=preview.poster;if(img.complete&&img.naturalWidth)shown();return;
     }
     if(preview.type==='original-crop'||preview.type==='source-clip'){videoFrame(host,state,entry);return;}
     if(preview.type!=='isolated'&&preview.type!=='web-isolated'){unavailable(host,state,'原作没有独立预览。');return;}
@@ -50,7 +66,7 @@
     // 重绘只发生一次；逐个载入绘制器，避免目录一次建立大量绘制资源。
     const job=async()=>{
       if(!current(host,state))return;
-      try{await global.MotionHistoryRuntime.poster(canvas,entry,global.MotionHistory,{isCurrent:()=>current(host,state)});}
+      try{await global.MotionHistoryRuntime.poster(canvas,entry,global.MotionHistory,{isCurrent:()=>current(host,state)});complete(host,state);}
       catch(e){unavailable(host,state,e.message||'原作绘制器无法载入。');}
     };
     enqueue(job);
@@ -78,7 +94,7 @@
         const ready=render.ready?await Promise.race([Promise.resolve(render.ready).then(()=>true),cancelled]):true;
         if(!ready||!current(host,state))return;
         render(effect.preview_ms,{ease:effect.default_ease,duration:effect.duration_ms});
-        hasFrame=true;frame(host);
+        hasFrame=true;frame(host);complete(host,state);
       }catch(error){unavailable(host,state,error.message||'动画预览准备失败。');}
       finally{
         dispose(hasFrame&&current(host,state));
@@ -115,7 +131,7 @@
       try { render(effect.preview_ms, {ease: effect.default_ease, duration: effect.duration_ms}); }
       finally { render.destroy?.(true); }
       host.prepend(stage);
-      frame(host);
+      frame(host);complete(host,state);
     } catch (error) {
       // 真实绘制失败必须可见，不能用空底色掩盖缺失的实现或依赖。
       unavailable(host,state,error.message||'动效预览绘制失败。');
@@ -159,7 +175,7 @@
     observer?.unobserve(host);
     const state=states.get(host);
     if(state){state.active=false;state.cleanup.forEach(fn=>fn());states.delete(host);}
-    pending.delete(host);painted.delete(host);host.replaceChildren();host.removeAttribute('title');
+    pending.delete(host);painted.delete(host);host.replaceChildren();host.removeAttribute('title');delete host.dataset.previewState;
   }
   function disposeAll(){
     [...states.keys()].forEach(release);observer?.disconnect();
@@ -180,6 +196,7 @@
       if (!host) return;
       if(states.has(host))release(host);
       const state={effect,active:true,cleanup:[]};states.set(host,state);
+      loading(host);
       if(supported)watch(host,effect);
       else Promise.resolve().then(()=>{
         // 列表先登记卡片再挂入页面，等本轮插入完成后绘制和测量。

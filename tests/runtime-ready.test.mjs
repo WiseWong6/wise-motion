@@ -202,12 +202,19 @@ test('异步缩略图逐个准备并仅画代表时刻，画完释放资源且�
     w.MotionThumbs.attach(a,definition);w.MotionThumbs.attach(b,next);
     let finished=false;const idle=w.MotionThumbs.whenIdle().then(()=>{finished=true;});
     await delay(0);assert.equal(first.definitions.length,1);assert.equal(second.definitions.length,0);assert.equal(finished,false);
+    for(const node of [a,b]){
+      assert.equal(node.querySelectorAll('.thumb-loading .apple-pulse-dot').length,3);
+      assert.equal(node.dataset.previewState,'loading');
+    }
     assert.equal(first.definitions[0].poster_only,true);assert.equal(first.definitions[0].poster_time_ms,640);
     assert.equal(w.MotionRuntime.instanceCount,0);
     first.resolve();await second.started;
+    assert.equal(a.querySelector('.thumb-loading'),null);assert.equal(a.dataset.previewState,'ready');
+    assert.ok(b.querySelector('.thumb-loading'),'尚未准备完成的下一张预览保持加载提示');
     assert.deepEqual(first.frames,[640]);assert.equal(first.destroyed,1);assert.equal(second.definitions.length,1);
     assert.equal(a.querySelector('.motion-stage').dataset.time,'640');assert.match(a.querySelector('.motion-stage').style.transform,/scale\(0\.25\)/);
     second.resolve();await idle;assert.equal(finished,true);
+    assert.equal(b.querySelector('.thumb-loading'),null);assert.equal(b.dataset.previewState,'ready');
     assert.deepEqual(second.frames,[720]);assert.equal(second.destroyed,1);
     assert.equal(w.MotionRuntime.instanceCount,0);assert.equal(w.MotionRuntime.runningCount,0);
   }finally{env.close();}
@@ -220,6 +227,7 @@ test('移除正在准备的缩略图会立即释放并让后续条目继续，�
     w.MotionThumbs.attach(node,definition);w.MotionThumbs.attach(other,{...definition,id:'preparation-next'});
     await delay(0);assert.equal(old.definitions.length,1);
     w.MotionThumbs.release(node);assert.equal(old.destroyed,1);assert.equal(node.childElementCount,0);
+    assert.equal(node.dataset.previewState,undefined);
     await next.started;assert.equal(next.definitions.length,1,'取消等待后应开始后面的条目');
     const replacement=w.document.createElement('span');replacement.textContent='新的卡片';node.append(replacement);
     old.resolve();next.resolve();await w.MotionThumbs.whenIdle();
@@ -243,6 +251,7 @@ test('一个异步缩略图准备失败不阻塞后续，同步缩略图沿原�
     failed.reject(new Error('缩略图形状无法加载'));await next.started;assert.equal(next.definitions.length,1);
     next.resolve();await w.MotionThumbs.whenIdle();
     assert.equal(a.textContent,'预览暂不可用');assert.match(a.title,/缩略图形状无法加载/);assert.equal(failed.destroyed,1);
+    assert.equal(a.querySelector('.thumb-loading'),null);assert.equal(a.dataset.previewState,'error');
     assert.deepEqual(next.frames,[640]);assert.equal(next.destroyed,1);
   }finally{env.close();}
 });
