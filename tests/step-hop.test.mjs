@@ -83,7 +83,7 @@ test('光球跳台阶可搜索与直达，缩略图和预览一致，历史去�
   for(const file of cross.rules['tutorial-steps-ball'].migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
   const env=await environment(true,{staticPreview:true,hash:'#step-hop'});
   try{
-    const {w}=env,d=w.document;env.reveal();
+    const {w}=env,d=w.document;await env.reveal('[data-effect="step-hop"] .thumb');
     assert.equal(d.getElementById('preview-title').textContent,effect.name);
     for(const query of [effect.name,'台阶光球逐跳登顶'])assert.equal(w.MotionMatch.rank(data,query)[0].effect.id,effect.id);
     const thumb=d.querySelector('[data-effect="step-hop"] .thumb .motion-stage');

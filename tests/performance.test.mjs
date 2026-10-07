@@ -7,7 +7,7 @@ test('筛选保留已有卡片与缩略图，移出的卡片释放内容', async
   const env = await environment(true);
   try {
     const {w} = env, d = w.document;
-    env.reveal();
+    env.reveal();await w.MotionThumbs.whenIdle();
     const card = d.querySelector('[data-effect="countdown-dial"]');
     const stage = card.querySelector('.motion-stage');
     const removed = d.querySelector('[data-effect="fade-rise"] .thumb');

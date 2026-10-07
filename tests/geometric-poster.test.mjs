@@ -176,7 +176,7 @@ test('旧示例缩略图同步绘制，海报示例等待准备后留下一张�
   for(const e of definitions.slice(2)){
    const start=env.buffers.length;
    const host=env.w.document.createElement('div');env.w.document.body.append(host);
-   env.w.MotionThumbs.attach(host,by(e.id));await Promise.resolve();assert.ok(host.querySelector('.pattern-svg'));
+   env.w.MotionThumbs.attach(host,by(e.id));await env.w.MotionThumbs.whenIdle();assert.ok(host.querySelector('.pattern-svg'));
    env.w.MotionThumbs.release(host);
    env.w.MotionThumbs.attach(host,env.w.MotionKit.resolveVariant(e));
    await env.w.MotionThumbs.whenIdle();

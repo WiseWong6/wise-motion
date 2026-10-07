@@ -137,7 +137,7 @@ test('霓虹文字在弹窗中对照独立动作，保持主组合拆解状态�
       assert.equal(d.getElementById('related-dialog').open,true);
       assert.equal(w.MotionRuntime.runningCount,1);
       const popupScrub=d.getElementById('related-scrub');popupScrub.value=get(id).preview_ms/get(id).duration_ms*1000;popupScrub.dispatchEvent(new w.Event('input'));
-      const thumb=d.createElement('div');d.body.append(thumb);w.MotionThumbs.attach(thumb,get(id));env.reveal();
+      const thumb=d.createElement('div');d.body.append(thumb);w.MotionThumbs.attach(thumb,get(id));env.reveal();await w.MotionThumbs.whenIdle();
       assert.equal(d.getElementById('related-title').textContent,get(id).name);
       assert.equal(frameMarkup(thumb.querySelector('.motion-stage')),frameMarkup(d.querySelector('#related-preview .motion-stage')));
       w.MotionThumbs.release(thumb);thumb.remove();

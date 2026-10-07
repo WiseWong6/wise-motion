@@ -71,6 +71,55 @@ function mediaStub(w){
 }
 function close(env){env.w.MotionThumbs?.disposeAll();env.close();}
 
+test('素材加载、耗时准备与普通缩略图按页面顺序共用队列，通知逆序也不抢先显示',async()=>{
+  const env=await environment();
+  try{
+    await load(env,'thumbnails.js');
+    const {w}=env,events=[],effects=['ordered-first','ordered-second','ordered-third'].map(id=>({id,duration_ms:1000,preview_ms:500}));
+    let loadReady,drawReady,loaded=false,idle=false;
+    const resource=new Promise(resolve=>{loadReady=()=>{loaded=true;resolve();};});
+    const prepared=new Promise(resolve=>{drawReady=resolve;});
+    w.MotionLazy={ensure(effect){if(effect.id===effects[0].id&&!loaded){events.push('load-first');return resource;}return null;}};
+    for(const [index,effect] of effects.entries()){
+      const factory=()=>{events.push('start-'+index);const draw=()=>events.push('show-'+index);if(index===0)draw.ready=prepared;return draw;};
+      if(index===0)factory.requiresPreparation=true;
+      w.MotionFactories[effect.id]=factory;
+    }
+    const hosts=effects.map(effect=>{const node=w.document.createElement('div');w.document.body.append(node);w.MotionThumbs.attach(node,effect);return node;});
+    const observer=env.observers.find(item=>item.nodes.has(hosts[0]));
+    observer.callback(hosts.toReversed().map(target=>({target,isIntersecting:true})));
+    const done=w.MotionThumbs.whenIdle().then(()=>{idle=true;});
+    await tick();assert.deepEqual(events,['load-first']);assert.equal(idle,false);
+    loadReady();await tick();assert.deepEqual(events,['load-first','start-0']);assert.equal(idle,false);
+    assert.ok(hosts.every(host=>host.dataset.previewState==='loading'));
+    drawReady();await done;
+    assert.deepEqual(events,['load-first','start-0','show-0','start-1','show-1','start-2','show-2']);
+    assert.ok(hosts.every(host=>host.dataset.previewState==='ready'));
+    assert.equal(w.MotionRuntime.instanceCount,0);
+  }finally{close(env);}
+});
+
+test('取消等待脚本的卡片立即继续下一张，迟到结果不能覆盖同位置的新卡片',async()=>{
+  const env=await environment();
+  try{
+    await load(env,'thumbnails.js');
+    const {w}=env,drawn=[],effects=['loading-old','loading-next','loading-new'].map(id=>({id,duration_ms:1000,preview_ms:500}));
+    let finish;
+    const resource=new Promise(resolve=>{finish=resolve;});
+    w.MotionLazy={ensure:effect=>effect.id===effects[0].id?resource:null};
+    for(const effect of effects)w.MotionFactories[effect.id]=()=>()=>drawn.push(effect.id);
+    const hosts=effects.slice(0,2).map(effect=>{const node=w.document.createElement('div');w.document.body.append(node);w.MotionThumbs.attach(node,effect);return node;});
+    env.reveal();await tick();assert.deepEqual(drawn,[]);
+    w.MotionThumbs.release(hosts[0]);
+    w.MotionThumbs.attach(hosts[0],effects[2]);env.reveal();
+    await w.MotionThumbs.whenIdle();
+    assert.deepEqual(drawn,['loading-new','loading-next']);
+    finish();await tick();
+    assert.deepEqual(drawn,['loading-new','loading-next']);
+    assert.equal(hosts[0].querySelector('.motion-stage').dataset.effect,'loading-new');
+  }finally{close(env);}
+});
+
 test('切换目录页签、分类与搜索后复用已完成缩略图，不再次绘制或显示加载提示',async()=>{
   const env=await environment(true,{staticPreview:true});
   try{
@@ -190,7 +239,7 @@ test('历史左栏全部接入对应原作缩略图，静态单帧与原片定�
     assert.equal(w.MotionHistoryRuntime.instanceCount,0);assert.equal(env.listeners.size,3);
     assert.equal(w.MotionRuntime.runningCount,0);assert.equal(w.MotionHistoryRuntime.runningCount,0);
     const oldVideos=[...d.querySelectorAll('.thumb video')];
-    d.querySelector('[data-kind="action"]').click();env.reveal();
+    d.querySelector('[data-kind="action"]').click();env.reveal();await w.MotionThumbs.whenIdle();
     for(const video of oldVideos)assert.equal(video.getAttribute('src'),null);
     assert.equal(d.querySelectorAll('.thumb .motion-stage').length,data.effects.filter(e=>e.kind==='action').length);assert.equal(w.MotionRuntime.instanceCount,1);
   }finally{close(env);}
@@ -250,12 +299,14 @@ test('单个原作绘制失败不挡后续缩略图，失效图片可用静音�
 test('离开页面释放缩略图，返回后恢复，旧的异步绘制不能覆盖新卡片',async()=>{
   const env=await environment(true,{staticPreview:true,historyFixture:true});
   try{
-    const {w}=env,d=w.document;mediaStub(w);let resolve;
+    const {w}=env,d=w.document;mediaStub(w);let resolve,started;
+    const preparing=new Promise(r=>{started=r;});
     w.MotionHistory.recipes[3].entries[0].preview={...w.MotionHistory.recipes[0].entries[0].preview};
     w.MotionHistoryRuntime.poster=(canvas,entry,_data,{isCurrent})=>new Promise(r=>{
       resolve=()=>{if(isCurrent())canvas.dataset.entry=entry.id;r(isCurrent());};
+      started();
     });
-    d.querySelector('[data-kind="recipe"]').click();env.reveal();await tick();
+    d.querySelector('[data-kind="recipe"]').click();env.reveal();await preparing;
     const oldCanvas=d.querySelector('.thumb canvas'),oldVideos=[...d.querySelectorAll('.thumb video')];
     w.dispatchEvent(new w.Event('pagehide'));
     assert.equal(d.querySelectorAll('.thumb > *').length,0);assert.equal(w.MotionRuntime.instanceCount,0);

@@ -20,7 +20,7 @@ const close=(actual,expected,label)=>assert.ok(Math.abs(actual-expected)<1e-7,`$
 test('卡片、图表和文稿按实际画板大小统一，缩略图与明暗预览使用相同字号',async()=>{
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document,root=d.createElement('div');d.body.append(root);env.reveal();
+    const {w}=env,d=w.document,root=d.createElement('div');d.body.append(root);await env.reveal();
     const cases=[
       ['bar-growth',{'[data-part^="label"]':12,'[data-part^="v"]':12}],
       ['sector-appear',{'[data-part^="label"]':16,'[data-part^="v"]':16,'[data-part="total"]':24}],

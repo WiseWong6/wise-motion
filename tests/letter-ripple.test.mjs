@@ -86,7 +86,7 @@ test('正式入口、缩略图、旧名搜索和导出完整，定位稳定且�
   for(const file of files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
   const env=await environment(true,{staticPreview:true,hash:'#letter-ripple'});
   try{
-    const {w}=env,d=w.document;env.reveal();assert.equal(d.getElementById('preview-title').textContent,effect.name);
+    const {w}=env,d=w.document;await env.reveal('[data-effect="letter-ripple"] .thumb');assert.equal(d.getElementById('preview-title').textContent,effect.name);
     for(const query of [effect.name,...effect.previous_names])assert.equal(w.MotionMatch.rank(data,query)[0].effect.id,effect.id);
     const thumb=d.querySelector('[data-effect="letter-ripple"] .thumb .motion-stage'),root=d.createElement('div');
     const player=w.MotionRuntime.create(root,effect);player.seek(effect.preview_ms);

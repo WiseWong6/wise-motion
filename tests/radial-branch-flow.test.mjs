@@ -85,7 +85,7 @@ test('两个历史入口合为正式组合，旧名称可搜索，缩略图与�
   }
   const env=await environment(true,{staticPreview:true,hash:'#radial-branch-flow'});
   try{
-    const {w}=env,d=w.document;env.reveal();assert.equal(d.getElementById('preview-title').textContent,effect.name);
+    const {w}=env,d=w.document;await env.reveal('[data-effect="radial-branch-flow"] .thumb');assert.equal(d.getElementById('preview-title').textContent,effect.name);
     for(const query of [effect.name,'胶囊向外扩散涟漪','枝干生长与光点流动'])assert.equal(w.MotionMatch.rank(data,query)[0].effect.id,effect.id);
     const thumb=d.querySelector('[data-effect="radial-branch-flow"] .thumb .motion-stage'),root=d.createElement('div');
     const player=w.MotionRuntime.create(root,effect);player.seek(effect.preview_ms);

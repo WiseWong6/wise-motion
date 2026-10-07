@@ -160,7 +160,7 @@ test('正式目录加载全部十六项，缩略图、点击预览与独立导�
   try{
     const {w}=env,d=w.document;
     assert.equal(d.querySelectorAll('script[src="effects/claude-tile-illustrations.js"]').length,1);
-    d.querySelector('[data-kind="illustration"]').click();env.reveal();
+    d.querySelector('[data-kind="illustration"]').click();env.reveal();await w.MotionThumbs.whenIdle();
     for(const def of definitions){
       const card=d.querySelector(`[data-effect="${def.id}"]`);assert.ok(card,def.name+' 目录卡片');
       const thumb=card.querySelector('.thumb .motion-stage');assert.ok(thumb,def.name+' 缩略图');

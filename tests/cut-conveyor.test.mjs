@@ -89,7 +89,7 @@ test('指定历史入口已清理，两个标准动作只入库一次，来源�
 test('新动作缩略图静止且完整，主预览与缩略图的裁切窗口互不影响',async()=>{
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document;env.reveal();
+    const {w}=env,d=w.document;await env.reveal('[data-effect="rapid-cut"] .thumb,[data-effect="card-conveyor"] .thumb');
     for(const id of ['rapid-cut','card-conveyor']){
       const card=d.querySelector(`[data-effect="${id}"]`),thumb=card.querySelector('.thumb');
       assert.ok(thumb.querySelector('.pattern-svg'));assert.equal(thumb.querySelector('.history-placeholder'),null);

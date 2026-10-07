@@ -33,7 +33,7 @@ test('主题卡对照原绘制器保留界面、错峰排版、裁剪和独立�
   };
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document,effect=sourceDefinition(data.effects.find(e=>e.id==='theme-card-layout'));env.reveal();
+    const {w}=env,d=w.document,effect=sourceDefinition(data.effects.find(e=>e.id==='theme-card-layout'));await env.reveal('[data-effect="theme-card-layout"] .thumb');
     assert.equal(effect.category,'layout');assert.equal(effect.loop,false);
     assert.equal(w.MotionMatch.rank(data,'主题卡自行排版')[0].effect.id,effect.id);
     const card=d.querySelector('[data-effect="theme-card-layout"]'),thumb=card.querySelector('.thumb');

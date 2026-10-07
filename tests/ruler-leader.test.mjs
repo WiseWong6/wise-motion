@@ -20,7 +20,7 @@ test('刻度尺和引线标注对照原组件保持逐格、三档刻度、圆�
   const theme=await load('theme.ts'),original=await load('atelier/draw.tsx',{'../theme':theme});
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document;env.reveal();
+    const {w}=env,d=w.document;await env.reveal('[data-effect="ruler-ticks"] .thumb,[data-effect="leader-callout"] .thumb');
     const sourceAt=(Component,props)=>{
       const host=d.createElement('div');host.innerHTML=renderToStaticMarkup(React.createElement('svg',null,React.createElement(Component,props)));return host;
     };

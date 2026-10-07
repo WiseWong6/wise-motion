@@ -62,7 +62,7 @@ test('插画分类、旧名搜索和缩略图完整，遮罩及点阵不串用�
   for(const file of migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
   const env=await environment(true,{staticPreview:true,hash:'#door-halftone-illustration'});
   try{
-    const {w}=env,d=w.document;env.reveal();assert.equal(d.getElementById('preview-title').textContent,effect.name);
+    const {w}=env,d=w.document;await env.reveal('[data-effect="door-halftone-illustration"] .thumb');assert.equal(d.getElementById('preview-title').textContent,effect.name);
     for(const query of [effect.name,...effect.previous_names])assert.equal(w.MotionMatch.rank(data,query)[0].effect.id,effect.id);
     const thumb=d.querySelector('[data-effect="door-halftone-illustration"] .thumb .motion-stage'),root=d.createElement('div');
     const player=w.MotionRuntime.create(root,effect);player.seek(effect.preview_ms);assert.equal(frameMarkup(thumb),frameMarkup(root.firstElementChild));

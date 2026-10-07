@@ -1048,8 +1048,8 @@
     },
     {
       "path": "catalog/thumbnails.js",
-      "bytes": 12348,
-      "sha256": "61c6b7872c1a60130cda510c98fc357ae97758c6c8721d9a3949c60e6265e81d"
+      "bytes": 12123,
+      "sha256": "a488a29d24238f845355db518c7595979db2aed6d379c5264827c4d49faea305"
     },
     {
       "path": "catalog/wise-avatar.webp",

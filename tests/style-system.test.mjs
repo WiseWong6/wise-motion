@@ -89,7 +89,7 @@ test('切换主题保留暂停位置和静态缩略图，转场底色不固化�
     await loadStyles(env);
     const {w}=env,d=w.document;
     const category=d.getElementById('category-filter');
-    category.value='transition';category.dispatchEvent(new w.Event('change'));env.reveal();
+    category.value='transition';category.dispatchEvent(new w.Event('change'));env.reveal();await w.MotionThumbs.whenIdle();
     const card=d.querySelector('.effect-item[data-effect="shared-object"]');card.click();
     const scrub=d.getElementById('scrub');scrub.value='500';scrub.dispatchEvent(new w.Event('input'));
     const stage=d.querySelector('#preview .motion-stage'),thumb=card.querySelector('.thumb .motion-stage');

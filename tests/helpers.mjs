@@ -111,8 +111,9 @@ export async function environment(withApp = false, options = {}) {
     w.document.addEventListener('keydown',freezeSelection);
     w.addEventListener('pageshow',()=>{previousStage=w.document.getElementById('preview')?.firstElementChild;});
   }
-  return {dom,w,lazyRequests,listeners,media,directoryMedia,observers,reveal() {
-    for (const observer of observers) observer.callback([...observer.nodes].map(target => ({target,isIntersecting:true})));
+  return {dom,w,lazyRequests,listeners,media,directoryMedia,observers,reveal(selector) {
+    for (const observer of observers) observer.callback([...observer.nodes].filter(target=>!selector||target.matches(selector)).map(target => ({target,isIntersecting:true})));
+    return w.MotionThumbs?.whenIdle();
   },close() { w.MotionRuntime.disposeAll(); w.MotionHistoryRuntime?.disposeAll(); w.anime.engine.pause(); dom.window.close(); }};
 }
 

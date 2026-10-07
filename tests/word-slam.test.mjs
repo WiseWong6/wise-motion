@@ -83,7 +83,7 @@ test('词语撞入换位进入文字分类，旧名可查且历史去重，主�
   assert.equal(createHash('sha256').update(source).digest('hex'),migration.files[0].sha256);
   const env=await environment(true,{staticPreview:true,hash:'#word-slam'});
   try{
-    const {w}=env,d=w.document;env.reveal();
+    const {w}=env,d=w.document;await env.reveal('[data-effect="word-slam"] .thumb');
     assert.equal(d.getElementById('preview-title').textContent,effect.name);
     for(const query of [effect.name,'词语抨击换位'])assert.equal(w.MotionMatch.rank(data,query)[0].effect.id,effect.id);
     const thumb=d.querySelector('[data-effect="word-slam"] .thumb .motion-stage');
