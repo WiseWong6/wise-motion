@@ -31613,18 +31613,23 @@
     },
     {
       "id": "drive-balloon-illustration",
-      "name": "单只气球与绳尾",
+      "name": "七色气球簇与绳尾",
       "kind": "illustration",
       "category": "illustration-object",
-      "summary": "从原作提取完整球形、结口、反光和柔绳，七种颜色共用造型。",
-      "purpose": "从原作提取完整球形、结口、反光和柔绳，七种颜色共用造型。",
-      "objects": "单只气球与绳尾的原造型及相关运动主体",
+      "summary": "车后整簇35只七色气球与柔绳完整提取，保留相互叠放、结口和反光，等比放大居中展示。",
+      "purpose": "作为一整簇彩色气球素材使用，保留每只气球及其柔绳。",
+      "objects": "35只七色气球、各球结口与反光、在下方汇到同一结点的35根柔绳",
       "phases": [
-        "气球与柔绳完整出现。",
-        "保留原球形和材质。",
-        "保持原轮廓。"
+        "松绳前的35只七色气球与完整柔绳一起出现。",
+        "整簇等比放大居中，保持每只气球的原位置、大小、倾角和遮挡次序。",
+        "球形、结口、反光与下方绳结持续保持。"
       ],
       "aliases": [
+        "七色气球簇与绳尾",
+        "气球簇",
+        "多个气球",
+        "一堆气球",
+        "气球群",
         "单只气球与绳尾",
         "把气球交给风"
       ],
@@ -31632,7 +31637,7 @@
         "move",
         "react"
       ],
-      "retain": "保留原轮廓、比例、材质、固定数据及时间关系；从原作提取完整球形、结口、反光和柔绳，七种颜色共用造型。",
+      "retain": "保留原作全部35只气球的七色分布、大小、倾角与叠放次序；35根柔绳仍连接原结口并汇到下方同一结点，整簇与绳尾共同取景。",
       "avoid": "不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。",
       "duration_ms": 3000,
       "preview_ms": 1650,
@@ -31654,7 +31659,7 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
+        "extraction": "从自有原作提取松绳前全部35只气球，共用 drawBalloon、balloonState 和 balloonString；原排列、材质和绳端连接不变，只等比适配独立画板。",
         "dependencies": [
           "catalog/effects/scene-source-runtime.js"
         ]
@@ -31668,136 +31673,31 @@
       ],
       "trigger": "打开后按原时间播放；可暂停、重播与定位。",
       "analogy": "从原作提取完整球形、结口、反光和柔绳，七种颜色共用造型。",
-      "assumptions": "使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。",
-      "tempo_note": "保留原作第0秒起的3秒；速度控件统一缩放时间。",
-      "recommendation": "需要单只气球与绳尾的造型或动作关系时直接复用。",
+      "assumptions": "提取把气球交给风在松绳前的整簇气球，使用原球体和柔绳绘制函数；只对整簇等比放大和居中。原工程只读。",
+      "tempo_note": "固定展示松绳前的整簇气球3秒，暂停和回拖保持同一画面。",
+      "recommendation": "需要整簇彩色气球及完整绳尾时直接复用。",
       "scene": {
         "family": "drive",
         "mode": "balloon",
         "start": 0,
         "width": 900,
-        "height": 1200,
-        "color": 0
+        "height": 1200
       },
-      "variants": [
-        {
-          "id": "0",
-          "label": "红",
-          "summary": "红保留原造型与时序。",
-          "duration_ms": 3000,
-          "preview_ms": 1650,
-          "scene": {
-            "family": "drive",
-            "mode": "balloon",
-            "start": 0,
-            "width": 900,
-            "height": 1200,
-            "color": 0
-          }
-        },
-        {
-          "id": "1",
-          "label": "橙",
-          "summary": "橙保留原造型与时序。",
-          "duration_ms": 3000,
-          "preview_ms": 1650,
-          "scene": {
-            "family": "drive",
-            "mode": "balloon",
-            "start": 0,
-            "width": 900,
-            "height": 1200,
-            "color": 1
-          }
-        },
-        {
-          "id": "2",
-          "label": "黄",
-          "summary": "黄保留原造型与时序。",
-          "duration_ms": 3000,
-          "preview_ms": 1650,
-          "scene": {
-            "family": "drive",
-            "mode": "balloon",
-            "start": 0,
-            "width": 900,
-            "height": 1200,
-            "color": 2
-          }
-        },
-        {
-          "id": "3",
-          "label": "绿",
-          "summary": "绿保留原造型与时序。",
-          "duration_ms": 3000,
-          "preview_ms": 1650,
-          "scene": {
-            "family": "drive",
-            "mode": "balloon",
-            "start": 0,
-            "width": 900,
-            "height": 1200,
-            "color": 3
-          }
-        },
-        {
-          "id": "4",
-          "label": "蓝",
-          "summary": "蓝保留原造型与时序。",
-          "duration_ms": 3000,
-          "preview_ms": 1650,
-          "scene": {
-            "family": "drive",
-            "mode": "balloon",
-            "start": 0,
-            "width": 900,
-            "height": 1200,
-            "color": 4
-          }
-        },
-        {
-          "id": "5",
-          "label": "靛",
-          "summary": "靛保留原造型与时序。",
-          "duration_ms": 3000,
-          "preview_ms": 1650,
-          "scene": {
-            "family": "drive",
-            "mode": "balloon",
-            "start": 0,
-            "width": 900,
-            "height": 1200,
-            "color": 5
-          }
-        },
-        {
-          "id": "6",
-          "label": "紫",
-          "summary": "紫保留原造型与时序。",
-          "duration_ms": 3000,
-          "preview_ms": 1650,
-          "scene": {
-            "family": "drive",
-            "mode": "balloon",
-            "start": 0,
-            "width": 900,
-            "height": 1200,
-            "color": 6
-          }
-        }
-      ],
       "reproduction": {
-        "objects": "从原作提取完整球形、结口、反光和柔绳，七种颜色共用造型。",
-        "presentation": "设计尺寸900×1200，竖版3:4；亮蓝背景#1340e7，七色气球与小葵汽车。",
+        "objects": "35只气球组成密集七色气球簇，红、橙、黄、绿、蓝、靛、紫各5只；每只都有结口、反光与柔绳，柔绳汇到下方同一结点。",
+        "presentation": "透明背景；900×1200竖版画板，整簇气球与完整绳尾等比放大居中。",
         "phases": [
-          "气球与柔绳完整出现。",
-          "保留原球形和材质。",
-          "保持原轮廓。"
+          "松绳前的35只七色气球与完整柔绳一起出现。",
+          "整簇等比放大居中，保持每只气球的原位置、大小、倾角和遮挡次序。",
+          "球形、结口、反光与下方绳结持续保持。"
         ],
-        "retain": "从原作提取完整球形、结口、反光和柔绳，七种颜色共用造型。",
-        "tempo_note": "从0秒的位置开始展示，播放3秒，各部件共用同一动作秒数。",
-        "avoid": "所有动作由当前帧计算，随机分布固定，定位时呈现同一画面。"
-      }
+        "retain": "保留原作全部35只气球的七色分布、大小、倾角与叠放次序；35根柔绳仍连接原结口并汇到下方同一结点，整簇与绳尾共同取景。",
+        "tempo_note": "固定展示松绳前的整簇气球3秒，暂停和回拖保持同一画面。",
+        "avoid": "保持35只气球的相对位置、大小、颜色、倾角、遮挡次序和绳端连接。"
+      },
+      "previous_names": [
+        "单只气球与绳尾"
+      ]
     },
     {
       "id": "drive-road-illustration",

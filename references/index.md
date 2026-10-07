@@ -496,7 +496,7 @@
 | 纸飞机折翼 | 原黄纸飞机保持朝前，双翼轻折、短折脊与机身微偏转保持。 | 折翼前行、纸飞机、黄色纸飞机、晴日纸飞机 | [按需读取](effects/forward-plane-illustration.md) |
 | 小葵敞篷车 | 蓝色敞篷车内的小葵持续驾驶，车轮随行程转动、方向盘轻摆，车身沿原曲线微微起伏。 | 小葵敞篷车、汽车、敞篷车、蓝色汽车、小葵 | [按需读取](effects/drive-car-illustration.md) |
 | 版画蝴蝶 | 蓝色版画蝴蝶四翼绕固定翼根错拍开合，两根触角随振翅弯曲，身体轻浮。 | 蝴蝶、版画蓝蝶、振翅、扑翼、触角摆动、四翼错拍 | [按需读取](effects/butterfly-illustration.md) |
-| 单只气球与绳尾 | 从原作提取完整球形、结口、反光和柔绳，七种颜色共用造型。 | 单只气球与绳尾、把气球交给风 | [按需读取](effects/drive-balloon-illustration.md) |
+| 七色气球簇与绳尾 | 车后整簇35只七色气球与柔绳完整提取，保留相互叠放、结口和反光，等比放大居中展示。 | 七色气球簇与绳尾、气球簇、多个气球、一堆气球、气球群、单只气球与绳尾、把气球交给风 | [按需读取](effects/drive-balloon-illustration.md) |
 | 加工厂完整小猫 | 完整小葵和十四种原配方共用原角色绘制、足迹和加工时序。 | 加工厂完整小猫、小猫加工厂 | [按需读取](effects/factory-cat-illustration.md) |
 | 小猫加工机器 | 原咖啡机、料斗、压力表、传送带和蒸汽管一起保留。 | 小猫加工机器、小猫加工厂 | [按需读取](effects/factory-machine-illustration.md) |
 | 加工厂手柄 | 从原机器分离手柄、滤篮和握柄，保留原装卸和翻转。 | 加工厂手柄、小猫加工厂 | [按需读取](effects/factory-handle-illustration.md) |

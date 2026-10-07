@@ -1363,8 +1363,8 @@
     },
     {
       "path": "catalog/effects/scene-drive.js",
-      "bytes": 25263,
-      "sha256": "e205fe3d9c7b1debcc55a5e104155c72ee312f61b7523d53a63b4e4f9c56c184"
+      "bytes": 25158,
+      "sha256": "a79210d11b1a0f7e6cb611c6f5e681286c3f156d7675ca3d8d1e6089b7aa21b7"
     },
     {
       "path": "catalog/effects/scene-factory.js",
@@ -1588,13 +1588,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1435518,
-      "sha256": "1efbca28ae5672d4159df57a2fe244c8d7d83dfae4459c8284225940a6f6e0cb"
+      "bytes": 1434771,
+      "sha256": "727299ad03e89b00e20c49a4046e5c0c7892b21a280a512f5626bb7640691314"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1825560,
-      "sha256": "7b66993f230cd328ef4d5fced14017c20e45c76ace5b9ca8451efce5ce76bf2f"
+      "bytes": 1823562,
+      "sha256": "58060d643a9d62cd92679ed9b803853208cf9dcabbdacfb688a11671f2ca53ff"
     },
     {
       "path": "catalog/related-preview.js",
