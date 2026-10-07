@@ -78,7 +78,7 @@ test('新节奏的入场与回摆可重新定位，速度滑块不改变定位�
 test('缩略图与主播放器在新预览时刻显示同一画面，不建立额外计时器',async()=>{
   const env=await environment(true,{staticPreview:true});
   try {
-    const {w}=env,d=w.document;env.reveal();
+    const {w}=env,d=w.document;await env.reveal();
     const instances=w.MotionRuntime.instanceCount,listeners=env.listeners.size;
     for(const e of data.effects.filter(e=>e.timing&&e.kind==='action')) {
       const thumb=d.querySelector(`.effect-item[data-effect="${e.id}"] .thumb .motion-stage`);

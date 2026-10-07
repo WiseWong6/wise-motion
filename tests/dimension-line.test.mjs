@@ -11,7 +11,7 @@ test('尺寸线保留对称展开、固定引出线、跟随斜记和过半留�
     const {w}=env,d=w.document,effect=sourceDefinition(data.effects.find(e=>e.id==='dimension-line'));
     assert.equal(effect.category,'data');assert.equal(effect.loop,false);
     assert.equal(w.MotionMatch.rank(data,'尺寸标注线')[0].effect.id,effect.id);
-    env.reveal();
+    await env.reveal('[data-effect="dimension-line"] .thumb');
     const card=d.querySelector('[data-effect="dimension-line"]'),thumb=card.querySelector('.thumb');
     assert.equal(thumb.querySelector('[data-part="dimension-label"]').getAttribute('opacity'),'1');
     assert.equal(thumb.querySelector('[data-part="dimension-line"]').getAttribute('d'),'M140 180H279M361 180H500');

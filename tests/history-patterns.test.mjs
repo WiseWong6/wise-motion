@@ -32,7 +32,7 @@ test('词云保留原十三词、云形、独立漂移与实际收拢时钟，�
   };
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document;env.reveal();
+    const {w}=env,d=w.document;await env.reveal('[data-effect="word-cloud-lift"] .thumb');
     const effect=sourceDefinition(data.effects.find(e=>e.id==='word-cloud-lift')),card=d.querySelector('[data-effect="word-cloud-lift"]');
     assert.equal(effect.category,'writing');assert.equal(effect.loop,false);
     assert.equal(w.MotionMatch.rank(data,'词云')[0].effect.id,effect.id);
@@ -134,7 +134,7 @@ test('论据图标保持原词点、细线与基线生长，定位和缩略图�
   const clock=word=>cue.start+cue.charAt[cue.text.indexOf(word)],anchor=clock('经历');
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document,effect=sourceDefinition(data.effects.find(e=>e.id==='evidence-icons'));env.reveal();
+    const {w}=env,d=w.document,effect=sourceDefinition(data.effects.find(e=>e.id==='evidence-icons'));await env.reveal('[data-effect="evidence-icons"] .thumb');
     const thumb=d.querySelector('[data-effect="evidence-icons"] .thumb');
     assert.equal(thumb.querySelectorAll('[data-icon-sequence]').length,4);
     assert.ok([...thumb.querySelectorAll('[data-icon-fade]')].every(n=>n.getAttribute('opacity')==='1'));
@@ -202,7 +202,7 @@ test('成组展开保留原六卡的缩放和标签时差，缩略图完整并�
   assert.ok(image&&label,'原卡片进入关系改变，需要重新核对');
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document;env.reveal();
+    const {w}=env,d=w.document;await env.reveal('[data-effect="group-expand"] .thumb');
     const effect=sourceDefinition(data.effects.find(e=>e.id==='group-expand')),thumb=d.querySelector('[data-effect="group-expand"] .thumb');
     const visible=[...thumb.querySelectorAll('[data-card]')];
     assert.equal(visible.length,6);assert.ok(visible.every(n=>n.getAttribute('opacity')==='1'));
@@ -239,7 +239,7 @@ test('纸层倾斜按原时刻分出三层透视后归位，内容身份保持�
   const length=Number(source.match(/duration: ([\d.]+), ease: 'power2.inOut', immediateRender: false/)[1])*1000;
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document;env.reveal();
+    const {w}=env,d=w.document;await env.reveal('[data-effect="paper-tilt"] .thumb');
     const effect=sourceDefinition(data.effects.find(e=>e.id==='paper-tilt')),thumb=d.querySelector('[data-effect="paper-tilt"] .thumb');
     assert.equal(thumb.querySelectorAll('[data-sheet]').length,3);
     assert.ok([...thumb.querySelectorAll('[data-sheet]')].every(n=>n.getAttribute('opacity')==='1'));
@@ -271,7 +271,7 @@ test('纸层倾斜按原时刻分出三层透视后归位，内容身份保持�
 test('跨页承接采用统一主题的三列配色，先上色，再让同一组九格同步下移放大',async()=>{
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document;env.reveal();
+    const {w}=env,d=w.document;await env.reveal('[data-effect="scene-carry"] .thumb');
     const card=d.querySelector('[data-effect="scene-carry"]');
     assert.ok(card.querySelector('.thumb .pattern-svg'),'正式目录缩略图接入');
     card.click();

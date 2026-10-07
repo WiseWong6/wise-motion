@@ -98,7 +98,7 @@ test('概念图解的两个案例一并迁入，可搜索直达，缩略图与�
   for(const file of cross.rules['tutorial-definition'].migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
   const env=await environment(true,{staticPreview:true,hash:'#concept-diagram'});
   try{
-    const {w}=env,d=w.document;env.reveal();assert.equal(d.getElementById('preview-title').textContent,effect.name);
+    const {w}=env,d=w.document;await env.reveal('[data-effect="concept-diagram"] .thumb');assert.equal(d.getElementById('preview-title').textContent,effect.name);
     for(const q of [effect.name,'三步定义图解','提问页概念图解'])assert.equal(w.MotionMatch.rank(data,q)[0].effect.id,effect.id);
     const thumb=d.querySelector('[data-effect="concept-diagram"] .thumb .motion-stage'),root=d.createElement('div');
     const player=w.MotionRuntime.create(root,effect);player.seek(effect.preview_ms);

@@ -136,7 +136,7 @@ test('新效果可从目录搜索及直达，缩略图与主预览一致且不�
   for(const id of ['char-color-cycle','letter-hole-zoom']){
     const env=await environment(true,{staticPreview:true,hash:'#'+id});
     try{
-      const {w}=env,d=w.document;env.reveal();const effect=get(id);
+      const {w}=env,d=w.document;env.reveal();await w.MotionThumbs.whenIdle();const effect=get(id);
       assert.equal(d.getElementById('preview-title').textContent,effect.name);
       const card=d.querySelector(`[data-effect="${id}"]`),thumb=card.querySelector('.thumb .motion-stage');
       const root=d.createElement('div'),player=w.MotionRuntime.create(root,effect);

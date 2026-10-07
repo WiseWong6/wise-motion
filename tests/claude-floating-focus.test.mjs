@@ -105,7 +105,7 @@ test('两条历史入口去重、搜索和旧书签指向正式动作，原工�
   for(const item of record.source_files)assert.equal(createHash('sha256').update(await readFile(item.file)).digest('hex'),item.sha256);
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document;env.reveal();
+    const {w}=env,d=w.document;await env.reveal(`[data-effect="${drift.id}"] .thumb,[data-effect="${wall.id}"] .thumb`);
     for(const e of [drift,wall]){
       const thumb=d.querySelector(`[data-effect="${e.id}"] .thumb .motion-stage`);assert.ok(thumb);
       const standalone=d.createElement('div'),player=w.MotionRuntime.create(standalone,e);player.seek(e.preview_ms);

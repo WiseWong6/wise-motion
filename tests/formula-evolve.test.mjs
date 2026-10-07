@@ -19,7 +19,7 @@ test('定位公式保留原词点、两步合行和细线，缩略图完整，�
   const close=(actual,expected,message)=>assert.ok(Math.abs(Number(actual)-expected)<1e-8,message);
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document,effect=sourceDefinition(data.effects.find(e=>e.id==='formula-evolve'));env.reveal();
+    const {w}=env,d=w.document,effect=sourceDefinition(data.effects.find(e=>e.id==='formula-evolve'));await env.reveal('[data-effect="formula-evolve"] .thumb');
     assert.equal(effect.category,'writing');assert.equal(effect.loop,false);
     assert.equal(w.MotionMatch.rank(data,effect.name)[0].effect.id,effect.id);
     const card=d.querySelector('[data-effect="formula-evolve"]'),thumb=card.querySelector('.thumb');

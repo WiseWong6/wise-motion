@@ -42,7 +42,7 @@ test('经验卡保留成片讲述时钟与卡内进度，同一主题配色，�
   };
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document,effect=sourceDefinition(data.effects.find(e=>e.id==='experience-progress'));env.reveal();
+    const {w}=env,d=w.document,effect=sourceDefinition(data.effects.find(e=>e.id==='experience-progress'));await env.reveal('[data-effect="experience-progress"] .thumb');
     assert.equal(effect.category,'attention');assert.equal(effect.loop,false);
     assert.equal(w.MotionMatch.rank(data,effect.name)[0].effect.id,effect.id);
     const card=d.querySelector('[data-effect="experience-progress"]'),thumb=card.querySelector('.thumb');

@@ -245,7 +245,7 @@ test('移除正在准备的缩略图会立即释放并让后续条目继续，�
   }finally{env.close();}
 });
 
-test('一个异步缩略图准备失败不阻塞后续，同步缩略图沿原路径绘制',{timeout:5000},async()=>{
+test('一个异步缩略图准备失败不阻塞后续，普通缩略图也按队列顺序绘制',{timeout:5000},async()=>{
   const env=await environment(true);
   try{
     const {w}=env,failed=delayedFactory(w),next=delayedFactory(w,'preparation-next'),a=host(w),b=host(w),c=host(w);
@@ -256,9 +256,10 @@ test('一个异步缩略图准备失败不阻塞后续，同步缩略图沿原�
     };
     w.MotionThumbs.attach(a,definition);w.MotionThumbs.attach(b,{...definition,id:'preparation-next'});
     w.MotionThumbs.attach(c,{...definition,id:'preparation-legacy'});
-    await delay(0);assert.equal(legacyDraws,1);assert.equal(legacyDisposals,1);assert.equal(c.querySelector('.motion-stage').dataset.time,'640');
+    await delay(0);assert.equal(legacyDraws,0);assert.equal(legacyDisposals,0);
     failed.reject(new Error('缩略图形状无法加载'));await next.started;assert.equal(next.definitions.length,1);
     next.resolve();await w.MotionThumbs.whenIdle();
+    assert.equal(legacyDraws,1);assert.equal(legacyDisposals,1);assert.equal(c.querySelector('.motion-stage').dataset.time,'640');
     assert.equal(a.textContent,'预览暂不可用');assert.match(a.title,/缩略图形状无法加载/);assert.equal(failed.destroyed,1);
     assert.equal(a.querySelector('.thumb-loading'),null);assert.equal(a.dataset.previewState,'error');
     assert.deepEqual(next.frames,[640]);assert.equal(next.destroyed,1);

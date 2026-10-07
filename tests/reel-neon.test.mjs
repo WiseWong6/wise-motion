@@ -153,7 +153,7 @@ test('霓虹组合能逐层查看，弹窗独立示例与缩略图一致且不�
       assert.equal(d.getElementById('related-dialog').open,true);
       assert.equal(w.MotionRuntime.runningCount,1);
       const popupScrub=d.getElementById('related-scrub');popupScrub.value=get(id).preview_ms/get(id).duration_ms*1000;popupScrub.dispatchEvent(new w.Event('input'));
-      const thumb=d.createElement('div');d.body.append(thumb);w.MotionThumbs.attach(thumb,get(id));env.reveal();
+      const thumb=d.createElement('div');d.body.append(thumb);w.MotionThumbs.attach(thumb,get(id));env.reveal();await w.MotionThumbs.whenIdle();
       assert.equal(d.getElementById('related-title').textContent,get(id).name);
       assert.equal(frameMarkup(thumb.querySelector('.motion-stage')),frameMarkup(d.querySelector('#related-preview .motion-stage')));
       w.MotionThumbs.release(thumb);thumb.remove();
@@ -165,7 +165,7 @@ test('霓虹组合能逐层查看，弹窗独立示例与缩略图一致且不�
       d.getElementById('related-close').click();
       assert.equal(w.MotionRuntime.instanceCount,1);assert.equal(w.MotionRuntime.runningCount,0);
     }
-    env.reveal();const host=d.createElement('div'),player=w.MotionRuntime.create(host,get('neon-horizon'));player.seek(get('neon-horizon').preview_ms);
+    env.reveal();await w.MotionThumbs.whenIdle();const host=d.createElement('div'),player=w.MotionRuntime.create(host,get('neon-horizon'));player.seek(get('neon-horizon').preview_ms);
     assert.equal(frameMarkup(d.querySelector('[data-effect="neon-horizon"] .thumb .motion-stage')),frameMarkup(host.firstElementChild));player.destroy();
     const prompt=d.getElementById('prompt').textContent;
     for(const name of ['星点闪烁','条纹太阳','透视网格'])assert.ok(prompt.includes(name));

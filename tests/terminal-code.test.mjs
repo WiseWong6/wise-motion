@@ -49,7 +49,7 @@ print(json.dumps([{chr(n):f['hmtx'].metrics[name][0]/f['head'].unitsPerEm for n,
   };
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document,effect=sourceDefinition(data.effects.find(e=>e.id==='terminal-code'));env.reveal();
+    const {w}=env,d=w.document,effect=sourceDefinition(data.effects.find(e=>e.id==='terminal-code'));await env.reveal('[data-effect="terminal-code"] .thumb');
     assert.equal(effect.category,'writing');assert.equal(effect.loop,false);
     assert.equal(w.MotionMatch.rank(data,'终端逐字敲代码')[0].effect.id,effect.id);
     const card=d.querySelector('[data-effect="terminal-code"]'),thumb=card.querySelector('.thumb');

@@ -31,7 +31,7 @@ test('主色先落位，色阶从左到右着色展开，未来内容不提前�
 test('正式目录展示双列配色缩略图，仅包含原上半部分',async()=>{
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document;env.reveal();
+    const {w}=env,d=w.document;await env.reveal('[data-effect="tone-grow"] .thumb');
     const card=d.querySelector('[data-effect="tone-grow"]');
     assert.ok(card.querySelector('.thumb .palette-pair'));
     assert.equal(card.querySelectorAll('.palette-tones i').length,10);

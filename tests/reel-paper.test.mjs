@@ -141,7 +141,7 @@ test('剪纸倒放定位可重复，同一格内不重写纸条和螺线，销�
 test('剪纸组合可直接访问，缩略图使用同一帧且不增加播放计时器',async()=>{
   const env=await environment(true,{staticPreview:true,hash:'#paper-spiral-sequence'});
   try{
-    const {w}=env,d=w.document,effect=get();env.reveal();
+    const {w}=env,d=w.document,effect=get();await env.reveal('[data-effect="paper-spiral-sequence"] .thumb');
     assert.equal(d.getElementById('preview-title').textContent,effect.name);
     assert.equal(d.querySelector('[data-kind="composition"]').getAttribute('aria-pressed'),'true');
     const card=d.querySelector('[data-effect="paper-spiral-sequence"]'),thumb=card.querySelector('.thumb .motion-stage');

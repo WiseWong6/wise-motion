@@ -48,7 +48,7 @@ test('两侧切换遵循筛选与搜索顺序，首尾循环，切换同步输�
     next.click(); assert.equal(current(), original[1]);
     assert.ok(d.getElementById('prompt').textContent.includes('动效说明：'+w.MotionRegistry.effects.find(effect=>effect.id===current()).name));
     assert.equal(d.querySelector('.thumb'), firstThumb); assert.ok(firstThumb.isConnected);
-    env.reveal(); assert.equal(firstThumb.querySelector('.motion-stage').dataset.effect, original[0]);
+    env.reveal();await w.MotionThumbs.whenIdle(); assert.equal(firstThumb.querySelector('.motion-stage').dataset.effect, original[0]);
     const category = d.getElementById('category-filter');
     category.value = 'continuous'; category.dispatchEvent(new w.Event('change'));
     env.reveal(); assert.equal(firstThumb.childElementCount, 0);

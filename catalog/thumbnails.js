@@ -1,7 +1,7 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
 /* 目录卡片的静态缩略图。
    复用 effects 的渲染函数直接画一帧，不建立 Anime.js 计时器，也不注册 ResizeObserver，
-   不占用播放资源；耗时准备任务之间让出页面线程。
+   不占用播放资源；按列表顺序准备，每张之间让出页面线程。
    历史案例沿用原作图片或单帧绘制；没有可见范围观察器时也正常绘制。 */
 (function (global) {
   'use strict';
@@ -10,13 +10,32 @@
   const states = new Map();
   // 只保留已完成、已释放绘制器的静帧；移走原节点，避免复制画布时丢失画面。
   const frames = new Map(), frameLimit = 128;
-  let queue = Promise.resolve(), suspended = false, resume = [];
+  const jobs = new Map();
+  let queue = Promise.resolve(), running = false, suspended = false, resume = [];
   /* 和主预览共用完整 16:9 画板，不放大裁掉卡片底部。 */
   let observer = null;
   const supported = typeof IntersectionObserver === 'function';
-  function enqueue(job){
-    // Promise 连续完成仍在同一轮执行；切到下一轮，给点击、滚动和主预览留出机会。
-    queue=queue.then(job,job).then(()=>new Promise(resolve=>global.setTimeout(resolve,0)));
+  function enqueue(host,effect){
+    const state=states.get(host);
+    if(!state||painted.has(host)||jobs.has(host))return;
+    jobs.set(host,{host,effect,state});
+    if(running)return;
+    running=true;
+    queue=Promise.resolve().then(async()=>{
+      try{while(jobs.size){
+        // 可见范围通知和素材返回的先后都不代表列表顺序；每次按当前页面顺序取下一张。
+        const [job]=[...jobs.values()].sort((a,b)=>{
+          const position=a.host.compareDocumentPosition(b.host);
+          return position&1?0:position&4?-1:position&2?1:0;
+        });
+        jobs.delete(job.host);
+        if(!current(job.host,job.state))continue;
+        try{await paint(job.host,job.effect,job.state);}
+        catch(error){unavailable(job.host,job.state,error.message||'动画预览准备失败。');}
+        // 每张之间给点击、滚动和主预览留出机会。
+        await new Promise(resolve=>global.setTimeout(resolve,0));
+      }}finally{running=false;}
+    });
   }
 
   const current = (host,state) => !suspended && state.active && states.get(host)===state && host.isConnected;
@@ -65,13 +84,8 @@
     if(preview.type==='original-crop'||preview.type==='source-clip'){videoFrame(host,state,entry);return;}
     if(preview.type!=='isolated'&&preview.type!=='web-isolated'){unavailable(host,state,'原作没有独立预览。');return;}
     const canvas=document.createElement('canvas');canvas.width=360;canvas.height=480;canvas.className='history-poster';host.append(canvas);
-    // 重绘只发生一次；逐个载入绘制器，避免目录一次建立大量绘制资源。
-    const job=async()=>{
-      if(!current(host,state))return;
-      try{await global.MotionHistoryRuntime.poster(canvas,entry,global.MotionHistory,{isCurrent:()=>current(host,state)});complete(host,state);}
-      catch(e){unavailable(host,state,e.message||'原作绘制器无法载入。');}
-    };
-    enqueue(job);
+    return global.MotionHistoryRuntime.poster(canvas,entry,global.MotionHistory,{isCurrent:()=>current(host,state)})
+      .then(()=>complete(host,state));
   }
 
   function frame(host) {
@@ -83,60 +97,37 @@
     host.querySelector('.motion-stage').style.transform = `translate(-50%,-50%) scale(${scale})`;
   }
 
-  function preparedFrame(host,effect,state,stage){
-    const job=async()=>{
-      if(!current(host,state))return;
-      let render,disposed=false,hasFrame=false,cancelWait;
-      const cancelled=new Promise(resolve=>{cancelWait=()=>resolve(false);});
-      const dispose=preserve=>{if(disposed)return;disposed=true;render?.destroy?.(preserve);};
-      const cancel=()=>{cancelWait();dispose(false);};
-      state.cleanup.push(cancel);
-      try{
-        render=global.MotionKit.createRenderer(stage,{...effect,poster_only:true,poster_time_ms:effect.preview_ms});
-        const ready=render.ready?await Promise.race([Promise.resolve(render.ready).then(()=>true),cancelled]):true;
-        if(!ready||!current(host,state))return;
-        render(effect.preview_ms,{ease:effect.default_ease,duration:effect.duration_ms});
-        hasFrame=true;frame(host);complete(host,state);
-      }catch(error){unavailable(host,state,error.message||'动画预览准备失败。');}
-      finally{
-        dispose(hasFrame&&current(host,state));
-        const index=state.cleanup.indexOf(cancel);if(index!==-1)state.cleanup.splice(index,1);
-      }
-    };
-    enqueue(job);
-  }
-
-  function paint(host, effect) {
-    const state=states.get(host);
+  async function paint(host,effect,state) {
     if (painted.has(host)||!state||!current(host,state)) return;
-    if(effect.kind==='recipe'){
-      painted.add(host);historyFrame(host,effect,state);return;
-    }
-    effect = global.MotionKit.resolveVariant(effect);
-    const lazy = global.MotionLazy?.ensure(effect);
-    if (lazy) {
-      lazy.then(() => { if (current(host, state)) paint(host, effect); },
-        error => unavailable(host, state, error.message || '动效资源无法载入。'));
-      return;
-    }
-    const factory = global.MotionFactories?.[effect.source?.factory || effect.id];
-    if (!factory) { unavailable(host,state,'缺少效果源码：'+effect.id); return; }
     painted.add(host);
+    let render,disposed=false,hasFrame=false,cancelWait;
+    const cancelled=new Promise(resolve=>{cancelWait=()=>resolve(false);});
+    const wait=promise=>Promise.race([Promise.resolve(promise).then(()=>true),cancelled]);
+    const dispose=preserve=>{if(disposed)return;disposed=true;render?.destroy?.(preserve);};
+    const cancel=()=>{cancelWait();dispose(false);};
+    state.cleanup.push(cancel);
     try {
+      if(effect.kind==='recipe'){await wait(historyFrame(host,effect,state));return;}
+      effect=global.MotionKit.resolveVariant(effect);
+      const lazy=global.MotionLazy?.ensure(effect);
+      if(lazy&&(!await wait(lazy)||!current(host,state)))return;
+      const factory=global.MotionFactories?.[effect.source?.factory||effect.id];
+      if(!factory)throw new Error('缺少效果源码：'+effect.id);
       const stage = document.createElement('div');
       stage.className = 'motion-stage';
       global.MotionKit.prepareStage(stage, effect);
-      if(factory.requiresPreparation || global.MotionKit.resolveVariant(effect).requires_preparation){
-        host.prepend(stage);frame(host);preparedFrame(host,effect,state,stage);return;
-      }
-      const render = global.MotionKit.createRenderer(stage, effect);
-      try { render(effect.preview_ms, {ease: effect.default_ease, duration: effect.duration_ms}); }
-      finally { render.destroy?.(true); }
-      host.prepend(stage);
-      frame(host);complete(host,state);
+      host.prepend(stage);frame(host);
+      const prepared=factory.requiresPreparation||effect.requires_preparation;
+      render=global.MotionKit.createRenderer(stage,prepared?{...effect,poster_only:true,poster_time_ms:effect.preview_ms}:effect);
+      if(render.ready&&(!await wait(render.ready)||!current(host,state)))return;
+      render(effect.preview_ms,{ease:effect.default_ease,duration:effect.duration_ms});
+      hasFrame=true;frame(host);complete(host,state);
     } catch (error) {
       // 真实绘制失败必须可见，不能用空底色掩盖缺失的实现或依赖。
       unavailable(host,state,error.message||'动效预览绘制失败。');
+    } finally {
+      dispose(hasFrame&&current(host,state));
+      const index=state.cleanup.indexOf(cancel);if(index!==-1)state.cleanup.splice(index,1);
     }
   }
 
@@ -153,7 +144,7 @@
         pending.delete(entry.target);
         if (target) {
           if(painted.has(entry.target))frame(entry.target);
-          else paint(entry.target, target);
+          else enqueue(entry.target, target);
         }
       }
     }, {root:document.getElementById('effects-list'),rootMargin:'320px 0px'});
@@ -179,6 +170,7 @@
     if(!host)return;
     observer?.unobserve(host);
     const state=states.get(host);
+    jobs.delete(host);
     const stage=keepFrame&&state&&!state.cleanup.length&&host.dataset.previewState==='ready'
       ?host.querySelector('.motion-stage'):null;
     if(state){state.active=false;state.cleanup.forEach(fn=>fn());states.delete(host);}
@@ -220,7 +212,7 @@
       if(supported)watch(host,effect);
       else Promise.resolve().then(()=>{
         // 列表先登记卡片再挂入页面，等本轮插入完成后绘制和测量。
-        if(current(host,state)){paint(host,effect);resize();}
+        if(current(host,state))enqueue(host,effect);
       });
     },
     /* 卡片移除时取消未完成任务，已完成画面最多保留 128 张供页签和筛选复用。 */

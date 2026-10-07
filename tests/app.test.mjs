@@ -125,14 +125,14 @@ test('目录卡片懒绘制各自的场景，不共用第一张的渲染结果�
   try {
     const {w} = env, d = w.document;
     assert.equal(d.querySelectorAll('.thumb .motion-stage').length,0);
-    env.reveal();
+    env.reveal();await w.MotionThumbs.whenIdle();
     const shown = [...d.querySelectorAll('.effect-item')].map(card => [card.dataset.effect, card.querySelector('.thumb .motion-stage')?.dataset.effect]);
     assert.equal(shown.length,data.effects.filter(e=>e.kind==='action').length);
     assert.ok(shown.every(([id,painted]) => painted === id),shown.find(([id,painted]) => id !== painted)?.join('→'));
     // 缩略图只是静态一帧：不建计时器、不注册 ResizeObserver。
     assert.equal(w.MotionRuntime.instanceCount,1); assert.equal(env.listeners.size,3); assert.equal(w.MotionRuntime.runningCount,0);
     d.querySelector('[data-kind="composition"]').click();
-    env.reveal();
+    env.reveal();await w.MotionThumbs.whenIdle();
     const mixed = [...d.querySelectorAll('.effect-item')].map(card => [card.dataset.effect, card.querySelector('.thumb .motion-stage')?.dataset.effect]);
     assert.ok(mixed.every(([id,painted]) => painted === id));
     assert.ok(mixed.every(([id]) => w.MotionRegistry.effects.some(e => e.id === id && e.kind === 'composition')));
@@ -351,7 +351,7 @@ test('缩略图保留完整画板，尺寸变化后重算，仍然只持有一�
     const {w} = env, d = w.document;
     const host = d.querySelector('.thumb'); let width = 160;
     host.getBoundingClientRect = () => ({width,height:width*9/16});
-    env.reveal();
+    env.reveal();await w.MotionThumbs.whenIdle();
     assert.match(host.querySelector('.motion-stage').style.transform,/scale\(0\.25\)/);
     width = 128; w.dispatchEvent(new w.Event('resize'));
     assert.match(host.querySelector('.motion-stage').style.transform,/scale\(0\.2\)/);
