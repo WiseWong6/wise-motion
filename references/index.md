@@ -2,7 +2,7 @@
 
 此索引和每项说明由 `catalog/registry.json` 生成。按 [需求方法](method.md) 提取主体、起止状态、动作关系与禁项；简单请求直接匹配，多段动作分别找。候选只提供线索，说明覆盖与缺口，再按 [快速上手](quickstart.md) 查看或导出源码。
 
-页面入口：`catalog/index.html`。288 个单个动作、90 个插画单图、40 个组合片段。
+页面入口：`catalog/index.html`。289 个单个动作、90 个插画单图、41 个组合片段。
 
 历史页签已下线；已迁入条目从正式目录使用。出处与迁移依据见 [历史来源与维护](history.md)。
 
@@ -255,6 +255,7 @@
 | 抽芽闪变与绽放 | 四颗种子抽芽成植物，茎叶伸展后花朵开放；两次变化各有局部短闪。 | 抽芽闪变与绽放 | [按需读取](effects/botanical-grow-bloom.md) |
 | 冠毛展开转向 | 蒲公英主体从少量冠毛展开为密集伞状，沿原曲线转向并长大。 | 冠毛展开转向、蒲公英主体、冠毛展开 | [按需读取](effects/filament-unfold-turn.md) |
 | 环线增厚与剖面展开 | 原环线按时序增厚成涡环，再切开剖面并恢复，内部轨迹持续翻卷。 | 环线增厚与剖面展开、螺旋丸家族 | [按需读取](effects/ring-construction.md) |
+| 花簇沿枝接续盛开 | 同一棵原实验树从枯枝开始，六色花簇沿固定枝位连续展开，保持花托、接枝与共同收尾。 | 窗外实验树、outside the window、六色花树、沿枝开花 | [按需读取](effects/window-flower-bloom.md) |
 
 ## 立体与镜头
 
@@ -429,6 +430,7 @@
 | 桂树原叶片 | 直接保留原桂叶轮廓、叶脉与金属表面。 | 桂树原叶片、花落成蝶 | [按需读取](effects/osmanthus-leaf-illustration.md) |
 | 四瓣桂花 | 原四瓣桂花保留花瓣展开和表面反光。 | 原四瓣桂花、花落成蝶 | [按需读取](effects/osmanthus-flower-illustration.md) |
 | 星月来信银河 | 原银河底图和从图中读取的亮星、中轴与带宽数据一起纳入。 | 星月来信银河、星月来信 | [按需读取](effects/letter-galaxy-illustration.md) |
+| 窗外实验树 | 原实验树的盛放插画，保留六色真实花簇、原枯枝树形与精确接枝，可切换枯枝状态。 | 窗外实验树、outside the window、六色花树、沿枝开花 | [按需读取](effects/window-experiment-tree-illustration.md) |
 
 ## 流场与能量
 
@@ -446,7 +448,6 @@
 | 游动流线 | 一百四十条短流线从固定起点出发，每条沿连续变化的方向走十八步。 | 噪声流场、流线、流场、FLOW FIELD、Claude 插画、算法图块、算法图块逐格铺开、生成算法瓦片墙 | [按需读取](effects/claude-flow-field-illustration.md) |
 | 节拍同心光环 | 八道橙色同心环按原鼓点强度共同伸缩，同时缓慢向外推进。 | 鼓点、同心环、音频响应、KICK RINGS、Claude 插画、算法图块、算法图块逐格铺开、生成算法瓦片墙、鼓点扩散环、节拍扩环 | [按需读取](effects/claude-kick-rings-illustration.md) |
 | 放射加速光线 | 一百六十根短线按固定方向从中心向外加速伸展，抵达边缘后从中心重新出现。 | 星线、空间跃迁、放射流线、WARP、Claude 插画、算法图块、算法图块逐格铺开、生成算法瓦片墙、跃迁星线、纵深星线 | [按需读取](effects/claude-warp-illustration.md) |
-| 浓度墨团 | 从原浓度网格积分得到墨团投影，保留真实示踪轨迹、下沉、边缘回卷与淡尾。 | 原浓度墨团、水墨水母 | [按需读取](effects/ink-volume-illustration.md) |
 
 ## 几何与网络
 
@@ -501,8 +502,8 @@
 | 加工厂手柄 | 从原机器分离手柄、滤篮和握柄，保留原装卸和翻转。 | 加工厂手柄、小猫加工厂 | [按需读取](effects/factory-handle-illustration.md) |
 | 收藏猫脸 | 使用原猫头轮廓制作猫脸粉饼，保留耳尖、脸颊、厚度和配方。 | 收藏猫脸、小猫加工厂 | [按需读取](effects/factory-cat-puck-illustration.md) |
 | 夕阳飞机 | 提取原飞机的机身、机翼、尾翼和原材质。 | 夕阳飞机、海面上的夕阳 | [按需读取](effects/sunset-airplane-illustration.md) |
-| 柔绳与秋千座板 | 两根柔绳准确连接薄座板的左右侧边，保留原透视、厚度和透光层。 | 柔绳与秋千座板、海面上的夕阳 | [按需读取](effects/sunset-swing-illustration.md) |
-| 星月来信符号组 | 原星、月、花、爱心、音符和蝴蝶共用原轮廓与材质。 | 星月来信符号组、星月来信 | [按需读取](effects/letter-symbol-illustration.md) |
+| 柔绳与秋千座板 | 两根柔绳竖直连接薄座板的左右侧边，保留原长度比例、透视、厚度和透光层。 | 柔绳与秋千座板、海面上的夕阳 | [按需读取](effects/sunset-swing-illustration.md) |
+| 星月来信符号组 | 24件原星月、花、爱心、音符、蝴蝶及星芒等符号按四列六行展示，保留空心、实心与原材质。 | 星月来信符号组、星月来信 | [按需读取](effects/letter-symbol-illustration.md) |
 | 自拍小葵多视角 | 原小葵背面、侧面、正面与斜向图集随真实足迹切换，不叠化两个头。 | 自拍小葵多视角、小葵和我 | [按需读取](effects/selfie-cat-illustration.md) |
 
 ## 界面与读数
@@ -521,8 +522,8 @@
 | 音乐空间卡 | 音乐空间卡保留空间运动，封面涟漪扩散，播放进度前进；卡外透明。 | 黑银音乐卡、iOS 音乐、音乐播放器、锁屏播放卡、黑银玻璃、横向播放器、苹果空间、visionOS、Apple Vision Pro、音乐空间卡 | [按需读取](effects/glass-music-card-illustration.md) |
 | 天气空间卡 | 天气空间卡保留空间运动，天气卡从后方移到前景并侧转；卡外透明。 | 黑银天气卡、iOS 天气、天气组件、温度卡、黑银玻璃、天气小组件、苹果空间、visionOS、Apple Vision Pro、天气空间卡 | [按需读取](effects/glass-weather-card-illustration.md) |
 | 控制中心空间卡 | 控制中心空间卡保留空间运动，亮度和音量按原顺序升降；卡外透明。 | 黑银控制中心、iOS 控制中心、系统控件、亮度音量、胶囊滑杆、黑银玻璃、苹果空间、visionOS、Apple Vision Pro、控制中心空间卡 | [按需读取](effects/glass-controls-card-illustration.md) |
-| 我和小葵的自拍预览 | 原自拍人物与小葵在正常比例的预览画面中同步，含原倒计时和姿态。 | 我和小葵的自拍预览、小葵和我 | [按需读取](effects/selfie-preview-illustration.md) |
-| 手机透视画面 | 完整自拍预览通过原四角透视映射进入倾斜手机，保持比例对应。 | 原手机透视画面、小葵和我 | [按需读取](effects/selfie-phone-screen-illustration.md) |
+| 我和小葵的自拍预览 | 原手机与人物底图中显示我和小葵的自拍预览，保留原屏幕透视、单次镜像、倒计时与姿态同步。 | 我和小葵的自拍预览、小葵和我 | [按需读取](effects/selfie-preview-illustration.md) |
+| 手机透视画面 | 原手机外壳和人物底图完整保留，自拍预览通过原四角透视映入倾斜屏幕。 | 原手机透视画面、小葵和我 | [按需读取](effects/selfie-phone-screen-illustration.md) |
 
 ## 文字与叙事
 
@@ -584,3 +585,4 @@
 | 蘑菇云翻卷与球涡交接 | 完整保留原烟羽、回卷头部、浓淡变化和球涡理想化的同一粒子关系。 | 蘑菇云翻卷与球涡交接、螺旋丸家族 | [按需读取](effects/mushroom-sphere-journey.md) |
 | 环线构建到球涡的连续演变 | 原环线构建和剖面展开接上烟羽回卷；头部的轮廓、材质和时间逐步变为球涡，共用原场景交接。 | 环线构建到球涡的连续演变、螺旋丸家族 | [按需读取](effects/ring-sphere-journey.md) |
 | 能量球显影与局部电弧 | 原流场从稀疏向密集显影，局部电弧沿球内真实轨迹逐渐加入。 | 能量球显影与局部电弧、螺旋丸家族 | [按需读取](effects/energy-discharge-journey.md) |
+| 窗外实验树开花 | 从窗内枯树开始，六色真实花簇逐步越过胡桃木窗框，保留玻璃、后景花与近景花的原遮挡。 | 窗外实验树、outside the window、六色花树、沿枝开花 | [按需读取](effects/window-experiment-journey.md) |

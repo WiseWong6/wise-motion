@@ -1288,10 +1288,14 @@ function drawFlight(ctx, story) {
   if(mode==='flight'){draw('sea');draw('flight');return;}
   if(mode==='airplane'){c.save();c.translate(width/2,height/2);drawAirplane(c,Math.min(width,height)*.16);c.restore();return;}
   if(mode==='seat'){
-    // 独立样式共用同一姿态；绳子的终点与座板不能各取一段故事里的长度。
-    const pose={...story,deploy:1,length:100,angle:0,pitch:0,seatTilt:0,darkness:0,ropeGrip:0,ropeSlack:0};
+    // 原片空载、完全展开且摆动已停的姿态；独立插画不受握绳动作影响。
+    const pose={...flightAt(18.25),darkness:0,ropeGrip:0};
     const seat=swingSeatGeometry(sunR,pose.deploy);
-    const ropes=[-1,1].map(side=>ropeAt(pose,side,pose.length));
+    const ropes=[-1,1].map(side=>{
+      const rope=ropeAt(pose,side,pose.length);
+      // 没有飞机或握绳角色时，上端对齐座板连接点，两根绳子竖直悬挂。
+      return {...rope,topX:rope.bottomX,guide:{...rope.guide,x:rope.bottomX}};
+    });
     const left=Math.min(seat.left,...ropes.map(r=>r.topX));
     const right=Math.max(seat.right+seat.offset,...ropes.map(r=>r.topX));
     const top=Math.min(...ropes.map(r=>r.topY)),bottom=pose.length+seat.thickness;

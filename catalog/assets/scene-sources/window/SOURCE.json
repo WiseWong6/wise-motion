@@ -1,0 +1,92 @@
+{
+  "name": "窗外实验树",
+  "source_project": "/Users/wisewong/Documents/Developer/scenes/未完成/outsideTheWindow",
+  "source_entry": "lab.html",
+  "extraction": "原作只读。保留实验树数据、花位排布与花期计算、枝干及花朵绘制、六色花朵和木纹 PNG 原字节。仅以目录当前时间替换原页面时钟，固定两倍像素密度；独立树使用透明背景，组合沿用原玻璃、木框与前后遮挡。",
+  "duration_seconds": 3.8908080543907295,
+  "playback_speed": 1.4,
+  "logical_size": [
+    720,
+    960
+  ],
+  "canvas_size": [
+    1440,
+    1920
+  ],
+  "original_files": {
+    "lab.js": {
+      "bytes": 61238,
+      "sha256": "488f22d6439273c7fa01db8eb01d0a959d9801d55620d7cbdb942e09d52c855e"
+    },
+    "lab-data.js": {
+      "bytes": 5192384,
+      "sha256": "7cebc04b81c7ac7cc96eba620f22968106d47422c620afa0995cde3fd4d32e34"
+    },
+    "flower-assets.js": {
+      "bytes": 2044,
+      "sha256": "d5bdd20b20f7018b97a74fea3e5c6fa288ed2a3fa78c5f7da583d3cd96692fa4"
+    },
+    "gold-flower.js": {
+      "bytes": 6204,
+      "sha256": "6b413f29204c8bfc1d5ad2cd73e725e1e8441d6e95a0e3a17f8b69aef4c42f90"
+    },
+    "wood-art.js": {
+      "bytes": 3760,
+      "sha256": "964821f25c9e0f9746b32051f94cfbb2c08ac13c67857aa5b1332c6c23a1ca28"
+    }
+  },
+  "assets": {
+    "assets/seasonal-flowers/green-chrysanthemum.png": {
+      "bytes": 1584582,
+      "sha256": "ef50098531b0221306c06e2dc966cff7d857a4405fa46fa67ccca73e540291fb"
+    },
+    "assets/gold-flower/bloom-sheet.png": {
+      "bytes": 925844,
+      "sha256": "c3b92116b8fe15a6c2a6c43add849ea934702e86e50bb1949e3e63b7f7a430dc"
+    },
+    "assets/seasonal-flowers/orange-tulip-angles.png": {
+      "bytes": 1497730,
+      "sha256": "444b1d20a499c42cb07e4a74179af326fb1c5ebd23f4f0d78ff01b2163b454ab"
+    },
+    "assets/seasonal-flowers/green-hydrangea.png": {
+      "bytes": 1233529,
+      "sha256": "5dcc2ac7cc6437b8b1b0b691b08569353cbfd2ce54ea61eef9e5c6f92fcf94bf"
+    },
+    "assets/seasonal-flowers/red-rose.png": {
+      "bytes": 1431325,
+      "sha256": "172b287e133a7c570943f0382314a47f608aa347ecfd8546d5017aad1925e37f"
+    },
+    "assets/seasonal-flowers/blue-hydrangea.png": {
+      "bytes": 1264379,
+      "sha256": "3505ab507035a8cc70d6d4a437bcee8fa5947ad68d30d3ebf17c746abf5662c8"
+    },
+    "assets/wood/walnut-window.png": {
+      "bytes": 958397,
+      "sha256": "e4fca4c512e22a7a959e5f76e3eec791133394cbe79ab513c6a9e838819e86e1"
+    },
+    "assets/wood/bare-bark.png": {
+      "bytes": 1860888,
+      "sha256": "1e2cea317d1682597101ebbc444a88a6a07e2b00ee655dbb1f98a644a2a591c5"
+    }
+  },
+  "preserved_sections": [
+    {
+      "name": "排布与花期",
+      "begin": "const {branches,leaves,flowers}=data;",
+      "end": "const density=2;",
+      "sha256": "5ddc03ebb63158024df1d5deeff508399a9291511705401e871ecb535ea55fbe"
+    },
+    {
+      "name": "枝条与花朵绘制",
+      "begin": "// 同一花簇共用主色",
+      "end": "function composeScene(t",
+      "sha256": "50efd7f97d817510e857e21f9fcbd1614175ab4028c5cf4fee7d04ed81acdcd6"
+    },
+    {
+      "name": "后景与窗框绘制",
+      "begin": "function drawBackgroundFlowers(ctx,t)",
+      "end": "const parts=opt.mode==='full'?",
+      "sha256": "99542225458c11bb35ea8a57fd416d84642ab7651819d266a02ea0ec287f5e34"
+    }
+  ]
+}

@@ -57,3 +57,56 @@ test('转身与返回的场景隔离、足迹和乱序定位保持一致',async(
   for(const t of times.reverse()){draw(t);assert.equal(root.dataset.pose,poses.get(t),'回拖改变足迹或转身姿态');}
  }finally{draw?.destroy();env.close();}
 });
+
+test('两个独立自拍条目保留原手机底图，与完整组合的屏幕透视、镜像和倒计时一致',async()=>{
+ const env=await environment(),{w}=env,root=w.document.getElementById('root');let draw;
+ const contexts=new WeakMap(),native=w.HTMLCanvasElement.prototype.getContext;
+ const imageNames=new Map(Object.entries(w.WiseSceneImageData).map(([path,url])=>[url,path]));
+ w.HTMLCanvasElement.prototype.getContext=function(...args){
+  const ctx=native.apply(this,args);if(!ctx||contexts.has(this))return ctx;
+  const record={images:[],transforms:[],clips:[],scales:[],text:[],path:[]};contexts.set(this,record);
+  for(const method of ['clearRect','drawImage','transform','clip','beginPath','moveTo','lineTo','scale','fillText']){
+   const fn=ctx[method];ctx[method]=function(...values){
+    if(method==='clearRect'){record.images=[];record.transforms=[];record.clips=[];record.scales=[];record.text=[];record.path=[];}
+    if(method==='drawImage')record.images.push(values);
+    if(method==='transform')record.transforms.push(values);
+    if(method==='clip')record.clips.push(record.path.slice());
+    if(method==='beginPath')record.path=[];
+    if(method==='moveTo'||method==='lineTo')record.path.push([method,...values]);
+    if(method==='scale')record.scales.push(values);
+    if(method==='fillText')record.text.push(values);
+    return fn.apply(this,values);
+   };
+  }
+  return ctx;
+ };
+ const record=layer=>contexts.get(root.querySelector(`canvas[data-layer="${layer}"]`));
+ const image=([node,...args])=>({name:imageNames.get(node.src)||'canvas',args});
+ const screen=part=>{
+  const preview=contexts.get(part.images[0][0]);
+  return {images:part.images.map(image),transforms:part.transforms,clips:part.clips,
+   preview:{images:preview.images.map(image),scales:preview.scales,text:preview.text}};
+ };
+ const times=[0,300,1500,2900,3800,5500,7750],reference=new Map();
+ try{
+  draw=w.MotionKit.createRenderer(root,data.effects.find(e=>e.id==='xiaokui-selfie-journey'));await draw.ready;
+  for(const ms of times){
+   draw(ms);reference.set(ms,{body:image(record('scene').images[0]),screen:screen(record('screen'))});
+  }
+  draw.destroy();draw=null;root.replaceChildren();
+  for(const id of ['selfie-preview-illustration','selfie-phone-screen-illustration']){
+   draw=w.MotionKit.createRenderer(root,data.effects.find(e=>e.id===id));await draw.ready;
+   for(const ms of [...times,...times.slice().reverse()]){
+    draw(ms);const actual=record('art'),expected=reference.get(ms);
+    assert.equal(actual.images.length,97,id+' 必须先画手机底图，再画96片透视屏幕');
+    assert.deepEqual(image(actual.images[0]),expected.body,'保留组合中的手机原图、位置和比例');
+    assert.equal(expected.body.name,'assets/scene-sources/selfie/手机与人物.png');
+    assert.deepEqual(expected.body.args,[0,0,1086,1448]);
+    assert.deepEqual(screen({...actual,images:actual.images.slice(1)}),expected.screen,'手机屏幕与原组合在同一时刻一致，回拖不改变画面');
+    assert.deepEqual(expected.screen.preview.scales,[[-1,1]],'自拍只镜像一次');
+    const before=actual.images.length;draw(ms);assert.equal(actual.images.length,before,'暂停定位不重复绘制');
+   }
+   draw.destroy();draw=null;root.replaceChildren();
+  }
+ }finally{draw?.destroy();env.close();}
+});

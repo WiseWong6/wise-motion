@@ -82,5 +82,8 @@ export const FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/scene-osmanthus.js",
   "catalog/effects/scene-selfie-images.js",
   "catalog/effects/scene-selfie.js",
-  "catalog/effects/scene-snow.js"
+  "catalog/effects/scene-snow.js",
+  "catalog/effects/scene-window-data.js",
+  "catalog/effects/scene-window-media.js",
+  "catalog/effects/scene-window.js"
 ]);

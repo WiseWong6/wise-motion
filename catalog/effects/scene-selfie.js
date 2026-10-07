@@ -2139,13 +2139,13 @@
 })(typeof globalThis==='object'?globalThis:this);
 
  const Film=S.env.Film;
- const ready=Film.loadAssets(S.image,S.canvas);const screen=S.canvas(600,820),sc=screen.getContext('2d');
+ const ready=Film.loadAssets(S.image,S.canvas);
  return {ready,draw(t,mode,part){const c=S.ctx,p=Film.at(t),m=Film.catState(p);
   if(mode==='full'){Film.render(c,t,part==='art'?null:part);return;}
   // 走位动作保留原手机底图与屏幕，作为转身和返回的位置参照。
   if(mode==='cat-phone'){Film.render(c,t);return;}
-  if(mode==='preview'){Film.renderPreview(sc,t);c.drawImage(screen,243,240,600,820);return;}
-  if(mode==='phone'){Film.renderPhone(c,t);return;}
+  // 独立自拍也保留原手机底图，屏幕内容仍按原四角透视绘制。
+  if(mode==='preview'||mode==='phone'){Film.render(c,t,'scene');Film.renderPhone(c,t);return;}
   if(mode==='cat'){Film.drawShadow(c,m,p);Film.drawCat(c,p,m);return;}
  },inspect:t=>{const p=Film.at(t),m=Film.catState(p);return {phase:p.phase,frame:p.sourceFrame,view:Film.exteriorView(p),position:Film.catPosition(p),feet:Film.exteriorFeet(p,m),press:p.shutterPress};}};
 
