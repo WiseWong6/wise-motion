@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {JSDOM,VirtualConsole} from 'jsdom';
-const css = await readFile(new URL('../catalog/app.css',import.meta.url),'utf8');
+const css = (await Promise.all(['frame.css','app.css'].map(file => readFile(new URL('../catalog/'+file,import.meta.url),'utf8')))).join('\n');
 const luminance = hex => {
   const rgb = hex.match(/[0-9a-f]{2}/gi).map(c => parseInt(c,16)/255).map(c => c <= .04045 ? c/12.92 : ((c+.055)/1.055)**2.4);
   return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;

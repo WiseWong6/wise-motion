@@ -5,12 +5,13 @@ import path from 'node:path';
 import {resolveEffect} from '../remotion/clock.mjs';
 import contentApi from '../catalog/content.js';
 import {layerFingerprint} from './layer-status.mjs';
+import {LAYER_AUDIT_VERSION} from '../remotion/layer-policy.mjs';
 import {openProbe} from './browser-probe.mjs';
 import {assertRenderWrite} from './output-boundary.mjs';
 const output=process.argv[2];if(!output)throw Error('请提供源码外的审计结果路径；可用 WISE_MOTION_RENDER_DIR 指定产物根');
 await assertRenderWrite(path.resolve(output));
 const reviewed=[['type-reveal',{text:'涂鸦做网站'}],['count-up',{value:1e6,format:'compact',suffix:' tokens',caption:'上下文容量'}],['word-focus',{words:['涂鸦','网站','发布']}]];
-const report={version:1,scope:'已审查三种纯文字绘制；默认和中文内容、深浅外观、全帧透明通道。其他动效未批准。',results:[]};
+const report={version:LAYER_AUDIT_VERSION,scope:'三种纯文字绘制；默认和中文内容、深浅外观；各取样帧整幅画面的透明通道。',fingerprintScope:'实际绘制依赖及顺序、共享样式与字体、帧适配器、组件和审计判断；不包含目录交互样式或无关绘制器清单。',results:[]};
 const probe=await openProbe();
 try{
   report.browser=await probe.page.evaluate(()=>navigator.userAgent);
@@ -23,6 +24,7 @@ try{
         if(alpha.edge>0||alpha.fraction>.4||(t===definition.preview_ms&&alpha.visible<30))row.status='own-background';
       }
     }
+    if(row.fingerprint!==layerFingerprint(definition))throw new Error('取证期间源码已变化：'+id+'；本轮结果无效，请稳定源码后重试');
     report.results.push(row);console.log(id+'：'+row.status);
   }
 }finally{await probe.close();}

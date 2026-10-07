@@ -145,7 +145,8 @@ test('蝴蝶动作与插画的缩略图等待全部图片解码后保留，缺�
         assert.equal(host.querySelector(`[data-part="${wing.id}"]`).style.transform,
           `rotateY(${wing.yaw}deg) rotateZ(${wing.roll}deg)`);
       }
-      w.MotionThumbs.release(host);
+      // 每次都重新准备图片，末次缺图检查不能借用前次缓存的成功画面。
+      w.MotionThumbs.release(host,false);
     }
     w.MotionThumbs.attach(host, def('hinged-wing-flap')); env.reveal(); await tick();
     host.querySelector('img').dispatchEvent(new w.Event('error'));
