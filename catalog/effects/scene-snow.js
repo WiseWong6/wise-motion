@@ -21,7 +21,11 @@ const PERLIN_SIZE = 4095;
 let perlin_octaves = 4; // default to medium smooth
 let perlin_amp_falloff = 0.5; // 50% reduction/octave
 
-const scaled_cosine = i => 0.5 * (1.0 - Math.cos(i * Math.PI));
+// 噪声每次更新要调用数十万次；固定数学函数，避免反复查找场景环境。
+const noiseCos = Math.cos;
+const noiseFloor = Math.floor;
+const noisePi = Math.PI;
+const scaled_cosine = i => 0.5 * (1.0 - noiseCos(i * noisePi));
 
 let perlin; // will be initialized lazily by noise() or noiseSeed()
 
@@ -43,9 +47,9 @@ globalThis.noise = function(x, y = 0, z = 0) {
     z = -z;
   }
 
-  let xi = Math.floor(x),
-    yi = Math.floor(y),
-    zi = Math.floor(z);
+  let xi = noiseFloor(x),
+    yi = noiseFloor(y),
+    zi = noiseFloor(z);
   let xf = x - xi;
   let yf = y - yi;
   let zf = z - zi;
@@ -150,6 +154,7 @@ const INK = "#0B0B0E";
 const PAPER = "#F5F0CE";
 const FALLING_SHAPES = ["cross", "snowflake"];
 const ANIMATION_STEP = 1 / 60;
+const FOG_FPS = 8;
 const DROP_MERGE_SECONDS = 0.55;
 
 // 隔湖视角，沿用用户照片的取景范围；来源和取舍见 references/shenzhen-skyline-sources.md。
@@ -221,7 +226,7 @@ let sceneTime = 0;
 let animationRemainder = 0;
 let nextDropAt = 0;
 let nextSnowAt = 0;
-let nextFogAt = 0;
+let fogFrame = -1;
 let nextMeteorAt = 0;
 let shootingStar = null;
 let previousDropKind = null;
@@ -597,9 +602,11 @@ function drawSky() {
 }
 
 function drawFog() {
-  if (sceneTime >= nextFogAt) {
-    updateFogTexture();
-    nextFogAt = sceneTime + 1 / 8;
+  // 按固定时间格取样，连续播放和回拖共用同一张云雾，不逐帧重算。
+  const frame = Math.floor(sceneTime * FOG_FPS + 1e-7);
+  if (frame !== fogFrame) {
+    updateFogTexture(frame / FOG_FPS);
+    fogFrame = frame;
   }
   const ctx = drawingContext;
   ctx.save();
@@ -608,27 +615,33 @@ function drawFog() {
   ctx.restore();
 }
 
-function updateFogTexture() {
+function updateFogTexture(seconds) {
   // 小尺寸连续噪声配合宽窄不一的云带，留出清澈天空，不铺一层灰罩。
-  fogLayer.loadPixels();
-  const time = sceneTime * 0.018;
-  for (let y = 0; y < fogLayer.height; y++) {
-    const height = y / (fogLayer.height - 1);
-    const edgeFade = pow(sin(PI * height), 1.5);
-    for (let x = 0; x < fogLayer.width; x++) {
-      const broad = noise(x * 0.026 + time * 0.4, y * 0.038 - time * 0.12, time);
-      const detail = noise(x * 0.064 + 31, y * 0.075 - time * 0.3, time * 0.65);
-      const center = 0.3 + x / fogLayer.width * 0.3 + 0.055 * sin(x * 0.025 + time * 0.3);
-      const ribbon = Math.exp(-(((height - center) / 0.2) ** 2));
-      const density = smoothstep(0.34, 0.7, broad * 0.76 + detail * 0.24);
-      const index = (y * fogLayer.width + x) * 4;
-      fogLayer.pixels[index] = 75;
-      fogLayer.pixels[index + 1] = 106;
-      fogLayer.pixels[index + 2] = 218;
-      fogLayer.pixels[index + 3] = density * edgeFade * (8 + ribbon * 26);
+  const layer = fogLayer;
+  layer.loadPixels();
+  const { width, height, pixels } = layer;
+  const sampleNoise = noise;
+  const { sin, pow, exp, min, max, PI } = Math;
+  const time = seconds * 0.018;
+  const centers = Array.from({ length: width }, (_, x) =>
+    0.3 + x / width * 0.3 + 0.055 * sin(x * 0.025 + time * 0.3));
+  for (let y = 0; y < height; y++) {
+    const progress = y / (height - 1);
+    const edgeFade = pow(sin(PI * progress), 1.5);
+    for (let x = 0; x < width; x++) {
+      const broad = sampleNoise(x * 0.026 + time * 0.4, y * 0.038 - time * 0.12, time);
+      const detail = sampleNoise(x * 0.064 + 31, y * 0.075 - time * 0.3, time * 0.65);
+      const ribbon = exp(-(((progress - centers[x]) / 0.2) ** 2));
+      const amount = min(1, max(0, (broad * 0.76 + detail * 0.24 - 0.34) / (0.7 - 0.34)));
+      const density = amount * amount * (3 - 2 * amount);
+      const index = (y * width + x) * 4;
+      pixels[index] = 75;
+      pixels[index + 1] = 106;
+      pixels[index + 2] = 218;
+      pixels[index + 3] = density * edgeFade * (8 + ribbon * 26);
     }
   }
-  fogLayer.updatePixels();
+  layer.updatePixels();
 }
 
 function createSnowflake(initial = false) {
@@ -1059,8 +1072,8 @@ function drawGrain() {
  function clone(v){return Array.isArray(v)?v.map(clone):v&&typeof v==='object'?Object.fromEntries(Object.entries(v).map(([k,x])=>[k,clone(x)])):v;}
  setup();const initializedSeed=seedState(),initial=clone({buildings,drops,snow,nextDropAt,nextSnowAt,nextMeteorAt,previousDropKind});
  if(opt.score!==false){S.env.cityScore=originalScore;S.env.cityAudio={transport:()=>({session:'original-events',time:sceneTime,duration:originalScore.duration})};}
- function reset(){seedState(initializedSeed);buildings=clone(initial.buildings);windows=buildings.flatMap(b=>b.windows);drops=clone(initial.drops).map(d=>({...d,target:windows.find(w=>w.x===d.target.x&&w.y===d.target.y)}));snow=clone(initial.snow);sceneTime=0;animationRemainder=0;nextDropAt=initial.nextDropAt;nextSnowAt=initial.nextSnowAt;nextMeteorAt=initial.nextMeteorAt;shootingStar=null;previousDropKind=initial.previousDropKind;musicTransport=null;musicDropEvents.clear();nextFogAt=0;}
- function seek(t){const frame=Math.floor(t*60+1e-7);if(frame<Math.round(sceneTime*60))reset();while(Math.round(sceneTime*60)<frame)advanceAnimation(1/60);syncMusicDrops();if(musicTransport){updateFallingDrops(0,true);updateWindows();}nextFogAt=-Infinity;}
+ function reset(){seedState(initializedSeed);buildings=clone(initial.buildings);windows=buildings.flatMap(b=>b.windows);drops=clone(initial.drops).map(d=>({...d,target:windows.find(w=>w.x===d.target.x&&w.y===d.target.y)}));snow=clone(initial.snow);sceneTime=0;animationRemainder=0;nextDropAt=initial.nextDropAt;nextSnowAt=initial.nextSnowAt;nextMeteorAt=initial.nextMeteorAt;shootingStar=null;previousDropKind=initial.previousDropKind;musicTransport=null;musicDropEvents.clear();}
+ function seek(t){const frame=Math.floor(t*60+1e-7);if(frame<Math.round(sceneTime*60))reset();while(Math.round(sceneTime*60)<frame)advanceAnimation(1/60);syncMusicDrops();if(musicTransport){updateFallingDrops(0,true);updateWindows();}}
  return {prepare(t){seek(t);},draw(t,mode,part){
   if(mode==='full'){const show=id=>part==='art'||part===id;if(show('sky')){drawSky();drawShootingStars();drawFog();}if(show('back-snow'))drawSnow(false);if(show('city'))drawCity();if(show('arrival'))drawFallingDrops();if(show('front-snow')){drawSnow(true);drawGrain();}return;}
   // 楼影插画保留原夜景美术：蓝色天空和云雾垫底，纸纹覆盖楼群与窗灯。

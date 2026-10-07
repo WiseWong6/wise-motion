@@ -272,6 +272,22 @@
       "variants": []
     },
     {
+      "id": "star-letter-blue-journey",
+      "name": "星月来信蓝色背景版",
+      "group": "letter",
+      "tracks": [
+        {
+          "name": "原键盘、发送、水声、飞行与星河配乐",
+          "src": "catalog/assets/composition-audio/letter/mix.mp3",
+          "start_ms": 0,
+          "duration_ms": 25000,
+          "offset_ms": 0,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
       "id": "xiaokui-selfie-journey",
       "name": "小葵和我",
       "group": "selfie",
@@ -302,25 +318,9 @@
         }
       ],
       "variants": []
-    },
-    {
-      "id": "ink-ocean-journey",
-      "name": "水墨水母群体消散",
-      "group": "ink",
-      "tracks": [
-        {
-          "name": "原水墨微光配乐",
-          "src": "catalog/assets/composition-audio/ink/水墨微光.m4a",
-          "start_ms": 0,
-          "duration_ms": 25000,
-          "offset_ms": 161000,
-          "volume": 1
-        }
-      ],
-      "variants": []
     }
   ],
   "rebuild": "node scripts/build-composition-audio.mjs（随包原合成代码与固定排程；需要已有Remotion浏览器与ffmpeg）。原录音直接沿用；演进样片MP3由随包audio.cjs原声编码得到。",
-  "timing": "演进样片按原时间截取；手机组合原片从33秒开始。水墨水族馆对应原片161–186秒。雨伞组合使用原曲前24.543秒，按目录画面结束。音轨独立保留原文件，不改变绘制或组合总长。",
+  "timing": "演进样片按原时间截取；手机组合原片从33秒开始。雨伞组合使用原曲前24.543秒，按目录画面结束。音轨独立保留原文件，不改变绘制或组合总长。",
   "rights": "程序许可不覆盖第三方音乐或录音。每组保留来源、原作说明、许可和合成源码。"
 }

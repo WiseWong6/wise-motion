@@ -79,7 +79,7 @@ test('变速同步改变声音入点、时长和播放速度，源文件截取�
 
 test('原声截取与实际组合画面对应；复制源码保留文件、合成程序和静音选项', async () => {
   assert.equal(resolveEffect('material-phone-sequence').audio.tracks[0].offset_ms,33000);
-  assert.equal(resolveEffect('ink-ocean-journey').audio.tracks[0].offset_ms,161000);
+  assert.throws(() => resolveEffect('ink-ocean-journey'), /未知动效/);
   const env = await environment();
   try {
     env.w.eval(await readFile(new URL('catalog/export.js',root),'utf8'));

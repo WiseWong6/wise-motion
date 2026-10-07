@@ -35878,8 +35878,8 @@
       ],
       "retain": "保留原轮廓、比例、材质、固定数据及时间关系；保留当前原源码的暖色竖版：飞机接走太阳、收绳巡航，最后进入夜色与星空。",
       "avoid": "不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。",
-      "duration_ms": 65000,
-      "preview_ms": 35750,
+      "duration_ms": 21500,
+      "preview_ms": 17875,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -35929,7 +35929,7 @@
       "trigger": "打开后按原时间播放；可暂停、重播与定位。",
       "analogy": "保留当前原源码的暖色竖版：飞机接走太阳、收绳巡航，最后进入夜色与星空。",
       "assumptions": "使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。",
-      "tempo_note": "保留原作第0秒起的65秒；速度控件统一缩放时间。",
+      "tempo_note": "只保留原作前43秒，整体以2倍速播放，总长21.5秒；速度控件统一缩放时间。",
       "recommendation": "需要海面上的夕阳的造型或动作关系时直接复用。",
       "scene": {
         "family": "ocean",
@@ -35942,8 +35942,8 @@
             "id": "sea",
             "name": "夕阳、海面与接触水纹",
             "start": 0,
-            "end": 65000,
-            "time": "0—65秒",
+            "end": 21500,
+            "time": "0—21.5秒",
             "detail": "暖色天空与海面保持低对比波纹；太阳、座板和滴水在各自接触位置引起倒影与涟漪。",
             "actions": [
               "sunset-sun-illustration",
@@ -35955,8 +35955,8 @@
             "id": "night",
             "name": "暮色与星空",
             "start": 0,
-            "end": 65000,
-            "time": "0—65秒",
+            "end": 21500,
+            "time": "0—21.5秒",
             "detail": "晚霞逐渐变暗，星点沿太阳被接走后的时序显现。",
             "actions": [
               "sunset-sea-illustration"
@@ -35966,8 +35966,8 @@
             "id": "flight",
             "name": "飞机、柔绳、座板与太阳",
             "start": 0,
-            "end": 65000,
-            "time": "0—65秒",
+            "end": 21500,
+            "time": "0—21.5秒",
             "detail": "飞机减速放下绳索，座板入水托起握绳太阳；负重回升、滴水、收绳与巡航连续接续。",
             "actions": [
               "seat-water-lift",
@@ -35983,7 +35983,8 @@
           "sea",
           "night",
           "flight"
-        ]
+        ],
+        "playback_rate": 2
       },
       "reproduction": {
         "objects": "保留暖色竖版：飞机接走太阳、收绳巡航，最后进入夜色与星空。",
@@ -35994,15 +35995,15 @@
           "收绳巡航后进入夜色，星点沿原时序显现。"
         ],
         "retain": "保留暖色竖版：飞机接走太阳、收绳巡航，最后进入夜色与星空。",
-        "tempo_note": "从0秒的位置开始展示，播放65秒，各部件共用同一动作秒数。",
+        "tempo_note": "从原作0秒开始，仅保留前43秒并整体以2倍速播放，总长21.5秒，各部件共用同一动作秒数。",
         "avoid": "所有动作由当前帧计算，随机分布固定，定位时呈现同一画面。",
         "layers": [
           {
             "id": "sea",
             "name": "夕阳、海面与接触水纹",
             "start": 0,
-            "end": 65000,
-            "time": "0—65秒",
+            "end": 21500,
+            "time": "0—21.5秒",
             "detail": "暖色天空与海面保持低对比波纹；太阳、座板和滴水在各自接触位置引起倒影与涟漪。",
             "actions": [
               "sunset-sun-illustration",
@@ -36014,8 +36015,8 @@
             "id": "night",
             "name": "暮色与星空",
             "start": 0,
-            "end": 65000,
-            "time": "0—65秒",
+            "end": 21500,
+            "time": "0—21.5秒",
             "detail": "晚霞逐渐变暗，星点沿太阳被接走后的时序显现。",
             "actions": [
               "sunset-sea-illustration"
@@ -36025,8 +36026,8 @@
             "id": "flight",
             "name": "飞机、柔绳、座板与太阳",
             "start": 0,
-            "end": 65000,
-            "time": "0—65秒",
+            "end": 21500,
+            "time": "0—21.5秒",
             "detail": "飞机减速放下绳索，座板入水托起握绳太阳；负重回升、滴水、收绳与巡航连续接续。",
             "actions": [
               "seat-water-lift",
@@ -36045,18 +36046,20 @@
             "name": "原飞机、绳索、落水与星光音效",
             "src": "catalog/assets/composition-audio/ocean/mix.mp3",
             "start_ms": 0,
-            "duration_ms": 65000,
+            "duration_ms": 21500,
             "offset_ms": 0,
-            "volume": 1
+            "volume": 1,
+            "rate": 2
           },
           {
             "name": "原海浪录音",
             "src": "catalog/assets/composition-audio/ocean/ocean-waves.mp3",
             "start_ms": 0,
-            "duration_ms": 65000,
+            "duration_ms": 21500,
             "volume": 0.24,
-            "fade_in_ms": 500,
-            "fade_out_ms": 800
+            "fade_in_ms": 250,
+            "rate": 2,
+            "fade_out_ms": 400
           }
         ],
         "sources": [
@@ -37718,8 +37721,8 @@
       ],
       "retain": "保留原轮廓、比例、材质、固定数据及时间关系；保留逐字输入、发送光面、水波化形、原符号群飞落定与银河展开的完整前后交接。",
       "avoid": "不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。",
-      "duration_ms": 95000,
-      "preview_ms": 52250,
+      "duration_ms": 25000,
+      "preview_ms": 13750,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -37778,7 +37781,7 @@
       "trigger": "打开后按原时间播放；可暂停、重播与定位。",
       "analogy": "保留逐字输入、发送光面、水波化形、原符号群飞落定与银河展开的完整前后交接。",
       "assumptions": "使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。",
-      "tempo_note": "保留原作第0秒起的95秒；速度控件统一缩放时间。",
+      "tempo_note": "只保留原作前25秒，按原速播放；速度控件统一缩放时间。",
       "recommendation": "需要星月来信完整旅程的造型或动作关系时直接复用。",
       "scene": {
         "family": "letter",
@@ -37791,8 +37794,8 @@
             "id": "galaxy",
             "name": "夜空与银河展开",
             "start": 0,
-            "end": 95000,
-            "time": "0—95秒",
+            "end": 25000,
+            "time": "0—25秒",
             "detail": "银河亮星位置固定，天空按旋转、缩放与遮罩范围逐步展开。",
             "actions": [
               "galaxy-axis-reveal",
@@ -37803,8 +37806,8 @@
             "id": "flight",
             "name": "发送光面、水波、群飞与落星",
             "start": 0,
-            "end": 95000,
-            "time": "0—95秒",
+            "end": 25000,
+            "time": "0—25秒",
             "detail": "发送后水波展开，126件符号分别飞向固定亮星落点，抵达后显星并继续闪烁。",
             "actions": [
               "letter-ripple",
@@ -37818,8 +37821,8 @@
             "id": "composer",
             "name": "逐字输入与发送界面",
             "start": 0,
-            "end": 95000,
-            "time": "0—95秒",
+            "end": 25000,
+            "time": "0—25秒",
             "detail": "圆角输入框逐字出现文字，箭头转为发送进度，发送与背景光面保持同一时间。",
             "actions": [
               "type-reveal"
@@ -37840,15 +37843,15 @@
           "银河沿原中轴展开，星芒错峰明灭。"
         ],
         "retain": "保留逐字输入、发送光面、水波化形、原符号群飞落定与银河展开的完整前后交接。",
-        "tempo_note": "从0秒的位置开始展示，播放95秒，各部件共用同一动作秒数。",
+        "tempo_note": "从原作0秒开始，只播放前25秒，各部件共用同一动作秒数。",
         "avoid": "所有动作由当前帧计算，随机分布固定，定位时呈现同一画面。",
         "layers": [
           {
             "id": "galaxy",
             "name": "夜空与银河展开",
             "start": 0,
-            "end": 95000,
-            "time": "0—95秒",
+            "end": 25000,
+            "time": "0—25秒",
             "detail": "银河亮星位置固定，天空按旋转、缩放与遮罩范围逐步展开。",
             "actions": [
               "galaxy-axis-reveal",
@@ -37859,8 +37862,8 @@
             "id": "flight",
             "name": "发送光面、水波、群飞与落星",
             "start": 0,
-            "end": 95000,
-            "time": "0—95秒",
+            "end": 25000,
+            "time": "0—25秒",
             "detail": "发送后水波展开，126件符号分别飞向固定亮星落点，抵达后显星并继续闪烁。",
             "actions": [
               "letter-ripple",
@@ -37874,8 +37877,8 @@
             "id": "composer",
             "name": "逐字输入与发送界面",
             "start": 0,
-            "end": 95000,
-            "time": "0—95秒",
+            "end": 25000,
+            "time": "0—25秒",
             "detail": "圆角输入框逐字出现文字，箭头转为发送进度，发送与背景光面保持同一时间。",
             "actions": [
               "type-reveal"
@@ -37889,7 +37892,213 @@
             "name": "原键盘、发送、水声、飞行与星河配乐",
             "src": "catalog/assets/composition-audio/letter/mix.mp3",
             "start_ms": 0,
-            "duration_ms": 95000,
+            "duration_ms": 25000,
+            "offset_ms": 0,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/letter/SOURCE.json"
+        ]
+      }
+    },
+    {
+      "id": "star-letter-blue-journey",
+      "name": "星月来信蓝色背景版",
+      "kind": "composition",
+      "category": "compositions",
+      "summary": "蓝色背景上的星月来信，保留逐字输入、发送光面、水波化形和符号群飞落定的前25秒。",
+      "purpose": "蓝色背景上的星月来信，保留逐字输入、发送光面、水波化形和符号群飞落定的前25秒。",
+      "objects": "蓝色背景上的输入框、文字、水波、星月符号与银河",
+      "phases": [
+        "文字逐字进入原输入框，发送后光面展开收束。",
+        "水波按距离推动文字变化，原符号沿各自曲线飞离并原位化星。",
+        "银河沿原中轴展开，星芒错峰明灭。"
+      ],
+      "aliases": [
+        "星月来信蓝色背景版",
+        "星月来信蓝底",
+        "蓝色星月来信"
+      ],
+      "behaviors": [
+        "sequence",
+        "follow"
+      ],
+      "retain": "保留原轮廓、比例、材质、固定数据及时间关系；保留逐字输入、发送光面、水波化形、原符号群飞落定与银河展开的完整前后交接。",
+      "avoid": "不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。",
+      "duration_ms": 25000,
+      "preview_ms": 13750,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/scene-letter.js",
+        "factory": "star-letter-blue-journey",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。蓝色背景版沿用原作正蓝底色，前25秒与墨黑版共用绘制和声音。",
+        "dependencies": [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-letter-images.js"
+        ],
+        "assets": [
+          "catalog/assets/scene-sources/letter/素材来源.md",
+          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
+          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
+          "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt",
+          "catalog/assets/composition-audio/letter/SOURCE.json",
+          "catalog/assets/composition-audio/letter/SOURCES.md",
+          "catalog/assets/composition-audio/letter/build-audio.cjs",
+          "catalog/assets/composition-audio/letter/chime-score.js",
+          "catalog/assets/composition-audio/letter/mix.mp3",
+          "catalog/assets/composition-audio/letter/mix.mp3.json",
+          "catalog/assets/composition-audio/letter/recipe.json",
+          "catalog/assets/composition-audio/letter/sound-bank.js",
+          "catalog/assets/composition-audio/letter/sound.js"
+        ]
+      },
+      "actions": [
+        "type-reveal",
+        "letter-ripple",
+        "symbol-flight-settle",
+        "arrival-star-reveal",
+        "arrival-star-sparkle",
+        "galaxy-axis-reveal",
+        "letter-symbol-illustration",
+        "letter-galaxy-illustration"
+      ],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按原时间播放；可暂停、重播与定位。",
+      "analogy": "蓝色背景上的星月来信，保留逐字输入、发送光面、水波化形和符号群飞落定的前25秒。",
+      "assumptions": "使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。",
+      "tempo_note": "只保留原作前25秒，按原速播放；速度控件统一缩放时间。",
+      "recommendation": "需要蓝色背景的星月来信时直接复用。",
+      "scene": {
+        "family": "letter",
+        "mode": "full",
+        "start": 0,
+        "width": 660,
+        "height": 880,
+        "breakdown": [
+          {
+            "id": "galaxy",
+            "name": "蓝色夜空与银河展开",
+            "start": 0,
+            "end": 25000,
+            "time": "0—25秒",
+            "detail": "正蓝底色#164df2；银河亮星位置固定，天空按旋转、缩放与遮罩范围逐步展开。",
+            "actions": [
+              "galaxy-axis-reveal",
+              "letter-galaxy-illustration"
+            ]
+          },
+          {
+            "id": "flight",
+            "name": "发送光面、水波、群飞与落星",
+            "start": 0,
+            "end": 25000,
+            "time": "0—25秒",
+            "detail": "发送后水波展开，126件符号分别飞向固定亮星落点，抵达后显星并继续闪烁。",
+            "actions": [
+              "letter-ripple",
+              "symbol-flight-settle",
+              "arrival-star-reveal",
+              "arrival-star-sparkle",
+              "letter-symbol-illustration"
+            ]
+          },
+          {
+            "id": "composer",
+            "name": "逐字输入与发送界面",
+            "start": 0,
+            "end": 25000,
+            "time": "0—25秒",
+            "detail": "圆角输入框逐字出现文字，箭头转为发送进度，发送与背景光面保持同一时间。",
+            "actions": [
+              "type-reveal"
+            ]
+          }
+        ],
+        "layers": [
+          "galaxy",
+          "flight"
+        ],
+        "theme": "blue"
+      },
+      "reproduction": {
+        "objects": "蓝色背景上的星月来信，保留逐字输入、发送光面、水波化形和符号群飞落定的前25秒。",
+        "presentation": "设计尺寸660×880，竖版3:4；正蓝底#164df2、暖白#f9f3fb；输入框位于横向中央和70%高度，宽度为画面72%；中文使用霞鹜文楷。",
+        "phases": [
+          "文字逐字进入原输入框，发送后光面展开收束。",
+          "水波按距离推动文字变化，原符号沿各自曲线飞离并原位化星。",
+          "银河沿原中轴展开，星芒错峰明灭。"
+        ],
+        "retain": "保留逐字输入、发送光面、水波化形、原符号群飞落定与银河展开的完整前后交接。",
+        "tempo_note": "从原作0秒开始，只播放前25秒，各部件共用同一动作秒数。",
+        "avoid": "所有动作由当前帧计算，随机分布固定，定位时呈现同一画面。",
+        "layers": [
+          {
+            "id": "galaxy",
+            "name": "蓝色夜空与银河展开",
+            "start": 0,
+            "end": 25000,
+            "time": "0—25秒",
+            "detail": "正蓝底色#164df2；银河亮星位置固定，天空按旋转、缩放与遮罩范围逐步展开。",
+            "actions": [
+              "galaxy-axis-reveal",
+              "letter-galaxy-illustration"
+            ]
+          },
+          {
+            "id": "flight",
+            "name": "发送光面、水波、群飞与落星",
+            "start": 0,
+            "end": 25000,
+            "time": "0—25秒",
+            "detail": "发送后水波展开，126件符号分别飞向固定亮星落点，抵达后显星并继续闪烁。",
+            "actions": [
+              "letter-ripple",
+              "symbol-flight-settle",
+              "arrival-star-reveal",
+              "arrival-star-sparkle",
+              "letter-symbol-illustration"
+            ]
+          },
+          {
+            "id": "composer",
+            "name": "逐字输入与发送界面",
+            "start": 0,
+            "end": 25000,
+            "time": "0—25秒",
+            "detail": "圆角输入框逐字出现文字，箭头转为发送进度，发送与背景光面保持同一时间。",
+            "actions": [
+              "type-reveal"
+            ]
+          }
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原键盘、发送、水声、飞行与星河配乐",
+            "src": "catalog/assets/composition-audio/letter/mix.mp3",
+            "start_ms": 0,
+            "duration_ms": 25000,
             "offset_ms": 0,
             "volume": 1
           }
@@ -39161,10 +39370,10 @@
         "sequence",
         "follow"
       ],
-      "retain": "保留原流线形状、蓝色亮芯与球内电弧路径；从有效轨迹开始显影，放慢增密并延后电弧。",
+      "retain": "保留原流线形状、蓝色亮芯与球内电弧路径；完整保留先显影、再逐步接入电弧的次序，整体以二倍速播放。",
       "avoid": "不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。",
-      "duration_ms": 24000,
-      "preview_ms": 13200,
+      "duration_ms": 12000,
+      "preview_ms": 6600,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -39183,7 +39392,7 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "共用原流场与电弧绘制，从已保存轨迹的有效起点开始取样；显影与镜头变化放慢为二分之一，电弧延后至十二秒开始接入。"
+        "extraction": "共用原流场与电弧绘制，从已保存轨迹的有效起点开始取样；原二十四秒片段整体以二倍速播放，六秒后局部电弧逐渐接入，完整播放十二秒。"
       },
       "actions": [
         "energy-density-growth",
@@ -39194,10 +39403,10 @@
       "domains": [
         "animation"
       ],
-      "trigger": "打开后按原时间播放；可暂停、重播与定位。",
+      "trigger": "打开后按二倍速播放；可暂停、重播与定位。",
       "analogy": "原流场从稀疏向密集显影，局部电弧沿球内真实轨迹逐渐加入。",
       "assumptions": "使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。",
-      "tempo_note": "开场直接呈现稀疏球体；流线显影与镜头变化放慢为原来的二分之一，十二秒后局部电弧逐渐加入，整段二十四秒。",
+      "tempo_note": "开场直接呈现稀疏球体；原二十四秒片段整体以二倍速播放，六秒后局部电弧逐渐加入，整段十二秒。",
       "recommendation": "需要能量球显影与局部电弧的造型或动作关系时直接复用。",
       "reproduction": {
         "objects": "原流场从稀疏向密集显影，局部电弧沿球内真实轨迹逐渐加入。",
@@ -39207,17 +39416,17 @@
           "流线与亮度增密，原镜头角度连续交接。",
           "电弧沿原内部路径逐渐加入并跳亮。"
         ],
-        "retain": "保留原流线形状、蓝色亮芯与球内电弧路径；从有效轨迹开始显影，放慢增密并延后电弧。",
-        "tempo_note": "开场直接呈现稀疏球体；流线显影与镜头变化放慢为原来的二分之一，十二秒后局部电弧逐渐加入，整段二十四秒。",
+        "retain": "保留原流线形状、蓝色亮芯与球内电弧路径；完整保留先显影、再逐步接入电弧的次序，整体以二倍速播放。",
+        "tempo_note": "开场直接呈现稀疏球体；原二十四秒片段整体以二倍速播放，六秒后局部电弧逐渐加入，整段十二秒。",
         "avoid": "所有动作由当前帧计算，随机分布固定，定位时呈现同一画面。",
         "layers": [
           {
             "id": "field",
             "name": "能量流线显影增密",
             "start": 0,
-            "end": 12000,
-            "time": "0—12秒",
-            "detail": "开场即呈现稀疏球体，流线与镜头变化以原来二分之一速度逐渐增密。",
+            "end": 6000,
+            "time": "0—6秒",
+            "detail": "开场即呈现稀疏球体，流线显影、增密和镜头变化随整段以二倍速播放。",
             "actions": [
               "energy-density-growth",
               "rasengan-illustration",
@@ -39227,10 +39436,10 @@
           {
             "id": "electric",
             "name": "局部电弧逐渐接入",
-            "start": 12000,
-            "end": 24000,
-            "time": "12—24秒",
-            "detail": "十二秒后局部电弧从弱到强逐步接入，流线继续连续翻卷。",
+            "start": 6000,
+            "end": 12000,
+            "time": "6—12秒",
+            "detail": "六秒后局部电弧从弱到强逐步接入，流线继续连续翻卷。",
             "actions": [
               "energy-density-growth",
               "rasengan-illustration",
@@ -39446,165 +39655,6 @@
         "retain": "原墨团形态由逐帧浓度数据决定，下沉时边缘回卷，尾部随浓度扩散渐淡。",
         "tempo_note": "从0秒的位置开始展示，播放20秒，各部件共用同一动作秒数。",
         "avoid": "所有动作由当前帧计算，随机分布固定，定位时呈现同一画面。"
-      }
-    },
-    {
-      "id": "ink-ocean-journey",
-      "name": "水墨水母群体消散",
-      "kind": "composition",
-      "category": "compositions",
-      "summary": "按原水族馆片段从单个墨团交接到五个错时墨团，沿同一记录浓度继续扩散。",
-      "purpose": "按原水族馆片段从单个墨团交接到五个错时墨团，沿同一记录浓度继续扩散。",
-      "objects": "水墨水母群体消散的原造型及相关运动主体",
-      "phases": [
-        "单个原墨团在画面中继续回卷。",
-        "原五个错时墨团按原位置和尺度接入。",
-        "群体继续使用真实浓度数据消散。"
-      ],
-      "aliases": [
-        "水墨水母群体消散",
-        "水墨水母"
-      ],
-      "behaviors": [
-        "sequence",
-        "follow"
-      ],
-      "retain": "保留原轮廓、比例、材质、固定数据及时间关系；按原水族馆片段从单个墨团交接到五个错时墨团，沿同一记录浓度继续扩散。",
-      "avoid": "不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。",
-      "duration_ms": 25000,
-      "preview_ms": 13750,
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "source": {
-        "path": "catalog/effects/scene-ink.js",
-        "factory": "ink-ocean-journey",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
-        "dependencies": [
-          "catalog/effects/scene-source-runtime.js",
-          "catalog/effects/scene-ink-data.js"
-        ],
-        "assets": [
-          "catalog/assets/composition-audio/ink/Root.tsx",
-          "catalog/assets/composition-audio/ink/SOURCE.json",
-          "catalog/assets/composition-audio/ink/make_music.py",
-          "catalog/assets/composition-audio/ink/水墨微光.m4a"
-        ]
-      },
-      "actions": [
-        "ink-volume-roll",
-        "ink-volume-illustration"
-      ],
-      "demo_mode": "fixed-timeline",
-      "domains": [
-        "animation"
-      ],
-      "trigger": "打开后按原时间播放；可暂停、重播与定位。",
-      "analogy": "按原水族馆片段从单个墨团交接到五个错时墨团，沿同一记录浓度继续扩散。",
-      "assumptions": "使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。",
-      "tempo_note": "保留原作第0秒起的25秒；速度控件统一缩放时间。",
-      "recommendation": "需要水墨水母群体消散的造型或动作关系时直接复用。",
-      "scene": {
-        "family": "ink",
-        "mode": "full",
-        "start": 0,
-        "width": 1080,
-        "height": 1920,
-        "breakdown": [
-          {
-            "id": "single",
-            "name": "单个墨团",
-            "start": 0,
-            "end": 10000,
-            "time": "0—10秒",
-            "detail": "单个墨团由青色浓度投影构成，下沉翻卷后逐渐让位。",
-            "actions": [
-              "ink-volume-roll",
-              "ink-volume-illustration"
-            ]
-          },
-          {
-            "id": "ocean",
-            "name": "五个错时墨团",
-            "start": 3000,
-            "end": 25000,
-            "time": "3—25秒",
-            "detail": "五个墨团在固定位置按各自时间差接入，浓度继续扩散、群体渐淡。",
-            "actions": [
-              "ink-volume-roll",
-              "ink-volume-illustration"
-            ]
-          }
-        ],
-        "layers": [
-          "single",
-          "ocean"
-        ]
-      },
-      "reproduction": {
-        "objects": "按原水族馆片段从单个墨团交接到五个错时墨团，沿同一记录浓度继续扩散。",
-        "presentation": "逻辑设计尺寸1080×1920，墨团由浓度投影与细示踪点构成，使用青色、金色或墨色，透明背景。",
-        "phases": [
-          "单个原墨团在画面中继续回卷。",
-          "原五个错时墨团按原位置和尺度接入。",
-          "群体继续使用真实浓度数据消散。"
-        ],
-        "retain": "按原水族馆片段从单个墨团交接到五个错时墨团，沿同一记录浓度继续扩散。",
-        "tempo_note": "从0秒的位置开始展示，播放25秒，各部件共用同一动作秒数。",
-        "avoid": "所有动作由当前帧计算，随机分布固定，定位时呈现同一画面。",
-        "layers": [
-          {
-            "id": "single",
-            "name": "单个墨团",
-            "start": 0,
-            "end": 10000,
-            "time": "0—10秒",
-            "detail": "单个墨团由青色浓度投影构成，下沉翻卷后逐渐让位。",
-            "actions": [
-              "ink-volume-roll",
-              "ink-volume-illustration"
-            ]
-          },
-          {
-            "id": "ocean",
-            "name": "五个错时墨团",
-            "start": 3000,
-            "end": 25000,
-            "time": "3—25秒",
-            "detail": "五个墨团在固定位置按各自时间差接入，浓度继续扩散、群体渐淡。",
-            "actions": [
-              "ink-volume-roll",
-              "ink-volume-illustration"
-            ]
-          }
-        ]
-      },
-      "audio": {
-        "tracks": [
-          {
-            "name": "原水墨微光配乐",
-            "src": "catalog/assets/composition-audio/ink/水墨微光.m4a",
-            "start_ms": 0,
-            "duration_ms": 25000,
-            "offset_ms": 161000,
-            "volume": 1
-          }
-        ],
-        "sources": [
-          "catalog/assets/composition-audio/ink/SOURCE.json"
-        ]
       }
     }
   ],

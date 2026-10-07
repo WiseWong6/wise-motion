@@ -3,7 +3,8 @@
 (function(global){
  global.WiseSceneSources.letter=function(S,opt,def){
 
-const originalStage=document.createElement('div');originalStage.className='scene-letter-inner';originalStage.dataset.theme='ink';
+const sceneTheme=opt.theme==='blue'?'blue':'ink',sceneBackground=sceneTheme==='blue'?'#164df2':'#080a0e';
+const originalStage=document.createElement('div');originalStage.className='scene-letter-inner';originalStage.dataset.theme=sceneTheme;
 originalStage.style.cssText='position:absolute;width:660px;height:880px;container-type:inline-size;font-family:霞鹜文楷,serif;color:#f9f3fb;--white:#f9f3fb;box-sizing:border-box;background:transparent;left:50%;top:50%;transform-origin:center';
 // Fit in the logical stage; its parent already applies preview/thumbnail scale.
 const rect=rootSize();function rootSize(){return {width:S.root.clientWidth||640,height:S.root.clientHeight||360};}
@@ -44,7 +45,7 @@ const MATERIALS = {
   gold: {color:'#ffe39a',light:'#fff9e6',trail:'#ffe39a'}
 };
 let particles = [], text = '', busy = false, composing = false, clock = 0;
-let theme = 'ink', cycle = null, typing = null, editing = false;
+let theme = sceneTheme, cycle = null, typing = null, editing = false;
 const playback = {time:0, duration:30, playing:false, rate:1, stamp:null, ready:false};
 const DEFAULT_TEXT = '那些凌晨时分敲下的代码，是不会说谎的星星。';
 const controls = {
@@ -988,11 +989,18 @@ function buildCycle(value=DEFAULT_TEXT,instant=false){
 }
 
 
+ function drawGalaxyLayer(){
+  S.ctx.fillStyle=sceneBackground;S.ctx.fillRect(0,0,W,H);
+  S.ctx.save();
+  // 原作银河只叠加亮部，蓝底不会被图片里的黑色覆盖。
+  if(sceneTheme==='blue')S.ctx.globalCompositeOperation='screen';
+  S.ctx.drawImage(galaxyCanvas,0,0);S.ctx.restore();
+ }
  const ready=Promise.all([galaxyReady,global.document.fonts?.load("17.82px '霞鹜文楷'")]).then(()=>{buildCycle();});
  return {ready,draw(t,mode,part){clock=playback.time=t;ctx.clearRect(0,0,W,H);illuminationCtx.clearRect(0,0,W,H);
   if(mode==='symbols'){originalStage.style.visibility='hidden';const p=particles.find(p=>p.kind===(opt.symbol||'star'))||particles.find(p=>p.type==='symbol');ctx.save();ctx.translate(330,440);ctx.scale(7,7);drawSymbol(p,t,1,1);ctx.restore();S.ctx.drawImage(canvas,0,0);return;}
-  if(mode==='galaxy'){originalStage.style.visibility='hidden';clock=cycle.sky.start+t;drawStarfield();S.ctx.fillStyle='#080a0e';S.ctx.fillRect(0,0,W,H);S.ctx.drawImage(galaxyCanvas,0,0);S.ctx.drawImage(canvas,0,0);return;}
-  originalStage.style.visibility='visible';const size=rootSize();originalStage.style.transform=`translate(-50%,-50%) scale(${Math.min(size.width/660,size.height/880)})`;paint();if(part==='art'||part==='galaxy'){S.ctx.fillStyle='#080a0e';S.ctx.fillRect(0,0,W,H);S.ctx.drawImage(galaxyCanvas,0,0);}if(part==='art'||part==='flight'){S.ctx.drawImage(illuminationCanvas,0,0);S.ctx.drawImage(canvas,0,0);}
+  if(mode==='galaxy'){originalStage.style.visibility='hidden';clock=cycle.sky.start+t;drawStarfield();drawGalaxyLayer();S.ctx.drawImage(canvas,0,0);return;}
+  originalStage.style.visibility='visible';const size=rootSize();originalStage.style.transform=`translate(-50%,-50%) scale(${Math.min(size.width/660,size.height/880)})`;paint();if(part==='art'||part==='galaxy')drawGalaxyLayer();if(part==='art'||part==='flight'){S.ctx.drawImage(illuminationCanvas,0,0);S.ctx.drawImage(canvas,0,0);}
  },inspect:t=>({send:cycle?.sendAt,galaxy:cycle?.sky&&{start:cycle.sky.start,end:cycle.sky.end},count:particles.filter(p=>p.type==='symbol').length}),destroy(preserve=false){if(!preserve)originalStage.remove();}};
 
 }
@@ -1003,4 +1011,5 @@ function buildCycle(value=DEFAULT_TEXT,instant=false){
 WiseSceneRuntime.register("galaxy-axis-reveal",{"family": "letter", "mode": "galaxy", "start": 0, "width": 660, "height": 880});
 WiseSceneRuntime.register("letter-symbol-illustration",{"family": "letter", "mode": "symbols", "start": 0, "width": 660, "height": 880, "symbol": "star", "variants": {"star": {"family": "letter", "mode": "symbols", "start": 0, "width": 660, "height": 880, "symbol": "star"}, "moon": {"family": "letter", "mode": "symbols", "start": 0, "width": 660, "height": 880, "symbol": "moon"}, "flower": {"family": "letter", "mode": "symbols", "start": 0, "width": 660, "height": 880, "symbol": "flower"}, "heart": {"family": "letter", "mode": "symbols", "start": 0, "width": 660, "height": 880, "symbol": "heart"}, "note": {"family": "letter", "mode": "symbols", "start": 0, "width": 660, "height": 880, "symbol": "note"}, "butterfly": {"family": "letter", "mode": "symbols", "start": 0, "width": 660, "height": 880, "symbol": "butterfly"}}});
 WiseSceneRuntime.register("letter-galaxy-illustration",{"family": "letter", "mode": "galaxy", "start": 0, "width": 660, "height": 880});
-WiseSceneRuntime.register("star-letter-journey",{"family": "letter", "mode": "full", "start": 0, "width": 660, "height": 880, "breakdown": [{"id": "galaxy", "name": "夜空与银河展开", "start": 0, "end": 95000, "time": "0—95秒", "detail": "银河亮星位置固定，天空按旋转、缩放与遮罩范围逐步展开。", "actions": ["galaxy-axis-reveal", "letter-galaxy-illustration"]}, {"id": "flight", "name": "发送光面、水波、群飞与落星", "start": 0, "end": 95000, "time": "0—95秒", "detail": "发送后水波展开，126件符号分别飞向固定亮星落点，抵达后显星并继续闪烁。", "actions": ["letter-ripple", "symbol-flight-settle", "arrival-star-reveal", "arrival-star-sparkle", "letter-symbol-illustration"]}, {"id": "composer", "name": "逐字输入与发送界面", "start": 0, "end": 95000, "time": "0—95秒", "detail": "圆角输入框逐字出现文字，箭头转为发送进度，发送与背景光面保持同一时间。", "actions": ["type-reveal"]}], "layers": ["galaxy", "flight"]});
+WiseSceneRuntime.register("star-letter-journey",{"family":"letter","mode":"full","start":0,"width":660,"height":880,"breakdown":[{"id":"galaxy","name":"夜空与银河展开","start":0,"end":25000,"time":"0—25秒","detail":"银河亮星位置固定，天空按旋转、缩放与遮罩范围逐步展开。","actions":["galaxy-axis-reveal","letter-galaxy-illustration"]},{"id":"flight","name":"发送光面、水波、群飞与落星","start":0,"end":25000,"time":"0—25秒","detail":"发送后水波展开，126件符号分别飞向固定亮星落点，抵达后显星并继续闪烁。","actions":["letter-ripple","symbol-flight-settle","arrival-star-reveal","arrival-star-sparkle","letter-symbol-illustration"]},{"id":"composer","name":"逐字输入与发送界面","start":0,"end":25000,"time":"0—25秒","detail":"圆角输入框逐字出现文字，箭头转为发送进度，发送与背景光面保持同一时间。","actions":["type-reveal"]}],"layers":["galaxy","flight"]});
+WiseSceneRuntime.register("star-letter-blue-journey",{"family":"letter","mode":"full","start":0,"width":660,"height":880,"breakdown":[{"id":"galaxy","name":"蓝色夜空与银河展开","start":0,"end":25000,"time":"0—25秒","detail":"正蓝底色#164df2；银河亮星位置固定，天空按旋转、缩放与遮罩范围逐步展开。","actions":["galaxy-axis-reveal","letter-galaxy-illustration"]},{"id":"flight","name":"发送光面、水波、群飞与落星","start":0,"end":25000,"time":"0—25秒","detail":"发送后水波展开，126件符号分别飞向固定亮星落点，抵达后显星并继续闪烁。","actions":["letter-ripple","symbol-flight-settle","arrival-star-reveal","arrival-star-sparkle","letter-symbol-illustration"]},{"id":"composer","name":"逐字输入与发送界面","start":0,"end":25000,"time":"0—25秒","detail":"圆角输入框逐字出现文字，箭头转为发送进度，发送与背景光面保持同一时间。","actions":["type-reveal"]}],"layers":["galaxy","flight"],"theme":"blue"});

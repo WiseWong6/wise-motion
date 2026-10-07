@@ -29,8 +29,8 @@ test('星月文字在缩略图、主预览和放大画板中保持原字宽与�
  };
  w.HTMLCanvasElement.prototype.getContext=function(...args){const c=nativeContext.apply(this,args);if(c&&!recorded.has(c)){recorded.add(c);const fill=c.fillText;c.fillText=function(...a){fonts.push(this.font);return fill.apply(this,a);};}return c;};
  let draw;
- try{for(outerScale of [.25,1,2]){
-  fonts.length=0;draw=w.MotionKit.createRenderer(root,data.effects.find(e=>e.id==='star-letter-journey'));await draw.ready;
+ try{for(const id of ['star-letter-journey','star-letter-blue-journey'])for(outerScale of [.25,1,2]){
+  fonts.length=0;draw=w.MotionKit.createRenderer(root,data.effects.find(e=>e.id===id));await draw.ready;
   const stage=root.querySelector('.scene-letter-inner'),spans=[...stage.querySelectorAll('.words span')];
   assert.ok(Math.abs(Number(stage.style.transform.match(/scale\(([^)]+)\)/)[1])-360/880)<1e-10,'外层缩放不能再次改变内部画板比例');
   draw(650+175/2);assert.ok(Math.abs(parseFloat(spans[0].style.width)-1.025/2)<1e-10,'半个字应按原始字宽显露');

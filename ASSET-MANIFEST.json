@@ -268,8 +268,8 @@
     },
     {
       "path": "catalog/assets/composition-audio/SOURCE.json",
-      "bytes": 8772,
-      "sha256": "5439d4c4a8bdbe9bfcaa017f2cc27b4b97eca97f2d64708805fca5acad589816"
+      "bytes": 8762,
+      "sha256": "af53b9cea9b6e44e0fa51322154098fa00f86ba6e428d7e138cdd4e6385fb31e"
     },
     {
       "path": "catalog/assets/composition-audio/dandelion/README.md",
@@ -1268,8 +1268,8 @@
     },
     {
       "path": "catalog/effects/rasengan-illustrations.js",
-      "bytes": 3412910,
-      "sha256": "60f8637cd2ecd05fb6f9d393ccbf4e07a496e5b599e90a11f3a4daeb17cfb0a6"
+      "bytes": 3412968,
+      "sha256": "d253b68ee69e5603805bcd548b6bbc277f8ee4d55ef1c2393bf7169e3dbd06a3"
     },
     {
       "path": "catalog/effects/rect-wave-field.js",
@@ -1333,8 +1333,8 @@
     },
     {
       "path": "catalog/effects/scene-ink.js",
-      "bytes": 13085,
-      "sha256": "4f4947a234a645013cf3c5810a5940fa9d342a82801056148ff21f8604183973"
+      "bytes": 12420,
+      "sha256": "f14ca40c71281c50be749f4952512ec7428a50cd136aa8ce2b33675baa2cdd4c"
     },
     {
       "path": "catalog/effects/scene-letter-images.js",
@@ -1343,13 +1343,13 @@
     },
     {
       "path": "catalog/effects/scene-letter.js",
-      "bytes": 73181,
-      "sha256": "f007c4fd5615cb979a1d79e4261d841310106c627929baaf585182ed375036b8"
+      "bytes": 74444,
+      "sha256": "1942d9ef3117103a9fa7b643f7a99dfe0a2bd6c37e1f486b9f288920dd0f1807"
     },
     {
       "path": "catalog/effects/scene-ocean.js",
-      "bytes": 63653,
-      "sha256": "90e40c388256d47f8bad5bd2bf64f78279661fffc34980e8399cdadf5342bf80"
+      "bytes": 63790,
+      "sha256": "78d80164c1dea1f6d1cbe27f61a88e580a22f28d5fcf9c5dca237f1515f470a3"
     },
     {
       "path": "catalog/effects/scene-osmanthus-data.js",
@@ -1373,8 +1373,8 @@
     },
     {
       "path": "catalog/effects/scene-snow.js",
-      "bytes": 53236,
-      "sha256": "dbbe0c295cbe9171ea587e77b16ed2d435ae2a06da7f1b0aaa17e139fe5c00e8"
+      "bytes": 53753,
+      "sha256": "7552a3d96f3a453b99e4929b53e9d076c0ceaab6a3c65098073235f869bc5bdc"
     },
     {
       "path": "catalog/effects/scene-source-runtime.js",
@@ -1528,13 +1528,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1420939,
-      "sha256": "406ed4a77f7127d64aafcc31d0c53cb32db4521cf6deaa98345509c7fd13da16"
+      "bytes": 1423065,
+      "sha256": "384abd34a7739e0f99b99ac277f8b183c27cdfd32be11a60eef2fc1cca6018e6"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1807453,
-      "sha256": "38103a75ad813a014516291ee8eac12016712d2cb4e0e82c773c83716a8de51c"
+      "bytes": 1810197,
+      "sha256": "f99d5a846fdf70d5ce63eebce5f07a135542a7d6d0bbe0c18cedbae0f6714898"
     },
     {
       "path": "catalog/related-preview.js",
