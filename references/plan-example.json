@@ -18,12 +18,20 @@
       "handoff": "旧词淡成残影，下一镜字幕从同一位置接上",
       "candidates": [],
       "effect": {
-        "mode": "tweak",
+        "mode": "reuse",
         "id": "word-slam",
         "variant": "",
         "speed": null,
         "source": "catalog/effects/word-slam.js#word-slam",
-        "prompt": "把词表换成 OPUS、5.5、VIDEO、STRONG 四个词，依次撞入同一位置并留下残影；撞击节奏、红色错位描边和残影保持不变。"
+        "prompt": "",
+        "content": {
+          "words": [
+            "OPUS",
+            "5.5",
+            "VIDEO",
+            "STRONG"
+          ]
+        }
       }
     },
     {

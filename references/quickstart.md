@@ -12,13 +12,14 @@
 3. **选动效。** 先看下面的“按镜头用途速选”，再用
    `node scripts/match.mjs "起始状态到结束状态的动作描述"` 补充候选，用
    `node scripts/show.mjs <id>` 查看细节并**打开列出的源码**。然后在该镜的 `effect` 里选一种：
-   - `reuse`：用途、动作阶段都对，直接引用代码；支持内容槽时填 `effect.content` 换文字和数据；
-   - `tweak`：结构对但对象、颜色或节奏要改；先在 `effect.prompt` 写清改什么，再改代码；
-   - `original`：确实没有动作能表达这一镜。文字、数据先使用内容槽，颜色和布局等再微调；这些差异本身不是原创理由。选原创要填 `effect.nearest`（最接近的动作 id；确实无候选填 `null`）和 `effect.why`（它的核心动作为什么不适用），再在 `effect.prompt` 写清对象、起止状态、方向和节奏。只参考节奏后自己重写，仍算原创；真正引用或复制了原动作代码才算复用或微调。
+   实现分类按 [导演设计方法](director-design.md) 判断，字段填写如下：
+   - `reuse`：填写条目、来源及所需的 `content`、`variant`、`speed` 等配置；
+   - `tweak`：另填 `effect.prompt` 与独立实现的 `effect.component`，接入方式见下文；
+   - `original`：填写 `effect.prompt`、`effect.component`、`effect.nearest` 和 `effect.why`。`nearest` 为最接近的动作 id，确实无候选填 `null`；`why` 说明候选的核心动作为何不适用或检索缺口。
    动效自带示例内容；先用 `show.mjs <id> --variant <样式 id>` 查看该样式支持的内容槽。不能只读参考后完全重写，再把镜头标成复用。
    `effect.source` 填 `show.mjs` 给出的“路径#入口”，据此打开对应实现。完整复用组合时，连同组成动作一起读；新增组合按独立动作逐项实现。
 4. **检查。** `node scripts/plan.mjs check <工程目录>/plan.json`。有“错误”就改到通过；“提醒”要逐条判断是否接受。
-5. **装配与完成。** `node scripts/plan.mjs build <工程目录>/plan.json <工程目录>/src/index.jsx`。原创镜头会留黑底占位，内容配置已传入复用组件，额外代码微调仍待实现；按 [阶段制作方法](pipeline-methodology.md) 逐项完成，实现一项并通过必要检查后再做下一项，最后整合并按请求导出。检查范围见 [验证矩阵](validation-matrix.md)，分别报告脚本检查、渲染与实际观看结果。
+5. **装配与完成。** `node scripts/plan.mjs build <工程目录>/plan.json <工程目录>/src/index.jsx`。复用镜头按配置装配；微调和原创从 `component` 引用独立实现，未填写时渲染会明确报错；按 [阶段制作方法](pipeline-methodology.md) 逐项完成，实现一项并通过必要检查后再做下一项，最后整合并按请求导出。检查范围见 [验证矩阵](validation-matrix.md)，分别报告脚本检查、渲染与实际观看结果。
 
 ## 换成自己的内容
 
@@ -30,7 +31,26 @@
 6. 素材安装会记录文件校验值；再次安装发现副本被改，会在复制前停止。先迁移或保留改动，只有明确要丢弃这些改动时才传 `--overwrite`。内容配置留在计划或项目源码中，不会被素材安装覆盖。
 7. `build` 只负责装配；实现结果仍需核对文字、位置和显示时长，按验证矩阵检查，需要成片时重新导出。
 
-[完整示例](plan-example.json)可以直接复制改写。
+[示例计划](plan-example.json)包含内容复用与待实现的微调镜头，可复制到目标工程后按需求改写。
+
+## 独立实现与重新装配
+
+微调和原创的组件保存在目标工程，`component.path` 相对生成的装配入口。每个镜头可以引用不同文件，也可以共用支持实例参数的组件。微调仍填写原参考的 `id`、`source` 和提示词，例如：
+
+```json
+"effect": {
+  "mode": "tweak",
+  "id": "word-slam",
+  "source": "catalog/effects/word-slam.js#word-slam",
+  "prompt": "把撞入位置移到画面左侧，保留原有撞击节奏与残影，右侧留白供下一镜交接。",
+  "content": {"words": ["开始", "聚焦", "完成"]},
+  "component": {"path": "./scenes/WordSlamScene.jsx", "export": "WordSlamScene"}
+}
+```
+
+微调组件接收 `content`、`speed`、`variantId`、`width`、`height`；按传入配置和 Remotion 当前局部帧绘制，速度只换算一次。内容字段仍按参考条目的接口检查；超出其接口的布局和造型改动在独立组件中实现。原创组件按自身设计读取局部帧和工程参数。
+
+执行 `build` 只更新装配入口，独立组件的文件与引用在重新装配后保留。计划阶段可以暂缺 `component`，生成结果会列为待实现并在渲染时报错；填写路径后还须核对文件存在、导出名称和实际画面。多个镜头分别改造同一参考时，各自接入独立实现，保持公共素材不变。
 
 ## 内容覆盖与边界
 
@@ -52,7 +72,7 @@
 
 ## 一镜多层
 
-`effect` 与 `layers` 二选一。最多三层，按 `background`、`main`、`overlay` 顺序，每种最多一层，必须有 `main`；所有层使用镜头的同一起止帧。上层仅支持已经通过当前源码审计的 `type-reveal`、`count-up`、`word-focus`。其他条目只能单镜或放在底层；不使用滤色混合冒充透明底。
+`effect` 与 `layers` 二选一。最多三层，按 `background`、`main`、`overlay` 顺序，每种最多一层，必须有 `main`；所有层使用镜头的同一起止帧。上层候选为 `type-reveal`、`count-up`、`word-focus`，仅能直接复用且必须有对当前源码有效的透明审计记录，`check` 会核对并拒绝过期记录。微调和原创实现只能单镜或作为 `background`；原参考的透明检查不能证明改写后的组件仍透明。其他条目只能单镜或放在底层；不使用滤色混合冒充透明底。
 
 ```json
 "layers": [
