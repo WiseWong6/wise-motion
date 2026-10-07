@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {environment,data} from './helpers.mjs';
-const ids=['dandelion-wind-journey','balloon-drive-journey','cat-factory-journey','shenzhen-snow-journey','sunset-pickup-journey','osmanthus-butterfly-journey','star-letter-journey','xiaokui-selfie-journey','encore-full-journey','ring-construction-journey','mushroom-sphere-journey','ring-sphere-journey','energy-discharge-journey','ink-ocean-journey'];
+const ids=['dandelion-wind-journey','balloon-drive-journey','cat-factory-journey','shenzhen-snow-journey','sunset-pickup-journey','osmanthus-butterfly-journey','star-letter-journey','star-letter-blue-journey','xiaokui-selfie-journey','encore-full-journey','ring-construction-journey','mushroom-sphere-journey','ring-sphere-journey','energy-discharge-journey'];
 test('十四个组合的拆解按钮对应真实画面节点，选择、回拖和恢复不替换主播放器',async()=>{
  const env=await environment(),{w}=env,d=w.document;
  d.body.insertAdjacentHTML('beforeend','<div id="composition-panel"><div id="composition-layers"></div><div id="composition-status"></div><div id="composition-detail"></div><button data-composition-mode="solo"></button><button data-composition-mode="stack"></button><button id="composition-full"></button><button id="composition-replay"></button></div><div id="preview"></div>');

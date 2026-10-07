@@ -36243,8 +36243,8 @@ var registry_default = {
       ],
       retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u4FDD\u7559\u5F53\u524D\u539F\u6E90\u7801\u7684\u6696\u8272\u7AD6\u7248\uFF1A\u98DE\u673A\u63A5\u8D70\u592A\u9633\u3001\u6536\u7EF3\u5DE1\u822A\uFF0C\u6700\u540E\u8FDB\u5165\u591C\u8272\u4E0E\u661F\u7A7A\u3002",
       avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
-      duration_ms: 65e3,
-      preview_ms: 35750,
+      duration_ms: 21500,
+      preview_ms: 17875,
       loop: false,
       default_ease: "linear",
       parameters: {
@@ -36294,7 +36294,7 @@ var registry_default = {
       trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
       analogy: "\u4FDD\u7559\u5F53\u524D\u539F\u6E90\u7801\u7684\u6696\u8272\u7AD6\u7248\uFF1A\u98DE\u673A\u63A5\u8D70\u592A\u9633\u3001\u6536\u7EF3\u5DE1\u822A\uFF0C\u6700\u540E\u8FDB\u5165\u591C\u8272\u4E0E\u661F\u7A7A\u3002",
       assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
-      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768465\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      tempo_note: "\u53EA\u4FDD\u7559\u539F\u4F5C\u524D43\u79D2\uFF0C\u6574\u4F53\u4EE52\u500D\u901F\u64AD\u653E\uFF0C\u603B\u957F21.5\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
       recommendation: "\u9700\u8981\u6D77\u9762\u4E0A\u7684\u5915\u9633\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
       scene: {
         family: "ocean",
@@ -36307,8 +36307,8 @@ var registry_default = {
             id: "sea",
             name: "\u5915\u9633\u3001\u6D77\u9762\u4E0E\u63A5\u89E6\u6C34\u7EB9",
             start: 0,
-            end: 65e3,
-            time: "0\u201465\u79D2",
+            end: 21500,
+            time: "0\u201421.5\u79D2",
             detail: "\u6696\u8272\u5929\u7A7A\u4E0E\u6D77\u9762\u4FDD\u6301\u4F4E\u5BF9\u6BD4\u6CE2\u7EB9\uFF1B\u592A\u9633\u3001\u5EA7\u677F\u548C\u6EF4\u6C34\u5728\u5404\u81EA\u63A5\u89E6\u4F4D\u7F6E\u5F15\u8D77\u5012\u5F71\u4E0E\u6D9F\u6F2A\u3002",
             actions: [
               "sunset-sun-illustration",
@@ -36320,8 +36320,8 @@ var registry_default = {
             id: "night",
             name: "\u66AE\u8272\u4E0E\u661F\u7A7A",
             start: 0,
-            end: 65e3,
-            time: "0\u201465\u79D2",
+            end: 21500,
+            time: "0\u201421.5\u79D2",
             detail: "\u665A\u971E\u9010\u6E10\u53D8\u6697\uFF0C\u661F\u70B9\u6CBF\u592A\u9633\u88AB\u63A5\u8D70\u540E\u7684\u65F6\u5E8F\u663E\u73B0\u3002",
             actions: [
               "sunset-sea-illustration"
@@ -36331,8 +36331,8 @@ var registry_default = {
             id: "flight",
             name: "\u98DE\u673A\u3001\u67D4\u7EF3\u3001\u5EA7\u677F\u4E0E\u592A\u9633",
             start: 0,
-            end: 65e3,
-            time: "0\u201465\u79D2",
+            end: 21500,
+            time: "0\u201421.5\u79D2",
             detail: "\u98DE\u673A\u51CF\u901F\u653E\u4E0B\u7EF3\u7D22\uFF0C\u5EA7\u677F\u5165\u6C34\u6258\u8D77\u63E1\u7EF3\u592A\u9633\uFF1B\u8D1F\u91CD\u56DE\u5347\u3001\u6EF4\u6C34\u3001\u6536\u7EF3\u4E0E\u5DE1\u822A\u8FDE\u7EED\u63A5\u7EED\u3002",
             actions: [
               "seat-water-lift",
@@ -36348,7 +36348,8 @@ var registry_default = {
           "sea",
           "night",
           "flight"
-        ]
+        ],
+        playback_rate: 2
       },
       reproduction: {
         objects: "\u4FDD\u7559\u6696\u8272\u7AD6\u7248\uFF1A\u98DE\u673A\u63A5\u8D70\u592A\u9633\u3001\u6536\u7EF3\u5DE1\u822A\uFF0C\u6700\u540E\u8FDB\u5165\u591C\u8272\u4E0E\u661F\u7A7A\u3002",
@@ -36359,15 +36360,15 @@ var registry_default = {
           "\u6536\u7EF3\u5DE1\u822A\u540E\u8FDB\u5165\u591C\u8272\uFF0C\u661F\u70B9\u6CBF\u539F\u65F6\u5E8F\u663E\u73B0\u3002"
         ],
         retain: "\u4FDD\u7559\u6696\u8272\u7AD6\u7248\uFF1A\u98DE\u673A\u63A5\u8D70\u592A\u9633\u3001\u6536\u7EF3\u5DE1\u822A\uFF0C\u6700\u540E\u8FDB\u5165\u591C\u8272\u4E0E\u661F\u7A7A\u3002",
-        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E65\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        tempo_note: "\u4ECE\u539F\u4F5C0\u79D2\u5F00\u59CB\uFF0C\u4EC5\u4FDD\u7559\u524D43\u79D2\u5E76\u6574\u4F53\u4EE52\u500D\u901F\u64AD\u653E\uFF0C\u603B\u957F21.5\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
         avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
         layers: [
           {
             id: "sea",
             name: "\u5915\u9633\u3001\u6D77\u9762\u4E0E\u63A5\u89E6\u6C34\u7EB9",
             start: 0,
-            end: 65e3,
-            time: "0\u201465\u79D2",
+            end: 21500,
+            time: "0\u201421.5\u79D2",
             detail: "\u6696\u8272\u5929\u7A7A\u4E0E\u6D77\u9762\u4FDD\u6301\u4F4E\u5BF9\u6BD4\u6CE2\u7EB9\uFF1B\u592A\u9633\u3001\u5EA7\u677F\u548C\u6EF4\u6C34\u5728\u5404\u81EA\u63A5\u89E6\u4F4D\u7F6E\u5F15\u8D77\u5012\u5F71\u4E0E\u6D9F\u6F2A\u3002",
             actions: [
               "sunset-sun-illustration",
@@ -36379,8 +36380,8 @@ var registry_default = {
             id: "night",
             name: "\u66AE\u8272\u4E0E\u661F\u7A7A",
             start: 0,
-            end: 65e3,
-            time: "0\u201465\u79D2",
+            end: 21500,
+            time: "0\u201421.5\u79D2",
             detail: "\u665A\u971E\u9010\u6E10\u53D8\u6697\uFF0C\u661F\u70B9\u6CBF\u592A\u9633\u88AB\u63A5\u8D70\u540E\u7684\u65F6\u5E8F\u663E\u73B0\u3002",
             actions: [
               "sunset-sea-illustration"
@@ -36390,8 +36391,8 @@ var registry_default = {
             id: "flight",
             name: "\u98DE\u673A\u3001\u67D4\u7EF3\u3001\u5EA7\u677F\u4E0E\u592A\u9633",
             start: 0,
-            end: 65e3,
-            time: "0\u201465\u79D2",
+            end: 21500,
+            time: "0\u201421.5\u79D2",
             detail: "\u98DE\u673A\u51CF\u901F\u653E\u4E0B\u7EF3\u7D22\uFF0C\u5EA7\u677F\u5165\u6C34\u6258\u8D77\u63E1\u7EF3\u592A\u9633\uFF1B\u8D1F\u91CD\u56DE\u5347\u3001\u6EF4\u6C34\u3001\u6536\u7EF3\u4E0E\u5DE1\u822A\u8FDE\u7EED\u63A5\u7EED\u3002",
             actions: [
               "seat-water-lift",
@@ -36410,18 +36411,20 @@ var registry_default = {
             name: "\u539F\u98DE\u673A\u3001\u7EF3\u7D22\u3001\u843D\u6C34\u4E0E\u661F\u5149\u97F3\u6548",
             src: "catalog/assets/composition-audio/ocean/mix.mp3",
             start_ms: 0,
-            duration_ms: 65e3,
+            duration_ms: 21500,
             offset_ms: 0,
-            volume: 1
+            volume: 1,
+            rate: 2
           },
           {
             name: "\u539F\u6D77\u6D6A\u5F55\u97F3",
             src: "catalog/assets/composition-audio/ocean/ocean-waves.mp3",
             start_ms: 0,
-            duration_ms: 65e3,
+            duration_ms: 21500,
             volume: 0.24,
-            fade_in_ms: 500,
-            fade_out_ms: 800
+            fade_in_ms: 250,
+            rate: 2,
+            fade_out_ms: 400
           }
         ],
         sources: [
@@ -38083,8 +38086,8 @@ var registry_default = {
       ],
       retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u3001\u539F\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u4E0E\u94F6\u6CB3\u5C55\u5F00\u7684\u5B8C\u6574\u524D\u540E\u4EA4\u63A5\u3002",
       avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
-      duration_ms: 95e3,
-      preview_ms: 52250,
+      duration_ms: 25e3,
+      preview_ms: 13750,
       loop: false,
       default_ease: "linear",
       parameters: {
@@ -38143,7 +38146,7 @@ var registry_default = {
       trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
       analogy: "\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u3001\u539F\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u4E0E\u94F6\u6CB3\u5C55\u5F00\u7684\u5B8C\u6574\u524D\u540E\u4EA4\u63A5\u3002",
       assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
-      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768495\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      tempo_note: "\u53EA\u4FDD\u7559\u539F\u4F5C\u524D25\u79D2\uFF0C\u6309\u539F\u901F\u64AD\u653E\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
       recommendation: "\u9700\u8981\u661F\u6708\u6765\u4FE1\u5B8C\u6574\u65C5\u7A0B\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
       scene: {
         family: "letter",
@@ -38156,8 +38159,8 @@ var registry_default = {
             id: "galaxy",
             name: "\u591C\u7A7A\u4E0E\u94F6\u6CB3\u5C55\u5F00",
             start: 0,
-            end: 95e3,
-            time: "0\u201495\u79D2",
+            end: 25e3,
+            time: "0\u201425\u79D2",
             detail: "\u94F6\u6CB3\u4EAE\u661F\u4F4D\u7F6E\u56FA\u5B9A\uFF0C\u5929\u7A7A\u6309\u65CB\u8F6C\u3001\u7F29\u653E\u4E0E\u906E\u7F69\u8303\u56F4\u9010\u6B65\u5C55\u5F00\u3002",
             actions: [
               "galaxy-axis-reveal",
@@ -38168,8 +38171,8 @@ var registry_default = {
             id: "flight",
             name: "\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u3001\u7FA4\u98DE\u4E0E\u843D\u661F",
             start: 0,
-            end: 95e3,
-            time: "0\u201495\u79D2",
+            end: 25e3,
+            time: "0\u201425\u79D2",
             detail: "\u53D1\u9001\u540E\u6C34\u6CE2\u5C55\u5F00\uFF0C126\u4EF6\u7B26\u53F7\u5206\u522B\u98DE\u5411\u56FA\u5B9A\u4EAE\u661F\u843D\u70B9\uFF0C\u62B5\u8FBE\u540E\u663E\u661F\u5E76\u7EE7\u7EED\u95EA\u70C1\u3002",
             actions: [
               "letter-ripple",
@@ -38183,8 +38186,8 @@ var registry_default = {
             id: "composer",
             name: "\u9010\u5B57\u8F93\u5165\u4E0E\u53D1\u9001\u754C\u9762",
             start: 0,
-            end: 95e3,
-            time: "0\u201495\u79D2",
+            end: 25e3,
+            time: "0\u201425\u79D2",
             detail: "\u5706\u89D2\u8F93\u5165\u6846\u9010\u5B57\u51FA\u73B0\u6587\u5B57\uFF0C\u7BAD\u5934\u8F6C\u4E3A\u53D1\u9001\u8FDB\u5EA6\uFF0C\u53D1\u9001\u4E0E\u80CC\u666F\u5149\u9762\u4FDD\u6301\u540C\u4E00\u65F6\u95F4\u3002",
             actions: [
               "type-reveal"
@@ -38205,15 +38208,15 @@ var registry_default = {
           "\u94F6\u6CB3\u6CBF\u539F\u4E2D\u8F74\u5C55\u5F00\uFF0C\u661F\u8292\u9519\u5CF0\u660E\u706D\u3002"
         ],
         retain: "\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u3001\u539F\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u4E0E\u94F6\u6CB3\u5C55\u5F00\u7684\u5B8C\u6574\u524D\u540E\u4EA4\u63A5\u3002",
-        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E95\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        tempo_note: "\u4ECE\u539F\u4F5C0\u79D2\u5F00\u59CB\uFF0C\u53EA\u64AD\u653E\u524D25\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
         avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
         layers: [
           {
             id: "galaxy",
             name: "\u591C\u7A7A\u4E0E\u94F6\u6CB3\u5C55\u5F00",
             start: 0,
-            end: 95e3,
-            time: "0\u201495\u79D2",
+            end: 25e3,
+            time: "0\u201425\u79D2",
             detail: "\u94F6\u6CB3\u4EAE\u661F\u4F4D\u7F6E\u56FA\u5B9A\uFF0C\u5929\u7A7A\u6309\u65CB\u8F6C\u3001\u7F29\u653E\u4E0E\u906E\u7F69\u8303\u56F4\u9010\u6B65\u5C55\u5F00\u3002",
             actions: [
               "galaxy-axis-reveal",
@@ -38224,8 +38227,8 @@ var registry_default = {
             id: "flight",
             name: "\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u3001\u7FA4\u98DE\u4E0E\u843D\u661F",
             start: 0,
-            end: 95e3,
-            time: "0\u201495\u79D2",
+            end: 25e3,
+            time: "0\u201425\u79D2",
             detail: "\u53D1\u9001\u540E\u6C34\u6CE2\u5C55\u5F00\uFF0C126\u4EF6\u7B26\u53F7\u5206\u522B\u98DE\u5411\u56FA\u5B9A\u4EAE\u661F\u843D\u70B9\uFF0C\u62B5\u8FBE\u540E\u663E\u661F\u5E76\u7EE7\u7EED\u95EA\u70C1\u3002",
             actions: [
               "letter-ripple",
@@ -38239,8 +38242,8 @@ var registry_default = {
             id: "composer",
             name: "\u9010\u5B57\u8F93\u5165\u4E0E\u53D1\u9001\u754C\u9762",
             start: 0,
-            end: 95e3,
-            time: "0\u201495\u79D2",
+            end: 25e3,
+            time: "0\u201425\u79D2",
             detail: "\u5706\u89D2\u8F93\u5165\u6846\u9010\u5B57\u51FA\u73B0\u6587\u5B57\uFF0C\u7BAD\u5934\u8F6C\u4E3A\u53D1\u9001\u8FDB\u5EA6\uFF0C\u53D1\u9001\u4E0E\u80CC\u666F\u5149\u9762\u4FDD\u6301\u540C\u4E00\u65F6\u95F4\u3002",
             actions: [
               "type-reveal"
@@ -38254,7 +38257,213 @@ var registry_default = {
             name: "\u539F\u952E\u76D8\u3001\u53D1\u9001\u3001\u6C34\u58F0\u3001\u98DE\u884C\u4E0E\u661F\u6CB3\u914D\u4E50",
             src: "catalog/assets/composition-audio/letter/mix.mp3",
             start_ms: 0,
-            duration_ms: 95e3,
+            duration_ms: 25e3,
+            offset_ms: 0,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/letter/SOURCE.json"
+        ]
+      }
+    },
+    {
+      id: "star-letter-blue-journey",
+      name: "\u661F\u6708\u6765\u4FE1\u84DD\u8272\u80CC\u666F\u7248",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u84DD\u8272\u80CC\u666F\u4E0A\u7684\u661F\u6708\u6765\u4FE1\uFF0C\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u548C\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u7684\u524D25\u79D2\u3002",
+      purpose: "\u84DD\u8272\u80CC\u666F\u4E0A\u7684\u661F\u6708\u6765\u4FE1\uFF0C\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u548C\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u7684\u524D25\u79D2\u3002",
+      objects: "\u84DD\u8272\u80CC\u666F\u4E0A\u7684\u8F93\u5165\u6846\u3001\u6587\u5B57\u3001\u6C34\u6CE2\u3001\u661F\u6708\u7B26\u53F7\u4E0E\u94F6\u6CB3",
+      phases: [
+        "\u6587\u5B57\u9010\u5B57\u8FDB\u5165\u539F\u8F93\u5165\u6846\uFF0C\u53D1\u9001\u540E\u5149\u9762\u5C55\u5F00\u6536\u675F\u3002",
+        "\u6C34\u6CE2\u6309\u8DDD\u79BB\u63A8\u52A8\u6587\u5B57\u53D8\u5316\uFF0C\u539F\u7B26\u53F7\u6CBF\u5404\u81EA\u66F2\u7EBF\u98DE\u79BB\u5E76\u539F\u4F4D\u5316\u661F\u3002",
+        "\u94F6\u6CB3\u6CBF\u539F\u4E2D\u8F74\u5C55\u5F00\uFF0C\u661F\u8292\u9519\u5CF0\u660E\u706D\u3002"
+      ],
+      aliases: [
+        "\u661F\u6708\u6765\u4FE1\u84DD\u8272\u80CC\u666F\u7248",
+        "\u661F\u6708\u6765\u4FE1\u84DD\u5E95",
+        "\u84DD\u8272\u661F\u6708\u6765\u4FE1"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u3001\u539F\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u4E0E\u94F6\u6CB3\u5C55\u5F00\u7684\u5B8C\u6574\u524D\u540E\u4EA4\u63A5\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 25e3,
+      preview_ms: 13750,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-letter.js",
+        factory: "star-letter-blue-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002\u84DD\u8272\u80CC\u666F\u7248\u6CBF\u7528\u539F\u4F5C\u6B63\u84DD\u5E95\u8272\uFF0C\u524D25\u79D2\u4E0E\u58A8\u9ED1\u7248\u5171\u7528\u7ED8\u5236\u548C\u58F0\u97F3\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-letter-images.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/letter/\u7D20\u6750\u6765\u6E90.md",
+          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
+          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
+          "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt",
+          "catalog/assets/composition-audio/letter/SOURCE.json",
+          "catalog/assets/composition-audio/letter/SOURCES.md",
+          "catalog/assets/composition-audio/letter/build-audio.cjs",
+          "catalog/assets/composition-audio/letter/chime-score.js",
+          "catalog/assets/composition-audio/letter/mix.mp3",
+          "catalog/assets/composition-audio/letter/mix.mp3.json",
+          "catalog/assets/composition-audio/letter/recipe.json",
+          "catalog/assets/composition-audio/letter/sound-bank.js",
+          "catalog/assets/composition-audio/letter/sound.js"
+        ]
+      },
+      actions: [
+        "type-reveal",
+        "letter-ripple",
+        "symbol-flight-settle",
+        "arrival-star-reveal",
+        "arrival-star-sparkle",
+        "galaxy-axis-reveal",
+        "letter-symbol-illustration",
+        "letter-galaxy-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u84DD\u8272\u80CC\u666F\u4E0A\u7684\u661F\u6708\u6765\u4FE1\uFF0C\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u548C\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u7684\u524D25\u79D2\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u53EA\u4FDD\u7559\u539F\u4F5C\u524D25\u79D2\uFF0C\u6309\u539F\u901F\u64AD\u653E\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u84DD\u8272\u80CC\u666F\u7684\u661F\u6708\u6765\u4FE1\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "letter",
+        mode: "full",
+        start: 0,
+        width: 660,
+        height: 880,
+        breakdown: [
+          {
+            id: "galaxy",
+            name: "\u84DD\u8272\u591C\u7A7A\u4E0E\u94F6\u6CB3\u5C55\u5F00",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u6B63\u84DD\u5E95\u8272#164df2\uFF1B\u94F6\u6CB3\u4EAE\u661F\u4F4D\u7F6E\u56FA\u5B9A\uFF0C\u5929\u7A7A\u6309\u65CB\u8F6C\u3001\u7F29\u653E\u4E0E\u906E\u7F69\u8303\u56F4\u9010\u6B65\u5C55\u5F00\u3002",
+            actions: [
+              "galaxy-axis-reveal",
+              "letter-galaxy-illustration"
+            ]
+          },
+          {
+            id: "flight",
+            name: "\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u3001\u7FA4\u98DE\u4E0E\u843D\u661F",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u53D1\u9001\u540E\u6C34\u6CE2\u5C55\u5F00\uFF0C126\u4EF6\u7B26\u53F7\u5206\u522B\u98DE\u5411\u56FA\u5B9A\u4EAE\u661F\u843D\u70B9\uFF0C\u62B5\u8FBE\u540E\u663E\u661F\u5E76\u7EE7\u7EED\u95EA\u70C1\u3002",
+            actions: [
+              "letter-ripple",
+              "symbol-flight-settle",
+              "arrival-star-reveal",
+              "arrival-star-sparkle",
+              "letter-symbol-illustration"
+            ]
+          },
+          {
+            id: "composer",
+            name: "\u9010\u5B57\u8F93\u5165\u4E0E\u53D1\u9001\u754C\u9762",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u5706\u89D2\u8F93\u5165\u6846\u9010\u5B57\u51FA\u73B0\u6587\u5B57\uFF0C\u7BAD\u5934\u8F6C\u4E3A\u53D1\u9001\u8FDB\u5EA6\uFF0C\u53D1\u9001\u4E0E\u80CC\u666F\u5149\u9762\u4FDD\u6301\u540C\u4E00\u65F6\u95F4\u3002",
+            actions: [
+              "type-reveal"
+            ]
+          }
+        ],
+        layers: [
+          "galaxy",
+          "flight"
+        ],
+        theme: "blue"
+      },
+      reproduction: {
+        objects: "\u84DD\u8272\u80CC\u666F\u4E0A\u7684\u661F\u6708\u6765\u4FE1\uFF0C\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u548C\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u7684\u524D25\u79D2\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8660\xD7880\uFF0C\u7AD6\u72483:4\uFF1B\u6B63\u84DD\u5E95#164df2\u3001\u6696\u767D#f9f3fb\uFF1B\u8F93\u5165\u6846\u4F4D\u4E8E\u6A2A\u5411\u4E2D\u592E\u548C70%\u9AD8\u5EA6\uFF0C\u5BBD\u5EA6\u4E3A\u753B\u976272%\uFF1B\u4E2D\u6587\u4F7F\u7528\u971E\u9E5C\u6587\u6977\u3002",
+        phases: [
+          "\u6587\u5B57\u9010\u5B57\u8FDB\u5165\u539F\u8F93\u5165\u6846\uFF0C\u53D1\u9001\u540E\u5149\u9762\u5C55\u5F00\u6536\u675F\u3002",
+          "\u6C34\u6CE2\u6309\u8DDD\u79BB\u63A8\u52A8\u6587\u5B57\u53D8\u5316\uFF0C\u539F\u7B26\u53F7\u6CBF\u5404\u81EA\u66F2\u7EBF\u98DE\u79BB\u5E76\u539F\u4F4D\u5316\u661F\u3002",
+          "\u94F6\u6CB3\u6CBF\u539F\u4E2D\u8F74\u5C55\u5F00\uFF0C\u661F\u8292\u9519\u5CF0\u660E\u706D\u3002"
+        ],
+        retain: "\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u3001\u539F\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u4E0E\u94F6\u6CB3\u5C55\u5F00\u7684\u5B8C\u6574\u524D\u540E\u4EA4\u63A5\u3002",
+        tempo_note: "\u4ECE\u539F\u4F5C0\u79D2\u5F00\u59CB\uFF0C\u53EA\u64AD\u653E\u524D25\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "galaxy",
+            name: "\u84DD\u8272\u591C\u7A7A\u4E0E\u94F6\u6CB3\u5C55\u5F00",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u6B63\u84DD\u5E95\u8272#164df2\uFF1B\u94F6\u6CB3\u4EAE\u661F\u4F4D\u7F6E\u56FA\u5B9A\uFF0C\u5929\u7A7A\u6309\u65CB\u8F6C\u3001\u7F29\u653E\u4E0E\u906E\u7F69\u8303\u56F4\u9010\u6B65\u5C55\u5F00\u3002",
+            actions: [
+              "galaxy-axis-reveal",
+              "letter-galaxy-illustration"
+            ]
+          },
+          {
+            id: "flight",
+            name: "\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u3001\u7FA4\u98DE\u4E0E\u843D\u661F",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u53D1\u9001\u540E\u6C34\u6CE2\u5C55\u5F00\uFF0C126\u4EF6\u7B26\u53F7\u5206\u522B\u98DE\u5411\u56FA\u5B9A\u4EAE\u661F\u843D\u70B9\uFF0C\u62B5\u8FBE\u540E\u663E\u661F\u5E76\u7EE7\u7EED\u95EA\u70C1\u3002",
+            actions: [
+              "letter-ripple",
+              "symbol-flight-settle",
+              "arrival-star-reveal",
+              "arrival-star-sparkle",
+              "letter-symbol-illustration"
+            ]
+          },
+          {
+            id: "composer",
+            name: "\u9010\u5B57\u8F93\u5165\u4E0E\u53D1\u9001\u754C\u9762",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u5706\u89D2\u8F93\u5165\u6846\u9010\u5B57\u51FA\u73B0\u6587\u5B57\uFF0C\u7BAD\u5934\u8F6C\u4E3A\u53D1\u9001\u8FDB\u5EA6\uFF0C\u53D1\u9001\u4E0E\u80CC\u666F\u5149\u9762\u4FDD\u6301\u540C\u4E00\u65F6\u95F4\u3002",
+            actions: [
+              "type-reveal"
+            ]
+          }
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u952E\u76D8\u3001\u53D1\u9001\u3001\u6C34\u58F0\u3001\u98DE\u884C\u4E0E\u661F\u6CB3\u914D\u4E50",
+            src: "catalog/assets/composition-audio/letter/mix.mp3",
+            start_ms: 0,
+            duration_ms: 25e3,
             offset_ms: 0,
             volume: 1
           }
@@ -39526,10 +39735,10 @@ var registry_default = {
         "sequence",
         "follow"
       ],
-      retain: "\u4FDD\u7559\u539F\u6D41\u7EBF\u5F62\u72B6\u3001\u84DD\u8272\u4EAE\u82AF\u4E0E\u7403\u5185\u7535\u5F27\u8DEF\u5F84\uFF1B\u4ECE\u6709\u6548\u8F68\u8FF9\u5F00\u59CB\u663E\u5F71\uFF0C\u653E\u6162\u589E\u5BC6\u5E76\u5EF6\u540E\u7535\u5F27\u3002",
+      retain: "\u4FDD\u7559\u539F\u6D41\u7EBF\u5F62\u72B6\u3001\u84DD\u8272\u4EAE\u82AF\u4E0E\u7403\u5185\u7535\u5F27\u8DEF\u5F84\uFF1B\u5B8C\u6574\u4FDD\u7559\u5148\u663E\u5F71\u3001\u518D\u9010\u6B65\u63A5\u5165\u7535\u5F27\u7684\u6B21\u5E8F\uFF0C\u6574\u4F53\u4EE5\u4E8C\u500D\u901F\u64AD\u653E\u3002",
       avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
-      duration_ms: 24e3,
-      preview_ms: 13200,
+      duration_ms: 12e3,
+      preview_ms: 6600,
       loop: false,
       default_ease: "linear",
       parameters: {
@@ -39548,7 +39757,7 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        extraction: "\u5171\u7528\u539F\u6D41\u573A\u4E0E\u7535\u5F27\u7ED8\u5236\uFF0C\u4ECE\u5DF2\u4FDD\u5B58\u8F68\u8FF9\u7684\u6709\u6548\u8D77\u70B9\u5F00\u59CB\u53D6\u6837\uFF1B\u663E\u5F71\u4E0E\u955C\u5934\u53D8\u5316\u653E\u6162\u4E3A\u4E8C\u5206\u4E4B\u4E00\uFF0C\u7535\u5F27\u5EF6\u540E\u81F3\u5341\u4E8C\u79D2\u5F00\u59CB\u63A5\u5165\u3002"
+        extraction: "\u5171\u7528\u539F\u6D41\u573A\u4E0E\u7535\u5F27\u7ED8\u5236\uFF0C\u4ECE\u5DF2\u4FDD\u5B58\u8F68\u8FF9\u7684\u6709\u6548\u8D77\u70B9\u5F00\u59CB\u53D6\u6837\uFF1B\u539F\u4E8C\u5341\u56DB\u79D2\u7247\u6BB5\u6574\u4F53\u4EE5\u4E8C\u500D\u901F\u64AD\u653E\uFF0C\u516D\u79D2\u540E\u5C40\u90E8\u7535\u5F27\u9010\u6E10\u63A5\u5165\uFF0C\u5B8C\u6574\u64AD\u653E\u5341\u4E8C\u79D2\u3002"
       },
       actions: [
         "energy-density-growth",
@@ -39559,10 +39768,10 @@ var registry_default = {
       domains: [
         "animation"
       ],
-      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      trigger: "\u6253\u5F00\u540E\u6309\u4E8C\u500D\u901F\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
       analogy: "\u539F\u6D41\u573A\u4ECE\u7A00\u758F\u5411\u5BC6\u96C6\u663E\u5F71\uFF0C\u5C40\u90E8\u7535\u5F27\u6CBF\u7403\u5185\u771F\u5B9E\u8F68\u8FF9\u9010\u6E10\u52A0\u5165\u3002",
       assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
-      tempo_note: "\u5F00\u573A\u76F4\u63A5\u5448\u73B0\u7A00\u758F\u7403\u4F53\uFF1B\u6D41\u7EBF\u663E\u5F71\u4E0E\u955C\u5934\u53D8\u5316\u653E\u6162\u4E3A\u539F\u6765\u7684\u4E8C\u5206\u4E4B\u4E00\uFF0C\u5341\u4E8C\u79D2\u540E\u5C40\u90E8\u7535\u5F27\u9010\u6E10\u52A0\u5165\uFF0C\u6574\u6BB5\u4E8C\u5341\u56DB\u79D2\u3002",
+      tempo_note: "\u5F00\u573A\u76F4\u63A5\u5448\u73B0\u7A00\u758F\u7403\u4F53\uFF1B\u539F\u4E8C\u5341\u56DB\u79D2\u7247\u6BB5\u6574\u4F53\u4EE5\u4E8C\u500D\u901F\u64AD\u653E\uFF0C\u516D\u79D2\u540E\u5C40\u90E8\u7535\u5F27\u9010\u6E10\u52A0\u5165\uFF0C\u6574\u6BB5\u5341\u4E8C\u79D2\u3002",
       recommendation: "\u9700\u8981\u80FD\u91CF\u7403\u663E\u5F71\u4E0E\u5C40\u90E8\u7535\u5F27\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
       reproduction: {
         objects: "\u539F\u6D41\u573A\u4ECE\u7A00\u758F\u5411\u5BC6\u96C6\u663E\u5F71\uFF0C\u5C40\u90E8\u7535\u5F27\u6CBF\u7403\u5185\u771F\u5B9E\u8F68\u8FF9\u9010\u6E10\u52A0\u5165\u3002",
@@ -39572,17 +39781,17 @@ var registry_default = {
           "\u6D41\u7EBF\u4E0E\u4EAE\u5EA6\u589E\u5BC6\uFF0C\u539F\u955C\u5934\u89D2\u5EA6\u8FDE\u7EED\u4EA4\u63A5\u3002",
           "\u7535\u5F27\u6CBF\u539F\u5185\u90E8\u8DEF\u5F84\u9010\u6E10\u52A0\u5165\u5E76\u8DF3\u4EAE\u3002"
         ],
-        retain: "\u4FDD\u7559\u539F\u6D41\u7EBF\u5F62\u72B6\u3001\u84DD\u8272\u4EAE\u82AF\u4E0E\u7403\u5185\u7535\u5F27\u8DEF\u5F84\uFF1B\u4ECE\u6709\u6548\u8F68\u8FF9\u5F00\u59CB\u663E\u5F71\uFF0C\u653E\u6162\u589E\u5BC6\u5E76\u5EF6\u540E\u7535\u5F27\u3002",
-        tempo_note: "\u5F00\u573A\u76F4\u63A5\u5448\u73B0\u7A00\u758F\u7403\u4F53\uFF1B\u6D41\u7EBF\u663E\u5F71\u4E0E\u955C\u5934\u53D8\u5316\u653E\u6162\u4E3A\u539F\u6765\u7684\u4E8C\u5206\u4E4B\u4E00\uFF0C\u5341\u4E8C\u79D2\u540E\u5C40\u90E8\u7535\u5F27\u9010\u6E10\u52A0\u5165\uFF0C\u6574\u6BB5\u4E8C\u5341\u56DB\u79D2\u3002",
+        retain: "\u4FDD\u7559\u539F\u6D41\u7EBF\u5F62\u72B6\u3001\u84DD\u8272\u4EAE\u82AF\u4E0E\u7403\u5185\u7535\u5F27\u8DEF\u5F84\uFF1B\u5B8C\u6574\u4FDD\u7559\u5148\u663E\u5F71\u3001\u518D\u9010\u6B65\u63A5\u5165\u7535\u5F27\u7684\u6B21\u5E8F\uFF0C\u6574\u4F53\u4EE5\u4E8C\u500D\u901F\u64AD\u653E\u3002",
+        tempo_note: "\u5F00\u573A\u76F4\u63A5\u5448\u73B0\u7A00\u758F\u7403\u4F53\uFF1B\u539F\u4E8C\u5341\u56DB\u79D2\u7247\u6BB5\u6574\u4F53\u4EE5\u4E8C\u500D\u901F\u64AD\u653E\uFF0C\u516D\u79D2\u540E\u5C40\u90E8\u7535\u5F27\u9010\u6E10\u52A0\u5165\uFF0C\u6574\u6BB5\u5341\u4E8C\u79D2\u3002",
         avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
         layers: [
           {
             id: "field",
             name: "\u80FD\u91CF\u6D41\u7EBF\u663E\u5F71\u589E\u5BC6",
             start: 0,
-            end: 12e3,
-            time: "0\u201412\u79D2",
-            detail: "\u5F00\u573A\u5373\u5448\u73B0\u7A00\u758F\u7403\u4F53\uFF0C\u6D41\u7EBF\u4E0E\u955C\u5934\u53D8\u5316\u4EE5\u539F\u6765\u4E8C\u5206\u4E4B\u4E00\u901F\u5EA6\u9010\u6E10\u589E\u5BC6\u3002",
+            end: 6e3,
+            time: "0\u20146\u79D2",
+            detail: "\u5F00\u573A\u5373\u5448\u73B0\u7A00\u758F\u7403\u4F53\uFF0C\u6D41\u7EBF\u663E\u5F71\u3001\u589E\u5BC6\u548C\u955C\u5934\u53D8\u5316\u968F\u6574\u6BB5\u4EE5\u4E8C\u500D\u901F\u64AD\u653E\u3002",
             actions: [
               "energy-density-growth",
               "rasengan-illustration",
@@ -39592,10 +39801,10 @@ var registry_default = {
           {
             id: "electric",
             name: "\u5C40\u90E8\u7535\u5F27\u9010\u6E10\u63A5\u5165",
-            start: 12e3,
-            end: 24e3,
-            time: "12\u201424\u79D2",
-            detail: "\u5341\u4E8C\u79D2\u540E\u5C40\u90E8\u7535\u5F27\u4ECE\u5F31\u5230\u5F3A\u9010\u6B65\u63A5\u5165\uFF0C\u6D41\u7EBF\u7EE7\u7EED\u8FDE\u7EED\u7FFB\u5377\u3002",
+            start: 6e3,
+            end: 12e3,
+            time: "6\u201412\u79D2",
+            detail: "\u516D\u79D2\u540E\u5C40\u90E8\u7535\u5F27\u4ECE\u5F31\u5230\u5F3A\u9010\u6B65\u63A5\u5165\uFF0C\u6D41\u7EBF\u7EE7\u7EED\u8FDE\u7EED\u7FFB\u5377\u3002",
             actions: [
               "energy-density-growth",
               "rasengan-illustration",
@@ -39811,165 +40020,6 @@ var registry_default = {
         retain: "\u539F\u58A8\u56E2\u5F62\u6001\u7531\u9010\u5E27\u6D53\u5EA6\u6570\u636E\u51B3\u5B9A\uFF0C\u4E0B\u6C89\u65F6\u8FB9\u7F18\u56DE\u5377\uFF0C\u5C3E\u90E8\u968F\u6D53\u5EA6\u6269\u6563\u6E10\u6DE1\u3002",
         tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E20\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
         avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
-      }
-    },
-    {
-      id: "ink-ocean-journey",
-      name: "\u6C34\u58A8\u6C34\u6BCD\u7FA4\u4F53\u6D88\u6563",
-      kind: "composition",
-      category: "compositions",
-      summary: "\u6309\u539F\u6C34\u65CF\u9986\u7247\u6BB5\u4ECE\u5355\u4E2A\u58A8\u56E2\u4EA4\u63A5\u5230\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\uFF0C\u6CBF\u540C\u4E00\u8BB0\u5F55\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3002",
-      purpose: "\u6309\u539F\u6C34\u65CF\u9986\u7247\u6BB5\u4ECE\u5355\u4E2A\u58A8\u56E2\u4EA4\u63A5\u5230\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\uFF0C\u6CBF\u540C\u4E00\u8BB0\u5F55\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3002",
-      objects: "\u6C34\u58A8\u6C34\u6BCD\u7FA4\u4F53\u6D88\u6563\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
-      phases: [
-        "\u5355\u4E2A\u539F\u58A8\u56E2\u5728\u753B\u9762\u4E2D\u7EE7\u7EED\u56DE\u5377\u3002",
-        "\u539F\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\u6309\u539F\u4F4D\u7F6E\u548C\u5C3A\u5EA6\u63A5\u5165\u3002",
-        "\u7FA4\u4F53\u7EE7\u7EED\u4F7F\u7528\u771F\u5B9E\u6D53\u5EA6\u6570\u636E\u6D88\u6563\u3002"
-      ],
-      aliases: [
-        "\u6C34\u58A8\u6C34\u6BCD\u7FA4\u4F53\u6D88\u6563",
-        "\u6C34\u58A8\u6C34\u6BCD"
-      ],
-      behaviors: [
-        "sequence",
-        "follow"
-      ],
-      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u6309\u539F\u6C34\u65CF\u9986\u7247\u6BB5\u4ECE\u5355\u4E2A\u58A8\u56E2\u4EA4\u63A5\u5230\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\uFF0C\u6CBF\u540C\u4E00\u8BB0\u5F55\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3002",
-      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
-      duration_ms: 25e3,
-      preview_ms: 13750,
-      loop: false,
-      default_ease: "linear",
-      parameters: {
-        speed: {
-          label: "\u64AD\u653E\u901F\u5EA6",
-          default: 1,
-          min: 0.5,
-          max: 2,
-          step: 0.25
-        }
-      },
-      source: {
-        path: "catalog/effects/scene-ink.js",
-        factory: "ink-ocean-journey",
-        origin: "original",
-        license: "AGPL-3.0-only",
-        library: "animejs@4.5.0",
-        reference_url: "https://animejs.com/documentation/",
-        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
-        dependencies: [
-          "catalog/effects/scene-source-runtime.js",
-          "catalog/effects/scene-ink-data.js"
-        ],
-        assets: [
-          "catalog/assets/composition-audio/ink/Root.tsx",
-          "catalog/assets/composition-audio/ink/SOURCE.json",
-          "catalog/assets/composition-audio/ink/make_music.py",
-          "catalog/assets/composition-audio/ink/\u6C34\u58A8\u5FAE\u5149.m4a"
-        ]
-      },
-      actions: [
-        "ink-volume-roll",
-        "ink-volume-illustration"
-      ],
-      demo_mode: "fixed-timeline",
-      domains: [
-        "animation"
-      ],
-      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
-      analogy: "\u6309\u539F\u6C34\u65CF\u9986\u7247\u6BB5\u4ECE\u5355\u4E2A\u58A8\u56E2\u4EA4\u63A5\u5230\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\uFF0C\u6CBF\u540C\u4E00\u8BB0\u5F55\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3002",
-      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
-      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768425\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
-      recommendation: "\u9700\u8981\u6C34\u58A8\u6C34\u6BCD\u7FA4\u4F53\u6D88\u6563\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
-      scene: {
-        family: "ink",
-        mode: "full",
-        start: 0,
-        width: 1080,
-        height: 1920,
-        breakdown: [
-          {
-            id: "single",
-            name: "\u5355\u4E2A\u58A8\u56E2",
-            start: 0,
-            end: 1e4,
-            time: "0\u201410\u79D2",
-            detail: "\u5355\u4E2A\u58A8\u56E2\u7531\u9752\u8272\u6D53\u5EA6\u6295\u5F71\u6784\u6210\uFF0C\u4E0B\u6C89\u7FFB\u5377\u540E\u9010\u6E10\u8BA9\u4F4D\u3002",
-            actions: [
-              "ink-volume-roll",
-              "ink-volume-illustration"
-            ]
-          },
-          {
-            id: "ocean",
-            name: "\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2",
-            start: 3e3,
-            end: 25e3,
-            time: "3\u201425\u79D2",
-            detail: "\u4E94\u4E2A\u58A8\u56E2\u5728\u56FA\u5B9A\u4F4D\u7F6E\u6309\u5404\u81EA\u65F6\u95F4\u5DEE\u63A5\u5165\uFF0C\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3001\u7FA4\u4F53\u6E10\u6DE1\u3002",
-            actions: [
-              "ink-volume-roll",
-              "ink-volume-illustration"
-            ]
-          }
-        ],
-        layers: [
-          "single",
-          "ocean"
-        ]
-      },
-      reproduction: {
-        objects: "\u6309\u539F\u6C34\u65CF\u9986\u7247\u6BB5\u4ECE\u5355\u4E2A\u58A8\u56E2\u4EA4\u63A5\u5230\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\uFF0C\u6CBF\u540C\u4E00\u8BB0\u5F55\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3002",
-        presentation: "\u903B\u8F91\u8BBE\u8BA1\u5C3A\u5BF81080\xD71920\uFF0C\u58A8\u56E2\u7531\u6D53\u5EA6\u6295\u5F71\u4E0E\u7EC6\u793A\u8E2A\u70B9\u6784\u6210\uFF0C\u4F7F\u7528\u9752\u8272\u3001\u91D1\u8272\u6216\u58A8\u8272\uFF0C\u900F\u660E\u80CC\u666F\u3002",
-        phases: [
-          "\u5355\u4E2A\u539F\u58A8\u56E2\u5728\u753B\u9762\u4E2D\u7EE7\u7EED\u56DE\u5377\u3002",
-          "\u539F\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\u6309\u539F\u4F4D\u7F6E\u548C\u5C3A\u5EA6\u63A5\u5165\u3002",
-          "\u7FA4\u4F53\u7EE7\u7EED\u4F7F\u7528\u771F\u5B9E\u6D53\u5EA6\u6570\u636E\u6D88\u6563\u3002"
-        ],
-        retain: "\u6309\u539F\u6C34\u65CF\u9986\u7247\u6BB5\u4ECE\u5355\u4E2A\u58A8\u56E2\u4EA4\u63A5\u5230\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\uFF0C\u6CBF\u540C\u4E00\u8BB0\u5F55\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3002",
-        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E25\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
-        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
-        layers: [
-          {
-            id: "single",
-            name: "\u5355\u4E2A\u58A8\u56E2",
-            start: 0,
-            end: 1e4,
-            time: "0\u201410\u79D2",
-            detail: "\u5355\u4E2A\u58A8\u56E2\u7531\u9752\u8272\u6D53\u5EA6\u6295\u5F71\u6784\u6210\uFF0C\u4E0B\u6C89\u7FFB\u5377\u540E\u9010\u6E10\u8BA9\u4F4D\u3002",
-            actions: [
-              "ink-volume-roll",
-              "ink-volume-illustration"
-            ]
-          },
-          {
-            id: "ocean",
-            name: "\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2",
-            start: 3e3,
-            end: 25e3,
-            time: "3\u201425\u79D2",
-            detail: "\u4E94\u4E2A\u58A8\u56E2\u5728\u56FA\u5B9A\u4F4D\u7F6E\u6309\u5404\u81EA\u65F6\u95F4\u5DEE\u63A5\u5165\uFF0C\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3001\u7FA4\u4F53\u6E10\u6DE1\u3002",
-            actions: [
-              "ink-volume-roll",
-              "ink-volume-illustration"
-            ]
-          }
-        ]
-      },
-      audio: {
-        tracks: [
-          {
-            name: "\u539F\u6C34\u58A8\u5FAE\u5149\u914D\u4E50",
-            src: "catalog/assets/composition-audio/ink/\u6C34\u58A8\u5FAE\u5149.m4a",
-            start_ms: 0,
-            duration_ms: 25e3,
-            offset_ms: 161e3,
-            volume: 1
-          }
-        ],
-        sources: [
-          "catalog/assets/composition-audio/ink/SOURCE.json"
-        ]
       }
     }
   ],

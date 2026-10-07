@@ -35,8 +35,9 @@ test('能量球开场可见，增密过程持续变化，电弧在后半段逐�
  const env=await environment(),{w}=env,root=w.document.getElementById('root');let draw;
  try{
   const effect=data.effects.find(e=>e.id==='energy-discharge-journey');
+  assert.equal(effect.duration_ms,12000,'完整二十四秒片段按二倍速播放');
   draw=w.MotionKit.createRenderer(root,effect);const frames=new Map();
-  for(const time of [0,1000,4000,8000,12000,16000,20000,24000,0,8000]){
+  for(const time of [0,500,2000,4000,6000,8000,10000,12000,0,4000]){
    draw(time);const svg=root.querySelector('.pattern-svg'),paths=[...svg.querySelectorAll('path')];
    const visible=paths.filter(p=>Number(p.getAttribute('opacity'))>0);
    assert.ok(visible.length>0,'开场必须已有可见流线');
@@ -44,8 +45,8 @@ test('能量球开场可见，增密过程持续变化，电弧在后半段逐�
    const xs=coordinates.map(p=>p[0]),ys=coordinates.map(p=>p[1]);
    assert.ok(Math.max(...xs)-Math.min(...xs)>300&&Math.max(...ys)-Math.min(...ys)>300,'流线必须形成球体，不能挤成点');
    const arcs=visible.filter(p=>p.dataset.part.startsWith('discharge-'));
-   if(time<=12000)assert.equal(arcs.length,0,'留出完整显影过程后再接入电弧');
-   if(time>=16000)assert.ok(arcs.length>0,'后半段逐步加入可见电弧');
+   if(time<=6000)assert.equal(arcs.length,0,'留出完整显影过程后再接入电弧');
+   if(time>=8000)assert.ok(arcs.length>0,'后半段逐步加入可见电弧');
    const frame=visible.map(p=>[p.dataset.part,p.getAttribute('d'),p.getAttribute('opacity')]);
    const saved=JSON.stringify(frame);if(frames.has(time))assert.equal(saved,frames.get(time),'回拖应还原相同画面');else frames.set(time,saved);
   }

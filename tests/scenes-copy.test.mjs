@@ -25,7 +25,7 @@ test('复制页面的全部造型选择传入对应绘制器，不退回默认�
 });
 test('复制页面保存于包根目录，图片与字体仍指向包内真实文件，准备、定位与释放可完成',async()=>{
  const env=await environment();env.w.eval(await source('catalog/export.js'));
- const ids=['cat-factory-journey','xiaokui-selfie-journey','star-letter-journey'];
+ const ids=['cat-factory-journey','xiaokui-selfie-journey','star-letter-journey','star-letter-blue-journey'];
  try{for(const id of ids){
   const effect=data.effects.find(e=>e.id===id),variantId=effect.variants?.at(-1)?.id;
   const html=env.w.MotionExport.previewCode(effect,{variantId});
@@ -38,12 +38,17 @@ test('复制页面保存于包根目录，图片与字体仍指向包内真实�
   try{
    for(const script of [...w.document.querySelectorAll('script')]){
     Object.defineProperty(w.document,'currentScript',{get:()=>script,configurable:true});
-    if(script.src){const relative=new URL(script.src).pathname.replace('/independent-bundle/','');w.eval(await source(relative));}else w.eval(script.textContent);
+    if(script.src){
+     const relative=new URL(script.src).pathname.replace('/independent-bundle/','');
+     // 与目录检查一致：jsdom 无媒体解码能力，素材与字体使用本地绘制器核对。
+     if(relative==='catalog/remotion-player.js')continue;
+     w.eval(await source(relative));
+    }else w.eval(script.textContent);
    }
    await w.MotionDemo.ready;w.MotionDemo.pause();w.MotionDemo.seek(effect.duration_ms);w.MotionDemo.seek(effect.preview_ms);
    assert.ok(w.document.querySelector('canvas').dataset.sourceTime,id+' 未绘制复制页面');
    const fonts=[...w.document.querySelectorAll('.scene-letter-inner style')].flatMap(s=>[...s.textContent.matchAll(/url\('([^']+)'\)/g)].map(m=>m[1]));
-   assert.ok(requests.length>0,id+' 没有载入素材');if(id==='star-letter-journey')assert.equal(fonts.length,2);
+   assert.ok(requests.length>0,id+' 没有载入素材');if(effect.scene?.family==='letter')assert.equal(fonts.length,2);
    for(const url of [...requests,...fonts]){
     if(url.startsWith('data:image/png;base64,')){
      const pixels=Buffer.from(url.slice('data:image/png;base64,'.length),'base64');
