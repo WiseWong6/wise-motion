@@ -310,8 +310,9 @@ svg { display:block; width:15px; height:15px; flex:none; }
 .pill-count { font-family:Oswald,var(--font); font-size:11px; font-weight:700; color:var(--muted); font-variant-numeric:tabular-nums; }
 
 /* 侧栏顶端沿用本地 website 的品牌、主题、收起按钮分组。 */
-.sidebar-header { display:flex; align-items:center; gap:8px; min-height:var(--topbar); flex:none; padding:16px 16px 12px; border-bottom:1px solid var(--line); }
-.sidebar-actions { display:flex; align-items:center; gap:2px; margin-left:auto; }
+.sidebar-header { display:flex; align-items:center; gap:6px; min-height:var(--topbar); flex:none; padding:16px 12px 12px; border-bottom:1px solid var(--line); }
+.sidebar-actions { display:flex; align-items:center; gap:0; margin-left:auto; }
+.sidebar-actions .icon-btn { width:28px; }
 .sidebar-actions .icon-btn svg { width:18px; height:18px; }
 .morph-toggle { transition:background var(--dur) var(--ease), color var(--dur) var(--ease), transform .35s cubic-bezier(.34,1.4,.64,1); }
 .morph-toggle:hover { transform:scale(1.02); }
@@ -323,6 +324,16 @@ html[data-theme="light"] #theme-toggle { color:#222226; }
 html[data-theme="dark"] #theme-toggle:hover .icon-morph-glyph[data-icon="theme-sun"] { color:#f5b400; }
 html[data-theme="light"] #theme-toggle:hover .icon-morph-glyph[data-icon="theme-moon"] { color:#f5b400; }
 .icon-morph-glyph { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; }
+.follow-link .icon-morph-glyph,.github-link .icon-morph-glyph { transition:transform .35s cubic-bezier(.34,1.4,.64,1),opacity .18s ease; }
+.follow-link [data-icon="user-check"] { opacity:0; transform:scale(.5); }
+.follow-link:is(:hover,:focus-visible) [data-icon="user-plus"] { opacity:0; transform:scale(.5); }
+.follow-link:is(:hover,:focus-visible) [data-icon="user-check"] { opacity:1; transform:scale(1); }
+.github-link [data-icon="star"].icon-morph-glyph { opacity:0; transform:translateY(15px) scale(.8); color:#f5b400; }
+.github-link:is(:hover,:focus-visible) [data-icon="github"] { opacity:0; transform:translateY(-15px) scale(.8); }
+.github-link:is(:hover,:focus-visible) [data-icon="star"].icon-morph-glyph { opacity:1; transform:translateY(0) scale(1); }
+.github-sparkle { position:absolute; top:-10px; right:-8px; opacity:0; color:#f5b400; transform:translateY(10px) scale(0) rotate(-45deg); transition:transform .35s cubic-bezier(.34,1.4,.64,1),opacity .18s ease; pointer-events:none; }
+.sidebar-actions .github-sparkle svg { width:10px; height:10px; fill:currentColor; stroke:none; }
+.github-link:is(:hover,:focus-visible) .github-sparkle { opacity:1; transform:translateY(0) scale(1) rotate(0); transition-delay:.05s; }
 .brand { display:inline-flex; align-items:center; gap:8px; font-size:16px; font-weight:700; letter-spacing:-.02em; white-space:nowrap; }
 .brand-mark { width:22px; height:22px; border-radius:50%; object-fit:cover; flex:none; }
 .brand-name {
@@ -408,6 +419,7 @@ html[data-theme="light"] .search-clear { color:#000; }
 .search-filter svg { width:14px; height:14px; }
 
 .effects-list { flex:1; min-height:0; overflow-y:auto; overscroll-behavior:contain; padding:var(--space-2) var(--space-3) var(--space-6); }
+.effects-list[aria-busy="true"] { display:grid; place-items:center; padding:0; }
 .effect-group { margin-bottom:2px; }
 .group-head {
   display:flex; align-items:center; gap:6px; width:100%; height:30px;
@@ -441,6 +453,17 @@ html[data-theme="light"] .search-clear { color:#000; }
   background:var(--canvas); box-shadow:inset 0 0 0 1px var(--line);
 }
 .thumb .motion-stage { border-radius:0; }
+.catalog-loading { display:grid; place-items:center; }
+.thumb-loading { position:absolute; inset:0; z-index:1; display:grid; place-items:center; background:var(--canvas); pointer-events:none; }
+.apple-pulse-dots { display:flex; align-items:center; gap:8px; }
+.apple-pulse-dot { display:block; flex:none; width:10px; height:10px; border-radius:50%; background:#fff; transform:scale(.5); opacity:.3; animation:apple-pulse-dots 1.2s ease-in-out infinite; animation-delay:calc(var(--dot-index) * .15s); }
+.thumb-loading .apple-pulse-dots { gap:6px; }
+.thumb-loading .apple-pulse-dot { width:7px; height:7px; }
+html[data-theme="light"] .apple-pulse-dot { background:#27272a; }
+@media (prefers-color-scheme:light) {
+  :root:not([data-theme="dark"]) .apple-pulse-dot { background:#27272a; }
+}
+@keyframes apple-pulse-dots { 0%,100% { transform:scale(.5); opacity:.3; } 50% { transform:scale(1); opacity:1; } }
 /* 浅色原画在小卡片里需要更近的取景和白天对比；仅处理图形层，底色与主预览沿用原样。
    主题切换由样式即时完成，不重新准备原作或增加播放任务。 */
 :root { --thumbnail-art-filter:none; }
@@ -852,6 +875,8 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
   .brand { max-width:240px; min-width:0; overflow:hidden; transition:opacity .32s ease, max-width .46s cubic-bezier(.22,1,.36,1); }
   .no-directory .sidebar-header { justify-content:center; padding-inline:12px; }
   .no-directory .brand,
+  .no-directory #follow-link,
+  .no-directory #github-link,
   .no-directory #theme-toggle { width:0; min-width:0; max-width:0; margin:0; overflow:hidden; opacity:0; visibility:hidden; pointer-events:none; }
   .no-directory .sidebar-actions { margin:0; gap:0; }
 }
@@ -898,6 +923,10 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
 }
 
 /* ── 外观适配 ──────────────────────────────────────────────────── */
+@media (prefers-reduced-motion:reduce) {
+  .apple-pulse-dot { animation:none; transform:none; opacity:1; }
+  .follow-link,.github-link,.follow-link .icon-morph-glyph,.github-link .icon-morph-glyph,.github-sparkle { transition:none; }
+}
 /* 打开「降低透明度」后玻璃必须退回实色，否则文字会糊在背景上读不清。 */
 @media (prefers-reduced-transparency: reduce) {
   .sidebar-shell,.directory,.inspector,.playbar,.select-menu {

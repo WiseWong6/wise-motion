@@ -152,7 +152,9 @@ assert.match(await read('vendor/animejs/LICENSE.md'), /MIT License/);
 assert.match(await read('LICENSE'), /GNU AFFERO GENERAL PUBLIC LICENSE/);
 assert.match(await read('agents/openai.yaml'), /allow_implicit_invocation:\s*false/);
 const html = await read('catalog/index.html');
-for (const [, resource] of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
+for (const [, tag, resource] of html.matchAll(/<([a-z][\w:-]*)\b[^>]*?\b(?:src|href)="([^"]+)"/gi)) {
+  // 用户主动打开的外链不属于页面加载资源；脚本、字体、图片等仍须完全本地。
+  if (tag.toLowerCase() === 'a' && resource.startsWith('https://')) continue;
   if (resource.startsWith('#')) { assert.ok(html.includes(`id="${resource.slice(1)}"`), '页面内链接的目标不存在：' + resource); continue; }
   assert.ok(!/^(https?:|\/\/)/.test(resource), '目录引用远程资源：' + resource);
   assert.ok((await stat(path.resolve(root, 'catalog', resource))).isFile(), '缺少目录资源：' + resource);

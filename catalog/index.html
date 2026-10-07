@@ -26,6 +26,12 @@
       <header class="sidebar-header">
         <a class="brand" href="index.html"><img class="brand-mark" src="wise-avatar.webp" alt="" width="22" height="22"><span class="brand-name">WISE MOTION</span></a>
         <div class="sidebar-actions">
+          <a id="follow-link" class="icon-btn follow-link morph-toggle" href="https://github.com/WiseWong6" target="_blank" rel="noopener noreferrer" aria-label="关注我：打开 GitHub 个人主页（新窗口）" title="关注我">
+            <span class="icon-morph" aria-hidden="true"><span class="icon-morph-glyph" data-icon="user-plus"></span><span class="icon-morph-glyph" data-icon="user-check"></span></span>
+          </a>
+          <a id="github-link" class="icon-btn morph-toggle github-link" href="https://github.com/WiseWong6/wise-motion" target="_blank" rel="noopener noreferrer" aria-label="到 GitHub 收藏项目（新窗口）" title="到 GitHub 收藏项目">
+            <span class="icon-morph" aria-hidden="true"><span class="icon-morph-glyph" data-icon="github"></span><span class="icon-morph-glyph" data-icon="star"></span><span class="github-sparkle" data-icon="star"></span></span>
+          </a>
           <button id="theme-toggle" class="icon-btn morph-toggle" type="button" aria-label="外观：深色" title="深色"><span class="icon-morph" aria-hidden="true"><span class="icon-morph-glyph" data-icon="theme-moon"></span><span class="icon-morph-glyph" data-icon="theme-sun"></span></span></button>
           <button id="toggle-directory" class="icon-btn morph-toggle" type="button" aria-controls="directory-panel" aria-expanded="true" aria-label="收起动效目录" title="收起动效目录"><span class="icon-morph" aria-hidden="true"><span class="icon-morph-glyph" data-icon="panel-collapse"></span><span class="icon-morph-glyph" data-icon="panel-expand"></span></span></button>
         </div>
@@ -53,7 +59,9 @@
             <div id="category-options" class="select-menu scroll-area" role="listbox" aria-label="动效分类" hidden></div>
           </div>
         </div>
-        <nav id="effects-list" class="effects-list scroll-area" aria-label="选择动效参考"></nav>
+        <nav id="effects-list" class="effects-list scroll-area" aria-label="选择动效参考" aria-busy="true">
+          <div class="catalog-loading" role="status"><span class="apple-pulse-dots" aria-hidden="true"><span class="apple-pulse-dot" style="--dot-index:0"></span><span class="apple-pulse-dot" style="--dot-index:1"></span><span class="apple-pulse-dot" style="--dot-index:2"></span></span><span class="sr-only">正在加载动效目录…</span></div>
+        </nav>
         <div id="empty" class="empty" hidden>
           <strong>还没有合适的参考</strong>
           <button class="btn btn-outline" id="clear-search">清空筛选</button>
