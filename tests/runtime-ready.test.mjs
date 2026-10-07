@@ -217,6 +217,11 @@ test('异步缩略图逐个准备并仅画代表时刻，画完释放资源且�
     assert.equal(b.querySelector('.thumb-loading'),null);assert.equal(b.dataset.previewState,'ready');
     assert.deepEqual(second.frames,[720]);assert.equal(second.destroyed,1);
     assert.equal(w.MotionRuntime.instanceCount,0);assert.equal(w.MotionRuntime.runningCount,0);
+    const stage=a.querySelector('.motion-stage');w.MotionThumbs.release(a);
+    const restored=host(w);w.MotionThumbs.attach(restored,definition);await w.MotionThumbs.whenIdle();
+    assert.equal(restored.querySelector('.motion-stage'),stage);assert.equal(restored.querySelector('.thumb-loading'),null);
+    assert.equal(restored.dataset.previewState,'ready');assert.equal(first.definitions.length,1);
+    assert.deepEqual(first.frames,[640]);assert.equal(first.destroyed,1,'复用完成画面不能重新建立绘制器');
   }finally{env.close();}
 });
 
@@ -233,6 +238,10 @@ test('移除正在准备的缩略图会立即释放并让后续条目继续，�
     old.resolve();next.resolve();await w.MotionThumbs.whenIdle();
     assert.equal(old.frames.length,0);assert.equal(old.destroyed,1);assert.equal(node.textContent,'新的卡片');
     assert.deepEqual(next.frames,[640]);assert.equal(next.destroyed,1);
+    node.replaceChildren();const retry=delayedFactory(w);w.MotionThumbs.attach(node,definition);
+    assert.ok(node.querySelector('.thumb-loading'),'未完成的旧画面不能进入缓存');
+    await retry.started;retry.resolve();await w.MotionThumbs.whenIdle();
+    assert.deepEqual(retry.frames,[640]);assert.equal(retry.destroyed,1);assert.equal(node.dataset.previewState,'ready');
   }finally{env.close();}
 });
 
@@ -253,5 +262,9 @@ test('一个异步缩略图准备失败不阻塞后续，同步缩略图沿原�
     assert.equal(a.textContent,'预览暂不可用');assert.match(a.title,/缩略图形状无法加载/);assert.equal(failed.destroyed,1);
     assert.equal(a.querySelector('.thumb-loading'),null);assert.equal(a.dataset.previewState,'error');
     assert.deepEqual(next.frames,[640]);assert.equal(next.destroyed,1);
+    w.MotionThumbs.release(a);const retry=delayedFactory(w);w.MotionThumbs.attach(a,definition);
+    assert.ok(a.querySelector('.thumb-loading'),'失败画面不能进入缓存，回来时应允许重试');
+    await retry.started;retry.resolve();await w.MotionThumbs.whenIdle();
+    assert.equal(a.dataset.previewState,'ready');assert.equal(a.title,'');assert.deepEqual(retry.frames,[640]);
   }finally{env.close();}
 });
