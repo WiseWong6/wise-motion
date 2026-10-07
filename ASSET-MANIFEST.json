@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "catalog/app.css",
-      "bytes": 57239,
-      "sha256": "14664ecca4e47c6d3fa74753d4adff84e07ec7ee97f2c47c586f66f36590e43c"
+      "bytes": 57730,
+      "sha256": "20cc232f158a27ac3b5fe52796086f5095e14daac71a6058e4dc759457098f8e"
     },
     {
       "path": "catalog/app.js",
@@ -733,8 +733,8 @@
     },
     {
       "path": "catalog/effects/rasengan-illustrations.js",
-      "bytes": 3412412,
-      "sha256": "d02312f1a7bfed7aa625a6ff86df6433167cfefe7128a9e63a529e1626524fdb"
+      "bytes": 3412910,
+      "sha256": "60f8637cd2ecd05fb6f9d393ccbf4e07a496e5b599e90a11f3a4daeb17cfb0a6"
     },
     {
       "path": "catalog/effects/rect-wave-field.js",
@@ -778,8 +778,8 @@
     },
     {
       "path": "catalog/effects/scene-dandelion.js",
-      "bytes": 93041,
-      "sha256": "0b9e73e4fa78986f6753d55c4c23b736c8f9ebf6e4fffb1a1c51e2dc536a7ec5"
+      "bytes": 93079,
+      "sha256": "f85f95f55a5d1ce1c80c96cf1ef15adf41e97ca3a2c29548ca4c6d196df8cc9c"
     },
     {
       "path": "catalog/effects/scene-drive.js",
@@ -983,13 +983,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1405355,
-      "sha256": "3c047ec754fbd314a5bbadb73a18ffc7d8d08f332e2a569197d80be8a417e183"
+      "bytes": 1403412,
+      "sha256": "fdc44353926c7611f53b89dff051aae0fd8a9720d63a5465f6061228c40952dd"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1783316,
-      "sha256": "10161c1147a66852e8b5cfa0e573c27192eb8fa3d1307aaeb29e13224f2d103f"
+      "bytes": 1780866,
+      "sha256": "595972161b83f81e306e57d15239689f9c808649818f208d9387572abd8789ea"
     },
     {
       "path": "catalog/related-preview.js",

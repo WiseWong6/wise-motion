@@ -30392,29 +30392,31 @@
     },
     {
       "id": "passage-animal-response",
-      "name": "动物遇到主体后回应",
+      "name": "动物回应与伴飞绕行",
       "kind": "action",
       "category": "response",
-      "summary": "主体经过时，动物按实际距离触发转向、跳跑或躲到树后。",
-      "purpose": "主体经过时，动物按实际距离触发转向、跳跑或躲到树后。",
-      "objects": "动物遇到主体后回应的原造型及相关运动主体",
+      "summary": "蒲公英沿原地景前行，鱼群、兔子与松鼠在相遇时回应，蜻蜓、飞鸟、瓢虫和蝴蝶跟随与绕行。",
+      "purpose": "蒲公英沿原地景前行，鱼群、兔子与松鼠在相遇时回应，蜻蜓、飞鸟、瓢虫和蝴蝶跟随与绕行。",
+      "objects": "原地景、主体蒲公英、鱼群、兔子、松鼠及伴飞动物",
       "phases": [
-        "保持原动物初态与主体接近路线。",
-        "按原遇物事件计算时差和回应。",
-        "动物继续离开，保留动作结束姿态。"
+        "蒲公英在荷塘中前行，伴飞动物沿原轨迹接近。",
+        "地景交接到麦田与山林，动物按原相遇位置避让、跳跑或躲藏。",
+        "蒲公英继续前行，伴飞动物保持原时差跟随与绕行。"
       ],
       "aliases": [
         "动物遇到主体后回应",
-        "蒲公英·风过之处"
+        "蒲公英·风过之处",
+        "伴飞跟随与绕行",
+        "动物回应与伴飞绕行"
       ],
       "behaviors": [
         "move",
         "react"
       ],
-      "retain": "保留原轮廓、比例、材质、固定数据及时间关系；主体经过时，动物按实际距离触发转向、跳跑或躲到树后。",
+      "retain": "保留原地景、蒲公英造型、相遇位置与伴飞轨迹，共用原时间关系。",
       "avoid": "不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。",
-      "duration_ms": 7000,
-      "preview_ms": 3850,
+      "duration_ms": 24000,
+      "preview_ms": 13200,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -30433,7 +30435,7 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
+        "extraction": "合并动物相遇回应和伴飞绕行，共用原作完整地景、主体蒲公英和原时间关系。",
         "dependencies": [
           "catalog/effects/scene-source-runtime.js"
         ]
@@ -30444,18 +30446,32 @@
         "animation"
       ],
       "trigger": "打开后按原时间播放；可暂停、重播与定位。",
-      "analogy": "主体经过时，动物按实际距离触发转向、跳跑或躲到树后。",
-      "assumptions": "使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。",
-      "tempo_note": "保留原作第4.75秒起的7秒；速度控件统一缩放时间。",
-      "recommendation": "需要动物遇到主体后回应的造型或动作关系时直接复用。",
+      "analogy": "蒲公英沿原地景前行，鱼群、兔子与松鼠在相遇时回应，蜻蜓、飞鸟、瓢虫和蝴蝶跟随与绕行。",
+      "assumptions": "使用完整原地景与主体蒲公英，动物回应与伴飞共用同一场景时间；原尺寸等比适配目录，保留原色。",
+      "tempo_note": "完整伴行保留原作第3至27秒；也可选择鱼群、兔子或松鼠的相遇片段，背景、主体与伴飞共用原时序。",
+      "recommendation": "需要展示蒲公英与动物互动时使用完整伴行，或选择鱼群、兔子、松鼠片段。",
       "scene": {
         "family": "dandelion",
-        "mode": "water-life",
-        "start": 4.75,
+        "mode": "interaction",
+        "start": 3,
         "width": 900,
         "height": 1200
       },
       "variants": [
+        {
+          "id": "journey",
+          "label": "完整伴行旅程",
+          "summary": "蒲公英沿原地景前行，鱼群、兔子与松鼠在相遇时回应，蜻蜓、飞鸟、瓢虫和蝴蝶跟随与绕行。",
+          "duration_ms": 24000,
+          "preview_ms": 13200,
+          "scene": {
+            "family": "dandelion",
+            "mode": "interaction",
+            "start": 3,
+            "width": 900,
+            "height": 1200
+          }
+        },
         {
           "id": "fish",
           "label": "鱼群避让",
@@ -30464,7 +30480,7 @@
           "preview_ms": 3850,
           "scene": {
             "family": "dandelion",
-            "mode": "water-life",
+            "mode": "interaction",
             "start": 4.75,
             "width": 900,
             "height": 1200
@@ -30478,7 +30494,7 @@
           "preview_ms": 3850,
           "scene": {
             "family": "dandelion",
-            "mode": "wheat-life",
+            "mode": "interaction",
             "start": 10,
             "width": 900,
             "height": 1200
@@ -30492,7 +30508,7 @@
           "preview_ms": 3850,
           "scene": {
             "family": "dandelion",
-            "mode": "forest-life",
+            "mode": "interaction",
             "start": 15,
             "width": 900,
             "height": 1200
@@ -30500,93 +30516,15 @@
         }
       ],
       "reproduction": {
-        "objects": "主体经过时，动物按实际距离触发转向、跳跑或躲到树后。",
+        "objects": "原地景、主体蒲公英、鱼群、兔子、松鼠及伴飞动物",
         "presentation": "设计尺寸900×1200，竖版3:4；荷塘青绿、麦田浅金、山林灰绿、云海青蓝、草地翠绿，细白冠毛。",
         "phases": [
-          "保持原动物初态与主体接近路线。",
-          "按原遇物事件计算时差和回应。",
-          "动物继续离开，保留动作结束姿态。"
+          "蒲公英在荷塘中前行，伴飞动物沿原轨迹接近。",
+          "地景交接到麦田与山林，动物按原相遇位置避让、跳跑或躲藏。",
+          "蒲公英继续前行，伴飞动物保持原时差跟随与绕行。"
         ],
-        "retain": "主体经过时，动物按实际距离触发转向、跳跑或躲到树后。",
-        "tempo_note": "从4.75秒的位置开始展示，播放7秒，各部件共用同一动作秒数。",
-        "avoid": "所有动作由当前帧计算，随机分布固定，定位时呈现同一画面。"
-      }
-    },
-    {
-      "id": "wind-companion-follow",
-      "name": "伴飞跟随与绕行",
-      "kind": "action",
-      "category": "response",
-      "summary": "蜻蜓、飞鸟、瓢虫和蝴蝶沿蒲公英的历史路程伴飞与绕行。",
-      "purpose": "蜻蜓、飞鸟、瓢虫和蝴蝶沿蒲公英的历史路程伴飞与绕行。",
-      "objects": "伴飞跟随与绕行的原造型及相关运动主体",
-      "phases": [
-        "伴飞物接近主体。",
-        "按原轨迹和时差跟随，保留避让。",
-        "各自继续飞行，主体驶向落种处。"
-      ],
-      "aliases": [
-        "伴飞跟随与绕行",
-        "蒲公英·风过之处"
-      ],
-      "behaviors": [
-        "move",
-        "react"
-      ],
-      "retain": "保留原轮廓、比例、材质、固定数据及时间关系；蜻蜓、飞鸟、瓢虫和蝴蝶沿蒲公英的历史路程伴飞与绕行。",
-      "avoid": "不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。",
-      "duration_ms": 24000,
-      "preview_ms": 13200,
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "source": {
-        "path": "catalog/effects/scene-dandelion.js",
-        "factory": "wind-companion-follow",
-        "origin": "original",
-        "license": "AGPL-3.0-only",
-        "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
-        "dependencies": [
-          "catalog/effects/scene-source-runtime.js"
-        ]
-      },
-      "actions": [],
-      "demo_mode": "fixed-timeline",
-      "domains": [
-        "animation"
-      ],
-      "trigger": "打开后按原时间播放；可暂停、重播与定位。",
-      "analogy": "蜻蜓、飞鸟、瓢虫和蝴蝶沿蒲公英的历史路程伴飞与绕行。",
-      "assumptions": "使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。",
-      "tempo_note": "保留原作第3秒起的24秒；速度控件统一缩放时间。",
-      "recommendation": "需要伴飞跟随与绕行的造型或动作关系时直接复用。",
-      "scene": {
-        "family": "dandelion",
-        "mode": "followers",
-        "start": 3,
-        "width": 900,
-        "height": 1200
-      },
-      "reproduction": {
-        "objects": "蜻蜓、飞鸟、瓢虫和蝴蝶沿蒲公英的历史路程伴飞与绕行。",
-        "presentation": "设计尺寸900×1200，竖版3:4；荷塘青绿、麦田浅金、山林灰绿、云海青蓝、草地翠绿，细白冠毛。",
-        "phases": [
-          "伴飞物接近主体。",
-          "按原轨迹和时差跟随，保留避让。",
-          "各自继续飞行，主体驶向落种处。"
-        ],
-        "retain": "蜻蜓、飞鸟、瓢虫和蝴蝶沿蒲公英的历史路程伴飞与绕行。",
-        "tempo_note": "从3秒的位置开始展示，播放24秒，各部件共用同一动作秒数。",
+        "retain": "保留原地景、蒲公英造型、相遇位置与伴飞轨迹，共用原时间关系。",
+        "tempo_note": "完整伴行保留原作第3至27秒；也可选择鱼群、兔子或松鼠的相遇片段，背景、主体与伴飞共用原时序。",
         "avoid": "所有动作由当前帧计算，随机分布固定，定位时呈现同一画面。"
       }
     },
@@ -31047,7 +30985,7 @@
         ]
       },
       "actions": [
-        "wind-companion-follow"
+        "passage-animal-response"
       ],
       "demo_mode": "fixed-timeline",
       "domains": [
@@ -31276,7 +31214,6 @@
         "settle-grow-spread",
         "landscape-boundary-carry",
         "passage-animal-response",
-        "wind-companion-follow",
         "journey-landscape-illustration",
         "journey-lotus-illustration",
         "journey-air-animal-illustration",
@@ -31324,7 +31261,7 @@
             "time": "0—27秒",
             "detail": "风线穿过，蜻蜓、飞鸟、瓢虫和蝴蝶沿主体走过的路线伴飞。",
             "actions": [
-              "wind-companion-follow",
+              "passage-animal-response",
               "journey-air-animal-illustration"
             ]
           },
@@ -31386,7 +31323,7 @@
             "time": "0—27秒",
             "detail": "风线穿过，蜻蜓、飞鸟、瓢虫和蝴蝶沿主体走过的路线伴飞。",
             "actions": [
-              "wind-companion-follow",
+              "passage-animal-response",
               "journey-air-animal-illustration"
             ]
           },
@@ -38344,7 +38281,7 @@
       "retain": "保留原轮廓、比例、材质、固定数据及时间关系；原环线构建和剖面展开接上烟羽回卷；头部的轮廓、材质和时间逐步变为球涡，共用原场景交接。",
       "avoid": "不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。",
       "duration_ms": 42000,
-      "preview_ms": 23100,
+      "preview_ms": 8000,
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -38488,7 +38425,7 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。"
+        "extraction": "共用原流场绘制，直接从有效轨迹开始并覆盖完整保存区间；保留增密和镜头时序，避免开场与末尾采样越界。"
       },
       "actions": [],
       "demo_mode": "fixed-timeline",
@@ -38498,7 +38435,7 @@
       "trigger": "打开后按原时间播放；可暂停、重播与定位。",
       "analogy": "沿原连续速度曲线逐步增加流线和亮度，镜头同步从剖面转向球体。",
       "assumptions": "使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。",
-      "tempo_note": "保留原作第0秒起的24秒；速度控件统一缩放时间。",
+      "tempo_note": "开场直接显示稀疏能量球，跳过无效黑屏；保留二十四秒增密与镜头转向过程，流线持续沿有效轨迹翻卷。",
       "recommendation": "需要能量流线持续增密的造型或动作关系时直接复用。",
       "reproduction": {
         "objects": "沿原连续速度曲线逐步增加流线和亮度，镜头同步从剖面转向球体。",
@@ -38509,7 +38446,7 @@
           "流场持续增密，完整显现能量球。"
         ],
         "retain": "沿原连续速度曲线逐步增加流线和亮度，镜头同步从剖面转向球体。",
-        "tempo_note": "从0秒的位置开始展示，播放24秒，各部件共用同一动作秒数。",
+        "tempo_note": "开场直接显示稀疏能量球，跳过无效黑屏；保留二十四秒增密与镜头转向过程，流线持续沿有效轨迹翻卷。",
         "avoid": "所有动作由当前帧计算，随机分布固定，定位时呈现同一画面。"
       }
     },
@@ -39042,7 +38979,8 @@
     "hud-telemetry-sync": "hud-range-readout",
     "grid-bend-spread": "grid-flow-unfold",
     "multivortex-release": "grid-flow-unfold",
-    "sunset-character-illustration": "sunset-sun-illustration"
+    "sunset-character-illustration": "sunset-sun-illustration",
+    "wind-companion-follow": "passage-animal-response"
   },
   "variant_redirects": {
     "material-label-stagger": "material",

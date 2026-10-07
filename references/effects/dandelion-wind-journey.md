@@ -14,7 +14,7 @@
 现实类比：从球簇释放、经过荷塘麦田山林云海，到落种生长，保留完整三十七秒旅程。
 需要保留：保留原轮廓、比例、材质、固定数据及时间关系；从球簇释放、经过荷塘麦田山林云海，到落种生长，保留完整三十七秒旅程。
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
-对应参考：本地目录「蒲公英·风过之处」；所用动作：种子向外散开、冠毛展开转向、冠毛脱落飘散、落定后生长蔓延、地景沿边界连续承接、动物遇到主体后回应、伴飞跟随与绕行、蒲公英旅途地景、荷花、蒲公英伴飞动物、蒲公英旅途地面动物、落种后开花的植株
+对应参考：本地目录「蒲公英·风过之处」；所用动作：种子向外散开、冠毛展开转向、冠毛脱落飘散、落定后生长蔓延、地景沿边界连续承接、动物回应与伴飞绕行、蒲公英旅途地景、荷花、蒲公英伴飞动物、蒲公英旅途地面动物、落种后开花的植株
 源码：catalog/effects/scene-dandelion.js 中的 dandelion-wind-journey
 来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
@@ -33,4 +33,4 @@
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
 - 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[种子向外散开](dandelion-radial-release.md)、[冠毛展开转向](filament-unfold-turn.md)、[冠毛脱落飘散](filament-shed-drift.md)、[落定后生长蔓延](settle-grow-spread.md)、[地景沿边界连续承接](landscape-boundary-carry.md)、[动物遇到主体后回应](passage-animal-response.md)、[伴飞跟随与绕行](wind-companion-follow.md)、[蒲公英旅途地景](journey-landscape-illustration.md)、[荷花](journey-lotus-illustration.md)、[蒲公英伴飞动物](journey-air-animal-illustration.md)、[蒲公英旅途地面动物](journey-pond-animal-illustration.md)、[落种后开花的植株](journey-flower-illustration.md)。
+所用动作：[种子向外散开](dandelion-radial-release.md)、[冠毛展开转向](filament-unfold-turn.md)、[冠毛脱落飘散](filament-shed-drift.md)、[落定后生长蔓延](settle-grow-spread.md)、[地景沿边界连续承接](landscape-boundary-carry.md)、[动物回应与伴飞绕行](passage-animal-response.md)、[蒲公英旅途地景](journey-landscape-illustration.md)、[荷花](journey-lotus-illustration.md)、[蒲公英伴飞动物](journey-air-animal-illustration.md)、[蒲公英旅途地面动物](journey-pond-animal-illustration.md)、[落种后开花的植株](journey-flower-illustration.md)。
