@@ -82,3 +82,11 @@ I.顏體字库及派生字形保留 GPL-2.0-or-later；自有提取程序采用 
 Remotion、React 等视频复用依赖由目标工程安装，版本和接入方式见 [Remotion 制作说明](REMOTION.md)，许可按各依赖原条款执行。开发检查使用的 jsdom 及其依赖仅用于测试，不进入目录运行时；其许可随开发依赖保留。
 
 第三方版权与许可文件保持原文。GSAP、Jitter、LottieFiles 等外部资源的收录边界见 [来源核对与收录规范](references/sources.md)。
+
+## 本次迁入的自有场景
+
+蒲公英、驾车气球、小猫加工厂、深圳湾雪夜、海面上的夕阳、花落成蝶、星月来信、小葵自拍、雨伞返场和螺旋丸家族的绘制、数据与插画，由 Wise Wong 创作并确认用于本库。原文件、迁入素材及校验记录见 [原作与迁入记录](catalog/assets/scene-sources/原作与迁入记录.json)。原工程不参与运行，音乐不作为本库依赖。
+
+深圳湾雪夜保留 p5.js 1.9.4 的噪声子集及原许可全文（LGPL-2.1），见 [第三方来源与许可](catalog/assets/scene-sources/snow/THIRD-PARTY.json)；抽出为实例内函数，并将初始化随机数接入固定种子。原乐曲事件保留为无声时间数据。
+
+星月来信使用霞鹜文楷和马善政毛笔字体，保留 [文楷原许可](catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt) 与 [毛笔原许可](catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt)。银河图片的原说明见 [素材来源](catalog/assets/scene-sources/letter/素材来源.md)。自拍图集为用户提供的自有原图，按原视角、足迹和透视映射复用。

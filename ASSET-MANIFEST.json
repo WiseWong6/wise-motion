@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "catalog/app.css",
-      "bytes": 55162,
-      "sha256": "30733dcb6d6da5bb04e6ca61f4df522279438bc47b6526b37f60e3af6ba52f71"
+      "bytes": 57239,
+      "sha256": "14664ecca4e47c6d3fa74753d4adff84e07ec7ee97f2c47c586f66f36590e43c"
     },
     {
       "path": "catalog/app.js",
@@ -382,6 +382,81 @@
       "sha256": "422bc9e005c6eb919ccaff74d8f31b5c2a1579aa4de89cf6d377628b6a82e7d2"
     },
     {
+      "path": "catalog/assets/scene-sources/factory/coffee-bean.png",
+      "bytes": 1458808,
+      "sha256": "fd30c26d018a64ad5f88bc4d99033cb8e34de936f7c1811dfbcee6790e86115f"
+    },
+    {
+      "path": "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+      "bytes": 25575676,
+      "sha256": "39ad71264b588165b469e35e6afb162a378dacd1f95348160240ba9038ac3009"
+    },
+    {
+      "path": "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
+      "bytes": 5857936,
+      "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb"
+    },
+    {
+      "path": "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt",
+      "bytes": 5171,
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+    },
+    {
+      "path": "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
+      "bytes": 4397,
+      "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08"
+    },
+    {
+      "path": "catalog/assets/scene-sources/letter/galaxy-sky.png",
+      "bytes": 2368856,
+      "sha256": "40e0ebd3658b52736d6e592a08e54dcd7ac339bd1b2501a4804d410bd2100a92"
+    },
+    {
+      "path": "catalog/assets/scene-sources/letter/素材来源.md",
+      "bytes": 984,
+      "sha256": "2058739e5bbe406394ae11155448f23957f13c9c6ab0ab5de60301d367d1bca1"
+    },
+    {
+      "path": "catalog/assets/scene-sources/selfie/小葵原设定补充视角.png",
+      "bytes": 621247,
+      "sha256": "5fd431c67dc21aa9e64b9fc49cdee18e181918c40be15f6c36287034c4406000"
+    },
+    {
+      "path": "catalog/assets/scene-sources/selfie/小葵朝右下.png",
+      "bytes": 637183,
+      "sha256": "cf88037a03984fdc7b0ead6243a019979acdc4a53ed4501aef7d93d7c931d594"
+    },
+    {
+      "path": "catalog/assets/scene-sources/selfie/小葵朝左上.png",
+      "bytes": 478095,
+      "sha256": "aedcd726d2771e2985e177c1d3b2472e72c43ada62de7b76e808453ebb02fe10"
+    },
+    {
+      "path": "catalog/assets/scene-sources/selfie/小葵转身与低头.png",
+      "bytes": 580013,
+      "sha256": "58f1ad511e2de091bd8c75292ccb8ceb0f916d9060f47fb3b51d915206ed8162"
+    },
+    {
+      "path": "catalog/assets/scene-sources/selfie/我的自拍.png",
+      "bytes": 1365409,
+      "sha256": "da7f34ec64757200b5941202872a0080e3e02ea164adf18db31ca610ce1496c0"
+    },
+    {
+      "path": "catalog/assets/scene-sources/selfie/手机与人物.png",
+      "bytes": 1314533,
+      "sha256": "e91a89281081ccdf17761d2344dbc075ae02d9c98baeebee16533379cfac16d4"
+    },
+    {
+      "path": "catalog/assets/scene-sources/snow/THIRD-PARTY.json",
+      "bytes": 25549,
+      "sha256": "2cfd42cd0fde2b4643fcc6cac6d1543899f0513bbc776163372bd7e212352ef3"
+    },
+    {
+      "path": "catalog/assets/scene-sources/原作与迁入记录.json",
+      "bytes": 23708,
+      "sha256": "ed67335c31d1b640e2d6e7e3b39b4f8a64266da085b0962895f56e6b19d5bc62"
+    },
+    {
       "path": "catalog/assets/selfie-phone.webp",
       "bytes": 698886,
       "sha256": "d0cd0465e6534e5079e6a43952f48e2de0fd5b2f711dc02390c2f85ed8e90a93"
@@ -443,8 +518,8 @@
     },
     {
       "path": "catalog/effects/butterfly.js",
-      "bytes": 7548,
-      "sha256": "83e8c730cb5cd4046b4b70385ed6813af33effbb1508ab7d1eccda8be76903d8"
+      "bytes": 7774,
+      "sha256": "566168504fc849f7bbb16e1e8197684cb6a9ee43cf67c0f359a7a5fb3c31185d"
     },
     {
       "path": "catalog/effects/capsule-type.js",
@@ -533,8 +608,8 @@
     },
     {
       "path": "catalog/effects/encore-dance.js",
-      "bytes": 21737,
-      "sha256": "dfec92a5cd7f05a58f17553300abcfbe49b012b9c449451ca7f8564f62f85132"
+      "bytes": 24277,
+      "sha256": "1b6e28bc4b984912f35fad585ac3c55606ff514c6b6978e720ba1005824c4bb6"
     },
     {
       "path": "catalog/effects/entrance.js",
@@ -643,8 +718,8 @@
     },
     {
       "path": "catalog/effects/point-domain-flow.js",
-      "bytes": 63400,
-      "sha256": "1ad233483f052196317041de52cda4305fa5fb6cceda4b4a8699568d832ccce1"
+      "bytes": 63401,
+      "sha256": "0f09f6868c20587398262c140a2c1b0a6d3ef19f03bfb0a34e71ec950c0822c5"
     },
     {
       "path": "catalog/effects/promo-particles.js",
@@ -658,8 +733,8 @@
     },
     {
       "path": "catalog/effects/rasengan-illustrations.js",
-      "bytes": 3396913,
-      "sha256": "4710ffef50ce5c814b01672a15929a5aa4536d647cbe0a2084d3bde52605b0e5"
+      "bytes": 3412412,
+      "sha256": "d02312f1a7bfed7aa625a6ff86df6433167cfefe7128a9e63a529e1626524fdb"
     },
     {
       "path": "catalog/effects/rect-wave-field.js",
@@ -700,6 +775,76 @@
       "path": "catalog/effects/reel-transitions.js",
       "bytes": 6506,
       "sha256": "3d1a7a7daa6a3184e6d44737d65f99b970bd2e10a5a37e664b0b9d97387ae12c"
+    },
+    {
+      "path": "catalog/effects/scene-dandelion.js",
+      "bytes": 93041,
+      "sha256": "0b9e73e4fa78986f6753d55c4c23b736c8f9ebf6e4fffb1a1c51e2dc536a7ec5"
+    },
+    {
+      "path": "catalog/effects/scene-drive.js",
+      "bytes": 25263,
+      "sha256": "e205fe3d9c7b1debcc55a5e104155c72ee312f61b7523d53a63b4e4f9c56c184"
+    },
+    {
+      "path": "catalog/effects/scene-factory.js",
+      "bytes": 111298,
+      "sha256": "a24349bc5757ff324a9de0a38b33792a2b7f4e82534c695154c5b4a7c74e887b"
+    },
+    {
+      "path": "catalog/effects/scene-ink-data.js",
+      "bytes": 11567525,
+      "sha256": "d544b9c52a5fd37ee903b4ca4869f5116ffb780cee76d01df1e5f5cbd452c71a"
+    },
+    {
+      "path": "catalog/effects/scene-ink.js",
+      "bytes": 13085,
+      "sha256": "4f4947a234a645013cf3c5810a5940fa9d342a82801056148ff21f8604183973"
+    },
+    {
+      "path": "catalog/effects/scene-letter-images.js",
+      "bytes": 3158732,
+      "sha256": "0b99ef1eebdccd3693e2ff9233d77eec339f4834524f1121c794695eb52ed5c0"
+    },
+    {
+      "path": "catalog/effects/scene-letter.js",
+      "bytes": 73181,
+      "sha256": "f007c4fd5615cb979a1d79e4261d841310106c627929baaf585182ed375036b8"
+    },
+    {
+      "path": "catalog/effects/scene-ocean.js",
+      "bytes": 63653,
+      "sha256": "90e40c388256d47f8bad5bd2bf64f78279661fffc34980e8399cdadf5342bf80"
+    },
+    {
+      "path": "catalog/effects/scene-osmanthus-data.js",
+      "bytes": 5263448,
+      "sha256": "04e0cf5bfa78ebe1c60ef4770916f8acd93608db2823393ca0e8334fac6b695b"
+    },
+    {
+      "path": "catalog/effects/scene-osmanthus.js",
+      "bytes": 83165,
+      "sha256": "593f8af05999e4d9af10be2bfc2a26de9c1f6af0e1630d5c80d27a1ba9197a0a"
+    },
+    {
+      "path": "catalog/effects/scene-selfie-images.js",
+      "bytes": 6662635,
+      "sha256": "8250a5924ef4a96de9933839f2386032a106571f849809a60c0337f83ae659dc"
+    },
+    {
+      "path": "catalog/effects/scene-selfie.js",
+      "bytes": 118954,
+      "sha256": "594feb7dab2097996a290b1bd4aab0f39eef51c1e34cf0a6c9a3b3c1f677306e"
+    },
+    {
+      "path": "catalog/effects/scene-snow.js",
+      "bytes": 53236,
+      "sha256": "dbbe0c295cbe9171ea587e77b16ed2d435ae2a06da7f1b0aaa17e139fe5c00e8"
+    },
+    {
+      "path": "catalog/effects/scene-source-runtime.js",
+      "bytes": 8175,
+      "sha256": "e691b24f8061f56388dcd10037208b888387977c8580307946dbec6238593c56"
     },
     {
       "path": "catalog/effects/seed-bloom-brand.js",
@@ -819,12 +964,12 @@
     {
       "path": "catalog/layer-audit.json",
       "bytes": 15848,
-      "sha256": "f383a8e7fecb6597ab3a8a8cfd8a8f6d4e725d94ca8e993f036e9a4c279d3ad8"
+      "sha256": "d6a85f502ea8e42890cc7c93dfa945bbf39e9357fad27a3de404aefafc029c92"
     },
     {
       "path": "catalog/lazy.js",
-      "bytes": 2586,
-      "sha256": "8bc179c7cd7af88a27a9bbfb36b10bbe0e4c79f9919d70cee1552c1de72601dd"
+      "bytes": 2982,
+      "sha256": "2eb4f7f7b153442b649109d7a39d7281cfeeb8cb18b210bc4aa16b48ba374eec"
     },
     {
       "path": "catalog/matching.js",
@@ -838,13 +983,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1172079,
-      "sha256": "2e42a0cbfac3127455c69af245c64d8c48786b8f786ecb44120245cb287cf94d"
+      "bytes": 1405355,
+      "sha256": "3c047ec754fbd314a5bbadb73a18ffc7d8d08f332e2a569197d80be8a417e183"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1450519,
-      "sha256": "7b7ff43a20c3c040a2078dc4c4a915d42c69715aea5992f7c8b50825f20190e3"
+      "bytes": 1783316,
+      "sha256": "10161c1147a66852e8b5cfa0e573c27192eb8fa3d1307aaeb29e13224f2d103f"
     },
     {
       "path": "catalog/related-preview.js",
@@ -893,8 +1038,8 @@
     },
     {
       "path": "catalog/thumbnails.js",
-      "bytes": 9652,
-      "sha256": "c9d4ba4d4df83ef2bc5167d945987bf65151cce6eda247636632eb118747da62"
+      "bytes": 9853,
+      "sha256": "e5f02a7c77332f0a694c4a3e95a254624d11944b29b8ff70aa29420307aa36f3"
     },
     {
       "path": "catalog/wise-avatar.webp",

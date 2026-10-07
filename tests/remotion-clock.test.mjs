@@ -51,7 +51,7 @@ test('无效帧率、帧号和取样模式明确报错', () => {
 
 test('所有条目和变体可解析，元数据与末帧一致，原注册表不被改变', () => {
   const before = JSON.stringify(effectDefinitions);
-  assert.equal(effectDefinitions.length, 365);
+  assert.equal(effectDefinitions.length,419);
   let count = 0;
   for (const effect of effectDefinitions) for (const variantId of effect.variants?.map(variant => variant.id) || [undefined]) {
     count++;
@@ -69,7 +69,7 @@ test('所有条目和变体可解析，元数据与末帧一致，原注册表�
       else assert.ok(end.elapsed < resolved.duration_ms, effect.id);
     }
   }
-  assert.equal(count, 393);
+  assert.equal(count, 542);
   assert.equal(JSON.stringify(effectDefinitions), before);
 });
 
@@ -97,7 +97,7 @@ test('隔离页保持全部效果脚本的原始加载顺序，排除目录控�
   const html = await readFile(new URL('../catalog/index.html', import.meta.url), 'utf8');
   const originals = [...html.matchAll(/<script src="(effects\/[^\"]+)"/g)].map(match => 'catalog/' + match[1]);
   const lazy = (await readFile(new URL('../catalog/lazy.js', import.meta.url), 'utf8')).match(/EFFECT_FILES = \[([^\]]+)\]/)[1].match(/effects\/[^']+/g).map(file => 'catalog/' + file);
-  assert.equal(lazy.length, 3);
+  assert.equal(lazy.length, 17);
   const frameEffects = FRAME_SCRIPTS.filter(path => path.startsWith('catalog/effects/'));
   assert.deepEqual(frameEffects.filter(path => !lazy.includes(path)), originals, '目录页同步载入的绘制与隔离页顺序一致');
   assert.deepEqual(frameEffects.filter(path => lazy.includes(path)).sort(), lazy.slice().sort(), '按需载入的绘制仍在隔离页里');

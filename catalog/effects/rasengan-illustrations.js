@@ -802,6 +802,8 @@ const packedFields={"classic":{"start":3,"hz":60,"count":384,"steps":649,"maxErr
   function stage(root,id){
     const ns='rasengan-'+(++serial);
     root.innerHTML=`<svg class="pattern-svg" width="640" height="360" viewBox="0 0 640 360" aria-hidden="true"><defs><linearGradient id="${ns}-blue" x1="0" y1="0" x2="1" y2=".6"><stop stop-color="#005bc9"/><stop offset=".5" stop-color="#128bef"/><stop offset="1" stop-color="#55cfff"/></linearGradient></defs><g data-part="art" data-illustration="${id}" transform="translate(320 180) scale(.32) translate(-540 -900)" fill="none" stroke-linecap="round" stroke-linejoin="round"></g></svg>`;
+    // 组合会把整幅画移入阶段容器；尺寸不能依赖“画板的直接子节点”选择器。
+    Object.assign(root.querySelector('.pattern-svg').style,{display:'block',width:'640px',height:'360px'});
     const group=root.querySelector('[data-part="art"]'),nodes=new Map();
     let buckets;
     function path(key,d,width,alpha,color){
@@ -865,8 +867,11 @@ const packedFields={"classic":{"start":3,"hz":60,"count":384,"steps":649,"maxErr
   function register(id,draw,optical=false){
     F[id]=(root,K,def)=>{
       const painter=optical?opticalStage(root,id):stage(root,id);let previous=-1,disposed=false;
-      const render=t=>{if(disposed)return;const frame=Math.round(Math.min(2600,Math.max(0,t))*30/1000);if(frame===previous)return;previous=frame;
-        const elapsed=frame/30; painter.begin();draw(painter,elapsed,smooth(elapsed/.3));painter.finish();};
+      const phaseGroups=new Map();if(def.kind==='composition')for(const part of F[id].breakdown||[]){const g=root.ownerDocument.createElement('div');g.dataset.layer=part.id;g.style.cssText='position:absolute;inset:0';root.append(g);phaseGroups.set(part.id,g);}
+      const render=t=>{if(disposed)return;const frame=Math.round(Math.min(id.endsWith('-illustration')?2600:def.duration_ms,Math.max(0,t))*30/1000);if(frame===previous)return;previous=frame;
+        const elapsed=frame/30; painter.begin();draw(painter,elapsed,smooth(elapsed/.3));painter.finish();
+        if(phaseGroups.size){const part=F[id].breakdown.find(p=>t>=p.start&&t<p.end)||F[id].breakdown.at(-1),container=phaseGroups.get(part.id),art=root.querySelector('svg,canvas');if(art?.parentElement!==container)container.append(art);}
+      };
       render.destroy=preserve=>{if(disposed)return;disposed=true;painter.destroy?.(preserve);};return render;
     };
   }
@@ -911,13 +916,13 @@ const packedFields={"classic":{"start":3,"hz":60,"count":384,"steps":649,"maxErr
       const phi=(n%6)/6*tau,band=[0,3,5,7][Math.floor(n/6)];
       P.fiber({points:meridians[band].points.filter((_,i)=>i%4===0).map(p=>project([p[0]*Math.cos(phi),p[1],p[0]*Math.sin(phi)],c)),opacity:alpha*.5,width:1.25,accent:false});
     }
-    const count=driven?384:64,trail=driven?3.6:.6;
+    const count=driven?Math.round(c.population??384):64,trail=driven?(c.trail??3.6):.6;
     for(let n=0;n<count;n++){
       const index=n*137%384,length=trail*(.8+(index%7)*.05),accent=n%9===0;
       P.fiber({points:points(driven?(P.optical?101:49):33,u=>project(at(driven?'driven':'classic',index,time-length+u*length),c)),opacity:alpha*(accent?.98:.88),width:driven?(accent?3.8:2.4):(accent?1.9:1.35),accent,taper:true,energy:driven?1:0,reflection:n%3===0?1.2:0});
       P.point(project(at(driven?'driven':'classic',index,time),c),driven?.65:1.2,alpha*(driven?.24:.85),driven);
     }
-    if(hero)for(let n=0;n<192;n++){
+    if(hero)for(let n=0;n<Math.round(192*(c.hero??1));n++){
       const index=n*137%384,phase=.037+n%5*.041,phi=n*2.399963;
       P.fiber({points:points(P.optical?81:41,u=>project(rotate(at('driven',index,time+phase-trail+u*trail),0,phi),c)),opacity:alpha*.45,width:1.25,accent:false,energy:1,taper:true,reflection:n%4===0?1:0});
     }
@@ -950,4 +955,178 @@ const packedFields={"classic":{"start":3,"hz":60,"count":384,"steps":649,"maxErr
       for(const f of electricTrace(path,clock,n,alpha*growth.strength*reveal,growth))P.fiber(f);
     }
   },true);
+function sourceRing(P, t, mode) {
+  const cut = smooth((t - 8) / 2.5) * (1 - smooth((t - 15) / 4));
+  const time = 6 + t, build = smooth(t / 6), population = 6 + 18 * smooth((t - 4) / 4), pitch = 0.95 * (1 - smooth(cut)), yaw = 0.12 * (1 - cut), section = cut, thickness = 0.27, opacity = 1, size = 465, hill = 0;
+  const camera = { pitch, yaw, size, centerY: 900 }, major = 0.66;
+  const point = (phi, theta) => {
+    const f = (theta / tau % 1 + 1) % 1 * 360, lo = Math.floor(f), mix = f - lo;
+    const a = meridians[0].points[lo], b = meridians[0].points[lo + 1];
+    const radius = (major - thickness * build * Math.cos(theta)) * (1 - hill) + (a[0] + (b[0] - a[0]) * mix) * hill;
+    const y = thickness * build * Math.sin(theta) * (1 - hill) + (a[1] + (b[1] - a[1]) * mix) * hill;
+    return project([radius * Math.cos(phi), y, radius * Math.sin(phi)], camera);
+  };
+  const fibers = [];
+  fibers.push({ points: Array.from({ length: 181 }, (_, j) => project([major * Math.cos(j / 180 * tau), 0, major * Math.sin(j / 180 * tau)], camera)), opacity: opacity * 0.65 * (1 - smooth(build / 0.75)), width: 1.6, accent: true, closed: true });
+  for (let k = 0; k < 16; k++) {
+    const reveal = smooth(build * 18 - k - 1);
+    if (reveal < 3e-3) continue;
+    const phi = k * 7 % 16 / 16 * tau, primary = k === 0 || k === 8;
+    fibers.push({ points: Array.from({ length: 181 }, (_, j) => point(phi, j / 180 * tau)), opacity: opacity * reveal * (primary ? 0.85 : 0.42) * (primary ? 1 : 1 - section * 0.55), width: primary ? 1.9 : 1.35, accent: primary, closed: true });
+  }
+  for (let k = 0; k < 6; k++) {
+    const reveal = smooth(build * 8 - k - 1);
+    if (reveal < 3e-3) continue;
+    fibers.push({ points: Array.from({ length: 181 }, (_, j) => point(j / 180 * tau, k / 6 * tau)), opacity: opacity * reveal * 0.4 * (1 - hill) * (1 - section * 0.55), width: 1.25, accent: false, closed: true });
+  }
+  for (let n = 0; n < 40; n++) {
+    const reveal = smooth(population - n) * smooth((build - 0.12) / 0.5);
+    if (reveal < 3e-3) continue;
+    const phi = n * 0.61803398875 % 1 * tau, head = time * 0.9 + n * 0.71;
+    const points = Array.from({ length: 45 }, (_, j) => point(phi, head - 0.62 + j / 44 * 0.62));
+    fibers.push({ points, opacity: opacity * reveal * 0.9, width: 1.9, accent: true, taper: true });
+  }
+  fibers.forEach((f) => P.fiber(f));
+  if (section > 0.1) {
+    for (const phi of [0, Math.PI]) {
+      const theta = time * 0.9, p = point(phi, theta), next = point(phi, theta + 0.03);
+      const angle = Math.atan2(next[1] - p[1], next[0] - p[0]);
+      const wings = [[p[0] - 11 * Math.cos(angle - 0.45), p[1] - 11 * Math.sin(angle - 0.45), p[2]], p, [p[0] - 11 * Math.cos(angle + 0.45), p[1] - 11 * Math.sin(angle + 0.45), p[2]]];
+      P.fiber({ points: wings, opacity: section * opacity, width: 1.7, accent: true });
+    }
+  }
+}
+
+  register('ring-construction-journey',(P,t)=>sourceRing(P,t));
+  register('ring-construction',(P,t)=>sourceRing(P,t));
+  register('energy-density-growth',(P,t,alpha)=>{const p={...C.finale(t),centerY:900};field(P,p.time,p,alpha,true,true);},true);
+  register('energy-discharge-journey',(P,t)=>{
+    // 保存的能量轨迹从较晚时刻开始；先留出完整尾迹，避免开场采样全挤在同一点。
+    const sourceTime=t*.5,p={...C.finale(sourceTime),centerY:900};
+    const trackOffset=packedFields.driven.start+C.finale(0).trail-C.finale(0).time;
+    p.time+=trackOffset;
+    const electricTime=Math.max(0,t-12)*.7,growth=C.lightningDensity(electricTime),alpha=1;
+    field(P,p.time,p,alpha,true,true);
+    for(let n=0;n<30;n++){const reveal=smooth(growth.internalCount-n);if(reveal<.003)continue;
+      const index=n*27*137%384,length=p.trail*(.8+(index%7)*.05),head=.36+.64*((t*.43+n*.61803398875)%1),start=Math.max(0,head-.30);
+      const path=points(65,u=>project(at('driven',index,p.time-length+(start+(head-start)*u)*length),p));
+      for(const f of electricTrace(path,t,n,alpha*growth.strength*reveal,growth))P.fiber(f);
+    }
+  },true);
+
+function sourceSphere(P, t, opacity = 1) {
+  const time = 5 + t * 0.3, pitch = 0, yaw = 0.4, size = 432, centerY = 900, roll = 0, population = 28 + 36 * smooth(t / 20), scaffold = 6 + 18 * smooth(t / 8), shell = smooth(t - 7), driven = false, hero = 0, energy = 0, trail = 0.6, study = 0, count = 384, sentence = -1, emphasis = 0, ctx = null;
+  const drawSpark = (c, p, r, a) => P.point(p, r, a);
+  const camera = { pitch, yaw, size, centerY, roll }, fibers = [];
+  for (let n = 0; n < 24; n++) {
+    const reveal = smooth(scaffold - n);
+    if (reveal < 3e-3) continue;
+    const phi = n % 6 / 6 * tau, band = [0, 3, 5, 7][Math.floor(n / 6)];
+    const points2 = meridians[band].points.map((p) => project([p[0] * Math.cos(phi), p[1], p[0] * Math.sin(phi)], camera));
+    fibers.push({ points: points2, opacity: opacity * reveal * 0.5 * (1 - hero) * (1 - study), width: 1.25, accent: false, closed: true });
+  }
+  const field = driven ? "driven" : "classic";
+  for (let n = 0; n < count; n++) {
+    const reveal = smooth(population - n);
+    if (reveal < 3e-3) continue;
+    const i = n * 137 % count, length = trail * (0.8 + i % 7 * 0.05);
+    const points2 = Array.from({ length: 101 }, (_, j) => project(at(field, i, time - length + j / 100 * length), camera));
+    const accent = n % 9 === 0;
+    const width = accent ? lerp(1.9, 3.8, hero) : lerp(1.35, 2.2 + energy * 0.2, hero);
+    const focus = n % 17 === Math.max(0, sentence) * 7 % 17 ? emphasis * (1 - hero * 0.8) : 0;
+    fibers.push({ points: points2, opacity: opacity * reveal * (accent ? 0.98 : 0.88) * (1 - study * 0.88) * (1 + focus * 0.35), width, accent: accent || focus > 0.1, energy, reflection: n % 3 === 0 ? 1.2 : 0, taper: true });
+  }
+  if (study > 2e-3) {
+    for (let n = 0; n < 24; n++) {
+      const i = [4, 5, 6][n % 3], phi = Math.floor(n / 3) / 8 * tau, length = 1.6;
+      const points2 = Array.from({ length: 121 }, (_, j) => project(rotate(at(field, i, time - length + j / 120 * length), 0, phi), camera));
+      fibers.push({ points: points2, opacity: opacity * study * 0.95, width: n % 3 === 1 ? 1.9 : 1.35, accent: n % 3 === 1, taper: true });
+    }
+  }
+  if (driven && hero > 0.01) {
+    for (let n = 0; n < 192; n++) {
+      const i = n * 137 % count, phase = 0.037 + n % 5 * 0.041, phi = n * 2.399963;
+      const points2 = Array.from({ length: 81 }, (_, j) => project(rotate(at(field, i, time + phase - trail + j / 80 * trail), 0, phi), camera));
+      fibers.push({ points: points2, opacity: opacity * hero * 0.45, width: 1.25, accent: false, energy, reflection: n % 4 === 0 ? 1 : 0, taper: true });
+    }
+  }
+  fibers.forEach((f) => P.fiber(f));
+  for (let n = 0; n < count; n++) {
+    const reveal = smooth(population - n);
+    if (reveal < 3e-3) continue;
+    const p = project(at(field, n * 137 % count, time), camera);
+    drawSpark(ctx, p, lerp(1.2, 0.65, hero), opacity * reveal * lerp(0.85, 0.24, hero) * (1 - study * 0.88), [0.28, 0.68, 1], energy);
+  }
+  if (shell > 0) P.fiber({ points: points(181, (u) => [540 + 432 * Math.cos(u * tau), 900 + 432 * Math.sin(u * tau), 0]), opacity: shell * 0.35 * opacity, width: 1, color: "#707b78", closed: true });
+}
+function sourceMushroom(P, time, opacity = 1) {
+  const ctx = null, sentence = -1, emphasis = 0, dots = cloudDots;
+  const { cloudHeadTop, cloudHeadPoint, cloudOpeningBlend, mushroomStages } = Cloud;
+  const drawSpark = (c, p, r, a) => P.point(p, r, a * opacity);
+  const { roll, focus, ideal, material, tails } = mushroomStages(time);
+  const camera = { pitch: 0.12 * (1 - ideal), yaw: 0.4, size: 444 - 12 * ideal, centerY: 900 };
+  const fieldTime = 5 + (time - 3) * 0.3, population = lerp(28, 64, (time - 3) / 20);
+  const fibers = [];
+  const scaffold = lerp(6, 24, (time - 3) / 8), guides = smooth((time - 2.8) / 5.2);
+  for (let n = 0; n < 24; n++) {
+    const reveal = smooth(scaffold - n) * guides;
+    if (reveal < 3e-3) continue;
+    const phi = n % 6 / 6 * Math.PI * 2, band = [0, 3, 5, 7][Math.floor(n / 6)];
+    const points2 = meridians[band].points.map((p) => project(cloudHeadPoint([p[0] * Math.cos(phi), p[1], p[0] * Math.sin(phi)], time, 0), camera));
+    fibers.push({ points: points2, opacity: reveal * 0.5, width: 1.25, accent: false, closed: true });
+  }
+  for (let n = 0; n < dots.length; n++) {
+    const d = dots[n], index = n * 137 % 384, phase = n < 384 ? 0 : d.v * 8;
+    const keep = n < 384 ? smooth(population - n) : 0;
+    const alpha = 0.95 * (1 - material) + 0.85 * keep * material;
+    if (alpha < 2e-3) continue;
+    const position = (lag = 0) => cloudHeadPoint(at("classic", index, fieldTime + phase - lag), time, d.r);
+    drawSpark(ctx, project(position(), camera), (0.85 + d.v * 0.55) * (1 - material) + 1.2 * material, alpha, [0.19 + 0.09 * material, 0.67 + 0.01 * material, 1.22 - 0.22 * material]);
+    if (n < 384) {
+      const accent = n % 9 === 0;
+      const returnGuide = index === 12 || index === 60;
+      const focusLine = n % 17 === Math.max(0, sentence) * 7 % 17 ? emphasis : 0;
+      const lineAlpha = (returnGuide ? 0.5 + tails * 0.42 : n % 4 === 0 ? 0.2 + tails * 0.62 : 0) * (1 - material) + keep * (accent ? 0.98 : 0.88) * (1 + focusLine * 0.35) * material;
+      if (lineAlpha < 3e-3) continue;
+      const length = (returnGuide ? 0.35 + tails * 1.2 : 0.08 + tails * 0.4) * (1 - material) + 0.6 * (0.8 + index % 7 * 0.05) * material;
+      const points2 = Array.from({ length: 101 }, (_, j) => project(position(length * (1 - j / 100)), camera));
+      fibers.push({ points: points2, opacity: lineAlpha, width: 1.3 * (1 - material) + (accent ? 1.9 : 1.35) * material, accent: accent || focusLine > 0.1, taper: true });
+    }
+  }
+  if (focus < 1) for (let n = 0; n < 900; n++) {
+    const d = dots[n], u = (d.v + time * 0.16) % 1;
+    const stem = (v) => {
+      const radius = (0.035 + 0.1 * (1 - v) ** 2) * d.r;
+      const settle = cloudOpeningBlend(time), bottom = -1.2 - 0.3 * settle;
+      const top = 1.04 * (1 - settle) + cloudHeadTop(roll) * settle;
+      return [radius * Math.cos(d.a), bottom + (top - bottom) * v, radius * Math.sin(d.a)];
+    };
+    const fade = smooth(u / 0.06) * (1 - smooth((u - 0.9) / 0.1));
+    drawSpark(ctx, project(stem(u), camera), 0.9, (1 - focus) * fade * 0.8, [0.19, 0.67, 1.22]);
+    if (n % 24 === 0) {
+      const span = Math.min(u, 0.075);
+      const points2 = Array.from({ length: 15 }, (_, j) => project(stem(u - span * (1 - j / 14)), camera));
+      fibers.push({ points: points2, opacity: (1 - focus) * fade * (0.12 + tails * 0.3), width: 1.15, accent: false, taper: true });
+    }
+  }
+  fibers.forEach((f) => P.fiber({ ...f, opacity: f.opacity * opacity }));
+  const shell = 0.35 * smooth((time - 10.9) / 1.3) * opacity;
+  if (shell > 0) P.fiber({ points: points(181, (u) => [540 + 432 * Math.cos(u * tau), 900 + 432 * Math.sin(u * tau), 0]), opacity: shell, width: 1, color: "#707b78", closed: true });
+}
+
+ register('mushroom-sphere-idealize',(P,t,alpha)=>sourceMushroom(P,t,alpha));
+ register('mushroom-sphere-journey',(P,t,alpha)=>sourceMushroom(P,t,alpha));
+ register('ring-sphere-journey',(P,t,alpha)=>{
+  const bt=t-19,blend=t>=19&&t<32?smooth(bt/.7)*(1-smooth((bt-12.35)/.65)):0;
+  if(t<22){const A={...P,fiber:f=>P.fiber({...f,opacity:f.opacity*(1-blend)*alpha}),point:(p,r,a,e)=>P.point(p,r,a*(1-blend)*alpha,e)};sourceRing(A,t);}
+  else sourceSphere(P,t-22,(1-blend)*alpha);
+  if(blend>0)sourceMushroom(P,bt,blend*alpha);
+ });
+
 })(globalThis);
+
+/* SCENE ENTRIES */
+MotionFactories["ring-construction-journey"].breakdown=[{"id": "build", "name": "环面构建与增密", "start": 0, "end": 8000, "time": "0—8秒", "detail": "环面构建与增密在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "smoke-ring-illustration", "vortex-ring-illustration"]}, {"id": "section", "name": "剖面展开与翻卷", "start": 8000, "end": 20000, "time": "8—20秒", "detail": "剖面展开与翻卷在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "smoke-ring-illustration", "vortex-ring-illustration"]}];
+MotionFactories["mushroom-sphere-journey"].breakdown=[{"id": "plume", "name": "烟羽上升与头部回卷", "start": 0, "end": 7000, "time": "0—7秒", "detail": "烟羽上升与头部回卷在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["mushroom-sphere-idealize", "mushroom-cloud-illustration", "hill-vortex-illustration"]}, {"id": "sphere", "name": "头部收成理想球涡", "start": 7000, "end": 13000, "time": "7—13秒", "detail": "头部收成理想球涡在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["mushroom-sphere-idealize", "mushroom-cloud-illustration", "hill-vortex-illustration"]}];
+MotionFactories["ring-sphere-journey"].breakdown=[{"id": "ring", "name": "环线构建与剖面展开", "start": 0, "end": 19000, "time": "0—19秒", "detail": "环线构建与剖面展开在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "mushroom-sphere-idealize", "smoke-ring-illustration", "vortex-ring-illustration", "mushroom-cloud-illustration", "hill-vortex-illustration"]}, {"id": "bridge", "name": "烟羽回卷交接", "start": 19000, "end": 32000, "time": "19—32秒", "detail": "烟羽回卷交接在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "mushroom-sphere-idealize", "smoke-ring-illustration", "vortex-ring-illustration", "mushroom-cloud-illustration", "hill-vortex-illustration"]}, {"id": "sphere", "name": "球涡继续翻卷", "start": 32000, "end": 42000, "time": "32—42秒", "detail": "球涡继续翻卷在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "mushroom-sphere-idealize", "smoke-ring-illustration", "vortex-ring-illustration", "mushroom-cloud-illustration", "hill-vortex-illustration"]}];
+MotionFactories["energy-discharge-journey"].breakdown=[{"id": "field", "name": "能量流线显影增密", "start": 0, "end": 12000, "time": "0—12秒", "detail": "开场即呈现稀疏球体，流线与镜头变化以原来二分之一速度逐渐增密。", "actions": ["energy-density-growth", "rasengan-illustration", "lightning-orb-illustration"]}, {"id": "electric", "name": "局部电弧逐渐接入", "start": 12000, "end": 24000, "time": "12—24秒", "detail": "十二秒后局部电弧从弱到强逐步接入，流线继续连续翻卷。", "actions": ["energy-density-growth", "rasengan-illustration", "lightning-orb-illustration"]}];

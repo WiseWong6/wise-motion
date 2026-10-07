@@ -1,6 +1,7 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
 import {readFile} from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
+import {installSceneCanvas} from './scene-canvas-fixture.mjs';
 import {historyTestData} from './history-fixture.mjs';
 export const data = JSON.parse(await readFile(new URL('../catalog/registry.json', import.meta.url), 'utf8'));
 // 原片对照测试使用设计时钟；目录节奏另测，避免把原动作关系也改成新预期。
@@ -40,6 +41,7 @@ export async function environment(withApp = false, options = {}) {
   }
   // 只做结构与控制检查。jsdom 没有像素绘制能力，显式返回空值，避免能力探测噪声。
   w.HTMLCanvasElement.prototype.getContext = () => null;
+  installSceneCanvas(w);
   // jsdom 无图片解码能力；结构检查视本地图片为已准备。异步边界另用独立环境测试。
   if (!options.realImagePreparation) {
     Object.defineProperty(w.HTMLImageElement.prototype, 'complete', {get: () => true, configurable: true});
@@ -76,7 +78,7 @@ export async function environment(withApp = false, options = {}) {
       // 历史数据在浏览器中按需加载；测试无网络，提前提供这份数据。
       if (file === 'catalog/app.js'&&!options.lazyHistory) sources.push('catalog/history-data.js');
       // 大体积素材在浏览器中按需载入；除非专项测试要检查载入过程，否则提前执行并登记为已就绪。
-      if (file === 'catalog/app.js'&&!options.lazyAssets) sources.push('catalog/effects/civilization-images.js','catalog/effects/rasengan-illustrations.js','catalog/effects/civilization-growth.js','catalog/remotion-sources.js','mark-lazy-loaded');
+      if (file === 'catalog/app.js'&&!options.lazyAssets) sources.push("catalog/effects/scene-source-runtime.js","catalog/effects/scene-osmanthus-data.js","catalog/effects/scene-ink-data.js","catalog/effects/scene-dandelion.js","catalog/effects/scene-drive.js","catalog/effects/scene-factory.js","catalog/effects/scene-ink.js","catalog/effects/scene-letter-images.js","catalog/effects/scene-letter.js","catalog/effects/scene-ocean.js","catalog/effects/scene-osmanthus.js","catalog/effects/scene-selfie-images.js","catalog/effects/scene-selfie.js","catalog/effects/scene-snow.js",'catalog/effects/civilization-images.js','catalog/effects/rasengan-illustrations.js','catalog/effects/civilization-growth.js','catalog/remotion-sources.js','mark-lazy-loaded');
       // jsdom检查原绘制和目录结构；Remotion由专项测试检查。
       // jsdom没有媒体解码器，这里不把无媒体能力误判为视频准备中。
       if(file !== 'catalog/remotion-player.js') sources.push(file);

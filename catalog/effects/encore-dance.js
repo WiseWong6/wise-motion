@@ -368,4 +368,16 @@ local.EncoreScene = (() => {
    for(const key of ['x','y','angle','roll'])svg.dataset[key]=String(p[key]);svg.dataset.sourceTime=String(t);
   };
  };
+
+ F['encore-full-journey']=(root,K,def)=>{
+  const prefix='encore-full-'+(++serial);root.innerHTML='<svg class="pattern-svg" width="640" height="360" viewBox="0 0 1280 800" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>';
+  const svg=root.firstElementChild,groups=new Map();for(const part of F['encore-full-journey'].breakdown){const g=root.ownerDocument.createElementNS('http://www.w3.org/2000/svg','g');g.dataset.layer=part.id;svg.append(g);groups.set(part.id,g);}let last;
+  return ms=>{const t=Math.min(def.duration_ms,Math.max(0,ms))/1000;if(t===last)return;last=t;drawing.reset(prefix);local.EncoreScene.render(t);
+   const active=(F['encore-full-journey'].breakdown.find(p=>t*1000>=p.start&&t*1000<p.end)||F['encore-full-journey'].breakdown.at(-1)).id;
+   for(const [id,g]of groups)g.innerHTML=id===active?drawing.markup():'';svg.dataset.sourceTime=String(t);
+  };
+ };
 })(globalThis);
+
+/* SCENE ENTRIES */
+MotionFactories["encore-full-journey"].breakdown=[{"id": "hook", "name": "勾柄与短暂停留", "start": 0, "end": 4678, "time": "0—4.678秒", "detail": "勾柄与短暂停留在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["encore-hook", "encore-umbrella-illustration"]}, {"id": "tap", "name": "踏步阶段", "start": 4678, "end": 9373, "time": "4.678—9.373秒", "detail": "踏步阶段在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["encore-tap", "encore-umbrella-illustration"]}, {"id": "flight", "name": "腾空阶段", "start": 9373, "end": 13064, "time": "9.373—13.064秒", "detail": "腾空阶段在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["encore-flight", "encore-umbrella-illustration"]}, {"id": "tip", "name": "立尖阶段", "start": 13064, "end": 17000, "time": "13.064—17秒", "detail": "立尖阶段在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["encore-tip", "encore-umbrella-illustration"]}, {"id": "roll", "name": "滚动阶段", "start": 17000, "end": 20752, "time": "17—20.752秒", "detail": "滚动阶段在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["encore-roll", "encore-umbrella-illustration"]}, {"id": "shed", "name": "甩水阶段", "start": 20752, "end": 24543, "time": "20.752—24.543秒", "detail": "甩水阶段在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["encore-shed", "encore-umbrella-illustration"]}];
