@@ -29,6 +29,8 @@
      Copyright (c) 2026 Lucide Icons and Contributors; Copyright (c) 2013-present Cole Bemis.
      调整外层尺寸与笔画，侧栏展开 / 收起箭头为本地适配。vendor 里的 Heroicons 保持原样。 */
   const EXTRA = {
+    'speaker-on':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m11 5-5 4H3v6h3l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>',
+    'speaker-muted':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 7 2-2v4M11 13v6l-5-4H3V9h3"/><path d="m3 3 18 18"/></svg>',
     'bars-3':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg>',
     'magnifying-glass':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>',
     'rectangle-stack':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"/></svg>',
@@ -249,7 +251,8 @@
   function syncSelection() {
     // 切换预览只更新选中状态，不拆掉目录和已绘制的缩略图。
     $('effects-list').querySelectorAll('.effect-item').forEach(button => {
-      button.setAttribute('aria-current', String(button.dataset.effect === selected?.id));
+      const value = String(button.dataset.effect === selected?.id);
+      if (button.getAttribute('aria-current') !== value) button.setAttribute('aria-current', value);
     });
     syncNavigation();
   }
@@ -310,10 +313,20 @@
   function fillTrack(input) {
     const min = Number(input.min || 0), max = Number(input.max || 100);
     const ratio = (Number(input.value) - min) / (max - min);
-    input.style.setProperty('--fill', (Number.isFinite(ratio) ? Math.min(1, Math.max(0, ratio)) * 100 : 0) + '%');
+    const fill = (Number.isFinite(ratio) ? Math.min(1, Math.max(0, ratio)) * 100 : 0) + '%';
+    if (input.style.getPropertyValue('--fill') !== fill) input.style.setProperty('--fill', fill);
   }
 
   function syncPlayer(state) {
+    const sound = $('toggle-sound'), hasAudio = state.hasAudio ?? controller?.hasAudio ?? false;
+    if (sound.hidden !== !hasAudio) sound.hidden = !hasAudio;
+    const enabled = hasAudio && !(state.muted ?? controller?.muted ?? true);
+    if (sound.getAttribute('aria-pressed') !== String(enabled)) {
+      sound.setAttribute('aria-pressed', String(enabled));
+      sound.setAttribute('aria-label', enabled ? '关闭组合声音' : '开启组合声音');
+      sound.title = enabled ? '关闭组合声音' : '开启组合声音';
+      sound.innerHTML = mark(enabled ? 'speaker-on' : 'speaker-muted');
+    }
     const previewMode=state.previewMode || controller?.previewMode, note=$('preview-mode');
     if(note.hidden===!!previewMode)note.hidden=!previewMode;
     if(previewMode){
@@ -321,7 +334,8 @@
       if(note.textContent!==label)note.textContent=label;
     }
     MotionComposition.sync(state.time);
-    $('scrub').value = state.time / state.duration * 1000;
+    const position = String(Math.round(state.time / state.duration * 1000));
+    if ($('scrub').value !== position) $('scrub').value = position;
     fillTrack($('scrub'));
     const elapsed = state.time / 1000;
     const remaining = Math.max(0, state.duration - state.time) / 1000;
@@ -681,8 +695,9 @@
     clearSearch();
     $('search').focus();
   }));
-  $('toggle-play').addEventListener('click', () => { if (controller?.paused) controller.play(); else controller?.pause(); });
-  $('restart').addEventListener('click', () => controller?.restart());
+  $('toggle-play').addEventListener('click', event => { if (controller?.paused) controller.play(event); else controller?.pause(); }, true);
+  $('toggle-sound').addEventListener('click', event => controller?.setMuted?.(!controller.muted,event), true);
+  $('restart').addEventListener('click', event => controller?.restart(true,event), true);
   const stage = document.querySelector('.stage');
   const playbar = document.querySelector('.playbar');
   let pointerInStage = false;
@@ -905,6 +920,7 @@
     if (persist) {
       try { localStorage.setItem(THEME_KEY, mode); } catch (_) { /* 隐私模式写不进时，本次会话仍然生效。 */ }
     }
+    updateOutputs();
   }
   $('theme-toggle').querySelectorAll('.icon-morph-glyph').forEach(element => {
     themeNodes.push({el: element, scale: .5, opacity: 0, vScale: 0, vOpacity: 0, goalScale: .5, goalOpacity: 0});

@@ -316,6 +316,8 @@ html[data-theme="light"] { --thumbnail-art-filter:brightness(.48) saturate(1.25)
   box-shadow:inset 0 0 0 .5px var(--playbar-control-rim), inset 0 1px 0 var(--playbar-rim), inset 0 3px 7px -3px var(--playbar-crown);
 }
 .playbar .icon-btn:active { transform:scale(.94); }
+.playbar #toggle-sound { flex:none; width:28px; height:28px; }
+.playbar #toggle-sound svg { width:21px; height:21px; stroke-width:2; }
 /* 主按钮比同级大一圈，是面板上唯一的高光体。 */
 /* 主按钮是面板上唯一常驻的芯片，比同级大一圈。 */
 .playbar .playback-main {
@@ -743,3 +745,5 @@ html[data-theme="dark"] .step-btn { color:#fff; }
 }
 /* 缩略图只展示画面；书页等内部控件的点击统一交给目录条目。 */
 .effect-item > .thumb { pointer-events: none; }
+/* 静音条目不显示声音开关，避免按钮布局覆盖原生 hidden 属性。 */
+#toggle-sound[hidden] { display: none; }

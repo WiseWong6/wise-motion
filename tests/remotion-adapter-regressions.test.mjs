@@ -12,10 +12,11 @@ const browserCode=(await transform(browserSource,{loader:'jsx',format:'cjs'})).c
 function browserHarness(overrides={},hooks={}){
  const dom=new JSDOM('<!doctype html><div id="root"></div>',{url:'file:///wise-motion/catalog/index.html'}),w=dom.window;
  let tree,frame=0,unmounts=0,sessionDocument;const observers=[];
- const player={play(){},pause(){},seekTo(value){frame=value;},getCurrentFrame(){return frame;},addEventListener(){}};
+ const events=new Map(),playEvents=[];
+ const player={muted:true,play(event){playEvents.push(event);},pause(){},mute(){this.muted=true;},unmute(){this.muted=false;},isMuted(){return this.muted;},seekTo(value){frame=value;},getCurrentFrame(){return frame;},addEventListener(name,callback){events.set(name,callback);},removeEventListener(name){events.delete(name);}};
  const React={createRef:()=>({current:null}),createElement:(type,props)=>({type,props})};
  const reactRoot={render(value){tree=value;value.props.ref.current=player;},unmount(){unmounts++;hooks.onUnmount?.(sessionDocument);}};
- const modules={react:React,'react-dom/client':{createRoot:()=>reactRoot},'react-dom':{flushSync:fn=>fn()},'@remotion/player':{Player(){ }},'./index.jsx':{WiseMotionEffect(){},getEffectMetadata:()=>({durationInFrames:Math.ceil((overrides.duration_ms??2000)*60/1000-1e-9)+1}),resolveEffect:input=>input}};
+ const modules={react:React,'react-dom/client':{createRoot:()=>reactRoot},'react-dom':{flushSync:fn=>fn()},'@remotion/player':{Player(){ }},'./with-audio.jsx':{WiseMotionEffect(){},getEffectMetadata:()=>({durationInFrames:Math.ceil((overrides.duration_ms??2000)*60/1000-1e-9)+1}),resolveEffect:input=>input}};
  const exports={};const context={exports,module:{exports},require:name=>modules[name],document:w.document,URL,queueMicrotask,
  MutationObserver:class{constructor(callback){this.callback=callback;observers.push(this);}observe(){}disconnect(){}},MotionKit:{resolveVariant:input=>input},devicePixelRatio:1};
  runInNewContext(browserCode,context);
@@ -26,7 +27,7 @@ function browserHarness(overrides={},hooks={}){
  sessionDocument.body.innerHTML='<script>window.mustNotRun=true</script><div class="motion-stage"><b>保留画面</b></div>';
  let destroys=0;const session={doc:sessionDocument,stage:sessionDocument.querySelector('.motion-stage'),destroy(preserve){destroys++;hooks.onDestroy?.(sessionDocument,preserve);}};
  tree.props.inputProps.onReady(session);
- return {controller,w,root,session,player,get tree(){return tree;},get frame(){return frame;},get unmounts(){return unmounts;},get destroys(){return destroys;},observers,close(){controller.destroy();w.close();}};
+ return {controller,w,root,session,player,events,playEvents,get tree(){return tree;},get frame(){return frame;},get unmounts(){return unmounts;},get destroys(){return destroys;},observers,close(){controller.destroy();w.close();}};
 }
 test('播放中定位保持帧时钟，暂停定位可保留精确末帧',()=>{
  const h=browserHarness();try{
@@ -124,5 +125,28 @@ test('无声目录从首次挂载即静音，避免等待没有音轨的音频�
   assert.equal(h.tree.props.numberOfSharedAudioTags,0);
   h.controller.play();h.controller.seek(500);
   assert.equal(h.tree.props.initiallyMuted,true);
+ }finally{h.close();}
+});
+
+test('有原声的组合默认静音，开启后定位和变速保留声音状态，销毁释放播放器',()=>{
+ const h=browserHarness({kind:'composition',audio:{tracks:[{src:'score.mp3'}]}});try{
+  assert.equal(h.controller.hasAudio,true);assert.equal(h.controller.muted,true);
+  assert.equal(h.tree.props.initialVolume,1);
+  assert.equal(h.tree.props.inputProps.includeAudio,true);assert.equal(h.tree.props.numberOfSharedAudioTags,0);
+  h.controller.setMuted(false);assert.equal(h.controller.muted,false);assert.equal(h.player.muted,false);
+  h.controller.play();h.controller.seek(600);h.controller.setSpeed(2);
+  assert.equal(h.frame,36);assert.equal(h.tree.props.playbackRate,2);assert.equal(h.tree.props.inputProps.speed,1);
+  assert.equal(h.controller.muted,false);
+  h.controller.pause();assert.equal(h.controller.paused,true);
+  h.controller.setMuted(true);assert.equal(h.player.muted,true);
+  const event=new h.w.MouseEvent('click');
+  h.controller.play(event);assert.equal(h.playEvents.at(-1),event);
+  h.controller.setMuted(false,event);assert.equal(h.playEvents.at(-1),event);
+  h.player.muted=true;h.events.get('mutechange')({detail:{isMuted:true}});
+  assert.equal(h.controller.muted,true,'浏览器重新静音时控制状态也要同步');
+  h.controller.restart(true,event);assert.equal(h.playEvents.at(-1),event);
+  h.controller.destroy();assert.equal(h.unmounts,1);
+  assert.equal(h.events.has('mutechange'),false);
+  h.controller.setMuted(false);assert.equal(h.player.muted,true);
  }finally{h.close();}
 });

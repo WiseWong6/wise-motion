@@ -1,0 +1,16 @@
+{
+  "scope": "仅组合动作保留原音效和配乐；源工程只读，运行只使用随包本地文件。",
+  "files": [
+    {
+      "file": "catalog/assets/composition-audio/osmanthus/sound.js",
+      "original": "/Users/wisewong/Documents/Developer/scenes/august-night-osmanthus/sound.js",
+      "sha256": "e1ff2de35bfa65604cbb6cf285d2a389ae78f50f7e361554eeb3b582f02828f4"
+    },
+    {
+      "file": "catalog/assets/composition-audio/osmanthus/README.md",
+      "original": "/Users/wisewong/Documents/Developer/scenes/august-night-osmanthus/README.md",
+      "sha256": "308424dd4ab7af3028b69e6434227d1a94453c736d82060cb3ac91122249e943"
+    }
+  ],
+  "rights": "程序沿用项目许可；录音和音乐的许可与署名以同目录原作记录为准，不将程序许可套用于第三方录音。"
+}

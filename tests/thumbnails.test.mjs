@@ -59,6 +59,44 @@ test('缺失或抛错的绘制器明确标注缩略图失败，其他条目仍�
   } finally { env.close(); }
 });
 const tick=()=>new Promise(resolve=>setTimeout(resolve,0));
+
+test('快速滚走取消尚未开始的缩略图，重新进入后再准备',async()=>{
+  const env=await environment();
+  try{
+    await load(env,'thumbnails.js');const {w}=env,drawn=[];let finish;
+    const ready=new Promise(resolve=>{finish=resolve;});
+    const effects=['scroll-first','scroll-later'].map(id=>({id,duration_ms:1000,preview_ms:500}));
+    effects.forEach((effect,index)=>{w.MotionFactories[effect.id]=()=>{drawn.push(effect.id);const render=()=>{};if(!index)render.ready=ready;return render;};});
+    const hosts=effects.map(effect=>{const host=w.document.createElement('span');w.document.body.append(host);w.MotionThumbs.attach(host,effect);return host;});
+    const observer=env.observers.find(item=>item.nodes.has(hosts[0]));
+    observer.callback(hosts.map(target=>({target,isIntersecting:true})));await tick();
+    observer.callback([{target:hosts[1],isIntersecting:false}]);finish();await w.MotionThumbs.whenIdle();
+    assert.deepEqual(drawn,['scroll-first']);assert.ok(observer.nodes.has(hosts[1]));
+    observer.callback([{target:hosts[1],isIntersecting:true}]);await w.MotionThumbs.whenIdle();
+    assert.deepEqual(drawn,['scroll-first','scroll-later']);assert.equal(hosts[1].dataset.previewState,'ready');
+  }finally{close(env);}
+});
+
+test('离开列表的画布缓存不超过64 MiB，尺寸调整先统一读取再写入',async()=>{
+  const env=await environment();
+  try{
+    const {w}=env;w.IntersectionObserver=undefined;await load(env,'thumbnails.js');
+    const draws=new Map(),events=[];
+    w.MotionFactories['large-cache']=stage=>{const canvas=w.document.createElement('canvas');canvas.width=canvas.height=2048;stage.append(canvas);return()=>draws.set(stage.dataset.effect,(draws.get(stage.dataset.effect)||0)+1);};
+    const effects=Array.from({length:5},(_,i)=>({id:'large-cache-'+i,source:{factory:'large-cache'},duration_ms:1000,preview_ms:500}));
+    const host=w.document.createElement('span');w.document.body.append(host);
+    async function visit(effect){w.MotionThumbs.attach(host,effect);await w.MotionThumbs.whenIdle();w.MotionThumbs.release(host);}
+    for(const effect of effects)await visit(effect);
+    await visit(effects[4]);assert.equal(draws.get(effects[4].id),1);
+    await visit(effects[0]);assert.equal(draws.get(effects[0].id),2,'第五张16 MiB画布应淘汰最早的缓存');
+    for(let i=0;i<2;i++){
+      const node=w.document.createElement('span'),stage=w.document.createElement('div');node.className='thumb';stage.className='motion-stage';node.append(stage);w.document.body.append(node);
+      node.getBoundingClientRect=()=>{events.push('read');return{width:160,height:90};};
+      Object.defineProperty(stage.style,'transform',{get:()=>'',set:()=>events.push('write')});
+    }
+    w.MotionThumbs.resize();assert.deepEqual(events,['read','read','write','write']);
+  }finally{close(env);}
+});
 async function load(env,...files){
   for(const file of files)env.w.eval(await readFile(new URL('../catalog/'+file,import.meta.url),'utf8'));
 }

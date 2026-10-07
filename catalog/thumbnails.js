@@ -9,7 +9,20 @@
   const pending = new WeakMap();
   const states = new Map();
   // 只保留已完成、已释放绘制器的静帧；移走原节点，避免复制画布时丢失画面。
-  const frames = new Map(), frameLimit = 128;
+  const frames = new Map(), frameLimit = 128, canvasLimit = 64 * 1024 * 1024;
+  let canvasBytes = 0;
+  function forgetFrame(effect) {
+    const saved = frames.get(effect);
+    if (saved) { canvasBytes -= saved.bytes; frames.delete(effect); }
+    return saved?.stage;
+  }
+  function saveFrame(effect, stage) {
+    forgetFrame(effect);
+    const bytes = [...stage.querySelectorAll('canvas')].reduce((sum, canvas) => sum + canvas.width * canvas.height * 4, 0);
+    if (bytes > canvasLimit) return;
+    frames.set(effect, {stage, bytes}); canvasBytes += bytes;
+    while (frames.size > frameLimit || canvasBytes > canvasLimit) forgetFrame(frames.keys().next().value);
+  }
   const jobs = new Map();
   let queue = Promise.resolve(), running = false, suspended = false, resume = [];
   /* 和主预览共用完整 16:9 画板，不放大裁掉卡片底部。 */
@@ -88,17 +101,25 @@
       .then(()=>complete(host,state));
   }
 
-  function frame(host) {
+  function measureFrame(host, stage = host.querySelector('.motion-stage')) {
+    if (!stage) return null;
     const box = host.getBoundingClientRect();
-    if (!box.width || !box.height) return;
+    if (!box.width || !box.height) return null;
     const raw = Math.min(box.width / 640, box.height / 360);
     const dpr = window.devicePixelRatio || 1;
     const scale = Math.max(0.01, Math.floor(raw * 640 * dpr) / (640 * dpr));
-    host.querySelector('.motion-stage').style.transform = `translate(-50%,-50%) scale(${scale})`;
+    return {stage, transform:`translate(-50%,-50%) scale(${scale})`};
+  }
+  function applyFrame(measured) {
+    if (measured && measured.stage.style.transform !== measured.transform) measured.stage.style.transform = measured.transform;
+  }
+  function frame(host) {
+    applyFrame(measureFrame(host));
   }
 
   async function paint(host,effect,state) {
     if (painted.has(host)||!state||!current(host,state)) return;
+    observer?.unobserve(host);pending.delete(host);
     painted.add(host);
     let render,disposed=false,hasFrame=false,cancelWait;
     const cancelled=new Promise(resolve=>{cancelWait=()=>resolve(false);});
@@ -138,12 +159,11 @@
     // 侧栏自己滚动，提前范围必须扩展侧栏的边界，不能只扩展整个窗口。
     observer ||= new IntersectionObserver(entries => {
       for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        observer.unobserve(entry.target);
+        // 快速滚走时撤销尚未开始的工作，回来后仍可重新排队。
+        if (!entry.isIntersecting) { jobs.delete(entry.target); continue; }
         const target = pending.get(entry.target);
-        pending.delete(entry.target);
         if (target) {
-          if(painted.has(entry.target))frame(entry.target);
+          if(painted.has(entry.target)){observer.unobserve(entry.target);pending.delete(entry.target);frame(entry.target);}
           else enqueue(entry.target, target);
         }
       }
@@ -152,7 +172,8 @@
   }
 
   function fitAll() {
-    document.querySelectorAll('.thumb .motion-stage').forEach(stage => frame(stage.parentElement));
+    // 先统一量尺寸，再写缩放；避免每张卡片的写入触发下一张重新布局。
+    [...document.querySelectorAll('.thumb .motion-stage')].map(stage => measureFrame(stage.parentElement, stage)).forEach(applyFrame);
   }
   let resizeFrame = 0;
   function resize() {
@@ -176,13 +197,12 @@
     if(state){state.active=false;state.cleanup.forEach(fn=>fn());states.delete(host);}
     if(stage){
       // 使用原定义区分不同示例与参数；最近使用的画面排在末尾。
-      frames.delete(state.effect);frames.set(state.effect,stage);
-      while(frames.size>frameLimit)frames.delete(frames.keys().next().value);
+      saveFrame(state.effect,stage);
     }
     pending.delete(host);painted.delete(host);host.replaceChildren();host.removeAttribute('title');delete host.dataset.previewState;
   }
   function disposeAll(){
-    [...states.keys()].forEach(host=>release(host,false));frames.clear();observer?.disconnect();
+    [...states.keys()].forEach(host=>release(host,false));frames.clear();canvasBytes=0;observer?.disconnect();
     if(resizeFrame){global.cancelAnimationFrame(resizeFrame);resizeFrame=0;}
   }
   global.addEventListener('pagehide',()=>{
@@ -200,9 +220,9 @@
       if (!host) return;
       if(states.has(host))release(host);
       const state={effect,active:true,cleanup:[]};states.set(host,state);
-      const stage=frames.get(effect);
+      const stage=forgetFrame(effect);
       if(stage){
-        frames.delete(effect);host.prepend(stage);painted.add(host);host.dataset.previewState='ready';
+        host.prepend(stage);painted.add(host);host.dataset.previewState='ready';
         // 卡片先登记再插入列表，插入完成后按新列宽测量，复用时不显示加载提示。
         Promise.resolve().then(()=>{if(current(host,state))frame(host);});
         if(supported)watch(host,effect);

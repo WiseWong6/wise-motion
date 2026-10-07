@@ -1,0 +1,22 @@
+{
+  "scope": "仅组合动作保留原音效和配乐；源工程只读，运行只使用随包本地文件。",
+  "files": [
+    {
+      "file": "catalog/assets/composition-audio/showreel/audio.cjs",
+      "original": "/Users/wisewong/Documents/Developer/wise-video/claude-showreel-2026/audio.cjs",
+      "sha256": "f9ab30d6503379199bc1babca4684542d43bdc58b6924b3d73bf9944199c6d0d"
+    },
+    {
+      "file": "catalog/assets/composition-audio/showreel/shared.js",
+      "original": "/Users/wisewong/Documents/Developer/wise-video/claude-showreel-2026/shared.js",
+      "sha256": "46702926fdbe991cf26c6bc0901bfde134b747ca3176e1ac1d6cebf51cfe6c5b"
+    },
+    {
+      "file": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+      "original": "/Users/wisewong/Documents/Developer/wise-video/claude-showreel-2026/soundtrack.wav",
+      "transformation": "原始WAV编码为192kbps MP3；不改变时长或节拍。",
+      "sha256": "b427366cd2e08161747b4651da1a2b3a5d896f29ae992afc6096b080b655c80f"
+    }
+  ],
+  "rights": "程序沿用项目许可；录音和音乐的许可与署名以同目录原作记录为准，不将程序许可套用于第三方录音。"
+}

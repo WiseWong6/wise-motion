@@ -1,0 +1,31 @@
+{
+  "scope": "仅组合动作保留原音效和配乐；源工程只读，运行只使用随包本地文件。",
+  "files": [
+    {
+      "file": "catalog/assets/composition-audio/letter/sound.js",
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/sound.js",
+      "sha256": "0493a6aeb2ca0256ee2021df48948a538a3e7d35852764e332c8b64a61076022"
+    },
+    {
+      "file": "catalog/assets/composition-audio/letter/chime-score.js",
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/chime-score.js",
+      "sha256": "86b4246ae2215c82948a0b33dfe590e4133d203b016e56bcf3dfc04ac8368f31"
+    },
+    {
+      "file": "catalog/assets/composition-audio/letter/sound-bank.js",
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/audio/sound-bank.js",
+      "sha256": "2f10f8e6700b3e12348272cb700ae60bb713e6361da31e5307f6dadd1eaaa9d8"
+    },
+    {
+      "file": "catalog/assets/composition-audio/letter/SOURCES.md",
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/audio/SOURCES.md",
+      "sha256": "87a9d4040d3e6793645d2d22eab61892b13b3aaf2d85cb902f3d4b756f1b2424"
+    },
+    {
+      "file": "catalog/assets/composition-audio/letter/build-audio.cjs",
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/scripts/build-audio.cjs",
+      "sha256": "6f201d9c43b92d58ee66e8b0a3cca4f86a15920c90e341261d80911488d72eba"
+    }
+  ],
+  "rights": "程序沿用项目许可；录音和音乐的许可与署名以同目录原作记录为准，不将程序许可套用于第三方录音。"
+}

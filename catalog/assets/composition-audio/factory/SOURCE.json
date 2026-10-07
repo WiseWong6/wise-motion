@@ -1,0 +1,81 @@
+{
+  "scope": "仅组合动作保留原音效和配乐；源工程只读，运行只使用随包本地文件。",
+  "files": [
+    {
+      "file": "catalog/assets/composition-audio/factory/sound.js",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/sound.js",
+      "sha256": "1162c0068d28ba6858ddff354e8d4620c4e1df1253922909044bc3bf88b157ac"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/timeline.js",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/timeline.js",
+      "sha256": "108df91a31e9998d3b986548c183db0b683457d4d181d4a0be8857d5ad80c4ce"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/素材来源.md",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/素材来源.md",
+      "sha256": "246416a9cde4c17c67c6b994a621d0a8b6ae14199954eaeafe8430ead5ca3f6d"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/beans.wav",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/clips/beans.wav",
+      "sha256": "8aa7162e892c2ed1cd69597fc5d47e51e9ec5890c9c637a354376ff9fabac054"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/grind.wav",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/clips/grind.wav",
+      "sha256": "5529a1d85a9d5168138b63b2451954fce173168a88bcc3303bcecd436dadc0a4"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/latch.wav",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/clips/latch.wav",
+      "sha256": "a20d4495d2bd27d46fa307d33664a8910140eb34a00b18c5142e6a333371c0cf"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/brew.wav",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/clips/brew.wav",
+      "sha256": "1a886b32ee009566c7d05f08a3eb732a2b437e58eed495293ba14677fd0da186"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/steam.wav",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/clips/steam.wav",
+      "sha256": "b46e346400aef3169c959473f79d8de65c19ac47be841e0b87ccb767a2458101"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/angry.wav",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/clips/angry.wav",
+      "sha256": "d39652f1164f8f6dfa0737db44073a06912c2f70adbecb71e8ce27b0dbe3079a"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/land.wav",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/clips/land.wav",
+      "sha256": "3fec91a9b59ee0fa9f5283a6464a4211cc3e9c117ca0843e158a052ff2749149"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/meow-soft.wav",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/clips/meow-soft.wav",
+      "sha256": "7e5f83fd8c0dd34c6073bdeb8eaa90000c873881ea241172a8c83378d087b0b2"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/meow.wav",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/clips/meow.wav",
+      "sha256": "829f8865889098408a3485b712ca7aa0ad98c22ddd9e8f6ba9ccdaa08774b06a"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/meow-bright.wav",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/clips/meow-bright.wav",
+      "sha256": "e860db91d8dbc1059cf8d14374cec911bd4e292c78c3a5766556ddf422ee5e06"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/meow-low.wav",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/clips/meow-low.wav",
+      "sha256": "046dbd7b2b0574aaecb24c71880d286bd9b49df7a0661b75b10909f74947c2cb"
+    },
+    {
+      "file": "catalog/assets/composition-audio/factory/meow-white.wav",
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/clips/meow-white.wav",
+      "sha256": "34c28258bc95583d2fd53258e4e68daf519e048536b6adc4ccd51515675b9265"
+    }
+  ],
+  "rights": "程序沿用项目许可；录音和音乐的许可与署名以同目录原作记录为准，不将程序许可套用于第三方录音。"
+}

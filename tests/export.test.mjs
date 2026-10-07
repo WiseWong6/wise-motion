@@ -21,6 +21,9 @@ test('复制的完整页面可加载包内源码，动作和组合都能重复�
           assert.ok((await stat(new URL('../'+resource,import.meta.url))).isFile());
         }
         for (const script of w.document.querySelectorAll('script')) {
+          // jsdom 不支持真实媒体或 iframe 帧绘制；这里只核对复制入口的原画面。
+          // 帧播放器控制另测，带声音导出通过实际 Remotion 渲染验证。
+          if(script.getAttribute('src')==='catalog/remotion-player.js')continue;
           w.eval(script.src ? await readFile(new URL('../'+script.getAttribute('src'),import.meta.url),'utf8') : script.textContent);
         }
         assert.equal(w.MotionDemo.speed,1.75); assert.equal(w.MotionRuntime.instanceCount,1);

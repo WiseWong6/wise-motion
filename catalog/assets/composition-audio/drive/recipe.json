@@ -1,0 +1,6943 @@
+{
+  "duration": 14,
+  "events": [
+    {
+      "type": "release",
+      "time": 1.1,
+      "index": 0,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 1.205,
+      "index": 1,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 1.31,
+      "index": 2,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 1.415,
+      "index": 3,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 1.52,
+      "index": 4,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 1.625,
+      "index": 5,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 1.73,
+      "index": 6,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 2.6,
+      "index": 7,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 2.705,
+      "index": 8,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 2.81,
+      "index": 9,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 2.915,
+      "index": 10,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 3.02,
+      "index": 11,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 3.125,
+      "index": 12,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 3.23,
+      "index": 13,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 4.1,
+      "index": 14,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 4.205,
+      "index": 15,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 4.31,
+      "index": 16,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 4.415,
+      "index": 17,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 4.52,
+      "index": 18,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 4.625,
+      "index": 19,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 4.7299999999999995,
+      "index": 20,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 5.6,
+      "index": 21,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 5.705,
+      "index": 22,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 5.81,
+      "index": 23,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 5.915,
+      "index": 24,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 6.02,
+      "index": 25,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 6.125,
+      "index": 26,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 6.2299999999999995,
+      "index": 27,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 7.1,
+      "index": 28,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 7.205,
+      "index": 29,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 7.31,
+      "index": 30,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 7.415,
+      "index": 31,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 7.52,
+      "index": 32,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 7.625,
+      "index": 33,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "release",
+      "time": 7.7299999999999995,
+      "index": 34,
+      "x": -0.1717333333333333
+    },
+    {
+      "type": "meow",
+      "time": 7.7299999999999995,
+      "duration": 0.572,
+      "x": 0.04444444444444451
+    }
+  ],
+  "frames": [
+    {
+      "time": 0,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.016666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.03333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.06666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.08333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.11666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.13333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.16666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.18333333333333332,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.21666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.23333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.26666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.2833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.31666666666666665,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.3333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.36666666666666664,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.38333333333333336,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.4166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.43333333333333335,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.4666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.48333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.5166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.5333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.5666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.5833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.6166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.6333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.6666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.6833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.7166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.7333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.7666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.7833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.8166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.8333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.8666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.8833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.9166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.9333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.9666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 0.9833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.0166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.0333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.0666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.0833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.1166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.1333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.1666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.1833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.2166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.2333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.2666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.2833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.3166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.3333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.3666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.3833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.4166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.4333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.4666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.4833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.5166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.5333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.5666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.5833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.6166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.6333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.6666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.6833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.7166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.7333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.7666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.7833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.8166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.8333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.8666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.8833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.9166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.9333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.9666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 1.9833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.0166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.033333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.066666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.0833333333333335,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.1166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.1333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.1666666666666665,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.183333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.216666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.2333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.2666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.283333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.316666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.3333333333333335,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.3666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.3833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.4166666666666665,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.433333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.466666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.4833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.5166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.533333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.566666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.5833333333333335,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.6166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.6333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.6666666666666665,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.683333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.716666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.7333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.7666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.783333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.816666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.8333333333333335,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.8666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.8833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.9166666666666665,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.933333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.966666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 2.9833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.0166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.033333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.066666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.0833333333333335,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.1166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.1333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.1666666666666665,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.183333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.216666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.2333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.2666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.283333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.316666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.3333333333333335,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.3666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.3833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.4166666666666665,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.433333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.466666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.4833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.5166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.533333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.566666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.5833333333333335,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.6166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.6333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.6666666666666665,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.683333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.716666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.7333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.7666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.783333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.816666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.8333333333333335,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.8666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.8833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.9166666666666665,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.933333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.966666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 3.9833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.016666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.033333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.066666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.083333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.116666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.133333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.183333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.216666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.233333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.266666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.283333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.316666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.366666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.383333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.416666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.433333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.466666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.483333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.516666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.533333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.566666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.583333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.616666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.633333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.683333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.716666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.733333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.766666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.783333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.816666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.866666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.883333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.916666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.933333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.966666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 4.983333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.016666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.033333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.066666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.083333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.116666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.133333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.183333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.216666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.233333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.266666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.283333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.316666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.366666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.383333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.416666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.433333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.466666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.483333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.516666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.533333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.566666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.583333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.616666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.633333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.683333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.716666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.733333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.766666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.783333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.816666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.866666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.883333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.916666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.933333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.966666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 5.983333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.016666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.033333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.066666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.083333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.116666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.133333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.183333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.216666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.233333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.266666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.283333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.316666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.366666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.383333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.416666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.433333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.466666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.483333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.516666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.533333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.566666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.583333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.616666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.633333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.683333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.716666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.733333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.766666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.783333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.816666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.866666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.883333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.916666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.933333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.966666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 6.983333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.016666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.033333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.066666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.083333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.116666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.133333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.166666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.183333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.216666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.233333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.266666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.283333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.316666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.333333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.366666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.383333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.416666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.433333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.466666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.483333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.516666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.533333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.566666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.583333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.616666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.633333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.666666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.683333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.716666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.733333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.766666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.783333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.816666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.833333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.866666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.883333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.916666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.933333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.966666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 7.983333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.016666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.033333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.066666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.083333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.116666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.133333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.183333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.216666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.233333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.266666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.283333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.316666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.366666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.383333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.416666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.433333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.466666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.483333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.516666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.533333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.566666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.583333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.616666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.633333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.683333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.716666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.733333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.766666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.783333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.816666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.866666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.883333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.916666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.933333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.966666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 8.983333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.016666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.033333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.066666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.083333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.116666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.133333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.183333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.216666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.233333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.266666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.283333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.316666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.366666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.383333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.416666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.433333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.466666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.483333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.516666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.533333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.566666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.583333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.616666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.633333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.683333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.716666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.733333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.766666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.783333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.816666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.866666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.883333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.916666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.933333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.966666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 9.983333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 10,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 10.016666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 10.033333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04444444444444451
+    },
+    {
+      "time": 10.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.044444479633828804
+    },
+    {
+      "time": 10.066666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.044451954648526026
+    },
+    {
+      "time": 10.083333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04449016368522729
+    },
+    {
+      "time": 10.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04458342017300754
+    },
+    {
+      "time": 10.116666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04475477777777792
+    },
+    {
+      "time": 10.133333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04502603040228448
+    },
+    {
+      "time": 10.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.045417712186109016
+    },
+    {
+      "time": 10.166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04594909750566889
+    },
+    {
+      "time": 10.183333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04663820097421678
+    },
+    {
+      "time": 10.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04750177744184092
+    },
+    {
+      "time": 10.216666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04855532199546486
+    },
+    {
+      "time": 10.233333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.04981306995884771
+    },
+    {
+      "time": 10.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.05128799689258412
+    },
+    {
+      "time": 10.266666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.05299181859410429
+    },
+    {
+      "time": 10.283333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.054934991097673525
+    },
+    {
+      "time": 10.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.05712671067439312
+    },
+    {
+      "time": 10.316666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.05957491383219948
+    },
+    {
+      "time": 10.333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.06228627731586478
+    },
+    {
+      "time": 10.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.06526621810699584
+    },
+    {
+      "time": 10.366666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.06851889342403639
+    },
+    {
+      "time": 10.383333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.07204720072226412
+    },
+    {
+      "time": 10.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.07585277769379362
+    },
+    {
+      "time": 10.416666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.07993600226757347
+    },
+    {
+      "time": 10.433333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.08429599260938936
+    },
+    {
+      "time": 10.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.08893060712186074
+    },
+    {
+      "time": 10.466666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.09383644444444439
+    },
+    {
+      "time": 10.483333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.09900884345343042
+    },
+    {
+      "time": 10.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.1044418832619467
+    },
+    {
+      "time": 10.516666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.11012838321995488
+    },
+    {
+      "time": 10.533333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.11605990291425194
+    },
+    {
+      "time": 10.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.12222674216847262
+    },
+    {
+      "time": 10.566666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.12861794104308366
+    },
+    {
+      "time": 10.583333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.13522127983539112
+    },
+    {
+      "time": 10.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.14202327907953283
+    },
+    {
+      "time": 10.616666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.1490091995464855
+    },
+    {
+      "time": 10.633333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.15616304224405786
+    },
+    {
+      "time": 10.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.1634675484168977
+    },
+    {
+      "time": 10.666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.17090419954648506
+    },
+    {
+      "time": 10.683333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.17845321735113817
+    },
+    {
+      "time": 10.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.18609356378600772
+    },
+    {
+      "time": 10.716666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.1938029410430837
+    },
+    {
+      "time": 10.733333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.20155779155118791
+    },
+    {
+      "time": 10.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.20933333333333315
+    },
+    {
+      "time": 10.766666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.21711111111111148
+    },
+    {
+      "time": 10.783333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.2248888888888887
+    },
+    {
+      "time": 10.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.23266666666666702
+    },
+    {
+      "time": 10.816666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.24044444444444424
+    },
+    {
+      "time": 10.833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.24822222222222234
+    },
+    {
+      "time": 10.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.2559999999999998
+    },
+    {
+      "time": 10.866666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.2637777777777779
+    },
+    {
+      "time": 10.883333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.2715555555555551
+    },
+    {
+      "time": 10.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.27933333333333343
+    },
+    {
+      "time": 10.916666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.28711111111111065
+    },
+    {
+      "time": 10.933333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.294888888888889
+    },
+    {
+      "time": 10.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.3026666666666662
+    },
+    {
+      "time": 10.966666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.3104444444444445
+    },
+    {
+      "time": 10.983333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.31822222222222174
+    },
+    {
+      "time": 11,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.32599999999999985
+    },
+    {
+      "time": 11.016666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.3337777777777782
+    },
+    {
+      "time": 11.033333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.3415555555555554
+    },
+    {
+      "time": 11.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.3493333333333335
+    },
+    {
+      "time": 11.066666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.35711111111111093
+    },
+    {
+      "time": 11.083333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.36488888888888904
+    },
+    {
+      "time": 11.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.3726666666666665
+    },
+    {
+      "time": 11.116666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.3804444444444446
+    },
+    {
+      "time": 11.133333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.3882222222222218
+    },
+    {
+      "time": 11.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.39600000000000013
+    },
+    {
+      "time": 11.166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.40377777777777735
+    },
+    {
+      "time": 11.183333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.4115555555555557
+    },
+    {
+      "time": 11.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.4193333333333329
+    },
+    {
+      "time": 11.216666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.4271111111111112
+    },
+    {
+      "time": 11.233333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.43488888888888844
+    },
+    {
+      "time": 11.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.44266666666666654
+    },
+    {
+      "time": 11.266666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.45044444444444487
+    },
+    {
+      "time": 11.283333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.4582222222222221
+    },
+    {
+      "time": 11.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.4660000000000002
+    },
+    {
+      "time": 11.316666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.47377777777777763
+    },
+    {
+      "time": 11.333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.48155555555555574
+    },
+    {
+      "time": 11.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.4893333333333332
+    },
+    {
+      "time": 11.366666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.4971111111111113
+    },
+    {
+      "time": 11.383333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.5048888888888885
+    },
+    {
+      "time": 11.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.5126666666666668
+    },
+    {
+      "time": 11.416666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.520444444444444
+    },
+    {
+      "time": 11.433333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.5282222222222224
+    },
+    {
+      "time": 11.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.5359999999999996
+    },
+    {
+      "time": 11.466666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.5437777777777777
+    },
+    {
+      "time": 11.483333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.5515555555555551
+    },
+    {
+      "time": 11.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.5593333333333332
+    },
+    {
+      "time": 11.516666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.5671111111111111
+    },
+    {
+      "time": 11.533333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.5748888888888888
+    },
+    {
+      "time": 11.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.5826666666666667
+    },
+    {
+      "time": 11.566666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.5904444444444443
+    },
+    {
+      "time": 11.583333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.5982222222222224
+    },
+    {
+      "time": 11.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.6059999999999997
+    },
+    {
+      "time": 11.616666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.613777777777778
+    },
+    {
+      "time": 11.633333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.6215555555555552
+    },
+    {
+      "time": 11.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.6293333333333335
+    },
+    {
+      "time": 11.666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.6371111111111107
+    },
+    {
+      "time": 11.683333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.6448888888888891
+    },
+    {
+      "time": 11.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.6526666666666663
+    },
+    {
+      "time": 11.716666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.6604444444444446
+    },
+    {
+      "time": 11.733333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.6682222222222218
+    },
+    {
+      "time": 11.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.6759999999999999
+    },
+    {
+      "time": 11.766666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.6837777777777778
+    },
+    {
+      "time": 11.783333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.6915555555555555
+    },
+    {
+      "time": 11.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.6993333333333334
+    },
+    {
+      "time": 11.816666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.7071111111111108
+    },
+    {
+      "time": 11.833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.7148888888888889
+    },
+    {
+      "time": 11.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.7226666666666663
+    },
+    {
+      "time": 11.866666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 1,
+      "vehiclePan": 0.7304444444444445
+    },
+    {
+      "time": 11.883333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9998394554074075,
+      "vehiclePan": 0.7382222222222219
+    },
+    {
+      "time": 11.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.998930718,
+      "vehiclePan": 0.746
+    },
+    {
+      "time": 11.916666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9972363472592594,
+      "vehiclePan": 0.7537777777777774
+    },
+    {
+      "time": 11.933333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9947753987407407,
+      "vehiclePan": 0.7615555555555558
+    },
+    {
+      "time": 11.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9915669280000002,
+      "vehiclePan": 0.769333333333333
+    },
+    {
+      "time": 11.966666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9876299905925925,
+      "vehiclePan": 0.7771111111111113
+    },
+    {
+      "time": 11.983333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9829836420740743,
+      "vehiclePan": 0.7848888888888885
+    },
+    {
+      "time": 12,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9776469380000001,
+      "vehiclePan": 0.7926666666666664
+    },
+    {
+      "time": 12.016666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9716389339259258,
+      "vehiclePan": 0.8004444444444445
+    },
+    {
+      "time": 12.033333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9649786854074075,
+      "vehiclePan": 0.8082222222222222
+    },
+    {
+      "time": 12.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9576852479999999,
+      "vehiclePan": 0.8160000000000001
+    },
+    {
+      "time": 12.066666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9497776772592597,
+      "vehiclePan": 0.8237777777777773
+    },
+    {
+      "time": 12.083333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9412750287407406,
+      "vehiclePan": 0.8315555555555556
+    },
+    {
+      "time": 12.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9321963580000004,
+      "vehiclePan": 0.8393333333333328
+    },
+    {
+      "time": 12.116666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9225607205925924,
+      "vehiclePan": 0.8471111111111111
+    },
+    {
+      "time": 12.133333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9123871720740746,
+      "vehiclePan": 0.8548888888888886
+    },
+    {
+      "time": 12.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.9016947679999998,
+      "vehiclePan": 0.8626666666666667
+    },
+    {
+      "time": 12.166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.8905025639259265,
+      "vehiclePan": 0.8704444444444441
+    },
+    {
+      "time": 12.183333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.8788296154074072,
+      "vehiclePan": 0.8782222222222222
+    },
+    {
+      "time": 12.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.8666949780000006,
+      "vehiclePan": 0.8859999999999997
+    },
+    {
+      "time": 12.216666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.8541177072592592,
+      "vehiclePan": 0.8937777777777778
+    },
+    {
+      "time": 12.233333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.8411168587407414,
+      "vehiclePan": 0.9015555555555552
+    },
+    {
+      "time": 12.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.8277114880000003,
+      "vehiclePan": 0.9093333333333331
+    },
+    {
+      "time": 12.266666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.8139206505925924,
+      "vehiclePan": 0.9171111111111112
+    },
+    {
+      "time": 12.283333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.7997634020740744,
+      "vehiclePan": 0.9248888888888886
+    },
+    {
+      "time": 12.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.7852587979999999,
+      "vehiclePan": 0.9326666666666668
+    },
+    {
+      "time": 12.316666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.7704258939259268,
+      "vehiclePan": 0.940444444444444
+    },
+    {
+      "time": 12.333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.7552837454074072,
+      "vehiclePan": 0.9482222222222223
+    },
+    {
+      "time": 12.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.7398514080000008,
+      "vehiclePan": 0.9559999999999995
+    },
+    {
+      "time": 12.366666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.724147937259259,
+      "vehiclePan": 0.9637777777777778
+    },
+    {
+      "time": 12.383333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.7081923887407415,
+      "vehiclePan": 0.9715555555555551
+    },
+    {
+      "time": 12.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.6920038179999998,
+      "vehiclePan": 0.9793333333333334
+    },
+    {
+      "time": 12.416666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.6756012805925935,
+      "vehiclePan": 0.9871111111111106
+    },
+    {
+      "time": 12.433333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.6590038320740739,
+      "vehiclePan": 0.9948888888888889
+    },
+    {
+      "time": 12.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.6422305280000009,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.466666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.6253004239259257,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.483333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.6082325754074083,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.5910460380000003,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.516666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.573759867259259,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.533333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.556393118740741,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.5389648479999998,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.566666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.5214941105925934,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.583333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.5039999620740738,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.486501458000001,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.616666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.46901765392592576,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.633333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.45156760540740826,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.43417036799999986,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.41684499725926005,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.683333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.39961054874074053,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.3824860780000009,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.716666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.3654906405925924,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.733333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.34864329207407496,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.3319630880000003,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.766666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.31546908392592565,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.783333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.29918033540740774,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.2831158979999998,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.816666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.26729482725926,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.2517361787407406,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.23645900800000075,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.866666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.22148237059259246,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.883333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.20682532207407478,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.19250691799999986,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.916666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.17854621392592673,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.933333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.16496226540740722,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.15177412800000067,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.966666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.13900085725925948,
+      "vehiclePan": 1
+    },
+    {
+      "time": 12.983333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.12666150874074145,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.11477513800000028,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.016666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.10336080059259212,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.033333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.09243755207407434,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.05,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.08202444799999986,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.066666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.07214054392592639,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.083333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.0628048954074073,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.1,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.0540365580000004,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.116666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.04585458725925917,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.133333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.038278038740741094,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.15,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.03132596799999987,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.166666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.02501743059259287,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.183333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.01937148207407402,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.2,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.014407178000000243,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.216666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.01014357392592613,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.233333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.006599725407407608,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.25,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.003794688000000046,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.266666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.001747517259259146,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.283333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.0004772687407408327,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.3,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0.0000029979999999207863,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.316666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.333333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.35,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.366666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.383333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.4,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.416666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.433333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.45,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.466666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.483333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.5,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.516666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.533333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.55,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.566666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.583333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.6,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.616666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.633333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.65,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.666666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.683333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.7,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.716666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.733333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.75,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.766666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.783333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.8,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.816666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.833333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.85,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.866666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.883333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.9,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.916666666666666,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.933333333333334,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.95,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.966666666666667,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    },
+    {
+      "time": 13.983333333333333,
+      "duration": 14,
+      "rate": 1,
+      "running": true,
+      "vehicleGain": 0,
+      "vehiclePan": 1
+    }
+  ]
+}

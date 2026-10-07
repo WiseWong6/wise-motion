@@ -1,0 +1,26 @@
+{
+  "scope": "仅组合动作保留原音效和配乐；源工程只读，运行只使用随包本地文件。",
+  "files": [
+    {
+      "file": "catalog/assets/composition-audio/encore/climax.mp3",
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/singintherain-encore/app/audio/climax.mp3",
+      "sha256": "f1fc21da53d4449ac8661e4cffdb60a6867a7de3d425f5e7fded455a85818bb5"
+    },
+    {
+      "file": "catalog/assets/composition-audio/encore/player.js",
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/singintherain-encore/app/player.js",
+      "sha256": "5d15938190f25e1fea0f7de3553f4b2f953b320b648f07cd33de7a79eb0aa390"
+    },
+    {
+      "file": "catalog/assets/composition-audio/encore/choreography.js",
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/singintherain-encore/app/choreography.js",
+      "sha256": "e370a695d82b2d70ab3b8cadd764aeae6a0cfda84d46ef55072ebc1406ced65c"
+    },
+    {
+      "file": "catalog/assets/composition-audio/encore/README.md",
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/singintherain-encore/README.md",
+      "sha256": "972969e7fa94e9a038ca6a1894691bc667d4466cdf8868d5e5305395cfad1834"
+    }
+  ],
+  "rights": "程序沿用项目许可；录音和音乐的许可与署名以同目录原作记录为准，不将程序许可套用于第三方录音。"
+}

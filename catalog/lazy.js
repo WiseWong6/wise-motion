@@ -4,7 +4,7 @@
    组合拆解和复制源码。载入顺序固定，已载入的文件不会重复执行。 */
 (function (global) {
   'use strict';
-  const EFFECT_FILES = ['effects/civilization-images.js', 'effects/rasengan-illustrations.js', 'effects/civilization-growth.js','effects/scene-source-runtime.js','effects/scene-osmanthus-data.js','effects/scene-ink-data.js','effects/scene-dandelion.js','effects/scene-drive.js','effects/scene-factory.js','effects/scene-ink.js','effects/scene-letter-images.js','effects/scene-letter.js','effects/scene-ocean.js','effects/scene-osmanthus.js','effects/scene-selfie-images.js','effects/scene-selfie.js','effects/scene-snow.js'];
+  const EFFECT_FILES = ['effects/letter-settle.js', 'effects/hud-targeting.js', 'effects/data-motion.js', 'effects/osmanthus-motion.js', 'effects/settle-grow-spread.js', 'effects/history-nature.js', 'effects/claude-tile-illustrations.js', 'effects/motion-oasis.js', 'effects/material-evolution.js', 'effects/civilization-images.js', 'effects/rasengan-illustrations.js', 'effects/civilization-growth.js','effects/scene-source-runtime.js','effects/scene-osmanthus-data.js','effects/scene-ink-data.js','effects/scene-dandelion.js','effects/scene-drive.js','effects/scene-factory.js','effects/scene-ink.js','effects/scene-letter-images.js','effects/scene-letter.js','effects/scene-ocean.js','effects/scene-osmanthus.js','effects/scene-selfie-images.js','effects/scene-selfie.js','effects/scene-snow.js'];
   const SOURCES_FILE = 'remotion-sources.js';
   const loaded = new Set(), loading = new Map();
 

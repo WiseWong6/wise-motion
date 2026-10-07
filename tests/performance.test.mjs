@@ -1,7 +1,60 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFile, stat} from 'node:fs/promises';
 import {environment, data} from './helpers.mjs';
+
+test('播放条同一帧不重复写入，播放期间声音按钮只在开关变化时更新', async () => {
+  let update;
+  const env = await environment(true, {staticPreview:true, beforeApp(w) {
+    const create=w.MotionRuntime.create;
+    w.MotionRuntime.create=(root,effect,options)=>{update=options.onUpdate;return create(root,effect,options);};
+  }});
+  try {
+    const {w}=env,d=w.document,observer=new w.MutationObserver(()=>{});
+    observer.observe(d.querySelector('.playbar'),{subtree:true,attributes:true,childList:true,characterData:true});
+    const state={time:1000,duration:2400,paused:true,hasAudio:true,muted:true};
+    update(state);observer.takeRecords();
+    const sound=d.getElementById('toggle-sound');
+    assert.equal(sound.parentElement.className,'playback-timeline');
+    assert.equal(sound.previousElementSibling.id,'time-current');
+    assert.ok(sound.nextElementSibling.matches('.scrub'));
+    assert.ok(sound.querySelector('[data-icon="speaker-muted"] svg'));
+    const mutedIcon=sound.innerHTML;
+    for(let i=0;i<120;i++)update(state);
+    assert.equal(observer.takeRecords().length,0);
+    for(let i=0;i<120;i++)update({...state,time:i*1000/60});
+    assert.equal(observer.takeRecords().filter(item=>item.target.id==='toggle-sound').length,0);
+    update({...state,muted:false});
+    assert.equal(sound.getAttribute('aria-pressed'),'true');
+    assert.equal(sound.getAttribute('aria-label'),'关闭组合声音');
+    assert.ok(sound.querySelector('[data-icon="speaker-on"] svg'));
+    assert.notEqual(sound.innerHTML,mutedIcon);
+    update(state);
+    assert.equal(sound.getAttribute('aria-pressed'),'false');
+    assert.equal(sound.getAttribute('aria-label'),'开启组合声音');
+    assert.equal(sound.innerHTML,mutedIcon);
+    update({...state,hasAudio:false});assert.equal(d.getElementById('toggle-sound').hidden,true);
+    observer.disconnect();observer.observe(d.getElementById('effects-list'),{subtree:true,attributes:true,attributeFilter:['aria-current']});
+    d.querySelector('[data-effect="scale-in"]').click();assert.equal(observer.takeRecords().length,2);
+    observer.disconnect();
+  } finally {env.w.MotionThumbs.disposeAll();env.close();}
+});
+
+test('首屏脚本控制在预算内，浏览器播放器复用页面数据且保留组合原声', async () => {
+  const html=await readFile(new URL('../catalog/index.html',import.meta.url),'utf8');
+  const scripts=[...html.matchAll(/<script src="([^"]+)"/g)].map(match=>match[1]);
+  const sizes=await Promise.all(scripts.map(file=>stat(new URL('../catalog/'+file,import.meta.url))));
+  assert.ok(sizes.reduce((sum,file)=>sum+file.size,0)<3_600_000,'首屏不应恢复重复目录或大体积绘制数据');
+  const env=await environment();
+  try {
+    const {w}=env;
+    w.MotionRegistry.effects=w.MotionRegistry.effects.map(effect=>effect.id==='stagger-in'?{...effect,name:'页面中的当前定义'}:effect);
+    w.eval(await readFile(new URL('../catalog/remotion-player.js',import.meta.url),'utf8'));
+    assert.equal(w.WiseRemotion.resolveEffect('stagger-in').name,'页面中的当前定义');
+    assert.ok(w.WiseRemotion.resolveEffect('balloon-drive-journey').audio.tracks.length);
+  } finally {env.close();}
+});
 
 test('筛选保留已有卡片与缩略图，移出的卡片释放内容', async () => {
   const env = await environment(true);

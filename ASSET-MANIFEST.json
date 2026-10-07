@@ -3,13 +3,13 @@
   "files": [
     {
       "path": "catalog/app.css",
-      "bytes": 46204,
-      "sha256": "2a50b07fd14da6aaf6f396722ba40fcfc8e470235127326ac2246e64650d7acc"
+      "bytes": 46470,
+      "sha256": "7f6fc86d3709da1df494aebc2eeebb1dfc33400c46d1a846e38756fbe868c8b7"
     },
     {
       "path": "catalog/app.js",
-      "bytes": 57437,
-      "sha256": "6a308c36eeb24bb9a59ac9a611f33be93b605afbf2427f73e7a6c40cca102cbe"
+      "bytes": 58950,
+      "sha256": "66cea0fd511b6b602282418aa3adba5964738357cbaf137ced30edcc7eb01cc5"
     },
     {
       "path": "catalog/assets/WEBP-SOURCES.json",
@@ -267,6 +267,541 @@
       "sha256": "3f99d1d0cfd6e1aa421b3a1c4aaa476470a328d8615adfa4c3d4097dd8cabd07"
     },
     {
+      "path": "catalog/assets/composition-audio/SOURCE.json",
+      "bytes": 8772,
+      "sha256": "5439d4c4a8bdbe9bfcaa017f2cc27b4b97eca97f2d64708805fca5acad589816"
+    },
+    {
+      "path": "catalog/assets/composition-audio/dandelion/README.md",
+      "bytes": 748,
+      "sha256": "2640916e20fcce4a1dccf6ca3292b09669618b450fadff36b6aac9448ef0bf48"
+    },
+    {
+      "path": "catalog/assets/composition-audio/dandelion/SOURCE.json",
+      "bytes": 1110,
+      "sha256": "0f6d6bad2d8d485c49d69cf22ca6bc32b8602d93c01b9e6b068ee6240ce8d77a"
+    },
+    {
+      "path": "catalog/assets/composition-audio/dandelion/journey-sound.js",
+      "bytes": 4081,
+      "sha256": "3504c239334504c569db41e1127b87473a50f49b9326571278f9a9c9fa900a6b"
+    },
+    {
+      "path": "catalog/assets/composition-audio/dandelion/windborne-score.mp3",
+      "bytes": 889625,
+      "sha256": "f56cfc03ab1912aa5d926984cc3aa97fe2f41816096c0434c0bcdc4292da09a9"
+    },
+    {
+      "path": "catalog/assets/composition-audio/drive/README.md",
+      "bytes": 1179,
+      "sha256": "a9a89c7a99e55a5ddffcf8014602f69601a324172e0555451858710878ba6b1e"
+    },
+    {
+      "path": "catalog/assets/composition-audio/drive/SOURCE.json",
+      "bytes": 1335,
+      "sha256": "00d5f617b1739042e43a2bbbfcf3d6863d959887694b2729fb8f364322696d2d"
+    },
+    {
+      "path": "catalog/assets/composition-audio/drive/meow.js",
+      "bytes": 36873,
+      "sha256": "36ded5c3f735e1aab7a9893ade3d83431cdd226d16d004d0b767b0f717161cdc"
+    },
+    {
+      "path": "catalog/assets/composition-audio/drive/meow.wav",
+      "bytes": 27500,
+      "sha256": "829f8865889098408a3485b712ca7aa0ad98c22ddd9e8f6ba9ccdaa08774b06a"
+    },
+    {
+      "path": "catalog/assets/composition-audio/drive/mix.mp3",
+      "bytes": 337580,
+      "sha256": "6548f133bba8741fda46f7d4708183ae58f69c097631b327d9296fb63b8d8348"
+    },
+    {
+      "path": "catalog/assets/composition-audio/drive/mix.mp3.json",
+      "bytes": 144,
+      "sha256": "f166ee8b3098c7098ba0b1d8484cef1a8a812dfa3602637260a3f1370c991fea"
+    },
+    {
+      "path": "catalog/assets/composition-audio/drive/recipe.json",
+      "bytes": 144780,
+      "sha256": "5cda6b6a7b4285faf593ce305236fc88ef0043448bd7a0f044f8b6fb7f1ce3bc"
+    },
+    {
+      "path": "catalog/assets/composition-audio/drive/sound.js",
+      "bytes": 11555,
+      "sha256": "bc25683714db2f61986f1228047ae9542c6b2ca495e253418cdf166b8fb9ec60"
+    },
+    {
+      "path": "catalog/assets/composition-audio/encore/README.md",
+      "bytes": 4493,
+      "sha256": "972969e7fa94e9a038ca6a1894691bc667d4466cdf8868d5e5305395cfad1834"
+    },
+    {
+      "path": "catalog/assets/composition-audio/encore/SOURCE.json",
+      "bytes": 1389,
+      "sha256": "0bb0bb560d617a3f945f241b5aa8a1ad7228cb36ee835c3a7513e43c2100f13d"
+    },
+    {
+      "path": "catalog/assets/composition-audio/encore/choreography.js",
+      "bytes": 5723,
+      "sha256": "e370a695d82b2d70ab3b8cadd764aeae6a0cfda84d46ef55072ebc1406ced65c"
+    },
+    {
+      "path": "catalog/assets/composition-audio/encore/climax.mp3",
+      "bytes": 686060,
+      "sha256": "f1fc21da53d4449ac8661e4cffdb60a6867a7de3d425f5e7fded455a85818bb5"
+    },
+    {
+      "path": "catalog/assets/composition-audio/encore/player.js",
+      "bytes": 7993,
+      "sha256": "5d15938190f25e1fea0f7de3553f4b2f953b320b648f07cd33de7a79eb0aa390"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/SOURCE.json",
+      "bytes": 4380,
+      "sha256": "001f224ff6707db756c8f70a041bf2d06618d9de284b668599e9f48e041da519"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/angry.wav",
+      "bytes": 57644,
+      "sha256": "d39652f1164f8f6dfa0737db44073a06912c2f70adbecb71e8ce27b0dbe3079a"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/beans.wav",
+      "bytes": 20204,
+      "sha256": "8aa7162e892c2ed1cd69597fc5d47e51e9ec5890c9c637a354376ff9fabac054"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/brew.wav",
+      "bytes": 57644,
+      "sha256": "1a886b32ee009566c7d05f08a3eb732a2b437e58eed495293ba14677fd0da186"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/grind.wav",
+      "bytes": 68204,
+      "sha256": "5529a1d85a9d5168138b63b2451954fce173168a88bcc3303bcecd436dadc0a4"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/land.wav",
+      "bytes": 8684,
+      "sha256": "3fec91a9b59ee0fa9f5283a6464a4211cc3e9c117ca0843e158a052ff2749149"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/latch.wav",
+      "bytes": 13004,
+      "sha256": "a20d4495d2bd27d46fa307d33664a8910140eb34a00b18c5142e6a333371c0cf"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/meow-bright.wav",
+      "bytes": 27500,
+      "sha256": "e860db91d8dbc1059cf8d14374cec911bd4e292c78c3a5766556ddf422ee5e06"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/meow-low.wav",
+      "bytes": 27500,
+      "sha256": "046dbd7b2b0574aaecb24c71880d286bd9b49df7a0661b75b10909f74947c2cb"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/meow-soft.wav",
+      "bytes": 27500,
+      "sha256": "7e5f83fd8c0dd34c6073bdeb8eaa90000c873881ea241172a8c83378d087b0b2"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/meow-white.wav",
+      "bytes": 27500,
+      "sha256": "34c28258bc95583d2fd53258e4e68daf519e048536b6adc4ccd51515675b9265"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/meow.wav",
+      "bytes": 27500,
+      "sha256": "829f8865889098408a3485b712ca7aa0ad98c22ddd9e8f6ba9ccdaa08774b06a"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-0.mp3",
+      "bytes": 193580,
+      "sha256": "38575cf15078f1a4fa8dc6d8eb756a2784e17cb7d83ae31c4187e29b6656ce14"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-0.mp3.json",
+      "bytes": 141,
+      "sha256": "cb099ee14aa391bfb17298afd186ad5806abe4fa0236527d163bb0e1bee9b1d6"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-1.mp3",
+      "bytes": 193580,
+      "sha256": "147a6f3b2572ebdcf1d2b5524a24e4cb1b96ef085fbf98dfe529c4ce89cc8161"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-1.mp3.json",
+      "bytes": 143,
+      "sha256": "f443ba8ba96d827f944fae7c9160d31c193ca1a7859ddb75027a341cf88f44ba"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-10.mp3",
+      "bytes": 193580,
+      "sha256": "911a258b781e421aeebf3074e192085cdc141080f746f5da592010c94b587605"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-10.mp3.json",
+      "bytes": 143,
+      "sha256": "97499d4a10de19c87a8b6437cf457e76ac57118333b8ba6b0168233a996f5d3a"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-11.mp3",
+      "bytes": 193580,
+      "sha256": "1890f0c7c573064b43c3778954bbe140fc55a5ea733bd86fa9c8c13625257108"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-11.mp3.json",
+      "bytes": 142,
+      "sha256": "1412191192b3f996115530bf0a3f35334f729ad3941fe85abc890f1954789157"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-12.mp3",
+      "bytes": 193580,
+      "sha256": "32b117d54973de1d4cecfd8508a88056a9cf13fae25e0763f698989ac13925d2"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-12.mp3.json",
+      "bytes": 142,
+      "sha256": "71e17ce00c0123cdb3e98a2fd13c2d2ba5142593792b173b7543cd36c1a696b7"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-13.mp3",
+      "bytes": 193580,
+      "sha256": "4fa27c5867e514b543e7f9752e38b8bd8c31e94e8522e1fa921575d3d2f0e0ee"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-13.mp3.json",
+      "bytes": 143,
+      "sha256": "e29bd43a38478e3515b6b69948c65bd065bed32cc235a6c5ee38ad8f15c85e38"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-14.mp3",
+      "bytes": 193580,
+      "sha256": "cac854333f4da92c0a9cc3b23ea3752f71ba38d059033f11675a4a371e5c8ebd"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-14.mp3.json",
+      "bytes": 141,
+      "sha256": "88ba5ac8379ff772c914331fd4a4e290d8f75d72ca1b1baa391ef8889eb60fa2"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-2.mp3",
+      "bytes": 193580,
+      "sha256": "0a12616f8b9f43a32edfe69fae6eacd29ada46500833ce8b55b97b0f76838396"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-2.mp3.json",
+      "bytes": 143,
+      "sha256": "32de1dcb44d1ed85a42c49f5e4ca475133c957d9f152a70b960c0e92d0cadf06"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-3.mp3",
+      "bytes": 193580,
+      "sha256": "13a40b5877c09c16635e0b9ca2c8eee70301e8870e7f53ef96a81c99dace3dec"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-3.mp3.json",
+      "bytes": 141,
+      "sha256": "6146d94a401b2fe7f128860ff3148c29fa6abc80795f88847bec27f7ddc7f51c"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-4.mp3",
+      "bytes": 193580,
+      "sha256": "90663174620041f86236dff48137d06ced1c2723c55c282922aa35b1929195a6"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-4.mp3.json",
+      "bytes": 142,
+      "sha256": "65eae2b20d29bb5a749a1c28120a9590c0d4e67ab812e4c05fc42bfb1a869506"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-5.mp3",
+      "bytes": 193580,
+      "sha256": "e62f5df33006106d2ebc47dbc78675ff0abed6b13abc9dd7db5ffc58d2280ac0"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-5.mp3.json",
+      "bytes": 142,
+      "sha256": "28d52cd9fd8b59433634a456e1bffba4267428179bd0348e874b50e79e4be018"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-6.mp3",
+      "bytes": 193580,
+      "sha256": "b07c78765bafb2636c6bde03abfc24d464feca2784ea6de2a6c7d21a0157b9a3"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-6.mp3.json",
+      "bytes": 142,
+      "sha256": "a94cf711502b9b22ba249a2c1d1ac7f1c508519a656436c34f55627e2157780b"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-7.mp3",
+      "bytes": 193580,
+      "sha256": "6238d7ec99e9a07c48f719c0a6190a59e2e44e1bb09c0b23c924ea97c3ffbdd0"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-7.mp3.json",
+      "bytes": 141,
+      "sha256": "44103d7c09c020e7bc0d2f57f4f06a21ec636eb10134944f9e2b15022efba593"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-8.mp3",
+      "bytes": 193580,
+      "sha256": "c74128d69fbb8976d2946cf01680274e7421aab265a436c57d36612ea85935df"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-8.mp3.json",
+      "bytes": 143,
+      "sha256": "8ae494795a97d7a947e15efa934f47f9ec75f5248346141d9a4db7308ac15cbf"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-9.mp3",
+      "bytes": 193580,
+      "sha256": "52145e439ac447707d041235776719b9e4733b41ff493e8d8b254273837a8e8f"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/mix-9.mp3.json",
+      "bytes": 141,
+      "sha256": "acbedba8cfdc14d7f3505047b16e338df1f8d3635e7d570647be19a7d8d654ac"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/recipe.json",
+      "bytes": 26367,
+      "sha256": "964b70274eb5bf8b2ccfba364e170ea6dfa3884809fa120bab97289ee3737846"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/sound.js",
+      "bytes": 6762,
+      "sha256": "1162c0068d28ba6858ddff354e8d4620c4e1df1253922909044bc3bf88b157ac"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/steam.wav",
+      "bytes": 48044,
+      "sha256": "b46e346400aef3169c959473f79d8de65c19ac47be841e0b87ccb767a2458101"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/timeline.js",
+      "bytes": 15544,
+      "sha256": "108df91a31e9998d3b986548c183db0b683457d4d181d4a0be8857d5ad80c4ce"
+    },
+    {
+      "path": "catalog/assets/composition-audio/factory/素材来源.md",
+      "bytes": 8721,
+      "sha256": "246416a9cde4c17c67c6b994a621d0a8b6ae14199954eaeafe8430ead5ca3f6d"
+    },
+    {
+      "path": "catalog/assets/composition-audio/ink/Root.tsx",
+      "bytes": 4756,
+      "sha256": "0bb497485f1bd6a03135e151c6d9ea99d5d128ec02ba390ddaee47c94e49dbf6"
+    },
+    {
+      "path": "catalog/assets/composition-audio/ink/SOURCE.json",
+      "bytes": 1137,
+      "sha256": "8292751c88dad635f5994bd86e0681ebde7f4d98b35d1fbdce15fb016a2b14ea"
+    },
+    {
+      "path": "catalog/assets/composition-audio/ink/make_music.py",
+      "bytes": 12509,
+      "sha256": "5fcf175e1bfe057e4d7ae43df5bba7473e4cc4165c6149f1a3de448618c646fd"
+    },
+    {
+      "path": "catalog/assets/composition-audio/ink/水墨微光.m4a",
+      "bytes": 4521704,
+      "sha256": "474b802f67663e8094d6b5e607351f20723deb71b0e64701f024e1fa902c3620"
+    },
+    {
+      "path": "catalog/assets/composition-audio/letter/SOURCE.json",
+      "bytes": 1585,
+      "sha256": "6bb93e532490f54265583946ba04d682916883c8c548cb943e229e71ec0cc7c8"
+    },
+    {
+      "path": "catalog/assets/composition-audio/letter/SOURCES.md",
+      "bytes": 2948,
+      "sha256": "87a9d4040d3e6793645d2d22eab61892b13b3aaf2d85cb902f3d4b756f1b2424"
+    },
+    {
+      "path": "catalog/assets/composition-audio/letter/build-audio.cjs",
+      "bytes": 10520,
+      "sha256": "6f201d9c43b92d58ee66e8b0a3cca4f86a15920c90e341261d80911488d72eba"
+    },
+    {
+      "path": "catalog/assets/composition-audio/letter/chime-score.js",
+      "bytes": 5728,
+      "sha256": "86b4246ae2215c82948a0b33dfe590e4133d203b016e56bcf3dfc04ac8368f31"
+    },
+    {
+      "path": "catalog/assets/composition-audio/letter/mix.mp3",
+      "bytes": 2281580,
+      "sha256": "f9ae382fec6e7554cb0f844d987ed3f820e3ab3b0508d0d76033b6e10e0460a0"
+    },
+    {
+      "path": "catalog/assets/composition-audio/letter/mix.mp3.json",
+      "bytes": 143,
+      "sha256": "6f4da6c2fffa6a73d95050b55377d69e584057b6425a13cb497c7c795c7280d1"
+    },
+    {
+      "path": "catalog/assets/composition-audio/letter/recipe.json",
+      "bytes": 46323,
+      "sha256": "cfb42cdd93dd33e5d98631e22f5a97f82fbfb10d0ba03ab1ff73f2d07da3296d"
+    },
+    {
+      "path": "catalog/assets/composition-audio/letter/sound-bank.js",
+      "bytes": 7574932,
+      "sha256": "2f10f8e6700b3e12348272cb700ae60bb713e6361da31e5307f6dadd1eaaa9d8"
+    },
+    {
+      "path": "catalog/assets/composition-audio/letter/sound.js",
+      "bytes": 11595,
+      "sha256": "0493a6aeb2ca0256ee2021df48948a538a3e7d35852764e332c8b64a61076022"
+    },
+    {
+      "path": "catalog/assets/composition-audio/ocean/README.md",
+      "bytes": 885,
+      "sha256": "bdabf4965219dcd0e90f10cdbe7eed6adfa972d77659b3b5d0c7372996a68bc5"
+    },
+    {
+      "path": "catalog/assets/composition-audio/ocean/SOURCE.json",
+      "bytes": 1048,
+      "sha256": "13e67a073460794b59f202cfb8821bd7ebe6bcacd5922bd802408068d73f3ca8"
+    },
+    {
+      "path": "catalog/assets/composition-audio/ocean/mix.mp3",
+      "bytes": 1561580,
+      "sha256": "af4de352e92a8b1daf7853628c79e58941649174ad8a72d0af142f6ba19817d4"
+    },
+    {
+      "path": "catalog/assets/composition-audio/ocean/mix.mp3.json",
+      "bytes": 144,
+      "sha256": "1dca62cadfb52a37e4a9c96b40864e845ef2cb846f8cf9933dcfde4ebb18b48a"
+    },
+    {
+      "path": "catalog/assets/composition-audio/ocean/ocean-waves.mp3",
+      "bytes": 1321317,
+      "sha256": "75cd2ff397a3e0f90eaaebff27d2585541b3357dc950c949a24b669fdb04da5f"
+    },
+    {
+      "path": "catalog/assets/composition-audio/ocean/recipe.json",
+      "bytes": 5245420,
+      "sha256": "9e1f7d2e465c800b978423342430ada845d39211bdf712a8a25cb561f0070d02"
+    },
+    {
+      "path": "catalog/assets/composition-audio/ocean/sound.js",
+      "bytes": 13531,
+      "sha256": "5702f24ee48fee4ea84719cdaa68d574a17fee1292bb6052ec526f69c11888fb"
+    },
+    {
+      "path": "catalog/assets/composition-audio/osmanthus/README.md",
+      "bytes": 5164,
+      "sha256": "308424dd4ab7af3028b69e6434227d1a94453c736d82060cb3ac91122249e943"
+    },
+    {
+      "path": "catalog/assets/composition-audio/osmanthus/SOURCE.json",
+      "bytes": 809,
+      "sha256": "1ea6c8a6996c98b46c5247d0408b35ae70be2213257bdea3ec2782d7c6b0e43e"
+    },
+    {
+      "path": "catalog/assets/composition-audio/osmanthus/mix-flowers.mp3",
+      "bytes": 577196,
+      "sha256": "2a14464bc76ed0a8c4869df47400ed3decff258af3902da1d3d2058e6d64a666"
+    },
+    {
+      "path": "catalog/assets/composition-audio/osmanthus/mix-flowers.mp3.json",
+      "bytes": 142,
+      "sha256": "eb66868da60f1ea0b3f042d3003fa9914ffaeedcebfb736557cd959f8b4c5e30"
+    },
+    {
+      "path": "catalog/assets/composition-audio/osmanthus/mix-gold-leaves.mp3",
+      "bytes": 577196,
+      "sha256": "ee6cf88c8f209ad51e08339c21dfa2d895d420ad842e1782f3c25931301d7571"
+    },
+    {
+      "path": "catalog/assets/composition-audio/osmanthus/mix-gold-leaves.mp3.json",
+      "bytes": 142,
+      "sha256": "7c7c9b72be0e89ec043708f4a023b18e2d7bce03643858a85976de0b629aa5c9"
+    },
+    {
+      "path": "catalog/assets/composition-audio/osmanthus/mix-maple-blend.mp3",
+      "bytes": 577196,
+      "sha256": "ee6cf88c8f209ad51e08339c21dfa2d895d420ad842e1782f3c25931301d7571"
+    },
+    {
+      "path": "catalog/assets/composition-audio/osmanthus/mix-maple-blend.mp3.json",
+      "bytes": 142,
+      "sha256": "7c7c9b72be0e89ec043708f4a023b18e2d7bce03643858a85976de0b629aa5c9"
+    },
+    {
+      "path": "catalog/assets/composition-audio/osmanthus/recipe.json",
+      "bytes": 21556,
+      "sha256": "c401fdbad352804a9ff3c55da55e42de4ca944033268200b384842d01b58f723"
+    },
+    {
+      "path": "catalog/assets/composition-audio/osmanthus/sound.js",
+      "bytes": 11852,
+      "sha256": "e1ff2de35bfa65604cbb6cf285d2a389ae78f50f7e361554eeb3b582f02828f4"
+    },
+    {
+      "path": "catalog/assets/composition-audio/selfie/README.md",
+      "bytes": 6075,
+      "sha256": "8fb3a61018f875dff092b60802a59161d11882e8bf786fde23f6903f0b40be41"
+    },
+    {
+      "path": "catalog/assets/composition-audio/selfie/SOURCE.json",
+      "bytes": 852,
+      "sha256": "a7e1877b5be3a5e19e74bd28e5d158717a0523d149ac624901e097fa03731e98"
+    },
+    {
+      "path": "catalog/assets/composition-audio/selfie/continuous-audio.m4a",
+      "bytes": 193607,
+      "sha256": "8aaa831c6e3894c558c57320917700f64c52cf933cb0209a3627f675f8889df3"
+    },
+    {
+      "path": "catalog/assets/composition-audio/showreel/SOURCE.json",
+      "bytes": 1174,
+      "sha256": "d251936fb4102e8a05e21881d7501d417d5fc9bc7c75f00306139220bfad9555"
+    },
+    {
+      "path": "catalog/assets/composition-audio/showreel/audio.cjs",
+      "bytes": 9836,
+      "sha256": "f9ab30d6503379199bc1babca4684542d43bdc58b6924b3d73bf9944199c6d0d"
+    },
+    {
+      "path": "catalog/assets/composition-audio/showreel/shared.js",
+      "bytes": 1118,
+      "sha256": "46702926fdbe991cf26c6bc0901bfde134b747ca3176e1ac1d6cebf51cfe6c5b"
+    },
+    {
+      "path": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+      "bytes": 1441375,
+      "sha256": "9d1afc1b2d9da4a224e9f52282d1305004b773bacfc351f395bffacd46291926"
+    },
+    {
+      "path": "catalog/assets/composition-audio/snow/JRPG-PIANO-LICENSE.md",
+      "bytes": 1253,
+      "sha256": "091f3f60d8ae05da20d73ab6e2d462ec063d0b72df44dd8428ab6cc2c21897de"
+    },
+    {
+      "path": "catalog/assets/composition-audio/snow/README.md",
+      "bytes": 1089,
+      "sha256": "dfa67c60a899f57a1b70bbceb0d9001ff2a8c1335749865e19d05f46f767b00c"
+    },
+    {
+      "path": "catalog/assets/composition-audio/snow/SOURCE.json",
+      "bytes": 1351,
+      "sha256": "b9a8e2edbedff227d178f07cb6fcc1e944d5611562c504d96fce6dffea4027ef"
+    },
+    {
+      "path": "catalog/assets/composition-audio/snow/jrpg-piano.mp3",
+      "bytes": 501990,
+      "sha256": "87a99f62e901b8365f1b868cd53bc015d2bf9f887e4c8a89a4fad11a36a62c16"
+    },
+    {
+      "path": "catalog/assets/composition-audio/snow/sound.js",
+      "bytes": 6281,
+      "sha256": "56952c5661ac4ce7419484e436c02064bc2dfcc238951a5ddaa58bd03e48cfd1"
+    },
+    {
       "path": "catalog/assets/cyanotype/SOURCE.json",
       "bytes": 2874,
       "sha256": "be9798274ece2140699aa0a664e92025c0333cfd416d672afddbd8ec87bf23ef"
@@ -453,8 +988,8 @@
     },
     {
       "path": "catalog/assets/scene-sources/原作与迁入记录.json",
-      "bytes": 23708,
-      "sha256": "ed67335c31d1b640e2d6e7e3b39b4f8a64266da085b0962895f56e6b19d5bc62"
+      "bytes": 23838,
+      "sha256": "f508ead8bd2b84f3b9ca53448a6afb32d833549777d4750b035e169f0343e5e2"
     },
     {
       "path": "catalog/assets/selfie-phone.webp",
@@ -893,8 +1428,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 24413,
-      "sha256": "c3d2da03faffdae000b242eb7d9188db6a359b4da0b52a83961abb3f74ee4c9b"
+      "bytes": 26075,
+      "sha256": "60586d6c8f07a8ecf92b353a28edcfc52fddd213aaa0c2cab545729fe0553d2c"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -978,8 +1513,8 @@
     },
     {
       "path": "catalog/lazy.js",
-      "bytes": 2982,
-      "sha256": "2eb4f7f7b153442b649109d7a39d7281cfeeb8cb18b210bc4aa16b48ba374eec"
+      "bytes": 3257,
+      "sha256": "c3339b61eaea0cae7ef99606b9e8311517dc2bcacb883522ba56805661930a45"
     },
     {
       "path": "catalog/matching.js",
@@ -993,13 +1528,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1403412,
-      "sha256": "fdc44353926c7611f53b89dff051aae0fd8a9720d63a5465f6061228c40952dd"
+      "bytes": 1420939,
+      "sha256": "406ed4a77f7127d64aafcc31d0c53cb32db4521cf6deaa98345509c7fd13da16"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1780866,
-      "sha256": "595972161b83f81e306e57d15239689f9c808649818f208d9387572abd8789ea"
+      "bytes": 1807453,
+      "sha256": "38103a75ad813a014516291ee8eac12016712d2cb4e0e82c773c83716a8de51c"
     },
     {
       "path": "catalog/related-preview.js",
@@ -1048,8 +1583,8 @@
     },
     {
       "path": "catalog/thumbnails.js",
-      "bytes": 12123,
-      "sha256": "a488a29d24238f845355db518c7595979db2aed6d379c5264827c4d49faea305"
+      "bytes": 13210,
+      "sha256": "142d7b4529158ed4e2783251b7d877eb3572033e1aeafa82740a12d688e966fc"
     },
     {
       "path": "catalog/wise-avatar.webp",

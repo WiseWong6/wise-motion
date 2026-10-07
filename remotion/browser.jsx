@@ -3,7 +3,7 @@ import React, {createRef} from 'react';
 import {createRoot} from 'react-dom/client';
 import {flushSync} from 'react-dom';
 import {Player} from '@remotion/player';
-import {WiseMotionEffect, getEffectMetadata, resolveEffect} from './index.jsx';
+import {WiseMotionEffect, getEffectMetadata, resolveEffect} from './with-audio.jsx';
 export {React, createRoot, Player, WiseMotionEffect, getEffectMetadata, resolveEffect};
 const active = new Set();
 const FPS = 60;
@@ -41,6 +41,8 @@ function showStaticDocument(root, mount, snapshot) {
 }
 export function create(root, supplied, options = {}) {
   const definition = globalThis.MotionKit.resolveVariant(supplied);
+  const hasAudio = definition.kind === 'composition' && Boolean(definition.audio?.tracks?.length) && options.includeAudio !== false;
+  let muted = true;
   const playerRef = createRef();
   const mount = document.createElement('div');
   Object.assign(mount.style, {position:'absolute',left:'50%',top:'50%',transform:'translate(-50%,-50%)'});
@@ -54,7 +56,7 @@ export function create(root, supplied, options = {}) {
   let resolveReady, readySettled = false;
   const ready = new Promise(resolve => {resolveReady=resolve;});
   const settleReady = value => {if(!readySettled){readySettled=true;resolveReady(value);}};
-  const notify = () => { if(!destroyed) options.onUpdate?.({time,duration:definition.duration_ms,paused:!playing,preparing,error}); };
+  const notify = () => { if(!destroyed) options.onUpdate?.({time,duration:definition.duration_ms,paused:!playing,preparing,error,hasAudio,muted}); };
   const fail = reason => { if(destroyed)return; error = reason instanceof Error ? reason : new Error(String(reason));preparing=false;playing=false;playerRef.current?.pause();settleReady(false);notify(); };
   const onFrame = state => {if(destroyed)return;time=state.time;elapsed=state.elapsed;notify();};
   const onReady = value => {
@@ -68,14 +70,16 @@ export function create(root, supplied, options = {}) {
     if(destroyed)return;
     const props={effectId:definition.id,variantId:definition.variant_id,definition,assetBaseUrl:options.assetBaseUrl||scriptBase,
       width:640,height:360,theme,ease,speed:1,sampleMode,timeOverrideMs,elapsedOverrideMs,
-      bookSettings:definition.paper_settings,onReady,onFrame,onError:fail};
-    // 目录没有音轨；避免逐帧等待时反复唤醒音频设备。
+      bookSettings:definition.paper_settings,includeAudio:hasAudio,onReady,onFrame,onError:fail};
+    // 无声条目不分配音频设备；组合默认静音，由用户点击解锁。
+    // 使用音轨自身的媒体元素。共享音频池在首次创建 AudioContext 时会重新注销音轨，
+    // 将已经加载的 src 换成空白音频；直接媒体元素不经过这次池内注册切换。
     reactRoot.render(<Player ref={playerRef} component={WiseMotionEffect} inputProps={props}
       durationInFrames={definition.loop ? 2147483647 : metadata.durationInFrames}
       compositionWidth={640} compositionHeight={360} fps={FPS} playbackRate={speed}
       initialFrame={seekFrame} controls={false} autoPlay={false} clickToPlay={false}
       doubleClickToFullscreen={false} spaceKeyToPlayOrPause={false} moveToBeginningWhenEnded={false}
-      initiallyMuted={true} numberOfSharedAudioTags={0} style={{width:'100%',height:'100%'}}
+      initiallyMuted={true} initialVolume={1} numberOfSharedAudioTags={0} style={{width:'100%',height:'100%'}}
       errorFallback={({error:reason})=>{queueMicrotask(()=>fail(reason));return <div role="alert" style={{color:'#f4f1ea',background:'#151517',padding:24}}>动效准备失败：{reason.message}</div>;}}
     />);
   }
@@ -97,13 +101,26 @@ export function create(root, supplied, options = {}) {
   }
   const controller={
     ready,
-    play(){if(destroyed||error)return;if(!definition.loop&&time>=definition.duration_ms)seek(0);playing=true;sampleMode='playback';timeOverrideMs=elapsedOverrideMs=undefined;flushSync(render);if(!preparing)playerRef.current?.play();notify();},
+    play(event){if(destroyed||error)return;if(!definition.loop&&time>=definition.duration_ms)seek(0);playing=true;sampleMode='playback';timeOverrideMs=elapsedOverrideMs=undefined;flushSync(render);if(!preparing||event)playerRef.current?.play(event);notify();},
     pause(){if(destroyed)return;playing=false;playerRef.current?.pause();notify();},
-    restart(shouldPlay=true){if(destroyed)return;this.pause();seek(0);if(shouldPlay)this.play();},
+    restart(shouldPlay=true,event){if(destroyed)return;this.pause();seek(0);if(shouldPlay)this.play(event);},
     seek(ms){seek(ms);},seekElapsed(ms){seek(ms,true);},
+    setMuted(value,event){
+      if(destroyed||!hasAudio)return;
+      const next=Boolean(value),resume=playing&&!next;
+      // 在本次点击内提交静音状态并启动音轨。播放中的 Player.play() 会直接返回，
+      // 所以先暂停播放器时钟，再从原位置继续，让音轨随这次点击恢复播放。
+      flushSync(()=>{
+        if(resume)playerRef.current?.pause();
+        if(next)playerRef.current?.mute();else playerRef.current?.unmute();
+      });
+      muted=playerRef.current?.isMuted()??next;
+      if(resume&&(!preparing||event))playerRef.current?.play(event);
+      notify();
+    },
     setSpeed(value){if(destroyed)return;if(!Number.isFinite(value))throw new TypeError('速度必须是有限数字');speed=Math.max(.5,Math.min(2,value));flushSync(render);},
     setEase(value){if(destroyed)return;const parameter=definition.parameters.ease;if(!parameter)ease=definition.default_ease;else if(parameter.options.includes(value))ease=value;else throw new TypeError('不支持的速度变化');flushSync(render);},
-    destroy(preserve=false){if(destroyed)return;playing=false;playerRef.current?.pause();destroyed=true;preparing=false;observer?.disconnect();themeObserver.disconnect();active.delete(controller);settleReady(false);
+    destroy(preserve=false){if(destroyed)return;playing=false;playerRef.current?.pause();destroyed=true;preparing=false;playerRef.current?.removeEventListener?.('mutechange',onMuteChange);observer?.disconnect();themeObserver.disconnect();active.delete(controller);settleReady(false);
       let snapshot;
       try {
         // 先让原绘制器把 WebGL 当前帧固化到二维画布，再释放图形资源。
@@ -112,11 +129,17 @@ export function create(root, supplied, options = {}) {
       } finally {reactRoot.unmount();root.replaceChildren();session=null;}
       if(snapshot)showStaticDocument(root,mount,snapshot);
     },fit,
-    get currentTime(){return time;},get elapsedTime(){return elapsed;},get paused(){return !playing;},get preparing(){return preparing;},get error(){return error;},get speed(){return speed;},get destroyed(){return destroyed;},get stage(){return session?.stage;},get frame(){return playerRef.current?.getCurrentFrame()||seekFrame;},get session(){return session;}
+    get hasAudio(){return hasAudio;},get muted(){return muted;},get currentTime(){return time;},get elapsedTime(){return elapsed;},get paused(){return !playing;},get preparing(){return preparing;},get error(){return error;},get speed(){return speed;},get destroyed(){return destroyed;},get stage(){return session?.stage;},get frame(){return playerRef.current?.getCurrentFrame()||seekFrame;},get session(){return session;}
+  };
+  const onMuteChange=event=>{
+    if(destroyed)return;
+    const next=playerRef.current?.isMuted()??event.detail.isMuted;
+    if(muted!==next){muted=next;notify();}
   };
   const observer=typeof ResizeObserver!=='undefined'?new ResizeObserver(fit):null;observer?.observe(root);
   const themeObserver=new MutationObserver(()=>{theme=document.documentElement.dataset.theme||'dark';if(session)session.doc.documentElement.dataset.theme=theme;flushSync(render);});themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
   active.add(controller);fit();flushSync(render);
+  playerRef.current?.addEventListener('mutechange',onMuteChange);
   playerRef.current?.addEventListener('ended',()=>{playing=false;time=definition.duration_ms;notify();});
   if(options.autoplay)controller.play();return controller;
 }

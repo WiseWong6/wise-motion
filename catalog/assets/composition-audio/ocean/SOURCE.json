@@ -1,0 +1,21 @@
+{
+  "scope": "仅组合动作保留原音效和配乐；源工程只读，运行只使用随包本地文件。",
+  "files": [
+    {
+      "file": "catalog/assets/composition-audio/ocean/ocean-waves.mp3",
+      "original": "/Users/wisewong/Documents/Developer/scenes/ocean-sunset/audio/ocean-waves.mp3",
+      "sha256": "75cd2ff397a3e0f90eaaebff27d2585541b3357dc950c949a24b669fdb04da5f"
+    },
+    {
+      "file": "catalog/assets/composition-audio/ocean/sound.js",
+      "original": "/Users/wisewong/Documents/Developer/scenes/ocean-sunset/sound.js",
+      "sha256": "5702f24ee48fee4ea84719cdaa68d574a17fee1292bb6052ec526f69c11888fb"
+    },
+    {
+      "file": "catalog/assets/composition-audio/ocean/README.md",
+      "original": "/Users/wisewong/Documents/Developer/scenes/ocean-sunset/README.md",
+      "sha256": "bdabf4965219dcd0e90f10cdbe7eed6adfa972d77659b3b5d0c7372996a68bc5"
+    }
+  ],
+  "rights": "程序沿用项目许可；录音和音乐的许可与署名以同目录原作记录为准，不将程序许可套用于第三方录音。"
+}

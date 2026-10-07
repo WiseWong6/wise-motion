@@ -72,6 +72,8 @@
     if(paper)lines.push('纸页设置：图片留白 '+paper.padding+' 像素，图片圆角 '+paper.radius+' 像素，书脊阴影 '+paper.crease+'%。');
     const layers=effect.kind==='composition'&&(spec.layers??global.MotionFactories?.[effect.id]?.breakdown);
     if(layers)lines.push('', '组成图层（共用秒数）：',...layers.map(layer=>concrete(layer.name)+' · '+(layer.start/1000/speed).toFixed(2)+'–'+(layer.end/1000/speed).toFixed(2)+' 秒：'+concrete(layer.detail)));
+    if(effect.kind==='composition'&&effect.audio?.tracks?.length)lines.push('', '声音：保留以下配乐和音效，与画面共用时间；暂停、定位、重播和变速同时作用于声音。',
+      ...effect.audio.tracks.map(track=>track.name+'：'+((track.start_ms||0)/1000/speed).toFixed(2)+'–'+(((track.start_ms||0)+track.duration_ms)/1000/speed).toFixed(2)+' 秒，音量 '+Math.round((track.volume??1)*100)+'%。'));
     return lines.join('\n');
   }
   function code(effect, settings = {}) {
@@ -88,7 +90,9 @@
       if(typeof content!=='string')throw Error('缺少已打包的绘制源码：'+file);
       return [file,content];
     }));
-    const durationInFrames=Math.ceil(Math.round(effect.duration_ms/1000*spec.fps*1e6)/1e6/speed);
+    // 与 remotion/clock.mjs 一致：非循环保留准确末帧，循环不重复首尾帧。
+    const frameSpan=effect.duration_ms*spec.fps/(1000*speed);
+    const durationInFrames=Math.max(1,Math.ceil(frameSpan-1e-9)+(effect.loop?0:1));
     const componentExport=spec.export_name||'SeedBloomBrand';
     files['package.json']=JSON.stringify({name:spec.package_name||'seed-bloom-motion',private:true,type:'module',scripts:{studio:'remotion studio index.jsx',render:'remotion render index.jsx Motion out/motion.mp4'},dependencies:spec.packages},null,2)+'\n';
     files['index.jsx']=`import React from 'react';
@@ -117,7 +121,9 @@ registerRoot(Root);
     effect = global.MotionKit.resolveVariant(effect, settings.variantId || effect.variant_id);
     if(settings.content!==undefined||effect.content!==undefined)effect=global.MotionContent.withContent(effect,settings.content===undefined?effect.content:settings.content);
     const definition = {id:effect.id, duration_ms:effect.duration_ms, loop:effect.loop, default_ease:effect.default_ease, parameters:effect.parameters};
-    if(effect.source.factory!==effect.id)definition.source={factory:effect.source.factory};
+    const hasAudio=effect.kind==='composition'&&Boolean(effect.audio?.tracks?.length);
+    if(hasAudio)Object.assign(definition,effect);
+    if(!hasAudio&&effect.source.factory!==effect.id)definition.source={factory:effect.source.factory};
     if(effect.id==='motion-oasis-sequence'&&global.WiseMotionOasis)definition.catalog_data=global.WiseMotionOasis.catalogData(global.MotionRegistry);
     if(effect.variant_id)definition.variant_id=effect.variant_id;
     if(effect.content){definition.content=effect.content;definition.content_slots=effect.content_slots;}
@@ -147,21 +153,25 @@ registerRoot(Root);
 <body>
   <div id="motion" class="motion-viewport" aria-label="${escape(effect.name)}"></div>
   <div class="demo-controls"><button id="play" type="button">播放</button><button id="again" type="button">重播</button><input id="time" aria-label="定位时间" type="range" min="0" max="1000" value="0"><output id="readout"></output></div>
+  ${hasAudio?'<button id="sound" type="button" aria-pressed="false">开启声音</button>':''}
   <script src="vendor/animejs/anime.umd.min.js"></script>
   <script src="catalog/content.js"></script>
   <script src="catalog/runtime.js"></script>
   ${[...new Set([...(effect.source.dependencies||[]),effect.source.path])].map(file=>`<script src="${escape(file)}"></script>`).join('\n  ')}
+  ${hasAudio?'<script src="catalog/registry-data.js"></script><script src="catalog/remotion-player.js"></script>':''}
   <script>
     const effect = ${json(definition)};
     const player = MotionRuntime.create(document.getElementById('motion'), effect, {onUpdate(state) {
       document.getElementById('time').value = 1000 * state.time / state.duration;
       document.getElementById('play').textContent = state.paused ? '播放' : '暂停';
       document.getElementById('readout').textContent = (state.time / 1000).toFixed(1) + ' / ' + (state.duration / 1000).toFixed(1) + ' 秒';
+      ${hasAudio?"const sound=document.getElementById('sound'),enabled=state.hasAudio&&!state.muted;if(sound.getAttribute('aria-pressed')!==String(enabled)){sound.textContent=enabled?'关闭声音':'开启声音';sound.setAttribute('aria-pressed',String(enabled));}":''}
     }});
     player.setSpeed(${speed});
     player.setEase(${json(ease)});
-    document.getElementById('play').onclick = () => player.paused ? player.play() : player.pause();
-    document.getElementById('again').onclick = () => player.restart();
+    document.getElementById('play').addEventListener('click', event => player.paused ? player.play(event) : player.pause(), true);
+    document.getElementById('again').addEventListener('click', event => player.restart(true,event), true);
+    ${hasAudio?"document.getElementById('sound').addEventListener('click', event => player.setMuted(!player.muted,event), true);":''}
     document.getElementById('time').oninput = event => { const next = Number(event.target.value) / 1000 * effect.duration_ms; player.pause(); player.seek(next); };
     player.play();
     window.MotionDemo = player;
@@ -243,6 +253,7 @@ npx remotion render src/index.jsx Effect output.mp4${renderFlags}
 
 组件内部仍使用原绘制代码；这些实际文件和全部字体、图片、材质随包携带：
 ${[...files, ...(effect.source.assets || [])].join('\n')}
+${effect.kind==='composition'&&effect.audio?.tracks?.length?'组合的原声音文件、合成源码与固定排程一同随包提供；组件默认带声音，设置 includeAudio={false} 可关闭。导出声音随帧同步定位和变速。':''}
 素材明细见包内 ASSET-MANIFEST.json。安装后只访问目标工程 public/wise-motion，
 不依赖原目录或本机绝对地址。视频使用固定演示动作；时钟为每秒 60 帧。
 */
