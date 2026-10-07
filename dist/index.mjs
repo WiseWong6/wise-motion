@@ -177,7 +177,21 @@ var FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/reel-prompt-outro.js",
   "catalog/effects/material-evolution.js",
   "catalog/effects/civilization-growth.js",
-  "catalog/effects/dither-book.js"
+  "catalog/effects/dither-book.js",
+  "catalog/effects/scene-source-runtime.js",
+  "catalog/effects/scene-osmanthus-data.js",
+  "catalog/effects/scene-ink-data.js",
+  "catalog/effects/scene-dandelion.js",
+  "catalog/effects/scene-drive.js",
+  "catalog/effects/scene-factory.js",
+  "catalog/effects/scene-ink.js",
+  "catalog/effects/scene-letter-images.js",
+  "catalog/effects/scene-letter.js",
+  "catalog/effects/scene-ocean.js",
+  "catalog/effects/scene-osmanthus.js",
+  "catalog/effects/scene-selfie-images.js",
+  "catalog/effects/scene-selfie.js",
+  "catalog/effects/scene-snow.js"
 ]);
 var FRAME_STYLES = Object.freeze(["catalog/scenes.css", "catalog/app.css", "catalog/history.css", "catalog/book-controls.css"]);
 function frameScriptsFor(definition) {
@@ -23599,7 +23613,7 @@ var registry_default = {
       retain: "\u4F7F\u7528\u5F00\u573A\u7684\u540C\u4E00\u7EC4\u65B9\u683C\u3001\u540C\u4E00\u5149\u70B9\u4E2D\u5FC3\u548C\u540C\u4E00\u6295\u5F71\uFF0C\u4E0D\u53E6\u52A0\u5706\u73AF\u3001\u4E0D\u4E8C\u6B21\u7F29\u653E\u8865\u507F\uFF0C\u4E0D\u63D0\u524D\u51FA\u73B0\u5B8C\u6574\u56FE\u5F62\u3002",
       avoid: "\u4E0D\u4F7F\u7528\u539F\u7247\u56FE\u50CF\uFF0C\u4E0D\u968F\u673A\u91CD\u6392\uFF0C\u4E0D\u8BA9\u5F27\u7EBF\u8D8A\u51FA\u6240\u5C5E\u65B9\u683C\uFF0C\u4E0D\u628A\u5B8C\u6574\u7EC4\u5408\u4F2A\u88C5\u6210\u5355\u4E2A\u52A8\u4F5C\u3002",
       duration_ms: 2516.666666666668,
-      preview_ms: 950,
+      preview_ms: 2300,
       loop: false,
       default_ease: "linear",
       parameters: {
@@ -30387,7 +30401,7 @@ var registry_default = {
         "scale"
       ],
       retain: "\u4FDD\u7559\u539F\u4E00\u767E\u4E09\u5341\u4E03\u9053\u51A0\u6BDB\u7684\u5F62\u72B6\u3001\u5C16\u7AEF\u3001\u7EBF\u5BBD\uFF0C\u7EC6\u830E\u66F2\u7EBF\u548C\u4E0B\u7AEF\u79CD\u5B50\u8F6E\u5ED3\u3002",
-      avoid: "\u4E0D\u5E26\u539F\u573A\u666F\u3001\u80CC\u666F\u3001\u5B57\u5E55\u3001\u97F3\u9891\u6216\u5916\u56F4\u63A7\u4EF6\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u51A0\u6BDB\u3001\u539F\u8377\u5858\u753B\u6CD5\u548C\u5C55\u5F00\u65F6\u5E8F\uFF0C\u4E0D\u6DFB\u52A0\u5B57\u5E55\u3001\u97F3\u9891\u6216\u5916\u56F4\u63A7\u4EF6\u3002",
       duration_ms: 3e3,
       preview_ms: 2500,
       loop: false,
@@ -30402,14 +30416,17 @@ var registry_default = {
         }
       },
       source: {
-        path: "catalog/effects/history-nature.js",
-        factory: "dandelion-subject-illustration",
+        path: "catalog/effects/scene-dandelion.js",
+        factory: "filament-unfold-turn",
         origin: "original",
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        extraction: "\u4F7F\u7528\u539F subjectPose\u3001entryProgress\u3001filamentState \u548C floret\uFF0C\u6062\u590D\u539F flow \u4E2D\u7684\u51A0\u6BDB\u5C55\u5F00\u4E0E\u8F6C\u5411\uFF1B\u4EC5\u8DDF\u968F\u4E2D\u5FC3\u53D6\u666F\u3002",
-        original_path: "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/dandelion.js"
+        extraction: "\u5171\u7528\u539F\u4F5C\u8377\u5858\u548C\u84B2\u516C\u82F1\u4E3B\u4F53\u7ED8\u5236\uFF0C\u80CC\u666F\u4E0E\u51A0\u6BDB\u6309\u540C\u4E00\u65F6\u523B\u53D6\u6837\uFF1B\u4FDD\u7559\u72EC\u7ACB\u52A8\u4F5C\u7684\u4E2D\u5FC3\u53D6\u666F\u3001\u5927\u5C0F\u548C\u5C55\u5F00\u65F6\u5E8F\u3002",
+        original_path: "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/dandelion.js",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
       },
       actions: [],
       demo_mode: "fixed-timeline",
@@ -30418,13 +30435,20 @@ var registry_default = {
       ],
       trigger: "\u6253\u5F00\u540E\u6309\u65F6\u95F4\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\uFF1B\u5168\u7A0B\u9759\u97F3\u3002",
       analogy: "\u539F\u84B2\u516C\u82F1\u65C5\u884C\u4E3B\u4F53\uFF1A\u5BC6\u96C6\u534A\u5706\u51A0\u6BDB\u3001\u7EC6\u830E\u4E0E\u4E0B\u7AEF\u79CD\u5B50\u3002",
-      assumptions: "\u900F\u660E\u5E95\uFF0C\u8DDF\u968F\u51A0\u6BDB\u4E2D\u5FC3\u53D6\u666F\uFF0C\u653E\u5728(320,158)\u5E76\u7B49\u6BD4\u653E\u59271.05\u500D\uFF1B\u4FDD\u7559\u539F\u534A\u5F84\u3001\u8F6C\u89D2\u548C\u51A0\u6BDB\u900F\u660E\u5EA6\uFF0C\u79FB\u9664\u6574\u4F53\u65C5\u884C\u80CC\u666F\u3002",
+      assumptions: "\u539F\u4F5C\u8377\u5858\u80CC\u666F\u968F\u51A0\u6BDB\u4E2D\u5FC3\u53D6\u666F\uFF1B\u4E3B\u4F53\u4F4D\u4E8E(320,158)\uFF0C\u6574\u4F53\u7B49\u6BD4\u653E\u59271.05\u500D\uFF0C\u4FDD\u7559\u539F\u534A\u5F84\u3001\u8F6C\u89D2\u548C\u900F\u660E\u5EA6\u3002",
       tempo_note: "\u7B49\u5F85\u96F6\u70B9\u4E00\u4E94\u79D2\uFF0C\u64AD\u653E\u539F\u4E8C\u70B9\u4E09\u4E94\u81F3\u56DB\u70B9\u4E03\u4E94\u79D2\uFF0C\u672B\u5C3E\u4FDD\u6301\u96F6\u70B9\u56DB\u4E94\u79D2\u3002",
       recommendation: "\u4F7F\u7528\u72EC\u7ACB\u52A8\u4F5C\u65F6\u53EF\u76F4\u63A5\u590D\u5236\u672C\u793A\u4F8B\uFF0C\u4FDD\u7559\u539F\u4E3B\u4F53\u4E0E\u65F6\u95F4\u5173\u7CFB\u3002",
       previous_names: [],
       reproduction: {
-        presentation: "\u900F\u660E\u5E95\uFF0C\u8DDF\u968F\u51A0\u6BDB\u4E2D\u5FC3\u53D6\u666F\uFF0C\u653E\u5728(320,158)\u5E76\u7B49\u6BD4\u653E\u59271.05\u500D\uFF1B\u4FDD\u7559\u539F\u534A\u5F84\u3001\u8F6C\u89D2\u548C\u51A0\u6BDB\u900F\u660E\u5EA6\uFF0C\u79FB\u9664\u6574\u4F53\u65C5\u884C\u80CC\u666F\u3002",
+        presentation: "\u539F\u4F5C\u8377\u5858\u80CC\u666F\u968F\u51A0\u6BDB\u4E2D\u5FC3\u53D6\u666F\uFF1B\u4E3B\u4F53\u4F4D\u4E8E(320,158)\uFF0C\u6574\u4F53\u7B49\u6BD4\u653E\u59271.05\u500D\uFF0C\u4FDD\u7559\u539F\u534A\u5F84\u3001\u8F6C\u89D2\u548C\u900F\u660E\u5EA6\u3002",
         retain: "\u539F\u65F6\u95F4u=2.35+clamp(t\u22120.15,0,2.4)\u3002\u5C55\u5F00q=S(2.35,4.75,u)\uFF0CS\u4E3Aq\xB2(3\u22122q)\u7684\u5E73\u6ED1\u51FD\u6570\uFF1B\u7B2Ci\u6839\u51A0\u6BDB\u900F\u660E\u5EA6\u4E58\u4EE5i\u80FD\u88AB13\u6574\u9664\u65F6\u76841\u3001\u5426\u5219\u4E58\u4EE5q\u3002\u539F\u534A\u5F84\u548C\u8F6C\u89D2\u7531\u4E3B\u4F53\u8F68\u8FF9\u540C\u4E00\u65F6\u523B\u53D6\u6837\u3002137\u6839\u51A0\u6BDB\u3001\u5F2F\u66F2\u7EC6\u830E\u548C\u7C73\u8272\u79CD\u5B50\u6574\u4F53\u7B49\u6BD4\u7F29\u653E\uFF0C\u4E0D\u5355\u72EC\u4FEE\u6539\u7EBF\u5BBD\u3002"
+      },
+      scene: {
+        family: "dandelion",
+        mode: "unfold",
+        start: 0,
+        width: 640,
+        height: 360
       }
     },
     {
@@ -30646,6 +30670,8653 @@ var registry_default = {
         presentation: "\u84DD\u8272\u7248\u753B\u900F\u660E\u56FE\u96C61536\xD71024\uFF1B\u539F\u903B\u8F91\u753B\u5E451080\xD71440\uFF0C\u4E3B\u4F53\u4E2D\u5FC3(550,862)\uFF0C\u6574\u4F53\u7F29\u653E0.60\uFF0C\u900F\u89C61800\u3002\u76EE\u5F55\u53EA\u5BF9\u6574\u4E2A\u4E3B\u4F53\u7B49\u6BD4\u7F29\u653E0.48\u5E76\u5C06\u7FFC\u6839\u9644\u8FD1\u53D6\u666F\u5230(320,180)\u3002",
         retain: "\u632F\u7FC5\u7528\u4E94\u6B21\u5E73\u6ED1\u51FD\u6570q\xB3(6q\xB2\u221215q+10)\uFF1B\u6BCF\u5468\u671F0.5\u79D2\uFF0C\u524D\u7FFC\u89D2\u5EA68+62q\u5EA6\uFF0C\u540E\u7FFC10+52q\u5EA6\uFF1B\u5DE6\u53F3\u53CD\u5411\u7ED5\u7FFC\u6839\u8F6C\u52A8\uFF0C\u7FFC\u9762\u5185\u504F\u8F6C\u5206\u522B0.7q\u53CA1.1q\u5EA6\uFF0C\u4EAE\u5EA61\u22120.105q\u3002\u89E6\u89D2\u4E2D\u6BB5\u5EF6\u8FDF0.035\u79D2\uFF0C\u5C16\u7AEF\u5EF6\u8FDF0.085\u79D2\u3002"
       }
+    },
+    {
+      id: "landscape-boundary-carry",
+      name: "\u5730\u666F\u6CBF\u8FB9\u754C\u8FDE\u7EED\u627F\u63A5",
+      kind: "action",
+      category: "transition",
+      summary: "\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u6CBF\u539F\u8D77\u4F0F\u8FB9\u754C\u8FDE\u7EED\u4EA4\u63A5\u3002",
+      purpose: "\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u6CBF\u539F\u8D77\u4F0F\u8FB9\u754C\u8FDE\u7EED\u4EA4\u63A5\u3002",
+      objects: "\u5730\u666F\u6CBF\u8FB9\u754C\u8FDE\u7EED\u627F\u63A5\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u7B2C\u4E00\u6BB5\u5730\u666F\u4E0E\u4E3B\u4F53\u8DEF\u7A0B\u540C\u6B65\u3002",
+        "\u540E\u6BB5\u5730\u666F\u6CBF\u540C\u4E00\u8FB9\u754C\u63A5\u5165\uFF0C\u4FDD\u7559\u5CB8\u7EBF\u8FC7\u6E21\u3002",
+        "\u8349\u5730\u627F\u63A5\u4E91\u6D77\uFF0C\u539F\u65C5\u7A0B\u843D\u5B9A\u3002"
+      ],
+      aliases: [
+        "\u5730\u666F\u6CBF\u8FB9\u754C\u8FDE\u7EED\u627F\u63A5",
+        "\u84B2\u516C\u82F1\xB7\u98CE\u8FC7\u4E4B\u5904"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u6CBF\u539F\u8D77\u4F0F\u8FB9\u754C\u8FDE\u7EED\u4EA4\u63A5\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 37e3,
+      preview_ms: 20350,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-dandelion.js",
+        factory: "landscape-boundary-carry",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u6CBF\u539F\u8D77\u4F0F\u8FB9\u754C\u8FDE\u7EED\u4EA4\u63A5\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768437\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u5730\u666F\u6CBF\u8FB9\u754C\u8FDE\u7EED\u627F\u63A5\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "dandelion",
+        mode: "terrain",
+        start: 0,
+        width: 900,
+        height: 1200
+      },
+      reproduction: {
+        objects: "\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u6CBF\u539F\u8D77\u4F0F\u8FB9\u754C\u8FDE\u7EED\u4EA4\u63A5\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u8377\u5858\u9752\u7EFF\u3001\u9EA6\u7530\u6D45\u91D1\u3001\u5C71\u6797\u7070\u7EFF\u3001\u4E91\u6D77\u9752\u84DD\u3001\u8349\u5730\u7FE0\u7EFF\uFF0C\u7EC6\u767D\u51A0\u6BDB\u3002",
+        phases: [
+          "\u7B2C\u4E00\u6BB5\u5730\u666F\u4E0E\u4E3B\u4F53\u8DEF\u7A0B\u540C\u6B65\u3002",
+          "\u540E\u6BB5\u5730\u666F\u6CBF\u540C\u4E00\u8FB9\u754C\u63A5\u5165\uFF0C\u4FDD\u7559\u5CB8\u7EBF\u8FC7\u6E21\u3002",
+          "\u8349\u5730\u627F\u63A5\u4E91\u6D77\uFF0C\u539F\u65C5\u7A0B\u843D\u5B9A\u3002"
+        ],
+        retain: "\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u6CBF\u539F\u8D77\u4F0F\u8FB9\u754C\u8FDE\u7EED\u4EA4\u63A5\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E37\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "passage-animal-response",
+      name: "\u52A8\u7269\u9047\u5230\u4E3B\u4F53\u540E\u56DE\u5E94",
+      kind: "action",
+      category: "response",
+      summary: "\u4E3B\u4F53\u7ECF\u8FC7\u65F6\uFF0C\u52A8\u7269\u6309\u5B9E\u9645\u8DDD\u79BB\u89E6\u53D1\u8F6C\u5411\u3001\u8DF3\u8DD1\u6216\u8EB2\u5230\u6811\u540E\u3002",
+      purpose: "\u4E3B\u4F53\u7ECF\u8FC7\u65F6\uFF0C\u52A8\u7269\u6309\u5B9E\u9645\u8DDD\u79BB\u89E6\u53D1\u8F6C\u5411\u3001\u8DF3\u8DD1\u6216\u8EB2\u5230\u6811\u540E\u3002",
+      objects: "\u52A8\u7269\u9047\u5230\u4E3B\u4F53\u540E\u56DE\u5E94\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u4FDD\u6301\u539F\u52A8\u7269\u521D\u6001\u4E0E\u4E3B\u4F53\u63A5\u8FD1\u8DEF\u7EBF\u3002",
+        "\u6309\u539F\u9047\u7269\u4E8B\u4EF6\u8BA1\u7B97\u65F6\u5DEE\u548C\u56DE\u5E94\u3002",
+        "\u52A8\u7269\u7EE7\u7EED\u79BB\u5F00\uFF0C\u4FDD\u7559\u52A8\u4F5C\u7ED3\u675F\u59FF\u6001\u3002"
+      ],
+      aliases: [
+        "\u52A8\u7269\u9047\u5230\u4E3B\u4F53\u540E\u56DE\u5E94",
+        "\u84B2\u516C\u82F1\xB7\u98CE\u8FC7\u4E4B\u5904"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u4E3B\u4F53\u7ECF\u8FC7\u65F6\uFF0C\u52A8\u7269\u6309\u5B9E\u9645\u8DDD\u79BB\u89E6\u53D1\u8F6C\u5411\u3001\u8DF3\u8DD1\u6216\u8EB2\u5230\u6811\u540E\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 7e3,
+      preview_ms: 3850,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-dandelion.js",
+        factory: "passage-animal-response",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u4E3B\u4F53\u7ECF\u8FC7\u65F6\uFF0C\u52A8\u7269\u6309\u5B9E\u9645\u8DDD\u79BB\u89E6\u53D1\u8F6C\u5411\u3001\u8DF3\u8DD1\u6216\u8EB2\u5230\u6811\u540E\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C4.75\u79D2\u8D77\u76847\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u52A8\u7269\u9047\u5230\u4E3B\u4F53\u540E\u56DE\u5E94\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "dandelion",
+        mode: "water-life",
+        start: 4.75,
+        width: 900,
+        height: 1200
+      },
+      variants: [
+        {
+          id: "fish",
+          label: "\u9C7C\u7FA4\u907F\u8BA9",
+          summary: "\u9C7C\u7FA4\u907F\u8BA9\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 7e3,
+          preview_ms: 3850,
+          scene: {
+            family: "dandelion",
+            mode: "water-life",
+            start: 4.75,
+            width: 900,
+            height: 1200
+          }
+        },
+        {
+          id: "rabbit",
+          label: "\u9EA6\u7530\u5154\u5B50\u8DF3\u8DD1",
+          summary: "\u9EA6\u7530\u5154\u5B50\u8DF3\u8DD1\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 7e3,
+          preview_ms: 3850,
+          scene: {
+            family: "dandelion",
+            mode: "wheat-life",
+            start: 10,
+            width: 900,
+            height: 1200
+          }
+        },
+        {
+          id: "squirrel",
+          label: "\u677E\u9F20\u8EB2\u5230\u6811\u540E",
+          summary: "\u677E\u9F20\u8EB2\u5230\u6811\u540E\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 7e3,
+          preview_ms: 3850,
+          scene: {
+            family: "dandelion",
+            mode: "forest-life",
+            start: 15,
+            width: 900,
+            height: 1200
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u4E3B\u4F53\u7ECF\u8FC7\u65F6\uFF0C\u52A8\u7269\u6309\u5B9E\u9645\u8DDD\u79BB\u89E6\u53D1\u8F6C\u5411\u3001\u8DF3\u8DD1\u6216\u8EB2\u5230\u6811\u540E\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u8377\u5858\u9752\u7EFF\u3001\u9EA6\u7530\u6D45\u91D1\u3001\u5C71\u6797\u7070\u7EFF\u3001\u4E91\u6D77\u9752\u84DD\u3001\u8349\u5730\u7FE0\u7EFF\uFF0C\u7EC6\u767D\u51A0\u6BDB\u3002",
+        phases: [
+          "\u4FDD\u6301\u539F\u52A8\u7269\u521D\u6001\u4E0E\u4E3B\u4F53\u63A5\u8FD1\u8DEF\u7EBF\u3002",
+          "\u6309\u539F\u9047\u7269\u4E8B\u4EF6\u8BA1\u7B97\u65F6\u5DEE\u548C\u56DE\u5E94\u3002",
+          "\u52A8\u7269\u7EE7\u7EED\u79BB\u5F00\uFF0C\u4FDD\u7559\u52A8\u4F5C\u7ED3\u675F\u59FF\u6001\u3002"
+        ],
+        retain: "\u4E3B\u4F53\u7ECF\u8FC7\u65F6\uFF0C\u52A8\u7269\u6309\u5B9E\u9645\u8DDD\u79BB\u89E6\u53D1\u8F6C\u5411\u3001\u8DF3\u8DD1\u6216\u8EB2\u5230\u6811\u540E\u3002",
+        tempo_note: "\u4ECE4.75\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E7\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "wind-companion-follow",
+      name: "\u4F34\u98DE\u8DDF\u968F\u4E0E\u7ED5\u884C",
+      kind: "action",
+      category: "response",
+      summary: "\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\u6CBF\u84B2\u516C\u82F1\u7684\u5386\u53F2\u8DEF\u7A0B\u4F34\u98DE\u4E0E\u7ED5\u884C\u3002",
+      purpose: "\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\u6CBF\u84B2\u516C\u82F1\u7684\u5386\u53F2\u8DEF\u7A0B\u4F34\u98DE\u4E0E\u7ED5\u884C\u3002",
+      objects: "\u4F34\u98DE\u8DDF\u968F\u4E0E\u7ED5\u884C\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u4F34\u98DE\u7269\u63A5\u8FD1\u4E3B\u4F53\u3002",
+        "\u6309\u539F\u8F68\u8FF9\u548C\u65F6\u5DEE\u8DDF\u968F\uFF0C\u4FDD\u7559\u907F\u8BA9\u3002",
+        "\u5404\u81EA\u7EE7\u7EED\u98DE\u884C\uFF0C\u4E3B\u4F53\u9A76\u5411\u843D\u79CD\u5904\u3002"
+      ],
+      aliases: [
+        "\u4F34\u98DE\u8DDF\u968F\u4E0E\u7ED5\u884C",
+        "\u84B2\u516C\u82F1\xB7\u98CE\u8FC7\u4E4B\u5904"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\u6CBF\u84B2\u516C\u82F1\u7684\u5386\u53F2\u8DEF\u7A0B\u4F34\u98DE\u4E0E\u7ED5\u884C\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 24e3,
+      preview_ms: 13200,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-dandelion.js",
+        factory: "wind-companion-follow",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\u6CBF\u84B2\u516C\u82F1\u7684\u5386\u53F2\u8DEF\u7A0B\u4F34\u98DE\u4E0E\u7ED5\u884C\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C3\u79D2\u8D77\u768424\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u4F34\u98DE\u8DDF\u968F\u4E0E\u7ED5\u884C\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "dandelion",
+        mode: "followers",
+        start: 3,
+        width: 900,
+        height: 1200
+      },
+      reproduction: {
+        objects: "\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\u6CBF\u84B2\u516C\u82F1\u7684\u5386\u53F2\u8DEF\u7A0B\u4F34\u98DE\u4E0E\u7ED5\u884C\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u8377\u5858\u9752\u7EFF\u3001\u9EA6\u7530\u6D45\u91D1\u3001\u5C71\u6797\u7070\u7EFF\u3001\u4E91\u6D77\u9752\u84DD\u3001\u8349\u5730\u7FE0\u7EFF\uFF0C\u7EC6\u767D\u51A0\u6BDB\u3002",
+        phases: [
+          "\u4F34\u98DE\u7269\u63A5\u8FD1\u4E3B\u4F53\u3002",
+          "\u6309\u539F\u8F68\u8FF9\u548C\u65F6\u5DEE\u8DDF\u968F\uFF0C\u4FDD\u7559\u907F\u8BA9\u3002",
+          "\u5404\u81EA\u7EE7\u7EED\u98DE\u884C\uFF0C\u4E3B\u4F53\u9A76\u5411\u843D\u79CD\u5904\u3002"
+        ],
+        retain: "\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\u6CBF\u84B2\u516C\u82F1\u7684\u5386\u53F2\u8DEF\u7A0B\u4F34\u98DE\u4E0E\u7ED5\u884C\u3002",
+        tempo_note: "\u4ECE3\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E24\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "journey-landscape-illustration",
+      name: "\u84B2\u516C\u82F1\u65C5\u9014\u5730\u666F",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u76F4\u63A5\u4F7F\u7528\u539F\u5730\u666F\u7ED8\u5236\u3002",
+      purpose: "\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u76F4\u63A5\u4F7F\u7528\u539F\u5730\u666F\u7ED8\u5236\u3002",
+      objects: "\u84B2\u516C\u82F1\u65C5\u9014\u5730\u666F\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u666F\u5B8C\u6574\u51FA\u73B0\u3002",
+        "\u5730\u666F\u6309\u539F\u8DEF\u7A0B\u79FB\u52A8\u3002",
+        "\u4FDD\u6301\u539F\u80CC\u666F\u9020\u578B\u3002"
+      ],
+      aliases: [
+        "\u84B2\u516C\u82F1\u65C5\u9014\u5730\u666F",
+        "\u84B2\u516C\u82F1\xB7\u98CE\u8FC7\u4E4B\u5904"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u76F4\u63A5\u4F7F\u7528\u539F\u5730\u666F\u7ED8\u5236\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 4e3,
+      preview_ms: 2200,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-dandelion.js",
+        factory: "journey-landscape-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u76F4\u63A5\u4F7F\u7528\u539F\u5730\u666F\u7ED8\u5236\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C5\u79D2\u8D77\u76844\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u84B2\u516C\u82F1\u65C5\u9014\u5730\u666F\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "dandelion",
+        mode: "landscape",
+        start: 5,
+        width: 900,
+        height: 1200,
+        chapter: "pond"
+      },
+      variants: [
+        {
+          id: "pond",
+          label: "\u8377\u5858",
+          summary: "\u8377\u5858\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 4e3,
+          preview_ms: 2200,
+          scene: {
+            family: "dandelion",
+            mode: "landscape",
+            start: 5,
+            width: 900,
+            height: 1200,
+            chapter: "pond"
+          }
+        },
+        {
+          id: "wheat",
+          label: "\u9EA6\u7530",
+          summary: "\u9EA6\u7530\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 4e3,
+          preview_ms: 2200,
+          scene: {
+            family: "dandelion",
+            mode: "landscape",
+            start: 12,
+            width: 900,
+            height: 1200,
+            chapter: "wheat"
+          }
+        },
+        {
+          id: "forest",
+          label: "\u5C71\u6797",
+          summary: "\u5C71\u6797\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 4e3,
+          preview_ms: 2200,
+          scene: {
+            family: "dandelion",
+            mode: "landscape",
+            start: 16,
+            width: 900,
+            height: 1200,
+            chapter: "forest"
+          }
+        },
+        {
+          id: "cloud",
+          label: "\u4E91\u6D77",
+          summary: "\u4E91\u6D77\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 4e3,
+          preview_ms: 2200,
+          scene: {
+            family: "dandelion",
+            mode: "landscape",
+            start: 22,
+            width: 900,
+            height: 1200,
+            chapter: "cloud"
+          }
+        },
+        {
+          id: "grass",
+          label: "\u8349\u5730",
+          summary: "\u8349\u5730\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 4e3,
+          preview_ms: 2200,
+          scene: {
+            family: "dandelion",
+            mode: "landscape",
+            start: 29,
+            width: 900,
+            height: 1200,
+            chapter: "grass"
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u6309\u5404\u81EA\u5F62\u6001\u6784\u6210\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u8377\u5858\u9752\u7EFF\u3001\u9EA6\u7530\u6D45\u91D1\u3001\u5C71\u6797\u7070\u7EFF\u3001\u4E91\u6D77\u9752\u84DD\u3001\u8349\u5730\u7FE0\u7EFF\uFF0C\u7EC6\u767D\u51A0\u6BDB\u3002",
+        phases: [
+          "\u539F\u666F\u5B8C\u6574\u51FA\u73B0\u3002",
+          "\u5730\u666F\u6309\u539F\u8DEF\u7A0B\u79FB\u52A8\u3002",
+          "\u4FDD\u6301\u539F\u80CC\u666F\u9020\u578B\u3002"
+        ],
+        retain: "\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u6309\u5404\u81EA\u5F62\u6001\u6784\u6210\u3002",
+        tempo_note: "\u4ECE5\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E4\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "journey-lotus-illustration",
+      name: "\u8377\u82B1",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u4FDD\u7559\u8377\u82B1\u7684\u539F\u82B1\u74E3\u3001\u53F6\u8272\u4E0E\u5C55\u5F00\u9020\u578B\u3002",
+      purpose: "\u4FDD\u7559\u8377\u82B1\u7684\u539F\u82B1\u74E3\u3001\u53F6\u8272\u4E0E\u5C55\u5F00\u9020\u578B\u3002",
+      objects: "\u8377\u82B1\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u82B1\u5B8C\u6574\u51FA\u73B0\u3002",
+        "\u4FDD\u7559\u539F\u82B1\u74E3\u5C42\u6B21\u3002",
+        "\u505C\u7559\u539F\u5B8C\u6574\u8F6E\u5ED3\u3002"
+      ],
+      aliases: [
+        "\u8377\u82B1",
+        "\u84B2\u516C\u82F1\xB7\u98CE\u8FC7\u4E4B\u5904"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u4FDD\u7559\u8377\u82B1\u7684\u539F\u82B1\u74E3\u3001\u53F6\u8272\u4E0E\u5C55\u5F00\u9020\u578B\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-dandelion.js",
+        factory: "journey-lotus-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u4FDD\u7559\u8377\u82B1\u7684\u539F\u82B1\u74E3\u3001\u53F6\u8272\u4E0E\u5C55\u5F00\u9020\u578B\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76843\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u8377\u82B1\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "dandelion",
+        mode: "lotus",
+        start: 0,
+        width: 900,
+        height: 1200,
+        leafOnly: false
+      },
+      variants: [
+        {
+          id: "flower",
+          label: "\u8377\u82B1\u4E0E\u8377\u53F6",
+          summary: "\u8377\u82B1\u4E0E\u8377\u53F6\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "dandelion",
+            mode: "lotus",
+            start: 0,
+            width: 900,
+            height: 1200,
+            leafOnly: false
+          }
+        },
+        {
+          id: "leaf",
+          label: "\u8377\u53F6",
+          summary: "\u8377\u53F6\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "dandelion",
+            mode: "lotus",
+            start: 0,
+            width: 900,
+            height: 1200,
+            leafOnly: true
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u4FDD\u7559\u8377\u82B1\u7684\u539F\u82B1\u74E3\u3001\u53F6\u8272\u4E0E\u5C55\u5F00\u9020\u578B\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u8377\u5858\u9752\u7EFF\u3001\u9EA6\u7530\u6D45\u91D1\u3001\u5C71\u6797\u7070\u7EFF\u3001\u4E91\u6D77\u9752\u84DD\u3001\u8349\u5730\u7FE0\u7EFF\uFF0C\u7EC6\u767D\u51A0\u6BDB\u3002",
+        phases: [
+          "\u539F\u82B1\u5B8C\u6574\u51FA\u73B0\u3002",
+          "\u4FDD\u7559\u539F\u82B1\u74E3\u5C42\u6B21\u3002",
+          "\u505C\u7559\u539F\u5B8C\u6574\u8F6E\u5ED3\u3002"
+        ],
+        retain: "\u4FDD\u7559\u8377\u82B1\u7684\u539F\u82B1\u74E3\u3001\u53F6\u8272\u4E0E\u5C55\u5F00\u9020\u578B\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E3\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "journey-pond-animal-illustration",
+      name: "\u84B2\u516C\u82F1\u65C5\u9014\u5730\u9762\u52A8\u7269",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u539F\u9C7C\u3001\u9752\u86D9\u3001\u5154\u5B50\u548C\u677E\u9F20\u5B8C\u6574\u4FDD\u7559\uFF0C\u5404\u81EA\u8EAB\u4F53\u4E0E\u5C3E\u811A\u6309\u539F\u7ED8\u5236\u76F8\u4F4D\u52A8\u4F5C\u3002",
+      purpose: "\u539F\u9C7C\u3001\u9752\u86D9\u3001\u5154\u5B50\u548C\u677E\u9F20\u5B8C\u6574\u4FDD\u7559\uFF0C\u5404\u81EA\u8EAB\u4F53\u4E0E\u5C3E\u811A\u6309\u539F\u7ED8\u5236\u76F8\u4F4D\u52A8\u4F5C\u3002",
+      objects: "\u84B2\u516C\u82F1\u65C5\u9014\u5730\u9762\u52A8\u7269\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u52A8\u7269\u72EC\u7ACB\u51FA\u73B0\u3002",
+        "\u8EAB\u4F53\u3001\u5C3E\u90E8\u4E0E\u811A\u6B65\u4FDD\u6301\u539F\u52A8\u4F5C\u3002",
+        "\u4FDD\u7559\u539F\u6BD4\u4F8B\u4E0E\u914D\u8272\u3002"
+      ],
+      aliases: [
+        "\u84B2\u516C\u82F1\u65C5\u9014\u5730\u9762\u52A8\u7269",
+        "\u84B2\u516C\u82F1\xB7\u98CE\u8FC7\u4E4B\u5904"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u9C7C\u3001\u9752\u86D9\u3001\u5154\u5B50\u548C\u677E\u9F20\u5B8C\u6574\u4FDD\u7559\uFF0C\u5404\u81EA\u8EAB\u4F53\u4E0E\u5C3E\u811A\u6309\u539F\u7ED8\u5236\u76F8\u4F4D\u52A8\u4F5C\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-dandelion.js",
+        factory: "journey-pond-animal-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u9C7C\u3001\u9752\u86D9\u3001\u5154\u5B50\u548C\u677E\u9F20\u5B8C\u6574\u4FDD\u7559\uFF0C\u5404\u81EA\u8EAB\u4F53\u4E0E\u5C3E\u811A\u6309\u539F\u7ED8\u5236\u76F8\u4F4D\u52A8\u4F5C\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76843\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u84B2\u516C\u82F1\u65C5\u9014\u5730\u9762\u52A8\u7269\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "dandelion",
+        mode: "animal",
+        start: 0,
+        width: 900,
+        height: 1200,
+        animal: "fish"
+      },
+      variants: [
+        {
+          id: "fish",
+          label: "\u6E38\u9C7C",
+          summary: "\u6E38\u9C7C\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "dandelion",
+            mode: "animal",
+            start: 0,
+            width: 900,
+            height: 1200,
+            animal: "fish"
+          }
+        },
+        {
+          id: "frog",
+          label: "\u9752\u86D9",
+          summary: "\u9752\u86D9\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "dandelion",
+            mode: "animal",
+            start: 0,
+            width: 900,
+            height: 1200,
+            animal: "frog"
+          }
+        },
+        {
+          id: "rabbit",
+          label: "\u5154\u5B50",
+          summary: "\u5154\u5B50\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "dandelion",
+            mode: "animal",
+            start: 0,
+            width: 900,
+            height: 1200,
+            animal: "rabbit"
+          }
+        },
+        {
+          id: "squirrel",
+          label: "\u677E\u9F20",
+          summary: "\u677E\u9F20\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "dandelion",
+            mode: "animal",
+            start: 0,
+            width: 900,
+            height: 1200,
+            animal: "squirrel"
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u539F\u9C7C\u3001\u9752\u86D9\u3001\u5154\u5B50\u548C\u677E\u9F20\u5B8C\u6574\u4FDD\u7559\uFF0C\u5404\u81EA\u8EAB\u4F53\u4E0E\u5C3E\u811A\u6309\u539F\u7ED8\u5236\u76F8\u4F4D\u52A8\u4F5C\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u8377\u5858\u9752\u7EFF\u3001\u9EA6\u7530\u6D45\u91D1\u3001\u5C71\u6797\u7070\u7EFF\u3001\u4E91\u6D77\u9752\u84DD\u3001\u8349\u5730\u7FE0\u7EFF\uFF0C\u7EC6\u767D\u51A0\u6BDB\u3002",
+        phases: [
+          "\u539F\u52A8\u7269\u72EC\u7ACB\u51FA\u73B0\u3002",
+          "\u8EAB\u4F53\u3001\u5C3E\u90E8\u4E0E\u811A\u6B65\u4FDD\u6301\u539F\u52A8\u4F5C\u3002",
+          "\u4FDD\u7559\u539F\u6BD4\u4F8B\u4E0E\u914D\u8272\u3002"
+        ],
+        retain: "\u539F\u9C7C\u3001\u9752\u86D9\u3001\u5154\u5B50\u548C\u677E\u9F20\u5B8C\u6574\u4FDD\u7559\uFF0C\u5404\u81EA\u8EAB\u4F53\u4E0E\u5C3E\u811A\u6309\u539F\u7ED8\u5236\u76F8\u4F4D\u52A8\u4F5C\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E3\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "journey-air-animal-illustration",
+      name: "\u84B2\u516C\u82F1\u4F34\u98DE\u52A8\u7269",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\u5171\u7528\u539F\u52A8\u7269\u7ED8\u5236\uFF0C\u4FDD\u7559\u5404\u81EA\u632F\u7FC5\u3002",
+      purpose: "\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\u5171\u7528\u539F\u52A8\u7269\u7ED8\u5236\uFF0C\u4FDD\u7559\u5404\u81EA\u632F\u7FC5\u3002",
+      objects: "\u84B2\u516C\u82F1\u4F34\u98DE\u52A8\u7269\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u52A8\u7269\u72EC\u7ACB\u51FA\u73B0\u3002",
+        "\u8EAB\u4F53\u4E0E\u7FC5\u8180\u6309\u539F\u76F8\u4F4D\u52A8\u4F5C\u3002",
+        "\u9020\u578B\u4E0E\u539F\u4F5C\u4FDD\u6301\u4E00\u81F4\u3002"
+      ],
+      aliases: [
+        "\u84B2\u516C\u82F1\u4F34\u98DE\u52A8\u7269",
+        "\u84B2\u516C\u82F1\xB7\u98CE\u8FC7\u4E4B\u5904"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\u5171\u7528\u539F\u52A8\u7269\u7ED8\u5236\uFF0C\u4FDD\u7559\u5404\u81EA\u632F\u7FC5\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-dandelion.js",
+        factory: "journey-air-animal-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [
+        "wind-companion-follow"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\u5171\u7528\u539F\u52A8\u7269\u7ED8\u5236\uFF0C\u4FDD\u7559\u5404\u81EA\u632F\u7FC5\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76843\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u84B2\u516C\u82F1\u4F34\u98DE\u52A8\u7269\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "dandelion",
+        mode: "insect",
+        start: 0,
+        width: 900,
+        height: 1200,
+        animal: 0
+      },
+      variants: [
+        {
+          id: "0",
+          label: "\u873B\u8713",
+          summary: "\u873B\u8713\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "dandelion",
+            mode: "insect",
+            start: 0,
+            width: 900,
+            height: 1200,
+            animal: 0
+          }
+        },
+        {
+          id: "1",
+          label: "\u98DE\u9E1F",
+          summary: "\u98DE\u9E1F\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "dandelion",
+            mode: "insect",
+            start: 0,
+            width: 900,
+            height: 1200,
+            animal: 1
+          }
+        },
+        {
+          id: "2",
+          label: "\u74E2\u866B",
+          summary: "\u74E2\u866B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "dandelion",
+            mode: "insect",
+            start: 0,
+            width: 900,
+            height: 1200,
+            animal: 2
+          }
+        },
+        {
+          id: "3",
+          label: "\u8774\u8776",
+          summary: "\u8774\u8776\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "dandelion",
+            mode: "insect",
+            start: 0,
+            width: 900,
+            height: 1200,
+            animal: 3
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\uFF0C\u4FDD\u7559\u5404\u81EA\u632F\u7FC5\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u8377\u5858\u9752\u7EFF\u3001\u9EA6\u7530\u6D45\u91D1\u3001\u5C71\u6797\u7070\u7EFF\u3001\u4E91\u6D77\u9752\u84DD\u3001\u8349\u5730\u7FE0\u7EFF\uFF0C\u7EC6\u767D\u51A0\u6BDB\u3002",
+        phases: [
+          "\u539F\u52A8\u7269\u72EC\u7ACB\u51FA\u73B0\u3002",
+          "\u8EAB\u4F53\u4E0E\u7FC5\u8180\u6309\u539F\u76F8\u4F4D\u52A8\u4F5C\u3002",
+          "\u9020\u578B\u4E0E\u539F\u4F5C\u4FDD\u6301\u4E00\u81F4\u3002"
+        ],
+        retain: "\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\uFF0C\u4FDD\u7559\u5404\u81EA\u632F\u7FC5\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E3\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "journey-flower-illustration",
+      name: "\u843D\u79CD\u540E\u5F00\u82B1\u7684\u690D\u682A",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u76F4\u63A5\u4FDD\u7559\u539F\u690D\u682A\u7684\u830E\u53F6\u3001\u82B1\u74E3\u3001\u82B1\u5FC3\u548C\u8F7B\u5FAE\u6446\u52A8\u3002",
+      purpose: "\u76F4\u63A5\u4FDD\u7559\u539F\u690D\u682A\u7684\u830E\u53F6\u3001\u82B1\u74E3\u3001\u82B1\u5FC3\u548C\u8F7B\u5FAE\u6446\u52A8\u3002",
+      objects: "\u843D\u79CD\u540E\u5F00\u82B1\u7684\u690D\u682A\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u690D\u682A\u5B8C\u6574\u51FA\u73B0\u3002",
+        "\u4FDD\u7559\u830E\u53F6\u4E0E\u82B1\u6735\u76F8\u4F4D\u3002",
+        "\u505C\u7559\u539F\u5F00\u82B1\u9020\u578B\u3002"
+      ],
+      aliases: [
+        "\u843D\u79CD\u540E\u5F00\u82B1\u7684\u690D\u682A",
+        "\u84B2\u516C\u82F1\xB7\u98CE\u8FC7\u4E4B\u5904"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u76F4\u63A5\u4FDD\u7559\u539F\u690D\u682A\u7684\u830E\u53F6\u3001\u82B1\u74E3\u3001\u82B1\u5FC3\u548C\u8F7B\u5FAE\u6446\u52A8\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-dandelion.js",
+        factory: "journey-flower-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [
+        "settle-grow-spread"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u76F4\u63A5\u4FDD\u7559\u539F\u690D\u682A\u7684\u830E\u53F6\u3001\u82B1\u74E3\u3001\u82B1\u5FC3\u548C\u8F7B\u5FAE\u6446\u52A8\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76843\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u843D\u79CD\u540E\u5F00\u82B1\u7684\u690D\u682A\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "dandelion",
+        mode: "flower",
+        start: 0,
+        width: 900,
+        height: 1200
+      },
+      reproduction: {
+        objects: "\u76F4\u63A5\u4FDD\u7559\u539F\u690D\u682A\u7684\u830E\u53F6\u3001\u82B1\u74E3\u3001\u82B1\u5FC3\u548C\u8F7B\u5FAE\u6446\u52A8\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u8377\u5858\u9752\u7EFF\u3001\u9EA6\u7530\u6D45\u91D1\u3001\u5C71\u6797\u7070\u7EFF\u3001\u4E91\u6D77\u9752\u84DD\u3001\u8349\u5730\u7FE0\u7EFF\uFF0C\u7EC6\u767D\u51A0\u6BDB\u3002",
+        phases: [
+          "\u539F\u690D\u682A\u5B8C\u6574\u51FA\u73B0\u3002",
+          "\u4FDD\u7559\u830E\u53F6\u4E0E\u82B1\u6735\u76F8\u4F4D\u3002",
+          "\u505C\u7559\u539F\u5F00\u82B1\u9020\u578B\u3002"
+        ],
+        retain: "\u76F4\u63A5\u4FDD\u7559\u539F\u690D\u682A\u7684\u830E\u53F6\u3001\u82B1\u74E3\u3001\u82B1\u5FC3\u548C\u8F7B\u5FAE\u6446\u52A8\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E3\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "dandelion-wind-journey",
+      name: "\u84B2\u516C\u82F1\xB7\u98CE\u8FC7\u4E4B\u5904",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u4ECE\u7403\u7C07\u91CA\u653E\u3001\u7ECF\u8FC7\u8377\u5858\u9EA6\u7530\u5C71\u6797\u4E91\u6D77\uFF0C\u5230\u843D\u79CD\u751F\u957F\uFF0C\u4FDD\u7559\u5B8C\u6574\u4E09\u5341\u4E03\u79D2\u65C5\u7A0B\u3002",
+      purpose: "\u4ECE\u7403\u7C07\u91CA\u653E\u3001\u7ECF\u8FC7\u8377\u5858\u9EA6\u7530\u5C71\u6797\u4E91\u6D77\uFF0C\u5230\u843D\u79CD\u751F\u957F\uFF0C\u4FDD\u7559\u5B8C\u6574\u4E09\u5341\u4E03\u79D2\u65C5\u7A0B\u3002",
+      objects: "\u84B2\u516C\u82F1\xB7\u98CE\u8FC7\u4E4B\u5904\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u7403\u7C07\u5F84\u5411\u91CA\u653E\uFF0C\u4E3B\u4F53\u5C55\u5F00\u5E76\u968F\u98CE\u51FA\u53D1\u3002",
+        "\u4E3B\u4F53\u548C\u4F34\u98DE\u7269\u7A7F\u8FC7\u4E94\u6BB5\u539F\u5730\u666F\uFF0C\u89E6\u53D1\u52A8\u7269\u56DE\u5E94\u3002",
+        "\u843D\u79CD\u540E\u957F\u830E\u5C55\u53F6\u5F00\u82B1\uFF0C\u751F\u957F\u9010\u6B65\u4F20\u64AD\u3002"
+      ],
+      aliases: [
+        "\u84B2\u516C\u82F1\xB7\u98CE\u8FC7\u4E4B\u5904",
+        "\u84B2\u516C\u82F1\xB7\u98CE\u8FC7\u4E4B\u5904"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u4ECE\u7403\u7C07\u91CA\u653E\u3001\u7ECF\u8FC7\u8377\u5858\u9EA6\u7530\u5C71\u6797\u4E91\u6D77\uFF0C\u5230\u843D\u79CD\u751F\u957F\uFF0C\u4FDD\u7559\u5B8C\u6574\u4E09\u5341\u4E03\u79D2\u65C5\u7A0B\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 37e3,
+      preview_ms: 20350,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-dandelion.js",
+        factory: "dandelion-wind-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [
+        "dandelion-radial-release",
+        "filament-unfold-turn",
+        "filament-shed-drift",
+        "settle-grow-spread",
+        "landscape-boundary-carry",
+        "passage-animal-response",
+        "wind-companion-follow",
+        "journey-landscape-illustration",
+        "journey-lotus-illustration",
+        "journey-air-animal-illustration",
+        "journey-pond-animal-illustration",
+        "journey-flower-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u4ECE\u7403\u7C07\u91CA\u653E\u3001\u7ECF\u8FC7\u8377\u5858\u9EA6\u7530\u5C71\u6797\u4E91\u6D77\uFF0C\u5230\u843D\u79CD\u751F\u957F\uFF0C\u4FDD\u7559\u5B8C\u6574\u4E09\u5341\u4E03\u79D2\u65C5\u7A0B\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768437\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u84B2\u516C\u82F1\xB7\u98CE\u8FC7\u4E4B\u5904\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "dandelion",
+        mode: "full",
+        start: 0,
+        width: 900,
+        height: 1200,
+        breakdown: [
+          {
+            id: "terrain",
+            name: "\u4E94\u6BB5\u5730\u666F\u4E0E\u6CBF\u9014\u52A8\u7269",
+            start: 0,
+            end: 37e3,
+            time: "0\u201437\u79D2",
+            detail: "\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u6CBF\u8D77\u4F0F\u5CB8\u7EBF\u627F\u63A5\uFF1B\u9C7C\u3001\u9752\u86D9\u3001\u5154\u5B50\u4E0E\u677E\u9F20\u5728\u540C\u4E00\u4F4D\u7F6E\u56DE\u5E94\uFF0C\u8349\u5730\u91CC\u957F\u51FA\u690D\u682A\u3002",
+            actions: [
+              "landscape-boundary-carry",
+              "passage-animal-response",
+              "journey-landscape-illustration",
+              "journey-lotus-illustration",
+              "journey-pond-animal-illustration",
+              "journey-flower-illustration",
+              "settle-grow-spread"
+            ]
+          },
+          {
+            id: "companions",
+            name: "\u98CE\u7EBF\u4E0E\u4F34\u98DE\u52A8\u7269",
+            start: 0,
+            end: 27e3,
+            time: "0\u201427\u79D2",
+            detail: "\u98CE\u7EBF\u7A7F\u8FC7\uFF0C\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\u6CBF\u4E3B\u4F53\u8D70\u8FC7\u7684\u8DEF\u7EBF\u4F34\u98DE\u3002",
+            actions: [
+              "wind-companion-follow",
+              "journey-air-animal-illustration"
+            ]
+          },
+          {
+            id: "dandelion",
+            name: "\u7403\u7C07\u91CA\u653E\u3001\u98D8\u6563\u4E0E\u843D\u5B9A",
+            start: 0,
+            end: 37e3,
+            time: "0\u201437\u79D2",
+            detail: "\u7403\u7C07\u5F84\u5411\u91CA\u653E\uFF0C\u51A0\u6BDB\u5C55\u5F00\uFF0C\u7EC6\u4E1D\u6563\u53BB\uFF0C\u79CD\u5B50\u843D\u5B9A\uFF1B\u7247\u5C3E\u9010\u6E10\u6697\u4E0B\u3002",
+            actions: [
+              "dandelion-radial-release",
+              "filament-unfold-turn",
+              "filament-shed-drift",
+              "settle-grow-spread"
+            ]
+          }
+        ],
+        layers: [
+          "terrain",
+          "companions",
+          "dandelion"
+        ]
+      },
+      reproduction: {
+        objects: "\u4ECE\u7403\u7C07\u91CA\u653E\u3001\u7ECF\u8FC7\u8377\u5858\u9EA6\u7530\u5C71\u6797\u4E91\u6D77\uFF0C\u5230\u843D\u79CD\u751F\u957F\uFF0C\u4FDD\u7559\u5B8C\u6574\u4E09\u5341\u4E03\u79D2\u65C5\u7A0B\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u8377\u5858\u9752\u7EFF\u3001\u9EA6\u7530\u6D45\u91D1\u3001\u5C71\u6797\u7070\u7EFF\u3001\u4E91\u6D77\u9752\u84DD\u3001\u8349\u5730\u7FE0\u7EFF\uFF0C\u7EC6\u767D\u51A0\u6BDB\u3002",
+        phases: [
+          "\u7403\u7C07\u5F84\u5411\u91CA\u653E\uFF0C\u4E3B\u4F53\u5C55\u5F00\u5E76\u968F\u98CE\u51FA\u53D1\u3002",
+          "\u4E3B\u4F53\u548C\u4F34\u98DE\u7269\u7A7F\u8FC7\u4E94\u6BB5\u539F\u5730\u666F\uFF0C\u89E6\u53D1\u52A8\u7269\u56DE\u5E94\u3002",
+          "\u843D\u79CD\u540E\u957F\u830E\u5C55\u53F6\u5F00\u82B1\uFF0C\u751F\u957F\u9010\u6B65\u4F20\u64AD\u3002"
+        ],
+        retain: "\u4ECE\u7403\u7C07\u91CA\u653E\u3001\u7ECF\u8FC7\u8377\u5858\u9EA6\u7530\u5C71\u6797\u4E91\u6D77\uFF0C\u5230\u843D\u79CD\u751F\u957F\uFF0C\u4FDD\u7559\u5B8C\u6574\u4E09\u5341\u4E03\u79D2\u65C5\u7A0B\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E37\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "terrain",
+            name: "\u4E94\u6BB5\u5730\u666F\u4E0E\u6CBF\u9014\u52A8\u7269",
+            start: 0,
+            end: 37e3,
+            time: "0\u201437\u79D2",
+            detail: "\u8377\u5858\u3001\u9EA6\u7530\u3001\u5C71\u6797\u3001\u4E91\u6D77\u548C\u8349\u5730\u6CBF\u8D77\u4F0F\u5CB8\u7EBF\u627F\u63A5\uFF1B\u9C7C\u3001\u9752\u86D9\u3001\u5154\u5B50\u4E0E\u677E\u9F20\u5728\u540C\u4E00\u4F4D\u7F6E\u56DE\u5E94\uFF0C\u8349\u5730\u91CC\u957F\u51FA\u690D\u682A\u3002",
+            actions: [
+              "landscape-boundary-carry",
+              "passage-animal-response",
+              "journey-landscape-illustration",
+              "journey-lotus-illustration",
+              "journey-pond-animal-illustration",
+              "journey-flower-illustration",
+              "settle-grow-spread"
+            ]
+          },
+          {
+            id: "companions",
+            name: "\u98CE\u7EBF\u4E0E\u4F34\u98DE\u52A8\u7269",
+            start: 0,
+            end: 27e3,
+            time: "0\u201427\u79D2",
+            detail: "\u98CE\u7EBF\u7A7F\u8FC7\uFF0C\u873B\u8713\u3001\u98DE\u9E1F\u3001\u74E2\u866B\u548C\u8774\u8776\u6CBF\u4E3B\u4F53\u8D70\u8FC7\u7684\u8DEF\u7EBF\u4F34\u98DE\u3002",
+            actions: [
+              "wind-companion-follow",
+              "journey-air-animal-illustration"
+            ]
+          },
+          {
+            id: "dandelion",
+            name: "\u7403\u7C07\u91CA\u653E\u3001\u98D8\u6563\u4E0E\u843D\u5B9A",
+            start: 0,
+            end: 37e3,
+            time: "0\u201437\u79D2",
+            detail: "\u7403\u7C07\u5F84\u5411\u91CA\u653E\uFF0C\u51A0\u6BDB\u5C55\u5F00\uFF0C\u7EC6\u4E1D\u6563\u53BB\uFF0C\u79CD\u5B50\u843D\u5B9A\uFF1B\u7247\u5C3E\u9010\u6E10\u6697\u4E0B\u3002",
+            actions: [
+              "dandelion-radial-release",
+              "filament-unfold-turn",
+              "filament-shed-drift",
+              "settle-grow-spread"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: "camera-lag-departure",
+      name: "\u955C\u5934\u843D\u540E\u540E\u539F\u901F\u79BB\u573A",
+      kind: "action",
+      category: "space",
+      summary: "\u6C14\u7403\u79BB\u5F00\u540E\u955C\u5934\u51CF\u901F\uFF0C\u6C7D\u8F66\u4FDD\u6301\u539F\u901F\uFF0C\u753B\u9762\u4E2D\u7684\u4F4D\u7F6E\u548C\u901F\u5EA6\u8FDE\u7EED\u3002",
+      purpose: "\u6C14\u7403\u79BB\u5F00\u540E\u955C\u5934\u51CF\u901F\uFF0C\u6C7D\u8F66\u4FDD\u6301\u539F\u901F\uFF0C\u753B\u9762\u4E2D\u7684\u4F4D\u7F6E\u548C\u901F\u5EA6\u8FDE\u7EED\u3002",
+      objects: "\u955C\u5934\u843D\u540E\u540E\u539F\u901F\u79BB\u573A\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u955C\u5934\u4ECD\u4E0E\u6C7D\u8F66\u4E00\u8D77\u524D\u884C\u3002",
+        "\u955C\u5934\u9010\u6E10\u843D\u540E\uFF0C\u6C7D\u8F66\u4FDD\u6301\u539F\u901F\u5EA6\u3002",
+        "\u6C7D\u8F66\u9A76\u51FA\u753B\u9762\uFF0C\u8F6E\u8F6C\u4E0E\u5B9E\u9645\u8DEF\u7A0B\u7EE7\u7EED\u4E00\u81F4\u3002"
+      ],
+      aliases: [
+        "\u955C\u5934\u843D\u540E\u540E\u539F\u901F\u79BB\u573A",
+        "\u628A\u6C14\u7403\u4EA4\u7ED9\u98CE"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u6C14\u7403\u79BB\u5F00\u540E\u955C\u5934\u51CF\u901F\uFF0C\u6C7D\u8F66\u4FDD\u6301\u539F\u901F\uFF0C\u753B\u9762\u4E2D\u7684\u4F4D\u7F6E\u548C\u901F\u5EA6\u8FDE\u7EED\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 5e3,
+      preview_ms: 2750,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-drive.js",
+        factory: "camera-lag-departure",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u6C14\u7403\u79BB\u5F00\u540E\u955C\u5934\u51CF\u901F\uFF0C\u6C7D\u8F66\u4FDD\u6301\u539F\u901F\uFF0C\u753B\u9762\u4E2D\u7684\u4F4D\u7F6E\u548C\u901F\u5EA6\u8FDE\u7EED\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C9\u79D2\u8D77\u76845\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u955C\u5934\u843D\u540E\u540E\u539F\u901F\u79BB\u573A\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "drive",
+        mode: "departure",
+        start: 9,
+        width: 900,
+        height: 1200
+      },
+      reproduction: {
+        objects: "\u6C14\u7403\u79BB\u5F00\u540E\u955C\u5934\u51CF\u901F\uFF0C\u6C7D\u8F66\u4FDD\u6301\u539F\u901F\uFF0C\u753B\u9762\u4E2D\u7684\u4F4D\u7F6E\u548C\u901F\u5EA6\u8FDE\u7EED\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u4EAE\u84DD\u80CC\u666F#1340e7\uFF0C\u4E03\u8272\u6C14\u7403\u4E0E\u5C0F\u8475\u6C7D\u8F66\u3002",
+        phases: [
+          "\u955C\u5934\u4ECD\u4E0E\u6C7D\u8F66\u4E00\u8D77\u524D\u884C\u3002",
+          "\u955C\u5934\u9010\u6E10\u843D\u540E\uFF0C\u6C7D\u8F66\u4FDD\u6301\u539F\u901F\u5EA6\u3002",
+          "\u6C7D\u8F66\u9A76\u51FA\u753B\u9762\uFF0C\u8F6E\u8F6C\u4E0E\u5B9E\u9645\u8DEF\u7A0B\u7EE7\u7EED\u4E00\u81F4\u3002"
+        ],
+        retain: "\u6C14\u7403\u79BB\u5F00\u540E\u955C\u5934\u51CF\u901F\uFF0C\u6C7D\u8F66\u4FDD\u6301\u539F\u901F\uFF0C\u753B\u9762\u4E2D\u7684\u4F4D\u7F6E\u548C\u901F\u5EA6\u8FDE\u7EED\u3002",
+        tempo_note: "\u4ECE9\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E5\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "drive-balloon-illustration",
+      name: "\u5355\u53EA\u6C14\u7403\u4E0E\u7EF3\u5C3E",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "\u4ECE\u539F\u4F5C\u63D0\u53D6\u5B8C\u6574\u7403\u5F62\u3001\u7ED3\u53E3\u3001\u53CD\u5149\u548C\u67D4\u7EF3\uFF0C\u4E03\u79CD\u989C\u8272\u5171\u7528\u9020\u578B\u3002",
+      purpose: "\u4ECE\u539F\u4F5C\u63D0\u53D6\u5B8C\u6574\u7403\u5F62\u3001\u7ED3\u53E3\u3001\u53CD\u5149\u548C\u67D4\u7EF3\uFF0C\u4E03\u79CD\u989C\u8272\u5171\u7528\u9020\u578B\u3002",
+      objects: "\u5355\u53EA\u6C14\u7403\u4E0E\u7EF3\u5C3E\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u6C14\u7403\u4E0E\u67D4\u7EF3\u5B8C\u6574\u51FA\u73B0\u3002",
+        "\u4FDD\u7559\u539F\u7403\u5F62\u548C\u6750\u8D28\u3002",
+        "\u4FDD\u6301\u539F\u8F6E\u5ED3\u3002"
+      ],
+      aliases: [
+        "\u5355\u53EA\u6C14\u7403\u4E0E\u7EF3\u5C3E",
+        "\u628A\u6C14\u7403\u4EA4\u7ED9\u98CE"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u4ECE\u539F\u4F5C\u63D0\u53D6\u5B8C\u6574\u7403\u5F62\u3001\u7ED3\u53E3\u3001\u53CD\u5149\u548C\u67D4\u7EF3\uFF0C\u4E03\u79CD\u989C\u8272\u5171\u7528\u9020\u578B\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-drive.js",
+        factory: "drive-balloon-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [
+        "drive-balloon-release"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u4ECE\u539F\u4F5C\u63D0\u53D6\u5B8C\u6574\u7403\u5F62\u3001\u7ED3\u53E3\u3001\u53CD\u5149\u548C\u67D4\u7EF3\uFF0C\u4E03\u79CD\u989C\u8272\u5171\u7528\u9020\u578B\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76843\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u5355\u53EA\u6C14\u7403\u4E0E\u7EF3\u5C3E\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "drive",
+        mode: "balloon",
+        start: 0,
+        width: 900,
+        height: 1200,
+        color: 0
+      },
+      variants: [
+        {
+          id: "0",
+          label: "\u7EA2",
+          summary: "\u7EA2\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "drive",
+            mode: "balloon",
+            start: 0,
+            width: 900,
+            height: 1200,
+            color: 0
+          }
+        },
+        {
+          id: "1",
+          label: "\u6A59",
+          summary: "\u6A59\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "drive",
+            mode: "balloon",
+            start: 0,
+            width: 900,
+            height: 1200,
+            color: 1
+          }
+        },
+        {
+          id: "2",
+          label: "\u9EC4",
+          summary: "\u9EC4\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "drive",
+            mode: "balloon",
+            start: 0,
+            width: 900,
+            height: 1200,
+            color: 2
+          }
+        },
+        {
+          id: "3",
+          label: "\u7EFF",
+          summary: "\u7EFF\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "drive",
+            mode: "balloon",
+            start: 0,
+            width: 900,
+            height: 1200,
+            color: 3
+          }
+        },
+        {
+          id: "4",
+          label: "\u84DD",
+          summary: "\u84DD\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "drive",
+            mode: "balloon",
+            start: 0,
+            width: 900,
+            height: 1200,
+            color: 4
+          }
+        },
+        {
+          id: "5",
+          label: "\u975B",
+          summary: "\u975B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "drive",
+            mode: "balloon",
+            start: 0,
+            width: 900,
+            height: 1200,
+            color: 5
+          }
+        },
+        {
+          id: "6",
+          label: "\u7D2B",
+          summary: "\u7D2B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "drive",
+            mode: "balloon",
+            start: 0,
+            width: 900,
+            height: 1200,
+            color: 6
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u4ECE\u539F\u4F5C\u63D0\u53D6\u5B8C\u6574\u7403\u5F62\u3001\u7ED3\u53E3\u3001\u53CD\u5149\u548C\u67D4\u7EF3\uFF0C\u4E03\u79CD\u989C\u8272\u5171\u7528\u9020\u578B\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u4EAE\u84DD\u80CC\u666F#1340e7\uFF0C\u4E03\u8272\u6C14\u7403\u4E0E\u5C0F\u8475\u6C7D\u8F66\u3002",
+        phases: [
+          "\u6C14\u7403\u4E0E\u67D4\u7EF3\u5B8C\u6574\u51FA\u73B0\u3002",
+          "\u4FDD\u7559\u539F\u7403\u5F62\u548C\u6750\u8D28\u3002",
+          "\u4FDD\u6301\u539F\u8F6E\u5ED3\u3002"
+        ],
+        retain: "\u4ECE\u539F\u4F5C\u63D0\u53D6\u5B8C\u6574\u7403\u5F62\u3001\u7ED3\u53E3\u3001\u53CD\u5149\u548C\u67D4\u7EF3\uFF0C\u4E03\u79CD\u989C\u8272\u5171\u7528\u9020\u578B\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E3\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "drive-road-illustration",
+      name: "\u9A7E\u8F66\u9053\u8DEF",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u84DD\u8272\u8DEF\u9762\u548C\u9053\u8DEF\u6807\u8BB0\u6309\u539F\u76F8\u673A\u8DEF\u7A0B\u540E\u9000\u3002",
+      purpose: "\u84DD\u8272\u8DEF\u9762\u548C\u9053\u8DEF\u6807\u8BB0\u6309\u539F\u76F8\u673A\u8DEF\u7A0B\u540E\u9000\u3002",
+      objects: "\u9A7E\u8F66\u9053\u8DEF\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u84DD\u8272\u8DEF\u9762\u51FA\u73B0\u3002",
+        "\u9053\u8DEF\u6807\u8BB0\u4E0E\u884C\u8F66\u8DEF\u7A0B\u4E00\u81F4\u540E\u9000\u3002",
+        "\u4FDD\u6301\u539F\u9053\u8DEF\u5F27\u7EBF\u3002"
+      ],
+      aliases: [
+        "\u9A7E\u8F66\u9053\u8DEF",
+        "\u628A\u6C14\u7403\u4EA4\u7ED9\u98CE"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u84DD\u8272\u8DEF\u9762\u548C\u9053\u8DEF\u6807\u8BB0\u6309\u539F\u76F8\u673A\u8DEF\u7A0B\u540E\u9000\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 4e3,
+      preview_ms: 2200,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-drive.js",
+        factory: "drive-road-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u84DD\u8272\u8DEF\u9762\u548C\u9053\u8DEF\u6807\u8BB0\u6309\u539F\u76F8\u673A\u8DEF\u7A0B\u540E\u9000\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76844\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u9A7E\u8F66\u9053\u8DEF\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "drive",
+        mode: "road",
+        start: 0,
+        width: 900,
+        height: 1200
+      },
+      reproduction: {
+        objects: "\u84DD\u8272\u8DEF\u9762\u548C\u9053\u8DEF\u6807\u8BB0\u6309\u539F\u76F8\u673A\u8DEF\u7A0B\u540E\u9000\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u4EAE\u84DD\u80CC\u666F#1340e7\uFF0C\u4E03\u8272\u6C14\u7403\u4E0E\u5C0F\u8475\u6C7D\u8F66\u3002",
+        phases: [
+          "\u539F\u84DD\u8272\u8DEF\u9762\u51FA\u73B0\u3002",
+          "\u9053\u8DEF\u6807\u8BB0\u4E0E\u884C\u8F66\u8DEF\u7A0B\u4E00\u81F4\u540E\u9000\u3002",
+          "\u4FDD\u6301\u539F\u9053\u8DEF\u5F27\u7EBF\u3002"
+        ],
+        retain: "\u84DD\u8272\u8DEF\u9762\u548C\u9053\u8DEF\u6807\u8BB0\u6309\u539F\u76F8\u673A\u8DEF\u7A0B\u540E\u9000\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E4\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "balloon-drive-journey",
+      name: "\u628A\u6C14\u7403\u4EA4\u7ED9\u98CE",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u5C0F\u8475\u9A7E\u8F66\u3001\u8F66\u8F6E\u8F6C\u52A8\u3001\u6C14\u7403\u9010\u53EA\u8131\u79BB\uFF0C\u6C14\u7403\u6E05\u7A7A\u540E\u955C\u5934\u843D\u540E\uFF0C\u6C7D\u8F66\u539F\u901F\u79BB\u573A\u3002",
+      purpose: "\u5C0F\u8475\u9A7E\u8F66\u3001\u8F66\u8F6E\u8F6C\u52A8\u3001\u6C14\u7403\u9010\u53EA\u8131\u79BB\uFF0C\u6C14\u7403\u6E05\u7A7A\u540E\u955C\u5934\u843D\u540E\uFF0C\u6C7D\u8F66\u539F\u901F\u79BB\u573A\u3002",
+      objects: "\u628A\u6C14\u7403\u4EA4\u7ED9\u98CE\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u955C\u5934\u8DDF\u8F66\uFF0C\u9053\u8DEF\u540E\u9000\uFF0C\u65B9\u5411\u76D8\u4E0E\u524D\u722A\u5171\u540C\u6446\u52A8\u3002",
+        "\u6C14\u7403\u6309\u539F\u9519\u5CF0\u91CA\u653E\uFF0C\u8131\u79BB\u65F6\u4FDD\u6301\u4F4D\u7F6E\u4E0E\u901F\u5EA6\u8FDE\u7EED\u3002",
+        "\u6C14\u7403\u6E05\u7A7A\u540E\u955C\u5934\u5E73\u6ED1\u51CF\u901F\uFF0C\u6C7D\u8F66\u9A76\u51FA\u753B\u9762\u3002"
+      ],
+      aliases: [
+        "\u628A\u6C14\u7403\u4EA4\u7ED9\u98CE",
+        "\u628A\u6C14\u7403\u4EA4\u7ED9\u98CE"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u5C0F\u8475\u9A7E\u8F66\u3001\u8F66\u8F6E\u8F6C\u52A8\u3001\u6C14\u7403\u9010\u53EA\u8131\u79BB\uFF0C\u6C14\u7403\u6E05\u7A7A\u540E\u955C\u5934\u843D\u540E\uFF0C\u6C7D\u8F66\u539F\u901F\u79BB\u573A\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 14e3,
+      preview_ms: 7700,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-drive.js",
+        factory: "balloon-drive-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [
+        "rolling-distance",
+        "drive-balloon-release",
+        "emission-drift",
+        "camera-lag-departure",
+        "drive-car-illustration",
+        "drive-balloon-illustration",
+        "drive-road-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u5C0F\u8475\u9A7E\u8F66\u3001\u8F66\u8F6E\u8F6C\u52A8\u3001\u6C14\u7403\u9010\u53EA\u8131\u79BB\uFF0C\u6C14\u7403\u6E05\u7A7A\u540E\u955C\u5934\u843D\u540E\uFF0C\u6C7D\u8F66\u539F\u901F\u79BB\u573A\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768414\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u628A\u6C14\u7403\u4EA4\u7ED9\u98CE\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "drive",
+        mode: "full",
+        start: 0,
+        width: 900,
+        height: 1200,
+        breakdown: [
+          {
+            id: "road",
+            name: "\u9053\u8DEF\u540E\u9000",
+            start: 0,
+            end: 14e3,
+            time: "0\u201414\u79D2",
+            detail: "\u84DD\u8272\u8DEF\u9762\u4E0E\u77ED\u6807\u8BB0\u6309\u955C\u5934\u8D70\u8FC7\u7684\u8DEF\u7A0B\u5411\u540E\u79FB\u52A8\u3002",
+            actions: [
+              "drive-road-illustration"
+            ]
+          },
+          {
+            id: "exhaust",
+            name: "\u5C3E\u6C14\u4EA7\u751F\u4E0E\u98D8\u6563",
+            start: 0,
+            end: 14e3,
+            time: "0\u201414\u79D2",
+            detail: "\u5C3E\u6C14\u4ECE\u8F66\u5C3E\u4EA7\u751F\u540E\u8131\u79BB\uFF0C\u968F\u540E\u5728\u5386\u53F2\u4F4D\u7F6E\u6269\u6563\u3002",
+            actions: [
+              "emission-drift"
+            ]
+          },
+          {
+            id: "balloons",
+            name: "\u4E03\u8272\u6C14\u7403\u4F9D\u6B21\u677E\u7EF3",
+            start: 0,
+            end: 14e3,
+            time: "0\u201414\u79D2",
+            detail: "\u6C14\u7403\u4E0E\u7EF3\u5C3E\u5148\u8DDF\u8F66\uFF0C\u9010\u53EA\u677E\u5F00\u540E\u6CBF\u5404\u81EA\u98CE\u5411\u98D8\u79BB\uFF0C\u4E03\u8272\u7403\u5F62\u548C\u53CD\u5149\u4FDD\u7559\u3002",
+            actions: [
+              "drive-balloon-release",
+              "drive-balloon-illustration"
+            ]
+          },
+          {
+            id: "car",
+            name: "\u9A7E\u9A76\u3001\u8F6E\u8F6C\u4E0E\u79BB\u573A",
+            start: 0,
+            end: 14e3,
+            time: "0\u201414\u79D2",
+            detail: "\u524D\u722A\u548C\u65B9\u5411\u76D8\u5171\u540C\u6446\u52A8\uFF0C\u8F66\u8F6E\u8F6C\u89D2\u5BF9\u5E94\u8DEF\u7A0B\uFF1B\u6C14\u7403\u6E05\u7A7A\u540E\u955C\u5934\u51CF\u901F\uFF0C\u6C7D\u8F66\u4FDD\u6301\u901F\u5EA6\u9A76\u51FA\u3002",
+            actions: [
+              "rolling-distance",
+              "camera-lag-departure",
+              "drive-car-illustration"
+            ]
+          }
+        ],
+        layers: [
+          "road",
+          "exhaust",
+          "balloons",
+          "car"
+        ]
+      },
+      reproduction: {
+        objects: "\u5C0F\u8475\u9A7E\u8F66\u3001\u8F66\u8F6E\u8F6C\u52A8\u3001\u6C14\u7403\u9010\u53EA\u8131\u79BB\uFF0C\u6C14\u7403\u6E05\u7A7A\u540E\u955C\u5934\u843D\u540E\uFF0C\u6C7D\u8F66\u539F\u901F\u79BB\u573A\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u4EAE\u84DD\u80CC\u666F#1340e7\uFF0C\u4E03\u8272\u6C14\u7403\u4E0E\u5C0F\u8475\u6C7D\u8F66\u3002",
+        phases: [
+          "\u955C\u5934\u8DDF\u8F66\uFF0C\u9053\u8DEF\u540E\u9000\uFF0C\u65B9\u5411\u76D8\u4E0E\u524D\u722A\u5171\u540C\u6446\u52A8\u3002",
+          "\u6C14\u7403\u6309\u539F\u9519\u5CF0\u91CA\u653E\uFF0C\u8131\u79BB\u65F6\u4FDD\u6301\u4F4D\u7F6E\u4E0E\u901F\u5EA6\u8FDE\u7EED\u3002",
+          "\u6C14\u7403\u6E05\u7A7A\u540E\u955C\u5934\u5E73\u6ED1\u51CF\u901F\uFF0C\u6C7D\u8F66\u9A76\u51FA\u753B\u9762\u3002"
+        ],
+        retain: "\u5C0F\u8475\u9A7E\u8F66\u3001\u8F66\u8F6E\u8F6C\u52A8\u3001\u6C14\u7403\u9010\u53EA\u8131\u79BB\uFF0C\u6C14\u7403\u6E05\u7A7A\u540E\u955C\u5934\u843D\u540E\uFF0C\u6C7D\u8F66\u539F\u901F\u79BB\u573A\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E14\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "road",
+            name: "\u9053\u8DEF\u540E\u9000",
+            start: 0,
+            end: 14e3,
+            time: "0\u201414\u79D2",
+            detail: "\u84DD\u8272\u8DEF\u9762\u4E0E\u77ED\u6807\u8BB0\u6309\u955C\u5934\u8D70\u8FC7\u7684\u8DEF\u7A0B\u5411\u540E\u79FB\u52A8\u3002",
+            actions: [
+              "drive-road-illustration"
+            ]
+          },
+          {
+            id: "exhaust",
+            name: "\u5C3E\u6C14\u4EA7\u751F\u4E0E\u98D8\u6563",
+            start: 0,
+            end: 14e3,
+            time: "0\u201414\u79D2",
+            detail: "\u5C3E\u6C14\u4ECE\u8F66\u5C3E\u4EA7\u751F\u540E\u8131\u79BB\uFF0C\u968F\u540E\u5728\u5386\u53F2\u4F4D\u7F6E\u6269\u6563\u3002",
+            actions: [
+              "emission-drift"
+            ]
+          },
+          {
+            id: "balloons",
+            name: "\u4E03\u8272\u6C14\u7403\u4F9D\u6B21\u677E\u7EF3",
+            start: 0,
+            end: 14e3,
+            time: "0\u201414\u79D2",
+            detail: "\u6C14\u7403\u4E0E\u7EF3\u5C3E\u5148\u8DDF\u8F66\uFF0C\u9010\u53EA\u677E\u5F00\u540E\u6CBF\u5404\u81EA\u98CE\u5411\u98D8\u79BB\uFF0C\u4E03\u8272\u7403\u5F62\u548C\u53CD\u5149\u4FDD\u7559\u3002",
+            actions: [
+              "drive-balloon-release",
+              "drive-balloon-illustration"
+            ]
+          },
+          {
+            id: "car",
+            name: "\u9A7E\u9A76\u3001\u8F6E\u8F6C\u4E0E\u79BB\u573A",
+            start: 0,
+            end: 14e3,
+            time: "0\u201414\u79D2",
+            detail: "\u524D\u722A\u548C\u65B9\u5411\u76D8\u5171\u540C\u6446\u52A8\uFF0C\u8F66\u8F6E\u8F6C\u89D2\u5BF9\u5E94\u8DEF\u7A0B\uFF1B\u6C14\u7403\u6E05\u7A7A\u540E\u955C\u5934\u51CF\u901F\uFF0C\u6C7D\u8F66\u4FDD\u6301\u901F\u5EA6\u9A76\u51FA\u3002",
+            actions: [
+              "rolling-distance",
+              "camera-lag-departure",
+              "drive-car-illustration"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: "factory-handle-transfer",
+      name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C\u5378\u6599",
+      kind: "action",
+      category: "response",
+      summary: "\u624B\u67C4\u6309\u539F\u52A0\u5DE5\u987A\u5E8F\u8F6C\u52A8\u3001\u62C6\u5378\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5E76\u5012\u51FA\u732B\u8138\u7C89\u997C\u3002",
+      purpose: "\u624B\u67C4\u6309\u539F\u52A0\u5DE5\u987A\u5E8F\u8F6C\u52A8\u3001\u62C6\u5378\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5E76\u5012\u51FA\u732B\u8138\u7C89\u997C\u3002",
+      objects: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C\u5378\u6599\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u624B\u67C4\u88C5\u5165\u673A\u5668\u3002",
+        "\u88C5\u5378\u3001\u8F6C\u52A8\u548C\u4F4D\u79FB\u8FDE\u7EED\u8854\u63A5\u3002",
+        "\u7C89\u997C\u91CA\u653E\u540E\u624B\u67C4\u56DE\u5230\u539F\u5904\u3002"
+      ],
+      aliases: [
+        "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C\u5378\u6599",
+        "\u5C0F\u732B\u52A0\u5DE5\u5382"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u624B\u67C4\u6309\u539F\u52A0\u5DE5\u987A\u5E8F\u8F6C\u52A8\u3001\u62C6\u5378\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5E76\u5012\u51FA\u732B\u8138\u7C89\u997C\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 8e3,
+      preview_ms: 4400,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-factory.js",
+        factory: "factory-handle-transfer",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/factory/coffee-bean.png"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u624B\u67C4\u6309\u539F\u52A0\u5DE5\u987A\u5E8F\u8F6C\u52A8\u3001\u62C6\u5378\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5E76\u5012\u51FA\u732B\u8138\u7C89\u997C\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76848\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C\u5378\u6599\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "factory",
+        mode: "handle",
+        start: 0,
+        width: 900,
+        height: 1200
+      },
+      reproduction: {
+        objects: "\u624B\u67C4\u6309\u539F\u52A0\u5DE5\u987A\u5E8F\u8F6C\u52A8\u3001\u62C6\u5378\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5E76\u5012\u51FA\u732B\u8138\u7C89\u997C\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u4EAE\u84DD\u5E95\uFF0C\u6241\u5E73\u673A\u5668\u4EE5\u6DF1\u84DD\u4FA7\u9762#344A80\u3001\u6DF1\u9634\u5F71#111B42\u548C\u6D45\u9762#CFDAF7\u6784\u6210\u3002",
+        phases: [
+          "\u539F\u624B\u67C4\u88C5\u5165\u673A\u5668\u3002",
+          "\u88C5\u5378\u3001\u8F6C\u52A8\u548C\u4F4D\u79FB\u8FDE\u7EED\u8854\u63A5\u3002",
+          "\u7C89\u997C\u91CA\u653E\u540E\u624B\u67C4\u56DE\u5230\u539F\u5904\u3002"
+        ],
+        retain: "\u624B\u67C4\u6309\u539F\u52A0\u5DE5\u987A\u5E8F\u8F6C\u52A8\u3001\u62C6\u5378\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5E76\u5012\u51FA\u732B\u8138\u7C89\u997C\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E8\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "factory-cat-illustration",
+      name: "\u52A0\u5DE5\u5382\u5B8C\u6574\u5C0F\u732B",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "\u5B8C\u6574\u5C0F\u8475\u548C\u5341\u56DB\u79CD\u539F\u914D\u65B9\u5171\u7528\u539F\u89D2\u8272\u7ED8\u5236\u3001\u8DB3\u8FF9\u548C\u52A0\u5DE5\u65F6\u5E8F\u3002",
+      purpose: "\u5B8C\u6574\u5C0F\u8475\u548C\u5341\u56DB\u79CD\u539F\u914D\u65B9\u5171\u7528\u539F\u89D2\u8272\u7ED8\u5236\u3001\u8DB3\u8FF9\u548C\u52A0\u5DE5\u65F6\u5E8F\u3002",
+      objects: "\u52A0\u5DE5\u5382\u5B8C\u6574\u5C0F\u732B\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u732B\u5B8C\u6574\u51FA\u73B0\u3002",
+        "\u6CBF\u539F\u732B\u6B65\u4E0E\u52A0\u5DE5\u76F8\u4F4D\u524D\u8FDB\u3002",
+        "\u4FDD\u7559\u539F\u914D\u65B9\u7684\u5E95\u8272\u4E0E\u82B1\u7EB9\u3002"
+      ],
+      aliases: [
+        "\u52A0\u5DE5\u5382\u5B8C\u6574\u5C0F\u732B",
+        "\u5C0F\u732B\u52A0\u5DE5\u5382"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u5B8C\u6574\u5C0F\u8475\u548C\u5341\u56DB\u79CD\u539F\u914D\u65B9\u5171\u7528\u539F\u89D2\u8272\u7ED8\u5236\u3001\u8DB3\u8FF9\u548C\u52A0\u5DE5\u65F6\u5E8F\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 8e3,
+      preview_ms: 4400,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-factory.js",
+        factory: "factory-cat-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/factory/coffee-bean.png"
+        ]
+      },
+      actions: [
+        "mouth-open-react"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u5B8C\u6574\u5C0F\u8475\u548C\u5341\u56DB\u79CD\u539F\u914D\u65B9\u5171\u7528\u539F\u89D2\u8272\u7ED8\u5236\u3001\u8DB3\u8FF9\u548C\u52A0\u5DE5\u65F6\u5E8F\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76848\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u52A0\u5DE5\u5382\u5B8C\u6574\u5C0F\u732B\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "factory",
+        mode: "cat",
+        start: 0,
+        width: 900,
+        height: 1200,
+        recipe: 0
+      },
+      variants: [
+        {
+          id: "0",
+          label: "\u5C0F\u8475",
+          summary: "\u5C0F\u8475\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 0
+          }
+        },
+        {
+          id: "1",
+          label: "\u94F6\u6E10\u5C42\uFF08\u6761\u7EB9\u7248\uFF09",
+          summary: "\u94F6\u6E10\u5C42\uFF08\u6761\u7EB9\u7248\uFF09\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 1
+          }
+        },
+        {
+          id: "2",
+          label: "\u94F6\u6E10\u5C42\uFF08\u65E0\u864E\u7EB9\uFF09",
+          summary: "\u94F6\u6E10\u5C42\uFF08\u65E0\u864E\u7EB9\uFF09\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 2
+          }
+        },
+        {
+          id: "3",
+          label: "\u91D1\u6E10\u5C42",
+          summary: "\u91D1\u6E10\u5C42\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 3
+          }
+        },
+        {
+          id: "4",
+          label: "\u91D1\u6E10\u864E\u7EB9",
+          summary: "\u91D1\u6E10\u864E\u7EB9\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 4
+          }
+        },
+        {
+          id: "5",
+          label: "\u9ED1\u732B",
+          summary: "\u9ED1\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 5
+          }
+        },
+        {
+          id: "6",
+          label: "\u6A58\u732B",
+          summary: "\u6A58\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 6
+          }
+        },
+        {
+          id: "7",
+          label: "\u6A58\u767D",
+          summary: "\u6A58\u767D\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 7
+          }
+        },
+        {
+          id: "8",
+          label: "\u84DD\u767D",
+          summary: "\u84DD\u767D\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 8
+          }
+        },
+        {
+          id: "9",
+          label: "\u72F8\u82B1\u732B",
+          summary: "\u72F8\u82B1\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 9
+          }
+        },
+        {
+          id: "10",
+          label: "\u66B9\u7F57\u732B",
+          summary: "\u66B9\u7F57\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 10
+          }
+        },
+        {
+          id: "11",
+          label: "\u4E09\u82B1",
+          summary: "\u4E09\u82B1\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 11
+          }
+        },
+        {
+          id: "12",
+          label: "\u7EAF\u7070",
+          summary: "\u7EAF\u7070\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 12
+          }
+        },
+        {
+          id: "13",
+          label: "\u8C79\u732B",
+          summary: "\u8C79\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 13
+          }
+        },
+        {
+          id: "14",
+          label: "\u7EAF\u767D",
+          summary: "\u7EAF\u767D\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "cat",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 14
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u5B8C\u6574\u5C0F\u8475\u548C\u5341\u56DB\u79CD\u539F\u914D\u65B9\u5171\u7528\u539F\u89D2\u8272\u7ED8\u5236\u3001\u8DB3\u8FF9\u548C\u52A0\u5DE5\u65F6\u5E8F\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u4EAE\u84DD\u5E95\uFF0C\u6241\u5E73\u673A\u5668\u4EE5\u6DF1\u84DD\u4FA7\u9762#344A80\u3001\u6DF1\u9634\u5F71#111B42\u548C\u6D45\u9762#CFDAF7\u6784\u6210\u3002",
+        phases: [
+          "\u539F\u732B\u5B8C\u6574\u51FA\u73B0\u3002",
+          "\u6CBF\u539F\u732B\u6B65\u4E0E\u52A0\u5DE5\u76F8\u4F4D\u524D\u8FDB\u3002",
+          "\u4FDD\u7559\u539F\u914D\u65B9\u7684\u5E95\u8272\u4E0E\u82B1\u7EB9\u3002"
+        ],
+        retain: "\u5B8C\u6574\u5C0F\u8475\u548C\u5341\u56DB\u79CD\u539F\u914D\u65B9\u5171\u7528\u539F\u89D2\u8272\u7ED8\u5236\u3001\u8DB3\u8FF9\u548C\u52A0\u5DE5\u65F6\u5E8F\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E8\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "factory-machine-illustration",
+      name: "\u5C0F\u732B\u52A0\u5DE5\u673A\u5668",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "\u539F\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u4E00\u8D77\u4FDD\u7559\u3002",
+      purpose: "\u539F\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u4E00\u8D77\u4FDD\u7559\u3002",
+      objects: "\u5C0F\u732B\u52A0\u5DE5\u673A\u5668\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u673A\u5668\u4EE5\u539F\u9020\u578B\u51FA\u73B0\u3002",
+        "\u6599\u6597\u3001\u538B\u529B\u8868\u548C\u4F20\u9001\u5E26\u6309\u539F\u52A0\u5DE5\u65F6\u5E8F\u8054\u52A8\u3002",
+        "\u4FDD\u6301\u539F\u673A\u5668\u5B8C\u6574\u8F6E\u5ED3\u3002"
+      ],
+      aliases: [
+        "\u5C0F\u732B\u52A0\u5DE5\u673A\u5668",
+        "\u5C0F\u732B\u52A0\u5DE5\u5382"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u4E00\u8D77\u4FDD\u7559\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 8e3,
+      preview_ms: 4400,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-factory.js",
+        factory: "factory-machine-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/factory/coffee-bean.png"
+        ]
+      },
+      actions: [
+        "particle-hopper"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u4E00\u8D77\u4FDD\u7559\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76848\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u5C0F\u732B\u52A0\u5DE5\u673A\u5668\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "factory",
+        mode: "machine",
+        start: 0,
+        width: 900,
+        height: 1200
+      },
+      reproduction: {
+        objects: "\u539F\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u4E00\u8D77\u4FDD\u7559\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u4EAE\u84DD\u5E95\uFF0C\u6241\u5E73\u673A\u5668\u4EE5\u6DF1\u84DD\u4FA7\u9762#344A80\u3001\u6DF1\u9634\u5F71#111B42\u548C\u6D45\u9762#CFDAF7\u6784\u6210\u3002",
+        phases: [
+          "\u673A\u5668\u4EE5\u539F\u9020\u578B\u51FA\u73B0\u3002",
+          "\u6599\u6597\u3001\u538B\u529B\u8868\u548C\u4F20\u9001\u5E26\u6309\u539F\u52A0\u5DE5\u65F6\u5E8F\u8054\u52A8\u3002",
+          "\u4FDD\u6301\u539F\u673A\u5668\u5B8C\u6574\u8F6E\u5ED3\u3002"
+        ],
+        retain: "\u539F\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u4E00\u8D77\u4FDD\u7559\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E8\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "factory-handle-illustration",
+      name: "\u52A0\u5DE5\u5382\u624B\u67C4",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "\u4ECE\u539F\u673A\u5668\u5206\u79BB\u624B\u67C4\u3001\u6EE4\u7BEE\u548C\u63E1\u67C4\uFF0C\u4FDD\u7559\u539F\u88C5\u5378\u548C\u7FFB\u8F6C\u3002",
+      purpose: "\u4ECE\u539F\u673A\u5668\u5206\u79BB\u624B\u67C4\u3001\u6EE4\u7BEE\u548C\u63E1\u67C4\uFF0C\u4FDD\u7559\u539F\u88C5\u5378\u548C\u7FFB\u8F6C\u3002",
+      objects: "\u52A0\u5DE5\u5382\u624B\u67C4\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u624B\u67C4\u51FA\u73B0\u3002",
+        "\u4FDD\u7559\u63E1\u67C4\u548C\u6EE4\u7BEE\u524D\u540E\u906E\u6321\u3002",
+        "\u6309\u539F\u987A\u5E8F\u56DE\u5230\u8D77\u70B9\u3002"
+      ],
+      aliases: [
+        "\u52A0\u5DE5\u5382\u624B\u67C4",
+        "\u5C0F\u732B\u52A0\u5DE5\u5382"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u4ECE\u539F\u673A\u5668\u5206\u79BB\u624B\u67C4\u3001\u6EE4\u7BEE\u548C\u63E1\u67C4\uFF0C\u4FDD\u7559\u539F\u88C5\u5378\u548C\u7FFB\u8F6C\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 8e3,
+      preview_ms: 4400,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-factory.js",
+        factory: "factory-handle-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/factory/coffee-bean.png"
+        ]
+      },
+      actions: [
+        "factory-handle-transfer"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u4ECE\u539F\u673A\u5668\u5206\u79BB\u624B\u67C4\u3001\u6EE4\u7BEE\u548C\u63E1\u67C4\uFF0C\u4FDD\u7559\u539F\u88C5\u5378\u548C\u7FFB\u8F6C\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76848\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u52A0\u5DE5\u5382\u624B\u67C4\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "factory",
+        mode: "handle",
+        start: 0,
+        width: 900,
+        height: 1200
+      },
+      reproduction: {
+        objects: "\u4ECE\u539F\u673A\u5668\u5206\u79BB\u624B\u67C4\u3001\u6EE4\u7BEE\u548C\u63E1\u67C4\uFF0C\u4FDD\u7559\u539F\u88C5\u5378\u548C\u7FFB\u8F6C\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u4EAE\u84DD\u5E95\uFF0C\u6241\u5E73\u673A\u5668\u4EE5\u6DF1\u84DD\u4FA7\u9762#344A80\u3001\u6DF1\u9634\u5F71#111B42\u548C\u6D45\u9762#CFDAF7\u6784\u6210\u3002",
+        phases: [
+          "\u539F\u624B\u67C4\u51FA\u73B0\u3002",
+          "\u4FDD\u7559\u63E1\u67C4\u548C\u6EE4\u7BEE\u524D\u540E\u906E\u6321\u3002",
+          "\u6309\u539F\u987A\u5E8F\u56DE\u5230\u8D77\u70B9\u3002"
+        ],
+        retain: "\u4ECE\u539F\u673A\u5668\u5206\u79BB\u624B\u67C4\u3001\u6EE4\u7BEE\u548C\u63E1\u67C4\uFF0C\u4FDD\u7559\u539F\u88C5\u5378\u548C\u7FFB\u8F6C\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E8\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "factory-cat-puck-illustration",
+      name: "\u6536\u85CF\u732B\u8138",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "\u4F7F\u7528\u539F\u732B\u5934\u8F6E\u5ED3\u5236\u4F5C\u732B\u8138\u7C89\u997C\uFF0C\u4FDD\u7559\u8033\u5C16\u3001\u8138\u988A\u3001\u539A\u5EA6\u548C\u914D\u65B9\u3002",
+      purpose: "\u4F7F\u7528\u539F\u732B\u5934\u8F6E\u5ED3\u5236\u4F5C\u732B\u8138\u7C89\u997C\uFF0C\u4FDD\u7559\u8033\u5C16\u3001\u8138\u988A\u3001\u539A\u5EA6\u548C\u914D\u65B9\u3002",
+      objects: "\u6536\u85CF\u732B\u8138\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u732B\u8138\u5B8C\u6574\u51FA\u73B0\u3002",
+        "\u4FDD\u6301\u539F\u914D\u65B9\u8F6E\u5ED3\u548C\u539A\u5EA6\u3002",
+        "\u4EE5\u900F\u660E\u5E95\u5355\u72EC\u505C\u7559\u3002"
+      ],
+      aliases: [
+        "\u6536\u85CF\u732B\u8138",
+        "\u5C0F\u732B\u52A0\u5DE5\u5382"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u4F7F\u7528\u539F\u732B\u5934\u8F6E\u5ED3\u5236\u4F5C\u732B\u8138\u7C89\u997C\uFF0C\u4FDD\u7559\u8033\u5C16\u3001\u8138\u988A\u3001\u539A\u5EA6\u548C\u914D\u65B9\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-factory.js",
+        factory: "factory-cat-puck-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/factory/coffee-bean.png"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u4F7F\u7528\u539F\u732B\u5934\u8F6E\u5ED3\u5236\u4F5C\u732B\u8138\u7C89\u997C\uFF0C\u4FDD\u7559\u8033\u5C16\u3001\u8138\u988A\u3001\u539A\u5EA6\u548C\u914D\u65B9\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76843\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u6536\u85CF\u732B\u8138\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "factory",
+        mode: "puck",
+        start: 0,
+        width: 900,
+        height: 1200,
+        recipe: 0
+      },
+      variants: [
+        {
+          id: "0",
+          label: "\u5C0F\u8475",
+          summary: "\u5C0F\u8475\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 0
+          }
+        },
+        {
+          id: "1",
+          label: "\u94F6\u6E10\u5C42\uFF08\u6761\u7EB9\u7248\uFF09",
+          summary: "\u94F6\u6E10\u5C42\uFF08\u6761\u7EB9\u7248\uFF09\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 1
+          }
+        },
+        {
+          id: "2",
+          label: "\u94F6\u6E10\u5C42\uFF08\u65E0\u864E\u7EB9\uFF09",
+          summary: "\u94F6\u6E10\u5C42\uFF08\u65E0\u864E\u7EB9\uFF09\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 2
+          }
+        },
+        {
+          id: "3",
+          label: "\u91D1\u6E10\u5C42",
+          summary: "\u91D1\u6E10\u5C42\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 3
+          }
+        },
+        {
+          id: "4",
+          label: "\u91D1\u6E10\u864E\u7EB9",
+          summary: "\u91D1\u6E10\u864E\u7EB9\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 4
+          }
+        },
+        {
+          id: "5",
+          label: "\u9ED1\u732B",
+          summary: "\u9ED1\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 5
+          }
+        },
+        {
+          id: "6",
+          label: "\u6A58\u732B",
+          summary: "\u6A58\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 6
+          }
+        },
+        {
+          id: "7",
+          label: "\u6A58\u767D",
+          summary: "\u6A58\u767D\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 7
+          }
+        },
+        {
+          id: "8",
+          label: "\u84DD\u767D",
+          summary: "\u84DD\u767D\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 8
+          }
+        },
+        {
+          id: "9",
+          label: "\u72F8\u82B1\u732B",
+          summary: "\u72F8\u82B1\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 9
+          }
+        },
+        {
+          id: "10",
+          label: "\u66B9\u7F57\u732B",
+          summary: "\u66B9\u7F57\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 10
+          }
+        },
+        {
+          id: "11",
+          label: "\u4E09\u82B1",
+          summary: "\u4E09\u82B1\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 11
+          }
+        },
+        {
+          id: "12",
+          label: "\u7EAF\u7070",
+          summary: "\u7EAF\u7070\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 12
+          }
+        },
+        {
+          id: "13",
+          label: "\u8C79\u732B",
+          summary: "\u8C79\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 13
+          }
+        },
+        {
+          id: "14",
+          label: "\u7EAF\u767D",
+          summary: "\u7EAF\u767D\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "factory",
+            mode: "puck",
+            start: 0,
+            width: 900,
+            height: 1200,
+            recipe: 14
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u4F7F\u7528\u539F\u732B\u5934\u8F6E\u5ED3\u5236\u4F5C\u732B\u8138\u7C89\u997C\uFF0C\u4FDD\u7559\u8033\u5C16\u3001\u8138\u988A\u3001\u539A\u5EA6\u548C\u914D\u65B9\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u4EAE\u84DD\u5E95\uFF0C\u6241\u5E73\u673A\u5668\u4EE5\u6DF1\u84DD\u4FA7\u9762#344A80\u3001\u6DF1\u9634\u5F71#111B42\u548C\u6D45\u9762#CFDAF7\u6784\u6210\u3002",
+        phases: [
+          "\u539F\u732B\u8138\u5B8C\u6574\u51FA\u73B0\u3002",
+          "\u4FDD\u6301\u539F\u914D\u65B9\u8F6E\u5ED3\u548C\u539A\u5EA6\u3002",
+          "\u4EE5\u900F\u660E\u5E95\u5355\u72EC\u505C\u7559\u3002"
+        ],
+        retain: "\u4F7F\u7528\u539F\u732B\u5934\u8F6E\u5ED3\u5236\u4F5C\u732B\u8138\u7C89\u997C\uFF0C\u4FDD\u7559\u8033\u5C16\u3001\u8138\u988A\u3001\u539A\u5EA6\u548C\u914D\u65B9\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E3\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "cat-factory-journey",
+      name: "\u5C0F\u732B\u52A0\u5DE5\u5382\u5B8C\u6574\u5FAA\u73AF",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u8C46\u7C92\u4E0B\u6599\u3001\u624B\u67C4\u88C5\u5378\u3001\u6DB2\u6D41\u67D3\u8272\u3001\u55B7\u96FE\u8865\u7EB9\u4E0E\u732B\u8138\u6536\u96C6\u5171\u7528\u4E00\u8F6E\u539F\u52A0\u5DE5\u65F6\u95F4\u3002",
+      purpose: "\u8C46\u7C92\u4E0B\u6599\u3001\u624B\u67C4\u88C5\u5378\u3001\u6DB2\u6D41\u67D3\u8272\u3001\u55B7\u96FE\u8865\u7EB9\u4E0E\u732B\u8138\u6536\u96C6\u5171\u7528\u4E00\u8F6E\u539F\u52A0\u5DE5\u65F6\u95F4\u3002",
+      objects: "\u5C0F\u732B\u52A0\u5DE5\u5382\u5B8C\u6574\u5FAA\u73AF\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u8C46\u7C92\u5165\u6599\u6597\uFF0C\u624B\u67C4\u88C5\u5165\u673A\u5668\uFF0C\u5C0F\u732B\u8E0F\u4E0A\u4F20\u9001\u5E26\u3002",
+        "\u6DB2\u6D41\u5148\u5230\u3001\u5E95\u8272\u8FDB\u5165\u3001\u55B7\u96FE\u8865\u7EB9\uFF0C\u538B\u529B\u8868\u968F\u52A0\u5DE5\u54CD\u5E94\u3002",
+        "\u624B\u67C4\u62C6\u4E0B\u7FFB\u8F6C\u5378\u6599\uFF0C\u732B\u8138\u4E0B\u843D\u6392\u5217\uFF0C\u51C6\u5907\u4E0B\u4E00\u8F6E\u3002"
+      ],
+      aliases: [
+        "\u5C0F\u732B\u52A0\u5DE5\u5382\u5B8C\u6574\u5FAA\u73AF",
+        "\u5C0F\u732B\u52A0\u5DE5\u5382"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u8C46\u7C92\u4E0B\u6599\u3001\u624B\u67C4\u88C5\u5378\u3001\u6DB2\u6D41\u67D3\u8272\u3001\u55B7\u96FE\u8865\u7EB9\u4E0E\u732B\u8138\u6536\u96C6\u5171\u7528\u4E00\u8F6E\u539F\u52A0\u5DE5\u65F6\u95F4\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 8e3,
+      preview_ms: 4400,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-factory.js",
+        factory: "cat-factory-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/factory/coffee-bean.png"
+        ]
+      },
+      actions: [
+        "particle-hopper",
+        "mouth-open-react",
+        "factory-handle-transfer",
+        "factory-cat-illustration",
+        "factory-machine-illustration",
+        "factory-handle-illustration",
+        "factory-cat-puck-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u8C46\u7C92\u4E0B\u6599\u3001\u624B\u67C4\u88C5\u5378\u3001\u6DB2\u6D41\u67D3\u8272\u3001\u55B7\u96FE\u8865\u7EB9\u4E0E\u732B\u8138\u6536\u96C6\u5171\u7528\u4E00\u8F6E\u539F\u52A0\u5DE5\u65F6\u95F4\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76848\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u5C0F\u732B\u52A0\u5DE5\u5382\u5B8C\u6574\u5FAA\u73AF\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "factory",
+        mode: "full",
+        start: 0,
+        width: 900,
+        height: 1200,
+        breakdown: [
+          {
+            id: "machine",
+            name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+            actions: [
+              "particle-hopper",
+              "factory-machine-illustration"
+            ]
+          },
+          {
+            id: "flow",
+            name: "\u6DB2\u6D41\u5148\u5230",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+            actions: []
+          },
+          {
+            id: "cats",
+            name: "\u914D\u65B9\u5C0F\u732B",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+            actions: [
+              "mouth-open-react",
+              "factory-cat-illustration"
+            ]
+          },
+          {
+            id: "pucks",
+            name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+            actions: [
+              "factory-cat-puck-illustration"
+            ]
+          },
+          {
+            id: "grounds",
+            name: "\u5496\u5561\u7C89\u843D\u4E0B",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+            actions: [
+              "particle-hopper"
+            ]
+          },
+          {
+            id: "handle",
+            name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+            actions: [
+              "factory-handle-transfer",
+              "factory-handle-illustration"
+            ]
+          },
+          {
+            id: "mist",
+            name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+            actions: []
+          }
+        ],
+        recipe: 0,
+        layers: [
+          "machine",
+          "flow",
+          "cats",
+          "pucks",
+          "grounds",
+          "handle",
+          "mist"
+        ]
+      },
+      variants: [
+        {
+          id: "0",
+          label: "\u5C0F\u8475",
+          summary: "\u5C0F\u8475\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 0,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "1",
+          label: "\u94F6\u6E10\u5C42\uFF08\u6761\u7EB9\u7248\uFF09",
+          summary: "\u94F6\u6E10\u5C42\uFF08\u6761\u7EB9\u7248\uFF09\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 1,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "2",
+          label: "\u94F6\u6E10\u5C42\uFF08\u65E0\u864E\u7EB9\uFF09",
+          summary: "\u94F6\u6E10\u5C42\uFF08\u65E0\u864E\u7EB9\uFF09\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 2,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "3",
+          label: "\u91D1\u6E10\u5C42",
+          summary: "\u91D1\u6E10\u5C42\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 3,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "4",
+          label: "\u91D1\u6E10\u864E\u7EB9",
+          summary: "\u91D1\u6E10\u864E\u7EB9\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 4,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "5",
+          label: "\u9ED1\u732B",
+          summary: "\u9ED1\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 5,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "6",
+          label: "\u6A58\u732B",
+          summary: "\u6A58\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 6,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "7",
+          label: "\u6A58\u767D",
+          summary: "\u6A58\u767D\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 7,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "8",
+          label: "\u84DD\u767D",
+          summary: "\u84DD\u767D\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 8,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "9",
+          label: "\u72F8\u82B1\u732B",
+          summary: "\u72F8\u82B1\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 9,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "10",
+          label: "\u66B9\u7F57\u732B",
+          summary: "\u66B9\u7F57\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 10,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "11",
+          label: "\u4E09\u82B1",
+          summary: "\u4E09\u82B1\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 11,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "12",
+          label: "\u7EAF\u7070",
+          summary: "\u7EAF\u7070\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 12,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "13",
+          label: "\u8C79\u732B",
+          summary: "\u8C79\u732B\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 13,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        },
+        {
+          id: "14",
+          label: "\u7EAF\u767D",
+          summary: "\u7EAF\u767D\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 8e3,
+          preview_ms: 4400,
+          scene: {
+            family: "factory",
+            mode: "full",
+            start: 0,
+            width: 900,
+            height: 1200,
+            breakdown: [
+              {
+                id: "machine",
+                name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+                actions: [
+                  "particle-hopper",
+                  "factory-machine-illustration"
+                ]
+              },
+              {
+                id: "flow",
+                name: "\u6DB2\u6D41\u5148\u5230",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+                actions: []
+              },
+              {
+                id: "cats",
+                name: "\u914D\u65B9\u5C0F\u732B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+                actions: [
+                  "mouth-open-react",
+                  "factory-cat-illustration"
+                ]
+              },
+              {
+                id: "pucks",
+                name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+                actions: [
+                  "factory-cat-puck-illustration"
+                ]
+              },
+              {
+                id: "grounds",
+                name: "\u5496\u5561\u7C89\u843D\u4E0B",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+                actions: [
+                  "particle-hopper"
+                ]
+              },
+              {
+                id: "handle",
+                name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+                actions: [
+                  "factory-handle-transfer",
+                  "factory-handle-illustration"
+                ]
+              },
+              {
+                id: "mist",
+                name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+                start: 0,
+                end: 8e3,
+                time: "0\u20148\u79D2",
+                detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+                actions: []
+              }
+            ],
+            recipe: 14,
+            layers: [
+              "machine",
+              "flow",
+              "cats",
+              "pucks",
+              "grounds",
+              "handle",
+              "mist"
+            ]
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u8C46\u7C92\u4E0B\u6599\u3001\u624B\u67C4\u88C5\u5378\u3001\u6DB2\u6D41\u67D3\u8272\u3001\u55B7\u96FE\u8865\u7EB9\u4E0E\u732B\u8138\u6536\u96C6\u5171\u7528\u4E00\u8F6E\u539F\u52A0\u5DE5\u65F6\u95F4\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u4EAE\u84DD\u5E95\uFF0C\u6241\u5E73\u673A\u5668\u4EE5\u6DF1\u84DD\u4FA7\u9762#344A80\u3001\u6DF1\u9634\u5F71#111B42\u548C\u6D45\u9762#CFDAF7\u6784\u6210\u3002",
+        phases: [
+          "\u8C46\u7C92\u5165\u6599\u6597\uFF0C\u624B\u67C4\u88C5\u5165\u673A\u5668\uFF0C\u5C0F\u732B\u8E0F\u4E0A\u4F20\u9001\u5E26\u3002",
+          "\u6DB2\u6D41\u5148\u5230\u3001\u5E95\u8272\u8FDB\u5165\u3001\u55B7\u96FE\u8865\u7EB9\uFF0C\u538B\u529B\u8868\u968F\u52A0\u5DE5\u54CD\u5E94\u3002",
+          "\u624B\u67C4\u62C6\u4E0B\u7FFB\u8F6C\u5378\u6599\uFF0C\u732B\u8138\u4E0B\u843D\u6392\u5217\uFF0C\u51C6\u5907\u4E0B\u4E00\u8F6E\u3002"
+        ],
+        retain: "\u8C46\u7C92\u4E0B\u6599\u3001\u624B\u67C4\u88C5\u5378\u3001\u6DB2\u6D41\u67D3\u8272\u3001\u55B7\u96FE\u8865\u7EB9\u4E0E\u732B\u8138\u6536\u96C6\u5171\u7528\u4E00\u8F6E\u539F\u52A0\u5DE5\u65F6\u95F4\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E8\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "machine",
+            name: "\u673A\u5668\u4E0E\u4F20\u9001\u5E26",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u5496\u5561\u673A\u3001\u6599\u6597\u3001\u538B\u529B\u8868\u3001\u4F20\u9001\u5E26\u548C\u84B8\u6C7D\u7BA1\u6309\u4E00\u8F6E\u52A0\u5DE5\u65F6\u95F4\u8054\u52A8\u3002",
+            actions: [
+              "particle-hopper",
+              "factory-machine-illustration"
+            ]
+          },
+          {
+            id: "flow",
+            name: "\u6DB2\u6D41\u5148\u5230",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u51FA\u53E3\u6DB2\u6D41\u5728\u5C0F\u732B\u5E95\u8272\u6539\u53D8\u524D\u843D\u4E0B\uFF0C\u968F\u540E\u6536\u4F4F\u3002",
+            actions: []
+          },
+          {
+            id: "cats",
+            name: "\u914D\u65B9\u5C0F\u732B",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u5C0F\u732B\u6CBF\u4F20\u9001\u5E26\u524D\u8FDB\uFF0C\u5E95\u8272\u4E0E\u82B1\u7EB9\u968F\u52A0\u5DE5\u8FDB\u5165\uFF0C\u4FDD\u7559\u811A\u6B65\u4E0E\u53E3\u578B\u3002",
+            actions: [
+              "mouth-open-react",
+              "factory-cat-illustration"
+            ]
+          },
+          {
+            id: "pucks",
+            name: "\u6536\u85CF\u4E0E\u732B\u8138\u7C89\u997C",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u732B\u8138\u7C89\u997C\u6309\u5378\u6599\u65F6\u523B\u843D\u4E0B\uFF0C\u5E76\u8FDB\u5165\u4E0B\u65B9\u7684\u6536\u85CF\u6392\u5217\u3002",
+            actions: [
+              "factory-cat-puck-illustration"
+            ]
+          },
+          {
+            id: "grounds",
+            name: "\u5496\u5561\u7C89\u843D\u4E0B",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u5496\u5561\u7C89\u7C92\u6309\u51FA\u53E3\u4E0E\u6EE4\u7BEE\u4F4D\u7F6E\u843D\u4E0B\u3002",
+            actions: [
+              "particle-hopper"
+            ]
+          },
+          {
+            id: "handle",
+            name: "\u624B\u67C4\u88C5\u5378\u4E0E\u7FFB\u8F6C",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u624B\u67C4\u88C5\u5165\u3001\u62C6\u4E0B\u3001\u5E73\u79FB\u3001\u7FFB\u8F6C\u5378\u6599\u540E\u56DE\u5230\u88C5\u5165\u4F4D\u7F6E\u3002",
+            actions: [
+              "factory-handle-transfer",
+              "factory-handle-illustration"
+            ]
+          },
+          {
+            id: "mist",
+            name: "\u55B7\u96FE\u8865\u82B1\u7EB9",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
+            actions: []
+          }
+        ]
+      }
+    },
+    {
+      id: "snow-arrival-window",
+      name: "\u96EA\u82B1\u62B5\u8FBE\u5E76\u878D\u5165\u7A97\u706F",
+      kind: "action",
+      category: "response",
+      summary: "\u539F\u96EA\u6676\u548C\u5341\u5B57\u5149\u70B9\u4F9D\u7167\u539F\u66F2\u8282\u62CD\u4E8B\u4EF6\u843D\u5411\u9009\u5B9A\u697C\u7A97\uFF0C\u5B9E\u9645\u62B5\u8FBE\u540E\u878D\u5165\u7A97\u706F\uFF1B\u65E0\u9700\u97F3\u9891\u3002",
+      purpose: "\u539F\u96EA\u6676\u548C\u5341\u5B57\u5149\u70B9\u4F9D\u7167\u539F\u66F2\u8282\u62CD\u4E8B\u4EF6\u843D\u5411\u9009\u5B9A\u697C\u7A97\uFF0C\u5B9E\u9645\u62B5\u8FBE\u540E\u878D\u5165\u7A97\u706F\uFF1B\u65E0\u9700\u97F3\u9891\u3002",
+      objects: "\u96EA\u82B1\u62B5\u8FBE\u5E76\u878D\u5165\u7A97\u706F\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u96EA\u82B1\u9009\u5B9A\u771F\u5B9E\u697C\u7A97\u5E76\u4E0B\u843D\u3002",
+        "\u6CBF\u539F\u4E0B\u843D\u8DEF\u7EBF\u63A5\u8FD1\u7A97\u706F\u3002",
+        "\u5B9E\u9645\u62B5\u8FBE\u540E\u63A5\u7EED\u7A97\u706F\u4EAE\u5EA6\u4E0E\u539F\u5BFF\u547D\u3002"
+      ],
+      aliases: [
+        "\u96EA\u82B1\u62B5\u8FBE\u5E76\u878D\u5165\u7A97\u706F",
+        "\u6DF1\u5733\u6E7E\u96EA\u591C"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u96EA\u6676\u548C\u5341\u5B57\u5149\u70B9\u4F9D\u7167\u539F\u66F2\u8282\u62CD\u4E8B\u4EF6\u843D\u5411\u9009\u5B9A\u697C\u7A97\uFF0C\u5B9E\u9645\u62B5\u8FBE\u540E\u878D\u5165\u7A97\u706F\uFF1B\u65E0\u9700\u97F3\u9891\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 25e3,
+      preview_ms: 13750,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-snow.js",
+        factory: "snow-arrival-window",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/snow/THIRD-PARTY.json"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u96EA\u6676\u548C\u5341\u5B57\u5149\u70B9\u4F9D\u7167\u539F\u66F2\u8282\u62CD\u4E8B\u4EF6\u843D\u5411\u9009\u5B9A\u697C\u7A97\uFF0C\u5B9E\u9645\u62B5\u8FBE\u540E\u878D\u5165\u7A97\u706F\uFF1B\u65E0\u9700\u97F3\u9891\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768425\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u96EA\u82B1\u62B5\u8FBE\u5E76\u878D\u5165\u7A97\u706F\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "snow",
+        mode: "arrival",
+        start: 0,
+        width: 900,
+        height: 1080
+      },
+      reproduction: {
+        objects: "\u539F\u96EA\u6676\u548C\u5341\u5B57\u5149\u70B9\u4F9D\u7167\u539F\u66F2\u8282\u62CD\u4E8B\u4EF6\u843D\u5411\u9009\u5B9A\u697C\u7A97\uFF0C\u5B9E\u9645\u62B5\u8FBE\u540E\u878D\u5165\u7A97\u706F\uFF1B\u65E0\u9700\u97F3\u9891\u3002",
+        presentation: "\u539F\u4F5C\u84DD\u8272\u591C\u7A7A\u3001\u4E91\u96FE\u3001\u6DF1\u5733\u6E7E\u697C\u7FA4\u548C\u6574\u4F53\u7EB8\u7EB9\uFF0C\u8FDC\u96EA\u4F4D\u4E8E\u697C\u540E\uFF0C\u8FD1\u96EA\u4E0E\u4E3B\u65CB\u5F8B\u96EA\u82B1\u878D\u5165\u6696\u8272\u7A97\u706F\u3002",
+        phases: [
+          "\u96EA\u82B1\u9009\u5B9A\u771F\u5B9E\u697C\u7A97\u5E76\u4E0B\u843D\u3002",
+          "\u6CBF\u539F\u4E0B\u843D\u8DEF\u7EBF\u63A5\u8FD1\u7A97\u706F\u3002",
+          "\u5B9E\u9645\u62B5\u8FBE\u540E\u63A5\u7EED\u7A97\u706F\u4EAE\u5EA6\u4E0E\u539F\u5BFF\u547D\u3002"
+        ],
+        retain: "\u539F\u96EA\u6676\u548C\u5341\u5B57\u5149\u70B9\u4F9D\u7167\u539F\u66F2\u8282\u62CD\u4E8B\u4EF6\u843D\u5411\u9009\u5B9A\u697C\u7A97\uFF0C\u5B9E\u9645\u62B5\u8FBE\u540E\u878D\u5165\u7A97\u706F\uFF1B\u65E0\u9700\u97F3\u9891\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E25\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "shenzhen-skyline-illustration",
+      name: "\u6DF1\u5733\u6E7E\u539F\u697C\u5F71",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u4FDD\u7559\u539F\u4F5C\u84DD\u8272\u591C\u7A7A\u3001\u4E91\u96FE\u3001\u6DF1\u5733\u6E7E\u697C\u7FA4\u4E0E\u7A97\u706F\uFF0C\u5E76\u8986\u76D6\u539F\u7EB8\u7EB9\u8D28\u611F\u3002",
+      purpose: "\u4FDD\u7559\u539F\u4F5C\u84DD\u8272\u591C\u7A7A\u3001\u4E91\u96FE\u3001\u6DF1\u5733\u6E7E\u697C\u7FA4\u4E0E\u7A97\u706F\uFF0C\u5E76\u8986\u76D6\u539F\u7EB8\u7EB9\u8D28\u611F\u3002",
+      objects: "\u539F\u4F5C\u84DD\u8272\u591C\u7A7A\u3001\u4E91\u96FE\u3001\u6DF1\u5733\u6E7E\u697C\u7FA4\u3001\u7A97\u706F\u4E0E\u7EB8\u7EB9",
+      phases: [
+        "\u84DD\u8272\u6E10\u53D8\u591C\u7A7A\u4E0E\u4E91\u96FE\u94FA\u5728\u697C\u7FA4\u540E\u65B9\u3002",
+        "\u697C\u7FA4\u4FDD\u6301\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u548C\u906E\u6321\uFF0C\u7A97\u706F\u6CBF\u539F\u4E8B\u4EF6\u54CD\u5E94\u3002",
+        "\u7EB8\u7EB9\u8986\u76D6\u6574\u5E45\u591C\u666F\uFF0C\u4FDD\u7559\u539F\u4F5C\u6574\u4F53\u8D28\u611F\u3002"
+      ],
+      aliases: [
+        "\u6DF1\u5733\u6E7E\u539F\u697C\u5F71",
+        "\u6DF1\u5733\u6E7E\u96EA\u591C"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u5929\u7A7A\u914D\u8272\u3001\u4E91\u96FE\u3001\u5EFA\u7B51\u8F6E\u5ED3\u4E0E\u6BD4\u4F8B\u3001\u7A97\u683C\u906E\u6321\u3001\u7EB8\u7EB9\u53CA\u7A97\u706F\u65F6\u95F4\u5173\u7CFB\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 25e3,
+      preview_ms: 13750,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-snow.js",
+        factory: "shenzhen-skyline-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/snow/THIRD-PARTY.json"
+        ]
+      },
+      actions: [
+        "snow-arrival-window"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u4FDD\u7559\u539F\u4F5C\u84DD\u8272\u591C\u7A7A\u3001\u4E91\u96FE\u3001\u6DF1\u5733\u6E7E\u697C\u7FA4\u4E0E\u7A97\u706F\uFF0C\u5E76\u8986\u76D6\u539F\u7EB8\u7EB9\u8D28\u611F\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C900\xD71080\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u84DD\u8272\u591C\u7A7A\u3001\u4E91\u96FE\u3001\u697C\u7FA4\u3001\u7A97\u706F\u4E0E\u7EB8\u7EB9\u7684\u5B8C\u6574\u7F8E\u672F\u5C42\u6B21\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768425\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u6DF1\u5733\u6E7E\u539F\u697C\u5F71\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "snow",
+        mode: "city",
+        start: 0,
+        width: 900,
+        height: 1080
+      },
+      reproduction: {
+        objects: "\u4FDD\u7559\u539F\u4F5C\u84DD\u8272\u591C\u7A7A\u3001\u4E91\u96FE\u3001\u6DF1\u5733\u6E7E\u697C\u7FA4\u4E0E\u7A97\u706F\uFF0C\u5E76\u8986\u76D6\u539F\u7EB8\u7EB9\u8D28\u611F\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71080\uFF1B\u539F\u4F5C\u84DD\u8272\u6E10\u53D8\u591C\u7A7A\u3001\u4E91\u96FE\u3001\u6DF1\u5733\u6E7E\u9ED1\u8272\u697C\u7FA4\u3001\u6696\u8272\u7A97\u706F\u4E0E\u6574\u4F53\u7EB8\u7EB9\u3002",
+        phases: [
+          "\u84DD\u8272\u6E10\u53D8\u591C\u7A7A\u4E0E\u4E91\u96FE\u94FA\u5728\u697C\u7FA4\u540E\u65B9\u3002",
+          "\u697C\u7FA4\u4FDD\u6301\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u548C\u906E\u6321\uFF0C\u7A97\u706F\u6CBF\u539F\u4E8B\u4EF6\u54CD\u5E94\u3002",
+          "\u7EB8\u7EB9\u8986\u76D6\u6574\u5E45\u591C\u666F\uFF0C\u4FDD\u7559\u539F\u4F5C\u6574\u4F53\u8D28\u611F\u3002"
+        ],
+        retain: "\u4FDD\u7559\u539F\u5929\u7A7A\u914D\u8272\u3001\u4E91\u96FE\u3001\u5EFA\u7B51\u8F6E\u5ED3\u4E0E\u6BD4\u4F8B\u3001\u7A97\u683C\u906E\u6321\u3001\u7EB8\u7EB9\u53CA\u7A97\u706F\u65F6\u95F4\u5173\u7CFB\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E25\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "snow-crystal-illustration",
+      name: "\u96EA\u6676\u4E0E\u5341\u5B57\u5149\u70B9",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u539F\u96EA\u6676\u5206\u679D\u4E0E\u5341\u5B57\u5149\u70B9\u5171\u7528\u96EA\u591C\u7ED8\u5236\uFF0C\u4E0D\u6539\u753B\u6CD5\u3002",
+      purpose: "\u539F\u96EA\u6676\u5206\u679D\u4E0E\u5341\u5B57\u5149\u70B9\u5171\u7528\u96EA\u591C\u7ED8\u5236\uFF0C\u4E0D\u6539\u753B\u6CD5\u3002",
+      objects: "\u96EA\u6676\u4E0E\u5341\u5B57\u5149\u70B9\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u7B26\u53F7\u72EC\u7ACB\u51FA\u73B0\u3002",
+        "\u4FDD\u7559\u539F\u5206\u679D\u548C\u7EBF\u5BBD\u3002",
+        "\u4FDD\u6301\u539F\u8F6E\u5ED3\u3002"
+      ],
+      aliases: [
+        "\u96EA\u6676\u4E0E\u5341\u5B57\u5149\u70B9",
+        "\u6DF1\u5733\u6E7E\u96EA\u591C"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u96EA\u6676\u5206\u679D\u4E0E\u5341\u5B57\u5149\u70B9\u5171\u7528\u96EA\u591C\u7ED8\u5236\uFF0C\u4E0D\u6539\u753B\u6CD5\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-snow.js",
+        factory: "snow-crystal-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/snow/THIRD-PARTY.json"
+        ]
+      },
+      actions: [
+        "snow-arrival-window"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u96EA\u6676\u5206\u679D\u4E0E\u5341\u5B57\u5149\u70B9\u5171\u7528\u96EA\u591C\u7ED8\u5236\uFF0C\u4E0D\u6539\u753B\u6CD5\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76843\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u96EA\u6676\u4E0E\u5341\u5B57\u5149\u70B9\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "snow",
+        mode: "symbol",
+        start: 0,
+        width: 900,
+        height: 1080,
+        symbol: "snowflake"
+      },
+      variants: [
+        {
+          id: "snowflake",
+          label: "\u96EA\u6676",
+          summary: "\u96EA\u6676\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "snow",
+            mode: "symbol",
+            start: 0,
+            width: 900,
+            height: 1080,
+            symbol: "snowflake"
+          }
+        },
+        {
+          id: "cross",
+          label: "\u5341\u5B57\u5149\u70B9",
+          summary: "\u5341\u5B57\u5149\u70B9\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "snow",
+            mode: "symbol",
+            start: 0,
+            width: 900,
+            height: 1080,
+            symbol: "cross"
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u539F\u96EA\u6676\u5206\u679D\u4E0E\u5341\u5B57\u5149\u70B9\u5171\u7528\u96EA\u591C\u7ED8\u5236\uFF0C\u4E0D\u6539\u753B\u6CD5\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71080\uFF1B\u7EB8\u8272\u5929\u7A7A\u3001\u6DF1\u5733\u6E7E\u697C\u7FA4\u3001\u5206\u5C42\u96EA\u70B9\u4E0E\u4EAE\u7A97\uFF0C\u4FDD\u7559\u4F4E\u5BF9\u6BD4\u7684\u7EC6\u566A\u58F0\u3002",
+        phases: [
+          "\u539F\u7B26\u53F7\u72EC\u7ACB\u51FA\u73B0\u3002",
+          "\u4FDD\u7559\u539F\u5206\u679D\u548C\u7EBF\u5BBD\u3002",
+          "\u4FDD\u6301\u539F\u8F6E\u5ED3\u3002"
+        ],
+        retain: "\u539F\u96EA\u6676\u5206\u679D\u4E0E\u5341\u5B57\u5149\u70B9\u5171\u7528\u96EA\u591C\u7ED8\u5236\uFF0C\u4E0D\u6539\u753B\u6CD5\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E3\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "shenzhen-snow-journey",
+      name: "\u6DF1\u5733\u6E7E\u96EA\u591C",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u8FDC\u8FD1\u96EA\u5E55\u3001\u539F\u697C\u5F71\u3001\u4E0B\u843D\u96EA\u5149\u3001\u7A97\u706F\u548C\u6D41\u661F\u5171\u7528\u56FA\u5B9A\u539F\u6B65\u8FDB\u65F6\u95F4\uFF1B\u4FDD\u7559\u539F\u66F2\u8282\u62CD\u4E8B\u4EF6\uFF0C\u65E0\u97F3\u9891\u4F9D\u8D56\u3002",
+      purpose: "\u8FDC\u8FD1\u96EA\u5E55\u3001\u539F\u697C\u5F71\u3001\u4E0B\u843D\u96EA\u5149\u3001\u7A97\u706F\u548C\u6D41\u661F\u5171\u7528\u56FA\u5B9A\u539F\u6B65\u8FDB\u65F6\u95F4\uFF1B\u4FDD\u7559\u539F\u66F2\u8282\u62CD\u4E8B\u4EF6\uFF0C\u65E0\u97F3\u9891\u4F9D\u8D56\u3002",
+      objects: "\u6DF1\u5733\u6E7E\u96EA\u591C\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u7EB8\u8272\u5929\u7A7A\u4E0E\u697C\u5F71\u4E2D\u5DF2\u6709\u5206\u5C42\u96EA\u5E55\u3002",
+        "\u96EA\u5149\u6309\u539F\u8DEF\u7EBF\u62B5\u8FBE\u697C\u7A97\uFF0C\u7A97\u706F\u4ECE\u5B9E\u9645\u843D\u70B9\u63A5\u7EED\u3002",
+        "\u8FDC\u8FD1\u96EA\u5E55\u7EE7\u7EED\u4E0B\u843D\uFF0C\u6D41\u661F\u7A7F\u8FC7\uFF0C\u7A97\u706F\u81EA\u7136\u6536\u5C3E\u3002"
+      ],
+      aliases: [
+        "\u6DF1\u5733\u6E7E\u96EA\u591C",
+        "\u6DF1\u5733\u6E7E\u96EA\u591C"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u8FDC\u8FD1\u96EA\u5E55\u3001\u539F\u697C\u5F71\u3001\u4E0B\u843D\u96EA\u5149\u3001\u7A97\u706F\u548C\u6D41\u661F\u5171\u7528\u56FA\u5B9A\u539F\u6B65\u8FDB\u65F6\u95F4\uFF1B\u4FDD\u7559\u539F\u66F2\u8282\u62CD\u4E8B\u4EF6\uFF0C\u65E0\u97F3\u9891\u4F9D\u8D56\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 25e3,
+      preview_ms: 13750,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-snow.js",
+        factory: "shenzhen-snow-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/snow/THIRD-PARTY.json"
+        ]
+      },
+      actions: [
+        "snow-arrival-window",
+        "shenzhen-skyline-illustration",
+        "snow-crystal-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u8FDC\u8FD1\u96EA\u5E55\u3001\u539F\u697C\u5F71\u3001\u4E0B\u843D\u96EA\u5149\u3001\u7A97\u706F\u548C\u6D41\u661F\u5171\u7528\u56FA\u5B9A\u539F\u6B65\u8FDB\u65F6\u95F4\uFF1B\u4FDD\u7559\u539F\u66F2\u8282\u62CD\u4E8B\u4EF6\uFF0C\u65E0\u97F3\u9891\u4F9D\u8D56\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768425\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u6DF1\u5733\u6E7E\u96EA\u591C\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "snow",
+        mode: "full",
+        start: 0,
+        width: 900,
+        height: 1080,
+        breakdown: [
+          {
+            id: "sky",
+            name: "\u7EB8\u8272\u5929\u7A7A\u3001\u6D41\u661F\u4E0E\u4E91\u96FE",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u7EB8\u8272\u5E95\u4E0A\u7F13\u6162\u6F02\u79FB\u7684\u4E91\u96FE\u4E0E\u6D41\u661F\u5171\u540C\u6784\u6210\u8FDC\u666F\u3002",
+            actions: []
+          },
+          {
+            id: "back-snow",
+            name: "\u8FDC\u666F\u96EA\u5E55",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u8F83\u7EC6\u96EA\u70B9\u5728\u697C\u7FA4\u540E\u65B9\u4E0B\u843D\uFF0C\u4FDD\u6301\u56FA\u5B9A\u566A\u58F0\u4E0E\u5206\u5C42\u8DDD\u79BB\u3002",
+            actions: [
+              "snow-crystal-illustration"
+            ]
+          },
+          {
+            id: "city",
+            name: "\u6DF1\u5733\u6E7E\u697C\u7FA4\u4E0E\u7A97\u706F",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u5EFA\u7B51\u6298\u7EBF\u3001\u7A97\u683C\u4E0E\u906E\u6321\u4FDD\u6301\uFF0C\u96EA\u5149\u62B5\u8FBE\u540E\u7A97\u706F\u4EAE\u5EA6\u63A5\u7EED\u3002",
+            actions: [
+              "shenzhen-skyline-illustration",
+              "snow-arrival-window"
+            ]
+          },
+          {
+            id: "arrival",
+            name: "\u843D\u5411\u697C\u7A97\u7684\u96EA\u5149",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u96EA\u6676\u548C\u5341\u5B57\u5149\u70B9\u6309\u8282\u62CD\u4E8B\u4EF6\u9009\u62E9\u697C\u7A97\uFF0C\u6CBF\u5B9E\u9645\u8DEF\u7EBF\u62B5\u8FBE\u3002",
+            actions: [
+              "snow-arrival-window",
+              "snow-crystal-illustration"
+            ]
+          },
+          {
+            id: "front-snow",
+            name: "\u524D\u666F\u96EA\u5E55\u4E0E\u7EB8\u7EB9",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u8F83\u5927\u7684\u96EA\u70B9\u4F4D\u4E8E\u697C\u7FA4\u524D\u65B9\uFF0C\u7EB8\u7EB9\u8986\u76D6\u5728\u6700\u524D\u5C42\u3002",
+            actions: [
+              "snow-crystal-illustration"
+            ]
+          }
+        ],
+        layers: [
+          "sky",
+          "back-snow",
+          "city",
+          "arrival",
+          "front-snow"
+        ]
+      },
+      reproduction: {
+        objects: "\u8FDC\u8FD1\u96EA\u5E55\u3001\u539F\u697C\u5F71\u3001\u4E0B\u843D\u96EA\u5149\u3001\u7A97\u706F\u548C\u6D41\u661F\u5171\u7528\u56FA\u5B9A\u539F\u6B65\u8FDB\u65F6\u95F4\uFF1B\u4FDD\u7559\u539F\u66F2\u8282\u62CD\u4E8B\u4EF6\uFF0C\u65E0\u97F3\u9891\u4F9D\u8D56\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71080\uFF1B\u7EB8\u8272\u5929\u7A7A\u3001\u6DF1\u5733\u6E7E\u697C\u7FA4\u3001\u5206\u5C42\u96EA\u70B9\u4E0E\u4EAE\u7A97\uFF0C\u4FDD\u7559\u4F4E\u5BF9\u6BD4\u7684\u7EC6\u566A\u58F0\u3002",
+        phases: [
+          "\u7EB8\u8272\u5929\u7A7A\u4E0E\u697C\u5F71\u4E2D\u5DF2\u6709\u5206\u5C42\u96EA\u5E55\u3002",
+          "\u96EA\u5149\u6309\u539F\u8DEF\u7EBF\u62B5\u8FBE\u697C\u7A97\uFF0C\u7A97\u706F\u4ECE\u5B9E\u9645\u843D\u70B9\u63A5\u7EED\u3002",
+          "\u8FDC\u8FD1\u96EA\u5E55\u7EE7\u7EED\u4E0B\u843D\uFF0C\u6D41\u661F\u7A7F\u8FC7\uFF0C\u7A97\u706F\u81EA\u7136\u6536\u5C3E\u3002"
+        ],
+        retain: "\u8FDC\u8FD1\u96EA\u5E55\u3001\u539F\u697C\u5F71\u3001\u4E0B\u843D\u96EA\u5149\u3001\u7A97\u706F\u548C\u6D41\u661F\u5171\u7528\u56FA\u5B9A\u539F\u6B65\u8FDB\u65F6\u95F4\uFF1B\u4FDD\u7559\u539F\u66F2\u8282\u62CD\u4E8B\u4EF6\uFF0C\u65E0\u97F3\u9891\u4F9D\u8D56\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E25\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "sky",
+            name: "\u7EB8\u8272\u5929\u7A7A\u3001\u6D41\u661F\u4E0E\u4E91\u96FE",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u7EB8\u8272\u5E95\u4E0A\u7F13\u6162\u6F02\u79FB\u7684\u4E91\u96FE\u4E0E\u6D41\u661F\u5171\u540C\u6784\u6210\u8FDC\u666F\u3002",
+            actions: []
+          },
+          {
+            id: "back-snow",
+            name: "\u8FDC\u666F\u96EA\u5E55",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u8F83\u7EC6\u96EA\u70B9\u5728\u697C\u7FA4\u540E\u65B9\u4E0B\u843D\uFF0C\u4FDD\u6301\u56FA\u5B9A\u566A\u58F0\u4E0E\u5206\u5C42\u8DDD\u79BB\u3002",
+            actions: [
+              "snow-crystal-illustration"
+            ]
+          },
+          {
+            id: "city",
+            name: "\u6DF1\u5733\u6E7E\u697C\u7FA4\u4E0E\u7A97\u706F",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u5EFA\u7B51\u6298\u7EBF\u3001\u7A97\u683C\u4E0E\u906E\u6321\u4FDD\u6301\uFF0C\u96EA\u5149\u62B5\u8FBE\u540E\u7A97\u706F\u4EAE\u5EA6\u63A5\u7EED\u3002",
+            actions: [
+              "shenzhen-skyline-illustration",
+              "snow-arrival-window"
+            ]
+          },
+          {
+            id: "arrival",
+            name: "\u843D\u5411\u697C\u7A97\u7684\u96EA\u5149",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u96EA\u6676\u548C\u5341\u5B57\u5149\u70B9\u6309\u8282\u62CD\u4E8B\u4EF6\u9009\u62E9\u697C\u7A97\uFF0C\u6CBF\u5B9E\u9645\u8DEF\u7EBF\u62B5\u8FBE\u3002",
+            actions: [
+              "snow-arrival-window",
+              "snow-crystal-illustration"
+            ]
+          },
+          {
+            id: "front-snow",
+            name: "\u524D\u666F\u96EA\u5E55\u4E0E\u7EB8\u7EB9",
+            start: 0,
+            end: 25e3,
+            time: "0\u201425\u79D2",
+            detail: "\u8F83\u5927\u7684\u96EA\u70B9\u4F4D\u4E8E\u697C\u7FA4\u524D\u65B9\uFF0C\u7EB8\u7EB9\u8986\u76D6\u5728\u6700\u524D\u5C42\u3002",
+            actions: [
+              "snow-crystal-illustration"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: "seat-water-lift",
+      name: "\u5EA7\u677F\u5165\u6C34\u6258\u4E3E\u4E0E\u8D1F\u91CD\u56DE\u5347",
+      kind: "action",
+      category: "response",
+      summary: "\u98DE\u673A\u653E\u4E0B\u67D4\u7EF3\u548C\u5EA7\u677F\uFF0C\u5EA7\u677F\u5165\u6C34\u540E\u4ECE\u540C\u4E00\u4F4D\u7F6E\u6258\u8D77\u592A\u9633\uFF0C\u8D1F\u91CD\u56DE\u5347\u5E76\u6536\u7EF3\u3002",
+      purpose: "\u98DE\u673A\u653E\u4E0B\u67D4\u7EF3\u548C\u5EA7\u677F\uFF0C\u5EA7\u677F\u5165\u6C34\u540E\u4ECE\u540C\u4E00\u4F4D\u7F6E\u6258\u8D77\u592A\u9633\uFF0C\u8D1F\u91CD\u56DE\u5347\u5E76\u6536\u7EF3\u3002",
+      objects: "\u5EA7\u677F\u5165\u6C34\u6258\u4E3E\u4E0E\u8D1F\u91CD\u56DE\u5347\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u98DE\u673A\u51CF\u901F\u63A5\u8FD1\uFF0C\u7EF3\u7D22\u548C\u5EA7\u677F\u6EDE\u540E\u5C55\u5F00\u3002",
+        "\u5EA7\u677F\u5165\u6C34\u5E76\u4ECE\u771F\u5B9E\u63A5\u89E6\u4F4D\u7F6E\u6258\u8D77\u592A\u9633\u3002",
+        "\u592A\u9633\u63E1\u7EF3\uFF0C\u98DE\u673A\u8D1F\u91CD\u56DE\u5347\uFF0C\u7EF3\u7D22\u56DE\u6536\u5E76\u7EE7\u7EED\u5DE1\u822A\u3002"
+      ],
+      aliases: [
+        "\u5EA7\u677F\u5165\u6C34\u6258\u4E3E\u4E0E\u8D1F\u91CD\u56DE\u5347",
+        "\u6D77\u9762\u4E0A\u7684\u5915\u9633"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u98DE\u673A\u653E\u4E0B\u67D4\u7EF3\u548C\u5EA7\u677F\uFF0C\u5EA7\u677F\u5165\u6C34\u540E\u4ECE\u540C\u4E00\u4F4D\u7F6E\u6258\u8D77\u592A\u9633\uFF0C\u8D1F\u91CD\u56DE\u5347\u5E76\u6536\u7EF3\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 28e3,
+      preview_ms: 15400,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-ocean.js",
+        factory: "seat-water-lift",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u98DE\u673A\u653E\u4E0B\u67D4\u7EF3\u548C\u5EA7\u677F\uFF0C\u5EA7\u677F\u5165\u6C34\u540E\u4ECE\u540C\u4E00\u4F4D\u7F6E\u6258\u8D77\u592A\u9633\uFF0C\u8D1F\u91CD\u56DE\u5347\u5E76\u6536\u7EF3\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768428\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u5EA7\u677F\u5165\u6C34\u6258\u4E3E\u4E0E\u8D1F\u91CD\u56DE\u5347\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "ocean",
+        mode: "flight",
+        start: 0,
+        width: 900,
+        height: 1200
+      },
+      reproduction: {
+        objects: "\u98DE\u673A\u653E\u4E0B\u67D4\u7EF3\u548C\u5EA7\u677F\uFF0C\u5EA7\u677F\u5165\u6C34\u540E\u4ECE\u540C\u4E00\u4F4D\u7F6E\u6258\u8D77\u592A\u9633\uFF0C\u8D1F\u91CD\u56DE\u5347\u5E76\u6536\u7EF3\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u6696\u8272\u5929\u7A7A\u4E0E\u6D77\u9762\uFF0C\u5706\u5F62\u592A\u9633\u6709\u773C\u775B\u3001\u53CC\u817F\u548C\u63E1\u7EF3\u624B\u81C2\uFF0C\u8584\u5EA7\u677F\u7531\u4E24\u6839\u67D4\u7EF3\u60AC\u540A\u3002",
+        phases: [
+          "\u98DE\u673A\u51CF\u901F\u63A5\u8FD1\uFF0C\u7EF3\u7D22\u548C\u5EA7\u677F\u6EDE\u540E\u5C55\u5F00\u3002",
+          "\u5EA7\u677F\u5165\u6C34\u5E76\u4ECE\u771F\u5B9E\u63A5\u89E6\u4F4D\u7F6E\u6258\u8D77\u592A\u9633\u3002",
+          "\u592A\u9633\u63E1\u7EF3\uFF0C\u98DE\u673A\u8D1F\u91CD\u56DE\u5347\uFF0C\u7EF3\u7D22\u56DE\u6536\u5E76\u7EE7\u7EED\u5DE1\u822A\u3002"
+        ],
+        retain: "\u98DE\u673A\u653E\u4E0B\u67D4\u7EF3\u548C\u5EA7\u677F\uFF0C\u5EA7\u677F\u5165\u6C34\u540E\u4ECE\u540C\u4E00\u4F4D\u7F6E\u6258\u8D77\u592A\u9633\uFF0C\u8D1F\u91CD\u56DE\u5347\u5E76\u6536\u7EF3\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E28\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "sunset-airplane-illustration",
+      name: "\u5915\u9633\u98DE\u673A",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "\u63D0\u53D6\u539F\u98DE\u673A\u7684\u673A\u8EAB\u3001\u673A\u7FFC\u3001\u5C3E\u7FFC\u548C\u539F\u6750\u8D28\u3002",
+      purpose: "\u63D0\u53D6\u539F\u98DE\u673A\u7684\u673A\u8EAB\u3001\u673A\u7FFC\u3001\u5C3E\u7FFC\u548C\u539F\u6750\u8D28\u3002",
+      objects: "\u5915\u9633\u98DE\u673A\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u98DE\u673A\u5B8C\u6574\u51FA\u73B0\u3002",
+        "\u4FDD\u7559\u539F\u7FFC\u8EAB\u6BD4\u4F8B\u4E0E\u7EC6\u8282\u3002",
+        "\u4EE5\u900F\u660E\u5E95\u505C\u7559\u3002"
+      ],
+      aliases: [
+        "\u5915\u9633\u98DE\u673A",
+        "\u6D77\u9762\u4E0A\u7684\u5915\u9633"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u63D0\u53D6\u539F\u98DE\u673A\u7684\u673A\u8EAB\u3001\u673A\u7FFC\u3001\u5C3E\u7FFC\u548C\u539F\u6750\u8D28\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-ocean.js",
+        factory: "sunset-airplane-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u63D0\u53D6\u539F\u98DE\u673A\u7684\u673A\u8EAB\u3001\u673A\u7FFC\u3001\u5C3E\u7FFC\u548C\u539F\u6750\u8D28\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76843\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u5915\u9633\u98DE\u673A\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "ocean",
+        mode: "airplane",
+        start: 0,
+        width: 900,
+        height: 1200
+      },
+      reproduction: {
+        objects: "\u63D0\u53D6\u539F\u98DE\u673A\u7684\u673A\u8EAB\u3001\u673A\u7FFC\u3001\u5C3E\u7FFC\u548C\u539F\u6750\u8D28\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u6696\u8272\u5929\u7A7A\u4E0E\u6D77\u9762\uFF0C\u5706\u5F62\u592A\u9633\u6709\u773C\u775B\u3001\u53CC\u817F\u548C\u63E1\u7EF3\u624B\u81C2\uFF0C\u8584\u5EA7\u677F\u7531\u4E24\u6839\u67D4\u7EF3\u60AC\u540A\u3002",
+        phases: [
+          "\u539F\u98DE\u673A\u5B8C\u6574\u51FA\u73B0\u3002",
+          "\u4FDD\u7559\u539F\u7FFC\u8EAB\u6BD4\u4F8B\u4E0E\u7EC6\u8282\u3002",
+          "\u4EE5\u900F\u660E\u5E95\u505C\u7559\u3002"
+        ],
+        retain: "\u63D0\u53D6\u539F\u98DE\u673A\u7684\u673A\u8EAB\u3001\u673A\u7FFC\u3001\u5C3E\u7FFC\u548C\u539F\u6750\u8D28\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E3\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "sunset-swing-illustration",
+      name: "\u67D4\u7EF3\u4E0E\u79CB\u5343\u5EA7\u677F",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "\u4E24\u6839\u67D4\u7EF3\u51C6\u786E\u8FDE\u63A5\u8584\u5EA7\u677F\u7684\u5DE6\u53F3\u4FA7\u8FB9\uFF0C\u4FDD\u7559\u539F\u900F\u89C6\u3001\u539A\u5EA6\u548C\u900F\u5149\u5C42\u3002",
+      purpose: "\u72EC\u7ACB\u590D\u7528\u539F\u79CB\u5343\u7684\u7EF3\u7D22\u4E0E\u8584\u5EA7\u677F\u6837\u5F0F\u3002",
+      objects: "\u4E24\u6839\u67D4\u7EF3\u4E0E\u539F\u900F\u89C6\u8584\u5EA7\u677F",
+      phases: [
+        "\u5B8C\u6574\u5C55\u5F00\u7684\u539F\u79CB\u5343\u5C45\u4E2D\u5C55\u793A\u3002",
+        "\u4E24\u6839\u7EF3\u7AEF\u4E0E\u5EA7\u677F\u5DE6\u53F3\u4FA7\u8FB9\u4E2D\u70B9\u4FDD\u6301\u8FDE\u63A5\u3002",
+        "\u4FDD\u7559\u677F\u9762\u3001\u524D\u6CBF\u3001\u4FA7\u9762\u7684\u539F\u900F\u5149\u5C42\u4E0E\u539A\u5EA6\u3002"
+      ],
+      aliases: [
+        "\u67D4\u7EF3\u4E0E\u79CB\u5343\u5EA7\u677F",
+        "\u6D77\u9762\u4E0A\u7684\u5915\u9633"
+      ],
+      behaviors: [
+        "static"
+      ],
+      retain: "\u4FDD\u7559\u539F\u7EF3\u7D22\u8DEF\u5F84\u4E0E\u8584\u5EA7\u677F\u9020\u578B\uFF1B\u4E24\u6839\u7EF3\u5B50\u51C6\u786E\u8FDE\u63A5\u5EA7\u677F\u5DE6\u53F3\u4FA7\u8FB9\u4E2D\u70B9\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-ocean.js",
+        factory: "sunset-swing-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u590D\u7528\u539F ropeAt\u3001traceRope\u3001swingSeatGeometry \u4E0E drawSwingSeat\uFF1B\u7528\u540C\u4E00\u4EFD\u72EC\u7ACB\u79CB\u5343\u59FF\u6001\u7ED8\u5236\u7EF3\u7D22\u548C\u5EA7\u677F\uFF0C\u4FDD\u6301\u4E24\u4FA7\u8FDE\u63A5\u70B9\u4E00\u81F4\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ],
+        original_path: "/Users/wisewong/Documents/Developer/scenes/ocean-sunset/sketch.js"
+      },
+      actions: [
+        "seat-water-lift"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u67D4\u7EF3\u4E0E\u8584\u5EA7\u677F\u5171\u540C\u4FDD\u7559\uFF0C\u5EA7\u677F\u8FB9\u6CBF\u3001\u539A\u5EA6\u548C\u900F\u5149\u5C42\u4E0D\u91CD\u753B\u3002",
+      assumptions: "\u900F\u660E\u5E95\uFF1B\u7EF3\u7D22\u4E0E\u5EA7\u677F\u4F7F\u7528\u540C\u4E00\u957F\u5EA6\u3001\u5C55\u5F00\u6BD4\u4F8B\u548C\u503E\u659C\u89D2\uFF0C\u6574\u4F53\u7B49\u6BD4\u5C45\u4E2D\uFF1B\u4E0D\u5E26\u592A\u9633\u3001\u624B\u811A\u6216\u98DE\u673A\u3002",
+      tempo_note: "\u72EC\u7ACB\u6837\u5F0F\u4FDD\u6301\u5B8C\u6574\u5C55\u5F00\u7684\u59FF\u6001\uFF1B\u6258\u4E3E\u4E0E\u6536\u7EF3\u8FD0\u52A8\u89C1\u5173\u8054\u52A8\u4F5C\u3002",
+      recommendation: "\u9700\u8981\u67D4\u7EF3\u4E0E\u79CB\u5343\u5EA7\u677F\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "ocean",
+        mode: "seat",
+        start: 0,
+        width: 900,
+        height: 1200
+      },
+      reproduction: {
+        objects: "\u4E24\u6839\u67D4\u7EF3\u4E0E\u539F\u900F\u89C6\u8584\u5EA7\u677F",
+        presentation: "\u539F900\xD71200\u903B\u8F91\u753B\u677F\uFF0C\u6309\u5B8C\u6574\u7EF3\u7D22\u548C\u5EA7\u677F\u7684\u5305\u56F4\u8303\u56F4\u7B49\u6BD4\u5C45\u4E2D\uFF1B\u4FDD\u7559\u539F\u5EA7\u677F\u900F\u89C6\u4E0E\u900F\u660E\u6750\u8D28\u3002",
+        phases: [
+          "\u5B8C\u6574\u5C55\u5F00\u7684\u539F\u79CB\u5343\u5C45\u4E2D\u5C55\u793A\u3002",
+          "\u4E24\u6839\u7EF3\u7AEF\u4E0E\u5EA7\u677F\u5DE6\u53F3\u4FA7\u8FB9\u4E2D\u70B9\u4FDD\u6301\u8FDE\u63A5\u3002",
+          "\u4FDD\u7559\u677F\u9762\u3001\u524D\u6CBF\u3001\u4FA7\u9762\u7684\u539F\u900F\u5149\u5C42\u4E0E\u539A\u5EA6\u3002"
+        ],
+        retain: "\u4FDD\u7559\u539F\u7EF3\u7D22\u8DEF\u5F84\u4E0E\u8584\u5EA7\u677F\u9020\u578B\uFF1B\u4E24\u6839\u7EF3\u5B50\u51C6\u786E\u8FDE\u63A5\u5EA7\u677F\u5DE6\u53F3\u4FA7\u8FB9\u4E2D\u70B9\u3002",
+        tempo_note: "\u72EC\u7ACB\u6837\u5F0F\u4FDD\u6301\u5B8C\u6574\u5C55\u5F00\u7684\u59FF\u6001\uFF1B\u6258\u4E3E\u4E0E\u6536\u7EF3\u8FD0\u52A8\u89C1\u5173\u8054\u52A8\u4F5C\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "sunset-sea-illustration",
+      name: "\u5915\u9633\u6C34\u9762\u53CD\u9988",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u539F\u5012\u5F71\u548C\u6C34\u7EB9\u6309\u592A\u9633\u3001\u5EA7\u677F\u5165\u6C34\u548C\u6EF4\u6C34\u7684\u771F\u5B9E\u4F4D\u7F6E\u63A8\u8FDB\u3002",
+      purpose: "\u539F\u5012\u5F71\u548C\u6C34\u7EB9\u6309\u592A\u9633\u3001\u5EA7\u677F\u5165\u6C34\u548C\u6EF4\u6C34\u7684\u771F\u5B9E\u4F4D\u7F6E\u63A8\u8FDB\u3002",
+      objects: "\u5915\u9633\u6C34\u9762\u53CD\u9988\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u5012\u5F71\u968F\u6C34\u9762\u51FA\u73B0\u3002",
+        "\u5EA7\u677F\u548C\u6EF4\u6C34\u89E6\u53CA\u6C34\u9762\u540E\u5404\u81EA\u5F15\u8D77\u6C34\u7EB9\u3002",
+        "\u6D9F\u6F2A\u4ECE\u5404\u81EA\u63A5\u89E6\u70B9\u6269\u6563\u5E76\u6DE1\u53BB\u3002"
+      ],
+      aliases: [
+        "\u5915\u9633\u6C34\u9762\u53CD\u9988",
+        "\u6D77\u9762\u4E0A\u7684\u5915\u9633"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u5012\u5F71\u548C\u6C34\u7EB9\u6309\u592A\u9633\u3001\u5EA7\u677F\u5165\u6C34\u548C\u6EF4\u6C34\u7684\u771F\u5B9E\u4F4D\u7F6E\u63A8\u8FDB\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 28e3,
+      preview_ms: 15400,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-ocean.js",
+        factory: "sunset-sea-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [
+        "sunset-water-reflection"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u5012\u5F71\u548C\u6C34\u7EB9\u6309\u592A\u9633\u3001\u5EA7\u677F\u5165\u6C34\u548C\u6EF4\u6C34\u7684\u771F\u5B9E\u4F4D\u7F6E\u63A8\u8FDB\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768428\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u5915\u9633\u6C34\u9762\u53CD\u9988\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "ocean",
+        mode: "water",
+        start: 0,
+        width: 900,
+        height: 1200
+      },
+      reproduction: {
+        objects: "\u539F\u5012\u5F71\u548C\u6C34\u7EB9\u6309\u592A\u9633\u3001\u5EA7\u677F\u5165\u6C34\u548C\u6EF4\u6C34\u7684\u771F\u5B9E\u4F4D\u7F6E\u63A8\u8FDB\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u6696\u8272\u5929\u7A7A\u4E0E\u6D77\u9762\uFF0C\u5706\u5F62\u592A\u9633\u6709\u773C\u775B\u3001\u53CC\u817F\u548C\u63E1\u7EF3\u624B\u81C2\uFF0C\u8584\u5EA7\u677F\u7531\u4E24\u6839\u67D4\u7EF3\u60AC\u540A\u3002",
+        phases: [
+          "\u539F\u5012\u5F71\u968F\u6C34\u9762\u51FA\u73B0\u3002",
+          "\u5EA7\u677F\u548C\u6EF4\u6C34\u89E6\u53CA\u6C34\u9762\u540E\u5404\u81EA\u5F15\u8D77\u6C34\u7EB9\u3002",
+          "\u6D9F\u6F2A\u4ECE\u5404\u81EA\u63A5\u89E6\u70B9\u6269\u6563\u5E76\u6DE1\u53BB\u3002"
+        ],
+        retain: "\u539F\u5012\u5F71\u548C\u6C34\u7EB9\u6309\u592A\u9633\u3001\u5EA7\u677F\u5165\u6C34\u548C\u6EF4\u6C34\u7684\u771F\u5B9E\u4F4D\u7F6E\u63A8\u8FDB\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E28\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "sunset-pickup-journey",
+      name: "\u6D77\u9762\u4E0A\u7684\u5915\u9633",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u4FDD\u7559\u5F53\u524D\u539F\u6E90\u7801\u7684\u6696\u8272\u7AD6\u7248\uFF1A\u98DE\u673A\u63A5\u8D70\u592A\u9633\u3001\u6536\u7EF3\u5DE1\u822A\uFF0C\u6700\u540E\u8FDB\u5165\u591C\u8272\u4E0E\u661F\u7A7A\u3002",
+      purpose: "\u4FDD\u7559\u5F53\u524D\u539F\u6E90\u7801\u7684\u6696\u8272\u7AD6\u7248\uFF1A\u98DE\u673A\u63A5\u8D70\u592A\u9633\u3001\u6536\u7EF3\u5DE1\u822A\uFF0C\u6700\u540E\u8FDB\u5165\u591C\u8272\u4E0E\u661F\u7A7A\u3002",
+      objects: "\u6D77\u9762\u4E0A\u7684\u5915\u9633\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u98DE\u673A\u51CF\u901F\u5165\u573A\uFF0C\u7EF3\u7D22\u5C55\u5F00\uFF0C\u5EA7\u677F\u5165\u6C34\u3002",
+        "\u592A\u9633\u63E1\u7EF3\uFF0C\u5EA7\u677F\u6258\u8D77\uFF1B\u98DE\u673A\u8D1F\u91CD\u540E\u56DE\u5347\uFF0C\u6EF4\u6C34\u53CD\u9988\u63A5\u7EED\u3002",
+        "\u6536\u7EF3\u5DE1\u822A\u540E\u8FDB\u5165\u591C\u8272\uFF0C\u661F\u70B9\u6CBF\u539F\u65F6\u5E8F\u663E\u73B0\u3002"
+      ],
+      aliases: [
+        "\u6D77\u9762\u4E0A\u7684\u5915\u9633",
+        "\u6D77\u9762\u4E0A\u7684\u5915\u9633"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u4FDD\u7559\u5F53\u524D\u539F\u6E90\u7801\u7684\u6696\u8272\u7AD6\u7248\uFF1A\u98DE\u673A\u63A5\u8D70\u592A\u9633\u3001\u6536\u7EF3\u5DE1\u822A\uFF0C\u6700\u540E\u8FDB\u5165\u591C\u8272\u4E0E\u661F\u7A7A\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 65e3,
+      preview_ms: 35750,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-ocean.js",
+        factory: "sunset-pickup-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js"
+        ]
+      },
+      actions: [
+        "seat-water-lift",
+        "squash-bounce",
+        "sunset-water-reflection",
+        "advected-trail",
+        "sunset-sun-illustration",
+        "sunset-airplane-illustration",
+        "sunset-swing-illustration",
+        "sunset-sea-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u4FDD\u7559\u5F53\u524D\u539F\u6E90\u7801\u7684\u6696\u8272\u7AD6\u7248\uFF1A\u98DE\u673A\u63A5\u8D70\u592A\u9633\u3001\u6536\u7EF3\u5DE1\u822A\uFF0C\u6700\u540E\u8FDB\u5165\u591C\u8272\u4E0E\u661F\u7A7A\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768465\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u6D77\u9762\u4E0A\u7684\u5915\u9633\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "ocean",
+        mode: "full",
+        start: 0,
+        width: 900,
+        height: 1200,
+        breakdown: [
+          {
+            id: "sea",
+            name: "\u5915\u9633\u3001\u6D77\u9762\u4E0E\u63A5\u89E6\u6C34\u7EB9",
+            start: 0,
+            end: 65e3,
+            time: "0\u201465\u79D2",
+            detail: "\u6696\u8272\u5929\u7A7A\u4E0E\u6D77\u9762\u4FDD\u6301\u4F4E\u5BF9\u6BD4\u6CE2\u7EB9\uFF1B\u592A\u9633\u3001\u5EA7\u677F\u548C\u6EF4\u6C34\u5728\u5404\u81EA\u63A5\u89E6\u4F4D\u7F6E\u5F15\u8D77\u5012\u5F71\u4E0E\u6D9F\u6F2A\u3002",
+            actions: [
+              "sunset-sun-illustration",
+              "sunset-water-reflection",
+              "sunset-sea-illustration"
+            ]
+          },
+          {
+            id: "night",
+            name: "\u66AE\u8272\u4E0E\u661F\u7A7A",
+            start: 0,
+            end: 65e3,
+            time: "0\u201465\u79D2",
+            detail: "\u665A\u971E\u9010\u6E10\u53D8\u6697\uFF0C\u661F\u70B9\u6CBF\u592A\u9633\u88AB\u63A5\u8D70\u540E\u7684\u65F6\u5E8F\u663E\u73B0\u3002",
+            actions: [
+              "sunset-sea-illustration"
+            ]
+          },
+          {
+            id: "flight",
+            name: "\u98DE\u673A\u3001\u67D4\u7EF3\u3001\u5EA7\u677F\u4E0E\u592A\u9633",
+            start: 0,
+            end: 65e3,
+            time: "0\u201465\u79D2",
+            detail: "\u98DE\u673A\u51CF\u901F\u653E\u4E0B\u7EF3\u7D22\uFF0C\u5EA7\u677F\u5165\u6C34\u6258\u8D77\u63E1\u7EF3\u592A\u9633\uFF1B\u8D1F\u91CD\u56DE\u5347\u3001\u6EF4\u6C34\u3001\u6536\u7EF3\u4E0E\u5DE1\u822A\u8FDE\u7EED\u63A5\u7EED\u3002",
+            actions: [
+              "seat-water-lift",
+              "squash-bounce",
+              "advected-trail",
+              "sunset-airplane-illustration",
+              "sunset-swing-illustration",
+              "sunset-sun-illustration"
+            ]
+          }
+        ],
+        layers: [
+          "sea",
+          "night",
+          "flight"
+        ]
+      },
+      reproduction: {
+        objects: "\u4FDD\u7559\u6696\u8272\u7AD6\u7248\uFF1A\u98DE\u673A\u63A5\u8D70\u592A\u9633\u3001\u6536\u7EF3\u5DE1\u822A\uFF0C\u6700\u540E\u8FDB\u5165\u591C\u8272\u4E0E\u661F\u7A7A\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8900\xD71200\uFF0C\u7AD6\u72483:4\uFF1B\u6696\u8272\u5929\u7A7A\u4E0E\u6D77\u9762\uFF0C\u5706\u5F62\u592A\u9633\u6709\u773C\u775B\u3001\u53CC\u817F\u548C\u63E1\u7EF3\u624B\u81C2\uFF0C\u8584\u5EA7\u677F\u7531\u4E24\u6839\u67D4\u7EF3\u60AC\u540A\u3002",
+        phases: [
+          "\u98DE\u673A\u51CF\u901F\u5165\u573A\uFF0C\u7EF3\u7D22\u5C55\u5F00\uFF0C\u5EA7\u677F\u5165\u6C34\u3002",
+          "\u592A\u9633\u63E1\u7EF3\uFF0C\u5EA7\u677F\u6258\u8D77\uFF1B\u98DE\u673A\u8D1F\u91CD\u540E\u56DE\u5347\uFF0C\u6EF4\u6C34\u53CD\u9988\u63A5\u7EED\u3002",
+          "\u6536\u7EF3\u5DE1\u822A\u540E\u8FDB\u5165\u591C\u8272\uFF0C\u661F\u70B9\u6CBF\u539F\u65F6\u5E8F\u663E\u73B0\u3002"
+        ],
+        retain: "\u4FDD\u7559\u6696\u8272\u7AD6\u7248\uFF1A\u98DE\u673A\u63A5\u8D70\u592A\u9633\u3001\u6536\u7EF3\u5DE1\u822A\uFF0C\u6700\u540E\u8FDB\u5165\u591C\u8272\u4E0E\u661F\u7A7A\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E65\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "sea",
+            name: "\u5915\u9633\u3001\u6D77\u9762\u4E0E\u63A5\u89E6\u6C34\u7EB9",
+            start: 0,
+            end: 65e3,
+            time: "0\u201465\u79D2",
+            detail: "\u6696\u8272\u5929\u7A7A\u4E0E\u6D77\u9762\u4FDD\u6301\u4F4E\u5BF9\u6BD4\u6CE2\u7EB9\uFF1B\u592A\u9633\u3001\u5EA7\u677F\u548C\u6EF4\u6C34\u5728\u5404\u81EA\u63A5\u89E6\u4F4D\u7F6E\u5F15\u8D77\u5012\u5F71\u4E0E\u6D9F\u6F2A\u3002",
+            actions: [
+              "sunset-sun-illustration",
+              "sunset-water-reflection",
+              "sunset-sea-illustration"
+            ]
+          },
+          {
+            id: "night",
+            name: "\u66AE\u8272\u4E0E\u661F\u7A7A",
+            start: 0,
+            end: 65e3,
+            time: "0\u201465\u79D2",
+            detail: "\u665A\u971E\u9010\u6E10\u53D8\u6697\uFF0C\u661F\u70B9\u6CBF\u592A\u9633\u88AB\u63A5\u8D70\u540E\u7684\u65F6\u5E8F\u663E\u73B0\u3002",
+            actions: [
+              "sunset-sea-illustration"
+            ]
+          },
+          {
+            id: "flight",
+            name: "\u98DE\u673A\u3001\u67D4\u7EF3\u3001\u5EA7\u677F\u4E0E\u592A\u9633",
+            start: 0,
+            end: 65e3,
+            time: "0\u201465\u79D2",
+            detail: "\u98DE\u673A\u51CF\u901F\u653E\u4E0B\u7EF3\u7D22\uFF0C\u5EA7\u677F\u5165\u6C34\u6258\u8D77\u63E1\u7EF3\u592A\u9633\uFF1B\u8D1F\u91CD\u56DE\u5347\u3001\u6EF4\u6C34\u3001\u6536\u7EF3\u4E0E\u5DE1\u822A\u8FDE\u7EED\u63A5\u7EED\u3002",
+            actions: [
+              "seat-water-lift",
+              "squash-bounce",
+              "advected-trail",
+              "sunset-airplane-illustration",
+              "sunset-swing-illustration",
+              "sunset-sun-illustration"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: "osmanthus-tree-illustration",
+      name: "\u6842\u6811\u4E0E\u4E09\u79CD\u6811\u51A0",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u5B8C\u6574\u539F\u6811\u679D\u3001\u53F6\u7247\u548C\u6842\u82B1\u4FDD\u7559\uFF0C\u7EAF\u91D1\u53F6\u3001\u91D1\u82B1\u548C\u91D1\u7EA2\u67AB\u53F6\u4F5C\u4E3A\u540C\u4E00\u9020\u578B\u793A\u4F8B\u3002",
+      purpose: "\u5B8C\u6574\u539F\u6811\u679D\u3001\u53F6\u7247\u548C\u6842\u82B1\u4FDD\u7559\uFF0C\u7EAF\u91D1\u53F6\u3001\u91D1\u82B1\u548C\u91D1\u7EA2\u67AB\u53F6\u4F5C\u4E3A\u540C\u4E00\u9020\u578B\u793A\u4F8B\u3002",
+      objects: "\u539F\u6842\u6811\u4E0E\u4E09\u79CD\u6811\u51A0\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u679D\u5E72\u6309\u539F\u6B21\u5E8F\u751F\u957F\u3002",
+        "\u53F6\u7247\u548C\u82B1\u6735\u6309\u5404\u81EA\u539F\u65F6\u5DEE\u5C55\u5F00\u3002",
+        "\u6811\u51A0\u4FDD\u6301\u539F\u7A7A\u95F4\u5C42\u6B21\u3002"
+      ],
+      aliases: [
+        "\u539F\u6842\u6811\u4E0E\u4E09\u79CD\u6811\u51A0",
+        "\u82B1\u843D\u6210\u8776"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u5B8C\u6574\u539F\u6811\u679D\u3001\u53F6\u7247\u548C\u6842\u82B1\u4FDD\u7559\uFF0C\u7EAF\u91D1\u53F6\u3001\u91D1\u82B1\u548C\u91D1\u7EA2\u67AB\u53F6\u4F5C\u4E3A\u540C\u4E00\u9020\u578B\u793A\u4F8B\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 5e3,
+      preview_ms: 2750,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-osmanthus.js",
+        factory: "osmanthus-tree-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-osmanthus-data.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u5B8C\u6574\u539F\u6811\u679D\u3001\u53F6\u7247\u548C\u6842\u82B1\u4FDD\u7559\uFF0C\u7EAF\u91D1\u53F6\u3001\u91D1\u82B1\u548C\u91D1\u7EA2\u67AB\u53F6\u4F5C\u4E3A\u540C\u4E00\u9020\u578B\u793A\u4F8B\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76845\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u539F\u6842\u6811\u4E0E\u4E09\u79CD\u6811\u51A0\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "osmanthus",
+        mode: "tree",
+        start: 0,
+        width: 720,
+        height: 960,
+        look: "gold-leaves"
+      },
+      variants: [
+        {
+          id: "gold-leaves",
+          label: "\u7EAF\u91D1\u53F6",
+          summary: "\u7EAF\u91D1\u53F6\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 5e3,
+          preview_ms: 2750,
+          scene: {
+            family: "osmanthus",
+            mode: "tree",
+            start: 0,
+            width: 720,
+            height: 960,
+            look: "gold-leaves"
+          }
+        },
+        {
+          id: "flowers",
+          label: "\u91D1\u82B1",
+          summary: "\u91D1\u82B1\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 5e3,
+          preview_ms: 2750,
+          scene: {
+            family: "osmanthus",
+            mode: "tree",
+            start: 0,
+            width: 720,
+            height: 960,
+            look: "flowers"
+          }
+        },
+        {
+          id: "maple-blend",
+          label: "\u91D1\u7EA2\u67AB\u53F6",
+          summary: "\u91D1\u7EA2\u67AB\u53F6\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 5e3,
+          preview_ms: 2750,
+          scene: {
+            family: "osmanthus",
+            mode: "tree",
+            start: 0,
+            width: 720,
+            height: 960,
+            look: "maple-blend"
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u5B8C\u6574\u539F\u6811\u679D\u3001\u53F6\u7247\u548C\u6842\u82B1\u4FDD\u7559\uFF0C\u7EAF\u91D1\u53F6\u3001\u91D1\u82B1\u548C\u91D1\u7EA2\u67AB\u53F6\u4F5C\u4E3A\u540C\u4E00\u9020\u578B\u793A\u4F8B\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8720\xD7960\uFF0C\u7AD6\u72483:4\uFF1B\u591C\u7A7A\u4E2D\u4FDD\u7559\u6708\u4EAE\u3001\u6842\u6811\u548C\u5C42\u53E0\u6811\u51A0\uFF0C\u91D1\u94F6\u8868\u9762\u53CD\u5149\u968F\u53F6\u7247\u548C\u8776\u7FFC\u59FF\u6001\u53D8\u5316\u3002",
+        phases: [
+          "\u539F\u679D\u5E72\u6309\u539F\u6B21\u5E8F\u751F\u957F\u3002",
+          "\u53F6\u7247\u548C\u82B1\u6735\u6309\u5404\u81EA\u539F\u65F6\u5DEE\u5C55\u5F00\u3002",
+          "\u6811\u51A0\u4FDD\u6301\u539F\u7A7A\u95F4\u5C42\u6B21\u3002"
+        ],
+        retain: "\u5B8C\u6574\u539F\u6811\u679D\u3001\u53F6\u7247\u548C\u6842\u82B1\u4FDD\u7559\uFF0C\u7EAF\u91D1\u53F6\u3001\u91D1\u82B1\u548C\u91D1\u7EA2\u67AB\u53F6\u4F5C\u4E3A\u540C\u4E00\u9020\u578B\u793A\u4F8B\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E5\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "osmanthus-butterfly-illustration",
+      name: "\u91D1\u94F6\u8774\u8776",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u91D1\u94F6\u8774\u8776\u590D\u7528\u539F\u7FC5\u8180\u8F6E\u5ED3\u3001\u632F\u7FC5\u4E0E\u8868\u9762\u5FAE\u7247\u53CD\u5149\u3002",
+      purpose: "\u91D1\u94F6\u8774\u8776\u590D\u7528\u539F\u7FC5\u8180\u8F6E\u5ED3\u3001\u632F\u7FC5\u4E0E\u8868\u9762\u5FAE\u7247\u53CD\u5149\u3002",
+      objects: "\u539F\u91D1\u94F6\u8774\u8776\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u8774\u8776\u72EC\u7ACB\u51FA\u73B0\u3002",
+        "\u524D\u540E\u7FC5\u6309\u539F\u76F8\u4F4D\u5F00\u5408\uFF0C\u8868\u9762\u53CD\u5149\u968F\u59FF\u6001\u53D8\u5316\u3002",
+        "\u4FDD\u7559\u539F\u8776\u8EAB\u548C\u89E6\u987B\u3002"
+      ],
+      aliases: [
+        "\u539F\u91D1\u94F6\u8774\u8776",
+        "\u82B1\u843D\u6210\u8776"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u91D1\u94F6\u8774\u8776\u590D\u7528\u539F\u7FC5\u8180\u8F6E\u5ED3\u3001\u632F\u7FC5\u4E0E\u8868\u9762\u5FAE\u7247\u53CD\u5149\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-osmanthus.js",
+        factory: "osmanthus-butterfly-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-osmanthus-data.js"
+        ]
+      },
+      actions: [
+        "swarm-arc-flight"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u91D1\u94F6\u8774\u8776\u590D\u7528\u539F\u7FC5\u8180\u8F6E\u5ED3\u3001\u632F\u7FC5\u4E0E\u8868\u9762\u5FAE\u7247\u53CD\u5149\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76843\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u539F\u91D1\u94F6\u8774\u8776\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "osmanthus",
+        mode: "butterfly",
+        start: 0,
+        width: 720,
+        height: 960,
+        look: "gold-leaves",
+        silver: false
+      },
+      variants: [
+        {
+          id: "gold",
+          label: "\u91D1\u8776",
+          summary: "\u91D1\u8776\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "butterfly",
+            start: 0,
+            width: 720,
+            height: 960,
+            look: "gold-leaves",
+            silver: false
+          }
+        },
+        {
+          id: "silver",
+          label: "\u94F6\u8776",
+          summary: "\u94F6\u8776\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "butterfly",
+            start: 0,
+            width: 720,
+            height: 960,
+            look: "gold-leaves",
+            silver: true
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u91D1\u94F6\u8774\u8776\u590D\u7528\u539F\u7FC5\u8180\u8F6E\u5ED3\u3001\u632F\u7FC5\u4E0E\u8868\u9762\u5FAE\u7247\u53CD\u5149\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8720\xD7960\uFF0C\u7AD6\u72483:4\uFF1B\u591C\u7A7A\u4E2D\u4FDD\u7559\u6708\u4EAE\u3001\u6842\u6811\u548C\u5C42\u53E0\u6811\u51A0\uFF0C\u91D1\u94F6\u8868\u9762\u53CD\u5149\u968F\u53F6\u7247\u548C\u8776\u7FFC\u59FF\u6001\u53D8\u5316\u3002",
+        phases: [
+          "\u539F\u8774\u8776\u72EC\u7ACB\u51FA\u73B0\u3002",
+          "\u524D\u540E\u7FC5\u6309\u539F\u76F8\u4F4D\u5F00\u5408\uFF0C\u8868\u9762\u53CD\u5149\u968F\u59FF\u6001\u53D8\u5316\u3002",
+          "\u4FDD\u7559\u539F\u8776\u8EAB\u548C\u89E6\u987B\u3002"
+        ],
+        retain: "\u91D1\u94F6\u8774\u8776\u590D\u7528\u539F\u7FC5\u8180\u8F6E\u5ED3\u3001\u632F\u7FC5\u4E0E\u8868\u9762\u5FAE\u7247\u53CD\u5149\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E3\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "osmanthus-symbol-illustration",
+      name: "\u91D1\u94F6\u6389\u843D\u7B26\u53F7",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u539F\u6708\u7259\u3001\u661F\u3001\u5341\u5B57\u548C\u53F6\u5F62\u6389\u843D\u7B26\u53F7\u4F7F\u7528\u539F\u8F6E\u5ED3\u548C\u91D1\u94F6\u6750\u8D28\u3002",
+      purpose: "\u539F\u6708\u7259\u3001\u661F\u3001\u5341\u5B57\u548C\u53F6\u5F62\u6389\u843D\u7B26\u53F7\u4F7F\u7528\u539F\u8F6E\u5ED3\u548C\u91D1\u94F6\u6750\u8D28\u3002",
+      objects: "\u91D1\u94F6\u6389\u843D\u7B26\u53F7\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u7B26\u53F7\u72EC\u7ACB\u51FA\u73B0\u3002",
+        "\u4FDD\u6301\u539F\u91D1\u94F6\u6750\u8D28\u4E0E\u63CF\u8FB9\u3002",
+        "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3002"
+      ],
+      aliases: [
+        "\u91D1\u94F6\u6389\u843D\u7B26\u53F7",
+        "\u82B1\u843D\u6210\u8776"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u6708\u7259\u3001\u661F\u3001\u5341\u5B57\u548C\u53F6\u5F62\u6389\u843D\u7B26\u53F7\u4F7F\u7528\u539F\u8F6E\u5ED3\u548C\u91D1\u94F6\u6750\u8D28\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-osmanthus.js",
+        factory: "osmanthus-symbol-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-osmanthus-data.js"
+        ]
+      },
+      actions: [
+        "shape-contact-rebound"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u6708\u7259\u3001\u661F\u3001\u5341\u5B57\u548C\u53F6\u5F62\u6389\u843D\u7B26\u53F7\u4F7F\u7528\u539F\u8F6E\u5ED3\u548C\u91D1\u94F6\u6750\u8D28\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76843\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u91D1\u94F6\u6389\u843D\u7B26\u53F7\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "osmanthus",
+        mode: "symbol",
+        start: 0,
+        width: 720,
+        height: 960,
+        silver: false,
+        symbolStyle: "crescent-solid"
+      },
+      variants: [
+        {
+          id: "gold-crescent-solid",
+          label: "\u91D1\xB7\u5B9E\u5FC3\u6708\u7259",
+          summary: "\u91D1\xB7\u5B9E\u5FC3\u6708\u7259\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: false,
+            symbolStyle: "crescent-solid"
+          }
+        },
+        {
+          id: "silver-crescent-solid",
+          label: "\u94F6\xB7\u5B9E\u5FC3\u6708\u7259",
+          summary: "\u94F6\xB7\u5B9E\u5FC3\u6708\u7259\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: true,
+            symbolStyle: "crescent-solid"
+          }
+        },
+        {
+          id: "gold-crescent-outline",
+          label: "\u91D1\xB7\u7A7A\u5FC3\u6708\u7259",
+          summary: "\u91D1\xB7\u7A7A\u5FC3\u6708\u7259\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: false,
+            symbolStyle: "crescent-outline"
+          }
+        },
+        {
+          id: "silver-crescent-outline",
+          label: "\u94F6\xB7\u7A7A\u5FC3\u6708\u7259",
+          summary: "\u94F6\xB7\u7A7A\u5FC3\u6708\u7259\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: true,
+            symbolStyle: "crescent-outline"
+          }
+        },
+        {
+          id: "gold-slim-solid",
+          label: "\u91D1\xB7\u7EC6\u6708\u7259",
+          summary: "\u91D1\xB7\u7EC6\u6708\u7259\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: false,
+            symbolStyle: "slim-solid"
+          }
+        },
+        {
+          id: "silver-slim-solid",
+          label: "\u94F6\xB7\u7EC6\u6708\u7259",
+          summary: "\u94F6\xB7\u7EC6\u6708\u7259\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: true,
+            symbolStyle: "slim-solid"
+          }
+        },
+        {
+          id: "gold-slim-outline",
+          label: "\u91D1\xB7\u7EC6\u7A7A\u5FC3\u6708\u7259",
+          summary: "\u91D1\xB7\u7EC6\u7A7A\u5FC3\u6708\u7259\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: false,
+            symbolStyle: "slim-outline"
+          }
+        },
+        {
+          id: "silver-slim-outline",
+          label: "\u94F6\xB7\u7EC6\u7A7A\u5FC3\u6708\u7259",
+          summary: "\u94F6\xB7\u7EC6\u7A7A\u5FC3\u6708\u7259\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: true,
+            symbolStyle: "slim-outline"
+          }
+        },
+        {
+          id: "gold-five-solid",
+          label: "\u91D1\xB7\u4E94\u89D2\u661F",
+          summary: "\u91D1\xB7\u4E94\u89D2\u661F\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: false,
+            symbolStyle: "five-solid"
+          }
+        },
+        {
+          id: "silver-five-solid",
+          label: "\u94F6\xB7\u4E94\u89D2\u661F",
+          summary: "\u94F6\xB7\u4E94\u89D2\u661F\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: true,
+            symbolStyle: "five-solid"
+          }
+        },
+        {
+          id: "gold-five-outline",
+          label: "\u91D1\xB7\u7A7A\u5FC3\u4E94\u89D2\u661F",
+          summary: "\u91D1\xB7\u7A7A\u5FC3\u4E94\u89D2\u661F\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: false,
+            symbolStyle: "five-outline"
+          }
+        },
+        {
+          id: "silver-five-outline",
+          label: "\u94F6\xB7\u7A7A\u5FC3\u4E94\u89D2\u661F",
+          summary: "\u94F6\xB7\u7A7A\u5FC3\u4E94\u89D2\u661F\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: true,
+            symbolStyle: "five-outline"
+          }
+        },
+        {
+          id: "gold-four-solid",
+          label: "\u91D1\xB7\u56DB\u89D2\u661F",
+          summary: "\u91D1\xB7\u56DB\u89D2\u661F\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: false,
+            symbolStyle: "four-solid"
+          }
+        },
+        {
+          id: "silver-four-solid",
+          label: "\u94F6\xB7\u56DB\u89D2\u661F",
+          summary: "\u94F6\xB7\u56DB\u89D2\u661F\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: true,
+            symbolStyle: "four-solid"
+          }
+        },
+        {
+          id: "gold-four-outline",
+          label: "\u91D1\xB7\u7A7A\u5FC3\u56DB\u89D2\u661F",
+          summary: "\u91D1\xB7\u7A7A\u5FC3\u56DB\u89D2\u661F\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: false,
+            symbolStyle: "four-outline"
+          }
+        },
+        {
+          id: "silver-four-outline",
+          label: "\u94F6\xB7\u7A7A\u5FC3\u56DB\u89D2\u661F",
+          summary: "\u94F6\xB7\u7A7A\u5FC3\u56DB\u89D2\u661F\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: true,
+            symbolStyle: "four-outline"
+          }
+        },
+        {
+          id: "gold-cross",
+          label: "\u91D1\xB7\u5341\u5B57",
+          summary: "\u91D1\xB7\u5341\u5B57\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: false,
+            symbolStyle: "cross"
+          }
+        },
+        {
+          id: "silver-cross",
+          label: "\u94F6\xB7\u5341\u5B57",
+          summary: "\u94F6\xB7\u5341\u5B57\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: true,
+            symbolStyle: "cross"
+          }
+        },
+        {
+          id: "gold-cross-diagonal",
+          label: "\u91D1\xB7\u659C\u5341\u5B57",
+          summary: "\u91D1\xB7\u659C\u5341\u5B57\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: false,
+            symbolStyle: "cross-diagonal"
+          }
+        },
+        {
+          id: "silver-cross-diagonal",
+          label: "\u94F6\xB7\u659C\u5341\u5B57",
+          summary: "\u94F6\xB7\u659C\u5341\u5B57\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: true,
+            symbolStyle: "cross-diagonal"
+          }
+        },
+        {
+          id: "gold-leaf-solid",
+          label: "\u91D1\xB7\u53F6\u7247",
+          summary: "\u91D1\xB7\u53F6\u7247\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: false,
+            symbolStyle: "leaf-solid"
+          }
+        },
+        {
+          id: "silver-leaf-solid",
+          label: "\u94F6\xB7\u53F6\u7247",
+          summary: "\u94F6\xB7\u53F6\u7247\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "osmanthus",
+            mode: "symbol",
+            start: 0,
+            width: 720,
+            height: 960,
+            silver: true,
+            symbolStyle: "leaf-solid"
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u539F\u6708\u7259\u3001\u661F\u3001\u5341\u5B57\u548C\u53F6\u5F62\u6389\u843D\u7B26\u53F7\u4F7F\u7528\u539F\u8F6E\u5ED3\u548C\u91D1\u94F6\u6750\u8D28\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8720\xD7960\uFF0C\u7AD6\u72483:4\uFF1B\u591C\u7A7A\u4E2D\u4FDD\u7559\u6708\u4EAE\u3001\u6842\u6811\u548C\u5C42\u53E0\u6811\u51A0\uFF0C\u91D1\u94F6\u8868\u9762\u53CD\u5149\u968F\u53F6\u7247\u548C\u8776\u7FFC\u59FF\u6001\u53D8\u5316\u3002",
+        phases: [
+          "\u539F\u7B26\u53F7\u72EC\u7ACB\u51FA\u73B0\u3002",
+          "\u4FDD\u6301\u539F\u91D1\u94F6\u6750\u8D28\u4E0E\u63CF\u8FB9\u3002",
+          "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3002"
+        ],
+        retain: "\u539F\u6708\u7259\u3001\u661F\u3001\u5341\u5B57\u548C\u53F6\u5F62\u6389\u843D\u7B26\u53F7\u4F7F\u7528\u539F\u8F6E\u5ED3\u548C\u91D1\u94F6\u6750\u8D28\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E3\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "osmanthus-leaf-illustration",
+      name: "\u6842\u6811\u539F\u53F6\u7247",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u76F4\u63A5\u4FDD\u7559\u539F\u6842\u53F6\u8F6E\u5ED3\u3001\u53F6\u8109\u4E0E\u91D1\u5C5E\u8868\u9762\u3002",
+      purpose: "\u76F4\u63A5\u4FDD\u7559\u539F\u6842\u53F6\u8F6E\u5ED3\u3001\u53F6\u8109\u4E0E\u91D1\u5C5E\u8868\u9762\u3002",
+      objects: "\u6842\u6811\u539F\u53F6\u7247\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u53F6\u7247\u5B8C\u6574\u51FA\u73B0\u3002",
+        "\u4FDD\u7559\u539F\u53F6\u8109\u4E0E\u6750\u8D28\u3002",
+        "\u4EE5\u900F\u660E\u5E95\u505C\u7559\u3002"
+      ],
+      aliases: [
+        "\u6842\u6811\u539F\u53F6\u7247",
+        "\u82B1\u843D\u6210\u8776"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u76F4\u63A5\u4FDD\u7559\u539F\u6842\u53F6\u8F6E\u5ED3\u3001\u53F6\u8109\u4E0E\u91D1\u5C5E\u8868\u9762\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-osmanthus.js",
+        factory: "osmanthus-leaf-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-osmanthus-data.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u76F4\u63A5\u4FDD\u7559\u539F\u6842\u53F6\u8F6E\u5ED3\u3001\u53F6\u8109\u4E0E\u91D1\u5C5E\u8868\u9762\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76843\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u6842\u6811\u539F\u53F6\u7247\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "osmanthus",
+        mode: "leaf",
+        start: 0,
+        width: 720,
+        height: 960
+      },
+      reproduction: {
+        objects: "\u76F4\u63A5\u4FDD\u7559\u539F\u6842\u53F6\u8F6E\u5ED3\u3001\u53F6\u8109\u4E0E\u91D1\u5C5E\u8868\u9762\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8720\xD7960\uFF0C\u7AD6\u72483:4\uFF1B\u591C\u7A7A\u4E2D\u4FDD\u7559\u6708\u4EAE\u3001\u6842\u6811\u548C\u5C42\u53E0\u6811\u51A0\uFF0C\u91D1\u94F6\u8868\u9762\u53CD\u5149\u968F\u53F6\u7247\u548C\u8776\u7FFC\u59FF\u6001\u53D8\u5316\u3002",
+        phases: [
+          "\u539F\u53F6\u7247\u5B8C\u6574\u51FA\u73B0\u3002",
+          "\u4FDD\u7559\u539F\u53F6\u8109\u4E0E\u6750\u8D28\u3002",
+          "\u4EE5\u900F\u660E\u5E95\u505C\u7559\u3002"
+        ],
+        retain: "\u76F4\u63A5\u4FDD\u7559\u539F\u6842\u53F6\u8F6E\u5ED3\u3001\u53F6\u8109\u4E0E\u91D1\u5C5E\u8868\u9762\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E3\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "osmanthus-flower-illustration",
+      name: "\u56DB\u74E3\u6842\u82B1",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u539F\u56DB\u74E3\u6842\u82B1\u4FDD\u7559\u82B1\u74E3\u5C55\u5F00\u548C\u8868\u9762\u53CD\u5149\u3002",
+      purpose: "\u539F\u56DB\u74E3\u6842\u82B1\u4FDD\u7559\u82B1\u74E3\u5C55\u5F00\u548C\u8868\u9762\u53CD\u5149\u3002",
+      objects: "\u539F\u56DB\u74E3\u6842\u82B1\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u82B1\u74E3\u5C55\u5F00\u3002",
+        "\u4FDD\u7559\u74E3\u9762\u548C\u82B1\u5FC3\u5C42\u6B21\u3002",
+        "\u4FDD\u6301\u539F\u82B1\u6735\u8F6E\u5ED3\u3002"
+      ],
+      aliases: [
+        "\u539F\u56DB\u74E3\u6842\u82B1",
+        "\u82B1\u843D\u6210\u8776"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u56DB\u74E3\u6842\u82B1\u4FDD\u7559\u82B1\u74E3\u5C55\u5F00\u548C\u8868\u9762\u53CD\u5149\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-osmanthus.js",
+        factory: "osmanthus-flower-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-osmanthus-data.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u56DB\u74E3\u6842\u82B1\u4FDD\u7559\u82B1\u74E3\u5C55\u5F00\u548C\u8868\u9762\u53CD\u5149\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76843\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u539F\u56DB\u74E3\u6842\u82B1\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "osmanthus",
+        mode: "flower",
+        start: 0,
+        width: 720,
+        height: 960
+      },
+      reproduction: {
+        objects: "\u539F\u56DB\u74E3\u6842\u82B1\u4FDD\u7559\u82B1\u74E3\u5C55\u5F00\u548C\u8868\u9762\u53CD\u5149\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8720\xD7960\uFF0C\u7AD6\u72483:4\uFF1B\u591C\u7A7A\u4E2D\u4FDD\u7559\u6708\u4EAE\u3001\u6842\u6811\u548C\u5C42\u53E0\u6811\u51A0\uFF0C\u91D1\u94F6\u8868\u9762\u53CD\u5149\u968F\u53F6\u7247\u548C\u8776\u7FFC\u59FF\u6001\u53D8\u5316\u3002",
+        phases: [
+          "\u539F\u82B1\u74E3\u5C55\u5F00\u3002",
+          "\u4FDD\u7559\u74E3\u9762\u548C\u82B1\u5FC3\u5C42\u6B21\u3002",
+          "\u4FDD\u6301\u539F\u82B1\u6735\u8F6E\u5ED3\u3002"
+        ],
+        retain: "\u539F\u56DB\u74E3\u6842\u82B1\u4FDD\u7559\u82B1\u74E3\u5C55\u5F00\u548C\u8868\u9762\u53CD\u5149\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E3\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "osmanthus-butterfly-journey",
+      name: "\u82B1\u843D\u6210\u8776",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u539F\u6842\u6811\u751F\u957F\u540E\u7B26\u53F7\u9519\u5CF0\u843D\u4E0B\u3001\u6309\u771F\u5B9E\u8F6E\u5ED3\u89E6\u5730\u56DE\u5F39\uFF0C\u5728\u9876\u70B9\u5316\u8776\uFF0C\u98DE\u5411\u6708\u4EAE\u63A8\u52A8\u76C8\u6EE1\u3002",
+      purpose: "\u539F\u6842\u6811\u751F\u957F\u540E\u7B26\u53F7\u9519\u5CF0\u843D\u4E0B\u3001\u6309\u771F\u5B9E\u8F6E\u5ED3\u89E6\u5730\u56DE\u5F39\uFF0C\u5728\u9876\u70B9\u5316\u8776\uFF0C\u98DE\u5411\u6708\u4EAE\u63A8\u52A8\u76C8\u6EE1\u3002",
+      objects: "\u82B1\u843D\u6210\u8776\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u6811\u548C\u6811\u51A0\u6309\u65F6\u5E8F\u751F\u957F\u5C55\u5F00\u3002",
+        "\u98CE\u8FC7\u540E\u539F\u7B26\u53F7\u843D\u4E0B\uFF0C\u6309\u8F6E\u5ED3\u89E6\u5730\u56DE\u5F39\u5E76\u5728\u9876\u70B9\u5316\u8776\u3002",
+        "\u7FA4\u8776\u6CBF\u539F\u5F27\u7EBF\u98DE\u5411\u6708\u4EAE\uFF0C\u62B5\u8FBE\u63A8\u8FDB\u6708\u9762\u76C8\u6EE1\u5E76\u7559\u4E0B\u661F\u5149\u3002"
+      ],
+      aliases: [
+        "\u82B1\u843D\u6210\u8776",
+        "\u82B1\u843D\u6210\u8776"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u6842\u6811\u751F\u957F\u540E\u7B26\u53F7\u9519\u5CF0\u843D\u4E0B\u3001\u6309\u771F\u5B9E\u8F6E\u5ED3\u89E6\u5730\u56DE\u5F39\uFF0C\u5728\u9876\u70B9\u5316\u8776\uFF0C\u98DE\u5411\u6708\u4EAE\u63A8\u52A8\u76C8\u6EE1\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 24e3,
+      preview_ms: 13200,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-osmanthus.js",
+        factory: "osmanthus-butterfly-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-osmanthus-data.js"
+        ]
+      },
+      actions: [
+        "shape-contact-rebound",
+        "swarm-arc-flight",
+        "moon-event-fill",
+        "osmanthus-moon-illustration",
+        "osmanthus-tree-illustration",
+        "osmanthus-butterfly-illustration",
+        "osmanthus-symbol-illustration",
+        "osmanthus-leaf-illustration",
+        "osmanthus-flower-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u6842\u6811\u751F\u957F\u540E\u7B26\u53F7\u9519\u5CF0\u843D\u4E0B\u3001\u6309\u771F\u5B9E\u8F6E\u5ED3\u89E6\u5730\u56DE\u5F39\uFF0C\u5728\u9876\u70B9\u5316\u8776\uFF0C\u98DE\u5411\u6708\u4EAE\u63A8\u52A8\u76C8\u6EE1\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768424\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u82B1\u843D\u6210\u8776\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "osmanthus",
+        mode: "full",
+        start: 0,
+        width: 720,
+        height: 960,
+        look: "gold-leaves",
+        breakdown: [
+          {
+            id: "sky",
+            name: "\u591C\u7A7A\u4E0E\u6708\u4EAE",
+            start: 0,
+            end: 24e3,
+            time: "0\u201424\u79D2",
+            detail: "\u591C\u7A7A\u5E95\u8272\u4E0E\u6708\u4EAE\u4F7F\u7528\u5B8C\u6574\u56FA\u5B9A\u7EB9\u7406\u548C\u4F4D\u7F6E\u3002",
+            actions: [
+              "moon-event-fill",
+              "osmanthus-moon-illustration"
+            ]
+          },
+          {
+            id: "tree",
+            name: "\u6842\u6811\u3001\u6811\u51A0\u4E0E\u82B1\u7C07",
+            start: 0,
+            end: 24e3,
+            time: "0\u201424\u79D2",
+            detail: "\u679D\u5E72\u3001\u53F6\u7247\u548C\u82B1\u7C07\u9010\u6B65\u5C55\u5F00\uFF0C\u4FDD\u7559\u6811\u7684\u8F7B\u5FAE\u6447\u6446\u3001\u91D1\u5C5E\u53CD\u5149\u548C\u524D\u540E\u906E\u6321\u3002",
+            actions: [
+              "osmanthus-tree-illustration",
+              "osmanthus-leaf-illustration",
+              "osmanthus-flower-illustration"
+            ]
+          },
+          {
+            id: "flowers",
+            name: "\u79BB\u679D\u3001\u78B0\u649E\u3001\u5316\u8776\u4E0E\u98DE\u884C",
+            start: 0,
+            end: 24e3,
+            time: "0\u201424\u79D2",
+            detail: "\u843D\u82B1\u6216\u7B26\u53F7\u79BB\u679D\u540E\u6309\u81EA\u8EAB\u8DEF\u7EBF\u4E0B\u843D\u3001\u63A5\u89E6\u3001\u56DE\u5F39\u5E76\u5316\u8776\uFF1B\u5FAE\u7247\u53CD\u5149\u968F\u7FC5\u8180\u59FF\u6001\u6539\u53D8\u3002",
+            actions: [
+              "shape-contact-rebound",
+              "swarm-arc-flight",
+              "osmanthus-butterfly-illustration",
+              "osmanthus-symbol-illustration"
+            ]
+          }
+        ],
+        layers: [
+          "sky",
+          "tree",
+          "flowers"
+        ]
+      },
+      variants: [
+        {
+          id: "gold-leaves",
+          label: "\u7EAF\u91D1\u53F6",
+          summary: "\u7EAF\u91D1\u53F6\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 24e3,
+          preview_ms: 13200,
+          scene: {
+            family: "osmanthus",
+            mode: "full",
+            start: 0,
+            width: 720,
+            height: 960,
+            look: "gold-leaves",
+            breakdown: [
+              {
+                id: "sky",
+                name: "\u591C\u7A7A\u4E0E\u6708\u4EAE",
+                start: 0,
+                end: 24e3,
+                time: "0\u201424\u79D2",
+                detail: "\u591C\u7A7A\u5E95\u8272\u4E0E\u6708\u4EAE\u4F7F\u7528\u5B8C\u6574\u56FA\u5B9A\u7EB9\u7406\u548C\u4F4D\u7F6E\u3002",
+                actions: [
+                  "moon-event-fill",
+                  "osmanthus-moon-illustration"
+                ]
+              },
+              {
+                id: "tree",
+                name: "\u6842\u6811\u3001\u6811\u51A0\u4E0E\u82B1\u7C07",
+                start: 0,
+                end: 24e3,
+                time: "0\u201424\u79D2",
+                detail: "\u679D\u5E72\u3001\u53F6\u7247\u548C\u82B1\u7C07\u9010\u6B65\u5C55\u5F00\uFF0C\u4FDD\u7559\u6811\u7684\u8F7B\u5FAE\u6447\u6446\u3001\u91D1\u5C5E\u53CD\u5149\u548C\u524D\u540E\u906E\u6321\u3002",
+                actions: [
+                  "osmanthus-tree-illustration",
+                  "osmanthus-leaf-illustration",
+                  "osmanthus-flower-illustration"
+                ]
+              },
+              {
+                id: "flowers",
+                name: "\u79BB\u679D\u3001\u78B0\u649E\u3001\u5316\u8776\u4E0E\u98DE\u884C",
+                start: 0,
+                end: 24e3,
+                time: "0\u201424\u79D2",
+                detail: "\u843D\u82B1\u6216\u7B26\u53F7\u79BB\u679D\u540E\u6309\u81EA\u8EAB\u8DEF\u7EBF\u4E0B\u843D\u3001\u63A5\u89E6\u3001\u56DE\u5F39\u5E76\u5316\u8776\uFF1B\u5FAE\u7247\u53CD\u5149\u968F\u7FC5\u8180\u59FF\u6001\u6539\u53D8\u3002",
+                actions: [
+                  "shape-contact-rebound",
+                  "swarm-arc-flight",
+                  "osmanthus-butterfly-illustration",
+                  "osmanthus-symbol-illustration"
+                ]
+              }
+            ],
+            layers: [
+              "sky",
+              "tree",
+              "flowers"
+            ]
+          }
+        },
+        {
+          id: "flowers",
+          label: "\u91D1\u82B1",
+          summary: "\u91D1\u82B1\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 24e3,
+          preview_ms: 13200,
+          scene: {
+            family: "osmanthus",
+            mode: "full",
+            start: 0,
+            width: 720,
+            height: 960,
+            look: "flowers",
+            breakdown: [
+              {
+                id: "sky",
+                name: "\u591C\u7A7A\u4E0E\u6708\u4EAE",
+                start: 0,
+                end: 24e3,
+                time: "0\u201424\u79D2",
+                detail: "\u591C\u7A7A\u5E95\u8272\u4E0E\u6708\u4EAE\u4F7F\u7528\u5B8C\u6574\u56FA\u5B9A\u7EB9\u7406\u548C\u4F4D\u7F6E\u3002",
+                actions: [
+                  "moon-event-fill",
+                  "osmanthus-moon-illustration"
+                ]
+              },
+              {
+                id: "tree",
+                name: "\u6842\u6811\u3001\u6811\u51A0\u4E0E\u82B1\u7C07",
+                start: 0,
+                end: 24e3,
+                time: "0\u201424\u79D2",
+                detail: "\u679D\u5E72\u3001\u53F6\u7247\u548C\u82B1\u7C07\u9010\u6B65\u5C55\u5F00\uFF0C\u4FDD\u7559\u6811\u7684\u8F7B\u5FAE\u6447\u6446\u3001\u91D1\u5C5E\u53CD\u5149\u548C\u524D\u540E\u906E\u6321\u3002",
+                actions: [
+                  "osmanthus-tree-illustration",
+                  "osmanthus-leaf-illustration",
+                  "osmanthus-flower-illustration"
+                ]
+              },
+              {
+                id: "flowers",
+                name: "\u79BB\u679D\u3001\u78B0\u649E\u3001\u5316\u8776\u4E0E\u98DE\u884C",
+                start: 0,
+                end: 24e3,
+                time: "0\u201424\u79D2",
+                detail: "\u843D\u82B1\u6216\u7B26\u53F7\u79BB\u679D\u540E\u6309\u81EA\u8EAB\u8DEF\u7EBF\u4E0B\u843D\u3001\u63A5\u89E6\u3001\u56DE\u5F39\u5E76\u5316\u8776\uFF1B\u5FAE\u7247\u53CD\u5149\u968F\u7FC5\u8180\u59FF\u6001\u6539\u53D8\u3002",
+                actions: [
+                  "shape-contact-rebound",
+                  "swarm-arc-flight",
+                  "osmanthus-butterfly-illustration",
+                  "osmanthus-symbol-illustration"
+                ]
+              }
+            ],
+            layers: [
+              "sky",
+              "tree",
+              "flowers"
+            ]
+          }
+        },
+        {
+          id: "maple-blend",
+          label: "\u91D1\u7EA2\u67AB\u53F6",
+          summary: "\u91D1\u7EA2\u67AB\u53F6\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 24e3,
+          preview_ms: 13200,
+          scene: {
+            family: "osmanthus",
+            mode: "full",
+            start: 0,
+            width: 720,
+            height: 960,
+            look: "maple-blend",
+            breakdown: [
+              {
+                id: "sky",
+                name: "\u591C\u7A7A\u4E0E\u6708\u4EAE",
+                start: 0,
+                end: 24e3,
+                time: "0\u201424\u79D2",
+                detail: "\u591C\u7A7A\u5E95\u8272\u4E0E\u6708\u4EAE\u4F7F\u7528\u5B8C\u6574\u56FA\u5B9A\u7EB9\u7406\u548C\u4F4D\u7F6E\u3002",
+                actions: [
+                  "moon-event-fill",
+                  "osmanthus-moon-illustration"
+                ]
+              },
+              {
+                id: "tree",
+                name: "\u6842\u6811\u3001\u6811\u51A0\u4E0E\u82B1\u7C07",
+                start: 0,
+                end: 24e3,
+                time: "0\u201424\u79D2",
+                detail: "\u679D\u5E72\u3001\u53F6\u7247\u548C\u82B1\u7C07\u9010\u6B65\u5C55\u5F00\uFF0C\u4FDD\u7559\u6811\u7684\u8F7B\u5FAE\u6447\u6446\u3001\u91D1\u5C5E\u53CD\u5149\u548C\u524D\u540E\u906E\u6321\u3002",
+                actions: [
+                  "osmanthus-tree-illustration",
+                  "osmanthus-leaf-illustration",
+                  "osmanthus-flower-illustration"
+                ]
+              },
+              {
+                id: "flowers",
+                name: "\u79BB\u679D\u3001\u78B0\u649E\u3001\u5316\u8776\u4E0E\u98DE\u884C",
+                start: 0,
+                end: 24e3,
+                time: "0\u201424\u79D2",
+                detail: "\u843D\u82B1\u6216\u7B26\u53F7\u79BB\u679D\u540E\u6309\u81EA\u8EAB\u8DEF\u7EBF\u4E0B\u843D\u3001\u63A5\u89E6\u3001\u56DE\u5F39\u5E76\u5316\u8776\uFF1B\u5FAE\u7247\u53CD\u5149\u968F\u7FC5\u8180\u59FF\u6001\u6539\u53D8\u3002",
+                actions: [
+                  "shape-contact-rebound",
+                  "swarm-arc-flight",
+                  "osmanthus-butterfly-illustration",
+                  "osmanthus-symbol-illustration"
+                ]
+              }
+            ],
+            layers: [
+              "sky",
+              "tree",
+              "flowers"
+            ]
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u539F\u6842\u6811\u751F\u957F\u540E\u7B26\u53F7\u9519\u5CF0\u843D\u4E0B\u3001\u6309\u771F\u5B9E\u8F6E\u5ED3\u89E6\u5730\u56DE\u5F39\uFF0C\u5728\u9876\u70B9\u5316\u8776\uFF0C\u98DE\u5411\u6708\u4EAE\u63A8\u52A8\u76C8\u6EE1\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8720\xD7960\uFF0C\u7AD6\u72483:4\uFF1B\u591C\u7A7A\u4E2D\u4FDD\u7559\u6708\u4EAE\u3001\u6842\u6811\u548C\u5C42\u53E0\u6811\u51A0\uFF0C\u91D1\u94F6\u8868\u9762\u53CD\u5149\u968F\u53F6\u7247\u548C\u8776\u7FFC\u59FF\u6001\u53D8\u5316\u3002",
+        phases: [
+          "\u539F\u6811\u548C\u6811\u51A0\u6309\u65F6\u5E8F\u751F\u957F\u5C55\u5F00\u3002",
+          "\u98CE\u8FC7\u540E\u539F\u7B26\u53F7\u843D\u4E0B\uFF0C\u6309\u8F6E\u5ED3\u89E6\u5730\u56DE\u5F39\u5E76\u5728\u9876\u70B9\u5316\u8776\u3002",
+          "\u7FA4\u8776\u6CBF\u539F\u5F27\u7EBF\u98DE\u5411\u6708\u4EAE\uFF0C\u62B5\u8FBE\u63A8\u8FDB\u6708\u9762\u76C8\u6EE1\u5E76\u7559\u4E0B\u661F\u5149\u3002"
+        ],
+        retain: "\u539F\u6842\u6811\u751F\u957F\u540E\u7B26\u53F7\u9519\u5CF0\u843D\u4E0B\u3001\u6309\u771F\u5B9E\u8F6E\u5ED3\u89E6\u5730\u56DE\u5F39\uFF0C\u5728\u9876\u70B9\u5316\u8776\uFF0C\u98DE\u5411\u6708\u4EAE\u63A8\u52A8\u76C8\u6EE1\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E24\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "sky",
+            name: "\u591C\u7A7A\u4E0E\u6708\u4EAE",
+            start: 0,
+            end: 24e3,
+            time: "0\u201424\u79D2",
+            detail: "\u591C\u7A7A\u5E95\u8272\u4E0E\u6708\u4EAE\u4F7F\u7528\u5B8C\u6574\u56FA\u5B9A\u7EB9\u7406\u548C\u4F4D\u7F6E\u3002",
+            actions: [
+              "moon-event-fill",
+              "osmanthus-moon-illustration"
+            ]
+          },
+          {
+            id: "tree",
+            name: "\u6842\u6811\u3001\u6811\u51A0\u4E0E\u82B1\u7C07",
+            start: 0,
+            end: 24e3,
+            time: "0\u201424\u79D2",
+            detail: "\u679D\u5E72\u3001\u53F6\u7247\u548C\u82B1\u7C07\u9010\u6B65\u5C55\u5F00\uFF0C\u4FDD\u7559\u6811\u7684\u8F7B\u5FAE\u6447\u6446\u3001\u91D1\u5C5E\u53CD\u5149\u548C\u524D\u540E\u906E\u6321\u3002",
+            actions: [
+              "osmanthus-tree-illustration",
+              "osmanthus-leaf-illustration",
+              "osmanthus-flower-illustration"
+            ]
+          },
+          {
+            id: "flowers",
+            name: "\u79BB\u679D\u3001\u78B0\u649E\u3001\u5316\u8776\u4E0E\u98DE\u884C",
+            start: 0,
+            end: 24e3,
+            time: "0\u201424\u79D2",
+            detail: "\u843D\u82B1\u6216\u7B26\u53F7\u79BB\u679D\u540E\u6309\u81EA\u8EAB\u8DEF\u7EBF\u4E0B\u843D\u3001\u63A5\u89E6\u3001\u56DE\u5F39\u5E76\u5316\u8776\uFF1B\u5FAE\u7247\u53CD\u5149\u968F\u7FC5\u8180\u59FF\u6001\u6539\u53D8\u3002",
+            actions: [
+              "shape-contact-rebound",
+              "swarm-arc-flight",
+              "osmanthus-butterfly-illustration",
+              "osmanthus-symbol-illustration"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: "galaxy-axis-reveal",
+      name: "\u94F6\u6CB3\u4ECE\u4E2D\u8F74\u5411\u4E24\u4FA7\u663E\u73B0",
+      kind: "action",
+      category: "lighting",
+      summary: "\u539F\u94F6\u6CB3\u56FE\u6CBF\u771F\u5B9E\u661F\u5E26\u4E2D\u8F74\u548C\u4E24\u4FA7\u5BBD\u5EA6\u663E\u73B0\uFF0C\u539F\u4EAE\u661F\u6309\u62B5\u8FBE\u6B21\u5E8F\u63A5\u7EED\u3002",
+      purpose: "\u539F\u94F6\u6CB3\u56FE\u6CBF\u771F\u5B9E\u661F\u5E26\u4E2D\u8F74\u548C\u4E24\u4FA7\u5BBD\u5EA6\u663E\u73B0\uFF0C\u539F\u4EAE\u661F\u6309\u62B5\u8FBE\u6B21\u5E8F\u63A5\u7EED\u3002",
+      objects: "\u94F6\u6CB3\u4ECE\u4E2D\u8F74\u5411\u4E24\u4FA7\u663E\u73B0\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u661F\u5E26\u4E2D\u8F74\u6309\u539F\u843D\u70B9\u6B21\u5E8F\u5F00\u59CB\u4EAE\u8D77\u3002",
+        "\u4F9D\u636E\u539F\u661F\u5E26\u5BBD\u5EA6\u5411\u4E24\u4FA7\u9010\u6E10\u663E\u73B0\u3002",
+        "\u5E95\u56FE\u5B8C\u6574\u663E\u73B0\u540E\u4FDD\u7559\u9519\u5CF0\u661F\u8292\u3002"
+      ],
+      aliases: [
+        "\u94F6\u6CB3\u4ECE\u4E2D\u8F74\u5411\u4E24\u4FA7\u663E\u73B0",
+        "\u661F\u6708\u6765\u4FE1"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u94F6\u6CB3\u56FE\u6CBF\u771F\u5B9E\u661F\u5E26\u4E2D\u8F74\u548C\u4E24\u4FA7\u5BBD\u5EA6\u663E\u73B0\uFF0C\u539F\u4EAE\u661F\u6309\u62B5\u8FBE\u6B21\u5E8F\u63A5\u7EED\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 14e3,
+      preview_ms: 7700,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-letter.js",
+        factory: "galaxy-axis-reveal",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-letter-images.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/letter/\u7D20\u6750\u6765\u6E90.md",
+          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
+          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
+          "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u94F6\u6CB3\u56FE\u6CBF\u771F\u5B9E\u661F\u5E26\u4E2D\u8F74\u548C\u4E24\u4FA7\u5BBD\u5EA6\u663E\u73B0\uFF0C\u539F\u4EAE\u661F\u6309\u62B5\u8FBE\u6B21\u5E8F\u63A5\u7EED\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768414\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u94F6\u6CB3\u4ECE\u4E2D\u8F74\u5411\u4E24\u4FA7\u663E\u73B0\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "letter",
+        mode: "galaxy",
+        start: 0,
+        width: 660,
+        height: 880
+      },
+      reproduction: {
+        objects: "\u539F\u94F6\u6CB3\u56FE\u6CBF\u771F\u5B9E\u661F\u5E26\u4E2D\u8F74\u548C\u4E24\u4FA7\u5BBD\u5EA6\u663E\u73B0\uFF0C\u539F\u4EAE\u661F\u6309\u62B5\u8FBE\u6B21\u5E8F\u63A5\u7EED\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8660\xD7880\uFF0C\u7AD6\u72483:4\uFF1B\u8FD1\u9ED1\u5E95#080a0e\u3001\u6696\u767D#f9f3fb\uFF1B\u8F93\u5165\u6846\u4F4D\u4E8E\u6A2A\u5411\u4E2D\u592E\u548C70%\u9AD8\u5EA6\uFF0C\u5BBD\u5EA6\u4E3A\u753B\u976272%\uFF1B\u4E2D\u6587\u4F7F\u7528\u971E\u9E5C\u6587\u6977\u3002",
+        phases: [
+          "\u661F\u5E26\u4E2D\u8F74\u6309\u539F\u843D\u70B9\u6B21\u5E8F\u5F00\u59CB\u4EAE\u8D77\u3002",
+          "\u4F9D\u636E\u539F\u661F\u5E26\u5BBD\u5EA6\u5411\u4E24\u4FA7\u9010\u6E10\u663E\u73B0\u3002",
+          "\u5E95\u56FE\u5B8C\u6574\u663E\u73B0\u540E\u4FDD\u7559\u9519\u5CF0\u661F\u8292\u3002"
+        ],
+        retain: "\u539F\u94F6\u6CB3\u56FE\u6CBF\u771F\u5B9E\u661F\u5E26\u4E2D\u8F74\u548C\u4E24\u4FA7\u5BBD\u5EA6\u663E\u73B0\uFF0C\u539F\u4EAE\u661F\u6309\u62B5\u8FBE\u6B21\u5E8F\u63A5\u7EED\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E14\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "letter-symbol-illustration",
+      name: "\u661F\u6708\u6765\u4FE1\u7B26\u53F7\u7EC4",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "\u539F\u661F\u3001\u6708\u3001\u82B1\u3001\u7231\u5FC3\u3001\u97F3\u7B26\u548C\u8774\u8776\u5171\u7528\u539F\u8F6E\u5ED3\u4E0E\u6750\u8D28\u3002",
+      purpose: "\u539F\u661F\u3001\u6708\u3001\u82B1\u3001\u7231\u5FC3\u3001\u97F3\u7B26\u548C\u8774\u8776\u5171\u7528\u539F\u8F6E\u5ED3\u4E0E\u6750\u8D28\u3002",
+      objects: "\u661F\u6708\u6765\u4FE1\u7B26\u53F7\u7EC4\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u7B26\u53F7\u72EC\u7ACB\u51FA\u73B0\u3002",
+        "\u4FDD\u7559\u6750\u8D28\uFF0C\u8774\u8776\u6309\u539F\u76F8\u4F4D\u632F\u7FC5\u3002",
+        "\u4FDD\u6301\u539F\u8F6E\u5ED3\u3002"
+      ],
+      aliases: [
+        "\u661F\u6708\u6765\u4FE1\u7B26\u53F7\u7EC4",
+        "\u661F\u6708\u6765\u4FE1"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u661F\u3001\u6708\u3001\u82B1\u3001\u7231\u5FC3\u3001\u97F3\u7B26\u548C\u8774\u8776\u5171\u7528\u539F\u8F6E\u5ED3\u4E0E\u6750\u8D28\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 3e3,
+      preview_ms: 1650,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-letter.js",
+        factory: "letter-symbol-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-letter-images.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/letter/\u7D20\u6750\u6765\u6E90.md",
+          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
+          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
+          "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
+        ]
+      },
+      actions: [
+        "symbol-flight-settle"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u661F\u3001\u6708\u3001\u82B1\u3001\u7231\u5FC3\u3001\u97F3\u7B26\u548C\u8774\u8776\u5171\u7528\u539F\u8F6E\u5ED3\u4E0E\u6750\u8D28\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76843\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u661F\u6708\u6765\u4FE1\u7B26\u53F7\u7EC4\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "letter",
+        mode: "symbols",
+        start: 0,
+        width: 660,
+        height: 880,
+        symbol: "star"
+      },
+      variants: [
+        {
+          id: "star",
+          label: "\u661F",
+          summary: "\u661F\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "letter",
+            mode: "symbols",
+            start: 0,
+            width: 660,
+            height: 880,
+            symbol: "star"
+          }
+        },
+        {
+          id: "moon",
+          label: "\u6708",
+          summary: "\u6708\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "letter",
+            mode: "symbols",
+            start: 0,
+            width: 660,
+            height: 880,
+            symbol: "moon"
+          }
+        },
+        {
+          id: "flower",
+          label: "\u82B1",
+          summary: "\u82B1\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "letter",
+            mode: "symbols",
+            start: 0,
+            width: 660,
+            height: 880,
+            symbol: "flower"
+          }
+        },
+        {
+          id: "heart",
+          label: "\u7231\u5FC3",
+          summary: "\u7231\u5FC3\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "letter",
+            mode: "symbols",
+            start: 0,
+            width: 660,
+            height: 880,
+            symbol: "heart"
+          }
+        },
+        {
+          id: "note",
+          label: "\u97F3\u7B26",
+          summary: "\u97F3\u7B26\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "letter",
+            mode: "symbols",
+            start: 0,
+            width: 660,
+            height: 880,
+            symbol: "note"
+          }
+        },
+        {
+          id: "butterfly",
+          label: "\u8774\u8776",
+          summary: "\u8774\u8776\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 3e3,
+          preview_ms: 1650,
+          scene: {
+            family: "letter",
+            mode: "symbols",
+            start: 0,
+            width: 660,
+            height: 880,
+            symbol: "butterfly"
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u539F\u661F\u3001\u6708\u3001\u82B1\u3001\u7231\u5FC3\u3001\u97F3\u7B26\u548C\u8774\u8776\u5171\u7528\u539F\u8F6E\u5ED3\u4E0E\u6750\u8D28\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8660\xD7880\uFF0C\u7AD6\u72483:4\uFF1B\u8FD1\u9ED1\u5E95#080a0e\u3001\u6696\u767D#f9f3fb\uFF1B\u8F93\u5165\u6846\u4F4D\u4E8E\u6A2A\u5411\u4E2D\u592E\u548C70%\u9AD8\u5EA6\uFF0C\u5BBD\u5EA6\u4E3A\u753B\u976272%\uFF1B\u4E2D\u6587\u4F7F\u7528\u971E\u9E5C\u6587\u6977\u3002",
+        phases: [
+          "\u539F\u7B26\u53F7\u72EC\u7ACB\u51FA\u73B0\u3002",
+          "\u4FDD\u7559\u6750\u8D28\uFF0C\u8774\u8776\u6309\u539F\u76F8\u4F4D\u632F\u7FC5\u3002",
+          "\u4FDD\u6301\u539F\u8F6E\u5ED3\u3002"
+        ],
+        retain: "\u539F\u661F\u3001\u6708\u3001\u82B1\u3001\u7231\u5FC3\u3001\u97F3\u7B26\u548C\u8774\u8776\u5171\u7528\u539F\u8F6E\u5ED3\u4E0E\u6750\u8D28\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E3\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "letter-galaxy-illustration",
+      name: "\u661F\u6708\u6765\u4FE1\u94F6\u6CB3",
+      kind: "illustration",
+      category: "illustration-nature",
+      summary: "\u539F\u94F6\u6CB3\u5E95\u56FE\u548C\u4ECE\u56FE\u4E2D\u8BFB\u53D6\u7684\u4EAE\u661F\u3001\u4E2D\u8F74\u4E0E\u5E26\u5BBD\u6570\u636E\u4E00\u8D77\u7EB3\u5165\u3002",
+      purpose: "\u539F\u94F6\u6CB3\u5E95\u56FE\u548C\u4ECE\u56FE\u4E2D\u8BFB\u53D6\u7684\u4EAE\u661F\u3001\u4E2D\u8F74\u4E0E\u5E26\u5BBD\u6570\u636E\u4E00\u8D77\u7EB3\u5165\u3002",
+      objects: "\u661F\u6708\u6765\u4FE1\u94F6\u6CB3\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u661F\u5E26\u4E2D\u8F74\u5F00\u59CB\u663E\u73B0\u3002",
+        "\u94F6\u6CB3\u5411\u4E24\u4FA7\u5C55\u5F00\u3002",
+        "\u539F\u5E95\u56FE\u548C\u4EAE\u661F\u5B8C\u6574\u4FDD\u7559\u3002"
+      ],
+      aliases: [
+        "\u661F\u6708\u6765\u4FE1\u94F6\u6CB3",
+        "\u661F\u6708\u6765\u4FE1"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u94F6\u6CB3\u5E95\u56FE\u548C\u4ECE\u56FE\u4E2D\u8BFB\u53D6\u7684\u4EAE\u661F\u3001\u4E2D\u8F74\u4E0E\u5E26\u5BBD\u6570\u636E\u4E00\u8D77\u7EB3\u5165\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 14e3,
+      preview_ms: 7700,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-letter.js",
+        factory: "letter-galaxy-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-letter-images.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/letter/\u7D20\u6750\u6765\u6E90.md",
+          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
+          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
+          "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
+        ]
+      },
+      actions: [
+        "galaxy-axis-reveal"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u94F6\u6CB3\u5E95\u56FE\u548C\u4ECE\u56FE\u4E2D\u8BFB\u53D6\u7684\u4EAE\u661F\u3001\u4E2D\u8F74\u4E0E\u5E26\u5BBD\u6570\u636E\u4E00\u8D77\u7EB3\u5165\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768414\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u661F\u6708\u6765\u4FE1\u94F6\u6CB3\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "letter",
+        mode: "galaxy",
+        start: 0,
+        width: 660,
+        height: 880
+      },
+      reproduction: {
+        objects: "\u539F\u94F6\u6CB3\u5E95\u56FE\u548C\u4ECE\u56FE\u4E2D\u8BFB\u53D6\u7684\u4EAE\u661F\u3001\u4E2D\u8F74\u4E0E\u5E26\u5BBD\u6570\u636E\u4E00\u8D77\u7EB3\u5165\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8660\xD7880\uFF0C\u7AD6\u72483:4\uFF1B\u8FD1\u9ED1\u5E95#080a0e\u3001\u6696\u767D#f9f3fb\uFF1B\u8F93\u5165\u6846\u4F4D\u4E8E\u6A2A\u5411\u4E2D\u592E\u548C70%\u9AD8\u5EA6\uFF0C\u5BBD\u5EA6\u4E3A\u753B\u976272%\uFF1B\u4E2D\u6587\u4F7F\u7528\u971E\u9E5C\u6587\u6977\u3002",
+        phases: [
+          "\u539F\u661F\u5E26\u4E2D\u8F74\u5F00\u59CB\u663E\u73B0\u3002",
+          "\u94F6\u6CB3\u5411\u4E24\u4FA7\u5C55\u5F00\u3002",
+          "\u539F\u5E95\u56FE\u548C\u4EAE\u661F\u5B8C\u6574\u4FDD\u7559\u3002"
+        ],
+        retain: "\u539F\u94F6\u6CB3\u5E95\u56FE\u548C\u4ECE\u56FE\u4E2D\u8BFB\u53D6\u7684\u4EAE\u661F\u3001\u4E2D\u8F74\u4E0E\u5E26\u5BBD\u6570\u636E\u4E00\u8D77\u7EB3\u5165\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E14\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "star-letter-journey",
+      name: "\u661F\u6708\u6765\u4FE1\u5B8C\u6574\u65C5\u7A0B",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u3001\u539F\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u4E0E\u94F6\u6CB3\u5C55\u5F00\u7684\u5B8C\u6574\u524D\u540E\u4EA4\u63A5\u3002",
+      purpose: "\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u3001\u539F\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u4E0E\u94F6\u6CB3\u5C55\u5F00\u7684\u5B8C\u6574\u524D\u540E\u4EA4\u63A5\u3002",
+      objects: "\u661F\u6708\u6765\u4FE1\u5B8C\u6574\u65C5\u7A0B\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u6587\u5B57\u9010\u5B57\u8FDB\u5165\u539F\u8F93\u5165\u6846\uFF0C\u53D1\u9001\u540E\u5149\u9762\u5C55\u5F00\u6536\u675F\u3002",
+        "\u6C34\u6CE2\u6309\u8DDD\u79BB\u63A8\u52A8\u6587\u5B57\u53D8\u5316\uFF0C\u539F\u7B26\u53F7\u6CBF\u5404\u81EA\u66F2\u7EBF\u98DE\u79BB\u5E76\u539F\u4F4D\u5316\u661F\u3002",
+        "\u94F6\u6CB3\u6CBF\u539F\u4E2D\u8F74\u5C55\u5F00\uFF0C\u661F\u8292\u9519\u5CF0\u660E\u706D\u3002"
+      ],
+      aliases: [
+        "\u661F\u6708\u6765\u4FE1\u5B8C\u6574\u65C5\u7A0B",
+        "\u661F\u6708\u6765\u4FE1"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u3001\u539F\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u4E0E\u94F6\u6CB3\u5C55\u5F00\u7684\u5B8C\u6574\u524D\u540E\u4EA4\u63A5\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 95e3,
+      preview_ms: 52250,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-letter.js",
+        factory: "star-letter-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-letter-images.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/letter/\u7D20\u6750\u6765\u6E90.md",
+          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
+          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
+          "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
+        ]
+      },
+      actions: [
+        "type-reveal",
+        "letter-ripple",
+        "symbol-flight-settle",
+        "arrival-star-reveal",
+        "arrival-star-sparkle",
+        "galaxy-axis-reveal",
+        "letter-symbol-illustration",
+        "letter-galaxy-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u3001\u539F\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u4E0E\u94F6\u6CB3\u5C55\u5F00\u7684\u5B8C\u6574\u524D\u540E\u4EA4\u63A5\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768495\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u661F\u6708\u6765\u4FE1\u5B8C\u6574\u65C5\u7A0B\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "letter",
+        mode: "full",
+        start: 0,
+        width: 660,
+        height: 880,
+        breakdown: [
+          {
+            id: "galaxy",
+            name: "\u591C\u7A7A\u4E0E\u94F6\u6CB3\u5C55\u5F00",
+            start: 0,
+            end: 95e3,
+            time: "0\u201495\u79D2",
+            detail: "\u94F6\u6CB3\u4EAE\u661F\u4F4D\u7F6E\u56FA\u5B9A\uFF0C\u5929\u7A7A\u6309\u65CB\u8F6C\u3001\u7F29\u653E\u4E0E\u906E\u7F69\u8303\u56F4\u9010\u6B65\u5C55\u5F00\u3002",
+            actions: [
+              "galaxy-axis-reveal",
+              "letter-galaxy-illustration"
+            ]
+          },
+          {
+            id: "flight",
+            name: "\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u3001\u7FA4\u98DE\u4E0E\u843D\u661F",
+            start: 0,
+            end: 95e3,
+            time: "0\u201495\u79D2",
+            detail: "\u53D1\u9001\u540E\u6C34\u6CE2\u5C55\u5F00\uFF0C126\u4EF6\u7B26\u53F7\u5206\u522B\u98DE\u5411\u56FA\u5B9A\u4EAE\u661F\u843D\u70B9\uFF0C\u62B5\u8FBE\u540E\u663E\u661F\u5E76\u7EE7\u7EED\u95EA\u70C1\u3002",
+            actions: [
+              "letter-ripple",
+              "symbol-flight-settle",
+              "arrival-star-reveal",
+              "arrival-star-sparkle",
+              "letter-symbol-illustration"
+            ]
+          },
+          {
+            id: "composer",
+            name: "\u9010\u5B57\u8F93\u5165\u4E0E\u53D1\u9001\u754C\u9762",
+            start: 0,
+            end: 95e3,
+            time: "0\u201495\u79D2",
+            detail: "\u5706\u89D2\u8F93\u5165\u6846\u9010\u5B57\u51FA\u73B0\u6587\u5B57\uFF0C\u7BAD\u5934\u8F6C\u4E3A\u53D1\u9001\u8FDB\u5EA6\uFF0C\u53D1\u9001\u4E0E\u80CC\u666F\u5149\u9762\u4FDD\u6301\u540C\u4E00\u65F6\u95F4\u3002",
+            actions: [
+              "type-reveal"
+            ]
+          }
+        ],
+        layers: [
+          "galaxy",
+          "flight"
+        ]
+      },
+      reproduction: {
+        objects: "\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u3001\u539F\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u4E0E\u94F6\u6CB3\u5C55\u5F00\u7684\u5B8C\u6574\u524D\u540E\u4EA4\u63A5\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF8660\xD7880\uFF0C\u7AD6\u72483:4\uFF1B\u8FD1\u9ED1\u5E95#080a0e\u3001\u6696\u767D#f9f3fb\uFF1B\u8F93\u5165\u6846\u4F4D\u4E8E\u6A2A\u5411\u4E2D\u592E\u548C70%\u9AD8\u5EA6\uFF0C\u5BBD\u5EA6\u4E3A\u753B\u976272%\uFF1B\u4E2D\u6587\u4F7F\u7528\u971E\u9E5C\u6587\u6977\u3002",
+        phases: [
+          "\u6587\u5B57\u9010\u5B57\u8FDB\u5165\u539F\u8F93\u5165\u6846\uFF0C\u53D1\u9001\u540E\u5149\u9762\u5C55\u5F00\u6536\u675F\u3002",
+          "\u6C34\u6CE2\u6309\u8DDD\u79BB\u63A8\u52A8\u6587\u5B57\u53D8\u5316\uFF0C\u539F\u7B26\u53F7\u6CBF\u5404\u81EA\u66F2\u7EBF\u98DE\u79BB\u5E76\u539F\u4F4D\u5316\u661F\u3002",
+          "\u94F6\u6CB3\u6CBF\u539F\u4E2D\u8F74\u5C55\u5F00\uFF0C\u661F\u8292\u9519\u5CF0\u660E\u706D\u3002"
+        ],
+        retain: "\u4FDD\u7559\u9010\u5B57\u8F93\u5165\u3001\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u5316\u5F62\u3001\u539F\u7B26\u53F7\u7FA4\u98DE\u843D\u5B9A\u4E0E\u94F6\u6CB3\u5C55\u5F00\u7684\u5B8C\u6574\u524D\u540E\u4EA4\u63A5\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E95\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "galaxy",
+            name: "\u591C\u7A7A\u4E0E\u94F6\u6CB3\u5C55\u5F00",
+            start: 0,
+            end: 95e3,
+            time: "0\u201495\u79D2",
+            detail: "\u94F6\u6CB3\u4EAE\u661F\u4F4D\u7F6E\u56FA\u5B9A\uFF0C\u5929\u7A7A\u6309\u65CB\u8F6C\u3001\u7F29\u653E\u4E0E\u906E\u7F69\u8303\u56F4\u9010\u6B65\u5C55\u5F00\u3002",
+            actions: [
+              "galaxy-axis-reveal",
+              "letter-galaxy-illustration"
+            ]
+          },
+          {
+            id: "flight",
+            name: "\u53D1\u9001\u5149\u9762\u3001\u6C34\u6CE2\u3001\u7FA4\u98DE\u4E0E\u843D\u661F",
+            start: 0,
+            end: 95e3,
+            time: "0\u201495\u79D2",
+            detail: "\u53D1\u9001\u540E\u6C34\u6CE2\u5C55\u5F00\uFF0C126\u4EF6\u7B26\u53F7\u5206\u522B\u98DE\u5411\u56FA\u5B9A\u4EAE\u661F\u843D\u70B9\uFF0C\u62B5\u8FBE\u540E\u663E\u661F\u5E76\u7EE7\u7EED\u95EA\u70C1\u3002",
+            actions: [
+              "letter-ripple",
+              "symbol-flight-settle",
+              "arrival-star-reveal",
+              "arrival-star-sparkle",
+              "letter-symbol-illustration"
+            ]
+          },
+          {
+            id: "composer",
+            name: "\u9010\u5B57\u8F93\u5165\u4E0E\u53D1\u9001\u754C\u9762",
+            start: 0,
+            end: 95e3,
+            time: "0\u201495\u79D2",
+            detail: "\u5706\u89D2\u8F93\u5165\u6846\u9010\u5B57\u51FA\u73B0\u6587\u5B57\uFF0C\u7BAD\u5934\u8F6C\u4E3A\u53D1\u9001\u8FDB\u5EA6\uFF0C\u53D1\u9001\u4E0E\u80CC\u666F\u5149\u9762\u4FDD\u6301\u540C\u4E00\u65F6\u95F4\u3002",
+            actions: [
+              "type-reveal"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: "selfie-foot-turn",
+      name: "\u8DB3\u8FF9\u7EA6\u675F\u4E0B\u8F6C\u8EAB\u4E0E\u8FD4\u56DE",
+      kind: "action",
+      category: "response",
+      summary: "\u5C0F\u8475\u6309\u539F\u89D2\u8272\u56FE\u96C6\u8F6C\u8EAB\u3001\u524D\u8FDB\u548C\u8FD4\u56DE\uFF0C\u811A\u70B9\u5728\u63A5\u5730\u65F6\u56FA\u5B9A\u3002",
+      purpose: "\u5C0F\u8475\u6309\u539F\u89D2\u8272\u56FE\u96C6\u8F6C\u8EAB\u3001\u524D\u8FDB\u548C\u8FD4\u56DE\uFF0C\u811A\u70B9\u5728\u63A5\u5730\u65F6\u56FA\u5B9A\u3002",
+      objects: "\u8DB3\u8FF9\u7EA6\u675F\u4E0B\u8F6C\u8EAB\u4E0E\u8FD4\u56DE\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u5C0F\u8475\u62AC\u5934\u5E76\u6309\u539F\u56FE\u96C6\u8F6C\u8EAB\u3002",
+        "\u8DB3\u8FF9\u7EA6\u675F\u4E0B\u524D\u8FDB\uFF0C\u62B5\u8FBE\u540E\u518D\u8F6C\u5411\u3002",
+        "\u6CBF\u539F\u8DB3\u8FF9\u8FD4\u56DE\uFF0C\u56DE\u5230\u8EAB\u8FB9\u540E\u4F4E\u5934\u3002"
+      ],
+      aliases: [
+        "\u8DB3\u8FF9\u7EA6\u675F\u4E0B\u8F6C\u8EAB\u4E0E\u8FD4\u56DE",
+        "\u5C0F\u8475\u548C\u6211"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u5C0F\u8475\u6309\u539F\u89D2\u8272\u56FE\u96C6\u8F6C\u8EAB\u3001\u524D\u8FDB\u548C\u8FD4\u56DE\uFF0C\u811A\u70B9\u5728\u63A5\u5730\u65F6\u56FA\u5B9A\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 7750,
+      preview_ms: 4262,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-selfie.js",
+        factory: "selfie-foot-turn",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-selfie-images.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.png",
+          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.png",
+          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.png"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u5C0F\u8475\u6309\u539F\u89D2\u8272\u56FE\u96C6\u8F6C\u8EAB\u3001\u524D\u8FDB\u548C\u8FD4\u56DE\uFF0C\u811A\u70B9\u5728\u63A5\u5730\u65F6\u56FA\u5B9A\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76847.75\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u8DB3\u8FF9\u7EA6\u675F\u4E0B\u8F6C\u8EAB\u4E0E\u8FD4\u56DE\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "selfie",
+        mode: "cat-phone",
+        start: 0,
+        width: 1086,
+        height: 1448
+      },
+      reproduction: {
+        objects: "\u5C0F\u8475\u6309\u539F\u89D2\u8272\u56FE\u96C6\u8F6C\u8EAB\u3001\u524D\u8FDB\u548C\u8FD4\u56DE\uFF0C\u811A\u70B9\u5728\u63A5\u5730\u65F6\u56FA\u5B9A\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF81086\xD71448\uFF0C\u7AD6\u72483:4\uFF1B\u624B\u673A\u5C4F\u5E55\u900F\u89C6\u5D4C\u5165600\xD7820\u81EA\u62CD\u753B\u9762\uFF1B\u5C0F\u8475\u4E0E\u4EBA\u7269\u7EF4\u6301\u771F\u5B9E\u56FE\u96C6\u6BD4\u4F8B\u3002",
+        phases: [
+          "\u5C0F\u8475\u62AC\u5934\u5E76\u6309\u539F\u56FE\u96C6\u8F6C\u8EAB\u3002",
+          "\u8DB3\u8FF9\u7EA6\u675F\u4E0B\u524D\u8FDB\uFF0C\u62B5\u8FBE\u540E\u518D\u8F6C\u5411\u3002",
+          "\u6CBF\u539F\u8DB3\u8FF9\u8FD4\u56DE\uFF0C\u56DE\u5230\u8EAB\u8FB9\u540E\u4F4E\u5934\u3002"
+        ],
+        retain: "\u5C0F\u8475\u6309\u539F\u89D2\u8272\u56FE\u96C6\u8F6C\u8EAB\u3001\u524D\u8FDB\u548C\u8FD4\u56DE\uFF0C\u811A\u70B9\u5728\u63A5\u5730\u65F6\u56FA\u5B9A\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E7.75\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "selfie-cat-illustration",
+      name: "\u81EA\u62CD\u5C0F\u8475\u591A\u89C6\u89D2",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "\u539F\u5C0F\u8475\u80CC\u9762\u3001\u4FA7\u9762\u3001\u6B63\u9762\u4E0E\u659C\u5411\u56FE\u96C6\u968F\u771F\u5B9E\u8DB3\u8FF9\u5207\u6362\uFF0C\u4E0D\u53E0\u5316\u4E24\u4E2A\u5934\u3002",
+      purpose: "\u539F\u5C0F\u8475\u80CC\u9762\u3001\u4FA7\u9762\u3001\u6B63\u9762\u4E0E\u659C\u5411\u56FE\u96C6\u968F\u771F\u5B9E\u8DB3\u8FF9\u5207\u6362\uFF0C\u4E0D\u53E0\u5316\u4E24\u4E2A\u5934\u3002",
+      objects: "\u81EA\u62CD\u5C0F\u8475\u591A\u89C6\u89D2\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u5C0F\u8475\u8F6C\u8EAB\u3002",
+        "\u6309\u539F\u811A\u70B9\u884C\u8D70\u3001\u6309\u5FEB\u95E8\u548C\u7FFB\u5012\u8D77\u8EAB\u3002",
+        "\u8F6C\u56DE\u5E76\u8FD4\u56DE\u8EAB\u8FB9\u3002"
+      ],
+      aliases: [
+        "\u81EA\u62CD\u5C0F\u8475\u591A\u89C6\u89D2",
+        "\u5C0F\u8475\u548C\u6211"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u5C0F\u8475\u80CC\u9762\u3001\u4FA7\u9762\u3001\u6B63\u9762\u4E0E\u659C\u5411\u56FE\u96C6\u968F\u771F\u5B9E\u8DB3\u8FF9\u5207\u6362\uFF0C\u4E0D\u53E0\u5316\u4E24\u4E2A\u5934\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 7750,
+      preview_ms: 4262,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-selfie.js",
+        factory: "selfie-cat-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-selfie-images.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.png",
+          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.png",
+          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.png"
+        ]
+      },
+      actions: [
+        "selfie-foot-turn"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u5C0F\u8475\u80CC\u9762\u3001\u4FA7\u9762\u3001\u6B63\u9762\u4E0E\u659C\u5411\u56FE\u96C6\u968F\u771F\u5B9E\u8DB3\u8FF9\u5207\u6362\uFF0C\u4E0D\u53E0\u5316\u4E24\u4E2A\u5934\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76847.75\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u81EA\u62CD\u5C0F\u8475\u591A\u89C6\u89D2\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "selfie",
+        mode: "cat",
+        start: 0,
+        width: 1086,
+        height: 1448
+      },
+      reproduction: {
+        objects: "\u539F\u5C0F\u8475\u80CC\u9762\u3001\u4FA7\u9762\u3001\u6B63\u9762\u4E0E\u659C\u5411\u56FE\u96C6\u968F\u771F\u5B9E\u8DB3\u8FF9\u5207\u6362\uFF0C\u4E0D\u53E0\u5316\u4E24\u4E2A\u5934\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF81086\xD71448\uFF0C\u7AD6\u72483:4\uFF1B\u624B\u673A\u5C4F\u5E55\u900F\u89C6\u5D4C\u5165600\xD7820\u81EA\u62CD\u753B\u9762\uFF1B\u5C0F\u8475\u4E0E\u4EBA\u7269\u7EF4\u6301\u771F\u5B9E\u56FE\u96C6\u6BD4\u4F8B\u3002",
+        phases: [
+          "\u539F\u5C0F\u8475\u8F6C\u8EAB\u3002",
+          "\u6309\u539F\u811A\u70B9\u884C\u8D70\u3001\u6309\u5FEB\u95E8\u548C\u7FFB\u5012\u8D77\u8EAB\u3002",
+          "\u8F6C\u56DE\u5E76\u8FD4\u56DE\u8EAB\u8FB9\u3002"
+        ],
+        retain: "\u539F\u5C0F\u8475\u80CC\u9762\u3001\u4FA7\u9762\u3001\u6B63\u9762\u4E0E\u659C\u5411\u56FE\u96C6\u968F\u771F\u5B9E\u8DB3\u8FF9\u5207\u6362\uFF0C\u4E0D\u53E0\u5316\u4E24\u4E2A\u5934\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E7.75\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "selfie-preview-illustration",
+      name: "\u6211\u548C\u5C0F\u8475\u7684\u81EA\u62CD\u9884\u89C8",
+      kind: "illustration",
+      category: "illustration-interface",
+      summary: "\u539F\u81EA\u62CD\u4EBA\u7269\u4E0E\u5C0F\u8475\u5728\u6B63\u5E38\u6BD4\u4F8B\u7684\u9884\u89C8\u753B\u9762\u4E2D\u540C\u6B65\uFF0C\u542B\u539F\u5012\u8BA1\u65F6\u548C\u59FF\u6001\u3002",
+      purpose: "\u539F\u81EA\u62CD\u4EBA\u7269\u4E0E\u5C0F\u8475\u5728\u6B63\u5E38\u6BD4\u4F8B\u7684\u9884\u89C8\u753B\u9762\u4E2D\u540C\u6B65\uFF0C\u542B\u539F\u5012\u8BA1\u65F6\u548C\u59FF\u6001\u3002",
+      objects: "\u6211\u548C\u5C0F\u8475\u7684\u81EA\u62CD\u9884\u89C8\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u4EBA\u7269\u548C\u5C0F\u8475\u5728\u9884\u89C8\u5185\u51FA\u73B0\u3002",
+        "\u5C0F\u8475\u6309\u539F\u7F16\u821E\u62B5\u8FBE\u5FEB\u95E8\uFF0C\u5012\u8BA1\u65F6\u4E0E\u753B\u9762\u540C\u6B65\u3002",
+        "\u5C0F\u8475\u8FD4\u56DE\uFF0C\u81EA\u62CD\u753B\u9762\u5B8C\u6210\u3002"
+      ],
+      aliases: [
+        "\u6211\u548C\u5C0F\u8475\u7684\u81EA\u62CD\u9884\u89C8",
+        "\u5C0F\u8475\u548C\u6211"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u81EA\u62CD\u4EBA\u7269\u4E0E\u5C0F\u8475\u5728\u6B63\u5E38\u6BD4\u4F8B\u7684\u9884\u89C8\u753B\u9762\u4E2D\u540C\u6B65\uFF0C\u542B\u539F\u5012\u8BA1\u65F6\u548C\u59FF\u6001\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 7750,
+      preview_ms: 4262,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-selfie.js",
+        factory: "selfie-preview-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-selfie-images.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.png",
+          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.png",
+          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.png"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u81EA\u62CD\u4EBA\u7269\u4E0E\u5C0F\u8475\u5728\u6B63\u5E38\u6BD4\u4F8B\u7684\u9884\u89C8\u753B\u9762\u4E2D\u540C\u6B65\uFF0C\u542B\u539F\u5012\u8BA1\u65F6\u548C\u59FF\u6001\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76847.75\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u6211\u548C\u5C0F\u8475\u7684\u81EA\u62CD\u9884\u89C8\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "selfie",
+        mode: "preview",
+        start: 0,
+        width: 1086,
+        height: 1448
+      },
+      reproduction: {
+        objects: "\u539F\u81EA\u62CD\u4EBA\u7269\u4E0E\u5C0F\u8475\u5728\u6B63\u5E38\u6BD4\u4F8B\u7684\u9884\u89C8\u753B\u9762\u4E2D\u540C\u6B65\uFF0C\u542B\u539F\u5012\u8BA1\u65F6\u548C\u59FF\u6001\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF81086\xD71448\uFF0C\u7AD6\u72483:4\uFF1B\u624B\u673A\u5C4F\u5E55\u900F\u89C6\u5D4C\u5165600\xD7820\u81EA\u62CD\u753B\u9762\uFF1B\u5C0F\u8475\u4E0E\u4EBA\u7269\u7EF4\u6301\u771F\u5B9E\u56FE\u96C6\u6BD4\u4F8B\u3002",
+        phases: [
+          "\u539F\u4EBA\u7269\u548C\u5C0F\u8475\u5728\u9884\u89C8\u5185\u51FA\u73B0\u3002",
+          "\u5C0F\u8475\u6309\u539F\u7F16\u821E\u62B5\u8FBE\u5FEB\u95E8\uFF0C\u5012\u8BA1\u65F6\u4E0E\u753B\u9762\u540C\u6B65\u3002",
+          "\u5C0F\u8475\u8FD4\u56DE\uFF0C\u81EA\u62CD\u753B\u9762\u5B8C\u6210\u3002"
+        ],
+        retain: "\u539F\u81EA\u62CD\u4EBA\u7269\u4E0E\u5C0F\u8475\u5728\u6B63\u5E38\u6BD4\u4F8B\u7684\u9884\u89C8\u753B\u9762\u4E2D\u540C\u6B65\uFF0C\u542B\u539F\u5012\u8BA1\u65F6\u548C\u59FF\u6001\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E7.75\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "selfie-phone-screen-illustration",
+      name: "\u624B\u673A\u900F\u89C6\u753B\u9762",
+      kind: "illustration",
+      category: "illustration-interface",
+      summary: "\u5B8C\u6574\u81EA\u62CD\u9884\u89C8\u901A\u8FC7\u539F\u56DB\u89D2\u900F\u89C6\u6620\u5C04\u8FDB\u5165\u503E\u659C\u624B\u673A\uFF0C\u4FDD\u6301\u6BD4\u4F8B\u5BF9\u5E94\u3002",
+      purpose: "\u5B8C\u6574\u81EA\u62CD\u9884\u89C8\u901A\u8FC7\u539F\u56DB\u89D2\u900F\u89C6\u6620\u5C04\u8FDB\u5165\u503E\u659C\u624B\u673A\uFF0C\u4FDD\u6301\u6BD4\u4F8B\u5BF9\u5E94\u3002",
+      objects: "\u539F\u624B\u673A\u900F\u89C6\u753B\u9762\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u624B\u673A\u753B\u9762\u51FA\u73B0\u3002",
+        "\u6B63\u5E38\u6BD4\u4F8B\u7684\u9884\u89C8\u6620\u5165\u503E\u659C\u5C4F\u5E55\u3002",
+        "\u5C4F\u5185\u89D2\u8272\u4E0E\u5C4F\u5916\u8DB3\u8FF9\u540C\u6B65\u3002"
+      ],
+      aliases: [
+        "\u539F\u624B\u673A\u900F\u89C6\u753B\u9762",
+        "\u5C0F\u8475\u548C\u6211"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u5B8C\u6574\u81EA\u62CD\u9884\u89C8\u901A\u8FC7\u539F\u56DB\u89D2\u900F\u89C6\u6620\u5C04\u8FDB\u5165\u503E\u659C\u624B\u673A\uFF0C\u4FDD\u6301\u6BD4\u4F8B\u5BF9\u5E94\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 7750,
+      preview_ms: 4262,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-selfie.js",
+        factory: "selfie-phone-screen-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-selfie-images.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.png",
+          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.png",
+          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.png"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u5B8C\u6574\u81EA\u62CD\u9884\u89C8\u901A\u8FC7\u539F\u56DB\u89D2\u900F\u89C6\u6620\u5C04\u8FDB\u5165\u503E\u659C\u624B\u673A\uFF0C\u4FDD\u6301\u6BD4\u4F8B\u5BF9\u5E94\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76847.75\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u539F\u624B\u673A\u900F\u89C6\u753B\u9762\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "selfie",
+        mode: "phone",
+        start: 0,
+        width: 1086,
+        height: 1448
+      },
+      reproduction: {
+        objects: "\u5B8C\u6574\u81EA\u62CD\u9884\u89C8\u901A\u8FC7\u539F\u56DB\u89D2\u900F\u89C6\u6620\u5C04\u8FDB\u5165\u503E\u659C\u624B\u673A\uFF0C\u4FDD\u6301\u6BD4\u4F8B\u5BF9\u5E94\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF81086\xD71448\uFF0C\u7AD6\u72483:4\uFF1B\u624B\u673A\u5C4F\u5E55\u900F\u89C6\u5D4C\u5165600\xD7820\u81EA\u62CD\u753B\u9762\uFF1B\u5C0F\u8475\u4E0E\u4EBA\u7269\u7EF4\u6301\u771F\u5B9E\u56FE\u96C6\u6BD4\u4F8B\u3002",
+        phases: [
+          "\u539F\u624B\u673A\u753B\u9762\u51FA\u73B0\u3002",
+          "\u6B63\u5E38\u6BD4\u4F8B\u7684\u9884\u89C8\u6620\u5165\u503E\u659C\u5C4F\u5E55\u3002",
+          "\u5C4F\u5185\u89D2\u8272\u4E0E\u5C4F\u5916\u8DB3\u8FF9\u540C\u6B65\u3002"
+        ],
+        retain: "\u5B8C\u6574\u81EA\u62CD\u9884\u89C8\u901A\u8FC7\u539F\u56DB\u89D2\u900F\u89C6\u6620\u5C04\u8FDB\u5165\u503E\u659C\u624B\u673A\uFF0C\u4FDD\u6301\u6BD4\u4F8B\u5BF9\u5E94\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E7.75\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "xiaokui-selfie-journey",
+      name: "\u5C0F\u8475\u548C\u6211",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u539F\u5C0F\u8475\u8F6C\u8EAB\u524D\u5F80\u5FEB\u95E8\u3001\u6309\u4E0B\u540E\u7FFB\u5012\u8D77\u8EAB\uFF0C\u5012\u8BA1\u65F6\u671F\u95F4\u8FD4\u56DE\u8EAB\u8FB9\uFF1B\u5C4F\u5185\u5916\u59FF\u6001\u540C\u6B65\u3002",
+      purpose: "\u539F\u5C0F\u8475\u8F6C\u8EAB\u524D\u5F80\u5FEB\u95E8\u3001\u6309\u4E0B\u540E\u7FFB\u5012\u8D77\u8EAB\uFF0C\u5012\u8BA1\u65F6\u671F\u95F4\u8FD4\u56DE\u8EAB\u8FB9\uFF1B\u5C4F\u5185\u5916\u59FF\u6001\u540C\u6B65\u3002",
+      objects: "\u5C0F\u8475\u548C\u6211\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u5C0F\u8475\u4ECE\u8EAB\u8FB9\u8F6C\u5411\u624B\u673A\u5FEB\u95E8\u3002",
+        "\u8D70\u5230\u5FEB\u95E8\u6309\u4E0B\uFF0C\u7FFB\u5012\u540E\u8D77\u8EAB\uFF0C\u5C4F\u5E55\u540C\u65F6\u5012\u8BA1\u65F6\u3002",
+        "\u5C0F\u8475\u6309\u539F\u8DB3\u8FF9\u8FD4\u56DE\uFF0C\u5C4F\u5185\u4EBA\u7269\u548C\u5C0F\u8475\u5B8C\u6210\u81EA\u62CD\u3002"
+      ],
+      aliases: [
+        "\u5C0F\u8475\u548C\u6211",
+        "\u5C0F\u8475\u548C\u6211"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u5C0F\u8475\u8F6C\u8EAB\u524D\u5F80\u5FEB\u95E8\u3001\u6309\u4E0B\u540E\u7FFB\u5012\u8D77\u8EAB\uFF0C\u5012\u8BA1\u65F6\u671F\u95F4\u8FD4\u56DE\u8EAB\u8FB9\uFF1B\u5C4F\u5185\u5916\u59FF\u6001\u540C\u6B65\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 7750,
+      preview_ms: 4262,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-selfie.js",
+        factory: "xiaokui-selfie-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-selfie-images.js"
+        ],
+        assets: [
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.png",
+          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.png",
+          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.png"
+        ]
+      },
+      actions: [
+        "selfie-foot-turn",
+        "selfie-cat-illustration",
+        "selfie-preview-illustration",
+        "selfie-phone-screen-illustration",
+        "selfie-phone-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u5C0F\u8475\u8F6C\u8EAB\u524D\u5F80\u5FEB\u95E8\u3001\u6309\u4E0B\u540E\u7FFB\u5012\u8D77\u8EAB\uFF0C\u5012\u8BA1\u65F6\u671F\u95F4\u8FD4\u56DE\u8EAB\u8FB9\uFF1B\u5C4F\u5185\u5916\u59FF\u6001\u540C\u6B65\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u76847.75\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u5C0F\u8475\u548C\u6211\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "selfie",
+        mode: "full",
+        start: 0,
+        width: 1086,
+        height: 1448,
+        breakdown: [
+          {
+            id: "scene",
+            name: "\u624B\u673A\u4E0E\u4EBA\u7269\u5E95\u56FE",
+            start: 0,
+            end: 7750,
+            time: "0\u20147.75\u79D2",
+            detail: "\u624B\u673A\u4E0E\u4EBA\u7269\u7684\u4F4D\u7F6E\u548C\u6BD4\u4F8B\u4FDD\u6301\uFF0C\u4F7F\u7528\u81EA\u6709\u900F\u660E\u56FE\u96C6\u3002",
+            actions: [
+              "selfie-phone-illustration"
+            ]
+          },
+          {
+            id: "screen",
+            name: "\u81EA\u62CD\u753B\u9762\u4E0E\u5FEB\u95E8",
+            start: 0,
+            end: 7750,
+            time: "0\u20147.75\u79D2",
+            detail: "\u81EA\u62CD\u753B\u9762\u5728\u624B\u673A\u900F\u89C6\u5C4F\u5E55\u5185\u66F4\u65B0\uFF0C\u53EA\u955C\u50CF\u4E00\u6B21\uFF1B\u5012\u6570\u4E0E\u6309\u4E0B\u5FEB\u95E8\u6309\u540C\u4E00\u65F6\u5E8F\u51FA\u73B0\u3002",
+            actions: [
+              "selfie-preview-illustration",
+              "selfie-phone-screen-illustration"
+            ]
+          },
+          {
+            id: "cat",
+            name: "\u5C0F\u8475\u8D70\u4F4D\u3001\u8F6C\u8EAB\u4E0E\u4F4E\u5934",
+            start: 0,
+            end: 7750,
+            time: "0\u20147.75\u79D2",
+            detail: "\u5C0F\u8475\u4ECE\u624B\u673A\u65C1\u8D70\u5F00\u3001\u8F6C\u8EAB\u3001\u4F4E\u5934\u3001\u8FD4\u56DE\uFF0C\u811A\u6B65\u4E0E\u5F71\u5B50\u8DDF\u968F\u5B9E\u9645\u4F4D\u7F6E\u3002",
+            actions: [
+              "selfie-foot-turn",
+              "selfie-cat-illustration"
+            ]
+          }
+        ],
+        layers: [
+          "scene",
+          "screen",
+          "cat"
+        ]
+      },
+      reproduction: {
+        objects: "\u539F\u5C0F\u8475\u8F6C\u8EAB\u524D\u5F80\u5FEB\u95E8\u3001\u6309\u4E0B\u540E\u7FFB\u5012\u8D77\u8EAB\uFF0C\u5012\u8BA1\u65F6\u671F\u95F4\u8FD4\u56DE\u8EAB\u8FB9\uFF1B\u5C4F\u5185\u5916\u59FF\u6001\u540C\u6B65\u3002",
+        presentation: "\u8BBE\u8BA1\u5C3A\u5BF81086\xD71448\uFF0C\u7AD6\u72483:4\uFF1B\u624B\u673A\u5C4F\u5E55\u900F\u89C6\u5D4C\u5165600\xD7820\u81EA\u62CD\u753B\u9762\uFF1B\u5C0F\u8475\u4E0E\u4EBA\u7269\u7EF4\u6301\u771F\u5B9E\u56FE\u96C6\u6BD4\u4F8B\u3002",
+        phases: [
+          "\u5C0F\u8475\u4ECE\u8EAB\u8FB9\u8F6C\u5411\u624B\u673A\u5FEB\u95E8\u3002",
+          "\u8D70\u5230\u5FEB\u95E8\u6309\u4E0B\uFF0C\u7FFB\u5012\u540E\u8D77\u8EAB\uFF0C\u5C4F\u5E55\u540C\u65F6\u5012\u8BA1\u65F6\u3002",
+          "\u5C0F\u8475\u6309\u539F\u8DB3\u8FF9\u8FD4\u56DE\uFF0C\u5C4F\u5185\u4EBA\u7269\u548C\u5C0F\u8475\u5B8C\u6210\u81EA\u62CD\u3002"
+        ],
+        retain: "\u539F\u5C0F\u8475\u8F6C\u8EAB\u524D\u5F80\u5FEB\u95E8\u3001\u6309\u4E0B\u540E\u7FFB\u5012\u8D77\u8EAB\uFF0C\u5012\u8BA1\u65F6\u671F\u95F4\u8FD4\u56DE\u8EAB\u8FB9\uFF1B\u5C4F\u5185\u5916\u59FF\u6001\u540C\u6B65\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E7.75\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "scene",
+            name: "\u624B\u673A\u4E0E\u4EBA\u7269\u5E95\u56FE",
+            start: 0,
+            end: 7750,
+            time: "0\u20147.75\u79D2",
+            detail: "\u624B\u673A\u4E0E\u4EBA\u7269\u7684\u4F4D\u7F6E\u548C\u6BD4\u4F8B\u4FDD\u6301\uFF0C\u4F7F\u7528\u81EA\u6709\u900F\u660E\u56FE\u96C6\u3002",
+            actions: [
+              "selfie-phone-illustration"
+            ]
+          },
+          {
+            id: "screen",
+            name: "\u81EA\u62CD\u753B\u9762\u4E0E\u5FEB\u95E8",
+            start: 0,
+            end: 7750,
+            time: "0\u20147.75\u79D2",
+            detail: "\u81EA\u62CD\u753B\u9762\u5728\u624B\u673A\u900F\u89C6\u5C4F\u5E55\u5185\u66F4\u65B0\uFF0C\u53EA\u955C\u50CF\u4E00\u6B21\uFF1B\u5012\u6570\u4E0E\u6309\u4E0B\u5FEB\u95E8\u6309\u540C\u4E00\u65F6\u5E8F\u51FA\u73B0\u3002",
+            actions: [
+              "selfie-preview-illustration",
+              "selfie-phone-screen-illustration"
+            ]
+          },
+          {
+            id: "cat",
+            name: "\u5C0F\u8475\u8D70\u4F4D\u3001\u8F6C\u8EAB\u4E0E\u4F4E\u5934",
+            start: 0,
+            end: 7750,
+            time: "0\u20147.75\u79D2",
+            detail: "\u5C0F\u8475\u4ECE\u624B\u673A\u65C1\u8D70\u5F00\u3001\u8F6C\u8EAB\u3001\u4F4E\u5934\u3001\u8FD4\u56DE\uFF0C\u811A\u6B65\u4E0E\u5F71\u5B50\u8DDF\u968F\u5B9E\u9645\u4F4D\u7F6E\u3002",
+            actions: [
+              "selfie-foot-turn",
+              "selfie-cat-illustration"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: "encore-full-journey",
+      name: "\u96E8\u4E2D\u66F2\xB7\u8FD4\u573A\u5B8C\u6574\u7F16\u821E",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u539F\u96E8\u4F1E\u5B8C\u6574\u8854\u63A5\u52FE\u67C4\u3001\u8E0F\u6B65\u3001\u817E\u7A7A\u3001\u7ACB\u5C16\u3001\u6EDA\u52A8\u548C\u7529\u6C34\uFF0C\u6C34\u82B1\u7531\u5B9E\u9645\u63A5\u89E6\u70B9\u89E6\u53D1\u3002",
+      purpose: "\u539F\u96E8\u4F1E\u5B8C\u6574\u8854\u63A5\u52FE\u67C4\u3001\u8E0F\u6B65\u3001\u817E\u7A7A\u3001\u7ACB\u5C16\u3001\u6EDA\u52A8\u548C\u7529\u6C34\uFF0C\u6C34\u82B1\u7531\u5B9E\u9645\u63A5\u89E6\u70B9\u89E6\u53D1\u3002",
+      objects: "\u96E8\u4E2D\u66F2\xB7\u8FD4\u573A\u5B8C\u6574\u7F16\u821E\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u52FE\u67C4\u65CB\u8F6C\u540E\u6309\u8282\u62CD\u8E0F\u6B65\uFF0C\u843D\u70B9\u63A5\u7EED\u6C34\u82B1\u3002",
+        "\u817E\u7A7A\u7FFB\u8F6C\u843D\u5C16\uFF0C\u56FA\u5B9A\u652F\u70B9\u56DE\u65CB\u3002",
+        "\u6EDA\u52A8\u540E\u7529\u6C34\uFF0C\u4FDD\u7559\u539F\u6C34\u9762\u5012\u5F71\u4E0E\u8F68\u8FF9\u3002"
+      ],
+      aliases: [
+        "\u96E8\u4E2D\u66F2\xB7\u8FD4\u573A\u5B8C\u6574\u7F16\u821E",
+        "\u96E8\u4E2D\u66F2\xB7\u8FD4\u573A"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u96E8\u4F1E\u5B8C\u6574\u8854\u63A5\u52FE\u67C4\u3001\u8E0F\u6B65\u3001\u817E\u7A7A\u3001\u7ACB\u5C16\u3001\u6EDA\u52A8\u548C\u7529\u6C34\uFF0C\u6C34\u82B1\u7531\u5B9E\u9645\u63A5\u89E6\u70B9\u89E6\u53D1\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 24543,
+      preview_ms: 13499,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/encore-dance.js",
+        factory: "encore-full-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002"
+      },
+      actions: [
+        "encore-hook",
+        "encore-tap",
+        "encore-flight",
+        "encore-tip",
+        "encore-roll",
+        "encore-shed",
+        "encore-umbrella-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u96E8\u4F1E\u5B8C\u6574\u8854\u63A5\u52FE\u67C4\u3001\u8E0F\u6B65\u3001\u817E\u7A7A\u3001\u7ACB\u5C16\u3001\u6EDA\u52A8\u548C\u7529\u6C34\uFF0C\u6C34\u82B1\u7531\u5B9E\u9645\u63A5\u89E6\u70B9\u89E6\u53D1\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768424.543\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u96E8\u4E2D\u66F2\xB7\u8FD4\u573A\u5B8C\u6574\u7F16\u821E\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      reproduction: {
+        objects: "\u539F\u96E8\u4F1E\u5B8C\u6574\u8854\u63A5\u52FE\u67C4\u3001\u8E0F\u6B65\u3001\u817E\u7A7A\u3001\u7ACB\u5C16\u3001\u6EDA\u52A8\u548C\u7529\u6C34\uFF0C\u6C34\u82B1\u7531\u5B9E\u9645\u63A5\u89E6\u70B9\u89E6\u53D1\u3002",
+        presentation: "\u903B\u8F91\u8BBE\u8BA1\u5C3A\u5BF81280\xD7800\uFF1B\u5B8C\u6574\u96E8\u4F1E\u8F6E\u5ED3\u3001\u91D1\u5C5E\u4F1E\u9AA8\u3001\u5730\u9762\u63A5\u89E6\u6C34\u82B1\u4E0E\u7529\u6C34\u5C3E\u8FF9\uFF0C\u4FDD\u6301\u4E3B\u4F53\u4E0E\u843D\u70B9\u6BD4\u4F8B\u3002",
+        phases: [
+          "\u52FE\u67C4\u65CB\u8F6C\u540E\u6309\u8282\u62CD\u8E0F\u6B65\uFF0C\u843D\u70B9\u63A5\u7EED\u6C34\u82B1\u3002",
+          "\u817E\u7A7A\u7FFB\u8F6C\u843D\u5C16\uFF0C\u56FA\u5B9A\u652F\u70B9\u56DE\u65CB\u3002",
+          "\u6EDA\u52A8\u540E\u7529\u6C34\uFF0C\u4FDD\u7559\u539F\u6C34\u9762\u5012\u5F71\u4E0E\u8F68\u8FF9\u3002"
+        ],
+        retain: "\u539F\u96E8\u4F1E\u5B8C\u6574\u8854\u63A5\u52FE\u67C4\u3001\u8E0F\u6B65\u3001\u817E\u7A7A\u3001\u7ACB\u5C16\u3001\u6EDA\u52A8\u548C\u7529\u6C34\uFF0C\u6C34\u82B1\u7531\u5B9E\u9645\u63A5\u89E6\u70B9\u89E6\u53D1\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E24.543\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "hook",
+            name: "\u52FE\u67C4\u4E0E\u77ED\u6682\u505C\u7559",
+            start: 0,
+            end: 4678,
+            time: "0\u20144.678\u79D2",
+            detail: "\u52FE\u67C4\u4E0E\u77ED\u6682\u505C\u7559\u5728\u8FD9\u6BB5\u65F6\u95F4\u5185\u4FDD\u7559\u5B8C\u6574\u753B\u9762\u4E0E\u524D\u540E\u4EA4\u63A5\uFF1B\u5171\u7528\u6574\u6BB5\u65F6\u95F4\u8F74\u3002",
+            actions: [
+              "encore-hook",
+              "encore-umbrella-illustration"
+            ]
+          },
+          {
+            id: "tap",
+            name: "\u8E0F\u6B65\u9636\u6BB5",
+            start: 4678,
+            end: 9373,
+            time: "4.678\u20149.373\u79D2",
+            detail: "\u8E0F\u6B65\u9636\u6BB5\u5728\u8FD9\u6BB5\u65F6\u95F4\u5185\u4FDD\u7559\u5B8C\u6574\u753B\u9762\u4E0E\u524D\u540E\u4EA4\u63A5\uFF1B\u5171\u7528\u6574\u6BB5\u65F6\u95F4\u8F74\u3002",
+            actions: [
+              "encore-tap",
+              "encore-umbrella-illustration"
+            ]
+          },
+          {
+            id: "flight",
+            name: "\u817E\u7A7A\u9636\u6BB5",
+            start: 9373,
+            end: 13064,
+            time: "9.373\u201413.064\u79D2",
+            detail: "\u817E\u7A7A\u9636\u6BB5\u5728\u8FD9\u6BB5\u65F6\u95F4\u5185\u4FDD\u7559\u5B8C\u6574\u753B\u9762\u4E0E\u524D\u540E\u4EA4\u63A5\uFF1B\u5171\u7528\u6574\u6BB5\u65F6\u95F4\u8F74\u3002",
+            actions: [
+              "encore-flight",
+              "encore-umbrella-illustration"
+            ]
+          },
+          {
+            id: "tip",
+            name: "\u7ACB\u5C16\u9636\u6BB5",
+            start: 13064,
+            end: 17e3,
+            time: "13.064\u201417\u79D2",
+            detail: "\u7ACB\u5C16\u9636\u6BB5\u5728\u8FD9\u6BB5\u65F6\u95F4\u5185\u4FDD\u7559\u5B8C\u6574\u753B\u9762\u4E0E\u524D\u540E\u4EA4\u63A5\uFF1B\u5171\u7528\u6574\u6BB5\u65F6\u95F4\u8F74\u3002",
+            actions: [
+              "encore-tip",
+              "encore-umbrella-illustration"
+            ]
+          },
+          {
+            id: "roll",
+            name: "\u6EDA\u52A8\u9636\u6BB5",
+            start: 17e3,
+            end: 20752,
+            time: "17\u201420.752\u79D2",
+            detail: "\u6EDA\u52A8\u9636\u6BB5\u5728\u8FD9\u6BB5\u65F6\u95F4\u5185\u4FDD\u7559\u5B8C\u6574\u753B\u9762\u4E0E\u524D\u540E\u4EA4\u63A5\uFF1B\u5171\u7528\u6574\u6BB5\u65F6\u95F4\u8F74\u3002",
+            actions: [
+              "encore-roll",
+              "encore-umbrella-illustration"
+            ]
+          },
+          {
+            id: "shed",
+            name: "\u7529\u6C34\u9636\u6BB5",
+            start: 20752,
+            end: 24543,
+            time: "20.752\u201424.543\u79D2",
+            detail: "\u7529\u6C34\u9636\u6BB5\u5728\u8FD9\u6BB5\u65F6\u95F4\u5185\u4FDD\u7559\u5B8C\u6574\u753B\u9762\u4E0E\u524D\u540E\u4EA4\u63A5\uFF1B\u5171\u7528\u6574\u6BB5\u65F6\u95F4\u8F74\u3002",
+            actions: [
+              "encore-shed",
+              "encore-umbrella-illustration"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: "ring-construction",
+      name: "\u73AF\u7EBF\u589E\u539A\u4E0E\u5256\u9762\u5C55\u5F00",
+      kind: "action",
+      category: "shape",
+      summary: "\u539F\u73AF\u7EBF\u6309\u65F6\u5E8F\u589E\u539A\u6210\u6DA1\u73AF\uFF0C\u518D\u5207\u5F00\u5256\u9762\u5E76\u6062\u590D\uFF0C\u5185\u90E8\u8F68\u8FF9\u6301\u7EED\u7FFB\u5377\u3002",
+      purpose: "\u539F\u73AF\u7EBF\u6309\u65F6\u5E8F\u589E\u539A\u6210\u6DA1\u73AF\uFF0C\u518D\u5207\u5F00\u5256\u9762\u5E76\u6062\u590D\uFF0C\u5185\u90E8\u8F68\u8FF9\u6301\u7EED\u7FFB\u5377\u3002",
+      objects: "\u73AF\u7EBF\u589E\u539A\u4E0E\u5256\u9762\u5C55\u5F00\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u73AF\u7EBF\u9010\u6B65\u589E\u539A\u5E76\u52A0\u5165\u539F\u73AF\u9762\u7F51\u683C\u3002",
+        "\u5256\u9762\u89C6\u89D2\u5C55\u5F00\uFF0C\u5185\u90E8\u6D41\u7EBF\u6301\u7EED\u7FFB\u5377\u3002",
+        "\u5256\u9762\u6536\u56DE\uFF0C\u73AF\u4F53\u4FDD\u6301\u8FDE\u7EED\u6D41\u52A8\u3002"
+      ],
+      aliases: [
+        "\u73AF\u7EBF\u589E\u539A\u4E0E\u5256\u9762\u5C55\u5F00",
+        "\u87BA\u65CB\u4E38\u5BB6\u65CF"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u73AF\u7EBF\u6309\u65F6\u5E8F\u589E\u539A\u6210\u6DA1\u73AF\uFF0C\u518D\u5207\u5F00\u5256\u9762\u5E76\u6062\u590D\uFF0C\u5185\u90E8\u8F68\u8FF9\u6301\u7EED\u7FFB\u5377\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 2e4,
+      preview_ms: 11e3,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/rasengan-illustrations.js",
+        factory: "ring-construction",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002"
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u73AF\u7EBF\u6309\u65F6\u5E8F\u589E\u539A\u6210\u6DA1\u73AF\uFF0C\u518D\u5207\u5F00\u5256\u9762\u5E76\u6062\u590D\uFF0C\u5185\u90E8\u8F68\u8FF9\u6301\u7EED\u7FFB\u5377\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768420\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u73AF\u7EBF\u589E\u539A\u4E0E\u5256\u9762\u5C55\u5F00\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      reproduction: {
+        objects: "\u539F\u73AF\u7EBF\u6309\u65F6\u5E8F\u589E\u539A\u6210\u6DA1\u73AF\uFF0C\u518D\u5207\u5F00\u5256\u9762\u5E76\u6062\u590D\uFF0C\u5185\u90E8\u8F68\u8FF9\u6301\u7EED\u7FFB\u5377\u3002",
+        presentation: "\u903B\u8F91\u8BBE\u8BA1\u5C3A\u5BF81080\xD71920\uFF0C\u4E3B\u4F53\u7B49\u6BD4\u5BB9\u7EB3\u5728640\xD7360\u9884\u89C8\u4E2D\uFF1B\u73AF\u7EBF\u4E0E\u4E91\u7FBD\u4EE5\u4E2D\u6027\u7EBF\u6761\u6784\u6210\uFF0C\u80FD\u91CF\u6D41\u7EBF\u4F7F\u7528\u84DD\u8272#128bef\u548C\u7A84\u4EAE\u82AF#e6fcfe\u3002",
+        phases: [
+          "\u73AF\u7EBF\u9010\u6B65\u589E\u539A\u5E76\u52A0\u5165\u539F\u73AF\u9762\u7F51\u683C\u3002",
+          "\u5256\u9762\u89C6\u89D2\u5C55\u5F00\uFF0C\u5185\u90E8\u6D41\u7EBF\u6301\u7EED\u7FFB\u5377\u3002",
+          "\u5256\u9762\u6536\u56DE\uFF0C\u73AF\u4F53\u4FDD\u6301\u8FDE\u7EED\u6D41\u52A8\u3002"
+        ],
+        retain: "\u539F\u73AF\u7EBF\u6309\u65F6\u5E8F\u589E\u539A\u6210\u6DA1\u73AF\uFF0C\u518D\u5207\u5F00\u5256\u9762\u5E76\u6062\u590D\uFF0C\u5185\u90E8\u8F68\u8FF9\u6301\u7EED\u7FFB\u5377\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E20\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "ring-construction-journey",
+      name: "\u70DF\u5708\u589E\u539A\u4E0E\u5256\u9762\u5C55\u5F00",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u5B8C\u6574\u4FDD\u7559\u539F\u73AF\u9762\u6784\u5EFA\u3001\u6D41\u70B9\u589E\u5BC6\u548C\u5256\u9762\u89C6\u89D2\u5C55\u5F00\u7684\u8FDE\u7EED\u5173\u7CFB\u3002",
+      purpose: "\u5B8C\u6574\u4FDD\u7559\u539F\u73AF\u9762\u6784\u5EFA\u3001\u6D41\u70B9\u589E\u5BC6\u548C\u5256\u9762\u89C6\u89D2\u5C55\u5F00\u7684\u8FDE\u7EED\u5173\u7CFB\u3002",
+      objects: "\u70DF\u5708\u589E\u539A\u4E0E\u5256\u9762\u5C55\u5F00\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u73AF\u7EBF\u589E\u539A\u3002",
+        "\u7F51\u683C\u4E0E\u5185\u90E8\u8F68\u8FF9\u6301\u7EED\u7FFB\u5377\uFF0C\u5256\u9762\u89C6\u89D2\u6253\u5F00\u3002",
+        "\u5256\u9762\u56DE\u6536\uFF0C\u6DA1\u73AF\u4FDD\u6301\u8FDE\u7EED\u3002"
+      ],
+      aliases: [
+        "\u70DF\u5708\u589E\u539A\u4E0E\u5256\u9762\u5C55\u5F00",
+        "\u87BA\u65CB\u4E38\u5BB6\u65CF"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u5B8C\u6574\u4FDD\u7559\u539F\u73AF\u9762\u6784\u5EFA\u3001\u6D41\u70B9\u589E\u5BC6\u548C\u5256\u9762\u89C6\u89D2\u5C55\u5F00\u7684\u8FDE\u7EED\u5173\u7CFB\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 2e4,
+      preview_ms: 11e3,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/rasengan-illustrations.js",
+        factory: "ring-construction-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002"
+      },
+      actions: [
+        "ring-construction",
+        "smoke-ring-illustration",
+        "vortex-ring-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u5B8C\u6574\u4FDD\u7559\u539F\u73AF\u9762\u6784\u5EFA\u3001\u6D41\u70B9\u589E\u5BC6\u548C\u5256\u9762\u89C6\u89D2\u5C55\u5F00\u7684\u8FDE\u7EED\u5173\u7CFB\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768420\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u70DF\u5708\u589E\u539A\u4E0E\u5256\u9762\u5C55\u5F00\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      reproduction: {
+        objects: "\u5B8C\u6574\u4FDD\u7559\u539F\u73AF\u9762\u6784\u5EFA\u3001\u6D41\u70B9\u589E\u5BC6\u548C\u5256\u9762\u89C6\u89D2\u5C55\u5F00\u7684\u8FDE\u7EED\u5173\u7CFB\u3002",
+        presentation: "\u903B\u8F91\u8BBE\u8BA1\u5C3A\u5BF81080\xD71920\uFF0C\u4E3B\u4F53\u7B49\u6BD4\u5BB9\u7EB3\u5728640\xD7360\u9884\u89C8\u4E2D\uFF1B\u73AF\u7EBF\u4E0E\u4E91\u7FBD\u4EE5\u4E2D\u6027\u7EBF\u6761\u6784\u6210\uFF0C\u80FD\u91CF\u6D41\u7EBF\u4F7F\u7528\u84DD\u8272#128bef\u548C\u7A84\u4EAE\u82AF#e6fcfe\u3002",
+        phases: [
+          "\u539F\u73AF\u7EBF\u589E\u539A\u3002",
+          "\u7F51\u683C\u4E0E\u5185\u90E8\u8F68\u8FF9\u6301\u7EED\u7FFB\u5377\uFF0C\u5256\u9762\u89C6\u89D2\u6253\u5F00\u3002",
+          "\u5256\u9762\u56DE\u6536\uFF0C\u6DA1\u73AF\u4FDD\u6301\u8FDE\u7EED\u3002"
+        ],
+        retain: "\u5B8C\u6574\u4FDD\u7559\u539F\u73AF\u9762\u6784\u5EFA\u3001\u6D41\u70B9\u589E\u5BC6\u548C\u5256\u9762\u89C6\u89D2\u5C55\u5F00\u7684\u8FDE\u7EED\u5173\u7CFB\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E20\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "build",
+            name: "\u73AF\u9762\u6784\u5EFA\u4E0E\u589E\u5BC6",
+            start: 0,
+            end: 8e3,
+            time: "0\u20148\u79D2",
+            detail: "\u73AF\u9762\u6784\u5EFA\u4E0E\u589E\u5BC6\u5728\u8FD9\u6BB5\u65F6\u95F4\u5185\u4FDD\u7559\u5B8C\u6574\u753B\u9762\u4E0E\u524D\u540E\u4EA4\u63A5\uFF1B\u5171\u7528\u6574\u6BB5\u65F6\u95F4\u8F74\u3002",
+            actions: [
+              "ring-construction",
+              "smoke-ring-illustration",
+              "vortex-ring-illustration"
+            ]
+          },
+          {
+            id: "section",
+            name: "\u5256\u9762\u5C55\u5F00\u4E0E\u7FFB\u5377",
+            start: 8e3,
+            end: 2e4,
+            time: "8\u201420\u79D2",
+            detail: "\u5256\u9762\u5C55\u5F00\u4E0E\u7FFB\u5377\u5728\u8FD9\u6BB5\u65F6\u95F4\u5185\u4FDD\u7559\u5B8C\u6574\u753B\u9762\u4E0E\u524D\u540E\u4EA4\u63A5\uFF1B\u5171\u7528\u6574\u6BB5\u65F6\u95F4\u8F74\u3002",
+            actions: [
+              "ring-construction",
+              "smoke-ring-illustration",
+              "vortex-ring-illustration"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: "mushroom-sphere-idealize",
+      name: "\u70DF\u7FBD\u56DE\u5377\u5E76\u4EA4\u63A5\u7403\u6DA1",
+      kind: "action",
+      category: "particles",
+      summary: "\u539F\u70DF\u7FBD\u56DE\u5377\u540E\u9694\u79BB\u5934\u90E8\uFF0C\u540C\u4E00\u6279\u7C92\u5B50\u548C\u6D41\u7EBF\u9010\u6B65\u5706\u6574\uFF0C\u6700\u540E\u4E0E\u7403\u6DA1\u7684\u8F6E\u5ED3\u3001\u65F6\u95F4\u548C\u6750\u8D28\u4E00\u81F4\u3002",
+      purpose: "\u539F\u70DF\u7FBD\u56DE\u5377\u540E\u9694\u79BB\u5934\u90E8\uFF0C\u540C\u4E00\u6279\u7C92\u5B50\u548C\u6D41\u7EBF\u9010\u6B65\u5706\u6574\uFF0C\u6700\u540E\u4E0E\u7403\u6DA1\u7684\u8F6E\u5ED3\u3001\u65F6\u95F4\u548C\u6750\u8D28\u4E00\u81F4\u3002",
+      objects: "\u70DF\u7FBD\u56DE\u5377\u5E76\u4EA4\u63A5\u7403\u6DA1\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u70DF\u7FBD\u6301\u7EED\u4E0A\u5347\uFF0C\u9876\u90E8\u5F00\u59CB\u7FFB\u5377\u3002",
+        "\u5934\u90E8\u4ECE\u70DF\u7FBD\u9694\u79BB\uFF0C\u539F\u652F\u6491\u6D41\u7EBF\u548C\u7C92\u5B50\u9010\u6B65\u5706\u6574\u3002",
+        "\u8F6E\u5ED3\u3001\u6750\u8D28\u548C\u793A\u8E2A\u65F6\u95F4\u4E0E\u7403\u6DA1\u76F8\u63A5\u3002"
+      ],
+      aliases: [
+        "\u70DF\u7FBD\u56DE\u5377\u5E76\u4EA4\u63A5\u7403\u6DA1",
+        "\u87BA\u65CB\u4E38\u5BB6\u65CF"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u70DF\u7FBD\u56DE\u5377\u540E\u9694\u79BB\u5934\u90E8\uFF0C\u540C\u4E00\u6279\u7C92\u5B50\u548C\u6D41\u7EBF\u9010\u6B65\u5706\u6574\uFF0C\u6700\u540E\u4E0E\u7403\u6DA1\u7684\u8F6E\u5ED3\u3001\u65F6\u95F4\u548C\u6750\u8D28\u4E00\u81F4\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 13e3,
+      preview_ms: 7150,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/rasengan-illustrations.js",
+        factory: "mushroom-sphere-idealize",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002"
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u70DF\u7FBD\u56DE\u5377\u540E\u9694\u79BB\u5934\u90E8\uFF0C\u540C\u4E00\u6279\u7C92\u5B50\u548C\u6D41\u7EBF\u9010\u6B65\u5706\u6574\uFF0C\u6700\u540E\u4E0E\u7403\u6DA1\u7684\u8F6E\u5ED3\u3001\u65F6\u95F4\u548C\u6750\u8D28\u4E00\u81F4\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768413\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u70DF\u7FBD\u56DE\u5377\u5E76\u4EA4\u63A5\u7403\u6DA1\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      reproduction: {
+        objects: "\u539F\u70DF\u7FBD\u56DE\u5377\u540E\u9694\u79BB\u5934\u90E8\uFF0C\u540C\u4E00\u6279\u7C92\u5B50\u548C\u6D41\u7EBF\u9010\u6B65\u5706\u6574\uFF0C\u6700\u540E\u4E0E\u7403\u6DA1\u7684\u8F6E\u5ED3\u3001\u65F6\u95F4\u548C\u6750\u8D28\u4E00\u81F4\u3002",
+        presentation: "\u903B\u8F91\u8BBE\u8BA1\u5C3A\u5BF81080\xD71920\uFF0C\u4E3B\u4F53\u7B49\u6BD4\u5BB9\u7EB3\u5728640\xD7360\u9884\u89C8\u4E2D\uFF1B\u73AF\u7EBF\u4E0E\u4E91\u7FBD\u4EE5\u4E2D\u6027\u7EBF\u6761\u6784\u6210\uFF0C\u80FD\u91CF\u6D41\u7EBF\u4F7F\u7528\u84DD\u8272#128bef\u548C\u7A84\u4EAE\u82AF#e6fcfe\u3002",
+        phases: [
+          "\u539F\u70DF\u7FBD\u6301\u7EED\u4E0A\u5347\uFF0C\u9876\u90E8\u5F00\u59CB\u7FFB\u5377\u3002",
+          "\u5934\u90E8\u4ECE\u70DF\u7FBD\u9694\u79BB\uFF0C\u539F\u652F\u6491\u6D41\u7EBF\u548C\u7C92\u5B50\u9010\u6B65\u5706\u6574\u3002",
+          "\u8F6E\u5ED3\u3001\u6750\u8D28\u548C\u793A\u8E2A\u65F6\u95F4\u4E0E\u7403\u6DA1\u76F8\u63A5\u3002"
+        ],
+        retain: "\u539F\u70DF\u7FBD\u56DE\u5377\u540E\u9694\u79BB\u5934\u90E8\uFF0C\u540C\u4E00\u6279\u7C92\u5B50\u548C\u6D41\u7EBF\u9010\u6B65\u5706\u6574\uFF0C\u6700\u540E\u4E0E\u7403\u6DA1\u7684\u8F6E\u5ED3\u3001\u65F6\u95F4\u548C\u6750\u8D28\u4E00\u81F4\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E13\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "mushroom-sphere-journey",
+      name: "\u8611\u83C7\u4E91\u7FFB\u5377\u4E0E\u7403\u6DA1\u4EA4\u63A5",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u5B8C\u6574\u4FDD\u7559\u539F\u70DF\u7FBD\u3001\u56DE\u5377\u5934\u90E8\u3001\u6D53\u6DE1\u53D8\u5316\u548C\u7403\u6DA1\u7406\u60F3\u5316\u7684\u540C\u4E00\u7C92\u5B50\u5173\u7CFB\u3002",
+      purpose: "\u5B8C\u6574\u4FDD\u7559\u539F\u70DF\u7FBD\u3001\u56DE\u5377\u5934\u90E8\u3001\u6D53\u6DE1\u53D8\u5316\u548C\u7403\u6DA1\u7406\u60F3\u5316\u7684\u540C\u4E00\u7C92\u5B50\u5173\u7CFB\u3002",
+      objects: "\u8611\u83C7\u4E91\u7FFB\u5377\u4E0E\u7403\u6DA1\u4EA4\u63A5\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u70DF\u7FBD\u4E0A\u5347\u5E76\u56DE\u5377\u3002",
+        "\u9694\u79BB\u5934\u90E8\uFF0C\u652F\u6491\u6D41\u7EBF\u4E0E\u7C92\u5B50\u540C\u6B65\u5706\u6574\u3002",
+        "\u540C\u4E00\u5F62\u6001\u53D8\u4E3A\u7403\u6DA1\uFF0C\u5E76\u4FDD\u7559\u771F\u5B9E\u793A\u8E2A\u6D41\u7EBF\u3002"
+      ],
+      aliases: [
+        "\u8611\u83C7\u4E91\u7FFB\u5377\u4E0E\u7403\u6DA1\u4EA4\u63A5",
+        "\u87BA\u65CB\u4E38\u5BB6\u65CF"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u5B8C\u6574\u4FDD\u7559\u539F\u70DF\u7FBD\u3001\u56DE\u5377\u5934\u90E8\u3001\u6D53\u6DE1\u53D8\u5316\u548C\u7403\u6DA1\u7406\u60F3\u5316\u7684\u540C\u4E00\u7C92\u5B50\u5173\u7CFB\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 13e3,
+      preview_ms: 7150,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/rasengan-illustrations.js",
+        factory: "mushroom-sphere-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002"
+      },
+      actions: [
+        "mushroom-sphere-idealize",
+        "mushroom-cloud-illustration",
+        "hill-vortex-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u5B8C\u6574\u4FDD\u7559\u539F\u70DF\u7FBD\u3001\u56DE\u5377\u5934\u90E8\u3001\u6D53\u6DE1\u53D8\u5316\u548C\u7403\u6DA1\u7406\u60F3\u5316\u7684\u540C\u4E00\u7C92\u5B50\u5173\u7CFB\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768413\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u8611\u83C7\u4E91\u7FFB\u5377\u4E0E\u7403\u6DA1\u4EA4\u63A5\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      reproduction: {
+        objects: "\u5B8C\u6574\u4FDD\u7559\u539F\u70DF\u7FBD\u3001\u56DE\u5377\u5934\u90E8\u3001\u6D53\u6DE1\u53D8\u5316\u548C\u7403\u6DA1\u7406\u60F3\u5316\u7684\u540C\u4E00\u7C92\u5B50\u5173\u7CFB\u3002",
+        presentation: "\u903B\u8F91\u8BBE\u8BA1\u5C3A\u5BF81080\xD71920\uFF0C\u4E3B\u4F53\u7B49\u6BD4\u5BB9\u7EB3\u5728640\xD7360\u9884\u89C8\u4E2D\uFF1B\u73AF\u7EBF\u4E0E\u4E91\u7FBD\u4EE5\u4E2D\u6027\u7EBF\u6761\u6784\u6210\uFF0C\u80FD\u91CF\u6D41\u7EBF\u4F7F\u7528\u84DD\u8272#128bef\u548C\u7A84\u4EAE\u82AF#e6fcfe\u3002",
+        phases: [
+          "\u70DF\u7FBD\u4E0A\u5347\u5E76\u56DE\u5377\u3002",
+          "\u9694\u79BB\u5934\u90E8\uFF0C\u652F\u6491\u6D41\u7EBF\u4E0E\u7C92\u5B50\u540C\u6B65\u5706\u6574\u3002",
+          "\u540C\u4E00\u5F62\u6001\u53D8\u4E3A\u7403\u6DA1\uFF0C\u5E76\u4FDD\u7559\u771F\u5B9E\u793A\u8E2A\u6D41\u7EBF\u3002"
+        ],
+        retain: "\u5B8C\u6574\u4FDD\u7559\u539F\u70DF\u7FBD\u3001\u56DE\u5377\u5934\u90E8\u3001\u6D53\u6DE1\u53D8\u5316\u548C\u7403\u6DA1\u7406\u60F3\u5316\u7684\u540C\u4E00\u7C92\u5B50\u5173\u7CFB\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E13\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "plume",
+            name: "\u70DF\u7FBD\u4E0A\u5347\u4E0E\u5934\u90E8\u56DE\u5377",
+            start: 0,
+            end: 7e3,
+            time: "0\u20147\u79D2",
+            detail: "\u70DF\u7FBD\u4E0A\u5347\u4E0E\u5934\u90E8\u56DE\u5377\u5728\u8FD9\u6BB5\u65F6\u95F4\u5185\u4FDD\u7559\u5B8C\u6574\u753B\u9762\u4E0E\u524D\u540E\u4EA4\u63A5\uFF1B\u5171\u7528\u6574\u6BB5\u65F6\u95F4\u8F74\u3002",
+            actions: [
+              "mushroom-sphere-idealize",
+              "mushroom-cloud-illustration",
+              "hill-vortex-illustration"
+            ]
+          },
+          {
+            id: "sphere",
+            name: "\u5934\u90E8\u6536\u6210\u7406\u60F3\u7403\u6DA1",
+            start: 7e3,
+            end: 13e3,
+            time: "7\u201413\u79D2",
+            detail: "\u5934\u90E8\u6536\u6210\u7406\u60F3\u7403\u6DA1\u5728\u8FD9\u6BB5\u65F6\u95F4\u5185\u4FDD\u7559\u5B8C\u6574\u753B\u9762\u4E0E\u524D\u540E\u4EA4\u63A5\uFF1B\u5171\u7528\u6574\u6BB5\u65F6\u95F4\u8F74\u3002",
+            actions: [
+              "mushroom-sphere-idealize",
+              "mushroom-cloud-illustration",
+              "hill-vortex-illustration"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: "ring-sphere-journey",
+      name: "\u73AF\u7EBF\u6784\u5EFA\u5230\u7403\u6DA1\u7684\u8FDE\u7EED\u6F14\u53D8",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u539F\u73AF\u7EBF\u6784\u5EFA\u548C\u5256\u9762\u5C55\u5F00\u63A5\u4E0A\u70DF\u7FBD\u56DE\u5377\uFF1B\u5934\u90E8\u7684\u8F6E\u5ED3\u3001\u6750\u8D28\u548C\u65F6\u95F4\u9010\u6B65\u53D8\u4E3A\u7403\u6DA1\uFF0C\u5171\u7528\u539F\u573A\u666F\u4EA4\u63A5\u3002",
+      purpose: "\u539F\u73AF\u7EBF\u6784\u5EFA\u548C\u5256\u9762\u5C55\u5F00\u63A5\u4E0A\u70DF\u7FBD\u56DE\u5377\uFF1B\u5934\u90E8\u7684\u8F6E\u5ED3\u3001\u6750\u8D28\u548C\u65F6\u95F4\u9010\u6B65\u53D8\u4E3A\u7403\u6DA1\uFF0C\u5171\u7528\u539F\u573A\u666F\u4EA4\u63A5\u3002",
+      objects: "\u73AF\u7EBF\u6784\u5EFA\u5230\u7403\u6DA1\u7684\u8FDE\u7EED\u6F14\u53D8\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u73AF\u7EBF\u589E\u539A\uFF0C\u6D41\u7EBF\u7FFB\u5377\u5E76\u5C55\u5F00\u5256\u9762\u3002",
+        "\u70DF\u7FBD\u9876\u7AEF\u56DE\u5377\uFF0C\u9694\u79BB\u5934\u90E8\u5E76\u9010\u6E10\u5706\u6574\u3002",
+        "\u540C\u4E00\u6279\u652F\u6491\u7EBF\u548C\u7C92\u5B50\u4EA4\u63A5\u7403\u6DA1\uFF0C\u7EE7\u7EED\u539F\u5FAA\u73AF\u3002"
+      ],
+      aliases: [
+        "\u73AF\u7EBF\u6784\u5EFA\u5230\u7403\u6DA1\u7684\u8FDE\u7EED\u6F14\u53D8",
+        "\u87BA\u65CB\u4E38\u5BB6\u65CF"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u73AF\u7EBF\u6784\u5EFA\u548C\u5256\u9762\u5C55\u5F00\u63A5\u4E0A\u70DF\u7FBD\u56DE\u5377\uFF1B\u5934\u90E8\u7684\u8F6E\u5ED3\u3001\u6750\u8D28\u548C\u65F6\u95F4\u9010\u6B65\u53D8\u4E3A\u7403\u6DA1\uFF0C\u5171\u7528\u539F\u573A\u666F\u4EA4\u63A5\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 42e3,
+      preview_ms: 23100,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/rasengan-illustrations.js",
+        factory: "ring-sphere-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002"
+      },
+      actions: [
+        "ring-construction",
+        "mushroom-sphere-idealize",
+        "smoke-ring-illustration",
+        "vortex-ring-illustration",
+        "mushroom-cloud-illustration",
+        "hill-vortex-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u73AF\u7EBF\u6784\u5EFA\u548C\u5256\u9762\u5C55\u5F00\u63A5\u4E0A\u70DF\u7FBD\u56DE\u5377\uFF1B\u5934\u90E8\u7684\u8F6E\u5ED3\u3001\u6750\u8D28\u548C\u65F6\u95F4\u9010\u6B65\u53D8\u4E3A\u7403\u6DA1\uFF0C\u5171\u7528\u539F\u573A\u666F\u4EA4\u63A5\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768442\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u73AF\u7EBF\u6784\u5EFA\u5230\u7403\u6DA1\u7684\u8FDE\u7EED\u6F14\u53D8\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      reproduction: {
+        objects: "\u539F\u73AF\u7EBF\u6784\u5EFA\u548C\u5256\u9762\u5C55\u5F00\u63A5\u4E0A\u70DF\u7FBD\u56DE\u5377\uFF1B\u5934\u90E8\u7684\u8F6E\u5ED3\u3001\u6750\u8D28\u548C\u65F6\u95F4\u9010\u6B65\u53D8\u4E3A\u7403\u6DA1\uFF0C\u5171\u7528\u539F\u573A\u666F\u4EA4\u63A5\u3002",
+        presentation: "\u903B\u8F91\u8BBE\u8BA1\u5C3A\u5BF81080\xD71920\uFF0C\u4E3B\u4F53\u7B49\u6BD4\u5BB9\u7EB3\u5728640\xD7360\u9884\u89C8\u4E2D\uFF1B\u73AF\u7EBF\u4E0E\u4E91\u7FBD\u4EE5\u4E2D\u6027\u7EBF\u6761\u6784\u6210\uFF0C\u80FD\u91CF\u6D41\u7EBF\u4F7F\u7528\u84DD\u8272#128bef\u548C\u7A84\u4EAE\u82AF#e6fcfe\u3002",
+        phases: [
+          "\u73AF\u7EBF\u589E\u539A\uFF0C\u6D41\u7EBF\u7FFB\u5377\u5E76\u5C55\u5F00\u5256\u9762\u3002",
+          "\u70DF\u7FBD\u9876\u7AEF\u56DE\u5377\uFF0C\u9694\u79BB\u5934\u90E8\u5E76\u9010\u6E10\u5706\u6574\u3002",
+          "\u540C\u4E00\u6279\u652F\u6491\u7EBF\u548C\u7C92\u5B50\u4EA4\u63A5\u7403\u6DA1\uFF0C\u7EE7\u7EED\u539F\u5FAA\u73AF\u3002"
+        ],
+        retain: "\u539F\u73AF\u7EBF\u6784\u5EFA\u548C\u5256\u9762\u5C55\u5F00\u63A5\u4E0A\u70DF\u7FBD\u56DE\u5377\uFF1B\u5934\u90E8\u7684\u8F6E\u5ED3\u3001\u6750\u8D28\u548C\u65F6\u95F4\u9010\u6B65\u53D8\u4E3A\u7403\u6DA1\uFF0C\u5171\u7528\u539F\u573A\u666F\u4EA4\u63A5\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E42\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "ring",
+            name: "\u73AF\u7EBF\u6784\u5EFA\u4E0E\u5256\u9762\u5C55\u5F00",
+            start: 0,
+            end: 19e3,
+            time: "0\u201419\u79D2",
+            detail: "\u73AF\u7EBF\u6784\u5EFA\u4E0E\u5256\u9762\u5C55\u5F00\u5728\u8FD9\u6BB5\u65F6\u95F4\u5185\u4FDD\u7559\u5B8C\u6574\u753B\u9762\u4E0E\u524D\u540E\u4EA4\u63A5\uFF1B\u5171\u7528\u6574\u6BB5\u65F6\u95F4\u8F74\u3002",
+            actions: [
+              "ring-construction",
+              "mushroom-sphere-idealize",
+              "smoke-ring-illustration",
+              "vortex-ring-illustration",
+              "mushroom-cloud-illustration",
+              "hill-vortex-illustration"
+            ]
+          },
+          {
+            id: "bridge",
+            name: "\u70DF\u7FBD\u56DE\u5377\u4EA4\u63A5",
+            start: 19e3,
+            end: 32e3,
+            time: "19\u201432\u79D2",
+            detail: "\u70DF\u7FBD\u56DE\u5377\u4EA4\u63A5\u5728\u8FD9\u6BB5\u65F6\u95F4\u5185\u4FDD\u7559\u5B8C\u6574\u753B\u9762\u4E0E\u524D\u540E\u4EA4\u63A5\uFF1B\u5171\u7528\u6574\u6BB5\u65F6\u95F4\u8F74\u3002",
+            actions: [
+              "ring-construction",
+              "mushroom-sphere-idealize",
+              "smoke-ring-illustration",
+              "vortex-ring-illustration",
+              "mushroom-cloud-illustration",
+              "hill-vortex-illustration"
+            ]
+          },
+          {
+            id: "sphere",
+            name: "\u7403\u6DA1\u7EE7\u7EED\u7FFB\u5377",
+            start: 32e3,
+            end: 42e3,
+            time: "32\u201442\u79D2",
+            detail: "\u7403\u6DA1\u7EE7\u7EED\u7FFB\u5377\u5728\u8FD9\u6BB5\u65F6\u95F4\u5185\u4FDD\u7559\u5B8C\u6574\u753B\u9762\u4E0E\u524D\u540E\u4EA4\u63A5\uFF1B\u5171\u7528\u6574\u6BB5\u65F6\u95F4\u8F74\u3002",
+            actions: [
+              "ring-construction",
+              "mushroom-sphere-idealize",
+              "smoke-ring-illustration",
+              "vortex-ring-illustration",
+              "mushroom-cloud-illustration",
+              "hill-vortex-illustration"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: "energy-density-growth",
+      name: "\u80FD\u91CF\u6D41\u7EBF\u6301\u7EED\u589E\u5BC6",
+      kind: "action",
+      category: "particles",
+      summary: "\u6CBF\u539F\u8FDE\u7EED\u901F\u5EA6\u66F2\u7EBF\u9010\u6B65\u589E\u52A0\u6D41\u7EBF\u548C\u4EAE\u5EA6\uFF0C\u955C\u5934\u540C\u6B65\u4ECE\u5256\u9762\u8F6C\u5411\u7403\u4F53\u3002",
+      purpose: "\u6CBF\u539F\u8FDE\u7EED\u901F\u5EA6\u66F2\u7EBF\u9010\u6B65\u589E\u52A0\u6D41\u7EBF\u548C\u4EAE\u5EA6\uFF0C\u955C\u5934\u540C\u6B65\u4ECE\u5256\u9762\u8F6C\u5411\u7403\u4F53\u3002",
+      objects: "\u80FD\u91CF\u6D41\u7EBF\u6301\u7EED\u589E\u5BC6\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u7A00\u758F\u6D41\u7EBF\u5148\u4FDD\u6301\u7F13\u6162\u7FFB\u5377\u3002",
+        "\u5BC6\u5EA6\u589E\u52A0\u540E\u901F\u5EA6\u9010\u6E10\u4E0A\u5347\uFF0C\u955C\u5934\u6CBF\u539F\u89D2\u5EA6\u8F6C\u52A8\u3002",
+        "\u6D41\u573A\u6301\u7EED\u589E\u5BC6\uFF0C\u5B8C\u6574\u663E\u73B0\u80FD\u91CF\u7403\u3002"
+      ],
+      aliases: [
+        "\u80FD\u91CF\u6D41\u7EBF\u6301\u7EED\u589E\u5BC6",
+        "\u87BA\u65CB\u4E38\u5BB6\u65CF"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u6CBF\u539F\u8FDE\u7EED\u901F\u5EA6\u66F2\u7EBF\u9010\u6B65\u589E\u52A0\u6D41\u7EBF\u548C\u4EAE\u5EA6\uFF0C\u955C\u5934\u540C\u6B65\u4ECE\u5256\u9762\u8F6C\u5411\u7403\u4F53\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 24e3,
+      preview_ms: 13200,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/rasengan-illustrations.js",
+        factory: "energy-density-growth",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002"
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u6CBF\u539F\u8FDE\u7EED\u901F\u5EA6\u66F2\u7EBF\u9010\u6B65\u589E\u52A0\u6D41\u7EBF\u548C\u4EAE\u5EA6\uFF0C\u955C\u5934\u540C\u6B65\u4ECE\u5256\u9762\u8F6C\u5411\u7403\u4F53\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768424\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u80FD\u91CF\u6D41\u7EBF\u6301\u7EED\u589E\u5BC6\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      reproduction: {
+        objects: "\u6CBF\u539F\u8FDE\u7EED\u901F\u5EA6\u66F2\u7EBF\u9010\u6B65\u589E\u52A0\u6D41\u7EBF\u548C\u4EAE\u5EA6\uFF0C\u955C\u5934\u540C\u6B65\u4ECE\u5256\u9762\u8F6C\u5411\u7403\u4F53\u3002",
+        presentation: "\u903B\u8F91\u8BBE\u8BA1\u5C3A\u5BF81080\xD71920\uFF0C\u4E3B\u4F53\u7B49\u6BD4\u5BB9\u7EB3\u5728640\xD7360\u9884\u89C8\u4E2D\uFF1B\u73AF\u7EBF\u4E0E\u4E91\u7FBD\u4EE5\u4E2D\u6027\u7EBF\u6761\u6784\u6210\uFF0C\u80FD\u91CF\u6D41\u7EBF\u4F7F\u7528\u84DD\u8272#128bef\u548C\u7A84\u4EAE\u82AF#e6fcfe\u3002",
+        phases: [
+          "\u7A00\u758F\u6D41\u7EBF\u5148\u4FDD\u6301\u7F13\u6162\u7FFB\u5377\u3002",
+          "\u5BC6\u5EA6\u589E\u52A0\u540E\u901F\u5EA6\u9010\u6E10\u4E0A\u5347\uFF0C\u955C\u5934\u6CBF\u539F\u89D2\u5EA6\u8F6C\u52A8\u3002",
+          "\u6D41\u573A\u6301\u7EED\u589E\u5BC6\uFF0C\u5B8C\u6574\u663E\u73B0\u80FD\u91CF\u7403\u3002"
+        ],
+        retain: "\u6CBF\u539F\u8FDE\u7EED\u901F\u5EA6\u66F2\u7EBF\u9010\u6B65\u589E\u52A0\u6D41\u7EBF\u548C\u4EAE\u5EA6\uFF0C\u955C\u5934\u540C\u6B65\u4ECE\u5256\u9762\u8F6C\u5411\u7403\u4F53\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E24\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "energy-discharge-journey",
+      name: "\u80FD\u91CF\u7403\u663E\u5F71\u4E0E\u5C40\u90E8\u7535\u5F27",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u539F\u6D41\u573A\u4ECE\u7A00\u758F\u5411\u5BC6\u96C6\u663E\u5F71\uFF0C\u5C40\u90E8\u7535\u5F27\u6CBF\u7403\u5185\u771F\u5B9E\u8F68\u8FF9\u9010\u6E10\u52A0\u5165\u3002",
+      purpose: "\u539F\u6D41\u573A\u4ECE\u7A00\u758F\u5411\u5BC6\u96C6\u663E\u5F71\uFF0C\u5C40\u90E8\u7535\u5F27\u6CBF\u7403\u5185\u771F\u5B9E\u8F68\u8FF9\u9010\u6E10\u52A0\u5165\u3002",
+      objects: "\u80FD\u91CF\u7403\u663E\u5F71\u4E0E\u5C40\u90E8\u7535\u5F27\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u6D41\u7EBF\u4FDD\u6301\u8FDE\u7EED\u7FFB\u5377\u3002",
+        "\u6D41\u7EBF\u4E0E\u4EAE\u5EA6\u589E\u5BC6\uFF0C\u539F\u955C\u5934\u89D2\u5EA6\u8FDE\u7EED\u4EA4\u63A5\u3002",
+        "\u7535\u5F27\u6CBF\u539F\u5185\u90E8\u8DEF\u5F84\u9010\u6E10\u52A0\u5165\u5E76\u8DF3\u4EAE\u3002"
+      ],
+      aliases: [
+        "\u80FD\u91CF\u7403\u663E\u5F71\u4E0E\u5C40\u90E8\u7535\u5F27",
+        "\u87BA\u65CB\u4E38\u5BB6\u65CF"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u6D41\u7EBF\u5F62\u72B6\u3001\u84DD\u8272\u4EAE\u82AF\u4E0E\u7403\u5185\u7535\u5F27\u8DEF\u5F84\uFF1B\u4ECE\u6709\u6548\u8F68\u8FF9\u5F00\u59CB\u663E\u5F71\uFF0C\u653E\u6162\u589E\u5BC6\u5E76\u5EF6\u540E\u7535\u5F27\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 24e3,
+      preview_ms: 13200,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/rasengan-illustrations.js",
+        factory: "energy-discharge-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u5171\u7528\u539F\u6D41\u573A\u4E0E\u7535\u5F27\u7ED8\u5236\uFF0C\u4ECE\u5DF2\u4FDD\u5B58\u8F68\u8FF9\u7684\u6709\u6548\u8D77\u70B9\u5F00\u59CB\u53D6\u6837\uFF1B\u663E\u5F71\u4E0E\u955C\u5934\u53D8\u5316\u653E\u6162\u4E3A\u4E8C\u5206\u4E4B\u4E00\uFF0C\u7535\u5F27\u5EF6\u540E\u81F3\u5341\u4E8C\u79D2\u5F00\u59CB\u63A5\u5165\u3002"
+      },
+      actions: [
+        "energy-density-growth",
+        "rasengan-illustration",
+        "lightning-orb-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u6D41\u573A\u4ECE\u7A00\u758F\u5411\u5BC6\u96C6\u663E\u5F71\uFF0C\u5C40\u90E8\u7535\u5F27\u6CBF\u7403\u5185\u771F\u5B9E\u8F68\u8FF9\u9010\u6E10\u52A0\u5165\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u5F00\u573A\u76F4\u63A5\u5448\u73B0\u7A00\u758F\u7403\u4F53\uFF1B\u6D41\u7EBF\u663E\u5F71\u4E0E\u955C\u5934\u53D8\u5316\u653E\u6162\u4E3A\u539F\u6765\u7684\u4E8C\u5206\u4E4B\u4E00\uFF0C\u5341\u4E8C\u79D2\u540E\u5C40\u90E8\u7535\u5F27\u9010\u6E10\u52A0\u5165\uFF0C\u6574\u6BB5\u4E8C\u5341\u56DB\u79D2\u3002",
+      recommendation: "\u9700\u8981\u80FD\u91CF\u7403\u663E\u5F71\u4E0E\u5C40\u90E8\u7535\u5F27\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      reproduction: {
+        objects: "\u539F\u6D41\u573A\u4ECE\u7A00\u758F\u5411\u5BC6\u96C6\u663E\u5F71\uFF0C\u5C40\u90E8\u7535\u5F27\u6CBF\u7403\u5185\u771F\u5B9E\u8F68\u8FF9\u9010\u6E10\u52A0\u5165\u3002",
+        presentation: "\u903B\u8F91\u8BBE\u8BA1\u5C3A\u5BF81080\xD71920\uFF0C\u4E3B\u4F53\u7B49\u6BD4\u5BB9\u7EB3\u5728640\xD7360\u9884\u89C8\u4E2D\uFF1B\u73AF\u7EBF\u4E0E\u4E91\u7FBD\u4EE5\u4E2D\u6027\u7EBF\u6761\u6784\u6210\uFF0C\u80FD\u91CF\u6D41\u7EBF\u4F7F\u7528\u84DD\u8272#128bef\u548C\u7A84\u4EAE\u82AF#e6fcfe\u3002",
+        phases: [
+          "\u539F\u6D41\u7EBF\u4FDD\u6301\u8FDE\u7EED\u7FFB\u5377\u3002",
+          "\u6D41\u7EBF\u4E0E\u4EAE\u5EA6\u589E\u5BC6\uFF0C\u539F\u955C\u5934\u89D2\u5EA6\u8FDE\u7EED\u4EA4\u63A5\u3002",
+          "\u7535\u5F27\u6CBF\u539F\u5185\u90E8\u8DEF\u5F84\u9010\u6E10\u52A0\u5165\u5E76\u8DF3\u4EAE\u3002"
+        ],
+        retain: "\u4FDD\u7559\u539F\u6D41\u7EBF\u5F62\u72B6\u3001\u84DD\u8272\u4EAE\u82AF\u4E0E\u7403\u5185\u7535\u5F27\u8DEF\u5F84\uFF1B\u4ECE\u6709\u6548\u8F68\u8FF9\u5F00\u59CB\u663E\u5F71\uFF0C\u653E\u6162\u589E\u5BC6\u5E76\u5EF6\u540E\u7535\u5F27\u3002",
+        tempo_note: "\u5F00\u573A\u76F4\u63A5\u5448\u73B0\u7A00\u758F\u7403\u4F53\uFF1B\u6D41\u7EBF\u663E\u5F71\u4E0E\u955C\u5934\u53D8\u5316\u653E\u6162\u4E3A\u539F\u6765\u7684\u4E8C\u5206\u4E4B\u4E00\uFF0C\u5341\u4E8C\u79D2\u540E\u5C40\u90E8\u7535\u5F27\u9010\u6E10\u52A0\u5165\uFF0C\u6574\u6BB5\u4E8C\u5341\u56DB\u79D2\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "field",
+            name: "\u80FD\u91CF\u6D41\u7EBF\u663E\u5F71\u589E\u5BC6",
+            start: 0,
+            end: 12e3,
+            time: "0\u201412\u79D2",
+            detail: "\u5F00\u573A\u5373\u5448\u73B0\u7A00\u758F\u7403\u4F53\uFF0C\u6D41\u7EBF\u4E0E\u955C\u5934\u53D8\u5316\u4EE5\u539F\u6765\u4E8C\u5206\u4E4B\u4E00\u901F\u5EA6\u9010\u6E10\u589E\u5BC6\u3002",
+            actions: [
+              "energy-density-growth",
+              "rasengan-illustration",
+              "lightning-orb-illustration"
+            ]
+          },
+          {
+            id: "electric",
+            name: "\u5C40\u90E8\u7535\u5F27\u9010\u6E10\u63A5\u5165",
+            start: 12e3,
+            end: 24e3,
+            time: "12\u201424\u79D2",
+            detail: "\u5341\u4E8C\u79D2\u540E\u5C40\u90E8\u7535\u5F27\u4ECE\u5F31\u5230\u5F3A\u9010\u6B65\u63A5\u5165\uFF0C\u6D41\u7EBF\u7EE7\u7EED\u8FDE\u7EED\u7FFB\u5377\u3002",
+            actions: [
+              "energy-density-growth",
+              "rasengan-illustration",
+              "lightning-orb-illustration"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: "ink-volume-illustration",
+      name: "\u6D53\u5EA6\u58A8\u56E2",
+      kind: "illustration",
+      category: "illustration-energy",
+      summary: "\u4ECE\u539F\u6D53\u5EA6\u7F51\u683C\u79EF\u5206\u5F97\u5230\u58A8\u56E2\u6295\u5F71\uFF0C\u4FDD\u7559\u771F\u5B9E\u793A\u8E2A\u8F68\u8FF9\u3001\u4E0B\u6C89\u3001\u8FB9\u7F18\u56DE\u5377\u4E0E\u6DE1\u5C3E\u3002",
+      purpose: "\u4ECE\u539F\u6D53\u5EA6\u7F51\u683C\u79EF\u5206\u5F97\u5230\u58A8\u56E2\u6295\u5F71\uFF0C\u4FDD\u7559\u771F\u5B9E\u793A\u8E2A\u8F68\u8FF9\u3001\u4E0B\u6C89\u3001\u8FB9\u7F18\u56DE\u5377\u4E0E\u6DE1\u5C3E\u3002",
+      objects: "\u539F\u6D53\u5EA6\u58A8\u56E2\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u539F\u58A8\u56E2\u7531\u6D53\u5EA6\u6570\u636E\u663E\u73B0\u3002",
+        "\u6CBF\u539F\u6A21\u62DF\u6570\u636E\u4E0B\u6C89\u5E76\u4ECE\u8FB9\u7F18\u56DE\u5377\u3002",
+        "\u6D53\u5EA6\u6269\u6563\uFF0C\u7559\u4E0B\u539F\u6DE1\u5C3E\u3002"
+      ],
+      aliases: [
+        "\u539F\u6D53\u5EA6\u58A8\u56E2",
+        "\u6C34\u58A8\u6C34\u6BCD"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u4ECE\u539F\u6D53\u5EA6\u7F51\u683C\u79EF\u5206\u5F97\u5230\u58A8\u56E2\u6295\u5F71\uFF0C\u4FDD\u7559\u771F\u5B9E\u793A\u8E2A\u8F68\u8FF9\u3001\u4E0B\u6C89\u3001\u8FB9\u7F18\u56DE\u5377\u4E0E\u6DE1\u5C3E\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 2e4,
+      preview_ms: 11e3,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-ink.js",
+        factory: "ink-volume-illustration",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-ink-data.js"
+        ]
+      },
+      actions: [
+        "ink-volume-roll"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u4ECE\u539F\u6D53\u5EA6\u7F51\u683C\u79EF\u5206\u5F97\u5230\u58A8\u56E2\u6295\u5F71\uFF0C\u4FDD\u7559\u771F\u5B9E\u793A\u8E2A\u8F68\u8FF9\u3001\u4E0B\u6C89\u3001\u8FB9\u7F18\u56DE\u5377\u4E0E\u6DE1\u5C3E\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768420\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u539F\u6D53\u5EA6\u58A8\u56E2\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "ink",
+        mode: "volume",
+        start: 0,
+        width: 1080,
+        height: 1920,
+        palette: "teal"
+      },
+      variants: [
+        {
+          id: "teal",
+          label: "\u9752\u8272\u58A8\u56E2",
+          summary: "\u9752\u8272\u58A8\u56E2\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 2e4,
+          preview_ms: 11e3,
+          scene: {
+            family: "ink",
+            mode: "volume",
+            start: 0,
+            width: 1080,
+            height: 1920,
+            palette: "teal"
+          }
+        },
+        {
+          id: "gold",
+          label: "\u91D1\u8272\u58A8\u56E2",
+          summary: "\u91D1\u8272\u58A8\u56E2\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 2e4,
+          preview_ms: 11e3,
+          scene: {
+            family: "ink",
+            mode: "volume",
+            start: 0,
+            width: 1080,
+            height: 1920,
+            palette: "gold"
+          }
+        },
+        {
+          id: "ink",
+          label: "\u58A8\u8272\u58A8\u56E2",
+          summary: "\u58A8\u8272\u58A8\u56E2\u4FDD\u7559\u539F\u9020\u578B\u4E0E\u65F6\u5E8F\u3002",
+          duration_ms: 2e4,
+          preview_ms: 11e3,
+          scene: {
+            family: "ink",
+            mode: "volume",
+            start: 0,
+            width: 1080,
+            height: 1920,
+            palette: "ink"
+          }
+        }
+      ],
+      reproduction: {
+        objects: "\u4ECE\u539F\u6D53\u5EA6\u7F51\u683C\u79EF\u5206\u5F97\u5230\u58A8\u56E2\u6295\u5F71\uFF0C\u4FDD\u7559\u771F\u5B9E\u793A\u8E2A\u8F68\u8FF9\u3001\u4E0B\u6C89\u3001\u8FB9\u7F18\u56DE\u5377\u4E0E\u6DE1\u5C3E\u3002",
+        presentation: "\u903B\u8F91\u8BBE\u8BA1\u5C3A\u5BF81080\xD71920\uFF0C\u58A8\u56E2\u7531\u6D53\u5EA6\u6295\u5F71\u4E0E\u7EC6\u793A\u8E2A\u70B9\u6784\u6210\uFF0C\u4F7F\u7528\u9752\u8272\u3001\u91D1\u8272\u6216\u58A8\u8272\uFF0C\u900F\u660E\u80CC\u666F\u3002",
+        phases: [
+          "\u539F\u58A8\u56E2\u7531\u6D53\u5EA6\u6570\u636E\u663E\u73B0\u3002",
+          "\u6CBF\u539F\u6A21\u62DF\u6570\u636E\u4E0B\u6C89\u5E76\u4ECE\u8FB9\u7F18\u56DE\u5377\u3002",
+          "\u6D53\u5EA6\u6269\u6563\uFF0C\u7559\u4E0B\u539F\u6DE1\u5C3E\u3002"
+        ],
+        retain: "\u4ECE\u539F\u6D53\u5EA6\u7F51\u683C\u79EF\u5206\u5F97\u5230\u58A8\u56E2\u6295\u5F71\uFF0C\u4FDD\u7559\u771F\u5B9E\u793A\u8E2A\u8F68\u8FF9\u3001\u4E0B\u6C89\u3001\u8FB9\u7F18\u56DE\u5377\u4E0E\u6DE1\u5C3E\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E20\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "ink-volume-roll",
+      name: "\u58A8\u56E2\u4E0B\u6C89\u7FFB\u5377\u4E0E\u6269\u6563",
+      kind: "action",
+      category: "particles",
+      summary: "\u539F\u58A8\u56E2\u5F62\u6001\u7531\u9010\u5E27\u6D53\u5EA6\u6570\u636E\u51B3\u5B9A\uFF0C\u4E0B\u6C89\u65F6\u8FB9\u7F18\u56DE\u5377\uFF0C\u5C3E\u90E8\u968F\u6D53\u5EA6\u6269\u6563\u6E10\u6DE1\u3002",
+      purpose: "\u539F\u58A8\u56E2\u5F62\u6001\u7531\u9010\u5E27\u6D53\u5EA6\u6570\u636E\u51B3\u5B9A\uFF0C\u4E0B\u6C89\u65F6\u8FB9\u7F18\u56DE\u5377\uFF0C\u5C3E\u90E8\u968F\u6D53\u5EA6\u6269\u6563\u6E10\u6DE1\u3002",
+      objects: "\u58A8\u56E2\u4E0B\u6C89\u7FFB\u5377\u4E0E\u6269\u6563\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u4FDD\u7559\u539F\u521D\u59CB\u6D53\u5EA6\u548C\u793A\u8E2A\u7D22\u5F15\u3002",
+        "\u540C\u4E00\u58A8\u56E2\u4E0B\u6C89\u3001\u5C55\u5F00\u5E76\u7531\u8FB9\u7F18\u56DE\u5377\u3002",
+        "\u540C\u4E00\u6D53\u5EA6\u573A\u6269\u6563\uFF0C\u5C3E\u90E8\u81EA\u7136\u53D8\u6DE1\u3002"
+      ],
+      aliases: [
+        "\u58A8\u56E2\u4E0B\u6C89\u7FFB\u5377\u4E0E\u6269\u6563",
+        "\u6C34\u58A8\u6C34\u6BCD"
+      ],
+      behaviors: [
+        "move",
+        "react"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u539F\u58A8\u56E2\u5F62\u6001\u7531\u9010\u5E27\u6D53\u5EA6\u6570\u636E\u51B3\u5B9A\uFF0C\u4E0B\u6C89\u65F6\u8FB9\u7F18\u56DE\u5377\uFF0C\u5C3E\u90E8\u968F\u6D53\u5EA6\u6269\u6563\u6E10\u6DE1\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 2e4,
+      preview_ms: 11e3,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-ink.js",
+        factory: "ink-volume-roll",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-ink-data.js"
+        ]
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u539F\u58A8\u56E2\u5F62\u6001\u7531\u9010\u5E27\u6D53\u5EA6\u6570\u636E\u51B3\u5B9A\uFF0C\u4E0B\u6C89\u65F6\u8FB9\u7F18\u56DE\u5377\uFF0C\u5C3E\u90E8\u968F\u6D53\u5EA6\u6269\u6563\u6E10\u6DE1\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768420\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u58A8\u56E2\u4E0B\u6C89\u7FFB\u5377\u4E0E\u6269\u6563\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "ink",
+        mode: "volume",
+        start: 0,
+        width: 1080,
+        height: 1920
+      },
+      reproduction: {
+        objects: "\u539F\u58A8\u56E2\u5F62\u6001\u7531\u9010\u5E27\u6D53\u5EA6\u6570\u636E\u51B3\u5B9A\uFF0C\u4E0B\u6C89\u65F6\u8FB9\u7F18\u56DE\u5377\uFF0C\u5C3E\u90E8\u968F\u6D53\u5EA6\u6269\u6563\u6E10\u6DE1\u3002",
+        presentation: "\u903B\u8F91\u8BBE\u8BA1\u5C3A\u5BF81080\xD71920\uFF0C\u58A8\u56E2\u7531\u6D53\u5EA6\u6295\u5F71\u4E0E\u7EC6\u793A\u8E2A\u70B9\u6784\u6210\uFF0C\u4F7F\u7528\u9752\u8272\u3001\u91D1\u8272\u6216\u58A8\u8272\uFF0C\u900F\u660E\u80CC\u666F\u3002",
+        phases: [
+          "\u4FDD\u7559\u539F\u521D\u59CB\u6D53\u5EA6\u548C\u793A\u8E2A\u7D22\u5F15\u3002",
+          "\u540C\u4E00\u58A8\u56E2\u4E0B\u6C89\u3001\u5C55\u5F00\u5E76\u7531\u8FB9\u7F18\u56DE\u5377\u3002",
+          "\u540C\u4E00\u6D53\u5EA6\u573A\u6269\u6563\uFF0C\u5C3E\u90E8\u81EA\u7136\u53D8\u6DE1\u3002"
+        ],
+        retain: "\u539F\u58A8\u56E2\u5F62\u6001\u7531\u9010\u5E27\u6D53\u5EA6\u6570\u636E\u51B3\u5B9A\uFF0C\u4E0B\u6C89\u65F6\u8FB9\u7F18\u56DE\u5377\uFF0C\u5C3E\u90E8\u968F\u6D53\u5EA6\u6269\u6563\u6E10\u6DE1\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E20\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
+      }
+    },
+    {
+      id: "ink-ocean-journey",
+      name: "\u6C34\u58A8\u6C34\u6BCD\u7FA4\u4F53\u6D88\u6563",
+      kind: "composition",
+      category: "compositions",
+      summary: "\u6309\u539F\u6C34\u65CF\u9986\u7247\u6BB5\u4ECE\u5355\u4E2A\u58A8\u56E2\u4EA4\u63A5\u5230\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\uFF0C\u6CBF\u540C\u4E00\u8BB0\u5F55\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3002",
+      purpose: "\u6309\u539F\u6C34\u65CF\u9986\u7247\u6BB5\u4ECE\u5355\u4E2A\u58A8\u56E2\u4EA4\u63A5\u5230\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\uFF0C\u6CBF\u540C\u4E00\u8BB0\u5F55\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3002",
+      objects: "\u6C34\u58A8\u6C34\u6BCD\u7FA4\u4F53\u6D88\u6563\u7684\u539F\u9020\u578B\u53CA\u76F8\u5173\u8FD0\u52A8\u4E3B\u4F53",
+      phases: [
+        "\u5355\u4E2A\u539F\u58A8\u56E2\u5728\u753B\u9762\u4E2D\u7EE7\u7EED\u56DE\u5377\u3002",
+        "\u539F\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\u6309\u539F\u4F4D\u7F6E\u548C\u5C3A\u5EA6\u63A5\u5165\u3002",
+        "\u7FA4\u4F53\u7EE7\u7EED\u4F7F\u7528\u771F\u5B9E\u6D53\u5EA6\u6570\u636E\u6D88\u6563\u3002"
+      ],
+      aliases: [
+        "\u6C34\u58A8\u6C34\u6BCD\u7FA4\u4F53\u6D88\u6563",
+        "\u6C34\u58A8\u6C34\u6BCD"
+      ],
+      behaviors: [
+        "sequence",
+        "follow"
+      ],
+      retain: "\u4FDD\u7559\u539F\u8F6E\u5ED3\u3001\u6BD4\u4F8B\u3001\u6750\u8D28\u3001\u56FA\u5B9A\u6570\u636E\u53CA\u65F6\u95F4\u5173\u7CFB\uFF1B\u6309\u539F\u6C34\u65CF\u9986\u7247\u6BB5\u4ECE\u5355\u4E2A\u58A8\u56E2\u4EA4\u63A5\u5230\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\uFF0C\u6CBF\u540C\u4E00\u8BB0\u5F55\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3002",
+      avoid: "\u4E0D\u6539\u53D8\u539F\u753B\u6CD5\uFF0C\u4E0D\u91CD\u6392\u63A5\u89E6\u4F4D\u7F6E\uFF0C\u4E0D\u6DFB\u52A0\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3001\u97F3\u9891\u6216\u5916\u90E8\u5DE5\u7A0B\u4F9D\u8D56\u3002",
+      duration_ms: 25e3,
+      preview_ms: 13750,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/scene-ink.js",
+        factory: "ink-ocean-journey",
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        dependencies: [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-ink-data.js"
+        ]
+      },
+      actions: [
+        "ink-volume-roll",
+        "ink-volume-illustration"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u539F\u65F6\u95F4\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u5B9A\u4F4D\u3002",
+      analogy: "\u6309\u539F\u6C34\u65CF\u9986\u7247\u6BB5\u4ECE\u5355\u4E2A\u58A8\u56E2\u4EA4\u63A5\u5230\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\uFF0C\u6CBF\u540C\u4E00\u8BB0\u5F55\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3002",
+      assumptions: "\u4F7F\u7528\u8FC1\u5165\u7684\u539F\u4F5C\u7ED8\u5236\uFF0C\u539F\u5C3A\u5BF8\u7B49\u6BD4\u9002\u914D\u76EE\u5F55\uFF1B\u4FDD\u7559\u539F\u8272\u3002\u63D2\u753B\u53EA\u8C03\u7528\u5BF9\u5E94\u4E3B\u4F53\u7684\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\uFF0C\u7EC4\u5408\u4FDD\u7559\u524D\u540E\u5173\u7CFB\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u4F5C\u7B2C0\u79D2\u8D77\u768425\u79D2\uFF1B\u901F\u5EA6\u63A7\u4EF6\u7EDF\u4E00\u7F29\u653E\u65F6\u95F4\u3002",
+      recommendation: "\u9700\u8981\u6C34\u58A8\u6C34\u6BCD\u7FA4\u4F53\u6D88\u6563\u7684\u9020\u578B\u6216\u52A8\u4F5C\u5173\u7CFB\u65F6\u76F4\u63A5\u590D\u7528\u3002",
+      scene: {
+        family: "ink",
+        mode: "full",
+        start: 0,
+        width: 1080,
+        height: 1920,
+        breakdown: [
+          {
+            id: "single",
+            name: "\u5355\u4E2A\u58A8\u56E2",
+            start: 0,
+            end: 1e4,
+            time: "0\u201410\u79D2",
+            detail: "\u5355\u4E2A\u58A8\u56E2\u7531\u9752\u8272\u6D53\u5EA6\u6295\u5F71\u6784\u6210\uFF0C\u4E0B\u6C89\u7FFB\u5377\u540E\u9010\u6E10\u8BA9\u4F4D\u3002",
+            actions: [
+              "ink-volume-roll",
+              "ink-volume-illustration"
+            ]
+          },
+          {
+            id: "ocean",
+            name: "\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2",
+            start: 3e3,
+            end: 25e3,
+            time: "3\u201425\u79D2",
+            detail: "\u4E94\u4E2A\u58A8\u56E2\u5728\u56FA\u5B9A\u4F4D\u7F6E\u6309\u5404\u81EA\u65F6\u95F4\u5DEE\u63A5\u5165\uFF0C\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3001\u7FA4\u4F53\u6E10\u6DE1\u3002",
+            actions: [
+              "ink-volume-roll",
+              "ink-volume-illustration"
+            ]
+          }
+        ],
+        layers: [
+          "single",
+          "ocean"
+        ]
+      },
+      reproduction: {
+        objects: "\u6309\u539F\u6C34\u65CF\u9986\u7247\u6BB5\u4ECE\u5355\u4E2A\u58A8\u56E2\u4EA4\u63A5\u5230\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\uFF0C\u6CBF\u540C\u4E00\u8BB0\u5F55\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3002",
+        presentation: "\u903B\u8F91\u8BBE\u8BA1\u5C3A\u5BF81080\xD71920\uFF0C\u58A8\u56E2\u7531\u6D53\u5EA6\u6295\u5F71\u4E0E\u7EC6\u793A\u8E2A\u70B9\u6784\u6210\uFF0C\u4F7F\u7528\u9752\u8272\u3001\u91D1\u8272\u6216\u58A8\u8272\uFF0C\u900F\u660E\u80CC\u666F\u3002",
+        phases: [
+          "\u5355\u4E2A\u539F\u58A8\u56E2\u5728\u753B\u9762\u4E2D\u7EE7\u7EED\u56DE\u5377\u3002",
+          "\u539F\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\u6309\u539F\u4F4D\u7F6E\u548C\u5C3A\u5EA6\u63A5\u5165\u3002",
+          "\u7FA4\u4F53\u7EE7\u7EED\u4F7F\u7528\u771F\u5B9E\u6D53\u5EA6\u6570\u636E\u6D88\u6563\u3002"
+        ],
+        retain: "\u6309\u539F\u6C34\u65CF\u9986\u7247\u6BB5\u4ECE\u5355\u4E2A\u58A8\u56E2\u4EA4\u63A5\u5230\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2\uFF0C\u6CBF\u540C\u4E00\u8BB0\u5F55\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3002",
+        tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E25\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
+        avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002",
+        layers: [
+          {
+            id: "single",
+            name: "\u5355\u4E2A\u58A8\u56E2",
+            start: 0,
+            end: 1e4,
+            time: "0\u201410\u79D2",
+            detail: "\u5355\u4E2A\u58A8\u56E2\u7531\u9752\u8272\u6D53\u5EA6\u6295\u5F71\u6784\u6210\uFF0C\u4E0B\u6C89\u7FFB\u5377\u540E\u9010\u6E10\u8BA9\u4F4D\u3002",
+            actions: [
+              "ink-volume-roll",
+              "ink-volume-illustration"
+            ]
+          },
+          {
+            id: "ocean",
+            name: "\u4E94\u4E2A\u9519\u65F6\u58A8\u56E2",
+            start: 3e3,
+            end: 25e3,
+            time: "3\u201425\u79D2",
+            detail: "\u4E94\u4E2A\u58A8\u56E2\u5728\u56FA\u5B9A\u4F4D\u7F6E\u6309\u5404\u81EA\u65F6\u95F4\u5DEE\u63A5\u5165\uFF0C\u6D53\u5EA6\u7EE7\u7EED\u6269\u6563\u3001\u7FA4\u4F53\u6E10\u6DE1\u3002",
+            actions: [
+              "ink-volume-roll",
+              "ink-volume-illustration"
+            ]
+          }
+        ]
+      }
     }
   ],
   redirects: {
@@ -30729,7 +39400,8 @@ var registry_default = {
     "history-recovered-weave-grow": "thread-weave",
     "hud-telemetry-sync": "hud-range-readout",
     "grid-bend-spread": "grid-flow-unfold",
-    "multivortex-release": "grid-flow-unfold"
+    "multivortex-release": "grid-flow-unfold",
+    "sunset-character-illustration": "sunset-sun-illustration"
   },
   variant_redirects: {
     "material-label-stagger": "material",
@@ -31066,7 +39738,7 @@ import { AbsoluteFill, staticFile, useCurrentFrame, useDelayRender, useVideoConf
     }, bank, { "data-part": "antennae" });
     const svg = doc.createElementNS(NS, "svg");
     for (const [name, value] of Object.entries({ width: 390, height: 280, viewBox: "-195 -350 390 280", "aria-hidden": "true" })) svg.setAttribute(name, value);
-    setStyle(svg, { position: "absolute", left: "-195px", top: "-350px", overflow: "visible" });
+    setStyle(svg, { position: "absolute", left: "-195px", top: "-350px", width: "390px", height: "280px", overflow: "visible" });
     antennae.append(svg);
     const paths = ANTENNAE.map((antenna) => {
       const path = doc.createElementNS(NS, "path");
@@ -31131,6 +39803,7 @@ import { AbsoluteFill, staticFile, useCurrentFrame, useDelayRender, useVideoConf
     draw.destroy = (preserve) => instance.destroy(preserve);
     return draw;
   }
+  make.requiresPreparation = true;
   global.WiseButterfly = Object.freeze({ mount });
   (global.MotionFactories ||= {})["butterfly-illustration"] = make;
 })(globalThis);

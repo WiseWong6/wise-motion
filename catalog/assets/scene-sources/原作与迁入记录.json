@@ -1,0 +1,441 @@
+{
+  "owner": "Wise Wong",
+  "authorization": "用户于2026-10-06明确确认十组均为本人作品并授权拆解入库",
+  "files": [
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/xiaokui-balloon-drive/scene.js",
+      "sha256": "14de6c0fcb020d3bf057da43959591e4ba86b4e9768f4b0fbef7a21e7fa08d3b"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/xiaokui-balloon-drive/xiaokui-car.js",
+      "sha256": "2aa37ba01d608e05b8a888fa5a74c0396dc016a71e1050928b708f777470ea61"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/journey-grass.js",
+      "sha256": "2ed18423129561b25139ff1a8b5518b7ea844982015f8f8b060f419e9d10b1f5"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/journey-air.js",
+      "sha256": "9ebf816c54f209d0003e3976b5b31cf074aa0dcd409e2310bb72160742026a2e"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/journey-clouds.js",
+      "sha256": "20cf8ef037f428305da7ef4c47e3703b958e2d6dc4fba436bc2b94464236edd9"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/journey-water.js",
+      "sha256": "eee5bf4b27fc13c6dd0b935cca38ed8a9b8f0b9215d2fac612797d02070ac7f8"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/journey-encounters.js",
+      "sha256": "9c91138475164b3f1e813c7691d57d3f84c83e7c7dc754330e6f51aaddc863df"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/dandelion.js",
+      "sha256": "ff5d3547132fe17ed919c42f334c00ca00534b0eeee16ea1c4f76464673d9db4"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/sketch.js",
+      "sha256": "6b0a722918d3af400ee44411a7ded58a3bd644b58fd115cf92d165254571e95c"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/timeline.js",
+      "sha256": "108df91a31e9998d3b986548c183db0b683457d4d181d4a0be8857d5ad80c4ce"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/cat.js",
+      "sha256": "81d800895d2d70d3ef16864348160d341b7f4deb4b24efec086df3159aa8acdb"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/游戏/collection-motion.js",
+      "sha256": "192593c5d19ede2336d19f602a148a6ec41f2af5d2715815274a124d06a231b9"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/scene.js",
+      "sha256": "54b937c7f258841c56bdd574d123d2527d3d0d5d66a43a4b3bdf2a1121dda1e1"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/coffee-bean.png",
+      "sha256": "fd30c26d018a64ad5f88bc4d99033cb8e34de936f7c1811dfbcee6790e86115f",
+      "copy": "catalog/assets/scene-sources/factory/coffee-bean.png"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/choreography.js",
+      "sha256": "ef2e168934e5f864a1385fa28f116b0001a40a66feb7b6afbbdbaa22b98d3f3f"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/vendor/cat.js",
+      "sha256": "4e3b3850b3d9f40bbc946394980578647bda8184ada490dd3a94a1c194b78031"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/cat-motion.js",
+      "sha256": "788e67d936ace6a84715081aa8d73ba46553ab4c8f627a8827b1535330512657"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/turn-motion.js",
+      "sha256": "1debef6fa46b96871ec7581c030dd2952380a427fef25b0b6e847099656dae4a"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/view-puppet.js",
+      "sha256": "03529a024804c17684c8a196eb29629f497b6244ccb07c7aa768ca4b0b8a06f7"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/avatar.js",
+      "sha256": "bdc0fd008464cd70cf0dabbef886d9b832b529eaefa4bf4b34740a5da7b75017"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/film.js",
+      "sha256": "d92cdf0e9aac5a54c52f07f51014d68e4630dcdc32ac264c9e8d0e73677a9e6d"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/assets/generated/手机与人物.png",
+      "sha256": "e91a89281081ccdf17761d2344dbc075ae02d9c98baeebee16533379cfac16d4",
+      "copy": "catalog/assets/scene-sources/selfie/手机与人物.png"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/assets/generated/我的自拍.png",
+      "sha256": "da7f34ec64757200b5941202872a0080e3e02ea164adf18db31ca610ce1496c0",
+      "copy": "catalog/assets/scene-sources/selfie/我的自拍.png"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/assets/generated/小葵原设定补充视角.png",
+      "sha256": "5fd431c67dc21aa9e64b9fc49cdee18e181918c40be15f6c36287034c4406000",
+      "copy": "catalog/assets/scene-sources/selfie/小葵原设定补充视角.png"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/assets/generated/小葵转身与低头.png",
+      "sha256": "58f1ad511e2de091bd8c75292ccb8ceb0f916d9060f47fb3b51d915206ed8162",
+      "copy": "catalog/assets/scene-sources/selfie/小葵转身与低头.png"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/assets/generated/小葵朝右下.png",
+      "sha256": "cf88037a03984fdc7b0ead6243a019979acdc4a53ed4501aef7d93d7c931d594",
+      "copy": "catalog/assets/scene-sources/selfie/小葵朝右下.png"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/assets/generated/小葵朝左上.png",
+      "sha256": "aedcd726d2771e2985e177c1d3b2472e72c43ada62de7b76e808453ebb02fe10",
+      "copy": "catalog/assets/scene-sources/selfie/小葵朝左上.png"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/shenzhen-snow-night/sketch.js",
+      "sha256": "5ef87e299884d1967ab08611d64a15bebddafd355c9ccf973892379f79375492"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/shenzhen-snow-night/assets/p5-noise.js",
+      "sha256": "f940b38732062374149abf9d420d4dbdb7aeda757bc9bf51fa9fc8dfe7646568"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/shenzhen-snow-night/assets/THIRD-PARTY.json",
+      "sha256": "2cfd42cd0fde2b4643fcc6cac6d1543899f0513bbc776163372bd7e212352ef3",
+      "copy": "catalog/assets/scene-sources/snow/THIRD-PARTY.json"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/shenzhen-snow-night/assets/jrpg-track.js",
+      "sha256": "e79d9f9ee06c1c4dfcc0a9584a6b98612c62e37f075dcd4e40289f53cae6ab6f"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/ocean-sunset/sketch.js",
+      "sha256": "3f4c4a94436990b9051d36f81f8c4ff386ba0c14c51753e319bb79122da52eb4"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/august-night-osmanthus/tree-data.js",
+      "sha256": "7cebc04b81c7ac7cc96eba620f22968106d47422c620afa0995cde3fd4d32e34"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/august-night-osmanthus/moon-map.js",
+      "sha256": "12671df97464b4b4fcd81eec6405791883a5f1863c4955db215db242818931b6"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/august-night-osmanthus/glitter.js",
+      "sha256": "54925f848fef1187534d4bbade6f4a56c01aae9cc709303cdd2116f5baa6297b"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/august-night-osmanthus/scene.js",
+      "sha256": "6ae9f4ea47132fc2200c4016efe93901a8e7f8bdfd201e2148532d45e66cf8d8"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/index.html",
+      "sha256": "946d7b97a3def119ae853ccda0114e594ea0b20b56ccbc7d5060dd983bd0ff03"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/fonts/LXGWWenKai-Regular.ttf",
+      "sha256": "39ad71264b588165b469e35e6afb162a378dacd1f95348160240ba9038ac3009",
+      "copy": "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/fonts/MaShanZheng-Regular.ttf",
+      "sha256": "6d2546bb189c732a8ca29af9e22457b152387d158aa459e4ac2ce1e51788b7fb",
+      "copy": "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/fonts/OFL-LXGWWenKai.txt",
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0",
+      "copy": "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/fonts/OFL-MaShanZheng.txt",
+      "sha256": "d7bdb1cee215b689e23c2f95672a6084c790542170648267a55114103d756a08",
+      "copy": "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/assets/galaxy-sky.png",
+      "sha256": "40e0ebd3658b52736d6e592a08e54dcd7ac339bd1b2501a4804d410bd2100a92",
+      "copy": "catalog/assets/scene-sources/letter/galaxy-sky.png"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/assets/README.md",
+      "sha256": "2058739e5bbe406394ae11155448f23957f13c9c6ab0ab5de60301d367d1bca1",
+      "copy": "catalog/assets/scene-sources/letter/素材来源.md"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/animation.js",
+      "sha256": "95ab38c84e6275cdec6c40dfee8eff12de3e61a607f4c940f73f4e24cd523b84"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/星月来信/assets/galaxy-stars.js",
+      "sha256": "eb4f1621ce59a79066ae98a13cde4cb1a5ca7d989dfdec3da17b5062e6713640"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/captions.json",
+      "sha256": "ad047775fdbd5b74a6fc62d0ebadb3c2aa9e6c321ca4c3d1c8420c186e3f5920"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/story.json",
+      "sha256": "07a5b5cd1d65fb17657a57094816068214633e51f6323758b5710bc8372326d3"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/Root.tsx",
+      "sha256": "0bb497485f1bd6a03135e151c6d9ea99d5d128ec02ba390ddaee47c94e49dbf6"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/index.ts",
+      "sha256": "957e481dd33a29b4a55ae0e95dbf763b7e48c37c427ca4bd1275faf34bc07a74"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/scenes/SectionScene.tsx",
+      "sha256": "27c55e45990f398500ba434f4345a55a34036890c4c5854f8355b23e6a4b5f1c"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/scenes/CompareScene.tsx",
+      "sha256": "69c0611a3bd8f24a7c3149f41b00ebc92c227d0fb1a497faeaab10410582ed4b"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/scenes/BubbleScene.tsx",
+      "sha256": "78b290826d0f0b05bd5fc7387bf514ff5b8a4834e040b7472ee2c502b9588a7c"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/scenes/OceanScene.tsx",
+      "sha256": "72f1752cdfe4a3955bd0c29f10ac2c8f0b2137fb54e8df4f6c0a28f5ad209ee9"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/scenes/RevealScene.tsx",
+      "sha256": "cefd6598b09779573347a2e9271ca533fce263fcb7bd4e78bacc71be1b018213"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/scenes/InkScene.tsx",
+      "sha256": "37cd5e0c2958daa7ce1a55c8afbe743cab0b5f728303017d87997263e9b7d773"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/scenes/types.ts",
+      "sha256": "39380db5c3b2908dd05df19769b89adf881c3f82caff1e294e0f8f4aeb9cf1a3"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/scenes/Opening.tsx",
+      "sha256": "02fb78e20c98022e6c55cf1c0b71100f7717fccd497f8eb5044d1f2f21a9f82a"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/scenes/TrackScene.tsx",
+      "sha256": "a64e599d47687ff08dd1bf8798393b7134e3766e5933a01b6752d8da716eeebe"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/scenes/History.tsx",
+      "sha256": "7909c112c08fe6f938d6d57411ba9592b7c116457efc5fc1a7162bc4d72bb668"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/scenes/SphereScene.tsx",
+      "sha256": "ebb303c8e5c3acbef80ee519200fce99cec04081e06ec7c77d439ce2d1e57a02"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/visuals/HillField.tsx",
+      "sha256": "81464f04e8d47cd5c5f644a5932c46e9622dcd55eda2766c370ef07f38d7975d"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/visuals/InkVolume.tsx",
+      "sha256": "a80d7250dfe1da0ff742efbef747cbf5965da53352aa7b6e6fd458646c18341a"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/visuals/CaptionLayer.tsx",
+      "sha256": "f248fa522e06d87c15d238513c06ebbba12c6acd75a10c1e17f00f3c53b5742c"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/visuals/ink-volume-math.ts",
+      "sha256": "5e751990cfffca0cad7ab69db2126ca31cf2f9943a23f689a5c4016b5f831599"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/visuals/Stage.tsx",
+      "sha256": "402373063d7ba11f9acb90106435f7831ca37f73afad54bc98aa9fc3d1e3f7f5"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/visuals/Glass.tsx",
+      "sha256": "d3307b177440e373edef08fcb0282a4699ceaf488fa0c0ec6de45078886570dc"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/audio-no-music.json",
+      "sha256": "93dc95834a3d77a588f02e740dad5ed7efd76ce6714d86a4bc966c81bec37cd9"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/script-beats.json",
+      "sha256": "84ef6e8591977f1737550a806b7c8a59c1714b7ae63cb333dbf8471b0b4ecb9e"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/spiral.ts",
+      "sha256": "03be06072a0ab43b67903723935c326c934f51673366d0a2ae0b546c70e1343c"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/audio-mix.json",
+      "sha256": "8710326b2c926cb8e3263471741fb4046ef9b8e4599e7fc53f6f3fc1a6f7a8c3"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/starLight.ts",
+      "sha256": "8e5d64a1cefdecfeb8b6ab8ddbf9f306245d6736df350378f3d8edd14ef7be27"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/airflow.json",
+      "sha256": "6bf9bda520d85d032c38ca1896cab967629536225f485a216069beabe68ee044"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/PlatformOutro.tsx",
+      "sha256": "fc4053492787ecc797d22f65dfa8955d001649d56a977e0aa096a915fa6f3783"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/meridians.json",
+      "sha256": "8aa18619d4567c4f9cd57b4b2cd4bc06889fdcc8d34db1a2c12980d32908af7c"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/NaturalOrigins.tsx",
+      "sha256": "655dd471cdc0f2291d4b9831664641e6d3bfc3bad99a6d514ec9e1135b09c539"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/preview-timing.json",
+      "sha256": "9d29ba5cf4b2b6e129850882cc667ed024bc16dfeb0924607bb719cb8b2fd8b9"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/mushroom.ts",
+      "sha256": "c9c843991affc857fdf56c15f1d28c4bf99b249536cc0920bc16bddb140f6da5"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/captions.json",
+      "sha256": "9674a4b6b8959c6845c572406c20dccdcda87de5eb3c10e852591aaa112b6e8e"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/RotationComparison.tsx",
+      "sha256": "bc1817f51fdcd4dc5d22e262f3d9884c180a912092c3eb7e5f7ba1391703e582"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/cycloneAir.ts",
+      "sha256": "1abafb008d5aaf99a5b07ef6919b8ad06515577614d43e9425bafc2a8745300f"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/visuals.tsx",
+      "sha256": "92691494b2a9b8089d11d004fbd870ed710fc7b01c9c4278c8c5d6f4a1f5bc58"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/choreography.ts",
+      "sha256": "931b5dc7858ec5817c6cf0acae821fc0e670bbac7538173d888c035c1f44dbf9"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/LightRenderer.ts",
+      "sha256": "1223e61792fd59f3b234acbabc50d90ffbb0a9834c18cb4709044144a0cbeef0"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/Subtitles.tsx",
+      "sha256": "291f075b94e91dec53a4247b2a0ce966ed4d851ce268270fbdc6c09cb54f6a2b"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/timing.ts",
+      "sha256": "941e975044b4a6214efa86a25e75134bbd8547c5e11719a39a1e0b89e6aa34c4"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/Atlas.tsx",
+      "sha256": "13e5da980c1ece1c1d5abe2542454ee5907812f2899c0ed41cb581c11b9d7e62"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/platform-outros.json",
+      "sha256": "9cd5ec5f29c81fe9b8a3a364b348c67896b38fad16404984e1123e74d80259ac"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/Film.tsx",
+      "sha256": "b77a1fbc8a3113ece478fb724c78d99d5326b09289b97600e57049d9edeecf05"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/StoryEffects.tsx",
+      "sha256": "7816250ce8a1dcf0d1b44ce8200168760e83e3aad35d288c5fbf7504d6244924"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/galaxy.ts",
+      "sha256": "4c997313a8d09a86ee78e8a3e8d3d432cc7e81f663a01220ba15eb8373aa805c"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/light.ts",
+      "sha256": "2687bb9d93d2d09f0bd123b1a12b64c3001f23577e11ce355a7a7327f4d11a00"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/HillPortrait.tsx",
+      "sha256": "9da879e08706fb30a45b69da6cc6d11d2db85d5e511a851a48be4efb37f507b4"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/sentenceMotion.ts",
+      "sha256": "da186fc2a2d3758ba4a3e6fbb265be3d22dbb0575d5accdd9b4b799abb343586"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/airflow.ts",
+      "sha256": "953811ac88f200cff77ea8c8f5c4a58ee43c0e927217b6eb32cffa5e11d7ed8a"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/outro-layout.json",
+      "sha256": "2dce7bee0ca55e7aaced39d212607111e9700477be395ba786e7f410c3da4040"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/scenes/Ambition.tsx",
+      "sha256": "9abce0e5f3830417f3e9134a1bf37703db1469b315d670d234bc36e55a5405c9"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/scenes/Sphere.tsx",
+      "sha256": "4d0aa705946e1b99cbf1c7c12907bbe4b50ed8a4a4dced4c85bc39804402a5c4"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/scenes/Difference.tsx",
+      "sha256": "066e8853460cb56c32a3f79074da9135a955eaf80942a8f221041099deab2f5c"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/scenes/Ending.tsx",
+      "sha256": "ec64b4ddca575c7f4cdeee714d1037c82a1d46d93c7e9e4d8722b501df208845"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/scenes/Opening.tsx",
+      "sha256": "2cb94cba3c0dc6f193ea7196a12d96a27c343367989a530abb86fbbcf84dc30b"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/scenes/Ring.tsx",
+      "sha256": "db980d8020211c7b85d1549f1421779dd410c51d21b1d3711309cf34ea1fbe01"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/scenes/Combine.tsx",
+      "sha256": "a117bc267e8f3a59d32a8def0f744ed8daa256c664252d4d129984308abe4b65"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/scenes/Cyclone.tsx",
+      "sha256": "1cc7de108f7589789bf5e910e50a5deada7642e74ca96404e8f455091e8af5e9"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/rasengan/scenes/Reveal.tsx",
+      "sha256": "14d29bfee952c94998ca7b39123c03705333690bea0b1e80a445f9138de7f15d"
+    },
+    {
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/public/data/ink-simulation.json",
+      "sha256": "f27434fbb2255ec7a3be8b7245799629f6cf53355baf4dd882c830d8ce42e4b8"
+    }
+  ],
+  "boundaries": "原作只读，音乐不作为库内依赖；造型示例与运动共用绘制。"
+}

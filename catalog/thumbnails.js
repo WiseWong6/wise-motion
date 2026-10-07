@@ -1,7 +1,7 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
 /* 目录卡片的静态缩略图。
    复用 effects 的渲染函数直接画一帧，不建立 Anime.js 计时器，也不注册 ResizeObserver，
-   所以目录里有多少张卡片都不会拖慢预览或占用播放资源。
+   不占用播放资源；耗时准备任务之间让出页面线程。
    历史案例沿用原作图片或单帧绘制；没有可见范围观察器时也正常绘制。 */
 (function (global) {
   'use strict';
@@ -12,6 +12,10 @@
   /* 和主预览共用完整 16:9 画板，不放大裁掉卡片底部。 */
   let observer = null;
   const supported = typeof IntersectionObserver === 'function';
+  function enqueue(job){
+    // Promise 连续完成仍在同一轮执行；切到下一轮，给点击、滚动和主预览留出机会。
+    queue=queue.then(job,job).then(()=>new Promise(resolve=>global.setTimeout(resolve,0)));
+  }
 
   const current = (host,state) => !suspended && state.active && states.get(host)===state && host.isConnected;
   function unavailable(host,state,message){
@@ -49,7 +53,7 @@
       try{await global.MotionHistoryRuntime.poster(canvas,entry,global.MotionHistory,{isCurrent:()=>current(host,state)});}
       catch(e){unavailable(host,state,e.message||'原作绘制器无法载入。');}
     };
-    queue=queue.then(job,job);
+    enqueue(job);
   }
 
   function frame(host) {
@@ -81,7 +85,7 @@
         const index=state.cleanup.indexOf(cancel);if(index!==-1)state.cleanup.splice(index,1);
       }
     };
-    queue=queue.then(job,job);
+    enqueue(job);
   }
 
   function paint(host, effect) {

@@ -73,7 +73,8 @@
       transform: 'translateZ(8px)', transformStyle: 'preserve-3d'}, bank, {'data-part': 'antennae'});
     const svg = doc.createElementNS(NS, 'svg');
     for (const [name, value] of Object.entries({width: 390, height: 280, viewBox: '-195 -350 390 280', 'aria-hidden': 'true'})) svg.setAttribute(name, value);
-    setStyle(svg, {position: 'absolute', left: '-195px', top: '-350px', overflow: 'visible'});
+    // Keep the drawing viewport independent of the catalog's small icon SVG rule.
+    setStyle(svg, {position: 'absolute', left: '-195px', top: '-350px', width: '390px', height: '280px', overflow: 'visible'});
     antennae.append(svg);
     const paths = ANTENNAE.map(antenna => {
       const path = doc.createElementNS(NS, 'path');
@@ -121,6 +122,8 @@
     draw.ready = instance.ready; draw.destroy = preserve => instance.destroy(preserve);
     return draw;
   }
+  // 缩略图须等翼图和身体全部解码，再保留静态画面。
+  make.requiresPreparation = true;
   global.WiseButterfly = Object.freeze({mount});
   (global.MotionFactories ||= {})['butterfly-illustration'] = make;
 })(globalThis);

@@ -68,7 +68,21 @@ export const FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/reel-prompt-outro.js",
   "catalog/effects/material-evolution.js",
   "catalog/effects/civilization-growth.js",
-  "catalog/effects/dither-book.js"
+  "catalog/effects/dither-book.js",
+  "catalog/effects/scene-source-runtime.js",
+  "catalog/effects/scene-osmanthus-data.js",
+  "catalog/effects/scene-ink-data.js",
+  "catalog/effects/scene-dandelion.js",
+  "catalog/effects/scene-drive.js",
+  "catalog/effects/scene-factory.js",
+  "catalog/effects/scene-ink.js",
+  "catalog/effects/scene-letter-images.js",
+  "catalog/effects/scene-letter.js",
+  "catalog/effects/scene-ocean.js",
+  "catalog/effects/scene-osmanthus.js",
+  "catalog/effects/scene-selfie-images.js",
+  "catalog/effects/scene-selfie.js",
+  "catalog/effects/scene-snow.js"
 ]);
 export const FRAME_STYLES = Object.freeze(['catalog/scenes.css', 'catalog/app.css', 'catalog/history.css', 'catalog/book-controls.css']);
 // 未指定条目时保留完整加载，供基准检查和兼容调用使用。

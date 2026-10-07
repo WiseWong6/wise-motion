@@ -15,11 +15,13 @@ async function environment(thumbnails=false){
   return {w,root:w.document.getElementById('root'),close(){w.MotionThumbs?.disposeAll();w.MotionRuntime.disposeAll();w.anime.engine.pause();dom.window.close();}};
 }
 function delayedFactory(w,id=definition.id,frameRate){
-  let resolve,reject,destroyed=0;
+  let resolve,reject,startedResolve,destroyed=0;
+  const started=new Promise(resolve=>{startedResolve=resolve;});
   const frames=[],states=[],definitions=[];
   const ready=new Promise((yes,no)=>{resolve=yes;reject=no;});
   const factory=(stage,_kit,effect)=>{
     definitions.push(effect);
+    startedResolve();
     const render=(time,state)=>{frames.push(time);states.push(state);stage.dataset.time=String(time);};
     render.ready=ready;
     if(frameRate!==undefined)render.frameRate=frameRate;
@@ -28,7 +30,7 @@ function delayedFactory(w,id=definition.id,frameRate){
   };
   factory.requiresPreparation=true;
   w.MotionFactories[id]=factory;
-  return {resolve,reject,frames,states,definitions,get destroyed(){return destroyed;}};
+  return {resolve,reject,started,frames,states,definitions,get destroyed(){return destroyed;}};
 }
 function timerStub(w){
   const timers=[];
@@ -192,7 +194,7 @@ test('仅播放更新标为播放，准备恢复、定位累计时间与末帧�
 
 function host(w){const node=w.document.createElement('div');node.className='thumb';node.getBoundingClientRect=()=>({width:160,height:90});w.document.body.append(node);return node;}
 
-test('异步缩略图逐个准备并仅画代表时刻，画完释放资源且不建立播放器',async()=>{
+test('异步缩略图逐个准备并仅画代表时刻，画完释放资源且不建立播放器',{timeout:5000},async()=>{
   const env=await environment(true);
   try{
     const {w}=env,first=delayedFactory(w),second=delayedFactory(w,'preparation-next');
@@ -202,7 +204,7 @@ test('异步缩略图逐个准备并仅画代表时刻，画完释放资源且�
     await delay(0);assert.equal(first.definitions.length,1);assert.equal(second.definitions.length,0);assert.equal(finished,false);
     assert.equal(first.definitions[0].poster_only,true);assert.equal(first.definitions[0].poster_time_ms,640);
     assert.equal(w.MotionRuntime.instanceCount,0);
-    first.resolve();await delay(0);
+    first.resolve();await second.started;
     assert.deepEqual(first.frames,[640]);assert.equal(first.destroyed,1);assert.equal(second.definitions.length,1);
     assert.equal(a.querySelector('.motion-stage').dataset.time,'640');assert.match(a.querySelector('.motion-stage').style.transform,/scale\(0\.25\)/);
     second.resolve();await idle;assert.equal(finished,true);
@@ -211,14 +213,14 @@ test('异步缩略图逐个准备并仅画代表时刻，画完释放资源且�
   }finally{env.close();}
 });
 
-test('移除正在准备的缩略图会立即释放并让后续条目继续，迟到结果不覆盖新卡片',async()=>{
+test('移除正在准备的缩略图会立即释放并让后续条目继续，迟到结果不覆盖新卡片',{timeout:5000},async()=>{
   const env=await environment(true);
   try{
     const {w}=env,old=delayedFactory(w),next=delayedFactory(w,'preparation-next'),node=host(w),other=host(w);
     w.MotionThumbs.attach(node,definition);w.MotionThumbs.attach(other,{...definition,id:'preparation-next'});
     await delay(0);assert.equal(old.definitions.length,1);
     w.MotionThumbs.release(node);assert.equal(old.destroyed,1);assert.equal(node.childElementCount,0);
-    await delay(0);assert.equal(next.definitions.length,1,'取消等待后应开始后面的条目');
+    await next.started;assert.equal(next.definitions.length,1,'取消等待后应开始后面的条目');
     const replacement=w.document.createElement('span');replacement.textContent='新的卡片';node.append(replacement);
     old.resolve();next.resolve();await w.MotionThumbs.whenIdle();
     assert.equal(old.frames.length,0);assert.equal(old.destroyed,1);assert.equal(node.textContent,'新的卡片');
@@ -226,7 +228,7 @@ test('移除正在准备的缩略图会立即释放并让后续条目继续，�
   }finally{env.close();}
 });
 
-test('一个异步缩略图准备失败不阻塞后续，同步缩略图沿原路径绘制',async()=>{
+test('一个异步缩略图准备失败不阻塞后续，同步缩略图沿原路径绘制',{timeout:5000},async()=>{
   const env=await environment(true);
   try{
     const {w}=env,failed=delayedFactory(w),next=delayedFactory(w,'preparation-next'),a=host(w),b=host(w),c=host(w);
@@ -238,7 +240,7 @@ test('一个异步缩略图准备失败不阻塞后续，同步缩略图沿原�
     w.MotionThumbs.attach(a,definition);w.MotionThumbs.attach(b,{...definition,id:'preparation-next'});
     w.MotionThumbs.attach(c,{...definition,id:'preparation-legacy'});
     await delay(0);assert.equal(legacyDraws,1);assert.equal(legacyDisposals,1);assert.equal(c.querySelector('.motion-stage').dataset.time,'640');
-    failed.reject(new Error('缩略图形状无法加载'));await delay(0);assert.equal(next.definitions.length,1);
+    failed.reject(new Error('缩略图形状无法加载'));await next.started;assert.equal(next.definitions.length,1);
     next.resolve();await w.MotionThumbs.whenIdle();
     assert.equal(a.textContent,'预览暂不可用');assert.match(a.title,/缩略图形状无法加载/);assert.equal(failed.destroyed,1);
     assert.deepEqual(next.frames,[640]);assert.equal(next.destroyed,1);

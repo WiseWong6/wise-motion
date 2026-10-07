@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {environment, data} from './helpers.mjs';
 
-const heavy = ['effects/civilization-images.js', 'effects/rasengan-illustrations.js', 'effects/civilization-growth.js', 'remotion-sources.js'];
+const heavy = ['effects/civilization-images.js', 'effects/rasengan-illustrations.js', 'effects/civilization-growth.js', 'remotion-sources.js',...data.effects.filter(e=>e.scene).flatMap(e=>[e.source.path,...(e.source.dependencies||[])]).map(f=>f.replace(/^catalog\//,''))];
 const effect = id => data.effects.find(item => item.id === id);
 
 test('浏览和复制提示词不加载完整源码表，打开需要它的代码页签才加载一次', async () => {

@@ -5,7 +5,7 @@
     {
       "id": "type-reveal",
       "variant": null,
-      "fingerprint": "087922c890f49e12afc28ccf3a85442973f74bd213a21e5cccde7e395f82c379",
+      "fingerprint": "15a0e8f59b278d6f1dcd1d7ca2572f9455296d6a17140662a3841f83d5b4bc8d",
       "status": "overlay-ok",
       "samples": [
         {
@@ -205,7 +205,7 @@
     {
       "id": "count-up",
       "variant": null,
-      "fingerprint": "7ed494e99eb2cab96ff0bd4d15b32b9dbbbfba04364e97e98680c55fbaf76c7d",
+      "fingerprint": "929feee1571d58d99d5c6569e225f6dcd1651631c9a7e8acf4bb8845c7bda5e0",
       "status": "overlay-ok",
       "samples": [
         {
@@ -437,7 +437,7 @@
     {
       "id": "word-focus",
       "variant": null,
-      "fingerprint": "692b4c3312fa00b9a427009f2b85ba75a1b9989f6dd2392f9e7bd6842d731e03",
+      "fingerprint": "ce01cad3901b784dea11a2fff4e0d892b45781b90a58b0ebe571bb67246d896c",
       "status": "overlay-ok",
       "samples": [
         {

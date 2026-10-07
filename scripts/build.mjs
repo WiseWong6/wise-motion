@@ -7,6 +7,9 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const checking = process.argv.includes('--check');
 const {buildCivilization} = await import('./build-civilization.mjs');
 await buildCivilization(checking);
+const {spawnSync}=await import('node:child_process');
+const sceneImages=spawnSync(process.execPath,[path.join(root,'scripts/build-scene-images.mjs'),...(checking?['--check']:[])],{encoding:'utf8'});
+if(sceneImages.status!==0)throw new Error(sceneImages.stderr||sceneImages.stdout||'原图片封装生成失败');
 async function output(relative, content) {
   const target = path.join(root, relative);
   if (checking) {

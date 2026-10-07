@@ -5,7 +5,7 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {JSDOM} from 'jsdom';
 import {environment, data} from './helpers.mjs';
-import {frameScriptsFor} from '../remotion/frame-document.mjs';
+import {frameScriptsFor, FRAME_STYLES} from '../remotion/frame-document.mjs';
 
 const fixture = JSON.parse(await readFile(new URL('./butterfly-fixture.json', import.meta.url), 'utf8'));
 const def = id => data.effects.find(effect => effect.id === id);
@@ -39,6 +39,44 @@ test('原振翅、触角与身体状态在首尾、倒序、跨周期时保持�
   } finally {dom.window.close();}
 });
 
+test('触角在真实目录样式下保持绘图尺寸，曲线始终连接头部与尖端', async () => {
+  const dom = await butterflyEnvironment();
+  try {
+    const w = dom.window, root = w.document.getElementById('root');
+    for (const file of FRAME_STYLES) {
+      const style = w.document.createElement('style');
+      style.textContent = await readFile(new URL('../' + file, import.meta.url), 'utf8');
+      w.document.head.append(style);
+    }
+    for (const catalogView of [true, false]) {
+      const renderer = w.WiseButterfly.mount(root, {catalogView});
+      root.querySelectorAll('img').forEach(img => img.dispatchEvent(new w.Event('load')));
+      await renderer.ready;
+      const svg = root.querySelector('[data-part="antennae"] svg');
+      const style = w.getComputedStyle(svg);
+      assert.equal(style.width, '390px');
+      assert.equal(style.height, '280px');
+      const [x, y, width, height] = svg.getAttribute('viewBox').split(' ').map(Number);
+      for (const sample of [...fixture, ...fixture.toReversed()]) {
+        renderer.draw(sample.seconds);
+        sample.state.antennae.forEach((antenna, i) => {
+          const path = svg.querySelector(`[data-part="${antenna.id}"]`);
+          assert.equal(path.getAttribute('d'), antenna.path);
+          for (const point of [antenna.root, antenna.c1, antenna.c2, antenna.end]) {
+            assert.ok(point[0] >= x && point[0] <= x + width);
+            assert.ok(point[1] >= y && point[1] <= y + height);
+          }
+          const club = w.WiseButterflyMotion.ANTENNAE[i].club;
+          const tip = root.querySelector(`[data-part="${club.id}"]`);
+          assert.ok(Math.abs(parseFloat(tip.style.left) + club.pivot[0] - antenna.end[0]) < 1e-9);
+          assert.ok(Math.abs(parseFloat(tip.style.top) + club.pivot[1] - antenna.end[1]) < 1e-9);
+        });
+      }
+      renderer.destroy();
+    }
+  } finally {dom.window.close();}
+});
+
 test('两个绘制实例独立，定位直接更新四翼与触角，准备成功后无迟到复活', async () => {
   const dom = await butterflyEnvironment();
   try {
@@ -69,6 +107,53 @@ test('缺图明确失败，准备中销毁不会恢复画面或留下监听', as
     images.forEach(img => img.dispatchEvent(new w.Event('load')));
     cancelled.draw(3); assert.equal(root.innerHTML, '');
   } finally {dom.window.close();}
+});
+
+test('蝴蝶动作与插画的缩略图等待全部图片解码后保留，缺图时明确提示', async () => {
+  const env = await environment(false, {realImagePreparation: true});
+  const {w} = env, released = [], decodes = [];
+  const original = w.MotionFactories['butterfly-illustration'];
+  const factory = (...args) => {
+    const render = original(...args), destroy = render.destroy;
+    render.destroy = preserve => {released.push(preserve); destroy(preserve);};
+    return render;
+  };
+  Object.assign(factory, original);
+  w.MotionFactories['butterfly-illustration'] = factory;
+  w.HTMLImageElement.prototype.decode = () => new Promise(resolve => decodes.push(resolve));
+  const tick = () => new Promise(resolve => setImmediate(resolve));
+  try {
+    w.eval(await readFile(new URL('../catalog/thumbnails.js', import.meta.url), 'utf8'));
+    const host = w.document.createElement('div'); w.document.body.append(host);
+    for (const id of ['hinged-wing-flap', 'butterfly-illustration']) {
+      released.length = 0; decodes.length = 0;
+      const effect = def(id);
+      w.MotionThumbs.attach(host, effect); env.reveal(); await tick();
+      const images = [...host.querySelectorAll('img')];
+      assert.equal(images.length, 7, '四翼、身体及两个触角尖端均保留原图');
+      assert.deepEqual(released, [], '图片尚未读取时不能结束缩略图准备');
+      images.forEach(img => img.dispatchEvent(new w.Event('load')));
+      assert.equal(decodes.length, images.length);
+      decodes.slice(0, -1).forEach(resolve => resolve()); await tick();
+      assert.deepEqual(released, [], '最后一张图片尚未解码时不能保留半成品');
+      decodes.at(-1)(); await w.MotionThumbs.whenIdle();
+      assert.deepEqual(released, [true]);
+      assert.ok(images.every(img => host.contains(img)));
+      assert.equal(host.querySelector('.history-placeholder'), null);
+      const state = w.WiseButterflyMotion.butterflyState(effect.preview_ms / 1000);
+      for (const wing of state.wings) {
+        assert.equal(host.querySelector(`[data-part="${wing.id}"]`).style.transform,
+          `rotateY(${wing.yaw}deg) rotateZ(${wing.roll}deg)`);
+      }
+      w.MotionThumbs.release(host);
+    }
+    w.MotionThumbs.attach(host, def('hinged-wing-flap')); env.reveal(); await tick();
+    host.querySelector('img').dispatchEvent(new w.Event('error'));
+    await w.MotionThumbs.whenIdle();
+    assert.equal(host.textContent, '预览暂不可用');
+    assert.match(host.title, /蝴蝶图集读取失败/);
+    assert.equal(w.MotionRuntime.instanceCount, 0);
+  } finally {w.MotionThumbs?.disposeAll(); env.close();}
 });
 
 test('逐翼换色、翼根显露与外部飞行姿态可倒序定位', async () => {

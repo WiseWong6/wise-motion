@@ -6,13 +6,14 @@ import {JSDOM} from 'jsdom';
 import {environment,data,frameMarkup} from './helpers.mjs';
 import {frameScriptsFor} from '../remotion/frame-document.mjs';
 
-const illustrations=data.effects.filter(e=>e.kind==='illustration');
+// 原目录插画与动作一对一复用的约定；迁入场景的分离主体和交互动作由 scenes-adoption.test.mjs 单独验证。
+const illustrations=data.effects.filter(e=>e.kind==='illustration'&&!e.scene);
 const animated=illustrations.filter(e=>e.actions.length);
 const staticIds=['book-geometric-illustration','selfie-phone-illustration'];
 const definition=id=>data.effects.find(e=>e.id===id);
 const actionFor=(w,art)=>w.MotionKit.resolveVariant(definition(art.actions[0]),art.action_variants?.[art.actions[0]]);
 
-test('全部动态插画都关联真实动作，同类示例合并且静态主体不虚构动作',()=>{
+test('既有动态插画都关联真实动作，同类示例合并且静态主体不虚构动作',()=>{
   assert.equal(animated.length,61);
   assert.deepEqual(illustrations.filter(e=>!e.actions.length).map(e=>e.id).sort(),staticIds.sort());
   for(const art of animated)for(const id of art.actions)assert.equal(definition(id)?.kind,'action',art.id);
@@ -73,7 +74,7 @@ test('插画关联弹窗选择准确示例，关闭保持主画面；动作目�
   }finally{env.close();}
 });
 
-test('全部插画动作的复制页面仅靠声明的本地源码可运行，保留所选示例',async()=>{
+test('既有插画动作的复制页面仅靠声明的本地源码可运行，保留所选示例',async()=>{
   const env=await environment(true,{staticPreview:true});
   try{
     for(const art of animated){

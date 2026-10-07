@@ -300,7 +300,7 @@ const specs=[
  {key:'zoom',id:'coordinate-focus-zoom',name:'坐标中心放大',clock:[4.2,256/30],preview:6.5},
  {key:'plane',id:'text-plane-tilt',name:'字符雨幕震动',clock:[256/30,500/30],preview:10.3},
  {key:'constraints',id:'boundary-curve-stop',name:'亮线蓄势打铁花',clock:[11.2,16.12],preview:13.0},
- {key:'return',id:'frame-ring-collapse',name:'黄金方格回缩',clock:[14.15,500/30],preview:15.1},
+ {key:'return',id:'frame-ring-collapse',name:'黄金方格回缩',clock:[14.15,500/30],preview:16.45},
  {key:'fibres',id:'bounded-fibre-grow',name:'铁花持续绽放',clock:[16.36,806/30],preview:18.7},
  {key:'grid',id:null,name:'网格波次起伏',clock:[500/30,24.6],preview:23.0},
  {key:'flow',id:null,name:'黄金矩形递归生长',clock:[NATURE_START,806/30],preview:25.8},
