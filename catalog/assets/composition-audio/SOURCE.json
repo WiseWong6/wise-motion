@@ -1,0 +1,326 @@
+{
+  "scope": "用户确认仅完整组合纳入已有音效和配乐。",
+  "count": 18,
+  "compositions": [
+    {
+      "id": "paper-spiral-sequence",
+      "name": "纸条铺展螺线旋转",
+      "group": "showreel",
+      "tracks": [
+        {
+          "name": "原演进样片配乐与音效",
+          "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+          "start_ms": 0,
+          "duration_ms": 6000,
+          "offset_ms": 4000,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "neon-horizon",
+      "name": "日出与网格前行",
+      "group": "showreel",
+      "tracks": [
+        {
+          "name": "原演进样片配乐与音效",
+          "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+          "start_ms": 0,
+          "duration_ms": 6000,
+          "offset_ms": 10000,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "neon-title-sequence",
+      "name": "金属霓虹文字亮相",
+      "group": "showreel",
+      "tracks": [
+        {
+          "name": "原演进样片配乐与音效",
+          "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+          "start_ms": 0,
+          "duration_ms": 6000,
+          "offset_ms": 10000,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "keyframe-workbench",
+      "name": "曲线回弹演示",
+      "group": "showreel",
+      "tracks": [
+        {
+          "name": "原演进样片配乐与音效",
+          "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+          "start_ms": 0,
+          "duration_ms": 8000,
+          "offset_ms": 22000,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "material-phone-sequence",
+      "name": "界面展开与反馈",
+      "group": "showreel",
+      "tracks": [
+        {
+          "name": "原演进样片配乐与音效",
+          "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+          "start_ms": 0,
+          "duration_ms": 5000,
+          "offset_ms": 33000,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "generative-point-sequence",
+      "name": "点阵变形与读数",
+      "group": "showreel",
+      "tracks": [
+        {
+          "name": "原演进样片配乐与音效",
+          "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+          "start_ms": 0,
+          "duration_ms": 8000,
+          "offset_ms": 38000,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "prompt-to-core-sequence",
+      "name": "文字汇聚光核扩散",
+      "group": "showreel",
+      "tracks": [
+        {
+          "name": "原演进样片配乐与音效",
+          "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+          "start_ms": 0,
+          "duration_ms": 8000,
+          "offset_ms": 46000,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "outro-recap-sequence",
+      "name": "散射归位片尾展开",
+      "group": "showreel",
+      "tracks": [
+        {
+          "name": "原演进样片配乐与音效",
+          "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+          "start_ms": 0,
+          "duration_ms": 6000,
+          "offset_ms": 54000,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "dandelion-wind-journey",
+      "name": "蒲公英·风过之处",
+      "group": "dandelion",
+      "tracks": [
+        {
+          "name": "原蒲公英配乐",
+          "src": "catalog/assets/composition-audio/dandelion/windborne-score.mp3",
+          "start_ms": 0,
+          "duration_ms": 37000,
+          "offset_ms": 0,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "balloon-drive-journey",
+      "name": "把气球交给风",
+      "group": "drive",
+      "tracks": [
+        {
+          "name": "原行驶、风声、气球松绳与猫叫",
+          "src": "catalog/assets/composition-audio/drive/mix.mp3",
+          "start_ms": 0,
+          "duration_ms": 14000,
+          "offset_ms": 0,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "cat-factory-journey",
+      "name": "小猫加工厂完整循环",
+      "group": "factory",
+      "tracks": [
+        {
+          "name": "原机械音效与小葵猫叫",
+          "src": "catalog/assets/composition-audio/factory/mix-0.mp3",
+          "start_ms": 0,
+          "duration_ms": 8000,
+          "offset_ms": 0,
+          "volume": 1
+        }
+      ],
+      "variants": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ]
+    },
+    {
+      "id": "shenzhen-snow-journey",
+      "name": "深圳湾雪夜",
+      "group": "snow",
+      "tracks": [
+        {
+          "name": "JRPG Piano · Joth",
+          "src": "catalog/assets/composition-audio/snow/jrpg-piano.mp3",
+          "start_ms": 0,
+          "duration_ms": 24894.69387755,
+          "offset_ms": 0,
+          "volume": 0.5
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "sunset-pickup-journey",
+      "name": "海面上的夕阳",
+      "group": "ocean",
+      "tracks": [
+        {
+          "name": "原飞机、绳索、落水与星光音效",
+          "src": "catalog/assets/composition-audio/ocean/mix.mp3",
+          "start_ms": 0,
+          "duration_ms": 65000,
+          "offset_ms": 0,
+          "volume": 1
+        },
+        {
+          "name": "原海浪录音",
+          "src": "catalog/assets/composition-audio/ocean/ocean-waves.mp3",
+          "start_ms": 0,
+          "duration_ms": 65000,
+          "volume": 0.24,
+          "fade_in_ms": 500,
+          "fade_out_ms": 800
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "osmanthus-butterfly-journey",
+      "name": "花落成蝶",
+      "group": "osmanthus",
+      "tracks": [
+        {
+          "name": "原生长、风、轻碰、扑翼与星光",
+          "src": "catalog/assets/composition-audio/osmanthus/mix-gold-leaves.mp3",
+          "start_ms": 0,
+          "duration_ms": 24000,
+          "offset_ms": 0,
+          "volume": 1
+        }
+      ],
+      "variants": [
+        "gold-leaves",
+        "flowers",
+        "maple-blend"
+      ]
+    },
+    {
+      "id": "star-letter-journey",
+      "name": "星月来信完整旅程",
+      "group": "letter",
+      "tracks": [
+        {
+          "name": "原键盘、发送、水声、飞行与星河配乐",
+          "src": "catalog/assets/composition-audio/letter/mix.mp3",
+          "start_ms": 0,
+          "duration_ms": 95000,
+          "offset_ms": 0,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "xiaokui-selfie-journey",
+      "name": "小葵和我",
+      "group": "selfie",
+      "tracks": [
+        {
+          "name": "原连续自拍音轨",
+          "src": "catalog/assets/composition-audio/selfie/continuous-audio.m4a",
+          "start_ms": 0,
+          "duration_ms": 7750,
+          "offset_ms": 0,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "encore-full-journey",
+      "name": "雨中曲·返场完整编舞",
+      "group": "encore",
+      "tracks": [
+        {
+          "name": "原雨中曲演唱节选",
+          "src": "catalog/assets/composition-audio/encore/climax.mp3",
+          "start_ms": 0,
+          "duration_ms": 24543,
+          "offset_ms": 0,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    },
+    {
+      "id": "ink-ocean-journey",
+      "name": "水墨水母群体消散",
+      "group": "ink",
+      "tracks": [
+        {
+          "name": "原水墨微光配乐",
+          "src": "catalog/assets/composition-audio/ink/水墨微光.m4a",
+          "start_ms": 0,
+          "duration_ms": 25000,
+          "offset_ms": 161000,
+          "volume": 1
+        }
+      ],
+      "variants": []
+    }
+  ],
+  "rebuild": "node scripts/build-composition-audio.mjs（随包原合成代码与固定排程；需要已有Remotion浏览器与ffmpeg）。原录音直接沿用；演进样片MP3由随包audio.cjs原声编码得到。",
+  "timing": "演进样片按原时间截取；手机组合原片从33秒开始。水墨水族馆对应原片161–186秒。雨伞组合使用原曲前24.543秒，按目录画面结束。音轨独立保留原文件，不改变绘制或组合总长。",
+  "rights": "程序许可不覆盖第三方音乐或录音。每组保留来源、原作说明、许可和合成源码。"
+}

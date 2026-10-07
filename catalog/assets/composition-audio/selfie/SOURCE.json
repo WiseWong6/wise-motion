@@ -1,0 +1,16 @@
+{
+  "scope": "仅组合动作保留原音效和配乐；源工程只读，运行只使用随包本地文件。",
+  "files": [
+    {
+      "file": "catalog/assets/composition-audio/selfie/continuous-audio.m4a",
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/assets/continuous-audio.m4a",
+      "sha256": "8aaa831c6e3894c558c57320917700f64c52cf933cb0209a3627f675f8889df3"
+    },
+    {
+      "file": "catalog/assets/composition-audio/selfie/README.md",
+      "original": "/Users/wisewong/Documents/Developer/scenes/未完成/小葵和我的短片/README.md",
+      "sha256": "8fb3a61018f875dff092b60802a59161d11882e8bf786fde23f6903f0b40be41"
+    }
+  ],
+  "rights": "程序沿用项目许可；录音和音乐的许可与署名以同目录原作记录为准，不将程序许可套用于第三方录音。"
+}

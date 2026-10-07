@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/scene-dandelion.js)，注册名称：`dandelion-wind-journey`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[种子向外散开](dandelion-radial-release.md)、[冠毛展开转向](filament-unfold-turn.md)、[冠毛脱落飘散](filament-shed-drift.md)、[落定后生长蔓延](settle-grow-spread.md)、[地景沿边界连续承接](landscape-boundary-carry.md)、[动物回应与伴飞绕行](passage-animal-response.md)、[蒲公英旅途地景](journey-landscape-illustration.md)、[荷花](journey-lotus-illustration.md)、[蒲公英伴飞动物](journey-air-animal-illustration.md)、[蒲公英旅途地面动物](journey-pond-animal-illustration.md)、[落种后开花的植株](journey-flower-illustration.md)。

@@ -1,0 +1,26 @@
+{
+  "scope": "仅组合动作保留原音效和配乐；源工程只读，运行只使用随包本地文件。",
+  "files": [
+    {
+      "file": "catalog/assets/composition-audio/drive/sound.js",
+      "original": "/Users/wisewong/Documents/Developer/scenes/xiaokui-balloon-drive/sound.js",
+      "sha256": "bc25683714db2f61986f1228047ae9542c6b2ca495e253418cdf166b8fb9ec60"
+    },
+    {
+      "file": "catalog/assets/composition-audio/drive/meow.js",
+      "original": "/Users/wisewong/Documents/Developer/scenes/xiaokui-balloon-drive/assets/audio/meow.js",
+      "sha256": "36ded5c3f735e1aab7a9893ade3d83431cdd226d16d004d0b767b0f717161cdc"
+    },
+    {
+      "file": "catalog/assets/composition-audio/drive/meow.wav",
+      "original": "/Users/wisewong/Documents/Developer/scenes/xiaokui-balloon-drive/assets/audio/meow.wav",
+      "sha256": "829f8865889098408a3485b712ca7aa0ad98c22ddd9e8f6ba9ccdaa08774b06a"
+    },
+    {
+      "file": "catalog/assets/composition-audio/drive/README.md",
+      "original": "/Users/wisewong/Documents/Developer/scenes/xiaokui-balloon-drive/README.md",
+      "sha256": "a9a89c7a99e55a5ddffcf8014602f69601a324172e0555451858710878ba6b1e"
+    }
+  ],
+  "rights": "程序沿用项目许可；录音和音乐的许可与署名以同目录原作记录为准，不将程序许可套用于第三方录音。"
+}

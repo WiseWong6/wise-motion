@@ -1,0 +1,26 @@
+{
+  "scope": "仅组合动作保留原音效和配乐；源工程只读，运行只使用随包本地文件。",
+  "files": [
+    {
+      "file": "catalog/assets/composition-audio/snow/jrpg-piano.mp3",
+      "original": "/Users/wisewong/Documents/Developer/scenes/shenzhen-snow-night/assets/jrpg-piano.mp3",
+      "sha256": "87a99f62e901b8365f1b868cd53bc015d2bf9f887e4c8a89a4fad11a36a62c16"
+    },
+    {
+      "file": "catalog/assets/composition-audio/snow/sound.js",
+      "original": "/Users/wisewong/Documents/Developer/scenes/shenzhen-snow-night/sound.js",
+      "sha256": "56952c5661ac4ce7419484e436c02064bc2dfcc238951a5ddaa58bd03e48cfd1"
+    },
+    {
+      "file": "catalog/assets/composition-audio/snow/README.md",
+      "original": "/Users/wisewong/Documents/Developer/scenes/shenzhen-snow-night/README.md",
+      "sha256": "dfa67c60a899f57a1b70bbceb0d9001ff2a8c1335749865e19d05f46f767b00c"
+    },
+    {
+      "file": "catalog/assets/composition-audio/snow/JRPG-PIANO-LICENSE.md",
+      "original": "/Users/wisewong/Documents/Developer/scenes/shenzhen-snow-night/assets/JRPG-PIANO-LICENSE.md",
+      "sha256": "091f3f60d8ae05da20d73ab6e2d462ec063d0b72df44dd8428ab6cc2c21897de"
+    }
+  ],
+  "rights": "程序沿用项目许可；录音和音乐的许可与署名以同目录原作记录为准，不将程序许可套用于第三方录音。"
+}

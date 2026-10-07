@@ -1,0 +1,21 @@
+{
+  "scope": "仅组合动作保留原音效和配乐；源工程只读，运行只使用随包本地文件。",
+  "files": [
+    {
+      "file": "catalog/assets/composition-audio/ink/水墨微光.m4a",
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/public/audio/水墨微光.m4a",
+      "sha256": "474b802f67663e8094d6b5e607351f20723deb71b0e64701f024e1fa902c3620"
+    },
+    {
+      "file": "catalog/assets/composition-audio/ink/make_music.py",
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/scripts/make_music.py",
+      "sha256": "5fcf175e1bfe057e4d7ae43df5bba7473e4cc4165c6149f1a3de448618c646fd"
+    },
+    {
+      "file": "catalog/assets/composition-audio/ink/Root.tsx",
+      "original": "/Users/wisewong/Documents/Developer/scenes/Rasengan/physics/hill-bubble-video/src/Root.tsx",
+      "sha256": "0bb497485f1bd6a03135e151c6d9ea99d5d128ec02ba390ddaee47c94e49dbf6"
+    }
+  ],
+  "rights": "程序沿用项目许可；录音和音乐的许可与署名以同目录原作记录为准，不将程序许可套用于第三方录音。"
+}

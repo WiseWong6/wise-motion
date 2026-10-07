@@ -1,0 +1,21 @@
+{
+  "scope": "仅组合动作保留原音效和配乐；源工程只读，运行只使用随包本地文件。",
+  "files": [
+    {
+      "file": "catalog/assets/composition-audio/dandelion/windborne-score.mp3",
+      "original": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/audio/windborne-score.mp3",
+      "sha256": "f56cfc03ab1912aa5d926984cc3aa97fe2f41816096c0434c0bcdc4292da09a9"
+    },
+    {
+      "file": "catalog/assets/composition-audio/dandelion/journey-sound.js",
+      "original": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/assets/js/journey-sound.js",
+      "sha256": "3504c239334504c569db41e1127b87473a50f49b9326571278f9a9c9fa900a6b"
+    },
+    {
+      "file": "catalog/assets/composition-audio/dandelion/README.md",
+      "original": "/Users/wisewong/Documents/Developer/scenes/dandelion-scene/README.md",
+      "sha256": "2640916e20fcce4a1dccf6ca3292b09669618b450fadff36b6aac9448ef0bf48"
+    }
+  ],
+  "rights": "程序沿用项目许可；录音和音乐的许可与署名以同目录原作记录为准，不将程序许可套用于第三方录音。"
+}

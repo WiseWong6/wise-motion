@@ -31,7 +31,7 @@
 - [原码提取与接入源码](../../catalog/effects/scene-factory.js)，注册名称：`cat-factory-journey`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[粒子落入汇集](particle-hopper.md)、[嘴部随声开合](mouth-open-react.md)、[手柄装卸与翻转卸料](factory-handle-transfer.md)、[加工厂完整小猫](factory-cat-illustration.md)、[小猫加工机器](factory-machine-illustration.md)、[加工厂手柄](factory-handle-illustration.md)、[收藏猫脸](factory-cat-puck-illustration.md)。
 

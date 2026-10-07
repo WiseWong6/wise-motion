@@ -104,6 +104,10 @@ var require_content = __commonJS({
   }
 });
 
+// remotion/with-audio.jsx
+import React5 from "react";
+import { staticFile as staticFile3 } from "remotion";
+
 // remotion/index.jsx
 import React3, { useLayoutEffect as useLayoutEffect2, useMemo, useRef as useRef2, useState } from "react";
 import { staticFile as staticFile2, useBufferState, useCurrentFrame as useCurrentFrame3, useDelayRender as useDelayRender2, useRemotionEnvironment, useVideoConfig as useVideoConfig3 } from "remotion";
@@ -11543,7 +11547,13 @@ var registry_default = {
         origin: "original",
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
-        reference_url: "https://animejs.com/documentation/"
+        reference_url: "https://animejs.com/documentation/",
+        assets: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
+        ]
       },
       actions: [
         "paper-strip-stagger",
@@ -11575,6 +11585,21 @@ var registry_default = {
           "\u6587\u5B57\u201CSAUL BASS CUTS PAPER.\u201D\uFF1A\u5DE6\u8FB9\u754Cx=120\u3001\u57FA\u7EBFy=740\uFF0C\u5B57\u53F738\uFF0C\u5B57\u8DDD3\uFF0C\u989C\u8272#111\uFF1B\u7B2C\u4E00\u4E2A\u5B57\u57281.8\u79D2\u8FDB\u5165\uFF0C\u6BCF\u5B57\u95F4\u96940.02\u79D2\uFF0C\u5355\u5B57\u8017\u65F60.4\u79D2\uFF0C\u4ECE\u57FA\u7EBF\u4E0B\u65B91.1\u500D\u5B57\u53F7\u5904\u5347\u8D77\uFF0C\u5404\u884C\u6709\u72EC\u7ACB\u88C1\u526A\u6846",
           "\u6587\u5B57\u201CJOHN WHITNEY WIRES A COMPUTER.\u201D\uFF1A\u5DE6\u8FB9\u754Cx=120\u3001\u57FA\u7EBFy=792\uFF0C\u5B57\u53F738\uFF0C\u5B57\u8DDD3\uFF0C\u989C\u8272#111\uFF1B\u7B2C\u4E00\u4E2A\u5B57\u57282.3\u79D2\u8FDB\u5165\uFF0C\u6BCF\u5B57\u95F4\u96940.02\u79D2\uFF0C\u5355\u5B57\u8017\u65F60.4\u79D2\uFF0C\u4ECE\u57FA\u7EBF\u4E0B\u65B91.1\u500D\u5B57\u53F7\u5904\u5347\u8D77\uFF0C\u5404\u884C\u6709\u72EC\u7ACB\u88C1\u526A\u6846",
           "\u4E0A\u8FB9\u7F18\u5DE6\u53F3\u5206\u522B\u5199CLAUDE / MOTION REEL \u201926\u4E0E1959 \u2014 THE TITLE SEQUENCE\uFF0C\u5B57\u53F715\uFF0C\u4F4D\u7F6E(72,70)\u4E0E\u53F3\u5BF9\u9F50(1848,70)\uFF1B\u5E95\u90E8x=72\u3001y=1027\u3001\u5BBD1776\u7684\u7EC6\u8FDB\u5EA6\u6761\u968F6\u79D2\u586B\u6EE1"
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u6F14\u8FDB\u6837\u7247\u914D\u4E50\u4E0E\u97F3\u6548",
+            src: "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            start_ms: 0,
+            duration_ms: 6e3,
+            offset_ms: 4e3,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
         ]
       }
     },
@@ -12185,9 +12210,30 @@ var registry_default = {
         origin: "original",
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
-        reference_url: "https://animejs.com/documentation/"
+        reference_url: "https://animejs.com/documentation/",
+        assets: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
+        ]
       },
-      original_scene: "claude-showreel-2026/sNeon"
+      original_scene: "claude-showreel-2026/sNeon",
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u6F14\u8FDB\u6837\u7247\u914D\u4E50\u4E0E\u97F3\u6548",
+            src: "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            start_ms: 0,
+            duration_ms: 6e3,
+            offset_ms: 1e4,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
+        ]
+      }
     },
     {
       id: "door-halftone-illustration",
@@ -12539,7 +12585,13 @@ var registry_default = {
         origin: "original",
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
-        reference_url: "https://animejs.com/documentation/"
+        reference_url: "https://animejs.com/documentation/",
+        assets: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
+        ]
       },
       reproduction: {
         presentation: "16:9\uFF0C1920\xD71080\u8BBE\u8BA1\u5750\u6807\uFF1B\u4E0A\u90E8\u6DF1\u7D2B\u591C\u7A7A\u3001\u4E0B\u90E8\u8FD1\u9ED1\u7D2B\u5730\u9762\uFF0C\u5730\u5E73\u7EBFy=640\uFF1B\u4E3B\u5B57\u4E3A\u5927\u5199\u503E\u659C\u7C97\u4F53BROADCAST\uFF0C\u4F7F\u7528Avenir Next Heavy Italic\uFF1B\u5E74\u4EFD\u7528Futura Bold\u7A7A\u5FC3\u5B57",
@@ -12551,6 +12603,21 @@ var registry_default = {
           "BROADCAST\u4E2D\u5FC3x=960\uFF0C\u57FA\u7EBFy=500\uFF0C\u6587\u5B57\u5BBD\u7EA61600\uFF1B\u91D1\u5C5E\u6E10\u53D8\u4ECE\u767D\u5230\u84DD\u3001\u7D2B\u3001\u7C89\uFF0C0.3\u20131.3\u79D2\u75315\u500D\u7F29\u52301\u500D\uFF1B\u516D\u5C42\u7A7A\u5FC3\u63CF\u8FB9\u6BCF\u5C42\u665A0.05\u79D2\uFF0C\u9752#3ef2ff\u4E0E\u54C1\u7EA2#ff2bd6\u4EA4\u66FF\uFF0C\u4E0B\u79FB11k\u50CF\u7D20\uFF0C\u900F\u660E\u5EA60.9\u22120.12k\uFF0Ck=1\u20266",
           "\u7A7A\u5FC31981\u5DE6\u8D77(120,250)\uFF0C\u63CF\u8FB93\u50CF\u7D20#bafcff\u5E76\u5E26\u9752\u8272\u67D4\u5149\uFF1B0.9\u20131.3\u79D2\u6309h(floor(30t))\u22650.5\u65F6\u4EAE\u3001\u5426\u5219\u706D\uFF0C1.3\u79D2\u540E\u5E38\u4EAE\uFF1B\u767D\u8272\u5341\u5B57\u5149\u65911.7\u20132.5\u79D2\u4ECE\u753B\u9762\u5DE6\u4FA7\u6A2A\u79FB\u5230\u53F3\u4FA7\uFF0C\u4EAE\u5EA6\u5148\u5347\u540E\u964D",
           "\u5E95\u90E8\u5168\u6587\u4E3A\u201CLOGOS LEARN TO FLY \u2014 CHROME, NEON & THE VIDEO TOASTER\u201D\uFF0C\u56FA\u5B9A\u6574\u53E5\u5C45\u4E2D\u4E8E(960,960)\uFF0C\u5B57\u53F722\u3001\u5B57\u8DDD5\u3001\u989C\u8272#ffd6f6\uFF1B2.2\u79D2\u8D77\u6BCF\u79D2\u8F93\u516545\u5B57\uFF0C\u5149\u6807\u8DDF\u968F\u672B\u5B57\uFF0C\u6BCF0.4\u79D2\u660E\u706D\uFF0C4.5\u79D2\u7184\u706D\u800C\u6587\u5B57\u4FDD\u7559"
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u6F14\u8FDB\u6837\u7247\u914D\u4E50\u4E0E\u97F3\u6548",
+            src: "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            start_ms: 0,
+            duration_ms: 6e3,
+            offset_ms: 1e4,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
         ]
       }
     },
@@ -13878,6 +13945,12 @@ var registry_default = {
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
           "catalog/effects/data-comparisons.js"
+        ],
+        assets: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
         ]
       },
       action_variants: {
@@ -13935,6 +14008,21 @@ var registry_default = {
             end: 6010,
             detail: "\u4E94\u884C\u5173\u952E\u5E27\u6BCF\u4E2A\u9519\u5F00 0.025 \u79D2\u5F39\u51FA\u3002\u6E38\u6807\u6BCF\u4E24\u79D2\u626B\u63CF\u4E00\u6B21\uFF0C\u9760\u8FD1\u7684\u5173\u952E\u5E27\u53D8\u767D\u5E76\u653E\u5927\uFF0C\u4E0E\u5C0F\u7403\u5171\u4EAB\u5FAA\u73AF\u65F6\u95F4\u3002"
           }
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u6F14\u8FDB\u6837\u7247\u914D\u4E50\u4E0E\u97F3\u6548",
+            src: "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            start_ms: 0,
+            duration_ms: 8e3,
+            offset_ms: 22e3,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
         ]
       }
     },
@@ -15058,6 +15146,12 @@ var registry_default = {
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
           "catalog/effects/reel-grit-key.js"
+        ],
+        assets: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
         ]
       },
       original_scene: "claude-showreel-2026/sFlat",
@@ -15131,6 +15225,21 @@ var registry_default = {
             end: 4100,
             detail: "\u5706\u94AE\u5148\u5F39\u51FA\uFF0C\u518D\u5EF6\u5C55\u5230\u5C4F\u5E55\u4E0B\u90E8\uFF1B\u52A0\u53F7\u6DE1\u51FA\uFF0C\u767D\u8272\u5BF9\u52FE\u5206\u4E24\u6BB5\u63CF\u6210\uFF0C\u51FA\u73B0 Published\u3002"
           }
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u6F14\u8FDB\u6837\u7247\u914D\u4E50\u4E0E\u97F3\u6548",
+            src: "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            start_ms: 0,
+            duration_ms: 5e3,
+            offset_ms: 33e3,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
         ]
       }
     },
@@ -15263,7 +15372,13 @@ var registry_default = {
         origin: "original",
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
-        reference_url: "https://animejs.com/documentation/"
+        reference_url: "https://animejs.com/documentation/",
+        assets: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
+        ]
       },
       original_scene: "claude-showreel-2026/sGen",
       previous_names: [
@@ -15288,6 +15403,21 @@ var registry_default = {
         ],
         retain: "\u540C\u4E00\u6279\u70B9\u7684\u5BF9\u5E94\u5173\u7CFB\u3001\u8FDE\u7EED\u5F62\u53D8\u3001\u81EA\u8F6C\u548C\u8BFB\u6570\u5171\u7528\u65F6\u949F\uFF1B\u5DE6\u4FA7\u56FA\u5B9A\u6587\u5B57\u4E0E\u9010\u884C\u4EE3\u7801\u4FDD\u6301\u6E05\u6670",
         avoid: "\u4E0D\u91CD\u65B0\u968F\u673A\u6492\u70B9\uFF0C\u4E0D\u7701\u7565\u900F\u89C6\uFF0C\u4E0D\u628A\u8BFB\u6570\u5199\u6210\u56FA\u5B9A\u88C5\u9970"
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u6F14\u8FDB\u6837\u7247\u914D\u4E50\u4E0E\u97F3\u6548",
+            src: "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            start_ms: 0,
+            duration_ms: 8e3,
+            offset_ms: 38e3,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
+        ]
       }
     },
     {
@@ -15997,7 +16127,13 @@ var registry_default = {
         origin: "original",
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
-        reference_url: "https://animejs.com/documentation/"
+        reference_url: "https://animejs.com/documentation/",
+        assets: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
+        ]
       },
       reproduction: {
         presentation: "1920\xD71080\uFF1B\u80CC\u666F\u4E3A\u4E2D\u5FC3#1a1a1f\u5230\u8FB9\u7F18#0b0b0c\u7684\u5F84\u5411\u6E10\u53D8\uFF1B\u8F93\u5165\u7EC4\u4EF6\u4EE5\u5C40\u90E8\u5750\u6807\u8BBE\u8BA1\uFF1A\u4E3B\u6846(45,88,940,198)\u3001\u5706\u89D222\u3001\u5E95#1d1d20\u3001\u7EC6\u8FB9#787880\uFF1B\u5C40\u90E8\u70B9(514.5,195)\u5BF9\u9F50\u753B\u5FC3(960,540)\uFF0C\u6574\u4F531.5\u500D\u663E\u793A",
@@ -16016,6 +16152,21 @@ var registry_default = {
           "6.5\u20138\u79D2\u767D\u8272\u5149\u6838\u534A\u5F84\u4ECE20\u6307\u6570\u6269\u5230540\uFF0C\u5185\u767D\u5916\u7D2B#7b61ff\u3001\u8FB9\u7F18\u900F\u660E\uFF1B\u4E09\u9053\u767D\u73AF\u76F8\u4F4D\u76F8\u96941/3\u5468\u671F\uFF0C\u6BCF\u79D21.2\u8F6E\uFF0C\u534A\u5F8440\u2013540\uFF0C\u5411\u5916\u65F6\u6DE1\u53BB\uFF1B\u59CB\u7EC8\u4E0E\u4ECD\u5728\u6C47\u805A\u7684\u5B57\u53E0\u52A0"
         ],
         retain: "\u8F93\u5165\u6846\u3001\u5DE5\u5177\u680F\u3001\u4E09\u884C\u5168\u6587\u3001\u53D1\u9001\u6309\u94AE\u3001\u7ED5\u5F27\u5B57\u7B26\u548C\u4E2D\u5FC3\u5149\u6838\u4F7F\u7528\u540C\u4E00\u5750\u6807\u4E0E\u65F6\u949F"
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u6F14\u8FDB\u6837\u7247\u914D\u4E50\u4E0E\u97F3\u6548",
+            src: "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            start_ms: 0,
+            duration_ms: 8e3,
+            offset_ms: 46e3,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
+        ]
       }
     },
     {
@@ -16087,7 +16238,13 @@ var registry_default = {
         origin: "original",
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
-        reference_url: "https://animejs.com/documentation/"
+        reference_url: "https://animejs.com/documentation/",
+        assets: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
+        ]
       },
       reproduction: {
         presentation: "16:9\uFF0C1920\xD71080\uFF0C\u80CC\u666F#0a0a0b\uFF0C\u6696\u767D\u5927\u5B57\u4E0E\u4E03\u8272\u7EC6\u7EBF\uFF1B\u5E74\u4EE3\u8F74\u5F00\u573A\u5168\u90E8\u70B9\u4EAE",
@@ -16100,6 +16257,21 @@ var registry_default = {
           "\u6587\u5B57\u201CMOTION DESIGNER  \u2014  SHOWREEL 2026\u201D\uFF1A\u5DE6\u8FB9\u754Cx=604.784\u3001\u57FA\u7EBFy=560\uFF0C\u5B57\u53F724\uFF0C\u5B57\u8DDD10\uFF0C\u989C\u8272#cfcfd4\uFF1B\u7B2C\u4E00\u4E2A\u5B57\u57283.5\u79D2\u8FDB\u5165\uFF0C\u6BCF\u5B57\u95F4\u96940.01\u79D2\uFF0C\u5355\u5B57\u8017\u65F60.5\u79D2\uFF0C\u4ECE\u57FA\u7EBF\u4E0B\u65B91.1\u500D\u5B57\u53F7\u5904\u5347\u8D77\uFF0C\u5404\u884C\u6709\u72EC\u7ACB\u88C1\u526A\u6846",
           "\u6587\u5B57\u201CEvery frame in this film is code. No plugins. No stock. No skills.\u201D\uFF1A\u5DE6\u8FB9\u754Cx=626.303\u3001\u57FA\u7EBFy=620\uFF0C\u5B57\u53F726\uFF0C\u5B57\u8DDD0\uFF0C\u989C\u8272#7d7d85\uFF1B\u7B2C\u4E00\u4E2A\u5B57\u57283.9\u79D2\u8FDB\u5165\uFF0C\u6BCF\u5B57\u95F4\u96940.006\u79D2\uFF0C\u5355\u5B57\u8017\u65F60.5\u79D2\uFF0C\u4ECE\u57FA\u7EBF\u4E0B\u65B91.1\u500D\u5B57\u53F7\u5904\u5347\u8D77\uFF0C\u5404\u884C\u6709\u72EC\u7ACB\u88C1\u526A\u6846",
           "\u82F1\u6587\u6807\u9898\u4E0E\u843D\u6B3E\u7EDF\u4E00\u4F7F\u7528\u968F\u5305Oswald Bold\uFF1B\u5927\u6807\u9898\u4FDD\u7559\u539F\u5927\u5199\u9AD8\u5EA6\uFF0C\u6309\u5B57\u5BBD\u5C45\u4E2D\uFF1B\u6807\u9898\u603B\u5BBD614.310\uFF0C\u5DE6\u8D77652.845\uFF1B\u6807\u9898\u4E0B\u8272\u5E26y=476\u3001\u9AD88\uFF0C\u4E03\u6BB5\u6309\u65B0\u6807\u9898\u603B\u5BBD\u7B49\u5206\uFF0C\u7531\u81EA\u8EAB\u5DE6\u8FB9\u7F18\u5EF6\u5C55\uFF1B\u7B2Ci\u6BB53.3+0.06i\u79D2\u5F00\u59CB\u3001\u8017\u65F60.6\u79D2\uFF1B5.1\u20136\u79D2\u6574\u5E45\u753B\u9762\u6309\u4E09\u6B21\u65B9\u8FDB\u5EA6\u6E10\u9ED1"
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u6F14\u8FDB\u6837\u7247\u914D\u4E50\u4E0E\u97F3\u6548",
+            src: "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            start_ms: 0,
+            duration_ms: 6e3,
+            offset_ms: 54e3,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
         ]
       }
     },
@@ -31563,9 +31735,15 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
         dependencies: [
           "catalog/effects/scene-source-runtime.js"
+        ],
+        assets: [
+          "catalog/assets/composition-audio/dandelion/README.md",
+          "catalog/assets/composition-audio/dandelion/SOURCE.json",
+          "catalog/assets/composition-audio/dandelion/journey-sound.js",
+          "catalog/assets/composition-audio/dandelion/windborne-score.mp3"
         ]
       },
       actions: [
@@ -31702,6 +31880,21 @@ var registry_default = {
               "settle-grow-spread"
             ]
           }
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u84B2\u516C\u82F1\u914D\u4E50",
+            src: "catalog/assets/composition-audio/dandelion/windborne-score.mp3",
+            start_ms: 0,
+            duration_ms: 37e3,
+            offset_ms: 0,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/dandelion/SOURCE.json"
         ]
       }
     },
@@ -32092,9 +32285,19 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
         dependencies: [
           "catalog/effects/scene-source-runtime.js"
+        ],
+        assets: [
+          "catalog/assets/composition-audio/drive/README.md",
+          "catalog/assets/composition-audio/drive/SOURCE.json",
+          "catalog/assets/composition-audio/drive/meow.js",
+          "catalog/assets/composition-audio/drive/meow.wav",
+          "catalog/assets/composition-audio/drive/mix.mp3",
+          "catalog/assets/composition-audio/drive/mix.mp3.json",
+          "catalog/assets/composition-audio/drive/recipe.json",
+          "catalog/assets/composition-audio/drive/sound.js"
         ]
       },
       actions: [
@@ -32236,6 +32439,21 @@ var registry_default = {
               "drive-car-illustration"
             ]
           }
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u884C\u9A76\u3001\u98CE\u58F0\u3001\u6C14\u7403\u677E\u7EF3\u4E0E\u732B\u53EB",
+            src: "catalog/assets/composition-audio/drive/mix.mp3",
+            start_ms: 0,
+            duration_ms: 14e3,
+            offset_ms: 0,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/drive/SOURCE.json"
         ]
       }
     },
@@ -33149,12 +33367,59 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
         dependencies: [
           "catalog/effects/scene-source-runtime.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/factory/coffee-bean.png"
+          "catalog/assets/scene-sources/factory/coffee-bean.png",
+          "catalog/assets/composition-audio/factory/SOURCE.json",
+          "catalog/assets/composition-audio/factory/angry.wav",
+          "catalog/assets/composition-audio/factory/beans.wav",
+          "catalog/assets/composition-audio/factory/brew.wav",
+          "catalog/assets/composition-audio/factory/grind.wav",
+          "catalog/assets/composition-audio/factory/land.wav",
+          "catalog/assets/composition-audio/factory/latch.wav",
+          "catalog/assets/composition-audio/factory/meow-bright.wav",
+          "catalog/assets/composition-audio/factory/meow-low.wav",
+          "catalog/assets/composition-audio/factory/meow-soft.wav",
+          "catalog/assets/composition-audio/factory/meow-white.wav",
+          "catalog/assets/composition-audio/factory/meow.wav",
+          "catalog/assets/composition-audio/factory/mix-0.mp3",
+          "catalog/assets/composition-audio/factory/mix-0.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-1.mp3",
+          "catalog/assets/composition-audio/factory/mix-1.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-10.mp3",
+          "catalog/assets/composition-audio/factory/mix-10.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-11.mp3",
+          "catalog/assets/composition-audio/factory/mix-11.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-12.mp3",
+          "catalog/assets/composition-audio/factory/mix-12.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-13.mp3",
+          "catalog/assets/composition-audio/factory/mix-13.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-14.mp3",
+          "catalog/assets/composition-audio/factory/mix-14.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-2.mp3",
+          "catalog/assets/composition-audio/factory/mix-2.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-3.mp3",
+          "catalog/assets/composition-audio/factory/mix-3.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-4.mp3",
+          "catalog/assets/composition-audio/factory/mix-4.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-5.mp3",
+          "catalog/assets/composition-audio/factory/mix-5.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-6.mp3",
+          "catalog/assets/composition-audio/factory/mix-6.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-7.mp3",
+          "catalog/assets/composition-audio/factory/mix-7.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-8.mp3",
+          "catalog/assets/composition-audio/factory/mix-8.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-9.mp3",
+          "catalog/assets/composition-audio/factory/mix-9.mp3.json",
+          "catalog/assets/composition-audio/factory/recipe.json",
+          "catalog/assets/composition-audio/factory/sound.js",
+          "catalog/assets/composition-audio/factory/steam.wav",
+          "catalog/assets/composition-audio/factory/timeline.js",
+          "catalog/assets/composition-audio/factory/\u7D20\u6750\u6765\u6E90.md"
         ]
       },
       actions: [
@@ -33371,6 +33636,21 @@ var registry_default = {
               "handle",
               "mist"
             ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u5C0F\u8475\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-0.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -33472,6 +33752,21 @@ var registry_default = {
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u94F6\u6E10\u5C42\uFF08\u6761\u7EB9\u7248\uFF09\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-1.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -33575,6 +33870,21 @@ var registry_default = {
               "handle",
               "mist"
             ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u94F6\u6E10\u5C42\uFF08\u65E0\u864E\u7EB9\uFF09\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-2.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -33676,6 +33986,21 @@ var registry_default = {
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u91D1\u6E10\u5C42\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-3.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -33779,6 +34104,21 @@ var registry_default = {
               "handle",
               "mist"
             ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u91D1\u6E10\u864E\u7EB9\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-4.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -33880,6 +34220,21 @@ var registry_default = {
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u9ED1\u732B\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-5.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -33983,6 +34338,21 @@ var registry_default = {
               "handle",
               "mist"
             ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u6A58\u732B\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-6.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -34084,6 +34454,21 @@ var registry_default = {
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u6A58\u767D\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-7.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -34187,6 +34572,21 @@ var registry_default = {
               "handle",
               "mist"
             ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u84DD\u767D\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-8.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -34288,6 +34688,21 @@ var registry_default = {
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u72F8\u82B1\u732B\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-9.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -34391,6 +34806,21 @@ var registry_default = {
               "handle",
               "mist"
             ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u66B9\u7F57\u732B\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-10.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -34492,6 +34922,21 @@ var registry_default = {
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u4E09\u82B1\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-11.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -34595,6 +35040,21 @@ var registry_default = {
               "handle",
               "mist"
             ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u7EAF\u7070\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-12.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -34696,6 +35156,21 @@ var registry_default = {
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u8C79\u732B\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-13.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -34799,6 +35274,21 @@ var registry_default = {
               "handle",
               "mist"
             ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u7EAF\u767D\u7684\u673A\u68B0\u97F3\u6548\u4E0E\u732B\u53EB",
+                src: "catalog/assets/composition-audio/factory/mix-14.mp3",
+                start_ms: 0,
+                duration_ms: 8e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         }
       ],
@@ -34890,6 +35380,21 @@ var registry_default = {
             detail: "\u55B7\u96FE\u4F4D\u4E8E\u524D\u666F\uFF0C\u5728\u5E95\u8272\u4E4B\u540E\u8865\u4E0A\u7B2C\u4E8C\u5C42\u82B1\u7EB9\u5E76\u6536\u4F4F\u3002",
             actions: []
           }
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u673A\u68B0\u97F3\u6548\u4E0E\u5C0F\u8475\u732B\u53EB",
+            src: "catalog/assets/composition-audio/factory/mix-0.mp3",
+            start_ms: 0,
+            duration_ms: 8e3,
+            offset_ms: 0,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/factory/SOURCE.json"
         ]
       }
     },
@@ -35216,12 +35721,17 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
         dependencies: [
           "catalog/effects/scene-source-runtime.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/snow/THIRD-PARTY.json"
+          "catalog/assets/scene-sources/snow/THIRD-PARTY.json",
+          "catalog/assets/composition-audio/snow/JRPG-PIANO-LICENSE.md",
+          "catalog/assets/composition-audio/snow/README.md",
+          "catalog/assets/composition-audio/snow/SOURCE.json",
+          "catalog/assets/composition-audio/snow/jrpg-piano.mp3",
+          "catalog/assets/composition-audio/snow/sound.js"
         ]
       },
       actions: [
@@ -35376,6 +35886,21 @@ var registry_default = {
               "snow-crystal-illustration"
             ]
           }
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "JRPG Piano \xB7 Joth",
+            src: "catalog/assets/composition-audio/snow/jrpg-piano.mp3",
+            start_ms: 0,
+            duration_ms: 24894.69387755,
+            offset_ms: 0,
+            volume: 0.5
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/snow/SOURCE.json"
         ]
       }
     },
@@ -35738,9 +36263,18 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
         dependencies: [
           "catalog/effects/scene-source-runtime.js"
+        ],
+        assets: [
+          "catalog/assets/composition-audio/ocean/README.md",
+          "catalog/assets/composition-audio/ocean/SOURCE.json",
+          "catalog/assets/composition-audio/ocean/mix.mp3",
+          "catalog/assets/composition-audio/ocean/mix.mp3.json",
+          "catalog/assets/composition-audio/ocean/ocean-waves.mp3",
+          "catalog/assets/composition-audio/ocean/recipe.json",
+          "catalog/assets/composition-audio/ocean/sound.js"
         ]
       },
       actions: [
@@ -35868,6 +36402,30 @@ var registry_default = {
               "sunset-sun-illustration"
             ]
           }
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u98DE\u673A\u3001\u7EF3\u7D22\u3001\u843D\u6C34\u4E0E\u661F\u5149\u97F3\u6548",
+            src: "catalog/assets/composition-audio/ocean/mix.mp3",
+            start_ms: 0,
+            duration_ms: 65e3,
+            offset_ms: 0,
+            volume: 1
+          },
+          {
+            name: "\u539F\u6D77\u6D6A\u5F55\u97F3",
+            src: "catalog/assets/composition-audio/ocean/ocean-waves.mp3",
+            start_ms: 0,
+            duration_ms: 65e3,
+            volume: 0.24,
+            fade_in_ms: 500,
+            fade_out_ms: 800
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/ocean/SOURCE.json"
         ]
       }
     },
@@ -36753,10 +37311,22 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
         dependencies: [
           "catalog/effects/scene-source-runtime.js",
           "catalog/effects/scene-osmanthus-data.js"
+        ],
+        assets: [
+          "catalog/assets/composition-audio/osmanthus/README.md",
+          "catalog/assets/composition-audio/osmanthus/SOURCE.json",
+          "catalog/assets/composition-audio/osmanthus/mix-flowers.mp3",
+          "catalog/assets/composition-audio/osmanthus/mix-flowers.mp3.json",
+          "catalog/assets/composition-audio/osmanthus/mix-gold-leaves.mp3",
+          "catalog/assets/composition-audio/osmanthus/mix-gold-leaves.mp3.json",
+          "catalog/assets/composition-audio/osmanthus/mix-maple-blend.mp3",
+          "catalog/assets/composition-audio/osmanthus/mix-maple-blend.mp3.json",
+          "catalog/assets/composition-audio/osmanthus/recipe.json",
+          "catalog/assets/composition-audio/osmanthus/sound.js"
         ]
       },
       actions: [
@@ -36893,6 +37463,21 @@ var registry_default = {
               "tree",
               "flowers"
             ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u7EAF\u91D1\u53F6\u7684\u751F\u957F\u3001\u98CE\u4E0E\u661F\u5149\u97F3\u6548",
+                src: "catalog/assets/composition-audio/osmanthus/mix-gold-leaves.mp3",
+                start_ms: 0,
+                duration_ms: 24e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/osmanthus/SOURCE.json"
+            ]
           }
         },
         {
@@ -36953,6 +37538,21 @@ var registry_default = {
               "sky",
               "tree",
               "flowers"
+            ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u91D1\u82B1\u7684\u751F\u957F\u3001\u98CE\u4E0E\u661F\u5149\u97F3\u6548",
+                src: "catalog/assets/composition-audio/osmanthus/mix-flowers.mp3",
+                start_ms: 0,
+                duration_ms: 24e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/osmanthus/SOURCE.json"
             ]
           }
         },
@@ -37015,6 +37615,21 @@ var registry_default = {
               "tree",
               "flowers"
             ]
+          },
+          audio: {
+            tracks: [
+              {
+                name: "\u91D1\u7EA2\u67AB\u53F6\u7684\u751F\u957F\u3001\u98CE\u4E0E\u661F\u5149\u97F3\u6548",
+                src: "catalog/assets/composition-audio/osmanthus/mix-maple-blend.mp3",
+                start_ms: 0,
+                duration_ms: 24e3,
+                offset_ms: 0,
+                volume: 1
+              }
+            ],
+            sources: [
+              "catalog/assets/composition-audio/osmanthus/SOURCE.json"
+            ]
           }
         }
       ],
@@ -37069,6 +37684,21 @@ var registry_default = {
               "osmanthus-symbol-illustration"
             ]
           }
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u751F\u957F\u3001\u98CE\u3001\u8F7B\u78B0\u3001\u6251\u7FFC\u4E0E\u661F\u5149",
+            src: "catalog/assets/composition-audio/osmanthus/mix-gold-leaves.mp3",
+            start_ms: 0,
+            duration_ms: 24e3,
+            offset_ms: 0,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/osmanthus/SOURCE.json"
         ]
       }
     },
@@ -37473,7 +38103,7 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
         dependencies: [
           "catalog/effects/scene-source-runtime.js",
           "catalog/effects/scene-letter-images.js"
@@ -37484,7 +38114,16 @@ var registry_default = {
           "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
           "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
           "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
-          "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
+          "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt",
+          "catalog/assets/composition-audio/letter/SOURCE.json",
+          "catalog/assets/composition-audio/letter/SOURCES.md",
+          "catalog/assets/composition-audio/letter/build-audio.cjs",
+          "catalog/assets/composition-audio/letter/chime-score.js",
+          "catalog/assets/composition-audio/letter/mix.mp3",
+          "catalog/assets/composition-audio/letter/mix.mp3.json",
+          "catalog/assets/composition-audio/letter/recipe.json",
+          "catalog/assets/composition-audio/letter/sound-bank.js",
+          "catalog/assets/composition-audio/letter/sound.js"
         ]
       },
       actions: [
@@ -37607,6 +38246,21 @@ var registry_default = {
               "type-reveal"
             ]
           }
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u952E\u76D8\u3001\u53D1\u9001\u3001\u6C34\u58F0\u3001\u98DE\u884C\u4E0E\u661F\u6CB3\u914D\u4E50",
+            src: "catalog/assets/composition-audio/letter/mix.mp3",
+            start_ms: 0,
+            duration_ms: 95e3,
+            offset_ms: 0,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/letter/SOURCE.json"
         ]
       }
     },
@@ -38003,7 +38657,7 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
         dependencies: [
           "catalog/effects/scene-source-runtime.js",
           "catalog/effects/scene-selfie-images.js"
@@ -38014,7 +38668,10 @@ var registry_default = {
           "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.png",
           "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.png",
           "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.png"
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.png",
+          "catalog/assets/composition-audio/selfie/README.md",
+          "catalog/assets/composition-audio/selfie/SOURCE.json",
+          "catalog/assets/composition-audio/selfie/continuous-audio.m4a"
         ]
       },
       actions: [
@@ -38130,6 +38787,21 @@ var registry_default = {
             ]
           }
         ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u8FDE\u7EED\u81EA\u62CD\u97F3\u8F68",
+            src: "catalog/assets/composition-audio/selfie/continuous-audio.m4a",
+            start_ms: 0,
+            duration_ms: 7750,
+            offset_ms: 0,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/selfie/SOURCE.json"
+        ]
       }
     },
     {
@@ -38175,7 +38847,14 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002"
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
+        assets: [
+          "catalog/assets/composition-audio/encore/README.md",
+          "catalog/assets/composition-audio/encore/SOURCE.json",
+          "catalog/assets/composition-audio/encore/choreography.js",
+          "catalog/assets/composition-audio/encore/climax.mp3",
+          "catalog/assets/composition-audio/encore/player.js"
+        ]
       },
       actions: [
         "encore-hook",
@@ -38279,6 +38958,21 @@ var registry_default = {
               "encore-umbrella-illustration"
             ]
           }
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u96E8\u4E2D\u66F2\u6F14\u5531\u8282\u9009",
+            src: "catalog/assets/composition-audio/encore/climax.mp3",
+            start_ms: 0,
+            duration_ms: 24543,
+            offset_ms: 0,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/encore/SOURCE.json"
         ]
       }
     },
@@ -39162,10 +39856,16 @@ var registry_default = {
         license: "AGPL-3.0-only",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
-        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
+        extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
         dependencies: [
           "catalog/effects/scene-source-runtime.js",
           "catalog/effects/scene-ink-data.js"
+        ],
+        assets: [
+          "catalog/assets/composition-audio/ink/Root.tsx",
+          "catalog/assets/composition-audio/ink/SOURCE.json",
+          "catalog/assets/composition-audio/ink/make_music.py",
+          "catalog/assets/composition-audio/ink/\u6C34\u58A8\u5FAE\u5149.m4a"
         ]
       },
       actions: [
@@ -39254,6 +39954,21 @@ var registry_default = {
               "ink-volume-illustration"
             ]
           }
+        ]
+      },
+      audio: {
+        tracks: [
+          {
+            name: "\u539F\u6C34\u58A8\u5FAE\u5149\u914D\u4E50",
+            src: "catalog/assets/composition-audio/ink/\u6C34\u58A8\u5FAE\u5149.m4a",
+            start_ms: 0,
+            duration_ms: 25e3,
+            offset_ms: 161e3,
+            volume: 1
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/ink/SOURCE.json"
         ]
       }
     }
@@ -40759,13 +41474,81 @@ function WiseMotionEffect({
     }
   ));
 }
+
+// remotion/audio.jsx
+import React4 from "react";
+import { Html5Audio, Loop, Sequence, useCurrentFrame as useCurrentFrame4, useVideoConfig as useVideoConfig4 } from "remotion";
+
+// remotion/audio-plan.mjs
+function getAudioPlan(effect, fps = 60, speed = 1) {
+  if (effect.kind !== "composition" || !effect.audio?.tracks?.length) return [];
+  const rate = normalizeSpeed(speed);
+  return effect.audio.tracks.map((track, index) => {
+    const start = track.start_ms ?? 0;
+    const duration = Math.min(track.duration_ms ?? effect.duration_ms - start, effect.duration_ms - start);
+    return {
+      ...track,
+      key: index,
+      from: Math.round(start * fps / (1e3 * rate)),
+      durationInFrames: Math.max(1, Math.ceil(duration * fps / (1e3 * rate) - 1e-9)),
+      trimBefore: Math.round((track.offset_ms ?? 0) * fps / 1e3),
+      playbackRate: rate * (track.rate ?? 1),
+      fadeInFrames: (track.fade_in_ms ?? 0) * fps / (1e3 * rate),
+      fadeOutFrames: (track.fade_out_ms ?? 0) * fps / (1e3 * rate)
+    };
+  });
+}
+function trackVolume(track, frame) {
+  const attack = track.fadeInFrames ? Math.min(1, Math.max(0, frame / track.fadeInFrames)) : 1;
+  const release = track.fadeOutFrames ? Math.min(1, Math.max(0, (track.durationInFrames - frame) / track.fadeOutFrames)) : 1;
+  return (track.volume ?? 1) * Math.min(attack, release);
+}
+
+// remotion/audio.jsx
+function AudioCycle({ effect, speed, base }) {
+  const frame = useCurrentFrame4();
+  const { fps } = useVideoConfig4();
+  return getAudioPlan(effect, fps, speed).map((track) => /* @__PURE__ */ React4.createElement(
+    Sequence,
+    {
+      key: track.key,
+      from: track.from,
+      durationInFrames: track.durationInFrames,
+      layout: "none"
+    },
+    /* @__PURE__ */ React4.createElement(
+      Html5Audio,
+      {
+        src: new URL(track.src, base).href,
+        trimBefore: track.trimBefore,
+        playbackRate: track.playbackRate,
+        volume: trackVolume(track, frame - track.from)
+      }
+    )
+  ));
+}
+function CompositionAudio({ effect, speed, base }) {
+  const { fps } = useVideoConfig4();
+  if (effect.kind !== "composition" || !effect.audio?.tracks?.length) return null;
+  const cycle = /* @__PURE__ */ React4.createElement(AudioCycle, { effect, speed, base });
+  return effect.loop ? /* @__PURE__ */ React4.createElement(Loop, { durationInFrames: Math.max(1, Math.ceil(effect.duration_ms * fps / (1e3 * normalizeSpeed(speed)) - 1e-9)) }, cycle) : cycle;
+}
+
+// remotion/with-audio.jsx
+function WiseMotionEffect2(props) {
+  const effect = resolveEffect(props.definition ?? props.effectId, props.variantId);
+  if (props.includeAudio === false || effect.kind !== "composition" || !effect.audio?.tracks?.length) return /* @__PURE__ */ React5.createElement(WiseMotionEffect, { ...props });
+  const defaultBase = props.assetBaseUrl ?? staticFile3("wise-motion");
+  const base = typeof document === "undefined" ? defaultBase : new URL(defaultBase.replace(/\/?$/, "/"), document.baseURI).href;
+  return /* @__PURE__ */ React5.createElement(React5.Fragment, null, /* @__PURE__ */ React5.createElement(CompositionAudio, { effect, speed: props.speed ?? 1, base }), /* @__PURE__ */ React5.createElement(WiseMotionEffect, { ...props }));
+}
 export {
   DEFAULT_FPS,
   MOTION_HEIGHT,
   MOTION_WIDTH,
   WiseMotionButterfly,
   WiseMotionCircularReveal,
-  WiseMotionEffect,
+  WiseMotionEffect2 as WiseMotionEffect,
   butterflyMotion,
   circularReveal,
   effectDefinitions,

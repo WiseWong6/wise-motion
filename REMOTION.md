@@ -3,6 +3,8 @@
 `WiseMotionEffect` 保留原绘制代码、字体、逻辑尺寸和运动公式，以 Remotion 帧号转换到原目录毫秒时钟。
 素材与绘制程序随源码包交付，不依赖原目录。目录默认用 640×360 逻辑画板，改变 width/height 仅等比缩放。
 
+十八个已有原声的完整组合默认带上配乐和音效，暂停、定位、循环和变速使用同一帧时钟。目录默认静音，点播放条的声音开关试听；组件或导出需要静音时传入 `includeAudio={false}`。独立动作、插画和静态缩略图不增加声音。原录音、合成源码、固定排程及许可见 [组合声音来源](catalog/assets/composition-audio/SOURCE.json)。离线重建合成音轨使用 `node scripts/build-composition-audio.mjs`，需要已安装的 Remotion 浏览器与 `ffmpeg`；普通预览和视频导出直接使用随包音轨。
+
 ## 使用
 
 ```jsx
@@ -25,6 +27,8 @@ node node_modules/wise-motion-remotion/scripts/install-assets.mjs public/wise-mo
 全部素材明细与校验值在 `ASSET-MANIFEST.json`。素材副本不提供目录首页；浏览请打开源码中的 `catalog/index.html`。目标工程的Remotion依赖需和包版本一致。
 目录中的“复制代码”提供完整Composition例子和安装步骤。`Sequence`能控制每个组件的起点；多个组件用独立画板，互不覆盖。
 翻页书在目录中保留真实交互；导出组件总是固定演示动作。
+
+单独使用 `catalog/remotion-player.js` 时，先载入 `catalog/registry-data.js`；浏览器播放器共用页面数据以减少加载体积。目录和生成的有声演示页已包含正确顺序，`WiseMotionEffect` 独立组件不需要手动载入这两个脚本。
 
 ## 自定义内容
 

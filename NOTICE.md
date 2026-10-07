@@ -85,8 +85,10 @@ Remotion、React 等视频复用依赖由目标工程安装，版本和接入方
 
 ## 本次迁入的自有场景
 
-蒲公英、驾车气球、小猫加工厂、深圳湾雪夜、海面上的夕阳、花落成蝶、星月来信、小葵自拍、雨伞返场和螺旋丸家族的绘制、数据与插画，由 Wise Wong 创作并确认用于本库。原文件、迁入素材及校验记录见 [原作与迁入记录](catalog/assets/scene-sources/原作与迁入记录.json)。原工程不参与运行，音乐不作为本库依赖。
+蒲公英、驾车气球、小猫加工厂、深圳湾雪夜、海面上的夕阳、花落成蝶、星月来信、小葵自拍、雨伞返场和螺旋丸家族的绘制、数据与插画，由 Wise Wong 创作并确认用于本库。原文件、迁入素材及校验记录见 [原作与迁入记录](catalog/assets/scene-sources/原作与迁入记录.json)。原工程不参与运行。十八个完整组合保留已核对的原音效和配乐，声音、合成源码与时序见 [组合声音来源](catalog/assets/composition-audio/SOURCE.json)；独立动作和插画保持无声。
 
-深圳湾雪夜保留 p5.js 1.9.4 的噪声子集及原许可全文（LGPL-2.1），见 [第三方来源与许可](catalog/assets/scene-sources/snow/THIRD-PARTY.json)；抽出为实例内函数，并将初始化随机数接入固定种子。原乐曲事件保留为无声时间数据。
+第三方录音与音乐遵循各组原作说明及许可，程序的 AGPL 许可不覆盖这些媒体。包括 Joth 的 CC0《JRPG Piano》、海浪录音的 CC BY 3.0、原猫叫与机械录音、星月来信的声音素材及《雨中曲》原演唱节选；具体署名、加工与来源保留在各组目录内。演进样片及水墨微光保留原合成代码。
+
+深圳湾雪夜保留 p5.js 1.9.4 的噪声子集及原许可全文（LGPL-2.1），见 [第三方来源与许可](catalog/assets/scene-sources/snow/THIRD-PARTY.json)；抽出为实例内函数，并将初始化随机数接入固定种子。乐曲事件用于画面变化，完整组合同步播放原曲。
 
 星月来信使用霞鹜文楷和马善政毛笔字体，保留 [文楷原许可](catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt) 与 [毛笔原许可](catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt)。银河图片的原说明见 [素材来源](catalog/assets/scene-sources/letter/素材来源.md)。自拍图集为用户提供的自有原图，按原视角、足迹和透视映射复用。

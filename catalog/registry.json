@@ -11182,7 +11182,13 @@
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
+        ]
       },
       "actions": [
         "paper-strip-stagger",
@@ -11214,6 +11220,21 @@
           "文字“SAUL BASS CUTS PAPER.”：左边界x=120、基线y=740，字号38，字距3，颜色#111；第一个字在1.8秒进入，每字间隔0.02秒，单字耗时0.4秒，从基线下方1.1倍字号处升起，各行有独立裁剪框",
           "文字“JOHN WHITNEY WIRES A COMPUTER.”：左边界x=120、基线y=792，字号38，字距3，颜色#111；第一个字在2.3秒进入，每字间隔0.02秒，单字耗时0.4秒，从基线下方1.1倍字号处升起，各行有独立裁剪框",
           "上边缘左右分别写CLAUDE / MOTION REEL ’26与1959 — THE TITLE SEQUENCE，字号15，位置(72,70)与右对齐(1848,70)；底部x=72、y=1027、宽1776的细进度条随6秒填满"
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原演进样片配乐与音效",
+            "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            "start_ms": 0,
+            "duration_ms": 6000,
+            "offset_ms": 4000,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
         ]
       }
     },
@@ -11824,9 +11845,30 @@
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
+        ]
       },
-      "original_scene": "claude-showreel-2026/sNeon"
+      "original_scene": "claude-showreel-2026/sNeon",
+      "audio": {
+        "tracks": [
+          {
+            "name": "原演进样片配乐与音效",
+            "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            "start_ms": 0,
+            "duration_ms": 6000,
+            "offset_ms": 10000,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
+        ]
+      }
     },
     {
       "id": "door-halftone-illustration",
@@ -12178,7 +12220,13 @@
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
+        ]
       },
       "reproduction": {
         "presentation": "16:9，1920×1080设计坐标；上部深紫夜空、下部近黑紫地面，地平线y=640；主字为大写倾斜粗体BROADCAST，使用Avenir Next Heavy Italic；年份用Futura Bold空心字",
@@ -12190,6 +12238,21 @@
           "BROADCAST中心x=960，基线y=500，文字宽约1600；金属渐变从白到蓝、紫、粉，0.3–1.3秒由5倍缩到1倍；六层空心描边每层晚0.05秒，青#3ef2ff与品红#ff2bd6交替，下移11k像素，透明度0.9−0.12k，k=1…6",
           "空心1981左起(120,250)，描边3像素#bafcff并带青色柔光；0.9–1.3秒按h(floor(30t))≥0.5时亮、否则灭，1.3秒后常亮；白色十字光斑1.7–2.5秒从画面左侧横移到右侧，亮度先升后降",
           "底部全文为“LOGOS LEARN TO FLY — CHROME, NEON & THE VIDEO TOASTER”，固定整句居中于(960,960)，字号22、字距5、颜色#ffd6f6；2.2秒起每秒输入45字，光标跟随末字，每0.4秒明灭，4.5秒熄灭而文字保留"
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原演进样片配乐与音效",
+            "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            "start_ms": 0,
+            "duration_ms": 6000,
+            "offset_ms": 10000,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
         ]
       }
     },
@@ -13517,6 +13580,12 @@
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
           "catalog/effects/data-comparisons.js"
+        ],
+        "assets": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
         ]
       },
       "action_variants": {
@@ -13574,6 +13643,21 @@
             "end": 6010,
             "detail": "五行关键帧每个错开 0.025 秒弹出。游标每两秒扫描一次，靠近的关键帧变白并放大，与小球共享循环时间。"
           }
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原演进样片配乐与音效",
+            "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            "start_ms": 0,
+            "duration_ms": 8000,
+            "offset_ms": 22000,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
         ]
       }
     },
@@ -14697,6 +14781,12 @@
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
           "catalog/effects/reel-grit-key.js"
+        ],
+        "assets": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
         ]
       },
       "original_scene": "claude-showreel-2026/sFlat",
@@ -14770,6 +14860,21 @@
             "end": 4100,
             "detail": "圆钮先弹出，再延展到屏幕下部；加号淡出，白色对勾分两段描成，出现 Published。"
           }
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原演进样片配乐与音效",
+            "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            "start_ms": 0,
+            "duration_ms": 5000,
+            "offset_ms": 33000,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
         ]
       }
     },
@@ -14902,7 +15007,13 @@
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
+        ]
       },
       "original_scene": "claude-showreel-2026/sGen",
       "previous_names": [
@@ -14927,6 +15038,21 @@
         ],
         "retain": "同一批点的对应关系、连续形变、自转和读数共用时钟；左侧固定文字与逐行代码保持清晰",
         "avoid": "不重新随机撒点，不省略透视，不把读数写成固定装饰"
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原演进样片配乐与音效",
+            "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            "start_ms": 0,
+            "duration_ms": 8000,
+            "offset_ms": 38000,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
+        ]
       }
     },
     {
@@ -15636,7 +15762,13 @@
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
+        ]
       },
       "reproduction": {
         "presentation": "1920×1080；背景为中心#1a1a1f到边缘#0b0b0c的径向渐变；输入组件以局部坐标设计：主框(45,88,940,198)、圆角22、底#1d1d20、细边#787880；局部点(514.5,195)对齐画心(960,540)，整体1.5倍显示",
@@ -15655,6 +15787,21 @@
           "6.5–8秒白色光核半径从20指数扩到540，内白外紫#7b61ff、边缘透明；三道白环相位相隔1/3周期，每秒1.2轮，半径40–540，向外时淡去；始终与仍在汇聚的字叠加"
         ],
         "retain": "输入框、工具栏、三行全文、发送按钮、绕弧字符和中心光核使用同一坐标与时钟"
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原演进样片配乐与音效",
+            "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            "start_ms": 0,
+            "duration_ms": 8000,
+            "offset_ms": 46000,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
+        ]
       }
     },
     {
@@ -15726,7 +15873,13 @@
         "origin": "original",
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
-        "reference_url": "https://animejs.com/documentation/"
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
+        ]
       },
       "reproduction": {
         "presentation": "16:9，1920×1080，背景#0a0a0b，暖白大字与七色细线；年代轴开场全部点亮",
@@ -15739,6 +15892,21 @@
           "文字“MOTION DESIGNER  —  SHOWREEL 2026”：左边界x=604.784、基线y=560，字号24，字距10，颜色#cfcfd4；第一个字在3.5秒进入，每字间隔0.01秒，单字耗时0.5秒，从基线下方1.1倍字号处升起，各行有独立裁剪框",
           "文字“Every frame in this film is code. No plugins. No stock. No skills.”：左边界x=626.303、基线y=620，字号26，字距0，颜色#7d7d85；第一个字在3.9秒进入，每字间隔0.006秒，单字耗时0.5秒，从基线下方1.1倍字号处升起，各行有独立裁剪框",
           "英文标题与落款统一使用随包Oswald Bold；大标题保留原大写高度，按字宽居中；标题总宽614.310，左起652.845；标题下色带y=476、高8，七段按新标题总宽等分，由自身左边缘延展；第i段3.3+0.06i秒开始、耗时0.6秒；5.1–6秒整幅画面按三次方进度渐黑"
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原演进样片配乐与音效",
+            "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            "start_ms": 0,
+            "duration_ms": 6000,
+            "offset_ms": 54000,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
         ]
       }
     },
@@ -31202,9 +31370,15 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
+        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
         "dependencies": [
           "catalog/effects/scene-source-runtime.js"
+        ],
+        "assets": [
+          "catalog/assets/composition-audio/dandelion/README.md",
+          "catalog/assets/composition-audio/dandelion/SOURCE.json",
+          "catalog/assets/composition-audio/dandelion/journey-sound.js",
+          "catalog/assets/composition-audio/dandelion/windborne-score.mp3"
         ]
       },
       "actions": [
@@ -31341,6 +31515,21 @@
               "settle-grow-spread"
             ]
           }
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原蒲公英配乐",
+            "src": "catalog/assets/composition-audio/dandelion/windborne-score.mp3",
+            "start_ms": 0,
+            "duration_ms": 37000,
+            "offset_ms": 0,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/dandelion/SOURCE.json"
         ]
       }
     },
@@ -31731,9 +31920,19 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
+        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
         "dependencies": [
           "catalog/effects/scene-source-runtime.js"
+        ],
+        "assets": [
+          "catalog/assets/composition-audio/drive/README.md",
+          "catalog/assets/composition-audio/drive/SOURCE.json",
+          "catalog/assets/composition-audio/drive/meow.js",
+          "catalog/assets/composition-audio/drive/meow.wav",
+          "catalog/assets/composition-audio/drive/mix.mp3",
+          "catalog/assets/composition-audio/drive/mix.mp3.json",
+          "catalog/assets/composition-audio/drive/recipe.json",
+          "catalog/assets/composition-audio/drive/sound.js"
         ]
       },
       "actions": [
@@ -31875,6 +32074,21 @@
               "drive-car-illustration"
             ]
           }
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原行驶、风声、气球松绳与猫叫",
+            "src": "catalog/assets/composition-audio/drive/mix.mp3",
+            "start_ms": 0,
+            "duration_ms": 14000,
+            "offset_ms": 0,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/drive/SOURCE.json"
         ]
       }
     },
@@ -32788,12 +33002,59 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
+        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
         "dependencies": [
           "catalog/effects/scene-source-runtime.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/factory/coffee-bean.png"
+          "catalog/assets/scene-sources/factory/coffee-bean.png",
+          "catalog/assets/composition-audio/factory/SOURCE.json",
+          "catalog/assets/composition-audio/factory/angry.wav",
+          "catalog/assets/composition-audio/factory/beans.wav",
+          "catalog/assets/composition-audio/factory/brew.wav",
+          "catalog/assets/composition-audio/factory/grind.wav",
+          "catalog/assets/composition-audio/factory/land.wav",
+          "catalog/assets/composition-audio/factory/latch.wav",
+          "catalog/assets/composition-audio/factory/meow-bright.wav",
+          "catalog/assets/composition-audio/factory/meow-low.wav",
+          "catalog/assets/composition-audio/factory/meow-soft.wav",
+          "catalog/assets/composition-audio/factory/meow-white.wav",
+          "catalog/assets/composition-audio/factory/meow.wav",
+          "catalog/assets/composition-audio/factory/mix-0.mp3",
+          "catalog/assets/composition-audio/factory/mix-0.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-1.mp3",
+          "catalog/assets/composition-audio/factory/mix-1.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-10.mp3",
+          "catalog/assets/composition-audio/factory/mix-10.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-11.mp3",
+          "catalog/assets/composition-audio/factory/mix-11.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-12.mp3",
+          "catalog/assets/composition-audio/factory/mix-12.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-13.mp3",
+          "catalog/assets/composition-audio/factory/mix-13.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-14.mp3",
+          "catalog/assets/composition-audio/factory/mix-14.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-2.mp3",
+          "catalog/assets/composition-audio/factory/mix-2.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-3.mp3",
+          "catalog/assets/composition-audio/factory/mix-3.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-4.mp3",
+          "catalog/assets/composition-audio/factory/mix-4.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-5.mp3",
+          "catalog/assets/composition-audio/factory/mix-5.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-6.mp3",
+          "catalog/assets/composition-audio/factory/mix-6.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-7.mp3",
+          "catalog/assets/composition-audio/factory/mix-7.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-8.mp3",
+          "catalog/assets/composition-audio/factory/mix-8.mp3.json",
+          "catalog/assets/composition-audio/factory/mix-9.mp3",
+          "catalog/assets/composition-audio/factory/mix-9.mp3.json",
+          "catalog/assets/composition-audio/factory/recipe.json",
+          "catalog/assets/composition-audio/factory/sound.js",
+          "catalog/assets/composition-audio/factory/steam.wav",
+          "catalog/assets/composition-audio/factory/timeline.js",
+          "catalog/assets/composition-audio/factory/素材来源.md"
         ]
       },
       "actions": [
@@ -33010,6 +33271,21 @@
               "handle",
               "mist"
             ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "小葵的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-0.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -33111,6 +33387,21 @@
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "银渐层（条纹版）的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-1.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -33214,6 +33505,21 @@
               "handle",
               "mist"
             ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "银渐层（无虎纹）的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-2.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -33315,6 +33621,21 @@
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "金渐层的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-3.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -33418,6 +33739,21 @@
               "handle",
               "mist"
             ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "金渐虎纹的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-4.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -33519,6 +33855,21 @@
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "黑猫的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-5.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -33622,6 +33973,21 @@
               "handle",
               "mist"
             ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "橘猫的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-6.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -33723,6 +34089,21 @@
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "橘白的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-7.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -33826,6 +34207,21 @@
               "handle",
               "mist"
             ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "蓝白的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-8.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -33927,6 +34323,21 @@
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "狸花猫的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-9.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -34030,6 +34441,21 @@
               "handle",
               "mist"
             ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "暹罗猫的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-10.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -34131,6 +34557,21 @@
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "三花的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-11.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -34234,6 +34675,21 @@
               "handle",
               "mist"
             ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "纯灰的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-12.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         },
         {
@@ -34335,6 +34791,21 @@
               "grounds",
               "handle",
               "mist"
+            ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "豹猫的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-13.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
             ]
           }
         },
@@ -34438,6 +34909,21 @@
               "handle",
               "mist"
             ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "纯白的机械音效与猫叫",
+                "src": "catalog/assets/composition-audio/factory/mix-14.mp3",
+                "start_ms": 0,
+                "duration_ms": 8000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/factory/SOURCE.json"
+            ]
           }
         }
       ],
@@ -34529,6 +35015,21 @@
             "detail": "喷雾位于前景，在底色之后补上第二层花纹并收住。",
             "actions": []
           }
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原机械音效与小葵猫叫",
+            "src": "catalog/assets/composition-audio/factory/mix-0.mp3",
+            "start_ms": 0,
+            "duration_ms": 8000,
+            "offset_ms": 0,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/factory/SOURCE.json"
         ]
       }
     },
@@ -34855,12 +35356,17 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
+        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
         "dependencies": [
           "catalog/effects/scene-source-runtime.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/snow/THIRD-PARTY.json"
+          "catalog/assets/scene-sources/snow/THIRD-PARTY.json",
+          "catalog/assets/composition-audio/snow/JRPG-PIANO-LICENSE.md",
+          "catalog/assets/composition-audio/snow/README.md",
+          "catalog/assets/composition-audio/snow/SOURCE.json",
+          "catalog/assets/composition-audio/snow/jrpg-piano.mp3",
+          "catalog/assets/composition-audio/snow/sound.js"
         ]
       },
       "actions": [
@@ -35015,6 +35521,21 @@
               "snow-crystal-illustration"
             ]
           }
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "JRPG Piano · Joth",
+            "src": "catalog/assets/composition-audio/snow/jrpg-piano.mp3",
+            "start_ms": 0,
+            "duration_ms": 24894.69387755,
+            "offset_ms": 0,
+            "volume": 0.5
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/snow/SOURCE.json"
         ]
       }
     },
@@ -35377,9 +35898,18 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
+        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
         "dependencies": [
           "catalog/effects/scene-source-runtime.js"
+        ],
+        "assets": [
+          "catalog/assets/composition-audio/ocean/README.md",
+          "catalog/assets/composition-audio/ocean/SOURCE.json",
+          "catalog/assets/composition-audio/ocean/mix.mp3",
+          "catalog/assets/composition-audio/ocean/mix.mp3.json",
+          "catalog/assets/composition-audio/ocean/ocean-waves.mp3",
+          "catalog/assets/composition-audio/ocean/recipe.json",
+          "catalog/assets/composition-audio/ocean/sound.js"
         ]
       },
       "actions": [
@@ -35507,6 +36037,30 @@
               "sunset-sun-illustration"
             ]
           }
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原飞机、绳索、落水与星光音效",
+            "src": "catalog/assets/composition-audio/ocean/mix.mp3",
+            "start_ms": 0,
+            "duration_ms": 65000,
+            "offset_ms": 0,
+            "volume": 1
+          },
+          {
+            "name": "原海浪录音",
+            "src": "catalog/assets/composition-audio/ocean/ocean-waves.mp3",
+            "start_ms": 0,
+            "duration_ms": 65000,
+            "volume": 0.24,
+            "fade_in_ms": 500,
+            "fade_out_ms": 800
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/ocean/SOURCE.json"
         ]
       }
     },
@@ -36392,10 +36946,22 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
+        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
         "dependencies": [
           "catalog/effects/scene-source-runtime.js",
           "catalog/effects/scene-osmanthus-data.js"
+        ],
+        "assets": [
+          "catalog/assets/composition-audio/osmanthus/README.md",
+          "catalog/assets/composition-audio/osmanthus/SOURCE.json",
+          "catalog/assets/composition-audio/osmanthus/mix-flowers.mp3",
+          "catalog/assets/composition-audio/osmanthus/mix-flowers.mp3.json",
+          "catalog/assets/composition-audio/osmanthus/mix-gold-leaves.mp3",
+          "catalog/assets/composition-audio/osmanthus/mix-gold-leaves.mp3.json",
+          "catalog/assets/composition-audio/osmanthus/mix-maple-blend.mp3",
+          "catalog/assets/composition-audio/osmanthus/mix-maple-blend.mp3.json",
+          "catalog/assets/composition-audio/osmanthus/recipe.json",
+          "catalog/assets/composition-audio/osmanthus/sound.js"
         ]
       },
       "actions": [
@@ -36532,6 +37098,21 @@
               "tree",
               "flowers"
             ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "纯金叶的生长、风与星光音效",
+                "src": "catalog/assets/composition-audio/osmanthus/mix-gold-leaves.mp3",
+                "start_ms": 0,
+                "duration_ms": 24000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/osmanthus/SOURCE.json"
+            ]
           }
         },
         {
@@ -36592,6 +37173,21 @@
               "sky",
               "tree",
               "flowers"
+            ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "金花的生长、风与星光音效",
+                "src": "catalog/assets/composition-audio/osmanthus/mix-flowers.mp3",
+                "start_ms": 0,
+                "duration_ms": 24000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/osmanthus/SOURCE.json"
             ]
           }
         },
@@ -36654,6 +37250,21 @@
               "tree",
               "flowers"
             ]
+          },
+          "audio": {
+            "tracks": [
+              {
+                "name": "金红枫叶的生长、风与星光音效",
+                "src": "catalog/assets/composition-audio/osmanthus/mix-maple-blend.mp3",
+                "start_ms": 0,
+                "duration_ms": 24000,
+                "offset_ms": 0,
+                "volume": 1
+              }
+            ],
+            "sources": [
+              "catalog/assets/composition-audio/osmanthus/SOURCE.json"
+            ]
           }
         }
       ],
@@ -36708,6 +37319,21 @@
               "osmanthus-symbol-illustration"
             ]
           }
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原生长、风、轻碰、扑翼与星光",
+            "src": "catalog/assets/composition-audio/osmanthus/mix-gold-leaves.mp3",
+            "start_ms": 0,
+            "duration_ms": 24000,
+            "offset_ms": 0,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/osmanthus/SOURCE.json"
         ]
       }
     },
@@ -37112,7 +37738,7 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
+        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
         "dependencies": [
           "catalog/effects/scene-source-runtime.js",
           "catalog/effects/scene-letter-images.js"
@@ -37123,7 +37749,16 @@
           "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
           "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
           "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
-          "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
+          "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt",
+          "catalog/assets/composition-audio/letter/SOURCE.json",
+          "catalog/assets/composition-audio/letter/SOURCES.md",
+          "catalog/assets/composition-audio/letter/build-audio.cjs",
+          "catalog/assets/composition-audio/letter/chime-score.js",
+          "catalog/assets/composition-audio/letter/mix.mp3",
+          "catalog/assets/composition-audio/letter/mix.mp3.json",
+          "catalog/assets/composition-audio/letter/recipe.json",
+          "catalog/assets/composition-audio/letter/sound-bank.js",
+          "catalog/assets/composition-audio/letter/sound.js"
         ]
       },
       "actions": [
@@ -37246,6 +37881,21 @@
               "type-reveal"
             ]
           }
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原键盘、发送、水声、飞行与星河配乐",
+            "src": "catalog/assets/composition-audio/letter/mix.mp3",
+            "start_ms": 0,
+            "duration_ms": 95000,
+            "offset_ms": 0,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/letter/SOURCE.json"
         ]
       }
     },
@@ -37642,7 +38292,7 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
+        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
         "dependencies": [
           "catalog/effects/scene-source-runtime.js",
           "catalog/effects/scene-selfie-images.js"
@@ -37653,7 +38303,10 @@
           "catalog/assets/scene-sources/selfie/小葵朝右下.png",
           "catalog/assets/scene-sources/selfie/手机与人物.png",
           "catalog/assets/scene-sources/selfie/我的自拍.png",
-          "catalog/assets/scene-sources/selfie/小葵原设定补充视角.png"
+          "catalog/assets/scene-sources/selfie/小葵原设定补充视角.png",
+          "catalog/assets/composition-audio/selfie/README.md",
+          "catalog/assets/composition-audio/selfie/SOURCE.json",
+          "catalog/assets/composition-audio/selfie/continuous-audio.m4a"
         ]
       },
       "actions": [
@@ -37769,6 +38422,21 @@
             ]
           }
         ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原连续自拍音轨",
+            "src": "catalog/assets/composition-audio/selfie/continuous-audio.m4a",
+            "start_ms": 0,
+            "duration_ms": 7750,
+            "offset_ms": 0,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/selfie/SOURCE.json"
+        ]
       }
     },
     {
@@ -37814,7 +38482,14 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。"
+        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
+        "assets": [
+          "catalog/assets/composition-audio/encore/README.md",
+          "catalog/assets/composition-audio/encore/SOURCE.json",
+          "catalog/assets/composition-audio/encore/choreography.js",
+          "catalog/assets/composition-audio/encore/climax.mp3",
+          "catalog/assets/composition-audio/encore/player.js"
+        ]
       },
       "actions": [
         "encore-hook",
@@ -37918,6 +38593,21 @@
               "encore-umbrella-illustration"
             ]
           }
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原雨中曲演唱节选",
+            "src": "catalog/assets/composition-audio/encore/climax.mp3",
+            "start_ms": 0,
+            "duration_ms": 24543,
+            "offset_ms": 0,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/encore/SOURCE.json"
         ]
       }
     },
@@ -38801,10 +39491,16 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
-        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
+        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
         "dependencies": [
           "catalog/effects/scene-source-runtime.js",
           "catalog/effects/scene-ink-data.js"
+        ],
+        "assets": [
+          "catalog/assets/composition-audio/ink/Root.tsx",
+          "catalog/assets/composition-audio/ink/SOURCE.json",
+          "catalog/assets/composition-audio/ink/make_music.py",
+          "catalog/assets/composition-audio/ink/水墨微光.m4a"
         ]
       },
       "actions": [
@@ -38893,6 +39589,21 @@
               "ink-volume-illustration"
             ]
           }
+        ]
+      },
+      "audio": {
+        "tracks": [
+          {
+            "name": "原水墨微光配乐",
+            "src": "catalog/assets/composition-audio/ink/水墨微光.m4a",
+            "start_ms": 0,
+            "duration_ms": 25000,
+            "offset_ms": 161000,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/ink/SOURCE.json"
         ]
       }
     }

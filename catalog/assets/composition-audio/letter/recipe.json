@@ -1,0 +1,2293 @@
+{
+  "duration": 95,
+  "events": [
+    {
+      "time": 0.65,
+      "kind": "typing",
+      "duration": 3.675,
+      "gain": 1.1,
+      "pan": 0,
+      "pitch": 0
+    },
+    {
+      "time": 5.375,
+      "kind": "send",
+      "duration": 0.18,
+      "gain": 1.1,
+      "pan": 0,
+      "pitch": 0
+    },
+    {
+      "time": 5.405,
+      "kind": "ripple",
+      "gain": 0.18,
+      "duration": 2.3333333333333335,
+      "pan": 0,
+      "panTo": -0.65,
+      "pitch": -3
+    },
+    {
+      "time": 5.405,
+      "kind": "ripple",
+      "gain": 0.18,
+      "duration": 2.3333333333333335,
+      "pan": 0,
+      "panTo": 0.65,
+      "pitch": 3
+    },
+    {
+      "time": 6.7,
+      "kind": "wind",
+      "duration": 1.8,
+      "gain": 0.08,
+      "pan": -0.2,
+      "panTo": 0.3
+    },
+    {
+      "time": 7.056749144334198,
+      "kind": "flight",
+      "duration": 1.8,
+      "gain": 0.3,
+      "pan": -0.005029876966977542,
+      "panTo": 0.026519999999999988,
+      "pitch": 0
+    },
+    {
+      "time": 7.583821275860907,
+      "kind": "flight",
+      "duration": 1.8,
+      "gain": 0.3,
+      "pan": 0.20014809223745367,
+      "panTo": 0.32559840000000007,
+      "pitch": 7
+    },
+    {
+      "time": 7.899589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.76,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 8.085414031170084,
+      "kind": "flight",
+      "duration": 1.8,
+      "gain": 0.3,
+      "pan": -0.2825489458525723,
+      "panTo": -0.5127072,
+      "pitch": -5
+    },
+    {
+      "time": 8.087089658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "accompaniment"
+    },
+    {
+      "time": 8.274589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.58,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 8.649589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.88,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 8.71312836991981,
+      "kind": "flight",
+      "duration": 1.8,
+      "gain": 0.3,
+      "pan": -0.49313154053782876,
+      "panTo": -0.7558016000000001,
+      "pitch": 2
+    },
+    {
+      "time": 9.024589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.24,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "accompaniment"
+    },
+    {
+      "time": 9.399589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.62,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 9.774589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.19,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "accompaniment"
+    },
+    {
+      "time": 10.149589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.72,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 10.337089658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.18,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "accompaniment"
+    },
+    {
+      "time": 10.712089658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "accompaniment"
+    },
+    {
+      "time": 10.899589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.5,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 11.274589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.56,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 11.462089658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.17,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "accompaniment"
+    },
+    {
+      "time": 11.649589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.68,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 12.024589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.23,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "accompaniment"
+    },
+    {
+      "time": 12.399589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.96,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 12.587089658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.24,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "accompaniment"
+    },
+    {
+      "time": 12.774589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.68,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 13.149589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.63,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 13.524589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.18,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "accompaniment"
+    },
+    {
+      "time": 13.899589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.43,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 14.274589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.16,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "accompaniment"
+    },
+    {
+      "time": 14.649589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.65,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 15.024589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.18,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "accompaniment"
+    },
+    {
+      "time": 15.399589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.52,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 15.587089658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.14,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "accompaniment"
+    },
+    {
+      "time": 15.774589658023784,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.39,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 16.149589658023785,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.66,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "melody"
+    },
+    {
+      "time": 17.399589658023785,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.34,
+      "pan": -0.04,
+      "panTo": -0.04,
+      "role": "bridge"
+    },
+    {
+      "time": 19.481707360197817,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.27,
+      "pan": -0.04,
+      "panTo": -0.04,
+      "role": "bridge"
+    },
+    {
+      "time": 21.56382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.3,
+      "pan": -0.04,
+      "panTo": -0.04,
+      "role": "bridge"
+    },
+    {
+      "time": 22.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.65,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 22.95132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.19,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 23.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.5,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 23.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.78,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 23.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.21,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 24.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.56,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 24.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.17,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 25.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.64,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 25.57632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.18,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 25.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.46,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 26.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.52,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 26.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.63,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 26.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.21,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 27.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.8,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 27.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.23,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 28.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.61,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 28.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.48,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 28.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.16,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 29.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.43,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 29.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.61,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 29.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 30.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.56,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 30.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.17,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 31.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.47,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 31.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.56,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 32.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.16,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 32.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.61,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 33.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.68,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 33.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.19,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 34.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.51,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 34.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.44,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 35.32632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.14,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 35.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.55,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 35.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.17,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 36.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.56,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 37.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.65,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 37.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 37.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.7,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 38.32632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.15,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 38.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.51,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 39.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.44,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 39.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.15,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 40.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.58,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 40.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.18,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 40.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.55,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 40.95132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.18,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 41.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.45,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 41.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.64,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 41.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 42.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.69,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 42.82632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.17,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 43.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.6,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 43.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.52,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 43.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.76,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 44.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.22,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 44.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.59,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 44.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.18,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 45.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.56,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 45.45132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 45.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.5,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 46.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.69,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 46.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.21,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 46.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.82,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 47.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.24,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 47.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.65,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 47.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.5,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 48.07632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.17,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 48.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.46,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 48.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 49.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.62,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 49.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.18,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 49.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.73,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 49.95132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.22,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 50.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.61,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 50.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.68,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 50.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 51.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.57,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 51.82632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.17,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 52.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.87,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 52.20132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.25,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 52.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.64,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 52.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.57,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 53.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.54,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 53.32632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.19,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 53.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.79,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 54.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.69,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 54.45132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.22,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 54.82632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.5,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 55.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.17,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 55.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.48,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 55.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.66,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 56.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.21,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 56.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.74,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 56.70132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.23,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 56.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.53,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 57.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.16,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 57.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.46,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 58.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.18,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 58.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.61,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 58.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.58,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 59.32632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.15,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 59.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.53,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 61.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.67,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 61.57632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.17,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 62.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.49,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 63.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.57,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 63.82632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.15,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 64.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.46,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 65.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.58,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 66.07632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.16,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 67.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.5,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 67.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.63,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 67.95132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.19,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 68.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.5,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 68.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.76,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 69.07632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.18,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 69.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.57,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 70.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.61,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 70.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.19,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 70.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.45,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 71.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.53,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 71.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.66,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 71.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 72.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.62,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 72.45132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.22,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 72.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.54,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 73.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.81,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 73.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.22,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 73.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.63,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 74.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.19,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 74.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.55,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 74.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.58,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 75.07632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.18,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 75.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.72,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 75.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.22,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 76.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.85,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 76.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.24,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 76.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.72,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 76.95132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.24,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 77.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.6,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 77.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.94,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 77.79507506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.26,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 78.07632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.66,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 78.35757506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 78.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.56,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 79.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.77,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 79.20132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.25,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 79.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.69,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 79.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.72,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 80.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.22,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 80.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.57,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 80.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.18,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 81.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.91,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 81.45132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.26,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 81.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.67,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 82.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.6,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 82.20132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.19,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 82.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.49,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 82.95132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.59,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 83.23257506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 83.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.78,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 83.70132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.24,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 83.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.66,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 84.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.71,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 84.54507506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 84.82632506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.54,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 85.20132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.17,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 85.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.49,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 85.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.67,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 85.95132506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 86.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.53,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 86.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 9,
+      "gain": 0.76,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 86.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.21,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 87.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.58,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 87.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.17,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 88.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.63,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 88.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.17,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 88.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.46,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 89.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.5,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 89.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.61,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 89.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.2,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 90.26382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.6,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 90.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.16,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 91.01382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.46,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 91.38882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.54,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 91.76382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.15,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 92.13882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 2,
+      "gain": 0.44,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 92.51382506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 4,
+      "gain": 0.58,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    },
+    {
+      "time": 92.88882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 7,
+      "gain": 0.14,
+      "pan": 0.32,
+      "panTo": 0.32,
+      "role": "coda-accompaniment"
+    },
+    {
+      "time": 93.63882506237185,
+      "kind": "leafTouch",
+      "duration": 0.95,
+      "pitch": 0,
+      "gain": 0.62,
+      "pan": -0.08,
+      "panTo": -0.08,
+      "role": "coda"
+    }
+  ]
+}

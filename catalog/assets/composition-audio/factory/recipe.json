@@ -1,0 +1,1250 @@
+{
+  "duration": 8,
+  "recipes": [
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:angry:5.24",
+        "type": "angry",
+        "clip": "angry",
+        "start": 5.24,
+        "duration": 1.2,
+        "gain": 0.41759999999999997,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow-soft",
+        "start": 5.2,
+        "duration": 0.5499999999999999,
+        "gain": 0.44639999999999996,
+        "pitch": 1.04
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow-soft",
+        "start": 5.2,
+        "duration": 0.5777777777777777,
+        "gain": 0.432,
+        "pitch": 0.99
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow",
+        "start": 5.2,
+        "duration": 0.5499999999999999,
+        "gain": 0.4752,
+        "pitch": 1.04
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow-bright",
+        "start": 5.2,
+        "duration": 0.572,
+        "gain": 0.432,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow-low",
+        "start": 5.2,
+        "duration": 0.5836734693877551,
+        "gain": 0.4608,
+        "pitch": 0.98
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow-bright",
+        "start": 5.2,
+        "duration": 0.5777777777777777,
+        "gain": 0.4608,
+        "pitch": 0.99
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow-bright",
+        "start": 5.2,
+        "duration": 0.5447619047619047,
+        "gain": 0.4392,
+        "pitch": 1.05
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow",
+        "start": 5.2,
+        "duration": 0.572,
+        "gain": 0.48960000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow-low",
+        "start": 5.2,
+        "duration": 0.5499999999999999,
+        "gain": 0.44639999999999996,
+        "pitch": 1.04
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow-bright",
+        "start": 5.2,
+        "duration": 0.5296296296296296,
+        "gain": 0.432,
+        "pitch": 1.08
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow",
+        "start": 5.2,
+        "duration": 0.5345794392523364,
+        "gain": 0.46799999999999997,
+        "pitch": 1.07
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow-low",
+        "start": 5.2,
+        "duration": 0.572,
+        "gain": 0.44639999999999996,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:pump:3.35",
+        "type": "pump",
+        "clip": "brew",
+        "start": 3.35,
+        "duration": 1.2,
+        "gain": 0.07776,
+        "pitch": 1
+      },
+      {
+        "key": "0:steam:4.2",
+        "type": "steam",
+        "clip": "steam",
+        "start": 4.2,
+        "duration": 1,
+        "gain": 0.07452,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow-low",
+        "start": 5.2,
+        "duration": 0.5396226415094338,
+        "gain": 0.4608,
+        "pitch": 1.06
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ],
+    [
+      {
+        "key": "0:bean:0.68",
+        "type": "bean",
+        "clip": "beans",
+        "start": 0.68,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:grind:0.98",
+        "type": "grind",
+        "clip": "grind",
+        "start": 0.98,
+        "duration": 1.42,
+        "gain": 0.09072000000000002,
+        "pitch": 1
+      },
+      {
+        "key": "0:latch:3.08",
+        "type": "latch",
+        "clip": "latch",
+        "start": 3.08,
+        "duration": 0.27,
+        "gain": 0.07128,
+        "pitch": 1
+      },
+      {
+        "key": "0:fault:3.4",
+        "type": "fault",
+        "clip": "latch",
+        "start": 3.4,
+        "duration": 0.27,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:fault:4.25",
+        "type": "fault",
+        "clip": "latch",
+        "start": 4.25,
+        "duration": 0.27,
+        "gain": 0.04536000000000001,
+        "pitch": 1
+      },
+      {
+        "key": "0:meow:5.2",
+        "type": "meow",
+        "clip": "meow-white",
+        "start": 5.2,
+        "duration": 0.5836734693877551,
+        "gain": 0.3096,
+        "pitch": 0.98
+      },
+      {
+        "key": "0:latch:5.8",
+        "type": "latch",
+        "clip": "latch",
+        "start": 5.8,
+        "duration": 0.27,
+        "gain": 0.051840000000000004,
+        "pitch": 1
+      },
+      {
+        "key": "0:bean:5.88",
+        "type": "bean",
+        "clip": "beans",
+        "start": 5.88,
+        "duration": 0.42,
+        "gain": 0.05832,
+        "pitch": 1
+      },
+      {
+        "key": "0:land:7.27",
+        "type": "land",
+        "clip": "land",
+        "start": 7.27,
+        "duration": 0.18,
+        "gain": 0.05832,
+        "pitch": 1
+      }
+    ]
+  ]
+}

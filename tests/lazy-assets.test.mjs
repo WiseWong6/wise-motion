@@ -7,6 +7,23 @@ import {environment, data} from './helpers.mjs';
 const heavy = ['effects/civilization-images.js', 'effects/rasengan-illustrations.js', 'effects/civilization-growth.js', 'remotion-sources.js',...data.effects.filter(e=>e.scene).flatMap(e=>[e.source.path,...(e.source.dependencies||[])]).map(f=>f.replace(/^catalog\//,''))];
 const effect = id => data.effects.find(item => item.id === id);
 
+test('较大的绘制文件仅在对应条目需要时载入，并行请求只执行一次',async()=>{
+  const page=await environment(true,{staticPreview:true,lazyAssets:true});
+  try {
+    const {w}=page;
+    const files=['letter-settle','hud-targeting','data-motion','osmanthus-motion','settle-grow-spread','history-nature','claude-tile-illustrations','motion-oasis','material-evolution'].map(name=>'effects/'+name+'.js');
+    assert.deepEqual(page.lazyRequests,[]);
+    for(const file of files){
+      const entry=data.effects.find(item=>item.source.path==='catalog/'+file);
+      assert.ok(entry,file);
+      assert.equal(w.MotionFactories[entry.source.factory],undefined,file);
+      await Promise.all([w.MotionLazy.ensure(entry),w.MotionLazy.ensure(entry)]);
+      assert.equal(typeof w.MotionFactories[entry.source.factory],'function',entry.id);
+      assert.equal(page.lazyRequests.filter(request=>request===file).length,1);
+    }
+  }finally{page.close();}
+});
+
 test('浏览和复制提示词不加载完整源码表，打开需要它的代码页签才加载一次', async () => {
   const page = await environment(true, {staticPreview: true, lazyAssets: true});
   try {
