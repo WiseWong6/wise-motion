@@ -6,9 +6,48 @@
 目录有 288 个单个动作、90 个插画单图、40 个组合片段，共 418 项；数量由目录定义自动生成，详见 [目录统计](CATALOG-STATS.md)。
 <!-- catalog-counts:end -->
 
-## 精选组合
+## 精选动效
 
-以下关键帧直接取自现有源码的渲染结果。每个组合都包含连续的动作衔接；点击图片查看动作说明与源码入口，完整播放请在本地打开 [动效目录](catalog/index.html)。
+从单个动作、组合片段和插画单图中分别精选代表作品。以下关键帧直接取自现有源码的渲染结果；点击图片查看条目说明与源码入口，完整播放请在本地打开 [动效目录](catalog/index.html)。
+
+### 单个动作
+
+聚焦一个可复用的运动关系，按需接入自己的画面。
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="references/effects/thread-weave.md"><img src="docs/previews/thread-weave.webp" alt="双路牵丝织形：两枚银梭沿针点穿行，连续羽丝逐束织成形体" width="640"></a>
+      <br><strong>双路牵丝织形</strong>
+      <br>双梭牵线穿行，羽丝逐束织出，完成的形体持续保留。
+      <br><sub>关键帧 15.15 秒</sub>
+    </td>
+    <td width="50%" valign="top">
+      <a href="references/effects/generative-point-morph.md"><img src="docs/previews/generative-point-morph.webp" alt="点阵连续换形：同一批点在旋转中从球体变为环面" width="640"></a>
+      <br><strong>点阵连续换形</strong>
+      <br>同一批点连续变为球体、环面与波场，旋转和透视同步变化。
+      <br><sub>关键帧 3.65 秒</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="references/effects/card-conveyor.md"><img src="docs/previews/card-conveyor.webp" alt="斜向双向滚动：多条斜向卡片带铺满画面，上下分组反向运动" width="640"></a>
+      <br><strong>斜向双向滚动</strong>
+      <br>八条卡片带斜向铺展，上下分组反向连续滚动。
+      <br><sub>关键帧 1.90 秒</sub>
+    </td>
+    <td width="50%" valign="top">
+      <a href="references/effects/capsule-impact-scatter.md"><img src="docs/previews/capsule-impact-scatter.webp" alt="碰撞掀起胶囊：银球撞入彩色胶囊地面，周围胶囊翻转飞散" width="640"></a>
+      <br><strong>碰撞掀起胶囊</strong>
+      <br>银球碰撞带动胶囊翻飞、回落，提亮波向外扩散。
+      <br><sub>关键帧 0.90 秒</sub>
+    </td>
+  </tr>
+</table>
+
+### 组合片段
+
+多个动作在同一时间线中接续、配合，形成完整片段。
 
 <table>
   <tr>
@@ -51,6 +90,41 @@
       <br><strong>薪火生长与文明聚字</strong>
       <br>草楷火字变换 → 种子、植物与花依次生长 → 文明群像散成粒子聚字。
       <br><sub>关键帧 14.20 秒 · 全长 18.60 秒</sub>
+    </td>
+  </tr>
+</table>
+
+### 插画单图
+
+独立取用完整主体，保留它自带的局部动作、材质和光效。
+
+<table>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="references/effects/butterfly-illustration.md"><img src="docs/previews/butterfly-illustration.webp" alt="版画蝴蝶：蓝色版画纹理的四翼蝴蝶围绕翼根开合" width="640"></a>
+      <br><strong>版画蝴蝶</strong>
+      <br>四翼错拍开合，触角随振翅弯曲，身体轻浮。
+      <br><sub>关键帧 1.10 秒</sub>
+    </td>
+    <td width="50%" valign="top">
+      <a href="references/effects/drive-car-illustration.md"><img src="docs/previews/drive-car-illustration.webp" alt="小葵敞篷车：小猫驾驶蓝色敞篷车，保留车身与车轮完整造型" width="640"></a>
+      <br><strong>小葵敞篷车</strong>
+      <br>车轮随行程转动，方向盘轻摆，车身微微起伏。
+      <br><sub>关键帧 1.65 秒</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="references/effects/moon-card-illustration.md"><img src="docs/previews/moon-card-illustration.webp" alt="月相照片卡：米白卡片包围深蓝背景上的月面与环形山" width="640"></a>
+      <br><strong>月相照片卡</strong>
+      <br>纸卡落位，保留月面、环形山与月相暗部。
+      <br><sub>关键帧 2.90 秒</sub>
+    </td>
+    <td width="50%" valign="top">
+      <a href="references/effects/rasengan-illustration.md"><img src="docs/previews/rasengan-illustration.webp" alt="蓝色能量球：细蓝流线与亮芯围绕球体缠绕" width="640"></a>
+      <br><strong>蓝色能量球</strong>
+      <br>细蓝流线沿球涡轨迹缠绕，亮芯与线身共同形成球形。
+      <br><sub>关键帧 2.60 秒</sub>
     </td>
   </tr>
 </table>
