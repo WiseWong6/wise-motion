@@ -71,6 +71,89 @@ function mediaStub(w){
 }
 function close(env){env.w.MotionThumbs?.disposeAll();env.close();}
 
+test('切换目录页签、分类与搜索后复用已完成缩略图，不再次绘制或显示加载提示',async()=>{
+  const env=await environment(true,{staticPreview:true});
+  try{
+    const {w}=env,d=w.document,original=w.MotionFactories['scale-in'];let draws=0;
+    w.MotionFactories['scale-in']=(...args)=>{draws++;return original(...args);};
+    const first=d.querySelector('[data-effect="scale-in"] .thumb');
+    const observer=env.observers.find(item=>item.nodes.has(first));
+    observer.callback([{target:first,isIntersecting:true}]);await w.MotionThumbs.whenIdle();
+    const stage=first.querySelector('.motion-stage');assert.equal(draws,1);
+    function restored(){
+      const host=d.querySelector('[data-effect="scale-in"] .thumb');
+      assert.notEqual(host,first);assert.equal(host.querySelector('.motion-stage'),stage);
+      assert.equal(host.querySelector('.thumb-loading'),null);assert.equal(host.dataset.previewState,'ready');
+      observer.callback([{target:host,isIntersecting:true}]);assert.equal(draws,1);
+    }
+    for(const kind of ['composition','illustration']){
+      d.querySelector(`[data-kind="${kind}"]`).click();assert.equal(first.childElementCount,0);
+      d.querySelector('[data-kind="action"]').click();restored();
+    }
+    const category=d.getElementById('category-filter');category.value='continuous';category.dispatchEvent(new w.Event('change'));
+    assert.equal(d.querySelector('[data-effect="scale-in"]'),null);
+    category.value='all';category.dispatchEvent(new w.Event('change'));restored();
+    const search=d.getElementById('search');search.value='__不存在的参考__';search.dispatchEvent(new w.Event('input'));
+    await new Promise(resolve=>setTimeout(resolve,160));assert.equal(d.querySelector('[data-effect="scale-in"]'),null);
+    d.getElementById('search-clear').click();restored();
+    assert.equal(w.MotionRuntime.instanceCount,1);assert.equal(w.MotionRuntime.runningCount,0);assert.equal(env.listeners.size,3);
+  }finally{close(env);}
+});
+
+test('缓存保留原画布并按新卡片尺寸缩放，同一标识的不同定义不会共用画面',async()=>{
+  const env=await environment();
+  try{
+    const {w}=env;w.IntersectionObserver=undefined;await load(env,'thumbnails.js');
+    const effect={id:'cached-canvas',duration_ms:1000,preview_ms:640,default_ease:'linear'};
+    let draws=0,destroyed=0;
+    const factory=stage=>{
+      const canvas=w.document.createElement('canvas');canvas.width=640;canvas.height=360;stage.append(canvas);
+      const draw=time=>{draws++;canvas.dataset.time=String(time);};draw.ready=Promise.resolve();
+      draw.destroy=preserve=>{destroyed++;assert.equal(preserve,true);assert.ok(canvas.isConnected);};
+      return draw;
+    };
+    factory.requiresPreparation=true;w.MotionFactories[effect.id]=factory;
+    const first=w.document.createElement('span');first.className='thumb';first.getBoundingClientRect=()=>({width:160,height:90});
+    w.document.body.append(first);w.MotionThumbs.attach(first,effect);await w.MotionThumbs.whenIdle();
+    const stage=first.querySelector('.motion-stage'),canvas=stage.querySelector('canvas');
+    assert.equal(draws,1);assert.equal(destroyed,1);w.MotionThumbs.release(first);
+    assert.equal(first.childElementCount,0);assert.equal(canvas.width,640);assert.equal(canvas.height,360);
+    const next=w.document.createElement('span');next.className='thumb';next.getBoundingClientRect=()=>({width:128,height:72});
+    w.MotionThumbs.attach(next,effect);w.document.body.append(next);await w.MotionThumbs.whenIdle();
+    assert.equal(next.querySelector('canvas'),canvas);assert.equal(canvas.dataset.time,'640');
+    assert.match(stage.style.transform,/scale\(0\.2\)/);assert.equal(draws,1);assert.equal(destroyed,1);
+    assert.equal(next.querySelector('.thumb-loading'),null);
+    w.MotionThumbs.release(next);
+    w.MotionThumbs.attach(next,{...effect,preview_ms:720});await w.MotionThumbs.whenIdle();
+    assert.notEqual(next.querySelector('canvas'),canvas);assert.equal(next.querySelector('canvas').dataset.time,'720');
+    assert.equal(draws,2);assert.equal(destroyed,2);assert.equal(w.MotionRuntime.instanceCount,0);
+  }finally{close(env);}
+});
+
+test('离开列表的缓存最多保留128张，淘汰久未使用的画面，完整释放后重新绘制',async()=>{
+  const env=await environment();
+  try{
+    const {w}=env;w.IntersectionObserver=undefined;await load(env,'thumbnails.js');
+    const draws=new Map();
+    w.MotionFactories['cache-budget']=stage=>()=>{
+      draws.set(stage.dataset.effect,(draws.get(stage.dataset.effect)||0)+1);
+    };
+    const effects=Array.from({length:129},(_,i)=>({id:'cache-budget-'+i,source:{factory:'cache-budget'},duration_ms:1000,preview_ms:640}));
+    const node=w.document.createElement('span');w.document.body.append(node);
+    async function visit(effect){w.MotionThumbs.attach(node,effect);await w.MotionThumbs.whenIdle();w.MotionThumbs.release(node);}
+    // 先填满缓存，再复用最早的一张；新条目应淘汰其次久未使用的画面。
+    for(const effect of effects.slice(0,128))await visit(effect);
+    await visit(effects[0]);assert.equal(draws.get(effects[0].id),1);
+    await visit(effects[128]);await visit(effects[0]);assert.equal(draws.get(effects[0].id),1);
+    await visit(effects[1]);assert.equal(draws.get(effects[1].id),2);
+    await visit(effects[128]);assert.equal(draws.get(effects[128].id),1);
+    w.dispatchEvent(new w.Event('pagehide'));w.dispatchEvent(new w.Event('pageshow'));
+    await visit(effects[128]);assert.equal(draws.get(effects[128].id),2,'离开页面须清空未显示的缓存');
+    w.MotionThumbs.disposeAll();await visit(effects[128]);assert.equal(draws.get(effects[128].id),3);
+    assert.equal(w.MotionRuntime.instanceCount,0);assert.equal(env.listeners.size,0);
+  }finally{close(env);}
+});
+
 test('历史左栏全部接入对应原作缩略图，静态单帧与原片定位不增加播放器',async()=>{
   const env=await environment(true,{staticPreview:true,historyFixture:true});
   try{

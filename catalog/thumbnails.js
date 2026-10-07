@@ -8,6 +8,8 @@
   const painted = new WeakSet();
   const pending = new WeakMap();
   const states = new Map();
+  // 只保留已完成、已释放绘制器的静帧；移走原节点，避免复制画布时丢失画面。
+  const frames = new Map(), frameLimit = 128;
   let queue = Promise.resolve(), suspended = false, resume = [];
   /* 和主预览共用完整 16:9 画板，不放大裁掉卡片底部。 */
   let observer = null;
@@ -149,7 +151,10 @@
         observer.unobserve(entry.target);
         const target = pending.get(entry.target);
         pending.delete(entry.target);
-        if (target) paint(entry.target, target);
+        if (target) {
+          if(painted.has(entry.target))frame(entry.target);
+          else paint(entry.target, target);
+        }
       }
     }, {root:document.getElementById('effects-list'),rootMargin:'320px 0px'});
     observer.observe(host);
@@ -170,15 +175,22 @@
   }
   global.addEventListener('resize', resize);
 
-  function release(host){
+  function release(host,keepFrame=true){
     if(!host)return;
     observer?.unobserve(host);
     const state=states.get(host);
+    const stage=keepFrame&&state&&!state.cleanup.length&&host.dataset.previewState==='ready'
+      ?host.querySelector('.motion-stage'):null;
     if(state){state.active=false;state.cleanup.forEach(fn=>fn());states.delete(host);}
+    if(stage){
+      // 使用原定义区分不同示例与参数；最近使用的画面排在末尾。
+      frames.delete(state.effect);frames.set(state.effect,stage);
+      while(frames.size>frameLimit)frames.delete(frames.keys().next().value);
+    }
     pending.delete(host);painted.delete(host);host.replaceChildren();host.removeAttribute('title');delete host.dataset.previewState;
   }
   function disposeAll(){
-    [...states.keys()].forEach(release);observer?.disconnect();
+    [...states.keys()].forEach(host=>release(host,false));frames.clear();observer?.disconnect();
     if(resizeFrame){global.cancelAnimationFrame(resizeFrame);resizeFrame=0;}
   }
   global.addEventListener('pagehide',()=>{
@@ -196,6 +208,14 @@
       if (!host) return;
       if(states.has(host))release(host);
       const state={effect,active:true,cleanup:[]};states.set(host,state);
+      const stage=frames.get(effect);
+      if(stage){
+        frames.delete(effect);host.prepend(stage);painted.add(host);host.dataset.previewState='ready';
+        // 卡片先登记再插入列表，插入完成后按新列宽测量，复用时不显示加载提示。
+        Promise.resolve().then(()=>{if(current(host,state))frame(host);});
+        if(supported)watch(host,effect);
+        return;
+      }
       loading(host);
       if(supported)watch(host,effect);
       else Promise.resolve().then(()=>{
@@ -203,7 +223,7 @@
         if(current(host,state)){paint(host,effect);resize();}
       });
     },
-    /* 卡片从列表移除时交还缩略图，避免长期持有场景 DOM。 */
+    /* 卡片移除时取消未完成任务，已完成画面最多保留 128 张供页签和筛选复用。 */
     release,
     disposeAll,
     whenIdle:async()=>{
