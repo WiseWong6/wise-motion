@@ -4,7 +4,7 @@ import {readFile} from 'node:fs/promises';
 import {resolveEffect} from '../remotion/clock.mjs';
 const root=new URL('../',import.meta.url);
 const quickstart=await readFile(new URL('references/quickstart.md',root),'utf8');
-const table=quickstart.split('## 按镜头用途速选')[1].split('\n## ')[0];
+const table=quickstart.split('## 按动作用途速选')[1].split('\n## ')[0];
 const tableRows=table.split('\n').filter(line=>line.startsWith('|')).join('\n');
 const ids=[...new Set([...tableRows.matchAll(/`([a-z][a-z0-9-]+)`/g)].map(m=>m[1]))];
 const plain=new Set(['word-slam','type-reveal','title-content','title-stagger','fade-rise','stagger-in','word-focus','dim-focus','focus-zoom','count-up','bar-growth','benchmark-columns','terminal-code','live-code-readout','staged-build','experience-progress','timeline-progress','interface-feedback','button-press-status']);

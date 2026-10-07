@@ -1,71 +1,51 @@
 # Wise Motion
 
-把想法、字幕或已有画面转成动效参考、设计方案和可播放作品。可以从本地目录选动作、换内容、改良组合，也可以按表达需要原创；交付范围由你的请求决定。
+理解动作需求，拆解并匹配参考，交付现有源码与接入说明。字幕、分镜、配色和整片组合由调用方的 AI 自行设计；文字动效、转场、插画和组合均可按需取用。
 
-## 浏览动效
+## 浏览与使用
 
-直接打开 [动效目录](catalog/index.html)，无需安装依赖或启动服务器。
+直接打开 [动效目录](catalog/index.html)，无需安装依赖或启动服务器。搜索或按分类选择条目，预览、调整参数，再复制提示词或源码。
 
 <!-- catalog-counts:start -->
 目录有 288 个单个动作、90 个插画单图、40 个组合片段，共 418 项；数量由目录定义自动生成，详见 [目录统计](CATALOG-STATS.md)。
 <!-- catalog-counts:end -->
 
-搜索或按分类选择条目，预览动作并调整节奏，再复制提示词或代码。组合可查看组成部分和相关动作；复制代码附带所需依赖、素材与运行说明。
-
-## 使用技能
-
-在工具的技能列表中选择 **Wise Motion**。Codex 可用 `$wise-motion`，Cursor 可用 `/wise-motion`。例如：
+在工具中明确选择 **Wise Motion**，例如：
 
 ```text
-$wise-motion 找两排卡片反向持续滚动的参考，不要停顿，说明选择理由并给出源码。
-
-$wise-motion 为“杂乱信息逐步形成清晰观点”设计一段动效，先给方案。
-
-$wise-motion 根据 /视频工程/字幕.txt 制作视频，保留字幕原句和时间，成片放到 /视频工程/renders。
+$wise-motion 找两排卡片反向持续滚动的参考，不要停顿，导出源码到我的工程。
+$wise-motion 找“标题先出现、卡片依次展开、最后转场”的参考，分别说明覆盖与缺口。
 ```
 
-只要参考时交付选择理由和源码位置；需要制作时，先明确画面变化，再逐项实现和检查。新动效默认使用 Remotion，修改已有工程时沿用原技术与时间表。
+全局入口直接链接到技能实际源码：共享入口 `~/.agents/skills/wise-motion`，Codex 入口 `~/.codex/skills/wise-motion`，ZCode 入口 `~/.zcode/skills/wise-motion`。保持仅手动调用；已有入口先核对指向。
 
-全局使用时，让安装入口直接链接到技能实际目录：共享入口为 `~/.agents/skills/wise-motion`，Codex 为 `~/.codex/skills/wise-motion`，ZCode 为 `~/.zcode/skills/wise-motion`。已有入口先核对指向；安装后刷新技能列表或新开会话。
+## 检索与源码导出
 
-## 环境与常用命令
-
-以下命令从技能实际目录执行。检索、查看和分镜计划只需 Node.js；制作与导出的版本要求见 [package.json](package.json)。
+以下用 `<技能目录>` 表示安装入口解析后的实际目录，可从任意工作目录运行。检索、查看、导出只需 Node.js；版本要求见 [package.json](package.json)。
 
 ```sh
-node scripts/match.mjs "卡片依次上移显现，落位后保留，不要弹跳"
-node scripts/show.mjs stagger-in
+node "<技能目录>/scripts/match.mjs" "卡片依次上移显现，落位后保留，不要弹跳"
+node "<技能目录>/scripts/show.mjs" stagger-in
+node "<技能目录>/scripts/export.mjs" stagger-in --out-dir "/目标工程/卡片动作"
 ```
 
-导出单个目录动效前安装项目依赖并构建：
+`show` 默认提供简短接入信息，加 `--details` 查看动作阶段与内容限制。`export` 支持 `--variant <样式编号>`，与目录“复制源码”共用生成逻辑；可写入现有目录，任一目标文件已存在时整批停止，不覆盖文件。
+
+已有独立工程的条目导出全部工程文件；普通条目导出组件接入示例和说明，运行前需安装共享组件包并准备素材。依赖不会自动安装，源码写入文件后返回绝对路径。见 [快速上手](references/quickstart.md) 和 [组件说明](REMOTION.md)。
+
+## 播放与渲染
+
+现有播放器、声音、渲染能力继续保留。需要导出单个动效视频时，在技能目录准备依赖后执行：
 
 ```sh
 npm ci
 npm run build
-npm run render -- stagger-in stagger-in.mp4
+WISE_MOTION_RENDER_DIR="/目标工程/renders" npm run render -- stagger-in stagger-in.mp4
 ```
 
-默认成片保存在相对技能目录的 `../../state/wise-motion/renders/`。要导出到自己的视频工程，指定产物目录：
+视频渲染使用 Remotion 临时服务；本地目录可直接打开。文件名或绝对输出路径必须位于指定产物目录内。
 
-```sh
-WISE_MOTION_RENDER_DIR="/视频工程绝对路径/renders" npm run render -- stagger-in stagger-in.mp4
-```
-
-文件名或绝对路径都必须位于指定产物目录内。视频导出使用 Remotion 临时服务；本地目录仍可直接打开。
-
-制作多镜头视频见 [分镜快速上手](references/quickstart.md)。复用组件、替换内容及安装字体图片见 [Remotion 使用说明](REMOTION.md)。
-
-## 详细说明
-
-| 需要做什么 | 文档 |
-| --- | --- |
-| 让代理执行任务 | [技能说明](SKILL.md) |
-| 理解需求、选参考或设计新动作 | [导演设计方法](references/director-design.md) |
-| 逐项制作、合成与交付 | [阶段制作方法](references/pipeline-methodology.md) |
-| 核对实现与成片 | [验证矩阵](references/validation-matrix.md) |
-| 修改目录、分类或收录条目 | [目录维护](references/catalog-maintenance.md) |
-
-维护目录后运行 `npm run check` 并执行受影响的测试；`npm test` 包含历史迁移检查，需要本地私有历史档案。浏览器体验按 [人工验收步骤](tests/manual.md) 核对。
+维护目录后运行 `npm run check`、`python3 scripts/verify_project_skills.py` 及受影响测试。`npm test` 还包含历史迁移检查，需本地私有档案。技术核对见 [验证矩阵](references/validation-matrix.md)，人工播放见 [验收步骤](tests/manual.md)，目录维护见 [维护说明](references/catalog-maintenance.md)。
 
 ## 许可
 
