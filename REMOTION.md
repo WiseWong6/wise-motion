@@ -55,7 +55,7 @@ node node_modules/wise-motion-remotion/scripts/install-assets.mjs public/wise-mo
 
 数字格式 `integer` 为整数（小数位须为 0），`decimal` 固定小数位，`thousands` 加英文千分位，`compact` 使用 K/M/B/T。内容对象不接受未登记字段、换行和控制字符。不支持的动效传入非空内容会报错，不会静默忽略。内容槽没有通用字体或颜色参数；中文使用包内思源黑体，纯英文/数字使用 Oswald，罕见字符另行核对。
 
-分镜中将同一个内容对象填入 `effect.content`，`plan.mjs check` 验证后由 `build` 传给组件。`show.mjs <id> --variant <样式 id>` 列出当前样式的默认值、限制和真实绘制路径。实现分类按 [导演设计方法](references/director-design.md) 判断；独立修改的组件按 [快速上手](references/quickstart.md) 接入分镜。
+用 `show.mjs <id> --variant <样式 id> --details` 查看当前样式的内容默认值、限制和真实绘制路径；通过组件 `content` 传入即可。`export.mjs` 写出目录复制功能提供的工程或组件示例，见 [快速上手](references/quickstart.md)。
 
 素材安装在 `.wise-motion-assets.json` 记录已装文件。重装前检查全部文件，发现本地改动会停止，防止静默覆盖；明确需要替换这些改动时才使用 `--overwrite`。配置放在项目源码或计划里，与公共素材分开保存。
 

@@ -2,7 +2,7 @@
   "name": "wise-motion-remotion",
   "version": "0.1.3",
   "private": true,
-  "description": "理解意图，设计动效，参考改良与发散组合，并按请求制作",
+  "description": "理解动作需求，匹配动效参考，交付源码与接入说明",
   "license": "AGPL-3.0-only",
   "engines": {
     "node": "^24.15.0 || >=26"

@@ -32,14 +32,12 @@ EXPECTED_BLOBS = {
     "references/twelve-principles.md": "bbb18fe61555cc8a042073bf0fffcb58aab69e07",
 }
 EXPECTED_OVERLAY = ["agents/openai.yaml"]
-DIRECTOR_FILES = {
-    "SKILL.md", "README.md", "agents/openai.yaml",
-    "assets/wise-video.json", "references/method.md", "references/index.md",
-    "references/director-design.md", "references/catalog-maintenance.md", "references/pipeline-methodology.md",
-    "references/remotion-production.md", "references/runtime-interface.md",
-    "references/production-contract.md", "references/narrated-tutorial-review.md",
-    "references/validation-matrix.md", "references/wise-motion-dna.md",
-    "scripts/verify_project_skills.py", "scripts/wise_video_contract.py",
+REQUIRED_FILES = {
+    "SKILL.md", "README.md", "agents/openai.yaml", "REMOTION.md",
+    "references/method.md", "references/index.md", "references/quickstart.md",
+    "references/catalog-maintenance.md", "references/remotion-production.md",
+    "references/runtime-interface.md", "references/validation-matrix.md",
+    "scripts/verify_project_skills.py", "scripts/match.mjs", "scripts/show.mjs", "scripts/export.mjs",
 }
 
 def git_blob_sha(path: Path) -> str:
@@ -152,7 +150,7 @@ def verify(repo_root: Path) -> tuple[list[str], list[str]]:
     motion_root = Path(__file__).resolve().parent.parent
     if not (motion_root / ".git").exists():
         errors.append(f"统一技能根不是当前 Git 仓库：{motion_root}")
-    missing = sorted(name for name in DIRECTOR_FILES if not (motion_root / name).is_file())
+    missing = sorted(name for name in REQUIRED_FILES if not (motion_root / name).is_file())
     if missing:
         errors.append(f"Wise Motion 缺少文件：{', '.join(missing)}")
     policy_value(motion_root / "agents/openai.yaml", False, errors)
@@ -161,22 +159,22 @@ def verify(repo_root: Path) -> tuple[list[str], list[str]]:
         frontmatter = re.match(r"\A---\s*\n(.*?)\n---(?:\n|$)", instructions, re.S)
         if not frontmatter or not re.search(r"(?m)^name:\s*wise-motion\s*$", frontmatter[1]):
             errors.append("统一技能的 frontmatter 名称必须是 wise-motion")
-        required_guides = {name for name in DIRECTOR_FILES if name.startswith("references/")}
+        required_guides = {name for name in REQUIRED_FILES if name.startswith("references/")}
         linked_guides = set(re.findall(r"\]\((references/[^)#]+)(?:#[^)]*)?\)", instructions))
         for name in sorted(required_guides - linked_guides):
             errors.append(f"统一技能没有提供必需资料的读取入口：{name}")
     except OSError as exc:
         errors.append(f"无法读取统一技能：{exc}")
-    for relative in DIRECTOR_FILES:
+    for relative in REQUIRED_FILES:
         if not relative.endswith(".md") or not (motion_root / relative).is_file():
             continue
         file = motion_root / relative
         for link in re.findall(r"\]\(([^)]+)\)", file.read_text(encoding="utf-8")):
             if re.match(r"^(?:https?://|#)", link):
                 continue
-            if not (file.parent / link).is_file():
+            if not (file.parent / link.split("#", 1)[0]).is_file():
                 errors.append(f"{relative} 的链接失效：{link}")
-    notes.append(f"统一 Wise Motion 必需文件数：{len(DIRECTOR_FILES)}；仅手动调用")
+    notes.append(f"统一 Wise Motion 必需文件数：{len(REQUIRED_FILES)}；仅手动调用")
 
     if repo_root != motion_root:
         skill_root = repo_root / ".agents/skills"

@@ -81,7 +81,7 @@
     if(effect.source.remotion)return remotionSource(effect,settings);
     return catalogCode(effect,settings);
   }
-  function remotionSource(effect,settings){
+  function remotionProjectFiles(effect,settings){
     const spec=effect.source.remotion,speed=Math.min(2,Math.max(.5,Number(settings.speed)||1));
     const files=Object.fromEntries(spec.files.map(file=>{
       const content=global.MotionRemotionSources?.[file];
@@ -101,6 +101,10 @@ registerRoot(Root);
 `;
     files['README.md']='# '+effect.name+'\n\n运行 npm install，再运行 npm run studio 或 npm run render。\n\n画幅 '+spec.width+'×'+spec.height+'；每秒 '+spec.fps+' 帧；'+durationInFrames+' 帧。图形、材质与 Outfit Medium 矢量轮廓已内嵌；无外部图片、声音或运行时字体。保持原逻辑画板1066×600，改画幅时等比容纳。\n\n自有程序 AGPL-3.0-only，见 LICENSE；字形 SIL OFL 1.1，见 catalog/fonts/OFL-Outfit.txt。Remotion、React 等依赖遵循各自软件包附带许可。\n';
     if(spec.reuse_notes)files['README.md']='# '+effect.name+'\n\n运行 npm install，再运行 npm run studio 或 npm run render。\n\n画幅 '+spec.width+'×'+spec.height+'；每秒 '+spec.fps+' 帧；'+durationInFrames+' 帧。\n\n'+spec.reuse_notes+'\n';
+    return files;
+  }
+  function remotionSource(effect,settings){
+    const files=remotionProjectFiles(effect,settings);
     const lines=['# '+effect.name+' · Remotion 完整工程','','将以下文件按标题路径保存到同一空目录。'];
     for(const [file,content]of Object.entries(files)){
       const fence='`'.repeat(Math.max(3,...Array.from(content.matchAll(/`+/g),m=>m[0].length+1)));
@@ -217,7 +221,7 @@ window.addEventListener('pageshow',e=>{if(e.persisted&&player.destroyed)location
     effect=global.MotionKit.resolveVariant(effect,settings.variantId||effect.variant_id);
     if(settings.content!==undefined||effect.content!==undefined)effect=global.MotionContent.withContent(effect,settings.content===undefined?effect.content:settings.content);
     if(effect.source.remotion)return remotionSource(effect,settings);
-    const props={effectId:effect.id,speed:Math.min(2,Math.max(.5,Number(settings.speed)||1)),theme:document.documentElement.dataset.theme||'dark'};
+    const props={effectId:effect.id,speed:Math.min(2,Math.max(.5,Number(settings.speed)||1)),theme:settings.theme||global.document?.documentElement.dataset.theme||'dark'};
     if(effect.variant_id)props.variantId=effect.variant_id;
     if(effect.content)props.content=effect.content;
     if(effect.parameters.ease)props.ease=settings.ease||effect.default_ease;
@@ -253,5 +257,19 @@ export const Root = () => <Composition id="Effect" component={Effect}
   durationInFrames={meta.durationInFrames} />;
 `;
   }
-  global.MotionExport = {prompt, code, previewCode, remotionCode};
+  // 文件导出和浏览器复制共用原工程/组件生成器，不另写一套绘制或依赖打包逻辑。
+  function projectFiles(effect,settings={}){
+    if(effect.kind==='recipe')throw Error('历史配方不支持此导出入口；请选择正式目录条目。');
+    effect=global.MotionKit.resolveVariant(effect,settings.variantId||effect.variant_id);
+    if(settings.content!==undefined||effect.content!==undefined)effect=global.MotionContent.withContent(effect,settings.content===undefined?effect.content:settings.content);
+    if(effect.source.remotion)return {kind:'standalone',files:remotionProjectFiles(effect,settings)};
+    const usesGl=[effect.source.path,...(effect.source.dependencies||[])].includes('catalog/effects/metal-impact.js');
+    const files={
+      'src/Root.jsx':remotionCode(effect,settings),
+      'src/index.jsx':"import {registerRoot} from 'remotion';\nimport {Root} from './Root.jsx';\nregisterRoot(Root);\n",
+      'README.md':'# '+effect.name+'\n\n这是共享组件包的接入示例；运行前需准备包和素材。导出未安装依赖。'+(effect.variant_id?'\n样式：'+effect.variant_id+'（'+effect.variant_name+'）。':'')+'\n\n在 Wise Motion 源目录运行 `npm run build:remotion && npm pack`，将生成的 wise-motion-remotion-0.1.3.tgz 放到本目录；在本目录运行：\n\n```sh\nnpm install --save-exact ./wise-motion-remotion-0.1.3.tgz react@19.3.0 react-dom@19.3.0 remotion@4.0.532 @remotion/cli@4.0.532\nnode node_modules/wise-motion-remotion/scripts/install-assets.mjs public/wise-motion\nnpx remotion studio src/index.jsx\n# 渲染\nnpx remotion render src/index.jsx Effect output.mp4'+(usesGl?' --gl=angle':'')+'\n```\n\n源码入口与原素材路径见 src/Root.jsx 顶部注释；对应文件和许可均随共享包提供。修改 settings 可调整条目支持的内容、样式、速度与缓动；内容字段需符合该条目的接口。'+(effect.kind==='composition'&&effect.audio?.tracks?.length?'组合保留原声音，设置 includeAudio={false} 可关闭。':'')+'\n'
+    };
+    return {kind:'shared-package',files};
+  }
+  global.MotionExport = {prompt, code, previewCode, remotionCode, projectFiles};
 })(globalThis);
