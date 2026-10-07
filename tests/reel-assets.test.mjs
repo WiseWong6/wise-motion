@@ -157,6 +157,29 @@ test('蝴蝶动作与插画的缩略图等待全部图片解码后保留，缺�
   } finally {w.MotionThumbs?.disposeAll(); env.close();}
 });
 
+test('正式播放器重复载入蝴蝶后，插画和振翅缩略图仍读取目录内的原图', async () => {
+  const env = await environment(), {w} = env;
+  const script = w.document.createElement('script');
+  Object.defineProperty(w.document, 'currentScript', {get: () => script, configurable: true});
+  try {
+    w.eval(await readFile(new URL('../catalog/thumbnails.js', import.meta.url), 'utf8'));
+    // 使用正式构建的播放器，覆盖源码测试未执行的再次注册路径。
+    for (const file of ['catalog/effects/butterfly.js', 'catalog/remotion-player.js']) {
+      script.src = 'file:///wise-motion/' + file + '?revision=1';
+      w.eval(await readFile(new URL('../' + file, import.meta.url), 'utf8'));
+      for (const id of ['butterfly-illustration', 'hinged-wing-flap']) {
+        const host = w.document.createElement('div'); w.document.body.append(host);
+        w.MotionThumbs.attach(host, def(id)); env.reveal(); await w.MotionThumbs.whenIdle();
+        assert.equal(host.dataset.previewState, 'ready');
+        const images = [...host.querySelectorAll('img')];
+        assert.equal(images.length, 7);
+        for (const image of images) assert.equal(image.src, 'file:///wise-motion/catalog/assets/butterfly/wing-atlas.png', file + '：' + id);
+        w.MotionThumbs.release(host, false); host.remove();
+      }
+    }
+  } finally {w.MotionThumbs?.disposeAll(); env.close();}
+});
+
 test('逐翼换色、翼根显露与外部飞行姿态可倒序定位', async () => {
   const dom = await butterflyEnvironment();
   try {

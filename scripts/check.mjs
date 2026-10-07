@@ -13,10 +13,10 @@ assertLayerBuildCurrent();
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('catalog/registry.json'));
-assert.equal(data.effects.length, 418);
-assert.equal(data.effects.filter(x => x.kind === 'action').length, 288);
+assert.equal(data.effects.length, 420);
+assert.equal(data.effects.filter(x => x.kind === 'action').length, 289);
 assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 90);
-assert.equal(data.effects.filter(x => x.kind === 'composition').length, 40);
+assert.equal(data.effects.filter(x => x.kind === 'composition').length, 41);
 assert.equal(new Set(data.effects.map(x => x.id)).size, data.effects.length);
 for(const [from,to] of Object.entries(data.redirects||{})){
   assert.ok(!data.effects.some(e=>e.id===from),'旧书签不应覆盖现有条目');

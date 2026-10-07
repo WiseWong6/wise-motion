@@ -20,7 +20,7 @@ function trace(ctx){
  return ()=>({strokes,fills});
 }
 
-test('独立秋千的两根绳端连接座板左右侧边，定位及回看不漂移',async()=>{
+test('独立秋千空载竖直悬绳，连接座板左右侧边且定位及回看不漂移',async()=>{
  const env=await environment(),{w}=env,root=w.document.getElementById('root');let draw;
  try{
   const effect=data.effects.find(e=>e.id==='sunset-swing-illustration');
@@ -35,10 +35,13 @@ test('独立秋千的两根绳端连接座板左右侧边，定位及回看不�
     const end=strokes[index].at(-1);
     assert.ok(Math.hypot(end[0]-(a[0]+b[0])/2,end[1]-(a[1]+b[1])/2)<1e-8,'绳端必须落在座板侧边中点');
     assert.ok(strokes[index][0][1]<end[1],'绳索应从座板上方悬下');
+    assert.ok(strokes[index].every(([x])=>Math.abs(x-end[0])<1e-8),'空载插画的整根绳索应竖直，不带被握住后的斜拉');
+    const ropeLength=end[1]-strokes[index][0][1],seatWidth=frontRight[0]-frontLeft[0];
+    assert.ok(ropeLength/seatWidth>4&&ropeLength/seatWidth<5,'保留原片完整展开的绳长与座板宽度比例');
    }
    const points=[...strokes.flat(),...fills.flat()];
    assert.ok(points.every(([x,y])=>x>=0&&x<=900&&y>=0&&y<=1200),'完整秋千位于画板内');
-   assert.ok(Math.max(...points.map(p=>p[0]))-Math.min(...points.map(p=>p[0]))>650,'独立取景应放大完整秋千');
+   assert.ok(Math.max(...points.map(p=>p[1]))-Math.min(...points.map(p=>p[1]))>800,'独立取景应容纳并放大完整长绳与座板');
    const frame=JSON.stringify({strokes,fills});reference??=frame;assert.equal(frame,reference);
   }
   assert.equal(data.effects.some(e=>e.id==='sunset-character-illustration'),false);

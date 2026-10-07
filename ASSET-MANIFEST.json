@@ -987,6 +987,51 @@
       "sha256": "2cfd42cd0fde2b4643fcc6cac6d1543899f0513bbc776163372bd7e212352ef3"
     },
     {
+      "path": "catalog/assets/scene-sources/window/SOURCE.json",
+      "bytes": 3322,
+      "sha256": "98e2d0beec4fd8bed9ca30200219ea8c316b72df5beef562b90ba1cdab2b55da"
+    },
+    {
+      "path": "catalog/assets/scene-sources/window/assets/gold-flower/bloom-sheet.png",
+      "bytes": 925844,
+      "sha256": "c3b92116b8fe15a6c2a6c43add849ea934702e86e50bb1949e3e63b7f7a430dc"
+    },
+    {
+      "path": "catalog/assets/scene-sources/window/assets/seasonal-flowers/blue-hydrangea.png",
+      "bytes": 1264379,
+      "sha256": "3505ab507035a8cc70d6d4a437bcee8fa5947ad68d30d3ebf17c746abf5662c8"
+    },
+    {
+      "path": "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-chrysanthemum.png",
+      "bytes": 1584582,
+      "sha256": "ef50098531b0221306c06e2dc966cff7d857a4405fa46fa67ccca73e540291fb"
+    },
+    {
+      "path": "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-hydrangea.png",
+      "bytes": 1233529,
+      "sha256": "5dcc2ac7cc6437b8b1b0b691b08569353cbfd2ce54ea61eef9e5c6f92fcf94bf"
+    },
+    {
+      "path": "catalog/assets/scene-sources/window/assets/seasonal-flowers/orange-tulip-angles.png",
+      "bytes": 1497730,
+      "sha256": "444b1d20a499c42cb07e4a74179af326fb1c5ebd23f4f0d78ff01b2163b454ab"
+    },
+    {
+      "path": "catalog/assets/scene-sources/window/assets/seasonal-flowers/red-rose.png",
+      "bytes": 1431325,
+      "sha256": "172b287e133a7c570943f0382314a47f608aa347ecfd8546d5017aad1925e37f"
+    },
+    {
+      "path": "catalog/assets/scene-sources/window/assets/wood/bare-bark.png",
+      "bytes": 1860888,
+      "sha256": "1e2cea317d1682597101ebbc444a88a6a07e2b00ee655dbb1f98a644a2a591c5"
+    },
+    {
+      "path": "catalog/assets/scene-sources/window/assets/wood/walnut-window.png",
+      "bytes": 958397,
+      "sha256": "e4fca4c512e22a7a959e5f76e3eec791133394cbe79ab513c6a9e838819e86e1"
+    },
+    {
       "path": "catalog/assets/scene-sources/原作与迁入记录.json",
       "bytes": 23838,
       "sha256": "f508ead8bd2b84f3b9ca53448a6afb32d833549777d4750b035e169f0343e5e2"
@@ -1053,8 +1098,8 @@
     },
     {
       "path": "catalog/effects/butterfly.js",
-      "bytes": 7774,
-      "sha256": "566168504fc849f7bbb16e1e8197684cb6a9ee43cf67c0f359a7a5fb3c31185d"
+      "bytes": 7947,
+      "sha256": "c6ad260be2f9dbc9b534102ecce5519f29edc1e281a5234bd57d454966c57a07"
     },
     {
       "path": "catalog/effects/capsule-type.js",
@@ -1268,8 +1313,8 @@
     },
     {
       "path": "catalog/effects/rasengan-illustrations.js",
-      "bytes": 3412968,
-      "sha256": "d253b68ee69e5603805bcd548b6bbc277f8ee4d55ef1c2393bf7169e3dbd06a3"
+      "bytes": 3412987,
+      "sha256": "cc9e6bd821148e4f4e01fa87b7416af26c4fd1263e87c7fc73365979dfe348e3"
     },
     {
       "path": "catalog/effects/rect-wave-field.js",
@@ -1333,8 +1378,8 @@
     },
     {
       "path": "catalog/effects/scene-ink.js",
-      "bytes": 12420,
-      "sha256": "f14ca40c71281c50be749f4952512ec7428a50cd136aa8ce2b33675baa2cdd4c"
+      "bytes": 11935,
+      "sha256": "de0a00c4f145ee48f8cf68f4ffa1e4eef0eb156e283f2e009797ade72895a625"
     },
     {
       "path": "catalog/effects/scene-letter-images.js",
@@ -1343,13 +1388,13 @@
     },
     {
       "path": "catalog/effects/scene-letter.js",
-      "bytes": 74444,
-      "sha256": "1942d9ef3117103a9fa7b643f7a99dfe0a2bd6c37e1f486b9f288920dd0f1807"
+      "bytes": 74779,
+      "sha256": "85d6600e36b6f13a58857ec55f3f6bf90f2637858480c5aecd4feb5fe890c87e"
     },
     {
       "path": "catalog/effects/scene-ocean.js",
-      "bytes": 63790,
-      "sha256": "78d80164c1dea1f6d1cbe27f61a88e580a22f28d5fcf9c5dca237f1515f470a3"
+      "bytes": 63943,
+      "sha256": "7a579d25a737997df7ca279df55f4087ed1b3c4673958eeb1f415417a7bac264"
     },
     {
       "path": "catalog/effects/scene-osmanthus-data.js",
@@ -1368,8 +1413,8 @@
     },
     {
       "path": "catalog/effects/scene-selfie.js",
-      "bytes": 118954,
-      "sha256": "594feb7dab2097996a290b1bd4aab0f39eef51c1e34cf0a6c9a3b3c1f677306e"
+      "bytes": 118933,
+      "sha256": "b90efbef71393a00ad45fb23ba63acd2373f3cc56e51d2c99e41dd69bd8f3b8b"
     },
     {
       "path": "catalog/effects/scene-snow.js",
@@ -1380,6 +1425,21 @@
       "path": "catalog/effects/scene-source-runtime.js",
       "bytes": 8175,
       "sha256": "e691b24f8061f56388dcd10037208b888387977c8580307946dbec6238593c56"
+    },
+    {
+      "path": "catalog/effects/scene-window-data.js",
+      "bytes": 5192464,
+      "sha256": "73bb054ef661a39142d97249e529337f840956d2663a405a8df431f3a73e92f5"
+    },
+    {
+      "path": "catalog/effects/scene-window-media.js",
+      "bytes": 12292,
+      "sha256": "97d3b078a7752a8c717e8dcc12dbe635f7614028dc639935b0b57bfb9568109a"
+    },
+    {
+      "path": "catalog/effects/scene-window.js",
+      "bytes": 60243,
+      "sha256": "6e75c66a2c28f4daf2910b475b724f2a7bfa7bfd5009bfc5610e7e9876817d00"
     },
     {
       "path": "catalog/effects/seed-bloom-brand.js",
@@ -1513,8 +1573,8 @@
     },
     {
       "path": "catalog/lazy.js",
-      "bytes": 3257,
-      "sha256": "c3339b61eaea0cae7ef99606b9e8311517dc2bcacb883522ba56805661930a45"
+      "bytes": 3346,
+      "sha256": "f253f00d95a7c4a35342d1e22b16bbc671b97e428c7812e96cac7ca5182d88ae"
     },
     {
       "path": "catalog/matching.js",
@@ -1528,13 +1588,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1423065,
-      "sha256": "384abd34a7739e0f99b99ac277f8b183c27cdfd32be11a60eef2fc1cca6018e6"
+      "bytes": 1435518,
+      "sha256": "1efbca28ae5672d4159df57a2fe244c8d7d83dfae4459c8284225940a6f6e0cb"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1810197,
-      "sha256": "f99d5a846fdf70d5ce63eebce5f07a135542a7d6d0bbe0c18cedbae0f6714898"
+      "bytes": 1825560,
+      "sha256": "7b66993f230cd328ef4d5fced14017c20e45c76ace5b9ca8451efce5ce76bf2f"
     },
     {
       "path": "catalog/related-preview.js",

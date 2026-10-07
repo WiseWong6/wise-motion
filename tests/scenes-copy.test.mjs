@@ -25,7 +25,7 @@ test('复制页面的全部造型选择传入对应绘制器，不退回默认�
 });
 test('复制页面保存于包根目录，图片与字体仍指向包内真实文件，准备、定位与释放可完成',async()=>{
  const env=await environment();env.w.eval(await source('catalog/export.js'));
- const ids=['cat-factory-journey','xiaokui-selfie-journey','star-letter-journey','star-letter-blue-journey'];
+ const ids=['cat-factory-journey','xiaokui-selfie-journey','star-letter-journey','star-letter-blue-journey','window-experiment-journey'];
  try{for(const id of ids){
   const effect=data.effects.find(e=>e.id===id),variantId=effect.variants?.at(-1)?.id;
   const html=env.w.MotionExport.previewCode(effect,{variantId});

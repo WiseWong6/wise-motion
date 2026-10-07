@@ -255,5 +255,4 @@ function modeTime(t) {
 }
 }};})(globalThis);
 /* SCENE ENTRIES */
-WiseSceneRuntime.register("ink-volume-illustration",{"family": "ink", "mode": "volume", "start": 0, "width": 1080, "height": 1920, "palette": "teal", "variants": {"teal": {"family": "ink", "mode": "volume", "start": 0, "width": 1080, "height": 1920, "palette": "teal"}, "gold": {"family": "ink", "mode": "volume", "start": 0, "width": 1080, "height": 1920, "palette": "gold"}, "ink": {"family": "ink", "mode": "volume", "start": 0, "width": 1080, "height": 1920, "palette": "ink"}}});
 WiseSceneRuntime.register("ink-volume-roll",{"family": "ink", "mode": "volume", "start": 0, "width": 1080, "height": 1920});

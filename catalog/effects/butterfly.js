@@ -2,10 +2,10 @@
 (function (global) {
   'use strict';
   const scriptUrl = typeof document === 'undefined' ? null : document.currentScript?.src;
-  const defaultAtlas = doc => scriptUrl
-    ? new URL('../assets/butterfly/wing-atlas.png', scriptUrl).href
-    : new URL('assets/butterfly/wing-atlas.png', doc.baseURI.includes('/catalog/')
-      ? new URL('./', doc.baseURI) : new URL('catalog/', doc.baseURI)).href;
+  // 原源码位于 effects 内，打包后的播放器位于目录根部；两者共用目录内的图集。
+  const catalogUrl = scriptUrl && new URL(new URL(scriptUrl).pathname.endsWith('/effects/butterfly.js') ? '../' : './', scriptUrl);
+  const defaultAtlas = doc => new URL('assets/butterfly/wing-atlas.png', catalogUrl ||
+    (doc.baseURI.includes('/catalog/') ? new URL('./', doc.baseURI) : new URL('catalog/', doc.baseURI))).href;
   const NS = 'http://www.w3.org/2000/svg';
   const setStyle = (node, style) => Object.assign(node.style, style);
   function mount(root, {atlasSrc, alternateSrc, catalogView = false} = {}) {
