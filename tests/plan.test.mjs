@@ -2,10 +2,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {execFile} from 'node:child_process';
-import {mkdtemp, readFile, rm, writeFile, symlink, access} from 'node:fs/promises';
+import {mkdtemp, mkdir, readFile, rm, writeFile, symlink, access} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {promisify} from 'node:util';
+import vm from 'node:vm';
+import React from 'react';
+import {renderToStaticMarkup} from 'react-dom/server';
+import {build as bundle} from 'esbuild';
 import {createPlan, checkPlan, buildJsx, sourceTag, splitSubtitles} from '../scripts/plan.mjs';
 import {resolveEffect} from '../remotion/clock.mjs';
 import registry from '../catalog/registry.json' with {type: 'json'};
@@ -39,7 +43,7 @@ test('随附的示例计划通过检查，且来源标记与目录一致', async
   for (const shot of plan.shots) assert.equal(shot.effect.source, sourceTag(resolveEffect(shot.effect.id,shot.effect.variant||undefined)));
 });
 
-test('检查拦截：未读源码、插画、微调无提示词、镜头过短', async () => {
+test('检查拦截：来源字段不匹配、插画、微调无提示词、镜头过短', async () => {
   const plan = await example();
   const wrongSource = structuredClone(plan);
   wrongSource.shots[0].effect.source = '';
@@ -47,7 +51,7 @@ test('检查拦截：未读源码、插画、微调无提示词、镜头过短',
 
   const illustration = registry.effects.find(effect => effect.kind === 'illustration');
   const asIllustration = structuredClone(plan);
-  Object.assign(asIllustration.shots[0].effect, {id: illustration.id, source: sourceTag(illustration)});
+  Object.assign(asIllustration.shots[0].effect, {id: illustration.id, source: sourceTag(illustration), content: {}});
   assert.ok(checkPlan(asIllustration).errors.some(message => message.includes('插画素材')));
 
   const blankTweak = structuredClone(plan);
@@ -62,7 +66,7 @@ test('检查拦截：未读源码、插画、微调无提示词、镜头过短',
 test('装配：帧数连续，总长等于各镜之和，速度落在允许范围', async () => {
   const plan = await example();
   const {source, totalFrames, pending} = buildJsx(plan);
-  assert.deepEqual(pending, []);
+  assert.deepEqual(pending, ['s02', 's04', 's05']);
   assert.equal(totalFrames, plan.shots.reduce((sum, shot) => sum + Math.round(shot.seconds * plan.fps), 0));
   const sequences = [...source.matchAll(/<Sequence from=\{(\d+)\} durationInFrames=\{(\d+)\}/g)].map(m => [Number(m[1]), Number(m[2])]);
   assert.equal(sequences.length, plan.shots.length);
@@ -72,15 +76,15 @@ test('装配：帧数连续，总长等于各镜之和，速度落在允许范�
   for (const [, speed] of source.matchAll(/speed=\{([\d.]+)\}/g)) assert.ok(Number(speed) >= 0.5 && Number(speed) <= 2);
   assert.match(source, /durationInFrames=\{480\} \/>/);
   const {tweak, reuse} = buildJsx(plan);
-  assert.deepEqual(tweak.map(item => item.id), ['s01', 's02', 's04', 's05'], '微调镜头要列为待改');
-  assert.deepEqual(reuse.map(item => item.id), ['s03']);
+  assert.deepEqual(tweak.map(item => item.id), ['s02', 's04', 's05'], '微调镜头要列为待改');
+  assert.deepEqual(reuse.map(item => item.id), ['s01', 's03']);
 });
 
 test('原创镜头在装配里留占位并被报告', async () => {
   const plan = await example();
   plan.shots[1].effect = {mode: 'original', id: '', variant: '', speed: null, source: '', prompt: '一行字沿水平线从左向右依次出现，落位后整行保持 1 秒，不抖动。', nearest: 'type-reveal', why: '逐字显现是原位淡入，这一镜需要整行沿水平线推进。'};
   const {source, pending} = buildJsx(plan);
-  assert.deepEqual(pending, ['s02']);
+  assert.deepEqual(pending, ['s02', 's04', 's05']);
   assert.match(source, /原创镜头，待实现/);
 });
 
@@ -181,4 +185,91 @@ test('确实无候选可以明确写 null；原创不能携带被忽略的内容
   assert.deepEqual(checkPlan(plan).errors,[]);
   plan.shots[0].effect.content={text:'不能静默丢弃'};
   assert.ok(checkPlan(plan).errors.some(line=>line.includes('content')));
+});
+
+// 运行实际装配源码和独立组件，只替换视频调度边界；不启动浏览器或导出视频。
+async function renderAssembly(entry) {
+  const result = await bundle({entryPoints: [entry], bundle: true, write: false, platform: 'node', format: 'cjs', external: ['react', 'remotion'], logLevel: 'silent'});
+  let rootComponent;
+  const remotion = {
+    registerRoot: component => { rootComponent = component; },
+    Composition: ({component}) => React.createElement(component),
+    AbsoluteFill: ({children}) => React.createElement('main', null, children),
+    Sequence: ({children, from}) => React.createElement('section', {'data-from': from}, children),
+  };
+  vm.runInNewContext(result.outputFiles[0].text, {require(name) {
+    if (name === 'react') return React;
+    if (name === 'remotion') return remotion;
+    throw new Error('装配引用了意外依赖：' + name);
+  }});
+  assert.equal(typeof rootComponent, 'function');
+  return renderToStaticMarkup(React.createElement(rootComponent));
+}
+
+test('两镜微调同一参考各自生效，重新装配保留组件且不修改共享素材', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'wise-tweak-'));
+  try {
+    const plan = await example();
+    const template = plan.shots[0];
+    plan.shots = ['A', 'B'].map((label, index) => ({...structuredClone(template), id: label, seconds: 4, effect: {
+      ...template.effect, mode: 'tweak', speed: 1.5 + index * 0.1, content: {words: [label]},
+      prompt: '保留参考的撞入与残影实现，把本镜文字位置移到画面一侧，另一镜独立使用自己的布局。',
+      component: {path: './scenes/' + label + '.jsx', export: 'Heading' + label},
+    }}));
+    const sourceDir = path.join(dir, 'src/scenes');
+    await mkdir(sourceDir, {recursive: true});
+    const components = new Map(['A', 'B'].map(label => [path.join(sourceDir, label + '.jsx'),
+      `import React from 'react'; export const Heading${label} = ({content, speed, width, height}) => <b data-layout="${label}" data-speed={speed} data-size={width + 'x' + height}>{content.words[0]}</b>;\n`]));
+    for (const [file, source] of components) await writeFile(file, source);
+    const sharedFile = path.join(root, 'catalog/effects/word-slam.js');
+    const sharedBefore = await readFile(sharedFile);
+    const planFile = path.join(dir, 'plan.json'), entry = path.join(dir, 'src/index.jsx');
+    const rebuild = async () => {
+      await writeFile(planFile, JSON.stringify(plan));
+      const result = await run('node', ['scripts/plan.mjs', 'build', planFile, entry], {cwd: root});
+      assert.doesNotMatch(result.stdout, /编辑副本|待实现/);
+      return renderAssembly(entry);
+    };
+    const first = await rebuild();
+    assert.match(first, /data-layout="A" data-speed="1.5" data-size="1920x1080">A<\/b>/);
+    assert.match(first, /data-layout="B" data-speed="1.6" data-size="1920x1080">B<\/b>/);
+    plan.shots[0].effect.content.words = ['更新'];
+    const second = await rebuild();
+    assert.match(second, /data-layout="A"[^>]*>更新<\/b>/);
+    assert.match(second, /data-layout="B"[^>]*>B<\/b>/);
+    for (const [file, source] of components) assert.equal(await readFile(file, 'utf8'), source);
+    assert.deepEqual(await readFile(sharedFile), sharedBefore);
+  } finally {
+    await rm(dir, {recursive: true, force: true});
+  }
+});
+
+test('缺少微调实现时明确失败，不渲染未修改的目录效果', async () => {
+  const dir = await mkdtemp(path.join(tmpdir(), 'wise-pending-'));
+  try {
+    const plan = await example();
+    plan.shots = [plan.shots[1]];
+    assert.deepEqual(checkPlan(plan).errors, []);
+    assert.ok(checkPlan(plan).warnings.some(message => message.includes('component')));
+    const generated = buildJsx(plan);
+    assert.deepEqual(generated.pending, ['s02']);
+    const entry = path.join(dir, 'index.jsx');
+    await writeFile(entry, generated.source);
+    await assert.rejects(renderAssembly(entry), /微调镜头尚未实现：s02/);
+  } finally {
+    await rm(dir, {recursive: true, force: true});
+  }
+});
+
+test('组件字段拒绝非法引用和复用中被忽略的实现', async () => {
+  const plan = await example();
+  plan.shots = [plan.shots[1]];
+  for (const component of [null, {}, {path: '/absolute.jsx', export: 'Scene'}, {path: './Scene.jsx', export: 'bad-name'}]) {
+    plan.shots[0].effect.component = component;
+    assert.ok(checkPlan(plan).errors.some(message => message.includes('component')));
+  }
+  plan.shots[0].effect.component = {path: './scenes/Title.jsx', export: 'Title'};
+  assert.deepEqual(checkPlan(plan).errors, []);
+  plan.shots[0].effect.mode = 'reuse';
+  assert.ok(checkPlan(plan).errors.some(message => message.includes('独立修改')));
 });

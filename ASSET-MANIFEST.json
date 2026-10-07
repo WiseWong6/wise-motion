@@ -3,13 +3,13 @@
   "files": [
     {
       "path": "catalog/app.css",
-      "bytes": 57730,
-      "sha256": "20cc232f158a27ac3b5fe52796086f5095e14daac71a6058e4dc759457098f8e"
+      "bytes": 60285,
+      "sha256": "b99428e0a615060ffaccdb773ad3d2f65091d10ef5cd00f0102bd61223387bed"
     },
     {
       "path": "catalog/app.js",
-      "bytes": 56089,
-      "sha256": "5889f092bb9f34101892223d19ca72299ed3a47de2bb6cd9dbbc6520c803131f"
+      "bytes": 57437,
+      "sha256": "6a308c36eeb24bb9a59ac9a611f33be93b605afbf2427f73e7a6c40cca102cbe"
     },
     {
       "path": "catalog/assets/WEBP-SOURCES.json",
@@ -338,8 +338,8 @@
     },
     {
       "path": "catalog/assets/particle-scenes/notes/assets/来源.md",
-      "bytes": 2015,
-      "sha256": "b51c59cf771bdbda6f2417828020ebd851397309b0c78116d9c1d4c505055f67"
+      "bytes": 1998,
+      "sha256": "72b46caea62972f51a5a8b0a65780334df73e7eef2e7c5881ca26f7a012f490c"
     },
     {
       "path": "catalog/assets/particle-scenes/notes/src/butterfly.js",
@@ -1038,8 +1038,8 @@
     },
     {
       "path": "catalog/thumbnails.js",
-      "bytes": 9853,
-      "sha256": "e5f02a7c77332f0a694c4a3e95a254624d11944b29b8ff70aa29420307aa36f3"
+      "bytes": 12348,
+      "sha256": "61c6b7872c1a60130cda510c98fc357ae97758c6c8721d9a3949c60e6265e81d"
     },
     {
       "path": "catalog/wise-avatar.webp",

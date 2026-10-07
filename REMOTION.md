@@ -51,11 +51,11 @@ node node_modules/wise-motion-remotion/scripts/install-assets.mjs public/wise-mo
 
 第二批支持标题卡片、错峰卡片、词语强调、百分比柱图、时间轴、按钮反馈和粒子聚字，字段与数量见 [内容覆盖表](references/quickstart.md#内容覆盖与边界)。默认值、记录字段和字数限制以 `show.mjs <id>` 为准。
 
-`transparent={true}` 仅开放给当前登记的逐字显现、计数、词语强调，关闭页面外壳的底色、暗角和颗粒。不能通过透明底审计的动效会拒绝该属性。单镜默认不变；多层计划、定位框与独立原创组件见 [一镜多层](references/quickstart.md#一镜多层)。
+`transparent={true}` 的候选为逐字显现、计数、词语强调，使用时还须通过对当前源码有效的透明审计；过期记录会被拒绝。此属性关闭页面外壳的底色、暗角和颗粒。单镜默认不变；多层计划、定位框与独立实现见 [一镜多层](references/quickstart.md#一镜多层)。
 
 数字格式 `integer` 为整数（小数位须为 0），`decimal` 固定小数位，`thousands` 加英文千分位，`compact` 使用 K/M/B/T。内容对象不接受未登记字段、换行和控制字符。不支持的动效传入非空内容会报错，不会静默忽略。内容槽没有通用字体或颜色参数；中文使用包内思源黑体，纯英文/数字使用 Oswald，罕见字符另行核对。
 
-分镜中将同一个内容对象填入 `effect.content`，`plan.mjs check` 验证后由 `build` 传给组件。`show.mjs <id> --variant <样式 id>` 列出当前样式的默认值、限制和真实绘制路径。只换内容可标 `reuse`；改动作代码才标 `tweak`，只看过参考后重写仍标 `original`。
+分镜中将同一个内容对象填入 `effect.content`，`plan.mjs check` 验证后由 `build` 传给组件。`show.mjs <id> --variant <样式 id>` 列出当前样式的默认值、限制和真实绘制路径。实现分类按 [导演设计方法](references/director-design.md) 判断；独立修改的组件按 [快速上手](references/quickstart.md) 接入分镜。
 
 素材安装在 `.wise-motion-assets.json` 记录已装文件。重装前检查全部文件，发现本地改动会停止，防止静默覆盖；明确需要替换这些改动时才使用 `--overwrite`。配置放在项目源码或计划里，与公共素材分开保存。
 
@@ -91,7 +91,7 @@ const BlackCover = ({seconds}) => <WiseMotionCircularReveal seconds={seconds} va
 npm ci
 npm run build
 npm test
-npm run render -- stagger-in stagger-in.mp4
+WISE_MOTION_RENDER_DIR="/视频工程绝对路径/renders" npm run render -- stagger-in stagger-in.mp4
 ```
 
 `npm run build` 同时更新目录数据、可复用组件和本地播放器。Remotion 构建输出留在当前工程；日常构建不读取或更新源码外的历史审查记录。历史记录修改后单独运行 `npm run build:history`。视频默认保存到私有状态目录 `../../state/wise-motion/renders/`。`render` 的第二个参数是该目录中的文件名或子路径。需要放在独立视频工程时，可显式设置 `WISE_MOTION_RENDER_DIR` 指向其产物目录；禁止把视频输出到本技能源码内。第三个参数可传入 JSON 设置条目参数，例如 `'{"speed":0.5,"theme":"light"}'`。需要自己的画幅、串联或叠放时，在目标视频工程中注册组合并使用上述组件。

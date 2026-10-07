@@ -33,7 +33,12 @@ test('层检查拒绝不透明上层、混用、乱序、重复角色和越界',
  wrong(s=>s.effect=main());wrong(s=>s.layers.reverse());wrong(s=>s.layers.push(main()));
  wrong(s=>s.layers[1]={...main(),id:'particle-word',source:sourceTag(resolveEffect('particle-word'))});
  wrong(s=>s.layers[1].box={x:1900,y:0,width:100,height:100});
- const q=structuredClone(p);delete q.shots[0].layers[0].component;const built=buildJsx(q);assert.deepEqual(built.pending,['s01/background']);assert.match(built.source,/throw new Error\('原创镜头尚未实现/);
+ const q=structuredClone(p);delete q.shots[0].layers[0].component;const built=buildJsx(q);assert.deepEqual(built.pending,['s01/background']);assert.match(built.source,/PendingImplementation.*mode="原创"/);
+});
+test('改写后的上层组件不能借用原参考的透明许可',()=>{
+ const p=make();delete p.shots[0].effect;
+ p.shots[0].layers=[background(),{...main(),mode:'tweak',prompt:'保留标题的逐字显现，把字形周围增加色块并保留最后一秒。',component:{path:'./scenes/Title.jsx',export:'Title'}}];
+ assert.ok(checkPlan(p).errors.some(message=>message.includes('微调和原创层只支持 background')));
 });
 test('评测只读，不把缺失渲染、检查日志或单纯复用标签计作成功',async()=>{
  const dir=await mkdtemp(path.join(tmpdir(),'wise-eval-'));
