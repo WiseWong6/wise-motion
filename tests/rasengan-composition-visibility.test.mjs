@@ -9,7 +9,7 @@ test('能量球和环涡组合进入拆解图层后仍保持完整画板尺寸',
  const env=await environment(),{w}=env,root=w.document.getElementById('root');root.className='motion-stage';
  try{
   // 沿用页面的真实样式顺序；同时覆盖无法使用显卡时的矢量绘制路径。
-  for(const file of ['scenes.css','app.css']){
+  for(const file of ['scenes.css','frame.css','app.css']){
    const style=w.document.createElement('style');style.textContent=await readFile(new URL('../catalog/'+file,import.meta.url),'utf8');w.document.head.append(style);
   }
   for(const id of ids){

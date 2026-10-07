@@ -1,11 +1,12 @@
 {
-  "version": 1,
-  "scope": "已审查三种纯文字绘制；默认和中文内容、深浅外观、全帧透明通道。其他动效未批准。",
+  "version": 2,
+  "scope": "三种纯文字绘制；默认和中文内容、深浅外观；各取样帧整幅画面的透明通道。",
+  "fingerprintScope": "实际绘制依赖及顺序、共享样式与字体、帧适配器、组件和审计判断；不包含目录交互样式或无关绘制器清单。",
   "results": [
     {
       "id": "type-reveal",
       "variant": null,
-      "fingerprint": "15a0e8f59b278d6f1dcd1d7ca2572f9455296d6a17140662a3841f83d5b4bc8d",
+      "fingerprint": "dfad370ed980d064d88fbab5694e5955997d181cc67aae612e884c4b65ded4e9",
       "status": "overlay-ok",
       "samples": [
         {
@@ -205,7 +206,7 @@
     {
       "id": "count-up",
       "variant": null,
-      "fingerprint": "929feee1571d58d99d5c6569e225f6dcd1651631c9a7e8acf4bb8845c7bda5e0",
+      "fingerprint": "668bc94206e73b25fd448773991e3c108b0fbadaca82c09ee8320ab97b8046fc",
       "status": "overlay-ok",
       "samples": [
         {
@@ -437,7 +438,7 @@
     {
       "id": "word-focus",
       "variant": null,
-      "fingerprint": "ce01cad3901b784dea11a2fff4e0d892b45781b90a58b0ebe571bb67246d896c",
+      "fingerprint": "b32055c62e9d46e5e46b9dbadaea615710111a0448b60f9076714dbf64515381",
       "status": "overlay-ok",
       "samples": [
         {
@@ -667,6 +668,5 @@
       ]
     }
   ],
-  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7790.0 Safari/537.36",
-  "fingerprintScope": "绘制器、依赖、适配器、共享样式及其字体文件"
+  "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7790.0 Safari/537.36"
 }

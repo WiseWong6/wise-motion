@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "catalog/app.css",
-      "bytes": 60285,
-      "sha256": "b99428e0a615060ffaccdb773ad3d2f65091d10ef5cd00f0102bd61223387bed"
+      "bytes": 46204,
+      "sha256": "2a50b07fd14da6aaf6f396722ba40fcfc8e470235127326ac2246e64650d7acc"
     },
     {
       "path": "catalog/app.js",
@@ -893,8 +893,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 22039,
-      "sha256": "fadee93b49f5984b82a790a716f3f9da47b92e94a4fe32a2738960b147d5b0b8"
+      "bytes": 22135,
+      "sha256": "3e93a9f274f1cd1ebdde7e3bf054d7fcb5e61d3f73ff1d88af44f1450cee54d2"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -947,6 +947,11 @@
       "sha256": "61bdd20c0f526fc8ef9e63333720effe8c81a7f41bcd7f9c0780a47bcfa22721"
     },
     {
+      "path": "catalog/frame.css",
+      "bytes": 14012,
+      "sha256": "5d19fd50547e9c80352a7040e1c016d5f74b928a53a96804155e3912f0d92bbd"
+    },
+    {
       "path": "catalog/history-data.js",
       "bytes": 54499,
       "sha256": "4a74dc5a99a748a5f52e15c4021646551fa12964d2b125a53fedf4b0010e88b7"
@@ -963,8 +968,13 @@
     },
     {
       "path": "catalog/layer-audit.json",
-      "bytes": 15848,
-      "sha256": "d6a85f502ea8e42890cc7c93dfa945bbf39e9357fad27a3de404aefafc029c92"
+      "bytes": 15920,
+      "sha256": "0744a9e6c03b234652f0bef65725fb96a73c82ba095eb7bf83d74f419612b816"
+    },
+    {
+      "path": "catalog/layer-fingerprints.json",
+      "bytes": 303,
+      "sha256": "666606eb96790c8d410d2c64fce9d3633f6f97ea4e436743c5fada2971a751eb"
     },
     {
       "path": "catalog/lazy.js",

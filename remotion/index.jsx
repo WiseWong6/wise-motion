@@ -4,6 +4,7 @@ import {staticFile, useBufferState, useCurrentFrame, useDelayRender, useRemotion
 import {createFrameDocument} from './frame-document.mjs';
 import {resolveEffect, sampleEffectTime} from './clock.mjs';
 import contentApi from '../catalog/content.js';
+import {builtLayerStatus} from './layer-policy.mjs';
 export const {validateContent, withContent} = contentApi;
 export {DEFAULT_FPS, MOTION_WIDTH, MOTION_HEIGHT, effectDefinitions, getEffectMetadata, normalizeSpeed, resolveEffect, sampleEffectTime} from './clock.mjs';
 export {WiseMotionButterfly, butterflyMotion} from '../catalog/remotion/butterfly.jsx';
@@ -36,7 +37,7 @@ export function WiseMotionEffect({effectId, variantId, definition, content, spee
   const defaultBase = assetBaseUrl ?? staticFile('wise-motion');
   const base = typeof document === 'undefined' ? defaultBase : new URL(defaultBase.replace(/\/?$/, '/'), document.baseURI).href;
   if (theme !== 'dark' && theme !== 'light') throw new TypeError('外观必须为 dark 或 light');
-  if (transparent && resolved.layer !== 'overlay-ok') throw new TypeError('该动效尚未通过透明叠层审计：' + resolved.id);
+  if (transparent && builtLayerStatus(resolved) !== 'overlay-ok') throw new TypeError('该动效尚未通过当前源码的透明叠层审计：' + resolved.id);
   const source = useMemo(() => createFrameDocument({assetBaseUrl: base, definition: resolved, transparent}), [base, resolved, transparent]);
   const sample = sampleEffectTime(resolved, frame, fps, {speed, sampleMode});
   if (timeOverrideMs !== undefined) {

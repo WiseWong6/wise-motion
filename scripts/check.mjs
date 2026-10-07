@@ -8,6 +8,8 @@ import vm from 'node:vm';
 import assert from 'node:assert/strict';
 import contentApi from '../catalog/content.js';
 import {resolveEffect} from '../remotion/clock.mjs';
+import {assertLayerBuildCurrent} from './layer-status.mjs';
+assertLayerBuildCurrent();
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('catalog/registry.json'));
@@ -170,7 +172,7 @@ assert.equal(historical.merged.length,0);
 assert.equal(historical.recipes.length+historical.excluded.length+historical.merged.length,historical.counts.reviewed);
 assert.equal(new Set(historical.recipes.map(x=>x.id)).size,0);
 assert.ok(historical.recipes.every(r=>r.entries.length&&r.source_clock&&r.source_parameters&&r.review.preserve.length));
-const ownFiles = ['catalog/runtime.js','catalog/history-runtime.js','catalog/history.css','catalog/export.js','catalog/dropdown.js','catalog/matching.js','catalog/app.js','catalog/app.css','catalog/scenes.css','catalog/book-controls.js','catalog/book-controls.css','catalog/composition-controls.js','catalog/related-preview.js', ...files];
+const ownFiles = ['catalog/runtime.js','catalog/history-runtime.js','catalog/history.css','catalog/export.js','catalog/dropdown.js','catalog/matching.js','catalog/app.js','catalog/app.css','catalog/frame.css','catalog/scenes.css','catalog/book-controls.js','catalog/book-controls.css','catalog/composition-controls.js','catalog/related-preview.js', ...files];
 for (const file of ownFiles) {
   const content = await read(file);
   assert.ok(!/\bfetch\s*\(|\bXMLHttpRequest\b|\bWebSocket\b|\bEventSource\b|\bimport\s*\(|@import\s|url\(\s*["']?(?:https?:|\/\/)/.test(content), '运行时有联网或模块依赖：' + file);

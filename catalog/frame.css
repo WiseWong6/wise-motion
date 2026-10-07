@@ -1,0 +1,275 @@
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* 思源黑体 Light、Regular、Bold：保留原名、完整字符与字体数据，仅压缩为网页格式。许可见 fonts/OFL.txt。 */
+@font-face {
+  font-family:"Source Han Sans SC";
+  font-style:normal;
+  font-weight:300;
+  font-display:swap;
+  src:url("fonts/SourceHanSansSC-Light.woff2") format("woff2");
+}
+@font-face {
+  font-family:"Source Han Sans SC";
+  font-style:normal;
+  font-weight:400;
+  font-display:swap;
+  src:url("fonts/SourceHanSansSC-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family:"Source Han Sans SC";
+  font-style:normal;
+  font-weight:700;
+  font-display:swap;
+  src:url("fonts/SourceHanSansSC-Bold.woff2") format("woff2");
+}
+/* 所有英文与数字用 Oswald Bold。保留拉丁字符子集，未改字形，许可见 fonts/OFL-Oswald.txt。 */
+@font-face {
+  font-family:"Oswald";
+  font-style:normal;
+  font-weight:700;
+  font-display:swap;
+  src:url("fonts/Oswald-Bold.woff2") format("woff2");
+}
+/* 目录与动效共用的字体、主题和基础样式。页面交互样式位于 app.css。 */
+
+/* ── 设计变量：默认黑夜。侧栏按钮只在白天和黑夜之间切换 ── */
+:root {
+  color-scheme:dark;
+  /* 中性色阶 */
+  --surface:#101012; --canvas:#0a0a0b; --soft:#18181c; --hover:#242428; --selected:#303036;
+  --ink:#f4f1ea; --muted:#a5a4ad; --secondary:#d8d4cc; --thumb:#f4f1ea; --brand-base:#8a8a90; --brand-light:#f4f1ea;
+  /* 线条压得很淡，接近发丝，避免深灰块叠在一起。 */
+  --line:#29292f; --border:#303036; --border-strong:#3a3a40; --accent:#ff5a1f; --accent-ink:#0a0a0b;
+  --field:#18181c; --field-line:#35353c; --field-ink:var(--secondary); --field-placeholder:#8a8a90;
+  --field-shadow:0 1px 2px rgba(0,0,0,.28);
+  --chip:#303036; --chip-shadow:0 0 0 0 transparent;
+  --shadow-1:0 1px 2px rgba(0,0,0,.4);
+  --shadow-2:0 8px 24px -8px rgba(0,0,0,.45);
+  --shadow-menu:0 12px 32px -10px rgba(0,0,0,.55);
+  --shadow-stage:0 24px 48px -20px rgba(0,0,0,.7);
+  --menu-bg:#1c1c20; --card-bg:rgba(255,255,255,.03); --card-ring:rgba(255,255,255,.08);
+  --card-ring-hover:rgba(255,255,255,.14);
+  /* 侧栏用实色，浮层才留一点点透。点阵几乎看不见，页面先安静。 */
+  --glass:#101012; --glass-blur:0px; --glass-edge:rgba(255,255,255,.06);
+  /* 播放条着色跟 liquid-glass 示例一致：薄暗底、上缘高光、内缘反光、一像素玻璃边。
+     折射强度由脚本使用上游默认值，不在这里用厚模糊代替。 */
+  --playbar-tint-top:rgba(14,14,22,.18);
+  --playbar-tint-bottom:rgba(14,14,22,.32);
+  --playbar-specular:rgba(255,255,255,.5);
+  --playbar-inner:rgba(255,255,255,.06);
+  --playbar-edge:rgba(255,255,255,.13);
+  --playbar-drop:rgba(0,0,0,.45);
+  --playbar-glare:rgba(255,255,255,.22);
+  --playbar-rim:rgba(255,255,255,.55);
+  --playbar-crown:rgba(0,0,0,.42);
+  --playbar-rim-dark:rgba(0,0,0,.45);
+  --playbar-bounce:rgba(255,255,255,.16);
+  --playbar-shadow:rgba(0,0,0,.6);
+  --playbar-control:rgba(255,255,255,.14);
+  --playbar-control-rim:rgba(255,255,255,.22);
+  --playbar-fill:#ffffff;
+  --playbar-track:rgba(255,255,255,.38);
+  --playbar-text:rgba(255,255,255,.74);
+  --dot:rgba(255,255,255,.03);
+
+  /* 圆角与动效 */
+  --r-xs:4px; --r-sm:6px; --r-md:8px; --r-lg:10px;
+  --dur:120ms; --ease:cubic-bezier(.2,.8,.3,1);
+  /* 一套尺寸规则：侧栏随空间有限增长，剩余宽度交给预览。 */
+  --sidebar:clamp(256px,20vw,336px); --inspector:clamp(288px,23vw,360px); --topbar:60px; --sidebar-rail:56px;
+  --control-size:12px; --control-height:36px;
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-6:24px;
+  --preview-max:1440px; --stage-nav-size:44px;
+  --stage-gutter:clamp(20px,2.5vw,48px); --stage-chrome:172px;
+  /* 拉丁字形始终选本地 Oswald Bold；中文正文 Light，动效内中文主标题、分类与章节标题 Bold。 */
+  --font:"Oswald","Source Han Sans SC","Source Han Sans CN","Noto Sans SC",sans-serif;
+  --mono:var(--font);
+}
+@media (prefers-color-scheme:light) {
+  :root {
+    color-scheme:light;
+    /* 白天用白底和浅灰轨道，输入框单独铺白，不再用深灰填色。 */
+    --surface:#ffffff; --canvas:#f2efe9; --soft:#eeeae3; --hover:#e9e4dc; --selected:#e3ddd4;
+    --ink:#222226; --muted:#63616b; --secondary:#3a3a40; --thumb:#8a8a92; --brand-base:#222226; --brand-light:#b7b3bf;
+    --line:#e9e4dc; --border:#e3ddd4; --border-strong:#d7d0c6; --accent:#b83b11; --accent-ink:#ffffff;
+    --field:#ffffff; --field-line:#e3ddd4; --field-ink:var(--secondary); --field-placeholder:#63616b;
+    --field-shadow:0 1px 2px rgba(0,0,0,.05), 0 1px 3px rgba(0,0,0,.04);
+    --chip:#ffffff; --chip-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.08);
+    --shadow-1:0 1px 2px rgba(0,0,0,.04);
+    --shadow-2:0 8px 24px -10px rgba(0,0,0,.08);
+    --shadow-menu:0 12px 32px -12px rgba(0,0,0,.12);
+    --shadow-stage:0 24px 48px -20px rgba(0,0,0,.12);
+    --menu-bg:#ffffff; --card-bg:rgba(0,0,0,.02); --card-ring:rgba(0,0,0,.06);
+    --card-ring-hover:rgba(0,0,0,.12);
+    --glass:#ffffff; --glass-blur:0px; --glass-edge:transparent;
+    --playbar-tint-top:rgba(255,255,255,.12);
+    --playbar-tint-bottom:rgba(255,255,255,.22);
+    --playbar-specular:rgba(255,255,255,.8);
+    --playbar-inner:rgba(255,255,255,.2);
+    --playbar-edge:rgba(255,255,255,.45);
+    --playbar-drop:rgba(31,38,50,.16);
+    --playbar-glare:rgba(255,255,255,.34);
+    --playbar-rim:rgba(255,255,255,.95);
+    --playbar-crown:rgba(58,70,92,.2);
+    --playbar-rim-dark:rgba(0,0,0,.14);
+    --playbar-bounce:rgba(255,255,255,.6);
+    --playbar-shadow:rgba(31,38,50,.32);
+    --playbar-control:rgba(255,255,255,.5);
+    --playbar-control-rim:rgba(255,255,255,.9);
+    --playbar-fill:#1c1c1e;
+    --playbar-track:rgba(60,60,67,.28);
+    --playbar-text:rgba(28,28,30,.62);
+    --dot:rgba(0,0,0,.035);
+
+  }
+}
+@media (prefers-contrast:more) {
+  :root {
+    --surface:#000000; --canvas:#000000; --soft:#1a1a1a; --hover:#26262b; --selected:#34343a;
+    --ink:#ffffff; --muted:#d0d0d6; --secondary:#f0f0f2; --thumb:#ffffff;
+    --line:#5a5a62; --border:#6e6e78; --border-strong:#8a8a95; --accent:#9cc9ff; --accent-ink:#000000;
+    --field:#1a1a1a; --field-line:#6e6e78; --field-ink:var(--secondary); --field-placeholder:#d0d0d6; --field-shadow:none;
+    --chip:#34343a; --chip-shadow:0 0 0 0 transparent;
+    --menu-bg:rgba(0,0,0,.9); --card-bg:rgba(255,255,255,.09); --card-ring:rgba(255,255,255,.42);
+    --card-ring-hover:rgba(255,255,255,.6);
+    --glass:rgba(0,0,0,.9); --glass-edge:rgba(255,255,255,.18); --dot:rgba(255,255,255,.16);
+
+  }
+}
+@media (prefers-contrast:more) and (prefers-color-scheme:light) {
+  :root {
+    --surface:#ffffff; --canvas:#ffffff; --soft:#f0f0f0; --hover:#e3ddd4; --selected:#d8d4cc;
+    --ink:#000000; --muted:#35353c; --secondary:#1a1a1a; --thumb:#000000;
+    --line:#767676; --border:#5c5c5c; --border-strong:#333333; --accent:#00459c; --accent-ink:#ffffff;
+    --field:#ffffff; --field-line:#767676; --field-ink:var(--secondary); --field-placeholder:#35353c; --field-shadow:none;
+    --chip:#ffffff; --chip-shadow:0 0 0 0 transparent;
+    --menu-bg:rgba(255,255,255,.94); --card-bg:rgba(0,0,0,.06); --card-ring:rgba(0,0,0,.38);
+    --card-ring-hover:rgba(0,0,0,.62);
+    --glass:#ffffff; --glass-edge:rgba(255,255,255,.9); --dot:rgba(0,0,0,.16);
+
+  }
+}
+/* 手动外观盖过系统媒体查询。选择器比 :root 更具体，所以浅色系统下仍能锁成深色。 */
+html[data-theme="dark"] {
+  color-scheme:dark;
+  --surface:#101012; --canvas:#0a0a0b; --soft:#18181c; --hover:#242428; --selected:#303036;
+  --ink:#f4f1ea; --muted:#a5a4ad; --secondary:#d8d4cc; --thumb:#f4f1ea; --brand-base:#8a8a90; --brand-light:#f4f1ea;
+  --line:#29292f; --border:#303036; --border-strong:#3a3a40; --accent:#ff5a1f; --accent-ink:#0a0a0b;
+  --field:#18181c; --field-line:#35353c; --field-ink:var(--secondary); --field-placeholder:#8a8a90;
+  --field-shadow:0 1px 2px rgba(0,0,0,.28);
+  --chip:#303036; --chip-shadow:0 0 0 0 transparent;
+  --shadow-1:0 1px 2px rgba(0,0,0,.4);
+  --shadow-2:0 8px 24px -8px rgba(0,0,0,.45);
+  --shadow-menu:0 12px 32px -10px rgba(0,0,0,.55);
+  --shadow-stage:0 24px 48px -20px rgba(0,0,0,.7);
+  --menu-bg:#1c1c20; --card-bg:rgba(255,255,255,.03); --card-ring:rgba(255,255,255,.08);
+  --card-ring-hover:rgba(255,255,255,.14);
+  --glass:#101012; --glass-blur:0px; --glass-edge:rgba(255,255,255,.06);
+  --playbar-tint-top:rgba(14,14,22,.18);
+  --playbar-tint-bottom:rgba(14,14,22,.32);
+  --playbar-specular:rgba(255,255,255,.5);
+  --playbar-inner:rgba(255,255,255,.06);
+  --playbar-edge:rgba(255,255,255,.13);
+  --playbar-drop:rgba(0,0,0,.45);
+  --playbar-glare:rgba(255,255,255,.22);
+  --playbar-rim:rgba(255,255,255,.55);
+  --playbar-crown:rgba(0,0,0,.42);
+  --playbar-rim-dark:rgba(0,0,0,.45);
+  --playbar-bounce:rgba(255,255,255,.16);
+  --playbar-shadow:rgba(0,0,0,.6);
+  --playbar-control:rgba(255,255,255,.14);
+  --playbar-control-rim:rgba(255,255,255,.22);
+  --playbar-fill:#ffffff;
+  --playbar-track:rgba(255,255,255,.38);
+  --playbar-text:rgba(255,255,255,.74);
+  --dot:rgba(255,255,255,.03);
+}
+html[data-theme="light"] {
+  color-scheme:light;
+  --surface:#ffffff; --canvas:#f2efe9; --soft:#eeeae3; --hover:#e9e4dc; --selected:#e3ddd4;
+  --ink:#222226; --muted:#63616b; --secondary:#3a3a40; --thumb:#8a8a92; --brand-base:#222226; --brand-light:#b7b3bf;
+  --line:#e9e4dc; --border:#e3ddd4; --border-strong:#d7d0c6; --accent:#b83b11; --accent-ink:#ffffff;
+  --field:#ffffff; --field-line:#e3ddd4; --field-ink:var(--secondary); --field-placeholder:#63616b;
+  --field-shadow:0 1px 2px rgba(0,0,0,.05), 0 1px 3px rgba(0,0,0,.04);
+  --chip:#ffffff; --chip-shadow:0 1px 2px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.08);
+  --shadow-1:0 1px 2px rgba(0,0,0,.04);
+  --shadow-2:0 8px 24px -10px rgba(0,0,0,.08);
+  --shadow-menu:0 12px 32px -12px rgba(0,0,0,.12);
+  --shadow-stage:0 24px 48px -20px rgba(0,0,0,.12);
+  --menu-bg:#ffffff; --card-bg:rgba(0,0,0,.02); --card-ring:rgba(0,0,0,.06);
+  --card-ring-hover:rgba(0,0,0,.12);
+  --glass:#ffffff; --glass-blur:0px; --glass-edge:transparent;
+  --playbar-tint-top:rgba(255,255,255,.12);
+  --playbar-tint-bottom:rgba(255,255,255,.22);
+  --playbar-specular:rgba(255,255,255,.8);
+  --playbar-inner:rgba(255,255,255,.2);
+  --playbar-edge:rgba(255,255,255,.45);
+  --playbar-drop:rgba(31,38,50,.16);
+  --playbar-glare:rgba(255,255,255,.34);
+  --playbar-rim:rgba(255,255,255,.95);
+  --playbar-crown:rgba(58,70,92,.2);
+  --playbar-rim-dark:rgba(0,0,0,.14);
+  --playbar-bounce:rgba(255,255,255,.6);
+  --playbar-shadow:rgba(31,38,50,.32);
+  --playbar-control:rgba(255,255,255,.5);
+  --playbar-control-rim:rgba(255,255,255,.9);
+  --playbar-fill:#1c1c1e;
+  --playbar-track:rgba(60,60,67,.28);
+  --playbar-text:rgba(28,28,30,.62);
+  --dot:rgba(0,0,0,.035);
+}
+@media (prefers-contrast:more) {
+  html[data-theme="dark"] {
+    color-scheme:dark;
+    --surface:#000000; --canvas:#000000; --soft:#1a1a1a; --hover:#26262b; --selected:#34343a;
+    --ink:#ffffff; --muted:#d0d0d6; --secondary:#f0f0f2; --thumb:#ffffff;
+    --line:#5a5a62; --border:#6e6e78; --border-strong:#8a8a95; --accent:#9cc9ff; --accent-ink:#000000;
+    --field:#1a1a1a; --field-line:#6e6e78; --field-ink:var(--secondary); --field-placeholder:#d0d0d6; --field-shadow:none;
+    --chip:#34343a; --chip-shadow:0 0 0 0 transparent;
+    --menu-bg:rgba(0,0,0,.9); --card-bg:rgba(255,255,255,.09); --card-ring:rgba(255,255,255,.42);
+    --card-ring-hover:rgba(255,255,255,.6);
+    --glass:rgba(0,0,0,.9); --glass-edge:rgba(255,255,255,.18); --dot:rgba(255,255,255,.16);
+  }
+  html[data-theme="light"] {
+    color-scheme:light;
+    --surface:#ffffff; --canvas:#ffffff; --soft:#f0f0f0; --hover:#e3ddd4; --selected:#d8d4cc;
+    --ink:#000000; --muted:#35353c; --secondary:#1a1a1a; --thumb:#000000;
+    --line:#767676; --border:#5c5c5c; --border-strong:#333333; --accent:#00459c; --accent-ink:#ffffff;
+    --field:#ffffff; --field-line:#767676; --field-ink:var(--secondary); --field-placeholder:#35353c; --field-shadow:none;
+    --chip:#ffffff; --chip-shadow:0 0 0 0 transparent;
+    --menu-bg:rgba(255,255,255,.94); --card-bg:rgba(0,0,0,.06); --card-ring:rgba(0,0,0,.38);
+    --card-ring-hover:rgba(0,0,0,.62);
+    --glass:#ffffff; --glass-edge:rgba(255,255,255,.9); --dot:rgba(0,0,0,.16);
+  }
+}
+
+/* ── 基础与工具 ────────────────────────────────────────────────── */
+*,*::before,*::after { box-sizing:border-box; }
+html,body { height:100%; }
+body {
+  margin:0; overflow:hidden; color:var(--ink);
+  /* 环境色铺在最底层，供上方玻璃材质模糊；内容层本身保持不透明。 */
+  background:var(--canvas);
+  font-family:var(--font); font-size:13px; font-weight:300; line-height:1.5; font-synthesis-weight:none;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  font-feature-settings:"cv05","ss01";
+}
+/* 功能层的统一玻璃表面：模糊 + 提高饱和度 + 顶部一道高光边。 */
+.glass {
+  background:var(--glass);
+  backdrop-filter:blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(180%);
+  box-shadow:inset 0 1px 0 var(--glass-edge);
+}
+h1,h2,h3,p { margin:0; }
+h1,h2,h3,strong,b { font-weight:inherit; }
+.brand,.ins-intro h1,.ins-head .ins-label { font-weight:700; }
+.field-label,.output-label,.ins-title { font-weight:300; }
+button,input,output,select,textarea { font:inherit; color:inherit; }
+button { cursor:pointer; background:none; border:0; padding:0; }
+a { color:inherit; text-decoration:none; }
+[hidden] { display:none !important; }
+::selection { background:var(--accent); color:var(--accent-ink); }
+:focus-visible { outline:2px solid var(--accent); outline-offset:2px; border-radius:var(--r-xs); }
+svg { display:block; width:15px; height:15px; flex:none; }
+
+.motion-stage [data-composition-hidden] { opacity:0 !important; pointer-events:none !important; }

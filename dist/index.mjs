@@ -108,7 +108,7 @@ var require_content = __commonJS({
 import React3, { useLayoutEffect as useLayoutEffect2, useMemo, useRef as useRef2, useState } from "react";
 import { staticFile as staticFile2, useBufferState, useCurrentFrame as useCurrentFrame3, useDelayRender as useDelayRender2, useRemotionEnvironment, useVideoConfig as useVideoConfig3 } from "remotion";
 
-// remotion/frame-document.mjs
+// remotion/frame-scripts.mjs
 var FRAME_SCRIPTS = Object.freeze([
   "vendor/animejs/anime.umd.min.js",
   "catalog/registry-data.js",
@@ -193,7 +193,9 @@ var FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/scene-selfie.js",
   "catalog/effects/scene-snow.js"
 ]);
-var FRAME_STYLES = Object.freeze(["catalog/scenes.css", "catalog/app.css", "catalog/history.css", "catalog/book-controls.css"]);
+
+// remotion/frame-document.mjs
+var FRAME_STYLES = Object.freeze(["catalog/scenes.css", "catalog/frame.css", "catalog/history.css", "catalog/book-controls.css"]);
 function frameScriptsFor(definition) {
   if (!definition) return FRAME_SCRIPTS;
   const source = definition.source;
@@ -39406,7 +39408,717 @@ function sampleEffectTime(effect, frame, fps = DEFAULT_FPS, options = {}) {
 var effectDefinitions = registry_default.effects;
 
 // remotion/index.jsx
-var import_content = __toESM(require_content());
+var import_content2 = __toESM(require_content());
+
+// catalog/layer-audit.json
+var layer_audit_default = {
+  version: 2,
+  scope: "\u4E09\u79CD\u7EAF\u6587\u5B57\u7ED8\u5236\uFF1B\u9ED8\u8BA4\u548C\u4E2D\u6587\u5185\u5BB9\u3001\u6DF1\u6D45\u5916\u89C2\uFF1B\u5404\u53D6\u6837\u5E27\u6574\u5E45\u753B\u9762\u7684\u900F\u660E\u901A\u9053\u3002",
+  fingerprintScope: "\u5B9E\u9645\u7ED8\u5236\u4F9D\u8D56\u53CA\u987A\u5E8F\u3001\u5171\u4EAB\u6837\u5F0F\u4E0E\u5B57\u4F53\u3001\u5E27\u9002\u914D\u5668\u3001\u7EC4\u4EF6\u548C\u5BA1\u8BA1\u5224\u65AD\uFF1B\u4E0D\u5305\u542B\u76EE\u5F55\u4EA4\u4E92\u6837\u5F0F\u6216\u65E0\u5173\u7ED8\u5236\u5668\u6E05\u5355\u3002",
+  results: [
+    {
+      id: "type-reveal",
+      variant: null,
+      fingerprint: "dfad370ed980d064d88fbab5694e5955997d181cc67aae612e884c4b65ded4e9",
+      status: "overlay-ok",
+      samples: [
+        {
+          theme: "dark",
+          custom: false,
+          time: 0,
+          visible: 0,
+          edge: 0,
+          fraction: 0
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 150,
+          visible: 0,
+          edge: 0,
+          fraction: 0
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 350,
+          visible: 1919,
+          edge: 0,
+          fraction: 0.008328993055555555
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 700,
+          visible: 5757,
+          edge: 0,
+          fraction: 0.024986979166666666
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 1200,
+          visible: 6496,
+          edge: 0,
+          fraction: 0.028194444444444446
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 975,
+          visible: 6496,
+          edge: 0,
+          fraction: 0.028194444444444446
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 0,
+          visible: 0,
+          edge: 0,
+          fraction: 0
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 150,
+          visible: 0,
+          edge: 0,
+          fraction: 0
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 350,
+          visible: 1181,
+          edge: 0,
+          fraction: 0.005125868055555555
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 700,
+          visible: 5280,
+          edge: 0,
+          fraction: 0.022916666666666665
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 1200,
+          visible: 6423,
+          edge: 0,
+          fraction: 0.027877604166666667
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 975,
+          visible: 6423,
+          edge: 0,
+          fraction: 0.027877604166666667
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 0,
+          visible: 0,
+          edge: 0,
+          fraction: 0
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 150,
+          visible: 0,
+          edge: 0,
+          fraction: 0
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 350,
+          visible: 1919,
+          edge: 0,
+          fraction: 0.008328993055555555
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 700,
+          visible: 5757,
+          edge: 0,
+          fraction: 0.024986979166666666
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 1200,
+          visible: 6496,
+          edge: 0,
+          fraction: 0.028194444444444446
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 975,
+          visible: 6496,
+          edge: 0,
+          fraction: 0.028194444444444446
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 0,
+          visible: 0,
+          edge: 0,
+          fraction: 0
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 150,
+          visible: 0,
+          edge: 0,
+          fraction: 0
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 350,
+          visible: 1181,
+          edge: 0,
+          fraction: 0.005125868055555555
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 700,
+          visible: 5280,
+          edge: 0,
+          fraction: 0.022916666666666665
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 1200,
+          visible: 6423,
+          edge: 0,
+          fraction: 0.027877604166666667
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 975,
+          visible: 6423,
+          edge: 0,
+          fraction: 0.027877604166666667
+        }
+      ]
+    },
+    {
+      id: "count-up",
+      variant: null,
+      fingerprint: "668bc94206e73b25fd448773991e3c108b0fbadaca82c09ee8320ab97b8046fc",
+      status: "overlay-ok",
+      samples: [
+        {
+          theme: "dark",
+          custom: false,
+          time: 0,
+          visible: 2060,
+          edge: 0,
+          fraction: 0.008940972222222222
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 150,
+          visible: 2060,
+          edge: 0,
+          fraction: 0.008940972222222222
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 350,
+          visible: 2859,
+          edge: 0,
+          fraction: 0.012408854166666667
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 700,
+          visible: 3933,
+          edge: 0,
+          fraction: 0.0170703125
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 1200,
+          visible: 3710,
+          edge: 0,
+          fraction: 0.016102430555555554
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 1010,
+          visible: 3537,
+          edge: 0,
+          fraction: 0.0153515625
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 1800,
+          visible: 3710,
+          edge: 0,
+          fraction: 0.016102430555555554
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 0,
+          visible: 6527,
+          edge: 0,
+          fraction: 0.028328993055555557
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 150,
+          visible: 6527,
+          edge: 0,
+          fraction: 0.028328993055555557
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 350,
+          visible: 9234,
+          edge: 0,
+          fraction: 0.040078125
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 700,
+          visible: 9410,
+          edge: 0,
+          fraction: 0.04084201388888889
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 1200,
+          visible: 10199,
+          edge: 0,
+          fraction: 0.04426649305555556
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 1010,
+          visible: 9135,
+          edge: 0,
+          fraction: 0.0396484375
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 1800,
+          visible: 7545,
+          edge: 0,
+          fraction: 0.03274739583333333
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 0,
+          visible: 2060,
+          edge: 0,
+          fraction: 0.008940972222222222
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 150,
+          visible: 2060,
+          edge: 0,
+          fraction: 0.008940972222222222
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 350,
+          visible: 2859,
+          edge: 0,
+          fraction: 0.012408854166666667
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 700,
+          visible: 3933,
+          edge: 0,
+          fraction: 0.0170703125
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 1200,
+          visible: 3710,
+          edge: 0,
+          fraction: 0.016102430555555554
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 1010,
+          visible: 3537,
+          edge: 0,
+          fraction: 0.0153515625
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 1800,
+          visible: 3710,
+          edge: 0,
+          fraction: 0.016102430555555554
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 0,
+          visible: 6527,
+          edge: 0,
+          fraction: 0.028328993055555557
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 150,
+          visible: 6527,
+          edge: 0,
+          fraction: 0.028328993055555557
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 350,
+          visible: 9234,
+          edge: 0,
+          fraction: 0.040078125
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 700,
+          visible: 9410,
+          edge: 0,
+          fraction: 0.04084201388888889
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 1200,
+          visible: 10199,
+          edge: 0,
+          fraction: 0.04426649305555556
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 1010,
+          visible: 9135,
+          edge: 0,
+          fraction: 0.0396484375
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 1800,
+          visible: 7545,
+          edge: 0,
+          fraction: 0.03274739583333333
+        }
+      ]
+    },
+    {
+      id: "word-focus",
+      variant: null,
+      fingerprint: "b32055c62e9d46e5e46b9dbadaea615710111a0448b60f9076714dbf64515381",
+      status: "overlay-ok",
+      samples: [
+        {
+          theme: "dark",
+          custom: false,
+          time: 0,
+          visible: 4329,
+          edge: 0,
+          fraction: 0.0187890625
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 150,
+          visible: 4329,
+          edge: 0,
+          fraction: 0.0187890625
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 350,
+          visible: 4499,
+          edge: 0,
+          fraction: 0.01952690972222222
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 700,
+          visible: 4521,
+          edge: 0,
+          fraction: 0.019622395833333334
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 1200,
+          visible: 4521,
+          edge: 0,
+          fraction: 0.019622395833333334
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 993,
+          visible: 4521,
+          edge: 0,
+          fraction: 0.019622395833333334
+        },
+        {
+          theme: "dark",
+          custom: false,
+          time: 2400,
+          visible: 4329,
+          edge: 0,
+          fraction: 0.0187890625
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 0,
+          visible: 2161,
+          edge: 0,
+          fraction: 0.009379340277777778
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 150,
+          visible: 2161,
+          edge: 0,
+          fraction: 0.009379340277777778
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 350,
+          visible: 2247,
+          edge: 0,
+          fraction: 0.009752604166666666
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 700,
+          visible: 2257,
+          edge: 0,
+          fraction: 0.009796006944444444
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 1200,
+          visible: 2257,
+          edge: 0,
+          fraction: 0.009796006944444444
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 993,
+          visible: 2257,
+          edge: 0,
+          fraction: 0.009796006944444444
+        },
+        {
+          theme: "dark",
+          custom: true,
+          time: 2400,
+          visible: 2161,
+          edge: 0,
+          fraction: 0.009379340277777778
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 0,
+          visible: 4329,
+          edge: 0,
+          fraction: 0.0187890625
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 150,
+          visible: 4329,
+          edge: 0,
+          fraction: 0.0187890625
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 350,
+          visible: 4499,
+          edge: 0,
+          fraction: 0.01952690972222222
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 700,
+          visible: 4521,
+          edge: 0,
+          fraction: 0.019622395833333334
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 1200,
+          visible: 4521,
+          edge: 0,
+          fraction: 0.019622395833333334
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 993,
+          visible: 4521,
+          edge: 0,
+          fraction: 0.019622395833333334
+        },
+        {
+          theme: "light",
+          custom: false,
+          time: 2400,
+          visible: 4329,
+          edge: 0,
+          fraction: 0.0187890625
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 0,
+          visible: 2161,
+          edge: 0,
+          fraction: 0.009379340277777778
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 150,
+          visible: 2161,
+          edge: 0,
+          fraction: 0.009379340277777778
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 350,
+          visible: 2247,
+          edge: 0,
+          fraction: 0.009752604166666666
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 700,
+          visible: 2257,
+          edge: 0,
+          fraction: 0.009796006944444444
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 1200,
+          visible: 2257,
+          edge: 0,
+          fraction: 0.009796006944444444
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 993,
+          visible: 2257,
+          edge: 0,
+          fraction: 0.009796006944444444
+        },
+        {
+          theme: "light",
+          custom: true,
+          time: 2400,
+          visible: 2161,
+          edge: 0,
+          fraction: 0.009379340277777778
+        }
+      ]
+    }
+  ],
+  browser: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7790.0 Safari/537.36"
+};
+
+// catalog/layer-fingerprints.json
+var layer_fingerprints_default = {
+  version: 2,
+  fingerprints: {
+    "count-up/": "668bc94206e73b25fd448773991e3c108b0fbadaca82c09ee8320ab97b8046fc",
+    "type-reveal/": "dfad370ed980d064d88fbab5694e5955997d181cc67aae612e884c4b65ded4e9",
+    "word-focus/": "b32055c62e9d46e5e46b9dbadaea615710111a0448b60f9076714dbf64515381"
+  }
+};
+
+// remotion/layer-policy.mjs
+var import_content = __toESM(require_content(), 1);
+var LAYER_AUDIT_VERSION = 2;
+var layerKey = (definition) => definition.id + "/" + (definition.variant_id || "");
+function stableJson(value) {
+  if (Array.isArray(value)) return "[" + value.map(stableJson).join(",") + "]";
+  if (value && typeof value === "object") return "{" + Object.keys(value).sort().map((key) => JSON.stringify(key) + ":" + stableJson(value[key])).join(",") + "}";
+  return JSON.stringify(value);
+}
+function auditedLayerStatus(definition, fingerprint, report = layer_audit_default) {
+  try {
+    const canonical = resolveEffect(definition.id, definition.variant_id);
+    if (canonical.layer !== "overlay-ok" || report.version !== LAYER_AUDIT_VERSION || !fingerprint) return "own-background";
+    import_content.default.validateContent(canonical, definition.content);
+    const { content, ...implementation } = definition;
+    if (stableJson(implementation) !== stableJson(canonical)) return "own-background";
+    const row = report.results.find((item) => item.id === canonical.id && (item.variant || null) === (canonical.variant_id || null));
+    return row?.status === "overlay-ok" && row.fingerprint === fingerprint ? "overlay-ok" : "own-background";
+  } catch {
+    return "own-background";
+  }
+}
+function builtLayerStatus(definition) {
+  return auditedLayerStatus(definition, layer_fingerprints_default.version === LAYER_AUDIT_VERSION ? layer_fingerprints_default.fingerprints[layerKey(definition)] : void 0);
+}
 
 // catalog/remotion/butterfly.jsx
 import React, { useLayoutEffect, useRef } from "react";
@@ -39882,7 +40594,7 @@ function WiseMotionCircularReveal({ seconds, variantId = "paper-expand", speed =
 }
 
 // remotion/index.jsx
-var { validateContent, withContent } = import_content.default;
+var { validateContent, withContent } = import_content2.default;
 var asError = (reason) => reason instanceof Error ? reason : new Error(reason?.message || String(reason));
 function WiseMotionEffect({
   effectId,
@@ -39917,7 +40629,7 @@ function WiseMotionEffect({
   callbacks.current = { onReady, onFrame, onError };
   const [failure, setFailure] = useState(null);
   const resolved = useMemo(() => {
-    const effect = import_content.default.withContent(resolveEffect(definition ?? effectId, variantId), content);
+    const effect = import_content2.default.withContent(resolveEffect(definition ?? effectId, variantId), content);
     if (bookSettings) effect.paper_settings = { ...effect.paper_settings, ...bookSettings };
     return effect;
   }, [definition, effectId, variantId, bookSettings, content]);
@@ -39925,7 +40637,7 @@ function WiseMotionEffect({
   const defaultBase = assetBaseUrl ?? staticFile2("wise-motion");
   const base = typeof document === "undefined" ? defaultBase : new URL(defaultBase.replace(/\/?$/, "/"), document.baseURI).href;
   if (theme !== "dark" && theme !== "light") throw new TypeError("\u5916\u89C2\u5FC5\u987B\u4E3A dark \u6216 light");
-  if (transparent && resolved.layer !== "overlay-ok") throw new TypeError("\u8BE5\u52A8\u6548\u5C1A\u672A\u901A\u8FC7\u900F\u660E\u53E0\u5C42\u5BA1\u8BA1\uFF1A" + resolved.id);
+  if (transparent && builtLayerStatus(resolved) !== "overlay-ok") throw new TypeError("\u8BE5\u52A8\u6548\u5C1A\u672A\u901A\u8FC7\u5F53\u524D\u6E90\u7801\u7684\u900F\u660E\u53E0\u5C42\u5BA1\u8BA1\uFF1A" + resolved.id);
   const source = useMemo(() => createFrameDocument({ assetBaseUrl: base, definition: resolved, transparent }), [base, resolved, transparent]);
   const sample = sampleEffectTime(resolved, frame, fps, { speed, sampleMode });
   if (timeOverrideMs !== void 0) {

@@ -97,12 +97,13 @@ test('正式脚本不依赖隔离迁移目录或报告清单',async()=>{
 });
 
 // 执行真实导出脚本正文，只替换外部依赖；不会启动浏览器、写出视频或改动源码。
-async function runRender(argv){
+async function runRender(argv,options={}){
  const source=(await readFile(renderScript,'utf8')).replace(/^import[^\n]*\n/gm,'').replaceAll('import.meta.url',JSON.stringify(pathToFileURL(renderScript).href));
- const calls={projectWrites:[],renderWrites:[],mkdir:[],writes:[],bundles:[],selections:[],renders:[],resolves:[],outputs:[]};
+ const calls=Object.assign(options.calls||{},{projectWrites:[],renderWrites:[],mkdir:[],writes:[],bundles:[],selections:[],renders:[],resolves:[],outputs:[],layerChecks:0});
  const mocks={
   process:{argv:['node',renderScript,...argv],env:{}},path,fileURLToPath,URL,
   console:{log(){}},
+  assertLayerBuildCurrent:()=>{calls.layerChecks++;if(options.layerError)throw options.layerError;},
   assertProjectWrite:async target=>{calls.projectWrites.push(target);return target;},
   assertRenderWrite:async target=>{calls.renderWrites.push(target);return target;},
   resolveRenderOutput:async(target,effectId)=>{calls.outputs.push({target,effectId});return path.join('/virtual/renders',target||effectId+'.mp4');},
@@ -136,6 +137,14 @@ test('默认输出名称来自实际解析后的动效',async()=>{
  assert.deepEqual(calls.outputs,[{target:undefined,effectId:'stagger-in'}]);
  assert.equal(calls.renders[0].outputLocation,'/virtual/renders/stagger-in.mp4');
  assert.equal(calls.renders[0].chromiumOptions.gl,null);
+ assert.equal(calls.layerChecks,1);
+});
+
+test('透明审计过期时，正式导出在创建目录和启动构建前停止',async()=>{
+ const calls={};
+ await assert.rejects(runRender(['stagger-in'],{calls,layerError:new Error('透明审计过期')}),/透明审计过期/);
+ assert.equal(calls.layerChecks,1);
+ for(const field of ['projectWrites','renderWrites','mkdir','writes','bundles','selections','renders','outputs'])assert.deepEqual(calls[field],[],field);
 });
 
 test('覆盖定义及其金属依赖参与真实来源选择',async()=>{

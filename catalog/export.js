@@ -132,7 +132,7 @@ registerRoot(Root);
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>${escape(effect.name)} · Wise Motion</title>
   <link rel="stylesheet" href="catalog/scenes.css">
-  <link rel="stylesheet" href="catalog/app.css">
+  <link rel="stylesheet" href="catalog/frame.css"><link rel="stylesheet" href="catalog/app.css">
   <style>
     body { display:grid; place-content:center; min-height:100vh; margin:0; overflow:auto; background:var(--soft); }
     #motion { width:min(90vw,960px); aspect-ratio:16/9; border:1px solid var(--line); border-radius:2px; }
@@ -193,7 +193,7 @@ registerRoot(Root);
 <!-- 本机历史配方预览。保存到 Wise Motion 包根目录的 demo.html。
 播放器代码 AGPLv3；原作代码与素材保留各自许可。本文件依赖本机历史目录，不能视为已迁出的独立效果源码。 -->
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${escape(effect.name)}</title><link rel="stylesheet" href="catalog/scenes.css"><link rel="stylesheet" href="catalog/history.css"><link rel="stylesheet" href="catalog/app.css">
+<title>${escape(effect.name)}</title><link rel="stylesheet" href="catalog/scenes.css"><link rel="stylesheet" href="catalog/history.css"><link rel="stylesheet" href="catalog/frame.css"><link rel="stylesheet" href="catalog/app.css">
 <style>body{margin:0;min-height:100vh;display:grid;place-content:center;background:var(--canvas);color:var(--ink);font-family:var(--font)}#motion{width:min(90vw,960px)}.controls{display:flex;gap:12px;padding:16px}input{flex:1}</style></head>
 <body><div id="motion" class="motion-viewport"></div><div class="controls"><button id="play">播放</button><button id="again">重播</button><input id="time" aria-label="定位时间" type="range" min="0" max="1000" value="0"><output id="readout"></output></div>
 <script src="vendor/animejs/anime.umd.min.js"></script><script src="catalog/history-data.js"></script><script src="catalog/history-runtime.js"></script>

@@ -5,7 +5,7 @@ import {readFile} from 'node:fs/promises';
 import {environment,data} from './helpers.mjs';
 
 async function loadStyles(env){
-  for(const file of ['app.css','scenes.css']){
+  for(const file of ['frame.css','app.css','scenes.css']){
     const style=env.w.document.createElement('style');
     style.textContent=await readFile(new URL('../catalog/'+file,import.meta.url),'utf8');
     env.w.document.head.append(style);
@@ -24,7 +24,7 @@ test('深浅主题同步用于预览和缩略图，原色插画在独立导出�
   const env=await environment();
   try{
     const {w}=env,d=w.document,root=d.getElementById('root');
-    for(const file of ['app.css','scenes.css']){
+    for(const file of ['frame.css','app.css','scenes.css']){
       const style=d.createElement('style');
       style.textContent=await readFile(new URL('../catalog/'+file,import.meta.url),'utf8');d.head.append(style);
     }
@@ -128,7 +128,7 @@ test('数据读数和英文标签使用粗体，中文解释保持细体',async(
       if(id==='benchmark-columns')assert.equal(root.querySelector('[data-part="task0"]').getAttribute('font-weight'),'300');
       player.destroy();
     }
-    const css=await readFile(new URL('../catalog/app.css',import.meta.url),'utf8');
+    const css=await readFile(new URL('../catalog/frame.css',import.meta.url),'utf8');
     assert.match(css,/--font:"Oswald","Source Han Sans SC"/);
     const face=css.match(/@font-face\s*\{[^}]*font-family:"Oswald"[^}]*\}/)[0];
     assert.match(face,/font-weight:700/);assert.match(face,/Oswald-Bold\.woff2/);
