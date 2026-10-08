@@ -78,7 +78,7 @@ test('普通动作与带素材和声音的组合使用浏览器同一组件示�
     if (variantId) assert.match(source, /"variantId": "command-log"/);
     for (const asset of effect.source.assets || []) assert.ok(source.includes(asset), asset);
     if (effect.audio) assert.match(source, /includeAudio=\{false\}/);
-    const compiled = await build({entryPoints:[path.join(out.directory,'src/index.jsx')], bundle:true, write:false, platform:'node', format:'esm', alias:{'wise-motion-remotion':path.join(root,'dist/index.mjs')}, external:['react','remotion'], logLevel:'silent'});
+    const compiled = await build({entryPoints:[path.join(out.directory,'src/index.jsx')], bundle:true, write:false, platform:'node', format:'esm', alias:{'wise-motion':path.join(root,'dist/index.mjs')}, external:['react','remotion'], logLevel:'silent'});
     assert.ok(compiled.outputFiles[0].text.includes('WiseMotionEffect'));
   }
 }));

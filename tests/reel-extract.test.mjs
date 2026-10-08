@@ -132,7 +132,7 @@ test('新条目声明完整依赖和素材，源码导出在独立目录可编�
    const out=await exportEffect(id,{outDir:path.join(dir,id)});
    const code=await readFile(path.join(out.directory,'src/Root.jsx'),'utf8');
    assert.doesNotMatch(code,/\/Users\/|Desktop/);for(const asset of e.source.assets)assert.ok(code.includes(asset));
-   const compiled=await build({entryPoints:[path.join(out.directory,'src/index.jsx')],bundle:true,write:false,platform:'node',format:'esm',alias:{'wise-motion-remotion':path.resolve('dist/index.mjs')},external:['react','remotion'],logLevel:'silent'});
+   const compiled=await build({entryPoints:[path.join(out.directory,'src/index.jsx')],bundle:true,write:false,platform:'node',format:'esm',alias:{'wise-motion':path.resolve('dist/index.mjs')},external:['react','remotion'],logLevel:'silent'});
    assert.ok(compiled.outputFiles[0].text.length>0);
   }
  }finally{await rm(dir,{recursive:true,force:true});}

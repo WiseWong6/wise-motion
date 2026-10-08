@@ -1838,8 +1838,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 26075,
-      "sha256": "60586d6c8f07a8ecf92b353a28edcfc52fddd213aaa0c2cab545729fe0553d2c"
+      "bytes": 25809,
+      "sha256": "2b2fb256cc364fefe9ca827fc7f993c2dfabfff780818c80c6fbc7b71363600d"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",

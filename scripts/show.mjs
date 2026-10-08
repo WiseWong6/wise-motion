@@ -41,7 +41,7 @@ export async function show(effect, {variantId, details = false} = {}) {
     `源码：${path.join(root, native?.component || s.path)}；入口 ${native?.export_name || (native ? 'SeedBloomBrand' : s.factory)}`,
     `时长：${effect.duration_ms / 1000} 秒；${effect.loop ? '循环' : '单次'}；${native?.width || meta.width}×${native?.height || meta.height}，${native?.fps || meta.fps} 帧/秒。`,
     `透明背景：${layerStatus(effect) === 'overlay-ok' ? '当前实现支持（transparent）' : '自带背景或尚未通过透明审计'}。`,
-    `依赖：${native ? Object.entries(native.packages).map(([name, version]) => name + '@' + version).join('、') : 'wise-motion-remotion 共享包；React 19.3.0、Remotion / CLI 4.0.532；运行前安装包内素材'}。`,
+    `依赖：${native ? Object.entries(native.packages).map(([name, version]) => name + '@' + version).join('、') : 'wise-motion 共享包；React 19.3.0、Remotion / CLI 4.0.532；运行前安装包内素材'}。`,
     `可调：speed 0.5–2${effect.variants?.length ? '；variantId：' + effect.variants.map(v => v.id).join('、') : ''}${effect.parameters?.ease ? '；ease：' + effect.parameters.ease.options.join('、') : ''}${effect.content_slots?.length ? '；content：' + effect.content_slots.map(slot => slot.id).join('、') : ''}。`,
     `导出：node "${path.join(root, 'scripts/export.mjs')}" ${effect.id}${effect.variant_id ? ' --variant ' + effect.variant_id : ''} --out-dir <目标目录>`
   ];

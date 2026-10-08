@@ -209,7 +209,7 @@ for(const [oldId,targetId] of Object.entries(migrations)){
       assert.equal(d.querySelectorAll('#preview video').length,0,'正式预览不能仍播放原视频');
       const code=d.getElementById('code').textContent;
       assert.ok(code.split('\n').includes(definition.source.path),'复制说明必须完整列出实际绘制源码');
-      assert.ok(code.includes("import {WiseMotionEffect,getEffectMetadata} from 'wise-motion-remotion';"));
+      assert.ok(code.includes("import {WiseMotionEffect,getEffectMetadata} from 'wise-motion';"));
       assert.ok(code.includes('export const Effect = () => <WiseMotionEffect {...settings} />;'));
       const settingsMatch=code.match(/const settings = (\{[\s\S]*?\});/);assert.ok(settingsMatch);
       assert.equal(JSON.parse(settingsMatch[1]).effectId,targetId,'复制组件须使用当前正式动作');

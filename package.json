@@ -1,7 +1,6 @@
 {
-  "name": "wise-motion-remotion",
+  "name": "wise-motion",
   "version": "0.1.3",
-  "private": true,
   "description": "理解动作需求，匹配动效参考，交付源码与接入说明",
   "license": "AGPL-3.0-only",
   "engines": {
@@ -41,5 +40,14 @@
     "@remotion/cli": "4.0.532",
     "react": "19.3.0",
     "react-dom": "19.3.0"
-  }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WiseWong6/wise-motion.git"
+  },
+  "homepage": "https://github.com/WiseWong6/wise-motion#readme"
 }

@@ -76,7 +76,7 @@ try {
         }
       } else {
         await transform(copy.code, {loader: 'jsx', format: 'esm'});
-        if (!copy.code.includes("from 'wise-motion-remotion'") || !packaged.has('dist/index.mjs')) throw Error('复制结果缺少实际组件入口');
+        if (!copy.code.includes("from 'wise-motion'") || !packaged.has('dist/index.mjs')) throw Error('复制结果缺少实际组件入口');
       }
       // 两种加载使用同一份绘制文件，按相同顺序取样；包含回退定位和循环累计时间。
       const passes = [];

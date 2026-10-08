@@ -8,7 +8,7 @@
 ## 使用
 
 ```jsx
-import {WiseMotionEffect,getEffectMetadata} from 'wise-motion-remotion';
+import {WiseMotionEffect,getEffectMetadata} from 'wise-motion';
 const meta=getEffectMetadata('stagger-in');
 const Scene=()=> <WiseMotionEffect effectId="stagger-in" />;
 ```
@@ -18,10 +18,11 @@ const Scene=()=> <WiseMotionEffect effectId="stagger-in" />;
 `getEffectMetadata`返回时长、帧数、尺寸和循环标记。非循环帧数包含准确结尾的一帧，循环不重复结尾。
 `onReady`在字体、素材及首个目标帧准备完成后触发；加载失败报错，视频导出中断。
 
-执行 `npm run build:remotion && npm pack` 生成随身源码包。目标工程安装此包后执行：
+在目标工程安装公开包并复制素材：
 
 ```sh
-node node_modules/wise-motion-remotion/scripts/install-assets.mjs public/wise-motion
+npm install --save-exact wise-motion@0.1.3
+node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion
 ```
 
 全部素材明细与校验值在 `ASSET-MANIFEST.json`。素材副本不提供目录首页；浏览请打开源码中的 `catalog/index.html`。目标工程的Remotion依赖需和包版本一致。
@@ -63,14 +64,14 @@ node node_modules/wise-motion-remotion/scripts/install-assets.mjs public/wise-mo
 
 素材安装在 `.wise-motion-assets.json` 记录已装文件。重装前检查全部文件，发现本地改动会停止，防止静默覆盖；明确需要替换这些改动时才使用 `--overwrite`。配置放在项目源码或计划里，与公共素材分开保存。
 
-`wise-motion-remotion` 是本项目现有绘制代码与 Remotion 适配器的交付包，不是另外下载的一套动效。安装包是复用入口之一；复制源码并自行接入也可以，但要连同依赖、字体、加载逻辑和许可处理。仅全原创且未引用组件的工程无需安装它。
+`wise-motion` 是本项目现有绘制代码与 Remotion 适配器的交付包，不是另外下载的一套动效。安装包是复用入口之一；复制源码并自行接入也可以，但要连同依赖、字体、加载逻辑和许可处理。仅全原创且未引用组件的工程无需安装它。
 
 ## 蝴蝶插画与圆形转场
 
 版画蝴蝶（`butterfly-illustration`）与四翼错拍、触角跟随（`hinged-wing-flap`）共用图集、运动计算和绘制程序。目录保留透明插画；视频也可直接使用原生帧组件：
 
 ```jsx
-import {WiseMotionButterfly, WiseMotionCircularReveal} from 'wise-motion-remotion';
+import {WiseMotionButterfly, WiseMotionCircularReveal} from 'wise-motion';
 // 原逻辑画幅为1080×1440；seconds为局部动作秒数，可省略以使用当前帧。
 const Butterfly = () => <WiseMotionButterfly background="transparent" />;
 // 将整页作为children放入遮罩，或不传children，用作纯色覆盖层。
