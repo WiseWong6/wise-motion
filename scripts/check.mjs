@@ -13,9 +13,9 @@ assertLayerBuildCurrent();
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('catalog/registry.json'));
-assert.equal(data.effects.length, 420);
-assert.equal(data.effects.filter(x => x.kind === 'action').length, 289);
-assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 90);
+assert.equal(data.effects.length, 428);
+assert.equal(data.effects.filter(x => x.kind === 'action').length, 295);
+assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 92);
 assert.equal(data.effects.filter(x => x.kind === 'composition').length, 41);
 assert.equal(new Set(data.effects.map(x => x.id)).size, data.effects.length);
 for(const [from,to] of Object.entries(data.redirects||{})){
@@ -95,7 +95,7 @@ for (const e of data.effects) {
     assert.ok((await stat(path.join(root,dependency))).isFile());files.add(dependency);
   }
   for(const asset of e.source.assets||[]){
-    assert.ok(asset.startsWith('catalog/assets/')&&!asset.includes('..'),e.id+' 的素材路径无效');
+    assert.ok((asset.startsWith('catalog/assets/')||asset.startsWith('catalog/fonts/'))&&!asset.includes('..'),e.id+' 的素材路径无效');
     assert.ok((await stat(path.join(root,asset))).isFile(),e.id+' 缺少本地素材：'+asset);
   }
   files.add(e.source.path);
@@ -172,11 +172,18 @@ assert.equal(historical.merged.length,0);
 assert.equal(historical.recipes.length+historical.excluded.length+historical.merged.length,historical.counts.reviewed);
 assert.equal(new Set(historical.recipes.map(x=>x.id)).size,0);
 assert.ok(historical.recipes.every(r=>r.entries.length&&r.source_clock&&r.source_parameters&&r.review.preserve.length));
-const ownFiles = ['catalog/runtime.js','catalog/history-runtime.js','catalog/history.css','catalog/export.js','catalog/dropdown.js','catalog/matching.js','catalog/app.js','catalog/app.css','catalog/frame.css','catalog/scenes.css','catalog/book-controls.js','catalog/book-controls.css','catalog/composition-controls.js','catalog/related-preview.js', ...files];
+const extractSources=(await readdir(path.join(root,'catalog/remotion/reel-extract'))).filter(name=>/\.(jsx|js|mjs)$/.test(name)).map(name=>'catalog/remotion/reel-extract/'+name);
+const ownFiles = [...extractSources,'catalog/runtime.js','catalog/history-runtime.js','catalog/history.css','catalog/export.js','catalog/dropdown.js','catalog/matching.js','catalog/app.js','catalog/app.css','catalog/frame.css','catalog/scenes.css','catalog/book-controls.js','catalog/book-controls.css','catalog/composition-controls.js','catalog/related-preview.js', ...files];
 for (const file of ownFiles) {
   const content = await read(file);
   assert.ok(!/\bfetch\s*\(|\bXMLHttpRequest\b|\bWebSocket\b|\bEventSource\b|\bimport\s*\(|@import\s|url\(\s*["']?(?:https?:|\/\/)/.test(content), '运行时有联网或模块依赖：' + file);
-  assert.ok(!/Math\.random\s*\(|setInterval\s*\(/.test(content), '有不可复现的时序：' + file);
+  // React DOM uses random suffixes only for private node/listener property names.
+  // Permit these two exact library expressions; all drawing sources remain subject to the full check.
+  const clockSource=file==='catalog/effects/reel-extract.js'
+    ? content.replace(/Math\.random\(\)\.toString\(36\)\.slice\(2\)(?=,\w+="__reactFiber\$")/g,'"react-node-key"')
+      .replace(/("_reactListening"\+)Math\.random\(\)\.toString\(36\)\.slice\(2\)/g,'$1"react-listener-key"')
+    : content;
+  assert.ok(!/Math\.random\s*\(|setInterval\s*\(/.test(clockSource), '有不可复现的时序：' + file);
 }
 for (const dir of ['catalog','catalog/effects','scripts','tests']) {
   for (const name of await readdir(path.join(root, dir))) if (/\.(js|mjs)$/.test(name)) {

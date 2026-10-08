@@ -2,20 +2,18 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {inflateSync} from 'node:zlib';
+import {createHash} from 'node:crypto';
 import {environment,data} from './helpers.mjs';
 
-// 原银河图左上角没有星点。首行首像素的滤波参考值全为零，可直接读取 RGB。
+// 左上角 RGB 在无损转码时从原 PNG 及 WebP 双向解码核对后记录。
+// 校验当前图片摘要，防止换图后继续使用过期的暗角取样。
 async function galaxyCorner(){
- const png=await readFile(new URL('../catalog/assets/scene-sources/letter/galaxy-sky.png',import.meta.url)),chunks=[];
- assert.equal(png.readUInt8(24),8);assert.equal(png.readUInt8(25),2);assert.equal(png.readUInt8(28),0);
- for(let at=8;at<png.length;){
-  const size=png.readUInt32BE(at),type=png.toString('ascii',at+4,at+8);
-  if(type==='IDAT')chunks.push(png.subarray(at+8,at+8+size));
-  at+=size+12;
- }
- const row=inflateSync(Buffer.concat(chunks));assert.ok(row[0]<=4);
- return Array.from(row.subarray(1,4));
+ const records=JSON.parse(await readFile(new URL('../catalog/assets/WEBP-SOURCES.json',import.meta.url),'utf8'));
+ const record=records.assets.find(item=>item.target==='catalog/assets/scene-sources/letter/galaxy-sky.webp');
+ const bytes=await readFile(new URL('../'+record.target,import.meta.url));
+ assert.equal(createHash('sha256').update(bytes).digest('hex'),record.sha256);
+ assert.deepEqual(record.top_left_rgba,[10,12,15,255]);
+ return record.top_left_rgba.slice(0,3);
 }
 
 test('蓝色星月来信展开完整银河后仍保留蓝底，暂停和回拖不变黑',async()=>{

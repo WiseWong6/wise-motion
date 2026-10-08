@@ -2,6 +2,13 @@
 import assert from 'node:assert/strict';
 export function installSceneCanvas(w){
  const prior=w.HTMLCanvasElement.prototype.getContext,contexts=new WeakMap();
+ // jsdom 不计算容器字体单位；按下方固定的660像素星月画板提供原字号。
+ const nativeStyle=w.getComputedStyle;
+ w.getComputedStyle=function(node,...args){
+  const css=nativeStyle.call(this,node,...args);
+  if(!node.matches?.('.scene-letter-inner .words')||Number.isFinite(parseFloat(css.fontSize)))return css;
+  return new Proxy(css,{get:(target,key)=>key==='fontSize'?`${Math.max(12,Math.min(20,660*.027))}px`:Reflect.get(target,key)});
+ };
  const finite=args=>{for(const a of args)if(typeof a==='number')assert.ok(Number.isFinite(a),'原作绘图出现无效坐标');};
  w.Path2D=class {constructor(path){this.path=path;} };
  for(const k of ['moveTo','lineTo','bezierCurveTo','quadraticCurveTo','arc','ellipse','rect','roundRect','closePath','addPath'])w.Path2D.prototype[k]=function(...args){finite(args);};

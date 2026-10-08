@@ -65,7 +65,7 @@ NASA 月貌数值与下表中的 AI 生成月面图片是两份不同材料，�
 | 文明组合的衬线字形 | 组合中的衬线字形轮廓 | [SIL OFL 1.1](catalog/assets/civilization-growth/OFL-Serif.txt)。 |
 | I.顏體 / I.Ngaan | “火炎焱燚”轮廓与固定网格墨点 | **GPL-2.0-or-later**，保留王漢宗与 Ichiten Fonts Project 原版权。原字库、许可及生成程序见 [生成材料](vendor/calligraphy/README.md)。 |
 
-I.顏體字库及派生字形保留 GPL-2.0-or-later；自有提取程序采用 AGPL-3.0-only。运行 `python3 vendor/calligraphy/prepare-calligraphy.py --check` 可用随包材料验证现有四字数据。
+I.顏體字库及派生字形保留 GPL-2.0-or-later；自有提取程序采用 AGPL-3.0-only。原字库保留在源码仓库，运行分发包不附带该原件；来源、许可及提取程序继续保留，派生字形的许可声明不变。在包含原字库的源码仓库运行 `python3 vendor/calligraphy/prepare-calligraphy.py --check` 可验证现有四字数据。
 
 “字标点阵显现”使用 Oswald Bold 的 WISE MOTION 两行轮廓，保留字体许可；原 Naive 门形标志已替换，旧条目标识仅用于链接兼容。
 
@@ -92,3 +92,10 @@ Remotion、React 等视频复用依赖由目标工程安装，版本和接入方
 深圳湾雪夜保留 p5.js 1.9.4 的噪声子集及原许可全文（LGPL-2.1），见 [第三方来源与许可](catalog/assets/scene-sources/snow/THIRD-PARTY.json)；抽出为实例内函数，并将初始化随机数接入固定种子。乐曲事件用于画面变化，完整组合同步播放原曲。
 
 星月来信使用霞鹜文楷和马善政毛笔字体，保留 [文楷原许可](catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt) 与 [毛笔原许可](catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt)。银河图片的原说明见 [素材来源](catalog/assets/scene-sources/letter/素材来源.md)。自拍图集为用户提供的自有原图，按原视角、足迹和透视映射复用。
+
+
+## 介绍视频中的人物与图片动效
+
+`catalog/remotion/reel-extract/` 保留用户指定介绍视频中的可读组件与运动公式，`catalog/effects/reel-extract.js` 是由这些源码生成的离线绘制文件。该文件内置 React 与 React DOM 19.3.0，保留 MIT 声明及 `catalog/assets/reel-extract/React-LICENSE.txt`、`ReactDOM-LICENSE.txt`；固定种子算法与 Remotion 4.0.532 的字符串种子取样一致，相关条款见同目录 `Remotion-LICENSE.txt`。
+
+人物底图、六种垃圾拼贴及目录缩略图从用户提供的现有素材复制，未重绘。人物与垃圾素材没有附独立再分发许可，本次收录不构成公开许可确认；目录缩略图沿用各原条目的来源说明。图片校验值及范围见 `catalog/assets/reel-extract/SOURCE.json`。彩蝶变蓝蝶继续使用既有 `catalog/assets/butterfly/` 图集及其来源说明。

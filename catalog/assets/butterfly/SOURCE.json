@@ -1,18 +1,22 @@
 {
   "origin": "用户已确认的 Wise Motion 视频蝴蝶插画与振翅小样",
   "created": "2026-10-06",
-  "image_source": "Codex 宿主内置 image_gen.imagegen；原透明图集直接复制，没有重绘或图像编辑",
+  "image_source": "Codex 宿主内置 image_gen.imagegen；原透明图集直接复制，没有重绘或图像编辑；运行素材已无损转为 WebP，完整颜色和透明度不变，校验记录见 ../WEBP-SOURCES.json。",
   "code_license": "AGPL-3.0-only",
   "files": [
     {
-      "path": "wing-atlas.png",
-      "bytes": 2353353,
-      "sha256": "30d981be48f5bb419fe25717d7dd5f33ba779b0e36d53e2e43d9fbdc19cbbab5"
+      "path": "wing-atlas.webp",
+      "bytes": 1504866,
+      "sha256": "78cf863cdbbd0b9f070b6c4d3224c9754e39cd06677c18d5e5243b4f4d9e8326",
+      "original_path": "wing-atlas.png",
+      "original_sha256": "30d981be48f5bb419fe25717d7dd5f33ba779b0e36d53e2e43d9fbdc19cbbab5"
     },
     {
-      "path": "ai-wing-atlas.png",
-      "bytes": 2394399,
-      "sha256": "d81423abc263c4d56fc0fe57246483c782b9c12e2b25e5283902bcdd1310c958"
+      "path": "ai-wing-atlas.webp",
+      "bytes": 1703300,
+      "sha256": "764fd30d6815a94628041af43b2a79a24364403995028248c89512811f7cb154",
+      "original_path": "ai-wing-atlas.png",
+      "original_sha256": "d81423abc263c4d56fc0fe57246483c782b9c12e2b25e5283902bcdd1310c958"
     }
   ],
   "motion": {

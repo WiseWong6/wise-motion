@@ -5,6 +5,8 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 const root = fileURLToPath(new URL('../', import.meta.url));
 const checking = process.argv.includes('--check');
+const {buildReelExtract} = await import('./build-reel-extract.mjs');
+await buildReelExtract(checking);
 const {buildCivilization} = await import('./build-civilization.mjs');
 await buildCivilization(checking);
 const {spawnSync}=await import('node:child_process');

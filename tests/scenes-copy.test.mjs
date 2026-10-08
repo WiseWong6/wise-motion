@@ -48,14 +48,19 @@ test('复制页面保存于包根目录，图片与字体仍指向包内真实�
    await w.MotionDemo.ready;w.MotionDemo.pause();w.MotionDemo.seek(effect.duration_ms);w.MotionDemo.seek(effect.preview_ms);
    assert.ok(w.document.querySelector('canvas').dataset.sourceTime,id+' 未绘制复制页面');
    const fonts=[...w.document.querySelectorAll('.scene-letter-inner style')].flatMap(s=>[...s.textContent.matchAll(/url\('([^']+)'\)/g)].map(m=>m[1]));
-   assert.ok(requests.length>0,id+' 没有载入素材');if(effect.scene?.family==='letter')assert.equal(fonts.length,2);
+   assert.ok(requests.length>0,id+' 没有载入素材');if(effect.scene?.family==='letter'){
+    assert.deepEqual(fonts,[
+     'file:///independent-bundle/catalog/fonts/LXGWWenKai-Regular.woff2',
+     'file:///independent-bundle/catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf',
+    ]);
+   }
    for(const url of [...requests,...fonts]){
-    if(url.startsWith('data:image/png;base64,')){
-     const pixels=Buffer.from(url.slice('data:image/png;base64,'.length),'base64');
-     const originals=await Promise.all((effect.source.assets||[]).filter(file=>file.endsWith('.png')).map(file=>readFile(new URL('../'+file,import.meta.url))));
+    if(url.startsWith('data:image/webp;base64,')){
+     const pixels=Buffer.from(url.slice('data:image/webp;base64,'.length),'base64');
+     const originals=await Promise.all((effect.source.assets||[]).filter(file=>file.endsWith('.webp')).map(file=>readFile(new URL('../'+file,import.meta.url))));
      assert.ok(originals.some(bytes=>bytes.equals(pixels)),id+' 图片封装必须保留原字节');
     }else{
-     assert.ok(url.startsWith('file:///independent-bundle/catalog/assets/scene-sources/'),id+' 错误素材地址 '+url);
+     assert.ok(url.startsWith('file:///independent-bundle/catalog/assets/scene-sources/')||url==='file:///independent-bundle/catalog/fonts/LXGWWenKai-Regular.woff2',id+' 错误素材地址 '+url);
      const relative=decodeURI(new URL(url).pathname.replace('/independent-bundle/',''));assert.ok((await stat(new URL('../'+relative,import.meta.url))).isFile(),relative+' 包内缺失');
     }
    }

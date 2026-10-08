@@ -37,10 +37,10 @@ test('本地直开时原图片封装逐字节一致，缩略图与独立画面�
    for(const ms of [0,effect.preview_ms,effect.duration_ms*.3,effect.duration_ms*.8,effect.duration_ms])render(ms);
    render.destroy();root.replaceChildren();
   }
-  assert.ok(requests.length>=7);assert.ok(requests.every(url=>url.startsWith('data:image/png;base64,')));
+  assert.ok(requests.length>=7);assert.ok(requests.every(url=>url.startsWith('data:image/webp;base64,')));
   for(const [path,url]of Object.entries(w.WiseSceneImageData)){
-   assert.ok(url.startsWith('data:image/png;base64,'));
-   assert.deepEqual(Buffer.from(url.slice('data:image/png;base64,'.length),'base64'),await readFile(new URL('../catalog/'+path,import.meta.url)),path+' 必须保留原图');
+   assert.ok(url.startsWith('data:image/webp;base64,'));
+   assert.deepEqual(Buffer.from(url.slice('data:image/webp;base64,'.length),'base64'),await readFile(new URL('../catalog/'+path,import.meta.url)),path+' 必须保留原图');
   }
  }finally{env.close();}
 });

@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import vm from 'node:vm';
+import {losslessWebpDimensions} from './image-assets.mjs';
 import {JSDOM} from 'jsdom';
 import {frameScriptsFor} from '../remotion/frame-document.mjs';
 import {installSceneCanvas} from './scene-canvas-fixture.mjs';
@@ -31,7 +32,7 @@ test('删除浓度墨团插画，实验树的原数据、花期、绘制及八�
  assert.equal(Object.keys(provenance.assets).length,8);
  for(const [path,record]of Object.entries(provenance.assets)){
   const bytes=await read('catalog/assets/scene-sources/window/'+path);
-  assert.equal(bytes.length,record.bytes,path);assert.equal(hash(bytes),record.sha256,path+'必须保留原 PNG 字节');
+  assert.equal(bytes.length,record.bytes,path);assert.equal(hash(bytes),record.sha256,path+'必须匹配无损 WebP 记录');
  }
 });
 
@@ -41,7 +42,7 @@ async function environment(id){
  w.HTMLCanvasElement.prototype.getContext=()=>null;installSceneCanvas(w);
  const sizes=new Map();
  for(const path of Object.keys(provenance.assets)){
-  const bytes=await read('catalog/assets/scene-sources/window/'+path);sizes.set('/window/'+path,[bytes.readUInt32BE(16),bytes.readUInt32BE(20)]);
+  const bytes=await read('catalog/assets/scene-sources/window/'+path);sizes.set('/window/'+path,losslessWebpDimensions(bytes));
  }
  for(const [name,index]of [['naturalWidth',0],['naturalHeight',1]])Object.defineProperty(w.HTMLImageElement.prototype,name,{get(){return [...sizes].find(([path])=>this.src.endsWith(path))?.[1][index]||1536;},configurable:true});
  Object.defineProperty(w.HTMLImageElement.prototype,'complete',{get:()=>true,configurable:true});

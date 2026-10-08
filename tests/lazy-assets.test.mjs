@@ -4,14 +4,14 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {environment, data} from './helpers.mjs';
 
-const heavy = ['effects/civilization-images.js', 'effects/rasengan-illustrations.js', 'effects/civilization-growth.js', 'remotion-sources.js',...data.effects.filter(e=>e.scene).flatMap(e=>[e.source.path,...(e.source.dependencies||[])]).map(f=>f.replace(/^catalog\//,''))];
+const heavy = ['effects/butterfly-mask.js','effects/reel-extract.js','effects/civilization-images.js', 'effects/rasengan-illustrations.js', 'effects/civilization-growth.js', 'remotion-sources.js',...data.effects.filter(e=>e.scene).flatMap(e=>[e.source.path,...(e.source.dependencies||[])]).map(f=>f.replace(/^catalog\//,''))];
 const effect = id => data.effects.find(item => item.id === id);
 
 test('较大的绘制文件仅在对应条目需要时载入，并行请求只执行一次',async()=>{
   const page=await environment(true,{staticPreview:true,lazyAssets:true});
   try {
     const {w}=page;
-    const files=['letter-settle','hud-targeting','data-motion','osmanthus-motion','settle-grow-spread','history-nature','claude-tile-illustrations','motion-oasis','material-evolution'].map(name=>'effects/'+name+'.js');
+    const files=['reel-extract','letter-settle','hud-targeting','data-motion','osmanthus-motion','settle-grow-spread','history-nature','claude-tile-illustrations','motion-oasis','material-evolution'].map(name=>'effects/'+name+'.js');
     assert.deepEqual(page.lazyRequests,[]);
     for(const file of files){
       const entry=data.effects.find(item=>item.source.path==='catalog/'+file);
@@ -93,6 +93,14 @@ test('用到时才按声明顺序载入，已载入的文件不重复执行', as
   const page = await environment(true, {staticPreview: true, lazyAssets: true});
   try {
     const {w} = page;
+    assert.equal(w.WiseButterflyMask, undefined);
+    await w.MotionLazy.ensure(effect('curved-image-picker'));
+    assert.equal(w.WiseButterflyMask, undefined,'图片滚轮不应载入蝴蝶遮罩');
+    await w.MotionLazy.ensure(effect('wing-root-color-reveal'));
+    assert.match(w.WiseButterflyMask,/^data:image\/webp;base64,/);
+    assert.equal(page.lazyRequests.filter(file=>file==='effects/butterfly-mask.js').length,1);
+    await w.MotionLazy.ensure(effect('wing-root-color-reveal'));
+    assert.equal(page.lazyRequests.filter(file=>file==='effects/butterfly-mask.js').length,1);
     assert.equal(w.WiseCivilizationImages, undefined);
     assert.ok(!w.MotionFactories['rasengan-illustration']);
     assert.equal(w.MotionLazy.ensure(effect('stagger-in')), null, '不依赖大素材的条目不需要等待');

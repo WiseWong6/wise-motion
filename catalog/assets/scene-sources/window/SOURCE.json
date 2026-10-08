@@ -36,37 +36,53 @@
     }
   },
   "assets": {
-    "assets/seasonal-flowers/green-chrysanthemum.png": {
-      "bytes": 1584582,
-      "sha256": "ef50098531b0221306c06e2dc966cff7d857a4405fa46fa67ccca73e540291fb"
+    "assets/seasonal-flowers/green-chrysanthemum.webp": {
+      "bytes": 1177220,
+      "sha256": "8ba7768cf2d4b35ee160cecdf6ccb710c05ba03febe689b7f46e84437e3eb82c",
+      "original_path": "assets/seasonal-flowers/green-chrysanthemum.png",
+      "original_sha256": "ef50098531b0221306c06e2dc966cff7d857a4405fa46fa67ccca73e540291fb"
     },
-    "assets/gold-flower/bloom-sheet.png": {
-      "bytes": 925844,
-      "sha256": "c3b92116b8fe15a6c2a6c43add849ea934702e86e50bb1949e3e63b7f7a430dc"
+    "assets/gold-flower/bloom-sheet.webp": {
+      "bytes": 670566,
+      "sha256": "a68ba77fcc29c957c7926dd59b506883b86c98b1c014fa93076b003496b4c80d",
+      "original_path": "assets/gold-flower/bloom-sheet.png",
+      "original_sha256": "c3b92116b8fe15a6c2a6c43add849ea934702e86e50bb1949e3e63b7f7a430dc"
     },
-    "assets/seasonal-flowers/orange-tulip-angles.png": {
-      "bytes": 1497730,
-      "sha256": "444b1d20a499c42cb07e4a74179af326fb1c5ebd23f4f0d78ff01b2163b454ab"
+    "assets/seasonal-flowers/orange-tulip-angles.webp": {
+      "bytes": 1148124,
+      "sha256": "2f0b880db3bf04557d9fc9769c95b8e71b8f6c663eca317107c33d6386d335b4",
+      "original_path": "assets/seasonal-flowers/orange-tulip-angles.png",
+      "original_sha256": "444b1d20a499c42cb07e4a74179af326fb1c5ebd23f4f0d78ff01b2163b454ab"
     },
-    "assets/seasonal-flowers/green-hydrangea.png": {
-      "bytes": 1233529,
-      "sha256": "5dcc2ac7cc6437b8b1b0b691b08569353cbfd2ce54ea61eef9e5c6f92fcf94bf"
+    "assets/seasonal-flowers/green-hydrangea.webp": {
+      "bytes": 853000,
+      "sha256": "a2f53ec26f3745e860bf45e4297ea4bb3b301a9e73f8a4e073506022de3db98e",
+      "original_path": "assets/seasonal-flowers/green-hydrangea.png",
+      "original_sha256": "5dcc2ac7cc6437b8b1b0b691b08569353cbfd2ce54ea61eef9e5c6f92fcf94bf"
     },
-    "assets/seasonal-flowers/red-rose.png": {
-      "bytes": 1431325,
-      "sha256": "172b287e133a7c570943f0382314a47f608aa347ecfd8546d5017aad1925e37f"
+    "assets/seasonal-flowers/red-rose.webp": {
+      "bytes": 1077008,
+      "sha256": "c71b699232b478cace9bc3d8867008eda42bfaeaa475010d28cbc4b0cff58c9d",
+      "original_path": "assets/seasonal-flowers/red-rose.png",
+      "original_sha256": "172b287e133a7c570943f0382314a47f608aa347ecfd8546d5017aad1925e37f"
     },
-    "assets/seasonal-flowers/blue-hydrangea.png": {
-      "bytes": 1264379,
-      "sha256": "3505ab507035a8cc70d6d4a437bcee8fa5947ad68d30d3ebf17c746abf5662c8"
+    "assets/seasonal-flowers/blue-hydrangea.webp": {
+      "bytes": 894838,
+      "sha256": "9b05288026daf9a9573f1054ba7ce39b33ebd0f6487cb98816be6e9569a14d2a",
+      "original_path": "assets/seasonal-flowers/blue-hydrangea.png",
+      "original_sha256": "3505ab507035a8cc70d6d4a437bcee8fa5947ad68d30d3ebf17c746abf5662c8"
     },
-    "assets/wood/walnut-window.png": {
-      "bytes": 958397,
-      "sha256": "e4fca4c512e22a7a959e5f76e3eec791133394cbe79ab513c6a9e838819e86e1"
+    "assets/wood/walnut-window.webp": {
+      "bytes": 676538,
+      "sha256": "5315b800f3280956097eb1577a304c78806b37706c0efbd0be425abfee98b62c",
+      "original_path": "assets/wood/walnut-window.png",
+      "original_sha256": "e4fca4c512e22a7a959e5f76e3eec791133394cbe79ab513c6a9e838819e86e1"
     },
-    "assets/wood/bare-bark.png": {
-      "bytes": 1860888,
-      "sha256": "1e2cea317d1682597101ebbc444a88a6a07e2b00ee655dbb1f98a644a2a591c5"
+    "assets/wood/bare-bark.webp": {
+      "bytes": 1113544,
+      "sha256": "1d1610130c49010b19eb708dbb42906fa32faf7de82859ec571f1a80535fe97e",
+      "original_path": "assets/wood/bare-bark.png",
+      "original_sha256": "1e2cea317d1682597101ebbc444a88a6a07e2b00ee655dbb1f98a644a2a591c5"
     }
   },
   "preserved_sections": [
@@ -88,5 +104,6 @@
       "end": "const parts=opt.mode==='full'?",
       "sha256": "99542225458c11bb35ea8a57fd416d84642ab7651819d266a02ea0ec287f5e34"
     }
-  ]
+  ],
+  "webp_conversion": "运行素材已无损转为 WebP；转换时逐张验证尺寸、完整 RGBA 像素及 ICC 色彩配置一致。原 PNG 文件摘要保留于各项 original_sha256，完整转换记录见 catalog/assets/WEBP-SOURCES.json。"
 }

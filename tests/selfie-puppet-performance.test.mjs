@@ -100,7 +100,7 @@ test('两个独立自拍条目保留原手机底图，与完整组合的屏幕�
     draw(ms);const actual=record('art'),expected=reference.get(ms);
     assert.equal(actual.images.length,97,id+' 必须先画手机底图，再画96片透视屏幕');
     assert.deepEqual(image(actual.images[0]),expected.body,'保留组合中的手机原图、位置和比例');
-    assert.equal(expected.body.name,'assets/scene-sources/selfie/手机与人物.png');
+    assert.equal(expected.body.name,'assets/scene-sources/selfie/手机与人物.webp');
     assert.deepEqual(expected.body.args,[0,0,1086,1448]);
     assert.deepEqual(screen({...actual,images:actual.images.slice(1)}),expected.screen,'手机屏幕与原组合在同一时刻一致，回拖不改变画面');
     assert.deepEqual(expected.screen.preview.scales,[[-1,1]],'自拍只镜像一次');

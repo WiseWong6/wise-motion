@@ -19,4 +19,4 @@
 
 `page-02.jpg` 与 `page-10.jpg` 均为未修改的官方原页。项目直接描摹指定的“道、一、二、三”字，处理包含灰度分层、去除细小扫描杂点、轻微平滑、等比缩放及逐步显现。描摹轮廓保留原图的 CC BY 4.0 来源与署名；本项目的生成程序及动画代码另按 AGPL-3.0-only 提供。
 
-在项目根目录运行 `python3 scripts/build-material-glyphs.py` 重新生成；加 `--check` 核对一致性。生成需要 OpenCV、NumPy、FontTools（含 WOFF2 支持）；运行目录播放器不需要这些 Python 依赖。原页仅用于重建和核对，播放时读取已生成轮廓。
+在源码仓库根目录运行 `python3 scripts/build-material-glyphs.py` 重新生成；加 `--check` 核对一致性。生成需要 OpenCV、NumPy、FontTools（含 WOFF2 支持）；运行目录播放器不需要这些 Python 依赖。原页仅用于重建和核对，保留在源码仓库，不进入运行分发包和素材安装副本；播放时读取已生成轮廓，分发仍保留来源记录与署名。
