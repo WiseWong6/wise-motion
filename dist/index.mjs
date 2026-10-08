@@ -198,7 +198,9 @@ var FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/scene-snow.js",
   "catalog/effects/scene-window-data.js",
   "catalog/effects/scene-window-media.js",
-  "catalog/effects/scene-window.js"
+  "catalog/effects/scene-window.js",
+  "catalog/effects/butterfly-mask.js",
+  "catalog/effects/reel-extract.js"
 ]);
 
 // remotion/frame-document.mjs
@@ -30744,8 +30746,8 @@ var registry_default = {
           "catalog/effects/butterfly-motion.js"
         ],
         assets: [
-          "catalog/assets/butterfly/wing-atlas.png",
-          "catalog/assets/butterfly/ai-wing-atlas.png",
+          "catalog/assets/butterfly/wing-atlas.webp",
+          "catalog/assets/butterfly/ai-wing-atlas.webp",
           "catalog/assets/butterfly/SOURCE.json"
         ],
         origin: "original",
@@ -30755,7 +30757,8 @@ var registry_default = {
         extraction: "\u4FDD\u7559\u5DF2\u786E\u8BA4\u7684\u900F\u660E\u56FE\u96C6\u3001\u56DB\u7247\u7FC5\u8180\u7684\u56FA\u5B9A\u7FFC\u6839\u3001\u89E6\u89D2\u66F2\u7EBF\u53CA\u516D\u79D2\u8FD0\u52A8\u516C\u5F0F\u3002\u76EE\u5F55\u63D2\u753B\u3001\u5173\u8054\u52A8\u4F5C\u4E0E\u9010\u5E27\u7EC4\u4EF6\u5171\u7528\u540C\u4E00\u7ED8\u5236\u7A0B\u5E8F\uFF1B\u89C6\u9891\u901A\u8FC7\u53C2\u6570\u4FDD\u7559\u539F\u753B\u5E45\u548C\u914D\u8272\u3002"
       },
       actions: [
-        "hinged-wing-flap"
+        "hinged-wing-flap",
+        "wing-root-color-reveal"
       ],
       demo_mode: "fixed-timeline",
       domains: [
@@ -30821,8 +30824,8 @@ var registry_default = {
           "catalog/effects/butterfly-motion.js"
         ],
         assets: [
-          "catalog/assets/butterfly/wing-atlas.png",
-          "catalog/assets/butterfly/ai-wing-atlas.png",
+          "catalog/assets/butterfly/wing-atlas.webp",
+          "catalog/assets/butterfly/ai-wing-atlas.webp",
           "catalog/assets/butterfly/SOURCE.json"
         ],
         origin: "original",
@@ -32408,7 +32411,7 @@ var registry_default = {
           "catalog/effects/scene-source-runtime.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/factory/coffee-bean.png"
+          "catalog/assets/scene-sources/factory/coffee-bean.webp"
         ]
       },
       actions: [],
@@ -32489,7 +32492,7 @@ var registry_default = {
           "catalog/effects/scene-source-runtime.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/factory/coffee-bean.png"
+          "catalog/assets/scene-sources/factory/coffee-bean.webp"
         ]
       },
       actions: [
@@ -32800,7 +32803,7 @@ var registry_default = {
           "catalog/effects/scene-source-runtime.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/factory/coffee-bean.png"
+          "catalog/assets/scene-sources/factory/coffee-bean.webp"
         ]
       },
       actions: [
@@ -32883,7 +32886,7 @@ var registry_default = {
           "catalog/effects/scene-source-runtime.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/factory/coffee-bean.png"
+          "catalog/assets/scene-sources/factory/coffee-bean.webp"
         ]
       },
       actions: [
@@ -32966,7 +32969,7 @@ var registry_default = {
           "catalog/effects/scene-source-runtime.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/factory/coffee-bean.png"
+          "catalog/assets/scene-sources/factory/coffee-bean.webp"
         ]
       },
       actions: [],
@@ -33275,7 +33278,7 @@ var registry_default = {
           "catalog/effects/scene-source-runtime.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/factory/coffee-bean.png",
+          "catalog/assets/scene-sources/factory/coffee-bean.webp",
           "catalog/assets/composition-audio/factory/SOURCE.json",
           "catalog/assets/composition-audio/factory/angry.wav",
           "catalog/assets/composition-audio/factory/beans.wav",
@@ -37658,9 +37661,9 @@ var registry_default = {
         ],
         assets: [
           "catalog/assets/scene-sources/letter/\u7D20\u6750\u6765\u6E90.md",
-          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/galaxy-sky.webp",
           "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
-          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/fonts/LXGWWenKai-Regular.woff2",
           "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
           "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
         ]
@@ -37745,9 +37748,9 @@ var registry_default = {
         ],
         assets: [
           "catalog/assets/scene-sources/letter/\u7D20\u6750\u6765\u6E90.md",
-          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/galaxy-sky.webp",
           "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
-          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/fonts/LXGWWenKai-Regular.woff2",
           "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
           "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
         ]
@@ -37942,9 +37945,9 @@ var registry_default = {
         ],
         assets: [
           "catalog/assets/scene-sources/letter/\u7D20\u6750\u6765\u6E90.md",
-          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/galaxy-sky.webp",
           "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
-          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/fonts/LXGWWenKai-Regular.woff2",
           "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
           "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
         ]
@@ -38031,9 +38034,9 @@ var registry_default = {
         ],
         assets: [
           "catalog/assets/scene-sources/letter/\u7D20\u6750\u6765\u6E90.md",
-          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/galaxy-sky.webp",
           "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
-          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/fonts/LXGWWenKai-Regular.woff2",
           "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
           "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt",
           "catalog/assets/composition-audio/letter/SOURCE.json",
@@ -38236,9 +38239,9 @@ var registry_default = {
         ],
         assets: [
           "catalog/assets/scene-sources/letter/\u7D20\u6750\u6765\u6E90.md",
-          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/galaxy-sky.webp",
           "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
-          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/fonts/LXGWWenKai-Regular.woff2",
           "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
           "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt",
           "catalog/assets/composition-audio/letter/SOURCE.json",
@@ -38440,12 +38443,12 @@ var registry_default = {
           "catalog/effects/scene-selfie-images.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.png",
-          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.png",
-          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.png"
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.webp",
+          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.webp",
+          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.webp"
         ]
       },
       actions: [],
@@ -38527,12 +38530,12 @@ var registry_default = {
           "catalog/effects/scene-selfie-images.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.png",
-          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.png",
-          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.png"
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.webp",
+          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.webp",
+          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.webp"
         ]
       },
       actions: [
@@ -38616,12 +38619,12 @@ var registry_default = {
           "catalog/effects/scene-selfie-images.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.png",
-          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.png",
-          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.png"
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.webp",
+          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.webp",
+          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.webp"
         ]
       },
       actions: [],
@@ -38703,12 +38706,12 @@ var registry_default = {
           "catalog/effects/scene-selfie-images.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.png",
-          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.png",
-          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.png"
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.webp",
+          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.webp",
+          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.webp"
         ]
       },
       actions: [],
@@ -38790,12 +38793,12 @@ var registry_default = {
           "catalog/effects/scene-selfie-images.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.png",
-          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.png",
-          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.png",
-          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.png",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u8F6C\u8EAB\u4E0E\u4F4E\u5934.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u5DE6\u4E0A.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u671D\u53F3\u4E0B.webp",
+          "catalog/assets/scene-sources/selfie/\u624B\u673A\u4E0E\u4EBA\u7269.webp",
+          "catalog/assets/scene-sources/selfie/\u6211\u7684\u81EA\u62CD.webp",
+          "catalog/assets/scene-sources/selfie/\u5C0F\u8475\u539F\u8BBE\u5B9A\u8865\u5145\u89C6\u89D2.webp",
           "catalog/assets/composition-audio/selfie/README.md",
           "catalog/assets/composition-audio/selfie/SOURCE.json",
           "catalog/assets/composition-audio/selfie/continuous-audio.m4a"
@@ -39786,14 +39789,14 @@ var registry_default = {
           "catalog/effects/scene-window-media.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-chrysanthemum.png",
-          "catalog/assets/scene-sources/window/assets/gold-flower/bloom-sheet.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/orange-tulip-angles.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-hydrangea.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/red-rose.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/blue-hydrangea.png",
-          "catalog/assets/scene-sources/window/assets/wood/walnut-window.png",
-          "catalog/assets/scene-sources/window/assets/wood/bare-bark.png",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-chrysanthemum.webp",
+          "catalog/assets/scene-sources/window/assets/gold-flower/bloom-sheet.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/orange-tulip-angles.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-hydrangea.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/red-rose.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/blue-hydrangea.webp",
+          "catalog/assets/scene-sources/window/assets/wood/walnut-window.webp",
+          "catalog/assets/scene-sources/window/assets/wood/bare-bark.webp",
           "catalog/assets/scene-sources/window/SOURCE.json"
         ]
       },
@@ -39917,14 +39920,14 @@ var registry_default = {
           "catalog/effects/scene-window-media.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-chrysanthemum.png",
-          "catalog/assets/scene-sources/window/assets/gold-flower/bloom-sheet.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/orange-tulip-angles.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-hydrangea.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/red-rose.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/blue-hydrangea.png",
-          "catalog/assets/scene-sources/window/assets/wood/walnut-window.png",
-          "catalog/assets/scene-sources/window/assets/wood/bare-bark.png",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-chrysanthemum.webp",
+          "catalog/assets/scene-sources/window/assets/gold-flower/bloom-sheet.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/orange-tulip-angles.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-hydrangea.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/red-rose.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/blue-hydrangea.webp",
+          "catalog/assets/scene-sources/window/assets/wood/walnut-window.webp",
+          "catalog/assets/scene-sources/window/assets/wood/bare-bark.webp",
           "catalog/assets/scene-sources/window/SOURCE.json"
         ]
       },
@@ -40013,14 +40016,14 @@ var registry_default = {
           "catalog/effects/scene-window-media.js"
         ],
         assets: [
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-chrysanthemum.png",
-          "catalog/assets/scene-sources/window/assets/gold-flower/bloom-sheet.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/orange-tulip-angles.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-hydrangea.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/red-rose.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/blue-hydrangea.png",
-          "catalog/assets/scene-sources/window/assets/wood/walnut-window.png",
-          "catalog/assets/scene-sources/window/assets/wood/bare-bark.png",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-chrysanthemum.webp",
+          "catalog/assets/scene-sources/window/assets/gold-flower/bloom-sheet.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/orange-tulip-angles.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-hydrangea.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/red-rose.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/blue-hydrangea.webp",
+          "catalog/assets/scene-sources/window/assets/wood/walnut-window.webp",
+          "catalog/assets/scene-sources/window/assets/wood/bare-bark.webp",
           "catalog/assets/scene-sources/window/SOURCE.json"
         ]
       },
@@ -40208,6 +40211,788 @@ var registry_default = {
         tempo_note: "\u4ECE0\u79D2\u7684\u4F4D\u7F6E\u5F00\u59CB\u5C55\u793A\uFF0C\u64AD\u653E20\u79D2\uFF0C\u5404\u90E8\u4EF6\u5171\u7528\u540C\u4E00\u52A8\u4F5C\u79D2\u6570\u3002",
         avoid: "\u6240\u6709\u52A8\u4F5C\u7531\u5F53\u524D\u5E27\u8BA1\u7B97\uFF0C\u968F\u673A\u5206\u5E03\u56FA\u5B9A\uFF0C\u5B9A\u4F4D\u65F6\u5448\u73B0\u540C\u4E00\u753B\u9762\u3002"
       }
+    },
+    {
+      id: "confused-characters-illustration",
+      name: "\u7591\u60D1\u4EBA\u7269\u7EC4",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "\u516D\u4F4D\u5F69\u8272\u4EBA\u7269\u4FDD\u6301\u539F\u4F4D\uFF0C\u4EE5\u9519\u62CD\u7728\u773C\u3001\u7591\u60D1\u8868\u60C5\u3001\u95EE\u53F7\u6C14\u6CE1\u4E0E\u6C57\u6EF4\u8868\u8FBE\u56F0\u60D1\u3002",
+      purpose: "\u516D\u4F4D\u5F69\u8272\u4EBA\u7269\u4FDD\u6301\u539F\u4F4D\uFF0C\u4EE5\u9519\u62CD\u7728\u773C\u3001\u7591\u60D1\u8868\u60C5\u3001\u95EE\u53F7\u6C14\u6CE1\u4E0E\u6C57\u6EF4\u8868\u8FBE\u56F0\u60D1\u3002",
+      objects: "\u539F\u900F\u660E\u4EBA\u7269\u5E95\u56FE\u3001\u516D\u7EC4\u773C\u775B\u3001\u95EE\u53F7\u6C14\u6CE1\u3001\u6C57\u6EF4\u4E0E\u601D\u8003\u65CB\u7EBF",
+      phases: [
+        "\u4EBA\u7269\u7EC4\u57280.4\u79D2\u5185\u663E\u73B0\uFF0C\u4FDD\u7559\u539F\u4F4D\u7F6E\u3001\u8272\u5F69\u548C\u624B\u52BF\u3002",
+        "\u516D\u7EC4\u773C\u775B\u6309\u5404\u81EA\u8282\u594F\u7728\u52A8\uFF0C\u5355\u773C\u53D8\u5E73\u4E0E\u7741\u773C\u9519\u5F00\u51FA\u73B0\u3002",
+        "\u4E2D\u592E\u95EE\u53F7\u6C14\u6CE1\u7559\u4E0B\uFF0C\u5468\u56F4\u95EE\u53F7\u6DE1\u51FA\uFF0C\u6C57\u6EF4\u5411\u4E0B\u6ED1\u843D\u3002"
+      ],
+      aliases: [
+        "\u4EBA\u7269\u63D2\u753B",
+        "\u7591\u60D1",
+        "\u516D\u4E2A\u4EBA\u7269",
+        "\u95EE\u53F7",
+        "\u7728\u773C",
+        "AI\u4EBA\u7269"
+      ],
+      behaviors: [
+        "sequence",
+        "move"
+      ],
+      retain: "\u900F\u660E\u5E95\u56FE1536\xD71024\uFF0C\u4EBA\u7269\u5728\u539F\u753B\u677F(72,484)\u5360936\xD7624\uFF1B\u773C\u775B\u4E0E\u7B26\u53F7\u6CBF\u7528\u539F\u56FE\u5750\u6807\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA112.85\u79D2\uFF0C\u8EAB\u4F53\u4FDD\u6301\u9759\u6B62\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u65C1\u767D\u6216\u6574\u7247\u5B57\u5E55\uFF1B\u4E0D\u628A\u539F\u56FE\u7247\u66FF\u6362\u4E3A\u65B0\u751F\u6210\u56FE\u7247\uFF0C\u4E0D\u5F15\u5165\u968F\u65F6\u95F4\u7D2F\u79EF\u7684\u968F\u673A\u72B6\u6001\u3002",
+      duration_ms: 3200,
+      preview_ms: 1500,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/reel-extract.js",
+        factory: "confused-characters-illustration",
+        dependencies: [],
+        assets: [
+          "catalog/assets/reel-extract/ai-bots/confused-clean-base.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        reference: {
+          name: "Wise Motion \u4ECB\u7ECD\u89C6\u9891 \xB7 \u7528\u6237\u63D0\u4F9B\u7684\u539F\u5DE5\u7A0B"
+        },
+        extraction: "\u4ECE\u7528\u6237\u63D0\u4F9B\u7684\u73B0\u6709\u89C6\u9891\u5DE5\u7A0B\u63D0\u53D6\u4EBA\u7269\u3001\u56FE\u7247\u53CA\u539F\u8FD0\u52A8\u516C\u5F0F\uFF1B\u672C\u5730\u7ED8\u5236\u5305\u548C\u53EF\u8BFB\u7EC4\u4EF6\u6E90\u7801\u4E00\u540C\u4EA4\u4ED8\uFF0C\u8FD0\u884C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+        rights_note: "\u65B0\u589E\u56FE\u7247\u6309\u539F\u5B57\u8282\u4FDD\u5B58\uFF1B\u4EBA\u7269\u4E0E\u5783\u573E\u56FE\u672A\u9644\u72EC\u7ACB\u518D\u5206\u53D1\u8BB8\u53EF\uFF0C\u4EC5\u6309\u7528\u6237\u8BF7\u6C42\u7EB3\u5165\u672C\u673A\u76EE\u5F55\u3002\u7B2C\u4E09\u65B9\u7EC4\u4EF6\u548C\u73B0\u6709\u52A8\u6548\u7F29\u7565\u56FE\u6CBF\u7528\u5404\u81EA\u8BB8\u53EF\u3002"
+      },
+      actions: [
+        "character-expression-response"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u6F14\u793A\uFF1B\u652F\u6301\u6682\u505C\u3001\u5B9A\u4F4D\u3001\u91CD\u64AD\u548C\u500D\u901F\u3002",
+      analogy: "\u516D\u4F4D\u5F69\u8272\u4EBA\u7269\u4FDD\u6301\u539F\u4F4D\uFF0C\u4EE5\u9519\u62CD\u7728\u773C\u3001\u7591\u60D1\u8868\u60C5\u3001\u95EE\u53F7\u6C14\u6CE1\u4E0E\u6C57\u6EF4\u8868\u8FBE\u56F0\u60D1\u3002",
+      assumptions: "\u4F7F\u7528\u539F\u903B\u8F91\u753B\u677F\u7B49\u6BD4\u53D6\u666F\uFF0C\u4EBA\u7269\u548C\u6750\u8D28\u4FDD\u6301\u539F\u8272\uFF1B\u72EC\u7ACB\u7247\u6BB5\u4F7F\u7528\u539F\u573A\u666F\u8BBE\u8BA1\u65F6\u95F4\uFF0C\u53BB\u6389\u6574\u7247\u65C1\u767D\u65F6\u95F4\u62C9\u4F38\u53CA\u65E0\u5173\u8F6C\u573A\u3002",
+      tempo_note: "\u5C40\u90E8\u6F14\u793A 3.2 \u79D2\uFF1B\u5168\u90E8\u4F4D\u7F6E\u4E0E\u72B6\u6001\u7531\u5F53\u524D\u65F6\u95F4\u786E\u5B9A\u3002",
+      recommendation: "\u9700\u8981\u6574\u7EC4\u4EBA\u7269\u8868\u8FBE\u7591\u95EE\u65F6\u4F7F\u7528\uFF1B\u5E86\u795D\u573A\u666F\u9009\u62E9\u5E86\u795D\u4EBA\u7269\u7EC4\uFF0C\u5171\u4EAB\u8868\u60C5\u52A8\u4F5C\u53EF\u4ECE\u5173\u8054\u6761\u76EE\u53D6\u7528\u3002",
+      reproduction: {
+        presentation: "\u900F\u660E\u5E95\u56FE1536\xD71024\uFF0C\u4EBA\u7269\u5728\u539F\u753B\u677F(72,484)\u5360936\xD7624\uFF1B\u773C\u775B\u4E0E\u7B26\u53F7\u6CBF\u7528\u539F\u56FE\u5750\u6807\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA112.85\u79D2\uFF0C\u8EAB\u4F53\u4FDD\u6301\u9759\u6B62\u3002",
+        retain: "\u900F\u660E\u5E95\u56FE1536\xD71024\uFF0C\u4EBA\u7269\u5728\u539F\u753B\u677F(72,484)\u5360936\xD7624\uFF1B\u773C\u775B\u4E0E\u7B26\u53F7\u6CBF\u7528\u539F\u56FE\u5750\u6807\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA112.85\u79D2\uFF0C\u8EAB\u4F53\u4FDD\u6301\u9759\u6B62\u3002"
+      },
+      action_variants: {
+        "character-expression-response": "confused"
+      }
+    },
+    {
+      id: "celebrating-characters-illustration",
+      name: "\u5E86\u795D\u4EBA\u7269\u7EC4",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "\u516D\u4F4D\u5F69\u8272\u4EBA\u7269\u7728\u773C\u5FAE\u7B11\uFF0C\u4E24\u4FA7\u624B\u90E8\u629B\u51FA\u7EB8\u5C51\u3001\u661F\u70B9\u548C\u5F69\u5E26\uFF0C\u968F\u540E\u6CBF\u629B\u7269\u7EBF\u56DE\u843D\u3002",
+      purpose: "\u516D\u4F4D\u5F69\u8272\u4EBA\u7269\u7728\u773C\u5FAE\u7B11\uFF0C\u4E24\u4FA7\u624B\u90E8\u629B\u51FA\u7EB8\u5C51\u3001\u661F\u70B9\u548C\u5F69\u5E26\uFF0C\u968F\u540E\u6CBF\u629B\u7269\u7EBF\u56DE\u843D\u3002",
+      objects: "\u539F\u900F\u660E\u5E86\u795D\u4EBA\u7269\u5E95\u56FE\u3001\u516D\u7EC4\u773C\u775B\u4E0E88\u7247\u56FA\u5B9A\u8F68\u8FF9\u5F69\u5C51",
+      phases: [
+        "\u4EBA\u7269\u7EC4\u57280.4\u79D2\u5185\u663E\u73B0\uFF0C\u7B11\u773C\u4F9D\u6B21\u5F62\u6210\u3002",
+        "\u4E24\u4FA7\u624B\u90E8\u5148\u91CA\u653E\u5C0F\u7EB8\u5C51\uFF0C\u518D\u8FDE\u7EED\u629B\u51FA\u5927\u7EB8\u7247\u3001\u661F\u5F62\u4E0E\u5F69\u5E26\u3002",
+        "\u5F69\u5C51\u65CB\u8F6C\u56DE\u843D\u5E76\u6DE1\u51FA\uFF0C\u4EBA\u7269\u4FDD\u6301\u539F\u624B\u52BF\u4E0E\u7B11\u5BB9\u3002"
+      ],
+      aliases: [
+        "\u4EBA\u7269\u63D2\u753B",
+        "\u5E86\u795D",
+        "\u5F00\u5FC3",
+        "\u6492\u5F69\u7EB8",
+        "\u5F69\u5C51",
+        "AI\u4EBA\u7269"
+      ],
+      behaviors: [
+        "sequence",
+        "move"
+      ],
+      retain: "\u900F\u660E\u5E95\u56FE1536\xD71024\uFF0C\u4EBA\u7269\u5728\u539F\u753B\u677F(72,392)\u5360936\xD7624\uFF1B\u5F69\u5C51\u517188\u7247\uFF0C\u4ECE\u4E24\u4FA7\u624B\u90E8\u629B\u51FA\uFF0C\u4FDD\u7559\u79CD\u5B50\u3001\u9876\u70B9\u3001\u843D\u70B9\u548C\u65CB\u8F6C\u516C\u5F0F\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA146.25\u79D2\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u65C1\u767D\u6216\u6574\u7247\u5B57\u5E55\uFF1B\u4E0D\u628A\u539F\u56FE\u7247\u66FF\u6362\u4E3A\u65B0\u751F\u6210\u56FE\u7247\uFF0C\u4E0D\u5F15\u5165\u968F\u65F6\u95F4\u7D2F\u79EF\u7684\u968F\u673A\u72B6\u6001\u3002",
+      duration_ms: 2100,
+      preview_ms: 950,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/reel-extract.js",
+        factory: "celebrating-characters-illustration",
+        dependencies: [],
+        assets: [
+          "catalog/assets/reel-extract/ai-bots/open-source-clean-base.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        reference: {
+          name: "Wise Motion \u4ECB\u7ECD\u89C6\u9891 \xB7 \u7528\u6237\u63D0\u4F9B\u7684\u539F\u5DE5\u7A0B"
+        },
+        extraction: "\u4ECE\u7528\u6237\u63D0\u4F9B\u7684\u73B0\u6709\u89C6\u9891\u5DE5\u7A0B\u63D0\u53D6\u4EBA\u7269\u3001\u56FE\u7247\u53CA\u539F\u8FD0\u52A8\u516C\u5F0F\uFF1B\u672C\u5730\u7ED8\u5236\u5305\u548C\u53EF\u8BFB\u7EC4\u4EF6\u6E90\u7801\u4E00\u540C\u4EA4\u4ED8\uFF0C\u8FD0\u884C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+        rights_note: "\u65B0\u589E\u56FE\u7247\u6309\u539F\u5B57\u8282\u4FDD\u5B58\uFF1B\u4EBA\u7269\u4E0E\u5783\u573E\u56FE\u672A\u9644\u72EC\u7ACB\u518D\u5206\u53D1\u8BB8\u53EF\uFF0C\u4EC5\u6309\u7528\u6237\u8BF7\u6C42\u7EB3\u5165\u672C\u673A\u76EE\u5F55\u3002\u7B2C\u4E09\u65B9\u7EC4\u4EF6\u548C\u73B0\u6709\u52A8\u6548\u7F29\u7565\u56FE\u6CBF\u7528\u5404\u81EA\u8BB8\u53EF\u3002"
+      },
+      actions: [
+        "character-expression-response"
+      ],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u6F14\u793A\uFF1B\u652F\u6301\u6682\u505C\u3001\u5B9A\u4F4D\u3001\u91CD\u64AD\u548C\u500D\u901F\u3002",
+      analogy: "\u516D\u4F4D\u5F69\u8272\u4EBA\u7269\u7728\u773C\u5FAE\u7B11\uFF0C\u4E24\u4FA7\u624B\u90E8\u629B\u51FA\u7EB8\u5C51\u3001\u661F\u70B9\u548C\u5F69\u5E26\uFF0C\u968F\u540E\u6CBF\u629B\u7269\u7EBF\u56DE\u843D\u3002",
+      assumptions: "\u4F7F\u7528\u539F\u903B\u8F91\u753B\u677F\u7B49\u6BD4\u53D6\u666F\uFF0C\u4EBA\u7269\u548C\u6750\u8D28\u4FDD\u6301\u539F\u8272\uFF1B\u72EC\u7ACB\u7247\u6BB5\u4F7F\u7528\u539F\u573A\u666F\u8BBE\u8BA1\u65F6\u95F4\uFF0C\u53BB\u6389\u6574\u7247\u65C1\u767D\u65F6\u95F4\u62C9\u4F38\u53CA\u65E0\u5173\u8F6C\u573A\u3002",
+      tempo_note: "\u5C40\u90E8\u6F14\u793A 2.1 \u79D2\uFF1B\u5168\u90E8\u4F4D\u7F6E\u4E0E\u72B6\u6001\u7531\u5F53\u524D\u65F6\u95F4\u786E\u5B9A\u3002",
+      recommendation: "\u9700\u8981\u56E2\u961F\u5E86\u795D\u4E0E\u629B\u7EB8\u5C51\u7684\u6574\u7EC4\u4EBA\u7269\u65F6\u4F7F\u7528\uFF1B\u56F0\u60D1\u8868\u60C5\u9009\u62E9\u7591\u60D1\u4EBA\u7269\u7EC4\u3002",
+      reproduction: {
+        presentation: "\u900F\u660E\u5E95\u56FE1536\xD71024\uFF0C\u4EBA\u7269\u5728\u539F\u753B\u677F(72,392)\u5360936\xD7624\uFF1B\u5F69\u5C51\u517188\u7247\uFF0C\u4ECE\u4E24\u4FA7\u624B\u90E8\u629B\u51FA\uFF0C\u4FDD\u7559\u79CD\u5B50\u3001\u9876\u70B9\u3001\u843D\u70B9\u548C\u65CB\u8F6C\u516C\u5F0F\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA146.25\u79D2\u3002",
+        retain: "\u900F\u660E\u5E95\u56FE1536\xD71024\uFF0C\u4EBA\u7269\u5728\u539F\u753B\u677F(72,392)\u5360936\xD7624\uFF1B\u5F69\u5C51\u517188\u7247\uFF0C\u4ECE\u4E24\u4FA7\u624B\u90E8\u629B\u51FA\uFF0C\u4FDD\u7559\u79CD\u5B50\u3001\u9876\u70B9\u3001\u843D\u70B9\u548C\u65CB\u8F6C\u516C\u5F0F\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA146.25\u79D2\u3002"
+      },
+      action_variants: {
+        "character-expression-response": "celebration"
+      }
+    },
+    {
+      id: "trash-intake-output",
+      name: "\u5438\u5165\u5410\u51FA\u6210\u5806",
+      kind: "action",
+      category: "particles",
+      summary: "\u516D\u4EF6\u62FC\u8D34\u788E\u7269\u4ECE\u4E0A\u65B9\u5438\u5165\u76D2\u4F53\uFF0C\u76D2\u4F53\u4E0A\u79FB\u540E\u5410\u51FA43\u4EF6\u788E\u7269\uFF0C\u65CB\u8F6C\u843D\u4E0B\u5E76\u5806\u6210\u4E00\u5806\u3002",
+      purpose: "\u516D\u4EF6\u62FC\u8D34\u788E\u7269\u4ECE\u4E0A\u65B9\u5438\u5165\u76D2\u4F53\uFF0C\u76D2\u4F53\u4E0A\u79FB\u540E\u5410\u51FA43\u4EF6\u788E\u7269\uFF0C\u65CB\u8F6C\u843D\u4E0B\u5E76\u5806\u6210\u4E00\u5806\u3002",
+      objects: "\u516D\u79CD\u5783\u573E\u62FC\u8D34\u3001\u5E26\u6307\u793A\u706F\u7684\u6A21\u578B\u76D2\u4F53\u3001\u8F93\u5165\u4E0E\u8F93\u51FA\u6587\u5B57",
+      phases: [
+        "\u4E0A\u65B9\u6587\u5B57\u6DE1\u51FA\u4E3A\u516D\u4EF6\u788E\u7269\uFF0C0.69\u79D2\u8D77\u5411\u76D2\u4F53\u5165\u53E3\u52A0\u901F\u843D\u5165\u3002",
+        "1.00\u81F31.17\u79D2\u76D2\u4F53\u4ECE\u7EB5\u5750\u6807760\u4E0A\u79FB\u5230460\uFF0C\u4E3A\u8F93\u51FA\u7559\u51FA\u7A7A\u95F4\u3002",
+        "1.12\u79D2\u8D77\u5410\u51FA43\u4EF6\u788E\u7269\uFF0C\u65CB\u8F6C\u6563\u5F00\u3001\u89E6\u5E95\u8F7B\u5F39\uFF0C\u518D\u7A33\u5B9A\u5806\u79EF\u3002"
+      ],
+      aliases: [
+        "\u5783\u573E\u8FDB\u5783\u573E\u51FA",
+        "\u5783\u573E\u8FDB\u51FA",
+        "\u5438\u5165",
+        "\u5410\u51FA",
+        "\u843D\u5730\u6210\u5806",
+        "\u62FC\u8D34\u5783\u573E"
+      ],
+      behaviors: [
+        "sequence",
+        "move"
+      ],
+      retain: "1080\xD71440\u539F\u903B\u8F91\u753B\u677F\uFF1B\u76D2\u4F53360\xD7300\u3002\u4FDD\u7559\u516D\u4EF6\u8F93\u5165\u4E0E43\u4EF6\u8F93\u51FA\u7684\u56FA\u5B9A\u968F\u673A\u8F68\u8FF9\u3001\u5206\u5C42\u843D\u70B9\u3001\u53CD\u5F39\u548C7\u4EF6\u5E95\u90E8\u586B\u5145\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA122.35\u79D2\uFF1B\u53BB\u6389\u6574\u7247\u6296\u52A8\u3001\u5B57\u7B26\u96E8\u4E0E\u672B\u5C3E\u5173\u5C4F\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u65C1\u767D\u6216\u6574\u7247\u5B57\u5E55\uFF1B\u4E0D\u628A\u539F\u56FE\u7247\u66FF\u6362\u4E3A\u65B0\u751F\u6210\u56FE\u7247\uFF0C\u4E0D\u5F15\u5165\u968F\u65F6\u95F4\u7D2F\u79EF\u7684\u968F\u673A\u72B6\u6001\u3002",
+      duration_ms: 2400,
+      preview_ms: 1850,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/reel-extract.js",
+        factory: "trash-intake-output",
+        dependencies: [],
+        assets: [
+          "catalog/assets/reel-extract/trash-collage/paper.webp",
+          "catalog/assets/reel-extract/trash-collage/can.webp",
+          "catalog/assets/reel-extract/trash-collage/bottle.webp",
+          "catalog/assets/reel-extract/trash-collage/banana.webp",
+          "catalog/assets/reel-extract/trash-collage/carton.webp",
+          "catalog/assets/reel-extract/trash-collage/bag.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        reference: {
+          name: "Wise Motion \u4ECB\u7ECD\u89C6\u9891 \xB7 \u7528\u6237\u63D0\u4F9B\u7684\u539F\u5DE5\u7A0B"
+        },
+        extraction: "\u4ECE\u7528\u6237\u63D0\u4F9B\u7684\u73B0\u6709\u89C6\u9891\u5DE5\u7A0B\u63D0\u53D6\u4EBA\u7269\u3001\u56FE\u7247\u53CA\u539F\u8FD0\u52A8\u516C\u5F0F\uFF1B\u672C\u5730\u7ED8\u5236\u5305\u548C\u53EF\u8BFB\u7EC4\u4EF6\u6E90\u7801\u4E00\u540C\u4EA4\u4ED8\uFF0C\u8FD0\u884C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+        rights_note: "\u65B0\u589E\u56FE\u7247\u6309\u539F\u5B57\u8282\u4FDD\u5B58\uFF1B\u4EBA\u7269\u4E0E\u5783\u573E\u56FE\u672A\u9644\u72EC\u7ACB\u518D\u5206\u53D1\u8BB8\u53EF\uFF0C\u4EC5\u6309\u7528\u6237\u8BF7\u6C42\u7EB3\u5165\u672C\u673A\u76EE\u5F55\u3002\u7B2C\u4E09\u65B9\u7EC4\u4EF6\u548C\u73B0\u6709\u52A8\u6548\u7F29\u7565\u56FE\u6CBF\u7528\u5404\u81EA\u8BB8\u53EF\u3002"
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u6F14\u793A\uFF1B\u652F\u6301\u6682\u505C\u3001\u5B9A\u4F4D\u3001\u91CD\u64AD\u548C\u500D\u901F\u3002",
+      analogy: "\u516D\u4EF6\u62FC\u8D34\u788E\u7269\u4ECE\u4E0A\u65B9\u5438\u5165\u76D2\u4F53\uFF0C\u76D2\u4F53\u4E0A\u79FB\u540E\u5410\u51FA43\u4EF6\u788E\u7269\uFF0C\u65CB\u8F6C\u843D\u4E0B\u5E76\u5806\u6210\u4E00\u5806\u3002",
+      assumptions: "\u4F7F\u7528\u539F\u903B\u8F91\u753B\u677F\u7B49\u6BD4\u53D6\u666F\uFF0C\u4EBA\u7269\u548C\u6750\u8D28\u4FDD\u6301\u539F\u8272\uFF1B\u72EC\u7ACB\u7247\u6BB5\u4F7F\u7528\u539F\u573A\u666F\u8BBE\u8BA1\u65F6\u95F4\uFF0C\u53BB\u6389\u6574\u7247\u65C1\u767D\u65F6\u95F4\u62C9\u4F38\u53CA\u65E0\u5173\u8F6C\u573A\u3002",
+      tempo_note: "\u5C40\u90E8\u6F14\u793A 2.4 \u79D2\uFF1B\u5168\u90E8\u4F4D\u7F6E\u4E0E\u72B6\u6001\u7531\u5F53\u524D\u65F6\u95F4\u786E\u5B9A\u3002",
+      recommendation: "\u9002\u5408\u8F93\u5165\u88AB\u5BB9\u5668\u5438\u6536\u518D\u4ECE\u51FA\u53E3\u6210\u500D\u6563\u843D\u7684\u5173\u7CFB\uFF1B\u4EC5\u505A\u5361\u7247\u6574\u7406\u65F6\u9009\u4E0B\u843D\u5806\u53E0\u4E0E\u4E0A\u79FB\u5F52\u4F4D\u3002",
+      reproduction: {
+        presentation: "1080\xD71440\u539F\u903B\u8F91\u753B\u677F\uFF1B\u76D2\u4F53360\xD7300\u3002\u4FDD\u7559\u516D\u4EF6\u8F93\u5165\u4E0E43\u4EF6\u8F93\u51FA\u7684\u56FA\u5B9A\u968F\u673A\u8F68\u8FF9\u3001\u5206\u5C42\u843D\u70B9\u3001\u53CD\u5F39\u548C7\u4EF6\u5E95\u90E8\u586B\u5145\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA122.35\u79D2\uFF1B\u53BB\u6389\u6574\u7247\u6296\u52A8\u3001\u5B57\u7B26\u96E8\u4E0E\u672B\u5C3E\u5173\u5C4F\u3002",
+        retain: "1080\xD71440\u539F\u903B\u8F91\u753B\u677F\uFF1B\u76D2\u4F53360\xD7300\u3002\u4FDD\u7559\u516D\u4EF6\u8F93\u5165\u4E0E43\u4EF6\u8F93\u51FA\u7684\u56FA\u5B9A\u968F\u673A\u8F68\u8FF9\u3001\u5206\u5C42\u843D\u70B9\u3001\u53CD\u5F39\u548C7\u4EF6\u5E95\u90E8\u586B\u5145\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA122.35\u79D2\uFF1B\u53BB\u6389\u6574\u7247\u6296\u52A8\u3001\u5B57\u7B26\u96E8\u4E0E\u672B\u5C3E\u5173\u5C4F\u3002"
+      }
+    },
+    {
+      id: "fall-stack-grid",
+      name: "\u4E0B\u843D\u5806\u53E0\u4E0E\u4E0A\u79FB\u5F52\u4F4D",
+      kind: "action",
+      category: "layout",
+      summary: "54\u5F20\u56FE\u7247\u5361\u7247\u9519\u5CF0\u843D\u4E0B\u5E76\u6742\u4E71\u5806\u53E0\uFF0C\u968F\u540E\u5411\u4E0A\u79FB\u52A8\u3001\u8F6C\u6B63\uFF0C\u6392\u6210\u516D\u5217\u4E5D\u884C\u7F51\u683C\u3002",
+      purpose: "54\u5F20\u56FE\u7247\u5361\u7247\u9519\u5CF0\u843D\u4E0B\u5E76\u6742\u4E71\u5806\u53E0\uFF0C\u968F\u540E\u5411\u4E0A\u79FB\u52A8\u3001\u8F6C\u6B63\uFF0C\u6392\u6210\u516D\u5217\u4E5D\u884C\u7F51\u683C\u3002",
+      objects: "54\u5F20\u539F\u52A8\u6548\u7F29\u7565\u56FE\u3001\u73BB\u7483\u7EC6\u8FB9\u5361\u7247\u3001\u516D\u5217\u4E5D\u884C\u76EE\u5F55\u7F51\u683C",
+      phases: [
+        "\u5361\u7247\u57280\u81F30.9\u79D2\u9519\u5CF0\u5F00\u59CB\u4E0B\u843D\uFF0C\u5355\u5F20\u52A0\u901F\u4E0B\u843D0.5\u79D2\u3002",
+        "\u843D\u5730\u540E\u5C0F\u5E45\u8870\u51CF\u53CD\u5F39\uFF0C\u6309\u539F\u968F\u673A\u6A2A\u5750\u6807\u4E0E\u503E\u89D2\u5F62\u6210\u5E95\u90E8\u5806\u53E0\u3002",
+        "1.45\u79D2\u8D77\u6BCF\u5F20\u9519\u5F004\u6BEB\u79D2\uFF0C\u4E0A\u79FB\u5E76\u8F6C\u6B63\uFF0C\u6700\u665A2.062\u79D2\u5B8C\u6210\u7F51\u683C\u5E76\u4FDD\u6301\u3002"
+      ],
+      aliases: [
+        "\u4E0B\u79FB\u5806\u53E0\u540E\u4E0A\u79FB\u6392\u5217",
+        "\u5361\u7247\u4E0B\u843D",
+        "\u6C89\u6DC0\u6210\u8D44\u4EA7",
+        "\u8D44\u4EA7\u76EE\u5F55",
+        "\u56FE\u7247\u6574\u7406",
+        "\u6563\u4E71\u5F52\u4F4D",
+        "\u4E0B\u79FB",
+        "\u5806\u53E0",
+        "\u4E0A\u79FB\u6392\u5217"
+      ],
+      behaviors: [
+        "sequence",
+        "move"
+      ],
+      retain: "\u4FDD\u7559\u539F\u903B\u8F911080\xD71440\u753B\u677F\uFF1B\u5361\u7247146\xD782.125\uFF0C\u6A2A\u5411\u95F4\u8DDD12\u3001\u7EB5\u5411\u95F4\u8DDD14\uFF0C\u7F51\u683C\u8D77\u70B9(72,416)\u3002\u4E0B\u843D\u4E0E\u6296\u52A8\u4F7F\u7528\u539F\u56FA\u5B9A\u968F\u673A\u79CD\u5B50\uFF0C\u5F52\u4F4D\u91C7\u7528\u4E94\u6B21\u7F13\u5165\u7F13\u51FA\uFF1B\u5B8C\u6210\u540E\u4FDD\u7559\u5168\u90E854\u5F20\uFF0C\u4E0D\u63A5\u539F\u7247\u540E\u7EED\u653E\u5927\u8F6C\u573A\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u65C1\u767D\u6216\u6574\u7247\u5B57\u5E55\uFF1B\u4E0D\u628A\u539F\u56FE\u7247\u66FF\u6362\u4E3A\u65B0\u751F\u6210\u56FE\u7247\uFF0C\u4E0D\u5F15\u5165\u968F\u65F6\u95F4\u7D2F\u79EF\u7684\u968F\u673A\u72B6\u6001\u3002",
+      duration_ms: 2800,
+      preview_ms: 2500,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/reel-extract.js",
+        factory: "fall-stack-grid",
+        dependencies: [],
+        assets: [
+          "catalog/assets/reel-extract/thumbs/animal-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/archive-box-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/benchmark-columns.webp",
+          "catalog/assets/reel-extract/thumbs/capsule-type-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/card-conveyor.webp",
+          "catalog/assets/reel-extract/thumbs/chrome-outline-echo.webp",
+          "catalog/assets/reel-extract/thumbs/circle-expand-wordmark.webp",
+          "catalog/assets/reel-extract/thumbs/civilization-growth-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/claude-hex-pulse-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-orbits-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-phyllotaxis-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-plexus-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/collage-film-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/contour-draw-fill.webp",
+          "catalog/assets/reel-extract/thumbs/cyanotype.webp",
+          "catalog/assets/reel-extract/thumbs/dandelion-subject-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/drafting-tools-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/drive-car-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/generative-point-morph.webp",
+          "catalog/assets/reel-extract/thumbs/generative-point-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/geometric-poster-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/glass-interface-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/glass-music-card-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/glyph-code-fill.webp",
+          "catalog/assets/reel-extract/thumbs/grid-flow-unfold.webp",
+          "catalog/assets/reel-extract/thumbs/hud-acquisition-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/image-particles-wordmark.webp",
+          "catalog/assets/reel-extract/thumbs/interface-feedback.webp",
+          "catalog/assets/reel-extract/thumbs/keyframe-workbench.webp",
+          "catalog/assets/reel-extract/thumbs/letter-settle.webp",
+          "catalog/assets/reel-extract/thumbs/material-phone-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/metal-impact-type-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/motion-oasis-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/neon-horizon.webp",
+          "catalog/assets/reel-extract/thumbs/neon-title-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/osmanthus-moon-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/outro-recap-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/paper-scroll-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/paper-spiral-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/particle-word.webp",
+          "catalog/assets/reel-extract/thumbs/point-domain-flow-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/prompt-to-core-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/radial-branch-flow.webp",
+          "catalog/assets/reel-extract/thumbs/rasengan-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/result-anchors.webp",
+          "catalog/assets/reel-extract/thumbs/seed-bloom-brand-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/stack-flick.webp",
+          "catalog/assets/reel-extract/thumbs/striped-sun-rise.webp",
+          "catalog/assets/reel-extract/thumbs/subtitle-focus.webp",
+          "catalog/assets/reel-extract/thumbs/sunset-water-reflection.webp",
+          "catalog/assets/reel-extract/thumbs/terminal-code.webp",
+          "catalog/assets/reel-extract/thumbs/tile-round-wave.webp",
+          "catalog/assets/reel-extract/thumbs/title-content.webp",
+          "catalog/assets/reel-extract/thumbs/word-slam.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        reference: {
+          name: "Wise Motion \u4ECB\u7ECD\u89C6\u9891 \xB7 \u7528\u6237\u63D0\u4F9B\u7684\u539F\u5DE5\u7A0B"
+        },
+        extraction: "\u4ECE\u7528\u6237\u63D0\u4F9B\u7684\u73B0\u6709\u89C6\u9891\u5DE5\u7A0B\u63D0\u53D6\u4EBA\u7269\u3001\u56FE\u7247\u53CA\u539F\u8FD0\u52A8\u516C\u5F0F\uFF1B\u672C\u5730\u7ED8\u5236\u5305\u548C\u53EF\u8BFB\u7EC4\u4EF6\u6E90\u7801\u4E00\u540C\u4EA4\u4ED8\uFF0C\u8FD0\u884C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+        rights_note: "\u65B0\u589E\u56FE\u7247\u6309\u539F\u5B57\u8282\u4FDD\u5B58\uFF1B\u4EBA\u7269\u4E0E\u5783\u573E\u56FE\u672A\u9644\u72EC\u7ACB\u518D\u5206\u53D1\u8BB8\u53EF\uFF0C\u4EC5\u6309\u7528\u6237\u8BF7\u6C42\u7EB3\u5165\u672C\u673A\u76EE\u5F55\u3002\u7B2C\u4E09\u65B9\u7EC4\u4EF6\u548C\u73B0\u6709\u52A8\u6548\u7F29\u7565\u56FE\u6CBF\u7528\u5404\u81EA\u8BB8\u53EF\u3002"
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u6F14\u793A\uFF1B\u652F\u6301\u6682\u505C\u3001\u5B9A\u4F4D\u3001\u91CD\u64AD\u548C\u500D\u901F\u3002",
+      analogy: "54\u5F20\u56FE\u7247\u5361\u7247\u9519\u5CF0\u843D\u4E0B\u5E76\u6742\u4E71\u5806\u53E0\uFF0C\u968F\u540E\u5411\u4E0A\u79FB\u52A8\u3001\u8F6C\u6B63\uFF0C\u6392\u6210\u516D\u5217\u4E5D\u884C\u7F51\u683C\u3002",
+      assumptions: "\u4F7F\u7528\u539F\u903B\u8F91\u753B\u677F\u7B49\u6BD4\u53D6\u666F\uFF0C\u4EBA\u7269\u548C\u6750\u8D28\u4FDD\u6301\u539F\u8272\uFF1B\u72EC\u7ACB\u7247\u6BB5\u4F7F\u7528\u539F\u573A\u666F\u8BBE\u8BA1\u65F6\u95F4\uFF0C\u53BB\u6389\u6574\u7247\u65C1\u767D\u65F6\u95F4\u62C9\u4F38\u53CA\u65E0\u5173\u8F6C\u573A\u3002",
+      tempo_note: "\u5C40\u90E8\u6F14\u793A 2.8 \u79D2\uFF1B\u5168\u90E8\u4F4D\u7F6E\u4E0E\u72B6\u6001\u7531\u5F53\u524D\u65F6\u95F4\u786E\u5B9A\u3002",
+      recommendation: "\u9002\u5408\u628A\u65E0\u5E8F\u79EF\u7D2F\u7684\u56FE\u7247\u6574\u7406\u6210\u53EF\u6D4F\u89C8\u7F51\u683C\uFF1B\u53EA\u9700\u5728\u540C\u4E00\u4F4D\u7F6E\u8FDE\u7EED\u52A0\u7EB8\u65F6\u4F7F\u7528\u7EB8\u7247\u8FDE\u7EED\u53E0\u52A0\u3002",
+      reproduction: {
+        presentation: "\u4FDD\u7559\u539F\u903B\u8F911080\xD71440\u753B\u677F\uFF1B\u5361\u7247146\xD782.125\uFF0C\u6A2A\u5411\u95F4\u8DDD12\u3001\u7EB5\u5411\u95F4\u8DDD14\uFF0C\u7F51\u683C\u8D77\u70B9(72,416)\u3002\u4E0B\u843D\u4E0E\u6296\u52A8\u4F7F\u7528\u539F\u56FA\u5B9A\u968F\u673A\u79CD\u5B50\uFF0C\u5F52\u4F4D\u91C7\u7528\u4E94\u6B21\u7F13\u5165\u7F13\u51FA\uFF1B\u5B8C\u6210\u540E\u4FDD\u7559\u5168\u90E854\u5F20\uFF0C\u4E0D\u63A5\u539F\u7247\u540E\u7EED\u653E\u5927\u8F6C\u573A\u3002",
+        retain: "\u4FDD\u7559\u539F\u903B\u8F911080\xD71440\u753B\u677F\uFF1B\u5361\u7247146\xD782.125\uFF0C\u6A2A\u5411\u95F4\u8DDD12\u3001\u7EB5\u5411\u95F4\u8DDD14\uFF0C\u7F51\u683C\u8D77\u70B9(72,416)\u3002\u4E0B\u843D\u4E0E\u6296\u52A8\u4F7F\u7528\u539F\u56FA\u5B9A\u968F\u673A\u79CD\u5B50\uFF0C\u5F52\u4F4D\u91C7\u7528\u4E94\u6B21\u7F13\u5165\u7F13\u51FA\uFF1B\u5B8C\u6210\u540E\u4FDD\u7559\u5168\u90E854\u5F20\uFF0C\u4E0D\u63A5\u539F\u7247\u540E\u7EED\u653E\u5927\u8F6C\u573A\u3002"
+      }
+    },
+    {
+      id: "curved-image-picker",
+      name: "\u66F2\u9762\u56FE\u7247\u6EDA\u8F6E\u505C\u9760",
+      kind: "action",
+      category: "continuous",
+      summary: "\u4E09\u5217\u56FE\u7247\u6CBF\u5F27\u9762\u8FDE\u7EED\u6EDA\u52A8\uFF0C\u4F9D\u6B21\u5E73\u6ED1\u51CF\u901F\uFF0C\u5206\u522B\u505C\u5728\u4E2D\u592E\u9009\u62E9\u5E26\u5E76\u6DE1\u5316\u5176\u4ED6\u5019\u9009\u3002",
+      purpose: "\u4E09\u5217\u56FE\u7247\u6CBF\u5F27\u9762\u8FDE\u7EED\u6EDA\u52A8\uFF0C\u4F9D\u6B21\u5E73\u6ED1\u51CF\u901F\uFF0C\u5206\u522B\u505C\u5728\u4E2D\u592E\u9009\u62E9\u5E26\u5E76\u6DE1\u5316\u5176\u4ED6\u5019\u9009\u3002",
+      objects: "\u4E09\u5217\u72EC\u7ACB\u56FE\u7247\u5019\u9009\u3001\u66F2\u9762\u6295\u5F71\u3001\u4E2D\u592E\u73BB\u7483\u9009\u62E9\u5E26",
+      phases: [
+        "\u4E09\u5217\u5404\u67098\u5F20\u5019\u9009\u56FE\u7247\uFF0C\u4ECE\u540C\u4E00\u65F6\u523B\u5F00\u59CB\u4EE5\u6BCF\u79D22400\u539F\u753B\u677F\u50CF\u7D20\u6EDA\u52A8\u3002",
+        "\u6BCF\u5217\u6700\u540E0.64\u79D2\u6309\u4F59\u5F26\u901F\u5EA6\u66F2\u7EBF\u51CF\u901F\uFF0C\u4E0A\u4E0B\u5019\u9009\u968F\u5F27\u9762\u8F6C\u52A8\u548C\u6DE1\u51FA\u3002",
+        "\u4E09\u5217\u5206\u522B\u57282.2\u30012.64\u30013.08\u79D2\u7CBE\u786E\u505C\u9760\uFF0C\u9009\u4E2D\u9879\u4EAE\u8D77\uFF0C\u5176\u4F59\u5019\u9009\u964D\u4EAE\u3002"
+      ],
+      aliases: [
+        "\u56FE\u7247picker",
+        "\u56FE\u7247\u9009\u62E9\u5668",
+        "\u6EDA\u8F6E\u9009\u62E9",
+        "\u4E09\u5217\u5339\u914D",
+        "\u66F2\u9762\u6EDA\u52A8",
+        "\u51CF\u901F\u9501\u5B9A"
+      ],
+      behaviors: [
+        "sequence",
+        "move"
+      ],
+      retain: "\u539F\u753B\u677F\u6BCF\u5217\u5BBD296\u3001\u9AD8760\uFF0C\u884C\u8DDD296\uFF0C\u9009\u62E9\u9879\u9AD8272\uFF0C\u56FE\u7247280\xD7157.5\u3002\u5F27\u9762\u534A\u5F84380\uFF0C\u7EB5\u5411\u4F4D\u7F6E380\xD7sin(\u8DDD\u79BB/380)\uFF0C\u76F8\u5E94\u7ED5\u6A2A\u8F74\u65CB\u8F6C\u3002\u4E09\u5217\u901F\u5EA62400\uFF0C\u5236\u52A8\u672B\u6BB50.64\u79D2\uFF0C\u7EC8\u70B9\u7D22\u5F15\u4E3A1\u30012\u30011\u3002\u6BCF\u52178\u9879\uFF0C\u540D\u79F0\u5355\u884C\u81EA\u9002\u5E94\u5B57\u53F7\uFF1B\u4E09\u4E2A\u9009\u4E2D\u9879\u4FDD\u7559\u539F\u89C6\u9891\u6700\u65B0\u7684\u6D45\u8272\u7FFB\u9875\u3001\u51E0\u4F55\u63D2\u753B\u548C\u7EB8\u9762\u5149\u5F71\u9884\u89C8\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u65C1\u767D\u6216\u6574\u7247\u5B57\u5E55\uFF1B\u4E0D\u628A\u539F\u56FE\u7247\u66FF\u6362\u4E3A\u65B0\u751F\u6210\u56FE\u7247\uFF0C\u4E0D\u5F15\u5165\u968F\u65F6\u95F4\u7D2F\u79EF\u7684\u968F\u673A\u72B6\u6001\u3002",
+      duration_ms: 4400,
+      preview_ms: 3400,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/reel-extract.js",
+        factory: "curved-image-picker",
+        assets: [
+          "catalog/assets/reel-extract/thumbs/benchmark-columns.webp",
+          "catalog/assets/reel-extract/thumbs/capsule-type-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/card-conveyor.webp",
+          "catalog/assets/reel-extract/thumbs/chrome-outline-echo.webp",
+          "catalog/assets/reel-extract/thumbs/circle-expand-wordmark.webp",
+          "catalog/assets/reel-extract/thumbs/claude-orbits-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-plexus-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/collage-film-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/contour-draw-fill.webp",
+          "catalog/assets/reel-extract/thumbs/cyanotype.webp",
+          "catalog/assets/reel-extract/thumbs/generative-point-morph.webp",
+          "catalog/assets/reel-extract/thumbs/grid-flow-unfold.webp",
+          "catalog/assets/reel-extract/thumbs/hud-acquisition-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/metal-impact-type-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/neon-title-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/paper-spiral-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/stack-flick.webp",
+          "catalog/assets/reel-extract/thumbs/striped-sun-rise.webp",
+          "catalog/assets/reel-extract/thumbs/sunset-water-reflection.webp",
+          "catalog/assets/reel-extract/thumbs/tile-round-wave.webp",
+          "catalog/assets/reel-extract/thumbs/word-slam.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        reference: {
+          name: "Wise Motion \u4ECB\u7ECD\u89C6\u9891 \xB7 \u7528\u6237\u63D0\u4F9B\u7684\u539F\u5DE5\u7A0B"
+        },
+        extraction: "\u4ECE\u7528\u6237\u63D0\u4F9B\u7684\u73B0\u6709\u89C6\u9891\u5DE5\u7A0B\u63D0\u53D6\u4EBA\u7269\u3001\u56FE\u7247\u53CA\u539F\u8FD0\u52A8\u516C\u5F0F\uFF1B\u672C\u5730\u7ED8\u5236\u5305\u548C\u53EF\u8BFB\u7EC4\u4EF6\u6E90\u7801\u4E00\u540C\u4EA4\u4ED8\uFF0C\u8FD0\u884C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+        rights_note: "\u65B0\u589E\u56FE\u7247\u6309\u539F\u5B57\u8282\u4FDD\u5B58\uFF1B\u4EBA\u7269\u4E0E\u5783\u573E\u56FE\u672A\u9644\u72EC\u7ACB\u518D\u5206\u53D1\u8BB8\u53EF\uFF0C\u4EC5\u6309\u7528\u6237\u8BF7\u6C42\u7EB3\u5165\u672C\u673A\u76EE\u5F55\u3002\u7B2C\u4E09\u65B9\u7EC4\u4EF6\u548C\u73B0\u6709\u52A8\u6548\u7F29\u7565\u56FE\u6CBF\u7528\u5404\u81EA\u8BB8\u53EF\u3002"
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u6F14\u793A\uFF1B\u652F\u6301\u6682\u505C\u3001\u5B9A\u4F4D\u3001\u91CD\u64AD\u548C\u500D\u901F\u3002",
+      analogy: "\u4E09\u5217\u56FE\u7247\u6CBF\u5F27\u9762\u8FDE\u7EED\u6EDA\u52A8\uFF0C\u4F9D\u6B21\u5E73\u6ED1\u51CF\u901F\uFF0C\u5206\u522B\u505C\u5728\u4E2D\u592E\u9009\u62E9\u5E26\u5E76\u6DE1\u5316\u5176\u4ED6\u5019\u9009\u3002",
+      assumptions: "\u4F7F\u7528\u539F\u903B\u8F91\u753B\u677F\u7B49\u6BD4\u53D6\u666F\uFF0C\u4EBA\u7269\u548C\u6750\u8D28\u4FDD\u6301\u539F\u8272\uFF1B\u72EC\u7ACB\u7247\u6BB5\u4F7F\u7528\u539F\u573A\u666F\u8BBE\u8BA1\u65F6\u95F4\uFF0C\u53BB\u6389\u6574\u7247\u65C1\u767D\u65F6\u95F4\u62C9\u4F38\u53CA\u65E0\u5173\u8F6C\u573A\u3002",
+      tempo_note: "\u5C40\u90E8\u6F14\u793A 4.4 \u79D2\uFF1B\u5168\u90E8\u4F4D\u7F6E\u4E0E\u72B6\u6001\u7531\u5F53\u524D\u65F6\u95F4\u786E\u5B9A\u3002",
+      recommendation: "\u9700\u8981\u5E26\u56FE\u7247\u3001\u900F\u89C6\u5F27\u9762\u548C\u591A\u5217\u9519\u5CF0\u505C\u9760\u7684\u9009\u62E9\u5668\u65F6\u4F7F\u7528\uFF1B\u5E73\u9762\u5355\u5217\u51CF\u901F\u9009\u62E9\u6EDA\u52A8\u51CF\u901F\u5BF9\u9F50\u3002",
+      reproduction: {
+        presentation: "\u539F\u753B\u677F\u6BCF\u5217\u5BBD296\u3001\u9AD8760\uFF0C\u884C\u8DDD296\uFF0C\u9009\u62E9\u9879\u9AD8272\uFF0C\u56FE\u7247280\xD7157.5\u3002\u5F27\u9762\u534A\u5F84380\uFF0C\u7EB5\u5411\u4F4D\u7F6E380\xD7sin(\u8DDD\u79BB/380)\uFF0C\u76F8\u5E94\u7ED5\u6A2A\u8F74\u65CB\u8F6C\u3002\u4E09\u5217\u901F\u5EA62400\uFF0C\u5236\u52A8\u672B\u6BB50.64\u79D2\uFF0C\u7EC8\u70B9\u7D22\u5F15\u4E3A1\u30012\u30011\u3002\u6BCF\u52178\u9879\uFF0C\u540D\u79F0\u5355\u884C\u81EA\u9002\u5E94\u5B57\u53F7\uFF1B\u4E09\u4E2A\u9009\u4E2D\u9879\u4FDD\u7559\u539F\u89C6\u9891\u6700\u65B0\u7684\u6D45\u8272\u7FFB\u9875\u3001\u51E0\u4F55\u63D2\u753B\u548C\u7EB8\u9762\u5149\u5F71\u9884\u89C8\u3002",
+        retain: "\u539F\u753B\u677F\u6BCF\u5217\u5BBD296\u3001\u9AD8760\uFF0C\u884C\u8DDD296\uFF0C\u9009\u62E9\u9879\u9AD8272\uFF0C\u56FE\u7247280\xD7157.5\u3002\u5F27\u9762\u534A\u5F84380\uFF0C\u7EB5\u5411\u4F4D\u7F6E380\xD7sin(\u8DDD\u79BB/380)\uFF0C\u76F8\u5E94\u7ED5\u6A2A\u8F74\u65CB\u8F6C\u3002\u4E09\u5217\u901F\u5EA62400\uFF0C\u5236\u52A8\u672B\u6BB50.64\u79D2\uFF0C\u7EC8\u70B9\u7D22\u5F15\u4E3A1\u30012\u30011\u3002\u6BCF\u52178\u9879\uFF0C\u540D\u79F0\u5355\u884C\u81EA\u9002\u5E94\u5B57\u53F7\uFF1B\u4E09\u4E2A\u9009\u4E2D\u9879\u4FDD\u7559\u539F\u89C6\u9891\u6700\u65B0\u7684\u6D45\u8272\u7FFB\u9875\u3001\u51E0\u4F55\u63D2\u753B\u548C\u7EB8\u9762\u5149\u5F71\u9884\u89C8\u3002"
+      }
+    },
+    {
+      id: "masked-image-scroll",
+      name: "\u906E\u7F69\u8FDE\u7EED\u6EDA\u52A8",
+      kind: "action",
+      category: "writing",
+      summary: "\u56FE\u7247\u5899\u6301\u7EED\u5411\u4E0A\u6EDA\u52A8\uFF0C\u900F\u8FC7\u56FA\u5B9A\u7684\u5927\u6570\u5B57\u8F6E\u5ED3\u663E\u73B0\uFF1B\u80CC\u666F\u4EE5\u4F4E\u900F\u660E\u5EA6\u4FDD\u7559\u8F83\u6162\u7684\u540C\u7C7B\u6EDA\u52A8\u3002",
+      purpose: "\u56FE\u7247\u5899\u6301\u7EED\u5411\u4E0A\u6EDA\u52A8\uFF0C\u900F\u8FC7\u56FA\u5B9A\u7684\u5927\u6570\u5B57\u8F6E\u5ED3\u663E\u73B0\uFF1B\u80CC\u666F\u4EE5\u4F4E\u900F\u660E\u5EA6\u4FDD\u7559\u8F83\u6162\u7684\u540C\u7C7B\u6EDA\u52A8\u3002",
+      objects: "\u6570\u5B57288\u906E\u7F69\u3001\u7EFF\u8272\u7EC6\u63CF\u8FB9\u3001\u524D\u540E\u4E24\u5C42\u9519\u884C\u56FE\u7247\u5899",
+      phases: [
+        "\u5EFA\u7ACB\u56FA\u5B9A\u6570\u5B57\u8F6E\u5ED3\u548C\u4E94\u5217\u56FE\u7247\u5899\u3002",
+        "\u6570\u5B57\u5185\u90E8\u56FE\u7247\u4EE5\u6BCF\u79D2480\u50CF\u7D20\u8FDE\u7EED\u4E0A\u6EDA\uFF0C\u80CC\u666F\u4EE5160\u50CF\u7D20\u6EDA\u52A8\u3002",
+        "\u8DE8\u884C\u65F6\u8865\u5165\u4E0B\u4E00\u884C\uFF0C\u906E\u7F69\u4FDD\u6301\u56FA\u5B9A\uFF0C\u5FAA\u73AF\u64AD\u653E\u4E0D\u4F1A\u91CD\u7F6E\u56FE\u7247\u4F4D\u7F6E\u3002"
+      ],
+      aliases: [
+        "\u906E\u7F69\u8FDE\u7EED\u6EDA\u52A8",
+        "\u6570\u5B57\u586B\u5145\u56FE\u7247",
+        "288",
+        "\u56FE\u7247\u906E\u7F69",
+        "\u9542\u7A7A\u6EDA\u52A8",
+        "\u5B57\u5F62\u5185\u6EDA\u52A8"
+      ],
+      behaviors: [
+        "continuous",
+        "move"
+      ],
+      retain: "\u539F1080\xD71440\u753B\u677F\uFF0COswald\u7C97\u4F53\u6570\u5B57540\u50CF\u7D20\uFF0C\u57FA\u7EBF(540,820)\u5C45\u4E2D\u3002\u4E94\u5217\u5341\u56DB\u884C\u56FE\u7247240\xD7135\uFF0C\u7F1D\u96996\uFF1B\u5947\u6570\u884C\u5DE6\u79FB120\u3002\u5B57\u5185\u6EDA\u901F480\uFF0C\u80CC\u666F160\u4E14\u900F\u660E\u5EA60.03\uFF0C\u63CF\u8FB9\u7EFF\u8272#3DAD80\u3002\u6570\u5B57\u4E3A\u793A\u4F8B288\uFF0C\u4E0D\u968F\u76EE\u5F55\u6570\u91CF\u53D8\u5316\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u65C1\u767D\u6216\u6574\u7247\u5B57\u5E55\uFF1B\u4E0D\u628A\u539F\u56FE\u7247\u66FF\u6362\u4E3A\u65B0\u751F\u6210\u56FE\u7247\uFF0C\u4E0D\u5F15\u5165\u968F\u65F6\u95F4\u7D2F\u79EF\u7684\u968F\u673A\u72B6\u6001\u3002",
+      duration_ms: 5e3,
+      preview_ms: 1300,
+      loop: true,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/reel-extract.js",
+        factory: "masked-image-scroll",
+        dependencies: [],
+        assets: [
+          "catalog/assets/reel-extract/thumbs/animal-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/archive-box-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/benchmark-columns.webp",
+          "catalog/assets/reel-extract/thumbs/capsule-type-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/card-conveyor.webp",
+          "catalog/assets/reel-extract/thumbs/chrome-outline-echo.webp",
+          "catalog/assets/reel-extract/thumbs/circle-expand-wordmark.webp",
+          "catalog/assets/reel-extract/thumbs/civilization-growth-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/claude-hex-pulse-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-orbits-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-phyllotaxis-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-plexus-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/collage-film-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/contour-draw-fill.webp",
+          "catalog/assets/reel-extract/thumbs/cyanotype.webp",
+          "catalog/assets/reel-extract/thumbs/drive-car-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/generative-point-morph.webp",
+          "catalog/assets/reel-extract/thumbs/geometric-poster-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/glass-interface-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/glass-music-card-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/glyph-code-fill.webp",
+          "catalog/assets/reel-extract/thumbs/grid-flow-unfold.webp",
+          "catalog/assets/reel-extract/thumbs/hud-acquisition-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/image-particles-wordmark.webp",
+          "catalog/assets/reel-extract/thumbs/letter-settle.webp",
+          "catalog/assets/reel-extract/thumbs/metal-impact-type-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/motion-oasis-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/neon-title-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/paper-spiral-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/particle-word.webp",
+          "catalog/assets/reel-extract/thumbs/point-domain-flow-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/rasengan-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/seed-bloom-brand-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/stack-flick.webp",
+          "catalog/assets/reel-extract/thumbs/striped-sun-rise.webp",
+          "catalog/assets/reel-extract/thumbs/sunset-water-reflection.webp",
+          "catalog/assets/reel-extract/thumbs/terminal-code.webp",
+          "catalog/assets/reel-extract/thumbs/tile-round-wave.webp",
+          "catalog/assets/reel-extract/thumbs/word-slam.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        reference: {
+          name: "Wise Motion \u4ECB\u7ECD\u89C6\u9891 \xB7 \u7528\u6237\u63D0\u4F9B\u7684\u539F\u5DE5\u7A0B"
+        },
+        extraction: "\u4ECE\u7528\u6237\u63D0\u4F9B\u7684\u73B0\u6709\u89C6\u9891\u5DE5\u7A0B\u63D0\u53D6\u4EBA\u7269\u3001\u56FE\u7247\u53CA\u539F\u8FD0\u52A8\u516C\u5F0F\uFF1B\u672C\u5730\u7ED8\u5236\u5305\u548C\u53EF\u8BFB\u7EC4\u4EF6\u6E90\u7801\u4E00\u540C\u4EA4\u4ED8\uFF0C\u8FD0\u884C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+        rights_note: "\u65B0\u589E\u56FE\u7247\u6309\u539F\u5B57\u8282\u4FDD\u5B58\uFF1B\u4EBA\u7269\u4E0E\u5783\u573E\u56FE\u672A\u9644\u72EC\u7ACB\u518D\u5206\u53D1\u8BB8\u53EF\uFF0C\u4EC5\u6309\u7528\u6237\u8BF7\u6C42\u7EB3\u5165\u672C\u673A\u76EE\u5F55\u3002\u7B2C\u4E09\u65B9\u7EC4\u4EF6\u548C\u73B0\u6709\u52A8\u6548\u7F29\u7565\u56FE\u6CBF\u7528\u5404\u81EA\u8BB8\u53EF\u3002"
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u6F14\u793A\uFF1B\u652F\u6301\u6682\u505C\u3001\u5B9A\u4F4D\u3001\u91CD\u64AD\u548C\u500D\u901F\u3002",
+      analogy: "\u56FE\u7247\u5899\u6301\u7EED\u5411\u4E0A\u6EDA\u52A8\uFF0C\u900F\u8FC7\u56FA\u5B9A\u7684\u5927\u6570\u5B57\u8F6E\u5ED3\u663E\u73B0\uFF1B\u80CC\u666F\u4EE5\u4F4E\u900F\u660E\u5EA6\u4FDD\u7559\u8F83\u6162\u7684\u540C\u7C7B\u6EDA\u52A8\u3002",
+      assumptions: "\u4F7F\u7528\u539F\u903B\u8F91\u753B\u677F\u7B49\u6BD4\u53D6\u666F\uFF0C\u4EBA\u7269\u548C\u6750\u8D28\u4FDD\u6301\u539F\u8272\uFF1B\u72EC\u7ACB\u7247\u6BB5\u4F7F\u7528\u539F\u573A\u666F\u8BBE\u8BA1\u65F6\u95F4\uFF0C\u53BB\u6389\u6574\u7247\u65C1\u767D\u65F6\u95F4\u62C9\u4F38\u53CA\u65E0\u5173\u8F6C\u573A\u3002",
+      tempo_note: "\u5C40\u90E8\u6F14\u793A 5 \u79D2\uFF1B\u5168\u90E8\u4F4D\u7F6E\u4E0E\u72B6\u6001\u7531\u5F53\u524D\u65F6\u95F4\u786E\u5B9A\u3002",
+      recommendation: "\u9002\u5408\u6570\u5B57\u6216\u5B57\u5F62\u4F5C\u4E3A\u56FA\u5B9A\u7A97\u53E3\u3001\u5185\u90E8\u6301\u7EED\u6EDA\u56FE\u7684\u5C55\u793A\uFF1B\u9700\u8981\u6587\u5B57\u81EA\u8EAB\u6EDA\u52A8\u65F6\u7528\u9996\u5C3E\u76F8\u63A5\u6EDA\u52A8\u3002",
+      reproduction: {
+        presentation: "\u539F1080\xD71440\u753B\u677F\uFF0COswald\u7C97\u4F53\u6570\u5B57540\u50CF\u7D20\uFF0C\u57FA\u7EBF(540,820)\u5C45\u4E2D\u3002\u4E94\u5217\u5341\u56DB\u884C\u56FE\u7247240\xD7135\uFF0C\u7F1D\u96996\uFF1B\u5947\u6570\u884C\u5DE6\u79FB120\u3002\u5B57\u5185\u6EDA\u901F480\uFF0C\u80CC\u666F160\u4E14\u900F\u660E\u5EA60.03\uFF0C\u63CF\u8FB9\u7EFF\u8272#3DAD80\u3002\u6570\u5B57\u4E3A\u793A\u4F8B288\uFF0C\u4E0D\u968F\u76EE\u5F55\u6570\u91CF\u53D8\u5316\u3002",
+        retain: "\u539F1080\xD71440\u753B\u677F\uFF0COswald\u7C97\u4F53\u6570\u5B57540\u50CF\u7D20\uFF0C\u57FA\u7EBF(540,820)\u5C45\u4E2D\u3002\u4E94\u5217\u5341\u56DB\u884C\u56FE\u7247240\xD7135\uFF0C\u7F1D\u96996\uFF1B\u5947\u6570\u884C\u5DE6\u79FB120\u3002\u5B57\u5185\u6EDA\u901F480\uFF0C\u80CC\u666F160\u4E14\u900F\u660E\u5EA60.03\uFF0C\u63CF\u8FB9\u7EFF\u8272#3DAD80\u3002\u6570\u5B57\u4E3A\u793A\u4F8B288\uFF0C\u4E0D\u968F\u76EE\u5F55\u6570\u91CF\u53D8\u5316\u3002"
+      }
+    },
+    {
+      id: "wing-root-color-reveal",
+      name: "\u7FFC\u6839\u6269\u6563\u6362\u8272",
+      kind: "action",
+      category: "attention",
+      summary: "\u5F69\u8272\u7248\u753B\u8774\u8776\u6301\u7EED\u8F7B\u632F\u7FC5\uFF0C\u84DD\u8272\u4ECE\u56DB\u7247\u7FFC\u6839\u5411\u5916\u6269\u6563\u8986\u76D6\uFF0C\u632F\u7FC5\u52A0\u5FEB\u5E76\u7565\u5411\u53F3\u4E0A\u98DE\u3002",
+      purpose: "\u5F69\u8272\u7248\u753B\u8774\u8776\u6301\u7EED\u8F7B\u632F\u7FC5\uFF0C\u84DD\u8272\u4ECE\u56DB\u7247\u7FFC\u6839\u5411\u5916\u6269\u6563\u8986\u76D6\uFF0C\u632F\u7FC5\u52A0\u5FEB\u5E76\u7565\u5411\u53F3\u4E0A\u98DE\u3002",
+      objects: "\u65E2\u6709\u5F69\u8272\u4E0E\u84DD\u8272\u7FFC\u56FE\u3001\u56DB\u4E2A\u7FFC\u6839\u906E\u7F69\u3001\u539F\u8EAB\u4F53\u548C\u89E6\u89D2",
+      phases: [
+        "\u5F69\u8272\u8774\u8776\u663E\u73B0\u540E\u8F7B\u632F\u7FC5\uFF0C\u9010\u6E10\u653E\u5927\u5E76\u8F7B\u8F6C\u8EAB\u4F53\u3002",
+        "4.761\u79D2\u8D77\u84DD\u8272\u4ECE\u7FFC\u6839\u5411\u5916\u94FA\u5F00\uFF0C\u524D\u540E\u9519\u5F0045\u6BEB\u79D2\u3001\u5DE6\u53F3\u9519\u5F0020\u6BEB\u79D2\u3002",
+        "\u6BCF\u7FFC0.34\u79D2\u5185\u5B8C\u6210\u53D8\u8272\uFF0C\u632F\u7FC5\u65F6\u949F\u8FDE\u7EED\u52A0\u5FEB\uFF0C\u968F\u540E\u5411\u53F3\u4E0A\u65B9\u8F7B\u79FB\u3002"
+      ],
+      aliases: [
+        "\u8774\u8776\u53D8\u5316",
+        "\u5F69\u8272\u53D8\u84DD\u8272",
+        "\u5F69\u8776\u53D8\u84DD\u8776",
+        "\u4ECE\u7FFC\u6839\u6362\u8272",
+        "\u7FC5\u8180\u906E\u7F69",
+        "\u632F\u7FC5\u53D8\u8272"
+      ],
+      behaviors: [
+        "sequence",
+        "move"
+      ],
+      retain: "\u4FDD\u7559\u65E2\u67091536\xD71024\u56FE\u96C6\u3001\u539F\u88C1\u5207\u4E0E\u56FA\u5B9A\u7FFC\u6839\u3002\u5706\u5F62\u63ED\u793A\u534A\u5F84\u4E3A\u5F53\u524D\u8FDB\u5EA6\u4E58\u7FFC\u6839\u5230\u6700\u8FDC\u89D2\u8DDD\u79BB\uFF0C\u6BCF\u7FFC0.34\u79D2\uFF1B\u6539\u53D8\u771F\u5B9E\u7EB9\u7406\u906E\u7F69\uFF0C\u4E0D\u7528\u5168\u56FE\u53D8\u8272\u6EE4\u955C\u3002\u4FDD\u7559\u539F\u653E\u5927\u3001\u8F6C\u8EAB\u3001\u8FDE\u7EED\u52A0\u901F\u548C\u8F7B\u98DE\u516C\u5F0F\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u65C1\u767D\u6216\u6574\u7247\u5B57\u5E55\uFF1B\u4E0D\u628A\u539F\u56FE\u7247\u66FF\u6362\u4E3A\u65B0\u751F\u6210\u56FE\u7247\uFF0C\u4E0D\u5F15\u5165\u968F\u65F6\u95F4\u7D2F\u79EF\u7684\u968F\u673A\u72B6\u6001\u3002",
+      duration_ms: 6111,
+      preview_ms: 5100,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/reel-extract.js",
+        factory: "wing-root-color-reveal",
+        dependencies: [
+          "catalog/effects/butterfly-motion.js",
+          "catalog/effects/butterfly.js",
+          "catalog/effects/butterfly-mask.js"
+        ],
+        assets: [
+          "catalog/assets/butterfly/wing-atlas.webp",
+          "catalog/assets/butterfly/ai-wing-atlas.webp",
+          "catalog/assets/butterfly/SOURCE.json",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        reference: {
+          name: "Wise Motion \u4ECB\u7ECD\u89C6\u9891 \xB7 \u7528\u6237\u63D0\u4F9B\u7684\u539F\u5DE5\u7A0B"
+        },
+        extraction: "\u4ECE\u7528\u6237\u63D0\u4F9B\u7684\u73B0\u6709\u89C6\u9891\u5DE5\u7A0B\u63D0\u53D6\u4EBA\u7269\u3001\u56FE\u7247\u53CA\u539F\u8FD0\u52A8\u516C\u5F0F\uFF1B\u672C\u5730\u7ED8\u5236\u5305\u548C\u53EF\u8BFB\u7EC4\u4EF6\u6E90\u7801\u4E00\u540C\u4EA4\u4ED8\uFF0C\u8FD0\u884C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+        rights_note: "\u65B0\u589E\u56FE\u7247\u6309\u539F\u5B57\u8282\u4FDD\u5B58\uFF1B\u4EBA\u7269\u4E0E\u5783\u573E\u56FE\u672A\u9644\u72EC\u7ACB\u518D\u5206\u53D1\u8BB8\u53EF\uFF0C\u4EC5\u6309\u7528\u6237\u8BF7\u6C42\u7EB3\u5165\u672C\u673A\u76EE\u5F55\u3002\u7B2C\u4E09\u65B9\u7EC4\u4EF6\u548C\u73B0\u6709\u52A8\u6548\u7F29\u7565\u56FE\u6CBF\u7528\u5404\u81EA\u8BB8\u53EF\u3002"
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u6F14\u793A\uFF1B\u652F\u6301\u6682\u505C\u3001\u5B9A\u4F4D\u3001\u91CD\u64AD\u548C\u500D\u901F\u3002",
+      analogy: "\u5F69\u8272\u7248\u753B\u8774\u8776\u6301\u7EED\u8F7B\u632F\u7FC5\uFF0C\u84DD\u8272\u4ECE\u56DB\u7247\u7FFC\u6839\u5411\u5916\u6269\u6563\u8986\u76D6\uFF0C\u632F\u7FC5\u52A0\u5FEB\u5E76\u7565\u5411\u53F3\u4E0A\u98DE\u3002",
+      assumptions: "\u4F7F\u7528\u539F\u903B\u8F91\u753B\u677F\u7B49\u6BD4\u53D6\u666F\uFF0C\u4EBA\u7269\u548C\u6750\u8D28\u4FDD\u6301\u539F\u8272\uFF1B\u72EC\u7ACB\u7247\u6BB5\u4F7F\u7528\u539F\u573A\u666F\u8BBE\u8BA1\u65F6\u95F4\uFF0C\u53BB\u6389\u6574\u7247\u65C1\u767D\u65F6\u95F4\u62C9\u4F38\u53CA\u65E0\u5173\u8F6C\u573A\u3002",
+      tempo_note: "\u5C40\u90E8\u6F14\u793A 6.111 \u79D2\uFF1B\u5168\u90E8\u4F4D\u7F6E\u4E0E\u72B6\u6001\u7531\u5F53\u524D\u65F6\u95F4\u786E\u5B9A\u3002",
+      recommendation: "\u9700\u8981\u6709\u65B9\u5411\u5730\u66FF\u6362\u8776\u7FFC\u6750\u8D28\u5E76\u8854\u63A5\u632F\u7FC5\u65F6\u4F7F\u7528\uFF1B\u4EC5\u5FAA\u73AF\u632F\u7FC5\u9009\u62E9\u56DB\u7FFC\u9519\u62CD\u5F00\u5408\u3002",
+      reproduction: {
+        presentation: "\u4FDD\u7559\u65E2\u67091536\xD71024\u56FE\u96C6\u3001\u539F\u88C1\u5207\u4E0E\u56FA\u5B9A\u7FFC\u6839\u3002\u5706\u5F62\u63ED\u793A\u534A\u5F84\u4E3A\u5F53\u524D\u8FDB\u5EA6\u4E58\u7FFC\u6839\u5230\u6700\u8FDC\u89D2\u8DDD\u79BB\uFF0C\u6BCF\u7FFC0.34\u79D2\uFF1B\u6539\u53D8\u771F\u5B9E\u7EB9\u7406\u906E\u7F69\uFF0C\u4E0D\u7528\u5168\u56FE\u53D8\u8272\u6EE4\u955C\u3002\u4FDD\u7559\u539F\u653E\u5927\u3001\u8F6C\u8EAB\u3001\u8FDE\u7EED\u52A0\u901F\u548C\u8F7B\u98DE\u516C\u5F0F\u3002",
+        retain: "\u4FDD\u7559\u65E2\u67091536\xD71024\u56FE\u96C6\u3001\u539F\u88C1\u5207\u4E0E\u56FA\u5B9A\u7FFC\u6839\u3002\u5706\u5F62\u63ED\u793A\u534A\u5F84\u4E3A\u5F53\u524D\u8FDB\u5EA6\u4E58\u7FFC\u6839\u5230\u6700\u8FDC\u89D2\u8DDD\u79BB\uFF0C\u6BCF\u7FFC0.34\u79D2\uFF1B\u6539\u53D8\u771F\u5B9E\u7EB9\u7406\u906E\u7F69\uFF0C\u4E0D\u7528\u5168\u56FE\u53D8\u8272\u6EE4\u955C\u3002\u4FDD\u7559\u539F\u653E\u5927\u3001\u8F6C\u8EAB\u3001\u8FDE\u7EED\u52A0\u901F\u548C\u8F7B\u98DE\u516C\u5F0F\u3002"
+      }
+    },
+    {
+      id: "character-expression-response",
+      name: "\u7728\u773C\u8868\u60C5\u4E0E\u7B26\u53F7\u56DE\u5E94",
+      kind: "action",
+      category: "environment",
+      summary: "\u4EBA\u7269\u8EAB\u4F53\u56FA\u5B9A\uFF0C\u773C\u775B\u9519\u62CD\u7728\u52A8\u3001\u5207\u6362\u8868\u60C5\uFF0C\u5E76\u901A\u8FC7\u95EE\u53F7\u6C57\u6EF4\u6216\u5F69\u5C51\u56DE\u5E94\u60C5\u7EEA\u3002",
+      purpose: "\u590D\u7528\u4EBA\u7269\u4E94\u5B98\u4E0E\u8F85\u52A9\u7B26\u53F7\u7684\u9010\u5E27\u8054\u52A8\u3002",
+      objects: "\u539F\u900F\u660E\u4EBA\u7269\u5E95\u56FE\u3001\u516D\u7EC4\u773C\u775B\u3001\u95EE\u53F7\u6C14\u6CE1\u3001\u6C57\u6EF4\u4E0E\u601D\u8003\u65CB\u7EBF",
+      phases: [
+        "\u4EBA\u7269\u7EC4\u57280.4\u79D2\u5185\u663E\u73B0\uFF0C\u4FDD\u7559\u539F\u4F4D\u7F6E\u3001\u8272\u5F69\u548C\u624B\u52BF\u3002",
+        "\u516D\u7EC4\u773C\u775B\u6309\u5404\u81EA\u8282\u594F\u7728\u52A8\uFF0C\u5355\u773C\u53D8\u5E73\u4E0E\u7741\u773C\u9519\u5F00\u51FA\u73B0\u3002",
+        "\u4E2D\u592E\u95EE\u53F7\u6C14\u6CE1\u7559\u4E0B\uFF0C\u5468\u56F4\u95EE\u53F7\u6DE1\u51FA\uFF0C\u6C57\u6EF4\u5411\u4E0B\u6ED1\u843D\u3002"
+      ],
+      aliases: [
+        "\u8868\u60C5\u53D8\u5316",
+        "\u7728\u773C",
+        "\u7B11\u773C",
+        "\u95EE\u53F7\u56DE\u5E94",
+        "\u4EBA\u7269\u8868\u60C5",
+        "\u6492\u5F69\u5C51"
+      ],
+      behaviors: [
+        "sequence",
+        "move"
+      ],
+      retain: "\u900F\u660E\u5E95\u56FE1536\xD71024\uFF0C\u4EBA\u7269\u5728\u539F\u753B\u677F(72,484)\u5360936\xD7624\uFF1B\u773C\u775B\u4E0E\u7B26\u53F7\u6CBF\u7528\u539F\u56FE\u5750\u6807\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA112.85\u79D2\uFF0C\u8EAB\u4F53\u4FDD\u6301\u9759\u6B62\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u65C1\u767D\u6216\u6574\u7247\u5B57\u5E55\uFF1B\u4E0D\u628A\u539F\u56FE\u7247\u66FF\u6362\u4E3A\u65B0\u751F\u6210\u56FE\u7247\uFF0C\u4E0D\u5F15\u5165\u968F\u65F6\u95F4\u7D2F\u79EF\u7684\u968F\u673A\u72B6\u6001\u3002",
+      duration_ms: 3200,
+      preview_ms: 1500,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/reel-extract.js",
+        factory: "confused-characters-illustration",
+        dependencies: [],
+        assets: [
+          "catalog/assets/reel-extract/ai-bots/confused-clean-base.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        origin: "original",
+        license: "AGPL-3.0-only",
+        library: "animejs@4.5.0",
+        reference_url: "https://animejs.com/documentation/",
+        reference: {
+          name: "Wise Motion \u4ECB\u7ECD\u89C6\u9891 \xB7 \u7528\u6237\u63D0\u4F9B\u7684\u539F\u5DE5\u7A0B"
+        },
+        extraction: "\u4ECE\u7528\u6237\u63D0\u4F9B\u7684\u73B0\u6709\u89C6\u9891\u5DE5\u7A0B\u63D0\u53D6\u4EBA\u7269\u3001\u56FE\u7247\u53CA\u539F\u8FD0\u52A8\u516C\u5F0F\uFF1B\u672C\u5730\u7ED8\u5236\u5305\u548C\u53EF\u8BFB\u7EC4\u4EF6\u6E90\u7801\u4E00\u540C\u4EA4\u4ED8\uFF0C\u8FD0\u884C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+        rights_note: "\u65B0\u589E\u56FE\u7247\u6309\u539F\u5B57\u8282\u4FDD\u5B58\uFF1B\u4EBA\u7269\u4E0E\u5783\u573E\u56FE\u672A\u9644\u72EC\u7ACB\u518D\u5206\u53D1\u8BB8\u53EF\uFF0C\u4EC5\u6309\u7528\u6237\u8BF7\u6C42\u7EB3\u5165\u672C\u673A\u76EE\u5F55\u3002\u7B2C\u4E09\u65B9\u7EC4\u4EF6\u548C\u73B0\u6709\u52A8\u6548\u7F29\u7565\u56FE\u6CBF\u7528\u5404\u81EA\u8BB8\u53EF\u3002"
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u6F14\u793A\uFF1B\u652F\u6301\u6682\u505C\u3001\u5B9A\u4F4D\u3001\u91CD\u64AD\u548C\u500D\u901F\u3002",
+      analogy: "\u516D\u4F4D\u5F69\u8272\u4EBA\u7269\u4FDD\u6301\u539F\u4F4D\uFF0C\u4EE5\u9519\u62CD\u7728\u773C\u3001\u7591\u60D1\u8868\u60C5\u3001\u95EE\u53F7\u6C14\u6CE1\u4E0E\u6C57\u6EF4\u8868\u8FBE\u56F0\u60D1\u3002",
+      assumptions: "\u4F7F\u7528\u539F\u903B\u8F91\u753B\u677F\u7B49\u6BD4\u53D6\u666F\uFF0C\u4EBA\u7269\u548C\u6750\u8D28\u4FDD\u6301\u539F\u8272\uFF1B\u72EC\u7ACB\u7247\u6BB5\u4F7F\u7528\u539F\u573A\u666F\u8BBE\u8BA1\u65F6\u95F4\uFF0C\u53BB\u6389\u6574\u7247\u65C1\u767D\u65F6\u95F4\u62C9\u4F38\u53CA\u65E0\u5173\u8F6C\u573A\u3002",
+      tempo_note: "\u5C40\u90E8\u6F14\u793A 3.2 \u79D2\uFF1B\u5168\u90E8\u4F4D\u7F6E\u4E0E\u72B6\u6001\u7531\u5F53\u524D\u65F6\u95F4\u786E\u5B9A\u3002",
+      recommendation: "\u9700\u8981\u9759\u6B62\u4EBA\u7269\u901A\u8FC7\u773C\u775B\u548C\u8F85\u52A9\u7B26\u53F7\u4F20\u8FBE\u7591\u60D1\u6216\u5E86\u795D\u65F6\u4F7F\u7528\uFF1B\u5B8C\u6574\u4EBA\u7269\u7D20\u6750\u89C1\u5173\u8054\u63D2\u753B\u3002",
+      reproduction: {
+        presentation: "\u900F\u660E\u5E95\u56FE1536\xD71024\uFF0C\u4EBA\u7269\u5728\u539F\u753B\u677F(72,484)\u5360936\xD7624\uFF1B\u773C\u775B\u4E0E\u7B26\u53F7\u6CBF\u7528\u539F\u56FE\u5750\u6807\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA112.85\u79D2\uFF0C\u8EAB\u4F53\u4FDD\u6301\u9759\u6B62\u3002",
+        retain: "\u900F\u660E\u5E95\u56FE1536\xD71024\uFF0C\u4EBA\u7269\u5728\u539F\u753B\u677F(72,484)\u5360936\xD7624\uFF1B\u773C\u775B\u4E0E\u7B26\u53F7\u6CBF\u7528\u539F\u56FE\u5750\u6807\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA112.85\u79D2\uFF0C\u8EAB\u4F53\u4FDD\u6301\u9759\u6B62\u3002"
+      },
+      variants: [
+        {
+          id: "confused",
+          label: "\u7591\u60D1\u4E0E\u95EE\u53F7",
+          summary: "\u516D\u4F4D\u5F69\u8272\u4EBA\u7269\u4FDD\u6301\u539F\u4F4D\uFF0C\u4EE5\u9519\u62CD\u7728\u773C\u3001\u7591\u60D1\u8868\u60C5\u3001\u95EE\u53F7\u6C14\u6CE1\u4E0E\u6C57\u6EF4\u8868\u8FBE\u56F0\u60D1\u3002",
+          duration_ms: 3200,
+          preview_ms: 1500,
+          source: {
+            path: "catalog/effects/reel-extract.js",
+            factory: "confused-characters-illustration",
+            dependencies: [],
+            assets: [
+              "catalog/assets/reel-extract/ai-bots/confused-clean-base.webp",
+              "catalog/assets/reel-extract/SOURCE.json"
+            ],
+            origin: "original",
+            license: "AGPL-3.0-only",
+            library: "animejs@4.5.0",
+            reference_url: "https://animejs.com/documentation/",
+            reference: {
+              name: "Wise Motion \u4ECB\u7ECD\u89C6\u9891 \xB7 \u7528\u6237\u63D0\u4F9B\u7684\u539F\u5DE5\u7A0B"
+            },
+            extraction: "\u4ECE\u7528\u6237\u63D0\u4F9B\u7684\u73B0\u6709\u89C6\u9891\u5DE5\u7A0B\u63D0\u53D6\u4EBA\u7269\u3001\u56FE\u7247\u53CA\u539F\u8FD0\u52A8\u516C\u5F0F\uFF1B\u672C\u5730\u7ED8\u5236\u5305\u548C\u53EF\u8BFB\u7EC4\u4EF6\u6E90\u7801\u4E00\u540C\u4EA4\u4ED8\uFF0C\u8FD0\u884C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+            rights_note: "\u65B0\u589E\u56FE\u7247\u6309\u539F\u5B57\u8282\u4FDD\u5B58\uFF1B\u4EBA\u7269\u4E0E\u5783\u573E\u56FE\u672A\u9644\u72EC\u7ACB\u518D\u5206\u53D1\u8BB8\u53EF\uFF0C\u4EC5\u6309\u7528\u6237\u8BF7\u6C42\u7EB3\u5165\u672C\u673A\u76EE\u5F55\u3002\u7B2C\u4E09\u65B9\u7EC4\u4EF6\u548C\u73B0\u6709\u52A8\u6548\u7F29\u7565\u56FE\u6CBF\u7528\u5404\u81EA\u8BB8\u53EF\u3002"
+          }
+        },
+        {
+          id: "celebration",
+          label: "\u7B11\u773C\u4E0E\u5F69\u5C51",
+          summary: "\u516D\u4F4D\u5F69\u8272\u4EBA\u7269\u7728\u773C\u5FAE\u7B11\uFF0C\u4E24\u4FA7\u624B\u90E8\u629B\u51FA\u7EB8\u5C51\u3001\u661F\u70B9\u548C\u5F69\u5E26\uFF0C\u968F\u540E\u6CBF\u629B\u7269\u7EBF\u56DE\u843D\u3002",
+          duration_ms: 2100,
+          preview_ms: 950,
+          source: {
+            path: "catalog/effects/reel-extract.js",
+            factory: "celebrating-characters-illustration",
+            dependencies: [],
+            assets: [
+              "catalog/assets/reel-extract/ai-bots/open-source-clean-base.webp",
+              "catalog/assets/reel-extract/SOURCE.json"
+            ],
+            origin: "original",
+            license: "AGPL-3.0-only",
+            library: "animejs@4.5.0",
+            reference_url: "https://animejs.com/documentation/",
+            reference: {
+              name: "Wise Motion \u4ECB\u7ECD\u89C6\u9891 \xB7 \u7528\u6237\u63D0\u4F9B\u7684\u539F\u5DE5\u7A0B"
+            },
+            extraction: "\u4ECE\u7528\u6237\u63D0\u4F9B\u7684\u73B0\u6709\u89C6\u9891\u5DE5\u7A0B\u63D0\u53D6\u4EBA\u7269\u3001\u56FE\u7247\u53CA\u539F\u8FD0\u52A8\u516C\u5F0F\uFF1B\u672C\u5730\u7ED8\u5236\u5305\u548C\u53EF\u8BFB\u7EC4\u4EF6\u6E90\u7801\u4E00\u540C\u4EA4\u4ED8\uFF0C\u8FD0\u884C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+            rights_note: "\u65B0\u589E\u56FE\u7247\u6309\u539F\u5B57\u8282\u4FDD\u5B58\uFF1B\u4EBA\u7269\u4E0E\u5783\u573E\u56FE\u672A\u9644\u72EC\u7ACB\u518D\u5206\u53D1\u8BB8\u53EF\uFF0C\u4EC5\u6309\u7528\u6237\u8BF7\u6C42\u7EB3\u5165\u672C\u673A\u76EE\u5F55\u3002\u7B2C\u4E09\u65B9\u7EC4\u4EF6\u548C\u73B0\u6709\u52A8\u6548\u7F29\u7565\u56FE\u6CBF\u7528\u5404\u81EA\u8BB8\u53EF\u3002"
+          },
+          phases: [
+            "\u4EBA\u7269\u7EC4\u57280.4\u79D2\u5185\u663E\u73B0\uFF0C\u7B11\u773C\u4F9D\u6B21\u5F62\u6210\u3002",
+            "\u4E24\u4FA7\u624B\u90E8\u5148\u91CA\u653E\u5C0F\u7EB8\u5C51\uFF0C\u518D\u8FDE\u7EED\u629B\u51FA\u5927\u7EB8\u7247\u3001\u661F\u5F62\u4E0E\u5F69\u5E26\u3002",
+            "\u5F69\u5C51\u65CB\u8F6C\u56DE\u843D\u5E76\u6DE1\u51FA\uFF0C\u4EBA\u7269\u4FDD\u6301\u539F\u624B\u52BF\u4E0E\u7B11\u5BB9\u3002"
+          ],
+          objects: "\u539F\u900F\u660E\u5E86\u795D\u4EBA\u7269\u5E95\u56FE\u3001\u516D\u7EC4\u773C\u775B\u4E0E88\u7247\u56FA\u5B9A\u8F68\u8FF9\u5F69\u5C51",
+          retain: "\u900F\u660E\u5E95\u56FE1536\xD71024\uFF0C\u4EBA\u7269\u5728\u539F\u753B\u677F(72,392)\u5360936\xD7624\uFF1B\u5F69\u5C51\u517188\u7247\uFF0C\u4ECE\u4E24\u4FA7\u624B\u90E8\u629B\u51FA\uFF0C\u4FDD\u7559\u79CD\u5B50\u3001\u9876\u70B9\u3001\u843D\u70B9\u548C\u65CB\u8F6C\u516C\u5F0F\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA146.25\u79D2\u3002",
+          tempo_note: "\u5C40\u90E8\u6F14\u793A 2.1 \u79D2\uFF1B\u5168\u90E8\u4F4D\u7F6E\u4E0E\u72B6\u6001\u7531\u5F53\u524D\u65F6\u95F4\u786E\u5B9A\u3002",
+          reproduction: {
+            presentation: "\u900F\u660E\u5E95\u56FE1536\xD71024\uFF0C\u4EBA\u7269\u5728\u539F\u753B\u677F(72,392)\u5360936\xD7624\uFF1B\u5F69\u5C51\u517188\u7247\uFF0C\u4ECE\u4E24\u4FA7\u624B\u90E8\u629B\u51FA\uFF0C\u4FDD\u7559\u79CD\u5B50\u3001\u9876\u70B9\u3001\u843D\u70B9\u548C\u65CB\u8F6C\u516C\u5F0F\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA146.25\u79D2\u3002",
+            retain: "\u900F\u660E\u5E95\u56FE1536\xD71024\uFF0C\u4EBA\u7269\u5728\u539F\u753B\u677F(72,392)\u5360936\xD7624\uFF1B\u5F69\u5C51\u517188\u7247\uFF0C\u4ECE\u4E24\u4FA7\u624B\u90E8\u629B\u51FA\uFF0C\u4FDD\u7559\u79CD\u5B50\u3001\u9876\u70B9\u3001\u843D\u70B9\u548C\u65CB\u8F6C\u516C\u5F0F\u3002\u5C40\u90E80\u79D2\u5BF9\u5E94\u539F\u8BBE\u8BA146.25\u79D2\u3002"
+          }
+        }
+      ]
     }
   ],
   redirects: {
@@ -41205,10 +41990,10 @@ import { AbsoluteFill, staticFile, useCurrentFrame, useDelayRender, useVideoConf
   "use strict";
   const scriptUrl = typeof document === "undefined" ? null : document.currentScript?.src;
   const catalogUrl = scriptUrl && new URL(new URL(scriptUrl).pathname.endsWith("/effects/butterfly.js") ? "../" : "./", scriptUrl);
-  const defaultAtlas = (doc) => new URL("assets/butterfly/wing-atlas.png", catalogUrl || (doc.baseURI.includes("/catalog/") ? new URL("./", doc.baseURI) : new URL("catalog/", doc.baseURI))).href;
+  const defaultAtlas = (doc) => new URL("assets/butterfly/wing-atlas.webp", catalogUrl || (doc.baseURI.includes("/catalog/") ? new URL("./", doc.baseURI) : new URL("catalog/", doc.baseURI))).href;
   const NS = "http://www.w3.org/2000/svg";
   const setStyle = (node, style) => Object.assign(node.style, style);
-  function mount(root, { atlasSrc, alternateSrc, catalogView = false } = {}) {
+  function mount(root, { atlasSrc, alternateSrc, maskSrc, catalogView = false } = {}) {
     const doc = root.ownerDocument;
     const { ATLAS, STAGE, PARTS, BODY, ANTENNAE, butterflyState } = global.WiseButterflyMotion;
     const src = atlasSrc || defaultAtlas(doc), pending = [];
@@ -41284,7 +42069,7 @@ import { AbsoluteFill, staticFile, useCurrentFrame, useDelayRender, useVideoConf
             position: "absolute",
             inset: "0",
             opacity: "0",
-            maskImage: `url("${src}")`,
+            maskImage: `url("${maskSrc || src}")`,
             maskMode: "alpha",
             maskSize: `${ATLAS.width}px ${ATLAS.height}px`,
             maskPosition: `${-part.crop[0]}px ${-part.crop[1]}px`,
@@ -41427,7 +42212,7 @@ function WiseMotionButterfly({
   const frame = useCurrentFrame(), { fps } = useVideoConfig();
   const { delayRender, continueRender, cancelRender } = useDelayRender();
   const root = useRef(null), renderer = useRef(null);
-  const src = atlasSrc || staticFile("wise-motion/catalog/assets/butterfly/wing-atlas.png");
+  const src = atlasSrc || staticFile("wise-motion/catalog/assets/butterfly/wing-atlas.webp");
   const alternateSrc = wingAtlasSrc;
   useLayoutEffect(() => {
     let alive = true, released = false;

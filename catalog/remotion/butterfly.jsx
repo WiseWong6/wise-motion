@@ -13,7 +13,7 @@ export function WiseMotionButterfly({atlasSrc, wingAtlasSrc, selection = 1, wing
   const frame = useCurrentFrame(), {fps} = useVideoConfig();
   const {delayRender, continueRender, cancelRender} = useDelayRender();
   const root = useRef(null), renderer = useRef(null);
-  const src = atlasSrc || staticFile('wise-motion/catalog/assets/butterfly/wing-atlas.png');
+  const src = atlasSrc || staticFile('wise-motion/catalog/assets/butterfly/wing-atlas.webp');
   const alternateSrc = wingAtlasSrc;
   useLayoutEffect(() => {
     let alive = true, released = false;

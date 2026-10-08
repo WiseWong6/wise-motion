@@ -1069,7 +1069,7 @@ const clipOpening=ctx=>{ctx.beginPath();ctx.rect(OPENING.x,OPENING.y,OPENING.w,O
  const parts=opt.mode==='full'?['background','frame','bloom']:['art'];
  let dead=false,sceneClock;
  const clockAt=t=>opt.mode==='tree'?(opt.pose==='bare'?SKEW:BLOOM_END):bloomClock(t);
- const ready=Promise.all([...flowerAssets.map(asset=>asset.src),'assets/wood/walnut-window.png','assets/wood/bare-bark.png']
+ const ready=Promise.all([...flowerAssets.map(asset=>asset.src),'assets/wood/walnut-window.webp','assets/wood/bare-bark.webp']
    .map(path=>S.image('assets/scene-sources/window/'+path))).then(images=>{
    if(dead)return;
    flowerSheets=images.slice(0,6);woodSheets=images.slice(6);

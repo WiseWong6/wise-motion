@@ -4,10 +4,17 @@ import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 const root=path.resolve(fileURLToPath(new URL('../',import.meta.url)));
+// 仅供源码重建的原件；分发排除规则同步见 catalog/.npmignore、vendor/.npmignore。
+const sourceOnlyFiles=new Set([
+ 'catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf',
+ 'vendor/calligraphy/I.Ngaan.ttf',
+ 'vendor/duobaota/page-02.jpg',
+ 'vendor/duobaota/page-10.jpg',
+]);
 // 素材副本供帧组件读取；完整目录页面只保留在源码的 catalog 中。
 export function isAssetFile(relativePath){
  const normalized=relativePath.split(path.sep).join('/');
- return path.basename(relativePath)!=='.DS_Store'&&!['catalog/index.html','catalog/remotion-player.js'].includes(normalized);
+ return !['.DS_Store','.npmignore'].includes(path.basename(relativePath))&&!sourceOnlyFiles.has(normalized)&&!['catalog/index.html','catalog/remotion-player.js'].includes(normalized);
 }
 const contains=(parent,child)=>child===parent||child.startsWith(parent+path.sep);
 async function canonicalPath(value){
@@ -78,6 +85,15 @@ export async function installAssets(destination,{overwrite=false}={}){
  if(conflicts.length)throw new Error('以下素材副本有本地修改，安装未执行：\n'+conflicts.join('\n')+'\n请保留修改；明确要替换时才使用 --overwrite。内容配置应写在项目源码或计划中。');
  await mkdir(target,{recursive:true});
  for(const name of ['catalog','vendor'])await cp(path.join(root,name),path.join(target,name),{recursive:true,force:true,filter:p=>isAssetFile(path.relative(root,p))});
+ // 升级时只清理有安装记录且内容未被用户修改的旧原件。
+ for(const relative of sourceOnlyFiles){
+  if(!previous[relative])continue;
+  const file=path.join(target,relative);
+  try{
+   const info=await lstat(file);
+   if(info.isFile()&&info.nlink===1&&hash(await readFile(file))===previous[relative])await rm(file);
+  }catch(error){if(error.code!=='ENOENT')throw error;}
+ }
  // 旧版曾复制首页但没有播放器，更新时移除这一个已知失效入口。
  await rm(path.join(target,'catalog/index.html'),{force:true});
  const pending=record+'.tmp';

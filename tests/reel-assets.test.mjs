@@ -23,7 +23,7 @@ test('蝴蝶图集原样保留，插画与动作只共享一个实际绘制入�
     assert.equal(createHash('sha256').update(bytes).digest('hex'), file.sha256);
   }
   const illustration = def('butterfly-illustration'), action = def('hinged-wing-flap');
-  assert.deepEqual(illustration.actions, [action.id]);
+  assert.deepEqual(illustration.actions, [action.id, 'wing-root-color-reveal']);
   assert.deepEqual(illustration.source, action.source);
   assert.deepEqual(frameScriptsFor(action).slice(-2), ['catalog/effects/butterfly-motion.js', 'catalog/effects/butterfly.js']);
 });
@@ -173,7 +173,7 @@ test('正式播放器重复载入蝴蝶后，插画和振翅缩略图仍读取�
         assert.equal(host.dataset.previewState, 'ready');
         const images = [...host.querySelectorAll('img')];
         assert.equal(images.length, 7);
-        for (const image of images) assert.equal(image.src, 'file:///wise-motion/catalog/assets/butterfly/wing-atlas.png', file + '：' + id);
+        for (const image of images) assert.equal(image.src, 'file:///wise-motion/catalog/assets/butterfly/wing-atlas.webp', file + '：' + id);
         w.MotionThumbs.release(host, false); host.remove();
       }
     }
@@ -184,7 +184,7 @@ test('逐翼换色、翼根显露与外部飞行姿态可倒序定位', async ()
   const dom = await butterflyEnvironment();
   try {
     const w = dom.window, root = w.document.getElementById('root');
-    const renderer = w.WiseButterfly.mount(root, {alternateSrc: 'ai-wing-atlas.png'});
+    const renderer = w.WiseButterfly.mount(root, {alternateSrc: 'ai-wing-atlas.webp'});
     root.querySelectorAll('img').forEach(img => img.dispatchEvent(new w.Event('load')));
     await renderer.ready;
     const motionState = w.WiseButterflyMotion.butterflyState(1.12);

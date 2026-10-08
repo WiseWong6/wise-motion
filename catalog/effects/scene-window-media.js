@@ -4,9 +4,9 @@
 /* 色区顺序与实验树一致；每种花保留独立的真实花形素材。 */
 'use strict';
 global.WiseWindowFlowerAssets=[
-  {id:'green-chrysanthemum',name:'绿菊',kind:'round',src:'assets/seasonal-flowers/green-chrysanthemum.png',cleanAlpha:true},
-  {id:'gold-flower',name:'金桂',kind:'sprig',src:'assets/gold-flower/bloom-sheet.png',cleanAlpha:false},
-  {id:'orange-tulip',name:'橙色郁金香',kind:'cup',src:'assets/seasonal-flowers/orange-tulip-angles.png',cleanAlpha:true,views:['斜正面','侧面','斜背面','背面'],
+  {id:'green-chrysanthemum',name:'绿菊',kind:'round',src:'assets/seasonal-flowers/green-chrysanthemum.webp',cleanAlpha:true},
+  {id:'gold-flower',name:'金桂',kind:'sprig',src:'assets/gold-flower/bloom-sheet.webp',cleanAlpha:false},
+  {id:'orange-tulip',name:'橙色郁金香',kind:'cup',src:'assets/seasonal-flowers/orange-tulip-angles.webp',cleanAlpha:true,views:['斜正面','侧面','斜背面','背面'],
     // 原图花朵没有等格排列。每项为源图裁切范围 x/y/宽/高，以及花托的源图坐标；
     // 所有姿态共用同一比例和花托位置，保留花苞到盛开的真实尺寸变化。
     frameSize:280,frameAnchor:[140,235],frames:[
@@ -15,9 +15,9 @@ global.WiseWindowFlowerAssets=[
       [[54,466,97,152,94,613],[227,458,125,161,276,614],[411,453,148,166,469,614],[608,446,165,174,677,615],[819,451,189,170,891,616],[1037,449,202,172,1115,616],[1257,442,244,179,1365,616],[1507,440,260,181,1628,616]],
       [[60,671,88,150,104,816],[230,665,113,158,286,818],[413,663,136,161,483,819],[605,661,158,166,685,822],[804,660,186,167,901,822],[1017,661,214,168,1127,824],[1247,659,240,170,1366,824],[1506,659,253,171,1631,825]]
     ]},
-  {id:'green-hydrangea',name:'绿绣球',kind:'sprig',src:'assets/seasonal-flowers/green-hydrangea.png',cleanAlpha:true},
-  {id:'red-rose',name:'红玫瑰',kind:'round',src:'assets/seasonal-flowers/red-rose.png',cleanAlpha:true},
-  {id:'blue-hydrangea',name:'蓝绣球',kind:'sprig',src:'assets/seasonal-flowers/blue-hydrangea.png',cleanAlpha:true}
+  {id:'green-hydrangea',name:'绿绣球',kind:'sprig',src:'assets/seasonal-flowers/green-hydrangea.webp',cleanAlpha:true},
+  {id:'red-rose',name:'红玫瑰',kind:'round',src:'assets/seasonal-flowers/red-rose.webp',cleanAlpha:true},
+  {id:'blue-hydrangea',name:'蓝绣球',kind:'sprig',src:'assets/seasonal-flowers/blue-hydrangea.webp',cleanAlpha:true}
 ];
 
  global.WiseWindowMedia=function(document){

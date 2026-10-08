@@ -1972,9 +1972,9 @@
   const Puppet=isNode?require('./view-puppet.js'):root.ViewPuppet;
   const Turn=isNode?require('./turn-motion.js'):root.TurnMotion;
   const width=1086,height=1448,sw=600,sh=820;
-  const files={scene:'assets/scene-sources/selfie/手机与人物.png',person:'assets/scene-sources/selfie/我的自拍.png',
-    views:'assets/scene-sources/selfie/小葵原设定补充视角.png',extra:'assets/scene-sources/selfie/小葵转身与低头.png',
-    outbound:'assets/scene-sources/selfie/小葵朝右下.png',rear:'assets/scene-sources/selfie/小葵朝左上.png'};
+  const files={scene:'assets/scene-sources/selfie/手机与人物.webp',person:'assets/scene-sources/selfie/我的自拍.webp',
+    views:'assets/scene-sources/selfie/小葵原设定补充视角.webp',extra:'assets/scene-sources/selfie/小葵转身与低头.webp',
+    outbound:'assets/scene-sources/selfie/小葵朝右下.webp',rear:'assets/scene-sources/selfie/小葵朝左上.webp'};
   // Stop with the visible front paw level with the shutter, then reach the
   // final ten pixels. The diagonal view has a different natural paw baseline.
   const home={x:320,y:691},end={x:770,y:1015.2},catScale=.60;

@@ -30376,8 +30376,8 @@
           "catalog/effects/butterfly-motion.js"
         ],
         "assets": [
-          "catalog/assets/butterfly/wing-atlas.png",
-          "catalog/assets/butterfly/ai-wing-atlas.png",
+          "catalog/assets/butterfly/wing-atlas.webp",
+          "catalog/assets/butterfly/ai-wing-atlas.webp",
           "catalog/assets/butterfly/SOURCE.json"
         ],
         "origin": "original",
@@ -30387,7 +30387,8 @@
         "extraction": "保留已确认的透明图集、四片翅膀的固定翼根、触角曲线及六秒运动公式。目录插画、关联动作与逐帧组件共用同一绘制程序；视频通过参数保留原画幅和配色。"
       },
       "actions": [
-        "hinged-wing-flap"
+        "hinged-wing-flap",
+        "wing-root-color-reveal"
       ],
       "demo_mode": "fixed-timeline",
       "domains": [
@@ -30453,8 +30454,8 @@
           "catalog/effects/butterfly-motion.js"
         ],
         "assets": [
-          "catalog/assets/butterfly/wing-atlas.png",
-          "catalog/assets/butterfly/ai-wing-atlas.png",
+          "catalog/assets/butterfly/wing-atlas.webp",
+          "catalog/assets/butterfly/ai-wing-atlas.webp",
           "catalog/assets/butterfly/SOURCE.json"
         ],
         "origin": "original",
@@ -32040,7 +32041,7 @@
           "catalog/effects/scene-source-runtime.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/factory/coffee-bean.png"
+          "catalog/assets/scene-sources/factory/coffee-bean.webp"
         ]
       },
       "actions": [],
@@ -32121,7 +32122,7 @@
           "catalog/effects/scene-source-runtime.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/factory/coffee-bean.png"
+          "catalog/assets/scene-sources/factory/coffee-bean.webp"
         ]
       },
       "actions": [
@@ -32432,7 +32433,7 @@
           "catalog/effects/scene-source-runtime.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/factory/coffee-bean.png"
+          "catalog/assets/scene-sources/factory/coffee-bean.webp"
         ]
       },
       "actions": [
@@ -32515,7 +32516,7 @@
           "catalog/effects/scene-source-runtime.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/factory/coffee-bean.png"
+          "catalog/assets/scene-sources/factory/coffee-bean.webp"
         ]
       },
       "actions": [
@@ -32598,7 +32599,7 @@
           "catalog/effects/scene-source-runtime.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/factory/coffee-bean.png"
+          "catalog/assets/scene-sources/factory/coffee-bean.webp"
         ]
       },
       "actions": [],
@@ -32907,7 +32908,7 @@
           "catalog/effects/scene-source-runtime.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/factory/coffee-bean.png",
+          "catalog/assets/scene-sources/factory/coffee-bean.webp",
           "catalog/assets/composition-audio/factory/SOURCE.json",
           "catalog/assets/composition-audio/factory/angry.wav",
           "catalog/assets/composition-audio/factory/beans.wav",
@@ -37290,9 +37291,9 @@
         ],
         "assets": [
           "catalog/assets/scene-sources/letter/素材来源.md",
-          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/galaxy-sky.webp",
           "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
-          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/fonts/LXGWWenKai-Regular.woff2",
           "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
           "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
         ]
@@ -37377,9 +37378,9 @@
         ],
         "assets": [
           "catalog/assets/scene-sources/letter/素材来源.md",
-          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/galaxy-sky.webp",
           "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
-          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/fonts/LXGWWenKai-Regular.woff2",
           "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
           "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
         ]
@@ -37574,9 +37575,9 @@
         ],
         "assets": [
           "catalog/assets/scene-sources/letter/素材来源.md",
-          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/galaxy-sky.webp",
           "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
-          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/fonts/LXGWWenKai-Regular.woff2",
           "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
           "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
         ]
@@ -37663,9 +37664,9 @@
         ],
         "assets": [
           "catalog/assets/scene-sources/letter/素材来源.md",
-          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/galaxy-sky.webp",
           "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
-          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/fonts/LXGWWenKai-Regular.woff2",
           "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
           "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt",
           "catalog/assets/composition-audio/letter/SOURCE.json",
@@ -37868,9 +37869,9 @@
         ],
         "assets": [
           "catalog/assets/scene-sources/letter/素材来源.md",
-          "catalog/assets/scene-sources/letter/galaxy-sky.png",
+          "catalog/assets/scene-sources/letter/galaxy-sky.webp",
           "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
-          "catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf",
+          "catalog/fonts/LXGWWenKai-Regular.woff2",
           "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
           "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt",
           "catalog/assets/composition-audio/letter/SOURCE.json",
@@ -38072,12 +38073,12 @@
           "catalog/effects/scene-selfie-images.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/selfie/小葵转身与低头.png",
-          "catalog/assets/scene-sources/selfie/小葵朝左上.png",
-          "catalog/assets/scene-sources/selfie/小葵朝右下.png",
-          "catalog/assets/scene-sources/selfie/手机与人物.png",
-          "catalog/assets/scene-sources/selfie/我的自拍.png",
-          "catalog/assets/scene-sources/selfie/小葵原设定补充视角.png"
+          "catalog/assets/scene-sources/selfie/小葵转身与低头.webp",
+          "catalog/assets/scene-sources/selfie/小葵朝左上.webp",
+          "catalog/assets/scene-sources/selfie/小葵朝右下.webp",
+          "catalog/assets/scene-sources/selfie/手机与人物.webp",
+          "catalog/assets/scene-sources/selfie/我的自拍.webp",
+          "catalog/assets/scene-sources/selfie/小葵原设定补充视角.webp"
         ]
       },
       "actions": [],
@@ -38159,12 +38160,12 @@
           "catalog/effects/scene-selfie-images.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/selfie/小葵转身与低头.png",
-          "catalog/assets/scene-sources/selfie/小葵朝左上.png",
-          "catalog/assets/scene-sources/selfie/小葵朝右下.png",
-          "catalog/assets/scene-sources/selfie/手机与人物.png",
-          "catalog/assets/scene-sources/selfie/我的自拍.png",
-          "catalog/assets/scene-sources/selfie/小葵原设定补充视角.png"
+          "catalog/assets/scene-sources/selfie/小葵转身与低头.webp",
+          "catalog/assets/scene-sources/selfie/小葵朝左上.webp",
+          "catalog/assets/scene-sources/selfie/小葵朝右下.webp",
+          "catalog/assets/scene-sources/selfie/手机与人物.webp",
+          "catalog/assets/scene-sources/selfie/我的自拍.webp",
+          "catalog/assets/scene-sources/selfie/小葵原设定补充视角.webp"
         ]
       },
       "actions": [
@@ -38248,12 +38249,12 @@
           "catalog/effects/scene-selfie-images.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/selfie/小葵转身与低头.png",
-          "catalog/assets/scene-sources/selfie/小葵朝左上.png",
-          "catalog/assets/scene-sources/selfie/小葵朝右下.png",
-          "catalog/assets/scene-sources/selfie/手机与人物.png",
-          "catalog/assets/scene-sources/selfie/我的自拍.png",
-          "catalog/assets/scene-sources/selfie/小葵原设定补充视角.png"
+          "catalog/assets/scene-sources/selfie/小葵转身与低头.webp",
+          "catalog/assets/scene-sources/selfie/小葵朝左上.webp",
+          "catalog/assets/scene-sources/selfie/小葵朝右下.webp",
+          "catalog/assets/scene-sources/selfie/手机与人物.webp",
+          "catalog/assets/scene-sources/selfie/我的自拍.webp",
+          "catalog/assets/scene-sources/selfie/小葵原设定补充视角.webp"
         ]
       },
       "actions": [],
@@ -38335,12 +38336,12 @@
           "catalog/effects/scene-selfie-images.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/selfie/小葵转身与低头.png",
-          "catalog/assets/scene-sources/selfie/小葵朝左上.png",
-          "catalog/assets/scene-sources/selfie/小葵朝右下.png",
-          "catalog/assets/scene-sources/selfie/手机与人物.png",
-          "catalog/assets/scene-sources/selfie/我的自拍.png",
-          "catalog/assets/scene-sources/selfie/小葵原设定补充视角.png"
+          "catalog/assets/scene-sources/selfie/小葵转身与低头.webp",
+          "catalog/assets/scene-sources/selfie/小葵朝左上.webp",
+          "catalog/assets/scene-sources/selfie/小葵朝右下.webp",
+          "catalog/assets/scene-sources/selfie/手机与人物.webp",
+          "catalog/assets/scene-sources/selfie/我的自拍.webp",
+          "catalog/assets/scene-sources/selfie/小葵原设定补充视角.webp"
         ]
       },
       "actions": [],
@@ -38422,12 +38423,12 @@
           "catalog/effects/scene-selfie-images.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/selfie/小葵转身与低头.png",
-          "catalog/assets/scene-sources/selfie/小葵朝左上.png",
-          "catalog/assets/scene-sources/selfie/小葵朝右下.png",
-          "catalog/assets/scene-sources/selfie/手机与人物.png",
-          "catalog/assets/scene-sources/selfie/我的自拍.png",
-          "catalog/assets/scene-sources/selfie/小葵原设定补充视角.png",
+          "catalog/assets/scene-sources/selfie/小葵转身与低头.webp",
+          "catalog/assets/scene-sources/selfie/小葵朝左上.webp",
+          "catalog/assets/scene-sources/selfie/小葵朝右下.webp",
+          "catalog/assets/scene-sources/selfie/手机与人物.webp",
+          "catalog/assets/scene-sources/selfie/我的自拍.webp",
+          "catalog/assets/scene-sources/selfie/小葵原设定补充视角.webp",
           "catalog/assets/composition-audio/selfie/README.md",
           "catalog/assets/composition-audio/selfie/SOURCE.json",
           "catalog/assets/composition-audio/selfie/continuous-audio.m4a"
@@ -39418,14 +39419,14 @@
           "catalog/effects/scene-window-media.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-chrysanthemum.png",
-          "catalog/assets/scene-sources/window/assets/gold-flower/bloom-sheet.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/orange-tulip-angles.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-hydrangea.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/red-rose.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/blue-hydrangea.png",
-          "catalog/assets/scene-sources/window/assets/wood/walnut-window.png",
-          "catalog/assets/scene-sources/window/assets/wood/bare-bark.png",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-chrysanthemum.webp",
+          "catalog/assets/scene-sources/window/assets/gold-flower/bloom-sheet.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/orange-tulip-angles.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-hydrangea.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/red-rose.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/blue-hydrangea.webp",
+          "catalog/assets/scene-sources/window/assets/wood/walnut-window.webp",
+          "catalog/assets/scene-sources/window/assets/wood/bare-bark.webp",
           "catalog/assets/scene-sources/window/SOURCE.json"
         ]
       },
@@ -39549,14 +39550,14 @@
           "catalog/effects/scene-window-media.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-chrysanthemum.png",
-          "catalog/assets/scene-sources/window/assets/gold-flower/bloom-sheet.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/orange-tulip-angles.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-hydrangea.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/red-rose.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/blue-hydrangea.png",
-          "catalog/assets/scene-sources/window/assets/wood/walnut-window.png",
-          "catalog/assets/scene-sources/window/assets/wood/bare-bark.png",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-chrysanthemum.webp",
+          "catalog/assets/scene-sources/window/assets/gold-flower/bloom-sheet.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/orange-tulip-angles.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-hydrangea.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/red-rose.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/blue-hydrangea.webp",
+          "catalog/assets/scene-sources/window/assets/wood/walnut-window.webp",
+          "catalog/assets/scene-sources/window/assets/wood/bare-bark.webp",
           "catalog/assets/scene-sources/window/SOURCE.json"
         ]
       },
@@ -39645,14 +39646,14 @@
           "catalog/effects/scene-window-media.js"
         ],
         "assets": [
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-chrysanthemum.png",
-          "catalog/assets/scene-sources/window/assets/gold-flower/bloom-sheet.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/orange-tulip-angles.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-hydrangea.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/red-rose.png",
-          "catalog/assets/scene-sources/window/assets/seasonal-flowers/blue-hydrangea.png",
-          "catalog/assets/scene-sources/window/assets/wood/walnut-window.png",
-          "catalog/assets/scene-sources/window/assets/wood/bare-bark.png",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-chrysanthemum.webp",
+          "catalog/assets/scene-sources/window/assets/gold-flower/bloom-sheet.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/orange-tulip-angles.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/green-hydrangea.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/red-rose.webp",
+          "catalog/assets/scene-sources/window/assets/seasonal-flowers/blue-hydrangea.webp",
+          "catalog/assets/scene-sources/window/assets/wood/walnut-window.webp",
+          "catalog/assets/scene-sources/window/assets/wood/bare-bark.webp",
           "catalog/assets/scene-sources/window/SOURCE.json"
         ]
       },
@@ -39840,6 +39841,788 @@
         "tempo_note": "从0秒的位置开始展示，播放20秒，各部件共用同一动作秒数。",
         "avoid": "所有动作由当前帧计算，随机分布固定，定位时呈现同一画面。"
       }
+    },
+    {
+      "id": "confused-characters-illustration",
+      "name": "疑惑人物组",
+      "kind": "illustration",
+      "category": "illustration-object",
+      "summary": "六位彩色人物保持原位，以错拍眨眼、疑惑表情、问号气泡与汗滴表达困惑。",
+      "purpose": "六位彩色人物保持原位，以错拍眨眼、疑惑表情、问号气泡与汗滴表达困惑。",
+      "objects": "原透明人物底图、六组眼睛、问号气泡、汗滴与思考旋线",
+      "phases": [
+        "人物组在0.4秒内显现，保留原位置、色彩和手势。",
+        "六组眼睛按各自节奏眨动，单眼变平与睁眼错开出现。",
+        "中央问号气泡留下，周围问号淡出，汗滴向下滑落。"
+      ],
+      "aliases": [
+        "人物插画",
+        "疑惑",
+        "六个人物",
+        "问号",
+        "眨眼",
+        "AI人物"
+      ],
+      "behaviors": [
+        "sequence",
+        "move"
+      ],
+      "retain": "透明底图1536×1024，人物在原画板(72,484)占936×624；眼睛与符号沿用原图坐标。局部0秒对应原设计12.85秒，身体保持静止。",
+      "avoid": "不添加旁白或整片字幕；不把原图片替换为新生成图片，不引入随时间累积的随机状态。",
+      "duration_ms": 3200,
+      "preview_ms": 1500,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/reel-extract.js",
+        "factory": "confused-characters-illustration",
+        "dependencies": [],
+        "assets": [
+          "catalog/assets/reel-extract/ai-bots/confused-clean-base.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "reference": {
+          "name": "Wise Motion 介绍视频 · 用户提供的原工程"
+        },
+        "extraction": "从用户提供的现有视频工程提取人物、图片及原运动公式；本地绘制包和可读组件源码一同交付，运行不依赖来源工程。",
+        "rights_note": "新增图片按原字节保存；人物与垃圾图未附独立再分发许可，仅按用户请求纳入本机目录。第三方组件和现有动效缩略图沿用各自许可。"
+      },
+      "actions": [
+        "character-expression-response"
+      ],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间演示；支持暂停、定位、重播和倍速。",
+      "analogy": "六位彩色人物保持原位，以错拍眨眼、疑惑表情、问号气泡与汗滴表达困惑。",
+      "assumptions": "使用原逻辑画板等比取景，人物和材质保持原色；独立片段使用原场景设计时间，去掉整片旁白时间拉伸及无关转场。",
+      "tempo_note": "局部演示 3.2 秒；全部位置与状态由当前时间确定。",
+      "recommendation": "需要整组人物表达疑问时使用；庆祝场景选择庆祝人物组，共享表情动作可从关联条目取用。",
+      "reproduction": {
+        "presentation": "透明底图1536×1024，人物在原画板(72,484)占936×624；眼睛与符号沿用原图坐标。局部0秒对应原设计12.85秒，身体保持静止。",
+        "retain": "透明底图1536×1024，人物在原画板(72,484)占936×624；眼睛与符号沿用原图坐标。局部0秒对应原设计12.85秒，身体保持静止。"
+      },
+      "action_variants": {
+        "character-expression-response": "confused"
+      }
+    },
+    {
+      "id": "celebrating-characters-illustration",
+      "name": "庆祝人物组",
+      "kind": "illustration",
+      "category": "illustration-object",
+      "summary": "六位彩色人物眨眼微笑，两侧手部抛出纸屑、星点和彩带，随后沿抛物线回落。",
+      "purpose": "六位彩色人物眨眼微笑，两侧手部抛出纸屑、星点和彩带，随后沿抛物线回落。",
+      "objects": "原透明庆祝人物底图、六组眼睛与88片固定轨迹彩屑",
+      "phases": [
+        "人物组在0.4秒内显现，笑眼依次形成。",
+        "两侧手部先释放小纸屑，再连续抛出大纸片、星形与彩带。",
+        "彩屑旋转回落并淡出，人物保持原手势与笑容。"
+      ],
+      "aliases": [
+        "人物插画",
+        "庆祝",
+        "开心",
+        "撒彩纸",
+        "彩屑",
+        "AI人物"
+      ],
+      "behaviors": [
+        "sequence",
+        "move"
+      ],
+      "retain": "透明底图1536×1024，人物在原画板(72,392)占936×624；彩屑共88片，从两侧手部抛出，保留种子、顶点、落点和旋转公式。局部0秒对应原设计46.25秒。",
+      "avoid": "不添加旁白或整片字幕；不把原图片替换为新生成图片，不引入随时间累积的随机状态。",
+      "duration_ms": 2100,
+      "preview_ms": 950,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/reel-extract.js",
+        "factory": "celebrating-characters-illustration",
+        "dependencies": [],
+        "assets": [
+          "catalog/assets/reel-extract/ai-bots/open-source-clean-base.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "reference": {
+          "name": "Wise Motion 介绍视频 · 用户提供的原工程"
+        },
+        "extraction": "从用户提供的现有视频工程提取人物、图片及原运动公式；本地绘制包和可读组件源码一同交付，运行不依赖来源工程。",
+        "rights_note": "新增图片按原字节保存；人物与垃圾图未附独立再分发许可，仅按用户请求纳入本机目录。第三方组件和现有动效缩略图沿用各自许可。"
+      },
+      "actions": [
+        "character-expression-response"
+      ],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间演示；支持暂停、定位、重播和倍速。",
+      "analogy": "六位彩色人物眨眼微笑，两侧手部抛出纸屑、星点和彩带，随后沿抛物线回落。",
+      "assumptions": "使用原逻辑画板等比取景，人物和材质保持原色；独立片段使用原场景设计时间，去掉整片旁白时间拉伸及无关转场。",
+      "tempo_note": "局部演示 2.1 秒；全部位置与状态由当前时间确定。",
+      "recommendation": "需要团队庆祝与抛纸屑的整组人物时使用；困惑表情选择疑惑人物组。",
+      "reproduction": {
+        "presentation": "透明底图1536×1024，人物在原画板(72,392)占936×624；彩屑共88片，从两侧手部抛出，保留种子、顶点、落点和旋转公式。局部0秒对应原设计46.25秒。",
+        "retain": "透明底图1536×1024，人物在原画板(72,392)占936×624；彩屑共88片，从两侧手部抛出，保留种子、顶点、落点和旋转公式。局部0秒对应原设计46.25秒。"
+      },
+      "action_variants": {
+        "character-expression-response": "celebration"
+      }
+    },
+    {
+      "id": "trash-intake-output",
+      "name": "吸入吐出成堆",
+      "kind": "action",
+      "category": "particles",
+      "summary": "六件拼贴碎物从上方吸入盒体，盒体上移后吐出43件碎物，旋转落下并堆成一堆。",
+      "purpose": "六件拼贴碎物从上方吸入盒体，盒体上移后吐出43件碎物，旋转落下并堆成一堆。",
+      "objects": "六种垃圾拼贴、带指示灯的模型盒体、输入与输出文字",
+      "phases": [
+        "上方文字淡出为六件碎物，0.69秒起向盒体入口加速落入。",
+        "1.00至1.17秒盒体从纵坐标760上移到460，为输出留出空间。",
+        "1.12秒起吐出43件碎物，旋转散开、触底轻弹，再稳定堆积。"
+      ],
+      "aliases": [
+        "垃圾进垃圾出",
+        "垃圾进出",
+        "吸入",
+        "吐出",
+        "落地成堆",
+        "拼贴垃圾"
+      ],
+      "behaviors": [
+        "sequence",
+        "move"
+      ],
+      "retain": "1080×1440原逻辑画板；盒体360×300。保留六件输入与43件输出的固定随机轨迹、分层落点、反弹和7件底部填充。局部0秒对应原设计22.35秒；去掉整片抖动、字符雨与末尾关屏。",
+      "avoid": "不添加旁白或整片字幕；不把原图片替换为新生成图片，不引入随时间累积的随机状态。",
+      "duration_ms": 2400,
+      "preview_ms": 1850,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/reel-extract.js",
+        "factory": "trash-intake-output",
+        "dependencies": [],
+        "assets": [
+          "catalog/assets/reel-extract/trash-collage/paper.webp",
+          "catalog/assets/reel-extract/trash-collage/can.webp",
+          "catalog/assets/reel-extract/trash-collage/bottle.webp",
+          "catalog/assets/reel-extract/trash-collage/banana.webp",
+          "catalog/assets/reel-extract/trash-collage/carton.webp",
+          "catalog/assets/reel-extract/trash-collage/bag.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "reference": {
+          "name": "Wise Motion 介绍视频 · 用户提供的原工程"
+        },
+        "extraction": "从用户提供的现有视频工程提取人物、图片及原运动公式；本地绘制包和可读组件源码一同交付，运行不依赖来源工程。",
+        "rights_note": "新增图片按原字节保存；人物与垃圾图未附独立再分发许可，仅按用户请求纳入本机目录。第三方组件和现有动效缩略图沿用各自许可。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间演示；支持暂停、定位、重播和倍速。",
+      "analogy": "六件拼贴碎物从上方吸入盒体，盒体上移后吐出43件碎物，旋转落下并堆成一堆。",
+      "assumptions": "使用原逻辑画板等比取景，人物和材质保持原色；独立片段使用原场景设计时间，去掉整片旁白时间拉伸及无关转场。",
+      "tempo_note": "局部演示 2.4 秒；全部位置与状态由当前时间确定。",
+      "recommendation": "适合输入被容器吸收再从出口成倍散落的关系；仅做卡片整理时选下落堆叠与上移归位。",
+      "reproduction": {
+        "presentation": "1080×1440原逻辑画板；盒体360×300。保留六件输入与43件输出的固定随机轨迹、分层落点、反弹和7件底部填充。局部0秒对应原设计22.35秒；去掉整片抖动、字符雨与末尾关屏。",
+        "retain": "1080×1440原逻辑画板；盒体360×300。保留六件输入与43件输出的固定随机轨迹、分层落点、反弹和7件底部填充。局部0秒对应原设计22.35秒；去掉整片抖动、字符雨与末尾关屏。"
+      }
+    },
+    {
+      "id": "fall-stack-grid",
+      "name": "下落堆叠与上移归位",
+      "kind": "action",
+      "category": "layout",
+      "summary": "54张图片卡片错峰落下并杂乱堆叠，随后向上移动、转正，排成六列九行网格。",
+      "purpose": "54张图片卡片错峰落下并杂乱堆叠，随后向上移动、转正，排成六列九行网格。",
+      "objects": "54张原动效缩略图、玻璃细边卡片、六列九行目录网格",
+      "phases": [
+        "卡片在0至0.9秒错峰开始下落，单张加速下落0.5秒。",
+        "落地后小幅衰减反弹，按原随机横坐标与倾角形成底部堆叠。",
+        "1.45秒起每张错开4毫秒，上移并转正，最晚2.062秒完成网格并保持。"
+      ],
+      "aliases": [
+        "下移堆叠后上移排列",
+        "卡片下落",
+        "沉淀成资产",
+        "资产目录",
+        "图片整理",
+        "散乱归位",
+        "下移",
+        "堆叠",
+        "上移排列"
+      ],
+      "behaviors": [
+        "sequence",
+        "move"
+      ],
+      "retain": "保留原逻辑1080×1440画板；卡片146×82.125，横向间距12、纵向间距14，网格起点(72,416)。下落与抖动使用原固定随机种子，归位采用五次缓入缓出；完成后保留全部54张，不接原片后续放大转场。",
+      "avoid": "不添加旁白或整片字幕；不把原图片替换为新生成图片，不引入随时间累积的随机状态。",
+      "duration_ms": 2800,
+      "preview_ms": 2500,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/reel-extract.js",
+        "factory": "fall-stack-grid",
+        "dependencies": [],
+        "assets": [
+          "catalog/assets/reel-extract/thumbs/animal-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/archive-box-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/benchmark-columns.webp",
+          "catalog/assets/reel-extract/thumbs/capsule-type-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/card-conveyor.webp",
+          "catalog/assets/reel-extract/thumbs/chrome-outline-echo.webp",
+          "catalog/assets/reel-extract/thumbs/circle-expand-wordmark.webp",
+          "catalog/assets/reel-extract/thumbs/civilization-growth-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/claude-hex-pulse-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-orbits-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-phyllotaxis-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-plexus-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/collage-film-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/contour-draw-fill.webp",
+          "catalog/assets/reel-extract/thumbs/cyanotype.webp",
+          "catalog/assets/reel-extract/thumbs/dandelion-subject-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/drafting-tools-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/drive-car-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/generative-point-morph.webp",
+          "catalog/assets/reel-extract/thumbs/generative-point-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/geometric-poster-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/glass-interface-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/glass-music-card-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/glyph-code-fill.webp",
+          "catalog/assets/reel-extract/thumbs/grid-flow-unfold.webp",
+          "catalog/assets/reel-extract/thumbs/hud-acquisition-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/image-particles-wordmark.webp",
+          "catalog/assets/reel-extract/thumbs/interface-feedback.webp",
+          "catalog/assets/reel-extract/thumbs/keyframe-workbench.webp",
+          "catalog/assets/reel-extract/thumbs/letter-settle.webp",
+          "catalog/assets/reel-extract/thumbs/material-phone-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/metal-impact-type-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/motion-oasis-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/neon-horizon.webp",
+          "catalog/assets/reel-extract/thumbs/neon-title-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/osmanthus-moon-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/outro-recap-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/paper-scroll-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/paper-spiral-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/particle-word.webp",
+          "catalog/assets/reel-extract/thumbs/point-domain-flow-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/prompt-to-core-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/radial-branch-flow.webp",
+          "catalog/assets/reel-extract/thumbs/rasengan-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/result-anchors.webp",
+          "catalog/assets/reel-extract/thumbs/seed-bloom-brand-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/stack-flick.webp",
+          "catalog/assets/reel-extract/thumbs/striped-sun-rise.webp",
+          "catalog/assets/reel-extract/thumbs/subtitle-focus.webp",
+          "catalog/assets/reel-extract/thumbs/sunset-water-reflection.webp",
+          "catalog/assets/reel-extract/thumbs/terminal-code.webp",
+          "catalog/assets/reel-extract/thumbs/tile-round-wave.webp",
+          "catalog/assets/reel-extract/thumbs/title-content.webp",
+          "catalog/assets/reel-extract/thumbs/word-slam.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "reference": {
+          "name": "Wise Motion 介绍视频 · 用户提供的原工程"
+        },
+        "extraction": "从用户提供的现有视频工程提取人物、图片及原运动公式；本地绘制包和可读组件源码一同交付，运行不依赖来源工程。",
+        "rights_note": "新增图片按原字节保存；人物与垃圾图未附独立再分发许可，仅按用户请求纳入本机目录。第三方组件和现有动效缩略图沿用各自许可。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间演示；支持暂停、定位、重播和倍速。",
+      "analogy": "54张图片卡片错峰落下并杂乱堆叠，随后向上移动、转正，排成六列九行网格。",
+      "assumptions": "使用原逻辑画板等比取景，人物和材质保持原色；独立片段使用原场景设计时间，去掉整片旁白时间拉伸及无关转场。",
+      "tempo_note": "局部演示 2.8 秒；全部位置与状态由当前时间确定。",
+      "recommendation": "适合把无序积累的图片整理成可浏览网格；只需在同一位置连续加纸时使用纸片连续叠加。",
+      "reproduction": {
+        "presentation": "保留原逻辑1080×1440画板；卡片146×82.125，横向间距12、纵向间距14，网格起点(72,416)。下落与抖动使用原固定随机种子，归位采用五次缓入缓出；完成后保留全部54张，不接原片后续放大转场。",
+        "retain": "保留原逻辑1080×1440画板；卡片146×82.125，横向间距12、纵向间距14，网格起点(72,416)。下落与抖动使用原固定随机种子，归位采用五次缓入缓出；完成后保留全部54张，不接原片后续放大转场。"
+      }
+    },
+    {
+      "id": "curved-image-picker",
+      "name": "曲面图片滚轮停靠",
+      "kind": "action",
+      "category": "continuous",
+      "summary": "三列图片沿弧面连续滚动，依次平滑减速，分别停在中央选择带并淡化其他候选。",
+      "purpose": "三列图片沿弧面连续滚动，依次平滑减速，分别停在中央选择带并淡化其他候选。",
+      "objects": "三列独立图片候选、曲面投影、中央玻璃选择带",
+      "phases": [
+        "三列各有8张候选图片，从同一时刻开始以每秒2400原画板像素滚动。",
+        "每列最后0.64秒按余弦速度曲线减速，上下候选随弧面转动和淡出。",
+        "三列分别在2.2、2.64、3.08秒精确停靠，选中项亮起，其余候选降亮。"
+      ],
+      "aliases": [
+        "图片picker",
+        "图片选择器",
+        "滚轮选择",
+        "三列匹配",
+        "曲面滚动",
+        "减速锁定"
+      ],
+      "behaviors": [
+        "sequence",
+        "move"
+      ],
+      "retain": "原画板每列宽296、高760，行距296，选择项高272，图片280×157.5。弧面半径380，纵向位置380×sin(距离/380)，相应绕横轴旋转。三列速度2400，制动末段0.64秒，终点索引为1、2、1。每列8项，名称单行自适应字号；三个选中项保留原视频最新的浅色翻页、几何插画和纸面光影预览。",
+      "avoid": "不添加旁白或整片字幕；不把原图片替换为新生成图片，不引入随时间累积的随机状态。",
+      "duration_ms": 4400,
+      "preview_ms": 3400,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/reel-extract.js",
+        "factory": "curved-image-picker",
+        "assets": [
+          "catalog/assets/reel-extract/thumbs/benchmark-columns.webp",
+          "catalog/assets/reel-extract/thumbs/capsule-type-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/card-conveyor.webp",
+          "catalog/assets/reel-extract/thumbs/chrome-outline-echo.webp",
+          "catalog/assets/reel-extract/thumbs/circle-expand-wordmark.webp",
+          "catalog/assets/reel-extract/thumbs/claude-orbits-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-plexus-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/collage-film-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/contour-draw-fill.webp",
+          "catalog/assets/reel-extract/thumbs/cyanotype.webp",
+          "catalog/assets/reel-extract/thumbs/generative-point-morph.webp",
+          "catalog/assets/reel-extract/thumbs/grid-flow-unfold.webp",
+          "catalog/assets/reel-extract/thumbs/hud-acquisition-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/metal-impact-type-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/neon-title-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/paper-spiral-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/stack-flick.webp",
+          "catalog/assets/reel-extract/thumbs/striped-sun-rise.webp",
+          "catalog/assets/reel-extract/thumbs/sunset-water-reflection.webp",
+          "catalog/assets/reel-extract/thumbs/tile-round-wave.webp",
+          "catalog/assets/reel-extract/thumbs/word-slam.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "reference": {
+          "name": "Wise Motion 介绍视频 · 用户提供的原工程"
+        },
+        "extraction": "从用户提供的现有视频工程提取人物、图片及原运动公式；本地绘制包和可读组件源码一同交付，运行不依赖来源工程。",
+        "rights_note": "新增图片按原字节保存；人物与垃圾图未附独立再分发许可，仅按用户请求纳入本机目录。第三方组件和现有动效缩略图沿用各自许可。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间演示；支持暂停、定位、重播和倍速。",
+      "analogy": "三列图片沿弧面连续滚动，依次平滑减速，分别停在中央选择带并淡化其他候选。",
+      "assumptions": "使用原逻辑画板等比取景，人物和材质保持原色；独立片段使用原场景设计时间，去掉整片旁白时间拉伸及无关转场。",
+      "tempo_note": "局部演示 4.4 秒；全部位置与状态由当前时间确定。",
+      "recommendation": "需要带图片、透视弧面和多列错峰停靠的选择器时使用；平面单列减速选择滚动减速对齐。",
+      "reproduction": {
+        "presentation": "原画板每列宽296、高760，行距296，选择项高272，图片280×157.5。弧面半径380，纵向位置380×sin(距离/380)，相应绕横轴旋转。三列速度2400，制动末段0.64秒，终点索引为1、2、1。每列8项，名称单行自适应字号；三个选中项保留原视频最新的浅色翻页、几何插画和纸面光影预览。",
+        "retain": "原画板每列宽296、高760，行距296，选择项高272，图片280×157.5。弧面半径380，纵向位置380×sin(距离/380)，相应绕横轴旋转。三列速度2400，制动末段0.64秒，终点索引为1、2、1。每列8项，名称单行自适应字号；三个选中项保留原视频最新的浅色翻页、几何插画和纸面光影预览。"
+      }
+    },
+    {
+      "id": "masked-image-scroll",
+      "name": "遮罩连续滚动",
+      "kind": "action",
+      "category": "writing",
+      "summary": "图片墙持续向上滚动，透过固定的大数字轮廓显现；背景以低透明度保留较慢的同类滚动。",
+      "purpose": "图片墙持续向上滚动，透过固定的大数字轮廓显现；背景以低透明度保留较慢的同类滚动。",
+      "objects": "数字288遮罩、绿色细描边、前后两层错行图片墙",
+      "phases": [
+        "建立固定数字轮廓和五列图片墙。",
+        "数字内部图片以每秒480像素连续上滚，背景以160像素滚动。",
+        "跨行时补入下一行，遮罩保持固定，循环播放不会重置图片位置。"
+      ],
+      "aliases": [
+        "遮罩连续滚动",
+        "数字填充图片",
+        "288",
+        "图片遮罩",
+        "镂空滚动",
+        "字形内滚动"
+      ],
+      "behaviors": [
+        "continuous",
+        "move"
+      ],
+      "retain": "原1080×1440画板，Oswald粗体数字540像素，基线(540,820)居中。五列十四行图片240×135，缝隙6；奇数行左移120。字内滚速480，背景160且透明度0.03，描边绿色#3DAD80。数字为示例288，不随目录数量变化。",
+      "avoid": "不添加旁白或整片字幕；不把原图片替换为新生成图片，不引入随时间累积的随机状态。",
+      "duration_ms": 5000,
+      "preview_ms": 1300,
+      "loop": true,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/reel-extract.js",
+        "factory": "masked-image-scroll",
+        "dependencies": [],
+        "assets": [
+          "catalog/assets/reel-extract/thumbs/animal-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/archive-box-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/benchmark-columns.webp",
+          "catalog/assets/reel-extract/thumbs/capsule-type-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/card-conveyor.webp",
+          "catalog/assets/reel-extract/thumbs/chrome-outline-echo.webp",
+          "catalog/assets/reel-extract/thumbs/circle-expand-wordmark.webp",
+          "catalog/assets/reel-extract/thumbs/civilization-growth-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/claude-hex-pulse-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-orbits-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-phyllotaxis-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/claude-plexus-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/collage-film-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/contour-draw-fill.webp",
+          "catalog/assets/reel-extract/thumbs/cyanotype.webp",
+          "catalog/assets/reel-extract/thumbs/drive-car-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/generative-point-morph.webp",
+          "catalog/assets/reel-extract/thumbs/geometric-poster-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/glass-interface-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/glass-music-card-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/glyph-code-fill.webp",
+          "catalog/assets/reel-extract/thumbs/grid-flow-unfold.webp",
+          "catalog/assets/reel-extract/thumbs/hud-acquisition-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/image-particles-wordmark.webp",
+          "catalog/assets/reel-extract/thumbs/letter-settle.webp",
+          "catalog/assets/reel-extract/thumbs/metal-impact-type-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/motion-oasis-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/neon-title-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/paper-spiral-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/particle-word.webp",
+          "catalog/assets/reel-extract/thumbs/point-domain-flow-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/rasengan-illustration.webp",
+          "catalog/assets/reel-extract/thumbs/seed-bloom-brand-sequence.webp",
+          "catalog/assets/reel-extract/thumbs/stack-flick.webp",
+          "catalog/assets/reel-extract/thumbs/striped-sun-rise.webp",
+          "catalog/assets/reel-extract/thumbs/sunset-water-reflection.webp",
+          "catalog/assets/reel-extract/thumbs/terminal-code.webp",
+          "catalog/assets/reel-extract/thumbs/tile-round-wave.webp",
+          "catalog/assets/reel-extract/thumbs/word-slam.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "reference": {
+          "name": "Wise Motion 介绍视频 · 用户提供的原工程"
+        },
+        "extraction": "从用户提供的现有视频工程提取人物、图片及原运动公式；本地绘制包和可读组件源码一同交付，运行不依赖来源工程。",
+        "rights_note": "新增图片按原字节保存；人物与垃圾图未附独立再分发许可，仅按用户请求纳入本机目录。第三方组件和现有动效缩略图沿用各自许可。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间演示；支持暂停、定位、重播和倍速。",
+      "analogy": "图片墙持续向上滚动，透过固定的大数字轮廓显现；背景以低透明度保留较慢的同类滚动。",
+      "assumptions": "使用原逻辑画板等比取景，人物和材质保持原色；独立片段使用原场景设计时间，去掉整片旁白时间拉伸及无关转场。",
+      "tempo_note": "局部演示 5 秒；全部位置与状态由当前时间确定。",
+      "recommendation": "适合数字或字形作为固定窗口、内部持续滚图的展示；需要文字自身滚动时用首尾相接滚动。",
+      "reproduction": {
+        "presentation": "原1080×1440画板，Oswald粗体数字540像素，基线(540,820)居中。五列十四行图片240×135，缝隙6；奇数行左移120。字内滚速480，背景160且透明度0.03，描边绿色#3DAD80。数字为示例288，不随目录数量变化。",
+        "retain": "原1080×1440画板，Oswald粗体数字540像素，基线(540,820)居中。五列十四行图片240×135，缝隙6；奇数行左移120。字内滚速480，背景160且透明度0.03，描边绿色#3DAD80。数字为示例288，不随目录数量变化。"
+      }
+    },
+    {
+      "id": "wing-root-color-reveal",
+      "name": "翼根扩散换色",
+      "kind": "action",
+      "category": "attention",
+      "summary": "彩色版画蝴蝶持续轻振翅，蓝色从四片翼根向外扩散覆盖，振翅加快并略向右上飞。",
+      "purpose": "彩色版画蝴蝶持续轻振翅，蓝色从四片翼根向外扩散覆盖，振翅加快并略向右上飞。",
+      "objects": "既有彩色与蓝色翼图、四个翼根遮罩、原身体和触角",
+      "phases": [
+        "彩色蝴蝶显现后轻振翅，逐渐放大并轻转身体。",
+        "4.761秒起蓝色从翼根向外铺开，前后错开45毫秒、左右错开20毫秒。",
+        "每翼0.34秒内完成变色，振翅时钟连续加快，随后向右上方轻移。"
+      ],
+      "aliases": [
+        "蝴蝶变化",
+        "彩色变蓝色",
+        "彩蝶变蓝蝶",
+        "从翼根换色",
+        "翅膀遮罩",
+        "振翅变色"
+      ],
+      "behaviors": [
+        "sequence",
+        "move"
+      ],
+      "retain": "保留既有1536×1024图集、原裁切与固定翼根。圆形揭示半径为当前进度乘翼根到最远角距离，每翼0.34秒；改变真实纹理遮罩，不用全图变色滤镜。保留原放大、转身、连续加速和轻飞公式。",
+      "avoid": "不添加旁白或整片字幕；不把原图片替换为新生成图片，不引入随时间累积的随机状态。",
+      "duration_ms": 6111,
+      "preview_ms": 5100,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/reel-extract.js",
+        "factory": "wing-root-color-reveal",
+        "dependencies": [
+          "catalog/effects/butterfly-motion.js",
+          "catalog/effects/butterfly.js",
+          "catalog/effects/butterfly-mask.js"
+        ],
+        "assets": [
+          "catalog/assets/butterfly/wing-atlas.webp",
+          "catalog/assets/butterfly/ai-wing-atlas.webp",
+          "catalog/assets/butterfly/SOURCE.json",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "reference": {
+          "name": "Wise Motion 介绍视频 · 用户提供的原工程"
+        },
+        "extraction": "从用户提供的现有视频工程提取人物、图片及原运动公式；本地绘制包和可读组件源码一同交付，运行不依赖来源工程。",
+        "rights_note": "新增图片按原字节保存；人物与垃圾图未附独立再分发许可，仅按用户请求纳入本机目录。第三方组件和现有动效缩略图沿用各自许可。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间演示；支持暂停、定位、重播和倍速。",
+      "analogy": "彩色版画蝴蝶持续轻振翅，蓝色从四片翼根向外扩散覆盖，振翅加快并略向右上飞。",
+      "assumptions": "使用原逻辑画板等比取景，人物和材质保持原色；独立片段使用原场景设计时间，去掉整片旁白时间拉伸及无关转场。",
+      "tempo_note": "局部演示 6.111 秒；全部位置与状态由当前时间确定。",
+      "recommendation": "需要有方向地替换蝶翼材质并衔接振翅时使用；仅循环振翅选择四翼错拍开合。",
+      "reproduction": {
+        "presentation": "保留既有1536×1024图集、原裁切与固定翼根。圆形揭示半径为当前进度乘翼根到最远角距离，每翼0.34秒；改变真实纹理遮罩，不用全图变色滤镜。保留原放大、转身、连续加速和轻飞公式。",
+        "retain": "保留既有1536×1024图集、原裁切与固定翼根。圆形揭示半径为当前进度乘翼根到最远角距离，每翼0.34秒；改变真实纹理遮罩，不用全图变色滤镜。保留原放大、转身、连续加速和轻飞公式。"
+      }
+    },
+    {
+      "id": "character-expression-response",
+      "name": "眨眼表情与符号回应",
+      "kind": "action",
+      "category": "environment",
+      "summary": "人物身体固定，眼睛错拍眨动、切换表情，并通过问号汗滴或彩屑回应情绪。",
+      "purpose": "复用人物五官与辅助符号的逐帧联动。",
+      "objects": "原透明人物底图、六组眼睛、问号气泡、汗滴与思考旋线",
+      "phases": [
+        "人物组在0.4秒内显现，保留原位置、色彩和手势。",
+        "六组眼睛按各自节奏眨动，单眼变平与睁眼错开出现。",
+        "中央问号气泡留下，周围问号淡出，汗滴向下滑落。"
+      ],
+      "aliases": [
+        "表情变化",
+        "眨眼",
+        "笑眼",
+        "问号回应",
+        "人物表情",
+        "撒彩屑"
+      ],
+      "behaviors": [
+        "sequence",
+        "move"
+      ],
+      "retain": "透明底图1536×1024，人物在原画板(72,484)占936×624；眼睛与符号沿用原图坐标。局部0秒对应原设计12.85秒，身体保持静止。",
+      "avoid": "不添加旁白或整片字幕；不把原图片替换为新生成图片，不引入随时间累积的随机状态。",
+      "duration_ms": 3200,
+      "preview_ms": 1500,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/reel-extract.js",
+        "factory": "confused-characters-illustration",
+        "dependencies": [],
+        "assets": [
+          "catalog/assets/reel-extract/ai-bots/confused-clean-base.webp",
+          "catalog/assets/reel-extract/SOURCE.json"
+        ],
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "reference": {
+          "name": "Wise Motion 介绍视频 · 用户提供的原工程"
+        },
+        "extraction": "从用户提供的现有视频工程提取人物、图片及原运动公式；本地绘制包和可读组件源码一同交付，运行不依赖来源工程。",
+        "rights_note": "新增图片按原字节保存；人物与垃圾图未附独立再分发许可，仅按用户请求纳入本机目录。第三方组件和现有动效缩略图沿用各自许可。"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间演示；支持暂停、定位、重播和倍速。",
+      "analogy": "六位彩色人物保持原位，以错拍眨眼、疑惑表情、问号气泡与汗滴表达困惑。",
+      "assumptions": "使用原逻辑画板等比取景，人物和材质保持原色；独立片段使用原场景设计时间，去掉整片旁白时间拉伸及无关转场。",
+      "tempo_note": "局部演示 3.2 秒；全部位置与状态由当前时间确定。",
+      "recommendation": "需要静止人物通过眼睛和辅助符号传达疑惑或庆祝时使用；完整人物素材见关联插画。",
+      "reproduction": {
+        "presentation": "透明底图1536×1024，人物在原画板(72,484)占936×624；眼睛与符号沿用原图坐标。局部0秒对应原设计12.85秒，身体保持静止。",
+        "retain": "透明底图1536×1024，人物在原画板(72,484)占936×624；眼睛与符号沿用原图坐标。局部0秒对应原设计12.85秒，身体保持静止。"
+      },
+      "variants": [
+        {
+          "id": "confused",
+          "label": "疑惑与问号",
+          "summary": "六位彩色人物保持原位，以错拍眨眼、疑惑表情、问号气泡与汗滴表达困惑。",
+          "duration_ms": 3200,
+          "preview_ms": 1500,
+          "source": {
+            "path": "catalog/effects/reel-extract.js",
+            "factory": "confused-characters-illustration",
+            "dependencies": [],
+            "assets": [
+              "catalog/assets/reel-extract/ai-bots/confused-clean-base.webp",
+              "catalog/assets/reel-extract/SOURCE.json"
+            ],
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "reference": {
+              "name": "Wise Motion 介绍视频 · 用户提供的原工程"
+            },
+            "extraction": "从用户提供的现有视频工程提取人物、图片及原运动公式；本地绘制包和可读组件源码一同交付，运行不依赖来源工程。",
+            "rights_note": "新增图片按原字节保存；人物与垃圾图未附独立再分发许可，仅按用户请求纳入本机目录。第三方组件和现有动效缩略图沿用各自许可。"
+          }
+        },
+        {
+          "id": "celebration",
+          "label": "笑眼与彩屑",
+          "summary": "六位彩色人物眨眼微笑，两侧手部抛出纸屑、星点和彩带，随后沿抛物线回落。",
+          "duration_ms": 2100,
+          "preview_ms": 950,
+          "source": {
+            "path": "catalog/effects/reel-extract.js",
+            "factory": "celebrating-characters-illustration",
+            "dependencies": [],
+            "assets": [
+              "catalog/assets/reel-extract/ai-bots/open-source-clean-base.webp",
+              "catalog/assets/reel-extract/SOURCE.json"
+            ],
+            "origin": "original",
+            "license": "AGPL-3.0-only",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/",
+            "reference": {
+              "name": "Wise Motion 介绍视频 · 用户提供的原工程"
+            },
+            "extraction": "从用户提供的现有视频工程提取人物、图片及原运动公式；本地绘制包和可读组件源码一同交付，运行不依赖来源工程。",
+            "rights_note": "新增图片按原字节保存；人物与垃圾图未附独立再分发许可，仅按用户请求纳入本机目录。第三方组件和现有动效缩略图沿用各自许可。"
+          },
+          "phases": [
+            "人物组在0.4秒内显现，笑眼依次形成。",
+            "两侧手部先释放小纸屑，再连续抛出大纸片、星形与彩带。",
+            "彩屑旋转回落并淡出，人物保持原手势与笑容。"
+          ],
+          "objects": "原透明庆祝人物底图、六组眼睛与88片固定轨迹彩屑",
+          "retain": "透明底图1536×1024，人物在原画板(72,392)占936×624；彩屑共88片，从两侧手部抛出，保留种子、顶点、落点和旋转公式。局部0秒对应原设计46.25秒。",
+          "tempo_note": "局部演示 2.1 秒；全部位置与状态由当前时间确定。",
+          "reproduction": {
+            "presentation": "透明底图1536×1024，人物在原画板(72,392)占936×624；彩屑共88片，从两侧手部抛出，保留种子、顶点、落点和旋转公式。局部0秒对应原设计46.25秒。",
+            "retain": "透明底图1536×1024，人物在原画板(72,392)占936×624；彩屑共88片，从两侧手部抛出，保留种子、顶点、落点和旋转公式。局部0秒对应原设计46.25秒。"
+          }
+        }
+      ]
     }
   ],
   "redirects": {

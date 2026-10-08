@@ -4,11 +4,11 @@
   const scriptUrl = typeof document === 'undefined' ? null : document.currentScript?.src;
   // 原源码位于 effects 内，打包后的播放器位于目录根部；两者共用目录内的图集。
   const catalogUrl = scriptUrl && new URL(new URL(scriptUrl).pathname.endsWith('/effects/butterfly.js') ? '../' : './', scriptUrl);
-  const defaultAtlas = doc => new URL('assets/butterfly/wing-atlas.png', catalogUrl ||
+  const defaultAtlas = doc => new URL('assets/butterfly/wing-atlas.webp', catalogUrl ||
     (doc.baseURI.includes('/catalog/') ? new URL('./', doc.baseURI) : new URL('catalog/', doc.baseURI))).href;
   const NS = 'http://www.w3.org/2000/svg';
   const setStyle = (node, style) => Object.assign(node.style, style);
-  function mount(root, {atlasSrc, alternateSrc, catalogView = false} = {}) {
+  function mount(root, {atlasSrc, alternateSrc, maskSrc, catalogView = false} = {}) {
     const doc = root.ownerDocument;
     const {ATLAS, STAGE, PARTS, BODY, ANTENNAE, butterflyState} = global.WiseButterflyMotion;
     const src = atlasSrc || defaultAtlas(doc), pending = [];
@@ -49,7 +49,7 @@
       let alternate, reveal;
       if (hasAlternate && alternateSrc) {
         alternate = element('div', {position: 'absolute', inset: '0', opacity: '0',
-          maskImage: `url("${src}")`, maskMode: 'alpha', maskSize: `${ATLAS.width}px ${ATLAS.height}px`,
+          maskImage: `url("${maskSrc || src}")`, maskMode: 'alpha', maskSize: `${ATLAS.width}px ${ATLAS.height}px`,
           maskPosition: `${-part.crop[0]}px ${-part.crop[1]}px`, maskRepeat: 'no-repeat'}, cut,
         {'data-wing-variant': 'ai'});
         image(alternateSrc, alternate, part.crop);

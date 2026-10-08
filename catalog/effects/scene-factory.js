@@ -1433,7 +1433,7 @@ function drawCat(state, time) {
   CatArt.draw(ctx, state, time, { scale: 0.93 * (state.recipe.kind === 'xiaokui' ? 1.1 : 1) });
 }
 
- const ready=S.image("assets/scene-sources/factory/coffee-bean.png").then(img=>{coffeeBeanArt=img;});
+ const ready=S.image("assets/scene-sources/factory/coffee-bean.webp").then(img=>{coffeeBeanArt=img;});
  return {ready,draw(t,mode,part){ctx=S.ctx;const recipe=F.recipes[opt.recipe||0],time=t+(opt.recipe||0)*8,s=F.stateAt(time,0);
   if(mode==='full'){renderScene(time,part==='art'?null:part);return;}
   if(mode==='machine'){machine(s);conveyor(s);steamWand(s);return;}

@@ -1,0 +1,2 @@
+# 原字体留在源码仓库重建；运行时共用 catalog/fonts 中的完整 WOFF2。
+/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf

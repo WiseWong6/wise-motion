@@ -1,0 +1,402 @@
+{
+  "source": "用户提供的 Wise Motion 介绍视频工程，2026-10-08 当前工作区",
+  "illustrations": [
+    "疑惑人物组",
+    "庆祝人物组"
+  ],
+  "provenance": "原始人物底图、垃圾拼贴与动效缩略图按字节复制；未生成、重绘或修改图片。",
+  "rights": "用户指定素材用于本机收录。人物与垃圾素材未附独立再分发许可，不据此推定为公开许可；缩略图沿用对应目录条目的来源与许可。",
+  "files": {
+    "ai-bots/confused-clean-base.webp": {
+      "sha256": "86d08b28b2841768d7a91c026135280c2dae75cae21fa12748166dc921b5c4d6",
+      "bytes": 1340174,
+      "original_path": "ai-bots/confused-clean-base.png",
+      "original_sha256": "e9a29a65480f13d5326bf31ae1b4d0b2d89d561146d79f5e5508789b055ded7e"
+    },
+    "ai-bots/open-source-clean-base.webp": {
+      "sha256": "8930a1abf1c0f995b9b3f4956988a2a9c7190f7487dc35860ebf47e9bd79a9ab",
+      "bytes": 1327372,
+      "original_path": "ai-bots/open-source-clean-base.png",
+      "original_sha256": "68c23826f2c075f1c1da33165cc83da9741f31016571b88ad920f951c9f3436b"
+    },
+    "trash-collage/paper.webp": {
+      "sha256": "618c08fb2e3614ae0e57b39f44f1bb34cdb610a9bed5acdd7497d00eab396a74",
+      "bytes": 886698,
+      "original_path": "trash-collage/paper.png",
+      "original_sha256": "5ee528a7c461d408dddfc904a6f44551e4ad89c0227e3855d42819097fc28341"
+    },
+    "trash-collage/can.webp": {
+      "sha256": "9aa86347ca899f4f60fd6bfd859377a509c20f372b3c21746e2bd5ef8a1d0b05",
+      "bytes": 974328,
+      "original_path": "trash-collage/can.png",
+      "original_sha256": "65a4ffc58a1395e693ba72b963852046c4523e3eb4e24cba3ae01cd1c90bb627"
+    },
+    "trash-collage/bottle.webp": {
+      "sha256": "7b4523363aeab7ec5a938481589de4fc4b8bf2e5705d380d01e0995f10eba6af",
+      "bytes": 969240,
+      "original_path": "trash-collage/bottle.png",
+      "original_sha256": "fe05abcc5746ef5858f6d441892ef93e76927233b1aca741036b701442bd7695"
+    },
+    "trash-collage/banana.webp": {
+      "sha256": "b187ba5b4001bd9fd12778e6bb63cde3d33c049f0800d7af1e237440086825fe",
+      "bytes": 687308,
+      "original_path": "trash-collage/banana.png",
+      "original_sha256": "870a940c96594829f7cb1a6c64e507e3081411e1f9fb4bd30413172e1fc04e28"
+    },
+    "trash-collage/carton.webp": {
+      "sha256": "50fbc37775976a2d409446e85ca5588a1b445299f984752329dfabed4cb4172f",
+      "bytes": 1152636,
+      "original_path": "trash-collage/carton.png",
+      "original_sha256": "19efdb2474ea0af5daf60c1144267c5716d1c44b1e843e859a8251e54cfd074e"
+    },
+    "trash-collage/bag.webp": {
+      "sha256": "9b27f093657c0941d5eeeeb196c6ead8655da0aadbcfd63fcbfda69124bafd93",
+      "bytes": 867128,
+      "original_path": "trash-collage/bag.png",
+      "original_sha256": "97900e4ac5980a6890e0b5c18eea0fb20e8d2b89221879140b1984d16f096daa"
+    },
+    "thumbs/animal-illustration.webp": {
+      "sha256": "974ea170ebe7d8f01dbb768a9a5b3749c691598df7a3592f25b5c9054e718c4f",
+      "bytes": 9970,
+      "original_path": "thumbs/animal-illustration.png",
+      "original_sha256": "2cdf5b97abf7aa8c364415ee092e44fedbd63167dfcc2ed3822dd4d35d96b7a7"
+    },
+    "thumbs/archive-box-illustration.webp": {
+      "sha256": "6d1af7d97effef7af52b6ff1f5cf625e9b997ff0fad293f40df5b0ab69df5739",
+      "bytes": 28074,
+      "original_path": "thumbs/archive-box-illustration.png",
+      "original_sha256": "ad65ddba31ab916a5caa109b7d95b4afc8cda3267d9342f60a089d8e0b8b65fc"
+    },
+    "thumbs/benchmark-columns.webp": {
+      "sha256": "b737fb847cb17dbedee1cab878992ffc3bf9f15fb15fc8252dfcfe93acacadf1",
+      "bytes": 99236,
+      "original_path": "thumbs/benchmark-columns.png",
+      "original_sha256": "d5c5b670377df704ef995692e27a0f5e3c8dacfe0ffa431bb044ba76b0fb77cd"
+    },
+    "thumbs/capsule-type-sequence.webp": {
+      "sha256": "2541edee1a32a5e884ab143a932529093481c4ea733064e12a1dfbb4d3eb5504",
+      "bytes": 287254,
+      "original_path": "thumbs/capsule-type-sequence.png",
+      "original_sha256": "b3a1a676cf083657acbd26c3584e6857526a1c6fc5397d9e09d3c52ea767acd2"
+    },
+    "thumbs/card-conveyor.webp": {
+      "sha256": "c346e4c9a952335dd7318b1539fb8e9bd87be750d2fc6bb199c8f31080faea55",
+      "bytes": 125840,
+      "original_path": "thumbs/card-conveyor.png",
+      "original_sha256": "25b1ee2a566180d41f652d2f1ca6eb423f2812759509bffa9f31b562c83ba0b2"
+    },
+    "thumbs/chrome-outline-echo.webp": {
+      "sha256": "ec7387f9ab438621a453c9d82d9bc8c4afac5ea1ff97e4f582f52722b2a58054",
+      "bytes": 150248,
+      "original_path": "thumbs/chrome-outline-echo.png",
+      "original_sha256": "664d027174219c2af735f54cc142cc328e18ccd1acfdb1caf308d46b5b042415"
+    },
+    "thumbs/circle-expand-wordmark.webp": {
+      "sha256": "c3aea92fa5b90ce992c202ce4d1a0c1c3f75b4b8bef62165c5a74a382e956481",
+      "bytes": 94806,
+      "original_path": "thumbs/circle-expand-wordmark.png",
+      "original_sha256": "e21ba96d79cfafc14e1835294b1f54e86cb12286ca97b562b80d9e27e854a397"
+    },
+    "thumbs/civilization-growth-sequence.webp": {
+      "sha256": "e91700edf20c78f2edbfe8d3d82933894b722c16d95cd0fbe1344e937d51e793",
+      "bytes": 362294,
+      "original_path": "thumbs/civilization-growth-sequence.png",
+      "original_sha256": "edda378b9a3b8eaca2b306a45c94c3dad14e726943f1039355995f229bce78c7"
+    },
+    "thumbs/claude-hex-pulse-illustration.webp": {
+      "sha256": "4f0736bdd2303d6097ff3ebf8d812b3b6f2d26e405f349ee5b18181e84591f90",
+      "bytes": 14634,
+      "original_path": "thumbs/claude-hex-pulse-illustration.png",
+      "original_sha256": "2ae7798467ce3d1a7aa140268003ee880c45b93860b691296a8c66c6bdec61ca"
+    },
+    "thumbs/claude-orbits-illustration.webp": {
+      "sha256": "c4e0db8f9a765d77bfa220fcb69ebe52b5d2d1fdf6c1b3d6f15fcb522ca769ec",
+      "bytes": 3686,
+      "original_path": "thumbs/claude-orbits-illustration.png",
+      "original_sha256": "64034ad0bf40fc2624d4b7834ebcef869be29a66017e870d3b3771f5313e0f2a"
+    },
+    "thumbs/claude-phyllotaxis-illustration.webp": {
+      "sha256": "995be90a6eb1f0536096d54919e7f66991823556fb0a69a5f99cf71a396e74c0",
+      "bytes": 7308,
+      "original_path": "thumbs/claude-phyllotaxis-illustration.png",
+      "original_sha256": "e38574e03f09656bd91927ab1cf566f3ded46bd2cc788fb68ea054270340cfe4"
+    },
+    "thumbs/claude-plexus-illustration.webp": {
+      "sha256": "cd1f1c9c32dc99932e76fca00ecb8708cbbc5b2e083759b76599a23c8b500036",
+      "bytes": 19678,
+      "original_path": "thumbs/claude-plexus-illustration.png",
+      "original_sha256": "63c28d94ac75878978486b686a731936c09f70119843034d3004a2a8231c1c2e"
+    },
+    "thumbs/collage-film-sequence.webp": {
+      "sha256": "4d51e365b72fa84a27fa987581ffe047beca6d26032c252fecb0d1112a8a5cc2",
+      "bytes": 135812,
+      "original_path": "thumbs/collage-film-sequence.png",
+      "original_sha256": "51c58b3e98beaf73a05559fe1937c4d3c4b9ed640f28bfac7820b039d562dbb2"
+    },
+    "thumbs/contour-draw-fill.webp": {
+      "sha256": "974ea170ebe7d8f01dbb768a9a5b3749c691598df7a3592f25b5c9054e718c4f",
+      "bytes": 9970,
+      "original_path": "thumbs/contour-draw-fill.png",
+      "original_sha256": "2cdf5b97abf7aa8c364415ee092e44fedbd63167dfcc2ed3822dd4d35d96b7a7"
+    },
+    "thumbs/cyanotype.webp": {
+      "sha256": "ddbf6ac86f992ea8687c5ddc1dd4e85ed5dd3413addb01181d6fd5b8e23b3db0",
+      "bytes": 93918,
+      "original_path": "thumbs/cyanotype.png",
+      "original_sha256": "a7ef872360cb1e6f383733a620165b597e9c30d8f7a26880d5f5b642614fc588"
+    },
+    "thumbs/dandelion-subject-illustration.webp": {
+      "sha256": "a5fc1944067da47fbbbfebfbcb940dc0eb973e9aa43ca4cdf71a02e1bc30b513",
+      "bytes": 892,
+      "original_path": "thumbs/dandelion-subject-illustration.png",
+      "original_sha256": "6dd3760e289a0c743672d14724ec72b680cd017c5bfb89f5f54efbed2c7bae20"
+    },
+    "thumbs/drafting-tools-illustration.webp": {
+      "sha256": "f3b6f66c300908d2a8efe75f9c1db2071302fb136913ba3fe592109f001c4074",
+      "bytes": 14392,
+      "original_path": "thumbs/drafting-tools-illustration.png",
+      "original_sha256": "47b3752f6e541987cf0bf09bbed3890553897a7aab2cabd6f016ba03ba8973b1"
+    },
+    "thumbs/drive-car-illustration.webp": {
+      "sha256": "22ba688d957e4d88fe70305ffde811e266a3953c22329338d6c83470ba6c9600",
+      "bytes": 4954,
+      "original_path": "thumbs/drive-car-illustration.png",
+      "original_sha256": "38052d8f274d467fdd93bf6594297433baa20880b8628eefd514eadce6215170"
+    },
+    "thumbs/encore-umbrella-illustration.webp": {
+      "sha256": "7b17fc1e576132908f5c9db75fe04017551a00f24106f6c209b0279e4f659cfb",
+      "bytes": 1120,
+      "original_path": "thumbs/encore-umbrella-illustration.png",
+      "original_sha256": "4d3a44f11fff7580a554befb9afd7027477297b48d4c1c5a4bcf7d203551281e"
+    },
+    "thumbs/generative-point-morph.webp": {
+      "sha256": "d40030931867225859748eb0ef5701a9d4fbdeb8575e6ecd085c71606db06215",
+      "bytes": 69386,
+      "original_path": "thumbs/generative-point-morph.png",
+      "original_sha256": "9ac64834c20a419314e702e24d873930cc238c82574f4c0fa8443a22b65419ac"
+    },
+    "thumbs/generative-point-sequence.webp": {
+      "sha256": "b0d68d756c167c060c7ef43082208ecf160373b5ba681f31229311a58f95d6d1",
+      "bytes": 107934,
+      "original_path": "thumbs/generative-point-sequence.png",
+      "original_sha256": "a728bf14729cf22f82c62f2f8617719fc4e0008e03d461236977d5c094c351ae"
+    },
+    "thumbs/geometric-poster-sequence.webp": {
+      "sha256": "6b41dc6a3cb06d2c9dbe481367690a7ad6d3c089fb3593c3545ed6805dc470bb",
+      "bytes": 231008,
+      "original_path": "thumbs/geometric-poster-sequence.png",
+      "original_sha256": "c9bdc80c505dfc191a7edeea86799778e110cc90ac53730217a6dbbb25a017a7"
+    },
+    "thumbs/glass-interface-sequence.webp": {
+      "sha256": "048026a0577c799961a7cf5e884839135cfc833f57d42dcb53f4c171e7ac4aef",
+      "bytes": 174232,
+      "original_path": "thumbs/glass-interface-sequence.png",
+      "original_sha256": "742e4c8f4017fe56309fdbce5df8d335030ee3681d1ad5f566f576e5650c7e2f"
+    },
+    "thumbs/glass-music-card-illustration.webp": {
+      "sha256": "99237e36d731cd7925d53cae79b72c3c01a303a4345852e2bb3d559ff1df577a",
+      "bytes": 6006,
+      "original_path": "thumbs/glass-music-card-illustration.png",
+      "original_sha256": "d63df832d85fd5475faabaca0fdf3f1160881b27254b25fec8163015f6f69dc3"
+    },
+    "thumbs/glyph-code-fill.webp": {
+      "sha256": "86648b1fd239f0ca302e7035edcf9b733d034ac5efe09cd4a0a9d0a5bafb2e76",
+      "bytes": 72584,
+      "original_path": "thumbs/glyph-code-fill.png",
+      "original_sha256": "5b07cca274f9cdb1b2384a9ab683a7e5cdc800e30663f13093e9b9efca070ae2"
+    },
+    "thumbs/grid-flow-unfold.webp": {
+      "sha256": "b5df4567f4a1716e1c40d46b73a199aff0ab91fd98f822e8e75a791adc60cddf",
+      "bytes": 311042,
+      "original_path": "thumbs/grid-flow-unfold.png",
+      "original_sha256": "d4ca9e50389c44e504ac369b48cd996a235495c25f4856fd6e2743a57c033004"
+    },
+    "thumbs/hud-acquisition-sequence.webp": {
+      "sha256": "24773a04a62cc181e03b8ffda961e054526ce146dfefeedf7ef32fbc4ba24035",
+      "bytes": 197482,
+      "original_path": "thumbs/hud-acquisition-sequence.png",
+      "original_sha256": "af4fe172f90b0cf0da5275caab6b20214f0694563f8fb2fe3ec2ad5d44b973eb"
+    },
+    "thumbs/image-particles-wordmark.webp": {
+      "sha256": "a0442e6f95561462025eb6f870efd923e2cc9e042c2e401b1a0e9f0aeb362f58",
+      "bytes": 127212,
+      "original_path": "thumbs/image-particles-wordmark.png",
+      "original_sha256": "a241f43810645855a9edbeda2d32db8d5d2ecbb77a9481c3f5a7ef911c874d19"
+    },
+    "thumbs/interface-feedback.webp": {
+      "sha256": "d22485fdf2f8e01a2b0d98b5f0c7d323fcb6617e3ecf8c4afec67901a0861390",
+      "bytes": 59286,
+      "original_path": "thumbs/interface-feedback.png",
+      "original_sha256": "2f4536e35d2102c36608b774e3f5756e1484c85243c323aa5a720e56ccb802f3"
+    },
+    "thumbs/keyframe-workbench.webp": {
+      "sha256": "01ad7d577e23f25818dca1ccf029ea2119f16f4bef5cf9f15efc81f72086696d",
+      "bytes": 143014,
+      "original_path": "thumbs/keyframe-workbench.png",
+      "original_sha256": "521a7fbecf48e3ae69fd470b1266f60f8c42e25044aa541f82b47006e0b01ed8"
+    },
+    "thumbs/letter-settle.webp": {
+      "sha256": "854a66906b8427dc6506b28e5f5ea6e995acae6a316054afad2d2e78e6278c98",
+      "bytes": 84826,
+      "original_path": "thumbs/letter-settle.png",
+      "original_sha256": "33e6774d6424ce78dc6fdd4d7d8cd8994a0803ed6606fafb7bf1479d85ca2fd9"
+    },
+    "thumbs/material-evolution-sequence.webp": {
+      "sha256": "499e9efed915599b80028a049fbcc7914dee28138cd0cb232bfc0c830fb090d7",
+      "bytes": 8374,
+      "original_path": "thumbs/material-evolution-sequence.png",
+      "original_sha256": "9cc77d1402111084ea72c6f0dc9e2eac7eb3bce8582fd519fd63b47cae1d7687"
+    },
+    "thumbs/material-phone-sequence.webp": {
+      "sha256": "71da1b35862b5cb1d56f69e948f458fffd794db866f4ddaf9d31ab923b2357b1",
+      "bytes": 147752,
+      "original_path": "thumbs/material-phone-sequence.png",
+      "original_sha256": "f15d08d169ad3f7a93a3fabd09f5b70b334f797fb6bc1ed93065062d58172b3b"
+    },
+    "thumbs/metal-impact-type-sequence.webp": {
+      "sha256": "d79e6c10bfc38affa30b273a95727f77358c6d1b287e12b9084907883cda1aae",
+      "bytes": 36624,
+      "original_path": "thumbs/metal-impact-type-sequence.png",
+      "original_sha256": "808338fc4016e6e75f6b4038b57cb76b39afeb279566d9a9ea813e6530a74dc5"
+    },
+    "thumbs/motion-oasis-sequence.webp": {
+      "sha256": "bce91a35ea7a46c1bc4050e90e199252beedc12bf8555fa50195d42361817bf5",
+      "bytes": 217544,
+      "original_path": "thumbs/motion-oasis-sequence.png",
+      "original_sha256": "3992a10c6183ccafe73ec3e03eea6cb3661bcdd73483832c8336dc5b7255b706"
+    },
+    "thumbs/neon-horizon.webp": {
+      "sha256": "3230ec94740d4e4863bbf4ea4ec43a0787819ac464dd0e876c534ca21d08a06d",
+      "bytes": 196878,
+      "original_path": "thumbs/neon-horizon.png",
+      "original_sha256": "1a8d3b515f156593afbcb5acf460135d314fd803493b9e333698ad324aff9090"
+    },
+    "thumbs/neon-title-sequence.webp": {
+      "sha256": "72382393a9b1172cc0bab833e71679e8eb2ea2e5380a3714a7b726575cf087e0",
+      "bytes": 217958,
+      "original_path": "thumbs/neon-title-sequence.png",
+      "original_sha256": "69e26a9901d59676828cf3594a36e5652e89929cfc3d181de65f217c324b0d8c"
+    },
+    "thumbs/osmanthus-moon-illustration.webp": {
+      "sha256": "da9aa95480d0fa0fa268f043f3adf0593f03f4a5e3f7ec2b5bb78c6dacefc5e6",
+      "bytes": 22756,
+      "original_path": "thumbs/osmanthus-moon-illustration.png",
+      "original_sha256": "988edd4229579733d35d0d8f20dd0f39b1ae17b128dddd55f28069d7d7ded6bc"
+    },
+    "thumbs/outro-recap-sequence.webp": {
+      "sha256": "7a512d1e01e36b3ec94365455cda0aa15950e0166d884d51157de61c2716414a",
+      "bytes": 58720,
+      "original_path": "thumbs/outro-recap-sequence.png",
+      "original_sha256": "f9e1f2e6bfb5d006d540e9cf76dbcabbfef73d6431ea88531b8fd8f74504f4d5"
+    },
+    "thumbs/paper-scroll-illustration.webp": {
+      "sha256": "d5a60782d48995847e000e04dba022ddb48d5096d807c50ecdc597da28ef94e7",
+      "bytes": 44720,
+      "original_path": "thumbs/paper-scroll-illustration.png",
+      "original_sha256": "55ce383478bcf8d500e06a5f6321132f41871bb71adae5f10b2068ec9bb58dfb"
+    },
+    "thumbs/paper-spiral-sequence.webp": {
+      "sha256": "996683d261811e5685517b4e29e1ed7fc099f4c290b43d5874a527fffac84618",
+      "bytes": 153498,
+      "original_path": "thumbs/paper-spiral-sequence.png",
+      "original_sha256": "f1f738679060b0158f78aedbde508262011ec153cafe3b70ac26a0ca32c87bf9"
+    },
+    "thumbs/particle-word.webp": {
+      "sha256": "b836f9f38efb3edfb60f6e7160767b0fe098a3f74fe67d47b2b197ac09246ab7",
+      "bytes": 185088,
+      "original_path": "thumbs/particle-word.png",
+      "original_sha256": "4a81908fba1157b810f811c6c43c27c99f13353c0141d85a59439835f15c45e1"
+    },
+    "thumbs/point-domain-flow-sequence.webp": {
+      "sha256": "8533ecf9e513dbf63ea10673a19e0f47b037cdf1cebacbb412625e93ca3cf7d5",
+      "bytes": 348250,
+      "original_path": "thumbs/point-domain-flow-sequence.png",
+      "original_sha256": "917ef3aae70212e1f199f3b0b36622840201e6c9e9fc69d2f46e688fa2784ac8"
+    },
+    "thumbs/prompt-to-core-sequence.webp": {
+      "sha256": "588ab296e96801b1daf957593f3692e644e86e3a986ee5198652169a707fa3d5",
+      "bytes": 140754,
+      "original_path": "thumbs/prompt-to-core-sequence.png",
+      "original_sha256": "6b751bc82bfa4f61f984d40705af33842eaa7bfb785ceba41247b9e7284969cf"
+    },
+    "thumbs/radial-branch-flow.webp": {
+      "sha256": "220ca775c85ff5f9235561399208285c7e0c9e9241ee4e4693830d1ceafd42bd",
+      "bytes": 84634,
+      "original_path": "thumbs/radial-branch-flow.png",
+      "original_sha256": "29c9aade11ffe752ce8d6664a458fe1db2c6238773248928c9916f505b4d8972"
+    },
+    "thumbs/rasengan-illustration.webp": {
+      "sha256": "5239b07f35f710b4043fa09454af3e985c4a7a4f7a53259ed55ab0c4340641aa",
+      "bytes": 100562,
+      "original_path": "thumbs/rasengan-illustration.png",
+      "original_sha256": "de0cda996150c131b112bcfcd38adf5540a2bdecda646c453f6d24a03ba13007"
+    },
+    "thumbs/result-anchors.webp": {
+      "sha256": "6cc2356c89d18f829d07c56853193dc97f5a4b7e620a15d6c99ce2cad71556fd",
+      "bytes": 120728,
+      "original_path": "thumbs/result-anchors.png",
+      "original_sha256": "6c9e6589ad8df117c409731def0704eca097af2a1458353d906ee1934ff59ef6"
+    },
+    "thumbs/seed-bloom-brand-sequence.webp": {
+      "sha256": "59f29707da40bc970f06e2e14e71062df4b20d31e2cc726a0897bc650af8c7a8",
+      "bytes": 121468,
+      "original_path": "thumbs/seed-bloom-brand-sequence.png",
+      "original_sha256": "879b5ca36e386c4895a8e5317912e90b7c9d944a042fe6152817d1ae188d32e5"
+    },
+    "thumbs/spiral-galaxy-illustration.webp": {
+      "sha256": "59bfd3ab11421ba3b35138a1a463ae5efab5138d3b57cc738a87b44944f9a938",
+      "bytes": 336,
+      "original_path": "thumbs/spiral-galaxy-illustration.png",
+      "original_sha256": "9664eb749118f7f4d4d4bc85fada273b4d236b2f390fe12c1c6b10c9eee09612"
+    },
+    "thumbs/stack-flick.webp": {
+      "sha256": "6901fb39586f66f2a84423443fab50c19473fe0ded2dfe625701df7cb9f0c630",
+      "bytes": 189630,
+      "original_path": "thumbs/stack-flick.png",
+      "original_sha256": "aff26cadf7c8dcbffc3974891568257a4ba5e8db9fbc7a39a38b509520075771"
+    },
+    "thumbs/striped-sun-rise.webp": {
+      "sha256": "ef5e3cad279ad55b9d8bce44859dbdd465a45e431606816085ece649f6ffb99e",
+      "bytes": 155198,
+      "original_path": "thumbs/striped-sun-rise.png",
+      "original_sha256": "fb465ff75061d446f1a6063f3e86cc50b0b6f631fff7462adccead853e7164f3"
+    },
+    "thumbs/subtitle-focus.webp": {
+      "sha256": "e73d66152dbde898eff2329276e47d351b598a7c9cfbc6120ea66199c29c9664",
+      "bytes": 54632,
+      "original_path": "thumbs/subtitle-focus.png",
+      "original_sha256": "bd9eeff50d0adaf58a192364288ee5625814d39c08a71e4a6458ca4c5edf3c01"
+    },
+    "thumbs/sunset-water-reflection.webp": {
+      "sha256": "76f5931acbf2e2d3265da6a00b06746c5c15531ff2e1aff7bddcc3c669846e7f",
+      "bytes": 167278,
+      "original_path": "thumbs/sunset-water-reflection.png",
+      "original_sha256": "a9cb3ab877611e657bdf3ddc35d1ada228dfcb5700e6706642ba7ba4ac64c6fa"
+    },
+    "thumbs/terminal-code.webp": {
+      "sha256": "cde78eff8360ad240ae2cc57211f95ed6b1ea4e24efcba64e3e1f1c09af88a9d",
+      "bytes": 71312,
+      "original_path": "thumbs/terminal-code.png",
+      "original_sha256": "e14f1a26375dd9335c0a3dbfb303fe1aaa27d6d9ce5376a388472970f9b75389"
+    },
+    "thumbs/tile-round-wave.webp": {
+      "sha256": "6ec8546a9b8aed72652c39fcdb2385465dd87510fe148e1b6fd2ab074ad61b7f",
+      "bytes": 152808,
+      "original_path": "thumbs/tile-round-wave.png",
+      "original_sha256": "3a41360567c1441f79079c1082398d50bd71354400fe67469366b81d18f1a69e"
+    },
+    "thumbs/title-content.webp": {
+      "sha256": "2302d1176ff6145d18e19ab558ea90fe34acdf45e0b6168147dbb8526b6c346e",
+      "bytes": 79188,
+      "original_path": "thumbs/title-content.png",
+      "original_sha256": "29ef02992bc70e07d5d820a6e60c8d2911c553d5b7493cc0b1fd91a22cd76255"
+    },
+    "thumbs/word-slam.webp": {
+      "sha256": "bcc42b6eef175badd844f068563caaff6053fb86af392937cf14cc3259264c0a",
+      "bytes": 68992,
+      "original_path": "thumbs/word-slam.png",
+      "original_sha256": "46e86cd4db1fbc0d1f72e1946f3294266d4ff5ff0d3702006e7144b87920ac1c"
+    }
+  },
+  "webp_conversion": "运行素材已无损转为 WebP；转换时逐张验证尺寸、完整 RGBA 像素及 ICC 色彩配置一致。原 PNG 文件摘要保留于各项 original_sha256，完整转换记录见 catalog/assets/WEBP-SOURCES.json。"
+}
