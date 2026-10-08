@@ -98,4 +98,4 @@ Remotion、React 等视频复用依赖由目标工程安装，版本和接入方
 
 `catalog/remotion/reel-extract/` 保留用户指定介绍视频中的可读组件与运动公式，`catalog/effects/reel-extract.js` 是由这些源码生成的离线绘制文件。该文件内置 React 与 React DOM 19.3.0，保留 MIT 声明及 `catalog/assets/reel-extract/React-LICENSE.txt`、`ReactDOM-LICENSE.txt`；固定种子算法与 Remotion 4.0.532 的字符串种子取样一致，相关条款见同目录 `Remotion-LICENSE.txt`。
 
-人物底图、六种垃圾拼贴及目录缩略图从用户提供的现有素材复制，未重绘。人物与垃圾素材没有附独立再分发许可，本次收录不构成公开许可确认；目录缩略图沿用各原条目的来源说明。图片校验值及范围见 `catalog/assets/reel-extract/SOURCE.json`。彩蝶变蓝蝶继续使用既有 `catalog/assets/butterfly/` 图集及其来源说明。
+人物角色底图与六种垃圾拼贴为本项目自行生成的素材，用户已于 2026-10-08 确认来源；其中“疑惑人物组”和“庆祝人物组”的角色底图由 GPT / Codex 生成。它们与目录缩略图从介绍视频工程复制，收录时未重新生成或重绘，运行图片随后无损转为 WebP；目录缩略图沿用各原条目的来源与许可。图片校验值及范围见 `catalog/assets/reel-extract/SOURCE.json`。彩蝶变蓝蝶继续使用既有 `catalog/assets/butterfly/` 图集及其来源说明。
