@@ -938,8 +938,8 @@
     },
     {
       "path": "catalog/assets/reel-extract/SOURCE.json",
-      "bytes": 21464,
-      "sha256": "12c5ebdf2e1677b152b85dacb2115e719ee3061879d3ed6dfb0b0b100a385b17"
+      "bytes": 22232,
+      "sha256": "2db1697ef1aff7ece3cfde7723b3a7bfbcdb1f5def9967ec0169d93740e719d3"
     },
     {
       "path": "catalog/assets/reel-extract/ai-bots/confused-clean-base.webp",
@@ -1673,8 +1673,8 @@
     },
     {
       "path": "catalog/effects/reel-extract.js",
-      "bytes": 353451,
-      "sha256": "f7b9d2d9d375a6de4006fc8cac08cb5c77343aefb155480874e1655325b48d54"
+      "bytes": 352585,
+      "sha256": "54976066670acb810105e65b28b25e4ac89b7d31dd4c438af0803674c6ecf840"
     },
     {
       "path": "catalog/effects/reel-flat-gen.js",
@@ -1849,7 +1849,7 @@
     {
       "path": "catalog/export.js",
       "bytes": 25915,
-      "sha256": "5792bd063a11a9c1efa8b3de3284f4b783d0feed6ed4c46905c705841611d339"
+      "sha256": "5a970ba966bd86ac52b20bea925244a545913f66d3e7e149fac071032fc423e2"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -1924,12 +1924,12 @@
     {
       "path": "catalog/layer-audit.json",
       "bytes": 15920,
-      "sha256": "0744a9e6c03b234652f0bef65725fb96a73c82ba095eb7bf83d74f419612b816"
+      "sha256": "c7c98a34ba47664200d28cd6453522fca8e39dbf870f6bb9cfa232ce1985e7d1"
     },
     {
       "path": "catalog/layer-fingerprints.json",
       "bytes": 303,
-      "sha256": "666606eb96790c8d410d2c64fce9d3633f6f97ea4e436743c5fada2971a751eb"
+      "sha256": "0b1d202f7e5a12c797d4dfb6487737fe2dc20445da3b4378953357a5063ea19d"
     },
     {
       "path": "catalog/lazy.js",
@@ -1948,13 +1948,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1493802,
-      "sha256": "5c62428e69054e48c8144a616372c5d2d9c189428cf3b4a01c989651a7589b53"
+      "bytes": 1493751,
+      "sha256": "3ac8feff659b78f2813f966bb8df799c0f459ceae94ceac3f4946325b7c92fa8"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1893992,
-      "sha256": "5fc789045c4c43527fc1e5ca3d4dc28e8cb0254a0e2b3f517cd34a88cdc880bb"
+      "bytes": 1893941,
+      "sha256": "567c249621e064102ade670f31fc1012a45869db42dc6a45ae3c1943758c5c56"
     },
     {
       "path": "catalog/related-preview.js",
@@ -2013,8 +2013,8 @@
     },
     {
       "path": "catalog/remotion/reel-extract/Scenes.jsx",
-      "bytes": 16711,
-      "sha256": "726e739033dcb89f54d91f83cf1a3e2631bca92bf02c9d56396b82752252a418"
+      "bytes": 15849,
+      "sha256": "c5fd3c20b5795ae31dd3f7e5fdd7a945c4aeada54625660854f1f3afdf7e1b45"
     },
     {
       "path": "catalog/remotion/reel-extract/aiBotExpressions.mjs",
@@ -2053,8 +2053,8 @@
     },
     {
       "path": "catalog/remotion/reel-extract/garbageMotion.mjs",
-      "bytes": 5413,
-      "sha256": "a2372af0a0baacc0c074eefd1b6794dbceaac4654288ade83c2aa68f9ad4f163"
+      "bytes": 5146,
+      "sha256": "27d4b94eae52d360cccb4e2d6e70ffa1bda1f370f14d063abc0f1037546f369f"
     },
     {
       "path": "catalog/remotion/reel-extract/math.mjs",

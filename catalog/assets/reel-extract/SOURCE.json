@@ -412,5 +412,18 @@
       "蝴蝶配色、位置、投影与飞行线"
     ],
     "retained_assets": "既有人物、垃圾和缩略图原文件摘要与先前收录记录一致，本次未替换。鼠尾草绿翼图的新记录见 butterfly/SOURCE.json。"
+  },
+  "garbage_motion_update": {
+    "date": "2026-10-09",
+    "source": "用户提供的 Wise Motion 介绍视频工程当前工作区",
+    "source_file": "src/v2/garbageMotion.mjs",
+    "source_sha256": "27d4b94eae52d360cccb4e2d6e70ffa1bda1f370f14d063abc0f1037546f369f",
+    "scope": [
+      "输出由67件更新为61件，保留36件散落、13件填充和12件后续输出",
+      "移除六件放大的前景垃圾及其模糊",
+      "移除绿色光晕与38颗漂浮光点",
+      "保留吸入、盒体上移、固定散落轨迹、反弹、投影和落定停留"
+    ],
+    "retained_assets": "六种垃圾原 PNG 文件摘要与先前收录记录一致，继续使用现有无损 WebP；原素材、玻璃盒体组件与台词设计时间均未改动。"
   }
 }

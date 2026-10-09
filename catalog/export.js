@@ -246,7 +246,7 @@ window.addEventListener('pageshow',e=>{if(e.persisted&&player.destroyed)location
 自有代码 AGPL-3.0-only；第三方和素材许可见源码包 NOTICE.md。
 
 在独立目标工程安装公开包，以及相同版本的依赖：
-npm install --save-exact wise-motion@0.1.3 react@19.3.0 react-dom@19.3.0 remotion@4.0.532 @remotion/cli@4.0.532
+npm install --save-exact wise-motion@0.1.5 react@19.3.0 react-dom@19.3.0 remotion@4.0.532 @remotion/cli@4.0.532
 node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion
 将 src/index.jsx 写为：import {registerRoot} from 'remotion'; import {Root} from './Root'; registerRoot(Root);
 npx remotion render src/index.jsx Effect output.mp4${renderFlags}
@@ -278,7 +278,7 @@ export const Root = () => <Composition id="Effect" component={Effect}
     const files={
       'src/Root.jsx':remotionCode(effect,settings),
       'src/index.jsx':"import {registerRoot} from 'remotion';\nimport {Root} from './Root.jsx';\nregisterRoot(Root);\n",
-      'README.md':'# '+effect.name+'\n\n这是共享组件包的接入示例；运行前需准备包和素材。导出未安装依赖。'+(effect.variant_id?'\n样式：'+effect.variant_id+'（'+effect.variant_name+'）。':'')+'\n\n在本目录安装公开包并准备素材：\n\n```sh\nnpm install --save-exact wise-motion@0.1.3 react@19.3.0 react-dom@19.3.0 remotion@4.0.532 @remotion/cli@4.0.532\nnode node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion\nnpx remotion studio src/index.jsx\n# 渲染\nnpx remotion render src/index.jsx Effect output.mp4'+(usesGl?' --gl=angle':'')+'\n```\n\n源码入口与原素材路径见 src/Root.jsx 顶部注释；对应文件和许可均随共享包提供。修改 settings 可调整条目支持的内容、样式、速度与缓动；内容字段需符合该条目的接口。'+(effect.kind==='composition'&&effect.audio?.tracks?.length?'组合保留原声音，设置 includeAudio={false} 可关闭。':'')+'\n'
+      'README.md':'# '+effect.name+'\n\n这是共享组件包的接入示例；运行前需准备包和素材。导出未安装依赖。'+(effect.variant_id?'\n样式：'+effect.variant_id+'（'+effect.variant_name+'）。':'')+'\n\n在本目录安装公开包并准备素材：\n\n```sh\nnpm install --save-exact wise-motion@0.1.5 react@19.3.0 react-dom@19.3.0 remotion@4.0.532 @remotion/cli@4.0.532\nnode node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion\nnpx remotion studio src/index.jsx\n# 渲染\nnpx remotion render src/index.jsx Effect output.mp4'+(usesGl?' --gl=angle':'')+'\n```\n\n源码入口与原素材路径见 src/Root.jsx 顶部注释；对应文件和许可均随共享包提供。修改 settings 可调整条目支持的内容、样式、速度与缓动；内容字段需符合该条目的接口。'+(effect.kind==='composition'&&effect.audio?.tracks?.length?'组合保留原声音，设置 includeAudio={false} 可关闭。':'')+'\n'
     };
     return {kind:'shared-package',files};
   }

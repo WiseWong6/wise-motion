@@ -202,14 +202,6 @@ export function GarbageFlow({t, asset}) {
   {t < 23.19 && <KLine t={t} li={9} rows={['垃圾进']} x={GARBAGE_TITLE.x} y={GARBAGE_TITLE.y} w={GARBAGE_TITLE.width} size={GARBAGE_TITLE.size} mode="slam"
     charStyle={(i,ch,elapsed)=>{const morph=garbageInputMorph(t,i);return {opacity:clamp(elapsed/.14)*(1-morph),...(morph>0?{filter:`blur(${morph*8}px)`}:{})};}} />}
   {Array.from({length:6},(_,i)=><Trash key={'in'+i} t={t} i={i} phase="in" asset={asset} />)}
-        <div aria-hidden="true" style={{position: 'absolute', inset: 0, opacity: prog(t, 23.45, 23.68)}}>
-          <div style={{position: 'absolute', left: 310, top: 435, width: 460, height: 760,
-            background: 'radial-gradient(ellipse at 50% 0%, rgba(167,245,212,.65), rgba(61,173,128,.23) 35%, transparent 75%)', filter: 'blur(18px)'}} />
-          <div style={{position: 'absolute', left: 40, top: 1070, width: 1000, height: 320,
-            background: 'radial-gradient(ellipse, rgba(61,173,128,.24), rgba(61,173,128,.07) 38%, transparent 70%)'}} />
-          {Array.from({length: 38}, (_,i) => <div key={i} style={{position: 'absolute', left: 290 + (i * 137) % 500, top: 470 + (i * 83 + t * 43) % 640,
-            width: 2 + i % 3, height: 2 + i % 3, borderRadius: '50%', background: C.accentLight, opacity: .15 + i % 4 * .1}} />)}
-        </div>
   <div style={{position:'absolute',inset:0,zIndex:0}}>{Array.from({length:GARBAGE_OUTPUT_COUNT},(_,i)=><Trash key={i} t={t} i={i} phase="out" asset={asset} />)}</div>
   <GlassFrame t={t} data-garbage-model="" style={{position:'absolute',left:machine.x-machine.w/2,top:machine.y-machine.h/2,width:machine.w,height:machine.h,transform:`scale(${box * 1.14})`}}>
    <div style={{position:'absolute',left:0,right:0,top:90,textAlign:'center',font:'110px/1 "Oswald"',color:C.ink}}>AI</div>
