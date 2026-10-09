@@ -123,7 +123,8 @@ registerRoot(Root);
     const definition = {id:effect.id, duration_ms:effect.duration_ms, loop:effect.loop, default_ease:effect.default_ease, parameters:effect.parameters};
     const hasAudio=effect.kind==='composition'&&Boolean(effect.audio?.tracks?.length);
     if(hasAudio)Object.assign(definition,effect);
-    if(!hasAudio&&effect.source.factory!==effect.id)definition.source={factory:effect.source.factory};
+    if(!hasAudio&&(effect.source.factory!==effect.id||effect.source.assets?.length))definition.source={factory:effect.source.factory,
+      ...(effect.source.assets?.length?{assets:effect.source.assets}:{})};
     if(effect.id==='motion-oasis-sequence'&&global.WiseMotionOasis)definition.catalog_data=global.WiseMotionOasis.catalogData(global.MotionRegistry);
     if(effect.variant_id)definition.variant_id=effect.variant_id;
     if(effect.content){definition.content=effect.content;definition.content_slots=effect.content_slots;}

@@ -29,6 +29,17 @@ export const GlassFrame = ({as: Tag = 'div', t = 0, small = false, selected = fa
       style={{position: 'absolute', left: halfLine, top: halfLine, width: `calc(100% - ${SURFACE.line.frame}px)`,
         height: `calc(100% - ${SURFACE.line.frame}px)`, overflow: 'visible', pointerEvents: 'none', zIndex: 50, opacity: edgeOpacity}}>
       <GlassSvgDefs id={id} selected={selected} />
+      {/* 沿真实框线的短亮段，局部柔光不盖住框内文字和素材。 */}
+      {!small && edgeProgress >= .99 && <>
+        {[7, 1.4].map((width, i) => {
+          const edgeProps = {fill: 'none', stroke: selected ? '#A6E8CA' : '#D2E3DC', strokeWidth: width,
+            pathLength: 1, strokeDasharray: '.075 .925', strokeDashoffset: -(t * .018 % 1),
+            opacity: i === 0 ? (selected ? .24 : .1) : (selected ? .85 : .46),
+            style: i === 0 ? {filter: 'blur(3px)'} : undefined};
+          return squareTopPath ? <path key={i} d={squareTopPath} {...edgeProps} />
+            : <rect key={i} width="100%" height="100%" rx={edgeR} {...edgeProps} />;
+        })}
+      </>}
       {squareTopPath ? <path d={squareTopPath} fill="none" stroke={`url(#${id}-edge)`}
         strokeWidth={SURFACE.line.frame} pathLength="1" strokeDasharray={`${Math.max(0, Math.min(1, edgeProgress))} 1`} />
         : <rect width="100%" height="100%" rx={edgeR} fill="none" stroke={`url(#${id}-edge)`}

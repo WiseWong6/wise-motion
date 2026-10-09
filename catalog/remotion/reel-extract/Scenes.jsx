@@ -9,11 +9,13 @@ import {GARBAGE_TITLE, GARBAGE_OUTPUT_COUNT, garbageBoxAt, garbageInputMorph, ga
 import THUMB_IDS from './thumbs.json';
 import CATALOG_FILL from './catalog-fill.json';
 import {MatchPreview} from './MatchPreview.jsx';
+import {ActualEffect} from './ActualEffect.jsx';
+import {definitions as NESTED,fills as FILLS,counts as COUNTS} from './nested-data.json';
 export const THUMBS = THUMB_IDS.filter(id => !['spiral-galaxy-illustration', 'encore-umbrella-illustration', 'material-evolution-sequence'].includes(id));
 export const CATALOG_THUMBS = [...THUMBS, ...CATALOG_FILL.map(([id]) => id)];
 const W=1080, H=1440, M=72, MX=72, CW=936, COL_W=296, COLS=[72,392,712];
-const F={reg:'"Source Han Sans SC", sans-serif',oswald:'"Oswald", sans-serif'};
-const T={body:36,h1:80};
+const F={bold:'"Oswald", "Source Han Sans SC", sans-serif',reg:'"Source Han Sans SC", sans-serif',oswald:'"Oswald", sans-serif'};
+const T={body:36,h1:80,label:24,micro:16};
 const mono=(size,color=C.dim)=>({font:`${size}px/1 "Oswald", sans-serif`,color});
 export const MATCH_POOLS = [
   [
@@ -51,10 +53,13 @@ const STEP_STAGE = 500;
 const STEP_TITLE_Y = 196, STEP_TITLE_H = T.h1 * (2 * 1.22 + 0.2), MATCH_RESULT_Y = H - 120;
 // 标题与匹配结果之间居中放置动效区，上下留白相等。
 export const WHEEL_H = 760, WHEEL_TOP = (STEP_TITLE_Y + STEP_TITLE_H + MATCH_RESULT_Y - WHEEL_H) / 2;
-export const WHEEL_CELL = 296, WHEEL_ITEM_H = 272;
+export const WHEEL_CELL = 296;
 const WHEEL_IMAGE_W = COL_W - 16, WHEEL_IMAGE_H = WHEEL_IMAGE_W * 9 / 16;
+export const WHEEL_ITEM_H = WHEEL_IMAGE_H + 12 + 36;
+const MATCH_PANEL_PAD_X=24, MATCH_PANEL_H=WHEEL_ITEM_H+64;
+const MATCH_PANEL_TOP=WHEEL_TOP+WHEEL_H/2-MATCH_PANEL_H/2;
 export const wheelPosition = (t, start, stopAt, target) => {
-  const speed = 4800, brake = Math.min(0.32, stopAt - start);
+  const speed = 3000, brake = Math.min(0.32, stopAt - start);
   const coast = stopAt - start - brake;
   const elapsed = clamp(t - start, 0, stopAt - start);
   const destination = target * WHEEL_CELL;
@@ -81,18 +86,16 @@ export const Reel = ({t, x, start, stopAt, target, items, asset}) => {
       const focus = clamp(1 - Math.abs(distance) / WHEEL_CELL);
       const facing = Math.cos(angle);
       const selected = locked && Math.abs(distance) < 1;
-      const nameSize = Math.min(30, Math.floor((WHEEL_IMAGE_W - 8) / [...item.name].length));
       return <div key={row} style={{position: 'absolute', left: 0, right: 0, top: WHEEL_H / 2 - WHEEL_ITEM_H / 2,
-        height: WHEEL_ITEM_H, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12, paddingTop: 12,
+        height: WHEEL_ITEM_H, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12,
         boxSizing: 'border-box', whiteSpace: 'nowrap', color: selected ? C.accent : C.ink,
         opacity: locked ? (selected ? 1 : facing ** 2 * 0.16) : facing ** 2 * (0.48 + 0.52 * focus),
-        transform: `translateY(${radius * Math.sin(angle)}px) perspective(900px) rotateX(${-angle * 180 / Math.PI}deg) scale(${1 + 0.04 * focus})`}}>
+        transform: `translateY(${radius * Math.sin(angle)}px) scale(${.9 + .1 * focus})`}}>
         <div style={{position: 'relative', overflow: 'hidden', borderRadius: SURFACE.radius.small,
-          width: WHEEL_IMAGE_W, height: WHEEL_IMAGE_H, flexShrink: 0,
-          outline: `1px solid ${selected ? C.accentLight + '66' : 'rgba(242,241,236,.12)'}`, outlineOffset: -1}}>
+          width: WHEEL_IMAGE_W, height: WHEEL_IMAGE_H, flexShrink: 0}}>
         {item.preview ? <MatchPreview kind={item.preview} t={t} width={WHEEL_IMAGE_W} height={WHEEL_IMAGE_H} /> : <img src={asset(`thumbs/${item.id}.webp`)} alt={item.name} style={{display: 'block', width: WHEEL_IMAGE_W, height: WHEEL_IMAGE_H, objectFit: 'contain'}} />}
         </div>
-        <div data-match-title="" style={{width: WHEEL_IMAGE_W, height: 36, flexShrink: 0, textAlign: 'center', whiteSpace: 'nowrap', font: `${nameSize}px/36px ${F.reg}`}}>
+        <div data-match-title="" style={{width: WHEEL_IMAGE_W, height: 36, flexShrink: 0, textAlign: 'center', whiteSpace: 'nowrap', font: `${T.label}px/36px ${F.bold}`}}>
           {item.name}
         </div>
       </div>;
@@ -100,43 +103,81 @@ export const Reel = ({t, x, start, stopAt, target, items, asset}) => {
   </div>;
 };
 
+const MatchLighting = ({t}) => {
+  const id=useId(), ribbon=`match-ribbon-${id}`, haze=`match-haze-${id}`, soft=`match-soft-${id}`;
+  const appear = prog(t, 42.6, 42.9), lock = prog(t, 43.7, 44.24);
+  const drift = Math.sin((t - 42.6) * 1.4) * 10;
+  return <div data-match-lighting="" style={{position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', opacity: appear}}>
+    <svg width={W} height={H} style={{position: 'absolute', inset: 0, width: W, height: H, opacity: .7 + .3 * lock}}>
+      <defs>
+        <linearGradient id={ribbon} x1="0" y1="0" x2="1" y2=".5">
+          <stop stopColor={C.accent} stopOpacity="0" /><stop offset=".35" stopColor={C.accent} stopOpacity=".12" />
+          <stop offset=".72" stopColor={C.accentLight} stopOpacity=".65" /><stop offset="1" stopColor={C.accent} stopOpacity="0" />
+        </linearGradient>
+        <filter id={haze}><feGaussianBlur stdDeviation="7" /></filter>
+        <filter id={soft}><feGaussianBlur stdDeviation="1.2" /></filter>
+      </defs>
+      {[`M 1030 -60 C 900 110 985 220 745 ${410 + drift} S 400 480 -80 310`,
+        `M -100 1510 Q 430 ${1210 + drift} 1120 1110`].map((d, i) => <g key={i}>
+        <path d={d} fill="none" stroke={`url(#${ribbon})`} strokeWidth={i === 0 ? 18 : 7} opacity=".3" filter={`url(#${haze})`} />
+        <path d={d} fill="none" stroke={`url(#${ribbon})`} strokeWidth={i === 0 ? 3 : 1.2} opacity=".7" filter={`url(#${soft})`} />
+      </g>)}
+    </svg>
+    {[{x: MX - MATCH_PANEL_PAD_X + 20, y: MATCH_PANEL_TOP + 180, w: 90, h: 140},
+      {x: MX + CW + MATCH_PANEL_PAD_X - 8, y: MATCH_PANEL_TOP + 125, w: 70, h: 120},
+      {x: 415, y: MATCH_PANEL_TOP, w: 230, h: 55}].map((point, i) =>
+      <div key={i} style={{position: 'absolute', left: point.x - point.w / 2, top: point.y - point.h / 2, width: point.w, height: point.h,
+        background: `radial-gradient(ellipse, ${C.accentLight}a0, ${C.accent}38 24%, transparent 68%)`, filter: 'blur(5px)', opacity: .5 + .5 * lock}} />)}
+  </div>;
+};
+
 export function ImagePicker({t, asset}) {
   return <>
-    <GlassFrame t={t} edgeOpacity={0.3} style={{position:'absolute',left:MX,top:WHEEL_TOP+WHEEL_H/2-(WHEEL_ITEM_H+20)/2,width:CW,height:WHEEL_ITEM_H+20,background:'linear-gradient(145deg, #181b1e, #111315)'}}>
-      {[1,2].map(i=><div key={i} style={{position:'absolute',left:i*320-12,top:20,bottom:20,width:1,background:'rgba(242,241,236,.09)'}} />)}
-    </GlassFrame>
+    <MatchLighting t={t} />
+    <GlassFrame t={t} selected edgeOpacity={.85} style={{position:'absolute',left:MX-MATCH_PANEL_PAD_X,top:MATCH_PANEL_TOP,width:CW+MATCH_PANEL_PAD_X*2,height:MATCH_PANEL_H,zIndex:0,
+      background:'linear-gradient(145deg, rgba(209,242,229,.07), rgba(7,13,11,.88) 38%, rgba(9,18,15,.84))',backdropFilter:'none',WebkitBackdropFilter:'none',
+      boxShadow:`0 0 7px ${C.accentLight}35, 0 0 22px ${C.accent}22, inset 0 1px 0 ${C.accentPale}24`}} />
     {MATCH_POOLS.map((items,i)=><Reel key={i} t={t} x={COLS[i]} start={42.6} stopAt={[43.7,43.92,44.14][i]} target={[1,2,1][i]} items={items} asset={asset} />)}
+    <div data-match-result="" style={{position:'absolute',left:MX,width:CW,top:MATCH_PANEL_TOP+MATCH_PANEL_H-22,zIndex:3,display:'flex',justifyContent:'center',opacity:prog(t,44.24,44.36)}}>
+      <div style={{width:280,height:72,borderRadius:36,display:'flex',alignItems:'center',justifyContent:'center',gap:22,border:`1.5px solid ${C.accent}`,color:C.accent,
+        background:'linear-gradient(180deg, #10261d, #07120d 70%)',boxShadow:`0 0 10px ${C.accent}50, inset 0 1px 0 ${C.accentLight}50`,font:`36px/1 ${F.bold}`}}>
+        已匹配<svg width="38" height="38" viewBox="0 0 38 38" style={{width:38,height:38}}><circle cx="19" cy="19" r="18" fill={C.accent}/><path d="m11 19 5 5 11-12" fill="none" stroke={C.accentDeep} strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      </div>
+    </div>
   </>;
 }
-const GRID = {cols: 6, rows: 9, w: (CW - 5 * 12) / 6, gapX: 12, gapY: 14, x0: M, y0: 416};
+const GRID = {cols: 4, rows: 5, w: 222, gapX: 16, gapY: 20, x0: M, y0: 432};
 GRID.h = GRID.w * 9 / 16;
 const cell = i => ({x: GRID.x0 + (i % GRID.cols) * (GRID.w + GRID.gapX), y: GRID.y0 + Math.floor(i / GRID.cols) * (GRID.h + GRID.gapY)});
-export const CardStack = ({t, asset}) => {
- const n=Math.min(GRID.cols*GRID.rows,CATALOG_THUMBS.length);
- return <>
-    <GlassFrame t={t} edgeOpacity={0.3} data-catalog-stage="" style={{position: 'absolute', left: M - 16, top: GRID.y0 - 16,
-      width: CW + 32, height: cell(n - 1).y + GRID.h + 60 - (GRID.y0 - 16), background: '#121416',
-      opacity: prog(t, 27.94, 28.24) }} />
-    {Array.from({length: n}, (_, i) => {
-      const id = CATALOG_THUMBS[i];
-      const a = 26.2 + rnd('ga', i) * 0.9;
-      if (t < a) return null;
-      const px = M + rnd('px', i) * (CW - GRID.w), py = 1230 - Math.floor(i / 6) * 34 - rnd('py', i) * 30, pr = (rnd('pr', i) - 0.5) * 30;
-      const fq = clamp((t - a) / 0.5);
-      const bounce = fq >= 1 ? Math.exp(-(t - a - 0.5) * 8) * Math.sin((t - a - 0.5) * 30) * 10 : 0;
-      let x = px, y = lerp(-200, py, fq * fq) - bounce, r = lerp(pr * 3, pr, fq * fq), s = 1.15;
-      const g = cell(i);
-      // 保留原归位时刻；独立动作在全部归位后保持。
-      const sn = prog(t, 27.65 + i * 0.004, 28.05 + i * 0.004, quintInOut);
-      x = lerp(x, g.x, sn); y = lerp(y, g.y, sn); r = lerp(r, 0, sn); s = lerp(s, 1, sn);
-      return <GlassFrame key={i} t={t} small style={{position: 'absolute', left: x, top: y, width: GRID.w, height: GRID.h, transform: `rotate(${r}deg) scale(${s})`, opacity: 1}}>
-        <img src={asset(`thumbs/${id}.webp`)} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
-        {sn > 0.9 && <div style={{position: 'absolute', left: 4, bottom: 4, ...mono(14, 'rgba(242,241,236,.82)'),
-          lineHeight: '18px', padding: '0 4px', borderRadius: 3, background: 'rgba(10,10,11,.72)'}}>{String(i + 1).padStart(3, '0')}</div>}
+const CATALOG_FINAL = CATALOG_THUMBS.filter(id=>id!=="paper-spiral-sequence").slice(0,19).concat("paper-spiral-sequence");
+export const CardStack = ({t,asset}) => <>
+    {CATALOG_THUMBS.map((id, i) => {
+      const at = 26.2 + rnd('ga', i) * .9;
+      if (t < at) return null;
+      const pileW = 146, pileH = pileW * 9 / 16;
+      const px = M + rnd('px', i) * (CW - pileW);
+      const py = 1230 - Math.floor(i / 6) * 34 - rnd('py', i) * 30;
+      const pr = (rnd('pr', i) - .5) * 30;
+      const fall = clamp((t - at) / .5);
+      const bounce = fall >= 1 ? Math.exp(-(t - at - .5) * 8) * Math.sin((t - at - .5) * 30) * 10 : 0;
+      const slot = CATALOG_FINAL.indexOf(id);
+      const grow = prog(t, 27.65 + Math.max(0, slot) * .004, 28.05 + Math.max(0, slot) * .004, quintInOut);
+      const g = slot >= 0 ? cell(slot) : {x: px, y: py};
+      const x = lerp(px, g.x, grow), y = lerp(lerp(-200, py, fall * fall) - bounce, g.y, grow);
+      const rotation = lerp(lerp(pr * 3, pr, fall * fall), 0, grow);
+      const keep = id === "paper-spiral-sequence", out = 0;
+      return <GlassFrame key={id} t={t} small selected={keep && t > 28.3}
+        data-catalog-slot={slot} data-catalog-id={id}
+        style={{position: 'absolute', left: x, top: y,
+          width: lerp(pileW, GRID.w, grow), height: lerp(pileH, GRID.h, grow),
+          transform: `rotate(${rotation}deg) scale(${lerp(1.15, 1, grow)})`,
+          opacity: (slot < 0 ? 1 - grow : 1) * (keep ? 1 : 1 - out)}}>
+        <img src={asset(`thumbs/${id}.webp`)} style={{width: '100%', height: '100%', objectFit: 'contain'}} />
+        {slot >= 0 && grow > .9 && <div style={{position: 'absolute', left: 8, bottom: 6, ...mono(T.micro, C.ink),
+          lineHeight: '20px', padding: '0 4px', borderRadius: 3, background: 'rgba(10,10,11,.72)'}}>{String(i + 1).padStart(3, '0')}</div>}
       </GlassFrame>;
     })}
 </>;
-};
 const TRASH_ASSETS = [
   {file: 'paper.webp', name: '废纸团', size: 116},
   {file: 'can.webp', name: '压扁易拉罐', size: 112},
@@ -152,7 +193,7 @@ const Trash = ({t, i, phase, asset: resolveAsset}) => {
   const size = asset.size * pose.scale;
   return <img src={resolveAsset(`trash-collage/${asset.file}`)} alt={asset.name} data-trash-phase={phase} data-trash-index={i}
     style={{position: 'absolute', left: pose.x - size / 2, top: pose.y - size / 2, width: size, height: size, objectFit: 'contain',
-      opacity: pose.opacity, transform: `rotate(${pose.angle}deg) scaleX(${pose.flip ?? 1})`, zIndex: pose.layer, pointerEvents: 'none'}} />;
+      opacity: pose.opacity, filter: `blur(${pose.blur ?? 0}px) drop-shadow(0 9px 7px rgba(0,0,0,.45))`, transform: `rotate(${pose.angle}deg) scaleX(${pose.flip ?? 1})`, zIndex: pose.layer, pointerEvents: 'none'}} />;
 };
 
 export function GarbageFlow({t, asset}) {
@@ -161,47 +202,43 @@ export function GarbageFlow({t, asset}) {
   {t < 23.19 && <KLine t={t} li={9} rows={['垃圾进']} x={GARBAGE_TITLE.x} y={GARBAGE_TITLE.y} w={GARBAGE_TITLE.width} size={GARBAGE_TITLE.size} mode="slam"
     charStyle={(i,ch,elapsed)=>{const morph=garbageInputMorph(t,i);return {opacity:clamp(elapsed/.14)*(1-morph),...(morph>0?{filter:`blur(${morph*8}px)`}:{})};}} />}
   {Array.from({length:6},(_,i)=><Trash key={'in'+i} t={t} i={i} phase="in" asset={asset} />)}
+        <div aria-hidden="true" style={{position: 'absolute', inset: 0, opacity: prog(t, 23.45, 23.68)}}>
+          <div style={{position: 'absolute', left: 310, top: 435, width: 460, height: 760,
+            background: 'radial-gradient(ellipse at 50% 0%, rgba(167,245,212,.65), rgba(61,173,128,.23) 35%, transparent 75%)', filter: 'blur(18px)'}} />
+          <div style={{position: 'absolute', left: 40, top: 1070, width: 1000, height: 320,
+            background: 'radial-gradient(ellipse, rgba(61,173,128,.24), rgba(61,173,128,.07) 38%, transparent 70%)'}} />
+          {Array.from({length: 38}, (_,i) => <div key={i} style={{position: 'absolute', left: 290 + (i * 137) % 500, top: 470 + (i * 83 + t * 43) % 640,
+            width: 2 + i % 3, height: 2 + i % 3, borderRadius: '50%', background: C.accentLight, opacity: .15 + i % 4 * .1}} />)}
+        </div>
   <div style={{position:'absolute',inset:0,zIndex:0}}>{Array.from({length:GARBAGE_OUTPUT_COUNT},(_,i)=><Trash key={i} t={t} i={i} phase="out" asset={asset} />)}</div>
-  <GlassFrame t={t} data-garbage-model="" style={{position:'absolute',left:machine.x-machine.w/2,top:machine.y-machine.h/2,width:machine.w,height:machine.h,transform:`scale(${box})`}}>
+  <GlassFrame t={t} data-garbage-model="" style={{position:'absolute',left:machine.x-machine.w/2,top:machine.y-machine.h/2,width:machine.w,height:machine.h,transform:`scale(${box * 1.14})`}}>
    <div style={{position:'absolute',left:0,right:0,top:90,textAlign:'center',font:'110px/1 "Oswald"',color:C.ink}}>AI</div>
    <div style={{position:'absolute',left:26,top:22,width:16,height:16,borderRadius:8,background:led?C.accent:'#2a2c44'}} />
    <div style={{position:'absolute',right:24,top:18,...mono(16)}}>MODEL</div>
    <div style={{position:'absolute',left:110,right:110,top:-6,height:12,background:C.bg}} />
    <div style={{position:'absolute',left:110,right:110,bottom:-6,height:12,background:C.bg}} />
   </GlassFrame>
-  <KLine t={t} li={9} rows={['垃圾出']} x={GARBAGE_TITLE.x} y={1056} w={GARBAGE_TITLE.width} size={200} mode="rise" lead={0} dur={0.22} color={C.accent} />
  </>;
 }
-export const Mosaic = ({t, cols = 5, tw = 240, th = 135, speed = 160, seed = 0, asset}) => {
-  const rows = 14;
-  const travel = Math.max(0, t) * speed;
-  const firstRow = Math.floor(travel / (th + 6));
-  const off = travel - firstRow * (th + 6);
-  return <div style={{position: 'absolute', inset: 0, overflow: 'hidden', background: '#111'}}>
-    {Array.from({length: rows * cols}, (_, i) => {
-      const c = i % cols, r = Math.floor(i / cols);
-      const catalogRow = firstRow + r, tile = catalogRow * cols + c;
-      const id = THUMBS[(tile * 7 + seed) % THUMBS.length];
-      return <img key={tile} src={asset(`thumbs/${id}.webp`)} style={{position: 'absolute', left: c * (tw + 6) - (catalogRow % 2) * 120, top: r * (th + 6) - off, width: tw, height: th, objectFit: 'cover'}} />;
-    })}
-  </div>;
-};
-export const BigNum = ({t, digits, times, cx, cy, size, id, asset}) => {
-  const txt = digits.split('').map((d, i) => t >= times[i] - 0.03 ? d : '').join('');
-  const s = springy(t, times[times.length - 1], 0.5, 0.35);
-  return <svg width={W} height={H} style={{position: 'absolute', inset: 0, width: W, height: H}}>
-    <defs><clipPath id={id}><text x={cx} y={cy} textAnchor="middle" style={{font: `${size}px ${F.oswald}`}}>{txt}</text></clipPath></defs>
-    <foreignObject x={0} y={0} width={W} height={H} clipPath={`url(#${id})`}>
-      <div style={{width: W, height: H, position: 'relative'}}><Mosaic t={t} speed={480} seed={15} asset={asset} /></div>
-    </foreignObject>
-    <text x={cx} y={cy} textAnchor="middle" style={{font: `${size}px ${F.oswald}`, fill: 'none', stroke: C.bg, strokeWidth: 10, opacity: 0.55 * s}}>{txt}</text>
-    <text x={cx} y={cy} textAnchor="middle" style={{font: `${size}px ${F.oswald}`, fill: 'none', stroke: C.accent, strokeWidth: 3, opacity: 0.95 * s}}>{txt}</text>
-  </svg>;
-};
-
-export function MaskScroll({t,asset,digits='288'}) {
- const id=useId();
- return <><div style={{position:'absolute',inset:0,opacity:.03}}><Mosaic t={t} seed={3} asset={asset} /></div>
-  <BigNum t={t} digits={digits} times={[...digits].map(()=>0)} cx={540} cy={820} size={540} id={id} asset={asset} />
- </>;
+export function MaskScroll({t,fillKind='action'}) {
+ const id=useId(), fill=FILLS[fillKind], digits=COUNTS[fillKind];
+ const centers=digits.length===3?[228,540,852]:[312,768];
+ const size=fillKind==='action'?680:780,cy=930,top=cy-size*.82,height=size*.82;
+ return <>{[...digits].map((digit,i)=>{
+  const item=fill.items[i],clip=`number-${id}-${i}`,x=centers[i];
+  const definition=NESTED[item.definitionId||item.id];
+  const ms=Math.min(definition.duration_ms,item.offset+Math.max(0,t-48.1)*1000*item.speed);
+  const effectH=height*(item.zoom||1.2),effectW=effectH*16/9;
+  return <React.Fragment key={clip}>
+   <svg width={W} height={H} style={{position:'absolute',inset:0,width:W,height:H,pointerEvents:'none'}}>
+    <defs><clipPath id={clip} clipPathUnits="userSpaceOnUse"><text x={x} y={cy} textAnchor="middle" style={{font:`${size}px ${F.oswald}`}}>{digit}</text></clipPath></defs>
+   </svg>
+   <div data-number-digit={digit} data-number-fill={item.id} data-number-time={ms} style={{position:'absolute',inset:0,clipPath:`url(#${clip})`}}>
+    <div style={{position:'absolute',left:x-effectW/2,top:top-(effectH-height)/2}}>
+     <ActualEffect definition={definition} time={ms} width={effectW} height={effectH}/>
+    </div>
+   </div>
+   <svg width={W} height={H} style={{position:'absolute',inset:0,width:W,height:H,pointerEvents:'none'}}><text x={x} y={cy} textAnchor="middle" style={{font:`${size}px ${F.oswald}`,fill:'none',stroke:C.accent,strokeWidth:3}}>{digit}</text></svg>
+  </React.Fragment>;
+ })}</>;
 }

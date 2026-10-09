@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {environment, data} from './helpers.mjs';
 
-const heavy = ['effects/butterfly-mask.js','effects/reel-extract.js','effects/civilization-images.js', 'effects/rasengan-illustrations.js', 'effects/civilization-growth.js', 'remotion-sources.js',...data.effects.filter(e=>e.scene).flatMap(e=>[e.source.path,...(e.source.dependencies||[])]).map(f=>f.replace(/^catalog\//,''))];
+const heavy = ['effects/butterfly-mask.js','effects/sage-butterfly-mask.js','effects/reel-extract.js','effects/civilization-images.js', 'effects/rasengan-illustrations.js', 'effects/civilization-growth.js', 'remotion-sources.js',...data.effects.filter(e=>e.scene).flatMap(e=>[e.source.path,...(e.source.dependencies||[])]).map(f=>f.replace(/^catalog\//,''))];
 const effect = id => data.effects.find(item => item.id === id);
 
 test('较大的绘制文件仅在对应条目需要时载入，并行请求只执行一次',async()=>{
@@ -101,6 +101,11 @@ test('用到时才按声明顺序载入，已载入的文件不重复执行', as
     assert.equal(page.lazyRequests.filter(file=>file==='effects/butterfly-mask.js').length,1);
     await w.MotionLazy.ensure(effect('wing-root-color-reveal'));
     assert.equal(page.lazyRequests.filter(file=>file==='effects/butterfly-mask.js').length,1);
+    assert.equal(w.WiseButterflySageMask,undefined,'蓝蝶换色不提前载入绿蝶轮廓');
+    const sage=w.MotionKit.resolveVariant(effect('wing-root-color-reveal'),'sage');
+    await w.MotionLazy.ensure(sage);await w.MotionLazy.ensure(sage);
+    assert.match(w.WiseButterflySageMask,/^data:image\/webp;base64,/);
+    assert.equal(page.lazyRequests.filter(file=>file==='effects/sage-butterfly-mask.js').length,1);
     assert.equal(w.WiseCivilizationImages, undefined);
     assert.ok(!w.MotionFactories['rasengan-illustration']);
     assert.equal(w.MotionLazy.ensure(effect('stagger-in')), null, '不依赖大素材的条目不需要等待');

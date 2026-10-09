@@ -398,5 +398,19 @@
       "original_sha256": "46e86cd4db1fbc0d1f72e1946f3294266d4ff5ff0d3702006e7144b87920ac1c"
     }
   },
-  "webp_conversion": "运行素材已无损转为 WebP；转换时逐张验证尺寸、完整 RGBA 像素及 ICC 色彩配置一致。原 PNG 文件摘要保留于各项 original_sha256，完整转换记录见 catalog/assets/WEBP-SOURCES.json。"
+  "webp_conversion": "运行素材已无损转为 WebP；转换时逐张验证尺寸、完整 RGBA 像素及 ICC 色彩配置一致。原 PNG 文件摘要保留于各项 original_sha256，完整转换记录见 catalog/assets/WEBP-SOURCES.json。",
+  "motion_update": {
+    "date": "2026-10-09",
+    "source": "用户提供的 Wise Motion 介绍视频工程当前工作区",
+    "scope": [
+      "疑惑人物前排分层放大与表情",
+      "庆祝人物布局与彩屑",
+      "吸入吐出堆积",
+      "四列五行目录归位",
+      "慢速图片滚轮与真实书本预览",
+      "数字内真实动效播放",
+      "蝴蝶配色、位置、投影与飞行线"
+    ],
+    "retained_assets": "既有人物、垃圾和缩略图原文件摘要与先前收录记录一致，本次未替换。鼠尾草绿翼图的新记录见 butterfly/SOURCE.json。"
+  }
 }

@@ -88,18 +88,18 @@ const HappySymbols = ({t}) => {
 };
 
 export const AIBotCelebration = ({t}) => <svg data-bot-celebration="" viewBox="0 0 1536 1024"
-  width="100%" height="100%" style={{position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 0, overflow: 'visible', pointerEvents: 'none'}}>
+  width="100%" height="100%" style={{position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 3, overflow: 'visible', pointerEvents: 'none'}}>
   <HappySymbols t={t} />
 </svg>;
 
-export const AIBotExpressions = ({t, mood}) => <svg data-bot-expressions={mood} viewBox="0 0 1536 1024"
+export const AIBotExpressions = ({t, mood, showFaces = true, showSymbols = true}) => <svg data-bot-expressions={mood} viewBox="0 0 1536 1024"
   width="100%" height="100%" style={{position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 2, overflow: 'visible', pointerEvents: 'none'}}>
-  {BOT_FACE_ANCHORS[mood].map((face, index) => {
+  {showFaces && BOT_FACE_ANCHORS[mood].map((face, index) => {
     const pose = botEyePose(t, mood, index);
     return <g key={face.id} data-bot-face={face.id}
       transform={`translate(${face.x} ${face.y}) rotate(${face.angle}) translate(${pose.x} ${pose.y})`}>
       <Eye face={face} pose={pose} side="left" /><Eye face={face} pose={pose} side="right" />
     </g>;
   })}
-  {mood === 'confused' && <ConfusedSymbols t={t} />}
+  {showSymbols && mood === 'confused' && <ConfusedSymbols t={t} />}
 </svg>;
