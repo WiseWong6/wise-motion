@@ -20,6 +20,7 @@ const ids=['confused-characters-illustration','celebrating-characters-illustrati
 const entry=id=>data.effects.find(e=>e.id===id);
 const plain=x=>JSON.parse(JSON.stringify(x));
 const butterflyFixture=JSON.parse(await readFile(new URL('./reel-butterfly-fixture.json',import.meta.url),'utf8'));
+const garbageFixture=JSON.parse(await readFile(new URL('./reel-garbage-fixture.json',import.meta.url),'utf8'));
 
 test('蝴蝶显现、换色、转身与飞行的状态逐项符合新版原工程样本',async()=>{
  const env=await environment();
@@ -170,8 +171,13 @@ test('随机下落、表情与垃圾保留原公式，滚轮准确停靠且制�
    for(const mood of ['confused','happy'])for(let i=0;i<6;i++)assert.deepEqual(plain(api.botEyePose(t,mood,i)),botEyePose(t,mood,i));
    assert.deepEqual(plain(api.liveBotConfetti(t)),liveBotConfetti(t));
   }
-  assert.equal(GARBAGE_OUTPUT_COUNT,67);
-  for(const t of [23.05,23.2,23.45,23.7,24.3])for(let i=0;i<67;i++)assert.deepEqual(plain(api.garbageTrashAt(t,i,'out')),garbageTrashAt(t,i,'out'));
+  assert.equal(GARBAGE_OUTPUT_COUNT,61);
+  assert.equal(GARBAGE_OUTPUT_COUNT,garbageFixture.outputCount);
+  for(const sample of [...garbageFixture.samples,...garbageFixture.samples.toReversed()]){
+   assert.deepEqual(garbageTrashAt(sample.time,sample.index,sample.phase),sample.state,'源码与原工程样本一致');
+   assert.deepEqual(plain(api.garbageTrashAt(sample.time,sample.index,sample.phase)),sample.state,'分发绘制与原工程样本一致');
+  }
+  for(const sample of garbageFixture.box)assert.deepEqual(plain(api.garbageBoxAt(sample.time)),sample.state);
   assert.equal(garbageBoxAt(23.35).y,760);assert.equal(garbageBoxAt(23.52).y,300);
   const epsilon=1e-5;
   for(const [stop,target] of [[43.7,1],[43.92,2],[44.14,1]]){
@@ -191,7 +197,9 @@ test('人物分层、堆叠终态、真实书本预览及四翼变色均保留�
   for(const layer of root.querySelectorAll('[data-ai-depth]'))assert.equal(layer.querySelectorAll('[data-bot-face]').length,6,'表情应跟随分层人物');
   assert.ok(root.querySelector('[data-bot-thought-cloud]'));assert.match(root.querySelector('img').src,/confused-clean-base/);
   await show(ids[1],900);assert.equal(root.querySelectorAll('[data-bot-confetti]').length,62);assert.match(root.querySelector('img').src,/open-source-clean-base/);
-  await show(ids[2],1900);assert.equal(root.querySelectorAll('[data-trash-phase="out"]').length,67);assert.equal(root.querySelectorAll('[data-trash-phase="in"]').length,0);assert.doesNotMatch(root.textContent,/垃圾出/);
+  await show(ids[2],1900);assert.equal(root.querySelectorAll('[data-trash-phase="out"]').length,61);assert.equal(root.querySelectorAll('[data-trash-phase="in"]').length,0);assert.doesNotMatch(root.textContent,/垃圾出/);
+  assert.equal(root.querySelectorAll('div[aria-hidden="true"]').length,0,'新版不保留绿色光晕与漂浮光点');
+  for(const image of root.querySelectorAll('[data-trash-phase="out"]'))assert.match(image.style.filter,/^blur\(0px\) drop-shadow/,'碎物仅保留投影，不使用前景模糊');
   await show(ids[3],2500);assert.equal(root.querySelectorAll('img').length,54);
   const cards=[...root.querySelectorAll('[data-catalog-slot]')],visible=cards.filter(n=>n.style.opacity==='1');
   assert.equal(visible.length,20);assert.equal(new Set(visible.map(n=>n.style.left)).size,4);assert.equal(new Set(visible.map(n=>n.style.top)).size,5);

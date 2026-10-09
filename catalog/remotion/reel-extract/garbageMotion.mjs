@@ -25,7 +25,7 @@ const PILE_FILL = [
   {x: 662, y: 1028, scale: 1.02, angle: -33, assetIndex: 1},
   {x: 546, y: 1074, scale: 1.02, angle: 13, assetIndex: 0},
 ];
-export const GARBAGE_OUTPUT_COUNT = SCATTER_COUNT + PILE_FILL.length + 18;
+export const GARBAGE_OUTPUT_COUNT = SCATTER_COUNT + PILE_FILL.length + 12;
 
 // 固定每件垃圾的散落参数，拖动时间轴时仍会落在同一位置。
 const scatter = (index, salt) => {
@@ -66,13 +66,12 @@ export const garbageTrashAt = (t, index, phase) => {
   if (phase === 'out') {
     const base = OUTPUT_PIECES[index];
     const stream = index >= SCATTER_COUNT + PILE_FILL.length;
-    const foreground = stream && index >= GARBAGE_OUTPUT_COUNT - 6;
     const piece = base && {...base,
-      x: foreground ? (index % 2 ? 1015 : 65) + (index % 3 - 1) * 42 : 540 + (base.x - 540) * 1.55,
-      y: foreground ? 1130 + (index % 3) * 70 : 1090 + (base.y - 948) * 1.45,
-      scale: base.scale * (foreground ? 2.7 : stream ? .9 : 1.7),
-      start: foreground ? 23.49 : stream ? 23.65 + (index - SCATTER_COUNT - PILE_FILL.length) * .022 : base.start,
-      duration: foreground ? .36 : stream ? .48 : .42,
+      x: 540 + (base.x - 540) * 1.55,
+      y: 1090 + (base.y - 948) * 1.45,
+      scale: base.scale * (stream ? .9 : 1.7),
+      start: stream ? 23.65 + (index - SCATTER_COUNT - PILE_FILL.length) * .022 : base.start,
+      duration: stream ? .48 : .42,
     };
     if (!piece || t < piece.start) return null;
     const q = clamp((t - piece.start) / piece.duration);
@@ -88,11 +87,11 @@ export const garbageTrashAt = (t, index, phase) => {
         - bounce * (14 + scatter(index, 15) * 20),
       opacity: progress(t, piece.start, piece.start + 0.035),
       angle: piece.angle + piece.spin * (1 - q) + bounce * piece.spin * 0.12,
-      scale: piece.scale * lerp(foreground ? 0.18 : 0.68, 1, q),
+      scale: piece.scale * lerp(0.68, 1, q),
       assetIndex: piece.assetIndex,
       flip: piece.flip,
       layer: Math.round(piece.y),
-      blur: foreground ? 2.2 : 0,
+      blur: 0,
     };
   }
   const charIndex = Math.floor(index / 2);
