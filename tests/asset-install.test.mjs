@@ -37,7 +37,11 @@ test('素材安装移除旧版失效首页，保留所有绘制依赖和目标�
  try{
   const target=path.join(temporary,'public/wise-motion');
   await mkdir(path.join(target,'catalog'),{recursive:true});
-  await writeFile(path.join(target,'catalog/index.html'),'<script src="remotion-player.js"></script>');
+  const homepage='<script src="remotion-player.js"></script>';
+  await writeFile(path.join(target,'catalog/index.html'),homepage);
+  await writeFile(path.join(target,'.wise-motion-assets.json'),JSON.stringify({version:1,files:{
+   'catalog/index.html':createHash('sha256').update(homepage).digest('hex'),
+  }}));
   await writeFile(path.join(target,'catalog/local-cache.txt'),'keep');
   await installAssets(target);
   for(const file of sourceOnly){
@@ -62,6 +66,8 @@ test('素材安装移除旧版失效首页，保留所有绘制依赖和目标�
   }
   const modified=path.join(target,'catalog/effects/attention.js'),missing=path.join(target,'catalog/content.js');
   const config=path.join(temporary,'plan.json'),saved=JSON.stringify({content:{text:'保留我的内容'}});
+  const homepagePath=path.join(target,'catalog/index.html');
+  await writeFile(homepagePath,'用户自建首页');
   await writeFile(config,saved);
   await writeFile(modified,'// 项目的本地修改');await rm(missing);
   await assert.rejects(installAssets(target),/本地修改/);
@@ -70,9 +76,12 @@ test('素材安装移除旧版失效首页，保留所有绘制依赖和目标�
   await installAssets(target,{overwrite:true});
   assert.match(await readFile(modified,'utf8'),/count-up/);
   assert.equal(await readFile(config,'utf8'),saved);
+  assert.equal(await readFile(homepagePath,'utf8'),'用户自建首页','未登记首页在允许覆盖素材时也保留');
   // 模拟目标还在上一版本：文件等于上次安装记录，允许正常更新。
   const recordFile=path.join(target,'.wise-motion-assets.json');
   const record=JSON.parse(await readFile(recordFile,'utf8'));
+  record.files['catalog/index.html']=createHash('sha256').update(homepage).digest('hex');
+  await writeFile(homepagePath,'用户修改过的旧首页');
   // 旧版原件：未改动的移除；用户改写或没有安装记录的副本保留。
   for(const [i,file]of sourceOnly.entries()){
    const destination=path.join(target,file);await mkdir(path.dirname(destination),{recursive:true});
@@ -86,5 +95,7 @@ test('素材安装移除旧版失效首页，保留所有绘制依赖和目标�
   for(const i of [0,3])await assert.rejects(stat(path.join(target,sourceOnly[i])),{code:'ENOENT'});
   assert.equal(await readFile(path.join(target,sourceOnly[1]),'utf8'),'用户修改');
   assert.equal(await readFile(path.join(target,sourceOnly[2]),'utf8'),'旧版原件');
+  assert.equal(await readFile(homepagePath,'utf8'),'用户修改过的旧首页','已登记但修改过的首页保留');
+  assert.ok(!JSON.parse(await readFile(recordFile,'utf8')).files['catalog/index.html'],'保留的用户首页不登记为可覆盖素材');
  }finally{await rm(temporary,{recursive:true,force:true});}
 });

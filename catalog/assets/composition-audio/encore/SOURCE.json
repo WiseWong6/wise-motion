@@ -19,7 +19,9 @@
     {
       "file": "catalog/assets/composition-audio/encore/README.md",
       "original": "/Users/wisewong/Documents/Developer/scenes/未完成/singintherain-encore/README.md",
-      "sha256": "972969e7fa94e9a038ca6a1894691bc667d4466cdf8868d5e5305395cfad1834"
+      "sha256": "ce27318f3f18fa09865268d283b236f2a813db4116023f3f96e5914cd4303c2b",
+      "original_sha256": "972969e7fa94e9a038ca6a1894691bc667d4466cdf8868d5e5305395cfad1834",
+      "adaptation": "面向随包素材的使用说明；保留来源与许可，原文校验值见 original_sha256。"
     }
   ],
   "rights": "程序沿用项目许可；录音和音乐的许可与署名以同目录原作记录为准，不将程序许可套用于第三方录音。"

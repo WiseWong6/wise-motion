@@ -193,6 +193,8 @@ for (const dir of ['catalog','catalog/effects','scripts','tests']) {
 }
 const build = spawnSync(process.execPath, [path.join(root, 'scripts/build.mjs'), '--check'], {encoding:'utf8'});
 assert.equal(build.status, 0, build.stderr);
-const markdown = ['README.md','SKILL.md','NOTICE.md','CATALOG-STATS.md','references/index.md','references/history.md','references/method.md','references/sources.md','references/runtime-interface.md','references/material-refinement.md','references/apple-hig.md','tests/manual.md', ...data.effects.map(e => 'references/effects/' + e.id + '.md')];
+const audioDocs = (await readdir(path.join(root, 'catalog/assets/composition-audio'), {recursive:true}))
+  .filter(file => file.endsWith('.md')).map(file => 'catalog/assets/composition-audio/' + file);
+const markdown = ['README.md','SKILL.md','NOTICE.md','CATALOG-STATS.md','references/index.md','references/history.md','references/method.md','references/sources.md','references/runtime-interface.md','references/material-refinement.md','references/apple-hig.md','tests/manual.md', ...audioDocs, ...data.effects.map(e => 'references/effects/' + e.id + '.md')];
 for (const file of markdown) for (const [, link] of (await read(file)).matchAll(/\]\(([^)]+)\)/g)) if (!/^(https?:|#)/.test(link)) assert.ok((await stat(path.resolve(root, path.dirname(file), link))).isFile(), file + ' 的链接缺失：' + link);
 console.log(`检查通过：${data.effects.filter(x => x.kind === 'action').length} 个动作、${data.effects.filter(x => x.kind === 'illustration').length} 个插画单图、${data.effects.filter(x => x.kind === 'composition').length} 个组合；定义、关联动作、共享绘制、来源路径、生成文件、许可文件和脚本语法完整。`);
