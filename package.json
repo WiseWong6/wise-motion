@@ -1,6 +1,6 @@
 {
   "name": "wise-motion",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "理解动作需求，匹配动效参考，交付源码与接入说明",
   "license": "AGPL-3.0-only",
   "engines": {
