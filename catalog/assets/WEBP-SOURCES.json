@@ -1266,6 +1266,19 @@
         1145,
         1374
       ]
+    },
+    {
+      "source": "catalog/assets/butterfly/sage-watercolor-wing-atlas.png",
+      "target": "catalog/assets/butterfly/sage-watercolor-wing-atlas.webp",
+      "original_bytes": 2449740,
+      "bytes": 1561400,
+      "original_sha256": "19908e7883802b5da96d6e394f2d9e5f3209c05c6c4a38ace1458d13ea5e3222",
+      "sha256": "2fd703caaf2eebe5bfb83b1da7c24347eab085f0bc32b840ad2f8aa495e8a558",
+      "rgba_sha256": "167ed1b9b8166e6c1cab1d7ec02a77ecb12e445524949fedaf291c8d3dc60193",
+      "dimensions": [
+        1536,
+        1024
+      ]
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "origin": "用户已确认的 Wise Motion 视频蝴蝶插画与振翅小样",
   "created": "2026-10-06",
-  "image_source": "Codex 宿主内置 image_gen.imagegen；原透明图集直接复制，没有重绘或图像编辑；运行素材已无损转为 WebP，完整颜色和透明度不变，校验记录见 ../WEBP-SOURCES.json。",
+  "image_source": "蓝色和多彩两张原透明图集由 Codex 宿主内置 image_gen.imagegen 制作；鼠尾草绿图集直接复用用户指定视频工程，详情见该文件的 provenance。原透明图集直接复制，没有重绘或图像编辑；运行素材已无损转为 WebP，完整颜色和透明度不变，校验记录见 ../WEBP-SOURCES.json。",
   "code_license": "AGPL-3.0-only",
   "files": [
     {
@@ -17,6 +17,15 @@
       "sha256": "764fd30d6815a94628041af43b2a79a24364403995028248c89512811f7cb154",
       "original_path": "ai-wing-atlas.png",
       "original_sha256": "d81423abc263c4d56fc0fe57246483c782b9c12e2b25e5283902bcdd1310c958"
+    },
+    {
+      "path": "sage-watercolor-wing-atlas.webp",
+      "bytes": 1561400,
+      "sha256": "2fd703caaf2eebe5bfb83b1da7c24347eab085f0bc32b840ad2f8aa495e8a558",
+      "original_path": "sage-watercolor-wing-atlas.png",
+      "original_sha256": "19908e7883802b5da96d6e394f2d9e5f3209c05c6c4a38ace1458d13ea5e3222",
+      "added": "2026-10-09",
+      "provenance": "从用户指定的介绍视频当前工作区纳入鼠尾草绿水彩透明图集；未生成、重绘或改色。无损编码后尺寸、完整颜色、透明度及色彩配置与原图一致。"
     }
   ],
   "motion": {

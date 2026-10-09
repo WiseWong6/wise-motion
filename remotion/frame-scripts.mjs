@@ -87,5 +87,6 @@ export const FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/scene-window-media.js",
   "catalog/effects/scene-window.js",
   "catalog/effects/butterfly-mask.js",
+  "catalog/effects/sage-butterfly-mask.js",
   "catalog/effects/reel-extract.js"
 ]);

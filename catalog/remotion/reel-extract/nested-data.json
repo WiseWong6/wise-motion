@@ -1,0 +1,1210 @@
+{
+  "definitions": {
+    "book-spine-turn": {
+      "id": "book-spine-turn",
+      "name": "绕书脊翻页",
+      "kind": "action",
+      "category": "space",
+      "summary": "纯纸页围绕固定书脊翻转，保留正反面与左右页的连续衔接。",
+      "purpose": "纯纸页围绕固定书脊翻转，保留正反面与左右页的连续衔接。",
+      "aliases": [
+        "翻页",
+        "绕脊翻页",
+        "书脊固定",
+        "双面纸页",
+        "书本翻转"
+      ],
+      "behaviors": [
+        "rotate",
+        "reveal",
+        "settle"
+      ],
+      "phases": [
+        "轻微调整书本俯视角度，同时连续快速翻十次。",
+        "向前翻两页，纸张绕书脊转过半周，正面切换为背面。",
+        "再向后翻两页，纸张沿原路回到右侧，恢复原页序。"
+      ],
+      "retain": "原书脊、纸页正反面、页序与翻页角度。",
+      "avoid": "不要把整本书一起旋转，不附加插画或纸纹。",
+      "duration_ms": 7600,
+      "loop": false,
+      "default_ease": "outCubic",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/dither-book.js",
+        "factory": "book-spine-turn",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://amicro.vercel.app/3d",
+        "reference": {
+          "name": "Amicro · 3D Dither Lab Book",
+          "url": "https://amicro.vercel.app/3d"
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 3390,
+      "recommendation": "需要绕书脊翻页时复用本条目；需要完整图稿册时用关联组合“插画翻页书”。",
+      "tempo_note": "入场快翻使用匀速，普通翻页先快后慢；调整播放速度保留阶段关系。",
+      "objects": "不附加插画与光影的纯色纸页",
+      "analogy": "纯纸页围绕固定书脊翻转，保留正反面与左右页的连续衔接。",
+      "trigger": "打开预览后按固定时间演示；可暂停、重播和定位。",
+      "assumptions": "从插画翻页书的自有实现抽取；与完整组合共用实际绘制函数，不复制参考网站的代码或素材。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "previous_names": []
+    },
+    "book-geometric-illustration": {
+      "id": "book-geometric-illustration",
+      "name": "几何网点插画",
+      "kind": "illustration",
+      "category": "illustration-diagram",
+      "summary": "六幅可分别复用的网点与细线几何插画，共用翻页书的原矢量图。",
+      "purpose": "六幅可分别复用的网点与细线几何插画，共用翻页书的原矢量图。",
+      "aliases": [
+        "几何插画",
+        "网点插画",
+        "月相",
+        "山势",
+        "叶脉",
+        "拱廊",
+        "水纹",
+        "轨道"
+      ],
+      "behaviors": [
+        "illustration"
+      ],
+      "phases": [
+        "完整呈现所选的原几何插画。",
+        "保持网点、细线、原比例与图稿说明。",
+        "插画保持稳定，作为翻页书或其他画面的内容素材。"
+      ],
+      "retain": "原矢量路径、网点图案、细线、题名与数字。",
+      "avoid": "不要附加翻页或重绘成另一套图案。",
+      "duration_ms": 1000,
+      "loop": false,
+      "default_ease": "outCubic",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/dither-book.js",
+        "factory": "book-geometric-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://amicro.vercel.app/3d",
+        "reference": {
+          "name": "Amicro · 3D Dither Lab Book",
+          "url": "https://amicro.vercel.app/3d"
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 0,
+      "recommendation": "需要几何网点插画时复用本条目；需要完整图稿册时用关联组合“插画翻页书”。",
+      "tempo_note": "静态插画完整保留一秒，单独复用时可按需要延长。",
+      "objects": "月相、山势、叶脉、拱廊、水纹与轨道六幅矢量插画",
+      "analogy": "六幅可分别复用的网点与细线几何插画，共用翻页书的原矢量图。",
+      "trigger": "选择示例后完整呈现；六幅插画可分别复用。",
+      "assumptions": "从插画翻页书的自有实现抽取；与完整组合共用实际绘制函数，不复制参考网站的代码或素材。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "previous_names": [],
+      "variants": [
+        {
+          "id": "moon",
+          "label": "月相",
+          "summary": "原翻页书中的月相网点与细线插画。",
+          "duration_ms": 1000,
+          "preview_ms": 0
+        },
+        {
+          "id": "mountain",
+          "label": "山势",
+          "summary": "原翻页书中的山势网点与细线插画。",
+          "duration_ms": 1000,
+          "preview_ms": 0
+        },
+        {
+          "id": "leaf",
+          "label": "叶脉",
+          "summary": "原翻页书中的叶脉网点与细线插画。",
+          "duration_ms": 1000,
+          "preview_ms": 0
+        },
+        {
+          "id": "arch",
+          "label": "拱廊",
+          "summary": "原翻页书中的拱廊网点与细线插画。",
+          "duration_ms": 1000,
+          "preview_ms": 0
+        },
+        {
+          "id": "water",
+          "label": "水纹",
+          "summary": "原翻页书中的水纹网点与细线插画。",
+          "duration_ms": 1000,
+          "preview_ms": 0
+        },
+        {
+          "id": "orbit",
+          "label": "轨道",
+          "summary": "原翻页书中的轨道网点与细线插画。",
+          "duration_ms": 1000,
+          "preview_ms": 0
+        }
+      ]
+    },
+    "book-paper-light": {
+      "id": "book-paper-light",
+      "name": "纸张光影",
+      "kind": "action",
+      "category": "lighting",
+      "summary": "固定半翻纸页的姿态，单独展示纸纹、书脊渐变与正反面的明暗变化。",
+      "purpose": "固定半翻纸页的姿态，单独展示纸纹、书脊渐变与正反面的明暗变化。",
+      "aliases": [
+        "纸张光影",
+        "纸纹",
+        "书脊阴影",
+        "纸页明暗",
+        "翻页阴影",
+        "纸张质感"
+      ],
+      "behaviors": [
+        "shade",
+        "texture",
+        "follow"
+      ],
+      "phases": [
+        "建立固定半翻的纯纸页、页缘与书脊阴影。",
+        "正反面明暗按原翻页角度映射连续变化，纸页姿态保持。",
+        "回到原明暗端点，纸纹和书脊渐变持续保留。"
+      ],
+      "retain": "纸纹与阴影使用原实现，正反面阴影强度互相补偿。",
+      "avoid": "不加插画，不重新设计光源或让书本一起转动。",
+      "duration_ms": 7600,
+      "loop": false,
+      "default_ease": "outCubic",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/dither-book.js",
+        "factory": "book-paper-light",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://amicro.vercel.app/3d",
+        "reference": {
+          "name": "Amicro · 3D Dither Lab Book",
+          "url": "https://amicro.vercel.app/3d"
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 3390,
+      "recommendation": "需要纸张光影时复用本条目；需要完整图稿册时用关联组合“插画翻页书”。",
+      "tempo_note": "光影取原7.6秒翻页演示的角度变化；固定纸页姿态便于单独观察明暗。",
+      "objects": "原翻页书的纸纹、页缘、书脊渐变与正反面阴影",
+      "analogy": "固定半翻纸页的姿态，单独展示纸纹、书脊渐变与正反面的明暗变化。",
+      "trigger": "打开预览后按固定时间演示；可暂停、重播和定位。",
+      "assumptions": "从插画翻页书的自有实现抽取；与完整组合共用实际绘制函数，不复制参考网站的代码或素材。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "previous_names": []
+    },
+    "geometric-poster-sequence": {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放；支持暂停、重播、时间定位与整体倍速。",
+      "assumptions": "图形为原生路径与固定种子印刷纹理；画面只由当前时间决定。英文标题使用包内Oswald Bold。",
+      "id": "geometric-poster-sequence",
+      "name": "几何旋转与海报成形",
+      "kind": "composition",
+      "category": "compositions",
+      "duration_ms": 4183.333333333334,
+      "preview_ms": 3650,
+      "summary": "印刷几何逐个进入、共同旋转并继续叠加；满幅横带间歇闪切结束后，图形缩回上移，再升入同字号标题。",
+      "purpose": "印刷几何逐个进入、共同旋转并继续叠加；满幅横带间歇闪切结束后，图形缩回上移，再升入同字号标题。",
+      "objects": "橙色曲面、黑色斜面、左上弧形线纹、斜向细线、左右网点圆面、右侧疏密竖纹；暖纸底与同字号WISE MOTION标题",
+      "phases": [
+        "0–0.78秒，橙色曲面、弧形线纹与黑色斜面依次进入；0.78–1.12秒图形组从−90度转到0度。",
+        "斜线、右网点、竖纹与左网点分别从1.08、1.27、1.45、1.63秒进入，1.90秒七层齐备；维持941/654倍满幅，1.90–2.35秒进行十八区间歇闪切，图形错位与七条碎带在结束时完全复原。 2.35–2.62秒才从满幅缩回并上移到海报上部，使用四次方对称加减速。",
+        "约2.703秒WISE、2.813秒MOTION分别从裁切框下方升入，持续0.35与0.40秒；保持相同字号与基线，约3.213秒完成，定格至4.183秒。"
+      ],
+      "aliases": [
+        "WISE MOTION",
+        "印刷几何海报",
+        "逐个进入海报",
+        "几何旋转",
+        "满幅间歇闪切",
+        "闪切后上移",
+        "横带局部切换",
+        "海报收尾"
+      ],
+      "behaviors": [
+        "sequence",
+        "rotate",
+        "stagger",
+        "flash",
+        "mask"
+      ],
+      "retain": "七层几何与固定纸纹，暖纸、黑墨、橙色三色。闪切全程保持941/654倍满幅，结束后才用0.27秒缩回并上移。交接持续0.45秒，p为交接进度、e为已过秒数，f=floor((16−0.45/2+e)×30)，固定取值h(n)=sin(n×127.1+311.7)×43758.5453的小数部分。画面分18条等高横带，第j条在p>0.92或h(j×3.7+f×0.131)<p×1.25−0.12时显露原构图，覆盖高度为画高×61/1080。仅在0.05<p<0.95时绘制错位构图和7条碎带；第k条碎带位置为(h(f+k)−200/1920)×画宽、h(2f+k)×画高，宽为(200+700h(3f+k))/1920×画宽，高为(6+40h(k+5f))/1080×画高；颜色依次为橙、墨、纸，透明度0.55、0.55、0.5。错位层按橙面、弧线、黑面、斜线、右网点、竖纹、左网点顺序，位移分别为(−38,26)、(48,12)、(−30,20)、(55,−18)、(−60,22)、(35,−16)、(28,−22)像素；转角分别为−8、12、7、−5、0、5、0度，等比缩放分别为1.075、1.055、1.035、1.04、1.08、1.035、1.10。标题按300像素字号测量后，以1590像素宽、250像素字高共同约束；基线为917减字形下伸量，两词同字号。",
+      "avoid": "不改变几何与排版，不用整图切片替代原生层，不提前上移，不交叉淡化闪切，不反转配色，结束不留碎带或错位。",
+      "tempo_note": "完整4.1833秒；0–1.90秒进入与旋转，1.90–2.35秒满幅闪切，2.35–2.62秒上移，约2.703秒起出标题，标题完成后停留0.97秒。",
+      "analogy": "印刷几何逐个进入、共同旋转并继续叠加；满幅横带间歇闪切结束后，图形缩回上移，再升入同字号标题。",
+      "recommendation": "印刷几何逐个进入、共同旋转并继续叠加；满幅横带间歇闪切结束后，图形缩回上移，再升入同字号标题。",
+      "actions": [
+        "geometry-turn-build",
+        "glitch-band-transition",
+        "mask-stagger-text"
+      ],
+      "source": {
+        "path": "catalog/effects/geometric-poster.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的印刷几何海报提取原生曲面、弧线、网点、纸纹与固定时钟。组合与独立动作共用绘制；横带间歇闪切复用已有18区、30格固定取值及0.45秒交接，增加几何海报示例；文字裁切升入沿用海报词组示例。字体为包内Oswald Bold，遵循OFL；画面不依赖生成图片、外部素材或来源工程路径。",
+        "factory": "geometric-poster-sequence"
+      },
+      "reproduction": {
+        "presentation": "横版1672×941画面等比展示；暖纸色#efeada、墨色#23241f、橙色#ee5427。几何区位于顶部654像素，固定种子的细颗粒附着在各印刷层。左上65圈变间距椭圆弧，橙色曲面横穿中部，右上黑色斜面，右侧疏密竖纹与渐变网点圆面，左下局部网点；保留贴边裁切与重叠关系。底部一行WISE MOTION使用Oswald Bold，同字号、同一基线。",
+        "objects": "橙色曲面、黑色斜面、左上弧形线纹、斜向细线、左右网点圆面、右侧疏密竖纹；暖纸底与同字号WISE MOTION标题"
+      },
+      "action_variants": {
+        "glitch-band-transition": "poster-cut",
+        "mask-stagger-text": "poster-words"
+      }
+    },
+    "point-domain-flow-sequence": {
+      "id": "point-domain-flow-sequence",
+      "name": "黄金矩形递归生长",
+      "kind": "composition",
+      "category": "compositions",
+      "summary": "光点建立瀑布网格与黄金方格，镜头进入字符雨幕；亮线蓄势打出铁花，回缩后的原图形持续递归生长为满幅图案。",
+      "purpose": "复用黄金矩形递归生长的实际几何、连续时序与画面质感。",
+      "objects": "暖色光点、深浅星点、瀑布坐标网格、黄金方格、字符雨幕、三处痛点文字、打铁花、波次网格与递归黄金图案",
+      "phases": [
+        "0至6.2秒：瀑布网格从中心建立，1、1、2、3、5、8格方块逐次拼接、内侧依次扫描，镜头两秒快速放大。",
+        "6.2至14.33秒：字符雨幕流动与地震反弹；三条动作线延伸、停顿、打出铁花；缩小后原有黄金方格重现。",
+        "14.33至21.13秒：同一团铁花持续存在，黄金矩形按父子关系接续、递归分割；网格波次传播，图案加速长满画幅并停留。"
+      ],
+      "aliases": [
+        "Wise Motion",
+        "黄金分割",
+        "递归生长",
+        "打铁花",
+        "字符雨幕",
+        "网格波次",
+        "审美与思考",
+        "光点建域与流线展开",
+        "光点建网流线展开"
+      ],
+      "behaviors": [
+        "sequence",
+        "depth",
+        "draw",
+        "particles",
+        "warp"
+      ],
+      "retain": "21.133333秒、30帧每秒、634个采样；末段1.5倍生长。第一块方格始终从中心开始；2002个黄金矩形、9383个方格及弧线均依父级关系延伸，已出现的主弧线和铁花保持到最后。",
+      "avoid": "不使用原片图像，不随机重排，不让弧线越出所属方格，不把完整组合伪装成单个动作。",
+      "duration_ms": 21133.333333333336,
+      "preview_ms": 20422.22222222222,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/point-domain-flow.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。",
+        "rights_note": "代码按AGPL-3.0-only提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
+        "factory": "point-domain-flow-sequence",
+        "reference": {
+          "name": "@陈与小金",
+          "url": "https://www.xiaohongshu.com/user/profile/674ae141000000001c019796?xsec_token=AB4_JtYTs33ywlUEE_Mx8jkB1aDCvusqnUmnJNp5ZZLwE%3D&xsec_source=pc_search",
+          "credit_prefix": "复刻至",
+          "credit_suffix": "老师，已取得授权",
+          "permission": {
+            "status": "granted",
+            "confirmed_by": "用户",
+            "confirmed_on": "2026-10-05"
+          }
+        }
+      },
+      "actions": [
+        "coordinate-grid-build",
+        "coordinate-focus-zoom",
+        "text-plane-tilt",
+        "boundary-curve-stop",
+        "frame-ring-collapse",
+        "bounded-fibre-grow",
+        "grid-flow-unfold",
+        "star-twinkle"
+      ],
+      "action_variants": {
+        "star-twinkle": "layered-night"
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后播放完整组合，可暂停、重播和逐时刻定位；组合拆解支持单独查看与逐层叠加。",
+      "analogy": "光点建立瀑布网格与黄金方格，镜头进入字符雨幕；亮线蓄势打出铁花，回缩后的原图形持续递归生长为满幅图案。",
+      "assumptions": "图形与文字是可替换的示例；保留格内延伸、父子接续和当前时间可重现的动作关系。",
+      "tempo_note": "固定演示21.133秒，沿用组合0.000至21.133秒的节奏；播放速度可调。",
+      "reproduction": {
+        "presentation": "16:9近黑画幅，640×360逻辑坐标与1280×720画布；精细白核、暖棕软光、冷白细线和铜金弧线，文字为苹方无衬线回退；不添加底部叙事字幕或音轨。",
+        "objects": "暖色光点、深浅星点、瀑布坐标网格、黄金方格、字符雨幕、三处痛点文字、打铁花、波次网格与递归黄金图案",
+        "retain": "21.133333秒、30帧每秒、634个采样；末段1.5倍生长。第一块方格始终从中心开始；2002个黄金矩形、9383个方格及弧线均依父级关系延伸，已出现的主弧线和铁花保持到最后。"
+      },
+      "previous_names": [
+        "光点建域与流线展开",
+        "光点建网流线展开"
+      ],
+      "recommendation": "适合以网格、黄金方格、字符雨幕和铁花串联空间演变；只使用某段时选择对应独立动作。"
+    },
+    "energy-vortex-wrap-hd": {
+      "id": "energy-vortex-wrap",
+      "name": "流线球形缠绕",
+      "kind": "action",
+      "category": "particles",
+      "summary": "细蓝流线沿原受力球涡轨迹缠绕，窄亮芯与蓝色线身共同构成球形。",
+      "purpose": "将螺旋丸视频中的螺旋丸作为可独立播放、定位和复制的图形参考。",
+      "objects": "原球涡短尾迹、补充示踪线和窄亮芯",
+      "phases": [
+        "蓝色流线和窄亮芯显现。",
+        "保留原受力流场的绕轴与翻卷，流线缠绕成球。",
+        "保持蓝色球状线团，末尾停住。"
+      ],
+      "aliases": [
+        "流线球形缠绕",
+        "蓝色能量球",
+        "螺旋丸",
+        "蓝色球涡",
+        "缠绕流线",
+        "能量球",
+        "螺旋丸插画",
+        "螺旋丸视频图形",
+        "螺旋丸流线",
+        "能量流球"
+      ],
+      "behaviors": [
+        "illustration",
+        "continuous",
+        "depth"
+      ],
+      "retain": "原受力轨迹、三维投影、蓝色线身、少量窄亮芯与细线比例；不增加实体球背景。；使用原光照累计、密度补偿和完整流线采样，不替换成蓝色描线。",
+      "avoid": "去掉原片纸底、字幕、人物、章节文案、全页辅助标尺与声音；只保留图形，使用目录自己的底色。",
+      "duration_ms": 3000,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/rasengan-illustrations.js",
+        "factory": "rasengan-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/"
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "preview_ms": 2600,
+      "recommendation": "适合独立复用螺旋丸插画，保留原图形结构与细线比例。",
+      "tempo_note": "固定三秒：前三百毫秒显现，图形运动至二点六秒，末尾保持四百毫秒；只调整整体速度。",
+      "trigger": "打开预览后按固定时间表演示；可暂停和定位。",
+      "analogy": "细蓝流线沿原受力球涡轨迹缠绕，窄亮芯与蓝色线身共同构成球形。",
+      "assumptions": "提取本机螺旋丸原工程的几何、固定粒子与短窗轨迹；在目录十六比九画板内等比居中，石墨线随明暗主题，螺旋丸与电弧保留原蓝色家族。 螺旋丸与电弧使用原浮点光照画布，仅适配尺寸与分辨率；浏览器不支持时使用细线兼容图。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。",
+      "domains": [
+        "animation",
+        "document"
+      ],
+      "reproduction": {
+        "presentation": "16:9 画幅，主体保持示例的构图、配色与材质；只调整整体观看速度，内部运动关系保持。"
+      },
+      "render_pixel_ratio": 6
+    },
+    "letter-galaxy-illustration": {
+      "id": "letter-galaxy-illustration",
+      "name": "星月来信银河",
+      "kind": "illustration",
+      "category": "illustration-nature",
+      "summary": "原银河底图和从图中读取的亮星、中轴与带宽数据一起纳入。",
+      "purpose": "原银河底图和从图中读取的亮星、中轴与带宽数据一起纳入。",
+      "objects": "星月来信银河的原造型及相关运动主体",
+      "phases": [
+        "原星带中轴开始显现。",
+        "银河向两侧展开。",
+        "原底图和亮星完整保留。"
+      ],
+      "aliases": [
+        "星月来信银河",
+        "星月来信"
+      ],
+      "behaviors": [
+        "move",
+        "react"
+      ],
+      "retain": "保留原轮廓、比例、材质、固定数据及时间关系；原银河底图和从图中读取的亮星、中轴与带宽数据一起纳入。",
+      "avoid": "不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。",
+      "duration_ms": 14000,
+      "preview_ms": 7700,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/scene-letter.js",
+        "factory": "letter-galaxy-illustration",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
+        "dependencies": [
+          "catalog/effects/scene-source-runtime.js",
+          "catalog/effects/scene-letter-images.js"
+        ],
+        "assets": [
+          "catalog/assets/scene-sources/letter/素材来源.md",
+          "catalog/assets/scene-sources/letter/galaxy-sky.webp",
+          "catalog/assets/scene-sources/letter/fonts/OFL-MaShanZheng.txt",
+          "catalog/fonts/LXGWWenKai-Regular.woff2",
+          "catalog/assets/scene-sources/letter/fonts/MaShanZheng-Regular.ttf",
+          "catalog/assets/scene-sources/letter/fonts/OFL-LXGWWenKai.txt"
+        ]
+      },
+      "actions": [
+        "galaxy-axis-reveal"
+      ],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按原时间播放；可暂停、重播与定位。",
+      "analogy": "原银河底图和从图中读取的亮星、中轴与带宽数据一起纳入。",
+      "assumptions": "使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。",
+      "tempo_note": "保留原作第0秒起的14秒；速度控件统一缩放时间。",
+      "recommendation": "需要星月来信银河的造型或动作关系时直接复用。",
+      "scene": {
+        "family": "letter",
+        "mode": "galaxy",
+        "start": 0,
+        "width": 660,
+        "height": 880
+      },
+      "reproduction": {
+        "objects": "原银河底图和从图中读取的亮星、中轴与带宽数据一起纳入。",
+        "presentation": "设计尺寸660×880，竖版3:4；近黑底#080a0e、暖白#f9f3fb；输入框位于横向中央和70%高度，宽度为画面72%；中文使用霞鹜文楷。",
+        "phases": [
+          "原星带中轴开始显现。",
+          "银河向两侧展开。",
+          "原底图和亮星完整保留。"
+        ],
+        "retain": "原银河底图和从图中读取的亮星、中轴与带宽数据一起纳入。",
+        "tempo_note": "从0秒的位置开始展示，播放14秒，各部件共用同一动作秒数。",
+        "avoid": "所有动作由当前帧计算，随机分布固定，定位时呈现同一画面。"
+      }
+    },
+    "material-evolution-sequence": {
+      "kind": "composition",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [
+        "brush-glyph-build",
+        "glyph-bar-collapse",
+        "dots-lines-cylinders",
+        "material-form-chain",
+        "spheres-material-merge",
+        "atlas-reveal-clear",
+        "glyph-cut-ending"
+      ],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开预览后按固定顺序播放；可暂停、重播和定位时间。",
+      "assumptions": "使用已精修的书法轮廓、粒子排布、空间结构及透明材质作为固定示例；内容替换需提供相应轮廓、位置与材质输入，专用转场排程保持不变。",
+      "source": {
+        "path": "catalog/effects/material-evolution.js",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "dependencies": [],
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
+        "factory": "material-evolution-sequence",
+        "assets": [
+          "catalog/assets/material-evolution/key-shapes.js",
+          "catalog/assets/material-evolution/fiber.webp",
+          "catalog/assets/material-evolution/moon.webp",
+          "catalog/assets/material-evolution/atlas-engraving.webp"
+        ],
+        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "reference": {
+          "name": "Kimi K3 开源发布宣传片（open weights）",
+          "url": "https://www.youtube.com/watch?v=5GlCGOXUYHg",
+          "provided_by": "用户",
+          "provided_on": "2026-10-05"
+        },
+        "additional_references": [
+          {
+            "name": "颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道、一、二、三）",
+            "url": "https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P"
+          }
+        ]
+      },
+      "reproduction": {
+        "presentation": "16:9，640×360，纸色#e2e3dd，固定细纸纹，主体以深灰黑墨绘制；主字采用中国毛笔楷书，道字使用多宝塔碑宋拓原字轮廓；如替换柳体，需重新定义整套一致的笔画；保留正确字形结构、起收笔、提按、飞白和少量毛边；细线、颗粒、交叉排线形成纤维和版画质感；字形与图形使用固定构图框、中心和间距；月面用固定灰斑与细陨坑表现；结尾纸色#e3e4de，最后直接切黑",
+        "objects": "以中国书法汉字道、一、二、三为主体的37个笔画姿态、道字细字符、17400个固定墨点、三条乱线笔形、462个空间顶点、字符环柄与棋盘、纤维三球和月面、37组图鉴版画及27个结尾书法、数字及英文姿态，最终字标为 WISE MOTION。",
+        "phases": [
+          "0–6.10秒，0–2.50秒笔画接续组成道字，2.50–3.55秒道字拆成字符并压成一，3.55–6.10秒二的墨点转为三的乱线再形成三个圆柱。",
+          "6.10–11.866667秒，6.10–8.10秒圆柱经字符、点阵环柄和棋盘转为像素三球，8.10–9.25秒纤维三球合拢换成月面，9.25–11.866667秒月球带出图鉴、分件显影并整组清场。",
+          "11.866667–15.054秒，古帖道字与横笔试样、数字与英文字标按固定节拍快切，WISE MOTION 先出现，补入 OPEN SOURCE 后停留，接成最终字标，最后直接黑屏。"
+        ],
+        "details": [
+          "汉字与笔法：开头明确写道、一、二、三，道字试样复用宋拓描摹轮廓，一、二、三分别描摹同册第十开完整原字，英文与数字采用随包 Oswald Bold，最终字标为 WISE MOTION。默认采用颜体楷书，笔画浑厚、结构端庄，也可整片统一改为骨力挺拔、结构紧劲的柳体楷书。使用明确符合所选书体且完整覆盖这些汉字的同一套书法字形，先确认完整字形再做笔画显影，保持笔顺与部件关系可辨识。禁止混用颜体与柳体，也不能用普通楷体加粗、行草、拉丁字母、黑体或随意拼出的抽象线条替代所选书体。",
+          "单字尺寸：道字依据宋拓原字完整轮廓确定一次等比缩放，放入246×246的边界框，以(320,180)为中心；全部显现姿态、片尾道字与粒子采样共用这一坐标。英文和数字按既定字号、字宽与固定字距居中。",
+          "稳定标定：尺寸依据完整字形的可见墨迹边界，而不是字体字号或带空白的文件外框。每个完整字形只计算一次等比缩放和居中偏移，并固定到该字所有笔画、墨点及遮罩。显影、快切和材质变化时不根据当前可见部分重新居中或缩放，不每帧自动适配边界，不横纵分别拉伸。笔画逐渐增多不能让整个字呼吸缩放或左右跳动。",
+          "字距与行距：片尾先显示字号30、基线164像素的 WISE MOTION，再补入字号24、基线207像素的 OPEN SOURCE，两行各自按完整字宽居中。最终字标改为字号72、基线209像素、字距2像素的 WISE MOTION。切换时采用预先生成的固定布局，不按每帧可见部分重新排版。用于材质过渡的小汉字保留固定网格。",
+          "后续图形尺寸与间距：三个圆柱和三个球分别形成稳定的横向三件组，中心依次为(200,180)、(320,180)、(440,180)，中心间距固定120。圆柱统一高120、正面宽72，球体统一直径104，均围绕各自固定中心运动。圆柱转球时在本段指定动作中连续过渡尺寸，不能在材质切换瞬间额外缩放或重新排版。点阵、字符、棋盘和纤维纹理继承对应主体的中心与尺寸，三维投影允许自然变化，但镜头距离与整组缩放固定。",
+          "有意运动与构图承接：道字压成横笔、三球合拢、月面缩小下移属于明确的动作，必须预先固定起点和终点。三球合体至(320,180)，月面接替时保持合体轮廓的中心和直径，再由这一固定尺寸平滑缩至直径72并移到(320,244)。除这些明确的形变和位移外，不随帧、纹理或对象数量自动改变整体大小与位置，各段切换继承上一段的终点。",
+          "图鉴排布：37件版画采用预先排好的固定分区，主体外框位于x=48至592、y=36至324，月面所在区域预留。每件按完整轮廓等比放入自己的固定格，相邻可见轮廓至少留8像素，尺寸相近的同类图形统一等高或等宽。先完成全部分区布局，再逐件显影，即使尚未出现也保留占位。内部纹理可运动，分区位置与外框尺寸保持稳定，直到整组清场。",
+          "交付检查：在每次字形或材质切换的前后帧核对中心、可见墨迹尺寸和相邻间距，在每段停留期间核对这些数值恒定。只允许上述明确形变产生尺寸变化，排查字体未加载造成的字形替换、逐帧重新测量和按可见对象自动排版导致的跳变。"
+        ],
+        "layers": [
+          {
+            "name": "中国书法成字",
+            "start": 0,
+            "end": 2500,
+            "detail": "直接描摹的古帖道字按笔画方向逐步显现，原字轮廓、比例和完整字形中心固定。"
+          },
+          {
+            "name": "汉字压成横笔",
+            "start": 2500,
+            "end": 3550,
+            "detail": "道字细字符收拢成一字横笔，沿明确路径形变，终点按等宽规则固定"
+          },
+          {
+            "name": "横笔接三圆柱",
+            "start": 3550,
+            "end": 6100,
+            "detail": "二的墨点转为三的乱线再形成三个同高圆柱，继承固定位置和间距"
+          },
+          {
+            "name": "网格接纤维三球",
+            "start": 6100,
+            "end": 8100,
+            "detail": "字符、环柄、棋盘和像素纹理过渡到三个同径球，保持三个中心和中心间距"
+          },
+          {
+            "name": "三球合为月面",
+            "start": 8100,
+            "end": 9250,
+            "detail": "三球按固定路径合拢，月面接替轮廓后再缩小下移，避免材质替换时跳变"
+          },
+          {
+            "name": "图鉴显影清场",
+            "start": 9250,
+            "end": 11866.667,
+            "detail": "37件版画按固定分区显影，内部纹理运动不改变外框，随后整组清场"
+          },
+          {
+            "name": "书法字标快切与片尾收束",
+            "start": 11866.667,
+            "end": 15054,
+            "detail": "古帖道字、动画横笔、数字和英文按固定节拍快切，再显示 WISE MOTION 与 OPEN SOURCE，回到 WISE MOTION 并停留，最后切黑"
+          }
+        ],
+        "retain": "七段共用同一时间计算；前后段保留字符团、三个圆柱、三个球和月球的轮廓及位置承接，完整字形只做一次尺寸标定，图形使用预先确定的固定布局；保留快速切换、短暂停留、明确的压缩合拢动作和结尾黑屏。",
+        "avoid": "不替换为七个通用几何演示，不按段落重新给已有对象做入场，不随意改变段落先后，不给整片统一套缓动；不使用伪汉字或拉丁字标替代中国书法，不以相同字号冒充相同可见尺寸，不按每帧可见轮廓自动缩放居中，不让字距、图形间距或整组尺寸随显影数量漂移。"
+      },
+      "id": "material-evolution-sequence",
+      "name": "KIMI K3 开源宣传片复刻",
+      "category": "compositions",
+      "summary": "书法成字、字符压成横笔、点线形成圆柱，再经字符和棋盘变为三球；三球转月面，图鉴显影清场，最后字标收尾。",
+      "purpose": "保留七段实际动作的完整先后、材料承接与统一排程，提供可分段查看的整片组合。",
+      "objects": "以中国书法汉字道、一、二、三为主体的37个笔画姿态、道字细字符、17400个固定墨点、三条乱线笔形、462个空间顶点、字符环柄与棋盘、纤维三球和月面、37组图鉴版画及27个结尾书法、数字及英文姿态，最终字标为 WISE MOTION。",
+      "phases": [
+        "0–6.10秒，0–2.50秒笔画接续组成道字，2.50–3.55秒道字拆成字符并压成一，3.55–6.10秒二的墨点转为三的乱线再形成三个圆柱。",
+        "6.10–11.866667秒，6.10–8.10秒圆柱经字符、点阵环柄和棋盘转为像素三球，8.10–9.25秒纤维三球合拢换成月面，9.25–11.866667秒月球带出图鉴、分件显影并整组清场。",
+        "11.866667–15.054秒，古帖道字与横笔试样、数字与英文字标按固定节拍快切，WISE MOTION 先出现，补入 OPEN SOURCE 后停留，接成最终字标，最后直接黑屏。"
+      ],
+      "aliases": [
+        "书法与材料重组",
+        "七段材料演变",
+        "笔画点线空间图鉴",
+        "道一二三",
+        "Kimi开源发布整片",
+        "Kimi开源发布片",
+        "笔墨与材质演变",
+        "笔墨成形材质演变"
+      ],
+      "behaviors": [
+        "sequence",
+        "morph",
+        "reveal",
+        "depth",
+        "move",
+        "cut"
+      ],
+      "retain": "七段共用同一毫秒时钟和实际绘制函数；前后段保留字符团、三个圆柱、三个球和月球的轮廓及位置承接；每段独立预览与整片使用同一绘制逻辑，保留快速切换、短暂停留和结尾黑屏。",
+      "avoid": "不替换为七个通用几何演示，不按段落重新给已有对象做入场，不随意改变段落先后，不给整片统一套缓动，不播放原片视频或用原片JPG画面代替代码。",
+      "duration_ms": 15054,
+      "preview_ms": 10250,
+      "recommendation": "需要这一完整书法、字符、点线、材料与图鉴演变链时使用；独立片段可各自复用，跨段拼接必须保留前后轮廓和位置承接。",
+      "tempo_note": "整片15.054秒；分段边界为0、2.50、3.55、6.10、8.10、9.25、11.866667、15.054秒，每秒30个画面刻度，所有固定分布、显影和快切均由同一时间计算。",
+      "analogy": "同一个画面从墨迹开始，一路换成字符、点线、立体材料和科学图鉴，最后变成发布字标。",
+      "previous_names": [
+        "笔墨与材质演变",
+        "笔墨成形材质演变"
+      ]
+    },
+    "hud-acquisition-sequence": {
+      "id": "hud-acquisition-sequence",
+      "name": "目标扫描捕获锁定",
+      "kind": "composition",
+      "category": "composition-interface",
+      "summary": "中文观测界面从强度趋势与环圈展开，进入球面扫描、弧形仪表、轨迹定位和信号构成分析，再推近目标并锁定。",
+      "purpose": "把搜寻、发现、聚焦与锁定组织成可拆解的完整界面动效。",
+      "objects": "球面扫描、环圈、强度趋势、斜距、弧形仪表、轨迹定位、通道占比分区、回波热力、频谱、字符链路与狙击镜准星",
+      "phases": [
+        "环圈先展开，接收强度曲线与两翼数据面板依次显现。",
+        "地球轮廓和扫描光束进入，斜距变化；捕获后视角推近、金属银切为红色。",
+        "狙击镜准星与锁定目标状态稳定，最后所有界面退出，横线收短并熄灭。"
+      ],
+      "aliases": [
+        "扫描捕获与锁定",
+        "第八段",
+        "赛博朋克HUD",
+        "隼眼九号",
+        "中文数据大屏",
+        "科幻仪表界面"
+      ],
+      "behaviors": [
+        "sequence",
+        "draw",
+        "rotate",
+        "count",
+        "focus",
+        "exit"
+      ],
+      "retain": "整体构图与斜距保留，方位、仰角和信噪比读数用于弧形仪表；初始采用明亮银白#e5ebf2，扩大纯白高光面积、提高主环圈不透明度，保留金属反光与柔光，锁定切为红色#ff434d，背景为中性近黑#060709。原构图1066×600，球心(533,300)，左栏x=52、右栏x=848；逻辑画板640×360按实际屏幕像素绘制，各图层只分配自身范围的画布。0.12—0.53秒展环，0.4—0.75秒显现面板，0.66—0.99秒显现球体，2.22—2.40秒锁定，3.41665秒收线，3.57秒熄灭；11个独立动作与组合共用真实绘制函数。锁定推近在2.72秒停稳，中央外层放大至1.24倍，两侧围绕自身栏心轻放大至1.04倍，保留安全边距；图表内容向内收并增强银色反光。",
+      "avoid": "不加入片外介绍，不把各图层改成互不关联的循环，不截取原片图像代替绘制。",
+      "duration_ms": 3733.334,
+      "preview_ms": 1716.667,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [
+        "hud-ring-build",
+        "hud-globe-scan",
+        "hud-system-boot",
+        "hud-range-readout",
+        "hud-navigation-bars",
+        "hud-radar-sweep",
+        "hud-signal-waves",
+        "hud-candidate-status",
+        "hud-spectrum-bars",
+        "hud-data-stream",
+        "hud-target-lock"
+      ],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "dashboard"
+      ],
+      "trigger": "打开后按固定时间演示，可暂停、重播及任意定位。",
+      "analogy": "从暗处启动观测界面，扫描发现信号，推近目标并锁定，最后关机。",
+      "assumptions": "中文仪表组件以代码绘制；斜距使用原片可读帧采样，强度趋势、热力矩阵、遥测、轨迹、通道占比、频谱和字符为固定演示数据。独立示例放大自身内容，按实际显示像素绘制；组合保留原有整体布局。",
+      "tempo_note": "按原片第八段完整局部时钟播放，总长约3.733秒。",
+      "source": {
+        "path": "catalog/effects/hud-targeting.js",
+        "factory": "hud-acquisition-sequence",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "extraction": "基于本机第八段的自主绘制框架持续改版；地图使用Natural Earth公共领域国家轮廓，斜距保留原片可读帧采样，不包含原片图片或视频。"
+      },
+      "previous_names": [
+        "扫描捕获与锁定"
+      ],
+      "reproduction": {
+        "tempo_note": "本段局部0–3.733秒；按各图层给定时间接续",
+        "presentation": "16:9，1066×600设计坐标等比缩放；黑色背景，明亮银白#e5ebf2主线与纯白高光，锁定后重点变为红色#ff434d；球心(533,300)、左右栏x=52和848；细线网格与小字号等宽读数；银白主线提高不透明度，金属渐变扩大纯白区域并带局部柔光，面板内容左右向内收10；左侧接收强度、遥测仪表采用完整闭框，顶部名称为星巡，其余栏目文案改为轨迹定位、通道占比、回波热力、频段能量、遥测链路，主状态为锁定目标；接收强度采用填充面积曲线，回波热力采用八列五行矩阵；原遥测短条替换为三组弧形仪表，原雷达圆盘替换为七点轨迹图，原双波形替换为三类通道占比分区；中央保留原有地球开场，锁定定格改为地中海、意大利一带；使用狙击镜式十字准星、测距刻度和中心红点，锁定目标状态与坐标位于下方",
+        "retain": "0.12–0.53秒展环，0.4–0.75秒显现面板，0.66–0.99秒显现球体，2.22–2.40秒锁定，3.41665秒界面隐去并收短中心横线，3.57秒全部熄灭；2.22至2.72秒平滑聚焦同一份国家轮廓至3.6倍，目标为北纬42°30′、东经12°30′，完成后静止；中央放大1.24倍，两侧围绕自身栏心放大1.04倍",
+        "layers": [
+          {
+            "name": "标题与边角",
+            "start": 150,
+            "end": 3416.65,
+            "detail": "顶栏状态、时间与四角边线。"
+          },
+          {
+            "name": "环圈分层展开",
+            "start": 0,
+            "end": 3416.65,
+            "detail": "五层圆弧沿周长展开，一百二十根刻度依次建立；短弧不同向缓转。"
+          },
+          {
+            "name": "球面扫描推近",
+            "start": 600,
+            "end": 3416.65,
+            "detail": "原有地球与扫描光束保持不变，锁定时平滑推近地中海、意大利一带，地图停稳并淡出扫描光束。"
+          },
+          {
+            "name": "面积曲线推进",
+            "start": 350,
+            "end": 3416.65,
+            "detail": "接收强度曲线向右展开，半透明面积随曲线填充，显示当前强度与采样窗口。"
+          },
+          {
+            "name": "斜距递减与变倍",
+            "start": 800,
+            "end": 3416.65,
+            "detail": "斜距先滚码，再缓降，锁定时迅速减小；倍率上升且视场收窄，保留前导零。"
+          },
+          {
+            "name": "弧形仪表联动",
+            "start": 800,
+            "end": 3416.65,
+            "detail": "方位、仰角与信噪比驱动三组弧形仪表，亮弧与白色端点按各自量程推进，数值居中显示。"
+          },
+          {
+            "name": "轨迹逐点定位",
+            "start": 750,
+            "end": 3416.65,
+            "detail": "轨迹依次连接七个采样点，白色菱形带着投影线前进；到达末端后显示已定位并停稳。"
+          },
+          {
+            "name": "通道占比分区",
+            "start": 800,
+            "end": 3416.65,
+            "detail": "矩形按主波、杂波与底噪占比分区，面积和读数同步变化；锁定后稳定在68%、21%与11%。"
+          },
+          {
+            "name": "热力矩阵聚焦",
+            "start": 800,
+            "end": 3416.65,
+            "detail": "八列五行回波热力格逐渐显现，强信号向固定单元集中，锁定后描亮峰值格。"
+          },
+          {
+            "name": "频谱柱列跳动",
+            "start": 800,
+            "end": 3416.65,
+            "detail": "五十一根细柱按固定采样时钟改变高度，保留高低峰与共同基线。"
+          },
+          {
+            "name": "链路字符刷新",
+            "start": 800,
+            "end": 3416.65,
+            "detail": "五行九列十六进制字符按固定时钟刷新，十二格链路指示按顺序点亮。"
+          },
+          {
+            "name": "准星锁定变色",
+            "start": 2100,
+            "end": 3416.65,
+            "detail": "圆形镜缘与十字测距准星显现，中心红点对准目标；锁定目标与坐标移到下方，保持瞄准中心清楚。"
+          },
+          {
+            "name": "外围读数与标尺",
+            "start": 120,
+            "end": 3416.65,
+            "detail": "倍率、视场、航向、俯仰和底部标尺随统一时间更新。"
+          },
+          {
+            "name": "收线退出",
+            "start": 3416.65,
+            "end": 3570,
+            "detail": "3.41665秒各面板隐去，中心横线向中心收短，3.57秒全部熄灭"
+          }
+        ]
+      },
+      "recommendation": "适合完整演出强度采样、扫描、目标聚焦和锁定的因果过程；只用局部仪表时选择对应独立动作。"
+    },
+    "neon-horizon": {
+      "kind": "composition",
+      "loop": false,
+      "duration_ms": 6000,
+      "preview_ms": 2600,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "actions": [
+        "striped-sun-rise",
+        "perspective-grid-flow",
+        "star-twinkle"
+      ],
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后播放；可暂停、重播和任意定位。",
+      "assumptions": "按本机 Claude 动效演进史原片 10–16 秒及 sNeon 源码重写；深浅模式均保留原霓虹色，独立动作与组合共用原位置、大小和计时。省去文字、转场和声音。",
+      "tempo_note": "保留原片六秒时间，太阳上升用前 1.3 秒，其余运动持续至段尾；播放倍率只改变观看速度。",
+      "id": "neon-horizon",
+      "name": "日出与网格前行",
+      "category": "compositions",
+      "summary": "固定星点错峰明灭，条纹太阳从地平线升起，品红透视网格向前滚动。",
+      "purpose": "将三个真实提取的背景动作按原位置、原计时叠加，形成原片霓虹场景的背景。",
+      "objects": "错峰星点、条纹渐变太阳、泛光和透视网格地面",
+      "phases": [
+        "星点在紫黑天空中各自明灭，网格地面开始向前流动。",
+        "太阳从地平线下减速升起，底部条纹持续下移。",
+        "太阳就位后条纹、网格和星点继续各自运动，太阳与网格响应同一节拍。"
+      ],
+      "aliases": [
+        "Claude 霓虹背景",
+        "条纹太阳网格星空",
+        "1981 霓虹背景",
+        "Claude 动效演进史",
+        "霓虹地平线",
+        "升圆与纵深"
+      ],
+      "previous_names": [
+        "霓虹地平线",
+        "升圆与纵深"
+      ],
+      "behaviors": [
+        "appear",
+        "move",
+        "perspective",
+        "opacity",
+        "pulse"
+      ],
+      "retain": "独立动作与组合共用同一绘制函数；保持原天空和地面渐变、太阳条纹与泛光、140 个星点、双层网格描线及半秒亮度节拍。",
+      "avoid": "不将泛用的上移、呼吸或曲线路径冒充组成动作；不附加文字拖影、扫光、镜头光斑或声音。",
+      "analogy": "星空、升起的条纹太阳与向前延伸的网格共同搭成霓虹地平线。",
+      "recommendation": "用于整体霓虹背景；需要只用其中一层时，可直接打开关联的独立动作。",
+      "source": {
+        "path": "catalog/effects/reel-neon.js",
+        "factory": "neon-horizon",
+        "origin": "original",
+        "license": "AGPL-3.0-only",
+        "library": "animejs@4.5.0",
+        "reference_url": "https://animejs.com/documentation/",
+        "assets": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json",
+          "catalog/assets/composition-audio/showreel/audio.cjs",
+          "catalog/assets/composition-audio/showreel/shared.js",
+          "catalog/assets/composition-audio/showreel/soundtrack.mp3"
+        ]
+      },
+      "original_scene": "claude-showreel-2026/sNeon",
+      "audio": {
+        "tracks": [
+          {
+            "name": "原演进样片配乐与音效",
+            "src": "catalog/assets/composition-audio/showreel/soundtrack.mp3",
+            "start_ms": 0,
+            "duration_ms": 6000,
+            "offset_ms": 10000,
+            "volume": 1
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/showreel/SOURCE.json"
+        ]
+      }
+    }
+  },
+  "fills": {
+    "action": {
+      "items": [
+        {
+          "id": "geometric-poster-sequence",
+          "offset": 1000,
+          "speed": 0.5
+        },
+        {
+          "id": "point-domain-flow-sequence",
+          "offset": 18300,
+          "speed": 0.6
+        },
+        {
+          "id": "energy-vortex-wrap",
+          "definitionId": "energy-vortex-wrap-hd",
+          "offset": 900,
+          "speed": 0.6,
+          "zoom": 3.8
+        }
+      ]
+    },
+    "composition": {
+      "items": [
+        {
+          "id": "letter-galaxy-illustration",
+          "offset": 1800,
+          "speed": 1,
+          "zoom": 1.2
+        },
+        {
+          "id": "material-evolution-sequence",
+          "offset": 9500,
+          "speed": 0.8,
+          "zoom": 1.6
+        }
+      ]
+    },
+    "illustration": {
+      "items": [
+        {
+          "id": "hud-acquisition-sequence",
+          "offset": 900,
+          "speed": 1.5
+        },
+        {
+          "id": "neon-horizon",
+          "offset": 2000,
+          "speed": 0.7,
+          "zoom": 1.65
+        }
+      ]
+    }
+  },
+  "counts": {
+    "action": "289",
+    "composition": "41",
+    "illustration": "90"
+  },
+  "themes": {
+    "dark": {
+      "--brand-base": "#8a8a90",
+      "--brand-light": "#f4f1ea",
+      "--stage": "#0a0a0b",
+      "--ink": "#f4f1ea",
+      "--muted": "#a5a4ad",
+      "--faint": "#8a8a90",
+      "--card": "#151517",
+      "--card-ink": "#f4f1ea",
+      "--card-muted": "#a5a4ad",
+      "--card-edge": "#3a3a40",
+      "--shadow": "0 1px 2px rgba(0,0,0,.2),0 8px 20px rgba(0,0,0,.22)",
+      "--card-shadow": "0 4px 14px rgba(0,0,0,.22)",
+      "--symbol": "#242428",
+      "--symbol-ink": "#f4f1ea",
+      "--mark": "#ff5a1f",
+      "--mark-ink": "#0a0a0b",
+      "--path": "#62626b",
+      "--accent": "#ff5a1f",
+      "--accent-ink": "#0a0a0b",
+      "--diagram-blue": "#598eca",
+      "--blue": "#7b61ff",
+      "--teal": "#1fb5a8",
+      "--red": "#ff5a1f",
+      "--yellow": "#ffc93c",
+      "--cycle-pink": "#ff2bd6",
+      "--cycle-red": "#d7263d",
+      "--reel-line": "#ff4d1f",
+      "--reel-muted": "#8a8a90",
+      "--reel-caption": "#6c6c72",
+      "--reel-dot": "#fff",
+      "--reel-last": "#f2f2f2",
+      "--panel": "#151517",
+      "--panel-alt": "#242428",
+      "--panel-ink": "#f4f1ea",
+      "--panel-muted": "#a5a4ad",
+      "--plane-0": "#202024",
+      "--plane-1": "#303036",
+      "--plane-2": "#44444c",
+      "--plane-3": "#62626b",
+      "--plane-ink": "#f4f1ea",
+      "--feature-ink": "#f4f1ea",
+      "--feature-muted": "#a5a4ad",
+      "--badge": "#242428",
+      "--badge-ink": "#f4f1ea",
+      "--flip": "#151517",
+      "--flip-ink": "#f4f1ea",
+      "--flip-back": "#303036",
+      "--flip-back-ink": "#f4f1ea",
+      "--dot": "#a5a4ad",
+      "--caption": "#a5a4ad",
+      "--track": "#62626b",
+      "--result": "#f4f1ea",
+      "--pointer": "#f4f1ea",
+      "--sky-0": "#0a0a0b",
+      "--sky-1": "#151517",
+      "--sun": "#ffc93c",
+      "--hill": "#202024",
+      "--hill-mid": "#303036",
+      "--hill-near": "#44444c",
+      "--seed": "#ff5a1f",
+      "--seed-dot": "#ffc93c",
+      "--water-line": "#3a3a40",
+      "--water-0": "#151517",
+      "--water-1": "#242428",
+      "--ripple": "#1fb5a8",
+      "--plant": "#1fb5a8",
+      "--pond": "#202024",
+      "--zoom": "#151517",
+      "--grain-opacity": ".025",
+      "--vignette": "rgba(0,0,0,.28)"
+    },
+    "light": {
+      "--brand-base": "#222226",
+      "--brand-light": "#b7b3bf",
+      "--stage": "#f7f5f0",
+      "--ink": "#222226",
+      "--muted": "#63616b",
+      "--faint": "#797780",
+      "--card": "#fdfbf7",
+      "--card-ink": "#222226",
+      "--card-muted": "#63616b",
+      "--card-edge": "#d7d4cf",
+      "--shadow": "0 1px 2px rgba(35,30,25,.03),0 6px 16px rgba(35,30,25,.05)",
+      "--card-shadow": "0 3px 10px rgba(35,30,25,.06)",
+      "--symbol": "#eeeae3",
+      "--symbol-ink": "#222226",
+      "--mark": "#ff5a1f",
+      "--mark-ink": "#222226",
+      "--path": "#d7d4cf",
+      "--accent": "#d54a19",
+      "--accent-ink": "#fdfbf7",
+      "--diagram-blue": "#1d4e89",
+      "--blue": "#6a4fd8",
+      "--teal": "#087f75",
+      "--red": "#c34519",
+      "--yellow": "#a7730b",
+      "--cycle-pink": "#ad148c",
+      "--cycle-red": "#ad253d",
+      "--reel-line": "#d54a19",
+      "--reel-muted": "#63616b",
+      "--reel-caption": "#797780",
+      "--reel-dot": "#222226",
+      "--reel-last": "#222226",
+      "--panel": "#eeeae3",
+      "--panel-alt": "#e3dfd8",
+      "--panel-ink": "#222226",
+      "--panel-muted": "#63616b",
+      "--plane-0": "#ccc8c2",
+      "--plane-1": "#dcd8d1",
+      "--plane-2": "#e9e5de",
+      "--plane-3": "#f2eee7",
+      "--plane-ink": "#222226",
+      "--feature-ink": "#222226",
+      "--feature-muted": "#63616b",
+      "--badge": "#eeeae3",
+      "--badge-ink": "#222226",
+      "--flip": "#fdfbf7",
+      "--flip-ink": "#222226",
+      "--flip-back": "#e3dfd8",
+      "--flip-back-ink": "#222226",
+      "--dot": "#797780",
+      "--caption": "#63616b",
+      "--track": "#d7d4cf",
+      "--result": "#222226",
+      "--pointer": "#222226",
+      "--sky-0": "#eeeae3",
+      "--sky-1": "#f7f5f0",
+      "--sun": "#ffc93c",
+      "--hill": "#e3dfd8",
+      "--hill-mid": "#ccc8c2",
+      "--hill-near": "#aaa59e",
+      "--seed": "#d54a19",
+      "--seed-dot": "#a7730b",
+      "--water-line": "#d7d4cf",
+      "--water-0": "#eeeae3",
+      "--water-1": "#f7f5f0",
+      "--ripple": "#087f75",
+      "--plant": "#087f75",
+      "--pond": "#e3dfd8",
+      "--zoom": "#eeeae3",
+      "--grain-opacity": ".018",
+      "--vignette": "rgba(60,45,30,.025)"
+    }
+  }
+}

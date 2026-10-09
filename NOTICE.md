@@ -1,6 +1,6 @@
 # 署名、来源与说明
 
-Copyright © 2026 Wise Wong. 更新日期：2026 年 10 月 6 日。
+Copyright © 2026 Wise Wong. 更新日期：2026 年 10 月 9 日。
 
 本文件统一列明 Wise Motion 的项目许可、作品署名、视觉参考、素材来源与第三方依赖。目录数量见 [目录统计](CATALOG-STATS.md)；逐项来源记录与原许可文件随包保留。
 
@@ -49,7 +49,7 @@ NASA 月貌数值与下表中的 AI 生成月面图片是两份不同材料，�
 | 剪贴短片图集 | 手掌、机械转轮、人物四姿态、八帧跑步及六帧弹离，由 Codex 内置图像生成工具独立生成；纸纤维、撕边、碎片与支架由代码绘制。 | [剪贴素材记录](catalog/assets/collage-film/SOURCE.json) |
 | 材质演变图片 | 纤维球、月面与科学版画图鉴，由 Codex 内置图像生成工具根据参考帧重建；来源按生成图片记录。 | [材质素材记录](catalog/assets/material-evolution/SOURCE.json) |
 | 生长与文明群像 | 植物、花卉和文明版画由 Codex 内置图像生成工具生成，局部机关由代码控制。 | [生长与文明素材记录](catalog/assets/civilization-growth/SOURCE.json) |
-| 版画蝴蝶与多彩翼图 | 用户已确认的两张透明图集由 Codex 内置图像生成工具制作；四翼、身体和触角末端按原图裁取，触角曲线由代码绘制。 | [蝴蝶素材记录](catalog/assets/butterfly/SOURCE.json) |
+| 版画蝴蝶、多彩翼图与鼠尾草绿水彩翼图 | 蓝色与多彩两张透明图集由 Codex 内置图像生成工具制作；鼠尾草绿图集从用户指定介绍视频的当前工程直接复用并无损转为 WebP。四翼、身体和触角末端按原图裁取，触角曲线由代码绘制。 | [蝴蝶素材记录](catalog/assets/butterfly/SOURCE.json) |
 
 上述记录保留制作方式、提示词、文件尺寸和校验信息。生成图片的制作归属与参考内容的使用条件分别记录。
 

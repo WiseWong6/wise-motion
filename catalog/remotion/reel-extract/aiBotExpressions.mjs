@@ -67,24 +67,35 @@ export const thoughtCloudPose = t => {
   const age = t - 13.06;
   return {opacity: ease(age, 0, 0.23), scale: 1, y: 0, questionAngle: 0, questionScale: 1};
 };
-const hash = (i, salt) => ((i * 73 + salt * 127 + i * i * 19) % 997) / 997;
-export const liveBotConfetti = t => Array.from({length: 88}, (_, i) => {
-  // A few small pieces lead into one continuous hand-to-air release.
-  const lead = i < 12, at = lead ? 46.52 + i * 0.023 : 46.82 + hash(i, 1) * 0.28;
-  const age = t - at, a = Math.max(0, age), direction = i % 2 ? -1 : 1;
-  const originX = direction === 1 ? 325 : 1058, originY = direction === 1 ? 232 : 210;
-  const destinationX = (direction === 1 ? 84 : 712) + hash(i, 2) * 740;
-  const apexTime = 0.58 + hash(i, 3) * 0.15, apexY = -198 + hash(i, 4) * 190;
-  const lifetime = apexTime * (1 + Math.sqrt((690 - apexY) / (originY - apexY)));
-  const x = originX + (destinationX - originX) * (1 - Math.exp(-a * 2.4));
-  const y = apexY + (originY - apexY) * (1 - a / apexTime) ** 2;
+// 固定随机分布，让每次拖动时间轴时位置一致，但各属性不呈整齐的排列。
+const hash = (i, salt) => {
+  const n = Math.sin((i + 1) * 127.1 + salt * 311.7) * 43758.5453;
+  return n - Math.floor(n);
+};
+export const liveBotConfetti = t => Array.from({length: 62}, (_, i) => {
+  const lead = i < 12, floating = hash(i, 16) < .42;
+  const at = 46.28 + hash(i, 1) * (lead ? .30 : .72);
+  const age = t - at, a = Math.max(0, age), direction = hash(i, 17) > .5 ? -1 : 1;
+  const originX = (direction === 1 ? 325 : 1058) + (hash(i, 18) - .5) * 95;
+  const originY = 195 + hash(i, 19) * 80;
+  const destinationX = direction === 1 ? 30 + hash(i, 2) * 180 : 1310 + hash(i, 2) * 195;
+  const apexTime = .20 + hash(i, 3) * .38, apexY = -25 + hash(i, 4) * 165;
+  const lifetime = floating ? 2.3 : apexTime * (1 + Math.sqrt((1120 - apexY) / (originY - apexY)));
+  const drift = Math.sin(a * (2 + hash(i, 20) * 3) + hash(i, 21) * Math.PI * 2);
+  const x = floating
+    ? 65 + hash(i, 22) * 1400 + drift * (12 + hash(i, 23) * 30)
+    : originX + (destinationX - originX) * (1 - Math.exp(-a * 4.8)) + drift * a * 14;
+  // 空中碎片散布在不同高度，再以各自速度飘落，避免头顶排成一条横带。
+  const y = floating
+    ? -35 + hash(i, 24) * 465 + a * (35 + hash(i, 25) * 95)
+    : apexY + (originY - apexY) * (1 - a / apexTime) ** 2;
   return {id: i, x, y,
-    angle: i * 39 + a * direction * (160 + hash(i, 6) * 180),
+    angle: hash(i, 26) * 360 + a * direction * (90 + hash(i, 6) * 280),
     width: (lead ? 14 : 24) + hash(i, 7) * (lead ? 5 : 14),
     height: (lead ? 8 : 14) + hash(i, 8) * (lead ? 4 : 9),
-    kind: i % 8 === 0 ? 'star' : i % 5 === 0 ? 'streamer' : 'paper',
-    flutter: 0.72 + 0.28 * Math.abs(Math.cos(a * 7 + i)),
-    color: ['#FFE9A6', '#FFB1AE', '#B4A4FF', '#B7F2DD', '#EDEEFF', '#8291FF'][i % 6],
+    kind: hash(i, 27) < .12 ? 'star' : hash(i, 27) < .29 ? 'streamer' : 'paper',
+    flutter: .38 + .62 * Math.abs(Math.cos(a * (5 + hash(i, 28) * 6) + hash(i, 29) * 6)),
+    color: ['#FFE9A6', '#FFB1AE', '#B4A4FF', '#B7F2DD', '#EDEEFF', '#8291FF'][Math.floor(hash(i, 30) * 6)],
     opacity: age < 0 || age >= lifetime || t >= 48.15 ? 0
-      : ease(age, 0, 0.09) * (1 - ease(age, lifetime - 0.28, lifetime))};
+      : ease(age, 0, .09) * (1 - ease(age, lifetime - .28, lifetime))};
 });

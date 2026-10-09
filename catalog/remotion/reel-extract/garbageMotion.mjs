@@ -6,7 +6,7 @@ const progress = (t, a, b) => {
 };
 
 export const GARBAGE_BOX = {x: 540, y: 760, w: 360, h: 300};
-export const GARBAGE_TITLE = {x: 240, y: 132, size: 200, width: 600};
+export const GARBAGE_TITLE = {x: 360, y: 132, size: 120, width: 360};
 const SCATTER_COUNT = 36;
 // 用轮廓饱满的垃圾填住底部中央，避免随机落点留下大块缺口。
 const PILE_FILL = [
@@ -17,8 +17,15 @@ const PILE_FILL = [
   {x: 618, y: 930, scale: 1.06, angle: 53, assetIndex: 0},
   {x: 546, y: 966, scale: 1.04, angle: -8, assetIndex: 0},
   {x: 486, y: 900, scale: 0.94, angle: -63, assetIndex: 0},
+  // 去掉“垃圾出”文案后，用纸盒、废纸、瓶罐和垃圾袋接满原文字区域。
+  {x: 414, y: 1020, scale: 1.04, angle: -19, assetIndex: 4},
+  {x: 476, y: 1046, scale: 1.00, angle: 27, assetIndex: 0},
+  {x: 536, y: 1016, scale: 1.12, angle: -14, assetIndex: 5},
+  {x: 592, y: 1048, scale: 1.05, angle: 39, assetIndex: 2},
+  {x: 662, y: 1028, scale: 1.02, angle: -33, assetIndex: 1},
+  {x: 546, y: 1074, scale: 1.02, angle: 13, assetIndex: 0},
 ];
-export const GARBAGE_OUTPUT_COUNT = SCATTER_COUNT + PILE_FILL.length;
+export const GARBAGE_OUTPUT_COUNT = SCATTER_COUNT + PILE_FILL.length + 18;
 
 // 固定每件垃圾的散落参数，拖动时间轴时仍会落在同一位置。
 const scatter = (index, salt) => {
@@ -47,7 +54,7 @@ const OUTPUT_PIECES = Array.from({length: GARBAGE_OUTPUT_COUNT}, (_, index) => {
 
 // 最后一组输入在 23.34 秒进入模型，随后上移，给输出腾出下落空间。
 export const garbageBoxAt = t => ({...GARBAGE_BOX,
-  y: lerp(GARBAGE_BOX.y, 460, progress(t, 23.35, 23.52)),
+  y: lerp(GARBAGE_BOX.y, 300, progress(t, 23.35, 23.52)),
 });
 
 export const garbageInputMorph = (t, charIndex) => {
@@ -57,7 +64,16 @@ export const garbageInputMorph = (t, charIndex) => {
 
 export const garbageTrashAt = (t, index, phase) => {
   if (phase === 'out') {
-    const piece = OUTPUT_PIECES[index];
+    const base = OUTPUT_PIECES[index];
+    const stream = index >= SCATTER_COUNT + PILE_FILL.length;
+    const foreground = stream && index >= GARBAGE_OUTPUT_COUNT - 6;
+    const piece = base && {...base,
+      x: foreground ? (index % 2 ? 1015 : 65) + (index % 3 - 1) * 42 : 540 + (base.x - 540) * 1.55,
+      y: foreground ? 1130 + (index % 3) * 70 : 1090 + (base.y - 948) * 1.45,
+      scale: base.scale * (foreground ? 2.7 : stream ? .9 : 1.7),
+      start: foreground ? 23.49 : stream ? 23.65 + (index - SCATTER_COUNT - PILE_FILL.length) * .022 : base.start,
+      duration: foreground ? .36 : stream ? .48 : .42,
+    };
     if (!piece || t < piece.start) return null;
     const q = clamp((t - piece.start) / piece.duration);
     const settle = clamp((t - piece.start - piece.duration) / piece.rebound);
@@ -72,10 +88,11 @@ export const garbageTrashAt = (t, index, phase) => {
         - bounce * (14 + scatter(index, 15) * 20),
       opacity: progress(t, piece.start, piece.start + 0.035),
       angle: piece.angle + piece.spin * (1 - q) + bounce * piece.spin * 0.12,
-      scale: piece.scale * lerp(0.68, 1, q),
+      scale: piece.scale * lerp(foreground ? 0.18 : 0.68, 1, q),
       assetIndex: piece.assetIndex,
       flip: piece.flip,
       layer: Math.round(piece.y),
+      blur: foreground ? 2.2 : 0,
     };
   }
   const charIndex = Math.floor(index / 2);

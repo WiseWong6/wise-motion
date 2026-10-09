@@ -18,7 +18,7 @@ export const glassStyle = ({t = 0, small = false, selected = false} = {}) => {
     border: 0, outline: 'none', boxSizing: 'border-box',
     background: `radial-gradient(ellipse at ${light}% 0%, rgba(255,255,255,.075), transparent 66%), linear-gradient(145deg, rgba(36,38,43,.94), rgba(16,18,21,.96) 68%, rgba(25,28,32,.94))`,
     backdropFilter: `blur(${small ? 8 : 14}px) saturate(115%)`, WebkitBackdropFilter: `blur(${small ? 8 : 14}px) saturate(115%)`,
-    boxShadow: `${small ? '0 3px 8px rgba(0,0,0,.18)' : '0 16px 36px rgba(0,0,0,.26)'}, inset 0 1px 0 rgba(255,255,255,.08)${selected ? `, inset 0 0 18px ${C.accent}12` : ''}`,
+    boxShadow: `${small ? '0 3px 8px rgba(0,0,0,.18)' : '0 16px 36px rgba(0,0,0,.26)'}, inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1px 0 rgba(61,173,128,.08)${selected ? `, inset 0 0 18px ${C.accent}12` : ''}`,
   };
 };
 
@@ -33,7 +33,7 @@ export const paintGlassImage = (c, image, w, h, {selected = false, lit = false} 
   const edge = c.createLinearGradient(-w / 2, -h / 2, w / 2, h / 2);
   glassPalette(selected).forEach((color, i) => edge.addColorStop([0, .28, .60, 1][i], color));
   c.save();
-  if (lit) { c.shadowColor = '#E5EBF2'; c.shadowBlur = 10; }
+  if (lit || selected) { c.shadowColor = selected ? C.accentLight : '#E5EBF2'; c.shadowBlur = selected ? 16 : 10; }
   c.beginPath();
   c.roundRect(-w / 2 + inset, -h / 2 + inset, w - line, h - line, r - inset);
   c.strokeStyle = edge; c.lineWidth = line; c.stroke();

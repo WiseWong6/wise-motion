@@ -13,18 +13,23 @@
     },
     {
       "path": "catalog/assets/WEBP-SOURCES.json",
-      "bytes": 52905,
-      "sha256": "74a31700bda9c048d2210b937f366f83b5e1ec57a4a1446bb9f7bfd5abe1179a"
+      "bytes": 53449,
+      "sha256": "e5ffc08f2955a0cd8d737d24ff338d0e562fa78c6a7ff6e861963bffadc1b85f"
     },
     {
       "path": "catalog/assets/butterfly/SOURCE.json",
-      "bytes": 1163,
-      "sha256": "97b4875fe604e2619bcba5ceac452089767094bcb2a17d736c14967e8fe73d91"
+      "bytes": 1869,
+      "sha256": "bc0b57c487f9e3ba91f8c3fe8e723b54f0aeed9fb667ce125ec291cdc4bea178"
     },
     {
       "path": "catalog/assets/butterfly/ai-wing-atlas.webp",
       "bytes": 1703300,
       "sha256": "764fd30d6815a94628041af43b2a79a24364403995028248c89512811f7cb154"
+    },
+    {
+      "path": "catalog/assets/butterfly/sage-watercolor-wing-atlas.webp",
+      "bytes": 1561400,
+      "sha256": "2fd703caaf2eebe5bfb83b1da7c24347eab085f0bc32b840ad2f8aa495e8a558"
     },
     {
       "path": "catalog/assets/butterfly/wing-atlas.webp",
@@ -933,8 +938,8 @@
     },
     {
       "path": "catalog/assets/reel-extract/SOURCE.json",
-      "bytes": 20846,
-      "sha256": "4cba22033ab45a09af523a11596bc0c5f52d62541643fc3b8cc072122314a7d4"
+      "bytes": 21464,
+      "sha256": "12c5ebdf2e1677b152b85dacb2115e719ee3061879d3ed6dfb0b0b100a385b17"
     },
     {
       "path": "catalog/assets/reel-extract/ai-bots/confused-clean-base.webp",
@@ -1443,8 +1448,8 @@
     },
     {
       "path": "catalog/effects/butterfly.js",
-      "bytes": 7968,
-      "sha256": "100a1d09adb2d43dac71f28aab7cb8d439a481f94b75d3dab52257519118dc59"
+      "bytes": 8282,
+      "sha256": "7b329a48ef0ab8c3cf55c63fd95df0e64b9475471e2c8bf5c9a7a21019318f2b"
     },
     {
       "path": "catalog/effects/capsule-type.js",
@@ -1668,8 +1673,8 @@
     },
     {
       "path": "catalog/effects/reel-extract.js",
-      "bytes": 263575,
-      "sha256": "f68e8d592ae197b74257478a60a8cad42eeb3b8c2f28ab6a2b538eff08f1026f"
+      "bytes": 353451,
+      "sha256": "f7b9d2d9d375a6de4006fc8cac08cb5c77343aefb155480874e1655325b48d54"
     },
     {
       "path": "catalog/effects/reel-flat-gen.js",
@@ -1705,6 +1710,11 @@
       "path": "catalog/effects/reel-transitions.js",
       "bytes": 6506,
       "sha256": "3d1a7a7daa6a3184e6d44737d65f99b970bd2e10a5a37e664b0b9d97387ae12c"
+    },
+    {
+      "path": "catalog/effects/sage-butterfly-mask.js",
+      "bytes": 2082022,
+      "sha256": "64685a40e6c44aebb82cef9386f2fd378a006e3529ac21a4bb5821436c5d9a0b"
     },
     {
       "path": "catalog/effects/scene-dandelion.js",
@@ -1838,8 +1848,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 25809,
-      "sha256": "2b2fb256cc364fefe9ca827fc7f993c2dfabfff780818c80c6fbc7b71363600d"
+      "bytes": 25915,
+      "sha256": "5792bd063a11a9c1efa8b3de3284f4b783d0feed6ed4c46905c705841611d339"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -1923,8 +1933,8 @@
     },
     {
       "path": "catalog/lazy.js",
-      "bytes": 3402,
-      "sha256": "2888526e0c65ba2fcc830aea6c88382f0b3d01d4ce25b70f5024b2018d232781"
+      "bytes": 3435,
+      "sha256": "6591f269f13727ba2e88d04bdeb4309a2190fe1095a7facc736efeb59e06fcaa"
     },
     {
       "path": "catalog/matching.js",
@@ -1938,13 +1948,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1471829,
-      "sha256": "c079b5a240bb8604ab44d6c46642da46859acb88fbd32ee03aaa6df6f0aed025"
+      "bytes": 1493802,
+      "sha256": "5c62428e69054e48c8144a616372c5d2d9c189428cf3b4a01c989651a7589b53"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1868038,
-      "sha256": "9c78c44a9dade7ec3390ce1c7ae3eae34e00055303cdef8aafab77a7d43c6638"
+      "bytes": 1893992,
+      "sha256": "5fc789045c4c43527fc1e5ca3d4dc28e8cb0254a0e2b3f517cd34a88cdc880bb"
     },
     {
       "path": "catalog/related-preview.js",
@@ -1968,18 +1978,23 @@
     },
     {
       "path": "catalog/remotion/reel-extract/AIBotExpressions.jsx",
-      "bytes": 5962,
-      "sha256": "d87f323c74e257c824c4861114c583193bcc0fdf51ad7500b4aedb77e3446ecf"
+      "bytes": 6028,
+      "sha256": "ddb82b05162aa4a1da515b454c344dc2ffdee6500302c321249315cbd59de084"
     },
     {
       "path": "catalog/remotion/reel-extract/AIBots.jsx",
-      "bytes": 876,
-      "sha256": "2b1ef4fc6526f7ac581b37f5ab661b46d132bcdb43f8fa1b5b191f9f955f7194"
+      "bytes": 2567,
+      "sha256": "71173d0e7ef154af37c8d2dee565b162d3d8cde785add0e43a311d64d1112dad"
+    },
+    {
+      "path": "catalog/remotion/reel-extract/ActualEffect.jsx",
+      "bytes": 1361,
+      "sha256": "47baa2ea7096b5af43d78ac8e78dd30c51719c3bea2ca45715095fe959b58da4"
     },
     {
       "path": "catalog/remotion/reel-extract/GlassFrame.jsx",
-      "bytes": 2513,
-      "sha256": "ce417e0ebe922790094924695894b9139e4ff969b5a32f9ededad289153a387f"
+      "bytes": 3216,
+      "sha256": "33f4abfc3972e774efcd3fb37bcf22a247068c758a3c81e5f4433997749c7dcc"
     },
     {
       "path": "catalog/remotion/reel-extract/KLine.jsx",
@@ -1988,8 +2003,8 @@
     },
     {
       "path": "catalog/remotion/reel-extract/MatchPreview.jsx",
-      "bytes": 3447,
-      "sha256": "c45f9e257e176cb7671f1cb73f56a8a85cf73fee86ad4e50e4886c40d939ba4a"
+      "bytes": 704,
+      "sha256": "fb3173fe0d2130f7f59cf982c055279a8901082ab96f96ed304400d4f293bdfb"
     },
     {
       "path": "catalog/remotion/reel-extract/QuestionMark.jsx",
@@ -1998,23 +2013,23 @@
     },
     {
       "path": "catalog/remotion/reel-extract/Scenes.jsx",
-      "bytes": 13418,
-      "sha256": "3d1c6bedc1df4f7bddeacd9870605ba0705c0035567dff9a9c01088f475a9fb6"
+      "bytes": 16711,
+      "sha256": "726e739033dcb89f54d91f83cf1a3e2631bca92bf02c9d56396b82752252a418"
     },
     {
       "path": "catalog/remotion/reel-extract/aiBotExpressions.mjs",
-      "bytes": 4981,
-      "sha256": "7d29aedbd466f9eef89bd579f2eddde38b13965e6c2a024e08217bb829ec38e0"
+      "bytes": 5592,
+      "sha256": "53575ef53c201937a2ffb7ad7aeaa29aea2790d8f239a8a81b700574099f264d"
     },
     {
       "path": "catalog/remotion/reel-extract/aiBotMotion.mjs",
-      "bytes": 552,
-      "sha256": "672530ecc0465b8f99ccff1183f5688a88647fa991b2ec4747faeb1a8153638a"
+      "bytes": 9706,
+      "sha256": "3cdc364931740a3063258ffcf9b01fda38f26e372ff93b260b10dd8d18882821"
     },
     {
       "path": "catalog/remotion/reel-extract/butterfly-cues.json",
       "bytes": 211,
-      "sha256": "903f51da8096bbb1469686a6dcf75b7417eae49f0ffe2adbd5c4b47e90167650"
+      "sha256": "eec9ca2fda59613f6325713189b8ed2bbdda3b489ee2a2826b611a2122e8d5eb"
     },
     {
       "path": "catalog/remotion/reel-extract/catalog-fill.json",
@@ -2023,8 +2038,8 @@
     },
     {
       "path": "catalog/remotion/reel-extract/catalog.jsx",
-      "bytes": 5467,
-      "sha256": "da130e62e5879e89911e4ba6a0d870f2118fe5b27c185259604850bc1785bc41"
+      "bytes": 7548,
+      "sha256": "96ff89e8b5792f2f18bce4cc735d570500422d80673019adfb8e5fe55811adab"
     },
     {
       "path": "catalog/remotion/reel-extract/colors.js",
@@ -2038,8 +2053,8 @@
     },
     {
       "path": "catalog/remotion/reel-extract/garbageMotion.mjs",
-      "bytes": 4303,
-      "sha256": "009d8452a0bc98a52a9cd3325e7a97464dc49752db7400e96cb23825366e7082"
+      "bytes": 5413,
+      "sha256": "a2372af0a0baacc0c074eefd1b6794dbceaac4654288ade83c2aa68f9ad4f163"
     },
     {
       "path": "catalog/remotion/reel-extract/math.mjs",
@@ -2047,14 +2062,19 @@
       "sha256": "d75989d942a87ddd3a383196886f23f834e9b7571796a6436d550bcca7c4bb96"
     },
     {
+      "path": "catalog/remotion/reel-extract/nested-data.json",
+      "bytes": 59474,
+      "sha256": "325bf3e57ae75becec4dd8f221f9be66874f77ee7b0617af22dcdf528d38dca9"
+    },
+    {
       "path": "catalog/remotion/reel-extract/surfaces.js",
-      "bytes": 2230,
-      "sha256": "b043cc9c0bccbaee8d3ddcde5b1e815ea5207cdfa9849c5ae3ba340f4d18b816"
+      "bytes": 2322,
+      "sha256": "4b2a5dcb639b09e277e104f131a1b1288744c62437882aa6a4095251895bf134"
     },
     {
       "path": "catalog/remotion/reel-extract/tasteMotion.mjs",
-      "bytes": 2304,
-      "sha256": "60dec3386945f4fd664e2526c4268b516e2a97aa829bc70d3cbe165b33d3511e"
+      "bytes": 2488,
+      "sha256": "4a4e8f2435a3c9691ffdde11d18e2b200891ac453f3161f3c994dedcd49b5d39"
     },
     {
       "path": "catalog/remotion/reel-extract/thumbs.json",

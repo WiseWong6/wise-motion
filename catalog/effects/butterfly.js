@@ -117,7 +117,9 @@
     return {draw, ready, destroy};
   }
   function make(root, K, definition) {
-    const instance = mount(root, {catalogView: true});
+    const atlasSrc = (definition.source?.factory || definition.id) === 'sage-butterfly-illustration' || definition.variant_id === 'sage'
+      ? new URL('sage-watercolor-wing-atlas.webp', defaultAtlas(root.ownerDocument)).href : undefined;
+    const instance = mount(root, {catalogView: true, atlasSrc});
     const draw = (ms, state = {}) => instance.draw((state.elapsed ?? ms) / 1000);
     draw.ready = instance.ready; draw.destroy = preserve => instance.destroy(preserve);
     return draw;
@@ -126,4 +128,5 @@
   make.requiresPreparation = true;
   global.WiseButterfly = Object.freeze({mount});
   (global.MotionFactories ||= {})['butterfly-illustration'] = make;
+  global.MotionFactories['sage-butterfly-illustration'] = make;
 })(globalThis);

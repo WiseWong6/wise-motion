@@ -1,3 +1,4 @@
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
 import {lerp,prog,quintInOut} from './math.mjs';
 import CUES from './butterfly-cues.json';
 import '../../effects/butterfly-motion.js';
@@ -18,7 +19,7 @@ export const tasteButterflyState = t => {
   const selection = prog(t, chosenAt, chosenEnd, quintInOut);
   const elapsed = Math.max(0, t - chosenAt);
   const duration = 0.32, u = Math.min(1, elapsed / duration);
-  // Start with gentle, slow flaps; increase speed continuously as blue emerges.
+  // 保留原振翅时钟，选定自己的审美后连续加速。
   const fasterClock = elapsed < duration
     ? duration * (u ** 6 - 3 * u ** 5 + 2.5 * u ** 4)
     : elapsed - duration / 2;
@@ -35,9 +36,10 @@ export const tasteButterflyState = t => {
         brightness: 1 - 0.105 * wing.closed * strength};
     })};
   return {entered, selection, wingSelections, seconds, flight, motionState,
-    scale: lerp(0.78, 0.84, entered) + 0.16 * grow - 0.1 * flight,
-    offsetX: entered * (10 * Math.sin(age * 1.3) + 55 * flight + 10 * Math.sin(Math.PI * flight)),
-    offsetY: lerp(-30, 0, grow) + 26 * (1 - entered)
+    // 彩蝶与绿蝶共用缩放，保持换色和投影连续，给文字与纸面多留一些空间。
+    scale: (lerp(0.98, 1.18, entered) + 0.06 * grow - 0.02 * flight) * 0.88,
+    offsetX: entered * (50 + 10 * Math.sin(age * 1.3) + 38 * flight + 10 * Math.sin(Math.PI * flight)),
+    offsetY: lerp(-82, 118, grow) + 26 * (1 - entered)
       - entered * 7 * Math.sin(age * 2.3) - 24 * flight + 11 * Math.sin(Math.PI * flight)};
 };
 
