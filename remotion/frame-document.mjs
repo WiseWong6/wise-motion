@@ -129,8 +129,15 @@ function bootstrapFrame() {
     window.__wiseMotionSession = session;
     try {
       if (document.fonts) {
-        await Promise.all([...document.fonts].map(font => font.load()));
-        await document.fonts.ready;
+        // 画布绘制前准备共用字形；按文字选择 unicode-range 子集，不能逐一
+        // load 所有 FontFace，否则备用完整字库和无关的楷体也会阻塞首帧。
+        const strings = value => typeof value === 'string' ? [value]
+          : value && typeof value === 'object' ? Object.values(value).flatMap(strings) : [];
+        const text = 'Wise Motion 动效目录' + strings(definition.content).join('');
+        await Promise.all([
+          ...[300, 400, 700].map(weight => `${weight} 16px "Source Han Sans SC"`),
+          '700 16px "Oswald"'
+        ].map(font => document.fonts.load(font, text)));
       }
       ensureAlive();
       window.MotionKit.prepareStage(stage, definition);
@@ -138,6 +145,14 @@ function bootstrapFrame() {
       renderer(0, {ease: options.ease || definition.default_ease, duration: definition.duration_ms, elapsed: 0, playback: false});
       if (renderer.ready) await renderer.ready;
       ensureAlive();
+      if (document.fonts) {
+        // 实际画面触发的字体（包括条目专用字体）就绪后再交付首帧。
+        // 原绘制器的 ready 仍负责字形测量和离屏画布的准备。
+        stage.getBoundingClientRect();
+        await document.fonts.ready;
+        ensureAlive();
+        renderer(0, {ease: options.ease || definition.default_ease, duration: definition.duration_ms, elapsed: 0, playback: false});
+      }
       await prepareImages(true);
       ensureAlive();
       return session;

@@ -61,6 +61,41 @@ test('图形上下文丢失后拒绝输出成功帧',async()=>{
  }finally{h.close();}
 });
 
+test('首帧按文字准备共用字体，不下载未使用的完整字库，并等待实际画面字体',async()=>{
+ const h=harness({id:'font-fixture',path:'catalog/effects/entrance.js',type:'2d',available:true});
+ const requested=[];let release;
+ const fonts=[{load(){assert.fail('不能逐一下载全部字体');}}];
+ fonts.load=async(font,text)=>{requested.push({font,text});return [];};
+ fonts.ready=new Promise(resolve=>{release=resolve;});
+ Object.defineProperty(h.w.document,'fonts',{value:fonts});
+ h.definition.content={title:'𠮷野家，测试自定义字形'};
+ try{
+  let done=false;const preparation=h.create().then(session=>{done=true;return session;});
+  await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(done,false,'实际画面的字体尚未准备好时不可宣告首帧成功');
+  assert.equal(h.calls.draw,1);
+  assert.equal(requested.length,4);
+  assert.ok(requested.every(row=>row.text.includes('𠮷野家')),'自定义字符必须参与字体分片匹配');
+  assert.ok(requested.every(row=>!row.font.includes('WenKai')),'无关楷体不阻塞普通动效');
+  release();const session=await preparation;
+  assert.equal(h.calls.draw,2,'字体就绪后重新绘制，避免保留后备字形');
+  await session.draw(200);assert.equal(h.calls.draw,3);
+ }finally{release();h.close();}
+});
+
+test('字体准备失败时报告错误，取消中的预览不会创建绘制器',async()=>{
+ for(const failed of [true,false]){
+  const h=harness({id:'font-fixture',path:'catalog/effects/entrance.js',type:'2d',available:true});
+  let release;const pending=new Promise((resolve,reject)=>{release=()=>failed?reject(new Error('font unavailable')):resolve([]);});
+  Object.defineProperty(h.w.document,'fonts',{value:{load:()=>pending,ready:Promise.resolve()}});
+  try{
+   const preparation=h.create();const checked=assert.rejects(preparation,failed?/font unavailable/:/销毁/);
+   if(!failed)h.w.__wiseMotionSession.destroy();
+   release();await checked;assert.equal(h.calls.draw,0);assert.equal(h.calls.dispose,1);
+  }finally{h.close();}
+ }
+});
+
 test('实时播放只在新图片加载和解码期间等待，暖帧、错误及销毁保持正确',async()=>{
  const dom=new JSDOM(createFrameDocument({assetBaseUrl:'file:///independent-project/public/wise-motion/'}),{runScripts:'outside-only'}),w=dom.window;
  const requests=[];let source='',waits=0;
