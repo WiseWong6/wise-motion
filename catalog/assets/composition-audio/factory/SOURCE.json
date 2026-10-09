@@ -14,7 +14,9 @@
     {
       "file": "catalog/assets/composition-audio/factory/素材来源.md",
       "original": "/Users/wisewong/Documents/Developer/scenes/小猫加工厂/assets/audio/素材来源.md",
-      "sha256": "246416a9cde4c17c67c6b994a621d0a8b6ae14199954eaeafe8430ead5ca3f6d"
+      "sha256": "17e81dddae536754ccb88254e0e765cf2ac4a75dd6f3446128da2b07f233a04a",
+      "original_sha256": "246416a9cde4c17c67c6b994a621d0a8b6ae14199954eaeafe8430ead5ca3f6d",
+      "adaptation": "面向随包素材的使用说明；保留来源与许可，原文校验值见 original_sha256。"
     },
     {
       "file": "catalog/assets/composition-audio/factory/beans.wav",

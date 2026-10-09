@@ -26,6 +26,7 @@ async function browserExporter() {
 }
 
 const browser = await browserExporter();
+const packageVersion = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8')).version;
 
 test('明确动作、多段动作、禁项和无匹配均可从任意目录检索', async () => temporary(async dir => {
   const cases = [
@@ -63,7 +64,7 @@ test('默认查看精简，详细查看保留内容限制、素材、许可和�
 });
 
 test('普通动作与带素材和声音的组合使用浏览器同一组件示例，可编译接入', async () => temporary(async dir => {
-  for (const id of ['word-slam', 'balloon-drive-journey', 'terminal-code']) {
+  for (const id of ['word-slam', 'balloon-drive-journey', 'terminal-code', 'local-scan']) {
     const variantId = id === 'terminal-code' ? 'command-log' : undefined;
     const effect = selectEffect(id, variantId);
     const out = await exportEffect(effect.name, {variantId, outDir:path.join(dir, id)});
@@ -75,6 +76,9 @@ test('普通动作与带素材和声音的组合使用浏览器同一组件示�
     const guide = await readFile(path.join(out.directory, 'README.md'), 'utf8');
     assert.match(guide, /共享组件包/); assert.match(guide, /install-assets\.mjs/);
     assert.match(guide, /未安装依赖/);
+    for (const text of [source, guide]) {
+      assert.deepEqual([...text.matchAll(/wise-motion@([^\s]+)/g)].map(match => match[1]), [packageVersion], '安装指引必须使用当前交付版本');
+    }
     if (variantId) assert.match(source, /"variantId": "command-log"/);
     for (const asset of effect.source.assets || []) assert.ok(source.includes(asset), asset);
     if (effect.audio) assert.match(source, /includeAudio=\{false\}/);

@@ -18,6 +18,16 @@ async function output(relative, content) {
     if (await readFile(target, 'utf8') !== content) throw new Error('生成文件与权威定义不同：' + relative + '；请运行 node scripts/build.mjs');
   } else await writeFile(target, content);
 }
+// 复制模板和使用说明共用项目版本；检查模式会拒绝未同步的发行指引。
+const {version} = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
+const exporter = await readFile(path.join(root, 'catalog/export.js'), 'utf8');
+const versionSlot = /const sharedPackageVersion = "[^"]+";/g;
+if ([...exporter.matchAll(versionSlot)].length !== 1) throw new Error('复制模板的包版本位置须唯一');
+await output('catalog/export.js', exporter.replace(versionSlot, () => `const sharedPackageVersion = ${JSON.stringify(version)};`));
+for (const file of ['README.md', 'REMOTION.md']) {
+  const content = await readFile(path.join(root, file), 'utf8');
+  await output(file, content.replace(/wise-motion@\d+\.\d+\.\d+(?:-[\w.-]+)?/g, () => 'wise-motion@' + version));
+}
 function contentNotes(effect){
   if(!effect.content_slots?.length)return [];
   return ['### 可替换内容', '', '通过组件 `content` 为当前实例赋值；字段含义与字体、宽度限制见 [组件说明](../../REMOTION.md)。默认内容如下：', '', '```json',
