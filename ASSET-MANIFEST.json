@@ -1578,8 +1578,8 @@
     },
     {
       "path": "catalog/effects/history-patterns.js",
-      "bytes": 61053,
-      "sha256": "9ec4d0a04b5fddc9393213f0b3cb6500230b52bfe6493487fa588f4201dcbb68"
+      "bytes": 61293,
+      "sha256": "17391fa39d5902a571739fe9b3752c75dbaaa058e7d354b301bd49a46817309d"
     },
     {
       "path": "catalog/effects/hud-targeting.js",

@@ -586,8 +586,8 @@
     return p=>{for(let i=0;i<35;i++){const d=Math.hypot(i%7,Math.floor(i/7)),q=section(p,.1+d*.055,.23+d*.055),pulse=Math.sin(q*Math.PI);s('p'+i,{r:9+9*pulse,opacity:.3+.7*pulse});}};
   });
   register('local-scan',(root) => {
-    const s=stage(root,'<foreignObject x="0" y="0" width="640" height="360"><div xmlns="http://www.w3.org/1999/xhtml" style="width:640px;height:360px;display:flex;align-items:center;justify-content:center"><span data-part="wordmark" class="brand-name" style="font-size:var(--type-heading);line-height:1.2;white-space:nowrap;animation:none;color:var(--brand-base);background-image:linear-gradient(90deg,var(--brand-base) 0%,var(--brand-base) 58%,var(--brand-light) 70%,var(--brand-light) 82%,var(--brand-base) 94%,var(--brand-base) 100%)">WISE MOTION</span></div></foreignObject>');
-    // 与左上角品牌共用字形和渐变，只由播放器控制扫光进度。
+    const s=stage(root,'<foreignObject x="0" y="0" width="640" height="360"><div xmlns="http://www.w3.org/1999/xhtml" style="width:640px;height:360px;display:flex;align-items:center;justify-content:center"><span data-part="wordmark" class="brand-name" style="font-family:Oswald,sans-serif;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:var(--type-heading);line-height:1.2;white-space:nowrap;animation:none;color:var(--brand-base);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;background-image:linear-gradient(90deg,var(--brand-base) 0%,var(--brand-base) 58%,var(--brand-light) 70%,var(--brand-light) 82%,var(--brand-base) 94%,var(--brand-base) 100%)">WISE MOTION</span></div></foreignObject>');
+    // 独立播放器不载入目录的品牌样式，字形与渐变裁剪在此补齐；扫光只由播放器控制。
     return p=>{s('wordmark').style.backgroundPosition=`${200*(1-p)}% 0px`;};
   });
   register('color-evolve',(root) => {
