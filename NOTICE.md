@@ -1,6 +1,6 @@
 # 署名、来源与说明
 
-Copyright © 2026 Wise Wong. 更新日期：2026 年 10 月 9 日。
+Copyright © 2026 Wise Wong. 更新日期：2026 年 10 月 10 日。
 
 本文件统一列明 Wise Motion 的项目许可、作品署名、视觉参考、素材来源与第三方依赖。目录数量见 [目录统计](CATALOG-STATS.md)；逐项来源记录与原许可文件随包保留。
 
@@ -21,7 +21,10 @@ Copyright © 2026 Wise Wong. 更新日期：2026 年 10 月 9 日。
 | --- | --- | --- |
 | 黄金矩形递归生长及七个直接拆分动作 | 授权复刻 | 复刻至 [@陈与小金](https://www.xiaohongshu.com/user/profile/674ae141000000001c019796?xsec_token=AB4_JtYTs33ywlUEE_Mx8jkB1aDCvusqnUmnJNp5ZZLwE%3D&xsec_source=pc_search) 老师，已取得授权。原作权利由原作者保留。 |
 | 谱面光点跳跃、沿点跳跃留光 | 教程复刻 | 复刻自 [@言说心事](https://www.xiaohongshu.com/user/profile/6926ff85000000003702b1c1?xsec_token=ABiobWDdNSX_CX9Vf091D7iZ9SeSMSlAk4oyjghnynYPQ%3D&xsec_source=pc_search) 老师的教程。谱曲与编配来源另列于第三部分。 |
+| 蒲公英·风过之处 | 作品复刻 | 复刻自 @慕云 老师的《乘风破浪》。 |
+| 地块铺展与动效绿洲、字母落定与碰撞炸出 | 动效复刻 | 复刻自 @Vincent的AI实验场 整理的 Opus 动效。 |
 | KIMI K3 开源宣传片复刻及七个单段 | 宣传片视觉参考 | 参考 [Kimi K3 open weights](https://www.youtube.com/watch?v=5GlCGOXUYHg)。图形输入与生成图片见 [素材记录](catalog/assets/material-evolution/SOURCE.json)。 |
+| 薪火生长与文明聚字 | 宣传片复刻 | 复刻自 [Kimi K3 开源宣传片](https://www.youtube.com/watch?v=5GlCGOXUYHg)。 |
 | KIMI K3 宣传片复刻 | 宣传片复刻 | 复刻自 Kimi AI 的 [Meet Kimi K3](https://www.youtube.com/watch?v=bn0atstgavo)；补充资料见 [官方博客](https://www.kimi.com/en/blog/kimi-k3)。组合内复用的公共插画保留各自来源。 |
 | Siri、短信、系统设置、音乐、天气与控制中心六张空间卡及相关光照、折射、错层动作 | 界面视觉参考 | 统一参考 [Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)，玻璃材质补充参考 [Apple 液态玻璃设计](https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/)。界面由本项目独立绘制，示例数据与使用范围见 [卡片来源记录](catalog/assets/glass-light/SOURCE.json)。 |
 | 玻璃卡片显现折射完整组合 | 组合参考 | 六张卡片统一采用苹果空间界面；语音使用 Siri，对话使用短信。组合与独立条目共用本项目绘制代码及相同参考来源。 |

@@ -30,7 +30,7 @@
 
 - [原码提取与接入源码](../../catalog/effects/capsule-type.js)，注册名称：`capsule-type-sequence`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
-- [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
+- 复刻自 @Vincent的AI实验场 整理的 Opus 动效。
 - 从用户确认的五秒多巴胺配色作品提取自编三维模型、材质、灯光与运动代码；完整组合保留源画面参数，独立动作按真实对象隔离，共用相同绘制函数。没有携带旧复刻素材、参考视频或第三方图形库。 根据后续画面对照，补齐画框外的远景胶囊，并使其淡入暖米色渐变背景。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[立体字母错峰落定](soft-type-land.md)、[碰撞掀起胶囊](capsule-impact-scatter.md)、[立体字母炸出归位](type-burst-settle.md)。
