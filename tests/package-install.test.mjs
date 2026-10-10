@@ -114,6 +114,7 @@ test('浏览器复制命令、导出安装文件和源码命令都可在空工�
   try {
     const bin=path.join(dir,'bin');await mkdir(bin);
     const log=path.join(dir,'calls.jsonl');
+    const futureVersion=version.replace(/\d+$/,patch=>String(Number(patch)+1));
     // 用临时 npm 替身走真实子进程及文件读取，不联网或更改本工程依赖。
     const fakeNpm=`#!${process.execPath}
 const fs=require('node:fs'),path=require('node:path');
@@ -123,7 +124,7 @@ const target=process.env.WISE_INSTALL_TEST_TARGET;
 const metadata={version:'0.1.10',dependencies:${JSON.stringify(dependencies)}};
 if(args[0]==='view'){
   if(args[1]===target){console.log(JSON.stringify({error:{code:'E404',summary:'not published'}}));process.exitCode=1;}
-  else console.log(JSON.stringify(args[1]==='wise-motion'?['0.1.9','0.1.10','0.1.12']:metadata));
+  else console.log(JSON.stringify(args[1]==='wise-motion'?${JSON.stringify(['0.1.9','0.1.10',futureVersion])}:metadata));
 }else if(args[0]==='install'){
   const destination=path.join(process.cwd(),'node_modules/wise-motion');
   fs.mkdirSync(path.join(destination,'dist'),{recursive:true});fs.mkdirSync(path.join(destination,'catalog'),{recursive:true});
