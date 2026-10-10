@@ -26,7 +26,10 @@ export async function environment(withApp = false, options = {}) {
   let html = withApp ? await readFile(new URL('../catalog/index.html', import.meta.url), 'utf8') : '<!doctype html><div id="root"></div>';
   // 历史兼容接口只用测试专属入口验证，正式页面不再提供历史页签。
   if(withApp&&options.historyFixture)html=html.replace('<button data-kind="action"','<button data-kind="recipe" aria-pressed="false">历史 <span class="pill-count">0</span></button><button data-kind="action"');
-  const dom = new JSDOM(html, {url:'file:///wise-motion/catalog/index.html'+(options.hash||''),runScripts:'outside-only',pretendToBeVisual:true});
+  // 通用目录夹具固定从动作链接开始，避免默认推荐改变各项测试的起点。
+  // 首次进入与刷新测试显式用 hash:''，检查正式页面的默认行为。
+  const hash = options.hash ?? (withApp ? '#fade-rise' : '');
+  const dom = new JSDOM(html, {url:'file:///wise-motion/catalog/index.html'+hash,runScripts:'outside-only',pretendToBeVisual:true});
   const w = dom.window;
   if (options.sessionStorage) Object.defineProperty(w, 'sessionStorage', {value:options.sessionStorage});
   // 页面按需追加的脚本没有网络可取：直接从源码目录读取、执行，再触发 onload，并记录载入顺序。

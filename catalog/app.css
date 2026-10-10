@@ -257,10 +257,11 @@ html[data-theme="light"] { --thumbnail-art-filter:brightness(.48) saturate(1.25)
 /* 播放器浮在预览下沿之内。整条都要压在画面上，边缘位移才弯得到内容；
    不用 transform 居中，避免把子元素的背景滤镜截在壳体里。 */
 .preview-shell {
-  position:relative; width:100%; max-width:min(100%,var(--preview-max),calc((100dvh - var(--stage-chrome)) * 16 / 9));
+  --preview-ratio:calc(16 / 9);
+  position:relative; width:100%; max-width:min(100%,var(--preview-max),calc((100dvh - var(--stage-chrome)) * var(--preview-ratio)));
 }
 #preview {
-  position:relative; width:100%; aspect-ratio:16/9; border-radius:var(--r-lg);
+  position:relative; width:100%; aspect-ratio:var(--preview-ratio); border-radius:var(--r-lg);
   box-shadow:0 0 0 1px var(--card-ring), var(--shadow-2);
 }
 .playbar {
@@ -617,7 +618,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
   }
   .directory-caption { display:flex; align-items:center; justify-content:space-between; flex:none; padding:8px 12px; border-bottom:1px solid var(--line); font-weight:300; }
   .directory-open { overflow:hidden; }
-  .preview-shell { max-width:min(100%,var(--preview-max),calc((100dvh - var(--topbar) - var(--stage-chrome)) * 16 / 9)); }
+  .preview-shell { max-width:min(100%,var(--preview-max),calc((100dvh - var(--topbar) - var(--stage-chrome)) * var(--preview-ratio))); }
 }
 @media (max-width:759px) {
   body { overflow:auto; }
@@ -625,7 +626,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
   .workbench,.workbench.no-directory { display:flex; flex-direction:column; height:auto; min-height:100dvh; }
   .stage { min-height:0; }
   .stage-canvas { flex:none; padding:20px 16px; }
-  .preview-shell { grid-column:1/-1; grid-row:1; width:calc(100% - 24px); max-width:var(--preview-max); }
+  .preview-shell { grid-column:1/-1; grid-row:1; width:calc(100% - 24px); max-width:min(var(--preview-max),calc((100dvh - var(--topbar) - var(--stage-chrome)) * var(--preview-ratio))); }
   #previous-effect { grid-column:1; grid-row:2; }
   #next-effect { grid-column:3; grid-row:2; }
   /* 手机上播放器回到画面下方：窄屏的动效本来就小，两行控件不能压上去。 */

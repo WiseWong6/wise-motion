@@ -88,7 +88,8 @@
   }
   const rememberedKind = readKind();
   const rememberedSelection = readSelection();
-  let kind = rememberedKind || 'action', category = 'all', tab = 'prompt', selected = null, controller = null;
+  const defaultEffectId = 'glass-interface-sequence';
+  let kind = rememberedKind || 'composition', category = 'all', tab = 'prompt', selected = null, controller = null;
   let debounce = null, resumeAfterVisible = false, lastPlayback = null, lastPaused = null, outputVersion = 0;
   let navigationIds = [];
   const relatedPreview=MotionRelated.create({icon,getMain:()=>controller});
@@ -458,6 +459,8 @@
     renderSource(effect);
     $('selection-status').textContent = `当前动效：${effect.name}。${effect.summary}`;
     $('preview').setAttribute('aria-label', effect.name);
+    const previewSize = MotionPreview.size(effect);
+    $('preview').closest('.preview-shell').style.setProperty('--preview-ratio', String(previewSize.width / previewSize.height));
     paintSpeed(preserved?.speed || 1);
     easing.setOptions((effect.parameters.ease?.options || [effect.default_ease]).map(value => ({value, label:MotionMatch.easeLabels[value]})), preserved?.ease || effect.default_ease);
     $('ease-label').hidden = !effect.parameters.ease;
@@ -1012,7 +1015,7 @@
   renderCategories();
   renderList();
   const requestedId=location.hash.slice(1);
-  const requestedEffect=()=>data.redirects?.[requestedId]||requestedId;
+  const requestedEffect=()=>data.redirects?.[requestedId]||requestedId||defaultEffectId;
   let hashNavigation = 0;
   window.addEventListener('hashchange', () => {
     const navigation = ++hashNavigation, token = ++kindToken;
@@ -1020,7 +1023,7 @@
     const findEffect = () => data.effects.find(effect => effect.id === (data.redirects?.[id] || id));
     const open = () => {
       if (navigation !== hashNavigation || token !== kindToken) return;
-      const effect = findEffect() || data.effects.find(effect => effect.id === 'fade-rise');
+      const effect = findEffect() || data.effects.find(effect => effect.id === (id ? 'fade-rise' : defaultEffectId));
       clearTimeout(debounce); debounce = null;
       $('search').value = '';
       collapsed.delete(effect.category);
@@ -1038,13 +1041,13 @@
     if (selected || hashNavigation) return;
     const requested = data.effects.find(effect=>effect.id===requestedEffect());
     // 新链接按动效所在页签打开；同一页面刷新和加载期间的手动切换优先。
-    if (!rememberedKind && kindToken === 0 && requested) kind = requested.kind;
+    if (!rememberedKind && kindToken === 0) kind = requested?.kind || 'action';
     const remembered = data.effects.find(effect=>effect.id===rememberedSelection?.id && effect.kind===kind);
     const effect=remembered||(requested?.kind===kind ? requested : null)||data.effects.find(effect=>effect.kind===kind)||data.effects.find(effect=>effect.id==='fade-rise');
     renderCategories();renderList();rememberKind();
     const caseId=remembered ? rememberedSelection.caseId : effect.entries?.find(entry=>entry.source_rule_id===requestedId.replace(/^history-/,''))?.id;
     selectEffect(effect.id,null,caseId,remembered ? rememberedSelection.variantId : data.variant_redirects?.[requestedId]);
-    if (remembered && !$('directory-panel').hidden) {
+    if (!$('directory-panel').hidden) {
       $('effects-list').querySelector('.effect-item[aria-current="true"]')?.scrollIntoView?.({block:'nearest'});
     }
   }

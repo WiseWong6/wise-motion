@@ -7,6 +7,7 @@ import {runInNewContext} from 'node:vm';
 import {transform} from 'esbuild';
 import {JSDOM} from 'jsdom';
 import {validateAssetDestination} from '../scripts/install-assets.mjs';
+import previewApi from '../catalog/preview-size.js';
 const browserSource=await readFile(new URL('../remotion/browser.jsx',import.meta.url),'utf8');
 const browserCode=(await transform(browserSource,{loader:'jsx',format:'cjs'})).code;
 function browserHarness(overrides={},hooks={}){
@@ -16,7 +17,7 @@ function browserHarness(overrides={},hooks={}){
  const player={muted:true,play(event){playEvents.push(event);},pause(){},mute(){this.muted=true;},unmute(){this.muted=false;},isMuted(){return this.muted;},seekTo(value){frame=value;},getCurrentFrame(){return frame;},addEventListener(name,callback){events.set(name,callback);},removeEventListener(name){events.delete(name);}};
  const React={createRef:()=>({current:null}),createElement:(type,props)=>({type,props})};
  const reactRoot={render(value){tree=value;value.props.ref.current=player;},unmount(){unmounts++;hooks.onUnmount?.(sessionDocument);}};
- const modules={react:React,'react-dom/client':{createRoot:()=>reactRoot},'react-dom':{flushSync:fn=>fn()},'@remotion/player':{Player(){ }},'./with-audio.jsx':{WiseMotionEffect(){},getEffectMetadata:()=>({durationInFrames:Math.ceil((overrides.duration_ms??2000)*60/1000-1e-9)+1}),resolveEffect:input=>input}};
+ const modules={react:React,'react-dom/client':{createRoot:()=>reactRoot},'react-dom':{flushSync:fn=>fn()},'@remotion/player':{Player(){ }},'./with-audio.jsx':{WiseMotionEffect(){},getEffectMetadata:()=>({durationInFrames:Math.ceil((overrides.duration_ms??2000)*60/1000-1e-9)+1}),resolveEffect:input=>input},'../catalog/preview-size.js':previewApi};
  const exports={};const context={exports,module:{exports},require:name=>modules[name],document:w.document,URL,queueMicrotask,
  MutationObserver:class{constructor(callback){this.callback=callback;observers.push(this);}observe(){}disconnect(){}},MotionKit:{resolveVariant:input=>input},devicePixelRatio:1};
  runInNewContext(browserCode,context);
@@ -29,6 +30,19 @@ function browserHarness(overrides={},hooks={}){
  tree.props.inputProps.onReady(session);
  return {controller,w,root,session,player,events,playEvents,get tree(){return tree;},get frame(){return frame;},get unmounts(){return unmounts;},get destroys(){return destroys;},observers,close(){controller.destroy();w.close();}};
 }
+test('原画预览填满对应比例，窗口缩放与静态保留不把竖画再次缩进横框',()=>{
+ for(const [width,height,viewportWidth,viewportHeight] of [[900,1200,540,720],[1080,1920,405,720],[900,1080,600,720],[640,360,1280,720]]){
+  const h=browserHarness({scene:{width,height}});
+  try{
+   h.root.getBoundingClientRect=()=>({width:viewportWidth,height:viewportHeight});h.controller.fit();
+   const mount=h.root.firstElementChild;
+   assert.equal(mount.style.width,'1280px');assert.equal(mount.style.height,'720px');
+   assert.equal(h.tree.props.compositionWidth,640);assert.equal(h.tree.props.compositionHeight,360,'共用绘图坐标保持原样');
+   h.controller.destroy(true);
+   assert.equal(h.root.querySelector('iframe').style.transform,'scale(2)');
+  }finally{h.close();}
+ }
+});
 test('播放中定位保持帧时钟，暂停定位可保留精确末帧',()=>{
  const h=browserHarness();try{
   h.controller.play();h.controller.seek(500);

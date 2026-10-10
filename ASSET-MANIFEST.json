@@ -3,13 +3,13 @@
   "files": [
     {
       "path": "catalog/app.css",
-      "bytes": 46467,
-      "sha256": "0607b94ba0a6cb6d81402abeb1c900d3571cf234f08e1c534b7053143449ff2c"
+      "bytes": 46624,
+      "sha256": "a442cb740cb25b806765c8787efe68f7ba0bb4689c07b7749c10666fd985bdde"
     },
     {
       "path": "catalog/app.js",
-      "bytes": 60202,
-      "sha256": "e9a08641d935059ee3864bde645fcc58a037616ab0e7cc9bdd287ac9aabb383f"
+      "bytes": 60470,
+      "sha256": "f3f501f68ffa646da77086fcf387611cab71ac4da57d7c76996b9e0147a3c285"
     },
     {
       "path": "catalog/assets/WEBP-SOURCES.json",
@@ -1945,6 +1945,11 @@
       "path": "catalog/player-glass.js",
       "bytes": 1492,
       "sha256": "9ea583025995f081466d4508e739fd3625468a704c55788e65a87011d17fabb2"
+    },
+    {
+      "path": "catalog/preview-size.js",
+      "bytes": 673,
+      "sha256": "c49b5d1a47271319f47884a69772afca705087780f81234fe91031a39072a8c8"
     },
     {
       "path": "catalog/registry-data.js",

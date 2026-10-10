@@ -16,13 +16,24 @@ function checkList(w,kind){
   assert.equal(cards.length,effects.filter(e=>e.kind===kind).length);
   for(const card of cards)assert.equal(effects.find(e=>e.id===card.dataset.effect).kind,kind);
 }
+test('首次打开默认选中玻璃卡片组合，品牌入口指向个人网站',async()=>{
+ const env=await environment(true,{staticPreview:true,hash:''});
+ try{
+  const d=env.w.document;
+  assert.equal(activeKind(d),'composition');checkList(env.w,'composition');
+  assert.equal(d.querySelector('.effect-item[aria-current="true"]').dataset.effect,'glass-interface-sequence');
+  assert.equal(d.getElementById('preview-title').textContent,'玻璃卡片显现折射');
+  const brand=d.querySelector('.brand');
+  assert.equal(brand.href,'https://wisewong.com/');assert.equal(brand.target,'_blank');
+ }finally{env.close();}
+});
 test('三个目录页签在重新打开同一页面后恢复，列表与预览保持对应',async()=>{
   const memory=storage();
   for(const kind of ['composition','illustration','action']){
-    const before=await environment(true,{staticPreview:true,sessionStorage:memory});
+    const before=await environment(true,{staticPreview:true,hash:'',sessionStorage:memory});
     try{before.w.document.querySelector(`[data-kind="${kind}"]`).click();assert.equal(activeKind(before.w.document),kind);}
     finally{before.close();}
-    const after=await environment(true,{staticPreview:true,sessionStorage:memory});
+    const after=await environment(true,{staticPreview:true,hash:'',sessionStorage:memory});
     try{
       const {w}=after,d=w.document;
       assert.equal(activeKind(d),kind);checkList(w,kind);
@@ -35,7 +46,7 @@ test('三个目录页签在重新打开同一页面后恢复，列表与预览�
 
 test('新动效链接打开对应页签，在该链接中切换后刷新仍保留当前页签',async()=>{
   const memory=storage();
-  const base=await environment(true,{staticPreview:true,sessionStorage:memory});
+  const base=await environment(true,{staticPreview:true,hash:'',sessionStorage:memory});
   try{base.w.document.querySelector('[data-kind="composition"]').click();}finally{base.close();}
   const link=await environment(true,{staticPreview:true,sessionStorage:memory,hash:'#steel-ruler-illustration'});
   try{
@@ -48,11 +59,11 @@ test('新动效链接打开对应页签，在该链接中切换后刷新仍保�
   try{assert.equal(activeKind(refreshed.w.document),'action');checkList(refreshed.w,'action');}finally{refreshed.close();}
 });
 
-test('旧历史页签记忆自动回到动作，不加载历史数据',async()=>{
-  const env=await environment(true,{staticPreview:true,lazyHistory:true,sessionStorage:{getItem:()=> 'recipe',setItem(){}}});
+test('旧历史页签记忆自动回到默认组合，不加载历史数据',async()=>{
+  const env=await environment(true,{staticPreview:true,hash:'',lazyHistory:true,sessionStorage:{getItem:()=> 'recipe',setItem(){}}});
   try{
     const d=env.w.document;
-    assert.equal(activeKind(d),'action');checkList(env.w,'action');
+    assert.equal(activeKind(d),'composition');checkList(env.w,'composition');
     assert.equal(d.querySelector('[data-kind="recipe"]'),null);
     assert.equal(d.querySelector('script[src="history-data.js"]'),null);
   }finally{env.close();}
@@ -60,11 +71,11 @@ test('旧历史页签记忆自动回到动作，不加载历史数据',async()=>
 
 test('存储内容无效或浏览器拒绝存储时，默认目录和手动切换仍可用',async()=>{
   for(const memory of [{getItem:()=> 'removed-kind',setItem(){}},{getItem(){throw new Error('blocked');},setItem(){throw new Error('blocked');}}]){
-    const env=await environment(true,{staticPreview:true,sessionStorage:memory});
+    const env=await environment(true,{staticPreview:true,hash:'',sessionStorage:memory});
     try{
-      assert.equal(activeKind(env.w.document),'action');checkList(env.w,'action');
-      env.w.document.querySelector('[data-kind="composition"]').click();
       assert.equal(activeKind(env.w.document),'composition');checkList(env.w,'composition');
+      env.w.document.querySelector('[data-kind="action"]').click();
+      assert.equal(activeKind(env.w.document),'action');checkList(env.w,'action');
     }finally{env.close();}
   }
 });
@@ -78,13 +89,13 @@ test('三个页签数量在首屏、切换与刷新后始终一致',async()=>{
   const initial=new JSDOM(await readFile(new URL('../catalog/index.html',import.meta.url),'utf8'));
   try{check(initial.window.document);}finally{initial.window.close();}
   const memory=storage();
-  const first=await environment(true,{staticPreview:true,lazyHistory:true,sessionStorage:memory});
+  const first=await environment(true,{staticPreview:true,hash:'',lazyHistory:true,sessionStorage:memory});
   try{
     const {w}=first,d=w.document;check(d);assert.equal(w.MotionHistory,undefined);
     for(const kind of ['composition','illustration','action']){d.querySelector(`[data-kind="${kind}"]`).click();check(d);}
     checkList(w,'action');assert.equal(d.querySelector('[data-kind="recipe"]'),null);
   }finally{first.close();}
-  const refreshed=await environment(true,{staticPreview:true,lazyHistory:true,sessionStorage:memory});
+  const refreshed=await environment(true,{staticPreview:true,hash:'',lazyHistory:true,sessionStorage:memory});
   try{
     check(refreshed.w.document);assert.equal(refreshed.w.MotionHistory,undefined);
     checkList(refreshed.w,'action');

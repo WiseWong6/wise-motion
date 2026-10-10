@@ -21,7 +21,7 @@ test('同一窗口修改书签切换预览，清除筛选并同步目录，兼�
       ['#history-reel-core-rings','core-ring-expand'],
       ['#tile-wave-transition','tile-wave-transition'],
       ['#missing-effect','fade-rise'],
-      ['','fade-rise']
+      ['','glass-interface-sequence']
     ]){
       const search=d.getElementById('search');
       search.value='zzzzzz';search.dispatchEvent(new w.Event('input'));

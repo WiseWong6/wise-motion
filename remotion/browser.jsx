@@ -4,6 +4,7 @@ import {createRoot} from 'react-dom/client';
 import {flushSync} from 'react-dom';
 import {Player} from '@remotion/player';
 import {WiseMotionEffect, getEffectMetadata, resolveEffect} from './with-audio.jsx';
+import previewApi from '../catalog/preview-size.js';
 export {React, createRoot, Player, WiseMotionEffect, getEffectMetadata, resolveEffect};
 const active = new Set();
 const FPS = 60;
@@ -41,6 +42,7 @@ function showStaticDocument(root, mount, snapshot) {
 }
 export function create(root, supplied, options = {}) {
   const definition = globalThis.MotionKit.resolveVariant(supplied);
+  const previewSize = previewApi.size(definition);
   const hasAudio = definition.kind === 'composition' && Boolean(definition.audio?.tracks?.length) && options.includeAudio !== false;
   let muted = true;
   const playerRef = createRef();
@@ -86,7 +88,7 @@ export function create(root, supplied, options = {}) {
   function fit() {
     if(destroyed)return;
     const box=root.getBoundingClientRect();const ratio=globalThis.devicePixelRatio||1;
-    const raw=Math.min(box.width/640,box.height/360)||1;
+    const raw=Math.min(box.width/previewSize.width,box.height/previewSize.height)||1;
     const scale=Math.max(.01,Math.floor(raw*640*ratio)/(640*ratio));
     mount.style.width=640*scale+'px';mount.style.height=360*scale+'px';
   }
