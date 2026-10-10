@@ -155,7 +155,7 @@ node "<技能目录>/scripts/export.mjs" stagger-in --out-dir "/目标工程/卡
 
 `show` 默认提供简短接入信息，加 `--details` 查看动作阶段与内容限制。`export` 支持 `--variant <样式编号>`，与目录“复制源码”共用生成逻辑；可写入现有目录，任一目标文件已存在时整批停止，不覆盖文件。
 
-已有独立工程的条目导出全部工程文件；普通条目导出组件接入示例和说明，运行前通过 `npm install --save-exact wise-motion@0.1.7` 安装共享组件包，并按说明准备素材。依赖不会自动安装，源码写入文件后返回绝对路径。见 [快速上手](references/quickstart.md) 和 [组件说明](REMOTION.md)。
+已有独立工程的条目导出全部工程文件；普通条目导出组件接入示例和说明，运行前通过 `npm install --save-exact wise-motion@0.1.8` 安装共享组件包，并按说明准备素材。依赖不会自动安装，源码写入文件后返回绝对路径。见 [快速上手](references/quickstart.md) 和 [组件说明](REMOTION.md)。
 
 ## 播放与渲染
 

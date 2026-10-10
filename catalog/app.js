@@ -60,28 +60,28 @@
   const icon = name => EXTRA[name] || MotionIcons[name] || '';
   const mark = name => `<span data-icon="${name}">${icon(name)}</span>`;
 
-  const KIND_KEY = 'wise-motion-kind:' + location.href;
-  const SELECTION_KEY = 'wise-motion-selection:' + location.href;
+  const kindKey = () => 'wise-motion-kind:' + location.href;
+  const selectionKey = () => 'wise-motion-selection:' + location.href;
   function readKind() {
     try {
-      const saved = sessionStorage.getItem(KIND_KEY);
+      const saved = sessionStorage.getItem(kindKey());
       if (['action','composition','illustration'].includes(saved)) return saved;
     } catch (_) { /* 无法读取时使用默认页签。 */ }
     return null;
   }
   function rememberKind() {
-    try { sessionStorage.setItem(KIND_KEY, kind); } catch (_) { /* 存储受限时仍可正常切换。 */ }
+    try { sessionStorage.setItem(kindKey(), kind); } catch (_) { /* 存储受限时仍可正常切换。 */ }
   }
   function readSelection() {
     try {
-      const saved = JSON.parse(sessionStorage.getItem(SELECTION_KEY));
+      const saved = JSON.parse(sessionStorage.getItem(selectionKey()));
       if (saved && typeof saved.id === 'string') return saved;
     } catch (_) { /* 旧记录损坏或存储受限时使用默认动效。 */ }
     return null;
   }
   function rememberSelection() {
     try {
-      sessionStorage.setItem(SELECTION_KEY, JSON.stringify({
+      sessionStorage.setItem(selectionKey(), JSON.stringify({
         id:selected.id, caseId:selected.selected_entry?.id, variantId:selected.variant_id
       }));
     } catch (_) { /* 存储受限时仍可正常选择和播放。 */ }
@@ -1012,8 +1012,29 @@
   renderList();
   const requestedId=location.hash.slice(1);
   const requestedEffect=()=>data.redirects?.[requestedId]||requestedId;
+  let hashNavigation = 0;
+  window.addEventListener('hashchange', () => {
+    const navigation = ++hashNavigation, token = ++kindToken;
+    const id = location.hash.slice(1);
+    const findEffect = () => data.effects.find(effect => effect.id === (data.redirects?.[id] || id));
+    const open = () => {
+      if (navigation !== hashNavigation || token !== kindToken) return;
+      const effect = findEffect() || data.effects.find(effect => effect.id === 'fade-rise');
+      clearTimeout(debounce); debounce = null;
+      $('search').value = '';
+      collapsed.delete(effect.category);
+      showKind(effect.kind);
+      const caseId = effect.entries?.find(entry => entry.source_rule_id === id.replace(/^history-/, ''))?.id;
+      selectEffect(effect.id, null, caseId, data.variant_redirects?.[id]);
+      if (!$('directory-panel').hidden) {
+        $('effects-list').querySelector('.effect-item[aria-current="true"]')?.scrollIntoView?.({block:'nearest'});
+      }
+    };
+    if (id && !findEffect() && !historyReady) loadHistory().then(open).catch(open);
+    else open();
+  });
   function selectInitial(){
-    if (selected) return;
+    if (selected || hashNavigation) return;
     const requested = data.effects.find(effect=>effect.id===requestedEffect());
     // 新链接按动效所在页签打开；同一页面刷新和加载期间的手动切换优先。
     if (!rememberedKind && kindToken === 0 && requested) kind = requested.kind;

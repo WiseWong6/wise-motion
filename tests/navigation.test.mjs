@@ -6,6 +6,65 @@ import {readFile} from 'node:fs/promises';
 import {history} from '../scripts/history.mjs';
 const historyData=await history(data);
 
+async function changeHash(w, hash) {
+  const changed = new Promise(resolve => w.addEventListener('hashchange', resolve, {once:true}));
+  w.location.hash = hash;
+  await changed;
+}
+
+test('同一窗口修改书签切换预览，清除筛选并同步目录，兼容旧书签和无效地址',async()=>{
+  const env=await environment(true,{hash:'#tile-wave-transition'});
+  try{
+    const {w}=env,d=w.document;
+    for(const [hash,id] of [
+      ['#steel-ruler-illustration','steel-ruler-illustration'],
+      ['#history-reel-core-rings','core-ring-expand'],
+      ['#tile-wave-transition','tile-wave-transition'],
+      ['#missing-effect','fade-rise'],
+      ['','fade-rise']
+    ]){
+      const search=d.getElementById('search');
+      search.value='zzzzzz';search.dispatchEvent(new w.Event('input'));
+      await changeHash(w,hash);
+      const effect=data.effects.find(e=>e.id===id);
+      assert.equal(d.getElementById('preview-title').textContent,effect.name);
+      assert.equal(d.querySelector('.effect-item[aria-current="true"]').dataset.effect,id);
+      assert.equal(d.querySelector('[data-kind][aria-pressed="true"]').dataset.kind,effect.kind);
+      assert.equal(search.value,'');
+      assert.equal(d.getElementById('category-filter').value,'all');
+      assert.equal(w.MotionRuntime.instanceCount,1);
+    }
+  }finally{env.close();}
+});
+
+test('更换书签后按当前地址保存选择，刷新恢复且不覆盖原地址记忆',async()=>{
+  const values=new Map(),sessionStorage={getItem:key=>values.get(key)??null,setItem:(key,value)=>values.set(key,value)};
+  const env=await environment(true,{hash:'#tile-wave-transition',sessionStorage});
+  try{
+    await changeHash(env.w,'#steel-ruler-illustration');
+    assert.equal(JSON.parse(values.get('wise-motion-selection:file:///wise-motion/catalog/index.html#tile-wave-transition')).id,'tile-wave-transition');
+    assert.equal(JSON.parse(values.get('wise-motion-selection:file:///wise-motion/catalog/index.html#steel-ruler-illustration')).id,'steel-ruler-illustration');
+  }finally{env.close();}
+  const refreshed=await environment(true,{hash:'#steel-ruler-illustration',sessionStorage});
+  try{assert.equal(refreshed.w.document.querySelector('.effect-item[aria-current="true"]').dataset.effect,'steel-ruler-illustration');}
+  finally{refreshed.close();}
+});
+
+test('旧书签加载完成不会覆盖后来输入的新书签',async()=>{
+  const env=await environment(true,{hash:'#fade-rise',lazyHistory:true});
+  try{
+    const {w}=env,d=w.document;
+    await changeHash(w,'#history-recovered-outline');
+    const script=d.querySelector('script[src="history-data.js"]');assert.ok(script);
+    await changeHash(w,'#scale-in');
+    w.eval(await readFile(new URL('../catalog/history-data.js',import.meta.url),'utf8'));
+    script.dispatchEvent(new w.Event('load'));
+    await new Promise(resolve=>setTimeout(resolve,0));
+    assert.equal(d.querySelector('.effect-item[aria-current="true"]').dataset.effect,'scale-in');
+    assert.equal(w.MotionRuntime.instanceCount,1);
+  }finally{env.close();}
+});
+
 test('已提炼的历史书签直接打开对应动作，不额外加载历史库',async()=>{
   const env=await environment(true,{staticPreview:true,hash:'#history-reel-core-rings',lazyHistory:true});
   try{
