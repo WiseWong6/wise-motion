@@ -231,9 +231,11 @@ test('右栏名称与两个输出共用复制按钮，复制失败时选中对�
     assert.match(copied,/请使用 Remotion 实现以下动效/); assert.doesNotMatch(copied,/来源与许可：/); assert.match(copied,/需要保留：/);
     d.getElementById('tab-code').click();
     assert.ok(!d.getElementById('panel-code').hidden); assert.ok(d.getElementById('panel-prompt').hidden);
+    assert.equal(d.querySelector('#panel-code .output-label').textContent,'接入示例与源码路径');
     assert.equal(d.getElementById('copy-code').getAttribute('aria-label'),'复制代码');
     d.getElementById('copy-code').click(); await settle();
     assert.match(copied,/import \{Composition\} from 'remotion'/); assert.match(copied,/catalog\/effects\/entrance\.js/);
+    assert.ok(copied.includes('/wise-motion/catalog/effects/entrance.js'),'复制保留当前目录实际绘制源码路径');
     assert.equal(d.querySelectorAll('textarea').length,0); assert.equal(d.getElementById('copy-status-code').textContent,'');
     Object.defineProperty(w.navigator,'clipboard',{configurable:true,value:{writeText:async text=>{copied=text;}}});
     titleCopy.click(); await settle();
