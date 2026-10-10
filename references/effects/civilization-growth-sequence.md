@@ -30,7 +30,7 @@
 
 - [原码提取与接入源码](../../catalog/effects/civilization-growth.js)，注册名称：`civilization-growth-sequence`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
-- [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
+- 复刻自 [Kimi K3 开源宣传片](https://www.youtube.com/watch?v=5GlCGOXUYHg)。
 - 从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码AGPL-3.0-only；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[草楷墨迹换形](cursive-regular-morph.md)、[字形增殖与点线接续](glyph-multiply-structure.md)、[横排闪烁换形](row-flash-transform.md)、[抽芽闪变与绽放](botanical-grow-bloom.md)、[缩拢收入群像](motifs-gather-atlas.md)、[群像散点聚字](image-particles-wordmark.md)。

@@ -1948,13 +1948,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1493751,
-      "sha256": "3ac8feff659b78f2813f966bb8df799c0f459ceae94ceac3f4946325b7c92fa8"
+      "bytes": 1494220,
+      "sha256": "a4616416a6b779060551ec2623a01f24790971303f2015badc4a523ad019bbda"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1893941,
-      "sha256": "567c249621e064102ade670f31fc1012a45869db42dc6a45ae3c1943758c5c56"
+      "bytes": 1894630,
+      "sha256": "aec8c3f0bd472c96ddf4e87ae92dc003b0ca19973b7f38da0b6c1ed5aa5e5856"
     },
     {
       "path": "catalog/related-preview.js",

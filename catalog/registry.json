@@ -24297,6 +24297,11 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
+        "reference": {
+          "name": "@Vincent的AI实验场",
+          "credit_prefix": "复刻自",
+          "credit_suffix": "整理的 Opus 动效。"
+        },
         "extraction": "从用户确认的五秒多巴胺配色作品提取自编三维模型、材质、灯光与运动代码；完整组合保留源画面参数，独立动作按真实对象隔离，共用相同绘制函数。没有携带旧复刻素材、参考视频或第三方图形库。 根据后续画面对照，补齐画框外的远景胶囊，并使其淡入暖米色渐变背景。",
         "factory": "capsule-type-sequence"
       },
@@ -24753,7 +24758,12 @@
         "library": "animejs@4.5.0",
         "factory": "motion-oasis-sequence",
         "extraction": "从已确认的动效绿洲代码模型中提取独立对象；独立动作与完整组合共用地块、退台建筑、水面绘制及波次计算，不依赖参考视频或本机工程路径。",
-        "reference_url": "https://animejs.com/documentation/"
+        "reference_url": "https://animejs.com/documentation/",
+        "reference": {
+          "name": "@Vincent的AI实验场",
+          "credit_prefix": "复刻自",
+          "credit_suffix": "整理的 Opus 动效。"
+        }
       },
       "reproduction": {
         "presentation": "16:9画幅；1066×600立体城市插画，暖沙色背景、奶油色地基、珊瑚色退台楼群、青绿色水面。以斜视观察地块铺展与城市生长，在数据卡出现前收成完整城市构图，阅读期间地块保持尺寸与位置。数字卡为奶油底深绿字，分布在城市两侧并以细线连接真实水格；动作卡从右下角用短直线连到左前方水格。2.70–3.90秒三张卡保留完整数字与卡面，水面继续起伏换图。3.90秒地块开始缩小，数据卡、连线与标记同步渐隐；MOTION OASIS立体字、中文说明与总数同步在地块下方显现，随底部空间逐渐放大，保持水平居中并与地基留出间距。4.55秒完成交接，保持完整画幅至4.95秒，全程不旋转。",
@@ -30022,6 +30032,11 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
+        "reference": {
+          "name": "Kimi K3 开源宣传片",
+          "url": "https://www.youtube.com/watch?v=5GlCGOXUYHg",
+          "credit_prefix": "复刻自"
+        },
         "dependencies": [
           "catalog/effects/civilization-images.js"
         ],
@@ -31535,6 +31550,11 @@
         "license": "AGPL-3.0-only",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
+        "reference": {
+          "name": "@慕云",
+          "credit_prefix": "复刻自",
+          "credit_suffix": "老师的《乘风破浪》。"
+        },
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
         "dependencies": [
           "catalog/effects/scene-source-runtime.js"
