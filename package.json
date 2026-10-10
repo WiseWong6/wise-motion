@@ -27,6 +27,7 @@
     "catalog",
     "vendor",
     "scripts/install-assets.mjs",
+    "scripts/install-package.mjs",
     "LICENSE",
     "NOTICE.md",
     "REMOTION.md",
