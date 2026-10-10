@@ -1,7 +1,7 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function (global) {
   'use strict';
-  const sharedPackageVersion = "0.1.11"; // 由 scripts/build.mjs 从 package.json 同步。
+  const sharedPackageVersion = "0.1.12"; // 由 scripts/build.mjs 从 package.json 同步。
   // 此函数只在目标工程的 Node.js 中执行；浏览器复制和文件导出使用同一份安装程序。
   function installPackage({version,effectId,variantId}, {run,readInstalled,log=console.log}={}) {
     const stable=/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
