@@ -16,7 +16,7 @@
 明确排除：不改变伞体尺寸，不简化原伞面前后遮挡，不让支点或接触位置滑动，不引入音乐、音效或原工程依赖。
 对应参考：本地目录「踏步溅起水花」
 源码：catalog/effects/encore-dance.js 中的 encore-tap
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：迁入原雨伞几何、编舞和场景绘制；原1280×800画板等比适配目录画板，保留原蓝色场景。固定原实测节拍数据，仅用于动作排程，不加载音频。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/encore-dance.js)，注册名称：`encore-tap`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

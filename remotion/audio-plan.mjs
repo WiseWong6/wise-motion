@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import {normalizeSpeed} from './clock.mjs';
 
 /** 声音只属于完整组合；独立动作即使共用绘制代码也保持无声。 */

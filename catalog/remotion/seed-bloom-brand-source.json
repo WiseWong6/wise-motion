@@ -16,7 +16,7 @@
     "morph-scene.js": "a3808d8c67413b104b3e40a7779124ad4a8685e0a6cd7f385dbafcecb5f9d443",
     "movie.js": "b00cdb8a6a10a157a5b91e5ce16ad2e98316be431be8640b7da16b7d14fa1181"
   },
-  "program_license": "AGPL-3.0-only",
+  "program_license": "Apache-2.0",
   "font": "Outfit Medium vector outlines; SIL OFL 1.1",
   "assets": [],
   "note": "Code-drawn textures and glyphs are bundled with the renderer; no external images, audio, fonts or source-project access at runtime."

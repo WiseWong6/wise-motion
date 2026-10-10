@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 // 实际执行每个条目和变体；在相同浏览器中比较完整加载与按需加载。
 // 不截图、不起服务，检查结果写到调用者指定的维护目录。
 import {openBrowser} from '@remotion/renderer';

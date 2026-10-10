@@ -16,7 +16,7 @@
 明确排除：不把冠毛改成直线图标，不改出生位置，不用当前主体位置带动已经脱落的种子，不添加文字或声音。
 对应参考：本地目录「冠毛脱落飘散」
 源码：catalog/effects/history-nature.js 中的 seed-shedding-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：16:9，640×360，底色 #526957，冠毛和细茎保留原奶油白。保持主体在上、种子向下飘动的原纵向构图，用统一缩放完整放入横画板，不把纵向下落压成横向平移。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/history-nature.js)，共享绘制入口：`seed-shedding-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 复用 history-nature.js 内完整 DandelionJourney 冠毛、细茎和种子曲线；releasePose、driftingPose 与 drifting 从原作逐字迁入，出生位置保持历史姿态，主体稀疏与独立种子数量对应。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 复用 history-nature.js 内完整 DandelionJourney 冠毛、细茎和种子曲线；releasePose、driftingPose 与 drifting 从原作逐字迁入，出生位置保持历史姿态，主体稀疏与独立种子数量对应。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

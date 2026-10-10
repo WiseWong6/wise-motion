@@ -16,7 +16,7 @@
 明确排除：不带原场景、背景、字幕、音频或外围控件。
 对应参考：本地目录「金色满月」；所用动作：月面逐渐盈满
 源码：catalog/effects/history-nature.js 中的 osmanthus-moon-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/history-nature.js)，注册名称：`osmanthus-moon-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 复用原 moonProgress 与月貌像素绘制，取消固定满月进度，恢复八十四个抵达事件聚合的光照变化。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 复用原 moonProgress 与月貌像素绘制，取消固定满月进度，恢复八十四个抵达事件聚合的光照变化。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[月面逐渐盈满](moon-event-fill.md)。

@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 // 只写出目录复制功能生成的原工程/组件示例，不安装依赖。
 import {readFile, open, mkdir, lstat, realpath, unlink, rmdir} from 'node:fs/promises';
 import path from 'node:path';

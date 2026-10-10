@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 // 从只读原工程提取几何函数与短窗轨迹；不导出成片、不改写原文件。
 import {readFile, writeFile, mkdir} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';

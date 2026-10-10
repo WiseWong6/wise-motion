@@ -16,7 +16,7 @@
 明确排除：不改成图片轮播，不追加说明字幕，不使用活字收尾，不把三火四火叠成实心书法，不让字标再次收走。
 对应参考：本地目录「群像散点聚字」
 源码：catalog/effects/civilization-growth.js 中的 image-particles-wordmark
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：固定640×360逻辑画板；纸纹、书法轮廓、种子与花朵部件、文明插画和字标粒子均已内嵌。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [原码提取与接入源码](../../catalog/effects/civilization-growth.js)，注册名称：`image-particles-wordmark`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码AGPL-3.0-only；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码Apache-2.0；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 

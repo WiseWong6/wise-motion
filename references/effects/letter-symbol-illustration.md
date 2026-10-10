@@ -16,7 +16,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「星月来信符号组」；所用动作：群体飞行留迹
 源码：catalog/effects/scene-letter.js 中的 letter-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底；整组提取固定原符号群的前24件，沿用原独立预览四列六行的位置和等比缩放；六种单件选项沿用原取样。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [原码提取与接入源码](../../catalog/effects/scene-letter.js)，注册名称：`letter-symbol-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 共用原 makeShape、makeButterflyWing、drawSymbol 与 drawButterfly；整组恢复原独立符号预览的前24件、四列六行及2.4倍等比展示，保留六种单件选项；原工程与音频不参与运行。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 共用原 makeShape、makeButterflyWing、drawSymbol 与 drawButterfly；整组恢复原独立符号预览的前24件、四列六行及2.4倍等比展示，保留六种单件选项；原工程与音频不参与运行。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[群体飞行留迹](symbol-flight-settle.md)。
 
@@ -52,7 +52,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「星月来信符号组」；所用动作：群体飞行留迹
 源码：catalog/effects/scene-letter.js 中的 letter-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底；整组提取固定原符号群的前24件，沿用原独立预览四列六行的位置和等比缩放；六种单件选项沿用原取样。
 
 使用同一动作定义，设置 `variant_id: "all"`；目录和相关动作弹窗均可切换。
@@ -74,7 +74,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「星月来信符号组」；所用动作：群体飞行留迹
 源码：catalog/effects/scene-letter.js 中的 letter-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底；整组提取固定原符号群的前24件，沿用原独立预览四列六行的位置和等比缩放；六种单件选项沿用原取样。
 
 使用同一动作定义，设置 `variant_id: "star"`；目录和相关动作弹窗均可切换。
@@ -96,7 +96,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「星月来信符号组」；所用动作：群体飞行留迹
 源码：catalog/effects/scene-letter.js 中的 letter-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底；整组提取固定原符号群的前24件，沿用原独立预览四列六行的位置和等比缩放；六种单件选项沿用原取样。
 
 使用同一动作定义，设置 `variant_id: "moon"`；目录和相关动作弹窗均可切换。
@@ -118,7 +118,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「星月来信符号组」；所用动作：群体飞行留迹
 源码：catalog/effects/scene-letter.js 中的 letter-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底；整组提取固定原符号群的前24件，沿用原独立预览四列六行的位置和等比缩放；六种单件选项沿用原取样。
 
 使用同一动作定义，设置 `variant_id: "flower"`；目录和相关动作弹窗均可切换。
@@ -140,7 +140,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「星月来信符号组」；所用动作：群体飞行留迹
 源码：catalog/effects/scene-letter.js 中的 letter-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底；整组提取固定原符号群的前24件，沿用原独立预览四列六行的位置和等比缩放；六种单件选项沿用原取样。
 
 使用同一动作定义，设置 `variant_id: "heart"`；目录和相关动作弹窗均可切换。
@@ -162,7 +162,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「星月来信符号组」；所用动作：群体飞行留迹
 源码：catalog/effects/scene-letter.js 中的 letter-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底；整组提取固定原符号群的前24件，沿用原独立预览四列六行的位置和等比缩放；六种单件选项沿用原取样。
 
 使用同一动作定义，设置 `variant_id: "note"`；目录和相关动作弹窗均可切换。
@@ -184,7 +184,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「星月来信符号组」；所用动作：群体飞行留迹
 源码：catalog/effects/scene-letter.js 中的 letter-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底；整组提取固定原符号群的前24件，沿用原独立预览四列六行的位置和等比缩放；六种单件选项沿用原取样。
 
 使用同一动作定义，设置 `variant_id: "butterfly"`；目录和相关动作弹窗均可切换。

@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* Kimi 档案桌插画：按原工程几何转写为独立矢量图，保留物件的原色、细线和局部动作。 */
 (function(global){
   'use strict';

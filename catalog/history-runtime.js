@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 本机原作预览适配层：单次播放、统一控制、无音频、按需加载。 */
 (function(global){
   'use strict';

@@ -16,7 +16,7 @@
 明确排除：不带原场景、背景、字幕、音频或外围控件。
 对应参考：本地目录「纸飞机折翼」；所用动作：双翼轻折偏转
 源码：catalog/effects/history-nature.js 中的 forward-plane-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/history-nature.js)，注册名称：`forward-plane-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[双翼轻折偏转](wing-fold-sway.md)。

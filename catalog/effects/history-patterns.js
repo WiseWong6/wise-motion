@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 从历史配方提炼的结构示例。保留身份、顺序与参数关系；本机图形适配见 NOTICE.md。 */
 (function (global) {
   'use strict';

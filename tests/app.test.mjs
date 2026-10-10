@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {environment,data} from './helpers.mjs';
@@ -197,7 +197,7 @@ test('本地动作不误标第三方来源，明确的代码改编和样式参�
     d.querySelector('[data-effect="fade-rise"]').click();
     assert.match(source.textContent, /效果参考 GSAP 动作样式参考/);
     assert.ok(!block.hidden);
-    assert.doesNotMatch(source.textContent, /改编自|AGPL|自行开发|重新开发/);
+    assert.doesNotMatch(source.textContent, /改编自|Apache-2.0|自行开发|重新开发/);
     assert.ok(source.querySelector('a[href="https://gsap.com/"]'));
     delete effect.source.reference;
     d.querySelector('[data-effect="fade-rise"]').click();

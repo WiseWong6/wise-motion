@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function (F) {
   // 每个抽取动作只创建自己需要的对象；组合和独立示例共用以下绘制函数。
   const tag = (nodes, id) => (Array.isArray(nodes) ? nodes : [nodes]).forEach(node => { node.dataset.layer = id; });

@@ -21,7 +21,7 @@ const Scene=()=> <WiseMotionEffect effectId="stagger-in" />;
 在目标工程安装公开包并复制素材：
 
 ```sh
-npm install --save-exact wise-motion@0.1.9
+npm install --save-exact wise-motion@0.1.10
 node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion
 ```
 
@@ -54,9 +54,9 @@ node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion
 | 代码终端 `terminal-code/default` | `title` 最多 32 字；`lines` 1–3 行，每行最多 60 字，由 `[文字, 色调]` 对组成，色调仅 `ink`、`muted`、`teal`；实际字宽超出最小字号承载范围仍会报错 |
 | 日志终端 `terminal-code/command-log` | `title` 最多 40 字；`lines` 必须九行纯文字，首行最多 20 字、其他行最多 40 字；保留原先后顺序、调试状态、成功状态和颜色 |
 
-第二批支持标题卡片、错峰卡片、词语强调、百分比柱图、时间轴、按钮反馈和粒子聚字，字段与数量见 [内容覆盖表](references/quickstart.md#内容覆盖与边界)。默认值、记录字段和字数限制以 `show.mjs <id>` 为准。
+标题卡片、错峰卡片、词语强调、百分比柱图、时间轴、按钮反馈和粒子聚字也支持自定义内容，字段与数量见 [内容覆盖表](references/quickstart.md#内容覆盖与边界)。默认值、记录字段和字数限制用 `show.mjs <id> --details` 查看。
 
-`transparent={true}` 的候选为逐字显现、计数、词语强调，使用时还须通过对当前源码有效的透明审计；过期记录会被拒绝。此属性关闭页面外壳的底色、暗角和颗粒。单镜默认不变；多层计划、定位框与独立实现见 [一镜多层](references/quickstart.md#一镜多层)。
+`transparent={true}` 的候选为逐字显现、计数、词语强调，使用时还须通过对当前源码有效的透明审计；过期记录会被拒绝。此属性关闭页面外壳的底色、暗角和颗粒；具体取用见 [内容与透明背景](references/quickstart.md#内容与透明背景)。
 
 数字格式 `integer` 为整数（小数位须为 0），`decimal` 固定小数位，`thousands` 加英文千分位，`compact` 使用 K/M/B/T。内容对象不接受未登记字段、换行和控制字符。不支持的动效传入非空内容会报错，不会静默忽略。内容槽没有通用字体或颜色参数；中文使用包内思源黑体，纯英文/数字使用 Oswald，罕见字符另行核对。
 
@@ -95,7 +95,7 @@ const BlackCover = ({seconds}) => <WiseMotionCircularReveal seconds={seconds} va
 ```sh
 npm ci
 npm run build
-npm test
+npm run check
 WISE_MOTION_RENDER_DIR="/视频工程绝对路径/renders" npm run render -- stagger-in stagger-in.mp4
 ```
 
@@ -105,6 +105,4 @@ WISE_MOTION_RENDER_DIR="/视频工程绝对路径/renders" npm run render -- sta
 
 `npm run check` 检查目录结构与字体覆盖；`npm test` 还包含原绘制与历史迁移回归，需保留私有历史档案；模拟页面测试使用原同步绘制器，实际 Remotion 页面另有浏览器和视频验收。新增或修改动效须按影响范围重新验证，不能用结构检查代替真实观看。
 
-独立迁移副本、原版基准与回退副本保留在私有维护目录，具体位置见本次交付记录。正式替换不修改既有非 Remotion 视频项目，也不恢复已清空的历史。
-
-薪火生长与文明聚字及六个分段提供独立的 `CivilizationGrowth` 逐帧组件，位于 `catalog/remotion/civilization-growth.jsx`。复制源码包含全部内嵌图片、真实书法轮廓、纸纹、字体、粒子公式和许可，使用 Remotion 4.0.532；原 Kimi 笔墨成形材质演变保留。
+薪火生长与文明聚字及六个分段提供独立的 `CivilizationGrowth` 逐帧组件，位于 `catalog/remotion/civilization-growth.jsx`。复制源码包含全部内嵌图片、真实书法轮廓、纸纹、字体、粒子公式和许可，使用 Remotion 4.0.532。

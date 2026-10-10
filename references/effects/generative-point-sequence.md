@@ -16,7 +16,7 @@
 明确排除：不把读数写成固定装饰，不在独立标题或边框动作中创建2400个点。
 对应参考：本地目录「点阵变形与读数」；所用动作：流线游动、点阵连续换形、姿态读数同步、标题依次呈现
 源码：catalog/effects/reel-flat-gen.js 中的 generative-point-sequence
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：恢复原点阵页流线、点阵、代码、边框读数和标题五层；英文数字使用Oswald Bold，组合保留原深色紫色板。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/reel-flat-gen.js)，注册名称：`generative-point-sequence`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[流线游动](generative-flow-field.md)、[点阵连续换形](generative-point-morph.md)、[姿态读数同步](generative-frame-readout.md)、[标题依次呈现](title-stagger.md)。

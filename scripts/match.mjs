@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import {readFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
 const {rank, describe, parse} = createRequire(import.meta.url)('../catalog/matching.js');

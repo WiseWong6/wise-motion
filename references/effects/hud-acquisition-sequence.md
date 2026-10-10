@@ -16,7 +16,7 @@
 明确排除：不加入片外介绍，不把各图层改成互不关联的循环，不截取原片图像代替绘制。
 对应参考：本地目录「目标扫描捕获锁定」；所用动作：环圈分层展开、球面扫描推近、面积曲线推进、斜距递减变倍、弧形仪表联动、轨迹逐点定位、通道占比分区、热力矩阵聚焦、频谱柱列跳动、链路字符刷新、准星锁定变色
 源码：catalog/effects/hud-targeting.js 中的 hud-acquisition-sequence
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：中文仪表组件以代码绘制；斜距使用原片可读帧采样，强度趋势、热力矩阵、遥测、轨迹、通道占比、频谱和字符为固定演示数据。独立示例放大自身内容，按实际显示像素绘制；组合保留原有整体布局。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/hud-targeting.js)，注册名称：`hud-acquisition-sequence`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 基于本机第八段的自主绘制框架持续改版；地图使用Natural Earth公共领域国家轮廓，斜距保留原片可读帧采样，不包含原片图片或视频。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 基于本机第八段的自主绘制框架持续改版；地图使用Natural Earth公共领域国家轮廓，斜距保留原片可读帧采样，不包含原片图片或视频。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[环圈分层展开](hud-ring-build.md)、[球面扫描推近](hud-globe-scan.md)、[面积曲线推进](hud-system-boot.md)、[斜距递减变倍](hud-range-readout.md)、[弧形仪表联动](hud-navigation-bars.md)、[轨迹逐点定位](hud-radar-sweep.md)、[通道占比分区](hud-signal-waves.md)、[热力矩阵聚焦](hud-candidate-status.md)、[频谱柱列跳动](hud-spectrum-bars.md)、[链路字符刷新](hud-data-stream.md)、[准星锁定变色](hud-target-lock.md)。

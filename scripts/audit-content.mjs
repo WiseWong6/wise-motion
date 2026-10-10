@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 // 只读盘点：候选字面量是检索线索，不把样式、路径或注释误报成已确认文案。
 import {readFile} from 'node:fs/promises';
 import {resolveEffect} from '../remotion/clock.mjs';

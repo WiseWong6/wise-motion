@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function (F) {
   F['flat-to-volume'] = (root, M) => {
     // 初态所有点的高度为零；转向水平时，图案沿自身法线连续长出高度。

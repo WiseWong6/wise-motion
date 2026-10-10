@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+# Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 # 字库及派生字形数据保留 GPL-2.0-or-later。
 from pathlib import Path
 import argparse,hashlib,json

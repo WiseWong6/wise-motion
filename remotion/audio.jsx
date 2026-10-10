@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import React from 'react';
 import {Html5Audio, Loop, Sequence, useCurrentFrame, useVideoConfig} from 'remotion';
 import {getAudioPlan, trackVolume} from './audio-plan.mjs';

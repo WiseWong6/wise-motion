@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* Claude 原算法图块的独立矢量插画。
  * 来源：wise-video/claude/video/main.js 的 TILES、hash/noise 与帧时钟。
  * 原十六个绘制函数逐字保留；绘制命令只转换成可复用的 SVG 节点。

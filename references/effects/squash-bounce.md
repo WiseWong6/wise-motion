@@ -16,7 +16,7 @@
 明确排除：不要把全身等比缩放当作形变，不要让底部离开支点，不要把三段拆成互不接续的动画或增加重复弹跳。
 对应参考：本地目录「压缩回弹」
 源码：catalog/effects/history-patterns.js 中的 squash-bounce
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：提取夕阳原码的三段形变曲线与接触点约束，以圆形主体展示；不包含飞机、海面和音效。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [原码提取与接入源码](../../catalog/effects/history-patterns.js)，注册名称：`squash-bounce`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 从自有夕阳 sketch.js 提取 SUN_MOTION 与 sunDeformationAt 的三个连续窗口、形变强度、横纵互逆及接触点约束；按目录时钟绘制，无需原工程、p5.js 或素材。另保留原落地弹跳示例。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从自有夕阳 sketch.js 提取 SUN_MOTION 与 sunDeformationAt 的三个连续窗口、形变强度、横纵互逆及接触点约束；按目录时钟绘制，无需原工程、p5.js 或素材。另保留原落地弹跳示例。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 
@@ -52,7 +52,7 @@
 明确排除：不要把全身等比缩放当作形变，不要让底部离开支点，不要把三段拆成互不接续的动画或增加重复弹跳。
 对应参考：本地目录「压缩回弹」
 源码：catalog/effects/history-patterns.js 中的 squash-bounce
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：提取夕阳原码的三段形变曲线与接触点约束，以圆形主体展示；不包含飞机、海面和音效。
 
 使用同一动作定义，设置 `variant_id: "contact"`；目录和相关动作弹窗均可切换。
@@ -74,7 +74,7 @@
 明确排除：不要把全身等比缩放当作形变。
 对应参考：本地目录「压缩回弹」
 源码：catalog/effects/history-patterns.js 中的 squash-bounce
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。
 
 使用同一动作定义，设置 `variant_id: "drop"`；目录和相关动作弹窗均可切换。
@@ -96,7 +96,7 @@
 明确排除：不带原场景、背景、字幕、音频或外围控件。
 对应参考：本地目录「压缩回弹」
 源码：catalog/effects/history-nature.js 中的 sunset-sun-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底；原物件完整等比置入，居中稍上，下方为播放条留出空间；不裁切猫耳、车轮、翼缘或圆周。
 
 使用同一动作定义，设置 `variant_id: "sunset-sun"`；目录和相关动作弹窗均可切换。

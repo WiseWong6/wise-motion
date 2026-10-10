@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function(global){global.WiseSceneSources.ink=function(S,opt){with(S.env){const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 const mix = (a, b, f) => a + (b - a) * f;
 function createProjectionGeometry(grid, width = 224, halfWidth = 1.2) {

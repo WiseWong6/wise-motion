@@ -16,7 +16,7 @@
 明确排除：不替换为横条，不把空心柱涂成实心块，不让底线随生长移动。
 对应参考：本地目录「柱条依次长高」
 源码：catalog/effects/data-motion.js 中的 bar-growth
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：依据本机 PPT 升级配色视频第二页的任务基准柱图与 barPrepared 提取；保留六项得分、克莱因蓝重点、细线和排线。移除场景等待、页壳与外围文稿，使用目录横向画幅、统一底色和正文细体。数据仅作原式演示。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [自编源码](../../catalog/effects/data-motion.js)，注册名称：`bar-growth`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 

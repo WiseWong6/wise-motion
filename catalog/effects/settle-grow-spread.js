@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 落定蔓生：种子落定、局部萌发与向外传播为一条连续动作。
  * 原造型、固定分布、释放位置、茎叶花曲线及 journey-grass.js 的纸纹草场均随本文件提供；无原工程或媒体依赖。 */
 (function(global){

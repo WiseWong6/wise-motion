@@ -16,7 +16,7 @@
 明确排除：不要换一个对象或改变轮廓冒充变色。
 对应参考：本地目录「平滑换色」
 源码：catalog/effects/history-patterns.js 中的 color-evolve
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/history-patterns.js)，注册名称：`color-evolve`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

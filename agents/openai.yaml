@@ -1,6 +1,6 @@
 interface:
   display_name: "Wise Motion"
-  short_description: "理解动作需求，匹配动效参考并交付源码与接入说明"
+  short_description: "理解动作需求，拆解并匹配动效参考，按需交付源码与接入说明"
   default_prompt: "使用 $wise-motion，拆解我的动作需求，匹配参考，说明覆盖与缺口，并按需导出源码。"
 policy:
   allow_implicit_invocation: false

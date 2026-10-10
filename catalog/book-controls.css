@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 .book-modes,.book-navigation{display:flex;align-items:center;gap:6px}
 .book-modes .btn{flex:1}
 .book-navigation{justify-content:space-between;margin-top:14px}

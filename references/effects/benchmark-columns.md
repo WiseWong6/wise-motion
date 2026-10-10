@@ -16,7 +16,7 @@
 明确排除：不添加顶部页号、大标题、标题下划线、页壳、推广字幕或源场景背景；不与竖向柱图及分列讲解合并。
 对应参考：本地目录「数据分栏对比」
 源码：catalog/effects/data-motion.js 中的 benchmark-columns
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：依据本机 Naive-NO.5-Flash 正本 Benchmarks.tsx、benchmarks.json 与 draw.tsx 提取三栏图表正文；使用原图示例数值及字形角色，不作为当前模型评测结论。移除 PlateTitle、页号、外围背景和文稿，只将正文整体缩为三分之一并居中；统一舞台底色，正文保持细体。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/data-motion.js)，注册名称：`benchmark-columns`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

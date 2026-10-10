@@ -16,7 +16,7 @@
 明确排除：不改成往返，不替换为指针点击按钮的动作。
 对应参考：本地目录「游标扫描节点」
 源码：catalog/effects/reel-grit-key.js 中的 timeline-keyframe-playhead
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：依据本机 Claude 动效演进史源码重写局部；独立时间线整体居中并增加标题栏、刻度区和行距，保持文字比例与关键帧时序，完整组合沿用原布局。纯英文数字使用目录的 Oswald Bold 字体，深浅模式保留此特色画板；不含声音、字幕或其他场景动作。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/reel-grit-key.js)，注册名称：`timeline-keyframe-playhead`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

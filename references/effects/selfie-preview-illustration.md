@@ -16,7 +16,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「我和小葵的自拍预览」
 源码：catalog/effects/scene-selfie.js 中的 selfie-preview-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：手机与人物底图按原1086×1448画板完整绘制；600×820自拍预览整体映入原屏幕四角，保留手机外壳、原位置与比例。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/scene-selfie.js)，注册名称：`selfie-preview-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个插画单图，可作为组合片段的图形素材复用。

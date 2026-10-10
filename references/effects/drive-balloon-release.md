@@ -16,7 +16,7 @@
 明确排除：不瞬移气球，不统一同时释放，不让绳尾凭空消失，不带音效。
 对应参考：本地目录「逐个松脱飘离」
 源码：catalog/effects/history-nature.js 中的 drive-balloon-release
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：取原气球释放第零至八秒，背景透明，保留车尾锚点关系；不带道路纹理与外围控件。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/history-nature.js)，注册名称：`drive-balloon-release`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 直接迁入原敞篷车绘制、trackedBalloonState、trackedBalloonString、release 与 drawBalloon；将原 p5 曲线绘制转为矢量路径，保持原绝对时间。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 直接迁入原敞篷车绘制、trackedBalloonState、trackedBalloonString、release 与 drawBalloon；将原 p5 曲线绘制转为矢量路径，保持原绝对时间。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

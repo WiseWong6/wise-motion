@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 @font-face{font-family:'LXGW WenKai';src:url('fonts/LXGWWenKai-Regular.woff2') format('woff2');font-style:normal;font-weight:400;font-display:block}
 /* 普通示例参照展示片 56 秒：近黑、暖白细线与少量彩色强调。白天保留色相并调整明度。
    插画保留物件原色；纹理为静态薄层，不增加播放计时或逐帧绘制。 */

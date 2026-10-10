@@ -16,7 +16,7 @@
 明确排除：不加入额外笔尖、刻度、署名、外围光束或整组退场。
 对应参考：本地目录「时间轴依次点亮」
 源码：catalog/effects/data-motion.js 中的 timeline-progress
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：依据本机 claude-showreel-2026/reel.js 的片尾时间线（原片 54–57 秒，56 秒可见画面）重写独立结构。保留原七个年份与彩色节点、轻弹建立、暖白推进线及减速节拍；不含原片后续署名与下移镜头。白天仅调整底色、文字、灰线和最后一个浅色节点的对比。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [自编源码](../../catalog/effects/data-motion.js)，注册名称：`timeline-progress`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 

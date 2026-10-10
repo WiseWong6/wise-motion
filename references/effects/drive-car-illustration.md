@@ -16,7 +16,7 @@
 明确排除：不带原场景、背景、字幕、音频或外围控件。
 对应参考：本地目录「小葵敞篷车」；所用动作：轮子随行程转动
 源码：catalog/effects/history-nature.js 中的 drive-car-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底，跟车取景固定横向中心；车轮仍按原行程转动，车身保留原竖向轻微起伏。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/history-nature.js)，注册名称：`drive-car-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 直接复用 drawXiaokuiCar、driveDistance、vehicleBob，恢复真实时间和行程；独立跟车取景仅移除背景和气球。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 直接复用 drawXiaokuiCar、driveDistance、vehicleBob，恢复真实时间和行程；独立跟车取景仅移除背景和气球。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[轮子随行程转动](rolling-distance.md)。

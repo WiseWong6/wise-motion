@@ -16,7 +16,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [原码提取与接入源码](../../catalog/effects/scene-osmanthus.js)，注册名称：`osmanthus-symbol-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[按轮廓触地回弹](shape-contact-rebound.md)。
 
@@ -52,7 +52,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "gold-crescent-solid"`；目录和相关动作弹窗均可切换。
@@ -74,7 +74,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "silver-crescent-solid"`；目录和相关动作弹窗均可切换。
@@ -96,7 +96,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "gold-crescent-outline"`；目录和相关动作弹窗均可切换。
@@ -118,7 +118,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "silver-crescent-outline"`；目录和相关动作弹窗均可切换。
@@ -140,7 +140,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "gold-slim-solid"`；目录和相关动作弹窗均可切换。
@@ -162,7 +162,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "silver-slim-solid"`；目录和相关动作弹窗均可切换。
@@ -184,7 +184,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "gold-slim-outline"`；目录和相关动作弹窗均可切换。
@@ -206,7 +206,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "silver-slim-outline"`；目录和相关动作弹窗均可切换。
@@ -228,7 +228,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "gold-five-solid"`；目录和相关动作弹窗均可切换。
@@ -250,7 +250,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "silver-five-solid"`；目录和相关动作弹窗均可切换。
@@ -272,7 +272,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "gold-five-outline"`；目录和相关动作弹窗均可切换。
@@ -294,7 +294,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "silver-five-outline"`；目录和相关动作弹窗均可切换。
@@ -316,7 +316,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "gold-four-solid"`；目录和相关动作弹窗均可切换。
@@ -338,7 +338,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "silver-four-solid"`；目录和相关动作弹窗均可切换。
@@ -360,7 +360,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "gold-four-outline"`；目录和相关动作弹窗均可切换。
@@ -382,7 +382,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "silver-four-outline"`；目录和相关动作弹窗均可切换。
@@ -404,7 +404,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "gold-cross"`；目录和相关动作弹窗均可切换。
@@ -426,7 +426,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "silver-cross"`；目录和相关动作弹窗均可切换。
@@ -448,7 +448,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "gold-cross-diagonal"`；目录和相关动作弹窗均可切换。
@@ -470,7 +470,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "silver-cross-diagonal"`；目录和相关动作弹窗均可切换。
@@ -492,7 +492,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "gold-leaf-solid"`；目录和相关动作弹窗均可切换。
@@ -514,7 +514,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「金银掉落符号」；所用动作：按轮廓触地回弹
 源码：catalog/effects/scene-osmanthus.js 中的 osmanthus-symbol-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 使用同一动作定义，设置 `variant_id: "silver-leaf-solid"`；目录和相关动作弹窗均可切换。

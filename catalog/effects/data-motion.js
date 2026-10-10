@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function(global){
 'use strict';
 const F=global.MotionFactories=global.MotionFactories||{};let serial=0;
@@ -729,7 +729,7 @@ reg('data-pulse',make=>{
   };
 });
 // 市界与海岸线数据 © OpenStreetMap contributors，ODbL 1.0。
-// 数据许可与随包经纬度见 vendor/guangdong-map；绘制代码采用 AGPL-3.0-only。
+// 数据许可与随包经纬度见 vendor/guangdong-map；绘制代码采用 Apache-2.0。
 reg('map-paint',make=>{
   // BEGIN GUANGDONG_MAP_DATA
   const regions=[

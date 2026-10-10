@@ -16,7 +16,7 @@
 明确排除：不把整个片段替换为普通遮罩或随机像素溶解，不抹平0.848秒的大黑块快切，不同时清空全部三列，不提前切为平滑圆形球。
 对应参考：本地目录「形态连续重组」
 源码：catalog/effects/material-evolution.js 中的 material-form-chain
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用已精修的书法轮廓、粒子排布、空间结构及透明材质作为固定示例；内容替换需提供相应轮廓、位置与材质输入，专用转场排程保持不变。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [原码提取与接入源码](../../catalog/effects/material-evolution.js)，注册名称：`material-form-chain`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 效果参考 [Kimi K3 开源发布宣传片（open weights）](https://www.youtube.com/watch?v=5GlCGOXUYHg)。
-- 沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 Apache-2.0，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 

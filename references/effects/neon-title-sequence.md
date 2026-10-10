@@ -16,7 +16,7 @@
 明确排除：不把通用缩放、呼吸等相似条目冒充实际组成动作，不恢复已经剔除的字内扫光、扫描纹，不增加声音。
 对应参考：本地目录「金属霓虹文字亮相」；所用动作：条纹太阳升起、透视网格前行、星点错峰闪烁、描边延迟拖影、霓虹闪烁点亮、十字光斑横移、光标跟随打字
 源码：catalog/effects/reel-neon.js 中的 neon-title-sequence
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：按原片10–16秒构图组合，深浅模式保留原霓虹色板与标题艺术字形；新增说明文字按用户规范使用Oswald Bold，原字号、字距、文案和时间保留。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/reel-neon.js)，注册名称：`neon-title-sequence`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[条纹太阳升起](striped-sun-rise.md)、[透视网格前行](perspective-grid-flow.md)、[星点错峰闪烁](star-twinkle.md)、[描边延迟拖影](chrome-outline-echo.md)、[霓虹闪烁点亮](neon-type-flicker.md)、[十字光斑横移](cross-flare-travel.md)、[光标跟随打字](caption-type-caret.md)。

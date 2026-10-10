@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 原宣传片末段的同批粒子公式；聚字轮廓改为本包预存的 WISE MOTION。 */
 (function (global) {
   'use strict';

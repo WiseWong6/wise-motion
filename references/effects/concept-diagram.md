@@ -16,7 +16,7 @@
 明确排除：不要同时点亮全部概念，不把外圈压缩与核心变大混为一段，不将方向箭头误做成完全退场；不带外围页眉、字幕、人物、相机与声音。
 对应参考：本地目录「图解逐段演变」
 源码：catalog/effects/concept-diagram.js 中的 concept-diagram
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：依据本机动效教程 physics.js 的 definitionMotion 与 conceptMotion 提取，两个原案例合并为一个连续可定位的正式条目，分别等比适配横向画板；文字、数字与配色沿用目录。保留当前正本成片的视觉时钟，第二段流动完成后冻结，省去切页前压为一帧的无配音空段。原工程保持只读，不带原作运行器、外围页眉、字幕、人物与声音。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/concept-diagram.js)，注册名称：`concept-diagram`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

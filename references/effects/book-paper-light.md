@@ -16,7 +16,7 @@
 明确排除：不加插画，不重新设计光源或让书本一起转动。
 对应参考：本地目录「纸张光影」
 源码：catalog/effects/dither-book.js 中的 book-paper-light
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：从插画翻页书的自有实现抽取；与完整组合共用实际绘制函数，不复制参考网站的代码或素材。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/dither-book.js)，注册名称：`book-paper-light`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 效果参考 [Amicro · 3D Dither Lab Book](https://amicro.vercel.app/3d)。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

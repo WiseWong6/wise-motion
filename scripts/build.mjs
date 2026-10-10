@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import {readFile, writeFile, mkdir} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
@@ -52,10 +52,10 @@ const sharedImageCopy = `Object.defineProperty(globalThis.MotionRemotionSources,
   if(!globalThis.WiseCivilizationImages)throw new Error('文明聚字的共享图片尚未加载');
   return ${JSON.stringify(sharedImageParts[1])}+JSON.stringify(globalThis.WiseCivilizationImages)+${JSON.stringify(sharedImageParts[3])};
 }});\n`;
-await output('catalog/remotion-sources.js', '/* Generated from registered Remotion source files. AGPL-3.0-only. */\nglobalThis.MotionRemotionSources = ' + JSON.stringify(remotionFiles).replace(/</g, '\\u003c') + ';\n' + sharedImageCopy);
+await output('catalog/remotion-sources.js', '/* Generated from registered Remotion source files. Apache-2.0. */\nglobalThis.MotionRemotionSources = ' + JSON.stringify(remotionFiles).replace(/</g, '\\u003c') + ';\n' + sharedImageCopy);
 const {describe} = createRequire(import.meta.url)('../catalog/matching.js');
 await mkdir(path.join(root, 'references/effects'), {recursive: true});
-await output('catalog/registry-data.js', '/* 自动生成自 registry.json；请修改权威定义后运行 node scripts/build.mjs。AGPL-3.0-only */\nglobalThis.MotionRegistry = ' + JSON.stringify(registry) + ';\n');
+await output('catalog/registry-data.js', '/* 自动生成自 registry.json；请修改权威定义后运行 node scripts/build.mjs。Apache-2.0 */\nglobalThis.MotionRegistry = ' + JSON.stringify(registry) + ';\n');
 // 首屏三个页签数量从正式目录生成。
 const tabKinds=['action','composition','illustration'];
 const tabCounts=Object.fromEntries(tabKinds.map(kind=>[kind,registry.effects.filter(effect=>effect.kind===kind).length]));
@@ -85,7 +85,7 @@ for (const c of registry.categories) {
   index.push('', '## ' + c.name, '', ...(c.description ? [c.description, ''] : []), '| 参考 | 用途与动作 | 行为线索 | 说明 |', '|---|---|---|---|');
   for (const e of registry.effects.filter(x => x.category === c.id)) {
     index.push(`| ${e.name} | ${e.summary} | ${e.aliases.join('、')} | [按需读取](effects/${e.id}.md) |`);
-    const detail = [`# ${e.name}`, '', '以下说明描述现有实现，示例对象、时长和动作结构可按需求修改；以用户明确要求为准。', '', describe(e, {}, registry), '', '## 调整方式', '', `播放速度：${e.parameters.speed.min}–${e.parameters.speed.max} 倍。`, e.parameters.ease ? `速度变化：${e.parameters.ease.options.map(x => ({linear:'匀速',outCubic:'末尾减速',inOutCubic:'平缓加速、减速',inOutSine:'平缓往返',spring:'轻微回弹',outBounce:'回弹缓出',outElastic:'弹性缓出',outSine:'正弦缓出'}[x])).join('、')}。` : e.tempo_note, '', `预览定位：${e.preview_ms} 毫秒。固定演示总长：${e.duration_ms} 毫秒。`, '', '## 源码与使用', '', `- [${e.source.extraction ? "原码提取与接入源码" : "自编源码"}](../../${e.source.path})，${e.source.factory===e.id?"注册名称":"共享绘制入口"}：\`${e.source.factory}\`。`, '- [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。', e.source.reference ? `- ${e.source.reference.credit_prefix || '效果参考'} ${e.source.reference.url ? `[${e.source.reference.name}](${e.source.reference.url})` : e.source.reference.name}${e.source.reference.credit_suffix ? ' ' + e.source.reference.credit_suffix : '。'}` : `- [Anime.js 官方文档](${e.source.reference_url})；使用固定版本 4.5.0 的计时器与速度曲线。`, e.source.extraction ? '- '+e.source.extraction+'许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。' : '- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。', '', e.actions.length ? '所用动作：' + e.actions.map(id => `[${registry.effects.find(x => x.id === id).name}](${id}.md)`).join('、') + '。' : e.kind === 'composition' ? '这是一个组合片段；目录的组合拆解对照原画，相关动作弹窗播放已登记的独立动作。' : e.kind === 'illustration' ? '这是一个插画单图，可作为组合片段的图形素材复用。' : '这是一个单个动作，可在组合片段中复用。', ''];
+    const detail = [`# ${e.name}`, '', '以下说明描述现有实现，示例对象、时长和动作结构可按需求修改；以用户明确要求为准。', '', describe(e, {}, registry), '', '## 调整方式', '', `播放速度：${e.parameters.speed.min}–${e.parameters.speed.max} 倍。`, e.parameters.ease ? `速度变化：${e.parameters.ease.options.map(x => ({linear:'匀速',outCubic:'末尾减速',inOutCubic:'平缓加速、减速',inOutSine:'平缓往返',spring:'轻微回弹',outBounce:'回弹缓出',outElastic:'弹性缓出',outSine:'正弦缓出'}[x])).join('、')}。` : e.tempo_note, '', `预览定位：${e.preview_ms} 毫秒。固定演示总长：${e.duration_ms} 毫秒。`, '', '## 源码与使用', '', `- [${e.source.extraction ? "原码提取与接入源码" : "自编源码"}](../../${e.source.path})，${e.source.factory===e.id?"注册名称":"共享绘制入口"}：\`${e.source.factory}\`。`, '- [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。', e.source.reference ? `- ${e.source.reference.credit_prefix || '效果参考'} ${e.source.reference.url ? `[${e.source.reference.name}](${e.source.reference.url})` : e.source.reference.name}${e.source.reference.credit_suffix ? ' ' + e.source.reference.credit_suffix : '。'}` : `- [Anime.js 官方文档](${e.source.reference_url})；使用固定版本 4.5.0 的计时器与速度曲线。`, e.source.extraction ? '- '+e.source.extraction+'许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。' : '- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。', '', e.actions.length ? '所用动作：' + e.actions.map(id => `[${registry.effects.find(x => x.id === id).name}](${id}.md)`).join('、') + '。' : e.kind === 'composition' ? '这是一个组合片段；目录的组合拆解对照原画，相关动作弹窗播放已登记的独立动作。' : e.kind === 'illustration' ? '这是一个插画单图，可作为组合片段的图形素材复用。' : '这是一个单个动作，可在组合片段中复用。', ''];
     for (const reference of e.source.additional_references||[])detail.push(`补充效果参考：[${reference.name}](${reference.url})。`, '');
     if(!e.variants?.length)detail.push(...contentNotes(e));
     for (const variant of e.variants||[]) {

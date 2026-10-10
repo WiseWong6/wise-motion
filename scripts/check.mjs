@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import {readFile, readdir, stat} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
@@ -9,6 +9,7 @@ import assert from 'node:assert/strict';
 import contentApi from '../catalog/content.js';
 import {resolveEffect} from '../remotion/clock.mjs';
 import {assertLayerBuildCurrent} from './layer-status.mjs';
+import {assertMarkdownLinks} from './document-links.mjs';
 assertLayerBuildCurrent();
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
@@ -25,7 +26,7 @@ for(const [from,to] of Object.entries(data.redirects||{})){
 for(const [from,variant] of Object.entries(data.variant_redirects||{})){
   assert.ok(data.effects.find(e=>e.id===data.redirects[from])?.variants?.some(v=>v.id===variant),'旧书签对应示例缺失：'+from);
 }
-assert.equal(data.license, 'AGPL-3.0-only');
+assert.equal(data.license, 'Apache-2.0');
 for(const effect of data.effects){
   for(const variant of effect.variants||[{}]){
     const definition=resolveEffect(effect.id,variant.id),slots=definition.content_slots||[];
@@ -62,7 +63,7 @@ for (const e of data.effects) {
   assert.equal(typeof e.loop, 'boolean');
   assert.ok(typeof e.source.factory === 'string' && e.source.factory.length, e.id+' 缺少绘制入口');
   assert.equal(e.source.origin, 'original');
-  assert.equal(e.source.license, 'AGPL-3.0-only');
+  assert.equal(e.source.license, 'Apache-2.0');
   assert.equal(e.source.library, 'animejs@4.5.0');
   for(const reference of [e.source.reference,...(e.source.additional_references||[])].filter(Boolean)){
     assert.ok(typeof reference.name==='string'&&reference.name.trim(),e.id+' 缺少参考来源名称');
@@ -151,7 +152,7 @@ assert.equal(createHash('sha256').update(lucideLicense).digest('hex'), lucideSou
 assert.match(lucideLicense.toString(), /ISC License/);
 assert.match(lucideLicense.toString(), /The MIT License \(MIT\)/);
 assert.match(await read('vendor/animejs/LICENSE.md'), /MIT License/);
-assert.match(await read('LICENSE'), /GNU AFFERO GENERAL PUBLIC LICENSE/);
+assert.match(await read('LICENSE'), /Apache License[\s\S]*Version 2\.0, January 2004/);
 assert.match(await read('agents/openai.yaml'), /allow_implicit_invocation:\s*false/);
 const html = await read('catalog/index.html');
 for (const [, tag, resource] of html.matchAll(/<([a-z][\w:-]*)\b[^>]*?\b(?:src|href)="([^"]+)"/gi)) {
@@ -195,6 +196,7 @@ const build = spawnSync(process.execPath, [path.join(root, 'scripts/build.mjs'),
 assert.equal(build.status, 0, build.stderr);
 const audioDocs = (await readdir(path.join(root, 'catalog/assets/composition-audio'), {recursive:true}))
   .filter(file => file.endsWith('.md')).map(file => 'catalog/assets/composition-audio/' + file);
-const markdown = ['README.md','SKILL.md','NOTICE.md','CATALOG-STATS.md','references/index.md','references/history.md','references/method.md','references/sources.md','references/runtime-interface.md','references/material-refinement.md','references/apple-hig.md','tests/manual.md', ...audioDocs, ...data.effects.map(e => 'references/effects/' + e.id + '.md')];
-for (const file of markdown) for (const [, link] of (await read(file)).matchAll(/\]\(([^)]+)\)/g)) if (!/^(https?:|#)/.test(link)) assert.ok((await stat(path.resolve(root, path.dirname(file), link))).isFile(), file + ' 的链接缺失：' + link);
+const referenceDocs = (await readdir(path.join(root, 'references'))).filter(file => file.endsWith('.md')).map(file => 'references/' + file);
+const markdown = ['README.md','SKILL.md','NOTICE.md','CATALOG-STATS.md','REMOTION.md','tests/manual.md', ...referenceDocs, ...audioDocs, ...data.effects.map(e => 'references/effects/' + e.id + '.md')];
+await assertMarkdownLinks(root, markdown);
 console.log(`检查通过：${data.effects.filter(x => x.kind === 'action').length} 个动作、${data.effects.filter(x => x.kind === 'illustration').length} 个插画单图、${data.effects.filter(x => x.kind === 'composition').length} 个组合；定义、关联动作、共享绘制、来源路径、生成文件、许可文件和脚本语法完整。`);

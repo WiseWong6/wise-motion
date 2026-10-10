@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 翻页书在既有画板里切换真实交互与固定演示，不改变其他效果的播放接口。 */
 (function (global) {
   'use strict';

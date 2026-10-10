@@ -16,7 +16,7 @@
 明确排除：不随远近改变大小或透明度，不变成已有的立体卡片环绕，不额外加入图盘自转或字幕。
 对应参考：本地目录「圆点平面绕转」
 源码：catalog/effects/reel-paper.js 中的 planar-dot-orbit
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：从剪纸图盘逐格展开中独立提取并居中，原橙黑奶油配色不变；新增细圆周和中心点仅用于标清轨迹，不参与运动。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/reel-paper.js)，注册名称：`planar-dot-orbit`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

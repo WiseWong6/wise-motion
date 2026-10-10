@@ -42,7 +42,7 @@
         "path": "catalog/effects/dither-book.js",
         "factory": "book-spine-turn",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://amicro.vercel.app/3d",
         "reference": {
@@ -108,7 +108,7 @@
         "path": "catalog/effects/dither-book.js",
         "factory": "book-geometric-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://amicro.vercel.app/3d",
         "reference": {
@@ -218,7 +218,7 @@
         "path": "catalog/effects/dither-book.js",
         "factory": "book-paper-light",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://amicro.vercel.app/3d",
         "reference": {
@@ -303,7 +303,7 @@
       "source": {
         "path": "catalog/effects/geometric-poster.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的印刷几何海报提取原生曲面、弧线、网点、纸纹与固定时钟。组合与独立动作共用绘制；横带间歇闪切复用已有18区、30格固定取值及0.45秒交接，增加几何海报示例；文字裁切升入沿用海报词组示例。字体为包内Oswald Bold，遵循OFL；画面不依赖生成图片、外部素材或来源工程路径。",
@@ -367,11 +367,11 @@
       "source": {
         "path": "catalog/effects/point-domain-flow.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。",
-        "rights_note": "代码按AGPL-3.0-only提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
+        "rights_note": "代码按Apache-2.0提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
         "factory": "point-domain-flow-sequence",
         "reference": {
           "name": "@陈与小金",
@@ -465,7 +465,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "rasengan-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -526,7 +526,7 @@
         "path": "catalog/effects/scene-letter.js",
         "factory": "letter-galaxy-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -606,11 +606,11 @@
       "source": {
         "path": "catalog/effects/material-evolution.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 Apache-2.0，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "material-evolution-sequence",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -618,7 +618,7 @@
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "rights_note": "Apache-2.0仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
         "reference": {
           "name": "Kimi K3 开源发布宣传片（open weights）",
           "url": "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -808,7 +808,7 @@
         "path": "catalog/effects/hud-targeting.js",
         "factory": "hud-acquisition-sequence",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本机第八段的自主绘制框架持续改版；地图使用Natural Earth公共领域国家轮廓，斜距保留原片可读帧采样，不包含原片图片或视频。"
@@ -974,7 +974,7 @@
         "path": "catalog/effects/reel-neon.js",
         "factory": "neon-horizon",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [

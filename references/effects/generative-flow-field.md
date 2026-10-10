@@ -16,7 +16,7 @@
 明确排除：不改成随机抖动，不与点阵位置共用错误坐标；独立展示增强对比时，组合背景仍保留原有淡线层次。
 对应参考：本地目录「流线游动」
 源码：catalog/effects/reel-flat-gen.js 中的 generative-flow-field
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：按本机动效演进史原绘制源码独立实现，原工程只读。独立流线使用目录深浅背景与更清晰的主题紫色，组合仍保留原 16% 紫色背景流线；220 条路径坐标与时钟共用原函数。没有声音、外部视频和网络依赖。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [自编源码](../../catalog/effects/reel-flat-gen.js)，注册名称：`generative-flow-field`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 
@@ -52,7 +52,7 @@
 明确排除：不改成随机抖动，不与点阵位置共用错误坐标；独立展示增强对比时，组合背景仍保留原有淡线层次。
 对应参考：本地目录「流线游动」
 源码：catalog/effects/reel-flat-gen.js 中的 generative-flow-field
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：按本机动效演进史原绘制源码独立实现，原工程只读。独立流线使用目录深浅背景与更清晰的主题紫色，组合仍保留原 16% 紫色背景流线；220 条路径坐标与时钟共用原函数。没有声音、外部视频和网络依赖。
 
 使用同一动作定义，设置 `variant_id: "default"`；目录和相关动作弹窗均可切换。
@@ -74,7 +74,7 @@
 明确排除：去掉图块墙的外围标题、格号、算法标签、边框、镜头推近和声音播放；字符雨与计数器保留图形自身的字符。
 对应参考：本地目录「流线游动」
 源码：catalog/effects/claude-tile-illustrations.js 中的 claude-flow-field-illustration
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：提取本机 Claude 宣传片的原绘制函数，等比居中适配目录画板；中性线条适配明暗主题，橙色保留原色。鼓点和频谱使用原声音分析短窗，不播放声音。
 
 使用同一动作定义，设置 `variant_id: "fixed-streams"`；目录和相关动作弹窗均可切换。

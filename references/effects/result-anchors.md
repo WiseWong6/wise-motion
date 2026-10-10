@@ -16,7 +16,7 @@
 明确排除：不删除图形内部运动，不改为统一图标或相同底板，不添加中文副标题，不使用带尖角的说明气泡。
 对应参考：本地目录「KIMI K3 宣传片复刻」；所用动作：字符雨幕、多轨圆点环绕、起伏地形线、档案盒开盖浮页、手绘折线图卡、散页纸卡、旋转圆环线框、月相照片卡、游动流线
 源码：catalog/effects/paper-showcase.js 中的 result-anchors
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：直接调用当前工作区动效目录的九个原生绘制方法，保留完整形状与内部动作，不另画近似元素；中心标题采用WISE MOTION，删除中文副标题。各图形从目录完整预览时刻继续自身动作，由父页面同一时间轴控制。 本轮仅优化外围呈现：放大原生素材主体，加入石墨深纸、深蓝图版、浅色图纸和蓝晒纸的区别，保留低与高两种贴地投影、纸边、轻微转角及反光；中心标题为带空格的WISE MOTION，使用本地Oswald粗体，等待字体准备后显示。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/paper-showcase.js)，注册名称：`result-anchors`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 复刻自 [Kimi AI · Meet Kimi K3](https://www.youtube.com/watch?v=bn0atstgavo)。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[字符雨幕](claude-glyph-rain-illustration.md)、[多轨圆点环绕](claude-orbits-illustration.md)、[起伏地形线](claude-terrain-illustration.md)、[档案盒开盖浮页](archive-box-illustration.md)、[手绘折线图卡](chart-card-illustration.md)、[散页纸卡](folio-cards-illustration.md)、[旋转圆环线框](torus-illustration.md)、[月相照片卡](moon-card-illustration.md)、[游动流线](claude-flow-field-illustration.md)。

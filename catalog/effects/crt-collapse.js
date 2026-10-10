@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function(F){
   'use strict';
   // 按用户选择恢复前一版：整幅画面压成横线，再缩成亮点熄灭。

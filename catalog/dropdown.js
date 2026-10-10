@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 自定义下拉框。
    打开时把菜单放到页面浮层，避免被侧栏的滚动区域裁切；关闭时归还原位置。
    键盘行为：Enter/Space 打开，方向键移动，Home/End 跳到首尾，Esc 关闭并把焦点还给触发按钮。

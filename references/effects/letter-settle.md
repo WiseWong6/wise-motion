@@ -16,7 +16,7 @@
 明确排除：不要只取一件物品或只演落定瞬间，不在抵达前另处生星，不用随机重新撒点代替原位转化。
 对应参考：本地目录「符号群飞化星点」；所用动作：群体飞行留迹、抵达换形显现、落点错峰闪亮
 源码：catalog/effects/letter-settle.js 中的 letter-settle
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：依据本机星月来信原作，固定一次 126 件物品及银河落点的选取，完整保留物品轮廓、出发时差、飞行控制点、减速曲线、光丝历史位置与落定化星时序。竖幅坐标适配横向画板，造型保持等比；颜色沿用目录。采用矢量轮廓和星芒表现原光效，保留蝴蝶翅膀开合；省去文字水波、银河照片、环境尘点和声音。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/letter-settle.js)，注册名称：`letter-settle`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[群体飞行留迹](symbol-flight-settle.md)、[抵达换形显现](arrival-star-reveal.md)、[落点错峰闪亮](arrival-star-sparkle.md)。

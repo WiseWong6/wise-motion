@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 雨中曲返场：迁入原伞面、编舞与场景绘制，保留原曲线和落地点；不加载音频。 */
 (function(global){
  'use strict';

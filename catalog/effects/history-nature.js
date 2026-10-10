@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 原作几何、事件与光照计算的独立提炼；原月貌来源：NASA/GSFC/Arizona State University。
  * 仅含必要绘制，不加载原工程、页面控件、字体或音频。 */
 (function(global){

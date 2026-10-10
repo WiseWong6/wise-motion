@@ -16,7 +16,7 @@
 明确排除：不要让轮子用独立频率旋转产生打滑。
 对应参考：本地目录「轮子随行程转动」
 源码：catalog/effects/history-patterns.js 中的 rolling-distance
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [自编源码](../../catalog/effects/history-patterns.js)，注册名称：`rolling-distance`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 
@@ -52,7 +52,7 @@
 明确排除：不要让轮子用独立频率旋转产生打滑。
 对应参考：本地目录「轮子随行程转动」
 源码：catalog/effects/history-patterns.js 中的 rolling-distance
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：这是从历史源码提炼的结构示例。对象、时长、字形与数值为演示假设；不复刻原作素材、材质和完整场景。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。
 
 使用同一动作定义，设置 `variant_id: "standard"`；目录和相关动作弹窗均可切换。
@@ -74,7 +74,7 @@
 明确排除：不带原场景、背景、字幕、音频或外围控件。
 对应参考：本地目录「轮子随行程转动」
 源码：catalog/effects/history-nature.js 中的 drive-car-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底，跟车取景固定横向中心；车轮仍按原行程转动，车身保留原竖向轻微起伏。
 
 使用同一动作定义，设置 `variant_id: "drive-car"`；目录和相关动作弹窗均可切换。

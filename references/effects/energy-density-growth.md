@@ -16,7 +16,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「能量流线持续增密」
 源码：catalog/effects/rasengan-illustrations.js 中的 energy-density-growth
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/rasengan-illustrations.js)，注册名称：`energy-density-growth`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 共用原流场绘制，直接从有效轨迹开始并覆盖完整保存区间；保留增密和镜头时序，避免开场与末尾采样越界。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 共用原流场绘制，直接从有效轨迹开始并覆盖完整保存区间；保留增密和镜头时序，避免开场与末尾采样越界。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

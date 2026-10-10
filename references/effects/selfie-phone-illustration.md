@@ -16,7 +16,7 @@
 明确排除：不包含原人物、绿色场景、角色动画、自拍倒计时或屏幕内容。
 对应参考：本地目录「斜放手机」
 源码：catalog/effects/selfie-phone.js 中的 selfie-phone-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：手机由内置图片工具依据原图提炼；机身角度、比例与细节以生成结果为准，采用透明底，不依赖原工程。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/selfie-phone.js)，注册名称：`selfie-phone-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 基于本机「小葵和我的短片」手机与人物原图，使用 Codex 内置图片工具分离手机与透明背景；素材为生成式提炼，非逐像素原图裁切。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 基于本机「小葵和我的短片」手机与人物原图，使用 Codex 内置图片工具分离手机与透明背景；素材为生成式提炼，非逐像素原图裁切。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个插画单图，可作为组合片段的图形素材复用。

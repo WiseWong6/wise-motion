@@ -16,7 +16,7 @@
 明确排除：不重新撒点或随机生成轨迹，不把群飞缩成单个物品，不使用另画的曲线代替真实经过的位置；物品与光丝同时呈现，不加入落点星空或星芒。
 对应参考：本地目录「群体飞行留迹」
 源码：catalog/effects/letter-settle.js 中的 symbol-flight-settle
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：合并群飞与真实光丝两层，共用固定物品数据、位置函数和绘制时钟；创建 126 件物品及 18 条光丝，沿用目录配色。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/letter-settle.js)，注册名称：`symbol-flight-settle`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

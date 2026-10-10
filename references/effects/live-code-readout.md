@@ -16,7 +16,7 @@
 明确排除：不单独给数字设置另一条计数动画，不让进度条与读数脱节，不添加滚动日志、光标或原作没有的语法着色。
 对应参考：本地目录「代码参数联动」
 源码：catalog/effects/live-code-readout.js 中的 live-code-readout
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：从本机 Claude 宣传片右上窗口提取，保留原窗口几何、六行着色器代码、入场和参数时钟。读数采用原作传给形变程序的同帧参数；目录只展示代码窗口，未搬入三维背景、外围标题和声音。字体、字号和颜色沿用目录规范；原工程保持只读。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/live-code-readout.js)，注册名称：`live-code-readout`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

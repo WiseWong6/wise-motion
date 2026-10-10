@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
  * 提取自有驾车原码 exhaustPuffs 与夕阳原码 contrailSegments。
  * 释出位置、相机位置及历史姿态通过函数传入；无需原工程、素材或声音。
  */

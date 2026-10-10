@@ -16,7 +16,7 @@
 明确排除：不把副本替换成模糊影子，不让主字等拖影结束才进入，不把落位后的层间距收为零；不恢复字内扫光。
 对应参考：本地目录「描边延迟拖影」
 源码：catalog/effects/reel-neon.js 中的 chrome-outline-echo
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：依据原片 10–16 秒标题段重写，独立动作保留原文字与位置；字体转成固定轮廓，深浅模式均保留原金属与霓虹配色。省去其他背景动作、扫光和声音。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/reel-neon.js)，注册名称：`chrome-outline-echo`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

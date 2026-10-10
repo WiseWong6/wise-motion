@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 // 顺序与原目录一致；不载入目录、播放器或交互控制，所有画面时间由父组件传入。
 import {FRAME_SCRIPTS} from './frame-scripts.mjs';
 export {FRAME_SCRIPTS};

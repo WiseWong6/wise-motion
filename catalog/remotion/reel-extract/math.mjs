@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 // 原视频公式，改为独立局部时间；不依赖旁白、原工程或网络。
 // Same fixed string hash and Mulberry32 sample as Remotion random(seed).
 // Kept local so the browser painter does not bundle Remotion's media/network runtime.

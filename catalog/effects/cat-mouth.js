@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 小猫加工厂的原猫路径与口型；仅用 SVG 承接原绘图调用，移除外围场景。 */
 (function(global){
  'use strict';

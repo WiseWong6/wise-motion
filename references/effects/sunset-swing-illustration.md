@@ -16,7 +16,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「柔绳与秋千座板」；所用动作：座板入水托举与负重回升
 源码：catalog/effects/scene-ocean.js 中的 sunset-swing-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底；保留原片空载完整展开的长度与座板比例，绳子竖直下垂，整体等比居中；不带太阳、手脚或飞机。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/scene-ocean.js)，注册名称：`sunset-swing-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 复用原 ropeAt、traceRope、swingSeatGeometry 与 drawSwingSeat；采用原片空载完全展开时的长度，独立插画将绳子上端对齐座板侧边中点，呈竖直悬挂。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 复用原 ropeAt、traceRope、swingSeatGeometry 与 drawSwingSeat；采用原片空载完全展开时的长度，独立插画将绳子上端对齐座板侧边中点，呈竖直悬挂。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[座板入水托举与负重回升](seat-water-lift.md)。

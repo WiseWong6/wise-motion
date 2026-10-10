@@ -1,7 +1,7 @@
 {
   "version": 1,
   "title": "Wise Motion",
-  "license": "AGPL-3.0-only",
+  "license": "Apache-2.0",
   "categories": [
     {
       "id": "entrance",
@@ -172,7 +172,7 @@
         "path": "catalog/effects/entrance.js",
         "factory": "fade-rise",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -254,7 +254,7 @@
         "path": "catalog/effects/entrance.js",
         "factory": "scale-in",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -355,7 +355,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "stamp-land",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -416,7 +416,7 @@
         "path": "catalog/effects/entrance.js",
         "factory": "stagger-in",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -509,7 +509,7 @@
         "path": "catalog/effects/entrance.js",
         "factory": "group-expand",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -584,7 +584,7 @@
         "path": "catalog/effects/continuous.js",
         "factory": "seamless-scroll",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -662,7 +662,7 @@
         "path": "catalog/effects/continuous.js",
         "factory": "card-conveyor",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -725,7 +725,7 @@
         "path": "catalog/effects/continuous.js",
         "factory": "curve-path",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -817,7 +817,7 @@
         "path": "catalog/effects/data-comparisons.js",
         "factory": "narrated-count",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -893,7 +893,7 @@
         "path": "catalog/effects/data-comparisons.js",
         "factory": "bezier-editor",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -974,7 +974,7 @@
         "path": "catalog/effects/data-comparisons.js",
         "factory": "motion-compare",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -1053,7 +1053,7 @@
         "path": "catalog/effects/data-comparisons.js",
         "factory": "reduction-dimension",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -1108,7 +1108,7 @@
         "path": "catalog/effects/continuous.js",
         "factory": "orbit",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -1189,7 +1189,7 @@
         "path": "catalog/effects/continuous.js",
         "factory": "float",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -1265,7 +1265,7 @@
         "path": "catalog/effects/attention.js",
         "factory": "count-up",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -1409,7 +1409,7 @@
         "path": "catalog/effects/attention.js",
         "factory": "type-reveal",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -1498,7 +1498,7 @@
         "path": "catalog/effects/attention.js",
         "factory": "word-focus",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -1597,7 +1597,7 @@
         "path": "catalog/effects/attention.js",
         "factory": "focus-zoom",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -1679,7 +1679,7 @@
         "path": "catalog/effects/space.js",
         "factory": "shape-morph",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -1760,7 +1760,7 @@
         "path": "catalog/effects/space.js",
         "factory": "flat-to-volume",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -1841,7 +1841,7 @@
         "path": "catalog/effects/space.js",
         "factory": "card-flip",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -1923,7 +1923,7 @@
         "path": "catalog/effects/space.js",
         "factory": "layout-reorder",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -2006,7 +2006,7 @@
         "path": "catalog/effects/space.js",
         "factory": "column-to-row",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -2091,7 +2091,7 @@
         "path": "catalog/effects/space.js",
         "factory": "layer-expand",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -2168,7 +2168,7 @@
         "path": "catalog/effects/space.js",
         "factory": "paper-tilt",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -2247,7 +2247,7 @@
         "path": "catalog/effects/crt-collapse.js",
         "factory": "crt-collapse",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -2315,7 +2315,7 @@
         "path": "catalog/effects/transition.js",
         "factory": "wipe",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -2402,7 +2402,7 @@
         "path": "catalog/effects/transition.js",
         "factory": "rapid-cut",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -2458,7 +2458,7 @@
             "path": "catalog/effects/transition.js",
             "factory": "rapid-cut",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "dependencies": [
@@ -2524,7 +2524,7 @@
         "path": "catalog/effects/transition.js",
         "factory": "shared-object",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -2610,7 +2610,7 @@
         "path": "catalog/effects/transition.js",
         "factory": "scene-carry",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -2694,7 +2694,7 @@
         "path": "catalog/effects/transition.js",
         "factory": "zoom-transition",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -2775,7 +2775,7 @@
         "path": "catalog/effects/environment.js",
         "factory": "follow",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -2846,7 +2846,7 @@
         "path": "catalog/effects/environment.js",
         "factory": "group-stagger",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -2923,7 +2923,7 @@
         "path": "catalog/effects/compositions.js",
         "factory": "dual-scroll",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -2988,7 +2988,7 @@
         "path": "catalog/effects/flow-bands.js",
         "factory": "dual-scroll-settle",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -3075,7 +3075,7 @@
         "path": "catalog/effects/compositions.js",
         "factory": "subtitle-focus",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -3168,7 +3168,7 @@
         "path": "catalog/effects/compositions.js",
         "factory": "title-content",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -3298,7 +3298,7 @@
         "path": "catalog/effects/compositions.js",
         "factory": "interface-feedback",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -3401,7 +3401,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "rigid-rebound",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -3474,7 +3474,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "vertical-rebound",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -3550,7 +3550,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "mask-stagger-text",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -3636,7 +3636,7 @@
             "path": "catalog/effects/history-patterns.js",
             "factory": "mask-stagger-text",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "dependencies": [
@@ -3694,7 +3694,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "stroke-draw",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -3767,7 +3767,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "heartbeat-follow",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -3840,7 +3840,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "mindmap-grow",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -3913,7 +3913,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "mindmap-follow",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -3977,7 +3977,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "vertical-feed",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -4049,7 +4049,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "scroll-brake",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -4121,7 +4121,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "dwell-carousel",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -4203,7 +4203,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "progress-readout",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -4261,7 +4261,7 @@
             "path": "catalog/effects/history-patterns.js",
             "factory": "progress-readout",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/"
           },
@@ -4308,7 +4308,7 @@
             "path": "catalog/effects/claude-tile-illustrations.js",
             "factory": "claude-frame-counter-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -4391,7 +4391,7 @@
         "path": "catalog/effects/live-code-readout.js",
         "factory": "live-code-readout",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -4447,7 +4447,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "text-decode",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -4520,7 +4520,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "text-edit",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -4605,7 +4605,7 @@
         "path": "catalog/effects/promo-particles.js",
         "factory": "particle-word",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -4709,7 +4709,7 @@
         "path": "catalog/effects/glyph-code-fill.js",
         "factory": "glyph-code-fill",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -4757,7 +4757,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "fragment-replace",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -4840,7 +4840,7 @@
         "path": "catalog/effects/word-slam.js",
         "factory": "word-slam",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -4928,7 +4928,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "page-cover",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -4998,7 +4998,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "stagger-crossfade",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -5069,7 +5069,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "shutter-transition",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -5146,7 +5146,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "pivot-swing",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -5198,7 +5198,7 @@
             "path": "catalog/effects/history-patterns.js",
             "factory": "pivot-swing",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/"
           },
@@ -5246,7 +5246,7 @@
             "path": "catalog/effects/history-nature.js",
             "factory": "dandelion-seed-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "沿用 isolated-player.js 的 seed 调用：半径35、角度sin(t*1.4)*0.16；复用原 floret 的37道冠毛、原线宽和种子轮廓，仅整体居中及等比缩放。",
@@ -5327,7 +5327,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "squash-bounce",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从自有夕阳 sketch.js 提取 SUN_MOTION 与 sunDeformationAt 的三个连续窗口、形变强度、横纵互逆及接触点约束；按目录时钟绘制，无需原工程、p5.js 或素材。另保留原落地弹跳示例。"
@@ -5457,7 +5457,7 @@
             "path": "catalog/effects/history-nature.js",
             "factory": "sunset-sun-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "复用原 sunDeformationAt 的三段形变与 drawSun 的原渐变，按固定底部接触点展示；不带飞机、绳索或海面。",
@@ -5532,7 +5532,7 @@
         "path": "catalog/effects/step-hop.js",
         "factory": "step-hop",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -5609,7 +5609,7 @@
         "path": "catalog/effects/concept-diagram.js",
         "factory": "concept-diagram",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -5672,7 +5672,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "rolling-distance",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -5734,7 +5734,7 @@
             "path": "catalog/effects/history-patterns.js",
             "factory": "rolling-distance",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/"
           },
@@ -5791,7 +5791,7 @@
             "path": "catalog/effects/history-nature.js",
             "factory": "drive-car-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "直接复用 drawXiaokuiCar、driveDistance、vehicleBob，恢复真实时间和行程；独立跟车取景仅移除背景和气球。",
@@ -5859,7 +5859,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "point-morph",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -5931,7 +5931,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "line-converge",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6000,7 +6000,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "event-clock",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6070,7 +6070,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "slider-response",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6142,7 +6142,7 @@
         "path": "catalog/effects/data-motion.js",
         "factory": "data-pulse",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6206,7 +6206,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "wave-grid",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6276,7 +6276,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "local-scan",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6337,7 +6337,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "color-evolve",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6411,7 +6411,7 @@
         "path": "catalog/effects/theme-color-cycle.js",
         "factory": "theme-color-cycle",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6485,7 +6485,7 @@
         "path": "catalog/effects/attention.js",
         "factory": "tone-grow",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6555,7 +6555,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "density-field",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6625,7 +6625,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "dim-focus",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6697,7 +6697,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "staged-build",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6779,7 +6779,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "word-cloud-lift",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6848,7 +6848,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "evidence-icons",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -6926,7 +6926,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "formula-evolve",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -7003,7 +7003,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "experience-progress",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -7090,7 +7090,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "terminal-code",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -7148,7 +7148,7 @@
             "path": "catalog/effects/history-patterns.js",
             "factory": "terminal-code",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/"
           },
@@ -7286,7 +7286,7 @@
             "path": "catalog/effects/kimi-illustrations.js",
             "factory": "terminal-window-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/"
           },
@@ -7471,7 +7471,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "theme-card-layout",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -7540,7 +7540,7 @@
         "path": "catalog/effects/data-motion.js",
         "factory": "countdown-dial",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -7611,7 +7611,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "cylinder-drum",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -7692,7 +7692,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "load-balance",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -7765,7 +7765,7 @@
         "path": "catalog/effects/dither-book.js",
         "factory": "book-spine-turn",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://amicro.vercel.app/3d",
         "reference": {
@@ -7831,7 +7831,7 @@
         "path": "catalog/effects/dither-book.js",
         "factory": "book-geometric-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://amicro.vercel.app/3d",
         "reference": {
@@ -7941,7 +7941,7 @@
         "path": "catalog/effects/dither-book.js",
         "factory": "book-paper-light",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://amicro.vercel.app/3d",
         "reference": {
@@ -8015,7 +8015,7 @@
         "path": "catalog/effects/dither-book.js",
         "factory": "dither-lab-book",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://amicro.vercel.app/3d",
         "reference": {
@@ -8086,7 +8086,7 @@
         "path": "catalog/effects/data-motion.js",
         "factory": "stroke-hatch",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -8159,7 +8159,7 @@
         "path": "catalog/effects/history-patterns.js",
         "factory": "sequential-spec",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -8233,7 +8233,7 @@
         "path": "catalog/effects/data-motion.js",
         "factory": "benchmark-columns",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -8306,7 +8306,7 @@
         "path": "catalog/effects/data-motion.js",
         "factory": "bar-growth",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -8426,7 +8426,7 @@
         "path": "catalog/effects/data-motion.js",
         "factory": "sector-appear",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -8501,7 +8501,7 @@
         "path": "catalog/effects/data-motion.js",
         "factory": "trend-draw",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -8572,7 +8572,7 @@
         "path": "catalog/effects/data-motion.js",
         "factory": "map-paint",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -8650,7 +8650,7 @@
         "path": "catalog/effects/data-motion.js",
         "factory": "timeline-progress",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -8787,7 +8787,7 @@
         "path": "catalog/effects/data-motion.js",
         "factory": "dimension-line",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -8863,7 +8863,7 @@
         "path": "catalog/effects/data-motion.js",
         "factory": "ruler-ticks",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -8938,7 +8938,7 @@
         "path": "catalog/effects/data-motion.js",
         "factory": "leader-callout",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9006,7 +9006,7 @@
         "path": "catalog/effects/data-motion.js",
         "factory": "gauge-rebound",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9083,7 +9083,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "animal-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9152,7 +9152,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "venturi-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9221,7 +9221,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "attention-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9290,7 +9290,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "heads-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9358,7 +9358,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "stage-merge-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9427,7 +9427,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "torus-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9496,7 +9496,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "dot-route-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9565,7 +9565,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "paper-scroll-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9645,7 +9645,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "steel-ruler-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_files": [
@@ -9712,7 +9712,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "smoke-ring-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9783,7 +9783,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "vortex-ring-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9854,7 +9854,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "mushroom-cloud-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9925,7 +9925,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "hill-vortex-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -9996,7 +9996,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "cyclone-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -10067,7 +10067,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "spiral-galaxy-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -10137,7 +10137,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "rasengan-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -10207,7 +10207,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "lightning-orb-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -10274,7 +10274,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "moon-card-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -10343,7 +10343,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "drafting-tools-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -10413,7 +10413,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "archive-folder-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -10479,7 +10479,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "folio-cards-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -10548,7 +10548,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "chart-card-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -10615,7 +10615,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "aperture-eye-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -10685,7 +10685,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "terminal-window-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -10756,7 +10756,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "archive-box-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -10795,7 +10795,7 @@
       "source": {
         "path": "catalog/effects/reel-opening.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "factory": "char-color-cycle"
@@ -10872,7 +10872,7 @@
       "source": {
         "path": "catalog/effects/reel-opening.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "factory": "letter-hole-zoom"
@@ -10991,7 +10991,7 @@
         "path": "catalog/effects/reel-paper.js",
         "factory": "paper-strip-stagger",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -11057,7 +11057,7 @@
         "path": "catalog/effects/reel-paper.js",
         "factory": "spiral-draw-spin",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -11122,7 +11122,7 @@
         "path": "catalog/effects/reel-paper.js",
         "factory": "planar-dot-orbit",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -11180,7 +11180,7 @@
         "path": "catalog/effects/reel-paper.js",
         "factory": "paper-spiral-sequence",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [
@@ -11297,7 +11297,7 @@
         "path": "catalog/effects/radial-branch-flow.js",
         "factory": "radial-branch-flow",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -11367,7 +11367,7 @@
         "path": "catalog/effects/rect-wave-field.js",
         "factory": "rect-wave-field",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -11435,7 +11435,7 @@
         "path": "catalog/effects/letter-ripple.js",
         "factory": "letter-ripple",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -11507,7 +11507,7 @@
         "path": "catalog/effects/letter-settle.js",
         "factory": "letter-settle",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -11587,7 +11587,7 @@
         "path": "catalog/effects/reel-neon.js",
         "factory": "striped-sun-rise",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -11653,7 +11653,7 @@
         "path": "catalog/effects/reel-neon.js",
         "factory": "perspective-grid-flow",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -11717,7 +11717,7 @@
         "path": "catalog/effects/reel-neon.js",
         "factory": "star-twinkle",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -11733,7 +11733,7 @@
             "path": "catalog/effects/reel-neon.js",
             "factory": "star-twinkle",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/"
           }
@@ -11748,11 +11748,11 @@
           "source": {
             "path": "catalog/effects/point-domain-flow.js",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。",
-            "rights_note": "代码按AGPL-3.0-only提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
+            "rights_note": "代码按Apache-2.0提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
             "factory": "star-twinkle",
             "dependencies": [
               "catalog/effects/reel-neon.js"
@@ -11843,7 +11843,7 @@
         "path": "catalog/effects/reel-neon.js",
         "factory": "neon-horizon",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [
@@ -11923,7 +11923,7 @@
         "path": "catalog/effects/door-halftone.js",
         "factory": "door-halftone-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "graphic_license": "OFL-1.1",
@@ -12005,7 +12005,7 @@
         "path": "catalog/effects/reel-neon.js",
         "factory": "chrome-outline-echo",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -12071,7 +12071,7 @@
         "path": "catalog/effects/reel-neon.js",
         "factory": "neon-type-flicker",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -12138,7 +12138,7 @@
         "path": "catalog/effects/reel-neon.js",
         "factory": "caption-type-caret",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -12218,7 +12218,7 @@
         "path": "catalog/effects/reel-neon.js",
         "factory": "neon-title-sequence",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [
@@ -12316,7 +12316,7 @@
         "path": "catalog/effects/reel-neon.js",
         "factory": "cross-flare-travel",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -12382,7 +12382,7 @@
         "path": "catalog/effects/reel-transitions.js",
         "factory": "iris-open-transition",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -12446,7 +12446,7 @@
             "path": "catalog/effects/reel-transitions.js",
             "factory": "iris-open-transition",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "dependencies": [
@@ -12476,7 +12476,7 @@
             "path": "catalog/effects/reel-transitions.js",
             "factory": "iris-open-transition",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "dependencies": [
@@ -12511,7 +12511,7 @@
             "path": "catalog/effects/reel-transitions.js",
             "factory": "iris-open-transition",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "dependencies": [
@@ -12587,7 +12587,7 @@
         "path": "catalog/effects/reel-transitions.js",
         "factory": "slat-alternate-transition",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -12653,7 +12653,7 @@
         "path": "catalog/effects/reel-transitions.js",
         "factory": "glitch-band-transition",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -12702,7 +12702,7 @@
             "path": "catalog/effects/reel-transitions.js",
             "factory": "glitch-band-transition",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "dependencies": [
@@ -12776,7 +12776,7 @@
         "path": "catalog/effects/reel-transitions.js",
         "factory": "radial-flash-transition",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -12840,7 +12840,7 @@
         "path": "catalog/effects/reel-transitions.js",
         "factory": "tile-wave-transition",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -12904,7 +12904,7 @@
         "path": "catalog/effects/reel-transitions.js",
         "factory": "diagonal-edge-transition",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -12968,7 +12968,7 @@
         "path": "catalog/effects/reel-transitions.js",
         "factory": "pixel-dissolve-transition",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -13032,7 +13032,7 @@
         "path": "catalog/effects/reel-transitions.js",
         "factory": "iris-flash-transition",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -13101,7 +13101,7 @@
         "path": "catalog/effects/reel-grit-key.js",
         "factory": "frame-jitter-type",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -13166,7 +13166,7 @@
         "path": "catalog/effects/reel-grit-key.js",
         "factory": "ghost-type-overprint",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -13231,7 +13231,7 @@
         "path": "catalog/effects/reel-grit-key.js",
         "factory": "film-scratch-flicker",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -13298,7 +13298,7 @@
         "path": "catalog/effects/reel-grit-key.js",
         "factory": "panel-rise-collapse",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -13371,7 +13371,7 @@
         "path": "catalog/effects/reel-grit-key.js",
         "factory": "ball-bounce-trails",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -13438,7 +13438,7 @@
         "path": "catalog/effects/reel-grit-key.js",
         "factory": "timeline-keyframe-playhead",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -13503,7 +13503,7 @@
         "path": "catalog/effects/reel-grit-key.js",
         "factory": "shape-pop-float",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -13575,7 +13575,7 @@
         "path": "catalog/effects/reel-grit-key.js",
         "factory": "keyframe-workbench",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -13717,7 +13717,7 @@
         "path": "catalog/effects/reel-flat-gen.js",
         "factory": "tile-round-wave",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -13780,7 +13780,7 @@
         "path": "catalog/effects/reel-flat-gen.js",
         "factory": "material-phone-rise",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -13854,7 +13854,7 @@
         "path": "catalog/effects/reel-flat-gen.js",
         "factory": "material-card-stagger",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -13928,7 +13928,7 @@
         "path": "catalog/effects/reel-flat-gen.js",
         "factory": "material-switch-spring",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -14001,7 +14001,7 @@
         "path": "catalog/effects/reel-flat-gen.js",
         "factory": "material-spinner-arc",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -14076,7 +14076,7 @@
         "path": "catalog/effects/reel-flat-gen.js",
         "factory": "material-like-pop",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -14151,7 +14151,7 @@
         "path": "catalog/effects/reel-flat-gen.js",
         "factory": "material-fab-panel",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -14228,7 +14228,7 @@
         "path": "catalog/effects/reel-flat-gen.js",
         "factory": "generative-point-morph",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -14290,7 +14290,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "tile-wall-focus",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -14372,7 +14372,7 @@
         "path": "catalog/effects/reel-flat-gen.js",
         "factory": "generative-flow-field",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -14409,7 +14409,7 @@
             "path": "catalog/effects/reel-flat-gen.js",
             "factory": "generative-flow-field",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/"
           },
@@ -14449,7 +14449,7 @@
             "path": "catalog/effects/claude-tile-illustrations.js",
             "factory": "claude-flow-field-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -14515,7 +14515,7 @@
         "path": "catalog/effects/math-formula-drift.js",
         "factory": "math-formula-drift",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -14606,7 +14606,7 @@
         "path": "catalog/effects/reel-flat-gen.js",
         "factory": "title-stagger",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -14776,7 +14776,7 @@
         "path": "catalog/effects/reel-flat-gen.js",
         "factory": "material-phone-sequence",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -14935,7 +14935,7 @@
         "path": "catalog/effects/reel-flat-gen.js",
         "factory": "generative-frame-readout",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -15005,7 +15005,7 @@
         "path": "catalog/effects/reel-flat-gen.js",
         "factory": "generative-point-sequence",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [
@@ -15117,7 +15117,7 @@
         "path": "catalog/effects/reel-prompt-outro.js",
         "factory": "prompt-border-trace",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -15185,7 +15185,7 @@
         "path": "catalog/effects/reel-prompt-outro.js",
         "factory": "prompt-chinese-type",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -15264,7 +15264,7 @@
         "path": "catalog/effects/reel-prompt-outro.js",
         "factory": "prompt-char-gather",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -15343,7 +15343,7 @@
         "path": "catalog/effects/reel-prompt-outro.js",
         "factory": "send-press-ring",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -15411,7 +15411,7 @@
         "path": "catalog/effects/reel-prompt-outro.js",
         "factory": "prompt-ui-push",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -15483,7 +15483,7 @@
         "path": "catalog/effects/reel-prompt-outro.js",
         "factory": "core-ring-expand",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -15550,7 +15550,7 @@
         "path": "catalog/effects/reel-prompt-outro.js",
         "factory": "radial-line-burst",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -15616,7 +15616,7 @@
         "path": "catalog/effects/reel-prompt-outro.js",
         "factory": "timeline-dock-down",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -15686,7 +15686,7 @@
         "path": "catalog/effects/reel-prompt-outro.js",
         "factory": "color-segment-stagger",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -15760,7 +15760,7 @@
         "path": "catalog/effects/reel-prompt-outro.js",
         "factory": "prompt-to-core-sequence",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [
@@ -15871,7 +15871,7 @@
         "path": "catalog/effects/reel-prompt-outro.js",
         "factory": "outro-recap-sequence",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [
@@ -15953,7 +15953,7 @@
         "path": "catalog/effects/compositions.js",
         "factory": "subtitle-cell-focus",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -16035,7 +16035,7 @@
         "path": "catalog/effects/compositions.js",
         "factory": "subtitle-block-shift",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -16108,7 +16108,7 @@
         "path": "catalog/effects/compositions.js",
         "factory": "button-press-status",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -16196,7 +16196,7 @@
         "path": "catalog/effects/compositions.js",
         "factory": "progress-fill-exit",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -16283,7 +16283,7 @@
         "path": "catalog/effects/reel-paper.js",
         "factory": "paper-disc-pop",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -16348,7 +16348,7 @@
         "path": "catalog/effects/reel-paper.js",
         "factory": "paper-title-stagger",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -16413,7 +16413,7 @@
         "path": "catalog/effects/reel-prompt-outro.js",
         "factory": "outro-credit-lift",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -16475,7 +16475,7 @@
         "path": "catalog/effects/radial-branch-flow.js",
         "factory": "center-ripple-emit",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -16548,7 +16548,7 @@
         "path": "catalog/effects/letter-settle.js",
         "factory": "symbol-flight-settle",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -16610,7 +16610,7 @@
         "path": "catalog/effects/letter-settle.js",
         "factory": "arrival-star-reveal",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -16673,7 +16673,7 @@
         "path": "catalog/effects/letter-settle.js",
         "factory": "arrival-star-sparkle",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       }
@@ -16725,7 +16725,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-lissajous-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -16797,7 +16797,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-wireframe-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -16867,7 +16867,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-flow-field-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -16941,7 +16941,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-pendulum-wave-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17013,7 +17013,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-phyllotaxis-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17085,7 +17085,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-kick-rings-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17157,7 +17157,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-spectrum-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17232,7 +17232,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-warp-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17304,7 +17304,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-sine-grid-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17376,7 +17376,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-fractal-tree-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17446,7 +17446,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-glyph-rain-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17517,7 +17517,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-hex-pulse-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17589,7 +17589,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-orbits-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17661,7 +17661,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-terrain-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17731,7 +17731,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-plexus-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17802,7 +17802,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-frame-counter-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17853,11 +17853,11 @@
       "source": {
         "path": "catalog/effects/material-evolution.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 Apache-2.0，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "brush-glyph-build",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -17865,7 +17865,7 @@
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "rights_note": "Apache-2.0仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
         "reference": {
           "name": "Kimi K3 开源发布宣传片（open weights）",
           "url": "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -17944,11 +17944,11 @@
       "source": {
         "path": "catalog/effects/material-evolution.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 Apache-2.0，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "glyph-bar-collapse",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -17956,7 +17956,7 @@
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "rights_note": "Apache-2.0仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
         "reference": {
           "name": "Kimi K3 开源发布宣传片（open weights）",
           "url": "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18040,11 +18040,11 @@
       "source": {
         "path": "catalog/effects/material-evolution.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 Apache-2.0，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "dots-lines-cylinders",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18052,7 +18052,7 @@
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "rights_note": "Apache-2.0仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
         "reference": {
           "name": "Kimi K3 开源发布宣传片（open weights）",
           "url": "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18137,11 +18137,11 @@
       "source": {
         "path": "catalog/effects/material-evolution.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 Apache-2.0，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "material-form-chain",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18149,7 +18149,7 @@
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "rights_note": "Apache-2.0仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
         "reference": {
           "name": "Kimi K3 开源发布宣传片（open weights）",
           "url": "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18233,11 +18233,11 @@
       "source": {
         "path": "catalog/effects/material-evolution.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 Apache-2.0，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "spheres-material-merge",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18245,7 +18245,7 @@
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "rights_note": "Apache-2.0仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
         "reference": {
           "name": "Kimi K3 开源发布宣传片（open weights）",
           "url": "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18329,11 +18329,11 @@
       "source": {
         "path": "catalog/effects/material-evolution.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 Apache-2.0，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "atlas-reveal-clear",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18341,7 +18341,7 @@
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "rights_note": "Apache-2.0仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
         "reference": {
           "name": "Kimi K3 开源发布宣传片（open weights）",
           "url": "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18426,11 +18426,11 @@
       "source": {
         "path": "catalog/effects/material-evolution.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 Apache-2.0，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "glyph-cut-ending",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18438,7 +18438,7 @@
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "rights_note": "Apache-2.0仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
         "reference": {
           "name": "Kimi K3 开源发布宣传片（open weights）",
           "url": "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18530,11 +18530,11 @@
       "source": {
         "path": "catalog/effects/material-evolution.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [],
-        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 AGPL-3.0-only，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
+        "extraction": "沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 Apache-2.0，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。",
         "factory": "material-evolution-sequence",
         "assets": [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18542,7 +18542,7 @@
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        "rights_note": "AGPL-3.0-only仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
+        "rights_note": "Apache-2.0仅适用于迁入的动画适配程序代码，不覆盖书法、KIMI品牌字形或原片设计；这些图形的相关权利保持归原权利人。三张透明纹理由Codex内置图片工具依据参考画面重建，保留生成素材来源记录，不据此宣称原图形已获重新授权。",
         "reference": {
           "name": "Kimi K3 开源发布宣传片（open weights）",
           "url": "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18703,7 +18703,7 @@
         "path": "catalog/effects/selfie-phone.js",
         "factory": "selfie-phone-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本机「小葵和我的短片」手机与人物原图，使用 Codex 内置图片工具分离手机与透明背景；素材为生成式提炼，非逐像素原图裁切。"
@@ -18765,7 +18765,7 @@
         "path": "catalog/effects/cat-mouth.js",
         "factory": "cat-mouth-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "提取本机「小猫加工厂」cat.js 的原路径、花纹、表情绘制与 timeline.js 的小葵叫声开合曲线；原绘图调用转换为独立 SVG，不依赖原工程、图片或声音。"
@@ -18848,7 +18848,7 @@
         "path": "catalog/effects/encore-dance.js",
         "factory": "encore-hook",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。"
@@ -18912,7 +18912,7 @@
         "path": "catalog/effects/encore-dance.js",
         "factory": "encore-tap",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。"
@@ -18976,7 +18976,7 @@
         "path": "catalog/effects/encore-dance.js",
         "factory": "encore-flight",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。"
@@ -19039,7 +19039,7 @@
         "path": "catalog/effects/encore-dance.js",
         "factory": "encore-tip",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。"
@@ -19103,7 +19103,7 @@
         "path": "catalog/effects/encore-dance.js",
         "factory": "encore-roll",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。"
@@ -19167,7 +19167,7 @@
         "path": "catalog/effects/encore-dance.js",
         "factory": "encore-shed",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接迁入本机「雨中曲 · 返场」umbrella.js、choreography.js、renderer.js 的伞面、编舞与场景绘制；原画布绘图转换为矢量节点，保留原曲线、接触点、水花及历史轨迹，不读取原工程或音频。"
@@ -19217,7 +19217,7 @@
         "path": "catalog/effects/encore-dance.js",
         "factory": "encore-umbrella-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "复用 EncoreDance.sample 与 EncoreUmbrella.draw，恢复完整原编舞；仅移除雨景、水花、倒影和声音。",
@@ -19291,7 +19291,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "moon-event-fill",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接提取金叶化蝶的原月貌数据、lunarPixel、createMoonRaster、paintMoonRaster；原蝴蝶轨迹二分计算出的八十四个抵达区间固定保存，保留事件聚合平均。"
@@ -19356,7 +19356,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "sunset-water-reflection",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接迁入夕阳原暖色配色、sunDeformationAt、flightAt、waveAt、waterFresnel、buildWaterReflection、drawWaterReflection 与 makeSunBrush；只绘制太阳和海面，保留光源路径和法线受光关系。"
@@ -19420,7 +19420,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "drive-balloon-release",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接迁入原敞篷车绘制、trackedBalloonState、trackedBalloonString、release 与 drawBalloon；将原 p5 曲线绘制转为矢量路径，保持原绝对时间。"
@@ -19484,7 +19484,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "dandelion-radial-release",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接提取原蒲公英 openingEvent、openingDisplacement、openingAir、openingPose 和 floret；沿用原独立预览的一点四至二点四秒。"
@@ -19552,7 +19552,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "osmanthus-moon-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "复用原 moonProgress 与月貌像素绘制，取消固定满月进度，恢复八十四个抵达事件聚合的光照变化。",
@@ -19618,7 +19618,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "sunset-sun-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "复用原 sunDeformationAt 的三段形变与 drawSun 的原渐变，按固定底部接触点展示；不带飞机、绳索或海面。",
@@ -19689,7 +19689,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "forward-boat-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
@@ -19753,7 +19753,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "forward-plane-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
@@ -19818,7 +19818,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "drive-car-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接复用 drawXiaokuiCar、driveDistance、vehicleBob，恢复真实时间和行程；独立跟车取景仅移除背景和气球。",
@@ -19892,7 +19892,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "dandelion-subject-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "使用原 subjectPose、entryProgress、filamentState 和 floret，恢复原 flow 中的冠毛展开与转向；仅跟随中心取景。",
@@ -19961,7 +19961,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "dandelion-seed-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "沿用 isolated-player.js 的 seed 调用：半径35、角度sin(t*1.4)*0.16；复用原 floret 的37道冠毛、原线宽和种子轮廓，仅整体居中及等比缩放。",
@@ -20052,7 +20052,7 @@
         "path": "catalog/effects/osmanthus-motion.js",
         "factory": "shape-contact-rebound",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "提取自有八月桂夜的固定零件数据、实际轮廓触地计算、飞行方程与二维材质绘制；无需原工程或 p5.js，不包含树、月面、音频。"
@@ -20123,7 +20123,7 @@
         "path": "catalog/effects/osmanthus-motion.js",
         "factory": "swarm-arc-flight",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "提取自有八月桂夜的固定零件数据、实际轮廓触地计算、飞行方程与二维材质绘制；无需原工程或 p5.js，不包含树、月面、音频。"
@@ -20186,7 +20186,7 @@
         "path": "catalog/effects/settle-grow-spread.js",
         "factory": "settle-grow-spread",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "提取自有蒲公英旅程的固定播种与植株数据、释放位置及完整落定、生长、展叶、开花和传播绘制；恢复原草场背景、固定纸纹、分色细草及风场，按横版画布重排位置并保持物件等比；包内可直接运行，无需原工程或媒体。"
@@ -20267,7 +20267,7 @@
         "path": "catalog/effects/emission-trails.js",
         "factory": "emission-drift",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/drive/scene.js",
@@ -20344,7 +20344,7 @@
         "path": "catalog/effects/emission-trails.js",
         "factory": "advected-trail",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/scenes/ocean-sunset/sketch.js",
@@ -20406,7 +20406,7 @@
         "path": "catalog/effects/hud-targeting.js",
         "factory": "hud-ring-build",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本机第八段的自主绘制框架持续改版；地图使用Natural Earth公共领域国家轮廓，斜距保留原片可读帧采样，不包含原片图片或视频。"
@@ -20466,7 +20466,7 @@
         "path": "catalog/effects/hud-targeting.js",
         "factory": "hud-globe-scan",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本机第八段的自主绘制框架持续改版；地图使用Natural Earth公共领域国家轮廓，斜距保留原片可读帧采样，不包含原片图片或视频。"
@@ -20528,7 +20528,7 @@
         "path": "catalog/effects/hud-targeting.js",
         "factory": "hud-system-boot",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "沿用本机观测界面的绘制框架，将自检列表改为自主编写的面积趋势图；数据为确定性演示值，不包含原片图片或视频。"
@@ -20589,7 +20589,7 @@
         "path": "catalog/effects/hud-targeting.js",
         "factory": "hud-range-readout",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本机第八段的自主绘制框架持续改版；地图使用Natural Earth公共领域国家轮廓，斜距保留原片可读帧采样，不包含原片图片或视频。"
@@ -20654,7 +20654,7 @@
         "path": "catalog/effects/hud-targeting.js",
         "factory": "hud-navigation-bars",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "在本机第八段自主绘制框架上重新设计此数据图，复用现有银白与红色锁定主题；不包含原片图片或视频，新增图形与演示数据不声称逐帧来自原片。"
@@ -20719,7 +20719,7 @@
         "path": "catalog/effects/hud-targeting.js",
         "factory": "hud-radar-sweep",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "在本机第八段自主绘制框架上重新设计此数据图，复用现有银白与红色锁定主题；不包含原片图片或视频，新增图形与演示数据不声称逐帧来自原片。"
@@ -20783,7 +20783,7 @@
         "path": "catalog/effects/hud-targeting.js",
         "factory": "hud-signal-waves",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "在本机第八段自主绘制框架上重新设计此数据图，复用现有银白与红色锁定主题；不包含原片图片或视频，新增图形与演示数据不声称逐帧来自原片。"
@@ -20848,7 +20848,7 @@
         "path": "catalog/effects/hud-targeting.js",
         "factory": "hud-candidate-status",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "沿用本机观测界面的绘制框架，将候选列表改为自主编写的回波热力矩阵；数据为确定性演示值，不包含原片图片或视频。"
@@ -20920,7 +20920,7 @@
         "path": "catalog/effects/hud-targeting.js",
         "factory": "hud-spectrum-bars",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本机第八段的自主绘制框架持续改版；地图使用Natural Earth公共领域国家轮廓，斜距保留原片可读帧采样，不包含原片图片或视频。"
@@ -20954,7 +20954,7 @@
             "path": "catalog/effects/hud-targeting.js",
             "factory": "hud-spectrum-bars",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "从本机第八段自主绘制源码提取并中文化；地图几何为Natural Earth公共领域数据，数值表取自原片可读帧，不包含原片图片或视频。"
@@ -20995,7 +20995,7 @@
             "path": "catalog/effects/claude-tile-illustrations.js",
             "factory": "claude-spectrum-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -21065,7 +21065,7 @@
         "path": "catalog/effects/hud-targeting.js",
         "factory": "hud-data-stream",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本机第八段的自主绘制框架持续改版；地图使用Natural Earth公共领域国家轮廓，斜距保留原片可读帧采样，不包含原片图片或视频。"
@@ -21126,7 +21126,7 @@
         "path": "catalog/effects/hud-targeting.js",
         "factory": "hud-target-lock",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本机第八段的自主绘制框架持续改版；地图使用Natural Earth公共领域国家轮廓，斜距保留原片可读帧采样，不包含原片图片或视频。"
@@ -21203,7 +21203,7 @@
         "path": "catalog/effects/hud-targeting.js",
         "factory": "hud-acquisition-sequence",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本机第八段的自主绘制框架持续改版；地图使用Natural Earth公共领域国家轮廓，斜距保留原片可读帧采样，不包含原片图片或视频。"
@@ -21357,7 +21357,7 @@
         "path": "catalog/effects/particle-scenes.js",
         "factory": "particle-hopper",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [
@@ -21436,7 +21436,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "seed-shedding-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [],
@@ -21511,7 +21511,7 @@
         "path": "catalog/effects/particle-scenes.js",
         "factory": "note-hop-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [
@@ -21618,7 +21618,7 @@
         "path": "catalog/effects/thread-weave.js",
         "factory": "thread-weave",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_files": [
@@ -21696,7 +21696,7 @@
         "path": "catalog/effects/glass-light.js",
         "factory": "diffuse-light-drift",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从本机玻璃效果精修的自主绘制源码提取；仅采用几何、颜色和时间参数，没有原片图片、视频或第三方运行代码。",
@@ -21805,7 +21805,7 @@
         "path": "catalog/effects/glass-light.js",
         "factory": "glass-card-stagger",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从本机玻璃效果精修的自主绘制源码提取；仅采用几何、颜色和时间参数，没有原片图片、视频或第三方运行代码。",
@@ -21869,7 +21869,7 @@
             "path": "catalog/effects/glass-light.js",
             "factory": "glass-card-stagger",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "从本机玻璃效果精修的自主绘制源码提取；仅采用几何、颜色和时间参数，没有原片图片、视频或第三方运行代码。",
@@ -21923,7 +21923,7 @@
             "path": "catalog/effects/glass-light.js",
             "factory": "glass-voice-card-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
@@ -21988,7 +21988,7 @@
             "path": "catalog/effects/glass-light.js",
             "factory": "glass-dialogue-card-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
@@ -22053,7 +22053,7 @@
             "path": "catalog/effects/glass-light.js",
             "factory": "glass-control-card-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
@@ -22118,7 +22118,7 @@
             "path": "catalog/effects/glass-light.js",
             "factory": "glass-music-card-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
@@ -22183,7 +22183,7 @@
             "path": "catalog/effects/glass-light.js",
             "factory": "glass-weather-card-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
@@ -22248,7 +22248,7 @@
             "path": "catalog/effects/glass-light.js",
             "factory": "glass-controls-card-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
@@ -22338,7 +22338,7 @@
         "path": "catalog/effects/glass-light.js",
         "factory": "convex-glass-lens",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从本机玻璃效果精修的自主绘制源码提取；仅采用几何、颜色和时间参数，没有原片图片、视频或第三方运行代码。",
@@ -22432,7 +22432,7 @@
         "path": "catalog/effects/glass-light.js",
         "factory": "glass-interface-sequence",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本项目六张黑银卡、背景、凸泡像素采样和字标绘制重新编排；空间投影、圆角侧壁与镜头交接为自编实现，无第三方媒体。",
@@ -22502,7 +22502,7 @@
         "path": "catalog/effects/glass-light.js",
         "factory": "glass-voice-card-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
@@ -22587,7 +22587,7 @@
         "path": "catalog/effects/glass-light.js",
         "factory": "glass-dialogue-card-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
@@ -22672,7 +22672,7 @@
         "path": "catalog/effects/glass-light.js",
         "factory": "glass-control-card-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
@@ -22757,7 +22757,7 @@
         "path": "catalog/effects/cyanotype.js",
         "factory": "cyanotype",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [
@@ -22935,7 +22935,7 @@
         "path": "catalog/effects/paper-showcase.js",
         "factory": "result-anchors",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -23028,7 +23028,7 @@
         "path": "catalog/effects/paper-showcase.js",
         "factory": "stack-flick",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [
@@ -23102,11 +23102,11 @@
       "source": {
         "path": "catalog/effects/point-domain-flow.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。",
-        "rights_note": "代码按AGPL-3.0-only提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
+        "rights_note": "代码按Apache-2.0提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
         "factory": "coordinate-grid-build",
         "reference": {
           "name": "@陈与小金",
@@ -23184,11 +23184,11 @@
       "source": {
         "path": "catalog/effects/point-domain-flow.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。",
-        "rights_note": "代码按AGPL-3.0-only提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
+        "rights_note": "代码按Apache-2.0提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
         "factory": "coordinate-focus-zoom",
         "reference": {
           "name": "@陈与小金",
@@ -23269,11 +23269,11 @@
       "source": {
         "path": "catalog/effects/point-domain-flow.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。",
-        "rights_note": "代码按AGPL-3.0-only提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
+        "rights_note": "代码按Apache-2.0提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
         "factory": "text-plane-tilt",
         "reference": {
           "name": "@陈与小金",
@@ -23355,11 +23355,11 @@
       "source": {
         "path": "catalog/effects/point-domain-flow.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。",
-        "rights_note": "代码按AGPL-3.0-only提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
+        "rights_note": "代码按Apache-2.0提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
         "factory": "boundary-curve-stop",
         "reference": {
           "name": "@陈与小金",
@@ -23440,11 +23440,11 @@
       "source": {
         "path": "catalog/effects/point-domain-flow.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。",
-        "rights_note": "代码按AGPL-3.0-only提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
+        "rights_note": "代码按Apache-2.0提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
         "factory": "frame-ring-collapse",
         "reference": {
           "name": "@陈与小金",
@@ -23524,11 +23524,11 @@
       "source": {
         "path": "catalog/effects/point-domain-flow.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。",
-        "rights_note": "代码按AGPL-3.0-only提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
+        "rights_note": "代码按Apache-2.0提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
         "factory": "bounded-fibre-grow",
         "reference": {
           "name": "@陈与小金",
@@ -23612,11 +23612,11 @@
       "source": {
         "path": "catalog/effects/point-domain-flow.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。",
-        "rights_note": "代码按AGPL-3.0-only提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
+        "rights_note": "代码按Apache-2.0提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
         "factory": "grid-flow-unfold",
         "reference": {
           "name": "@陈与小金",
@@ -23704,11 +23704,11 @@
       "source": {
         "path": "catalog/effects/point-domain-flow.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。",
-        "rights_note": "代码按AGPL-3.0-only提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
+        "rights_note": "代码按Apache-2.0提供；保留早期光点、网格与夜空绘制的参考沿革，当前黄金矩形递归结构、痛点文字及动作编排由本项目重新设计。",
         "factory": "point-domain-flow-sequence",
         "reference": {
           "name": "@陈与小金",
@@ -23810,7 +23810,7 @@
       "source": {
         "path": "catalog/effects/collage-film.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "factory": "cutout-type-fold"
@@ -23874,7 +23874,7 @@
       "source": {
         "path": "catalog/effects/collage-film.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "factory": "crank-linked-turn",
@@ -23939,7 +23939,7 @@
       "source": {
         "path": "catalog/effects/collage-film.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "factory": "joint-rule-unfold"
@@ -24001,7 +24001,7 @@
       "source": {
         "path": "catalog/effects/collage-film.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "factory": "folded-step-rebound"
@@ -24069,7 +24069,7 @@
       "source": {
         "path": "catalog/effects/collage-film.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "factory": "cutout-stride-leap",
@@ -24135,7 +24135,7 @@
       "source": {
         "path": "catalog/effects/collage-film.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "factory": "scraps-return-layout"
@@ -24219,7 +24219,7 @@
       "source": {
         "path": "catalog/effects/collage-film.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "factory": "collage-film-sequence",
@@ -24294,7 +24294,7 @@
       "source": {
         "path": "catalog/effects/capsule-type.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -24364,7 +24364,7 @@
       "source": {
         "path": "catalog/effects/capsule-type.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的五秒多巴胺配色作品提取自编三维模型、材质、灯光与运动代码；完整组合保留源画面参数，独立动作按真实对象隔离，共用相同绘制函数。没有携带旧复刻素材、参考视频或第三方图形库。 根据后续画面对照，补齐画框外的远景胶囊，并使其淡入暖米色渐变背景。",
@@ -24429,7 +24429,7 @@
       "source": {
         "path": "catalog/effects/capsule-type.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的五秒多巴胺配色作品提取自编三维模型、材质、灯光与运动代码；完整组合保留源画面参数，独立动作按真实对象隔离，共用相同绘制函数。没有携带旧复刻素材、参考视频或第三方图形库。 根据后续画面对照，补齐画框外的远景胶囊，并使其淡入暖米色渐变背景。",
@@ -24494,7 +24494,7 @@
       "source": {
         "path": "catalog/effects/capsule-type.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的五秒多巴胺配色作品提取自编三维模型、材质、灯光与运动代码；完整组合保留源画面参数，独立动作按真实对象隔离，共用相同绘制函数。没有携带旧复刻素材、参考视频或第三方图形库。 根据后续画面对照，补齐画框外的远景胶囊，并使其淡入暖米色渐变背景。",
@@ -24557,7 +24557,7 @@
       "source": {
         "path": "catalog/effects/motion-oasis.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "factory": "tile-ring-unfold",
         "extraction": "从已确认的动效绿洲代码模型中提取独立对象；独立动作与完整组合共用地块、退台建筑、水面绘制及波次计算，不依赖参考视频或本机工程路径。",
@@ -24619,7 +24619,7 @@
       "source": {
         "path": "catalog/effects/motion-oasis.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "factory": "terraced-rise",
         "extraction": "从已确认的动效绿洲代码模型中提取独立对象；独立动作与完整组合共用地块、退台建筑、水面绘制及波次计算，不依赖参考视频或本机工程路径。",
@@ -24683,7 +24683,7 @@
       "source": {
         "path": "catalog/effects/motion-oasis.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "factory": "water-wave-handoff",
         "extraction": "从已确认的动效绿洲代码模型中提取独立对象；独立动作与完整组合共用地块、退台建筑、水面绘制及波次计算，不依赖参考视频或本机工程路径。",
@@ -24754,7 +24754,7 @@
       "source": {
         "path": "catalog/effects/motion-oasis.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "factory": "motion-oasis-sequence",
         "extraction": "从已确认的动效绿洲代码模型中提取独立对象；独立动作与完整组合共用地块、退台建筑、水面绘制及波次计算，不依赖参考视频或本机工程路径。",
@@ -24870,7 +24870,7 @@
       "source": {
         "path": "catalog/effects/geometric-poster.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的印刷几何海报提取原生曲面、弧线、网点、纸纹与固定时钟。组合与独立动作共用绘制；横带间歇闪切复用已有18区、30格固定取值及0.45秒交接，增加几何海报示例；文字裁切升入沿用海报词组示例。字体为包内Oswald Bold，遵循OFL；画面不依赖生成图片、外部素材或来源工程路径。",
@@ -24943,7 +24943,7 @@
       "source": {
         "path": "catalog/effects/geometric-poster.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的印刷几何海报提取原生曲面、弧线、网点、纸纹与固定时钟。组合与独立动作共用绘制；横带间歇闪切复用已有18区、30格固定取值及0.45秒交接，增加几何海报示例；文字裁切升入沿用海报词组示例。字体为包内Oswald Bold，遵循OFL；画面不依赖生成图片、外部素材或来源工程路径。",
@@ -24979,7 +24979,7 @@
       "source": {
         "path": "catalog/effects/metal-impact.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从镀彩金属作品提取自主编写的球体、圆管字形、灯光与运动公式；以固定粒子继承球体颜色、爆散后落到解析字形表面的方式融合粒子汇聚。组合与独立动作共用真实绘制函数，不依赖原演示脚本、参考视频或图片。",
@@ -25057,7 +25057,7 @@
       "source": {
         "path": "catalog/effects/metal-impact.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的镀彩金属作品提取自主编写的球体、圆管字形、灯光与运动公式；水平对撞修正后纳入，组合与独立动作共用真实绘制函数，不依赖原演示脚本、参考视频或图片。",
@@ -25120,7 +25120,7 @@
       "source": {
         "path": "catalog/effects/metal-impact.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从镀彩金属作品提取自主编写的球体、圆管字形、灯光与运动公式；以固定粒子继承球体颜色、爆散后落到解析字形表面的方式融合粒子汇聚。组合与独立动作共用真实绘制函数，不依赖原演示脚本、参考视频或图片。",
@@ -25189,7 +25189,7 @@
       "source": {
         "path": "catalog/effects/metal-impact.js",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的镀彩金属作品提取自主编写的球体、圆管字形、灯光与运动公式；水平对撞修正后纳入，组合与独立动作共用真实绘制函数，不依赖原演示脚本、参考视频或图片。",
@@ -25282,7 +25282,7 @@
         "path": "catalog/effects/seed-bloom-brand.js",
         "factory": "seed-sprout-bloom",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的8.2秒品牌动效提取实际绘制源码。冠毛、气流和蝶翼复用目录自有几何；Outfit Medium字形遵循SIL OFL 1.1。目录播放与Remotion帧组件共用绘制和独立实例，不依赖原工程、视频、图片或联网字体。",
@@ -25364,7 +25364,7 @@
         "path": "catalog/effects/seed-bloom-brand.js",
         "factory": "flock-turn-gather",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的8.2秒品牌动效提取实际绘制源码。冠毛、气流和蝶翼复用目录自有几何；Outfit Medium字形遵循SIL OFL 1.1。目录播放与Remotion帧组件共用绘制和独立实例，不依赖原工程、视频、图片或联网字体。",
@@ -25446,7 +25446,7 @@
         "path": "catalog/effects/seed-bloom-brand.js",
         "factory": "sunbeam-circle-rebound",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的8.2秒品牌动效提取实际绘制源码。冠毛、气流和蝶翼复用目录自有几何；Outfit Medium字形遵循SIL OFL 1.1。目录播放与Remotion帧组件共用绘制和独立实例，不依赖原工程、视频、图片或联网字体。",
@@ -25528,7 +25528,7 @@
         "path": "catalog/effects/seed-bloom-brand.js",
         "factory": "circle-expand-wordmark",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的8.2秒品牌动效提取实际绘制源码。冠毛、气流和蝶翼复用目录自有几何；Outfit Medium字形遵循SIL OFL 1.1。目录播放与Remotion帧组件共用绘制和独立实例，不依赖原工程、视频、图片或联网字体。",
@@ -25619,7 +25619,7 @@
         "path": "catalog/effects/seed-bloom-brand.js",
         "factory": "seed-bloom-brand-sequence",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的8.2秒品牌动效提取实际绘制源码。冠毛、气流和蝶翼复用目录自有几何；Outfit Medium字形遵循SIL OFL 1.1。目录播放与Remotion帧组件共用绘制和独立实例，不依赖原工程、视频、图片或联网字体。",
@@ -25696,7 +25696,7 @@
         "path": "catalog/effects/glass-light.js",
         "factory": "glass-music-card-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
@@ -25781,7 +25781,7 @@
         "path": "catalog/effects/glass-light.js",
         "factory": "glass-weather-card-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
@@ -25866,7 +25866,7 @@
         "path": "catalog/effects/glass-light.js",
         "factory": "glass-controls-card-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。",
@@ -25954,7 +25954,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "animal-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26021,7 +26021,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "venturi-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26088,7 +26088,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "attention-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26155,7 +26155,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "heads-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26220,7 +26220,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "stage-merge-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26287,7 +26287,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "torus-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26353,7 +26353,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "dot-route-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26421,7 +26421,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "paper-scroll-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26490,7 +26490,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "smoke-ring-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26559,7 +26559,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "vortex-ring-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26628,7 +26628,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "mushroom-cloud-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26697,7 +26697,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "hill-vortex-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26765,7 +26765,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "cyclone-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26834,7 +26834,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "spiral-galaxy-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26902,7 +26902,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "rasengan-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -26970,7 +26970,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "lightning-orb-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -27035,7 +27035,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "moon-card-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -27110,7 +27110,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "drafting-tools-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -27158,7 +27158,7 @@
             "path": "catalog/effects/kimi-illustrations.js",
             "factory": "drafting-tools-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/"
           },
@@ -27201,7 +27201,7 @@
             "path": "catalog/effects/kimi-illustrations.js",
             "factory": "folio-cards-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/"
           },
@@ -27263,7 +27263,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "archive-folder-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -27328,7 +27328,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "chart-card-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -27394,7 +27394,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "aperture-eye-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -27461,7 +27461,7 @@
         "path": "catalog/effects/kimi-illustrations.js",
         "factory": "archive-box-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -27537,7 +27537,7 @@
         "path": "catalog/effects/reel-neon.js",
         "factory": "striped-sun-rise",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
@@ -27595,7 +27595,7 @@
         "path": "catalog/effects/door-halftone.js",
         "factory": "door-halftone-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "graphic_license": "OFL-1.1",
@@ -27665,7 +27665,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-lissajous-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -27736,7 +27736,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-wireframe-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -27807,7 +27807,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-pendulum-wave-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -27878,7 +27878,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-phyllotaxis-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -27949,7 +27949,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-kick-rings-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28020,7 +28020,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-warp-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28091,7 +28091,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-sine-grid-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28162,7 +28162,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-fractal-tree-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28231,7 +28231,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-glyph-rain-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28302,7 +28302,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-hex-pulse-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28373,7 +28373,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-orbits-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28444,7 +28444,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-terrain-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28513,7 +28513,7 @@
         "path": "catalog/effects/claude-tile-illustrations.js",
         "factory": "claude-plexus-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_path": "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28580,7 +28580,7 @@
         "path": "catalog/effects/cat-mouth.js",
         "factory": "cat-mouth-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "提取本机「小猫加工厂」cat.js 的原路径、花纹、表情绘制与 timeline.js 的小葵叫声开合曲线；原绘图调用转换为独立 SVG，不依赖原工程、图片或声音。"
@@ -28646,7 +28646,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "forward-boat-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
@@ -28710,7 +28710,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "forward-plane-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "直接复用本包迁入的原绘制函数，仅保留独立物件；原曲线、配色与层次保持。"
@@ -28781,7 +28781,7 @@
         "path": "catalog/effects/history-nature.js",
         "factory": "seed-shedding-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [],
@@ -28853,7 +28853,7 @@
         "path": "catalog/effects/particle-scenes.js",
         "factory": "note-hop-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "assets": [
@@ -28953,7 +28953,7 @@
         "path": "catalog/effects/civilization-growth.js",
         "factory": "cursive-regular-morph",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -29002,7 +29002,7 @@
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码AGPL-3.0-only；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
+        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码Apache-2.0；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
         "remotion": {
           "component": "catalog/remotion/civilization-growth.jsx",
           "export_name": "CivilizationGrowth",
@@ -29061,7 +29061,7 @@
           "width": 1920,
           "height": 1080,
           "fps": 60,
-          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序AGPL-3.0-only，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
+          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序Apache-2.0，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
         }
       },
       "reproduction": {
@@ -29129,7 +29129,7 @@
         "path": "catalog/effects/civilization-growth.js",
         "factory": "glyph-multiply-structure",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -29178,7 +29178,7 @@
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码AGPL-3.0-only；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
+        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码Apache-2.0；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
         "remotion": {
           "component": "catalog/remotion/civilization-growth.jsx",
           "export_name": "CivilizationGrowth",
@@ -29237,7 +29237,7 @@
           "width": 1920,
           "height": 1080,
           "fps": 60,
-          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序AGPL-3.0-only，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
+          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序Apache-2.0，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
         }
       },
       "reproduction": {
@@ -29305,7 +29305,7 @@
         "path": "catalog/effects/civilization-growth.js",
         "factory": "row-flash-transform",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -29354,7 +29354,7 @@
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码AGPL-3.0-only；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
+        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码Apache-2.0；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
         "remotion": {
           "component": "catalog/remotion/civilization-growth.jsx",
           "export_name": "CivilizationGrowth",
@@ -29413,7 +29413,7 @@
           "width": 1920,
           "height": 1080,
           "fps": 60,
-          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序AGPL-3.0-only，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
+          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序Apache-2.0，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
         }
       },
       "reproduction": {
@@ -29481,7 +29481,7 @@
         "path": "catalog/effects/civilization-growth.js",
         "factory": "botanical-grow-bloom",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -29530,7 +29530,7 @@
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码AGPL-3.0-only；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
+        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码Apache-2.0；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
         "remotion": {
           "component": "catalog/remotion/civilization-growth.jsx",
           "export_name": "CivilizationGrowth",
@@ -29589,7 +29589,7 @@
           "width": 1920,
           "height": 1080,
           "fps": 60,
-          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序AGPL-3.0-only，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
+          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序Apache-2.0，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
         }
       },
       "reproduction": {
@@ -29660,7 +29660,7 @@
         "path": "catalog/effects/civilization-growth.js",
         "factory": "motifs-gather-atlas",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -29709,7 +29709,7 @@
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码AGPL-3.0-only；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
+        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码Apache-2.0；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
         "remotion": {
           "component": "catalog/remotion/civilization-growth.jsx",
           "export_name": "CivilizationGrowth",
@@ -29768,7 +29768,7 @@
           "width": 1920,
           "height": 1080,
           "fps": 60,
-          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序AGPL-3.0-only，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
+          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序Apache-2.0，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
         }
       },
       "reproduction": {
@@ -29839,7 +29839,7 @@
         "path": "catalog/effects/civilization-growth.js",
         "factory": "image-particles-wordmark",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "dependencies": [
@@ -29888,7 +29888,7 @@
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码AGPL-3.0-only；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
+        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码Apache-2.0；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
         "remotion": {
           "component": "catalog/remotion/civilization-growth.jsx",
           "export_name": "CivilizationGrowth",
@@ -29947,7 +29947,7 @@
           "width": 1920,
           "height": 1080,
           "fps": 60,
-          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序AGPL-3.0-only，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
+          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序Apache-2.0，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
         }
       },
       "reproduction": {
@@ -30029,7 +30029,7 @@
         "path": "catalog/effects/civilization-growth.js",
         "factory": "civilization-growth-sequence",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -30083,7 +30083,7 @@
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码AGPL-3.0-only；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
+        "extraction": "从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码Apache-2.0；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。",
         "remotion": {
           "component": "catalog/remotion/civilization-growth.jsx",
           "export_name": "CivilizationGrowth",
@@ -30142,7 +30142,7 @@
           "width": 1920,
           "height": 1080,
           "fps": 60,
-          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序AGPL-3.0-only，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
+          "reuse_notes": "640×360逻辑画板以1920×1080画布绘制，保持16:9等比容纳。图片与纸纹、字体、字形轮廓全部内嵌，不读取原项目或联网素材。等待字体及图片解码后按当前帧绘制。\n\n自有程序Apache-2.0，见LICENSE。草书与衬线及Oswald字形遵循SIL OFL；颜体字形遵循GPL-2.0-or-later。素材和各许可见catalog/assets/civilization-growth/SOURCE.json及同目录许可文本；软件包按各自许可使用。"
         }
       },
       "reproduction": {
@@ -30246,7 +30246,7 @@
         "path": "catalog/effects/scene-dandelion.js",
         "factory": "filament-unfold-turn",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "共用原作荷塘和蒲公英主体绘制，背景与冠毛按同一时刻取样；保留独立动作的中心取景、大小和展开时序。",
@@ -30296,7 +30296,7 @@
             "path": "catalog/effects/history-nature.js",
             "factory": "dandelion-subject-illustration",
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "使用原 subjectPose、entryProgress、filamentState 和 floret，恢复原 flow 中的冠毛展开与转向；仅跟随中心取景。",
@@ -30362,7 +30362,7 @@
         "path": "catalog/effects/illustrations.js",
         "factory": "steel-ruler-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "original_files": [
@@ -30432,7 +30432,7 @@
           "catalog/assets/butterfly/SOURCE.json"
         ],
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "保留已确认的透明图集、四片翅膀的固定翼根、触角曲线及六秒运动公式。目录插画、关联动作与逐帧组件共用同一绘制程序；视频通过参数保留原画幅和配色。"
@@ -30516,7 +30516,7 @@
           "catalog/assets/butterfly/SOURCE.json"
         ],
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "保留已确认的透明图集、四片翅膀的固定翼根、触角曲线及六秒运动公式。目录插画、关联动作与逐帧组件共用同一绘制程序；视频通过参数保留原画幅和配色。 鼠尾草绿版本复用用户介绍视频的原透明图集，作为独立插画收录，沿用现有运动与取景。"
@@ -30601,7 +30601,7 @@
           "catalog/assets/butterfly/SOURCE.json"
         ],
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "保留已确认的透明图集、四片翅膀的固定翼根、触角曲线及六秒运动公式。目录插画、关联动作与逐帧组件共用同一绘制程序；视频通过参数保留原画幅和配色。"
@@ -30648,7 +30648,7 @@
               "catalog/assets/butterfly/SOURCE.json"
             ],
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "extraction": "保留已确认的透明图集、四片翅膀的固定翼根、触角曲线及六秒运动公式。目录插画、关联动作与逐帧组件共用同一绘制程序；视频通过参数保留原画幅和配色。 鼠尾草绿版本复用用户介绍视频的原透明图集，仅新增配色选项，沿用现有运动与取景。"
@@ -30700,7 +30700,7 @@
         "path": "catalog/effects/scene-dandelion.js",
         "factory": "landscape-boundary-carry",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -30780,7 +30780,7 @@
         "path": "catalog/effects/scene-dandelion.js",
         "factory": "passage-animal-response",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "合并动物相遇回应和伴飞绕行，共用原作完整地景、主体蒲公英和原时间关系。",
@@ -30916,7 +30916,7 @@
         "path": "catalog/effects/scene-dandelion.js",
         "factory": "journey-landscape-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -31072,7 +31072,7 @@
         "path": "catalog/effects/scene-dandelion.js",
         "factory": "journey-lotus-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -31183,7 +31183,7 @@
         "path": "catalog/effects/scene-dandelion.js",
         "factory": "journey-pond-animal-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -31324,7 +31324,7 @@
         "path": "catalog/effects/scene-dandelion.js",
         "factory": "journey-air-animal-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -31467,7 +31467,7 @@
         "path": "catalog/effects/scene-dandelion.js",
         "factory": "journey-flower-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -31547,7 +31547,7 @@
         "path": "catalog/effects/scene-dandelion.js",
         "factory": "dandelion-wind-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -31758,7 +31758,7 @@
         "path": "catalog/effects/scene-drive.js",
         "factory": "camera-lag-departure",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -31841,7 +31841,7 @@
         "path": "catalog/effects/scene-drive.js",
         "factory": "drive-balloon-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从自有原作提取松绳前全部35只气球，共用 drawBalloon、balloonState 和 balloonString；原排列、材质和绳端连接不变，只等比适配独立画板。",
@@ -31924,7 +31924,7 @@
         "path": "catalog/effects/scene-drive.js",
         "factory": "drive-road-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -32002,7 +32002,7 @@
         "path": "catalog/effects/scene-drive.js",
         "factory": "balloon-drive-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
@@ -32217,7 +32217,7 @@
         "path": "catalog/effects/scene-factory.js",
         "factory": "factory-handle-transfer",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -32298,7 +32298,7 @@
         "path": "catalog/effects/scene-factory.js",
         "factory": "factory-cat-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -32609,7 +32609,7 @@
         "path": "catalog/effects/scene-factory.js",
         "factory": "factory-machine-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -32692,7 +32692,7 @@
         "path": "catalog/effects/scene-factory.js",
         "factory": "factory-handle-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -32775,7 +32775,7 @@
         "path": "catalog/effects/scene-factory.js",
         "factory": "factory-cat-puck-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -33084,7 +33084,7 @@
         "path": "catalog/effects/scene-factory.js",
         "factory": "cat-factory-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
@@ -35158,7 +35158,7 @@
         "path": "catalog/effects/scene-snow.js",
         "factory": "snow-arrival-window",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -35239,7 +35239,7 @@
         "path": "catalog/effects/scene-snow.js",
         "factory": "shenzhen-skyline-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -35322,7 +35322,7 @@
         "path": "catalog/effects/scene-snow.js",
         "factory": "snow-crystal-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -35438,7 +35438,7 @@
         "path": "catalog/effects/scene-snow.js",
         "factory": "shenzhen-snow-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
@@ -35664,7 +35664,7 @@
         "path": "catalog/effects/scene-ocean.js",
         "factory": "seat-water-lift",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -35742,7 +35742,7 @@
         "path": "catalog/effects/scene-ocean.js",
         "factory": "sunset-airplane-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -35819,7 +35819,7 @@
         "path": "catalog/effects/scene-ocean.js",
         "factory": "sunset-swing-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "复用原 ropeAt、traceRope、swingSeatGeometry 与 drawSwingSeat；采用原片空载完全展开时的长度，独立插画将绳子上端对齐座板侧边中点，呈竖直悬挂。",
@@ -35900,7 +35900,7 @@
         "path": "catalog/effects/scene-ocean.js",
         "factory": "sunset-sea-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -35980,7 +35980,7 @@
         "path": "catalog/effects/scene-ocean.js",
         "factory": "sunset-pickup-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
@@ -36192,7 +36192,7 @@
         "path": "catalog/effects/scene-osmanthus.js",
         "factory": "osmanthus-tree-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -36319,7 +36319,7 @@
         "path": "catalog/effects/scene-osmanthus.js",
         "factory": "osmanthus-butterfly-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -36436,7 +36436,7 @@
         "path": "catalog/effects/scene-osmanthus.js",
         "factory": "osmanthus-symbol-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -36873,7 +36873,7 @@
         "path": "catalog/effects/scene-osmanthus.js",
         "factory": "osmanthus-leaf-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -36952,7 +36952,7 @@
         "path": "catalog/effects/scene-osmanthus.js",
         "factory": "osmanthus-flower-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -37031,7 +37031,7 @@
         "path": "catalog/effects/scene-osmanthus.js",
         "factory": "osmanthus-butterfly-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
@@ -37465,7 +37465,7 @@
         "path": "catalog/effects/scene-letter.js",
         "factory": "galaxy-axis-reveal",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -37552,7 +37552,7 @@
         "path": "catalog/effects/scene-letter.js",
         "factory": "letter-symbol-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "共用原 makeShape、makeButterflyWing、drawSymbol 与 drawButterfly；整组恢复原独立符号预览的前24件、四列六行及2.4倍等比展示，保留六种单件选项；原工程与音频不参与运行。",
@@ -37749,7 +37749,7 @@
         "path": "catalog/effects/scene-letter.js",
         "factory": "letter-galaxy-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -37838,7 +37838,7 @@
         "path": "catalog/effects/scene-letter.js",
         "factory": "star-letter-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
@@ -38043,7 +38043,7 @@
         "path": "catalog/effects/scene-letter.js",
         "factory": "star-letter-blue-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。蓝色背景版沿用原作正蓝底色，前25秒与墨黑版共用绘制和声音。",
@@ -38248,7 +38248,7 @@
         "path": "catalog/effects/scene-selfie.js",
         "factory": "selfie-foot-turn",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -38335,7 +38335,7 @@
         "path": "catalog/effects/scene-selfie.js",
         "factory": "selfie-cat-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -38424,7 +38424,7 @@
         "path": "catalog/effects/scene-selfie.js",
         "factory": "selfie-preview-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -38511,7 +38511,7 @@
         "path": "catalog/effects/scene-selfie.js",
         "factory": "selfie-phone-screen-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -38598,7 +38598,7 @@
         "path": "catalog/effects/scene-selfie.js",
         "factory": "xiaokui-selfie-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
@@ -38788,7 +38788,7 @@
         "path": "catalog/effects/encore-dance.js",
         "factory": "encore-full-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。",
@@ -38960,7 +38960,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "ring-construction",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。"
@@ -39028,7 +39028,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "ring-construction-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。"
@@ -39128,7 +39128,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "mushroom-sphere-idealize",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。"
@@ -39196,7 +39196,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "mushroom-sphere-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。"
@@ -39296,7 +39296,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "ring-sphere-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。"
@@ -39421,7 +39421,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "energy-density-growth",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "共用原流场绘制，直接从有效轨迹开始并覆盖完整保存区间；保留增密和镜头时序，避免开场与末尾采样越界。"
@@ -39489,7 +39489,7 @@
         "path": "catalog/effects/rasengan-illustrations.js",
         "factory": "energy-discharge-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "共用原流场与电弧绘制，从已保存轨迹的有效起点开始取样；原二十四秒片段整体以四倍速播放，三秒后局部电弧逐渐接入，完整播放六秒。"
@@ -39590,7 +39590,7 @@
         "path": "catalog/effects/scene-window.js",
         "factory": "window-experiment-tree-illustration",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -39721,7 +39721,7 @@
         "path": "catalog/effects/scene-window.js",
         "factory": "window-flower-bloom",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -39817,7 +39817,7 @@
         "path": "catalog/effects/scene-window.js",
         "factory": "window-experiment-journey",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -39987,7 +39987,7 @@
         "path": "catalog/effects/scene-ink.js",
         "factory": "ink-volume-roll",
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "extraction": "从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，外部工程与音频均不参与运行。",
@@ -40075,7 +40075,7 @@
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -40153,7 +40153,7 @@
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -40236,7 +40236,7 @@
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -40365,7 +40365,7 @@
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -40457,7 +40457,7 @@
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -40542,7 +40542,7 @@
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -40587,7 +40587,7 @@
               "catalog/assets/reel-extract/SOURCE.json"
             ],
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "reference": {
@@ -40637,7 +40637,7 @@
               "catalog/assets/reel-extract/SOURCE.json"
             ],
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "reference": {
@@ -40675,7 +40675,7 @@
               "catalog/assets/reel-extract/SOURCE.json"
             ],
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "reference": {
@@ -40757,7 +40757,7 @@
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -40814,7 +40814,7 @@
               "catalog/assets/reel-extract/SOURCE.json"
             ],
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "reference": {
@@ -40888,7 +40888,7 @@
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         "origin": "original",
-        "license": "AGPL-3.0-only",
+        "license": "Apache-2.0",
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/",
         "reference": {
@@ -40927,7 +40927,7 @@
               "catalog/assets/reel-extract/SOURCE.json"
             ],
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "reference": {
@@ -40963,7 +40963,7 @@
               "catalog/assets/reel-extract/SOURCE.json"
             ],
             "origin": "original",
-            "license": "AGPL-3.0-only",
+            "license": "Apache-2.0",
             "library": "animejs@4.5.0",
             "reference_url": "https://animejs.com/documentation/",
             "reference": {

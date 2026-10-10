@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 原生印刷图层与用户确认的快闪时钟；目录、独立动作共用绘制，不加载整张海报图片。 */
 (function (global) {
   'use strict';

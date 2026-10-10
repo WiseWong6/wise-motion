@@ -16,7 +16,7 @@
 明确排除：蒲公英不加叶子或根，群体旋转不改成单颗自转，圆形触地不压扁，片尾不加中文；不替换真实字形。
 对应参考：本地目录「落种即生长成冠」
 源码：catalog/effects/seed-bloom-brand.js 中的 seed-sprout-bloom
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：自有代码绘制，独立动作与完整组合共用实际图形、轨迹和时间换算；素材在实例内准备。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [原码提取与接入源码](../../catalog/effects/seed-bloom-brand.js)，注册名称：`seed-sprout-bloom`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 从用户确认的8.2秒品牌动效提取实际绘制源码。冠毛、气流和蝶翼复用目录自有几何；Outfit Medium字形遵循SIL OFL 1.1。目录播放与Remotion帧组件共用绘制和独立实例，不依赖原工程、视频、图片或联网字体。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从用户确认的8.2秒品牌动效提取实际绘制源码。冠毛、气流和蝶翼复用目录自有几何；Outfit Medium字形遵循SIL OFL 1.1。目录播放与Remotion帧组件共用绘制和独立实例，不依赖原工程、视频、图片或联网字体。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 

@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function (global) {
   'use strict';
   const terms = [
@@ -109,7 +109,7 @@
       `明确排除：${effect.avoid}`,
       `对应参考：本地目录「${effect.name}」${actions.length ? '；所用动作：' + actions.join('、') : ''}`,
       `源码：${effect.source.path} 中的 ${effect.source.factory}`,
-      `来源与许可：${effect.source.extraction ? '原码提取与接入' : '自编示例'}，AGPLv3；Anime.js 4.5.0，MIT。`,
+      `来源与许可：${effect.source.extraction ? '原码提取与接入' : '自编示例'}，Apache-2.0；Anime.js 4.5.0，MIT。`,
       `关键假设：${effect.assumptions}`
     ].join('\n');
   }

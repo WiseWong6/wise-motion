@@ -16,7 +16,7 @@
 明确排除：不混入其它仪表，不拉伸低分辨率画面，不用实时随机数；保持可暂停、回拖和重播。
 对应参考：本地目录「准星锁定变色」
 源码：catalog/effects/hud-targeting.js 中的 hud-target-lock
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：中文仪表组件以代码绘制；斜距使用原片可读帧采样，其余遥测、波形、频谱和字符为固定演示数据。独立示例放大自身内容，按实际显示像素绘制；组合保留原有整体布局。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/hud-targeting.js)，注册名称：`hud-target-lock`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 基于本机第八段的自主绘制框架持续改版；地图使用Natural Earth公共领域国家轮廓，斜距保留原片可读帧采样，不包含原片图片或视频。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 基于本机第八段的自主绘制框架持续改版；地图使用Natural Earth公共领域国家轮廓，斜距保留原片可读帧采样，不包含原片图片或视频。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

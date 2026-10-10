@@ -7,7 +7,7 @@
   "font_sha256": "7aba8f5bb77ea7e0fc37c0e5e709bd8e1d49b44a3c91eb503f426562602f9c2a",
   "derivative": "catalog/assets/civilization-growth/calligraphy-data.mjs",
   "generator": "prepare-calligraphy.py",
-  "generator_license": "AGPL-3.0-only",
+  "generator_license": "Apache-2.0",
   "modifications": "保留原字库；提取火炎焱燚四字轮廓，曲线采样并生成固定网格墨点。",
   "files": {
     "GPL-2.0.txt": {
@@ -19,12 +19,12 @@
       "sha256": "7aba8f5bb77ea7e0fc37c0e5e709bd8e1d49b44a3c91eb503f426562602f9c2a"
     },
     "prepare-calligraphy.py": {
-      "bytes": 3594,
-      "sha256": "7095f13b277487609dd9af5b44ff0c9e35e99a7b54fc5a032378e8049b4bae6b"
+      "bytes": 3591,
+      "sha256": "dcc1811d2be3bece373fcbfa553740764145bc1391dae0be78f104d8f4d579c8"
     },
     "README.md": {
-      "bytes": 1290,
-      "sha256": "201820075bcc38560933728a575015342c69026c3ad21a5f671b8bb1ed88b455"
+      "bytes": 1590,
+      "sha256": "977d2d8eba90e198a5b9ef80d918b55a6f0aee12c6098c9c32e74c772721327c"
     }
   }
 }

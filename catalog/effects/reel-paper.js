@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function(F){
   'use strict';
   // 原片 4–10 秒的完整剪纸片头。固定文字转为原 Futura Bold 轮廓，避免异步字体改变排版。

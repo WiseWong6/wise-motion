@@ -16,7 +16,7 @@
 明确排除：只保留钢尺及扫动，不带原页面、旧镜定格、裁剪切换、字幕或声音。
 对应参考：本地目录「长条扫过」
 源码：catalog/effects/illustrations.js 中的 steel-ruler-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：原竖尺横放后，原横扫方向随物件一起旋转为纵扫；保持原金属细节、控制曲线及完整进出边界，画板范围适配为640×360。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/illustrations.js)，共享绘制入口：`steel-ruler-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 物件来自 Ruler.tsx，扫动来自 Main.tsx 的 Entry；使用原三次曲线(0.65,0,0.35,1)和18帧/30帧每秒时序，转为横尺纵扫，只移除页面裁剪。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 物件来自 Ruler.tsx，扫动来自 Main.tsx 的 Entry；使用原三次曲线(0.65,0,0.35,1)和18帧/30帧每秒时序，转为横尺纵扫，只移除页面裁剪。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

@@ -16,7 +16,7 @@
 明确排除：不随机重排星点，不改为粒子移动，不让全部星点同时闪烁。
 对应参考：本地目录「星点错峰闪烁」
 源码：catalog/effects/reel-neon.js 中的 star-twinkle
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：按本机 Claude 动效演进史原片 10–16 秒及 sNeon 源码重写；深浅模式均保留原霓虹色，独立动作与组合共用原位置、大小和计时。省去文字、转场和声音。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [自编源码](../../catalog/effects/reel-neon.js)，注册名称：`star-twinkle`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 
@@ -52,7 +52,7 @@
 明确排除：不随机重排星点，不改为粒子移动，不让全部星点同时闪烁。
 对应参考：本地目录「星点错峰闪烁」
 源码：catalog/effects/reel-neon.js 中的 star-twinkle
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：按本机 Claude 动效演进史原片 10–16 秒及 sNeon 源码重写；深浅模式均保留原霓虹色，独立动作与组合共用原位置、大小和计时。省去文字、转场和声音。
 
 使用同一动作定义，设置 `variant_id: "fixed-neon"`；目录和相关动作弹窗均可切换。
@@ -74,7 +74,7 @@
 明确排除：不重排星点，不把微幅明灭改成齐闪；不携带组合字幕、网格、光点或流场。
 对应参考：本地目录「星点错峰闪烁」
 源码：catalog/effects/point-domain-flow.js 中的 star-twinkle
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：同一星点明灭动作的深浅夜空示例，与组合共用星点函数，不改变原有固定细星示例。
 
 使用同一动作定义，设置 `variant_id: "layered-night"`；目录和相关动作弹窗均可切换。

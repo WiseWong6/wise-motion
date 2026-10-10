@@ -16,7 +16,7 @@
 明确排除：只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。 界面统一采用苹果空间风格；对话使用短信或 Siri，不使用创作助手对话。
 对应参考：本地目录「音乐空间卡」；所用动作：透光卡片错层
 源码：catalog/effects/glass-light.js 中的 glass-music-card-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [原码提取与接入源码](../../catalog/effects/glass-light.js)，注册名称：`glass-music-card-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 效果参考 [Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)。
-- 与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[透光卡片错层](glass-card-stagger.md)。
 

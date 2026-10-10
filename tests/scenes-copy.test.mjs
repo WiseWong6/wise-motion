@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile,stat} from 'node:fs/promises';
@@ -8,18 +8,23 @@ import {installSceneCanvas} from './scene-canvas-fixture.mjs';
 const codes=new Map();async function source(file){if(!codes.has(file))codes.set(file,await readFile(new URL('../'+file,import.meta.url),'utf8'));return codes.get(file);}
 const tick=()=>new Promise(r=>setImmediate(r));
 const native=data.effects.filter(e=>e.scene);
-test('复制页面的全部造型选择传入对应绘制器，不退回默认配方',async()=>{
+test('复制页面的造型选择保留场景继承、覆盖及独立绘制器',async()=>{
  const env=await environment(),{w}=env,root=w.document.getElementById('root');
  try{
   for(const effect of native)for(const variant of effect.variants||[{id:undefined,scene:effect.scene}]){
-   const family=effect.scene.family,original=w.WiseSceneSources[family];let captured;
+   const scene=Object.hasOwn(variant,'scene')?variant.scene:effect.scene;
+   const selected=w.MotionKit.resolveVariant(effect,variant.id);
+   const family=scene?.family||effect.scene.family,original=w.WiseSceneSources[family];let captured,render;
    w.WiseSceneSources[family]=(_s,opt)=>{captured=opt;return {draw(){}};};
    try{
-    const def={id:effect.id,variant_id:variant.id,duration_ms:effect.duration_ms,loop:effect.loop,default_ease:effect.default_ease,parameters:effect.parameters};
-    const render=w.MotionKit.createRenderer(root,def);await render.ready;render(def.duration_ms);
-    for(const [key,value]of Object.entries(variant.scene))assert.deepEqual(JSON.parse(JSON.stringify(captured[key])),value,effect.id+'/'+variant.id+' 复制丢失 '+key);
-    render.destroy();
-   }finally{w.WiseSceneSources[family]=original;root.replaceChildren();}
+    const def={id:effect.id,variant_id:variant.id,duration_ms:selected.duration_ms,loop:selected.loop,default_ease:selected.default_ease,parameters:selected.parameters,
+     source:{factory:selected.source.factory,...(selected.source.assets?.length?{assets:selected.source.assets}:{})}};
+    render=w.MotionKit.createRenderer(root,def);await render.ready;render(def.duration_ms);
+    if(scene){
+     assert.ok(captured,effect.id+'/'+variant.id+' 没有调用场景绘制器');
+     for(const [key,value]of Object.entries(scene))assert.deepEqual(JSON.parse(JSON.stringify(captured[key])),value,effect.id+'/'+variant.id+' 复制丢失 '+key);
+    }else assert.equal(captured,undefined,effect.id+'/'+variant.id+' 独立造型不应调用原场景绘制器');
+   }finally{render?.destroy?.();w.WiseSceneSources[family]=original;root.replaceChildren();}
   }
  }finally{env.close();}
 });

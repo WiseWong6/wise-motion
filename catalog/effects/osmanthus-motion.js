@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 八月桂夜：只提取依形回弹和群体弧飞；金银轮廓、时序、运动方程与二维绘制来自自有原工程。
  * 固定零件数据随本文件打包，不加载原工程、树、月貌、音频或 p5.js。 */
 (function(global){
