@@ -21,9 +21,13 @@ const Scene=()=> <WiseMotionEffect effectId="stagger-in" />;
 在目标工程安装公开包并复制素材：
 
 ```sh
-npm install --save-exact wise-motion@0.1.11
+node "<技能目录>/scripts/install-package.mjs"
 node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion
 ```
+
+`<技能目录>` 是当前源码或技能安装入口的实际目录，命令须在目标工程内运行，无需先安装 npm 包。安装程序优先使用当前源码版本；该版本尚未上架时，自动降级为同一版本系列最近的已发布稳定版，配套依赖按所选包的声明安装。实际版本会显示并固定到项目依赖中；重跑命令会再次优先检查当前源码版本。联网、权限和依赖冲突不会触发降级。命令末尾可加动效名称和样式名称，以检查旧版是否已有所选内容；旧版不含新内容时，需等待上架或安装从当前源码打包的包文件。
+
+目录“复制源码”包含相同安装程序；命令行导出的共享组件示例带有 `install-wise-motion.cjs`，运行该文件即可。独立工程仍按自己的固定依赖安装。
 
 全部素材明细与校验值在 `ASSET-MANIFEST.json`。素材副本不提供目录首页；浏览请打开源码中的 `catalog/index.html`。目标工程的Remotion依赖需和包版本一致。
 目录中的“复制代码”提供完整Composition例子和安装步骤。`Sequence`能控制每个组件的起点；多个组件用独立画板，互不覆盖。

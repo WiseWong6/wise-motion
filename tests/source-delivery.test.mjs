@@ -70,7 +70,7 @@ test('普通动作与带素材和声音的组合使用浏览器同一组件示�
     const variantId = id === 'terminal-code' ? 'command-log' : undefined;
     const effect = selectEffect(id, variantId);
     const out = await exportEffect(effect.name, {variantId, outDir:path.join(dir, id)});
-    assert.equal(out.kind, 'shared-package'); assert.equal(out.files.length, 3);
+    assert.equal(out.kind, 'shared-package'); assert.equal(out.files.length, 4);
     assert.ok(out.files.every(file => path.isAbsolute(file)));
     const source = await readFile(path.join(out.directory, 'src/Root.jsx'), 'utf8');
     assert.equal(source, browser.remotionCode(effect, {variantId}));
@@ -78,9 +78,11 @@ test('普通动作与带素材和声音的组合使用浏览器同一组件示�
     const guide = await readFile(path.join(out.directory, 'README.md'), 'utf8');
     assert.match(guide, /共享组件包/); assert.match(guide, /install-assets\.mjs/);
     assert.match(guide, /未安装依赖/);
-    for (const text of [source, guide]) {
-      assert.deepEqual([...text.matchAll(/wise-motion@([^\s]+)/g)].map(match => match[1]), [packageVersion], '安装指引必须使用当前交付版本');
-    }
+    const installer=await readFile(path.join(out.directory,'install-wise-motion.cjs'),'utf8');
+    assert.equal(installer,browser.packageInstaller({effectId:effect.id,variantId:effect.variant_id}));
+    assert.ok(source.includes(installer),'浏览器复制和导出必须使用同一安装程序');
+    assert.ok(installer.includes(JSON.stringify({version:packageVersion,effectId:effect.id,...(effect.variant_id?{variantId:effect.variant_id}:{})})),'优先安装版本必须与当前交付版本一致');
+    assert.match(guide,/node install-wise-motion\.cjs/);
     if (variantId) assert.match(source, /"variantId": "command-log"/);
     for (const asset of effect.source.assets || []) assert.ok(source.includes(asset), asset);
     if (effect.audio) assert.match(source, /includeAudio=\{false\}/);
@@ -129,7 +131,7 @@ test('已有目录可用；同名文件整批停止，错误样式和链接不�
   const first = await exportEffect('word-slam', {outDir:target});
   const source = path.join(target,'src/Root.jsx'); await writeFile(source, '// 用户改动\n');
   await assert.rejects(exportEffect('word-slam', {outDir:target}), /目标文件已存在/);
-  assert.equal(await readFile(source,'utf8'), '// 用户改动\n'); assert.equal(first.files.length,3);
+  assert.equal(await readFile(source,'utf8'), '// 用户改动\n'); assert.equal(first.files.length,4);
   const other = path.join(dir,'other'); await mkdir(other); await writeFile(path.join(other,'unrelated.txt'),'keep');
   await exportEffect('word-slam', {outDir:other});
   assert.equal(await readFile(path.join(other,'unrelated.txt'),'utf8'), 'keep');
