@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 原作画布的固定帧接入。只提供原作实际使用的绘图调用，不建立第二个播放时钟。 */
 (function(global){
  'use strict';

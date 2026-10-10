@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 // 古老旋律独立排谱；不读取现代曲谱、音乐字库或原工程。
 import {readFile,writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
@@ -24,7 +24,7 @@ for(let bar=0;bar<8;bar++)for(const staff of [1,2]){
  }
 }
 events.sort((a,b)=>a.time-b.time||a.staff-b.staff);
-const data={title:'小星星（古老旋律）',composer:'法国传统旋律 Ah, vous dirai-je, maman',arranger:'Wise Motion 独立排谱与简单伴奏',melody_rights:'public-domain',license:'AGPL-3.0-only',source_url:'https://kv.mozarteum.at/de/work/zwolf-variationen-in-c-uber-4057',tempo:80,excerptMeasures:[1,8],musicDuration:24,entrance:.4,tail:1.4,instrument:'静音五线谱',arrangement:'古老旋律前八小节；二声部简单伴奏由本项目重新编写，谱纸、符号与音符坐标由代码生成。',duration:25.8,fps:30,videoWidth:1080,videoHeight:1440,musicEnd:24.4,width:432.8,height:42.4,systemCount:1,noteheadGlyphs:glyphs,events};
+const data={title:'小星星（古老旋律）',composer:'法国传统旋律 Ah, vous dirai-je, maman',arranger:'Wise Motion 独立排谱与简单伴奏',melody_rights:'public-domain',license:'Apache-2.0',source_url:'https://kv.mozarteum.at/de/work/zwolf-variationen-in-c-uber-4057',tempo:80,excerptMeasures:[1,8],musicDuration:24,entrance:.4,tail:1.4,instrument:'静音五线谱',arrangement:'古老旋律前八小节；二声部简单伴奏由本项目重新编写，谱纸、符号与音符坐标由代码生成。',duration:25.8,fps:30,videoWidth:1080,videoHeight:1440,musicEnd:24.4,width:432.8,height:42.4,systemCount:1,noteheadGlyphs:glyphs,events};
 const line=(x1,y1,x2,y2,extra='')=>`<path d="M${round(x1*100)} ${round(y1*100)}L${round(x2*100)} ${round(y2*100)}" fill="none" stroke="#161616" stroke-width="12" ${extra}/>`;
 let measures='';
 for(let bar=0;bar<8;bar++){
@@ -46,7 +46,7 @@ for(let bar=0;bar<8;bar++){
 // 谱号由本项目的曲线绘制；不采用音乐字体中的字形。
 const clefs='<g stroke="#161616" stroke-width="28" fill="none"><path d="M2580 1130C2310 1430 2320 1780 2600 1770C2840 1760 2810 1470 2610 1480C2430 1490 2460 1680 2580 1700C2690 1720 2740 1660 2690 1600M2630 1070C2480 1010 2450 1220 2560 1410L2690 1990C2740 2190 2510 2240 2470 2110"/><path d="M2460 2700C2500 2510 2840 2490 2820 2740C2800 2930 2640 3060 2460 3120"/><circle cx="2880" cy="2630" r="28" fill="#161616"/><circle cx="2880" cy="2820" r="28" fill="#161616"/></g>';
 const meter='<g fill="#161616"><path d="M2990 1320v170h-35l140-170h40v250h-50v-210l-72 90h120v40h-143zM2990 1650v170h-35l140-170h40v250h-50v-210l-72 90h120v40h-143zM2990 2580v170h-35l140-170h40v250h-50v-210l-72 90h120v40h-143zM2990 2910v170h-35l140-170h40v250h-50v-210l-72 90h120v40h-143z"/></g>';
-const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43280 4240" width="4096" height="401" role="img" aria-label="小星星古老旋律前八小节，项目独立排谱"><!-- Wise Motion 独立排谱；古老旋律为公有领域；新排谱 AGPL-3.0-only。 --><g class="page-margin" transform="translate(0 0)">${clefs}${meter}${measures}</g></svg>\n`;
+const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43280 4240" width="4096" height="401" role="img" aria-label="小星星古老旋律前八小节，项目独立排谱"><!-- Wise Motion 独立排谱；古老旋律为公有领域；新排谱 Apache-2.0。 --><g class="page-margin" transform="translate(0 0)">${clefs}${meter}${measures}</g></svg>\n`;
 const block=`/* wise-score:start */var ce=${JSON.stringify(data)};var Yd=${JSON.stringify(svg)};/* wise-score:end */`;
 const bundlePath=new URL('catalog/assets/particle-scenes/notes-source.js',root),bundle=await readFile(bundlePath,'utf8');
 const pattern=bundle.includes('/* wise-score:start */')?/\/\* wise-score:start \*\/[\s\S]*?\/\* wise-score:end \*\//:/var ce=[\s\S]*?;var Yd=`[\s\S]*?`;/;

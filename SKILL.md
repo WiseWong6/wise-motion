@@ -1,7 +1,7 @@
 ---
 name: wise-motion
 description: 理解动作需求，拆解并匹配动效参考，交付现有源码与接入说明。文字动效、转场、插画与组合均可按需取用。仅在用户明确调用 Wise Motion 时使用。
-license: AGPL-3.0-only
+license: Apache-2.0
 disable-model-invocation: true
 ---
 
@@ -17,7 +17,7 @@ disable-model-invocation: true
 
 ## 命令
 
-先解析安装入口，以本技能实际目录作为下列 `<技能目录>`；命令可在任意工作目录调用。检索、查看、源码导出只需 Node.js；组件运行依赖见 [组件说明](REMOTION.md)，导出不自动安装依赖。
+先解析安装入口，以本技能实际目录作为下列 `<技能目录>`；命令可在任意工作目录调用。检索、查看、源码导出只需 Node.js，版本要求见 [包配置](package.json)；组件运行依赖见 [组件说明](REMOTION.md)，导出不自动安装依赖。
 
 ```sh
 node "<技能目录>/scripts/match.mjs" "两排卡片反向持续滚动，不要轮播"

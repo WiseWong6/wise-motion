@@ -16,7 +16,7 @@
 明确排除：不恢复已经剔除的年代扫描，不增加字内扫光或新的扫描条；不把无关基础动作加入组成列表。
 对应参考：本地目录「散射归位片尾展开」；所用动作：短线向外散开、时间轴缩小下移、色带错峰展开、文字分层升入
 源码：catalog/effects/reel-prompt-outro.js 中的 outro-recap-sequence
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：以原片 54–60 秒片尾为底，仅把年代扫描替换为静态完成态；其余下移、标题、色带与淡黑仍用原时钟。 深浅模式均保留原深色画面。 普通英文与数字按目录规范使用 Oswald Bold，中文及混排正文用 Light；原逐字落点与换行保持，片尾 CLAUDE 主字是造型轮廓例外。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/reel-prompt-outro.js)，注册名称：`outro-recap-sequence`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[短线向外散开](radial-line-burst.md)、[时间轴缩小下移](timeline-dock-down.md)、[色带错峰展开](color-segment-stagger.md)、[文字分层升入](outro-credit-lift.md)。

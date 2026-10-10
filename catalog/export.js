@@ -1,7 +1,7 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function (global) {
   'use strict';
-  const sharedPackageVersion = "0.1.9"; // 由 scripts/build.mjs 从 package.json 同步。
+  const sharedPackageVersion = "0.1.10"; // 由 scripts/build.mjs 从 package.json 同步。
   const escape = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   // 复制提示词面向没有目录、素材包或参考画面的新会话；源码复用仍由 code() 提供。
   function concrete(text) {
@@ -104,7 +104,7 @@ const Root=()=> <Composition id="Motion" component={${componentExport}}
   defaultProps={${JSON.stringify({effectId:effect.id,speed})}} />;
 registerRoot(Root);
 `;
-    files['README.md']='# '+effect.name+'\n\n运行 npm install，再运行 npm run studio 或 npm run render。\n\n画幅 '+spec.width+'×'+spec.height+'；每秒 '+spec.fps+' 帧；'+durationInFrames+' 帧。图形、材质与 Outfit Medium 矢量轮廓已内嵌；无外部图片、声音或运行时字体。保持原逻辑画板1066×600，改画幅时等比容纳。\n\n自有程序 AGPL-3.0-only，见 LICENSE；字形 SIL OFL 1.1，见 catalog/fonts/OFL-Outfit.txt。Remotion、React 等依赖遵循各自软件包附带许可。\n';
+    files['README.md']='# '+effect.name+'\n\n运行 npm install，再运行 npm run studio 或 npm run render。\n\n画幅 '+spec.width+'×'+spec.height+'；每秒 '+spec.fps+' 帧；'+durationInFrames+' 帧。图形、材质与 Outfit Medium 矢量轮廓已内嵌；无外部图片、声音或运行时字体。保持原逻辑画板1066×600，改画幅时等比容纳。\n\n自有程序 Apache-2.0，见 LICENSE；字形 SIL OFL 1.1，见 catalog/fonts/OFL-Outfit.txt。Remotion、React 等依赖遵循各自软件包附带许可。\n';
     if(spec.reuse_notes)files['README.md']='# '+effect.name+'\n\n运行 npm install，再运行 npm run studio 或 npm run render。\n\n画幅 '+spec.width+'×'+spec.height+'；每秒 '+spec.fps+' 帧；'+durationInFrames+' 帧。\n\n'+spec.reuse_notes+'\n';
     return files;
   }
@@ -135,9 +135,9 @@ registerRoot(Root);
     const ease = effect.parameters.ease?.options.includes(settings.ease) ? settings.ease : effect.default_ease;
     const json = value => JSON.stringify(value, null, 2).replace(/</g, '\\u003c');
     return `<!doctype html>
-<!-- Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+<!-- Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 保存到源码包根目录的 demo.html，与 catalog、vendor 目录并列。
-自有代码使用 AGPLv3；Anime.js 使用 MIT。完整版权见 NOTICE.md。 -->
+自有代码使用 Apache-2.0；Anime.js 使用 MIT。完整版权见 NOTICE.md。 -->
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -207,7 +207,7 @@ registerRoot(Root);
     const speed=Math.min(2,Math.max(.5,Number(settings.speed)||1));
     return `<!doctype html>
 <!-- 本机历史配方预览。保存到 Wise Motion 包根目录的 demo.html。
-播放器代码 AGPLv3；原作代码与素材保留各自许可。本文件依赖本机历史目录，不能视为已迁出的独立效果源码。 -->
+播放器代码 Apache-2.0；原作代码与素材保留各自许可。本文件依赖本机历史目录，不能视为已迁出的独立效果源码。 -->
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${escape(effect.name)}</title><link rel="stylesheet" href="catalog/scenes.css"><link rel="stylesheet" href="catalog/history.css"><link rel="stylesheet" href="catalog/frame.css"><link rel="stylesheet" href="catalog/app.css">
 <style>body{margin:0;min-height:100vh;display:grid;place-content:center;background:var(--canvas);color:var(--ink);font-family:var(--font)}#motion{width:min(90vw,960px)}.controls{display:flex;gap:12px;padding:16px}input{flex:1}</style></head>
@@ -254,7 +254,7 @@ window.addEventListener('pageshow',e=>{if(e.persisted&&player.destroyed)location
     }
     const renderFlags=drawingSources.includes('catalog/effects/metal-impact.js')?' --gl=angle':'';
     return `/* ${effect.name} · Remotion 接入示例，保存为 src/Root.jsx。
-自有代码 AGPL-3.0-only；第三方和素材许可见源码包 NOTICE.md。
+自有代码 Apache-2.0；第三方和素材许可见源码包 NOTICE.md。
 
 这是调用共享包的接入代码；完整绘制实现位于以下源码文件。
 ${currentSources.length?'当前目录中的绘制源码：\n'+currentSources.join('\n')+'\n\n':''}安装公开包后，绘制源码位于目标工程：

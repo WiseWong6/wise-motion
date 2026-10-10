@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 // 所有绘制器的加载顺序；每个动效仅加载自己的来源与依赖。
 export const FRAME_SCRIPTS = Object.freeze([
   "vendor/animejs/anime.umd.min.js",

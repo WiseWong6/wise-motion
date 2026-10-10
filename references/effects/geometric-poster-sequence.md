@@ -16,7 +16,7 @@
 明确排除：不改变几何与排版，不用整图切片替代原生层，不提前上移，不交叉淡化闪切，不反转配色，结束不留碎带或错位。
 对应参考：本地目录「几何旋转与海报成形」；所用动作：图层进入与旋转累积、横带间歇闪切、文字裁切升入
 源码：catalog/effects/geometric-poster.js 中的 geometric-poster-sequence
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：图形为原生路径与固定种子印刷纹理；画面只由当前时间决定。英文标题使用包内Oswald Bold。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/geometric-poster.js)，注册名称：`geometric-poster-sequence`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 从用户确认的印刷几何海报提取原生曲面、弧线、网点、纸纹与固定时钟。组合与独立动作共用绘制；横带间歇闪切复用已有18区、30格固定取值及0.45秒交接，增加几何海报示例；文字裁切升入沿用海报词组示例。字体为包内Oswald Bold，遵循OFL；画面不依赖生成图片、外部素材或来源工程路径。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从用户确认的印刷几何海报提取原生曲面、弧线、网点、纸纹与固定时钟。组合与独立动作共用绘制；横带间歇闪切复用已有18区、30格固定取值及0.45秒交接，增加几何海报示例；文字裁切升入沿用海报词组示例。字体为包内Oswald Bold，遵循OFL；画面不依赖生成图片、外部素材或来源工程路径。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[图层进入与旋转累积](geometry-turn-build.md)、[横带间歇闪切](glitch-band-transition.md)、[文字裁切升入](mask-stagger-text.md)。

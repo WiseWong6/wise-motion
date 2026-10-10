@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function(F){
   'use strict';
   // 原片 30–46 秒。局部时钟只平移，不压缩；手机各组件与组合共享同一绘制函数。

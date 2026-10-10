@@ -16,7 +16,7 @@
 明确排除：不缩短为单段文字入场，不替换成视频播放，不添加音轨，不去掉折尺、受力纸台和碎片归位。
 对应参考：本地目录「剪贴联动与海报归位」；所用动作：字片折落归位、曲柄牵引联动、连节折尺展开、折纸支架受力回弹、剪影跑动与弹离、碎片散开归位
 源码：catalog/effects/collage-film.js 中的 collage-film-sequence
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：1600×900设计坐标等比呈现在640×360逻辑画板；纸白、炭黑与少量朱红；字片用本地Oswald粗体字形。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/collage-film.js)，注册名称：`collage-film-sequence`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[字片折落归位](cutout-type-fold.md)、[曲柄牵引联动](crank-linked-turn.md)、[连节折尺展开](joint-rule-unfold.md)、[折纸支架受力回弹](folded-step-rebound.md)、[剪影跑动与弹离](cutout-stride-leap.md)、[碎片散开归位](scraps-return-layout.md)。

@@ -16,7 +16,7 @@
 明确排除：不替换为同心圆，不把描画与旋转分成先后两段，不增加圆盘入场、圆心脉冲或外圈公转。
 对应参考：本地目录「螺线描绘旋转」
 源码：catalog/effects/reel-paper.js 中的 spiral-draw-spin
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：从剪纸图盘逐格展开中独立提取并居中；奶油底盘作为静止衬底，原橙黑奶油配色、曲线大小和时序保留。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/reel-paper.js)，注册名称：`spiral-draw-spin`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

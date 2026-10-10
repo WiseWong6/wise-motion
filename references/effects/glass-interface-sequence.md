@@ -16,7 +16,7 @@
 明确排除：不使用平面剪切冒充透视，不将六张卡压成平铺列表，不引入紫绿青配色，不增加凸泡深色内圈、整圈描边或外部网络素材。 界面统一采用苹果空间风格；对话使用短信或 Siri，不使用创作助手对话。
 对应参考：本地目录「玻璃卡片显现折射」；所用动作：弥散光团流动、透光卡片错层、凸泡伸缩折射、Siri 空间卡、短信空间卡、系统设置空间卡、音乐空间卡、天气空间卡、控制中心空间卡
 源码：catalog/effects/glass-light.js 中的 glass-interface-sequence
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：以苹果空间界面为统一视觉参考；六张卡全部独立绘制，短信内容、天气和音乐信息为固定演示数据。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [原码提取与接入源码](../../catalog/effects/glass-light.js)，注册名称：`glass-interface-sequence`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 效果参考 [Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)。
-- 基于本项目六张黑银卡、背景、凸泡像素采样和字标绘制重新编排；空间投影、圆角侧壁与镜头交接为自编实现，无第三方媒体。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 基于本项目六张黑银卡、背景、凸泡像素采样和字标绘制重新编排；空间投影、圆角侧壁与镜头交接为自编实现，无第三方媒体。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[弥散光团流动](diffuse-light-drift.md)、[透光卡片错层](glass-card-stagger.md)、[凸泡伸缩折射](convex-glass-lens.md)、[Siri 空间卡](glass-voice-card-illustration.md)、[短信空间卡](glass-dialogue-card-illustration.md)、[系统设置空间卡](glass-control-card-illustration.md)、[音乐空间卡](glass-music-card-illustration.md)、[天气空间卡](glass-weather-card-illustration.md)、[控制中心空间卡](glass-controls-card-illustration.md)。
 

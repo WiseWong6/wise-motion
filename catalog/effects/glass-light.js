@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
  * 苹果空间界面由本项目独立绘制；视觉参考与许可说明见 NOTICE.md。 */
 /* 六张卡片、空间错层及折射统一参考 Apple Vision Pro 与 visionOS 空间界面。
  * https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/

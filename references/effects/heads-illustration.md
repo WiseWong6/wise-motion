@@ -16,7 +16,7 @@
 明确排除：保留插画主体，去掉原场景外围标题、数值、注释和背景版面。
 对应参考：本地目录「环形光点汇聚」；所用动作：光点沿弧内聚
 源码：catalog/effects/illustrations.js 中的 heads-illustration
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：从本机原工程提取图形关系与路径，改为独立静态页面播放器；沿用目录黑白细线，纸卷内容用细线示意。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/illustrations.js)，注册名称：`heads-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[光点沿弧内聚](inward-curve-flow.md)。

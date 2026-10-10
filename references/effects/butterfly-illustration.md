@@ -16,7 +16,7 @@
 明确排除：不让整张图片左右晃动冒充振翅，不改变翼图材质，不带字幕或声音。
 对应参考：本地目录「版画蝴蝶」；所用动作：四翼错拍与触角跟随、翼根扩散换色
 源码：catalog/effects/butterfly.js 中的 butterfly-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底，保留1080×1440原逻辑画板；目录在640×360内等比重取景，视频使用原画幅。蓝蝶与多彩翼图作为两份本地素材保留，可用参数叠合切换。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/butterfly.js)，注册名称：`butterfly-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 保留已确认的透明图集、四片翅膀的固定翼根、触角曲线及六秒运动公式。目录插画、关联动作与逐帧组件共用同一绘制程序；视频通过参数保留原画幅和配色。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 保留已确认的透明图集、四片翅膀的固定翼根、触角曲线及六秒运动公式。目录插画、关联动作与逐帧组件共用同一绘制程序；视频通过参数保留原画幅和配色。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[四翼错拍与触角跟随](hinged-wing-flap.md)、[翼根扩散换色](wing-root-color-reveal.md)。

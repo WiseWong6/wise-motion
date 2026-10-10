@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 import {loadAssets} from './assets.mjs';
 import {DRAW,renderFrame,sourceTime} from './render.mjs';
 import {BOUNDS,DURATION} from './math.mjs';

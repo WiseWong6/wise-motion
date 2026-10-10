@@ -16,7 +16,7 @@
 明确排除：不要恢复中间高两边低的分布轮廓、横向收窄或中心列锁定；不把横向亮波改为从一点向四周传播。
 对应参考：本地目录「点阵亮波扫过」
 源码：catalog/effects/rect-wave-field.js 中的 rect-wave-field
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：从本机动效教程 language.js 的概率点阵提取亮波和相位起伏，按用户要求将分布轮廓改为二十五列八行矩形。去掉列高差、横向收窄、中心列选择、上方分布迹线与下方天平，重新编排为六秒。颜色沿用目录，点距与半径留有余量；这是矩形波浪示例，不沿用原成片时钟。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/rect-wave-field.js)，注册名称：`rect-wave-field`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

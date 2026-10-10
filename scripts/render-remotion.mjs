@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import {bundle} from '@remotion/bundler';
 import {ensureBrowser,renderMedia,selectComposition} from '@remotion/renderer';
 import {execFileSync} from 'node:child_process';

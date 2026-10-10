@@ -16,7 +16,7 @@
 明确排除：不带原场景、背景、字幕、音频或外围控件。
 对应参考：本地目录「蒲公英种子」；所用动作：绕点摆动
 源码：catalog/effects/history-nature.js 中的 dandelion-seed-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底；保持原冠毛、细茎和种子的曲线与相对比例，整体居中并在下方预留播放条空间；线宽与轮廓整体等比缩放，不再单独削细冠毛或细茎。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/history-nature.js)，注册名称：`dandelion-seed-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 沿用 isolated-player.js 的 seed 调用：半径35、角度sin(t*1.4)*0.16；复用原 floret 的37道冠毛、原线宽和种子轮廓，仅整体居中及等比缩放。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 沿用 isolated-player.js 的 seed 调用：半径35、角度sin(t*1.4)*0.16；复用原 floret 的37道冠毛、原线宽和种子轮廓，仅整体居中及等比缩放。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[绕点摆动](pivot-swing.md)。

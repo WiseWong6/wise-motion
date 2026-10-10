@@ -16,7 +16,7 @@
 明确排除：不把地面当作平面图案匀速上移，不改变固定消失点，不误把亮度起伏实现成线宽变化。
 对应参考：本地目录「透视网格前行」
 源码：catalog/effects/reel-neon.js 中的 perspective-grid-flow
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：按本机 Claude 动效演进史原片 10–16 秒及 sNeon 源码重写；深浅模式均保留原霓虹色，独立动作与组合共用原位置、大小和计时。省去文字、转场和声音。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/reel-neon.js)，注册名称：`perspective-grid-flow`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

@@ -16,7 +16,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「七色气球簇与绳尾」；所用动作：逐个松脱飘离
 源码：catalog/effects/scene-drive.js 中的 drive-balloon-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：提取把气球交给风在松绳前的整簇气球，使用原球体和柔绳绘制函数；只对整簇等比放大和居中。原工程只读。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/scene-drive.js)，注册名称：`drive-balloon-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 从自有原作提取松绳前全部35只气球，共用 drawBalloon、balloonState 和 balloonString；原排列、材质和绳端连接不变，只等比适配独立画板。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从自有原作提取松绳前全部35只气球，共用 drawBalloon、balloonState 和 balloonString；原排列、材质和绳端连接不变，只等比适配独立画板。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[逐个松脱飘离](drive-balloon-release.md)。

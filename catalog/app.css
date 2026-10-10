@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 目录界面样式；共用字体、主题和基础规则见 frame.css。 */
 [data-icon] { display:inline-flex; align-items:center; justify-content:center; flex:none; }
 .sr-only {

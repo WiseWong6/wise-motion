@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only.
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0.
  * Accepted seed → dandelion → flock → sun → circular O → WISE MOTION.
  * Outfit Medium outline data: SIL OFL 1.1 (catalog/fonts/OFL-Outfit.txt).
  * The original 1066×600 geometry and 2132×1200 backing canvas are retained.
@@ -13,7 +13,7 @@ function createEngine(canvas) {
     createElement:tag=>{const node=hostDocument.createElement(tag);textures.push(node);return node;}};
   let visible=null,dead=false;
   const show=id=>!visible||visible.has(id);
-/* WISE MOTION 基础字形：Outfit Medium，SIL OFL 1.1；程序 AGPL-3.0-only。
+/* WISE MOTION 基础字形：Outfit Medium，SIL OFL 1.1；程序 Apache-2.0。
  * 八个字母保持字体自然比例，两枚O按相同笔画比例制成正圆。
  * 横向揭示借鉴复刻 scenes-middle.js 第六幕；中心内孔接飞行小点为本次改造。 */
 (() => {
@@ -64,7 +64,7 @@ function createEngine(canvas) {
   window.WiseMotionBrand={glyphs,layout,bounds,style,timing,state,draw,reveal,accent,accentTarget,info:{label:'WISE MOTION',glyphCount:10,contourCount:18,captions:[],font:'Outfit Medium',fontLicense:'SIL OFL 1.1',startFrame:timing.split,settledFrame:timing.settled,endFrame:timing.end,persistentSunAccent:true,circularOGlyphs:[5,8]}};
 })();
 
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
  * 从本机 Wise Motion 权威目录直接提取完整绘制，不重新描简图。
  * history-nature.js: openingSeeds/Growth/Event/Displacement/Air/Pose/floret。
  * osmanthus-motion.js: wingPath/buildWingAtlas/paintWing/drawButterfly。
@@ -309,10 +309,10 @@ function drawButterfly(ctx,f,t){
  }
  window.WiseMotionNature=Object.freeze({dandelion,palette,drawButterfly,wingPath,
   info:{crownCount:96,wingMaterialLayers:11,airThreads:dandelion.threads.length,airMotes:dandelion.openingMotes.length,
-   sources:['history-nature.js','osmanthus-motion.js'],license:'AGPL-3.0-only'}});
+   sources:['history-nature.js','osmanthus-motion.js'],license:'Apache-2.0'}});
 })();
 
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
  * 同一太阳沿光束落下，正圆触地即回弹；中心O扩成黑底，内孔成为片尾小点。
  * 扩黑借鉴复刻 scenes-middle.js 第六幕，回弹与小点飞行按用户新要求编排。 */
 (() => {
@@ -387,7 +387,7 @@ function drawButterfly(ctx,f,t){
  window.WiseMotionSunlight=Object.freeze({state,draw,corona,source,ground,contact,timing,target,coverRadius,info:{sameObject:true,reference:'scenes-middle.js / scene 6; history-nature.js / sunset-sun-illustration',newDesign:'长短渐细日芒、薄亮边、圆形触地回弹、中心扩黑、内孔接飞行小点'}});
 })();
 
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
  * 种子落地→蒲公英→同一批冠毛旋转化蝶→抵达形成白色太阳。
  * nature-artwork.js 保留目录完整球簇/冠毛、气流炸开及蝴蝶材质。
  * 本文件只编排落地、生长、径向炸开到群飞的连续衔接；无叶片、无根。
@@ -591,7 +591,7 @@ function drawButterfly(ctx,f,t){
     }
     return s;
   }
-  window.WiseMotionMorph={state,draw,drawSeed,drawPlant,drawFloret,drawBurstAir,particlePose,particleBasePose,groupState,groupTiming,plantState,burstPose,joins,particles,palettes,timing,endFrame:432,COUNT,wingFore,wingHind,info:{sources:['history-nature.js','osmanthus-motion.js','scenes-middle.js'],license:'AGPL-3.0-only'}};
+  window.WiseMotionMorph={state,draw,drawSeed,drawPlant,drawFloret,drawBurstAir,particlePose,particleBasePose,groupState,groupTiming,plantState,burstPose,joins,particles,palettes,timing,endFrame:432,COUNT,wingFore,wingHind,info:{sources:['history-nature.js','osmanthus-motion.js','scenes-middle.js'],license:'Apache-2.0'}};
 })();
 
 /* 单一时间轴；缩放的是整张作品画面，主体仍按自己的动作前进。 */

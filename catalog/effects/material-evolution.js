@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
  * 保留精修绘制与材料过渡；道、一、二、三直接描摹宋拓原字并保留 CC BY 4.0 署名，英文轮廓由随包开放字体生成。 */
 /* KIMI K3 开源宣传片复刻及其七个单段：效果参考 Kimi K3 open weights。
  * https://www.youtube.com/watch?v=5GlCGOXUYHg

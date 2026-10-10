@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtemp, readFile, writeFile, mkdir, readdir, realpath, rm, symlink} from 'node:fs/promises';
@@ -10,6 +10,7 @@ import {runInNewContext} from 'node:vm';
 import {build} from 'esbuild';
 import {exportEffect} from '../scripts/export.mjs';
 import {selectEffect, show} from '../scripts/show.mjs';
+import {assertMarkdownLinks} from '../scripts/document-links.mjs';
 import registry from '../catalog/registry.json' with {type:'json'};
 
 const root = path.resolve(import.meta.dirname, '..');
@@ -172,3 +173,35 @@ test('速选表中的候选真实存在，通用入口和生成模板没有旧�
     assert.doesNotMatch(body,/director-design\.md|pipeline-methodology\.md|wise-motion-dna\.md|narrated-tutorial-review\.md|production-contract\.md|scripts\/plan\.mjs|eval-plan|effect\.content\b|nearest|\/Users\//,file);
   }
 });
+
+test('文档链接核对文件和章节，支持中文与重复标题，跳过代码和外链', async () => temporary(async dir => {
+  await mkdir(path.join(dir, '说明'));
+  await writeFile(path.join(dir, '说明/内容.md'), '# 接入说明\n\n## 内容与透明背景\n\n## 内容与透明背景\n');
+  await writeFile(path.join(dir, '示例.png'), 'asset');
+  const encoded = encodeURI('说明/内容.md');
+  await writeFile(path.join(dir, 'README.md'), [
+    '# 使用说明',
+    `[接入](${encoded}#${encodeURIComponent('内容与透明背景')})`,
+    '[当前页](#使用说明)',
+    `[重复标题](${encoded}#内容与透明背景-1)`,
+    '![示例](示例.png)',
+    '[官网](https://example.com/missing#section)',
+    '[邮箱](mailto:hello@example.com)',
+    '`[行内示例](missing.md)`',
+    '```md',
+    '## 伪标题',
+    '[代码示例](missing.md#missing)',
+    '```'
+  ].join('\n'));
+  assert.equal(await assertMarkdownLinks(dir, ['README.md']), 4);
+  for (const [link, expected] of [
+    ['说明/内容.md#缺失章节', /链接章节不存在/],
+    ['#伪标题', /链接章节不存在/],
+    ['missing.md', /链接缺失/]
+  ]) {
+    const text = await readFile(path.join(dir, 'README.md'), 'utf8');
+    await writeFile(path.join(dir, 'README.md'), text + `\n[错误](${link})`);
+    await assert.rejects(assertMarkdownLinks(dir, ['README.md']), expected);
+    await writeFile(path.join(dir, 'README.md'), text);
+  }
+}));

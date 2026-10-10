@@ -16,7 +16,7 @@
 明确排除：不把手机移到中间遮挡左侧文案，不用另一套近似图形代替已存在的几何漂浮。
 对应参考：本地目录「界面展开与反馈」；所用动作：弹出悬浮、标题依次呈现、斜升回正、错峰升入回弹、开关滑动回弹、圆弧旋转伸缩、填色放大回弹、圆形扩成面板
 源码：catalog/effects/reel-flat-gen.js 中的 material-phone-sequence
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：恢复原手机页标题、词条、背景装饰和界面；八个关联动作共享真实绘制。原英文和数字使用Oswald Bold，深浅模式保留原奶白、藏蓝及彩色装饰。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/reel-flat-gen.js)，注册名称：`material-phone-sequence`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[弹出悬浮](shape-pop-float.md)、[标题依次呈现](title-stagger.md)、[斜升回正](material-phone-rise.md)、[错峰升入回弹](material-card-stagger.md)、[开关滑动回弹](material-switch-spring.md)、[圆弧旋转伸缩](material-spinner-arc.md)、[填色放大回弹](material-like-pop.md)、[圆形扩成面板](material-fab-panel.md)。

@@ -16,7 +16,7 @@
 明确排除：不包含雨景、雨丝、水花、倒影、尾迹或动作。
 对应参考：本地目录「细线雨伞」；所用动作：绕钩连续转动、踏步溅起水花、腾空翻转落尖、支点固定回旋、沿轮廓滚动、旋转甩出水滴
 源码：catalog/effects/encore-dance.js 中的 encore-umbrella-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底，只绘制原伞；保留1280×800画板内的原位置、角度和翻转，等比显示，不带雨滴、水面和倒影。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/encore-dance.js)，注册名称：`encore-umbrella-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 复用 EncoreDance.sample 与 EncoreUmbrella.draw，恢复完整原编舞；仅移除雨景、水花、倒影和声音。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 复用 EncoreDance.sample 与 EncoreUmbrella.draw，恢复完整原编舞；仅移除雨景、水花、倒影和声音。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[绕钩连续转动](encore-hook.md)、[踏步溅起水花](encore-tap.md)、[腾空翻转落尖](encore-flight.md)、[支点固定回旋](encore-tip.md)、[沿轮廓滚动](encore-roll.md)、[旋转甩出水滴](encore-shed.md)。

@@ -16,7 +16,7 @@
 明确排除：不要重复播放原片裁剪；不把辉光、噪点、白闪或光带另列为这套动作的重复入口；不能用随机散点代替真正字形。
 对应参考：本地目录「粒子聚散成字」
 源码：catalog/effects/promo-particles.js 中的 particle-word
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：由本机 Claude 宣传片的末尾粒子段提炼。保留 7,000 个粒子的固定参数和原运动公式；字形替换为本包 Oswald Bold 的 WISE MOTION 预存轮廓。光带、白闪、双环、震屏、辉光、暗角和固定噪点并入一次演示。末尾亮点淡去为目录展示收尾；不依赖原视频、系统字体或声音。明暗主题沿用目录颜色。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [自编源码](../../catalog/effects/promo-particles.js)，注册名称：`particle-word`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 

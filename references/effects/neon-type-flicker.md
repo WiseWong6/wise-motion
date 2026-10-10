@@ -16,7 +16,7 @@
 明确排除：不将空心字改成实心字，不持续随机熄灭，不把整段简化成透明度正弦变化。
 对应参考：本地目录「霓虹闪烁点亮」
 源码：catalog/effects/reel-neon.js 中的 neon-type-flicker
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：依据原片 10–16 秒霓虹年份重写；独立预览只把原字形居中，不改变尺寸、描边和计时，组合中回到原左上位置。深浅模式保留原青色。辉光用局部模糊重写，不复制字体文件或声音。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/reel-neon.js)，注册名称：`neon-type-flicker`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

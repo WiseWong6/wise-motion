@@ -1,4 +1,4 @@
-# Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+# Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 """用随包 Oswald Bold 生成三个固定字标；原字体许可见 catalog/fonts/OFL-Oswald.txt。"""
 import argparse
 import json

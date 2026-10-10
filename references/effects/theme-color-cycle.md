@@ -16,7 +16,7 @@
 明确排除：不要替换图形、改变柱高、交替反转整页明暗，或将颜色做成平滑渐变；不带外围十色目录、粒子身份、整页入退场与声音。
 对应参考：本地目录「配色同步轮换」
 源码：catalog/effects/theme-color-cycle.js 中的 theme-color-cycle
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：核对本机减法主题正本 cta-colors.js 与 cta-colors.css 后提取原主题示例组件，保留六种真实色值、色名、柱形尺寸、色条和选中标记；整体缩为六成，字体与中性色沿用目录。仅提取连续换色段，开头直接呈现组件，末尾保留第六色；不带原整页入退场、十色目录、粒子、声音或依赖，原工程只读。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/theme-color-cycle.js)，注册名称：`theme-color-cycle`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

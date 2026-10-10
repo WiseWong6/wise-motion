@@ -1,6 +1,6 @@
 {
   "description": "草书火归楷，墨点与线结构递增，横排闪变种子、植物与花卉，四花缩拢收入文明群像，群像闪烁散点聚成 WISE MOTION。",
-  "code_license": "AGPL-3.0-only",
+  "code_license": "Apache-2.0",
   "sources": {
     "cursive": {
       "name": "Liu Jian Mao Cao",
@@ -110,8 +110,8 @@
     },
     {
       "path": "catalog-entry.mjs",
-      "bytes": 2302,
-      "sha256": "db4b2b82bacb29673c7f598c205acec0c6446bcf8ce1038ed1a2f49c03016b90"
+      "bytes": 2299,
+      "sha256": "bf74907869c38993e233492447f4fc11bf0fd0fff859ebc20345521e2cfbc6b5"
     },
     {
       "path": "civilization/exploration.mjs",
@@ -175,8 +175,8 @@
     },
     {
       "path": "engine.mjs",
-      "bytes": 2732,
-      "sha256": "23f9c63b6dc09dbd64bcb8c95b3f294257b206ce6bbdcd00edb86ee796a52ec4"
+      "bytes": 2729,
+      "sha256": "fd711eb185c353dae33b66023ff25c2961bcf337fb3447aa8b73f158a199d9de"
     },
     {
       "path": "fire-01.mjs",
@@ -240,8 +240,8 @@
     },
     {
       "path": "particle-word-library.mjs",
-      "bytes": 28181,
-      "sha256": "a4415540b75123169255cbcb571766e3e9b65cb4e0cdc3c32da3580bb67f3e91"
+      "bytes": 28178,
+      "sha256": "fd292209ffa6a99ab1853625dc762b2c6129ff37f142cb861aff812b76ce6269"
     },
     {
       "path": "plant-flashes.mjs",
@@ -261,8 +261,8 @@
   },
   "shared_images": {
     "path": "catalog/effects/civilization-images.js",
-    "bytes": 7193460,
-    "sha256": "ac951d36810f8e44d1f875e544bc635b04e8c2cf6ed76ed53ed650d4879df2e8",
+    "bytes": 7193457,
+    "sha256": "f577e772239a786f9611a7626cf8b0a3b1e4f10867315f60d3e1c5d83859e3b4",
     "purpose": "两张图片保持原始内容，播放及复制完整工程共用一份。"
   }
 }

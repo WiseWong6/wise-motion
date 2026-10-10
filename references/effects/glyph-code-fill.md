@@ -16,7 +16,7 @@
 明确排除：不将内部材料替换为粒子汇聚成字，不让源码露出笔画，不添加打字光标、相邻口号或整字反复缩放。
 对应参考：本地目录「字形内文字流动」
 源码：catalog/effects/glyph-code-fill.js 中的 glyph-code-fill
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：从本机 Claude 宣传片 scene3 的代码段独立提炼。历史预览登记为 10.4–11.1 秒，源码中实际字形段为 10.5–11.0 秒。保留内部滚动公式、原代码、字形比例与描边；去掉相邻口号、背景横扫和整字冲击，扩展为连续滚动。中文轮廓采用目录本地粗体，源码采用本地 Oswald 并保留原等宽行宽；明暗主题共用颜色变量。原工程保持只读。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/glyph-code-fill.js)，注册名称：`glyph-code-fill`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

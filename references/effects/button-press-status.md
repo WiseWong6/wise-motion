@@ -16,7 +16,7 @@
 明确排除：不增加扩散圆环，不把按钮变形成面板，不额外创建指针或进度条。
 对应参考：本地目录「按钮按压换态」
 源码：catalog/effects/compositions.js 中的 button-press-status
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：独立示例只创建本动作所需对象，绘制函数与原组合共用；保留原对象样式、轨迹和阶段关系，目录时长按原时间段等比换算。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [自编源码](../../catalog/effects/compositions.js)，注册名称：`button-press-status`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 

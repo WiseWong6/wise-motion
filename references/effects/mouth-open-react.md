@@ -16,7 +16,7 @@
 明确排除：不添加加工厂、机器、传送带、原字幕或音效；不让猫咪走离画面，不改变身体比例与花纹。
 对应参考：本地目录「嘴部随声开合」
 源码：catalog/effects/cat-mouth.js 中的 cat-mouth-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：固定使用原灰白小葵；只显示猫咪与原口型，不读取麦克风、不附带音频。 与插画素材共用同一绘制入口，保留主体、内部动作及原时间关系。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/cat-mouth.js)，共享绘制入口：`cat-mouth-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 提取本机「小猫加工厂」cat.js 的原路径、花纹、表情绘制与 timeline.js 的小葵叫声开合曲线；原绘图调用转换为独立 SVG，不依赖原工程、图片或声音。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 提取本机「小猫加工厂」cat.js 的原路径、花纹、表情绘制与 timeline.js 的小葵叫声开合曲线；原绘图调用转换为独立 SVG，不依赖原工程、图片或声音。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

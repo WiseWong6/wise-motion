@@ -16,7 +16,7 @@
 明确排除：不要改成片尾花朵和色块压盘的天平，不把支点与横梁一起转动，不把绿色微调块替换成普通砝码，不带外围概率点阵、标题、字幕或声音。
 对应参考：本地目录「杠杆负载平衡」
 源码：catalog/effects/history-patterns.js 中的 load-balance
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：按用户确认选用动效教程 language.js 的 SFT 指令天平，整体等比适配目录画板；绿色微调块保留原色，中性线条跟随目录明暗主题，文字使用目录字号。原案例的设计时钟与成片连续时钟分别保留，只移除外围概率点阵和讲述内容；原工程只读。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/history-patterns.js)，注册名称：`load-balance`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

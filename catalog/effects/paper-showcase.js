@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* result-anchors（KIMI K3 宣传片复刻）：复刻自 Kimi AI 的 Meet Kimi K3。
  * https://www.youtube.com/watch?v=bn0atstgavo
  * 官方背景：https://www.kimi.com/en/blog/kimi-k3 */

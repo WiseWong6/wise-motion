@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
  * 自有织风原作：完整固定节拍与绘制函数随包提供，无声音或外部文件依赖。
  */
 /* 晴天前奏实际发音分组，来自音符跳动已确认的演奏。 */

@@ -16,7 +16,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「海面上的夕阳」；所用动作：座板入水托举与负重回升、压缩回弹、水面倒影起伏、尾流漂移消退、暖色太阳、夕阳飞机、柔绳与秋千座板、夕阳水面反馈
 源码：catalog/effects/scene-ocean.js 中的 sunset-pickup-journey
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/scene-ocean.js)，注册名称：`sunset-pickup-journey`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[座板入水托举与负重回升](seat-water-lift.md)、[压缩回弹](squash-bounce.md)、[水面倒影起伏](sunset-water-reflection.md)、[尾流漂移消退](advected-trail.md)、[暖色太阳](sunset-sun-illustration.md)、[夕阳飞机](sunset-airplane-illustration.md)、[柔绳与秋千座板](sunset-swing-illustration.md)、[夕阳水面反馈](sunset-sea-illustration.md)。

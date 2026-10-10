@@ -1,4 +1,4 @@
-/* Wise Motion Remotion 接入 · 自有代码 AGPL-3.0-only；第三方许可见 NOTICE.md。 */
+/* Wise Motion Remotion 接入 · 自有代码 Apache-2.0；第三方许可见 NOTICE.md。 */
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -382,7 +382,7 @@ ${frameScriptsFor(definition).map((path) => `<script src="${url(path)}"><\/scrip
 var registry_default = {
   version: 1,
   title: "Wise Motion",
-  license: "AGPL-3.0-only",
+  license: "Apache-2.0",
   categories: [
     {
       id: "entrance",
@@ -553,7 +553,7 @@ var registry_default = {
         path: "catalog/effects/entrance.js",
         factory: "fade-rise",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -635,7 +635,7 @@ var registry_default = {
         path: "catalog/effects/entrance.js",
         factory: "scale-in",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -736,7 +736,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "stamp-land",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -797,7 +797,7 @@ var registry_default = {
         path: "catalog/effects/entrance.js",
         factory: "stagger-in",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -890,7 +890,7 @@ var registry_default = {
         path: "catalog/effects/entrance.js",
         factory: "group-expand",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -965,7 +965,7 @@ var registry_default = {
         path: "catalog/effects/continuous.js",
         factory: "seamless-scroll",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -1043,7 +1043,7 @@ var registry_default = {
         path: "catalog/effects/continuous.js",
         factory: "card-conveyor",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -1106,7 +1106,7 @@ var registry_default = {
         path: "catalog/effects/continuous.js",
         factory: "curve-path",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -1198,7 +1198,7 @@ var registry_default = {
         path: "catalog/effects/data-comparisons.js",
         factory: "narrated-count",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -1274,7 +1274,7 @@ var registry_default = {
         path: "catalog/effects/data-comparisons.js",
         factory: "bezier-editor",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -1355,7 +1355,7 @@ var registry_default = {
         path: "catalog/effects/data-comparisons.js",
         factory: "motion-compare",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -1434,7 +1434,7 @@ var registry_default = {
         path: "catalog/effects/data-comparisons.js",
         factory: "reduction-dimension",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -1489,7 +1489,7 @@ var registry_default = {
         path: "catalog/effects/continuous.js",
         factory: "orbit",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -1570,7 +1570,7 @@ var registry_default = {
         path: "catalog/effects/continuous.js",
         factory: "float",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -1646,7 +1646,7 @@ var registry_default = {
         path: "catalog/effects/attention.js",
         factory: "count-up",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -1790,7 +1790,7 @@ var registry_default = {
         path: "catalog/effects/attention.js",
         factory: "type-reveal",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -1879,7 +1879,7 @@ var registry_default = {
         path: "catalog/effects/attention.js",
         factory: "word-focus",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -1978,7 +1978,7 @@ var registry_default = {
         path: "catalog/effects/attention.js",
         factory: "focus-zoom",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -2060,7 +2060,7 @@ var registry_default = {
         path: "catalog/effects/space.js",
         factory: "shape-morph",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -2141,7 +2141,7 @@ var registry_default = {
         path: "catalog/effects/space.js",
         factory: "flat-to-volume",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -2222,7 +2222,7 @@ var registry_default = {
         path: "catalog/effects/space.js",
         factory: "card-flip",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -2304,7 +2304,7 @@ var registry_default = {
         path: "catalog/effects/space.js",
         factory: "layout-reorder",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -2387,7 +2387,7 @@ var registry_default = {
         path: "catalog/effects/space.js",
         factory: "column-to-row",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -2472,7 +2472,7 @@ var registry_default = {
         path: "catalog/effects/space.js",
         factory: "layer-expand",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -2549,7 +2549,7 @@ var registry_default = {
         path: "catalog/effects/space.js",
         factory: "paper-tilt",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -2628,7 +2628,7 @@ var registry_default = {
         path: "catalog/effects/crt-collapse.js",
         factory: "crt-collapse",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -2696,7 +2696,7 @@ var registry_default = {
         path: "catalog/effects/transition.js",
         factory: "wipe",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -2783,7 +2783,7 @@ var registry_default = {
         path: "catalog/effects/transition.js",
         factory: "rapid-cut",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -2839,7 +2839,7 @@ var registry_default = {
             path: "catalog/effects/transition.js",
             factory: "rapid-cut",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             dependencies: [
@@ -2905,7 +2905,7 @@ var registry_default = {
         path: "catalog/effects/transition.js",
         factory: "shared-object",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -2991,7 +2991,7 @@ var registry_default = {
         path: "catalog/effects/transition.js",
         factory: "scene-carry",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -3075,7 +3075,7 @@ var registry_default = {
         path: "catalog/effects/transition.js",
         factory: "zoom-transition",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -3156,7 +3156,7 @@ var registry_default = {
         path: "catalog/effects/environment.js",
         factory: "follow",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -3227,7 +3227,7 @@ var registry_default = {
         path: "catalog/effects/environment.js",
         factory: "group-stagger",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -3304,7 +3304,7 @@ var registry_default = {
         path: "catalog/effects/compositions.js",
         factory: "dual-scroll",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -3369,7 +3369,7 @@ var registry_default = {
         path: "catalog/effects/flow-bands.js",
         factory: "dual-scroll-settle",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -3456,7 +3456,7 @@ var registry_default = {
         path: "catalog/effects/compositions.js",
         factory: "subtitle-focus",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -3549,7 +3549,7 @@ var registry_default = {
         path: "catalog/effects/compositions.js",
         factory: "title-content",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -3679,7 +3679,7 @@ var registry_default = {
         path: "catalog/effects/compositions.js",
         factory: "interface-feedback",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -3782,7 +3782,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "rigid-rebound",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -3855,7 +3855,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "vertical-rebound",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -3931,7 +3931,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "mask-stagger-text",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -4017,7 +4017,7 @@ var registry_default = {
             path: "catalog/effects/history-patterns.js",
             factory: "mask-stagger-text",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             dependencies: [
@@ -4075,7 +4075,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "stroke-draw",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -4148,7 +4148,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "heartbeat-follow",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -4221,7 +4221,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "mindmap-grow",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -4294,7 +4294,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "mindmap-follow",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -4358,7 +4358,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "vertical-feed",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -4430,7 +4430,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "scroll-brake",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -4502,7 +4502,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "dwell-carousel",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -4584,7 +4584,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "progress-readout",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -4642,7 +4642,7 @@ var registry_default = {
             path: "catalog/effects/history-patterns.js",
             factory: "progress-readout",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/"
           },
@@ -4689,7 +4689,7 @@ var registry_default = {
             path: "catalog/effects/claude-tile-illustrations.js",
             factory: "claude-frame-counter-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -4772,7 +4772,7 @@ var registry_default = {
         path: "catalog/effects/live-code-readout.js",
         factory: "live-code-readout",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -4828,7 +4828,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "text-decode",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -4901,7 +4901,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "text-edit",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -4986,7 +4986,7 @@ var registry_default = {
         path: "catalog/effects/promo-particles.js",
         factory: "particle-word",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -5090,7 +5090,7 @@ var registry_default = {
         path: "catalog/effects/glyph-code-fill.js",
         factory: "glyph-code-fill",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -5138,7 +5138,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "fragment-replace",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -5221,7 +5221,7 @@ var registry_default = {
         path: "catalog/effects/word-slam.js",
         factory: "word-slam",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -5309,7 +5309,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "page-cover",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -5379,7 +5379,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "stagger-crossfade",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -5450,7 +5450,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "shutter-transition",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -5527,7 +5527,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "pivot-swing",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -5579,7 +5579,7 @@ var registry_default = {
             path: "catalog/effects/history-patterns.js",
             factory: "pivot-swing",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/"
           },
@@ -5627,7 +5627,7 @@ var registry_default = {
             path: "catalog/effects/history-nature.js",
             factory: "dandelion-seed-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u6CBF\u7528 isolated-player.js \u7684 seed \u8C03\u7528\uFF1A\u534A\u5F8435\u3001\u89D2\u5EA6sin(t*1.4)*0.16\uFF1B\u590D\u7528\u539F floret \u768437\u9053\u51A0\u6BDB\u3001\u539F\u7EBF\u5BBD\u548C\u79CD\u5B50\u8F6E\u5ED3\uFF0C\u4EC5\u6574\u4F53\u5C45\u4E2D\u53CA\u7B49\u6BD4\u7F29\u653E\u3002",
@@ -5708,7 +5708,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "squash-bounce",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u81EA\u6709\u5915\u9633 sketch.js \u63D0\u53D6 SUN_MOTION \u4E0E sunDeformationAt \u7684\u4E09\u4E2A\u8FDE\u7EED\u7A97\u53E3\u3001\u5F62\u53D8\u5F3A\u5EA6\u3001\u6A2A\u7EB5\u4E92\u9006\u53CA\u63A5\u89E6\u70B9\u7EA6\u675F\uFF1B\u6309\u76EE\u5F55\u65F6\u949F\u7ED8\u5236\uFF0C\u65E0\u9700\u539F\u5DE5\u7A0B\u3001p5.js \u6216\u7D20\u6750\u3002\u53E6\u4FDD\u7559\u539F\u843D\u5730\u5F39\u8DF3\u793A\u4F8B\u3002"
@@ -5838,7 +5838,7 @@ var registry_default = {
             path: "catalog/effects/history-nature.js",
             factory: "sunset-sun-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u590D\u7528\u539F sunDeformationAt \u7684\u4E09\u6BB5\u5F62\u53D8\u4E0E drawSun \u7684\u539F\u6E10\u53D8\uFF0C\u6309\u56FA\u5B9A\u5E95\u90E8\u63A5\u89E6\u70B9\u5C55\u793A\uFF1B\u4E0D\u5E26\u98DE\u673A\u3001\u7EF3\u7D22\u6216\u6D77\u9762\u3002",
@@ -5913,7 +5913,7 @@ var registry_default = {
         path: "catalog/effects/step-hop.js",
         factory: "step-hop",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -5990,7 +5990,7 @@ var registry_default = {
         path: "catalog/effects/concept-diagram.js",
         factory: "concept-diagram",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -6053,7 +6053,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "rolling-distance",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -6115,7 +6115,7 @@ var registry_default = {
             path: "catalog/effects/history-patterns.js",
             factory: "rolling-distance",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/"
           },
@@ -6172,7 +6172,7 @@ var registry_default = {
             path: "catalog/effects/history-nature.js",
             factory: "drive-car-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u76F4\u63A5\u590D\u7528 drawXiaokuiCar\u3001driveDistance\u3001vehicleBob\uFF0C\u6062\u590D\u771F\u5B9E\u65F6\u95F4\u548C\u884C\u7A0B\uFF1B\u72EC\u7ACB\u8DDF\u8F66\u53D6\u666F\u4EC5\u79FB\u9664\u80CC\u666F\u548C\u6C14\u7403\u3002",
@@ -6240,7 +6240,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "point-morph",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -6312,7 +6312,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "line-converge",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -6381,7 +6381,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "event-clock",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -6451,7 +6451,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "slider-response",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -6523,7 +6523,7 @@ var registry_default = {
         path: "catalog/effects/data-motion.js",
         factory: "data-pulse",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -6587,7 +6587,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "wave-grid",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -6657,7 +6657,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "local-scan",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -6718,7 +6718,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "color-evolve",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -6792,7 +6792,7 @@ var registry_default = {
         path: "catalog/effects/theme-color-cycle.js",
         factory: "theme-color-cycle",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -6866,7 +6866,7 @@ var registry_default = {
         path: "catalog/effects/attention.js",
         factory: "tone-grow",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -6936,7 +6936,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "density-field",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -7006,7 +7006,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "dim-focus",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -7078,7 +7078,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "staged-build",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -7160,7 +7160,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "word-cloud-lift",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -7229,7 +7229,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "evidence-icons",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -7307,7 +7307,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "formula-evolve",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -7384,7 +7384,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "experience-progress",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -7471,7 +7471,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "terminal-code",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -7529,7 +7529,7 @@ var registry_default = {
             path: "catalog/effects/history-patterns.js",
             factory: "terminal-code",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/"
           },
@@ -7667,7 +7667,7 @@ var registry_default = {
             path: "catalog/effects/kimi-illustrations.js",
             factory: "terminal-window-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/"
           },
@@ -7852,7 +7852,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "theme-card-layout",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -7921,7 +7921,7 @@ var registry_default = {
         path: "catalog/effects/data-motion.js",
         factory: "countdown-dial",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -7992,7 +7992,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "cylinder-drum",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -8073,7 +8073,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "load-balance",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -8146,7 +8146,7 @@ var registry_default = {
         path: "catalog/effects/dither-book.js",
         factory: "book-spine-turn",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://amicro.vercel.app/3d",
         reference: {
@@ -8212,7 +8212,7 @@ var registry_default = {
         path: "catalog/effects/dither-book.js",
         factory: "book-geometric-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://amicro.vercel.app/3d",
         reference: {
@@ -8322,7 +8322,7 @@ var registry_default = {
         path: "catalog/effects/dither-book.js",
         factory: "book-paper-light",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://amicro.vercel.app/3d",
         reference: {
@@ -8396,7 +8396,7 @@ var registry_default = {
         path: "catalog/effects/dither-book.js",
         factory: "dither-lab-book",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://amicro.vercel.app/3d",
         reference: {
@@ -8467,7 +8467,7 @@ var registry_default = {
         path: "catalog/effects/data-motion.js",
         factory: "stroke-hatch",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -8540,7 +8540,7 @@ var registry_default = {
         path: "catalog/effects/history-patterns.js",
         factory: "sequential-spec",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -8614,7 +8614,7 @@ var registry_default = {
         path: "catalog/effects/data-motion.js",
         factory: "benchmark-columns",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -8687,7 +8687,7 @@ var registry_default = {
         path: "catalog/effects/data-motion.js",
         factory: "bar-growth",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -8807,7 +8807,7 @@ var registry_default = {
         path: "catalog/effects/data-motion.js",
         factory: "sector-appear",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -8882,7 +8882,7 @@ var registry_default = {
         path: "catalog/effects/data-motion.js",
         factory: "trend-draw",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -8953,7 +8953,7 @@ var registry_default = {
         path: "catalog/effects/data-motion.js",
         factory: "map-paint",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -9031,7 +9031,7 @@ var registry_default = {
         path: "catalog/effects/data-motion.js",
         factory: "timeline-progress",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -9168,7 +9168,7 @@ var registry_default = {
         path: "catalog/effects/data-motion.js",
         factory: "dimension-line",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -9244,7 +9244,7 @@ var registry_default = {
         path: "catalog/effects/data-motion.js",
         factory: "ruler-ticks",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -9319,7 +9319,7 @@ var registry_default = {
         path: "catalog/effects/data-motion.js",
         factory: "leader-callout",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -9387,7 +9387,7 @@ var registry_default = {
         path: "catalog/effects/data-motion.js",
         factory: "gauge-rebound",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -9464,7 +9464,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "animal-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -9533,7 +9533,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "venturi-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -9602,7 +9602,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "attention-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -9671,7 +9671,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "heads-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -9739,7 +9739,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "stage-merge-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -9808,7 +9808,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "torus-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -9877,7 +9877,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "dot-route-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -9946,7 +9946,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "paper-scroll-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10026,7 +10026,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "steel-ruler-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_files: [
@@ -10093,7 +10093,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "smoke-ring-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10164,7 +10164,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "vortex-ring-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10235,7 +10235,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "mushroom-cloud-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10306,7 +10306,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "hill-vortex-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10377,7 +10377,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "cyclone-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10448,7 +10448,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "spiral-galaxy-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10518,7 +10518,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "rasengan-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10588,7 +10588,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "lightning-orb-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10655,7 +10655,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "moon-card-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10724,7 +10724,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "drafting-tools-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10794,7 +10794,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "archive-folder-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10860,7 +10860,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "folio-cards-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10929,7 +10929,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "chart-card-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -10996,7 +10996,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "aperture-eye-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -11066,7 +11066,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "terminal-window-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -11137,7 +11137,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "archive-box-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -11176,7 +11176,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/reel-opening.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         factory: "char-color-cycle"
@@ -11253,7 +11253,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/reel-opening.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         factory: "letter-hole-zoom"
@@ -11372,7 +11372,7 @@ var registry_default = {
         path: "catalog/effects/reel-paper.js",
         factory: "paper-strip-stagger",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -11438,7 +11438,7 @@ var registry_default = {
         path: "catalog/effects/reel-paper.js",
         factory: "spiral-draw-spin",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -11503,7 +11503,7 @@ var registry_default = {
         path: "catalog/effects/reel-paper.js",
         factory: "planar-dot-orbit",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -11561,7 +11561,7 @@ var registry_default = {
         path: "catalog/effects/reel-paper.js",
         factory: "paper-spiral-sequence",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
@@ -11678,7 +11678,7 @@ var registry_default = {
         path: "catalog/effects/radial-branch-flow.js",
         factory: "radial-branch-flow",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -11748,7 +11748,7 @@ var registry_default = {
         path: "catalog/effects/rect-wave-field.js",
         factory: "rect-wave-field",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -11816,7 +11816,7 @@ var registry_default = {
         path: "catalog/effects/letter-ripple.js",
         factory: "letter-ripple",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -11888,7 +11888,7 @@ var registry_default = {
         path: "catalog/effects/letter-settle.js",
         factory: "letter-settle",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -11968,7 +11968,7 @@ var registry_default = {
         path: "catalog/effects/reel-neon.js",
         factory: "striped-sun-rise",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -12034,7 +12034,7 @@ var registry_default = {
         path: "catalog/effects/reel-neon.js",
         factory: "perspective-grid-flow",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -12098,7 +12098,7 @@ var registry_default = {
         path: "catalog/effects/reel-neon.js",
         factory: "star-twinkle",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -12114,7 +12114,7 @@ var registry_default = {
             path: "catalog/effects/reel-neon.js",
             factory: "star-twinkle",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/"
           }
@@ -12129,11 +12129,11 @@ var registry_default = {
           source: {
             path: "catalog/effects/point-domain-flow.js",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u57FA\u4E8E\u672C\u5730\u51E0\u4F55\u7ED8\u5236\u91CD\u6784\uFF1A\u6309Wise Motion\u53D9\u4E8B\u8BBE\u8BA1\u9EC4\u91D1\u65B9\u683C\u3001\u5B57\u7B26\u96E8\u5E55\u3001\u5EF6\u4F38\u505C\u987F\u6253\u94C1\u82B1\u3001\u7F51\u683C\u6CE2\u6B21\u53CA\u7236\u5B50\u9012\u5F52\u751F\u957F\uFF1B\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u4EAB\u7ED8\u5236\u51FD\u6570\u548C\u786E\u5B9A\u65F6\u949F\uFF0C\u8FD0\u884C\u4E0D\u8BFB\u53D6\u539F\u7247\u6216\u53C2\u8003\u56FE\u3002",
-            rights_note: "\u4EE3\u7801\u6309AGPL-3.0-only\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
+            rights_note: "\u4EE3\u7801\u6309Apache-2.0\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
             factory: "star-twinkle",
             dependencies: [
               "catalog/effects/reel-neon.js"
@@ -12224,7 +12224,7 @@ var registry_default = {
         path: "catalog/effects/reel-neon.js",
         factory: "neon-horizon",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
@@ -12304,7 +12304,7 @@ var registry_default = {
         path: "catalog/effects/door-halftone.js",
         factory: "door-halftone-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         graphic_license: "OFL-1.1",
@@ -12386,7 +12386,7 @@ var registry_default = {
         path: "catalog/effects/reel-neon.js",
         factory: "chrome-outline-echo",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -12452,7 +12452,7 @@ var registry_default = {
         path: "catalog/effects/reel-neon.js",
         factory: "neon-type-flicker",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -12519,7 +12519,7 @@ var registry_default = {
         path: "catalog/effects/reel-neon.js",
         factory: "caption-type-caret",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -12599,7 +12599,7 @@ var registry_default = {
         path: "catalog/effects/reel-neon.js",
         factory: "neon-title-sequence",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
@@ -12697,7 +12697,7 @@ var registry_default = {
         path: "catalog/effects/reel-neon.js",
         factory: "cross-flare-travel",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -12763,7 +12763,7 @@ var registry_default = {
         path: "catalog/effects/reel-transitions.js",
         factory: "iris-open-transition",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -12827,7 +12827,7 @@ var registry_default = {
             path: "catalog/effects/reel-transitions.js",
             factory: "iris-open-transition",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             dependencies: [
@@ -12857,7 +12857,7 @@ var registry_default = {
             path: "catalog/effects/reel-transitions.js",
             factory: "iris-open-transition",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             dependencies: [
@@ -12892,7 +12892,7 @@ var registry_default = {
             path: "catalog/effects/reel-transitions.js",
             factory: "iris-open-transition",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             dependencies: [
@@ -12968,7 +12968,7 @@ var registry_default = {
         path: "catalog/effects/reel-transitions.js",
         factory: "slat-alternate-transition",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -13034,7 +13034,7 @@ var registry_default = {
         path: "catalog/effects/reel-transitions.js",
         factory: "glitch-band-transition",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -13083,7 +13083,7 @@ var registry_default = {
             path: "catalog/effects/reel-transitions.js",
             factory: "glitch-band-transition",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             dependencies: [
@@ -13157,7 +13157,7 @@ var registry_default = {
         path: "catalog/effects/reel-transitions.js",
         factory: "radial-flash-transition",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -13221,7 +13221,7 @@ var registry_default = {
         path: "catalog/effects/reel-transitions.js",
         factory: "tile-wave-transition",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -13285,7 +13285,7 @@ var registry_default = {
         path: "catalog/effects/reel-transitions.js",
         factory: "diagonal-edge-transition",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -13349,7 +13349,7 @@ var registry_default = {
         path: "catalog/effects/reel-transitions.js",
         factory: "pixel-dissolve-transition",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -13413,7 +13413,7 @@ var registry_default = {
         path: "catalog/effects/reel-transitions.js",
         factory: "iris-flash-transition",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -13482,7 +13482,7 @@ var registry_default = {
         path: "catalog/effects/reel-grit-key.js",
         factory: "frame-jitter-type",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -13547,7 +13547,7 @@ var registry_default = {
         path: "catalog/effects/reel-grit-key.js",
         factory: "ghost-type-overprint",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -13612,7 +13612,7 @@ var registry_default = {
         path: "catalog/effects/reel-grit-key.js",
         factory: "film-scratch-flicker",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -13679,7 +13679,7 @@ var registry_default = {
         path: "catalog/effects/reel-grit-key.js",
         factory: "panel-rise-collapse",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -13752,7 +13752,7 @@ var registry_default = {
         path: "catalog/effects/reel-grit-key.js",
         factory: "ball-bounce-trails",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -13819,7 +13819,7 @@ var registry_default = {
         path: "catalog/effects/reel-grit-key.js",
         factory: "timeline-keyframe-playhead",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -13884,7 +13884,7 @@ var registry_default = {
         path: "catalog/effects/reel-grit-key.js",
         factory: "shape-pop-float",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -13956,7 +13956,7 @@ var registry_default = {
         path: "catalog/effects/reel-grit-key.js",
         factory: "keyframe-workbench",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -14098,7 +14098,7 @@ var registry_default = {
         path: "catalog/effects/reel-flat-gen.js",
         factory: "tile-round-wave",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -14161,7 +14161,7 @@ var registry_default = {
         path: "catalog/effects/reel-flat-gen.js",
         factory: "material-phone-rise",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -14235,7 +14235,7 @@ var registry_default = {
         path: "catalog/effects/reel-flat-gen.js",
         factory: "material-card-stagger",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -14309,7 +14309,7 @@ var registry_default = {
         path: "catalog/effects/reel-flat-gen.js",
         factory: "material-switch-spring",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -14382,7 +14382,7 @@ var registry_default = {
         path: "catalog/effects/reel-flat-gen.js",
         factory: "material-spinner-arc",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -14457,7 +14457,7 @@ var registry_default = {
         path: "catalog/effects/reel-flat-gen.js",
         factory: "material-like-pop",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -14532,7 +14532,7 @@ var registry_default = {
         path: "catalog/effects/reel-flat-gen.js",
         factory: "material-fab-panel",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -14609,7 +14609,7 @@ var registry_default = {
         path: "catalog/effects/reel-flat-gen.js",
         factory: "generative-point-morph",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -14671,7 +14671,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "tile-wall-focus",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -14753,7 +14753,7 @@ var registry_default = {
         path: "catalog/effects/reel-flat-gen.js",
         factory: "generative-flow-field",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -14790,7 +14790,7 @@ var registry_default = {
             path: "catalog/effects/reel-flat-gen.js",
             factory: "generative-flow-field",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/"
           },
@@ -14830,7 +14830,7 @@ var registry_default = {
             path: "catalog/effects/claude-tile-illustrations.js",
             factory: "claude-flow-field-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -14896,7 +14896,7 @@ var registry_default = {
         path: "catalog/effects/math-formula-drift.js",
         factory: "math-formula-drift",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -14987,7 +14987,7 @@ var registry_default = {
         path: "catalog/effects/reel-flat-gen.js",
         factory: "title-stagger",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -15157,7 +15157,7 @@ var registry_default = {
         path: "catalog/effects/reel-flat-gen.js",
         factory: "material-phone-sequence",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -15316,7 +15316,7 @@ var registry_default = {
         path: "catalog/effects/reel-flat-gen.js",
         factory: "generative-frame-readout",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -15386,7 +15386,7 @@ var registry_default = {
         path: "catalog/effects/reel-flat-gen.js",
         factory: "generative-point-sequence",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
@@ -15498,7 +15498,7 @@ var registry_default = {
         path: "catalog/effects/reel-prompt-outro.js",
         factory: "prompt-border-trace",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -15566,7 +15566,7 @@ var registry_default = {
         path: "catalog/effects/reel-prompt-outro.js",
         factory: "prompt-chinese-type",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -15645,7 +15645,7 @@ var registry_default = {
         path: "catalog/effects/reel-prompt-outro.js",
         factory: "prompt-char-gather",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -15724,7 +15724,7 @@ var registry_default = {
         path: "catalog/effects/reel-prompt-outro.js",
         factory: "send-press-ring",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -15792,7 +15792,7 @@ var registry_default = {
         path: "catalog/effects/reel-prompt-outro.js",
         factory: "prompt-ui-push",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -15864,7 +15864,7 @@ var registry_default = {
         path: "catalog/effects/reel-prompt-outro.js",
         factory: "core-ring-expand",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -15931,7 +15931,7 @@ var registry_default = {
         path: "catalog/effects/reel-prompt-outro.js",
         factory: "radial-line-burst",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -15997,7 +15997,7 @@ var registry_default = {
         path: "catalog/effects/reel-prompt-outro.js",
         factory: "timeline-dock-down",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -16067,7 +16067,7 @@ var registry_default = {
         path: "catalog/effects/reel-prompt-outro.js",
         factory: "color-segment-stagger",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -16141,7 +16141,7 @@ var registry_default = {
         path: "catalog/effects/reel-prompt-outro.js",
         factory: "prompt-to-core-sequence",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
@@ -16252,7 +16252,7 @@ var registry_default = {
         path: "catalog/effects/reel-prompt-outro.js",
         factory: "outro-recap-sequence",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
@@ -16334,7 +16334,7 @@ var registry_default = {
         path: "catalog/effects/compositions.js",
         factory: "subtitle-cell-focus",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -16416,7 +16416,7 @@ var registry_default = {
         path: "catalog/effects/compositions.js",
         factory: "subtitle-block-shift",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -16489,7 +16489,7 @@ var registry_default = {
         path: "catalog/effects/compositions.js",
         factory: "button-press-status",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -16577,7 +16577,7 @@ var registry_default = {
         path: "catalog/effects/compositions.js",
         factory: "progress-fill-exit",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -16664,7 +16664,7 @@ var registry_default = {
         path: "catalog/effects/reel-paper.js",
         factory: "paper-disc-pop",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -16729,7 +16729,7 @@ var registry_default = {
         path: "catalog/effects/reel-paper.js",
         factory: "paper-title-stagger",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -16794,7 +16794,7 @@ var registry_default = {
         path: "catalog/effects/reel-prompt-outro.js",
         factory: "outro-credit-lift",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -16856,7 +16856,7 @@ var registry_default = {
         path: "catalog/effects/radial-branch-flow.js",
         factory: "center-ripple-emit",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -16929,7 +16929,7 @@ var registry_default = {
         path: "catalog/effects/letter-settle.js",
         factory: "symbol-flight-settle",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -16991,7 +16991,7 @@ var registry_default = {
         path: "catalog/effects/letter-settle.js",
         factory: "arrival-star-reveal",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -17054,7 +17054,7 @@ var registry_default = {
         path: "catalog/effects/letter-settle.js",
         factory: "arrival-star-sparkle",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       }
@@ -17106,7 +17106,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-lissajous-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17178,7 +17178,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-wireframe-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17248,7 +17248,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-flow-field-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17322,7 +17322,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-pendulum-wave-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17394,7 +17394,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-phyllotaxis-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17466,7 +17466,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-kick-rings-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17538,7 +17538,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-spectrum-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17613,7 +17613,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-warp-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17685,7 +17685,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-sine-grid-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17757,7 +17757,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-fractal-tree-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17827,7 +17827,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-glyph-rain-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17898,7 +17898,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-hex-pulse-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -17970,7 +17970,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-orbits-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -18042,7 +18042,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-terrain-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -18112,7 +18112,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-plexus-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -18183,7 +18183,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-frame-counter-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -18234,11 +18234,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/material-evolution.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [],
-        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A AGPL-3.0-only\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
+        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A Apache-2.0\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
         factory: "brush-glyph-build",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18246,7 +18246,7 @@ var registry_default = {
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
+        rights_note: "Apache-2.0\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
         reference: {
           name: "Kimi K3 \u5F00\u6E90\u53D1\u5E03\u5BA3\u4F20\u7247\uFF08open weights\uFF09",
           url: "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18325,11 +18325,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/material-evolution.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [],
-        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A AGPL-3.0-only\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
+        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A Apache-2.0\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
         factory: "glyph-bar-collapse",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18337,7 +18337,7 @@ var registry_default = {
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
+        rights_note: "Apache-2.0\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
         reference: {
           name: "Kimi K3 \u5F00\u6E90\u53D1\u5E03\u5BA3\u4F20\u7247\uFF08open weights\uFF09",
           url: "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18421,11 +18421,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/material-evolution.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [],
-        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A AGPL-3.0-only\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
+        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A Apache-2.0\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
         factory: "dots-lines-cylinders",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18433,7 +18433,7 @@ var registry_default = {
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
+        rights_note: "Apache-2.0\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
         reference: {
           name: "Kimi K3 \u5F00\u6E90\u53D1\u5E03\u5BA3\u4F20\u7247\uFF08open weights\uFF09",
           url: "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18518,11 +18518,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/material-evolution.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [],
-        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A AGPL-3.0-only\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
+        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A Apache-2.0\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
         factory: "material-form-chain",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18530,7 +18530,7 @@ var registry_default = {
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
+        rights_note: "Apache-2.0\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
         reference: {
           name: "Kimi K3 \u5F00\u6E90\u53D1\u5E03\u5BA3\u4F20\u7247\uFF08open weights\uFF09",
           url: "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18614,11 +18614,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/material-evolution.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [],
-        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A AGPL-3.0-only\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
+        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A Apache-2.0\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
         factory: "spheres-material-merge",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18626,7 +18626,7 @@ var registry_default = {
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
+        rights_note: "Apache-2.0\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
         reference: {
           name: "Kimi K3 \u5F00\u6E90\u53D1\u5E03\u5BA3\u4F20\u7247\uFF08open weights\uFF09",
           url: "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18710,11 +18710,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/material-evolution.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [],
-        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A AGPL-3.0-only\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
+        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A Apache-2.0\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
         factory: "atlas-reveal-clear",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18722,7 +18722,7 @@ var registry_default = {
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
+        rights_note: "Apache-2.0\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
         reference: {
           name: "Kimi K3 \u5F00\u6E90\u53D1\u5E03\u5BA3\u4F20\u7247\uFF08open weights\uFF09",
           url: "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18807,11 +18807,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/material-evolution.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [],
-        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A AGPL-3.0-only\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
+        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A Apache-2.0\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
         factory: "glyph-cut-ending",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18819,7 +18819,7 @@ var registry_default = {
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
+        rights_note: "Apache-2.0\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
         reference: {
           name: "Kimi K3 \u5F00\u6E90\u53D1\u5E03\u5BA3\u4F20\u7247\uFF08open weights\uFF09",
           url: "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -18911,11 +18911,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/material-evolution.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [],
-        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A AGPL-3.0-only\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
+        extraction: "\u6CBF\u7528\u6750\u8D28\u6F14\u53D8\u7ED8\u5236\u51FD\u6570\u4E0E\u4E03\u6BB5\u56FA\u5B9A\u6392\u7A0B\u3002\u5F00\u593437\u4E2A\u59FF\u6001\u76F4\u63A5\u63CF\u6479\u989C\u771F\u537F\u5B8B\u62D3\u591A\u5B9D\u4F5B\u5854\u7891\u518C\u7B2C\u4E8C\u5F00\u5DE6\u9875\u201C\u9053\u6A39\u840C\u7259\u201D\u7684\u9053\u5B57\uFF0C\u7247\u5C3E\u9053\u5B57\u590D\u7528\u540C\u4E00\u8F6E\u5ED3\uFF1B\u4E00\u4E8C\u4E09\u5404\u81EA\u63CF\u6479\u540C\u518C\u7B2C\u5341\u5F00\u5B8C\u6574\u539F\u5B57\uFF0C\u4E2D\u6BB5\u4E00\u4E8C\u7684\u7C92\u5B50\u8FB9\u754C\u4E0E\u7247\u5C3E\u5171\u7528\u539F\u5B57\u8F6E\u5ED3\uFF0C\u6570\u5B57\u53CA\u82F1\u6587\u7531\u968F\u5305 Oswald Bold \u751F\u6210\uFF0C\u6700\u7EC8\u5B57\u6807\u4E3A WISE MOTION\u3002\u539F\u5E16\u9875\u56FE\u3001\u5B57\u6846\u5750\u6807\u3001CC BY 4.0 \u7F72\u540D\u53CA\u5904\u7406\u65B9\u5F0F\u89C1 vendor/duobaota/SOURCE.json\u3002\u9879\u76EE\u7A0B\u5E8F\u4E3A Apache-2.0\uFF0C\u5B57\u4F53\u4E3A SIL OFL 1.1\u3002\u7EA4\u7EF4\u7403\u3001\u6708\u9762\u4E0E\u7248\u753B\u4FDD\u7559\u539F\u751F\u6210\u7D20\u6750\u8BB0\u5F55\uFF0CKimi \u539F\u7247\u4FDD\u7559\u52A8\u4F5C\u4E0E\u6750\u8D28\u53C2\u8003\u7F72\u540D\u3002",
         factory: "material-evolution-sequence",
         assets: [
           "catalog/assets/material-evolution/key-shapes.js",
@@ -18923,7 +18923,7 @@ var registry_default = {
           "catalog/assets/material-evolution/moon.webp",
           "catalog/assets/material-evolution/atlas-engraving.webp"
         ],
-        rights_note: "AGPL-3.0-only\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
+        rights_note: "Apache-2.0\u4EC5\u9002\u7528\u4E8E\u8FC1\u5165\u7684\u52A8\u753B\u9002\u914D\u7A0B\u5E8F\u4EE3\u7801\uFF0C\u4E0D\u8986\u76D6\u4E66\u6CD5\u3001KIMI\u54C1\u724C\u5B57\u5F62\u6216\u539F\u7247\u8BBE\u8BA1\uFF1B\u8FD9\u4E9B\u56FE\u5F62\u7684\u76F8\u5173\u6743\u5229\u4FDD\u6301\u5F52\u539F\u6743\u5229\u4EBA\u3002\u4E09\u5F20\u900F\u660E\u7EB9\u7406\u7531Codex\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u4F9D\u636E\u53C2\u8003\u753B\u9762\u91CD\u5EFA\uFF0C\u4FDD\u7559\u751F\u6210\u7D20\u6750\u6765\u6E90\u8BB0\u5F55\uFF0C\u4E0D\u636E\u6B64\u5BA3\u79F0\u539F\u56FE\u5F62\u5DF2\u83B7\u91CD\u65B0\u6388\u6743\u3002",
         reference: {
           name: "Kimi K3 \u5F00\u6E90\u53D1\u5E03\u5BA3\u4F20\u7247\uFF08open weights\uFF09",
           url: "https://www.youtube.com/watch?v=5GlCGOXUYHg",
@@ -19084,7 +19084,7 @@ var registry_default = {
         path: "catalog/effects/selfie-phone.js",
         factory: "selfie-phone-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u673A\u300C\u5C0F\u8475\u548C\u6211\u7684\u77ED\u7247\u300D\u624B\u673A\u4E0E\u4EBA\u7269\u539F\u56FE\uFF0C\u4F7F\u7528 Codex \u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u5206\u79BB\u624B\u673A\u4E0E\u900F\u660E\u80CC\u666F\uFF1B\u7D20\u6750\u4E3A\u751F\u6210\u5F0F\u63D0\u70BC\uFF0C\u975E\u9010\u50CF\u7D20\u539F\u56FE\u88C1\u5207\u3002"
@@ -19146,7 +19146,7 @@ var registry_default = {
         path: "catalog/effects/cat-mouth.js",
         factory: "cat-mouth-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u63D0\u53D6\u672C\u673A\u300C\u5C0F\u732B\u52A0\u5DE5\u5382\u300Dcat.js \u7684\u539F\u8DEF\u5F84\u3001\u82B1\u7EB9\u3001\u8868\u60C5\u7ED8\u5236\u4E0E timeline.js \u7684\u5C0F\u8475\u53EB\u58F0\u5F00\u5408\u66F2\u7EBF\uFF1B\u539F\u7ED8\u56FE\u8C03\u7528\u8F6C\u6362\u4E3A\u72EC\u7ACB SVG\uFF0C\u4E0D\u4F9D\u8D56\u539F\u5DE5\u7A0B\u3001\u56FE\u7247\u6216\u58F0\u97F3\u3002"
@@ -19229,7 +19229,7 @@ var registry_default = {
         path: "catalog/effects/encore-dance.js",
         factory: "encore-hook",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u8FC1\u5165\u672C\u673A\u300C\u96E8\u4E2D\u66F2 \xB7 \u8FD4\u573A\u300Dumbrella.js\u3001choreography.js\u3001renderer.js \u7684\u4F1E\u9762\u3001\u7F16\u821E\u4E0E\u573A\u666F\u7ED8\u5236\uFF1B\u539F\u753B\u5E03\u7ED8\u56FE\u8F6C\u6362\u4E3A\u77E2\u91CF\u8282\u70B9\uFF0C\u4FDD\u7559\u539F\u66F2\u7EBF\u3001\u63A5\u89E6\u70B9\u3001\u6C34\u82B1\u53CA\u5386\u53F2\u8F68\u8FF9\uFF0C\u4E0D\u8BFB\u53D6\u539F\u5DE5\u7A0B\u6216\u97F3\u9891\u3002"
@@ -19293,7 +19293,7 @@ var registry_default = {
         path: "catalog/effects/encore-dance.js",
         factory: "encore-tap",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u8FC1\u5165\u672C\u673A\u300C\u96E8\u4E2D\u66F2 \xB7 \u8FD4\u573A\u300Dumbrella.js\u3001choreography.js\u3001renderer.js \u7684\u4F1E\u9762\u3001\u7F16\u821E\u4E0E\u573A\u666F\u7ED8\u5236\uFF1B\u539F\u753B\u5E03\u7ED8\u56FE\u8F6C\u6362\u4E3A\u77E2\u91CF\u8282\u70B9\uFF0C\u4FDD\u7559\u539F\u66F2\u7EBF\u3001\u63A5\u89E6\u70B9\u3001\u6C34\u82B1\u53CA\u5386\u53F2\u8F68\u8FF9\uFF0C\u4E0D\u8BFB\u53D6\u539F\u5DE5\u7A0B\u6216\u97F3\u9891\u3002"
@@ -19357,7 +19357,7 @@ var registry_default = {
         path: "catalog/effects/encore-dance.js",
         factory: "encore-flight",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u8FC1\u5165\u672C\u673A\u300C\u96E8\u4E2D\u66F2 \xB7 \u8FD4\u573A\u300Dumbrella.js\u3001choreography.js\u3001renderer.js \u7684\u4F1E\u9762\u3001\u7F16\u821E\u4E0E\u573A\u666F\u7ED8\u5236\uFF1B\u539F\u753B\u5E03\u7ED8\u56FE\u8F6C\u6362\u4E3A\u77E2\u91CF\u8282\u70B9\uFF0C\u4FDD\u7559\u539F\u66F2\u7EBF\u3001\u63A5\u89E6\u70B9\u3001\u6C34\u82B1\u53CA\u5386\u53F2\u8F68\u8FF9\uFF0C\u4E0D\u8BFB\u53D6\u539F\u5DE5\u7A0B\u6216\u97F3\u9891\u3002"
@@ -19420,7 +19420,7 @@ var registry_default = {
         path: "catalog/effects/encore-dance.js",
         factory: "encore-tip",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u8FC1\u5165\u672C\u673A\u300C\u96E8\u4E2D\u66F2 \xB7 \u8FD4\u573A\u300Dumbrella.js\u3001choreography.js\u3001renderer.js \u7684\u4F1E\u9762\u3001\u7F16\u821E\u4E0E\u573A\u666F\u7ED8\u5236\uFF1B\u539F\u753B\u5E03\u7ED8\u56FE\u8F6C\u6362\u4E3A\u77E2\u91CF\u8282\u70B9\uFF0C\u4FDD\u7559\u539F\u66F2\u7EBF\u3001\u63A5\u89E6\u70B9\u3001\u6C34\u82B1\u53CA\u5386\u53F2\u8F68\u8FF9\uFF0C\u4E0D\u8BFB\u53D6\u539F\u5DE5\u7A0B\u6216\u97F3\u9891\u3002"
@@ -19484,7 +19484,7 @@ var registry_default = {
         path: "catalog/effects/encore-dance.js",
         factory: "encore-roll",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u8FC1\u5165\u672C\u673A\u300C\u96E8\u4E2D\u66F2 \xB7 \u8FD4\u573A\u300Dumbrella.js\u3001choreography.js\u3001renderer.js \u7684\u4F1E\u9762\u3001\u7F16\u821E\u4E0E\u573A\u666F\u7ED8\u5236\uFF1B\u539F\u753B\u5E03\u7ED8\u56FE\u8F6C\u6362\u4E3A\u77E2\u91CF\u8282\u70B9\uFF0C\u4FDD\u7559\u539F\u66F2\u7EBF\u3001\u63A5\u89E6\u70B9\u3001\u6C34\u82B1\u53CA\u5386\u53F2\u8F68\u8FF9\uFF0C\u4E0D\u8BFB\u53D6\u539F\u5DE5\u7A0B\u6216\u97F3\u9891\u3002"
@@ -19548,7 +19548,7 @@ var registry_default = {
         path: "catalog/effects/encore-dance.js",
         factory: "encore-shed",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u8FC1\u5165\u672C\u673A\u300C\u96E8\u4E2D\u66F2 \xB7 \u8FD4\u573A\u300Dumbrella.js\u3001choreography.js\u3001renderer.js \u7684\u4F1E\u9762\u3001\u7F16\u821E\u4E0E\u573A\u666F\u7ED8\u5236\uFF1B\u539F\u753B\u5E03\u7ED8\u56FE\u8F6C\u6362\u4E3A\u77E2\u91CF\u8282\u70B9\uFF0C\u4FDD\u7559\u539F\u66F2\u7EBF\u3001\u63A5\u89E6\u70B9\u3001\u6C34\u82B1\u53CA\u5386\u53F2\u8F68\u8FF9\uFF0C\u4E0D\u8BFB\u53D6\u539F\u5DE5\u7A0B\u6216\u97F3\u9891\u3002"
@@ -19598,7 +19598,7 @@ var registry_default = {
         path: "catalog/effects/encore-dance.js",
         factory: "encore-umbrella-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u590D\u7528 EncoreDance.sample \u4E0E EncoreUmbrella.draw\uFF0C\u6062\u590D\u5B8C\u6574\u539F\u7F16\u821E\uFF1B\u4EC5\u79FB\u9664\u96E8\u666F\u3001\u6C34\u82B1\u3001\u5012\u5F71\u548C\u58F0\u97F3\u3002",
@@ -19672,7 +19672,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "moon-event-fill",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u63D0\u53D6\u91D1\u53F6\u5316\u8776\u7684\u539F\u6708\u8C8C\u6570\u636E\u3001lunarPixel\u3001createMoonRaster\u3001paintMoonRaster\uFF1B\u539F\u8774\u8776\u8F68\u8FF9\u4E8C\u5206\u8BA1\u7B97\u51FA\u7684\u516B\u5341\u56DB\u4E2A\u62B5\u8FBE\u533A\u95F4\u56FA\u5B9A\u4FDD\u5B58\uFF0C\u4FDD\u7559\u4E8B\u4EF6\u805A\u5408\u5E73\u5747\u3002"
@@ -19737,7 +19737,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "sunset-water-reflection",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u8FC1\u5165\u5915\u9633\u539F\u6696\u8272\u914D\u8272\u3001sunDeformationAt\u3001flightAt\u3001waveAt\u3001waterFresnel\u3001buildWaterReflection\u3001drawWaterReflection \u4E0E makeSunBrush\uFF1B\u53EA\u7ED8\u5236\u592A\u9633\u548C\u6D77\u9762\uFF0C\u4FDD\u7559\u5149\u6E90\u8DEF\u5F84\u548C\u6CD5\u7EBF\u53D7\u5149\u5173\u7CFB\u3002"
@@ -19801,7 +19801,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "drive-balloon-release",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u8FC1\u5165\u539F\u655E\u7BF7\u8F66\u7ED8\u5236\u3001trackedBalloonState\u3001trackedBalloonString\u3001release \u4E0E drawBalloon\uFF1B\u5C06\u539F p5 \u66F2\u7EBF\u7ED8\u5236\u8F6C\u4E3A\u77E2\u91CF\u8DEF\u5F84\uFF0C\u4FDD\u6301\u539F\u7EDD\u5BF9\u65F6\u95F4\u3002"
@@ -19865,7 +19865,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "dandelion-radial-release",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u63D0\u53D6\u539F\u84B2\u516C\u82F1 openingEvent\u3001openingDisplacement\u3001openingAir\u3001openingPose \u548C floret\uFF1B\u6CBF\u7528\u539F\u72EC\u7ACB\u9884\u89C8\u7684\u4E00\u70B9\u56DB\u81F3\u4E8C\u70B9\u56DB\u79D2\u3002"
@@ -19933,7 +19933,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "osmanthus-moon-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u590D\u7528\u539F moonProgress \u4E0E\u6708\u8C8C\u50CF\u7D20\u7ED8\u5236\uFF0C\u53D6\u6D88\u56FA\u5B9A\u6EE1\u6708\u8FDB\u5EA6\uFF0C\u6062\u590D\u516B\u5341\u56DB\u4E2A\u62B5\u8FBE\u4E8B\u4EF6\u805A\u5408\u7684\u5149\u7167\u53D8\u5316\u3002",
@@ -19999,7 +19999,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "sunset-sun-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u590D\u7528\u539F sunDeformationAt \u7684\u4E09\u6BB5\u5F62\u53D8\u4E0E drawSun \u7684\u539F\u6E10\u53D8\uFF0C\u6309\u56FA\u5B9A\u5E95\u90E8\u63A5\u89E6\u70B9\u5C55\u793A\uFF1B\u4E0D\u5E26\u98DE\u673A\u3001\u7EF3\u7D22\u6216\u6D77\u9762\u3002",
@@ -20070,7 +20070,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "forward-boat-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u590D\u7528\u672C\u5305\u8FC1\u5165\u7684\u539F\u7ED8\u5236\u51FD\u6570\uFF0C\u4EC5\u4FDD\u7559\u72EC\u7ACB\u7269\u4EF6\uFF1B\u539F\u66F2\u7EBF\u3001\u914D\u8272\u4E0E\u5C42\u6B21\u4FDD\u6301\u3002"
@@ -20134,7 +20134,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "forward-plane-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u590D\u7528\u672C\u5305\u8FC1\u5165\u7684\u539F\u7ED8\u5236\u51FD\u6570\uFF0C\u4EC5\u4FDD\u7559\u72EC\u7ACB\u7269\u4EF6\uFF1B\u539F\u66F2\u7EBF\u3001\u914D\u8272\u4E0E\u5C42\u6B21\u4FDD\u6301\u3002"
@@ -20199,7 +20199,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "drive-car-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u590D\u7528 drawXiaokuiCar\u3001driveDistance\u3001vehicleBob\uFF0C\u6062\u590D\u771F\u5B9E\u65F6\u95F4\u548C\u884C\u7A0B\uFF1B\u72EC\u7ACB\u8DDF\u8F66\u53D6\u666F\u4EC5\u79FB\u9664\u80CC\u666F\u548C\u6C14\u7403\u3002",
@@ -20273,7 +20273,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "dandelion-subject-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4F7F\u7528\u539F subjectPose\u3001entryProgress\u3001filamentState \u548C floret\uFF0C\u6062\u590D\u539F flow \u4E2D\u7684\u51A0\u6BDB\u5C55\u5F00\u4E0E\u8F6C\u5411\uFF1B\u4EC5\u8DDF\u968F\u4E2D\u5FC3\u53D6\u666F\u3002",
@@ -20342,7 +20342,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "dandelion-seed-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u6CBF\u7528 isolated-player.js \u7684 seed \u8C03\u7528\uFF1A\u534A\u5F8435\u3001\u89D2\u5EA6sin(t*1.4)*0.16\uFF1B\u590D\u7528\u539F floret \u768437\u9053\u51A0\u6BDB\u3001\u539F\u7EBF\u5BBD\u548C\u79CD\u5B50\u8F6E\u5ED3\uFF0C\u4EC5\u6574\u4F53\u5C45\u4E2D\u53CA\u7B49\u6BD4\u7F29\u653E\u3002",
@@ -20433,7 +20433,7 @@ var registry_default = {
         path: "catalog/effects/osmanthus-motion.js",
         factory: "shape-contact-rebound",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u63D0\u53D6\u81EA\u6709\u516B\u6708\u6842\u591C\u7684\u56FA\u5B9A\u96F6\u4EF6\u6570\u636E\u3001\u5B9E\u9645\u8F6E\u5ED3\u89E6\u5730\u8BA1\u7B97\u3001\u98DE\u884C\u65B9\u7A0B\u4E0E\u4E8C\u7EF4\u6750\u8D28\u7ED8\u5236\uFF1B\u65E0\u9700\u539F\u5DE5\u7A0B\u6216 p5.js\uFF0C\u4E0D\u5305\u542B\u6811\u3001\u6708\u9762\u3001\u97F3\u9891\u3002"
@@ -20504,7 +20504,7 @@ var registry_default = {
         path: "catalog/effects/osmanthus-motion.js",
         factory: "swarm-arc-flight",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u63D0\u53D6\u81EA\u6709\u516B\u6708\u6842\u591C\u7684\u56FA\u5B9A\u96F6\u4EF6\u6570\u636E\u3001\u5B9E\u9645\u8F6E\u5ED3\u89E6\u5730\u8BA1\u7B97\u3001\u98DE\u884C\u65B9\u7A0B\u4E0E\u4E8C\u7EF4\u6750\u8D28\u7ED8\u5236\uFF1B\u65E0\u9700\u539F\u5DE5\u7A0B\u6216 p5.js\uFF0C\u4E0D\u5305\u542B\u6811\u3001\u6708\u9762\u3001\u97F3\u9891\u3002"
@@ -20567,7 +20567,7 @@ var registry_default = {
         path: "catalog/effects/settle-grow-spread.js",
         factory: "settle-grow-spread",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u63D0\u53D6\u81EA\u6709\u84B2\u516C\u82F1\u65C5\u7A0B\u7684\u56FA\u5B9A\u64AD\u79CD\u4E0E\u690D\u682A\u6570\u636E\u3001\u91CA\u653E\u4F4D\u7F6E\u53CA\u5B8C\u6574\u843D\u5B9A\u3001\u751F\u957F\u3001\u5C55\u53F6\u3001\u5F00\u82B1\u548C\u4F20\u64AD\u7ED8\u5236\uFF1B\u6062\u590D\u539F\u8349\u573A\u80CC\u666F\u3001\u56FA\u5B9A\u7EB8\u7EB9\u3001\u5206\u8272\u7EC6\u8349\u53CA\u98CE\u573A\uFF0C\u6309\u6A2A\u7248\u753B\u5E03\u91CD\u6392\u4F4D\u7F6E\u5E76\u4FDD\u6301\u7269\u4EF6\u7B49\u6BD4\uFF1B\u5305\u5185\u53EF\u76F4\u63A5\u8FD0\u884C\uFF0C\u65E0\u9700\u539F\u5DE5\u7A0B\u6216\u5A92\u4F53\u3002"
@@ -20648,7 +20648,7 @@ var registry_default = {
         path: "catalog/effects/emission-trails.js",
         factory: "emission-drift",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/scenes/motion-catalog/packs/completed/source/drive/scene.js",
@@ -20725,7 +20725,7 @@ var registry_default = {
         path: "catalog/effects/emission-trails.js",
         factory: "advected-trail",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/scenes/ocean-sunset/sketch.js",
@@ -20787,7 +20787,7 @@ var registry_default = {
         path: "catalog/effects/hud-targeting.js",
         factory: "hud-ring-build",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u673A\u7B2C\u516B\u6BB5\u7684\u81EA\u4E3B\u7ED8\u5236\u6846\u67B6\u6301\u7EED\u6539\u7248\uFF1B\u5730\u56FE\u4F7F\u7528Natural Earth\u516C\u5171\u9886\u57DF\u56FD\u5BB6\u8F6E\u5ED3\uFF0C\u659C\u8DDD\u4FDD\u7559\u539F\u7247\u53EF\u8BFB\u5E27\u91C7\u6837\uFF0C\u4E0D\u5305\u542B\u539F\u7247\u56FE\u7247\u6216\u89C6\u9891\u3002"
@@ -20847,7 +20847,7 @@ var registry_default = {
         path: "catalog/effects/hud-targeting.js",
         factory: "hud-globe-scan",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u673A\u7B2C\u516B\u6BB5\u7684\u81EA\u4E3B\u7ED8\u5236\u6846\u67B6\u6301\u7EED\u6539\u7248\uFF1B\u5730\u56FE\u4F7F\u7528Natural Earth\u516C\u5171\u9886\u57DF\u56FD\u5BB6\u8F6E\u5ED3\uFF0C\u659C\u8DDD\u4FDD\u7559\u539F\u7247\u53EF\u8BFB\u5E27\u91C7\u6837\uFF0C\u4E0D\u5305\u542B\u539F\u7247\u56FE\u7247\u6216\u89C6\u9891\u3002"
@@ -20909,7 +20909,7 @@ var registry_default = {
         path: "catalog/effects/hud-targeting.js",
         factory: "hud-system-boot",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u6CBF\u7528\u672C\u673A\u89C2\u6D4B\u754C\u9762\u7684\u7ED8\u5236\u6846\u67B6\uFF0C\u5C06\u81EA\u68C0\u5217\u8868\u6539\u4E3A\u81EA\u4E3B\u7F16\u5199\u7684\u9762\u79EF\u8D8B\u52BF\u56FE\uFF1B\u6570\u636E\u4E3A\u786E\u5B9A\u6027\u6F14\u793A\u503C\uFF0C\u4E0D\u5305\u542B\u539F\u7247\u56FE\u7247\u6216\u89C6\u9891\u3002"
@@ -20970,7 +20970,7 @@ var registry_default = {
         path: "catalog/effects/hud-targeting.js",
         factory: "hud-range-readout",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u673A\u7B2C\u516B\u6BB5\u7684\u81EA\u4E3B\u7ED8\u5236\u6846\u67B6\u6301\u7EED\u6539\u7248\uFF1B\u5730\u56FE\u4F7F\u7528Natural Earth\u516C\u5171\u9886\u57DF\u56FD\u5BB6\u8F6E\u5ED3\uFF0C\u659C\u8DDD\u4FDD\u7559\u539F\u7247\u53EF\u8BFB\u5E27\u91C7\u6837\uFF0C\u4E0D\u5305\u542B\u539F\u7247\u56FE\u7247\u6216\u89C6\u9891\u3002"
@@ -21035,7 +21035,7 @@ var registry_default = {
         path: "catalog/effects/hud-targeting.js",
         factory: "hud-navigation-bars",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u5728\u672C\u673A\u7B2C\u516B\u6BB5\u81EA\u4E3B\u7ED8\u5236\u6846\u67B6\u4E0A\u91CD\u65B0\u8BBE\u8BA1\u6B64\u6570\u636E\u56FE\uFF0C\u590D\u7528\u73B0\u6709\u94F6\u767D\u4E0E\u7EA2\u8272\u9501\u5B9A\u4E3B\u9898\uFF1B\u4E0D\u5305\u542B\u539F\u7247\u56FE\u7247\u6216\u89C6\u9891\uFF0C\u65B0\u589E\u56FE\u5F62\u4E0E\u6F14\u793A\u6570\u636E\u4E0D\u58F0\u79F0\u9010\u5E27\u6765\u81EA\u539F\u7247\u3002"
@@ -21100,7 +21100,7 @@ var registry_default = {
         path: "catalog/effects/hud-targeting.js",
         factory: "hud-radar-sweep",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u5728\u672C\u673A\u7B2C\u516B\u6BB5\u81EA\u4E3B\u7ED8\u5236\u6846\u67B6\u4E0A\u91CD\u65B0\u8BBE\u8BA1\u6B64\u6570\u636E\u56FE\uFF0C\u590D\u7528\u73B0\u6709\u94F6\u767D\u4E0E\u7EA2\u8272\u9501\u5B9A\u4E3B\u9898\uFF1B\u4E0D\u5305\u542B\u539F\u7247\u56FE\u7247\u6216\u89C6\u9891\uFF0C\u65B0\u589E\u56FE\u5F62\u4E0E\u6F14\u793A\u6570\u636E\u4E0D\u58F0\u79F0\u9010\u5E27\u6765\u81EA\u539F\u7247\u3002"
@@ -21164,7 +21164,7 @@ var registry_default = {
         path: "catalog/effects/hud-targeting.js",
         factory: "hud-signal-waves",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u5728\u672C\u673A\u7B2C\u516B\u6BB5\u81EA\u4E3B\u7ED8\u5236\u6846\u67B6\u4E0A\u91CD\u65B0\u8BBE\u8BA1\u6B64\u6570\u636E\u56FE\uFF0C\u590D\u7528\u73B0\u6709\u94F6\u767D\u4E0E\u7EA2\u8272\u9501\u5B9A\u4E3B\u9898\uFF1B\u4E0D\u5305\u542B\u539F\u7247\u56FE\u7247\u6216\u89C6\u9891\uFF0C\u65B0\u589E\u56FE\u5F62\u4E0E\u6F14\u793A\u6570\u636E\u4E0D\u58F0\u79F0\u9010\u5E27\u6765\u81EA\u539F\u7247\u3002"
@@ -21229,7 +21229,7 @@ var registry_default = {
         path: "catalog/effects/hud-targeting.js",
         factory: "hud-candidate-status",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u6CBF\u7528\u672C\u673A\u89C2\u6D4B\u754C\u9762\u7684\u7ED8\u5236\u6846\u67B6\uFF0C\u5C06\u5019\u9009\u5217\u8868\u6539\u4E3A\u81EA\u4E3B\u7F16\u5199\u7684\u56DE\u6CE2\u70ED\u529B\u77E9\u9635\uFF1B\u6570\u636E\u4E3A\u786E\u5B9A\u6027\u6F14\u793A\u503C\uFF0C\u4E0D\u5305\u542B\u539F\u7247\u56FE\u7247\u6216\u89C6\u9891\u3002"
@@ -21301,7 +21301,7 @@ var registry_default = {
         path: "catalog/effects/hud-targeting.js",
         factory: "hud-spectrum-bars",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u673A\u7B2C\u516B\u6BB5\u7684\u81EA\u4E3B\u7ED8\u5236\u6846\u67B6\u6301\u7EED\u6539\u7248\uFF1B\u5730\u56FE\u4F7F\u7528Natural Earth\u516C\u5171\u9886\u57DF\u56FD\u5BB6\u8F6E\u5ED3\uFF0C\u659C\u8DDD\u4FDD\u7559\u539F\u7247\u53EF\u8BFB\u5E27\u91C7\u6837\uFF0C\u4E0D\u5305\u542B\u539F\u7247\u56FE\u7247\u6216\u89C6\u9891\u3002"
@@ -21335,7 +21335,7 @@ var registry_default = {
             path: "catalog/effects/hud-targeting.js",
             factory: "hud-spectrum-bars",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u4ECE\u672C\u673A\u7B2C\u516B\u6BB5\u81EA\u4E3B\u7ED8\u5236\u6E90\u7801\u63D0\u53D6\u5E76\u4E2D\u6587\u5316\uFF1B\u5730\u56FE\u51E0\u4F55\u4E3ANatural Earth\u516C\u5171\u9886\u57DF\u6570\u636E\uFF0C\u6570\u503C\u8868\u53D6\u81EA\u539F\u7247\u53EF\u8BFB\u5E27\uFF0C\u4E0D\u5305\u542B\u539F\u7247\u56FE\u7247\u6216\u89C6\u9891\u3002"
@@ -21376,7 +21376,7 @@ var registry_default = {
             path: "catalog/effects/claude-tile-illustrations.js",
             factory: "claude-spectrum-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -21446,7 +21446,7 @@ var registry_default = {
         path: "catalog/effects/hud-targeting.js",
         factory: "hud-data-stream",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u673A\u7B2C\u516B\u6BB5\u7684\u81EA\u4E3B\u7ED8\u5236\u6846\u67B6\u6301\u7EED\u6539\u7248\uFF1B\u5730\u56FE\u4F7F\u7528Natural Earth\u516C\u5171\u9886\u57DF\u56FD\u5BB6\u8F6E\u5ED3\uFF0C\u659C\u8DDD\u4FDD\u7559\u539F\u7247\u53EF\u8BFB\u5E27\u91C7\u6837\uFF0C\u4E0D\u5305\u542B\u539F\u7247\u56FE\u7247\u6216\u89C6\u9891\u3002"
@@ -21507,7 +21507,7 @@ var registry_default = {
         path: "catalog/effects/hud-targeting.js",
         factory: "hud-target-lock",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u673A\u7B2C\u516B\u6BB5\u7684\u81EA\u4E3B\u7ED8\u5236\u6846\u67B6\u6301\u7EED\u6539\u7248\uFF1B\u5730\u56FE\u4F7F\u7528Natural Earth\u516C\u5171\u9886\u57DF\u56FD\u5BB6\u8F6E\u5ED3\uFF0C\u659C\u8DDD\u4FDD\u7559\u539F\u7247\u53EF\u8BFB\u5E27\u91C7\u6837\uFF0C\u4E0D\u5305\u542B\u539F\u7247\u56FE\u7247\u6216\u89C6\u9891\u3002"
@@ -21584,7 +21584,7 @@ var registry_default = {
         path: "catalog/effects/hud-targeting.js",
         factory: "hud-acquisition-sequence",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u673A\u7B2C\u516B\u6BB5\u7684\u81EA\u4E3B\u7ED8\u5236\u6846\u67B6\u6301\u7EED\u6539\u7248\uFF1B\u5730\u56FE\u4F7F\u7528Natural Earth\u516C\u5171\u9886\u57DF\u56FD\u5BB6\u8F6E\u5ED3\uFF0C\u659C\u8DDD\u4FDD\u7559\u539F\u7247\u53EF\u8BFB\u5E27\u91C7\u6837\uFF0C\u4E0D\u5305\u542B\u539F\u7247\u56FE\u7247\u6216\u89C6\u9891\u3002"
@@ -21738,7 +21738,7 @@ var registry_default = {
         path: "catalog/effects/particle-scenes.js",
         factory: "particle-hopper",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
@@ -21817,7 +21817,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "seed-shedding-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [],
@@ -21892,7 +21892,7 @@ var registry_default = {
         path: "catalog/effects/particle-scenes.js",
         factory: "note-hop-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
@@ -21999,7 +21999,7 @@ var registry_default = {
         path: "catalog/effects/thread-weave.js",
         factory: "thread-weave",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_files: [
@@ -22077,7 +22077,7 @@ var registry_default = {
         path: "catalog/effects/glass-light.js",
         factory: "diffuse-light-drift",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u672C\u673A\u73BB\u7483\u6548\u679C\u7CBE\u4FEE\u7684\u81EA\u4E3B\u7ED8\u5236\u6E90\u7801\u63D0\u53D6\uFF1B\u4EC5\u91C7\u7528\u51E0\u4F55\u3001\u989C\u8272\u548C\u65F6\u95F4\u53C2\u6570\uFF0C\u6CA1\u6709\u539F\u7247\u56FE\u7247\u3001\u89C6\u9891\u6216\u7B2C\u4E09\u65B9\u8FD0\u884C\u4EE3\u7801\u3002",
@@ -22186,7 +22186,7 @@ var registry_default = {
         path: "catalog/effects/glass-light.js",
         factory: "glass-card-stagger",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u672C\u673A\u73BB\u7483\u6548\u679C\u7CBE\u4FEE\u7684\u81EA\u4E3B\u7ED8\u5236\u6E90\u7801\u63D0\u53D6\uFF1B\u4EC5\u91C7\u7528\u51E0\u4F55\u3001\u989C\u8272\u548C\u65F6\u95F4\u53C2\u6570\uFF0C\u6CA1\u6709\u539F\u7247\u56FE\u7247\u3001\u89C6\u9891\u6216\u7B2C\u4E09\u65B9\u8FD0\u884C\u4EE3\u7801\u3002",
@@ -22250,7 +22250,7 @@ var registry_default = {
             path: "catalog/effects/glass-light.js",
             factory: "glass-card-stagger",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u4ECE\u672C\u673A\u73BB\u7483\u6548\u679C\u7CBE\u4FEE\u7684\u81EA\u4E3B\u7ED8\u5236\u6E90\u7801\u63D0\u53D6\uFF1B\u4EC5\u91C7\u7528\u51E0\u4F55\u3001\u989C\u8272\u548C\u65F6\u95F4\u53C2\u6570\uFF0C\u6CA1\u6709\u539F\u7247\u56FE\u7247\u3001\u89C6\u9891\u6216\u7B2C\u4E09\u65B9\u8FD0\u884C\u4EE3\u7801\u3002",
@@ -22304,7 +22304,7 @@ var registry_default = {
             path: "catalog/effects/glass-light.js",
             factory: "glass-voice-card-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u4E0E\u73BB\u7483\u754C\u9762\u5171\u7528\u7A7A\u95F4\u59FF\u6001\u3001\u5361\u5185\u52A8\u4F5C\u548C\u6750\u8D28\u7ED8\u5236\uFF1B\u72EC\u7ACB\u5C55\u793A\u53EA\u79FB\u9664\u5176\u4ED6\u56FE\u5C42\uFF0C\u4E0D\u51BB\u7ED3\u65F6\u95F4\u3002",
@@ -22369,7 +22369,7 @@ var registry_default = {
             path: "catalog/effects/glass-light.js",
             factory: "glass-dialogue-card-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u4E0E\u73BB\u7483\u754C\u9762\u5171\u7528\u7A7A\u95F4\u59FF\u6001\u3001\u5361\u5185\u52A8\u4F5C\u548C\u6750\u8D28\u7ED8\u5236\uFF1B\u72EC\u7ACB\u5C55\u793A\u53EA\u79FB\u9664\u5176\u4ED6\u56FE\u5C42\uFF0C\u4E0D\u51BB\u7ED3\u65F6\u95F4\u3002",
@@ -22434,7 +22434,7 @@ var registry_default = {
             path: "catalog/effects/glass-light.js",
             factory: "glass-control-card-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u4E0E\u73BB\u7483\u754C\u9762\u5171\u7528\u7A7A\u95F4\u59FF\u6001\u3001\u5361\u5185\u52A8\u4F5C\u548C\u6750\u8D28\u7ED8\u5236\uFF1B\u72EC\u7ACB\u5C55\u793A\u53EA\u79FB\u9664\u5176\u4ED6\u56FE\u5C42\uFF0C\u4E0D\u51BB\u7ED3\u65F6\u95F4\u3002",
@@ -22499,7 +22499,7 @@ var registry_default = {
             path: "catalog/effects/glass-light.js",
             factory: "glass-music-card-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u4E0E\u73BB\u7483\u754C\u9762\u5171\u7528\u7A7A\u95F4\u59FF\u6001\u3001\u5361\u5185\u52A8\u4F5C\u548C\u6750\u8D28\u7ED8\u5236\uFF1B\u72EC\u7ACB\u5C55\u793A\u53EA\u79FB\u9664\u5176\u4ED6\u56FE\u5C42\uFF0C\u4E0D\u51BB\u7ED3\u65F6\u95F4\u3002",
@@ -22564,7 +22564,7 @@ var registry_default = {
             path: "catalog/effects/glass-light.js",
             factory: "glass-weather-card-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u4E0E\u73BB\u7483\u754C\u9762\u5171\u7528\u7A7A\u95F4\u59FF\u6001\u3001\u5361\u5185\u52A8\u4F5C\u548C\u6750\u8D28\u7ED8\u5236\uFF1B\u72EC\u7ACB\u5C55\u793A\u53EA\u79FB\u9664\u5176\u4ED6\u56FE\u5C42\uFF0C\u4E0D\u51BB\u7ED3\u65F6\u95F4\u3002",
@@ -22629,7 +22629,7 @@ var registry_default = {
             path: "catalog/effects/glass-light.js",
             factory: "glass-controls-card-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u4E0E\u73BB\u7483\u754C\u9762\u5171\u7528\u7A7A\u95F4\u59FF\u6001\u3001\u5361\u5185\u52A8\u4F5C\u548C\u6750\u8D28\u7ED8\u5236\uFF1B\u72EC\u7ACB\u5C55\u793A\u53EA\u79FB\u9664\u5176\u4ED6\u56FE\u5C42\uFF0C\u4E0D\u51BB\u7ED3\u65F6\u95F4\u3002",
@@ -22719,7 +22719,7 @@ var registry_default = {
         path: "catalog/effects/glass-light.js",
         factory: "convex-glass-lens",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u672C\u673A\u73BB\u7483\u6548\u679C\u7CBE\u4FEE\u7684\u81EA\u4E3B\u7ED8\u5236\u6E90\u7801\u63D0\u53D6\uFF1B\u4EC5\u91C7\u7528\u51E0\u4F55\u3001\u989C\u8272\u548C\u65F6\u95F4\u53C2\u6570\uFF0C\u6CA1\u6709\u539F\u7247\u56FE\u7247\u3001\u89C6\u9891\u6216\u7B2C\u4E09\u65B9\u8FD0\u884C\u4EE3\u7801\u3002",
@@ -22813,7 +22813,7 @@ var registry_default = {
         path: "catalog/effects/glass-light.js",
         factory: "glass-interface-sequence",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u9879\u76EE\u516D\u5F20\u9ED1\u94F6\u5361\u3001\u80CC\u666F\u3001\u51F8\u6CE1\u50CF\u7D20\u91C7\u6837\u548C\u5B57\u6807\u7ED8\u5236\u91CD\u65B0\u7F16\u6392\uFF1B\u7A7A\u95F4\u6295\u5F71\u3001\u5706\u89D2\u4FA7\u58C1\u4E0E\u955C\u5934\u4EA4\u63A5\u4E3A\u81EA\u7F16\u5B9E\u73B0\uFF0C\u65E0\u7B2C\u4E09\u65B9\u5A92\u4F53\u3002",
@@ -22883,7 +22883,7 @@ var registry_default = {
         path: "catalog/effects/glass-light.js",
         factory: "glass-voice-card-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4E0E\u73BB\u7483\u754C\u9762\u5171\u7528\u7A7A\u95F4\u59FF\u6001\u3001\u5361\u5185\u52A8\u4F5C\u548C\u6750\u8D28\u7ED8\u5236\uFF1B\u72EC\u7ACB\u5C55\u793A\u53EA\u79FB\u9664\u5176\u4ED6\u56FE\u5C42\uFF0C\u4E0D\u51BB\u7ED3\u65F6\u95F4\u3002",
@@ -22968,7 +22968,7 @@ var registry_default = {
         path: "catalog/effects/glass-light.js",
         factory: "glass-dialogue-card-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4E0E\u73BB\u7483\u754C\u9762\u5171\u7528\u7A7A\u95F4\u59FF\u6001\u3001\u5361\u5185\u52A8\u4F5C\u548C\u6750\u8D28\u7ED8\u5236\uFF1B\u72EC\u7ACB\u5C55\u793A\u53EA\u79FB\u9664\u5176\u4ED6\u56FE\u5C42\uFF0C\u4E0D\u51BB\u7ED3\u65F6\u95F4\u3002",
@@ -23053,7 +23053,7 @@ var registry_default = {
         path: "catalog/effects/glass-light.js",
         factory: "glass-control-card-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4E0E\u73BB\u7483\u754C\u9762\u5171\u7528\u7A7A\u95F4\u59FF\u6001\u3001\u5361\u5185\u52A8\u4F5C\u548C\u6750\u8D28\u7ED8\u5236\uFF1B\u72EC\u7ACB\u5C55\u793A\u53EA\u79FB\u9664\u5176\u4ED6\u56FE\u5C42\uFF0C\u4E0D\u51BB\u7ED3\u65F6\u95F4\u3002",
@@ -23138,7 +23138,7 @@ var registry_default = {
         path: "catalog/effects/cyanotype.js",
         factory: "cyanotype",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
@@ -23316,7 +23316,7 @@ var registry_default = {
         path: "catalog/effects/paper-showcase.js",
         factory: "result-anchors",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -23409,7 +23409,7 @@ var registry_default = {
         path: "catalog/effects/paper-showcase.js",
         factory: "stack-flick",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
@@ -23483,11 +23483,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/point-domain-flow.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u5730\u51E0\u4F55\u7ED8\u5236\u91CD\u6784\uFF1A\u6309Wise Motion\u53D9\u4E8B\u8BBE\u8BA1\u9EC4\u91D1\u65B9\u683C\u3001\u5B57\u7B26\u96E8\u5E55\u3001\u5EF6\u4F38\u505C\u987F\u6253\u94C1\u82B1\u3001\u7F51\u683C\u6CE2\u6B21\u53CA\u7236\u5B50\u9012\u5F52\u751F\u957F\uFF1B\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u4EAB\u7ED8\u5236\u51FD\u6570\u548C\u786E\u5B9A\u65F6\u949F\uFF0C\u8FD0\u884C\u4E0D\u8BFB\u53D6\u539F\u7247\u6216\u53C2\u8003\u56FE\u3002",
-        rights_note: "\u4EE3\u7801\u6309AGPL-3.0-only\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
+        rights_note: "\u4EE3\u7801\u6309Apache-2.0\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
         factory: "coordinate-grid-build",
         reference: {
           name: "@\u9648\u4E0E\u5C0F\u91D1",
@@ -23565,11 +23565,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/point-domain-flow.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u5730\u51E0\u4F55\u7ED8\u5236\u91CD\u6784\uFF1A\u6309Wise Motion\u53D9\u4E8B\u8BBE\u8BA1\u9EC4\u91D1\u65B9\u683C\u3001\u5B57\u7B26\u96E8\u5E55\u3001\u5EF6\u4F38\u505C\u987F\u6253\u94C1\u82B1\u3001\u7F51\u683C\u6CE2\u6B21\u53CA\u7236\u5B50\u9012\u5F52\u751F\u957F\uFF1B\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u4EAB\u7ED8\u5236\u51FD\u6570\u548C\u786E\u5B9A\u65F6\u949F\uFF0C\u8FD0\u884C\u4E0D\u8BFB\u53D6\u539F\u7247\u6216\u53C2\u8003\u56FE\u3002",
-        rights_note: "\u4EE3\u7801\u6309AGPL-3.0-only\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
+        rights_note: "\u4EE3\u7801\u6309Apache-2.0\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
         factory: "coordinate-focus-zoom",
         reference: {
           name: "@\u9648\u4E0E\u5C0F\u91D1",
@@ -23650,11 +23650,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/point-domain-flow.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u5730\u51E0\u4F55\u7ED8\u5236\u91CD\u6784\uFF1A\u6309Wise Motion\u53D9\u4E8B\u8BBE\u8BA1\u9EC4\u91D1\u65B9\u683C\u3001\u5B57\u7B26\u96E8\u5E55\u3001\u5EF6\u4F38\u505C\u987F\u6253\u94C1\u82B1\u3001\u7F51\u683C\u6CE2\u6B21\u53CA\u7236\u5B50\u9012\u5F52\u751F\u957F\uFF1B\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u4EAB\u7ED8\u5236\u51FD\u6570\u548C\u786E\u5B9A\u65F6\u949F\uFF0C\u8FD0\u884C\u4E0D\u8BFB\u53D6\u539F\u7247\u6216\u53C2\u8003\u56FE\u3002",
-        rights_note: "\u4EE3\u7801\u6309AGPL-3.0-only\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
+        rights_note: "\u4EE3\u7801\u6309Apache-2.0\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
         factory: "text-plane-tilt",
         reference: {
           name: "@\u9648\u4E0E\u5C0F\u91D1",
@@ -23736,11 +23736,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/point-domain-flow.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u5730\u51E0\u4F55\u7ED8\u5236\u91CD\u6784\uFF1A\u6309Wise Motion\u53D9\u4E8B\u8BBE\u8BA1\u9EC4\u91D1\u65B9\u683C\u3001\u5B57\u7B26\u96E8\u5E55\u3001\u5EF6\u4F38\u505C\u987F\u6253\u94C1\u82B1\u3001\u7F51\u683C\u6CE2\u6B21\u53CA\u7236\u5B50\u9012\u5F52\u751F\u957F\uFF1B\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u4EAB\u7ED8\u5236\u51FD\u6570\u548C\u786E\u5B9A\u65F6\u949F\uFF0C\u8FD0\u884C\u4E0D\u8BFB\u53D6\u539F\u7247\u6216\u53C2\u8003\u56FE\u3002",
-        rights_note: "\u4EE3\u7801\u6309AGPL-3.0-only\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
+        rights_note: "\u4EE3\u7801\u6309Apache-2.0\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
         factory: "boundary-curve-stop",
         reference: {
           name: "@\u9648\u4E0E\u5C0F\u91D1",
@@ -23821,11 +23821,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/point-domain-flow.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u5730\u51E0\u4F55\u7ED8\u5236\u91CD\u6784\uFF1A\u6309Wise Motion\u53D9\u4E8B\u8BBE\u8BA1\u9EC4\u91D1\u65B9\u683C\u3001\u5B57\u7B26\u96E8\u5E55\u3001\u5EF6\u4F38\u505C\u987F\u6253\u94C1\u82B1\u3001\u7F51\u683C\u6CE2\u6B21\u53CA\u7236\u5B50\u9012\u5F52\u751F\u957F\uFF1B\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u4EAB\u7ED8\u5236\u51FD\u6570\u548C\u786E\u5B9A\u65F6\u949F\uFF0C\u8FD0\u884C\u4E0D\u8BFB\u53D6\u539F\u7247\u6216\u53C2\u8003\u56FE\u3002",
-        rights_note: "\u4EE3\u7801\u6309AGPL-3.0-only\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
+        rights_note: "\u4EE3\u7801\u6309Apache-2.0\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
         factory: "frame-ring-collapse",
         reference: {
           name: "@\u9648\u4E0E\u5C0F\u91D1",
@@ -23905,11 +23905,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/point-domain-flow.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u5730\u51E0\u4F55\u7ED8\u5236\u91CD\u6784\uFF1A\u6309Wise Motion\u53D9\u4E8B\u8BBE\u8BA1\u9EC4\u91D1\u65B9\u683C\u3001\u5B57\u7B26\u96E8\u5E55\u3001\u5EF6\u4F38\u505C\u987F\u6253\u94C1\u82B1\u3001\u7F51\u683C\u6CE2\u6B21\u53CA\u7236\u5B50\u9012\u5F52\u751F\u957F\uFF1B\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u4EAB\u7ED8\u5236\u51FD\u6570\u548C\u786E\u5B9A\u65F6\u949F\uFF0C\u8FD0\u884C\u4E0D\u8BFB\u53D6\u539F\u7247\u6216\u53C2\u8003\u56FE\u3002",
-        rights_note: "\u4EE3\u7801\u6309AGPL-3.0-only\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
+        rights_note: "\u4EE3\u7801\u6309Apache-2.0\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
         factory: "bounded-fibre-grow",
         reference: {
           name: "@\u9648\u4E0E\u5C0F\u91D1",
@@ -23993,11 +23993,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/point-domain-flow.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u5730\u51E0\u4F55\u7ED8\u5236\u91CD\u6784\uFF1A\u6309Wise Motion\u53D9\u4E8B\u8BBE\u8BA1\u9EC4\u91D1\u65B9\u683C\u3001\u5B57\u7B26\u96E8\u5E55\u3001\u5EF6\u4F38\u505C\u987F\u6253\u94C1\u82B1\u3001\u7F51\u683C\u6CE2\u6B21\u53CA\u7236\u5B50\u9012\u5F52\u751F\u957F\uFF1B\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u4EAB\u7ED8\u5236\u51FD\u6570\u548C\u786E\u5B9A\u65F6\u949F\uFF0C\u8FD0\u884C\u4E0D\u8BFB\u53D6\u539F\u7247\u6216\u53C2\u8003\u56FE\u3002",
-        rights_note: "\u4EE3\u7801\u6309AGPL-3.0-only\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
+        rights_note: "\u4EE3\u7801\u6309Apache-2.0\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
         factory: "grid-flow-unfold",
         reference: {
           name: "@\u9648\u4E0E\u5C0F\u91D1",
@@ -24085,11 +24085,11 @@ var registry_default = {
       source: {
         path: "catalog/effects/point-domain-flow.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u57FA\u4E8E\u672C\u5730\u51E0\u4F55\u7ED8\u5236\u91CD\u6784\uFF1A\u6309Wise Motion\u53D9\u4E8B\u8BBE\u8BA1\u9EC4\u91D1\u65B9\u683C\u3001\u5B57\u7B26\u96E8\u5E55\u3001\u5EF6\u4F38\u505C\u987F\u6253\u94C1\u82B1\u3001\u7F51\u683C\u6CE2\u6B21\u53CA\u7236\u5B50\u9012\u5F52\u751F\u957F\uFF1B\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u4EAB\u7ED8\u5236\u51FD\u6570\u548C\u786E\u5B9A\u65F6\u949F\uFF0C\u8FD0\u884C\u4E0D\u8BFB\u53D6\u539F\u7247\u6216\u53C2\u8003\u56FE\u3002",
-        rights_note: "\u4EE3\u7801\u6309AGPL-3.0-only\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
+        rights_note: "\u4EE3\u7801\u6309Apache-2.0\u63D0\u4F9B\uFF1B\u4FDD\u7559\u65E9\u671F\u5149\u70B9\u3001\u7F51\u683C\u4E0E\u591C\u7A7A\u7ED8\u5236\u7684\u53C2\u8003\u6CBF\u9769\uFF0C\u5F53\u524D\u9EC4\u91D1\u77E9\u5F62\u9012\u5F52\u7ED3\u6784\u3001\u75DB\u70B9\u6587\u5B57\u53CA\u52A8\u4F5C\u7F16\u6392\u7531\u672C\u9879\u76EE\u91CD\u65B0\u8BBE\u8BA1\u3002",
         factory: "point-domain-flow-sequence",
         reference: {
           name: "@\u9648\u4E0E\u5C0F\u91D1",
@@ -24191,7 +24191,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/collage-film.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         factory: "cutout-type-fold"
@@ -24255,7 +24255,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/collage-film.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         factory: "crank-linked-turn",
@@ -24320,7 +24320,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/collage-film.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         factory: "joint-rule-unfold"
@@ -24382,7 +24382,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/collage-film.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         factory: "folded-step-rebound"
@@ -24450,7 +24450,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/collage-film.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         factory: "cutout-stride-leap",
@@ -24516,7 +24516,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/collage-film.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         factory: "scraps-return-layout"
@@ -24600,7 +24600,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/collage-film.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         factory: "collage-film-sequence",
@@ -24675,7 +24675,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/capsule-type.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -24745,7 +24745,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/capsule-type.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u4E94\u79D2\u591A\u5DF4\u80FA\u914D\u8272\u4F5C\u54C1\u63D0\u53D6\u81EA\u7F16\u4E09\u7EF4\u6A21\u578B\u3001\u6750\u8D28\u3001\u706F\u5149\u4E0E\u8FD0\u52A8\u4EE3\u7801\uFF1B\u5B8C\u6574\u7EC4\u5408\u4FDD\u7559\u6E90\u753B\u9762\u53C2\u6570\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u6309\u771F\u5B9E\u5BF9\u8C61\u9694\u79BB\uFF0C\u5171\u7528\u76F8\u540C\u7ED8\u5236\u51FD\u6570\u3002\u6CA1\u6709\u643A\u5E26\u65E7\u590D\u523B\u7D20\u6750\u3001\u53C2\u8003\u89C6\u9891\u6216\u7B2C\u4E09\u65B9\u56FE\u5F62\u5E93\u3002 \u6839\u636E\u540E\u7EED\u753B\u9762\u5BF9\u7167\uFF0C\u8865\u9F50\u753B\u6846\u5916\u7684\u8FDC\u666F\u80F6\u56CA\uFF0C\u5E76\u4F7F\u5176\u6DE1\u5165\u6696\u7C73\u8272\u6E10\u53D8\u80CC\u666F\u3002",
@@ -24810,7 +24810,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/capsule-type.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u4E94\u79D2\u591A\u5DF4\u80FA\u914D\u8272\u4F5C\u54C1\u63D0\u53D6\u81EA\u7F16\u4E09\u7EF4\u6A21\u578B\u3001\u6750\u8D28\u3001\u706F\u5149\u4E0E\u8FD0\u52A8\u4EE3\u7801\uFF1B\u5B8C\u6574\u7EC4\u5408\u4FDD\u7559\u6E90\u753B\u9762\u53C2\u6570\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u6309\u771F\u5B9E\u5BF9\u8C61\u9694\u79BB\uFF0C\u5171\u7528\u76F8\u540C\u7ED8\u5236\u51FD\u6570\u3002\u6CA1\u6709\u643A\u5E26\u65E7\u590D\u523B\u7D20\u6750\u3001\u53C2\u8003\u89C6\u9891\u6216\u7B2C\u4E09\u65B9\u56FE\u5F62\u5E93\u3002 \u6839\u636E\u540E\u7EED\u753B\u9762\u5BF9\u7167\uFF0C\u8865\u9F50\u753B\u6846\u5916\u7684\u8FDC\u666F\u80F6\u56CA\uFF0C\u5E76\u4F7F\u5176\u6DE1\u5165\u6696\u7C73\u8272\u6E10\u53D8\u80CC\u666F\u3002",
@@ -24875,7 +24875,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/capsule-type.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u4E94\u79D2\u591A\u5DF4\u80FA\u914D\u8272\u4F5C\u54C1\u63D0\u53D6\u81EA\u7F16\u4E09\u7EF4\u6A21\u578B\u3001\u6750\u8D28\u3001\u706F\u5149\u4E0E\u8FD0\u52A8\u4EE3\u7801\uFF1B\u5B8C\u6574\u7EC4\u5408\u4FDD\u7559\u6E90\u753B\u9762\u53C2\u6570\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u6309\u771F\u5B9E\u5BF9\u8C61\u9694\u79BB\uFF0C\u5171\u7528\u76F8\u540C\u7ED8\u5236\u51FD\u6570\u3002\u6CA1\u6709\u643A\u5E26\u65E7\u590D\u523B\u7D20\u6750\u3001\u53C2\u8003\u89C6\u9891\u6216\u7B2C\u4E09\u65B9\u56FE\u5F62\u5E93\u3002 \u6839\u636E\u540E\u7EED\u753B\u9762\u5BF9\u7167\uFF0C\u8865\u9F50\u753B\u6846\u5916\u7684\u8FDC\u666F\u80F6\u56CA\uFF0C\u5E76\u4F7F\u5176\u6DE1\u5165\u6696\u7C73\u8272\u6E10\u53D8\u80CC\u666F\u3002",
@@ -24938,7 +24938,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/motion-oasis.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         factory: "tile-ring-unfold",
         extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u52A8\u6548\u7EFF\u6D32\u4EE3\u7801\u6A21\u578B\u4E2D\u63D0\u53D6\u72EC\u7ACB\u5BF9\u8C61\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u5B8C\u6574\u7EC4\u5408\u5171\u7528\u5730\u5757\u3001\u9000\u53F0\u5EFA\u7B51\u3001\u6C34\u9762\u7ED8\u5236\u53CA\u6CE2\u6B21\u8BA1\u7B97\uFF0C\u4E0D\u4F9D\u8D56\u53C2\u8003\u89C6\u9891\u6216\u672C\u673A\u5DE5\u7A0B\u8DEF\u5F84\u3002",
@@ -25000,7 +25000,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/motion-oasis.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         factory: "terraced-rise",
         extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u52A8\u6548\u7EFF\u6D32\u4EE3\u7801\u6A21\u578B\u4E2D\u63D0\u53D6\u72EC\u7ACB\u5BF9\u8C61\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u5B8C\u6574\u7EC4\u5408\u5171\u7528\u5730\u5757\u3001\u9000\u53F0\u5EFA\u7B51\u3001\u6C34\u9762\u7ED8\u5236\u53CA\u6CE2\u6B21\u8BA1\u7B97\uFF0C\u4E0D\u4F9D\u8D56\u53C2\u8003\u89C6\u9891\u6216\u672C\u673A\u5DE5\u7A0B\u8DEF\u5F84\u3002",
@@ -25064,7 +25064,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/motion-oasis.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         factory: "water-wave-handoff",
         extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u52A8\u6548\u7EFF\u6D32\u4EE3\u7801\u6A21\u578B\u4E2D\u63D0\u53D6\u72EC\u7ACB\u5BF9\u8C61\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u5B8C\u6574\u7EC4\u5408\u5171\u7528\u5730\u5757\u3001\u9000\u53F0\u5EFA\u7B51\u3001\u6C34\u9762\u7ED8\u5236\u53CA\u6CE2\u6B21\u8BA1\u7B97\uFF0C\u4E0D\u4F9D\u8D56\u53C2\u8003\u89C6\u9891\u6216\u672C\u673A\u5DE5\u7A0B\u8DEF\u5F84\u3002",
@@ -25135,7 +25135,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/motion-oasis.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         factory: "motion-oasis-sequence",
         extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u52A8\u6548\u7EFF\u6D32\u4EE3\u7801\u6A21\u578B\u4E2D\u63D0\u53D6\u72EC\u7ACB\u5BF9\u8C61\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u5B8C\u6574\u7EC4\u5408\u5171\u7528\u5730\u5757\u3001\u9000\u53F0\u5EFA\u7B51\u3001\u6C34\u9762\u7ED8\u5236\u53CA\u6CE2\u6B21\u8BA1\u7B97\uFF0C\u4E0D\u4F9D\u8D56\u53C2\u8003\u89C6\u9891\u6216\u672C\u673A\u5DE5\u7A0B\u8DEF\u5F84\u3002",
@@ -25251,7 +25251,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/geometric-poster.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u5370\u5237\u51E0\u4F55\u6D77\u62A5\u63D0\u53D6\u539F\u751F\u66F2\u9762\u3001\u5F27\u7EBF\u3001\u7F51\u70B9\u3001\u7EB8\u7EB9\u4E0E\u56FA\u5B9A\u65F6\u949F\u3002\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u7528\u7ED8\u5236\uFF1B\u6A2A\u5E26\u95F4\u6B47\u95EA\u5207\u590D\u7528\u5DF2\u670918\u533A\u300130\u683C\u56FA\u5B9A\u53D6\u503C\u53CA0.45\u79D2\u4EA4\u63A5\uFF0C\u589E\u52A0\u51E0\u4F55\u6D77\u62A5\u793A\u4F8B\uFF1B\u6587\u5B57\u88C1\u5207\u5347\u5165\u6CBF\u7528\u6D77\u62A5\u8BCD\u7EC4\u793A\u4F8B\u3002\u5B57\u4F53\u4E3A\u5305\u5185Oswald Bold\uFF0C\u9075\u5FAAOFL\uFF1B\u753B\u9762\u4E0D\u4F9D\u8D56\u751F\u6210\u56FE\u7247\u3001\u5916\u90E8\u7D20\u6750\u6216\u6765\u6E90\u5DE5\u7A0B\u8DEF\u5F84\u3002",
@@ -25324,7 +25324,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/geometric-poster.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u5370\u5237\u51E0\u4F55\u6D77\u62A5\u63D0\u53D6\u539F\u751F\u66F2\u9762\u3001\u5F27\u7EBF\u3001\u7F51\u70B9\u3001\u7EB8\u7EB9\u4E0E\u56FA\u5B9A\u65F6\u949F\u3002\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u7528\u7ED8\u5236\uFF1B\u6A2A\u5E26\u95F4\u6B47\u95EA\u5207\u590D\u7528\u5DF2\u670918\u533A\u300130\u683C\u56FA\u5B9A\u53D6\u503C\u53CA0.45\u79D2\u4EA4\u63A5\uFF0C\u589E\u52A0\u51E0\u4F55\u6D77\u62A5\u793A\u4F8B\uFF1B\u6587\u5B57\u88C1\u5207\u5347\u5165\u6CBF\u7528\u6D77\u62A5\u8BCD\u7EC4\u793A\u4F8B\u3002\u5B57\u4F53\u4E3A\u5305\u5185Oswald Bold\uFF0C\u9075\u5FAAOFL\uFF1B\u753B\u9762\u4E0D\u4F9D\u8D56\u751F\u6210\u56FE\u7247\u3001\u5916\u90E8\u7D20\u6750\u6216\u6765\u6E90\u5DE5\u7A0B\u8DEF\u5F84\u3002",
@@ -25360,7 +25360,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/metal-impact.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u9540\u5F69\u91D1\u5C5E\u4F5C\u54C1\u63D0\u53D6\u81EA\u4E3B\u7F16\u5199\u7684\u7403\u4F53\u3001\u5706\u7BA1\u5B57\u5F62\u3001\u706F\u5149\u4E0E\u8FD0\u52A8\u516C\u5F0F\uFF1B\u4EE5\u56FA\u5B9A\u7C92\u5B50\u7EE7\u627F\u7403\u4F53\u989C\u8272\u3001\u7206\u6563\u540E\u843D\u5230\u89E3\u6790\u5B57\u5F62\u8868\u9762\u7684\u65B9\u5F0F\u878D\u5408\u7C92\u5B50\u6C47\u805A\u3002\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u7528\u771F\u5B9E\u7ED8\u5236\u51FD\u6570\uFF0C\u4E0D\u4F9D\u8D56\u539F\u6F14\u793A\u811A\u672C\u3001\u53C2\u8003\u89C6\u9891\u6216\u56FE\u7247\u3002",
@@ -25438,7 +25438,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/metal-impact.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u9540\u5F69\u91D1\u5C5E\u4F5C\u54C1\u63D0\u53D6\u81EA\u4E3B\u7F16\u5199\u7684\u7403\u4F53\u3001\u5706\u7BA1\u5B57\u5F62\u3001\u706F\u5149\u4E0E\u8FD0\u52A8\u516C\u5F0F\uFF1B\u6C34\u5E73\u5BF9\u649E\u4FEE\u6B63\u540E\u7EB3\u5165\uFF0C\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u7528\u771F\u5B9E\u7ED8\u5236\u51FD\u6570\uFF0C\u4E0D\u4F9D\u8D56\u539F\u6F14\u793A\u811A\u672C\u3001\u53C2\u8003\u89C6\u9891\u6216\u56FE\u7247\u3002",
@@ -25501,7 +25501,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/metal-impact.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u9540\u5F69\u91D1\u5C5E\u4F5C\u54C1\u63D0\u53D6\u81EA\u4E3B\u7F16\u5199\u7684\u7403\u4F53\u3001\u5706\u7BA1\u5B57\u5F62\u3001\u706F\u5149\u4E0E\u8FD0\u52A8\u516C\u5F0F\uFF1B\u4EE5\u56FA\u5B9A\u7C92\u5B50\u7EE7\u627F\u7403\u4F53\u989C\u8272\u3001\u7206\u6563\u540E\u843D\u5230\u89E3\u6790\u5B57\u5F62\u8868\u9762\u7684\u65B9\u5F0F\u878D\u5408\u7C92\u5B50\u6C47\u805A\u3002\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u7528\u771F\u5B9E\u7ED8\u5236\u51FD\u6570\uFF0C\u4E0D\u4F9D\u8D56\u539F\u6F14\u793A\u811A\u672C\u3001\u53C2\u8003\u89C6\u9891\u6216\u56FE\u7247\u3002",
@@ -25570,7 +25570,7 @@ var registry_default = {
       source: {
         path: "catalog/effects/metal-impact.js",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u9540\u5F69\u91D1\u5C5E\u4F5C\u54C1\u63D0\u53D6\u81EA\u4E3B\u7F16\u5199\u7684\u7403\u4F53\u3001\u5706\u7BA1\u5B57\u5F62\u3001\u706F\u5149\u4E0E\u8FD0\u52A8\u516C\u5F0F\uFF1B\u6C34\u5E73\u5BF9\u649E\u4FEE\u6B63\u540E\u7EB3\u5165\uFF0C\u7EC4\u5408\u4E0E\u72EC\u7ACB\u52A8\u4F5C\u5171\u7528\u771F\u5B9E\u7ED8\u5236\u51FD\u6570\uFF0C\u4E0D\u4F9D\u8D56\u539F\u6F14\u793A\u811A\u672C\u3001\u53C2\u8003\u89C6\u9891\u6216\u56FE\u7247\u3002",
@@ -25663,7 +25663,7 @@ var registry_default = {
         path: "catalog/effects/seed-bloom-brand.js",
         factory: "seed-sprout-bloom",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u76848.2\u79D2\u54C1\u724C\u52A8\u6548\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u6E90\u7801\u3002\u51A0\u6BDB\u3001\u6C14\u6D41\u548C\u8776\u7FFC\u590D\u7528\u76EE\u5F55\u81EA\u6709\u51E0\u4F55\uFF1BOutfit Medium\u5B57\u5F62\u9075\u5FAASIL OFL 1.1\u3002\u76EE\u5F55\u64AD\u653E\u4E0ERemotion\u5E27\u7EC4\u4EF6\u5171\u7528\u7ED8\u5236\u548C\u72EC\u7ACB\u5B9E\u4F8B\uFF0C\u4E0D\u4F9D\u8D56\u539F\u5DE5\u7A0B\u3001\u89C6\u9891\u3001\u56FE\u7247\u6216\u8054\u7F51\u5B57\u4F53\u3002",
@@ -25745,7 +25745,7 @@ var registry_default = {
         path: "catalog/effects/seed-bloom-brand.js",
         factory: "flock-turn-gather",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u76848.2\u79D2\u54C1\u724C\u52A8\u6548\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u6E90\u7801\u3002\u51A0\u6BDB\u3001\u6C14\u6D41\u548C\u8776\u7FFC\u590D\u7528\u76EE\u5F55\u81EA\u6709\u51E0\u4F55\uFF1BOutfit Medium\u5B57\u5F62\u9075\u5FAASIL OFL 1.1\u3002\u76EE\u5F55\u64AD\u653E\u4E0ERemotion\u5E27\u7EC4\u4EF6\u5171\u7528\u7ED8\u5236\u548C\u72EC\u7ACB\u5B9E\u4F8B\uFF0C\u4E0D\u4F9D\u8D56\u539F\u5DE5\u7A0B\u3001\u89C6\u9891\u3001\u56FE\u7247\u6216\u8054\u7F51\u5B57\u4F53\u3002",
@@ -25827,7 +25827,7 @@ var registry_default = {
         path: "catalog/effects/seed-bloom-brand.js",
         factory: "sunbeam-circle-rebound",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u76848.2\u79D2\u54C1\u724C\u52A8\u6548\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u6E90\u7801\u3002\u51A0\u6BDB\u3001\u6C14\u6D41\u548C\u8776\u7FFC\u590D\u7528\u76EE\u5F55\u81EA\u6709\u51E0\u4F55\uFF1BOutfit Medium\u5B57\u5F62\u9075\u5FAASIL OFL 1.1\u3002\u76EE\u5F55\u64AD\u653E\u4E0ERemotion\u5E27\u7EC4\u4EF6\u5171\u7528\u7ED8\u5236\u548C\u72EC\u7ACB\u5B9E\u4F8B\uFF0C\u4E0D\u4F9D\u8D56\u539F\u5DE5\u7A0B\u3001\u89C6\u9891\u3001\u56FE\u7247\u6216\u8054\u7F51\u5B57\u4F53\u3002",
@@ -25909,7 +25909,7 @@ var registry_default = {
         path: "catalog/effects/seed-bloom-brand.js",
         factory: "circle-expand-wordmark",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u76848.2\u79D2\u54C1\u724C\u52A8\u6548\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u6E90\u7801\u3002\u51A0\u6BDB\u3001\u6C14\u6D41\u548C\u8776\u7FFC\u590D\u7528\u76EE\u5F55\u81EA\u6709\u51E0\u4F55\uFF1BOutfit Medium\u5B57\u5F62\u9075\u5FAASIL OFL 1.1\u3002\u76EE\u5F55\u64AD\u653E\u4E0ERemotion\u5E27\u7EC4\u4EF6\u5171\u7528\u7ED8\u5236\u548C\u72EC\u7ACB\u5B9E\u4F8B\uFF0C\u4E0D\u4F9D\u8D56\u539F\u5DE5\u7A0B\u3001\u89C6\u9891\u3001\u56FE\u7247\u6216\u8054\u7F51\u5B57\u4F53\u3002",
@@ -26000,7 +26000,7 @@ var registry_default = {
         path: "catalog/effects/seed-bloom-brand.js",
         factory: "seed-bloom-brand-sequence",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u76848.2\u79D2\u54C1\u724C\u52A8\u6548\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u6E90\u7801\u3002\u51A0\u6BDB\u3001\u6C14\u6D41\u548C\u8776\u7FFC\u590D\u7528\u76EE\u5F55\u81EA\u6709\u51E0\u4F55\uFF1BOutfit Medium\u5B57\u5F62\u9075\u5FAASIL OFL 1.1\u3002\u76EE\u5F55\u64AD\u653E\u4E0ERemotion\u5E27\u7EC4\u4EF6\u5171\u7528\u7ED8\u5236\u548C\u72EC\u7ACB\u5B9E\u4F8B\uFF0C\u4E0D\u4F9D\u8D56\u539F\u5DE5\u7A0B\u3001\u89C6\u9891\u3001\u56FE\u7247\u6216\u8054\u7F51\u5B57\u4F53\u3002",
@@ -26077,7 +26077,7 @@ var registry_default = {
         path: "catalog/effects/glass-light.js",
         factory: "glass-music-card-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4E0E\u73BB\u7483\u754C\u9762\u5171\u7528\u7A7A\u95F4\u59FF\u6001\u3001\u5361\u5185\u52A8\u4F5C\u548C\u6750\u8D28\u7ED8\u5236\uFF1B\u72EC\u7ACB\u5C55\u793A\u53EA\u79FB\u9664\u5176\u4ED6\u56FE\u5C42\uFF0C\u4E0D\u51BB\u7ED3\u65F6\u95F4\u3002",
@@ -26162,7 +26162,7 @@ var registry_default = {
         path: "catalog/effects/glass-light.js",
         factory: "glass-weather-card-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4E0E\u73BB\u7483\u754C\u9762\u5171\u7528\u7A7A\u95F4\u59FF\u6001\u3001\u5361\u5185\u52A8\u4F5C\u548C\u6750\u8D28\u7ED8\u5236\uFF1B\u72EC\u7ACB\u5C55\u793A\u53EA\u79FB\u9664\u5176\u4ED6\u56FE\u5C42\uFF0C\u4E0D\u51BB\u7ED3\u65F6\u95F4\u3002",
@@ -26247,7 +26247,7 @@ var registry_default = {
         path: "catalog/effects/glass-light.js",
         factory: "glass-controls-card-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4E0E\u73BB\u7483\u754C\u9762\u5171\u7528\u7A7A\u95F4\u59FF\u6001\u3001\u5361\u5185\u52A8\u4F5C\u548C\u6750\u8D28\u7ED8\u5236\uFF1B\u72EC\u7ACB\u5C55\u793A\u53EA\u79FB\u9664\u5176\u4ED6\u56FE\u5C42\uFF0C\u4E0D\u51BB\u7ED3\u65F6\u95F4\u3002",
@@ -26335,7 +26335,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "animal-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -26402,7 +26402,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "venturi-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -26469,7 +26469,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "attention-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -26536,7 +26536,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "heads-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -26601,7 +26601,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "stage-merge-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -26668,7 +26668,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "torus-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -26734,7 +26734,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "dot-route-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -26802,7 +26802,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "paper-scroll-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -26871,7 +26871,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "smoke-ring-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -26940,7 +26940,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "vortex-ring-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27009,7 +27009,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "mushroom-cloud-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27078,7 +27078,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "hill-vortex-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27146,7 +27146,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "cyclone-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27215,7 +27215,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "spiral-galaxy-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27283,7 +27283,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "rasengan-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27351,7 +27351,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "lightning-orb-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27416,7 +27416,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "moon-card-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27491,7 +27491,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "drafting-tools-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27539,7 +27539,7 @@ var registry_default = {
             path: "catalog/effects/kimi-illustrations.js",
             factory: "drafting-tools-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/"
           },
@@ -27582,7 +27582,7 @@ var registry_default = {
             path: "catalog/effects/kimi-illustrations.js",
             factory: "folio-cards-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/"
           },
@@ -27644,7 +27644,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "archive-folder-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27709,7 +27709,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "chart-card-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27775,7 +27775,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "aperture-eye-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27842,7 +27842,7 @@ var registry_default = {
         path: "catalog/effects/kimi-illustrations.js",
         factory: "archive-box-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27918,7 +27918,7 @@ var registry_default = {
         path: "catalog/effects/reel-neon.js",
         factory: "striped-sun-rise",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/"
       },
@@ -27976,7 +27976,7 @@ var registry_default = {
         path: "catalog/effects/door-halftone.js",
         factory: "door-halftone-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         graphic_license: "OFL-1.1",
@@ -28046,7 +28046,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-lissajous-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28117,7 +28117,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-wireframe-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28188,7 +28188,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-pendulum-wave-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28259,7 +28259,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-phyllotaxis-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28330,7 +28330,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-kick-rings-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28401,7 +28401,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-warp-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28472,7 +28472,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-sine-grid-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28543,7 +28543,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-fractal-tree-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28612,7 +28612,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-glyph-rain-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28683,7 +28683,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-hex-pulse-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28754,7 +28754,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-orbits-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28825,7 +28825,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-terrain-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28894,7 +28894,7 @@ var registry_default = {
         path: "catalog/effects/claude-tile-illustrations.js",
         factory: "claude-plexus-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_path: "/Users/wisewong/Documents/Developer/wise-video/claude/video/main.js",
@@ -28961,7 +28961,7 @@ var registry_default = {
         path: "catalog/effects/cat-mouth.js",
         factory: "cat-mouth-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u63D0\u53D6\u672C\u673A\u300C\u5C0F\u732B\u52A0\u5DE5\u5382\u300Dcat.js \u7684\u539F\u8DEF\u5F84\u3001\u82B1\u7EB9\u3001\u8868\u60C5\u7ED8\u5236\u4E0E timeline.js \u7684\u5C0F\u8475\u53EB\u58F0\u5F00\u5408\u66F2\u7EBF\uFF1B\u539F\u7ED8\u56FE\u8C03\u7528\u8F6C\u6362\u4E3A\u72EC\u7ACB SVG\uFF0C\u4E0D\u4F9D\u8D56\u539F\u5DE5\u7A0B\u3001\u56FE\u7247\u6216\u58F0\u97F3\u3002"
@@ -29027,7 +29027,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "forward-boat-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u590D\u7528\u672C\u5305\u8FC1\u5165\u7684\u539F\u7ED8\u5236\u51FD\u6570\uFF0C\u4EC5\u4FDD\u7559\u72EC\u7ACB\u7269\u4EF6\uFF1B\u539F\u66F2\u7EBF\u3001\u914D\u8272\u4E0E\u5C42\u6B21\u4FDD\u6301\u3002"
@@ -29091,7 +29091,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "forward-plane-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u76F4\u63A5\u590D\u7528\u672C\u5305\u8FC1\u5165\u7684\u539F\u7ED8\u5236\u51FD\u6570\uFF0C\u4EC5\u4FDD\u7559\u72EC\u7ACB\u7269\u4EF6\uFF1B\u539F\u66F2\u7EBF\u3001\u914D\u8272\u4E0E\u5C42\u6B21\u4FDD\u6301\u3002"
@@ -29162,7 +29162,7 @@ var registry_default = {
         path: "catalog/effects/history-nature.js",
         factory: "seed-shedding-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [],
@@ -29234,7 +29234,7 @@ var registry_default = {
         path: "catalog/effects/particle-scenes.js",
         factory: "note-hop-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         assets: [
@@ -29334,7 +29334,7 @@ var registry_default = {
         path: "catalog/effects/civilization-growth.js",
         factory: "cursive-regular-morph",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -29383,7 +29383,7 @@ var registry_default = {
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801AGPL-3.0-only\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
+        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801Apache-2.0\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
         remotion: {
           component: "catalog/remotion/civilization-growth.jsx",
           export_name: "CivilizationGrowth",
@@ -29442,7 +29442,7 @@ var registry_default = {
           width: 1920,
           height: 1080,
           fps: 60,
-          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FAGPL-3.0-only\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
+          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FApache-2.0\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
         }
       },
       reproduction: {
@@ -29510,7 +29510,7 @@ var registry_default = {
         path: "catalog/effects/civilization-growth.js",
         factory: "glyph-multiply-structure",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -29559,7 +29559,7 @@ var registry_default = {
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801AGPL-3.0-only\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
+        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801Apache-2.0\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
         remotion: {
           component: "catalog/remotion/civilization-growth.jsx",
           export_name: "CivilizationGrowth",
@@ -29618,7 +29618,7 @@ var registry_default = {
           width: 1920,
           height: 1080,
           fps: 60,
-          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FAGPL-3.0-only\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
+          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FApache-2.0\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
         }
       },
       reproduction: {
@@ -29686,7 +29686,7 @@ var registry_default = {
         path: "catalog/effects/civilization-growth.js",
         factory: "row-flash-transform",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -29735,7 +29735,7 @@ var registry_default = {
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801AGPL-3.0-only\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
+        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801Apache-2.0\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
         remotion: {
           component: "catalog/remotion/civilization-growth.jsx",
           export_name: "CivilizationGrowth",
@@ -29794,7 +29794,7 @@ var registry_default = {
           width: 1920,
           height: 1080,
           fps: 60,
-          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FAGPL-3.0-only\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
+          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FApache-2.0\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
         }
       },
       reproduction: {
@@ -29862,7 +29862,7 @@ var registry_default = {
         path: "catalog/effects/civilization-growth.js",
         factory: "botanical-grow-bloom",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -29911,7 +29911,7 @@ var registry_default = {
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801AGPL-3.0-only\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
+        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801Apache-2.0\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
         remotion: {
           component: "catalog/remotion/civilization-growth.jsx",
           export_name: "CivilizationGrowth",
@@ -29970,7 +29970,7 @@ var registry_default = {
           width: 1920,
           height: 1080,
           fps: 60,
-          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FAGPL-3.0-only\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
+          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FApache-2.0\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
         }
       },
       reproduction: {
@@ -30041,7 +30041,7 @@ var registry_default = {
         path: "catalog/effects/civilization-growth.js",
         factory: "motifs-gather-atlas",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -30090,7 +30090,7 @@ var registry_default = {
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801AGPL-3.0-only\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
+        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801Apache-2.0\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
         remotion: {
           component: "catalog/remotion/civilization-growth.jsx",
           export_name: "CivilizationGrowth",
@@ -30149,7 +30149,7 @@ var registry_default = {
           width: 1920,
           height: 1080,
           fps: 60,
-          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FAGPL-3.0-only\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
+          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FApache-2.0\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
         }
       },
       reproduction: {
@@ -30220,7 +30220,7 @@ var registry_default = {
         path: "catalog/effects/civilization-growth.js",
         factory: "image-particles-wordmark",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         dependencies: [
@@ -30269,7 +30269,7 @@ var registry_default = {
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801AGPL-3.0-only\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
+        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801Apache-2.0\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
         remotion: {
           component: "catalog/remotion/civilization-growth.jsx",
           export_name: "CivilizationGrowth",
@@ -30328,7 +30328,7 @@ var registry_default = {
           width: 1920,
           height: 1080,
           fps: 60,
-          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FAGPL-3.0-only\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
+          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FApache-2.0\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
         }
       },
       reproduction: {
@@ -30410,7 +30410,7 @@ var registry_default = {
         path: "catalog/effects/civilization-growth.js",
         factory: "civilization-growth-sequence",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -30464,7 +30464,7 @@ var registry_default = {
           "catalog/assets/civilization-growth/plant-flashes.mjs",
           "catalog/assets/civilization-growth/render.mjs"
         ],
-        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801AGPL-3.0-only\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
+        extraction: "\u4ECE\u5DF2\u786E\u8BA4\u7684\u8349\u6977\u706B\u3001\u6A2A\u6392\u751F\u957F\u3001\u6587\u660E\u7FA4\u50CF\u53CA\u7C92\u5B50\u805A\u5B57\u9010\u5E27\u5DE5\u7A0B\u6536\u5F55\u3002\u4FDD\u7559\u5B9E\u9645\u7ED8\u5236\u4E0E18.6\u79D2\u6392\u7A0B\uFF1B\u72EC\u7ACB\u5206\u6BB5\u76F4\u63A5\u5171\u7528\u5B9E\u9645\u753B\u9762\u51FD\u6570\u3002\u672B\u5C3E\u590D\u7528\u7C92\u5B50\u805A\u6563\u6210\u5B57\u76847000\u7C92\u5B50\u76EE\u6807\u548C\u8FD0\u52A8\u516C\u5F0F\uFF0C\u589E\u52A0\u4ECE\u7FA4\u50CF\u771F\u5B9E\u58A8\u8FF9\u51FA\u53D1\u5E76\u505C\u7559\u5B57\u6807\u7684\u627F\u63A5\u3002\u4EE3\u7801Apache-2.0\uFF1B\u8349\u4E66\u4E0E\u886C\u7EBF\u5B57\u5F62\u53CAOswald\u6309SIL OFL\uFF0C\u989C\u4F53\u5B57\u5F62\u6309GPL-2.0-or-later\uFF0C\u5177\u4F53\u6765\u6E90\u89C1SOURCE.json\uFF1B\u751F\u6210\u63D2\u753B\u4FDD\u7559\u5185\u7F6E\u56FE\u7247\u5DE5\u5177\u6765\u6E90\u8BB0\u5F55\u3002\u539FKimi\u6761\u76EE\u53CA\u7D20\u6750\u72EC\u7ACB\u4FDD\u7559\u3002",
         remotion: {
           component: "catalog/remotion/civilization-growth.jsx",
           export_name: "CivilizationGrowth",
@@ -30523,7 +30523,7 @@ var registry_default = {
           width: 1920,
           height: 1080,
           fps: 60,
-          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FAGPL-3.0-only\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
+          reuse_notes: "640\xD7360\u903B\u8F91\u753B\u677F\u4EE51920\xD71080\u753B\u5E03\u7ED8\u5236\uFF0C\u4FDD\u630116:9\u7B49\u6BD4\u5BB9\u7EB3\u3002\u56FE\u7247\u4E0E\u7EB8\u7EB9\u3001\u5B57\u4F53\u3001\u5B57\u5F62\u8F6E\u5ED3\u5168\u90E8\u5185\u5D4C\uFF0C\u4E0D\u8BFB\u53D6\u539F\u9879\u76EE\u6216\u8054\u7F51\u7D20\u6750\u3002\u7B49\u5F85\u5B57\u4F53\u53CA\u56FE\u7247\u89E3\u7801\u540E\u6309\u5F53\u524D\u5E27\u7ED8\u5236\u3002\n\n\u81EA\u6709\u7A0B\u5E8FApache-2.0\uFF0C\u89C1LICENSE\u3002\u8349\u4E66\u4E0E\u886C\u7EBF\u53CAOswald\u5B57\u5F62\u9075\u5FAASIL OFL\uFF1B\u989C\u4F53\u5B57\u5F62\u9075\u5FAAGPL-2.0-or-later\u3002\u7D20\u6750\u548C\u5404\u8BB8\u53EF\u89C1catalog/assets/civilization-growth/SOURCE.json\u53CA\u540C\u76EE\u5F55\u8BB8\u53EF\u6587\u672C\uFF1B\u8F6F\u4EF6\u5305\u6309\u5404\u81EA\u8BB8\u53EF\u4F7F\u7528\u3002"
         }
       },
       reproduction: {
@@ -30627,7 +30627,7 @@ var registry_default = {
         path: "catalog/effects/scene-dandelion.js",
         factory: "filament-unfold-turn",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u5171\u7528\u539F\u4F5C\u8377\u5858\u548C\u84B2\u516C\u82F1\u4E3B\u4F53\u7ED8\u5236\uFF0C\u80CC\u666F\u4E0E\u51A0\u6BDB\u6309\u540C\u4E00\u65F6\u523B\u53D6\u6837\uFF1B\u4FDD\u7559\u72EC\u7ACB\u52A8\u4F5C\u7684\u4E2D\u5FC3\u53D6\u666F\u3001\u5927\u5C0F\u548C\u5C55\u5F00\u65F6\u5E8F\u3002",
@@ -30677,7 +30677,7 @@ var registry_default = {
             path: "catalog/effects/history-nature.js",
             factory: "dandelion-subject-illustration",
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u4F7F\u7528\u539F subjectPose\u3001entryProgress\u3001filamentState \u548C floret\uFF0C\u6062\u590D\u539F flow \u4E2D\u7684\u51A0\u6BDB\u5C55\u5F00\u4E0E\u8F6C\u5411\uFF1B\u4EC5\u8DDF\u968F\u4E2D\u5FC3\u53D6\u666F\u3002",
@@ -30743,7 +30743,7 @@ var registry_default = {
         path: "catalog/effects/illustrations.js",
         factory: "steel-ruler-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         original_files: [
@@ -30813,7 +30813,7 @@ var registry_default = {
           "catalog/assets/butterfly/SOURCE.json"
         ],
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4FDD\u7559\u5DF2\u786E\u8BA4\u7684\u900F\u660E\u56FE\u96C6\u3001\u56DB\u7247\u7FC5\u8180\u7684\u56FA\u5B9A\u7FFC\u6839\u3001\u89E6\u89D2\u66F2\u7EBF\u53CA\u516D\u79D2\u8FD0\u52A8\u516C\u5F0F\u3002\u76EE\u5F55\u63D2\u753B\u3001\u5173\u8054\u52A8\u4F5C\u4E0E\u9010\u5E27\u7EC4\u4EF6\u5171\u7528\u540C\u4E00\u7ED8\u5236\u7A0B\u5E8F\uFF1B\u89C6\u9891\u901A\u8FC7\u53C2\u6570\u4FDD\u7559\u539F\u753B\u5E45\u548C\u914D\u8272\u3002"
@@ -30897,7 +30897,7 @@ var registry_default = {
           "catalog/assets/butterfly/SOURCE.json"
         ],
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4FDD\u7559\u5DF2\u786E\u8BA4\u7684\u900F\u660E\u56FE\u96C6\u3001\u56DB\u7247\u7FC5\u8180\u7684\u56FA\u5B9A\u7FFC\u6839\u3001\u89E6\u89D2\u66F2\u7EBF\u53CA\u516D\u79D2\u8FD0\u52A8\u516C\u5F0F\u3002\u76EE\u5F55\u63D2\u753B\u3001\u5173\u8054\u52A8\u4F5C\u4E0E\u9010\u5E27\u7EC4\u4EF6\u5171\u7528\u540C\u4E00\u7ED8\u5236\u7A0B\u5E8F\uFF1B\u89C6\u9891\u901A\u8FC7\u53C2\u6570\u4FDD\u7559\u539F\u753B\u5E45\u548C\u914D\u8272\u3002 \u9F20\u5C3E\u8349\u7EFF\u7248\u672C\u590D\u7528\u7528\u6237\u4ECB\u7ECD\u89C6\u9891\u7684\u539F\u900F\u660E\u56FE\u96C6\uFF0C\u4F5C\u4E3A\u72EC\u7ACB\u63D2\u753B\u6536\u5F55\uFF0C\u6CBF\u7528\u73B0\u6709\u8FD0\u52A8\u4E0E\u53D6\u666F\u3002"
@@ -30982,7 +30982,7 @@ var registry_default = {
           "catalog/assets/butterfly/SOURCE.json"
         ],
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4FDD\u7559\u5DF2\u786E\u8BA4\u7684\u900F\u660E\u56FE\u96C6\u3001\u56DB\u7247\u7FC5\u8180\u7684\u56FA\u5B9A\u7FFC\u6839\u3001\u89E6\u89D2\u66F2\u7EBF\u53CA\u516D\u79D2\u8FD0\u52A8\u516C\u5F0F\u3002\u76EE\u5F55\u63D2\u753B\u3001\u5173\u8054\u52A8\u4F5C\u4E0E\u9010\u5E27\u7EC4\u4EF6\u5171\u7528\u540C\u4E00\u7ED8\u5236\u7A0B\u5E8F\uFF1B\u89C6\u9891\u901A\u8FC7\u53C2\u6570\u4FDD\u7559\u539F\u753B\u5E45\u548C\u914D\u8272\u3002"
@@ -31029,7 +31029,7 @@ var registry_default = {
               "catalog/assets/butterfly/SOURCE.json"
             ],
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             extraction: "\u4FDD\u7559\u5DF2\u786E\u8BA4\u7684\u900F\u660E\u56FE\u96C6\u3001\u56DB\u7247\u7FC5\u8180\u7684\u56FA\u5B9A\u7FFC\u6839\u3001\u89E6\u89D2\u66F2\u7EBF\u53CA\u516D\u79D2\u8FD0\u52A8\u516C\u5F0F\u3002\u76EE\u5F55\u63D2\u753B\u3001\u5173\u8054\u52A8\u4F5C\u4E0E\u9010\u5E27\u7EC4\u4EF6\u5171\u7528\u540C\u4E00\u7ED8\u5236\u7A0B\u5E8F\uFF1B\u89C6\u9891\u901A\u8FC7\u53C2\u6570\u4FDD\u7559\u539F\u753B\u5E45\u548C\u914D\u8272\u3002 \u9F20\u5C3E\u8349\u7EFF\u7248\u672C\u590D\u7528\u7528\u6237\u4ECB\u7ECD\u89C6\u9891\u7684\u539F\u900F\u660E\u56FE\u96C6\uFF0C\u4EC5\u65B0\u589E\u914D\u8272\u9009\u9879\uFF0C\u6CBF\u7528\u73B0\u6709\u8FD0\u52A8\u4E0E\u53D6\u666F\u3002"
@@ -31081,7 +31081,7 @@ var registry_default = {
         path: "catalog/effects/scene-dandelion.js",
         factory: "landscape-boundary-carry",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -31161,7 +31161,7 @@ var registry_default = {
         path: "catalog/effects/scene-dandelion.js",
         factory: "passage-animal-response",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u5408\u5E76\u52A8\u7269\u76F8\u9047\u56DE\u5E94\u548C\u4F34\u98DE\u7ED5\u884C\uFF0C\u5171\u7528\u539F\u4F5C\u5B8C\u6574\u5730\u666F\u3001\u4E3B\u4F53\u84B2\u516C\u82F1\u548C\u539F\u65F6\u95F4\u5173\u7CFB\u3002",
@@ -31297,7 +31297,7 @@ var registry_default = {
         path: "catalog/effects/scene-dandelion.js",
         factory: "journey-landscape-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -31453,7 +31453,7 @@ var registry_default = {
         path: "catalog/effects/scene-dandelion.js",
         factory: "journey-lotus-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -31564,7 +31564,7 @@ var registry_default = {
         path: "catalog/effects/scene-dandelion.js",
         factory: "journey-pond-animal-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -31705,7 +31705,7 @@ var registry_default = {
         path: "catalog/effects/scene-dandelion.js",
         factory: "journey-air-animal-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -31848,7 +31848,7 @@ var registry_default = {
         path: "catalog/effects/scene-dandelion.js",
         factory: "journey-flower-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -31928,7 +31928,7 @@ var registry_default = {
         path: "catalog/effects/scene-dandelion.js",
         factory: "dandelion-wind-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -32139,7 +32139,7 @@ var registry_default = {
         path: "catalog/effects/scene-drive.js",
         factory: "camera-lag-departure",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -32222,7 +32222,7 @@ var registry_default = {
         path: "catalog/effects/scene-drive.js",
         factory: "drive-balloon-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u81EA\u6709\u539F\u4F5C\u63D0\u53D6\u677E\u7EF3\u524D\u5168\u90E835\u53EA\u6C14\u7403\uFF0C\u5171\u7528 drawBalloon\u3001balloonState \u548C balloonString\uFF1B\u539F\u6392\u5217\u3001\u6750\u8D28\u548C\u7EF3\u7AEF\u8FDE\u63A5\u4E0D\u53D8\uFF0C\u53EA\u7B49\u6BD4\u9002\u914D\u72EC\u7ACB\u753B\u677F\u3002",
@@ -32305,7 +32305,7 @@ var registry_default = {
         path: "catalog/effects/scene-drive.js",
         factory: "drive-road-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -32383,7 +32383,7 @@ var registry_default = {
         path: "catalog/effects/scene-drive.js",
         factory: "balloon-drive-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
@@ -32598,7 +32598,7 @@ var registry_default = {
         path: "catalog/effects/scene-factory.js",
         factory: "factory-handle-transfer",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -32679,7 +32679,7 @@ var registry_default = {
         path: "catalog/effects/scene-factory.js",
         factory: "factory-cat-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -32990,7 +32990,7 @@ var registry_default = {
         path: "catalog/effects/scene-factory.js",
         factory: "factory-machine-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -33073,7 +33073,7 @@ var registry_default = {
         path: "catalog/effects/scene-factory.js",
         factory: "factory-handle-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -33156,7 +33156,7 @@ var registry_default = {
         path: "catalog/effects/scene-factory.js",
         factory: "factory-cat-puck-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -33465,7 +33465,7 @@ var registry_default = {
         path: "catalog/effects/scene-factory.js",
         factory: "cat-factory-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
@@ -35539,7 +35539,7 @@ var registry_default = {
         path: "catalog/effects/scene-snow.js",
         factory: "snow-arrival-window",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -35620,7 +35620,7 @@ var registry_default = {
         path: "catalog/effects/scene-snow.js",
         factory: "shenzhen-skyline-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -35703,7 +35703,7 @@ var registry_default = {
         path: "catalog/effects/scene-snow.js",
         factory: "snow-crystal-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -35819,7 +35819,7 @@ var registry_default = {
         path: "catalog/effects/scene-snow.js",
         factory: "shenzhen-snow-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
@@ -36045,7 +36045,7 @@ var registry_default = {
         path: "catalog/effects/scene-ocean.js",
         factory: "seat-water-lift",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -36123,7 +36123,7 @@ var registry_default = {
         path: "catalog/effects/scene-ocean.js",
         factory: "sunset-airplane-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -36200,7 +36200,7 @@ var registry_default = {
         path: "catalog/effects/scene-ocean.js",
         factory: "sunset-swing-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u590D\u7528\u539F ropeAt\u3001traceRope\u3001swingSeatGeometry \u4E0E drawSwingSeat\uFF1B\u91C7\u7528\u539F\u7247\u7A7A\u8F7D\u5B8C\u5168\u5C55\u5F00\u65F6\u7684\u957F\u5EA6\uFF0C\u72EC\u7ACB\u63D2\u753B\u5C06\u7EF3\u5B50\u4E0A\u7AEF\u5BF9\u9F50\u5EA7\u677F\u4FA7\u8FB9\u4E2D\u70B9\uFF0C\u5448\u7AD6\u76F4\u60AC\u6302\u3002",
@@ -36281,7 +36281,7 @@ var registry_default = {
         path: "catalog/effects/scene-ocean.js",
         factory: "sunset-sea-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -36361,7 +36361,7 @@ var registry_default = {
         path: "catalog/effects/scene-ocean.js",
         factory: "sunset-pickup-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
@@ -36573,7 +36573,7 @@ var registry_default = {
         path: "catalog/effects/scene-osmanthus.js",
         factory: "osmanthus-tree-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -36700,7 +36700,7 @@ var registry_default = {
         path: "catalog/effects/scene-osmanthus.js",
         factory: "osmanthus-butterfly-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -36817,7 +36817,7 @@ var registry_default = {
         path: "catalog/effects/scene-osmanthus.js",
         factory: "osmanthus-symbol-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -37254,7 +37254,7 @@ var registry_default = {
         path: "catalog/effects/scene-osmanthus.js",
         factory: "osmanthus-leaf-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -37333,7 +37333,7 @@ var registry_default = {
         path: "catalog/effects/scene-osmanthus.js",
         factory: "osmanthus-flower-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -37412,7 +37412,7 @@ var registry_default = {
         path: "catalog/effects/scene-osmanthus.js",
         factory: "osmanthus-butterfly-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
@@ -37846,7 +37846,7 @@ var registry_default = {
         path: "catalog/effects/scene-letter.js",
         factory: "galaxy-axis-reveal",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -37933,7 +37933,7 @@ var registry_default = {
         path: "catalog/effects/scene-letter.js",
         factory: "letter-symbol-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u5171\u7528\u539F makeShape\u3001makeButterflyWing\u3001drawSymbol \u4E0E drawButterfly\uFF1B\u6574\u7EC4\u6062\u590D\u539F\u72EC\u7ACB\u7B26\u53F7\u9884\u89C8\u7684\u524D24\u4EF6\u3001\u56DB\u5217\u516D\u884C\u53CA2.4\u500D\u7B49\u6BD4\u5C55\u793A\uFF0C\u4FDD\u7559\u516D\u79CD\u5355\u4EF6\u9009\u9879\uFF1B\u539F\u5DE5\u7A0B\u4E0E\u97F3\u9891\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -38130,7 +38130,7 @@ var registry_default = {
         path: "catalog/effects/scene-letter.js",
         factory: "letter-galaxy-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -38219,7 +38219,7 @@ var registry_default = {
         path: "catalog/effects/scene-letter.js",
         factory: "star-letter-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
@@ -38424,7 +38424,7 @@ var registry_default = {
         path: "catalog/effects/scene-letter.js",
         factory: "star-letter-blue-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002\u84DD\u8272\u80CC\u666F\u7248\u6CBF\u7528\u539F\u4F5C\u6B63\u84DD\u5E95\u8272\uFF0C\u524D25\u79D2\u4E0E\u58A8\u9ED1\u7248\u5171\u7528\u7ED8\u5236\u548C\u58F0\u97F3\u3002",
@@ -38629,7 +38629,7 @@ var registry_default = {
         path: "catalog/effects/scene-selfie.js",
         factory: "selfie-foot-turn",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -38716,7 +38716,7 @@ var registry_default = {
         path: "catalog/effects/scene-selfie.js",
         factory: "selfie-cat-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -38805,7 +38805,7 @@ var registry_default = {
         path: "catalog/effects/scene-selfie.js",
         factory: "selfie-preview-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -38892,7 +38892,7 @@ var registry_default = {
         path: "catalog/effects/scene-selfie.js",
         factory: "selfie-phone-screen-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -38979,7 +38979,7 @@ var registry_default = {
         path: "catalog/effects/scene-selfie.js",
         factory: "xiaokui-selfie-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
@@ -39169,7 +39169,7 @@ var registry_default = {
         path: "catalog/effects/encore-dance.js",
         factory: "encore-full-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u539F\u5DE5\u7A0B\u4E0D\u53C2\u4E0E\u8FD0\u884C\uFF1B\u5B8C\u6574\u7EC4\u5408\u4F7F\u7528\u968F\u5305\u539F\u58F0\u97F3\u4E0E\u6392\u7A0B\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u548C\u63D2\u753B\u4FDD\u6301\u65E0\u58F0\u3002",
@@ -39341,7 +39341,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "ring-construction",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002"
@@ -39409,7 +39409,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "ring-construction-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002"
@@ -39509,7 +39509,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "mushroom-sphere-idealize",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002"
@@ -39577,7 +39577,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "mushroom-sphere-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002"
@@ -39677,7 +39677,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "ring-sphere-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002"
@@ -39802,7 +39802,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "energy-density-growth",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u5171\u7528\u539F\u6D41\u573A\u7ED8\u5236\uFF0C\u76F4\u63A5\u4ECE\u6709\u6548\u8F68\u8FF9\u5F00\u59CB\u5E76\u8986\u76D6\u5B8C\u6574\u4FDD\u5B58\u533A\u95F4\uFF1B\u4FDD\u7559\u589E\u5BC6\u548C\u955C\u5934\u65F6\u5E8F\uFF0C\u907F\u514D\u5F00\u573A\u4E0E\u672B\u5C3E\u91C7\u6837\u8D8A\u754C\u3002"
@@ -39870,7 +39870,7 @@ var registry_default = {
         path: "catalog/effects/rasengan-illustrations.js",
         factory: "energy-discharge-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u5171\u7528\u539F\u6D41\u573A\u4E0E\u7535\u5F27\u7ED8\u5236\uFF0C\u4ECE\u5DF2\u4FDD\u5B58\u8F68\u8FF9\u7684\u6709\u6548\u8D77\u70B9\u5F00\u59CB\u53D6\u6837\uFF1B\u539F\u4E8C\u5341\u56DB\u79D2\u7247\u6BB5\u6574\u4F53\u4EE5\u56DB\u500D\u901F\u64AD\u653E\uFF0C\u4E09\u79D2\u540E\u5C40\u90E8\u7535\u5F27\u9010\u6E10\u63A5\u5165\uFF0C\u5B8C\u6574\u64AD\u653E\u516D\u79D2\u3002"
@@ -39971,7 +39971,7 @@ var registry_default = {
         path: "catalog/effects/scene-window.js",
         factory: "window-experiment-tree-illustration",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -40102,7 +40102,7 @@ var registry_default = {
         path: "catalog/effects/scene-window.js",
         factory: "window-flower-bloom",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -40198,7 +40198,7 @@ var registry_default = {
         path: "catalog/effects/scene-window.js",
         factory: "window-experiment-journey",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -40368,7 +40368,7 @@ var registry_default = {
         path: "catalog/effects/scene-ink.js",
         factory: "ink-volume-roll",
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         extraction: "\u4ECE\u7528\u6237\u786E\u8BA4\u7684\u81EA\u6709\u539F\u4F5C\u8FC1\u5165\u5B9E\u9645\u7ED8\u5236\u548C\u65F6\u5E8F\uFF1B\u539F\u4F5C\u4EE3\u7801\u53EA\u8BFB\uFF0C\u5173\u8054\u52A8\u4F5C\u4E0E\u63D2\u753B\u5171\u7528\u672C\u5730\u7ED8\u5236\uFF0C\u5916\u90E8\u5DE5\u7A0B\u4E0E\u97F3\u9891\u5747\u4E0D\u53C2\u4E0E\u8FD0\u884C\u3002",
@@ -40456,7 +40456,7 @@ var registry_default = {
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -40534,7 +40534,7 @@ var registry_default = {
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -40617,7 +40617,7 @@ var registry_default = {
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -40746,7 +40746,7 @@ var registry_default = {
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -40838,7 +40838,7 @@ var registry_default = {
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -40923,7 +40923,7 @@ var registry_default = {
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -40968,7 +40968,7 @@ var registry_default = {
               "catalog/assets/reel-extract/SOURCE.json"
             ],
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             reference: {
@@ -41018,7 +41018,7 @@ var registry_default = {
               "catalog/assets/reel-extract/SOURCE.json"
             ],
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             reference: {
@@ -41056,7 +41056,7 @@ var registry_default = {
               "catalog/assets/reel-extract/SOURCE.json"
             ],
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             reference: {
@@ -41138,7 +41138,7 @@ var registry_default = {
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -41195,7 +41195,7 @@ var registry_default = {
               "catalog/assets/reel-extract/SOURCE.json"
             ],
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             reference: {
@@ -41269,7 +41269,7 @@ var registry_default = {
           "catalog/assets/reel-extract/SOURCE.json"
         ],
         origin: "original",
-        license: "AGPL-3.0-only",
+        license: "Apache-2.0",
         library: "animejs@4.5.0",
         reference_url: "https://animejs.com/documentation/",
         reference: {
@@ -41308,7 +41308,7 @@ var registry_default = {
               "catalog/assets/reel-extract/SOURCE.json"
             ],
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             reference: {
@@ -41344,7 +41344,7 @@ var registry_default = {
               "catalog/assets/reel-extract/SOURCE.json"
             ],
             origin: "original",
-            license: "AGPL-3.0-only",
+            license: "Apache-2.0",
             library: "animejs@4.5.0",
             reference_url: "https://animejs.com/documentation/",
             reference: {
@@ -41530,7 +41530,7 @@ var layer_audit_default = {
     {
       id: "type-reveal",
       variant: null,
-      fingerprint: "248c0304218d21623dd3e8f38248c65db0af7034b92072e95ce2a375b2b1c775",
+      fingerprint: "01c4fb9ff752c3931151280dce06ae49107f4fda074397b01a84349dfd8bb6dd",
       status: "overlay-ok",
       samples: [
         {
@@ -41730,7 +41730,7 @@ var layer_audit_default = {
     {
       id: "count-up",
       variant: null,
-      fingerprint: "c4bd1cdf04d40d72894eea41459fcefa02b3e0c331adc7b0366eef69e5334fb7",
+      fingerprint: "86ff27ce4a7e0a0a56f12107cbb9b0d13c0d8d67d5b2a0e3e663e0a684d30b17",
       status: "overlay-ok",
       samples: [
         {
@@ -41962,7 +41962,7 @@ var layer_audit_default = {
     {
       id: "word-focus",
       variant: null,
-      fingerprint: "d6fa2ad3f2cbb15f5c182f045f66a773b9e94a4fddaff96dd0c5f0a762c10b3e",
+      fingerprint: "de448396fe4296a693f6aac3219fdbd0ea9c666f6ded62c55a0053c1f27c0b02",
       status: "overlay-ok",
       samples: [
         {
@@ -42192,16 +42192,28 @@ var layer_audit_default = {
       ]
     }
   ],
-  browser: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7790.0 Safari/537.36"
+  browser: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7790.0 Safari/537.36",
+  licenseUpdate: {
+    date: "2026-10-10",
+    license: "Apache-2.0",
+    baselineRevision: "de0cee7527eb8e156aad1bb50b556e9b898d3772",
+    verification: "\u4E0E\u8C03\u6574\u524D\u4ED3\u5E93\u7248\u672C\u9010\u6587\u4EF6\u5BF9\u7167\uFF1A\u5B9E\u9645\u7ED8\u5236\u4F9D\u8D56\u3001\u5171\u4EAB\u6837\u5F0F\u3001\u5E27\u9002\u914D\u5668\u548C\u7EC4\u4EF6\u4EC5\u8BB8\u53EF\u6587\u5B57\u53D8\u5316\uFF0C\u5B57\u4F53\u5B57\u8282\u4FDD\u6301\u4E00\u81F4\uFF1B\u52A8\u6548\u5B9A\u4E49\u4EC5\u8BB8\u53EF\u6587\u5B57\u53D8\u5316\u3002\u539F\u900F\u660E\u901A\u9053\u53D6\u6837\u7ED3\u679C\u7EE7\u7EED\u9002\u7528\uFF0C\u672A\u91CD\u65B0\u622A\u56FE\u6216\u53D6\u6837\u3002",
+    verifiedFiles: 17,
+    previousFingerprints: {
+      "type-reveal/": "248c0304218d21623dd3e8f38248c65db0af7034b92072e95ce2a375b2b1c775",
+      "count-up/": "c4bd1cdf04d40d72894eea41459fcefa02b3e0c331adc7b0366eef69e5334fb7",
+      "word-focus/": "d6fa2ad3f2cbb15f5c182f045f66a773b9e94a4fddaff96dd0c5f0a762c10b3e"
+    }
+  }
 };
 
 // catalog/layer-fingerprints.json
 var layer_fingerprints_default = {
   version: 2,
   fingerprints: {
-    "count-up/": "c4bd1cdf04d40d72894eea41459fcefa02b3e0c331adc7b0366eef69e5334fb7",
-    "type-reveal/": "248c0304218d21623dd3e8f38248c65db0af7034b92072e95ce2a375b2b1c775",
-    "word-focus/": "d6fa2ad3f2cbb15f5c182f045f66a773b9e94a4fddaff96dd0c5f0a762c10b3e"
+    "count-up/": "86ff27ce4a7e0a0a56f12107cbb9b0d13c0d8d67d5b2a0e3e663e0a684d30b17",
+    "type-reveal/": "01c4fb9ff752c3931151280dce06ae49107f4fda074397b01a84349dfd8bb6dd",
+    "word-focus/": "de448396fe4296a693f6aac3219fdbd0ea9c666f6ded62c55a0053c1f27c0b02"
   }
 };
 

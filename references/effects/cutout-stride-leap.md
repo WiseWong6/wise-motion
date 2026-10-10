@@ -16,7 +16,7 @@
 明确排除：不在两个固定跑姿间来回抖动，不用单一僵硬剪影平移代替跑动，不让图集边界切到手脚，不依赖上一次播放位置。
 对应参考：本地目录「剪影跑动与弹离」
 源码：catalog/effects/collage-film.js 中的 cutout-stride-leap
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：1600×900设计坐标等比呈现在640×360逻辑画板；纸白、炭黑与少量朱红；字片用本地Oswald粗体字形。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/collage-film.js)，注册名称：`cutout-stride-leap`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

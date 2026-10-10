@@ -2,7 +2,7 @@
   "origin": "用户已确认的 Wise Motion 视频蝴蝶插画与振翅小样",
   "created": "2026-10-06",
   "image_source": "蓝色和多彩两张原透明图集由 Codex 宿主内置 image_gen.imagegen 制作；鼠尾草绿图集直接复用用户指定视频工程，详情见该文件的 provenance。原透明图集直接复制，没有重绘或图像编辑；运行素材已无损转为 WebP，完整颜色和透明度不变，校验记录见 ../WEBP-SOURCES.json。",
-  "code_license": "AGPL-3.0-only",
+  "code_license": "Apache-2.0",
   "files": [
     {
       "path": "wing-atlas.webp",

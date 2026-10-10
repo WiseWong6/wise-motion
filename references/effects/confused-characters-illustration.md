@@ -16,7 +16,7 @@
 明确排除：不添加旁白或整片字幕；不把原图片替换为新生成图片，不引入随时间累积的随机状态。
 对应参考：本地目录「疑惑人物组」；所用动作：眨眼表情与符号回应
 源码：catalog/effects/reel-extract.js 中的 confused-characters-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用原逻辑画板等比取景，人物和材质保持原色；独立片段使用原场景设计时间，去掉整片旁白时间拉伸及无关转场。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/reel-extract.js)，注册名称：`confused-characters-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 效果参考 Wise Motion 介绍视频 · 用户提供的原工程。
-- 从用户提供的现有视频工程提取人物、图片及原运动公式；本地绘制包和可读组件源码一同交付，运行不依赖来源工程。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从用户提供的现有视频工程提取人物、图片及原运动公式；本地绘制包和可读组件源码一同交付，运行不依赖来源工程。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[眨眼表情与符号回应](character-expression-response.md)。

@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 // 将随包原合成程序与固定排程离线生成声音；不访问来源工程，不启动服务器。
 import {readFile, writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';

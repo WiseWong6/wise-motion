@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* WISE MOTION 字形提取自随包 Oswald Bold；轮廓保留 SIL OFL 1.1，见 catalog/fonts/OFL-Oswald.txt。 */
 (function(global){
   'use strict';

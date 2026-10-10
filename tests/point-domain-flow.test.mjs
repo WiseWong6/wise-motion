@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 // 记录真实提交的画布指令，验证几何、时钟、复用与资源释放；不代替视觉验收。
 import test from 'node:test';
 import assert from 'node:assert/strict';

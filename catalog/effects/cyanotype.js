@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 三张已叠好的纸卡随镜头缩回，由暗绿纸面连续显影为深蓝。 */
 (function(global){
   'use strict';

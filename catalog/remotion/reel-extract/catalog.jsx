@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 // Extracted scene components use React only to update nodes. The existing catalog/Remotion clock owns time.
 import React from 'react';
 import {createRoot} from 'react-dom/client';

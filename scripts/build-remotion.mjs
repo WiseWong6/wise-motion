@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import {build} from 'esbuild';
 import {mkdir,writeFile,readFile,readdir} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
@@ -12,7 +12,7 @@ const layerFingerprints=verifiedLayerFingerprints();
 for(const file of ['dist','catalog/remotion-player.js','public','ASSET-MANIFEST.json','catalog/layer-fingerprints.json'])await assertProjectWrite(path.join(root,file));
 await writeFile(path.join(root,'catalog/layer-fingerprints.json'),JSON.stringify(layerFingerprints,null,2)+'\n');
 await mkdir(path.join(root,'dist'),{recursive:true});
-const common={absWorkingDir:root,bundle:true,target:['chrome120','safari17'],logLevel:'warning',legalComments:'eof',banner:{js:'/* Wise Motion Remotion 接入 · 自有代码 AGPL-3.0-only；第三方许可见 NOTICE.md。 */'}};
+const common={absWorkingDir:root,bundle:true,target:['chrome120','safari17'],logLevel:'warning',legalComments:'eof',banner:{js:'/* Wise Motion Remotion 接入 · 自有代码 Apache-2.0；第三方许可见 NOTICE.md。 */'}};
 await build({...common,entryPoints:['remotion/with-audio.jsx'],outfile:'dist/index.mjs',format:'esm',external:['react','react-dom','remotion']});
 // 目录已先载入权威数据；浏览器播放器共用它，独立组件仍随包包含完整定义。
 const browserRegistry={name:'catalog-registry',setup(builder){

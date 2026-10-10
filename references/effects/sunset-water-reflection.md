@@ -16,7 +16,7 @@
 明确排除：不使用手绘光带、重复笔触或亮度驱动的条带形变。
 对应参考：本地目录「水面倒影起伏」
 源码：catalog/effects/history-nature.js 中的 sunset-water-reflection
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：固定原九百乘一千二百画板，取海平面附近的完整宽度；移除飞机、绳索、音效和星空，保留原解析光源路径。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/history-nature.js)，注册名称：`sunset-water-reflection`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 直接迁入夕阳原暖色配色、sunDeformationAt、flightAt、waveAt、waterFresnel、buildWaterReflection、drawWaterReflection 与 makeSunBrush；只绘制太阳和海面，保留光源路径和法线受光关系。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 直接迁入夕阳原暖色配色、sunDeformationAt、flightAt、waveAt、waterFresnel、buildWaterReflection、drawWaterReflection 与 makeSunBrush；只绘制太阳和海面，保留光源路径和法线受光关系。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 目录首屏不需要的大体积绘制数据在第一次用到时才载入。
    预览本身运行在独立画面里，只加载条目声明的依赖；这里补的是主页面的缩略图、
    组合拆解和复制源码。载入顺序固定，已载入的文件不会重复执行。 */

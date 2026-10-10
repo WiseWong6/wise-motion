@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
  * 黄金矩形、文字雨幕与打铁花均为本地几何绘制，不读取视频或参考图片。
  * 组合与独立动作调用相同的部件绘制函数；全部位置由绝对时间决定。
  */

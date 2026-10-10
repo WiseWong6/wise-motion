@@ -16,7 +16,7 @@
 明确排除：不改成粒子聚拢或散开，不描边替代点阵填充；省去外围型号、参数表、题签和声音。
 对应参考：本地目录「字标点阵」；所用动作：点阵纵向显现
 源码：catalog/effects/door-halftone.js 中的 door-halftone-illustration
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：根据用户要求替换第三方标志：用随包 Oswald Bold 真实字形独立提取 WISE MOTION 两行轮廓，字形保留 SIL OFL 1.1。保留实际点距6.9、点半径1.748、246高度揭示窗口与两条速度曲线；没有 Naive 门形路径，无需运行时加载字体。旧标识与旧名称仅兼容书签和检索。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/door-halftone.js)，注册名称：`door-halftone-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[点阵纵向显现](dot-mask-reveal.md)。

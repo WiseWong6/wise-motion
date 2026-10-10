@@ -3,7 +3,7 @@
   "composer": "法国传统旋律 Ah, vous dirai-je, maman",
   "arranger": "Wise Motion 独立排谱与简单伴奏",
   "melody_rights": "public-domain",
-  "license": "AGPL-3.0-only",
+  "license": "Apache-2.0",
   "source_url": "https://kv.mozarteum.at/de/work/zwolf-variationen-in-c-uber-4057",
   "tempo": 80,
   "excerptMeasures": [

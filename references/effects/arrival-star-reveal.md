@@ -16,7 +16,7 @@
 明确排除：不改为 140 个白色方点星空，不重新撒点，不在物品到达之前另处生星，不创建飞行物品占位。
 对应参考：本地目录「抵达换形显现」
 源码：catalog/effects/letter-settle.js 中的 arrival-star-reveal
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：直接抽取组合星点层；独立只创建 126 个固定落点，不计算飞行曲线。时钟整体前移 5.028 秒以去掉飞行等待，落点、各点差异和原目录配色不变。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/letter-settle.js)，注册名称：`arrival-star-reveal`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

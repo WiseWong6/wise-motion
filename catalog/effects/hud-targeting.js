@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 从本机第八段自主绘制实现提取；原片仅供动作和读数校对，不嵌入原片像素。
  * 国家轮廓为 Natural Earth 1:110m 公共领域数据，来源与采样依据见 hud-targeting-source.md。 */
 (function(global){

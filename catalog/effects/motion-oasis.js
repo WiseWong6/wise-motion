@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only.
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0.
  * Motion Oasis: portable geometry and water painters. No reference media.
  * Each player owns its scene caches; the catalog provides the only clock.
  */
@@ -13,7 +13,7 @@ function handoffAt(t) {
 }
 function createEngine(registry) {
   const window = {Opus:{}};
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only.
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0.
  * Code-drawn catalog adaptations on the real water planes. One supplied clock;
  * each tile shares the scene time and the catalog painter.
  */

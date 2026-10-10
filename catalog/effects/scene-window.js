@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 窗外实验树：原枝形、花位、花期与真实素材；仅替换原页面的播放入口。 */
 (function(global){
  global.WiseSceneSources.window=function(S,opt){

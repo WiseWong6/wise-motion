@@ -16,7 +16,7 @@
 明确排除：不要变成统一轨道的环绕，不把全部蝴蝶同时发射，不绘制树、月面、掉落符号或星点，不拉伸竖幅，不添加声音。
 对应参考：本地目录「群体弧线飞行」
 源码：catalog/effects/osmanthus-motion.js 中的 swarm-arc-flight
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：仅提取指定运动主体和光效；固定零件数据与绘制随代码打包，直接静态打开即可使用。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/osmanthus-motion.js)，注册名称：`swarm-arc-flight`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 提取自有八月桂夜的固定零件数据、实际轮廓触地计算、飞行方程与二维材质绘制；无需原工程或 p5.js，不包含树、月面、音频。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 提取自有八月桂夜的固定零件数据、实际轮廓触地计算、飞行方程与二维材质绘制；无需原工程或 p5.js，不包含树、月面、音频。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

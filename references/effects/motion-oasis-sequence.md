@@ -16,7 +16,7 @@
 明确排除：不扩大天空、不加投影屏幕、不改变楼群布局；水面不清空，图形不等消失后才出现；不依赖参考视频。
 对应参考：本地目录「地块铺展与动效绿洲」；所用动作：地块逐圈翻铺、层台错峰生长、水面随波换图、按距离依次响应、网格波次传递
 源码：catalog/effects/motion-oasis.js 中的 motion-oasis-sequence
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：原色空间插画；统一时钟计算模型与投影，每次定位得到相同画面。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/motion-oasis.js)，注册名称：`motion-oasis-sequence`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 复刻自 @Vincent的AI实验场 整理的 Opus 动效。
-- 从已确认的动效绿洲代码模型中提取独立对象；独立动作与完整组合共用地块、退台建筑、水面绘制及波次计算，不依赖参考视频或本机工程路径。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从已确认的动效绿洲代码模型中提取独立对象；独立动作与完整组合共用地块、退台建筑、水面绘制及波次计算，不依赖参考视频或本机工程路径。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[地块逐圈翻铺](tile-ring-unfold.md)、[层台错峰生长](terraced-rise.md)、[水面随波换图](water-wave-handoff.md)、[按距离依次响应](group-stagger.md)、[网格波次传递](wave-grid.md)。

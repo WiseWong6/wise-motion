@@ -16,7 +16,7 @@
 明确排除：不带原场景、背景、字幕、音频或外围控件。
 对应参考：本地目录「蒲公英主体」；所用动作：冠毛展开转向
 源码：catalog/effects/history-nature.js 中的 dandelion-subject-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底，跟随冠毛中心取景，放在(320,158)并等比放大1.05倍；保留原半径、转角和冠毛透明度，移除整体旅行背景。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/history-nature.js)，注册名称：`dandelion-subject-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 使用原 subjectPose、entryProgress、filamentState 和 floret，恢复原 flow 中的冠毛展开与转向；仅跟随中心取景。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 使用原 subjectPose、entryProgress、filamentState 和 floret，恢复原 flow 中的冠毛展开与转向；仅跟随中心取景。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[冠毛展开转向](filament-unfold-turn.md)。

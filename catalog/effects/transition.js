@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function (F) {
   F['rapid-cut'] = (root, M, definition) => {
     if (definition?.variant_id === 'print-burst') return globalThis.WiseGeometricPoster.make(root, M, definition, 'burst');

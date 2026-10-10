@@ -16,7 +16,7 @@
 明确排除：不添加深色内圈、外投影或整圈描边；不以截图替代对后方画面的实时采样。 界面统一采用苹果空间风格；对话使用短信或 Siri，不使用创作助手对话。
 对应参考：本地目录「凸泡伸缩折射」
 源码：catalog/effects/glass-light.js 中的 convex-glass-lens
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：凸泡采样自编的苹果短信空间卡；统一黑银玻璃材质与苹果空间界面比例，不使用截图或原片媒体。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [原码提取与接入源码](../../catalog/effects/glass-light.js)，注册名称：`convex-glass-lens`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 效果参考 [Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)。
-- 从本机玻璃效果精修的自主绘制源码提取；仅采用几何、颜色和时间参数，没有原片图片、视频或第三方运行代码。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从本机玻璃效果精修的自主绘制源码提取；仅采用几何、颜色和时间参数，没有原片图片、视频或第三方运行代码。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 

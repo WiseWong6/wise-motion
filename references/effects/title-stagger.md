@@ -16,7 +16,7 @@
 明确排除：不把三种样式列成重复动作；不改变原文字的进出顺序；不创建无关图形。
 对应参考：本地目录「标题依次呈现」
 源码：catalog/effects/reel-flat-gen.js 中的 title-stagger
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：合并三个标题动作的目录入口，保留三个可切换示例；各组合打开对应原作示例。英文和数字使用Oswald Bold。
 
 ## 调整方式
@@ -31,7 +31,7 @@
 - [自编源码](../../catalog/effects/reel-flat-gen.js)，注册名称：`title-stagger`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。
 
@@ -52,7 +52,7 @@
 明确排除：只复用该动作的真实图层；不创建无关手机、点阵、代码或其他装饰。
 对应参考：本地目录「标题依次呈现」
 源码：catalog/effects/reel-flat-gen.js 中的 title-stagger
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：与原组合共用图层和绘制函数，独立展示只作整体平移或等比缩放。保留原色板，纯英文数字用目录Oswald Bold，字距在制作时计算，播放中不测量文字。
 
 使用同一动作定义，设置 `variant_id: "material"`；目录和相关动作弹窗均可切换。
@@ -74,7 +74,7 @@
 明确排除：只复用该动作的真实图层；不创建无关手机、点阵、代码或其他装饰。
 对应参考：本地目录「标题依次呈现」
 源码：catalog/effects/reel-flat-gen.js 中的 title-stagger
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：与原组合共用图层和绘制函数，独立展示只作整体平移或等比缩放。保留原色板，纯英文数字用目录Oswald Bold，字距在制作时计算，播放中不测量文字。
 
 使用同一动作定义，设置 `variant_id: "outline"`；目录和相关动作弹窗均可切换。
@@ -96,7 +96,7 @@
 明确排除：不添加字幕条；不把原逐字上下移简化为整体淡入淡出。
 对应参考：本地目录「标题依次呈现」
 源码：catalog/effects/reel-flat-gen.js 中的 title-stagger
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：从Claude动效演进史原sKey软件段抽出同一文字图层，组合和独立动作共用绘制函数；保留原深色画板，纯英文数字使用本地Oswald Bold。
 
 使用同一动作定义，设置 `variant_id: "handoff"`；目录和相关动作弹窗均可切换。

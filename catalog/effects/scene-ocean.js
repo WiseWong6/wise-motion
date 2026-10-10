@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 迁入自有原作，绘制函数与原数据共用；移除原界面、独立时钟和音频。 */
 (function(global){
  global.WiseSceneSources.ocean=function(S,opt,def){

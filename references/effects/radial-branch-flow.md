@@ -16,7 +16,7 @@
 明确排除：不要恢复胶囊或把三条枝干改为单向下落；不要让光点领先于尚未长出的路径，也不要提前亮出卡片。
 对应参考：本地目录「涟漪扩散连线分流」；所用动作：同心涟漪扩散
 源码：catalog/effects/radial-branch-flow.js 中的 radial-branch-flow
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：结合本机动效教程 opening.js 的胶囊涟漪与枝干光流，按用户要求改为中央圆形与向外布局，并重新编排为六秒。保留原涟漪相位、曲线生长、沿线亮尾和到达后显卡的关系；光流限制在已长出的路径内，涟漪延续至末次到达后退去。字体、字号和颜色沿用目录，不携带外围文字、相机与声音。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/radial-branch-flow.js)，注册名称：`radial-branch-flow`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[同心涟漪扩散](center-ripple-emit.md)。

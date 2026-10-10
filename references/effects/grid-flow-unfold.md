@@ -16,7 +16,7 @@
 明确排除：不使用原片图像，不随机重排，不让弧线越出所属方格，不把完整组合伪装成单个动作。
 对应参考：本地目录「网格起伏黄金生长」
 源码：catalog/effects/point-domain-flow.js 中的 grid-flow-unfold
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：图形与文字是可替换的示例；保留格内延伸、父子接续和当前时间可重现的动作关系。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/point-domain-flow.js)，注册名称：`grid-flow-unfold`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 复刻至 [@陈与小金](https://www.xiaohongshu.com/user/profile/674ae141000000001c019796?xsec_token=AB4_JtYTs33ywlUEE_Mx8jkB1aDCvusqnUmnJNp5ZZLwE%3D&xsec_source=pc_search) 老师，已取得授权
-- 基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

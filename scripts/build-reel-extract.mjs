@@ -1,11 +1,11 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import {build} from 'esbuild';
 import {readFile,writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../',import.meta.url));
 export async function buildReelExtract(checking=false){
  const result=await build({absWorkingDir:root,entryPoints:['catalog/remotion/reel-extract/catalog.jsx'],bundle:true,write:false,format:'iife',target:['chrome120','safari17'],minify:true,legalComments:'eof',define:{'process.env.NODE_ENV':'"production"'}});
- const source='/* Generated from catalog/remotion/reel-extract; AGPL-3.0-only; bundled libraries retain their notices below. */\n'+result.outputFiles[0].text;
+ const source='/* Generated from catalog/remotion/reel-extract; Apache-2.0; bundled libraries retain their notices below. */\n'+result.outputFiles[0].text;
  // CSS image masks cannot read file: URLs. Embed the lossless WebP bytes,
  // loaded only by the colour-reveal entry, so the static catalog stays portable.
  const files=[['reel-extract.js',source]];

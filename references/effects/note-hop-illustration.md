@@ -16,7 +16,7 @@
 明确排除：不改成单个圆点在简线跳动，不替换真实谱面，不减少亮芯与柔雾层，不拉伸原纵横比例，不播放音乐。
 对应参考：本地目录「谱面光点跳跃」；所用动作：沿点跳跃留光
 源码：catalog/effects/particle-scenes.js 中的 note-hop-illustration
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：16:9，640×360，按横画板重新计算透视宽高比，不拉伸竖版画面。保留 #25212b 暗紫环境、原灰色谱纸、白色亮芯及 #c9a0ff 紫色柔雾、符头亮边和原光带。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/particle-scenes.js)，注册名称：`note-hop-illustration`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - 复刻自 [@言说心事](https://www.xiaohongshu.com/user/profile/6926ff85000000003702b1c1?xsec_token=ABiobWDdNSX_CX9Vf091D7iZ9SeSMSlAk4oyjghnynYPQ%3D&xsec_source=pc_search) 老师的教程
-- 沿用本地 notes-source.js 的光点、尾迹、光照、镜头及运动绘制，输出尺寸接入横画板；谱面与音符输入已替换为公有领域古老旋律的独立排谱及本项目新写的简单伴奏，共44个事件。可读谱面和离线内嵌副本由 scripts/build-public-score.mjs 同时生成；Three.js 的 MIT 许可保留，无网络或音频请求。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 沿用本地 notes-source.js 的光点、尾迹、光照、镜头及运动绘制，输出尺寸接入横画板；谱面与音符输入已替换为公有领域古老旋律的独立排谱及本项目新写的简单伴奏，共44个事件。可读谱面和离线内嵌副本由 scripts/build-public-score.mjs 同时生成；Three.js 的 MIT 许可保留，无网络或音频请求。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[沿点跳跃留光](timed-point-hop.md)。

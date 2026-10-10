@@ -16,7 +16,7 @@
 明确排除：不换成卡片淡入，不做整页平移，不带图盘、文字或边角标注。
 对应参考：本地目录「双向错峰滑入」
 源码：catalog/effects/reel-paper.js 中的 paper-strip-stagger
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：从剪纸图盘逐格展开中独立提取，五条纸条的原坐标、尺寸、橙黑配色及运动均与组合共用；原段前两秒可逐帧对照。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/reel-paper.js)，注册名称：`paper-strip-stagger`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

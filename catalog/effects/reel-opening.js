@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function (F) {
   'use strict';
   // 固定 MOTION 字标采用随包 Oswald Bold，生成入口为 scripts/build-brand-outlines.py。

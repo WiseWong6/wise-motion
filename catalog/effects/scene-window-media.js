@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 每次播放独享原作花朵与木纹缓存，画布由目录统一释放。 */
 (function(global){
 /* 色区顺序与实验树一致；每种花保留独立的真实花形素材。 */

@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {FRAME_STYLES, frameScriptsFor} from '../remotion/frame-document.mjs';

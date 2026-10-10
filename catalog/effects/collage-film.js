@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 原创剪贴短片。完整组合与独立动作共用绘制函数；素材来源见 assets/collage-film/SOURCE.json。 */
 (function(global){
 'use strict';

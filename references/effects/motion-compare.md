@@ -16,7 +16,7 @@
 明确排除：不把轨道与曲线分别计时，不改动两条轨道的端点和路程，不把曲线参数直接当横坐标，不带下方小球、软件窗口与音轨。
 对应参考：本地目录「匀速缓动对照」
 源码：catalog/effects/data-comparisons.js 中的 motion-compare
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：从 Claude 动效演进史的双轨与曲线面板提取，两部分按原横版坐标分别等比缩放，保留各自比例和蓝黄对应关系；中文标签和曲线读数使用目录字号，网格与轨道细线跟随主题。运动覆盖原片第23至27.25秒，未带软件窗口、下方回弹小球或声音。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/data-comparisons.js)，注册名称：`motion-compare`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 这是一个单个动作，可在组合片段中复用。

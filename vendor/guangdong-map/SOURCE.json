@@ -29,7 +29,7 @@
     3282749,
     3032080
   ],
-  "modifications": "沿市界与同一来源的海岸线生成陆地区域，统一简化共享边界并保留岛屿与孔洞；经纬度数据与内嵌矢量轮廓均保留 ODbL 1.0。绘制与动画代码按项目 AGPL-3.0-only 提供。",
+  "modifications": "沿市界与同一来源的海岸线生成陆地区域，统一简化共享边界并保留岛屿与孔洞；经纬度数据与内嵌矢量轮廓均保留 ODbL 1.0。绘制与动画代码按项目 Apache-2.0 提供。",
   "attribution_guidelines": "https://osmfoundation.org/wiki/Licence/Attribution_Guidelines",
   "files": {
     "guangdong-cities.geojson": {

@@ -16,7 +16,7 @@
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
 对应参考：本地目录「星月来信蓝色背景版」；所用动作：文字逐字显现、水波折射文字、群体飞行留迹、抵达换形显现、落点错峰闪亮、银河从中轴向两侧显现、星月来信符号组、星月来信银河
 源码：catalog/effects/scene-letter.js 中的 star-letter-blue-journey
-来源与许可：原码提取与接入，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [原码提取与接入源码](../../catalog/effects/scene-letter.js)，注册名称：`star-letter-blue-journey`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。蓝色背景版沿用原作正蓝底色，前25秒与墨黑版共用绘制和声音。许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。蓝色背景版沿用原作正蓝底色，前25秒与墨黑版共用绘制和声音。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[文字逐字显现](type-reveal.md)、[水波折射文字](letter-ripple.md)、[群体飞行留迹](symbol-flight-settle.md)、[抵达换形显现](arrival-star-reveal.md)、[落点错峰闪亮](arrival-star-sparkle.md)、[银河从中轴向两侧显现](galaxy-axis-reveal.md)、[星月来信符号组](letter-symbol-illustration.md)、[星月来信银河](letter-galaxy-illustration.md)。

@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function(F){
   F['dual-scroll-settle']=(root,M)=>{
     root.innerHTML=[0,1].map(row=>`<div data-layer="${row?'lower':'upper'}" data-belt="${row}" style="position:absolute;left:0;top:${row?204:76}px;width:640px;height:82px;overflow:hidden">${[0,1,2].map(i=>`<div data-card="${i}" style="position:absolute;left:0;top:0;width:128px;height:80px;background:var(--card);border:.75px solid var(--card-muted);border-radius:3px;box-sizing:border-box"></div>`).join('')}</div>`).join('');

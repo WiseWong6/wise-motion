@@ -16,7 +16,7 @@
 明确排除：不能用通用滑块代替曲线编辑器；独立预览可居中，组合必须保留原三窗布局。
 对应参考：本地目录「曲线回弹演示」；所用动作：窗口升入压扁、弹跳逐次减小、曲线联动、游标扫描节点、标题依次呈现
 源码：catalog/effects/reel-grit-key.js 中的 keyframe-workbench
-来源与许可：自编示例，AGPLv3；Anime.js 4.5.0，MIT。
+来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：恢复原片22–30秒软件段，保留三窗位置、深色软件界面及窗口收拢后的结语和大曲线。纯英文和数字使用Oswald Bold。
 
 ## 调整方式
@@ -31,6 +31,6 @@
 - [自编源码](../../catalog/effects/reel-grit-key.js)，注册名称：`keyframe-workbench`。
 - [统一播放接口](../runtime-interface.md)，可播放、暂停、重播、定位时间和释放资源。
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
-- 自编效果未复制官方示例素材；许可为 AGPL-3.0-only。第三方 Anime.js 保留 MIT 许可。
+- 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
 所用动作：[窗口升入压扁](panel-rise-collapse.md)、[弹跳逐次减小](ball-bounce-trails.md)、[曲线联动](bezier-editor.md)、[游标扫描节点](timeline-keyframe-playhead.md)、[标题依次呈现](title-stagger.md)。

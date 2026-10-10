@@ -1,4 +1,4 @@
-/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only */
+/* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 /* 螺旋丸原工程的独立图形。原几何和短窗轨迹由 scripts/extract-rasengan.mjs 提取。 */
 (function(global){
   'use strict';

@@ -1,6 +1,6 @@
 (function (global) {
 'use strict';
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 // Four actual hinge rotations; the printed artwork stays fixed on each wing.
 const DURATION = 6;
 const ATLAS = {width: 1536, height: 1024};

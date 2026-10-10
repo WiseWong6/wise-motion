@@ -1,4 +1,4 @@
-// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import audit from '../catalog/layer-audit.json' with {type: 'json'};
 import buildFingerprints from '../catalog/layer-fingerprints.json' with {type: 'json'};
 import {resolveEffect} from './clock.mjs';

@@ -1,4 +1,4 @@
-/* Wise Motion · 薪火生长与文明聚字；自有程序 AGPL-3.0-only，字形及素材许可见 catalog/assets/civilization-growth/SOURCE.json。 */
+/* Wise Motion · 薪火生长与文明聚字；自有程序 Apache-2.0，字形及素材许可见 catalog/assets/civilization-growth/SOURCE.json。 */
 (() => {
   // catalog/assets/civilization-growth/paper.mjs
   var rand = (i) => {
