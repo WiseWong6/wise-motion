@@ -21,7 +21,7 @@ const Scene=()=> <WiseMotionEffect effectId="stagger-in" />;
 在目标工程安装公开包并复制素材：
 
 ```sh
-npm install --save-exact wise-motion@0.1.7
+npm install --save-exact wise-motion@0.1.8
 node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion
 ```
 
