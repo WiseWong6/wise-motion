@@ -283,6 +283,7 @@
   function updateOutputs() {
     if (!selected || !controller) return;
     const effect = selected, current = controller, version = ++outputVersion;
+    $('panel-code').querySelector('.output-label').textContent = effect.source?.remotion ? '完整工程源码' : '接入示例与源码路径';
     const isCurrent = () => selected === effect && controller === current && outputVersion === version && !current.destroyed;
     const values = settings();
     // 提示词不依赖完整源码表；组合的图层说明在真实绘制文件就绪后补齐。

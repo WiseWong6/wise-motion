@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import {mkdtemp, readFile, writeFile, mkdir, readdir, realpath, rm, symlink} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
+import {pathToFileURL} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {runInNewContext} from 'node:vm';
 import {build} from 'esbuild';
@@ -17,8 +18,8 @@ async function temporary(fn) {
   const dir = await realpath(await mkdtemp(path.join(tmpdir(), 'wise-source-')));
   try { return await fn(dir); } finally { await rm(dir, {recursive:true, force:true}); }
 }
-async function browserExporter() {
-  const context = {document:{documentElement:{dataset:{theme:'dark'}}}};
+async function browserExporter(baseURI) {
+  const context = {URL,document:{baseURI,documentElement:{dataset:{theme:'dark'}}}};
   for (const file of ['catalog/runtime.js','catalog/content.js','catalog/effects/civilization-images.js','catalog/remotion-sources.js','catalog/export.js']) {
     runInNewContext(await readFile(path.join(root, file), 'utf8'), context, {filename:file});
   }
@@ -64,7 +65,7 @@ test('默认查看精简，详细查看保留内容限制、素材、许可和�
 });
 
 test('普通动作与带素材和声音的组合使用浏览器同一组件示例，可编译接入', async () => temporary(async dir => {
-  for (const id of ['word-slam', 'balloon-drive-journey', 'terminal-code', 'local-scan']) {
+  for (const id of ['word-slam', 'balloon-drive-journey', 'sunset-pickup-journey', 'terminal-code', 'local-scan']) {
     const variantId = id === 'terminal-code' ? 'command-log' : undefined;
     const effect = selectEffect(id, variantId);
     const out = await exportEffect(effect.name, {variantId, outDir:path.join(dir, id)});
@@ -86,6 +87,24 @@ test('普通动作与带素材和声音的组合使用浏览器同一组件示�
     assert.ok(compiled.outputFiles[0].text.includes('WiseMotionEffect'));
   }
 }));
+
+test('目录复制包含当前实际绘制源码路径，线上复制给出源码地址，导出保持可迁用', async () => {
+  const local = await browserExporter(pathToFileURL(path.join(root,'catalog/index.html')).href);
+  const online = await browserExporter('https://example.com/wise-motion/catalog/index.html');
+  for (const [id,variantId] of [['sunset-pickup-journey'],['terminal-code','command-log']]) {
+    const effect = selectEffect(id,variantId);
+    const localCode = local.remotionCode(effect,{variantId}), onlineCode = online.remotionCode(effect,{variantId});
+    for (const file of [...(effect.source.dependencies||[]),effect.source.path]) {
+      const current = path.join(root,file);
+      assert.ok(localCode.includes(current),'本地复制必须能定位实际绘制文件：'+file);
+      assert.ok((await readFile(current,'utf8')).length>0,'指向的源码必须存在');
+      assert.ok(onlineCode.includes('https://example.com/wise-motion/'+file),'线上复制保留可访问的源码地址');
+      for (const code of [localCode,onlineCode,browser.remotionCode(effect,{variantId})])
+        assert.ok(code.includes('node_modules/wise-motion/'+file),'复制和导出都明确安装包中的源码位置');
+    }
+    assert.ok(!browser.remotionCode(effect,{variantId}).includes(root),'独立导出不依赖当前本机路径');
+  }
+});
 
 test('独立工程与浏览器复制逐文件一致，真实绘制文件不变，入口可编译', async () => temporary(async dir => {
   const effect = selectEffect('seed-bloom-brand-sequence'), out = await exportEffect(effect.id, {outDir:path.join(dir,'native')});

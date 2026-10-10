@@ -242,9 +242,23 @@ window.addEventListener('pageshow',e=>{if(e.persisted&&player.destroyed)location
     const files=[...new Set(['vendor/animejs/anime.umd.min.js',
       ...(drawingSources.includes('catalog/effects/motion-oasis.js')?['catalog/registry-data.js']:[]),
       'catalog/content.js','catalog/runtime.js',...drawingSources])];
+    const currentSources=[];
+    if(global.document?.baseURI&&typeof global.URL==='function'){
+      for(const file of drawingSources){
+        const url=new global.URL('../'+file,global.document.baseURI);
+        if(url.protocol==='file:'){
+          const pathname=decodeURIComponent(url.pathname).replace(/^\/([a-z]:\/)/i,'$1');
+          currentSources.push((url.hostname?'//'+url.hostname:'')+pathname);
+        }else if(url.protocol==='https:'||url.protocol==='http:')currentSources.push(url.href);
+      }
+    }
     const renderFlags=drawingSources.includes('catalog/effects/metal-impact.js')?' --gl=angle':'';
-    return `/* ${effect.name} · Remotion 组件示例，保存为 src/Root.jsx。
+    return `/* ${effect.name} · Remotion 接入示例，保存为 src/Root.jsx。
 自有代码 AGPL-3.0-only；第三方和素材许可见源码包 NOTICE.md。
+
+这是调用共享包的接入代码；完整绘制实现位于以下源码文件。
+${currentSources.length?'当前目录中的绘制源码：\n'+currentSources.join('\n')+'\n\n':''}安装公开包后，绘制源码位于目标工程：
+${drawingSources.map(file=>'node_modules/wise-motion/'+file).join('\n')}
 
 在独立目标工程安装公开包，以及相同版本的依赖：
 npm install --save-exact wise-motion@${sharedPackageVersion} react@19.3.0 react-dom@19.3.0 remotion@4.0.532 @remotion/cli@4.0.532

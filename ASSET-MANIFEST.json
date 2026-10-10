@@ -8,8 +8,8 @@
     },
     {
       "path": "catalog/app.js",
-      "bytes": 60060,
-      "sha256": "192af953d4910183792aef8f43fb6770f52c06f50ea617a9ab1b5bc6f5d608e4"
+      "bytes": 60205,
+      "sha256": "21f2254cdf65d05e7fd55e96b7eaa526ed84cc5d40d6c6b7be12841ee92279b2"
     },
     {
       "path": "catalog/assets/WEBP-SOURCES.json",
@@ -1848,8 +1848,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 26044,
-      "sha256": "b8463d32b91e9773c2d88e7cbac5049a11bb3841fff6d14d126826fc8f6bbc05"
+      "bytes": 26875,
+      "sha256": "1a0f971b7999278343e9ab6094cbf278526ef68a9930f3f8a28fdf73eb858c72"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
