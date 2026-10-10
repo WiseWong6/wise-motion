@@ -1,7 +1,7 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function (global) {
   'use strict';
-  const sharedPackageVersion = "0.1.10"; // 由 scripts/build.mjs 从 package.json 同步。
+  const sharedPackageVersion = "0.1.11"; // 由 scripts/build.mjs 从 package.json 同步。
   const escape = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   // 复制提示词面向没有目录、素材包或参考画面的新会话；源码复用仍由 code() 提供。
   function concrete(text) {
