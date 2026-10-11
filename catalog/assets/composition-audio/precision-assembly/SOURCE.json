@@ -1,0 +1,11 @@
+{
+  "name": "分秒之间原创合成声音",
+  "license": "Apache-2.0",
+  "duration_ms": 22000,
+  "sample_rate": 48000,
+  "channels": 2,
+  "file": "soundtrack.wav",
+  "schedule": "sound.py 中固定随机种子与22秒的节拍、摆轮、分层和回装声排程",
+  "runtime": "仅完整组合有声音；视频内嵌音轨静音，使用独立原始声轨按同一时间轴播放。",
+  "synthesis": "sound.py 为原始合成程序的只读副本；可运行程序也随 Blender 源码导出，重合成需 numpy。"
+}

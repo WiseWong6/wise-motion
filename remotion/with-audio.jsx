@@ -3,11 +3,13 @@ import React from 'react';
 import {staticFile} from 'remotion';
 import {WiseMotionEffect as Picture, resolveEffect} from './index.jsx';
 import {CompositionAudio} from './audio.jsx';
+import {WisePrecisionAssembly} from '../catalog/remotion/precision-assembly.jsx';
 export * from './index.jsx';
 
 /** 为完整组合接入声音，单个动作直接使用原画面组件。 */
 export function WiseMotionEffect(props) {
   const effect = resolveEffect(props.definition ?? props.effectId, props.variantId);
+  if(effect.source?.native_scene==='blender')return <WisePrecisionAssembly {...props} effectId={effect.id} assetBaseUrl={props.assetBaseUrl??staticFile('wise-motion')}/>;
   if (props.includeAudio === false || effect.kind !== 'composition' || !effect.audio?.tracks?.length) return <Picture {...props} />;
   const defaultBase = props.assetBaseUrl ?? staticFile('wise-motion');
   const base = typeof document === 'undefined' ? defaultBase : new URL(defaultBase.replace(/\/?$/, '/'), document.baseURI).href;

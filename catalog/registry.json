@@ -52386,6 +52386,461 @@
           }
         ]
       }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间自动播放，可暂停、重播、定位与倍速。",
+      "objects": "真实三维金属零件、五组机芯、刻度圈、蓝钢指针、表镜与实体镜头",
+      "retain": "真实金属倒角、各向异性反射、镂空机芯、蓝钢指针与宝石轴承；保留原生24帧逐格节奏、原镜头和八层装配位置。",
+      "avoid": "不以二维卡片、平面整表图片或低精度几何重绘；不改金属材质、镜头节奏或装配位置，不插帧；轮系、摆轮与秒针仅为视觉演示。",
+      "tempo_note": "保留原生24帧/秒；Remotion仅按当前帧定位既有成片，速度只调整播放快慢；结束停在末个原生画面。",
+      "assumptions": "原三维工程与成片完整保留；独立动作与组合使用同一层位移函数和原生帧。修改场景后需Blender重渲染。",
+      "id": "ordered-depth-assembly",
+      "name": "精密零件分层拆解与回装",
+      "kind": "action",
+      "category": "space",
+      "duration_ms": 8000,
+      "preview_ms": 4125,
+      "summary": "精密零件沿深度方向错峰展开，镜头环绕观察分层结构，再逐层精确回装。",
+      "purpose": "展示装配结构、零件前后关系与严密复位过程，适合真实三维产品拆装。",
+      "aliases": [
+        "分层拆解",
+        "拆装",
+        "回装",
+        "爆炸视图",
+        "精密零件",
+        "深度分离",
+        "三维拆解",
+        "机械表"
+      ],
+      "behaviors": [
+        "depth",
+        "stagger",
+        "rotation3d",
+        "return"
+      ],
+      "phases": [
+        "从完整装配开始，五组机芯、刻度圈、指针和表镜沿深度依次分开。",
+        "展开位置停留，实体镜头移向侧面，展示各层遮挡和金属反射。",
+        "零件逐层准确返回装配位置，镜头回到整表角度，结尾保持完整。"
+      ],
+      "actions": [],
+      "analogy": "把精密设备逐层拉开看清内部，再按原位置完整装回。",
+      "recommendation": "适合沿同一深度轴展示真实产品的装配关系；与立体环绕的卡片绕中心运动不同，本动作保持各零件原装配位置并准确回装。",
+      "source": {
+        "path": "catalog/effects/precision-assembly.js",
+        "dependencies": [
+          "catalog/effects/precision-assembly-data.js"
+        ],
+        "factory": "ordered-depth-assembly",
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "blender@4.5.14",
+        "native_scene": "blender",
+        "reference": {
+          "name": "分秒之间 · 用户认可的真实三维机械怀表"
+        },
+        "extraction": "保留已认可的 Blender 工程、真实建模程序、材质、灯光与镜头；只把原分层关键帧抽成可复用函数。Remotion 按24帧/秒定位原生Cycles成片，目录缩略图使用原始4K静帧；源码导出包含.blend和完整可运行程序，不依赖来源工程。",
+        "assets": [
+          "catalog/assets/precision-assembly/分秒之间.blend",
+          "catalog/assets/precision-assembly/成片/分层.png",
+          "catalog/assets/precision-assembly/成片/分秒之间.mp4",
+          "catalog/assets/precision-assembly/成片/机芯.png",
+          "catalog/assets/precision-assembly/成片/整表.png",
+          "catalog/assets/precision-assembly/材质/底板珍珠纹.png",
+          "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
+          "catalog/assets/precision-assembly/SOURCE.json",
+          "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
+          "catalog/assets/composition-audio/precision-assembly/sound.py"
+        ],
+        "remotion": {
+          "component": "catalog/remotion/precision-assembly.jsx",
+          "export_name": "WisePrecisionAssembly",
+          "package_name": "wise-precision-assembly",
+          "files": [
+            "catalog/assets/precision-assembly/打开与制作.command",
+            "catalog/assets/precision-assembly/制作说明.md",
+            "catalog/assets/precision-assembly/SOURCE.json",
+            "catalog/assets/precision-assembly/运行源码.py",
+            "catalog/assets/precision-assembly/使用说明.md",
+            "catalog/assets/precision-assembly/源码/build.py",
+            "catalog/assets/precision-assembly/源码/sound.py",
+            "catalog/assets/precision-assembly/源码/produce.py",
+            "catalog/assets/precision-assembly/源码/assembly_motion.py",
+            "catalog/assets/precision-assembly/源码/compose.py",
+            "catalog/assets/precision-assembly/源码/render.py",
+            "catalog/assets/precision-assembly/源码/check_scene.py",
+            "catalog/assets/precision-assembly/源码/review.py",
+            "catalog/assets/precision-assembly/源码/movement.py",
+            "catalog/assets/precision-assembly/源码/casework.py",
+            "catalog/assets/precision-assembly/材质/来源.json",
+            "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
+            "catalog/assets/composition-audio/precision-assembly/sound.py",
+            "catalog/effects/precision-assembly-data.js",
+            "catalog/remotion/precision-assembly.jsx",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs"
+          ],
+          "file_map": {
+            "catalog/assets/precision-assembly/打开与制作.command": "public/precision-assembly/打开与制作.command",
+            "catalog/assets/precision-assembly/制作说明.md": "public/precision-assembly/制作说明.md",
+            "catalog/assets/precision-assembly/SOURCE.json": "public/precision-assembly/SOURCE.json",
+            "catalog/assets/precision-assembly/运行源码.py": "public/precision-assembly/运行源码.py",
+            "catalog/assets/precision-assembly/使用说明.md": "public/precision-assembly/使用说明.md",
+            "catalog/assets/precision-assembly/源码/build.py": "public/precision-assembly/源码/build.py",
+            "catalog/assets/precision-assembly/源码/sound.py": "public/precision-assembly/源码/sound.py",
+            "catalog/assets/precision-assembly/源码/produce.py": "public/precision-assembly/源码/produce.py",
+            "catalog/assets/precision-assembly/源码/assembly_motion.py": "public/precision-assembly/源码/assembly_motion.py",
+            "catalog/assets/precision-assembly/源码/compose.py": "public/precision-assembly/源码/compose.py",
+            "catalog/assets/precision-assembly/源码/render.py": "public/precision-assembly/源码/render.py",
+            "catalog/assets/precision-assembly/源码/check_scene.py": "public/precision-assembly/源码/check_scene.py",
+            "catalog/assets/precision-assembly/源码/review.py": "public/precision-assembly/源码/review.py",
+            "catalog/assets/precision-assembly/源码/movement.py": "public/precision-assembly/源码/movement.py",
+            "catalog/assets/precision-assembly/源码/casework.py": "public/precision-assembly/源码/casework.py",
+            "catalog/assets/precision-assembly/材质/来源.json": "public/precision-assembly/材质/来源.json"
+          },
+          "binary_files": [
+            {
+              "source": "catalog/assets/precision-assembly/分秒之间.blend",
+              "target": "public/precision-assembly/分秒之间.blend",
+              "bytes": 23829849,
+              "sha256": "54023d725b59887e9441634d2bb75dec355b151fd811176724dc33390c5453dd"
+            },
+            {
+              "source": "catalog/assets/precision-assembly/成片/分层.png",
+              "target": "public/precision-assembly/成片/分层.png",
+              "bytes": 8343300,
+              "sha256": "6548797cd90e70721af5211530df92ba19abf336d10aac1b94a4167618547c19"
+            },
+            {
+              "source": "catalog/assets/precision-assembly/成片/分秒之间.mp4",
+              "target": "public/precision-assembly/成片/分秒之间.mp4",
+              "bytes": 28685957,
+              "sha256": "3978817ed2d908ca4a7bbc29bbd829d78f01466fb46b0df9648979066b6d3bba"
+            },
+            {
+              "source": "catalog/assets/precision-assembly/成片/机芯.png",
+              "target": "public/precision-assembly/成片/机芯.png",
+              "bytes": 10584248,
+              "sha256": "dd15f7a0e483326c6be31d18a05c859659b1e7424b6781a127dc80bf49ea5118"
+            },
+            {
+              "source": "catalog/assets/precision-assembly/成片/整表.png",
+              "target": "public/precision-assembly/成片/整表.png",
+              "bytes": 8135763,
+              "sha256": "6e8f923f6920eaec937e122cbd70f474ae3d04c9012f7187e74ac2a016c244d3"
+            },
+            {
+              "source": "catalog/assets/precision-assembly/材质/底板珍珠纹.png",
+              "target": "public/precision-assembly/材质/底板珍珠纹.png",
+              "bytes": 2531633,
+              "sha256": "75fb8171b941e41728c11a68cea43e9a8652acd9fd0bf0e9bed51859d18f010b"
+            },
+            {
+              "source": "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
+              "target": "public/precision-assembly/成片/分秒之间-声轨.wav",
+              "bytes": 4224044,
+              "sha256": "8bf5cc0934ef91f5e6cc0347839c206b689eb0e9d48eb74451a7029dd8fcf311"
+            }
+          ],
+          "executable_files": [
+            "public/precision-assembly/打开与制作.command"
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "exact_frames": true,
+          "scripts": {
+            "check:source": "python3 public/precision-assembly/运行源码.py check",
+            "rebuild:scene": "python3 public/precision-assembly/运行源码.py rebuild",
+            "render:scene": "python3 public/precision-assembly/运行源码.py render --part assembly"
+          },
+          "reuse_notes": "这是 Blender 4.5.14 LTS / Cycles 真实三维工程的 Remotion 接入。画面复用已认可的1920×1080、24帧/秒成片；没有重新建模、调色或插帧。完整组合22秒、528帧，独立拆装动作取第241–432帧、8秒、192帧，两者共用同一模型、assembly_motion.py 动作函数与成片。\n\n真实模型、材质、灯光、镜头和动画：public/precision-assembly/分秒之间.blend。建模：public/precision-assembly/源码/build.py、movement.py、casework.py。分层函数：public/precision-assembly/源码/assembly_motion.py，可传入其他有序零件与各层深度距离。直接双击 public/precision-assembly/打开与制作.command 打开或制作；也可执行 npm run check:source 检查，npm run rebuild:scene 从源码重建（旧工程与帧移入备份），npm run render:scene 明确启动渲染。不会自动安装 Blender、ffmpeg、ffprobe 或 Python。完整渲染耗时较长；默认复用成片。\n\n修改模型、材质或镜头后，应通过 Blender 重渲染，再更新 Remotion 的视频素材；浏览器不能实时修改该三维模型。工程内已打包纹理与字体；源码重建保留原 macOS 字体查找方式。声音仅用于完整组合；原片内嵌音轨静音，单独原声按帧同步，includeAudio={false} 可关闭。原声重合成的 sound.py 额外需要 numpy；默认无需重合成。\n\n分层动作采用原贝塞尔关键帧：首帧241，逐层延迟2帧；零件在252+2i开始、305+2i展开完、357+i结束停留、405+2i归位、432统一保持完整。五组机芯深度距离为0、0.85、1.45、2.2、3.05，刻度圈4.4、指针5.3、表镜5.8。具体机械表是示例，不是可制造或真实走时的钟表验证。自有源码Apache-2.0，系统字体与第三方软件保留原权利，见SOURCE.json与LICENSE。",
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      "reproduction": {
+        "objects": "真实三维金属零件、五组机芯、刻度圈、蓝钢指针、表镜与实体镜头",
+        "presentation": "1920×1080横向画幅，近黑无缝摄影棚，暖金机芯、铂金壳、象牙珐琅刻度圈、蓝钢指针和红色宝石轴承。软箱灯沿真实倒角产生细窄反光，真实景深；保留比例与构图，不拉伸或裁切。",
+        "materials": [
+          "零件为实体三维网格，倒角、齿轮、螺钉与轴承均由几何建立；底板珍珠纹仅提供细微凹凸与粗糙度。",
+          "金、银、黄铜与蓝钢为金属材质；表镜有透射，实体软箱灯与摄影棚照明，使用Cycles渲染。"
+        ],
+        "start_state": "完整装配的整表，镜头位于(7,3.8,30)，朝向(.25,.5,1)。",
+        "phases": [
+          "从完整装配开始，五组机芯、刻度圈、指针和表镜沿深度依次分开。",
+          "展开位置停留，实体镜头移向侧面，展示各层遮挡和金属反射。",
+          "零件逐层准确返回装配位置，镜头回到整表角度，结尾保持完整。"
+        ],
+        "end_state": "所有层恢复完整装配，镜头回到整表角度，保持至8秒结束。",
+        "details": [
+          "使用Blender建立真实三维模型与动画，再用Remotion按当前帧接入1920×1080、24帧/秒的原生渲染，不用二维图形模仿金属几何。",
+          "表径6个场景单位；五组机芯展开距离为0、0.85、1.45、2.2、3.05，刻度圈4.4，指针5.3，表镜5.8。以第241帧为本段首帧，每组延迟2帧：252+2i开始、305+2i达到展开距离、357+i保持到此、405+2i归位、第432帧完整。位置变化保留贝塞尔曲线。",
+          "镜头65毫米焦距；位置依次为第241帧(7,3.8,30)、310帧(16,5,26)、360帧(16.5,4.8,26)、432帧(7,3.8,30)，对应视点由(.25,.5,1)到(.65,.65,1.5)再到(.1,.6,.3)。",
+          "摆轮以48度振幅、每秒2.5次往返运动，按24帧逐帧计算；轮系保持各自固定角速度，秒针22秒扫过132度。"
+        ],
+        "retain": "真实金属倒角、各向异性反射、镂空机芯、蓝钢指针与宝石轴承；保留原生24帧逐格节奏、原镜头和八层装配位置。",
+        "avoid": "不以二维卡片、平面整表图片或低精度几何重绘；不改金属材质、镜头节奏或装配位置，不插帧；轮系、摆轮与秒针仅为视觉演示。",
+        "tempo_note": "按24帧/秒逐格计算；零件和镜头的位置变化使用贝塞尔关键帧，轮系匀速转动，摆轮按正弦往返。"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间自动播放，可暂停、重播、定位与倍速。",
+      "objects": "真实三维金属零件、五组机芯、刻度圈、蓝钢指针、表镜与实体镜头",
+      "retain": "真实金属倒角、各向异性反射、镂空机芯、蓝钢指针与宝石轴承；保留原生24帧逐格节奏、原镜头和八层装配位置。",
+      "avoid": "不以二维卡片、平面整表图片或低精度几何重绘；不改金属材质、镜头节奏或装配位置，不插帧；轮系、摆轮与秒针仅为视觉演示。",
+      "tempo_note": "保留原生24帧/秒；Remotion仅按当前帧定位既有成片，速度只调整播放快慢；结束停在末个原生画面。",
+      "assumptions": "原三维工程与成片完整保留；独立动作与组合使用同一层位移函数和原生帧。修改场景后需Blender重渲染。",
+      "id": "precision-assembly-sequence",
+      "name": "精密结构展示与拆装",
+      "kind": "composition",
+      "category": "compositions",
+      "duration_ms": 22000,
+      "preview_ms": 8291.666666666666,
+      "summary": "先展示机芯细节和摆轮运行，再呈现整表，完成分层拆解、镜头环绕与回装，最后展示完整产品。",
+      "purpose": "把材料细节、机械运行、完整外观与拆装结构串成真实三维产品展示。",
+      "aliases": [
+        "机械怀表",
+        "机械表发布片",
+        "分秒之间",
+        "产品拆装",
+        "机芯特写",
+        "摆轮",
+        "精密结构",
+        "三维产品展示"
+      ],
+      "behaviors": [
+        "reveal",
+        "depth",
+        "stagger",
+        "rotation3d",
+        "return"
+      ],
+      "phases": [
+        "0–6秒展示发条盒、夹板和摆轮运行；6–10秒展示完整外观。",
+        "10–18秒零件沿深度错峰展开，实体镜头环绕，再按原装配位置回装。",
+        "18–22秒保留完整整表，镜头缓慢推进，随原片淡出收尾。"
+      ],
+      "actions": [
+        "ordered-depth-assembly"
+      ],
+      "breakdown_mode": "sequence",
+      "analogy": "先靠近看材料与运行，再看整体和拆装过程，最后回到完整产品。",
+      "recommendation": "适合同时讲清材料、运行和装配关系的真实三维产品展示；只需拆装时用关联的8秒独立动作，无需整段22秒。",
+      "audio": {
+        "tracks": [
+          {
+            "name": "分秒之间声音",
+            "src": "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
+            "start_ms": 0,
+            "offset_ms": 0,
+            "duration_ms": 22000,
+            "volume": 1,
+            "fade_in_ms": 0,
+            "fade_out_ms": 0
+          }
+        ],
+        "sources": [
+          "catalog/assets/composition-audio/precision-assembly/SOURCE.json"
+        ]
+      },
+      "source": {
+        "path": "catalog/effects/precision-assembly.js",
+        "dependencies": [
+          "catalog/effects/precision-assembly-data.js"
+        ],
+        "factory": "precision-assembly-sequence",
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "blender@4.5.14",
+        "native_scene": "blender",
+        "reference": {
+          "name": "分秒之间 · 用户认可的真实三维机械怀表"
+        },
+        "extraction": "保留已认可的 Blender 工程、真实建模程序、材质、灯光与镜头；只把原分层关键帧抽成可复用函数。Remotion 按24帧/秒定位原生Cycles成片，目录缩略图使用原始4K静帧；源码导出包含.blend和完整可运行程序，不依赖来源工程。",
+        "assets": [
+          "catalog/assets/precision-assembly/分秒之间.blend",
+          "catalog/assets/precision-assembly/成片/分层.png",
+          "catalog/assets/precision-assembly/成片/分秒之间.mp4",
+          "catalog/assets/precision-assembly/成片/机芯.png",
+          "catalog/assets/precision-assembly/成片/整表.png",
+          "catalog/assets/precision-assembly/材质/底板珍珠纹.png",
+          "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
+          "catalog/assets/precision-assembly/SOURCE.json",
+          "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
+          "catalog/assets/composition-audio/precision-assembly/sound.py"
+        ],
+        "remotion": {
+          "component": "catalog/remotion/precision-assembly.jsx",
+          "export_name": "WisePrecisionAssembly",
+          "package_name": "wise-precision-assembly",
+          "files": [
+            "catalog/assets/precision-assembly/打开与制作.command",
+            "catalog/assets/precision-assembly/制作说明.md",
+            "catalog/assets/precision-assembly/SOURCE.json",
+            "catalog/assets/precision-assembly/运行源码.py",
+            "catalog/assets/precision-assembly/使用说明.md",
+            "catalog/assets/precision-assembly/源码/build.py",
+            "catalog/assets/precision-assembly/源码/sound.py",
+            "catalog/assets/precision-assembly/源码/produce.py",
+            "catalog/assets/precision-assembly/源码/assembly_motion.py",
+            "catalog/assets/precision-assembly/源码/compose.py",
+            "catalog/assets/precision-assembly/源码/render.py",
+            "catalog/assets/precision-assembly/源码/check_scene.py",
+            "catalog/assets/precision-assembly/源码/review.py",
+            "catalog/assets/precision-assembly/源码/movement.py",
+            "catalog/assets/precision-assembly/源码/casework.py",
+            "catalog/assets/precision-assembly/材质/来源.json",
+            "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
+            "catalog/assets/composition-audio/precision-assembly/sound.py",
+            "catalog/effects/precision-assembly-data.js",
+            "catalog/remotion/precision-assembly.jsx",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs"
+          ],
+          "file_map": {
+            "catalog/assets/precision-assembly/打开与制作.command": "public/precision-assembly/打开与制作.command",
+            "catalog/assets/precision-assembly/制作说明.md": "public/precision-assembly/制作说明.md",
+            "catalog/assets/precision-assembly/SOURCE.json": "public/precision-assembly/SOURCE.json",
+            "catalog/assets/precision-assembly/运行源码.py": "public/precision-assembly/运行源码.py",
+            "catalog/assets/precision-assembly/使用说明.md": "public/precision-assembly/使用说明.md",
+            "catalog/assets/precision-assembly/源码/build.py": "public/precision-assembly/源码/build.py",
+            "catalog/assets/precision-assembly/源码/sound.py": "public/precision-assembly/源码/sound.py",
+            "catalog/assets/precision-assembly/源码/produce.py": "public/precision-assembly/源码/produce.py",
+            "catalog/assets/precision-assembly/源码/assembly_motion.py": "public/precision-assembly/源码/assembly_motion.py",
+            "catalog/assets/precision-assembly/源码/compose.py": "public/precision-assembly/源码/compose.py",
+            "catalog/assets/precision-assembly/源码/render.py": "public/precision-assembly/源码/render.py",
+            "catalog/assets/precision-assembly/源码/check_scene.py": "public/precision-assembly/源码/check_scene.py",
+            "catalog/assets/precision-assembly/源码/review.py": "public/precision-assembly/源码/review.py",
+            "catalog/assets/precision-assembly/源码/movement.py": "public/precision-assembly/源码/movement.py",
+            "catalog/assets/precision-assembly/源码/casework.py": "public/precision-assembly/源码/casework.py",
+            "catalog/assets/precision-assembly/材质/来源.json": "public/precision-assembly/材质/来源.json"
+          },
+          "binary_files": [
+            {
+              "source": "catalog/assets/precision-assembly/分秒之间.blend",
+              "target": "public/precision-assembly/分秒之间.blend",
+              "bytes": 23829849,
+              "sha256": "54023d725b59887e9441634d2bb75dec355b151fd811176724dc33390c5453dd"
+            },
+            {
+              "source": "catalog/assets/precision-assembly/成片/分层.png",
+              "target": "public/precision-assembly/成片/分层.png",
+              "bytes": 8343300,
+              "sha256": "6548797cd90e70721af5211530df92ba19abf336d10aac1b94a4167618547c19"
+            },
+            {
+              "source": "catalog/assets/precision-assembly/成片/分秒之间.mp4",
+              "target": "public/precision-assembly/成片/分秒之间.mp4",
+              "bytes": 28685957,
+              "sha256": "3978817ed2d908ca4a7bbc29bbd829d78f01466fb46b0df9648979066b6d3bba"
+            },
+            {
+              "source": "catalog/assets/precision-assembly/成片/机芯.png",
+              "target": "public/precision-assembly/成片/机芯.png",
+              "bytes": 10584248,
+              "sha256": "dd15f7a0e483326c6be31d18a05c859659b1e7424b6781a127dc80bf49ea5118"
+            },
+            {
+              "source": "catalog/assets/precision-assembly/成片/整表.png",
+              "target": "public/precision-assembly/成片/整表.png",
+              "bytes": 8135763,
+              "sha256": "6e8f923f6920eaec937e122cbd70f474ae3d04c9012f7187e74ac2a016c244d3"
+            },
+            {
+              "source": "catalog/assets/precision-assembly/材质/底板珍珠纹.png",
+              "target": "public/precision-assembly/材质/底板珍珠纹.png",
+              "bytes": 2531633,
+              "sha256": "75fb8171b941e41728c11a68cea43e9a8652acd9fd0bf0e9bed51859d18f010b"
+            },
+            {
+              "source": "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
+              "target": "public/precision-assembly/成片/分秒之间-声轨.wav",
+              "bytes": 4224044,
+              "sha256": "8bf5cc0934ef91f5e6cc0347839c206b689eb0e9d48eb74451a7029dd8fcf311"
+            }
+          ],
+          "executable_files": [
+            "public/precision-assembly/打开与制作.command"
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "exact_frames": true,
+          "scripts": {
+            "check:source": "python3 public/precision-assembly/运行源码.py check",
+            "rebuild:scene": "python3 public/precision-assembly/运行源码.py rebuild",
+            "render:scene": "python3 public/precision-assembly/运行源码.py render"
+          },
+          "reuse_notes": "这是 Blender 4.5.14 LTS / Cycles 真实三维工程的 Remotion 接入。画面复用已认可的1920×1080、24帧/秒成片；没有重新建模、调色或插帧。完整组合22秒、528帧，独立拆装动作取第241–432帧、8秒、192帧，两者共用同一模型、assembly_motion.py 动作函数与成片。\n\n真实模型、材质、灯光、镜头和动画：public/precision-assembly/分秒之间.blend。建模：public/precision-assembly/源码/build.py、movement.py、casework.py。分层函数：public/precision-assembly/源码/assembly_motion.py，可传入其他有序零件与各层深度距离。直接双击 public/precision-assembly/打开与制作.command 打开或制作；也可执行 npm run check:source 检查，npm run rebuild:scene 从源码重建（旧工程与帧移入备份），npm run render:scene 明确启动渲染。不会自动安装 Blender、ffmpeg、ffprobe 或 Python。完整渲染耗时较长；默认复用成片。\n\n修改模型、材质或镜头后，应通过 Blender 重渲染，再更新 Remotion 的视频素材；浏览器不能实时修改该三维模型。工程内已打包纹理与字体；源码重建保留原 macOS 字体查找方式。声音仅用于完整组合；原片内嵌音轨静音，单独原声按帧同步，includeAudio={false} 可关闭。原声重合成的 sound.py 额外需要 numpy；默认无需重合成。\n\n分层动作采用原贝塞尔关键帧：首帧241，逐层延迟2帧；零件在252+2i开始、305+2i展开完、357+i结束停留、405+2i归位、432统一保持完整。五组机芯深度距离为0、0.85、1.45、2.2、3.05，刻度圈4.4、指针5.3、表镜5.8。具体机械表是示例，不是可制造或真实走时的钟表验证。自有源码Apache-2.0，系统字体与第三方软件保留原权利，见SOURCE.json与LICENSE。",
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      "reproduction": {
+        "objects": "真实三维金属零件、五组机芯、刻度圈、蓝钢指针、表镜与实体镜头",
+        "presentation": "1920×1080横向画幅，近黑无缝摄影棚，暖金机芯、铂金壳、象牙珐琅刻度圈、蓝钢指针和红色宝石轴承。软箱灯沿真实倒角产生细窄反光，真实景深；保留比例与构图，不拉伸或裁切。",
+        "materials": [
+          "零件为实体三维网格，倒角、齿轮、螺钉与轴承均由几何建立；底板珍珠纹仅提供细微凹凸与粗糙度。",
+          "金、银、黄铜与蓝钢为金属材质；表镜有透射，实体软箱灯与摄影棚照明，使用Cycles渲染。"
+        ],
+        "start_state": "近距离展示发条盒、镂空夹板与金属倒角，镜头缓慢推进。",
+        "phases": [
+          "0–6秒展示发条盒、夹板和摆轮运行；6–10秒展示完整外观。",
+          "10–18秒零件沿深度错峰展开，实体镜头环绕，再按原装配位置回装。",
+          "18–22秒保留完整整表，镜头缓慢推进，画面淡出收尾。"
+        ],
+        "end_state": "所有层恢复完整装配；18–22秒镜头缓慢推进，画面淡出至黑色。",
+        "details": [
+          "使用Blender建立真实三维模型与动画，再用Remotion按当前帧接入1920×1080、24帧/秒的原生渲染，不用二维图形模仿金属几何。",
+          "表径6个场景单位；五组机芯展开距离为0、0.85、1.45、2.2、3.05，刻度圈4.4，指针5.3，表镜5.8。以第241帧为本段首帧，每组延迟2帧：252+2i开始、305+2i达到展开距离、357+i保持到此、405+2i归位、第432帧完整。位置变化保留贝塞尔曲线。",
+          "镜头65毫米焦距；位置依次为第241帧(7,3.8,30)、310帧(16,5,26)、360帧(16.5,4.8,26)、432帧(7,3.8,30)，对应视点由(.25,.5,1)到(.65,.65,1.5)再到(.1,.6,.3)。",
+          "摆轮以48度振幅、每秒2.5次往返运动，按24帧逐帧计算；轮系保持各自固定角速度，秒针22秒扫过132度。"
+        ],
+        "retain": "真实金属倒角、各向异性反射、镂空机芯、蓝钢指针与宝石轴承；保留原生24帧逐格节奏、原镜头和八层装配位置。",
+        "avoid": "不以二维卡片、平面整表图片或低精度几何重绘；不改金属材质、镜头节奏或装配位置，不插帧；轮系、摆轮与秒针仅为视觉演示。",
+        "tempo_note": "按24帧/秒逐格计算；零件和镜头的位置变化使用贝塞尔关键帧，轮系匀速转动，摆轮按正弦往返。"
+      }
     }
   ],
   "redirects": {

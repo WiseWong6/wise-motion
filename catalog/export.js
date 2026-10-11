@@ -249,7 +249,7 @@
     const paper=effect.id==='dither-lab-book'&&settings.bookSettings;
     if(paper)lines.push('纸页设置：图片留白 '+paper.padding+' 像素，图片圆角 '+paper.radius+' 像素，书脊阴影 '+paper.crease+'%。');
     const layers=effect.kind==='composition'&&(spec.layers??global.MotionFactories?.[effect.id]?.breakdown);
-    if(layers?.length)lines.push('', '组成图层（实际播放秒数，正文参数按动作时钟）：',...layers.map(layer=>describe(layer.name)+' · '+(layer.start/1000/speed).toFixed(2)+'–'+(layer.end/1000/speed).toFixed(2)+' 秒：'+describe(layer.detail)));
+    if(layers?.length)lines.push('', (effect.breakdown_mode==='sequence'?'镜头顺序':'组成图层')+'（实际播放秒数，正文参数按动作时钟）：',...layers.map(layer=>describe(layer.name)+' · '+(layer.start/1000/speed).toFixed(2)+'–'+(layer.end/1000/speed).toFixed(2)+' 秒：'+describe(layer.detail)));
     if(effect.kind==='composition'&&effect.audio?.tracks?.length)lines.push('', '声音：需要提供与以下轨道对应的音频文件作为输入；轨道名称仅作说明，未提供对应音频输入时不能复现指定音频，不能凭名称编造曲风、鼓点或音乐。声音与画面共用播放时间；暂停、定位、重播和变速同时作用于声音。',
       ...effect.audio.tracks.map((track,i)=>{
         const start=track.start_ms??0,span=Math.min(track.duration_ms??effect.duration_ms-start,effect.duration_ms-start);
@@ -257,7 +257,7 @@
         return (describe(track.name)||'声音轨道 '+(i+1))+'：实际播放 '+(start/1000/speed).toFixed(2)+'–'+((start+span)/1000/speed).toFixed(2)+' 秒；源音频截取 '+number(offset/1000)+'–'+number((offset+span*rate)/1000)+' 秒（源截取起点及终点不随观看倍速改变）；音频播放倍率 '+number(rate)+' × '+speed+' = '+number(rate*speed)+'；音量 '+number((track.volume??1)*100)+'%；淡入 '+number((track.fade_in_ms??0)/1000/speed)+' 秒，淡出 '+number((track.fade_out_ms??0)/1000/speed)+' 秒（实际播放时间）。';
       }));
     // 标题和正文分开，每个步骤或图层各占一段；画面数据与源码内容不作改写。
-    const section=/^(动效说明|示例样式|整体意图|画面与对象|构图与配色|画幅|视觉材料|起始状态|动作步骤|时间|动作时钟|时间口径补充|制作细节|画面文案与数据|替换文字造型|替换读数造型|实现参数|计算方式|文字与讲述|可调速度曲线|时间安排|设计运动时钟|动作节拍|触发与联动|衔接关系|收尾状态|需要保留|实现限制|动作细节|纸页设置|组成图层|声音)(?:（(.+)）)?：([\s\S]*)$/;
+    const section=/^(动效说明|示例样式|整体意图|画面与对象|构图与配色|画幅|视觉材料|起始状态|动作步骤|时间|动作时钟|时间口径补充|制作细节|画面文案与数据|替换文字造型|替换读数造型|实现参数|计算方式|文字与讲述|可调速度曲线|时间安排|设计运动时钟|动作节拍|触发与联动|衔接关系|收尾状态|需要保留|实现限制|动作细节|纸页设置|组成图层|镜头顺序|声音)(?:（(.+)）)?：([\s\S]*)$/;
     return lines.filter(Boolean).map(line=>{
       const match=line.match(section);
       if(!match)return line;
@@ -276,13 +276,13 @@
     const files=Object.fromEntries(spec.files.map(file=>{
       const content=global.MotionRemotionSources?.[file];
       if(typeof content!=='string')throw Error('缺少已打包的绘制源码：'+file);
-      return [file,content];
+      return [spec.file_map?.[file]||file,content];
     }));
     // 与 remotion/clock.mjs 一致：非循环保留准确末帧，循环不重复首尾帧。
     const frameSpan=effect.duration_ms*spec.fps/(1000*speed);
-    const durationInFrames=Math.max(1,Math.ceil(frameSpan-1e-9)+(effect.loop?0:1));
+    const durationInFrames=Math.max(1,Math.ceil(frameSpan-1e-9)+(effect.loop||spec.exact_frames?0:1));
     const componentExport=spec.export_name||'SeedBloomBrand';
-    files['package.json']=JSON.stringify({name:spec.package_name||'seed-bloom-motion',private:true,type:'module',scripts:{studio:'remotion studio index.jsx',render:'remotion render index.jsx Motion out/motion.mp4'},dependencies:spec.packages},null,2)+'\n';
+    files['package.json']=JSON.stringify({name:spec.package_name||'seed-bloom-motion',private:true,type:'module',scripts:{studio:'remotion studio index.jsx',render:'remotion render index.jsx Motion out/motion.mp4',...(spec.scripts||{})},dependencies:spec.packages},null,2)+'\n';
     files['index.jsx']=`import React from 'react';
 import {Composition, registerRoot} from 'remotion';
 import {${componentExport}} from './${spec.component}';
@@ -293,11 +293,32 @@ registerRoot(Root);
 `;
     files['README.md']='# '+effect.name+'\n\n运行 npm install，再运行 npm run studio 或 npm run render。\n\n画幅 '+spec.width+'×'+spec.height+'；每秒 '+spec.fps+' 帧；'+durationInFrames+' 帧。图形、材质与 Outfit Medium 矢量轮廓已内嵌；无外部图片、声音或运行时字体。保持原逻辑画板1066×600，改画幅时等比容纳。\n\n自有程序 Apache-2.0，见 LICENSE；字形 SIL OFL 1.1，见 catalog/fonts/OFL-Outfit.txt。Remotion、React 等依赖遵循各自软件包附带许可。\n';
     if(spec.reuse_notes)files['README.md']='# '+effect.name+'\n\n运行 npm install，再运行 npm run studio 或 npm run render。\n\n画幅 '+spec.width+'×'+spec.height+'；每秒 '+spec.fps+' 帧；'+durationInFrames+' 帧。\n\n'+spec.reuse_notes+'\n';
+    if(spec.binary_files?.length){
+      files['binary-assets.json']=JSON.stringify(spec.binary_files,null,2)+'\n';
+      files['prepare-assets.mjs']=binaryInstaller(spec);
+      files['README.md']+='\n命令行 export.mjs 已复制 binary-assets.json 列出的工程与素材，不需要再次准备。仅从目录复制文字源码时，还需运行 node prepare-assets.mjs <素材包根目录或网址>，再运行 npm run check:source。程序只复制清单里的文件，核对内容摘要并保护已有修改；模型、视频、纹理与原声不会内嵌到文字源码。\n';
+    }
     return files;
+  }
+  // Browser copy cannot represent binary files as text. Its explicit installer shares
+  // the same checked source/target manifest used by export.mjs; no original scene is needed.
+  function binaryInstaller(spec){
+    const code=global.MotionRemotionSources?.[spec.asset_installer];
+    if(typeof code!=='string')throw Error('缺少素材准备程序：'+spec.asset_installer);
+    return code;
   }
   function remotionSource(effect,settings){
     const files=remotionProjectFiles(effect,settings);
     const lines=['# '+effect.name+' · Remotion 完整工程','','将以下文件按标题路径保存到同一空目录。'];
+    if(effect.source.remotion.binary_files?.length){
+      const base=global.document?.baseURI&&typeof global.URL==='function'?new global.URL('../',global.document.baseURI):null;
+      let location='<素材包根目录或网址>';
+      if(base?.protocol==='file:')location=decodeURIComponent(base.pathname);
+      else if(base)location=base.href;
+      lines.push('','工程、视频和纹理单独保存；先保存以下文字文件，再准备 binary-assets.json 中的素材。',
+        '运行：node prepare-assets.mjs '+JSON.stringify(location),
+        '使用 scripts/export.mjs 导出时会自动复制所有素材与真实三维工程。');
+    }
     for(const [file,content]of Object.entries(files)){
       const fence='`'.repeat(Math.max(3,...Array.from(content.matchAll(/`+/g),m=>m[0].length+1)));
       const language=/\.jsx?$/.test(file)?'jsx':file.endsWith('.json')?'json':'';
@@ -310,8 +331,9 @@ registerRoot(Root);
     if(settings.content!==undefined||effect.content!==undefined)effect=global.MotionContent.withContent(effect,settings.content===undefined?effect.content:settings.content);
     const definition = {id:effect.id, duration_ms:effect.duration_ms, loop:effect.loop, default_ease:effect.default_ease, parameters:effect.parameters};
     const hasAudio=effect.kind==='composition'&&Boolean(effect.audio?.tracks?.length);
-    if(hasAudio)Object.assign(definition,effect);
-    if(!hasAudio&&(effect.source.factory!==effect.id||effect.source.assets?.length))definition.source={factory:effect.source.factory,
+    const nativeScene=effect.source.native_scene==='blender';
+    if(hasAudio||nativeScene)Object.assign(definition,effect);
+    if(!hasAudio&&!nativeScene&&(effect.source.factory!==effect.id||effect.source.assets?.length))definition.source={factory:effect.source.factory,
       ...(effect.source.assets?.length?{assets:effect.source.assets}:{})};
     if(effect.id==='motion-oasis-sequence'&&global.WiseMotionOasis)definition.catalog_data=global.WiseMotionOasis.catalogData(global.MotionRegistry);
     if(effect.variant_id)definition.variant_id=effect.variant_id;
@@ -347,7 +369,7 @@ registerRoot(Root);
   <script src="catalog/content.js"></script>
   <script src="catalog/runtime.js"></script>
   ${[...new Set([...(effect.source.dependencies||[]),effect.source.path])].map(file=>`<script src="${escape(file)}"></script>`).join('\n  ')}
-  ${hasAudio?'<script src="catalog/registry-data.js"></script><script src="catalog/remotion-player.js"></script>':''}
+  ${hasAudio||nativeScene?'<script src="catalog/registry-data.js"></script><script src="catalog/remotion-player.js"></script>':''}
   <script>
     const effect = ${json(definition)};
     const player = MotionRuntime.create(document.getElementById('motion'), effect, {onUpdate(state) {

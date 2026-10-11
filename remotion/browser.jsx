@@ -5,6 +5,7 @@ import {flushSync} from 'react-dom';
 import {Player} from '@remotion/player';
 import {WiseMotionEffect, getEffectMetadata, resolveEffect} from './with-audio.jsx';
 import previewApi from '../catalog/preview-size.js';
+import {WisePrecisionAssembly} from '../catalog/remotion/precision-assembly.jsx';
 export {React, createRoot, Player, WiseMotionEffect, getEffectMetadata, resolveEffect};
 const active = new Set();
 const FPS = 60;
@@ -64,7 +65,7 @@ export function create(root, supplied, options = {}) {
   const onReady = value => {
     if(destroyed){value.destroy();return;}
     session=value;preparing=false;
-    session.doc.documentElement.dataset.theme=theme;
+    if(session.doc)session.doc.documentElement.dataset.theme=theme;
     settleReady(true);if(playing)playerRef.current?.play();notify();
   };
   const metadata=getEffectMetadata(definition.id,{definition});
@@ -76,7 +77,8 @@ export function create(root, supplied, options = {}) {
     // 无声条目不分配音频设备；组合默认静音，由用户点击解锁。
     // 使用音轨自身的媒体元素。共享音频池在首次创建 AudioContext 时会重新注销音轨，
     // 将已经加载的 src 换成空白音频；直接媒体元素不经过这次池内注册切换。
-    reactRoot.render(<Player ref={playerRef} component={WiseMotionEffect} inputProps={props}
+    const component=definition.source?.native_scene==='blender'?WisePrecisionAssembly:WiseMotionEffect;
+    reactRoot.render(<Player ref={playerRef} component={component} inputProps={props}
       durationInFrames={definition.loop ? 2147483647 : metadata.durationInFrames}
       compositionWidth={640} compositionHeight={360} fps={FPS} playbackRate={speed}
       initialFrame={seekFrame} controls={false} autoPlay={false} clickToPlay={false}
@@ -123,13 +125,15 @@ export function create(root, supplied, options = {}) {
     setSpeed(value){if(destroyed)return;if(!Number.isFinite(value))throw new TypeError('速度必须是有限数字');speed=Math.max(.5,Math.min(2,value));flushSync(render);},
     setEase(value){if(destroyed)return;const parameter=definition.parameters.ease;if(!parameter)ease=definition.default_ease;else if(parameter.options.includes(value))ease=value;else throw new TypeError('不支持的速度变化');flushSync(render);},
     destroy(preserve=false){if(destroyed)return;playing=false;playerRef.current?.pause();destroyed=true;preparing=false;playerRef.current?.removeEventListener?.('mutechange',onMuteChange);observer?.disconnect();themeObserver.disconnect();active.delete(controller);settleReady(false);
-      let snapshot;
+      let snapshot,nativeSnapshot;
       try {
         // 先让原绘制器把 WebGL 当前帧固化到二维画布，再释放图形资源。
+        if(preserve&&session?.native)nativeSnapshot=session.snapshot();
         session?.destroy(preserve);
-        if(preserve&&session)snapshot=captureStaticDocument(session);
+        if(preserve&&session&&!session.native)snapshot=captureStaticDocument(session);
       } finally {reactRoot.unmount();root.replaceChildren();session=null;}
       if(snapshot)showStaticDocument(root,mount,snapshot);
+      if(nativeSnapshot){root.replaceChildren(mount);mount.append(nativeSnapshot);}
     },fit,
     get hasAudio(){return hasAudio;},get muted(){return muted;},get currentTime(){return time;},get elapsedTime(){return elapsed;},get paused(){return !playing;},get preparing(){return preparing;},get error(){return error;},get speed(){return speed;},get destroyed(){return destroyed;},get stage(){return session?.stage;},get frame(){return playerRef.current?.getCurrentFrame()||seekFrame;},get session(){return session;}
   };
@@ -139,7 +143,7 @@ export function create(root, supplied, options = {}) {
     if(muted!==next){muted=next;notify();}
   };
   const observer=typeof ResizeObserver!=='undefined'?new ResizeObserver(fit):null;observer?.observe(root);
-  const themeObserver=new MutationObserver(()=>{theme=document.documentElement.dataset.theme||'dark';if(session)session.doc.documentElement.dataset.theme=theme;flushSync(render);});themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  const themeObserver=new MutationObserver(()=>{theme=document.documentElement.dataset.theme||'dark';if(session?.doc)session.doc.documentElement.dataset.theme=theme;flushSync(render);});themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
   active.add(controller);fit();flushSync(render);
   playerRef.current?.addEventListener('mutechange',onMuteChange);
   playerRef.current?.addEventListener('ended',()=>{playing=false;time=definition.duration_ms;notify();});

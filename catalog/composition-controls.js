@@ -3,7 +3,7 @@
   'use strict';
   const $ = id => document.getElementById(id);
   const panel=$('composition-panel'),list=$('composition-layers'),status=$('composition-status');
-  let layers=[],nodes=[],buttons=[],player=null,selected=-1,mode='stack',duration=0,paintVersion=0;
+  let layers=[],nodes=[],buttons=[],player=null,selected=-1,mode='stack',duration=0,paintVersion=0,sequential=false;
   function isolate(targets,visible) {
     for(const node of targets) {
       const show=!visible||visible.has(node.dataset.layer)||targets.some(child=>visible.has(child.dataset.layer)&&node.contains(child));
@@ -26,7 +26,7 @@
         nodes=[...(current.stage||$('preview')).querySelectorAll('[data-layer]')];
         isolate(nodes,visible);
       }).catch(error=>{if(current===player&&version===paintVersion)status.textContent='当前画面准备失败：'+error.message;});
-    }else isolate(nodes,visible);
+    }else if(!sequential)isolate(nodes,visible);
     buttons.forEach((button,index)=>{
       button.setAttribute('aria-pressed',String(index===selected));
       button.dataset.included=String(!visible || visible.has(layers[index].id));
@@ -36,6 +36,10 @@
     status.textContent=selected<0 ? '完整组合：'+layers.map(layer=>layer.name).join(' ＋ ')+'。' :
       (mode==='solo' ? '单独查看：'+layers[selected].name : '叠加到这里：'+layers.slice(0,selected+1).map(layer=>layer.name).join(' ＋ '));
     $('composition-detail').textContent=selected<0 ? `各层共用同一时间轴。时间条表示原速下的动作区间，完整一段为 ${duration/1000} 秒。` : layers[selected].detail;
+    if(sequential){
+      status.textContent=selected<0?'完整组合：'+layers.map(layer=>layer.name).join(' → ')+'。':'查看片段：'+layers[selected].name+'。';
+      if(selected<0)$('composition-detail').textContent=`各镜头按同一时间轴接续，完整片段为 ${duration/1000} 秒；点击片段定位到对应时间。`;
+    }
   }
   panel.addEventListener('click',event=>{
     if(!player || player.destroyed) return;
@@ -47,12 +51,13 @@
     else return;
     // 暂停在同一时刻对照构成；重播按钮与画面下方进度条仍控制这一个播放器。
     player.pause();
+    if(sequential&&row&&selected>=0)player.seek(layers[selected].start+(layers[selected].end-layers[selected].start)*.5);
     paint();
   });
   global.MotionComposition = {
     isolate(root,ids) { isolate([...root.querySelectorAll('[data-layer]')],ids?new Set(ids):null); },
     select(effect,controller,view) {
-      player=null;layers=effect.kind==='composition' ? global.MotionFactories[effect.id]?.breakdown || [] : [];
+      player=null;sequential=effect.breakdown_mode==='sequence';layers=effect.kind==='composition' ? global.MotionFactories[effect.id]?.breakdown || [] : [];
       if(effect.kind==='composition'&&!layers.length){
         // 拆解清单来自尚未载入的绘制文件；载入后只在仍是同一个预览时重新建立。
         const wait=global.MotionLazy?.ensure(effect);
@@ -62,6 +67,7 @@
       nodes=[];buttons=[];list.replaceChildren();
       if(panel.hidden) return;
       player=controller;duration=effect.duration_ms;mode=view?.mode==='solo' ? 'solo' : 'stack';
+      panel.querySelectorAll('[data-composition-mode]').forEach(button=>{button.hidden=sequential;});
       selected=layers.findIndex(layer=>layer.id===view?.layer);
       nodes=[...(controller.stage||$('preview')).querySelectorAll('[data-layer]')];
       if(controller.ready)controller.ready.then(ok=>{if(ok&&player===controller){nodes=[...(controller.stage||$('preview')).querySelectorAll('[data-layer]')];paint();}});

@@ -105,8 +105,8 @@ var require_content = __commonJS({
 });
 
 // remotion/with-audio.jsx
-import React5 from "react";
-import { staticFile as staticFile3 } from "remotion";
+import React6 from "react";
+import { staticFile as staticFile4 } from "remotion";
 
 // remotion/index.jsx
 import React3, { useLayoutEffect as useLayoutEffect2, useMemo, useRef as useRef2, useState } from "react";
@@ -119,6 +119,8 @@ var FRAME_SCRIPTS = Object.freeze([
   "catalog/content.js",
   "catalog/runtime.js",
   "catalog/history-runtime.js",
+  "catalog/effects/precision-assembly-data.js",
+  "catalog/effects/precision-assembly.js",
   "catalog/effects/pixel-motion-data.js",
   "catalog/effects/pixel-motion.js",
   "catalog/effects/entrance.js",
@@ -52769,6 +52771,461 @@ var registry_default = {
           }
         ]
       }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u81EA\u52A8\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u3001\u5B9A\u4F4D\u4E0E\u500D\u901F\u3002",
+      objects: "\u771F\u5B9E\u4E09\u7EF4\u91D1\u5C5E\u96F6\u4EF6\u3001\u4E94\u7EC4\u673A\u82AF\u3001\u523B\u5EA6\u5708\u3001\u84DD\u94A2\u6307\u9488\u3001\u8868\u955C\u4E0E\u5B9E\u4F53\u955C\u5934",
+      retain: "\u771F\u5B9E\u91D1\u5C5E\u5012\u89D2\u3001\u5404\u5411\u5F02\u6027\u53CD\u5C04\u3001\u9542\u7A7A\u673A\u82AF\u3001\u84DD\u94A2\u6307\u9488\u4E0E\u5B9D\u77F3\u8F74\u627F\uFF1B\u4FDD\u7559\u539F\u751F24\u5E27\u9010\u683C\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u516B\u5C42\u88C5\u914D\u4F4D\u7F6E\u3002",
+      avoid: "\u4E0D\u4EE5\u4E8C\u7EF4\u5361\u7247\u3001\u5E73\u9762\u6574\u8868\u56FE\u7247\u6216\u4F4E\u7CBE\u5EA6\u51E0\u4F55\u91CD\u7ED8\uFF1B\u4E0D\u6539\u91D1\u5C5E\u6750\u8D28\u3001\u955C\u5934\u8282\u594F\u6216\u88C5\u914D\u4F4D\u7F6E\uFF0C\u4E0D\u63D2\u5E27\uFF1B\u8F6E\u7CFB\u3001\u6446\u8F6E\u4E0E\u79D2\u9488\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u751F24\u5E27/\u79D2\uFF1BRemotion\u4EC5\u6309\u5F53\u524D\u5E27\u5B9A\u4F4D\u65E2\u6709\u6210\u7247\uFF0C\u901F\u5EA6\u53EA\u8C03\u6574\u64AD\u653E\u5FEB\u6162\uFF1B\u7ED3\u675F\u505C\u5728\u672B\u4E2A\u539F\u751F\u753B\u9762\u3002",
+      assumptions: "\u539F\u4E09\u7EF4\u5DE5\u7A0B\u4E0E\u6210\u7247\u5B8C\u6574\u4FDD\u7559\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u7EC4\u5408\u4F7F\u7528\u540C\u4E00\u5C42\u4F4D\u79FB\u51FD\u6570\u548C\u539F\u751F\u5E27\u3002\u4FEE\u6539\u573A\u666F\u540E\u9700Blender\u91CD\u6E32\u67D3\u3002",
+      id: "ordered-depth-assembly",
+      name: "\u7CBE\u5BC6\u96F6\u4EF6\u5206\u5C42\u62C6\u89E3\u4E0E\u56DE\u88C5",
+      kind: "action",
+      category: "space",
+      duration_ms: 8e3,
+      preview_ms: 4125,
+      summary: "\u7CBE\u5BC6\u96F6\u4EF6\u6CBF\u6DF1\u5EA6\u65B9\u5411\u9519\u5CF0\u5C55\u5F00\uFF0C\u955C\u5934\u73AF\u7ED5\u89C2\u5BDF\u5206\u5C42\u7ED3\u6784\uFF0C\u518D\u9010\u5C42\u7CBE\u786E\u56DE\u88C5\u3002",
+      purpose: "\u5C55\u793A\u88C5\u914D\u7ED3\u6784\u3001\u96F6\u4EF6\u524D\u540E\u5173\u7CFB\u4E0E\u4E25\u5BC6\u590D\u4F4D\u8FC7\u7A0B\uFF0C\u9002\u5408\u771F\u5B9E\u4E09\u7EF4\u4EA7\u54C1\u62C6\u88C5\u3002",
+      aliases: [
+        "\u5206\u5C42\u62C6\u89E3",
+        "\u62C6\u88C5",
+        "\u56DE\u88C5",
+        "\u7206\u70B8\u89C6\u56FE",
+        "\u7CBE\u5BC6\u96F6\u4EF6",
+        "\u6DF1\u5EA6\u5206\u79BB",
+        "\u4E09\u7EF4\u62C6\u89E3",
+        "\u673A\u68B0\u8868"
+      ],
+      behaviors: [
+        "depth",
+        "stagger",
+        "rotation3d",
+        "return"
+      ],
+      phases: [
+        "\u4ECE\u5B8C\u6574\u88C5\u914D\u5F00\u59CB\uFF0C\u4E94\u7EC4\u673A\u82AF\u3001\u523B\u5EA6\u5708\u3001\u6307\u9488\u548C\u8868\u955C\u6CBF\u6DF1\u5EA6\u4F9D\u6B21\u5206\u5F00\u3002",
+        "\u5C55\u5F00\u4F4D\u7F6E\u505C\u7559\uFF0C\u5B9E\u4F53\u955C\u5934\u79FB\u5411\u4FA7\u9762\uFF0C\u5C55\u793A\u5404\u5C42\u906E\u6321\u548C\u91D1\u5C5E\u53CD\u5C04\u3002",
+        "\u96F6\u4EF6\u9010\u5C42\u51C6\u786E\u8FD4\u56DE\u88C5\u914D\u4F4D\u7F6E\uFF0C\u955C\u5934\u56DE\u5230\u6574\u8868\u89D2\u5EA6\uFF0C\u7ED3\u5C3E\u4FDD\u6301\u5B8C\u6574\u3002"
+      ],
+      actions: [],
+      analogy: "\u628A\u7CBE\u5BC6\u8BBE\u5907\u9010\u5C42\u62C9\u5F00\u770B\u6E05\u5185\u90E8\uFF0C\u518D\u6309\u539F\u4F4D\u7F6E\u5B8C\u6574\u88C5\u56DE\u3002",
+      recommendation: "\u9002\u5408\u6CBF\u540C\u4E00\u6DF1\u5EA6\u8F74\u5C55\u793A\u771F\u5B9E\u4EA7\u54C1\u7684\u88C5\u914D\u5173\u7CFB\uFF1B\u4E0E\u7ACB\u4F53\u73AF\u7ED5\u7684\u5361\u7247\u7ED5\u4E2D\u5FC3\u8FD0\u52A8\u4E0D\u540C\uFF0C\u672C\u52A8\u4F5C\u4FDD\u6301\u5404\u96F6\u4EF6\u539F\u88C5\u914D\u4F4D\u7F6E\u5E76\u51C6\u786E\u56DE\u88C5\u3002",
+      source: {
+        path: "catalog/effects/precision-assembly.js",
+        dependencies: [
+          "catalog/effects/precision-assembly-data.js"
+        ],
+        factory: "ordered-depth-assembly",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "blender@4.5.14",
+        native_scene: "blender",
+        reference: {
+          name: "\u5206\u79D2\u4E4B\u95F4 \xB7 \u7528\u6237\u8BA4\u53EF\u7684\u771F\u5B9E\u4E09\u7EF4\u673A\u68B0\u6000\u8868"
+        },
+        extraction: "\u4FDD\u7559\u5DF2\u8BA4\u53EF\u7684 Blender \u5DE5\u7A0B\u3001\u771F\u5B9E\u5EFA\u6A21\u7A0B\u5E8F\u3001\u6750\u8D28\u3001\u706F\u5149\u4E0E\u955C\u5934\uFF1B\u53EA\u628A\u539F\u5206\u5C42\u5173\u952E\u5E27\u62BD\u6210\u53EF\u590D\u7528\u51FD\u6570\u3002Remotion \u630924\u5E27/\u79D2\u5B9A\u4F4D\u539F\u751FCycles\u6210\u7247\uFF0C\u76EE\u5F55\u7F29\u7565\u56FE\u4F7F\u7528\u539F\u59CB4K\u9759\u5E27\uFF1B\u6E90\u7801\u5BFC\u51FA\u5305\u542B.blend\u548C\u5B8C\u6574\u53EF\u8FD0\u884C\u7A0B\u5E8F\uFF0C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+        assets: [
+          "catalog/assets/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend",
+          "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u5C42.png",
+          "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4",
+          "catalog/assets/precision-assembly/\u6210\u7247/\u673A\u82AF.png",
+          "catalog/assets/precision-assembly/\u6210\u7247/\u6574\u8868.png",
+          "catalog/assets/precision-assembly/\u6750\u8D28/\u5E95\u677F\u73CD\u73E0\u7EB9.png",
+          "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
+          "catalog/assets/precision-assembly/SOURCE.json",
+          "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
+          "catalog/assets/composition-audio/precision-assembly/sound.py"
+        ],
+        remotion: {
+          component: "catalog/remotion/precision-assembly.jsx",
+          export_name: "WisePrecisionAssembly",
+          package_name: "wise-precision-assembly",
+          files: [
+            "catalog/assets/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command",
+            "catalog/assets/precision-assembly/\u5236\u4F5C\u8BF4\u660E.md",
+            "catalog/assets/precision-assembly/SOURCE.json",
+            "catalog/assets/precision-assembly/\u8FD0\u884C\u6E90\u7801.py",
+            "catalog/assets/precision-assembly/\u4F7F\u7528\u8BF4\u660E.md",
+            "catalog/assets/precision-assembly/\u6E90\u7801/build.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/sound.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/produce.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/assembly_motion.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/compose.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/render.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/check_scene.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/review.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/movement.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/casework.py",
+            "catalog/assets/precision-assembly/\u6750\u8D28/\u6765\u6E90.json",
+            "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
+            "catalog/assets/composition-audio/precision-assembly/sound.py",
+            "catalog/effects/precision-assembly-data.js",
+            "catalog/remotion/precision-assembly.jsx",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs"
+          ],
+          file_map: {
+            "catalog/assets/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command": "public/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command",
+            "catalog/assets/precision-assembly/\u5236\u4F5C\u8BF4\u660E.md": "public/precision-assembly/\u5236\u4F5C\u8BF4\u660E.md",
+            "catalog/assets/precision-assembly/SOURCE.json": "public/precision-assembly/SOURCE.json",
+            "catalog/assets/precision-assembly/\u8FD0\u884C\u6E90\u7801.py": "public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py",
+            "catalog/assets/precision-assembly/\u4F7F\u7528\u8BF4\u660E.md": "public/precision-assembly/\u4F7F\u7528\u8BF4\u660E.md",
+            "catalog/assets/precision-assembly/\u6E90\u7801/build.py": "public/precision-assembly/\u6E90\u7801/build.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/sound.py": "public/precision-assembly/\u6E90\u7801/sound.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/produce.py": "public/precision-assembly/\u6E90\u7801/produce.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/assembly_motion.py": "public/precision-assembly/\u6E90\u7801/assembly_motion.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/compose.py": "public/precision-assembly/\u6E90\u7801/compose.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/render.py": "public/precision-assembly/\u6E90\u7801/render.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/check_scene.py": "public/precision-assembly/\u6E90\u7801/check_scene.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/review.py": "public/precision-assembly/\u6E90\u7801/review.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/movement.py": "public/precision-assembly/\u6E90\u7801/movement.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/casework.py": "public/precision-assembly/\u6E90\u7801/casework.py",
+            "catalog/assets/precision-assembly/\u6750\u8D28/\u6765\u6E90.json": "public/precision-assembly/\u6750\u8D28/\u6765\u6E90.json"
+          },
+          binary_files: [
+            {
+              source: "catalog/assets/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend",
+              target: "public/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend",
+              bytes: 23829849,
+              sha256: "54023d725b59887e9441634d2bb75dec355b151fd811176724dc33390c5453dd"
+            },
+            {
+              source: "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u5C42.png",
+              target: "public/precision-assembly/\u6210\u7247/\u5206\u5C42.png",
+              bytes: 8343300,
+              sha256: "6548797cd90e70721af5211530df92ba19abf336d10aac1b94a4167618547c19"
+            },
+            {
+              source: "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4",
+              target: "public/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4",
+              bytes: 28685957,
+              sha256: "3978817ed2d908ca4a7bbc29bbd829d78f01466fb46b0df9648979066b6d3bba"
+            },
+            {
+              source: "catalog/assets/precision-assembly/\u6210\u7247/\u673A\u82AF.png",
+              target: "public/precision-assembly/\u6210\u7247/\u673A\u82AF.png",
+              bytes: 10584248,
+              sha256: "dd15f7a0e483326c6be31d18a05c859659b1e7424b6781a127dc80bf49ea5118"
+            },
+            {
+              source: "catalog/assets/precision-assembly/\u6210\u7247/\u6574\u8868.png",
+              target: "public/precision-assembly/\u6210\u7247/\u6574\u8868.png",
+              bytes: 8135763,
+              sha256: "6e8f923f6920eaec937e122cbd70f474ae3d04c9012f7187e74ac2a016c244d3"
+            },
+            {
+              source: "catalog/assets/precision-assembly/\u6750\u8D28/\u5E95\u677F\u73CD\u73E0\u7EB9.png",
+              target: "public/precision-assembly/\u6750\u8D28/\u5E95\u677F\u73CD\u73E0\u7EB9.png",
+              bytes: 2531633,
+              sha256: "75fb8171b941e41728c11a68cea43e9a8652acd9fd0bf0e9bed51859d18f010b"
+            },
+            {
+              source: "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
+              target: "public/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4-\u58F0\u8F68.wav",
+              bytes: 4224044,
+              sha256: "8bf5cc0934ef91f5e6cc0347839c206b689eb0e9d48eb74451a7029dd8fcf311"
+            }
+          ],
+          executable_files: [
+            "public/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1920,
+          height: 1080,
+          fps: 24,
+          exact_frames: true,
+          scripts: {
+            "check:source": "python3 public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py check",
+            "rebuild:scene": "python3 public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py rebuild",
+            "render:scene": "python3 public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py render --part assembly"
+          },
+          reuse_notes: "\u8FD9\u662F Blender 4.5.14 LTS / Cycles \u771F\u5B9E\u4E09\u7EF4\u5DE5\u7A0B\u7684 Remotion \u63A5\u5165\u3002\u753B\u9762\u590D\u7528\u5DF2\u8BA4\u53EF\u76841920\xD71080\u300124\u5E27/\u79D2\u6210\u7247\uFF1B\u6CA1\u6709\u91CD\u65B0\u5EFA\u6A21\u3001\u8C03\u8272\u6216\u63D2\u5E27\u3002\u5B8C\u6574\u7EC4\u540822\u79D2\u3001528\u5E27\uFF0C\u72EC\u7ACB\u62C6\u88C5\u52A8\u4F5C\u53D6\u7B2C241\u2013432\u5E27\u30018\u79D2\u3001192\u5E27\uFF0C\u4E24\u8005\u5171\u7528\u540C\u4E00\u6A21\u578B\u3001assembly_motion.py \u52A8\u4F5C\u51FD\u6570\u4E0E\u6210\u7247\u3002\n\n\u771F\u5B9E\u6A21\u578B\u3001\u6750\u8D28\u3001\u706F\u5149\u3001\u955C\u5934\u548C\u52A8\u753B\uFF1Apublic/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend\u3002\u5EFA\u6A21\uFF1Apublic/precision-assembly/\u6E90\u7801/build.py\u3001movement.py\u3001casework.py\u3002\u5206\u5C42\u51FD\u6570\uFF1Apublic/precision-assembly/\u6E90\u7801/assembly_motion.py\uFF0C\u53EF\u4F20\u5165\u5176\u4ED6\u6709\u5E8F\u96F6\u4EF6\u4E0E\u5404\u5C42\u6DF1\u5EA6\u8DDD\u79BB\u3002\u76F4\u63A5\u53CC\u51FB public/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command \u6253\u5F00\u6216\u5236\u4F5C\uFF1B\u4E5F\u53EF\u6267\u884C npm run check:source \u68C0\u67E5\uFF0Cnpm run rebuild:scene \u4ECE\u6E90\u7801\u91CD\u5EFA\uFF08\u65E7\u5DE5\u7A0B\u4E0E\u5E27\u79FB\u5165\u5907\u4EFD\uFF09\uFF0Cnpm run render:scene \u660E\u786E\u542F\u52A8\u6E32\u67D3\u3002\u4E0D\u4F1A\u81EA\u52A8\u5B89\u88C5 Blender\u3001ffmpeg\u3001ffprobe \u6216 Python\u3002\u5B8C\u6574\u6E32\u67D3\u8017\u65F6\u8F83\u957F\uFF1B\u9ED8\u8BA4\u590D\u7528\u6210\u7247\u3002\n\n\u4FEE\u6539\u6A21\u578B\u3001\u6750\u8D28\u6216\u955C\u5934\u540E\uFF0C\u5E94\u901A\u8FC7 Blender \u91CD\u6E32\u67D3\uFF0C\u518D\u66F4\u65B0 Remotion \u7684\u89C6\u9891\u7D20\u6750\uFF1B\u6D4F\u89C8\u5668\u4E0D\u80FD\u5B9E\u65F6\u4FEE\u6539\u8BE5\u4E09\u7EF4\u6A21\u578B\u3002\u5DE5\u7A0B\u5185\u5DF2\u6253\u5305\u7EB9\u7406\u4E0E\u5B57\u4F53\uFF1B\u6E90\u7801\u91CD\u5EFA\u4FDD\u7559\u539F macOS \u5B57\u4F53\u67E5\u627E\u65B9\u5F0F\u3002\u58F0\u97F3\u4EC5\u7528\u4E8E\u5B8C\u6574\u7EC4\u5408\uFF1B\u539F\u7247\u5185\u5D4C\u97F3\u8F68\u9759\u97F3\uFF0C\u5355\u72EC\u539F\u58F0\u6309\u5E27\u540C\u6B65\uFF0CincludeAudio={false} \u53EF\u5173\u95ED\u3002\u539F\u58F0\u91CD\u5408\u6210\u7684 sound.py \u989D\u5916\u9700\u8981 numpy\uFF1B\u9ED8\u8BA4\u65E0\u9700\u91CD\u5408\u6210\u3002\n\n\u5206\u5C42\u52A8\u4F5C\u91C7\u7528\u539F\u8D1D\u585E\u5C14\u5173\u952E\u5E27\uFF1A\u9996\u5E27241\uFF0C\u9010\u5C42\u5EF6\u8FDF2\u5E27\uFF1B\u96F6\u4EF6\u5728252+2i\u5F00\u59CB\u3001305+2i\u5C55\u5F00\u5B8C\u3001357+i\u7ED3\u675F\u505C\u7559\u3001405+2i\u5F52\u4F4D\u3001432\u7EDF\u4E00\u4FDD\u6301\u5B8C\u6574\u3002\u4E94\u7EC4\u673A\u82AF\u6DF1\u5EA6\u8DDD\u79BB\u4E3A0\u30010.85\u30011.45\u30012.2\u30013.05\uFF0C\u523B\u5EA6\u57084.4\u3001\u6307\u94885.3\u3001\u8868\u955C5.8\u3002\u5177\u4F53\u673A\u68B0\u8868\u662F\u793A\u4F8B\uFF0C\u4E0D\u662F\u53EF\u5236\u9020\u6216\u771F\u5B9E\u8D70\u65F6\u7684\u949F\u8868\u9A8C\u8BC1\u3002\u81EA\u6709\u6E90\u7801Apache-2.0\uFF0C\u7CFB\u7EDF\u5B57\u4F53\u4E0E\u7B2C\u4E09\u65B9\u8F6F\u4EF6\u4FDD\u7559\u539F\u6743\u5229\uFF0C\u89C1SOURCE.json\u4E0ELICENSE\u3002",
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      reproduction: {
+        objects: "\u771F\u5B9E\u4E09\u7EF4\u91D1\u5C5E\u96F6\u4EF6\u3001\u4E94\u7EC4\u673A\u82AF\u3001\u523B\u5EA6\u5708\u3001\u84DD\u94A2\u6307\u9488\u3001\u8868\u955C\u4E0E\u5B9E\u4F53\u955C\u5934",
+        presentation: "1920\xD71080\u6A2A\u5411\u753B\u5E45\uFF0C\u8FD1\u9ED1\u65E0\u7F1D\u6444\u5F71\u68DA\uFF0C\u6696\u91D1\u673A\u82AF\u3001\u94C2\u91D1\u58F3\u3001\u8C61\u7259\u73D0\u7405\u523B\u5EA6\u5708\u3001\u84DD\u94A2\u6307\u9488\u548C\u7EA2\u8272\u5B9D\u77F3\u8F74\u627F\u3002\u8F6F\u7BB1\u706F\u6CBF\u771F\u5B9E\u5012\u89D2\u4EA7\u751F\u7EC6\u7A84\u53CD\u5149\uFF0C\u771F\u5B9E\u666F\u6DF1\uFF1B\u4FDD\u7559\u6BD4\u4F8B\u4E0E\u6784\u56FE\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u5207\u3002",
+        materials: [
+          "\u96F6\u4EF6\u4E3A\u5B9E\u4F53\u4E09\u7EF4\u7F51\u683C\uFF0C\u5012\u89D2\u3001\u9F7F\u8F6E\u3001\u87BA\u9489\u4E0E\u8F74\u627F\u5747\u7531\u51E0\u4F55\u5EFA\u7ACB\uFF1B\u5E95\u677F\u73CD\u73E0\u7EB9\u4EC5\u63D0\u4F9B\u7EC6\u5FAE\u51F9\u51F8\u4E0E\u7C97\u7CD9\u5EA6\u3002",
+          "\u91D1\u3001\u94F6\u3001\u9EC4\u94DC\u4E0E\u84DD\u94A2\u4E3A\u91D1\u5C5E\u6750\u8D28\uFF1B\u8868\u955C\u6709\u900F\u5C04\uFF0C\u5B9E\u4F53\u8F6F\u7BB1\u706F\u4E0E\u6444\u5F71\u68DA\u7167\u660E\uFF0C\u4F7F\u7528Cycles\u6E32\u67D3\u3002"
+        ],
+        start_state: "\u5B8C\u6574\u88C5\u914D\u7684\u6574\u8868\uFF0C\u955C\u5934\u4F4D\u4E8E(7,3.8,30)\uFF0C\u671D\u5411(.25,.5,1)\u3002",
+        phases: [
+          "\u4ECE\u5B8C\u6574\u88C5\u914D\u5F00\u59CB\uFF0C\u4E94\u7EC4\u673A\u82AF\u3001\u523B\u5EA6\u5708\u3001\u6307\u9488\u548C\u8868\u955C\u6CBF\u6DF1\u5EA6\u4F9D\u6B21\u5206\u5F00\u3002",
+          "\u5C55\u5F00\u4F4D\u7F6E\u505C\u7559\uFF0C\u5B9E\u4F53\u955C\u5934\u79FB\u5411\u4FA7\u9762\uFF0C\u5C55\u793A\u5404\u5C42\u906E\u6321\u548C\u91D1\u5C5E\u53CD\u5C04\u3002",
+          "\u96F6\u4EF6\u9010\u5C42\u51C6\u786E\u8FD4\u56DE\u88C5\u914D\u4F4D\u7F6E\uFF0C\u955C\u5934\u56DE\u5230\u6574\u8868\u89D2\u5EA6\uFF0C\u7ED3\u5C3E\u4FDD\u6301\u5B8C\u6574\u3002"
+        ],
+        end_state: "\u6240\u6709\u5C42\u6062\u590D\u5B8C\u6574\u88C5\u914D\uFF0C\u955C\u5934\u56DE\u5230\u6574\u8868\u89D2\u5EA6\uFF0C\u4FDD\u6301\u81F38\u79D2\u7ED3\u675F\u3002",
+        details: [
+          "\u4F7F\u7528Blender\u5EFA\u7ACB\u771F\u5B9E\u4E09\u7EF4\u6A21\u578B\u4E0E\u52A8\u753B\uFF0C\u518D\u7528Remotion\u6309\u5F53\u524D\u5E27\u63A5\u51651920\xD71080\u300124\u5E27/\u79D2\u7684\u539F\u751F\u6E32\u67D3\uFF0C\u4E0D\u7528\u4E8C\u7EF4\u56FE\u5F62\u6A21\u4EFF\u91D1\u5C5E\u51E0\u4F55\u3002",
+          "\u8868\u5F846\u4E2A\u573A\u666F\u5355\u4F4D\uFF1B\u4E94\u7EC4\u673A\u82AF\u5C55\u5F00\u8DDD\u79BB\u4E3A0\u30010.85\u30011.45\u30012.2\u30013.05\uFF0C\u523B\u5EA6\u57084.4\uFF0C\u6307\u94885.3\uFF0C\u8868\u955C5.8\u3002\u4EE5\u7B2C241\u5E27\u4E3A\u672C\u6BB5\u9996\u5E27\uFF0C\u6BCF\u7EC4\u5EF6\u8FDF2\u5E27\uFF1A252+2i\u5F00\u59CB\u3001305+2i\u8FBE\u5230\u5C55\u5F00\u8DDD\u79BB\u3001357+i\u4FDD\u6301\u5230\u6B64\u3001405+2i\u5F52\u4F4D\u3001\u7B2C432\u5E27\u5B8C\u6574\u3002\u4F4D\u7F6E\u53D8\u5316\u4FDD\u7559\u8D1D\u585E\u5C14\u66F2\u7EBF\u3002",
+          "\u955C\u593465\u6BEB\u7C73\u7126\u8DDD\uFF1B\u4F4D\u7F6E\u4F9D\u6B21\u4E3A\u7B2C241\u5E27(7,3.8,30)\u3001310\u5E27(16,5,26)\u3001360\u5E27(16.5,4.8,26)\u3001432\u5E27(7,3.8,30)\uFF0C\u5BF9\u5E94\u89C6\u70B9\u7531(.25,.5,1)\u5230(.65,.65,1.5)\u518D\u5230(.1,.6,.3)\u3002",
+          "\u6446\u8F6E\u4EE548\u5EA6\u632F\u5E45\u3001\u6BCF\u79D22.5\u6B21\u5F80\u8FD4\u8FD0\u52A8\uFF0C\u630924\u5E27\u9010\u5E27\u8BA1\u7B97\uFF1B\u8F6E\u7CFB\u4FDD\u6301\u5404\u81EA\u56FA\u5B9A\u89D2\u901F\u5EA6\uFF0C\u79D2\u948822\u79D2\u626B\u8FC7132\u5EA6\u3002"
+        ],
+        retain: "\u771F\u5B9E\u91D1\u5C5E\u5012\u89D2\u3001\u5404\u5411\u5F02\u6027\u53CD\u5C04\u3001\u9542\u7A7A\u673A\u82AF\u3001\u84DD\u94A2\u6307\u9488\u4E0E\u5B9D\u77F3\u8F74\u627F\uFF1B\u4FDD\u7559\u539F\u751F24\u5E27\u9010\u683C\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u516B\u5C42\u88C5\u914D\u4F4D\u7F6E\u3002",
+        avoid: "\u4E0D\u4EE5\u4E8C\u7EF4\u5361\u7247\u3001\u5E73\u9762\u6574\u8868\u56FE\u7247\u6216\u4F4E\u7CBE\u5EA6\u51E0\u4F55\u91CD\u7ED8\uFF1B\u4E0D\u6539\u91D1\u5C5E\u6750\u8D28\u3001\u955C\u5934\u8282\u594F\u6216\u88C5\u914D\u4F4D\u7F6E\uFF0C\u4E0D\u63D2\u5E27\uFF1B\u8F6E\u7CFB\u3001\u6446\u8F6E\u4E0E\u79D2\u9488\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+        tempo_note: "\u630924\u5E27/\u79D2\u9010\u683C\u8BA1\u7B97\uFF1B\u96F6\u4EF6\u548C\u955C\u5934\u7684\u4F4D\u7F6E\u53D8\u5316\u4F7F\u7528\u8D1D\u585E\u5C14\u5173\u952E\u5E27\uFF0C\u8F6E\u7CFB\u5300\u901F\u8F6C\u52A8\uFF0C\u6446\u8F6E\u6309\u6B63\u5F26\u5F80\u8FD4\u3002"
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u81EA\u52A8\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u3001\u5B9A\u4F4D\u4E0E\u500D\u901F\u3002",
+      objects: "\u771F\u5B9E\u4E09\u7EF4\u91D1\u5C5E\u96F6\u4EF6\u3001\u4E94\u7EC4\u673A\u82AF\u3001\u523B\u5EA6\u5708\u3001\u84DD\u94A2\u6307\u9488\u3001\u8868\u955C\u4E0E\u5B9E\u4F53\u955C\u5934",
+      retain: "\u771F\u5B9E\u91D1\u5C5E\u5012\u89D2\u3001\u5404\u5411\u5F02\u6027\u53CD\u5C04\u3001\u9542\u7A7A\u673A\u82AF\u3001\u84DD\u94A2\u6307\u9488\u4E0E\u5B9D\u77F3\u8F74\u627F\uFF1B\u4FDD\u7559\u539F\u751F24\u5E27\u9010\u683C\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u516B\u5C42\u88C5\u914D\u4F4D\u7F6E\u3002",
+      avoid: "\u4E0D\u4EE5\u4E8C\u7EF4\u5361\u7247\u3001\u5E73\u9762\u6574\u8868\u56FE\u7247\u6216\u4F4E\u7CBE\u5EA6\u51E0\u4F55\u91CD\u7ED8\uFF1B\u4E0D\u6539\u91D1\u5C5E\u6750\u8D28\u3001\u955C\u5934\u8282\u594F\u6216\u88C5\u914D\u4F4D\u7F6E\uFF0C\u4E0D\u63D2\u5E27\uFF1B\u8F6E\u7CFB\u3001\u6446\u8F6E\u4E0E\u79D2\u9488\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+      tempo_note: "\u4FDD\u7559\u539F\u751F24\u5E27/\u79D2\uFF1BRemotion\u4EC5\u6309\u5F53\u524D\u5E27\u5B9A\u4F4D\u65E2\u6709\u6210\u7247\uFF0C\u901F\u5EA6\u53EA\u8C03\u6574\u64AD\u653E\u5FEB\u6162\uFF1B\u7ED3\u675F\u505C\u5728\u672B\u4E2A\u539F\u751F\u753B\u9762\u3002",
+      assumptions: "\u539F\u4E09\u7EF4\u5DE5\u7A0B\u4E0E\u6210\u7247\u5B8C\u6574\u4FDD\u7559\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u7EC4\u5408\u4F7F\u7528\u540C\u4E00\u5C42\u4F4D\u79FB\u51FD\u6570\u548C\u539F\u751F\u5E27\u3002\u4FEE\u6539\u573A\u666F\u540E\u9700Blender\u91CD\u6E32\u67D3\u3002",
+      id: "precision-assembly-sequence",
+      name: "\u7CBE\u5BC6\u7ED3\u6784\u5C55\u793A\u4E0E\u62C6\u88C5",
+      kind: "composition",
+      category: "compositions",
+      duration_ms: 22e3,
+      preview_ms: 8291.666666666666,
+      summary: "\u5148\u5C55\u793A\u673A\u82AF\u7EC6\u8282\u548C\u6446\u8F6E\u8FD0\u884C\uFF0C\u518D\u5448\u73B0\u6574\u8868\uFF0C\u5B8C\u6210\u5206\u5C42\u62C6\u89E3\u3001\u955C\u5934\u73AF\u7ED5\u4E0E\u56DE\u88C5\uFF0C\u6700\u540E\u5C55\u793A\u5B8C\u6574\u4EA7\u54C1\u3002",
+      purpose: "\u628A\u6750\u6599\u7EC6\u8282\u3001\u673A\u68B0\u8FD0\u884C\u3001\u5B8C\u6574\u5916\u89C2\u4E0E\u62C6\u88C5\u7ED3\u6784\u4E32\u6210\u771F\u5B9E\u4E09\u7EF4\u4EA7\u54C1\u5C55\u793A\u3002",
+      aliases: [
+        "\u673A\u68B0\u6000\u8868",
+        "\u673A\u68B0\u8868\u53D1\u5E03\u7247",
+        "\u5206\u79D2\u4E4B\u95F4",
+        "\u4EA7\u54C1\u62C6\u88C5",
+        "\u673A\u82AF\u7279\u5199",
+        "\u6446\u8F6E",
+        "\u7CBE\u5BC6\u7ED3\u6784",
+        "\u4E09\u7EF4\u4EA7\u54C1\u5C55\u793A"
+      ],
+      behaviors: [
+        "reveal",
+        "depth",
+        "stagger",
+        "rotation3d",
+        "return"
+      ],
+      phases: [
+        "0\u20136\u79D2\u5C55\u793A\u53D1\u6761\u76D2\u3001\u5939\u677F\u548C\u6446\u8F6E\u8FD0\u884C\uFF1B6\u201310\u79D2\u5C55\u793A\u5B8C\u6574\u5916\u89C2\u3002",
+        "10\u201318\u79D2\u96F6\u4EF6\u6CBF\u6DF1\u5EA6\u9519\u5CF0\u5C55\u5F00\uFF0C\u5B9E\u4F53\u955C\u5934\u73AF\u7ED5\uFF0C\u518D\u6309\u539F\u88C5\u914D\u4F4D\u7F6E\u56DE\u88C5\u3002",
+        "18\u201322\u79D2\u4FDD\u7559\u5B8C\u6574\u6574\u8868\uFF0C\u955C\u5934\u7F13\u6162\u63A8\u8FDB\uFF0C\u968F\u539F\u7247\u6DE1\u51FA\u6536\u5C3E\u3002"
+      ],
+      actions: [
+        "ordered-depth-assembly"
+      ],
+      breakdown_mode: "sequence",
+      analogy: "\u5148\u9760\u8FD1\u770B\u6750\u6599\u4E0E\u8FD0\u884C\uFF0C\u518D\u770B\u6574\u4F53\u548C\u62C6\u88C5\u8FC7\u7A0B\uFF0C\u6700\u540E\u56DE\u5230\u5B8C\u6574\u4EA7\u54C1\u3002",
+      recommendation: "\u9002\u5408\u540C\u65F6\u8BB2\u6E05\u6750\u6599\u3001\u8FD0\u884C\u548C\u88C5\u914D\u5173\u7CFB\u7684\u771F\u5B9E\u4E09\u7EF4\u4EA7\u54C1\u5C55\u793A\uFF1B\u53EA\u9700\u62C6\u88C5\u65F6\u7528\u5173\u8054\u76848\u79D2\u72EC\u7ACB\u52A8\u4F5C\uFF0C\u65E0\u9700\u6574\u6BB522\u79D2\u3002",
+      audio: {
+        tracks: [
+          {
+            name: "\u5206\u79D2\u4E4B\u95F4\u58F0\u97F3",
+            src: "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
+            start_ms: 0,
+            offset_ms: 0,
+            duration_ms: 22e3,
+            volume: 1,
+            fade_in_ms: 0,
+            fade_out_ms: 0
+          }
+        ],
+        sources: [
+          "catalog/assets/composition-audio/precision-assembly/SOURCE.json"
+        ]
+      },
+      source: {
+        path: "catalog/effects/precision-assembly.js",
+        dependencies: [
+          "catalog/effects/precision-assembly-data.js"
+        ],
+        factory: "precision-assembly-sequence",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "blender@4.5.14",
+        native_scene: "blender",
+        reference: {
+          name: "\u5206\u79D2\u4E4B\u95F4 \xB7 \u7528\u6237\u8BA4\u53EF\u7684\u771F\u5B9E\u4E09\u7EF4\u673A\u68B0\u6000\u8868"
+        },
+        extraction: "\u4FDD\u7559\u5DF2\u8BA4\u53EF\u7684 Blender \u5DE5\u7A0B\u3001\u771F\u5B9E\u5EFA\u6A21\u7A0B\u5E8F\u3001\u6750\u8D28\u3001\u706F\u5149\u4E0E\u955C\u5934\uFF1B\u53EA\u628A\u539F\u5206\u5C42\u5173\u952E\u5E27\u62BD\u6210\u53EF\u590D\u7528\u51FD\u6570\u3002Remotion \u630924\u5E27/\u79D2\u5B9A\u4F4D\u539F\u751FCycles\u6210\u7247\uFF0C\u76EE\u5F55\u7F29\u7565\u56FE\u4F7F\u7528\u539F\u59CB4K\u9759\u5E27\uFF1B\u6E90\u7801\u5BFC\u51FA\u5305\u542B.blend\u548C\u5B8C\u6574\u53EF\u8FD0\u884C\u7A0B\u5E8F\uFF0C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+        assets: [
+          "catalog/assets/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend",
+          "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u5C42.png",
+          "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4",
+          "catalog/assets/precision-assembly/\u6210\u7247/\u673A\u82AF.png",
+          "catalog/assets/precision-assembly/\u6210\u7247/\u6574\u8868.png",
+          "catalog/assets/precision-assembly/\u6750\u8D28/\u5E95\u677F\u73CD\u73E0\u7EB9.png",
+          "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
+          "catalog/assets/precision-assembly/SOURCE.json",
+          "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
+          "catalog/assets/composition-audio/precision-assembly/sound.py"
+        ],
+        remotion: {
+          component: "catalog/remotion/precision-assembly.jsx",
+          export_name: "WisePrecisionAssembly",
+          package_name: "wise-precision-assembly",
+          files: [
+            "catalog/assets/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command",
+            "catalog/assets/precision-assembly/\u5236\u4F5C\u8BF4\u660E.md",
+            "catalog/assets/precision-assembly/SOURCE.json",
+            "catalog/assets/precision-assembly/\u8FD0\u884C\u6E90\u7801.py",
+            "catalog/assets/precision-assembly/\u4F7F\u7528\u8BF4\u660E.md",
+            "catalog/assets/precision-assembly/\u6E90\u7801/build.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/sound.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/produce.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/assembly_motion.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/compose.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/render.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/check_scene.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/review.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/movement.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/casework.py",
+            "catalog/assets/precision-assembly/\u6750\u8D28/\u6765\u6E90.json",
+            "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
+            "catalog/assets/composition-audio/precision-assembly/sound.py",
+            "catalog/effects/precision-assembly-data.js",
+            "catalog/remotion/precision-assembly.jsx",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs"
+          ],
+          file_map: {
+            "catalog/assets/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command": "public/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command",
+            "catalog/assets/precision-assembly/\u5236\u4F5C\u8BF4\u660E.md": "public/precision-assembly/\u5236\u4F5C\u8BF4\u660E.md",
+            "catalog/assets/precision-assembly/SOURCE.json": "public/precision-assembly/SOURCE.json",
+            "catalog/assets/precision-assembly/\u8FD0\u884C\u6E90\u7801.py": "public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py",
+            "catalog/assets/precision-assembly/\u4F7F\u7528\u8BF4\u660E.md": "public/precision-assembly/\u4F7F\u7528\u8BF4\u660E.md",
+            "catalog/assets/precision-assembly/\u6E90\u7801/build.py": "public/precision-assembly/\u6E90\u7801/build.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/sound.py": "public/precision-assembly/\u6E90\u7801/sound.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/produce.py": "public/precision-assembly/\u6E90\u7801/produce.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/assembly_motion.py": "public/precision-assembly/\u6E90\u7801/assembly_motion.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/compose.py": "public/precision-assembly/\u6E90\u7801/compose.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/render.py": "public/precision-assembly/\u6E90\u7801/render.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/check_scene.py": "public/precision-assembly/\u6E90\u7801/check_scene.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/review.py": "public/precision-assembly/\u6E90\u7801/review.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/movement.py": "public/precision-assembly/\u6E90\u7801/movement.py",
+            "catalog/assets/precision-assembly/\u6E90\u7801/casework.py": "public/precision-assembly/\u6E90\u7801/casework.py",
+            "catalog/assets/precision-assembly/\u6750\u8D28/\u6765\u6E90.json": "public/precision-assembly/\u6750\u8D28/\u6765\u6E90.json"
+          },
+          binary_files: [
+            {
+              source: "catalog/assets/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend",
+              target: "public/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend",
+              bytes: 23829849,
+              sha256: "54023d725b59887e9441634d2bb75dec355b151fd811176724dc33390c5453dd"
+            },
+            {
+              source: "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u5C42.png",
+              target: "public/precision-assembly/\u6210\u7247/\u5206\u5C42.png",
+              bytes: 8343300,
+              sha256: "6548797cd90e70721af5211530df92ba19abf336d10aac1b94a4167618547c19"
+            },
+            {
+              source: "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4",
+              target: "public/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4",
+              bytes: 28685957,
+              sha256: "3978817ed2d908ca4a7bbc29bbd829d78f01466fb46b0df9648979066b6d3bba"
+            },
+            {
+              source: "catalog/assets/precision-assembly/\u6210\u7247/\u673A\u82AF.png",
+              target: "public/precision-assembly/\u6210\u7247/\u673A\u82AF.png",
+              bytes: 10584248,
+              sha256: "dd15f7a0e483326c6be31d18a05c859659b1e7424b6781a127dc80bf49ea5118"
+            },
+            {
+              source: "catalog/assets/precision-assembly/\u6210\u7247/\u6574\u8868.png",
+              target: "public/precision-assembly/\u6210\u7247/\u6574\u8868.png",
+              bytes: 8135763,
+              sha256: "6e8f923f6920eaec937e122cbd70f474ae3d04c9012f7187e74ac2a016c244d3"
+            },
+            {
+              source: "catalog/assets/precision-assembly/\u6750\u8D28/\u5E95\u677F\u73CD\u73E0\u7EB9.png",
+              target: "public/precision-assembly/\u6750\u8D28/\u5E95\u677F\u73CD\u73E0\u7EB9.png",
+              bytes: 2531633,
+              sha256: "75fb8171b941e41728c11a68cea43e9a8652acd9fd0bf0e9bed51859d18f010b"
+            },
+            {
+              source: "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
+              target: "public/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4-\u58F0\u8F68.wav",
+              bytes: 4224044,
+              sha256: "8bf5cc0934ef91f5e6cc0347839c206b689eb0e9d48eb74451a7029dd8fcf311"
+            }
+          ],
+          executable_files: [
+            "public/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1920,
+          height: 1080,
+          fps: 24,
+          exact_frames: true,
+          scripts: {
+            "check:source": "python3 public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py check",
+            "rebuild:scene": "python3 public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py rebuild",
+            "render:scene": "python3 public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py render"
+          },
+          reuse_notes: "\u8FD9\u662F Blender 4.5.14 LTS / Cycles \u771F\u5B9E\u4E09\u7EF4\u5DE5\u7A0B\u7684 Remotion \u63A5\u5165\u3002\u753B\u9762\u590D\u7528\u5DF2\u8BA4\u53EF\u76841920\xD71080\u300124\u5E27/\u79D2\u6210\u7247\uFF1B\u6CA1\u6709\u91CD\u65B0\u5EFA\u6A21\u3001\u8C03\u8272\u6216\u63D2\u5E27\u3002\u5B8C\u6574\u7EC4\u540822\u79D2\u3001528\u5E27\uFF0C\u72EC\u7ACB\u62C6\u88C5\u52A8\u4F5C\u53D6\u7B2C241\u2013432\u5E27\u30018\u79D2\u3001192\u5E27\uFF0C\u4E24\u8005\u5171\u7528\u540C\u4E00\u6A21\u578B\u3001assembly_motion.py \u52A8\u4F5C\u51FD\u6570\u4E0E\u6210\u7247\u3002\n\n\u771F\u5B9E\u6A21\u578B\u3001\u6750\u8D28\u3001\u706F\u5149\u3001\u955C\u5934\u548C\u52A8\u753B\uFF1Apublic/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend\u3002\u5EFA\u6A21\uFF1Apublic/precision-assembly/\u6E90\u7801/build.py\u3001movement.py\u3001casework.py\u3002\u5206\u5C42\u51FD\u6570\uFF1Apublic/precision-assembly/\u6E90\u7801/assembly_motion.py\uFF0C\u53EF\u4F20\u5165\u5176\u4ED6\u6709\u5E8F\u96F6\u4EF6\u4E0E\u5404\u5C42\u6DF1\u5EA6\u8DDD\u79BB\u3002\u76F4\u63A5\u53CC\u51FB public/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command \u6253\u5F00\u6216\u5236\u4F5C\uFF1B\u4E5F\u53EF\u6267\u884C npm run check:source \u68C0\u67E5\uFF0Cnpm run rebuild:scene \u4ECE\u6E90\u7801\u91CD\u5EFA\uFF08\u65E7\u5DE5\u7A0B\u4E0E\u5E27\u79FB\u5165\u5907\u4EFD\uFF09\uFF0Cnpm run render:scene \u660E\u786E\u542F\u52A8\u6E32\u67D3\u3002\u4E0D\u4F1A\u81EA\u52A8\u5B89\u88C5 Blender\u3001ffmpeg\u3001ffprobe \u6216 Python\u3002\u5B8C\u6574\u6E32\u67D3\u8017\u65F6\u8F83\u957F\uFF1B\u9ED8\u8BA4\u590D\u7528\u6210\u7247\u3002\n\n\u4FEE\u6539\u6A21\u578B\u3001\u6750\u8D28\u6216\u955C\u5934\u540E\uFF0C\u5E94\u901A\u8FC7 Blender \u91CD\u6E32\u67D3\uFF0C\u518D\u66F4\u65B0 Remotion \u7684\u89C6\u9891\u7D20\u6750\uFF1B\u6D4F\u89C8\u5668\u4E0D\u80FD\u5B9E\u65F6\u4FEE\u6539\u8BE5\u4E09\u7EF4\u6A21\u578B\u3002\u5DE5\u7A0B\u5185\u5DF2\u6253\u5305\u7EB9\u7406\u4E0E\u5B57\u4F53\uFF1B\u6E90\u7801\u91CD\u5EFA\u4FDD\u7559\u539F macOS \u5B57\u4F53\u67E5\u627E\u65B9\u5F0F\u3002\u58F0\u97F3\u4EC5\u7528\u4E8E\u5B8C\u6574\u7EC4\u5408\uFF1B\u539F\u7247\u5185\u5D4C\u97F3\u8F68\u9759\u97F3\uFF0C\u5355\u72EC\u539F\u58F0\u6309\u5E27\u540C\u6B65\uFF0CincludeAudio={false} \u53EF\u5173\u95ED\u3002\u539F\u58F0\u91CD\u5408\u6210\u7684 sound.py \u989D\u5916\u9700\u8981 numpy\uFF1B\u9ED8\u8BA4\u65E0\u9700\u91CD\u5408\u6210\u3002\n\n\u5206\u5C42\u52A8\u4F5C\u91C7\u7528\u539F\u8D1D\u585E\u5C14\u5173\u952E\u5E27\uFF1A\u9996\u5E27241\uFF0C\u9010\u5C42\u5EF6\u8FDF2\u5E27\uFF1B\u96F6\u4EF6\u5728252+2i\u5F00\u59CB\u3001305+2i\u5C55\u5F00\u5B8C\u3001357+i\u7ED3\u675F\u505C\u7559\u3001405+2i\u5F52\u4F4D\u3001432\u7EDF\u4E00\u4FDD\u6301\u5B8C\u6574\u3002\u4E94\u7EC4\u673A\u82AF\u6DF1\u5EA6\u8DDD\u79BB\u4E3A0\u30010.85\u30011.45\u30012.2\u30013.05\uFF0C\u523B\u5EA6\u57084.4\u3001\u6307\u94885.3\u3001\u8868\u955C5.8\u3002\u5177\u4F53\u673A\u68B0\u8868\u662F\u793A\u4F8B\uFF0C\u4E0D\u662F\u53EF\u5236\u9020\u6216\u771F\u5B9E\u8D70\u65F6\u7684\u949F\u8868\u9A8C\u8BC1\u3002\u81EA\u6709\u6E90\u7801Apache-2.0\uFF0C\u7CFB\u7EDF\u5B57\u4F53\u4E0E\u7B2C\u4E09\u65B9\u8F6F\u4EF6\u4FDD\u7559\u539F\u6743\u5229\uFF0C\u89C1SOURCE.json\u4E0ELICENSE\u3002",
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      reproduction: {
+        objects: "\u771F\u5B9E\u4E09\u7EF4\u91D1\u5C5E\u96F6\u4EF6\u3001\u4E94\u7EC4\u673A\u82AF\u3001\u523B\u5EA6\u5708\u3001\u84DD\u94A2\u6307\u9488\u3001\u8868\u955C\u4E0E\u5B9E\u4F53\u955C\u5934",
+        presentation: "1920\xD71080\u6A2A\u5411\u753B\u5E45\uFF0C\u8FD1\u9ED1\u65E0\u7F1D\u6444\u5F71\u68DA\uFF0C\u6696\u91D1\u673A\u82AF\u3001\u94C2\u91D1\u58F3\u3001\u8C61\u7259\u73D0\u7405\u523B\u5EA6\u5708\u3001\u84DD\u94A2\u6307\u9488\u548C\u7EA2\u8272\u5B9D\u77F3\u8F74\u627F\u3002\u8F6F\u7BB1\u706F\u6CBF\u771F\u5B9E\u5012\u89D2\u4EA7\u751F\u7EC6\u7A84\u53CD\u5149\uFF0C\u771F\u5B9E\u666F\u6DF1\uFF1B\u4FDD\u7559\u6BD4\u4F8B\u4E0E\u6784\u56FE\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u5207\u3002",
+        materials: [
+          "\u96F6\u4EF6\u4E3A\u5B9E\u4F53\u4E09\u7EF4\u7F51\u683C\uFF0C\u5012\u89D2\u3001\u9F7F\u8F6E\u3001\u87BA\u9489\u4E0E\u8F74\u627F\u5747\u7531\u51E0\u4F55\u5EFA\u7ACB\uFF1B\u5E95\u677F\u73CD\u73E0\u7EB9\u4EC5\u63D0\u4F9B\u7EC6\u5FAE\u51F9\u51F8\u4E0E\u7C97\u7CD9\u5EA6\u3002",
+          "\u91D1\u3001\u94F6\u3001\u9EC4\u94DC\u4E0E\u84DD\u94A2\u4E3A\u91D1\u5C5E\u6750\u8D28\uFF1B\u8868\u955C\u6709\u900F\u5C04\uFF0C\u5B9E\u4F53\u8F6F\u7BB1\u706F\u4E0E\u6444\u5F71\u68DA\u7167\u660E\uFF0C\u4F7F\u7528Cycles\u6E32\u67D3\u3002"
+        ],
+        start_state: "\u8FD1\u8DDD\u79BB\u5C55\u793A\u53D1\u6761\u76D2\u3001\u9542\u7A7A\u5939\u677F\u4E0E\u91D1\u5C5E\u5012\u89D2\uFF0C\u955C\u5934\u7F13\u6162\u63A8\u8FDB\u3002",
+        phases: [
+          "0\u20136\u79D2\u5C55\u793A\u53D1\u6761\u76D2\u3001\u5939\u677F\u548C\u6446\u8F6E\u8FD0\u884C\uFF1B6\u201310\u79D2\u5C55\u793A\u5B8C\u6574\u5916\u89C2\u3002",
+          "10\u201318\u79D2\u96F6\u4EF6\u6CBF\u6DF1\u5EA6\u9519\u5CF0\u5C55\u5F00\uFF0C\u5B9E\u4F53\u955C\u5934\u73AF\u7ED5\uFF0C\u518D\u6309\u539F\u88C5\u914D\u4F4D\u7F6E\u56DE\u88C5\u3002",
+          "18\u201322\u79D2\u4FDD\u7559\u5B8C\u6574\u6574\u8868\uFF0C\u955C\u5934\u7F13\u6162\u63A8\u8FDB\uFF0C\u753B\u9762\u6DE1\u51FA\u6536\u5C3E\u3002"
+        ],
+        end_state: "\u6240\u6709\u5C42\u6062\u590D\u5B8C\u6574\u88C5\u914D\uFF1B18\u201322\u79D2\u955C\u5934\u7F13\u6162\u63A8\u8FDB\uFF0C\u753B\u9762\u6DE1\u51FA\u81F3\u9ED1\u8272\u3002",
+        details: [
+          "\u4F7F\u7528Blender\u5EFA\u7ACB\u771F\u5B9E\u4E09\u7EF4\u6A21\u578B\u4E0E\u52A8\u753B\uFF0C\u518D\u7528Remotion\u6309\u5F53\u524D\u5E27\u63A5\u51651920\xD71080\u300124\u5E27/\u79D2\u7684\u539F\u751F\u6E32\u67D3\uFF0C\u4E0D\u7528\u4E8C\u7EF4\u56FE\u5F62\u6A21\u4EFF\u91D1\u5C5E\u51E0\u4F55\u3002",
+          "\u8868\u5F846\u4E2A\u573A\u666F\u5355\u4F4D\uFF1B\u4E94\u7EC4\u673A\u82AF\u5C55\u5F00\u8DDD\u79BB\u4E3A0\u30010.85\u30011.45\u30012.2\u30013.05\uFF0C\u523B\u5EA6\u57084.4\uFF0C\u6307\u94885.3\uFF0C\u8868\u955C5.8\u3002\u4EE5\u7B2C241\u5E27\u4E3A\u672C\u6BB5\u9996\u5E27\uFF0C\u6BCF\u7EC4\u5EF6\u8FDF2\u5E27\uFF1A252+2i\u5F00\u59CB\u3001305+2i\u8FBE\u5230\u5C55\u5F00\u8DDD\u79BB\u3001357+i\u4FDD\u6301\u5230\u6B64\u3001405+2i\u5F52\u4F4D\u3001\u7B2C432\u5E27\u5B8C\u6574\u3002\u4F4D\u7F6E\u53D8\u5316\u4FDD\u7559\u8D1D\u585E\u5C14\u66F2\u7EBF\u3002",
+          "\u955C\u593465\u6BEB\u7C73\u7126\u8DDD\uFF1B\u4F4D\u7F6E\u4F9D\u6B21\u4E3A\u7B2C241\u5E27(7,3.8,30)\u3001310\u5E27(16,5,26)\u3001360\u5E27(16.5,4.8,26)\u3001432\u5E27(7,3.8,30)\uFF0C\u5BF9\u5E94\u89C6\u70B9\u7531(.25,.5,1)\u5230(.65,.65,1.5)\u518D\u5230(.1,.6,.3)\u3002",
+          "\u6446\u8F6E\u4EE548\u5EA6\u632F\u5E45\u3001\u6BCF\u79D22.5\u6B21\u5F80\u8FD4\u8FD0\u52A8\uFF0C\u630924\u5E27\u9010\u5E27\u8BA1\u7B97\uFF1B\u8F6E\u7CFB\u4FDD\u6301\u5404\u81EA\u56FA\u5B9A\u89D2\u901F\u5EA6\uFF0C\u79D2\u948822\u79D2\u626B\u8FC7132\u5EA6\u3002"
+        ],
+        retain: "\u771F\u5B9E\u91D1\u5C5E\u5012\u89D2\u3001\u5404\u5411\u5F02\u6027\u53CD\u5C04\u3001\u9542\u7A7A\u673A\u82AF\u3001\u84DD\u94A2\u6307\u9488\u4E0E\u5B9D\u77F3\u8F74\u627F\uFF1B\u4FDD\u7559\u539F\u751F24\u5E27\u9010\u683C\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u516B\u5C42\u88C5\u914D\u4F4D\u7F6E\u3002",
+        avoid: "\u4E0D\u4EE5\u4E8C\u7EF4\u5361\u7247\u3001\u5E73\u9762\u6574\u8868\u56FE\u7247\u6216\u4F4E\u7CBE\u5EA6\u51E0\u4F55\u91CD\u7ED8\uFF1B\u4E0D\u6539\u91D1\u5C5E\u6750\u8D28\u3001\u955C\u5934\u8282\u594F\u6216\u88C5\u914D\u4F4D\u7F6E\uFF0C\u4E0D\u63D2\u5E27\uFF1B\u8F6E\u7CFB\u3001\u6446\u8F6E\u4E0E\u79D2\u9488\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+        tempo_note: "\u630924\u5E27/\u79D2\u9010\u683C\u8BA1\u7B97\uFF1B\u96F6\u4EF6\u548C\u955C\u5934\u7684\u4F4D\u7F6E\u53D8\u5316\u4F7F\u7528\u8D1D\u585E\u5C14\u5173\u952E\u5E27\uFF0C\u8F6E\u7CFB\u5300\u901F\u8F6C\u52A8\uFF0C\u6446\u8F6E\u6309\u6B63\u5F26\u5F80\u8FD4\u3002"
+      }
     }
   ],
   redirects: {
@@ -54347,13 +54804,90 @@ function CompositionAudio({ effect, speed, base }) {
   return effect.loop ? /* @__PURE__ */ React4.createElement(Loop, { durationInFrames: Math.max(1, Math.ceil(effect.duration_ms * fps / (1e3 * normalizeSpeed(speed)) - 1e-9)) }, cycle) : cycle;
 }
 
+// catalog/remotion/precision-assembly.jsx
+import React5, { useLayoutEffect as useLayoutEffect3, useRef as useRef3 } from "react";
+import { AbsoluteFill as AbsoluteFill2, Freeze, Html5Audio as Html5Audio2, Html5Video, OffthreadVideo, staticFile as staticFile3, useCurrentFrame as useCurrentFrame5, useRemotionEnvironment as useRemotionEnvironment2, useVideoConfig as useVideoConfig5 } from "remotion";
+
+// catalog/effects/precision-assembly-data.js
+(function(global) {
+  "use strict";
+  const choices = Object.freeze({
+    "precision-assembly-sequence": { start: 0, frames: 528, poster: "\u6574\u8868.png" },
+    "ordered-depth-assembly": { start: 240, frames: 192, poster: "\u5206\u5C42.png" }
+  });
+  function sample(effectId, timeMs) {
+    const part = choices[effectId];
+    if (!part) throw new Error("\u672A\u77E5\u4E09\u7EF4\u7247\u6BB5\uFF1A" + effectId);
+    if (!Number.isFinite(timeMs)) throw new TypeError("\u65F6\u95F4\u5FC5\u987B\u4E3A\u6709\u9650\u6570\u5B57");
+    const local = Math.max(0, Math.min(part.frames - 1, Math.floor(timeMs * 24 / 1e3 + 1e-9)));
+    return { frame: part.start + local, blenderFrame: part.start + local + 1, time: (part.start + local + 0.5) / 24 };
+  }
+  global.WisePrecisionAssembly = Object.freeze({ choices, sample, fps: 24, width: 1920, height: 1080 });
+})(globalThis);
+
+// catalog/remotion/precision-assembly.jsx
+function WisePrecisionAssembly({
+  effectId = "precision-assembly-sequence",
+  speed = 1,
+  includeAudio = true,
+  assetBaseUrl,
+  width,
+  height,
+  timeOverrideMs,
+  onReady,
+  onFrame,
+  onError
+}) {
+  const frame = useCurrentFrame5(), { fps, width: vw, height: vh } = useVideoConfig5();
+  const { isRendering } = useRemotionEnvironment2();
+  const stage = useRef3(null), video = useRef3(null), announced = useRef3(false), latest = useRef3(null);
+  const data = globalThis.WisePrecisionAssembly, part = data.choices[effectId];
+  if (!part) throw new Error("\u672A\u77E5\u4E09\u7EF4\u7247\u6BB5\uFF1A" + effectId);
+  if (!Number.isFinite(speed)) throw new TypeError("\u64AD\u653E\u901F\u5EA6\u5FC5\u987B\u4E3A\u6709\u9650\u6570\u5B57");
+  const rate = Math.min(2, Math.max(0.5, speed));
+  const time = timeOverrideMs ?? Math.min(part.frames / 24 * 1e3, frame / fps * rate * 1e3);
+  const sample = data.sample(effectId, time);
+  latest.current = { time, elapsed: time, frame };
+  const base = assetBaseUrl ? new URL(assetBaseUrl.replace(/\/?$/, "/"), typeof document === "undefined" ? "http://localhost/" : document.baseURI).href : null;
+  const movie = base ? new URL("catalog/assets/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4", base).href : staticFile3("precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4");
+  const audio = base ? new URL("catalog/assets/composition-audio/precision-assembly/soundtrack.wav", base).href : staticFile3("precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4-\u58F0\u8F68.wav");
+  const announce = () => {
+    if (announced.current) return;
+    announced.current = true;
+    onReady?.({ native: true, stage: stage.current, destroy() {
+    }, snapshot() {
+      const canvas = document.createElement("canvas");
+      canvas.width = 1920;
+      canvas.height = 1080;
+      const context = canvas.getContext("2d");
+      if (!context || !video.current || video.current.readyState < 2) throw new Error("\u65E0\u6CD5\u4FDD\u7559\u4E09\u7EF4\u9884\u89C8\u753B\u9762");
+      context.drawImage(video.current, 0, 0);
+      canvas.style.cssText = "width:100%;height:100%;object-fit:contain";
+      return canvas;
+    } });
+  };
+  useLayoutEffect3(() => {
+    onFrame?.(latest.current);
+  }, [time, frame, onFrame]);
+  useLayoutEffect3(() => {
+    announced.current = false;
+    return () => {
+      announced.current = false;
+    };
+  }, [effectId, movie]);
+  const style = { width: "100%", height: "100%", objectFit: "contain" };
+  const imageProps = { src: movie, muted: true, style, onError, pauseWhenBuffering: true };
+  return /* @__PURE__ */ React5.createElement("div", { ref: stage, "data-native-scene": effectId, style: { position: "relative", width: width ?? vw, height: height ?? vh, background: "#080807" } }, /* @__PURE__ */ React5.createElement(AbsoluteFill2, null, /* @__PURE__ */ React5.createElement(Freeze, { frame: sample.time * fps }, isRendering ? /* @__PURE__ */ React5.createElement(OffthreadVideo, { ...imageProps }) : /* @__PURE__ */ React5.createElement(Html5Video, { ...imageProps, ref: video, onLoadedData: announce, onSeeked: announce })), includeAudio && effectId === "precision-assembly-sequence" ? /* @__PURE__ */ React5.createElement(Html5Audio2, { src: audio, playbackRate: rate }) : null));
+}
+
 // remotion/with-audio.jsx
 function WiseMotionEffect2(props) {
   const effect = resolveEffect(props.definition ?? props.effectId, props.variantId);
-  if (props.includeAudio === false || effect.kind !== "composition" || !effect.audio?.tracks?.length) return /* @__PURE__ */ React5.createElement(WiseMotionEffect, { ...props });
-  const defaultBase = props.assetBaseUrl ?? staticFile3("wise-motion");
+  if (effect.source?.native_scene === "blender") return /* @__PURE__ */ React6.createElement(WisePrecisionAssembly, { ...props, effectId: effect.id, assetBaseUrl: props.assetBaseUrl ?? staticFile4("wise-motion") });
+  if (props.includeAudio === false || effect.kind !== "composition" || !effect.audio?.tracks?.length) return /* @__PURE__ */ React6.createElement(WiseMotionEffect, { ...props });
+  const defaultBase = props.assetBaseUrl ?? staticFile4("wise-motion");
   const base = typeof document === "undefined" ? defaultBase : new URL(defaultBase.replace(/\/?$/, "/"), document.baseURI).href;
-  return /* @__PURE__ */ React5.createElement(React5.Fragment, null, /* @__PURE__ */ React5.createElement(CompositionAudio, { effect, speed: props.speed ?? 1, base }), /* @__PURE__ */ React5.createElement(WiseMotionEffect, { ...props }));
+  return /* @__PURE__ */ React6.createElement(React6.Fragment, null, /* @__PURE__ */ React6.createElement(CompositionAudio, { effect, speed: props.speed ?? 1, base }), /* @__PURE__ */ React6.createElement(WiseMotionEffect, { ...props }));
 }
 export {
   DEFAULT_FPS,

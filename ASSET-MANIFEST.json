@@ -747,6 +747,21 @@
       "sha256": "e1ff2de35bfa65604cbb6cf285d2a389ae78f50f7e361554eeb3b582f02828f4"
     },
     {
+      "path": "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
+      "bytes": 523,
+      "sha256": "3edb5fcff36467760ee4156a6180ed3285222053df48ff3276cffdc9fb024602"
+    },
+    {
+      "path": "catalog/assets/composition-audio/precision-assembly/sound.py",
+      "bytes": 6469,
+      "sha256": "183d40f97d48782d71d1c31e7b3393e6c444ab6641876326029add9d4f4c7cdb"
+    },
+    {
+      "path": "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
+      "bytes": 4224044,
+      "sha256": "8bf5cc0934ef91f5e6cc0347839c206b689eb0e9d48eb74451a7029dd8fcf311"
+    },
+    {
       "path": "catalog/assets/composition-audio/selfie/README.md",
       "bytes": 654,
       "sha256": "f75a8e1cb0fda34aa0615463904e431fed8bce7f15e3ed6e714f4195eb6aa7b7"
@@ -930,6 +945,116 @@
       "path": "catalog/assets/pixel-motion/drawing.py",
       "bytes": 7651,
       "sha256": "275c4f8512601461454f4afd6bdc8efa4a3272935ea5880338f4caeeffc62a1f"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/SOURCE.json",
+      "bytes": 3973,
+      "sha256": "833dacc508375d44e0a315e47dcf666b8765e06f474b3c21ec9ca18e67248e22"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/使用说明.md",
+      "bytes": 1960,
+      "sha256": "1b3887744919ad0cafdac85a6e60f72458986c9af84c4076d4d8ef600e13b38a"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/分秒之间.blend",
+      "bytes": 23829849,
+      "sha256": "54023d725b59887e9441634d2bb75dec355b151fd811176724dc33390c5453dd"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/制作说明.md",
+      "bytes": 4122,
+      "sha256": "b061050cdae2cd61580242b98a6ce7f3c65ebcf4da566082fba602bc5c5f3e60"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/成片/分层.png",
+      "bytes": 8343300,
+      "sha256": "6548797cd90e70721af5211530df92ba19abf336d10aac1b94a4167618547c19"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/成片/分秒之间.mp4",
+      "bytes": 28685957,
+      "sha256": "3978817ed2d908ca4a7bbc29bbd829d78f01466fb46b0df9648979066b6d3bba"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/成片/整表.png",
+      "bytes": 8135763,
+      "sha256": "6e8f923f6920eaec937e122cbd70f474ae3d04c9012f7187e74ac2a016c244d3"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/成片/机芯.png",
+      "bytes": 10584248,
+      "sha256": "dd15f7a0e483326c6be31d18a05c859659b1e7424b6781a127dc80bf49ea5118"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/打开与制作.command",
+      "bytes": 10889,
+      "sha256": "510f95bf3105f30aa08dc615de48886245685da05ba135df0775898807432dab"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/材质/底板珍珠纹.png",
+      "bytes": 2531633,
+      "sha256": "75fb8171b941e41728c11a68cea43e9a8652acd9fd0bf0e9bed51859d18f010b"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/材质/来源.json",
+      "bytes": 416,
+      "sha256": "7983eeec9e1ab5cec2a9b73768d3e0df1d3d2e9b4b872424148dbd7b389cea31"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/源码/assembly_motion.py",
+      "bytes": 898,
+      "sha256": "ef544df1f8678530ee4f12d4825e53c769518fa6b38348857955137b01e3a924"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/源码/build.py",
+      "bytes": 13440,
+      "sha256": "db057a57f8f7fd3ef02dda47d5d7516d65884866f34eb28bc7ad061024740a92"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/源码/casework.py",
+      "bytes": 13831,
+      "sha256": "60643018c5162d89ab4c4cc20553adbfc120a6eca93385ace49fb45c7fbfd5d6"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/源码/check_scene.py",
+      "bytes": 1520,
+      "sha256": "5814708dba91bfd282346cba8f5670f24c7e50e88eb8c953915b6fbe0daf402e"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/源码/compose.py",
+      "bytes": 1840,
+      "sha256": "4c4ffe874117c8b453ff3adf1725575698c4dd3074ebe4aab0feab0071e0cdfb"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/源码/movement.py",
+      "bytes": 24017,
+      "sha256": "b68615a92a6fd70570ec315600396da09ac7065175b55cee8554185384d5fd10"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/源码/produce.py",
+      "bytes": 1245,
+      "sha256": "782b0b777b925b58b063fe1d404be89cd36bad8daa0ca1740e9501c14e096358"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/源码/render.py",
+      "bytes": 2548,
+      "sha256": "f2cefdd5ade619de8bb11453530374930a258058341086c4a1567eb6d0bf30c3"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/源码/review.py",
+      "bytes": 5504,
+      "sha256": "17e822d7d9b5c0749b1238a6b0b1f084c0e5ea6000888dd15aeb2a9a942ff183"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/源码/sound.py",
+      "bytes": 6469,
+      "sha256": "183d40f97d48782d71d1c31e7b3393e6c444ab6641876326029add9d4f4c7cdb"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/运行源码.py",
+      "bytes": 3913,
+      "sha256": "f5a301f9e7c7721fdeb88b83befd5c2b0a12f28ff86f01cf054ef2f190e4b6b7"
     },
     {
       "path": "catalog/assets/reel-extract/React-LICENSE.txt",
@@ -1428,8 +1553,8 @@
     },
     {
       "path": "catalog/composition-controls.js",
-      "bytes": 5734,
-      "sha256": "e4d8030f3fc53f6d8dfe79053e0aed80236dabd7a4f742de6cf3e5b411d8e65d"
+      "bytes": 6384,
+      "sha256": "1a26c6e30d1bcb50970c01d9bec22de0940f24942e18502484f5b96ad701de2d"
     },
     {
       "path": "catalog/content.js",
@@ -1672,6 +1797,16 @@
       "sha256": "db8d79f840a05a35750f716475a9a6244ec9a951fc6791506397f309f37d876a"
     },
     {
+      "path": "catalog/effects/precision-assembly-data.js",
+      "bytes": 904,
+      "sha256": "e37d8b90c9be72de93b09f7c0973d33bd7196f4fed1b1c1993a9b55da4ef20bb"
+    },
+    {
+      "path": "catalog/effects/precision-assembly.js",
+      "bytes": 2740,
+      "sha256": "68fb18ba02062da077ede84d75c97acad9185f857f93599d0c76978d3e532232"
+    },
+    {
       "path": "catalog/effects/promo-particles.js",
       "bytes": 30624,
       "sha256": "59e5b6f0ddf22c6b5c68b1705a22da807cbee6b0683f5da150319b311e41e851"
@@ -1868,8 +2003,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 44531,
-      "sha256": "89353da24a9389f742e42f3816513af7e27988dc16122f0a1f738de3963a058d"
+      "bytes": 46418,
+      "sha256": "a7543b9a423f3e687830cfb3997148db2084dfde04a4ac86a6595514c2d1a1ea"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -1953,13 +2088,13 @@
     },
     {
       "path": "catalog/lazy.js",
-      "bytes": 3490,
-      "sha256": "af4162e2fc11c42bcab36b70ee077b2465f8f5574ebd2bff6263afe5b8be1b7e"
+      "bytes": 3559,
+      "sha256": "75b3df391c632636bff858cc743b89a01606bf2dcbfef1a2adadcbd7c0cabe37"
     },
     {
       "path": "catalog/matching.js",
-      "bytes": 10849,
-      "sha256": "16cad4ee10671444c180b6c0c32e7bf45a7e0afd32443f6c88a9e9cae2e6a7f6"
+      "bytes": 11066,
+      "sha256": "dbaf70352be4e68db67feaa87b5ee6e2907ef976ac2f1207a3035993c9015a84"
     },
     {
       "path": "catalog/player-glass.js",
@@ -1973,18 +2108,23 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 2283622,
-      "sha256": "2ab726e5658f9265517505a15ab7345efaad7904db53e580e180a09e30023cfd"
+      "bytes": 2309337,
+      "sha256": "ba592c82b4b8b4473d806ff6c5bf6c469602a3ba5ac8cdbdaacb59af9f85ca5d"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 2825654,
-      "sha256": "3b3db5aa48cee926feacca7c0733ec13e1009ac41dc9c2e0c20c2f9090d89eaf"
+      "bytes": 2856600,
+      "sha256": "48bf3cd4853930cf89dc8822978fb490b19783b9c638d0cca863a1c756bd5d36"
     },
     {
       "path": "catalog/related-preview.js",
       "bytes": 6503,
       "sha256": "6671a5f29a3bddf9759bdb4d01bca0b2b2baa9cc27c2e2b9d0f039ef23a630da"
+    },
+    {
+      "path": "catalog/remotion/binary-assets-installer.mjs",
+      "bytes": 2138,
+      "sha256": "58486c46927922748ecd07f016585b02efe351bb142c54a98c5791387337d262"
     },
     {
       "path": "catalog/remotion/butterfly.jsx",
@@ -2005,6 +2145,11 @@
       "path": "catalog/remotion/pixel-motion.jsx",
       "bytes": 1209,
       "sha256": "3b87803169646f8c87106cde8107760e637a11a276eddb9710807c5b64203b39"
+    },
+    {
+      "path": "catalog/remotion/precision-assembly.jsx",
+      "bytes": 3185,
+      "sha256": "56c795204d1e35dbfce931d748e67f6d18b08ac8a5299f382f00048c4176eac1"
     },
     {
       "path": "catalog/remotion/reel-extract/AIBotExpressions.jsx",
@@ -2123,8 +2268,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 1857774,
-      "sha256": "a185f2289d7dce9d9d6b6096abf80ddf949dc80af547db3b1f172b69414a010b"
+      "bytes": 1971931,
+      "sha256": "273d58ee25121785fd1dd8d8b41bda2be0c437c03da71d60ecabb0405bca26fe"
     },
     {
       "path": "catalog/runtime.js",

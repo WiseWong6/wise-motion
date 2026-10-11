@@ -14,10 +14,10 @@ assertLayerBuildCurrent();
 const root = fileURLToPath(new URL('../', import.meta.url));
 const read = relative => readFile(path.join(root, relative), 'utf8');
 const data = JSON.parse(await read('catalog/registry.json'));
-assert.equal(data.effects.length, 433);
-assert.equal(data.effects.filter(x => x.kind === 'action').length, 298);
+assert.equal(data.effects.length, 435);
+assert.equal(data.effects.filter(x => x.kind === 'action').length, 299);
 assert.equal(data.effects.filter(x => x.kind === 'illustration').length, 93);
-assert.equal(data.effects.filter(x => x.kind === 'composition').length, 42);
+assert.equal(data.effects.filter(x => x.kind === 'composition').length, 43);
 assert.equal(new Set(data.effects.map(x => x.id)).size, data.effects.length);
 for(const [from,to] of Object.entries(data.redirects||{})){
   assert.ok(!data.effects.some(e=>e.id===from),'旧书签不应覆盖现有条目');
@@ -64,7 +64,7 @@ for (const e of data.effects) {
   assert.ok(typeof e.source.factory === 'string' && e.source.factory.length, e.id+' 缺少绘制入口');
   assert.equal(e.source.origin, 'original');
   assert.equal(e.source.license, 'Apache-2.0');
-  assert.equal(e.source.library, 'animejs@4.5.0');
+  assert.equal(e.source.library, e.source.native_scene==='blender'?'blender@4.5.14':'animejs@4.5.0');
   for(const reference of [e.source.reference,...(e.source.additional_references||[])].filter(Boolean)){
     assert.ok(typeof reference.name==='string'&&reference.name.trim(),e.id+' 缺少参考来源名称');
     if(reference.url)assert.equal(new URL(reference.url).protocol,'https:',e.id+' 的参考来源必须使用 HTTPS');

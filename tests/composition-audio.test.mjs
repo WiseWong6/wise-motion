@@ -42,7 +42,7 @@ test('目录的声音、播放和重播按钮把本次点击传给播放器',asy
 
 test('声音资源仅登记在完整组合，所有外观、时间与文件可独立复用', async () => {
   const voiced = effectDefinitions.filter(effect => effect.audio);
-  assert.equal(voiced.length, 18);
+  assert.equal(voiced.length, 19);
   for (const effect of effectDefinitions) {
     if (effect.kind !== 'composition') assert.equal(effect.audio, undefined, effect.id);
     for (const variant of effect.variants || [null]) {
@@ -92,6 +92,12 @@ test('原声截取与实际组合画面对应；复制源码保留文件、合�
     const html = env.w.MotionExport.code(effect);
     assert.match(html,/id="sound"/);assert.match(html,/catalog\/remotion-player\.js/);
     for (const composition of effectDefinitions.filter(item => item.audio)) {
+      if(composition.source.remotion){
+        const copied=env.w.MotionExport.remotionCode(composition);
+        assert.ok(copied.includes('includeAudio'));
+        assert.ok(copied.includes(composition.audio.tracks[0].src));
+        continue;
+      }
       const copied = env.w.MotionExport.code(composition);
       const definition = JSON.parse(copied.match(/const effect = ([\s\S]*?);\s*const player =/)[1]);
       assert.equal(definition.source.path, composition.source.path, composition.id);

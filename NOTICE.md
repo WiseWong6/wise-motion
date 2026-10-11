@@ -105,3 +105,9 @@ Remotion、React 等视频复用依赖由目标工程安装，版本和接入方
 `catalog/remotion/reel-extract/` 保留用户指定介绍视频中的可读组件与运动公式，`catalog/effects/reel-extract.js` 是由这些源码生成的离线绘制文件。该文件内置 React 与 React DOM 19.3.0，保留 MIT 声明及 `catalog/assets/reel-extract/React-LICENSE.txt`、`ReactDOM-LICENSE.txt`；固定种子算法与 Remotion 4.0.532 的字符串种子取样一致，相关条款见同目录 `Remotion-LICENSE.txt`。
 
 人物角色底图与六种垃圾拼贴为本项目自行生成的素材，用户已于 2026-10-08 确认来源；其中“疑惑人物组”和“庆祝人物组”的角色底图由 GPT / Codex 生成。它们与目录缩略图从介绍视频工程复制，收录时未重新生成或重绘，运行图片随后无损转为 WebP；目录缩略图沿用各原条目的来源与许可。图片校验值及范围见 `catalog/assets/reel-extract/SOURCE.json`。彩蝶变蓝蝶继续使用既有 `catalog/assets/butterfly/` 图集及其来源说明。
+
+## 精密结构展示与拆装
+
+新增组合与独立动作以用户认可的《分秒之间》真实三维机械怀表工程为示例。模型、材质节点、灯光、镜头、动画、声音合成与接入程序为自有代码，遵循 Apache-2.0。原生 Cycles 成片和三张4K静帧保持原样；Blender 工程与建模源码随包保留。底板珍珠纹由 Codex 宿主内置图片生成工具生成，仅控制表面凹凸及粗糙度，不是整表图片。来源及原件摘要见 [三维工程说明](catalog/assets/precision-assembly/SOURCE.json)；原声及合成排程见 [声音说明](catalog/assets/composition-audio/precision-assembly/SOURCE.json)。
+
+Blender 使用其自身 GPL 许可，Remotion 与 React 使用软件包附带许可；不将软件本身打包或重新授权。已保存工程内的原系统字体保持原权利归属，不声明为 Apache-2.0 字体。当前库内保留工程以供用户本地编辑；源码重建保留原 macOS 字体查找方式。轮系、摆轮与秒针用于视觉演示，没有制造或真实走时验证。

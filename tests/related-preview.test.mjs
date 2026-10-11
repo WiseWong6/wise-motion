@@ -11,12 +11,15 @@ test('全部组合直接关联独立动作，弹窗从头自动播放且不改�
   try{
     const {w}=env,d=w.document;
     for(const effect of data.effects.filter(e=>e.kind==='composition')){
-      click(d,`[data-effect="${effect.id}"]`);seek(w,'scrub',650);
+      click(d,`[data-effect="${effect.id}"]`);
+      if(effect.source.native_scene==='blender')await Promise.resolve();
+      seek(w,'scrub',650);
       assert.deepEqual([...d.querySelectorAll('#related [data-related]')].map(n=>n.dataset.related),effect.actions);
       assert.ok(effect.actions.length);
       for(const id of effect.actions){
         const target=w.MotionKit.resolveVariant(data.effects.find(e=>e.id===id),effect.action_variants?.[id]),time=d.getElementById('scrub').value,original=frameMarkup(d.getElementById('preview')),hash=w.location.hash,observers=env.listeners.size;
         const trigger=click(d,`#related [data-related="${id}"]`);
+        if(target.source.native_scene==='blender')await Promise.resolve();
         assert.ok(d.getElementById('related-dialog').open);
         assert.equal(d.getElementById('related-title').textContent,target.name);
         assert.equal(d.querySelector('#related-preview .motion-stage').dataset.effect,id);

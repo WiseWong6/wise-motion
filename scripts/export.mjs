@@ -1,6 +1,7 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 // 只写出目录复制功能生成的原工程/组件示例，不安装依赖。
-import {readFile, open, mkdir, lstat, realpath, unlink, rmdir} from 'node:fs/promises';
+import {readFile, open, mkdir, lstat, realpath, unlink, rmdir, chmod} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {runInNewContext} from 'node:vm';
@@ -31,7 +32,15 @@ export async function projectFor(query, {variantId} = {}) {
   const context = {MotionKit: {resolveVariant: resolveEffect}, MotionContent: contentApi, MotionRemotionSources: sources};
   runInNewContext(await readFile(path.join(root, 'catalog/export.js'), 'utf8'), context, {filename: 'catalog/export.js'});
   const project = context.MotionExport.projectFiles(effect, {variantId: effect.variant_id});
-  return {effect, kind: project.kind, files: {...project.files}};
+  const files={...project.files};
+  for(const asset of effect.source.remotion?.binary_files||[]){
+    for(const file of [asset.source,asset.target])if(!file||path.isAbsolute(file)||file.includes('\\')||file.split('/').some(p=>!p||p==='..'||p==='.') )throw Error('素材路径越界：'+file);
+    if(Object.hasOwn(files,asset.target))throw Error('素材目标重复：'+asset.target);
+    const bytes=await readFile(path.join(root,asset.source));
+    if(bytes.length!==asset.bytes||createHash('sha256').update(bytes).digest('hex')!==asset.sha256)throw Error('素材清单与文件不符：'+asset.source);
+    files[asset.target]=bytes;
+  }
+  return {effect, kind: project.kind, files};
 }
 
 export async function exportEffect(query, {variantId, outDir} = {}) {
@@ -43,7 +52,7 @@ export async function exportEffect(query, {variantId, outDir} = {}) {
   const project = await projectFor(query, {variantId});
   const entries = Object.entries(project.files);
   for (const [file, content] of entries) {
-    if (!file || path.isAbsolute(file) || file.split(/[\\/]/).some(part => part === '..' || !part) || file.includes('\\') || typeof content !== 'string') throw Error('生成文件路径或内容无效：' + file);
+    if (!file || path.isAbsolute(file) || file.split(/[\\/]/).some(part => part === '..' || part === '.' || !part) || file.includes('\\') || (typeof content !== 'string'&&!Buffer.isBuffer(content))) throw Error('生成文件路径或内容无效：' + file);
   }
   // 写入前核对全部目标。目录里无关的文件可以保留，同名文件或中间链接则整批停止。
   async function checkDestinations() {
@@ -74,6 +83,7 @@ export async function exportEffect(query, {variantId, outDir} = {}) {
       await ensureDirectory(path.dirname(dest));
       const handle = await open(dest, 'wx'); written.push(dest);
       try { await handle.writeFile(content); } finally { await handle.close(); }
+      if(project.effect.source.remotion?.executable_files?.includes(file))await chmod(dest,0o755);
     }
   } catch (error) {
     for (const file of written.reverse()) await unlink(file);

@@ -34,7 +34,7 @@ test('全部正式条目及变体提供独立的 Remotion 提示词，无外部�
         count++;
       }
     }
-    assert.equal(count, 565);
+    assert.equal(count, 567);
   }finally{env.close();}
 });
 test('关键组合补足全文、布局与运动参数，特定配色不会被通用黑底覆盖',async()=>{
