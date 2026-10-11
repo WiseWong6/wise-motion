@@ -10,6 +10,8 @@
     "build": "node scripts/build.mjs && node scripts/build-remotion.mjs",
     "check": "node scripts/check.mjs && npm run check:fonts",
     "check:fonts": "python3 scripts/build-fonts.py --check",
+    "publish:package": "node scripts/publish-package.mjs",
+    "test:publish": "node --test tests/package-publish.test.mjs",
     "build:history": "node scripts/build-history.mjs",
     "check:history": "node scripts/build-history.mjs --check",
     "test": "npm run check && npm run check:history && node --test tests/*.test.mjs",

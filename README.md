@@ -171,6 +171,17 @@ WISE_MOTION_RENDER_DIR="/目标工程/renders" npm run render -- stagger-in stag
 
 维护目录后运行 `npm run check`、`python3 scripts/verify_project_skills.py` 及受影响测试。`npm test` 还包含历史迁移检查，需本地私有档案。技术核对见 [验证矩阵](references/validation-matrix.md)，人工播放见 [验收步骤](tests/manual.md)，目录维护见 [维护说明](references/catalog-maintenance.md)。
 
+## 发布组件包
+
+维护者先构建、检查并用 `npm pack --pack-destination /发布目录` 生成包，再执行：
+
+```sh
+npm run publish:package -- /发布目录/wise-motion-版本.tgz --dry-run
+npm run publish:package -- /发布目录/wise-motion-版本.tgz
+```
+
+发布脚本使用当前 npm 11 客户端向官方仓库发布，保留正常登录与网页身份验证，只压缩上传请求，避免包转为上传数据后体积膨胀；完整工程、素材和包摘要不变。脚本要求包名称和版本与当前项目一致。升级 npm 大版本后需先适配接口并运行 `npm run test:publish`，验证真实请求的压缩和包内容。试运行不会上架，正式发布仍需核对官方仓库的版本与包摘要。
+
 ## 许可
 
 自有技能与源码使用 **Apache-2.0**，允许商业使用、修改、分发和闭源集成；第三方代码、字体和素材保留各自许可与署名。使用及分发前查阅 [版权与来源说明](NOTICE.md) 和 [完整许可](LICENSE)。
