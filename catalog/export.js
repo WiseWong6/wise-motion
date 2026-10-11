@@ -199,6 +199,7 @@
     const stateDescription=value=>describe(String(value||'').replace(/尚未/g,'还未'));
     const startState=stateDescription(spec.start_state),endState=stateDescription(spec.end_state);
     const clockNote=describe(spec.clock_note),details=(spec.details||[]).map(describe).filter(Boolean);
+    const preparation=(spec.preparation||[]).map(describe).filter(Boolean);
     const contentLines=[...(spec.content||[]).map(text=>effect.content?describe(text):text)
       .filter(text=>String(text??'').trim()).map(text=>JSON.stringify(text)),...content.lines];
     const frame=effect.source?.remotion;
@@ -211,6 +212,7 @@
       '画面与对象：'+describe(spec.objects||detail.objects),
       ...(presentation?['构图与配色：'+presentation]:entry?['画幅：3:4。']:['画幅：'+(frame?frame.width+'×'+frame.height:'640×360')+'；整体等比缩放。']),
       ...(materials?['视觉材料：'+materials]:[]),
+      ...(preparation.length?['图形与素材准备：',...preparation]:[]),
       ...(startState?['起始状态：'+startState]:[]),
       '动作步骤：',...phases.map((phase,i)=>String(i+1)+'. '+phase),
       '时间：'+duration.toFixed(2)+' 秒'+(effect.loop?'为一个周期，首尾连续循环。':'的片段；结束画面按最后一步及收尾说明呈现。')
@@ -257,7 +259,7 @@
         return (describe(track.name)||'声音轨道 '+(i+1))+'：实际播放 '+(start/1000/speed).toFixed(2)+'–'+((start+span)/1000/speed).toFixed(2)+' 秒；源音频截取 '+number(offset/1000)+'–'+number((offset+span*rate)/1000)+' 秒（源截取起点及终点不随观看倍速改变）；音频播放倍率 '+number(rate)+' × '+speed+' = '+number(rate*speed)+'；音量 '+number((track.volume??1)*100)+'%；淡入 '+number((track.fade_in_ms??0)/1000/speed)+' 秒，淡出 '+number((track.fade_out_ms??0)/1000/speed)+' 秒（实际播放时间）。';
       }));
     // 标题和正文分开，每个步骤或图层各占一段；画面数据与源码内容不作改写。
-    const section=/^(动效说明|示例样式|整体意图|画面与对象|构图与配色|画幅|视觉材料|起始状态|动作步骤|时间|动作时钟|时间口径补充|制作细节|画面文案与数据|替换文字造型|替换读数造型|实现参数|计算方式|文字与讲述|可调速度曲线|时间安排|设计运动时钟|动作节拍|触发与联动|衔接关系|收尾状态|需要保留|实现限制|动作细节|纸页设置|组成图层|镜头顺序|声音)(?:（(.+)）)?：([\s\S]*)$/;
+    const section=/^(动效说明|示例样式|整体意图|画面与对象|构图与配色|画幅|视觉材料|图形与素材准备|起始状态|动作步骤|时间|动作时钟|时间口径补充|制作细节|画面文案与数据|替换文字造型|替换读数造型|实现参数|计算方式|文字与讲述|可调速度曲线|时间安排|设计运动时钟|动作节拍|触发与联动|衔接关系|收尾状态|需要保留|实现限制|动作细节|纸页设置|组成图层|镜头顺序|声音)(?:（(.+)）)?：([\s\S]*)$/;
     return lines.filter(Boolean).map(line=>{
       const match=line.match(section);
       if(!match)return line;

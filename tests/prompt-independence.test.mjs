@@ -10,6 +10,25 @@ async function setup(){
   return env;
 }
 const forbidden=/HyperFrames|原片|原作|原工程|原源码|随附|随包|本地素材|已有曲线|复用.*(?:示例|函数|图层)|源码|读取.*参考|当前目录|\/Users\/|file:\/\/|(?:history-nature|notes-source)\.js|hopperBeans|DandelionJourney|WeaveRhythm|createOrb|cameraPose/i;
+test('美术素材与图形先准备，图片和纯代码零件不会混淆',async()=>{
+  const env=await setup();
+  const get=id=>env.w.MotionExport.prompt(data.effects.find(e=>e.id===id),{},data);
+  try{
+    for(const id of ['collage-film-sequence','stack-flick','material-evolution-sequence','civilization-growth-sequence','geometric-poster-sequence']){
+      const output=get(id);
+      assert.ok(output.indexOf('# 图形与素材准备')>=0,id+' 缺少准备阶段');
+      assert.ok(output.indexOf('# 图形与素材准备')<output.indexOf('# 动作步骤'),id+' 应先有图形，再写运动');
+    }
+    assert.match(get('stack-flick'),/空白纸/);
+    assert.match(get('stack-flick'),/文字独立居中排版/);
+    assert.match(get('material-evolution-sequence'),/书法「道」字参考图/);
+    assert.match(get('civilization-growth-sequence'),/十六个透明植物零件/);
+    assert.match(get('civilization-growth-sequence'),/茎和根须用代码/);
+    assert.match(get('geometric-poster-sequence'),/七个独立代码图层/);
+    assert.match(get('joint-rule-unfold'),/不需要生成尺子图片/);
+    assert.match(get('crank-linked-turn'),/手掌、轮盘分别为透明背景图片/);
+  }finally{env.close();}
+});
 test('全部正式条目及变体提供独立的 Remotion 提示词，无外部参照或空步骤',async()=>{
   const env=await setup();
   try{

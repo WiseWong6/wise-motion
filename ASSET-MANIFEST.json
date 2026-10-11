@@ -2003,8 +2003,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 46418,
-      "sha256": "1e541c39e4593d9973f49f3cefa7079e6a1221399e70d31aead5f0df860b539d"
+      "bytes": 46594,
+      "sha256": "279adad796d75b2cd6828db68e718be7bec9a63c6a85d74c3998dc6bfcc9242a"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -2108,13 +2108,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 2309337,
-      "sha256": "ba592c82b4b8b4473d806ff6c5bf6c469602a3ba5ac8cdbdaacb59af9f85ca5d"
+      "bytes": 2330748,
+      "sha256": "21e87fece0e329b236660988d53656a38990abbb184c8aeb1d8b9800d781b410"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 2856600,
-      "sha256": "48bf3cd4853930cf89dc8822978fb490b19783b9c638d0cca863a1c756bd5d36"
+      "bytes": 2879319,
+      "sha256": "476b1f1c21da883b76fbcd1c5bc9584a0868f92246bb1b8b76bde6d0e68fbc2e"
     },
     {
       "path": "catalog/related-preview.js",
