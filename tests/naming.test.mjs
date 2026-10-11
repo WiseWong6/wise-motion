@@ -60,8 +60,8 @@ test('旧名称搜索后，目录标题、复制标题、提示词和代码使�
     card.click();
     assert.equal(d.querySelector('#preview .motion-stage').dataset.effect,'layout-reorder');
     assert.equal(d.getElementById('preview-title').textContent,effect.name);
-    assert.ok(d.getElementById('prompt').textContent.includes('动效说明：'+effect.name));
-    assert.ok(d.getElementById('code').textContent.includes('/* '+effect.name+' · Remotion 组件示例'));
+    assert.ok(d.getElementById('prompt').textContent.includes('# 动效说明\n\n'+effect.name));
+    assert.ok(d.getElementById('code').textContent.includes('/* '+effect.name+' · Remotion 接入示例'));
     d.getElementById('copy-title').click();await new Promise(resolve=>setTimeout(resolve,0));
     assert.equal(copied,effect.name);
     assert.equal(w.MotionRuntime.instanceCount,1);

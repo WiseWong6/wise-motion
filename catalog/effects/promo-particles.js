@@ -241,3 +241,10 @@
   };
   Object.assign(F['particle-word'], {sampleOutline, outline, makeTargets, position, particles:Object.freeze(particles), targets:Object.freeze(targets), impact, sourceTrigger:26, trigger_ms:150});
 })(globalThis);
+
+/* Pixel example shares the imported painter; preserve every existing example and factory helper. */
+(function(F){
+  const prior=F["particle-word"];
+  F["particle-word"]=Object.assign((root,kit,definition={})=>definition.variant_id==='pixel-motion'
+    ? globalThis.WisePixelMotion.factory(root,kit,{...definition,id:"particle-word"}) : prior(root,kit,definition),prior);
+})(globalThis.MotionFactories);

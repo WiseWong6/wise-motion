@@ -53,3 +53,10 @@
     return custom?M.textReady(root,[{family,text:chosen.join('')}],setup):setup();
   };
 })(globalThis.MotionFactories);
+
+/* Pixel example shares the imported painter; preserve every existing example and factory helper. */
+(function(F){
+  const prior=F["word-slam"];
+  F["word-slam"]=Object.assign((root,kit,definition={})=>definition.variant_id==='pixel-motion'
+    ? globalThis.WisePixelMotion.factory(root,kit,{...definition,id:"word-slam"}) : prior(root,kit,definition),prior);
+})(globalThis.MotionFactories);

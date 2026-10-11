@@ -133,8 +133,8 @@ test('历史目录筛选与配方切换同步输出、源码和时长，前后�
     assert.ok(d.getElementById('code').textContent.includes(env.w.MotionHistory.source_files[entry.code[0].file].content));
     // 提示词跟随保留配方切换；动作要求与内部审查说明分开核对。
     const prompt=d.getElementById('prompt').textContent;
-    assert.ok(prompt.includes('动效说明：'+next.name));
-    assert.ok(!prompt.includes('动效说明：'+effect.name));
+    assert.ok(prompt.includes('# 动效说明\n\n'+next.name));
+    assert.ok(!prompt.includes('# 动效说明\n\n'+effect.name));
     assert.ok(prompt.includes(next.purpose.replace(/[。；]+$/,'')));
     assert.equal(decodeURI(new URL(d.querySelector('#history-details a').href).pathname),entry.code[0].file);
     d.getElementById('next-effect').click();await tick();assert.equal(w.MotionHistoryRuntime.instanceCount,1);

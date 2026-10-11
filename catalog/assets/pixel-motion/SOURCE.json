@@ -1,0 +1,25 @@
+{
+  "name": "User-supplied r.py pixel animation",
+  "original_sha256": "5506cfca7a5a57fa14e5467c983f0de211847d0faf71a56407e722c2323e0b1a",
+  "drawing_sha256": "275c4f8512601461454f4afd6bdc8efa4a3272935ea5880338f4caeeffc62a1f",
+  "changes": [
+    "NEW BOT \u2192 WISE in opening and ending",
+    "Recalculate centered word width from WISE",
+    "Extract visual painter; omit audio and encoder execution",
+    "Set native playback rate to 1.5 times the original; duration 20 seconds",
+    "Freeze building geometry and local window lights once; scroll and wrap complete strips without re-randomizing"
+  ],
+  "design_size": [
+    320,
+    180
+  ],
+  "output_size": [
+    1280,
+    720
+  ],
+  "fps": 30,
+  "source_duration_seconds": 30,
+  "base_rate": 1.5,
+  "duration_seconds": 20,
+  "license": "Apache-2.0"
+}

@@ -70,3 +70,18 @@ test('目录按钮与无关绘制器清单不影响审计，绘制、字体和�
  for(const file of ['catalog/app.css','remotion/frame-scripts.mjs'])assert.equal(changed(file),before,file);
  for(const file of ['catalog/frame.css','catalog/scenes.css','catalog/effects/attention.js','catalog/fonts/Oswald-Bold.woff2','remotion/frame-document.mjs','remotion/index.jsx','remotion/clock.mjs','remotion/layer-policy.mjs'])assert.notEqual(changed(file),before,file);
 });
+
+test('提示词说明不影响已取证的透明资格，绘制参数和样式仍须重新验证',()=>{
+ const report=JSON.parse(readFileSync(new URL('../catalog/layer-audit.json',import.meta.url)));
+ for(const id of ['type-reveal','count-up','word-focus']){
+  const definition=resolveEffect(id),before=layerFingerprint(definition);
+  const audit=report.results.find(row=>row.id===id);
+  assert.equal(before,audit.fingerprint,id+' 应保留原已验证记录');
+  for(const reproduction of [undefined,{objects:'新的描述',presentation:'只修改提示词',phases:['说明更新']}]){
+   const changed={...definition,reproduction};
+   assert.equal(layerFingerprint(changed),before,id+' 提示词不参与实际绘制');
+  }
+  assert.notEqual(layerFingerprint({...definition,duration_ms:definition.duration_ms+1}),before);
+  assert.notEqual(layerFingerprint({...definition,source:{...definition.source,path:'catalog/effects/word-slam.js'}}),before);
+ }
+});

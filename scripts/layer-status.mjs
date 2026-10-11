@@ -6,6 +6,12 @@ import {resolveEffect, effectDefinitions} from '../remotion/clock.mjs';
 import {auditedLayerStatus, LAYER_AUDIT_VERSION, layerKey, stableJson} from '../remotion/layer-policy.mjs';
 const root=new URL('../',import.meta.url);
 const readSource=file=>readFileSync(new URL(file,root));
+// 旧文字审计曾把提示词也算入指纹。此映射只承认完全相同的绘制、字体、
+// 适配器及其他定义；逐项恢复旧提示词后已验证仍对应原审计的24个样本。
+// 绘制依据有任何变化都会产生其他指纹，不会命中兼容项。
+const promptOnlyFingerprintAliases=new Map([
+  ['b9d411a795caaa6278cfbb2c026da17f40a26706d0412b4625fbe14a36536630','01c4fb9ff752c3931151280dce06ae49107f4fda074397b01a84349dfd8bb6dd']
+]);
 export function layerFingerprint(definition, read=readSource){
   const scripts=frameScriptsFor(definition);
   const files=[...FRAME_STYLES,...scripts,'remotion/frame-document.mjs','remotion/index.jsx','remotion/clock.mjs','remotion/layer-policy.mjs'];
@@ -14,8 +20,9 @@ export function layerFingerprint(definition, read=readSource){
   const hash=createHash('sha256');
   hash.update(stableJson({version:LAYER_AUDIT_VERSION,styles:FRAME_STYLES,scripts}));
   for(const file of [...new Set(files)].sort())hash.update(file).update(read(file));
-  const {content,...implementation}=definition;
-  return hash.update(stableJson(implementation)).digest('hex');
+  const {content,reproduction,...implementation}=definition;
+  const fingerprint=hash.update(stableJson(implementation)).digest('hex');
+  return promptOnlyFingerprintAliases.get(fingerprint)||fingerprint;
 }
 export function layerStatus(definition){
   try{

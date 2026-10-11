@@ -83,3 +83,10 @@
     ? globalThis.WiseGeometricPoster.make(root, K, definition, 'intermittent')
     : defaultBandCut(root, K, definition);
 })(globalThis.MotionFactories);
+
+/* Pixel example shares the imported painter; preserve every existing example and factory helper. */
+(function(F){
+  const prior=F["pixel-dissolve-transition"];
+  F["pixel-dissolve-transition"]=Object.assign((root,kit,definition={})=>definition.variant_id==='pixel-motion'
+    ? globalThis.WisePixelMotion.factory(root,kit,{...definition,id:"pixel-dissolve-transition"}) : prior(root,kit,definition),prior);
+})(globalThis.MotionFactories);

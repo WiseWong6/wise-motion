@@ -141,3 +141,10 @@
     };
   };
 })(globalThis.MotionFactories);
+
+/* Pixel example shares the imported painter; preserve every existing example and factory helper. */
+(function(F){
+  const prior=F["shape-morph"];
+  F["shape-morph"]=Object.assign((root,kit,definition={})=>definition.variant_id==='pixel-motion'
+    ? globalThis.WisePixelMotion.factory(root,kit,{...definition,id:"shape-morph"}) : prior(root,kit,definition),prior);
+})(globalThis.MotionFactories);

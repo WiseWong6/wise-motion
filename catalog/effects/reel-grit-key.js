@@ -177,3 +177,10 @@
   F['shape-pop-float'].layer=shapeLayer;
   F['shape-pop-float'].motion=shapeMotion;
 })(globalThis.MotionFactories);
+
+/* Pixel example shares the imported painter; preserve every existing example and factory helper. */
+(function(F){
+  const prior=F["ball-bounce-trails"];
+  F["ball-bounce-trails"]=Object.assign((root,kit,definition={})=>definition.variant_id==='pixel-motion'
+    ? globalThis.WisePixelMotion.factory(root,kit,{...definition,id:"ball-bounce-trails"}) : prior(root,kit,definition),prior);
+})(globalThis.MotionFactories);

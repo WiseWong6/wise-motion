@@ -922,6 +922,16 @@
       "sha256": "23be8c01fab32bd128750e24337ac732d44784eacbeec523bb7b7043e92ac39a"
     },
     {
+      "path": "catalog/assets/pixel-motion/SOURCE.json",
+      "bytes": 807,
+      "sha256": "bc069aae9b2c650f42ff80716563986b5a9affcd615ae2cefac9aad4c9fe2931"
+    },
+    {
+      "path": "catalog/assets/pixel-motion/drawing.py",
+      "bytes": 7651,
+      "sha256": "275c4f8512601461454f4afd6bdc8efa4a3272935ea5880338f4caeeffc62a1f"
+    },
+    {
       "path": "catalog/assets/reel-extract/React-LICENSE.txt",
       "bytes": 1088,
       "sha256": "da6d3703ed11cbe42bd212c725957c98da23cbff1998c05fa4b3d976d1a58e93"
@@ -1543,8 +1553,8 @@
     },
     {
       "path": "catalog/effects/entrance.js",
-      "bytes": 4687,
-      "sha256": "e6c63fa5f154a2ae2c3436bc65a8209e0ab92c8744923ac317ab25c9276d920f"
+      "bytes": 5077,
+      "sha256": "9e9e948f3b151be4ca363ca595876d2d0d6b5d8ea6f20c503c9ced80be10448f"
     },
     {
       "path": "catalog/effects/environment.js",
@@ -1578,8 +1588,8 @@
     },
     {
       "path": "catalog/effects/history-patterns.js",
-      "bytes": 61290,
-      "sha256": "2d5c615f675bfeb807c38f29991d0668bf6f2668ada3a47a6d8640c19ba088cf"
+      "bytes": 61695,
+      "sha256": "d234064dcc2c8e1ac0aec1c29603af7fe38291391bc37e4116c6629f32d3de59"
     },
     {
       "path": "catalog/effects/hud-targeting.js",
@@ -1647,14 +1657,24 @@
       "sha256": "c56c929de45173aa74645e8b2b539c2843900a5dfa080ad54b32cba498a8dbc4"
     },
     {
+      "path": "catalog/effects/pixel-motion-data.js",
+      "bytes": 293212,
+      "sha256": "a3dbea74e33964a9c3ccc9a3c5b8045ed303f76f8b45038a9d6976cc1a0c6abb"
+    },
+    {
+      "path": "catalog/effects/pixel-motion.js",
+      "bytes": 11928,
+      "sha256": "d27571a5c43099d4a037b50f7cf75dbb3ff4468b753445b42e59ae7ade32661c"
+    },
+    {
       "path": "catalog/effects/point-domain-flow.js",
       "bytes": 63398,
       "sha256": "db8d79f840a05a35750f716475a9a6244ec9a951fc6791506397f309f37d876a"
     },
     {
       "path": "catalog/effects/promo-particles.js",
-      "bytes": 30219,
-      "sha256": "58c90b1d68a87d24c850346efe043e3bae716b9709801c457e918f7cb286e75d"
+      "bytes": 30624,
+      "sha256": "59e5b6f0ddf22c6b5c68b1705a22da807cbee6b0683f5da150319b311e41e851"
     },
     {
       "path": "catalog/effects/radial-branch-flow.js",
@@ -1683,13 +1703,13 @@
     },
     {
       "path": "catalog/effects/reel-grit-key.js",
-      "bytes": 20268,
-      "sha256": "e672a1831eea014b67878837fdc1c4396394e36b4c54afd79b952a6a1a99aada"
+      "bytes": 20688,
+      "sha256": "6d4d9e38bd50912594ab6a20beae5b3757db9561610db63aed555300c6b34263"
     },
     {
       "path": "catalog/effects/reel-neon.js",
-      "bytes": 22098,
-      "sha256": "9450619f3d30b5c45d2eaf7286633f7b0e3d845257313101b8e846d7e18c1d00"
+      "bytes": 22500,
+      "sha256": "2ab225e2c7ae4511795a259d05f90118adf936817a2a0eb79fc889b13cf490b0"
     },
     {
       "path": "catalog/effects/reel-opening.js",
@@ -1708,8 +1728,8 @@
     },
     {
       "path": "catalog/effects/reel-transitions.js",
-      "bytes": 6503,
-      "sha256": "822440c7acb57d15f06863a028979f1d24d0704abf08e47bbf03c2b0c4cc2f5e"
+      "bytes": 6944,
+      "sha256": "2ee1d3999cc2eba89aa5c7fac820b2d68b81f67ef6840b42f3e336f4cff2c59f"
     },
     {
       "path": "catalog/effects/sage-butterfly-mask.js",
@@ -1818,8 +1838,8 @@
     },
     {
       "path": "catalog/effects/space.js",
-      "bytes": 11790,
-      "sha256": "43ccd8f00664443db779009e8743b3cdcfb6c325bf91439ae74e1c4c7a2bc061"
+      "bytes": 12189,
+      "sha256": "1881fc5892af1539fa5ba854edec6b05e55e7769ecf228f27897ec746e5494ed"
     },
     {
       "path": "catalog/effects/step-hop.js",
@@ -1843,13 +1863,13 @@
     },
     {
       "path": "catalog/effects/word-slam.js",
-      "bytes": 3749,
-      "sha256": "2d26afc316e7d609a3f3c145e12f17d3d0eb2d3b437a8a0ee293ba9a5bc22052"
+      "bytes": 4142,
+      "sha256": "aa9b72c07b34ca80d8eb16f56f5a71b20407750627a6a911a8f178537373bf9e"
     },
     {
       "path": "catalog/export.js",
-      "bytes": 32196,
-      "sha256": "8833361feb73aadf6e97fc16f2f5b30cb9d9fefdb0531b736d8a92d027dbbd61"
+      "bytes": 44531,
+      "sha256": "89353da24a9389f742e42f3816513af7e27988dc16122f0a1f738de3963a058d"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -1933,8 +1953,8 @@
     },
     {
       "path": "catalog/lazy.js",
-      "bytes": 3432,
-      "sha256": "dff02138477e69846e927ada226608485c4526507a5628b211b9796c73dace06"
+      "bytes": 3490,
+      "sha256": "af4162e2fc11c42bcab36b70ee077b2465f8f5574ebd2bff6263afe5b8be1b7e"
     },
     {
       "path": "catalog/matching.js",
@@ -1953,13 +1973,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1492696,
-      "sha256": "aeec217ad89e8e998bbc3bc5d3c0ce188da2bb20c00919024991b0e9a7e382c7"
+      "bytes": 2283622,
+      "sha256": "2ab726e5658f9265517505a15ab7345efaad7904db53e580e180a09e30023cfd"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 1893109,
-      "sha256": "4409665d3f76b1846e4b62baca05cd002c91cee7030605f5005fc1c9d2a3a77d"
+      "bytes": 2825654,
+      "sha256": "3b3db5aa48cee926feacca7c0733ec13e1009ac41dc9c2e0c20c2f9090d89eaf"
     },
     {
       "path": "catalog/related-preview.js",
@@ -1980,6 +2000,11 @@
       "path": "catalog/remotion/civilization-growth.jsx",
       "bytes": 1826,
       "sha256": "f0a82e1eeaa6ca5874755d793fc41f2aab77836cba3de073c896161bbd08be55"
+    },
+    {
+      "path": "catalog/remotion/pixel-motion.jsx",
+      "bytes": 1209,
+      "sha256": "3b87803169646f8c87106cde8107760e637a11a276eddb9710807c5b64203b39"
     },
     {
       "path": "catalog/remotion/reel-extract/AIBotExpressions.jsx",
@@ -2098,8 +2123,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 1550241,
-      "sha256": "ceaf90248fb7859cc1f19174fbea0a805e7a5721a1f9c911b198a4f7f95e9946"
+      "bytes": 1857774,
+      "sha256": "a185f2289d7dce9d9d6b6096abf80ddf949dc80af547db3b1f172b69414a010b"
     },
     {
       "path": "catalog/runtime.js",

@@ -186,3 +186,10 @@
     {id:'caption',actions:['caption-type-caret'],name:'说明文字与闪烁光标',start:2200,end:4500,time:'2.20–4.50 秒',detail:'底部原说明以每秒 45 字写出，行首位置按整句宽度固定；输入时光标跟在末字后，写完后每 0.4 秒明灭一次，4.50 秒截止，文字继续保留。'}
   ];
 })(globalThis.MotionFactories);
+
+/* Pixel example shares the imported painter; preserve every existing example and factory helper. */
+(function(F){
+  const prior=F["star-twinkle"];
+  F["star-twinkle"]=Object.assign((root,kit,definition={})=>definition.variant_id==='pixel-motion'
+    ? globalThis.WisePixelMotion.factory(root,kit,{...definition,id:"star-twinkle"}) : prior(root,kit,definition),prior);
+})(globalThis.MotionFactories);

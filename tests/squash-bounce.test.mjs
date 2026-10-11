@@ -45,7 +45,7 @@ test('旧历史入口转入压缩回弹，原示例与暖色太阳同步播放�
     assert.equal(d.querySelector('script[src="history-data.js"]'),null);
     assert.equal(d.querySelector('#preview .motion-stage').dataset.effect,'squash-bounce');
     assert.equal(d.querySelector('#preview .motion-stage').dataset.variant,'contact');
-    assert.deepEqual([...select.options].map(option=>option.value),['contact','drop','sunset-sun']);
+    assert.deepEqual([...select.options].map(option=>option.value),['contact','drop','sunset-sun','pixel-motion']);
     assert.equal(select.value,'contact');assert.equal(w.MotionRuntime.instanceCount,1);
     assert.equal(w.MotionMatch.rank(data,'逐段形变')[0].effect.id,'squash-bounce');
     assert.match(d.getElementById('prompt').textContent,/0\.06L−0\.09C\+0\.022R/);

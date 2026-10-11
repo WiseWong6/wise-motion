@@ -21,13 +21,20 @@ test('全部正式条目及变体提供独立的 Remotion 提示词，无外部�
         assert.match(text,/^请使用 Remotion 实现/ ,label);
         assert.match(text,/当前帧和帧率/,label);
         assert.doesNotMatch(text,forbidden,label);
-        assert.match(text,/画面与对象：\S/,label);
-        for(const line of text.split('\n'))assert.doesNotMatch(line,/^\d+\.\s*$|秒：\s*$|^画面与对象：\s*$/,label);
-        assert.equal((text.match(/^\d+\. /gm)||[]).length,3,label+' 应保留三个动作阶段');
+        assert.match(text,/# 动效说明\n\n\S/,label);
+        assert.match(text,/# 画面与对象\n\n\S/,label);
+        for(const heading of text.matchAll(/^# [^\n]+/gm)){
+          assert.ok(text.slice(0,heading.index).endsWith('\n\n'),label+' 标题前应有空行');
+          assert.match(text.slice(heading.index),/^# [^\n]+\n\n\S/,label+' 标题与正文应分行');
+        }
+        for(const line of text.split('\n'))assert.doesNotMatch(line,/^\d+\.\s*$|秒：\s*$/,label);
+        const steps=Array.from(text.matchAll(/^(\d+)\. (.+)$/gm));
+        assert.ok(steps.length,label+' 应提供具体动作阶段');
+        assert.deepEqual(steps.map(step=>Number(step[1])),steps.map((_,index)=>index+1),label+' 动作阶段应连续编号');
         count++;
       }
     }
-    assert.equal(count, 538);
+    assert.equal(count, 565);
   }finally{env.close();}
 });
 test('关键组合补足全文、布局与运动参数，特定配色不会被通用黑底覆盖',async()=>{
@@ -47,7 +54,7 @@ test('关键组合补足全文、布局与运动参数，特定配色不会被�
     assert.doesNotMatch(phone,/33–38秒|视觉：近黑底/);
     assert.match(get('material-switch-spring'),/0\.2–0\.55秒/);
     const fast=env.w.MotionExport.prompt(data.effects.find(e=>e.id==='keyframe-workbench'),{speed:2},data);
-    assert.match(fast,/时间：4\.00 秒/);
+    assert.match(fast,/# 时间\n\n4\.00 秒/);
     assert.match(fast,/动作秒数 = 当前帧 \/ 帧率 × 2/);
     assert.match(fast,/大曲线与同高小球 · 2\.85–4\.00 秒/);
   }finally{env.close();}
@@ -58,7 +65,7 @@ test('屏幕内提示文字逐字引用且标明只是画面文案，三个标�
     const effect=data.effects.find(e=>e.id==='prompt-to-core-sequence');
     const text=env.w.MotionExport.prompt(effect,{},data);
     assert.match(text,/引号内仅是屏幕显示内容/);
-    assert.match(text,/时间：8\.00 秒/);
+    assert.match(text,/# 时间\n\n8\.00 秒/);
     assert.ok(text.includes(JSON.stringify(effect.reproduction.content[0])));
     const title=data.effects.find(e=>e.id==='title-stagger');
     for(const [variantId,needed,absent] of [['material','Flat. Material.','THE CURVE'],['outline','THE CAMERA.','THE CURVE'],['handoff','THE CURVE','THE CAMERA.']]){
@@ -79,8 +86,8 @@ test('页面复制按钮发送当前目录完整提示词，源码页仍提供 R
     d.getElementById('copy-prompt').click();
     await new Promise(resolve=>setTimeout(resolve,0));
     assert.equal(copied,d.getElementById('prompt').textContent);
-    assert.match(copied,/动效说明：曲线回弹演示/);
+    assert.match(copied,/# 动效说明\n\n曲线回弹演示/);
     assert.match(copied,/THE CURVE/);assert.doesNotMatch(copied,forbidden);
-    assert.match(d.getElementById('code').textContent,/Remotion 组件示例/);
+    assert.match(d.getElementById('code').textContent,/Remotion 接入示例/);
   }finally{env.close();}
 });

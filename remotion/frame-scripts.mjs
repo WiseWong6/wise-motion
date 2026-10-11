@@ -6,6 +6,8 @@ export const FRAME_SCRIPTS = Object.freeze([
   "catalog/content.js",
   "catalog/runtime.js",
   "catalog/history-runtime.js",
+  "catalog/effects/pixel-motion-data.js",
+  "catalog/effects/pixel-motion.js",
   "catalog/effects/entrance.js",
   "catalog/effects/continuous.js",
   "catalog/effects/attention.js",

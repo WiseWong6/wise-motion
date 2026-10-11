@@ -101,7 +101,7 @@ test('原声截取与实际组合画面对应；复制源码保留文件、合�
     }
     const silent = env.w.MotionExport.code(resolveEffect('factory-handle-transfer'));
     assert.doesNotMatch(silent,/id="sound"|composition-audio/);
-    assert.match(env.w.MotionExport.prompt(effect,{speed:2}),/声音：[\s\S]*0\.00–7\.00 秒/);
+    assert.match(env.w.MotionExport.prompt(effect,{speed:2}),/# 声音\n\n[\s\S]*0\.00–7\.00 秒/);
   } finally {env.close();}
 });
 

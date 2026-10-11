@@ -1,6 +1,6 @@
 # 署名、来源与说明
 
-Copyright © 2026 Wise Wong. 更新日期：2026 年 10 月 10 日。
+Copyright © 2026 Wise Wong. 更新日期：2026 年 10 月 11 日。
 
 本文件统一列明 Wise Motion 的项目许可、作品署名、视觉参考、素材来源与第三方依赖。目录数量见 [目录统计](CATALOG-STATS.md)；逐项来源记录与原许可文件随包保留。
 
@@ -30,6 +30,7 @@ Copyright © 2026 Wise Wong. 更新日期：2026 年 10 月 10 日。
 | KIMI K3 宣传片复刻 | 宣传片复刻 | 复刻自 Kimi AI 的 [Meet Kimi K3](https://www.youtube.com/watch?v=bn0atstgavo)；补充资料见 [官方博客](https://www.kimi.com/en/blog/kimi-k3)。组合内复用的公共插画保留各自来源。 |
 | Siri、短信、系统设置、音乐、天气与控制中心六张空间卡及相关光照、折射、错层动作 | 界面视觉参考 | 统一参考 [Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)，玻璃材质补充参考 [Apple 液态玻璃设计](https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/)。界面由本项目独立绘制，示例数据与使用范围见 [卡片来源记录](catalog/assets/glass-light/SOURCE.json)。 |
 | 玻璃卡片显现折射完整组合 | 组合参考 | 六张卡片统一采用苹果空间界面；语音使用 Siri，对话使用短信。组合与独立条目共用本项目绘制代码及相同参考来源。 |
+| 像素聚字与动效巡演及相关像素示例 | 用户提供的绘制源码 | 从用户提供的 r.py 提取画面绘制，保留16色调色板与5×7像素字形；片头和片尾品牌改为 WISE，按四个字母的实际宽度居中。基础速度设为原绘制的1.5倍，完整组合20秒；城市楼群与窗灯一次生成，整层平移接续，避免逐帧重新随机。只收录画面，不包含原合成音乐。来源与修改记录见 [源码记录](catalog/assets/pixel-motion/SOURCE.json)，整理后的 [Python 绘制](catalog/assets/pixel-motion/drawing.py) 随包保留。 |
 
 目录底部的玻璃播放条采用第三方程序，列于第四部分；其 MIT 许可适用于该程序，不覆盖上述卡片的视觉参考。
 
