@@ -57,6 +57,7 @@ test('真实工程与媒体按摘要复制，源码可编译，文字复制包�
   assert.ok(text.includes('def build_movement'));assert.ok(text.includes('def build_case'));
   assert.ok(text.includes('def animate_layers'));assert.ok(text.includes('def main()'));
   assert.ok(!text.includes('/Users/'));assert.ok(!text.includes('base64,'));
+  assert.ok(text.includes('https://github.com/WiseWong6/wise-motion/blob/main/catalog/assets/precision-assembly/获取完整工程.md'));
   for(const [file,content]of Object.entries(context.MotionExport.projectFiles(c).files))assert.equal(await readFile(path.join(out.directory,file),'utf8'),content);
   // The copied-text setup must also work without export.mjs or the original project.
   await rm(path.join(out.directory,'public/precision-assembly/分秒之间.blend'));

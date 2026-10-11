@@ -10,6 +10,9 @@ const sourceOnlyFiles=new Set([
  'vendor/calligraphy/I.Ngaan.ttf',
  'vendor/duobaota/page-02.jpg',
  'vendor/duobaota/page-10.jpg',
+ 'catalog/assets/precision-assembly/分秒之间.blend',
+ 'catalog/assets/precision-assembly/材质/底板珍珠纹.png',
+ 'catalog/assets/precision-assembly/成片/机芯.png',
 ]);
 // 素材副本供帧组件读取；完整目录页面只保留在源码的 catalog 中。
 export function isAssetFile(relativePath){

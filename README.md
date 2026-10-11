@@ -171,6 +171,10 @@ WISE_MOTION_RENDER_DIR="/目标工程/renders" npm run render -- stagger-in stag
 
 维护目录后运行 `npm run check`、`python3 scripts/verify_project_skills.py` 及受影响测试。`npm test` 还包含历史迁移检查，需本地私有档案。技术核对见 [验证矩阵](references/validation-matrix.md)，人工播放见 [验收步骤](tests/manual.md)，目录维护见 [维护说明](references/catalog-maintenance.md)。
 
+## 获取完整三维工程
+
+机械怀表的完整 Blender 工程与制作素材从现有 Git 仓库按目录单独下载，见 [获取完整工程](catalog/assets/precision-assembly/获取完整工程.md)。npm 包保留成片、声音和目录预览，直接播放与渲染无需下载原模型。源码仓库里的原文件和完整独立导出保持不变。
+
 ## 发布组件包
 
 维护者先构建、检查并用 `npm pack --pack-destination /发布目录` 生成包，再执行：
@@ -180,7 +184,7 @@ npm run publish:package -- /发布目录/wise-motion-版本.tgz --dry-run
 npm run publish:package -- /发布目录/wise-motion-版本.tgz
 ```
 
-发布脚本使用当前 npm 11 客户端向官方仓库发布，保留正常登录与网页身份验证，只压缩上传请求，避免包转为上传数据后体积膨胀；完整工程、素材和包摘要不变。脚本要求包名称和版本与当前项目一致。升级 npm 大版本后需先适配接口并运行 `npm run test:publish`，验证真实请求的压缩和包内容。试运行不会上架，正式发布仍需核对官方仓库的版本与包摘要。
+发布脚本使用当前 npm 11 客户端向官方仓库发布，保留正常登录与网页身份验证，并压缩上传请求；仅压缩请求仍可能被仓库拒绝，必须控制实际发布包体积。完整三维制作原件留在 Git，运行素材继续随 npm 提供。脚本要求包名称和版本与当前项目一致，并在联网前拒绝超过项目 200 MB 预算的包；这是项目控制体积的约定，不是 npm 官方限制。升级 npm 大版本后需先适配接口并运行 `npm run test:publish`，验证真实请求的压缩和包内容。试运行不会上架，正式发布仍需核对官方仓库的版本与包摘要。
 
 ## 许可
 

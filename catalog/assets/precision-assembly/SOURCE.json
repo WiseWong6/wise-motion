@@ -2,6 +2,14 @@
   "title": "精密结构展示、分层拆解与回装",
   "example": "分秒之间 · 三维机械怀表",
   "origin": "用户认可的 Blender 真实三维工程",
+  "distribution": {
+    "source_repository": "https://github.com/WiseWong6/wise-motion.git",
+    "source_commit": "a71076415bcc20ff056908ccfea3d45407f4c73f",
+    "source_directories": ["catalog/assets/precision-assembly", "catalog/assets/composition-audio/precision-assembly"],
+    "instructions": "获取完整工程.md",
+    "npm_source_exclusions": ["分秒之间.blend", "材质/底板珍珠纹.png", "成片/机芯.png"],
+    "runtime_note": "npm 保留成片、原声和两张目录预览；三维修改与源码重建使用 Git 中的完整工程，原件及摘要保持不变。"
+  },
   "license": "Apache-2.0",
   "engine": "Blender 4.5.14 LTS / Cycles",
   "fps": 24,

@@ -3,7 +3,7 @@ import React,{useLayoutEffect,useRef} from 'react';
 import {AbsoluteFill,Freeze,Html5Audio,Html5Video,OffthreadVideo,staticFile,useCurrentFrame,useRemotionEnvironment,useVideoConfig} from 'remotion';
 import '../effects/precision-assembly-data.js';
 
-/** Frame adapter for the original Cycles cache. Real model/animation sources ship alongside it. */
+/** Frame adapter for the original Cycles cache. Complete native production assets are downloaded separately from Git. */
 export function WisePrecisionAssembly({effectId='precision-assembly-sequence',speed=1,includeAudio=true,
   assetBaseUrl,width,height,timeOverrideMs,onReady,onFrame,onError}){
   const frame=useCurrentFrame(),{fps,width:vw,height:vh}=useVideoConfig();

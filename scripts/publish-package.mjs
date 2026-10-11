@@ -10,7 +10,10 @@ async function main() {
     throw new Error('用法：npm run publish:package -- /发布包/wise-motion-版本.tgz [--dry-run]');
   }
   const packageFile = path.resolve(input);
-  if (!(await stat(packageFile)).isFile()) throw new Error('发布目标必须是已检查的 .tgz 文件');
+  const packageInfo = await stat(packageFile);
+  if (!packageInfo.isFile()) throw new Error('发布目标必须是已检查的 .tgz 文件');
+  // 项目预算，不冒充 npm 官方限制；在上传和网页验证前拦截再次膨胀的包。
+  if (packageInfo.size > 200_000_000) throw new Error('发布包超过项目设定的 200 MB 预算，请先把制作原件移至 Git 下载入口');
   if (!process.env.npm_execpath) throw new Error('请通过 npm run publish:package 运行，以使用当前 npm 客户端');
   const npmCli = await realpath(process.env.npm_execpath);
   const npmRequire = createRequire(npmCli);

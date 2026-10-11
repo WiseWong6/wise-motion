@@ -108,6 +108,6 @@ Remotion、React 等视频复用依赖由目标工程安装，版本和接入方
 
 ## 精密结构展示与拆装
 
-新增组合与独立动作以用户认可的《分秒之间》真实三维机械怀表工程为示例。模型、材质节点、灯光、镜头、动画、声音合成与接入程序为自有代码，遵循 Apache-2.0。原生 Cycles 成片和三张4K静帧保持原样；Blender 工程与建模源码随包保留。底板珍珠纹由 Codex 宿主内置图片生成工具生成，仅控制表面凹凸及粗糙度，不是整表图片。来源及原件摘要见 [三维工程说明](catalog/assets/precision-assembly/SOURCE.json)；原声及合成排程见 [声音说明](catalog/assets/composition-audio/precision-assembly/SOURCE.json)。
+新增组合与独立动作以用户认可的《分秒之间》真实三维机械怀表工程为示例。模型、材质节点、灯光、镜头、动画、声音合成与接入程序为自有代码，遵循 Apache-2.0。原生 Cycles 成片和三张4K静帧保持原样；完整 Blender 工程、制作纹理和建模源码从 Git 单独获取，步骤见 [获取完整工程](catalog/assets/precision-assembly/获取完整工程.md)。npm 包继续提供成片、原声和两张目录预览，不自动下载制作原件。底板珍珠纹由 Codex 宿主内置图片生成工具生成，仅控制表面凹凸及粗糙度，不是整表图片。来源及原件摘要见 [三维工程说明](catalog/assets/precision-assembly/SOURCE.json)；原声及合成排程见 [声音说明](catalog/assets/composition-audio/precision-assembly/SOURCE.json)。
 
 Blender 使用其自身 GPL 许可，Remotion 与 React 使用软件包附带许可；不将软件本身打包或重新授权。已保存工程内的原系统字体保持原权利归属，不声明为 Apache-2.0 字体。当前库内保留工程以供用户本地编辑；源码重建保留原 macOS 字体查找方式。轮系、摆轮与秒针用于视觉演示，没有制造或真实走时验证。

@@ -1,2 +1,6 @@
 # 原字体留在源码仓库重建；运行时共用 catalog/fonts 中的完整 WOFF2。
 /assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf
+# 三维制作原件从 Git 单独下载；两张目录预览、成片与原声继续随 npm 提供。
+/assets/precision-assembly/分秒之间.blend
+/assets/precision-assembly/材质/底板珍珠纹.png
+/assets/precision-assembly/成片/机芯.png

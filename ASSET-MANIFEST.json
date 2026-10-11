@@ -948,18 +948,13 @@
     },
     {
       "path": "catalog/assets/precision-assembly/SOURCE.json",
-      "bytes": 3973,
-      "sha256": "833dacc508375d44e0a315e47dcf666b8765e06f474b3c21ec9ca18e67248e22"
+      "bytes": 4566,
+      "sha256": "6cace000d9e392da02bf8c53eeff1f4886e2cd5f417272e6386af96eb5827933"
     },
     {
       "path": "catalog/assets/precision-assembly/使用说明.md",
       "bytes": 1960,
       "sha256": "1b3887744919ad0cafdac85a6e60f72458986c9af84c4076d4d8ef600e13b38a"
-    },
-    {
-      "path": "catalog/assets/precision-assembly/分秒之间.blend",
-      "bytes": 23829849,
-      "sha256": "54023d725b59887e9441634d2bb75dec355b151fd811176724dc33390c5453dd"
     },
     {
       "path": "catalog/assets/precision-assembly/制作说明.md",
@@ -982,19 +977,9 @@
       "sha256": "6e8f923f6920eaec937e122cbd70f474ae3d04c9012f7187e74ac2a016c244d3"
     },
     {
-      "path": "catalog/assets/precision-assembly/成片/机芯.png",
-      "bytes": 10584248,
-      "sha256": "dd15f7a0e483326c6be31d18a05c859659b1e7424b6781a127dc80bf49ea5118"
-    },
-    {
       "path": "catalog/assets/precision-assembly/打开与制作.command",
       "bytes": 10889,
       "sha256": "510f95bf3105f30aa08dc615de48886245685da05ba135df0775898807432dab"
-    },
-    {
-      "path": "catalog/assets/precision-assembly/材质/底板珍珠纹.png",
-      "bytes": 2531633,
-      "sha256": "75fb8171b941e41728c11a68cea43e9a8652acd9fd0bf0e9bed51859d18f010b"
     },
     {
       "path": "catalog/assets/precision-assembly/材质/来源.json",
@@ -1050,6 +1035,11 @@
       "path": "catalog/assets/precision-assembly/源码/sound.py",
       "bytes": 6469,
       "sha256": "183d40f97d48782d71d1c31e7b3393e6c444ab6641876326029add9d4f4c7cdb"
+    },
+    {
+      "path": "catalog/assets/precision-assembly/获取完整工程.md",
+      "bytes": 1949,
+      "sha256": "b41ca27ed9fedf6f7abb4a4ff2be31299d392f6140e25009fde5031624f5d447"
     },
     {
       "path": "catalog/assets/precision-assembly/运行源码.py",
@@ -2003,8 +1993,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 46594,
-      "sha256": "279adad796d75b2cd6828db68e718be7bec9a63c6a85d74c3998dc6bfcc9242a"
+      "bytes": 47261,
+      "sha256": "43fb24a7df8ed1c281751cbde9261bd2da97d4e525c63fc8439e57a3759a7af7"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -2148,8 +2138,8 @@
     },
     {
       "path": "catalog/remotion/precision-assembly.jsx",
-      "bytes": 3185,
-      "sha256": "56c795204d1e35dbfce931d748e67f6d18b08ac8a5299f382f00048c4176eac1"
+      "bytes": 3207,
+      "sha256": "2d707a9018735bcf3bb2d7f3167e595009a78ace2488dfb46a90abfa331e1e0b"
     },
     {
       "path": "catalog/remotion/reel-extract/AIBotExpressions.jsx",
@@ -2268,8 +2258,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 1971931,
-      "sha256": "273d58ee25121785fd1dd8d8b41bda2be0c437c03da71d60ecabb0405bca26fe"
+      "bytes": 1972586,
+      "sha256": "97e7844f995b8521e5d4277280d820c2f66ae906fb11d645a8c780672db55070"
     },
     {
       "path": "catalog/runtime.js",

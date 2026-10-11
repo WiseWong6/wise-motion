@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {mkdtemp, mkdir, readFile, realpath, rm, symlink, writeFile} from 'node:fs/promises';
+import {mkdtemp, mkdir, readFile, realpath, rm, symlink, truncate, writeFile} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {createRequire} from 'node:module';
 import {execFile} from 'node:child_process';
@@ -102,6 +102,9 @@ module.exports = class extends Npm {
     }
     await assert.rejects(invoke(['--registry=https://example.com/']), error => error.code === 1 && /用法/.test(error.stderr));
     assert.equal(requests.length, 0);
+    await truncate(filename, 200_000_001);
+    await assert.rejects(invoke([]), error => error.code === 1 && /200 MB/.test(error.stderr));
+    assert.equal(requests.length, 0, '超过项目体积预算时不上传或索取网页验证');
   } finally {
     await new Promise(resolve => server.close(resolve));
     await rm(dir, {recursive: true, force: true});

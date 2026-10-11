@@ -299,6 +299,7 @@ registerRoot(Root);
       files['binary-assets.json']=JSON.stringify(spec.binary_files,null,2)+'\n';
       files['prepare-assets.mjs']=binaryInstaller(spec);
       files['README.md']+='\n命令行 export.mjs 已复制 binary-assets.json 列出的工程与素材，不需要再次准备。仅从目录复制文字源码时，还需运行 node prepare-assets.mjs <素材包根目录或网址>，再运行 npm run check:source。程序只复制清单里的文件，核对内容摘要并保护已有修改；模型、视频、纹理与原声不会内嵌到文字源码。\n';
+      if(effect.source.native_scene==='blender')files['README.md']+='\n完整 Blender 工程与制作素材可从 Git 单独下载，步骤见 https://github.com/WiseWong6/wise-motion/blob/main/catalog/assets/precision-assembly/获取完整工程.md 。下载后运行 node prepare-assets.mjs /完整路径/wise-motion-source；不要把 npm 包当作完整三维制作素材包。\n';
     }
     return files;
   }
@@ -320,6 +321,7 @@ registerRoot(Root);
       lines.push('','工程、视频和纹理单独保存；先保存以下文字文件，再准备 binary-assets.json 中的素材。',
         '运行：node prepare-assets.mjs '+JSON.stringify(location),
         '使用 scripts/export.mjs 导出时会自动复制所有素材与真实三维工程。');
+      if(effect.source.native_scene==='blender')lines.push('完整工程下载步骤：https://github.com/WiseWong6/wise-motion/blob/main/catalog/assets/precision-assembly/获取完整工程.md；下载后将 prepare-assets.mjs 的素材根目录指定为 wise-motion-source。');
     }
     for(const [file,content]of Object.entries(files)){
       const fence='`'.repeat(Math.max(3,...Array.from(content.matchAll(/`+/g),m=>m[0].length+1)));

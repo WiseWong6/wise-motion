@@ -12,6 +12,9 @@ import {FRAME_SCRIPTS,FRAME_STYLES} from '../remotion/frame-document.mjs';
 const sourceOnly=[
  'vendor/duobaota/page-02.jpg','vendor/duobaota/page-10.jpg',
  'vendor/calligraphy/I.Ngaan.ttf','catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf',
+ 'catalog/assets/precision-assembly/分秒之间.blend',
+ 'catalog/assets/precision-assembly/材质/底板珍珠纹.png',
+ 'catalog/assets/precision-assembly/成片/机芯.png',
 ];
 const retained=[
  'catalog/fonts/LXGWWenKai-Regular.woff2',
@@ -19,6 +22,11 @@ const retained=[
  'vendor/duobaota/SOURCE.json','vendor/duobaota/README.md',
  'vendor/calligraphy/SOURCE.json','vendor/calligraphy/GPL-2.0.txt','vendor/calligraphy/README.md',
  'vendor/calligraphy/prepare-calligraphy.py',
+ 'catalog/assets/precision-assembly/成片/分秒之间.mp4',
+ 'catalog/assets/precision-assembly/成片/整表.png',
+ 'catalog/assets/precision-assembly/成片/分层.png',
+ 'catalog/assets/composition-audio/precision-assembly/soundtrack.wav',
+ 'catalog/assets/precision-assembly/获取完整工程.md',
 ];
 
 test('实际分发清单排除重建原件和文档预览，保留运行字体与来源许可',()=>{
@@ -92,7 +100,7 @@ test('素材安装移除旧版失效首页，保留所有绘制依赖和目标�
   record.files['catalog/effects/attention.js']=createHash('sha256').update('// 未经修改的旧版本').digest('hex');
   await writeFile(recordFile,JSON.stringify(record));await installAssets(target);
   assert.match(await readFile(modified,'utf8'),/count-up/);
-  for(const i of [0,3])await assert.rejects(stat(path.join(target,sourceOnly[i])),{code:'ENOENT'});
+  for(const i of [0,3,4,5,6])await assert.rejects(stat(path.join(target,sourceOnly[i])),{code:'ENOENT'});
   assert.equal(await readFile(path.join(target,sourceOnly[1]),'utf8'),'用户修改');
   assert.equal(await readFile(path.join(target,sourceOnly[2]),'utf8'),'旧版原件');
   assert.equal(await readFile(homepagePath,'utf8'),'用户修改过的旧首页','已登记但修改过的首页保留');
