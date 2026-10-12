@@ -255,4 +255,3 @@ function modeTime(t) {
 }
 }};})(globalThis);
 /* SCENE ENTRIES */
-WiseSceneRuntime.register("ink-volume-roll",{"family": "ink", "mode": "volume", "start": 0, "width": 1080, "height": 1920});

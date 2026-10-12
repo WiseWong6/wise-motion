@@ -160,12 +160,12 @@ test('整周期循环不宣称结束停留，周期内时钟与持续运动的�
 });
 
 test('没有实际构图、配色或终态说明时不编造居中、统一配色和主体停留',()=>{
-  const effect=definition('parallax-city-scroll');
+  const effect=definition('pixel-hop-squash');
   const copy={...effect,reproduction:{objects:effect.objects},phases:effect.phases,retain:effect.retain,avoid:effect.avoid};
   const output=env.w.MotionExport.prompt(copy,{},data);
   assert.match(output,/# 画幅\n\n1280×720/);
   assert.doesNotMatch(output,/主体清晰居中|单个主体等比居中|视觉：近黑底|结束后保持最终状态|# 收尾状态/);
-  assert.match(output,/三层像素楼群与窗灯/);
+  assert.match(output,/机器人/);
   assert.match(prompt('dual-scroll',{speed:2}),/# 时间\n\n4\.00 秒为一个周期，首尾连续循环/);
 });
 
@@ -185,7 +185,7 @@ test('有依据的起止状态、材料与衔接按字段完整输出，不扩�
 });
 
 test('真实尚未状态保留，清洗后为空的可选段落不留下标题或编造替代画面',()=>{
-  const effect=definition('parallax-city-scroll'),internal='具体实现及依赖见本机记录。';
+  const effect=definition('pixel-hop-squash'),internal='具体实现及依赖见本机记录。';
   const copy={...effect,reproduction:{
     objects:effect.objects,
     start_state:'主体尚未完全组成，静态背景已可见。'+internal,

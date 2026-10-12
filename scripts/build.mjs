@@ -39,7 +39,7 @@ const registry = JSON.parse(await readFile(path.join(root, 'catalog/registry.jso
 const remotionFiles = {};
 const sharedImagesFile = 'catalog/effects/civilization-images.js';
 let sharedImagesSource;
-for (const file of new Set(registry.effects.flatMap(e => e.source.remotion?.files || []))) {
+for (const file of new Set(registry.effects.flatMap(e => [e, ...(e.variants || [])].flatMap(item => item.source?.remotion?.files || [])))) {
   if (path.isAbsolute(file) || file.split('/').includes('..')) throw new Error('复制源码路径越界：' + file);
   const content = await readFile(path.join(root, file), 'utf8');
   if (file === sharedImagesFile) sharedImagesSource = content;
@@ -92,6 +92,9 @@ for (const c of registry.categories) {
       const {id,label,...fields}=variant;
       detail.push('## 示例：'+label, '', describe({...e,...fields,variant_id:id,variant_name:label},{},registry), '', `使用同一动作定义，设置 \`variant_id: "${id}"\`；目录和相关动作弹窗均可切换。`, '');
       detail.push(...contentNotes({...e,...fields}));
+      if (fields.source?.remotion && !e.source.remotion) detail.push('### 此示例的独立工程', '',
+        `- [逐帧组件](../../${fields.source.remotion.component})与目录共用实际绘制函数。`,
+        '- 复制源码或命令行导出包含固定依赖、绘制源码、本地素材清单与许可；字体素材随命令行导出复制。', '');
     }
     if(e.source.remotion)detail.push('## Remotion 复用', '', `- [逐帧画面组件](../../${e.source.remotion.component})与目录共用实际绘制源码。`, e.source.native_scene==='blender'?'- 目录“复制源码”提供完整独立工程、固定依赖版本与许可；二进制工程和素材单独准备，命令行导出自动复制；“复制提示词”按 Remotion 当前帧驱动画面。':'- 目录“复制源码”提供完整独立工程、固定依赖版本、内嵌矢量与许可；“复制提示词”按 Remotion 当前帧驱动画面。', `- 输出画幅 ${e.source.remotion.width}×${e.source.remotion.height}，每秒 ${e.source.remotion.fps} 帧；${e.source.native_scene==='blender'?'逐帧定位原生Cycles成片；真实工程、建模与动画源码、纹理和原声随独立导出提供。修改三维场景后需Blender重渲染。':'等比保留逻辑画板，无外部图片、声音或字体请求。'}`, '');
     await output(`references/effects/${e.id}.md`, detail.join('\n'));

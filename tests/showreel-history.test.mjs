@@ -21,7 +21,10 @@ test('演进史所有配方均有提炼或去重结论，既有剔除结论没�
     assert.equal(audit.status,'excluded',rule.title+' 尚未完成');
     assert.ok(audit.reason,rule.title+' 未说明后续去向');
     assert.ok(!historical.recipes.some(r=>r.history_id===rule.id),rule.title+' 重复留在历史列表');
-    if(audit.completion_batch==='20261002')for(const id of audit.patterns)assert.ok(data.effects.some(e=>e.id===id),rule.title+' 缺少已提取动作 '+id);
+    if(audit.completion_batch==='20261002'){
+      for(const id of audit.patterns)assert.ok(data.effects.some(e=>e.id===id),rule.title+' 缺少已提取动作 '+id);
+      for(const [id,variant] of Object.entries(audit.action_variants||{}))assert.ok(data.effects.find(e=>e.id===id)?.variants?.some(v=>v.id===variant),rule.title+' 缺少已提取示例 '+variant);
+    }
   }
   for(const id of imported.excluded_unchanged)assert.ok(historical.excluded.some(e=>e.id===id));
   for(const id of ['reel-era-sweep','reel-shine-sweep','reel-scanlines','reel-wobble-underline'])assert.ok(historical.excluded.some(e=>e.id===id));
@@ -61,7 +64,7 @@ test('通用名称下的原片动作能按来源搜索，历史关联指向实�
   const scenes={
     sIntro:['char-color-cycle','letter-hole-zoom'],
     sBass:['paper-strip-stagger','spiral-draw-spin','planar-dot-orbit'],
-    sNeon:['striped-sun-rise','perspective-grid-flow','star-twinkle','neon-horizon'],
+    sNeon:['striped-sun-rise','perspective-grid-flow','neon-horizon'],
     sGrit:['word-slam'],sKey:['bezier-editor','motion-compare'],sOutro:['timeline-progress']
   };
   for(const [scene,ids] of Object.entries(scenes))for(const id of ids){

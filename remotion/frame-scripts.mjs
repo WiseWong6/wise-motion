@@ -23,6 +23,7 @@ export const FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/letter-ripple.js",
   "catalog/effects/letter-settle.js",
   "catalog/effects/flow-bands.js",
+  "catalog/effects/speech-caption.js",
   "catalog/effects/history-patterns.js",
   "catalog/effects/emission-trails.js",
   "catalog/effects/promo-particles.js",

@@ -295,7 +295,7 @@ function gridState(t){const release=smooth(t,23.15,24.55),turn=smooth(t,24.5,25.
 const duration=toPlaybackTime(806/30*1000),lastTime=805/30;
 const specs=[
  {key:'light',id:null,name:'光点与暖晕接续',clock:[0,806/30],preview:11.2},
- {key:'sky',id:'star-twinkle',name:'深浅星点微明灭',clock:[0,806/30],preview:11.2},
+ {key:'sky',id:null,name:'深浅星点微明灭',clock:[0,806/30],preview:11.2},
  {key:'coordinates',id:'coordinate-grid-build',name:'瀑布网格黄金绘入',clock:[0,4.2],preview:3.9},
  {key:'zoom',id:'coordinate-focus-zoom',name:'坐标中心放大',clock:[4.2,256/30],preview:6.5},
  {key:'plane',id:'text-plane-tilt',name:'字符雨幕震动',clock:[256/30,500/30],preview:10.3},
@@ -357,14 +357,14 @@ function drawReturn(ctx,t,state){const {P}=state,{alpha,radius}=returnAppearance
  motifShape(ctx,(x,y)=>P(306+x,188+y),radius,1,alpha,.64,Infinity,i=>returnTileReveal(t,i));
 }
 
-function ironFlower(ctx,t,state){
- if(t<16.36)return;const {alpha,size,center}=flowerState(t,state),now=t-16.36,latest=Math.floor(now/.7);
+function ironFlower(ctx,t,state,standalone=false){
+ if(t<16.36)return;const flower=flowerState(t,state),scale=standalone?1.3:1,{alpha,center}=flower,size=flower.size*scale,now=t-16.36,latest=Math.floor(now/.7);
  // 同一团铁花随生长中心移动，后段只减弱，不再整团退场。
  const project=(x,y)=>t<NATURE_START?[center[0]+x*size,center[1]+y*size]:naturePoint(0,[x*size/GRID_STEP,y*size/GRID_STEP],t,state);
- for(let k=Math.max(0,latest-1);k<=latest;k++){const age=now-k*.7;paintIron(ctx,flowerBanks[k%flowerBanks.length],age,project,alpha,.72);}
+ for(let k=Math.max(0,latest-1);k<=latest;k++){const age=now-k*.7;paintIron(ctx,flowerBanks[k%flowerBanks.length],age,project,alpha,.72*scale);}
 }
 
-function drawEarlyFibres(ctx,t,state){ironFlower(ctx,t,state);}
+function drawEarlyFibres(ctx,t,state,standalone){ironFlower(ctx,t,state,standalone);}
 function drawGrid(ctx,t,state){const {P,core,release,bend}=state;
 const textFade=1-smooth(t,23.35,24.6),fine=smooth(t,20.04,20.64),unit=gridCellStep(t),typeScale=mix(13.5*GRID_STEP/PLANE_STEP/3.5,1,smooth(t,16.666667,18.3));
 // 回缩留下的黄金弧线由持续生长层接续，网格层不再将它淡出。
@@ -382,7 +382,7 @@ if(fine>0&&release<1){
  }
 }
 }
-function drawFibres(ctx,t,state){ironFlower(ctx,t,state);}
+function drawFibres(ctx,t,state,standalone){ironFlower(ctx,t,state,standalone);}
 
 function prepareNature(ctx){if(dead||natureBatches)return;const Path=doc.defaultView?.Path2D||global.Path2D,groups=new Map();
  // 按绘制样式和完成时间分组；时间决定生长次序，已完成的整组复用路径。
@@ -422,7 +422,7 @@ function drawLayer(ctx,key,t,state=pose(t),standalone=false){
  if(key==='plane'&&t>=256/30&&t<500/30)drawPlane(ctx,t,state);
  if(key==='constraints'&&t>=11.2&&t<500/30)drawConstraints(ctx,t,state);
  if(key==='return'&&t>=14.15&&t<500/30)drawReturn(ctx,t,state);
- if(key==='fibres'&&t>16.36){if(t<500/30)drawEarlyFibres(ctx,t,state);else drawFibres(ctx,t,state,standalone);}
+ if(key==='fibres'&&t>16.36){if(t<500/30)drawEarlyFibres(ctx,t,state,standalone);else drawFibres(ctx,t,state,standalone);}
  if(key==='grid'&&t>=500/30)drawGrid(ctx,t,state);
  if(key==='flow'&&t>=NATURE_START)drawFlow(ctx,t,state);
 }
@@ -463,8 +463,6 @@ function make(root,kit,definition={},only){
 }
 const F=global.MotionFactories=global.MotionFactories||{};
 for(const s of specs)if(s.id&&s.key!=='sky'){F[s.id]=(root,kit,def)=>make(root,kit,def,s.key);F[s.id].requiresPreparation=true;}
-const priorStars=F['star-twinkle'];
-F['star-twinkle']=(root,kit,def={})=>def.variant_id==='layered-night'?make(root,kit,def,'sky'):priorStars(root,kit,def);
 F['point-domain-flow-sequence']=(root,kit,def)=>make(root,kit,def);
 F['point-domain-flow-sequence'].requiresPreparation=true;
 const details={
@@ -481,7 +479,7 @@ const details={
 };
 F['point-domain-flow-sequence'].breakdown=specs.filter(s=>s.key!=='grid-flow').map(s=>{
  const start=toPlaybackTime(s.clock[0]*1000),end=toPlaybackTime(s.clock[1]*1000);
- return {id:s.key,name:s.name,actions:s.id?[s.id]:['grid','flow'].includes(s.key)?['grid-flow-unfold']:[],start,end,time:start===0&&end===duration?'全片':`${(start/1000).toFixed(2)}–${(end/1000).toFixed(2)}秒`,detail:details[s.key]};
+ return {id:s.key,name:s.name,actions:s.id?[s.id]:['grid','flow'].includes(s.key)?['grid-flow-unfold']:[],...(s.key==='sky'?{reason:'星点作为完整组合的背景层保留，与其余画面共用时间轴。'}:{}),start,end,time:start===0&&end===duration?'全片':`${(start/1000).toFixed(2)}–${(end/1000).toFixed(2)}秒`,detail:details[s.key]};
 });
 global.WisePointDomainFlow=Object.freeze({duration,lastTime:toPlaybackTime(lastTime*1000),frames:Math.round(duration*30/1000),fps:30,specs,createPainter,traceGeometry,traces,SEED,GRID_STEP,PLANE_STEP,gridLattice,planeGridPoint,gridTilePoint,gridCellStep,returnTileReveal,mainGoldenTiles,natureRectangles,natureSquares,natureStyles,natureGeometry,natureArcs,natureProgress,naturePoint,natureMorph,natureCamera,natureFocus,natureAlpha,natureRoot,flowerState,NATURE_START,NATURE_MORPH_START,NATURE_MORPH_END,NATURE_SCALE,PHI,visibleRaySamples,gridState,glyphStats,motifPoint,goldenGeometry,goldenTiles,tileTimings,tileReveal,tileGridReady,SCAN_START,SCAN_DURATION,rainGlyphs,glyphQuake,quakeTremor,scanTick,innerScanState,returnAppearance,toPlaybackTime,toSourceTime,waterfallProgress,gridWave,waveProfiles,sparkGeometry,impactBanks,flowerBanks});
 global.FieldSequenceClock=Object.freeze({duration,lastTime:toPlaybackTime(lastTime*1000),fps:30,frames:Math.round(duration*30/1000)});

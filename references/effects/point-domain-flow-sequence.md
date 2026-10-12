@@ -14,7 +14,7 @@
 现实类比：光点建立瀑布网格与黄金方格，镜头进入字符雨幕；亮线蓄势打出铁花，回缩后的原图形持续递归生长为满幅图案。
 需要保留：21.133333秒、30帧每秒、634个采样；末段1.5倍生长。第一块方格始终从中心开始；2002个黄金矩形、9383个方格及弧线均依父级关系延伸，已出现的主弧线和铁花保持到最后。
 明确排除：不使用原片图像，不随机重排，不让弧线越出所属方格，不把完整组合伪装成单个动作。
-对应参考：本地目录「黄金矩形递归生长」；所用动作：瀑布网格黄金绘入、黄金方格中心放大、字符雨幕震动、亮线蓄势打铁花、黄金方格回缩、铁花持续绽放、网格起伏黄金生长、星点错峰闪烁
+对应参考：本地目录「黄金矩形递归生长」；所用动作：瀑布网格黄金绘入、黄金方格中心放大、字符雨幕震动、亮线蓄势打铁花、黄金方格回缩、铁花持续绽放、网格起伏黄金生长
 源码：catalog/effects/point-domain-flow.js 中的 point-domain-flow-sequence
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：图形与文字是可替换的示例；保留格内延伸、父子接续和当前时间可重现的动作关系。
@@ -33,4 +33,4 @@
 - 复刻至 [@陈与小金](https://www.xiaohongshu.com/user/profile/674ae141000000001c019796?xsec_token=AB4_JtYTs33ywlUEE_Mx8jkB1aDCvusqnUmnJNp5ZZLwE%3D&xsec_source=pc_search) 老师，已取得授权
 - 基于本地几何绘制重构：按Wise Motion叙事设计黄金方格、字符雨幕、延伸停顿打铁花、网格波次及父子递归生长；组合与独立动作共享绘制函数和确定时钟，运行不读取原片或参考图。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[瀑布网格黄金绘入](coordinate-grid-build.md)、[黄金方格中心放大](coordinate-focus-zoom.md)、[字符雨幕震动](text-plane-tilt.md)、[亮线蓄势打铁花](boundary-curve-stop.md)、[黄金方格回缩](frame-ring-collapse.md)、[铁花持续绽放](bounded-fibre-grow.md)、[网格起伏黄金生长](grid-flow-unfold.md)、[星点错峰闪烁](star-twinkle.md)。
+所用动作：[瀑布网格黄金绘入](coordinate-grid-build.md)、[黄金方格中心放大](coordinate-focus-zoom.md)、[字符雨幕震动](text-plane-tilt.md)、[亮线蓄势打铁花](boundary-curve-stop.md)、[黄金方格回缩](frame-ring-collapse.md)、[铁花持续绽放](bounded-fibre-grow.md)、[网格起伏黄金生长](grid-flow-unfold.md)。

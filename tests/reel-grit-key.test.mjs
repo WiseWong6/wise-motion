@@ -7,14 +7,14 @@ import {environment,data,frameMarkup} from './helpers.mjs';
 
 const source=await readFile('/Users/wisewong/Documents/Developer/wise-video/claude-showreel-2026/reel.js','utf8');
 const local=await readFile(new URL('../catalog/effects/reel-grit-key.js',import.meta.url),'utf8');
-const defs=[['frame-jitter-type',1900,700],['ghost-type-overprint',3000,1250],['film-scratch-flicker',3000,900],['panel-rise-collapse',6200,1700],['ball-bounce-trails',6200,1650],['timeline-keyframe-playhead',6200,1750],['keyframe-workbench',8000,2200],['shape-pop-float',5000,1600]].map(([id,duration_ms,preview_ms])=>({id,duration_ms,preview_ms,default_ease:'linear',parameters:{speed:{min:.5,max:2}},loop:false}));
+const defs=[['frame-jitter-type',1900,700],['film-scratch-flicker',3000,900],['panel-rise-collapse',6200,1700],['ball-bounce-trails',6200,1650],['timeline-keyframe-playhead',6200,1750],['keyframe-workbench',8000,2200],['shape-pop-float',5000,1600]].map(([id,duration_ms,preview_ms])=>({id,duration_ms,preview_ms,default_ease:'linear',parameters:{speed:{min:.5,max:2}},loop:false}));
 const definition=(id,variantId)=>{
-  if(id!=='title-stagger')return defs.find(d=>d.id===id);
+  if(!['title-stagger','word-slam'].includes(id))return defs.find(d=>d.id===id);
   const base=data.effects.find(e=>e.id===id),variant=base?.variants?.find(v=>v.id===variantId);
   assert.ok(variant,id+' 缺少 '+variantId+' 样式');
   return {...base,...variant,id,variant_id:variantId};
 };
-defs.push(definition('title-stagger','handoff'));
+defs.push(definition('title-stagger','handoff'),definition('word-slam','overprint'));
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-7,`${a} / ${b}`);
 const nums=v=>(v.match(/-?\d+(?:\.\d+)?(?:e[-+]?\d+)?/gi)||[]).map(Number);
 const math=source.slice(source.indexOf('const clamp ='),source.indexOf('function noise2'));
@@ -92,7 +92,7 @@ test('抖动与套印按源帧号计算，两种帧率保持分离',async()=>{
   const e=await setup();try{const root=e.w.document.getElementById('root');let p=e.w.MotionRuntime.create(root,definition('frame-jitter-type'));
     for(const ms of [0,40,249,250,499,500,701,1300,1899]){p.seek(ms);const sourceTime=4.1+ms/1000,ref=originalGrit(sourceTime),g=root.querySelector('[data-layer="jitter"]');const original=ref.find(v=>v.type==='translate');nums(g.getAttribute('transform')).forEach((v,i)=>near(v,original.args[i]));
       for(const [i,n] of [...root.querySelectorAll('[data-line]')].entries()){const line=ref.find(v=>v.type==='txt'&&v.s===['THE','NERVOUS','TYPE.'][i]);assert.equal(n.getAttribute('visibility'),line?'visible':'hidden');if(line)near(+n.getAttribute('x'),line.x);}
-    }p.destroy();p=e.w.MotionRuntime.create(root,definition('ghost-type-overprint'));
+    }p.destroy();p=e.w.MotionRuntime.create(root,definition('word-slam','overprint'));
     for(const ms of [0,40,84,240,750,1250,1700,2999]){p.seek(ms);const words=originalGrit(ms/1000).filter(v=>v.type==='text'&&v.args[0]==='1995');[...root.querySelectorAll('[data-print]')].forEach((n,i)=>{near(+n.getAttribute('x'),words[i].args[1]);near(+n.getAttribute('y'),words[i].args[2]);near(+n.getAttribute('opacity'),[.05,.07,.09][i]);});}
     p.seek(100);const frozen=root.innerHTML;p.seek(120);assert.equal(root.innerHTML,frozen,'十二格采样窗口内不应平滑漂移');p.destroy();
   }finally{e.close();}

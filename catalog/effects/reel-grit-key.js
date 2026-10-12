@@ -32,7 +32,11 @@
     set(flash,'opacity',r(11)*.07+(r(12)<.06?.12:0));
   };}
   F['frame-jitter-type']=root=>{base(root,'文字逐帧错位抖动','#0c0b09',jitterLayer());return clock(1900,jitterMotion(root),4.1);};
-  F['ghost-type-overprint']=root=>{base(root,'文字多层套印漂移','#0c0b09',overprintLayer());return clock(3000,overprintMotion(root));};
+  const wordSlam=F['word-slam'];
+  F['word-slam']=Object.assign((root,kit,definition={})=>{
+    if(definition.variant_id!=='overprint')return wordSlam(root,kit,definition);
+    base(root,'文字错位套印','#0c0b09',overprintLayer());return clock(3000,overprintMotion(root));
+  },wordSlam);
   F['film-scratch-flicker']=root=>{base(root,'胶片刮痕与尘点闪动','#0c0b09',scratchLayer());return clock(3000,scratchMotion(root));};
 
   // 三窗升入/收扁和组合恢复原布局；独立弹跳仍居中。曲线共用独立编辑器的绘制函数。

@@ -9,13 +9,13 @@ import {frameScriptsFor} from '../remotion/frame-document.mjs';
 // 原目录插画与动作一对一复用的约定；迁入场景的分离主体和交互动作由 scenes-adoption.test.mjs 单独验证。
 const illustrations=data.effects.filter(e=>e.kind==='illustration'&&!e.scene);
 const animated=illustrations.filter(e=>e.actions.length);
-const staticIds=['book-geometric-illustration','selfie-phone-illustration'];
+const noActionIds=['book-geometric-illustration','selfie-phone-illustration','spiral-galaxy-illustration'];
 const definition=id=>data.effects.find(e=>e.id===id);
 const actionFor=(w,art)=>w.MotionKit.resolveVariant(definition(art.actions[0]),art.action_variants?.[art.actions[0]]);
 
-test('既有动态插画都关联真实动作，同类示例合并且静态主体不虚构动作',()=>{
-  assert.equal(animated.length,64);
-  assert.deepEqual(illustrations.filter(e=>!e.actions.length).map(e=>e.id).sort(),staticIds.sort());
+test('插画关联真实保留的动作，同类示例合并，删除后的动作不重新登记',()=>{
+  assert.equal(animated.length,63);
+  assert.deepEqual(illustrations.filter(e=>!e.actions.length).map(e=>e.id).sort(),noActionIds.sort());
   for(const art of animated)for(const id of art.actions)assert.equal(definition(id)?.kind,'action',art.id);
   assert.equal(definition('drafting-tools-illustration').actions[0],definition('folio-cards-illustration').actions[0]);
   for(const [art,id] of [['claude-flow-field-illustration','generative-flow-field'],
@@ -31,7 +31,7 @@ test('关联动作的独立绘制与插画逐时刻一致，保留配色、节�
       const action=actionFor(w,art),original=w.MotionRuntime.create(artRoot,art),player=w.MotionRuntime.create(actionRoot,action);
       try{
         assert.ok(action.source.factory===art.id||art.id==='osmanthus-moon-illustration');
-        assert.equal(action.duration_ms,art.duration_ms);
+        assert.equal(action.duration_ms,art.duration_ms/(action.id==='plume-rise-curl'?2:1));
         assert.equal(actionRoot.firstElementChild.dataset.art,artRoot.firstElementChild.dataset.art,art.id);
         const frames=[];
         for(const ratio of [0,.13,.37,.63,.91,1,.37]){

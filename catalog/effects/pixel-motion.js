@@ -187,12 +187,12 @@
     factory:(root,kit,definition)=>factory(root,kit,definition,choices[definition.id]),
     route(id,prior){return Object.assign((root,kit,definition={})=>definition.variant_id==='pixel-motion'?factory(root,kit,definition,choices[id]):prior(root,kit,definition),prior);}};
   F['pixel-motion-sequence']=(root,kit,definition)=>factory(root,kit,definition);
-  for(const id of ['pixel-hop-squash','parallax-city-scroll','particle-ballistic-fall'])F[id]=(root,kit,definition)=>factory(root,kit,definition,choices[id]);
+  for(const id of ['pixel-hop-squash','particle-ballistic-fall'])F[id]=(root,kit,definition)=>factory(root,kit,definition,choices[id]);
   F['pixel-motion-sequence'].breakdown=[
-    {id:'opening',name:'像素聚字与星点',time:'0–2.67 秒',start:0,end:4000,detail:'固定像素错峰聚成 WISE，星点逐格闪烁；末尾随机像素消退。',actions:['particle-word','star-twinkle','pixel-dissolve-transition']},
+    {id:'opening',name:'像素聚字与星点',time:'0–2.67 秒',start:0,end:4000,detail:'固定像素错峰聚成 WISE，星点逐格闪烁；末尾随机像素消退。',actions:['particle-word','pixel-dissolve-transition']},
     {id:'hop',name:'横移连跳与图形回弹',time:'2.67–6.67 秒',start:4000,end:10000,detail:'机器人向右连跳，触地压扁、腾空拉长；五个图形错峰放大回弹。',actions:['pixel-hop-squash','scale-in']},
-    {id:'city',name:'分层城市与弹跳换形',time:'6.67–12 秒',start:10000,end:18000,detail:'固定楼群与窗灯以三种速度向左移动；小球等幅循环弹跳并保留四枚拖尾，方圆轮廓连续变化。',actions:['parallax-city-scroll','ball-bounce-trails','shape-morph']},
+    {id:'city',name:'分层城市与弹跳换形',time:'6.67–12 秒',start:10000,end:18000,detail:'固定楼群与窗灯以三种速度向左移动；小球等幅循环弹跳并保留四枚拖尾，方圆轮廓连续变化。',actions:['ball-bounce-trails','shape-morph']},
     {id:'words',name:'文字放大滑入换位',time:'12–16.67 秒',start:18000,end:25000,detail:'七个词每2/3秒轮换，放大回弹、从左滑入再向右退出；八条像素横线持续滚动。',actions:['word-slam']},
-    {id:'ending',name:'彩纸抛落与品牌收尾',time:'16.67–20 秒',start:25000,end:30000,detail:'机器人上下拉压，250枚彩纸抛出下落，WISE 像素字弹出并在末尾消退。',actions:['particle-ballistic-fall','squash-bounce','star-twinkle','pixel-dissolve-transition']}
+    {id:'ending',name:'彩纸抛落与品牌收尾',time:'16.67–20 秒',start:25000,end:30000,detail:'机器人上下拉压，250枚彩纸抛出下落，WISE 像素字弹出并在末尾消退。',actions:['particle-ballistic-fall','squash-bounce','pixel-dissolve-transition']}
   ].map(layer=>({...layer,start:layer.start/RATE,end:layer.end/RATE}));
 })(globalThis);

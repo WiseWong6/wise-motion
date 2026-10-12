@@ -37,9 +37,9 @@ test('同帧重复、倒序与乱序定位不改变像素；加速仍按原像�
  for(const part of api.parts){const before=digest(1.25,part);api.indices(0,{part});assert.equal(digest(1.25,part),before,part);}
 });
 
-test('组合关联11个真实动作，8个现有条目精确指向像素示例；独立动作只绘制对应主体',async()=>{
+test('组合关联9个真实动作，7个现有条目精确指向像素示例；独立动作只绘制对应主体',async()=>{
  const e=data.effects.find(e=>e.id==='pixel-motion-sequence');
- assert.equal(e.actions.length,11);assert.equal(Object.keys(e.action_variants).length,8);assert.equal(e.audio,undefined);
+ assert.equal(e.actions.length,9);assert.equal(Object.keys(e.action_variants).length,7);assert.equal(e.audio,undefined);
  assert.equal(context.MotionFactories[e.id].breakdown.length,5);
  for(const id of e.actions){
   const definition=selectEffect(id,e.action_variants[id]);
@@ -74,7 +74,7 @@ test('组合关联11个真实动作，8个现有条目精确指向像素示例�
 test('完整组合与像素示例导出的独立工程可以编译，默认参数保留准确示例',async()=>{
  const dir=await mkdtemp(path.join(tmpdir(),'wise-pixel-source-'));
  try{
-  for(const [id,variantId]of [['pixel-motion-sequence'],['shape-morph','pixel-motion'],['parallax-city-scroll']]){
+  for(const [id,variantId]of [['pixel-motion-sequence'],['shape-morph','pixel-motion'],['particle-ballistic-fall']]){
    const out=await exportEffect(id,{variantId,outDir:path.join(dir,id)});
    assert.equal(out.kind,'standalone');
    const entry=await readFile(path.join(out.directory,'index.jsx'),'utf8');

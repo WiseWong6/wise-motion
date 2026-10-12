@@ -6,7 +6,7 @@ import {runInNewContext} from 'node:vm';
 import {environment,data,frameMarkup} from './helpers.mjs';
 
 const get=id=>data.effects.find(e=>e.id===id);
-const ids=['striped-sun-rise','perspective-grid-flow','star-twinkle'];
+const ids=['striped-sun-rise','perspective-grid-flow'];
 const numbers=text=>(text.match(/-?\d+(?:\.\d+)?(?:e[-+]?\d+)?/gi)||[]).map(Number);
 const near=(actual,expected)=>assert.ok(Math.abs(actual-expected)<1e-7,`${actual} / ${expected}`);
 const sourceRoot='/Users/wisewong/Documents/Developer/wise-video/claude-showreel-2026/';
@@ -110,7 +110,7 @@ test('独立动作与组合共用原位图层，不建立无关图形，回退�
   try{
     const {w}=env,d=w.document,root=d.createElement('div'),whole=w.MotionRuntime.create(root,get('neon-horizon'));
     const same=markup=>markup.replace(/motion-neon-\d+/g,'motion-neon-fixed');
-    for(const [id,layer] of [['striped-sun-rise','sun'],['perspective-grid-flow','grid'],['star-twinkle','stars']]){
+    for(const [id,layer] of [['striped-sun-rise','sun'],['perspective-grid-flow','grid']]){
       const host=d.createElement('div'),player=w.MotionRuntime.create(host,get(id));
       assert.equal(host.querySelectorAll('[data-layer]').length,1);
       assert.equal(host.querySelector('[data-layer]').dataset.layer,layer);
@@ -148,7 +148,7 @@ test('霓虹组合能逐层查看，弹窗独立示例与缩略图一致且不�
     d.getElementById('composition-full').click();
     const main=d.querySelector('#preview .motion-stage'),markup=frameMarkup(main),hash=w.location.hash,time=scrub.value;
     assert.deepEqual([...d.querySelectorAll('#related [data-related]')].map(n=>n.dataset.related),get('neon-horizon').actions);
-    for(const [layer,id] of [['sun','striped-sun-rise'],['grid','perspective-grid-flow'],['stars','star-twinkle']]){
+    for(const [layer,id] of [['sun','striped-sun-rise'],['grid','perspective-grid-flow']]){
       d.querySelector(`#related [data-related="${id}"]`).click();
       assert.equal(d.getElementById('related-dialog').open,true);
       assert.equal(w.MotionRuntime.runningCount,1);

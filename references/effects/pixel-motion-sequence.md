@@ -14,7 +14,7 @@
 现实类比：五段像素画面接力展示运动、文字和品牌收尾。
 需要保留：20秒五段时间表、320×180画板、16色调色板和5×7像素字形；WISE按四个字母的宽度居中；楼群与窗灯固定，三层向左以12、30、67.5像素/秒移动。
 明确排除：不加音乐，不换字体，不提高内部像素尺寸，不平滑逐格动作，不加额外镜头或滤镜。
-对应参考：本地目录「像素聚字与动效巡演」；所用动作：粒子聚散成字、放大回弹入场、弹跳逐次减小、轮廓连续变形、文字撞入换位、星点错峰闪烁、像素逐格显现、压缩回弹、横移连跳与触地拉压、分层背景异速滚动、群体抛出加速下落
+对应参考：本地目录「像素聚字与动效巡演」；所用动作：粒子聚散成字、放大回弹入场、弹跳逐次减小、轮廓连续变形、文字撞入与错位套印、像素逐格显现、压缩回弹、横移连跳与触地拉压、群体抛出加速下落
 源码：catalog/effects/pixel-motion.js 中的 pixel-motion-sequence
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：直接整理用户提供的绘制代码，来源保留在随包的drawing.py与SOURCE.json；只包含画面。
@@ -33,7 +33,7 @@
 - 提取自 用户提供的像素绘制脚本 r.py ；品牌文字改为WISE，基础速度为原绘制的1.5倍，城市背景固定后平移。
 - 整理像素绘制与固定输入；内部320×180，基础时钟为原绘制的1.5倍；城市楼群与窗灯一次生成，后续仅平移；完整组合与独立动作共用绘制。只收录画面，不含合成音乐。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[粒子聚散成字](particle-word.md)、[放大回弹入场](scale-in.md)、[弹跳逐次减小](ball-bounce-trails.md)、[轮廓连续变形](shape-morph.md)、[文字撞入换位](word-slam.md)、[星点错峰闪烁](star-twinkle.md)、[像素逐格显现](pixel-dissolve-transition.md)、[压缩回弹](squash-bounce.md)、[横移连跳与触地拉压](pixel-hop-squash.md)、[分层背景异速滚动](parallax-city-scroll.md)、[群体抛出加速下落](particle-ballistic-fall.md)。
+所用动作：[粒子聚散成字](particle-word.md)、[放大回弹入场](scale-in.md)、[弹跳逐次减小](ball-bounce-trails.md)、[轮廓连续变形](shape-morph.md)、[文字撞入与错位套印](word-slam.md)、[像素逐格显现](pixel-dissolve-transition.md)、[压缩回弹](squash-bounce.md)、[横移连跳与触地拉压](pixel-hop-squash.md)、[群体抛出加速下落](particle-ballistic-fall.md)。
 
 ## Remotion 复用
 

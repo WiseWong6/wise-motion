@@ -826,9 +826,9 @@ const packedFields={"classic":{"start":3,"hz":60,"count":384,"steps":649,"maxErr
         if(energy&&(f.accent||f.reflection))path('core',d,f.width*.23,alpha*.8,'#e6fcfe');
       }
     }
-    function point(p,r,alpha,blue=false){
+    function point(p,r,alpha,blue=false,part='point'){
       const depth=.5+.5*clamp((p[2]+1)/2);
-      path('point',`M${coord(p[0])} ${coord(p[1])}h.001`,r*1.6,alpha*depth,blue?'#128bef':'var(--ink)');
+      path(part,`M${coord(p[0])} ${coord(p[1])}h.001`,r*1.6,alpha*depth,blue?'#128bef':'var(--ink)');
     }
     return {fiber,point,begin(){buckets=new Map();},finish(){
       const live=new Set();
@@ -840,7 +840,7 @@ const packedFields={"classic":{"start":3,"hz":60,"count":384,"steps":649,"maxErr
       }
       for(const [key,node] of nodes)if(!live.has(key)){node.remove();nodes.delete(key);}
       // 亮芯最后绘制，避免被蓝色线身盖住；原有顺序不变时也不搬动节点。
-      const layer=key=>key.startsWith('core-')?3:key.startsWith('discharge-')?2:key.startsWith('point-')?1:0;
+      const layer=key=>key.startsWith('core-')?3:key.startsWith('discharge-')?2:key.startsWith('point-')||key.startsWith('plume-stem-')?1:0;
       const ordered=[...live].sort((a,b)=>layer(a)-layer(b)||(a<b?-1:a>b?1:0));
       for(let i=0;i<ordered.length;i++){const node=nodes.get(ordered[i]),current=group.children[i];if(current!==node)group.insertBefore(node,current||null);}
     }};
@@ -868,7 +868,8 @@ const packedFields={"classic":{"start":3,"hz":60,"count":384,"steps":649,"maxErr
     F[id]=(root,K,def)=>{
       const painter=optical?opticalStage(root,id):stage(root,id);let previous=-1,disposed=false;
       const phaseGroups=new Map();if(def.kind==='composition')for(const part of F[id].breakdown||[]){const g=root.ownerDocument.createElement('div');g.dataset.layer=part.id;g.style.cssText='position:absolute;inset:0';root.append(g);phaseGroups.set(part.id,g);}
-      const render=t=>{if(disposed)return;const frame=Math.round(Math.min(id.endsWith('-illustration')?2600:def.duration_ms,Math.max(0,t))*30/1000);if(frame===previous)return;previous=frame;
+      const rate=def.id==='plume-rise-curl'?2:1;
+      const render=t=>{if(disposed)return;const frame=Math.round(Math.min(id.endsWith('-illustration')?2600:def.duration_ms,Math.max(0,t)*rate)*30/1000);if(frame===previous)return;previous=frame;
         const elapsed=frame/30; painter.begin();draw(painter,elapsed,smooth(elapsed/.3));painter.finish();
         if(phaseGroups.size){const part=F[id].breakdown.find(p=>t>=p.start&&t<p.end)||F[id].breakdown.at(-1),container=phaseGroups.get(part.id),art=root.querySelector('svg,canvas');if(art?.parentElement!==container)container.append(art);}
       };
@@ -907,8 +908,9 @@ const packedFields={"classic":{"start":3,"hz":60,"count":384,"steps":649,"maxErr
     }
     for(let n=0;n<900;n++){
       const d=cloudDots[n],u=(d.v+time*.16)%1,stem=v=>{const radius=(.035+.10*(1-v)**2)*d.r,settle=Cloud.cloudOpeningBlend(time),bottom=-1.2-.3*settle,top=1.04*(1-settle)+Cloud.cloudHeadTop(roll)*settle;return [radius*Math.cos(d.a),bottom+(top-bottom)*v,radius*Math.sin(d.a)];};
-      const fade=smooth(u/.06)*(1-smooth((u-.9)/.1));P.point(project(stem(u),c),.9,alpha*(1-focus)*fade*.8);
-      if(n%24===0)P.fiber({points:points(15,v=>project(stem(u-Math.min(u,.075)*(1-v)),c)),opacity:alpha*(1-focus)*fade*(.12+tails*.3),width:1.15,accent:false,taper:true});
+      // 原气柱缩到横幅后粒点不足半像素，单独提高粒点和短尾迹的可见度。
+      const fade=smooth(u/.06)*(1-smooth((u-.9)/.1));P.point(project(stem(u),c),1.6,alpha*(1-focus)*fade,false,'plume-stem');
+      if(n%24===0)P.fiber({points:points(15,v=>project(stem(u-Math.min(u,.075)*(1-v)),c)),opacity:alpha*(1-focus)*fade*(.2+tails*.3),width:1.7,accent:false,taper:true});
     }
   });
   function field(P,time,c,alpha,driven=false,hero=false){
@@ -1124,7 +1126,6 @@ function sourceMushroom(P, time, opacity = 1) {
   if (shell > 0) P.fiber({ points: points(181, (u) => [540 + 432 * Math.cos(u * tau), 900 + 432 * Math.sin(u * tau), 0]), opacity: shell, width: 1, color: "#707b78", closed: true });
 }
 
- register('mushroom-sphere-idealize',(P,t,alpha)=>sourceMushroom(P,t,alpha));
  register('mushroom-sphere-journey',(P,t,alpha)=>sourceMushroom(P,t,alpha));
  register('ring-sphere-journey',(P,t,alpha)=>{
   const bt=t-19,blend=t>=19&&t<32?smooth(bt/.7)*(1-smooth((bt-12.35)/.65)):0;
@@ -1137,6 +1138,6 @@ function sourceMushroom(P, time, opacity = 1) {
 
 /* SCENE ENTRIES */
 MotionFactories["ring-construction-journey"].breakdown=[{"id": "build", "name": "环面构建与增密", "start": 0, "end": 8000, "time": "0—8秒", "detail": "环面构建与增密在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "smoke-ring-illustration", "vortex-ring-illustration"]}, {"id": "section", "name": "剖面展开与翻卷", "start": 8000, "end": 20000, "time": "8—20秒", "detail": "剖面展开与翻卷在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "smoke-ring-illustration", "vortex-ring-illustration"]}];
-MotionFactories["mushroom-sphere-journey"].breakdown=[{"id": "plume", "name": "烟羽上升与头部回卷", "start": 0, "end": 7000, "time": "0—7秒", "detail": "烟羽上升与头部回卷在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["mushroom-sphere-idealize", "mushroom-cloud-illustration", "hill-vortex-illustration"]}, {"id": "sphere", "name": "头部收成理想球涡", "start": 7000, "end": 13000, "time": "7—13秒", "detail": "头部收成理想球涡在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["mushroom-sphere-idealize", "mushroom-cloud-illustration", "hill-vortex-illustration"]}];
-MotionFactories["ring-sphere-journey"].breakdown=[{"id": "ring", "name": "环线构建与剖面展开", "start": 0, "end": 19000, "time": "0—19秒", "detail": "环线构建与剖面展开在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "mushroom-sphere-idealize", "smoke-ring-illustration", "vortex-ring-illustration", "mushroom-cloud-illustration", "hill-vortex-illustration"]}, {"id": "bridge", "name": "烟羽回卷交接", "start": 19000, "end": 32000, "time": "19—32秒", "detail": "烟羽回卷交接在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "mushroom-sphere-idealize", "smoke-ring-illustration", "vortex-ring-illustration", "mushroom-cloud-illustration", "hill-vortex-illustration"]}, {"id": "sphere", "name": "球涡继续翻卷", "start": 32000, "end": 42000, "time": "32—42秒", "detail": "球涡继续翻卷在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "mushroom-sphere-idealize", "smoke-ring-illustration", "vortex-ring-illustration", "mushroom-cloud-illustration", "hill-vortex-illustration"]}];
+MotionFactories["mushroom-sphere-journey"].breakdown=[{"id": "plume", "name": "烟羽上升与头部回卷", "start": 0, "end": 7000, "time": "0—7秒", "detail": "烟羽上升与头部回卷在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["mushroom-cloud-illustration", "hill-vortex-illustration"]}, {"id": "sphere", "name": "头部收成理想球涡", "start": 7000, "end": 13000, "time": "7—13秒", "detail": "头部收成理想球涡在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["mushroom-cloud-illustration", "hill-vortex-illustration"]}];
+MotionFactories["ring-sphere-journey"].breakdown=[{"id": "ring", "name": "环线构建与剖面展开", "start": 0, "end": 19000, "time": "0—19秒", "detail": "环线构建与剖面展开在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "smoke-ring-illustration", "vortex-ring-illustration", "mushroom-cloud-illustration", "hill-vortex-illustration"]}, {"id": "bridge", "name": "烟羽回卷交接", "start": 19000, "end": 32000, "time": "19—32秒", "detail": "烟羽回卷交接在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "smoke-ring-illustration", "vortex-ring-illustration", "mushroom-cloud-illustration", "hill-vortex-illustration"]}, {"id": "sphere", "name": "球涡继续翻卷", "start": 32000, "end": 42000, "time": "32—42秒", "detail": "球涡继续翻卷在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "smoke-ring-illustration", "vortex-ring-illustration", "mushroom-cloud-illustration", "hill-vortex-illustration"]}];
 MotionFactories["energy-discharge-journey"].breakdown=[{"id":"field","name":"能量流线显影增密","start":0,"end":3000,"time":"0—3秒","detail":"开场即呈现稀疏球体，流线显影、增密和镜头变化随整段以四倍速播放。","actions":["energy-density-growth","rasengan-illustration","lightning-orb-illustration"]},{"id":"electric","name":"局部电弧逐渐接入","start":3000,"end":6000,"time":"3—6秒","detail":"三秒后局部电弧从弱到强逐步接入，流线继续连续翻卷。","actions":["energy-density-growth","rasengan-illustration","lightning-orb-illustration"]}];

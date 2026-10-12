@@ -166,6 +166,26 @@ test('原来的黄金弧线与铁花持续保留，递归密度不断增加，�
  }finally{e.close();}
 });
 
+test('独立铁花围绕同一中心放大三成，轨迹、尾线和连续绽放保持对应',async()=>{
+ const e=await setup();try{
+  const api=e.w.WisePointDomainFlow,painter=api.createPainter(e.w.document),ctx=e.ctx;
+  const move=ctx.moveTo,line=ctx.lineTo;let points=[];
+  ctx.moveTo=(...p)=>{points.push(p);move(...p);};ctx.lineTo=(...p)=>{points.push(p);line(...p);};
+  for(const time of [16.5,18.7,24.5,26.2]){
+   const state=painter.pose(time),center=api.flowerState(time,state).center;
+   points=[];ctx.reset();painter.drawLayer(ctx,'fibres',time,state);
+   const original=points,strokes=ctx.commands.filter(c=>c[0]==='stroke');
+   points=[];ctx.reset();painter.drawLayer(ctx,'fibres',time,state,true);
+   const enlarged=points,largeStrokes=ctx.commands.filter(c=>c[0]==='stroke');
+   assert.ok(original.length>100);assert.equal(enlarged.length,original.length);
+   for(let i=0;i<original.length;i++)for(let axis=0;axis<2;axis++)assert.ok(Math.abs(enlarged[i][axis]-center[axis]-(original[i][axis]-center[axis])*1.3)<1e-6);
+   assert.equal(largeStrokes.length,strokes.length);
+   largeStrokes.forEach((c,i)=>assert.ok(Math.abs(c[2].lineWidth-strokes[i][2].lineWidth*1.3)<1e-9));
+  }
+  ctx.moveTo=move;ctx.lineTo=line;painter.destroy();
+ }finally{e.close();}
+});
+
 test('正式组合与已验收候选在21个代表时刻提交相同画布指令',async()=>{
  const expected=JSON.parse(await read('tests/fixtures/golden-growth-accepted.json'));
  const e=await setup();try{for(const [ms,hash]of Object.entries(expected.frames)){e.ctx.reset();e.draw(Number(ms),{force:true});assert.equal(e.ctx.digest(),hash,ms+'毫秒画面与验收版不同');}}finally{e.close();}
@@ -197,12 +217,12 @@ test('组合拆解具有真实透明图层，切换后保留时刻，字体与�
  }finally{e.close();}
 });
 
-test('星点保留原示例，正式入口与复制提示词使用新图案且无旧视频覆盖',async()=>{
- const e=await env();try{const {w}=e;w.MotionRegistry=data;w.eval(await read('catalog/matching.js'));w.eval(await read('catalog/export.js')); const stars=data.effects.find(e=>e.id==='star-twinkle'),root=w.document.createElement('div');
- const original=w.MotionRuntime.create(root,stars,{autoplay:false});assert.ok(root.querySelector('[data-star]')||root.querySelector('svg'));original.destroy();
- const def=w.MotionKit.resolveVariant({...stars,variant_id:'layered-night'}),variant=w.MotionRuntime.create(root,def,{autoplay:false});await variant.ready;assert.equal(root.querySelectorAll('canvas').length,1);assert.equal(def.duration_ms,composition.duration_ms);variant.destroy();
+test('独立星点删除后组合星空仍保留，提示词使用真实图案且无旧视频覆盖',async()=>{
+ const e=await env();try{const {w}=e;w.MotionRegistry=data;w.eval(await read('catalog/matching.js'));w.eval(await read('catalog/export.js'));
+ assert.equal(data.effects.some(e=>e.id==='star-twinkle'),false);assert.equal(w.MotionFactories['star-twinkle'],undefined);
+ const root=w.document.createElement('div'),draw=w.MotionFactories[composition.id](root,w.MotionKit,composition);await draw.ready;draw(3000);
+ assert.ok(root.querySelector('[data-layer="sky"]'));assert.deepEqual(Array.from(w.MotionFactories[composition.id].breakdown.find(row=>row.id==='sky').actions),[]);draw.destroy();
  const prompt=w.MotionExport.prompt(composition,{},data);for(const term of ['黄金','打铁花','2002','21.133333','字幕'])assert.ok(prompt.includes(term),term);assert.doesNotMatch(prompt,/多涡流场|三圈文字圆|160颗/);
- const code=w.MotionExport.code(stars,{variantId:'layered-night'});assert.ok(code.indexOf('catalog/effects/reel-neon.js')<code.indexOf('catalog/effects/point-domain-flow.js'));
  const page=await read('catalog/index.html');assert.match(page,/effects\/point-domain-flow.js/);assert.doesNotMatch(page,/local-preview.js/);
  for(const id of ['grid-bend-spread','multivortex-release'])assert.equal(data.redirects[id],'grid-flow-unfold');
  }finally{e.close();}

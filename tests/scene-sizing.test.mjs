@@ -9,7 +9,7 @@ test('切换不同原画比例后预览框同步适配，原作画布保持自�
  try{
   const {w}=env,d=w.document,preview=d.getElementById('preview'),shell=preview.closest('.preview-shell');
   d.querySelector('[data-kind="action"]').click();
-  for(const [id,ratio,width,height] of [['galaxy-axis-reveal',3/4,660,880],['ink-volume-roll',9/16,1080,1920],['snow-arrival-window',5/6,900,1080],['fade-rise',16/9]]){
+  for(const [id,ratio,width,height] of [['galaxy-axis-reveal',3/4,660,880],['snow-arrival-window',5/6,900,1080],['fade-rise',16/9]]){
    d.querySelector(`[data-effect="${id}"]`).click();
    assert.equal(Number(shell.style.getPropertyValue('--preview-ratio')),ratio,id);
    if(width){const canvas=preview.querySelector('.pattern-canvas');assert.equal(canvas.width,width,id);assert.equal(canvas.height,height,id);}
@@ -49,7 +49,7 @@ test('标准动作画面保持完整画板尺寸，不被页面图标样式缩�
       const scenes=[...d.querySelectorAll('.thumb .pattern-svg')];
       sceneCount+=scenes.length;scenes.forEach(fullSize);
     }
-    assert.equal(sceneCount,237);
+    assert.equal(sceneCount,235);
     d.querySelector('[data-kind="action"]').click();
     d.querySelector('[data-effect="rigid-rebound"]').click();
     fullSize(d.querySelector('#preview .pattern-svg'));

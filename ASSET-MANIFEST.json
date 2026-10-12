@@ -1512,6 +1512,16 @@
       "sha256": "d0cd0465e6534e5079e6a43952f48e2de0fd5b2f711dc02390c2f85ed8e90a93"
     },
     {
+      "path": "catalog/assets/speech-caption/KLine-source.txt",
+      "bytes": 5254,
+      "sha256": "617637f92e6b82c7b3632e45d72e79a7777901785bb4d42b15433f0b5c4a6640"
+    },
+    {
+      "path": "catalog/assets/speech-caption/SOURCE.json",
+      "bytes": 2250,
+      "sha256": "480b547503adc46ee9d6f9b796d067f0a95eb33c15411ffa79a27582954300d6"
+    },
+    {
       "path": "catalog/assets/stack-flick/background-generation.json",
       "bytes": 4990,
       "sha256": "380684ca231e4c25b838e97298f63fe6b23118ca8852dde063ed9eb54c7e1475"
@@ -1703,8 +1713,8 @@
     },
     {
       "path": "catalog/effects/history-patterns.js",
-      "bytes": 61695,
-      "sha256": "d234064dcc2c8e1ac0aec1c29603af7fe38291391bc37e4116c6629f32d3de59"
+      "bytes": 61813,
+      "sha256": "3e6dffa928562b72f4ccff68b91c1a786cf7b9bdf530da2f200c9d9ab4da612e"
     },
     {
       "path": "catalog/effects/hud-targeting.js",
@@ -1778,13 +1788,13 @@
     },
     {
       "path": "catalog/effects/pixel-motion.js",
-      "bytes": 11928,
-      "sha256": "d27571a5c43099d4a037b50f7cf75dbb3ff4468b753445b42e59ae7ade32661c"
+      "bytes": 11852,
+      "sha256": "bdb8fccdcba508d1714f419d15667499871c34eea10536236f047c96d6535c20"
     },
     {
       "path": "catalog/effects/point-domain-flow.js",
-      "bytes": 63398,
-      "sha256": "db8d79f840a05a35750f716475a9a6244ec9a951fc6791506397f309f37d876a"
+      "bytes": 63476,
+      "sha256": "a578504f4c2561c6b78d682345538d35d870848660570a28d1d6b573d80b70cd"
     },
     {
       "path": "catalog/effects/precision-assembly-data.js",
@@ -1808,8 +1818,8 @@
     },
     {
       "path": "catalog/effects/rasengan-illustrations.js",
-      "bytes": 3412984,
-      "sha256": "a631035142dfcca00768743c731721655a4a203c4d5a22e00888927c3cf8849a"
+      "bytes": 3412979,
+      "sha256": "0c14e9a7ad1fd9ef4ce703eca4fbe500e859dae79d785c7e2483cfee590d1bed"
     },
     {
       "path": "catalog/effects/rect-wave-field.js",
@@ -1828,13 +1838,13 @@
     },
     {
       "path": "catalog/effects/reel-grit-key.js",
-      "bytes": 20688,
-      "sha256": "6d4d9e38bd50912594ab6a20beae5b3757db9561610db63aed555300c6b34263"
+      "bytes": 20837,
+      "sha256": "b4c4e0284c54b0a684f787315fbf0d53fdfd0967348cea0cc220fbc52ae240a7"
     },
     {
       "path": "catalog/effects/reel-neon.js",
-      "bytes": 22500,
-      "sha256": "2ab225e2c7ae4511795a259d05f90118adf936817a2a0eb79fc889b13cf490b0"
+      "bytes": 22084,
+      "sha256": "9f757945491daea719c5bcadf6b3fae856c90f3e9e4c2f30d2eaff253bc916cf"
     },
     {
       "path": "catalog/effects/reel-opening.js",
@@ -1883,8 +1893,8 @@
     },
     {
       "path": "catalog/effects/scene-ink.js",
-      "bytes": 11932,
-      "sha256": "86fe60a49ad220892e02712890c2e4314c6c52750fee3447f4454cdb5300686c"
+      "bytes": 11807,
+      "sha256": "ac79a22c8883db6999db9c7f5500c20c931ce2de9993f4b543263b1bc7baec2f"
     },
     {
       "path": "catalog/effects/scene-letter-images.js",
@@ -1965,6 +1975,11 @@
       "path": "catalog/effects/space.js",
       "bytes": 12189,
       "sha256": "1881fc5892af1539fa5ba854edec6b05e55e7769ecf228f27897ec746e5494ed"
+    },
+    {
+      "path": "catalog/effects/speech-caption.js",
+      "bytes": 6289,
+      "sha256": "cdbe9927ec4ed201dbbbff5e21c01d9cb9baef1ae132d240741e01646954d462"
     },
     {
       "path": "catalog/effects/step-hop.js",
@@ -2098,13 +2113,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 2330748,
-      "sha256": "21e87fece0e329b236660988d53656a38990abbb184c8aeb1d8b9800d781b410"
+      "bytes": 2309931,
+      "sha256": "49536e8fcbf283dfd2a99779f5f0f8e6852b9eff25978dd4639f04339d190492"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 2879319,
-      "sha256": "476b1f1c21da883b76fbcd1c5bc9584a0868f92246bb1b8b76bde6d0e68fbc2e"
+      "bytes": 2854276,
+      "sha256": "d58711b973a8ca541ec611316c91aaf00cf0793795b5d67c4be3829b563edfca"
     },
     {
       "path": "catalog/related-preview.js",
@@ -2257,9 +2272,14 @@
       "sha256": "81c6e8b5c5e82ec7bb2ffec928def489d54c087e70c32039d4abc5f232a701e8"
     },
     {
+      "path": "catalog/remotion/speech-caption.jsx",
+      "bytes": 2035,
+      "sha256": "0b477dd723900ded415796ac3dcb7e8fc2e6853b9edf539253d50dcca102508c"
+    },
+    {
       "path": "catalog/remotion-sources.js",
-      "bytes": 1972586,
-      "sha256": "97e7844f995b8521e5d4277280d820c2f66ae906fb11d645a8c780672db55070"
+      "bytes": 1993546,
+      "sha256": "82afc61ecae94e027b79c35d86715f6adb199f9d67caa4190d54138a0ed41c47"
     },
     {
       "path": "catalog/runtime.js",

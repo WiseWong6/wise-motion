@@ -19,7 +19,7 @@ const effect=id=>registry.effects.find(e=>e.id===id);
 
 test('删除浓度墨团插画，实验树的原数据、花期、绘制及八张素材完整保留',async()=>{
  assert.equal(effect('ink-volume-illustration'),undefined);
- assert.ok(effect('ink-volume-roll'),'独立墨团动作仍可使用');
+ assert.equal(effect('ink-volume-roll'),undefined,'按用户要求删除独立墨团动作');
  assert.doesNotMatch(await source('catalog/effects/scene-ink.js'),/register\(['"]ink-volume-illustration['"]/);
  const originalData=(await source('catalog/effects/scene-window-data.js')).replace(/^\/\* Copyright[^\n]+\n/,'').replace('globalThis.WiseWindowTreeData','globalThis.NightTreeData');
  assert.equal(hash(originalData),provenance.original_files['lab-data.js'].sha256,'树和花的原始固定数据');

@@ -98,12 +98,12 @@ test('霓虹字启动的每一格明灭与原片相同，之后保持点亮，�
   }finally{env.close();}
 });
 
-test('片头共用七个真实动作，独立年份居中、字幕裁掉开头等待后保留内部字形和节奏',async()=>{
+test('片头共用六个真实动作，独立年份居中、字幕裁掉开头等待后保留内部字形和节奏',async()=>{
   const env=await environment();
   try{
     const {w}=env,d=w.document,root=d.createElement('div'),whole=w.MotionRuntime.create(root,get('neon-title-sequence'));
     const same=s=>s.replace(/motion-neon-\d+/g,'neon-fixed');
-    for(const [id,layer] of [['striped-sun-rise','sun'],['perspective-grid-flow','grid'],['star-twinkle','stars'],['chrome-outline-echo','chrome'],['neon-type-flicker','neon'],['cross-flare-travel','flare'],['caption-type-caret','caption']]){
+    for(const [id,layer] of [['striped-sun-rise','sun'],['perspective-grid-flow','grid'],['chrome-outline-echo','chrome'],['neon-type-flicker','neon'],['cross-flare-travel','flare'],['caption-type-caret','caption']]){
       const host=d.createElement('div'),effect=get(id),player=w.MotionRuntime.create(host,effect);
       assert.equal(host.querySelectorAll('[data-layer]').length,1);
       for(const time of [0,500,980,1100,1500,effect.duration_ms]){

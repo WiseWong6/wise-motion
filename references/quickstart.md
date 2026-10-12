@@ -59,6 +59,6 @@ node "<技能目录>/scripts/export.mjs" stagger-in --out-dir "/目标工程/卡
 | 演示界面操作 | `interface-feedback` 按钮操作反馈 | `button-press-status` 按钮按压换态 |
 | 切到下一段 | `wipe` 画面擦入切换 | `shared-object` 同一主体跨场、`zoom-transition` 缩放穿越转场、`page-cover` 新页推入覆盖 |
 | 结尾字标 | `seed-bloom-brand-sequence` 生长化蝶与光形字标 | `outro-credit-lift` 文字分层升入、`particle-word` 粒子聚散成字 |
-| 背景氛围 | `diffuse-light-drift` 弥散光团流动 | `star-twinkle` 星点错峰闪烁、`film-scratch-flicker` 胶片纹理闪动 |
+| 背景氛围 | `diffuse-light-drift` 弥散光团流动 | `film-scratch-flicker` 胶片纹理闪动 |
 
 没有合适的候选就说明缺口；也可按 [目录索引](index.md) 分类浏览，由调用方继续创作。

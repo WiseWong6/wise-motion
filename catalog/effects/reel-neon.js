@@ -160,10 +160,9 @@
   }
   F['striped-sun-rise']=root=>scene(root,'条纹太阳升起',['sun']);
   F['perspective-grid-flow']=root=>scene(root,'透视网格前行',['grid']);
-  F['star-twinkle']=root=>scene(root,'星点错峰闪烁',['stars']);
   F['neon-horizon']=root=>scene(root,'霓虹地平线',['stars','sun','grid']);
   F['neon-horizon'].breakdown=[
-    {id:'stars',actions:['star-twinkle'],name:'星点闪烁',start:0,end:6000,time:'0–6 秒',detail:'140 个星点固定在各自位置，只改变亮度。每颗星的明暗时刻错开，组合与独立动作的坐标和时间完全一致。'},
+    {id:'stars',actions:[],name:'星点闪烁',start:0,end:6000,time:'0–6 秒',reason:'星点作为完整组合的背景层保留，与其余画面共用时间轴。',detail:'140 个星点固定在各自位置，只改变亮度。每颗星的明暗时刻错开，保留组合内的坐标和时间。'},
     {id:'sun',actions:['striped-sun-rise'],name:'条纹太阳',start:0,end:6000,time:'0–6 秒',detail:'太阳在前 1.3 秒从地平线下升起。下半部条纹以每秒 22 像素持续下移，间隙逐级加宽；圆盘随半秒节拍微微胀缩。'},
     {id:'grid',actions:['perspective-grid-flow'],name:'透视网格',start:0,end:6000,time:'0–6 秒',detail:'地面横线按透视距离向前滚来，纵线汇向地平线；7 像素柔边与 2 像素亮芯共同描线，亮度响应同一半秒节拍。'}
   ];
@@ -185,11 +184,4 @@
     {id:'flare',actions:['cross-flare-travel'],name:'十字光斑横移',start:1700,end:2500,time:'1.70–2.50 秒',detail:'原片白色十字光斑沿水平方向滑过，径向泛光与两根细线共同渐亮再淡去；不裁进字形，也不恢复字内扫光。'},
     {id:'caption',actions:['caption-type-caret'],name:'说明文字与闪烁光标',start:2200,end:4500,time:'2.20–4.50 秒',detail:'底部原说明以每秒 45 字写出，行首位置按整句宽度固定；输入时光标跟在末字后，写完后每 0.4 秒明灭一次，4.50 秒截止，文字继续保留。'}
   ];
-})(globalThis.MotionFactories);
-
-/* Pixel example shares the imported painter; preserve every existing example and factory helper. */
-(function(F){
-  const prior=F["star-twinkle"];
-  F["star-twinkle"]=Object.assign((root,kit,definition={})=>definition.variant_id==='pixel-motion'
-    ? globalThis.WisePixelMotion.factory(root,kit,{...definition,id:"star-twinkle"}) : prior(root,kit,definition),prior);
 })(globalThis.MotionFactories);

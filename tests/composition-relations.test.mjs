@@ -12,7 +12,7 @@ const {effects}=JSON.parse(await readFile(new URL('../catalog/registry.json',imp
 const definitions=new Map(effects.map(effect=>[effect.id,effect]));
 
 // 按真实绘制函数核对关系；这些行的顺序与目录 actions 顺序不同，不能按位置配对。
-const horizon={stars:['star-twinkle'],sun:['striped-sun-rise'],grid:['perspective-grid-flow']};
+const horizon={stars:[],sun:['striped-sun-rise'],grid:['perspective-grid-flow']};
 const expected={
   'paper-spiral-sequence':{paper:['paper-strip-stagger'],disc:['paper-disc-pop'],spiral:['spiral-draw-spin'],orbit:['planar-dot-orbit'],text:['paper-title-stagger']},
   'neon-horizon':horizon,
@@ -63,8 +63,8 @@ test('真实图层关系不依赖列表顺序，同一文字层保留写入和�
   }
   const rows=factories['neon-horizon'].breakdown;
   assert.equal(rows[0].id,'stars');
-  assert.equal(rows[0].actions[0],'star-twinkle');
-  assert.notEqual(rows[0].actions[0],definitions.get('neon-horizon').actions[0]);
+  assert.deepEqual(Array.from(rows[0].actions),[],'组合星点仍绘制，已删除独立关联');
+  assert.equal(definitions.has('star-twinkle'),false);
   assert.deepEqual(Array.from(factories['prompt-to-core-sequence'].breakdown.find(row=>row.id==='letters').actions),['prompt-chinese-type','prompt-char-gather']);
 });
 
