@@ -1,0 +1,16 @@
+{
+  "title": "TIME, IN MOTION · 44 秒原创配乐",
+  "license": "Apache-2.0",
+  "input": {
+    "file": "横屏-MOTION-STUDY/成片/TIME-IN-MOTION-横屏-4K.mp4",
+    "bytes": 111372211,
+    "sha256": "0cdbc50395d529ac5b96c87eb1b775c86bc6cf6e091bfdd36b9248f0e570c2f1"
+  },
+  "track": {
+    "file": "soundtrack.m4a",
+    "bytes": 1404381,
+    "sha256": "a4d43700abc273bbea5acc49c5ff270b0ad73d867e106e9758fede79793d8890"
+  },
+  "operation": "从最终 MP4 无损提取 AAC 音轨；只在完整组合播放。",
+  "synthesis": "sound.py --duration 44；NumPy 与 FFmpeg；不使用外部采样。"
+}

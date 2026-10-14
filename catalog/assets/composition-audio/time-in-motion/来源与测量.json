@@ -1,0 +1,536 @@
+{
+  "file": "MOTION-STUDY-44s-原创音乐.wav",
+  "durationSeconds": 44,
+  "sampleRate": 48000,
+  "channels": 2,
+  "bits": 24,
+  "bpm": 120,
+  "bars": 22,
+  "originalSynthesis": true,
+  "externalAssets": [],
+  "oldSoundtrackInputs": [],
+  "source": "../合成-可设时长.py。沿用我们原创32秒版的振荡器、谐波音色和和声主题，按新画面逐小节重新创作，不拼接或拉伸旧WAV。",
+  "measured": {
+    "LUFS": -15.67,
+    "truePeakDBTP": -1.95,
+    "LRA": 6.9
+  },
+  "checks": {
+    "fullDecodePassed": true,
+    "finiteSamples": true,
+    "maxAbsDC": 7.230564733617939e-06,
+    "leftRightCorrelation": 0.9611046319482502,
+    "bassGapPercent": 53.57,
+    "last2SecondsDrumPeak": 0.0,
+    "allEventsOnSixteenthNoteGrid": true
+  },
+  "segments": [
+    {
+      "seconds": [
+        0,
+        4
+      ],
+      "RMSdBFS": -19.14,
+      "crestDB": 17.09,
+      "spectralCentroidHz": 210.9,
+      "energyPercent": {
+        "0-30Hz": 0.02,
+        "30-100Hz": 22.95,
+        "100-250Hz": 44.16,
+        "250-1000Hz": 32.66,
+        "1000-5000Hz": 0.13,
+        "5000-24000Hz": 0.08
+      }
+    },
+    {
+      "seconds": [
+        4,
+        10
+      ],
+      "RMSdBFS": -16.52,
+      "crestDB": 14.52,
+      "spectralCentroidHz": 298.1,
+      "energyPercent": {
+        "0-30Hz": 0.04,
+        "30-100Hz": 43.74,
+        "100-250Hz": 33.22,
+        "250-1000Hz": 18.48,
+        "1000-5000Hz": 3.69,
+        "5000-24000Hz": 0.82
+      }
+    },
+    {
+      "seconds": [
+        10,
+        14
+      ],
+      "RMSdBFS": -17.13,
+      "crestDB": 15.08,
+      "spectralCentroidHz": 348.2,
+      "energyPercent": {
+        "0-30Hz": 0.02,
+        "30-100Hz": 30.21,
+        "100-250Hz": 39.26,
+        "250-1000Hz": 25.25,
+        "1000-5000Hz": 4.51,
+        "5000-24000Hz": 0.76
+      }
+    },
+    {
+      "seconds": [
+        14,
+        22
+      ],
+      "RMSdBFS": -15.93,
+      "crestDB": 13.88,
+      "spectralCentroidHz": 319.4,
+      "energyPercent": {
+        "0-30Hz": 0.03,
+        "30-100Hz": 45.67,
+        "100-250Hz": 36.28,
+        "250-1000Hz": 12.98,
+        "1000-5000Hz": 3.95,
+        "5000-24000Hz": 1.09
+      }
+    },
+    {
+      "seconds": [
+        22,
+        24
+      ],
+      "RMSdBFS": -23.46,
+      "crestDB": 17.03,
+      "spectralCentroidHz": 273.0,
+      "energyPercent": {
+        "0-30Hz": 0.0,
+        "30-100Hz": 0.03,
+        "100-250Hz": 42.81,
+        "250-1000Hz": 57.05,
+        "1000-5000Hz": 0.12,
+        "5000-24000Hz": 0.0
+      }
+    },
+    {
+      "seconds": [
+        24,
+        30
+      ],
+      "RMSdBFS": -21.51,
+      "crestDB": 16.3,
+      "spectralCentroidHz": 280.1,
+      "energyPercent": {
+        "0-30Hz": 0.01,
+        "30-100Hz": 21.39,
+        "100-250Hz": 30.86,
+        "250-1000Hz": 47.35,
+        "1000-5000Hz": 0.34,
+        "5000-24000Hz": 0.05
+      }
+    },
+    {
+      "seconds": [
+        30,
+        34
+      ],
+      "RMSdBFS": -21.63,
+      "crestDB": 15.1,
+      "spectralCentroidHz": 218.7,
+      "energyPercent": {
+        "0-30Hz": 0.01,
+        "30-100Hz": 19.87,
+        "100-250Hz": 42.58,
+        "250-1000Hz": 37.42,
+        "1000-5000Hz": 0.11,
+        "5000-24000Hz": 0.0
+      }
+    },
+    {
+      "seconds": [
+        34,
+        36
+      ],
+      "RMSdBFS": -16.79,
+      "crestDB": 14.72,
+      "spectralCentroidHz": 337.5,
+      "energyPercent": {
+        "0-30Hz": 0.03,
+        "30-100Hz": 31.82,
+        "100-250Hz": 42.74,
+        "250-1000Hz": 20.82,
+        "1000-5000Hz": 3.4,
+        "5000-24000Hz": 1.19
+      }
+    },
+    {
+      "seconds": [
+        36,
+        40
+      ],
+      "RMSdBFS": -14.92,
+      "crestDB": 12.8,
+      "spectralCentroidHz": 344.7,
+      "energyPercent": {
+        "0-30Hz": 0.03,
+        "30-100Hz": 40.38,
+        "100-250Hz": 34.6,
+        "250-1000Hz": 21.28,
+        "1000-5000Hz": 2.13,
+        "5000-24000Hz": 1.58
+      }
+    },
+    {
+      "seconds": [
+        40,
+        42
+      ],
+      "RMSdBFS": -15.31,
+      "crestDB": 13.25,
+      "spectralCentroidHz": 304.7,
+      "energyPercent": {
+        "0-30Hz": 0.0,
+        "30-100Hz": 0.18,
+        "100-250Hz": 43.89,
+        "250-1000Hz": 55.71,
+        "1000-5000Hz": 0.22,
+        "5000-24000Hz": 0.0
+      }
+    },
+    {
+      "seconds": [
+        42,
+        44
+      ],
+      "RMSdBFS": -26.12,
+      "crestDB": 12.64,
+      "spectralCentroidHz": 305.8,
+      "energyPercent": {
+        "0-30Hz": 0.0,
+        "30-100Hz": 0.0,
+        "100-250Hz": 43.65,
+        "250-1000Hz": 56.13,
+        "1000-5000Hz": 0.22,
+        "5000-24000Hz": 0.0
+      }
+    }
+  ],
+  "events": [
+    {
+      "time": 0,
+      "kind": "kick",
+      "section": "intro"
+    },
+    {
+      "time": 0,
+      "kind": "section_accent"
+    },
+    {
+      "time": 2,
+      "kind": "kick",
+      "section": "intro"
+    },
+    {
+      "time": 3.25,
+      "kind": "kick",
+      "section": "intro"
+    },
+    {
+      "time": 4,
+      "kind": "kick",
+      "section": "assembly"
+    },
+    {
+      "time": 4,
+      "kind": "section_accent"
+    },
+    {
+      "time": 5,
+      "kind": "kick",
+      "section": "assembly"
+    },
+    {
+      "time": 6,
+      "kind": "kick",
+      "section": "assembly"
+    },
+    {
+      "time": 6.75,
+      "kind": "kick",
+      "section": "assembly"
+    },
+    {
+      "time": 7.5,
+      "kind": "kick",
+      "section": "assembly"
+    },
+    {
+      "time": 8,
+      "kind": "kick",
+      "section": "assembly"
+    },
+    {
+      "time": 8.5,
+      "kind": "kick",
+      "section": "assembly"
+    },
+    {
+      "time": 9,
+      "kind": "kick",
+      "section": "assembly"
+    },
+    {
+      "time": 9.75,
+      "kind": "kick",
+      "section": "assembly"
+    },
+    {
+      "time": 10,
+      "kind": "kick",
+      "section": "reveal"
+    },
+    {
+      "time": 10,
+      "kind": "section_accent"
+    },
+    {
+      "time": 11.25,
+      "kind": "kick",
+      "section": "reveal"
+    },
+    {
+      "time": 12,
+      "kind": "kick",
+      "section": "edge"
+    },
+    {
+      "time": 13.25,
+      "kind": "kick",
+      "section": "edge"
+    },
+    {
+      "time": 14,
+      "kind": "kick",
+      "section": "drive"
+    },
+    {
+      "time": 14,
+      "kind": "section_accent"
+    },
+    {
+      "time": 14.75,
+      "kind": "kick",
+      "section": "drive"
+    },
+    {
+      "time": 15,
+      "kind": "kick",
+      "section": "drive"
+    },
+    {
+      "time": 15.75,
+      "kind": "kick",
+      "section": "drive"
+    },
+    {
+      "time": 16,
+      "kind": "kick",
+      "section": "drive"
+    },
+    {
+      "time": 16.5,
+      "kind": "kick",
+      "section": "drive"
+    },
+    {
+      "time": 17,
+      "kind": "kick",
+      "section": "drive"
+    },
+    {
+      "time": 17.75,
+      "kind": "kick",
+      "section": "drive"
+    },
+    {
+      "time": 18,
+      "kind": "kick",
+      "section": "craft"
+    },
+    {
+      "time": 18,
+      "kind": "section_accent"
+    },
+    {
+      "time": 18.75,
+      "kind": "kick",
+      "section": "craft"
+    },
+    {
+      "time": 19,
+      "kind": "kick",
+      "section": "craft"
+    },
+    {
+      "time": 19.75,
+      "kind": "kick",
+      "section": "craft"
+    },
+    {
+      "time": 20,
+      "kind": "kick",
+      "section": "craft"
+    },
+    {
+      "time": 20.5,
+      "kind": "kick",
+      "section": "craft"
+    },
+    {
+      "time": 21,
+      "kind": "kick",
+      "section": "craft"
+    },
+    {
+      "time": 21.75,
+      "kind": "kick",
+      "section": "craft"
+    },
+    {
+      "time": 22,
+      "kind": "kick",
+      "section": "breath"
+    },
+    {
+      "time": 22,
+      "kind": "section_accent"
+    },
+    {
+      "time": 24,
+      "kind": "kick",
+      "section": "macro"
+    },
+    {
+      "time": 24,
+      "kind": "section_accent"
+    },
+    {
+      "time": 26,
+      "kind": "kick",
+      "section": "macro"
+    },
+    {
+      "time": 28,
+      "kind": "kick",
+      "section": "macro"
+    },
+    {
+      "time": 30,
+      "kind": "section_accent"
+    },
+    {
+      "time": 32,
+      "kind": "kick",
+      "section": "detail"
+    },
+    {
+      "time": 34,
+      "kind": "kick",
+      "section": "build"
+    },
+    {
+      "time": 34,
+      "kind": "section_accent"
+    },
+    {
+      "time": 34.75,
+      "kind": "kick",
+      "section": "build"
+    },
+    {
+      "time": 35,
+      "kind": "kick",
+      "section": "build"
+    },
+    {
+      "time": 35.75,
+      "kind": "kick",
+      "section": "build"
+    },
+    {
+      "time": 36,
+      "kind": "kick",
+      "section": "climax"
+    },
+    {
+      "time": 36,
+      "kind": "section_accent"
+    },
+    {
+      "time": 36.75,
+      "kind": "kick",
+      "section": "climax"
+    },
+    {
+      "time": 37,
+      "kind": "kick",
+      "section": "climax"
+    },
+    {
+      "time": 37.5,
+      "kind": "kick",
+      "section": "climax"
+    },
+    {
+      "time": 38,
+      "kind": "kick",
+      "section": "climax"
+    },
+    {
+      "time": 38.5,
+      "kind": "kick",
+      "section": "climax"
+    },
+    {
+      "time": 39,
+      "kind": "kick",
+      "section": "climax"
+    },
+    {
+      "time": 39.5,
+      "kind": "kick",
+      "section": "climax"
+    },
+    {
+      "time": 39.75,
+      "kind": "kick",
+      "section": "climax"
+    },
+    {
+      "time": 40,
+      "kind": "kick",
+      "section": "land"
+    },
+    {
+      "time": 40,
+      "kind": "section_accent"
+    }
+  ],
+  "beatMap": "节拍锚点.json",
+  "stemDirectory": "分层",
+  "mixNote": "分层为预母带电平；主混音经轻微软饱和、22Hz二阶高通去除直流与无效超低频、两遍响度归一。金属短音是创作性标点，不声称精确模拟镜头机械接触声音。",
+  "sha256": "16eda4edd338ce414f82163637a1c1f6a930f44d9cf5720c9545d5651cffb1d2",
+  "protected32FilesUnchanged": {
+    "合成.py": "b2912a1cbab32f7ec51339b67e2bf1ea8d3096c9776ca4b5a233af3138cc905f",
+    "MOTION-STUDY-32s-原创音乐.wav": "2f269a97a1bcb2ea01d7568aec19a9e9d10270f37a0a5de5941a54db05f72091",
+    "来源与测量.json": "8c16a096705c5d7f2884df3ef3ce378bc9a3de25cbdcc259c999018524ff759e",
+    "节拍锚点.json": "1480f068e40abe3825e15ec30d9da726bee936f6d73b8142015ea2f712a32eb0",
+    "分层/中频和声.wav": "a237a5d21d92c12b1ef5207dbef1db18a5ed1f37d1c69aad747185c5e046cb76",
+    "分层/低音.wav": "86e1a20cf16a16e6caa99218e746f58ec81ddf4b801d81992f0fc8e8bd39c725",
+    "分层/空间.wav": "1aedf14595a2ee9c744e33ae204282e4fdaea92c146fbe29b62523d6bf972cf6",
+    "分层/金属细节.wav": "66f95529e45d46b58fd8ccd1e9a4cda4514b6d87dd9bf6e05181e7fd14018438",
+    "分层/鼓组.wav": "19f1df51f4eadbdea1ba61fe3d130cef751a566ef816d89a2d42a4ab57e38b03"
+  },
+  "reviewScope": "实际PCM频谱、分段能量、瞬态峰均比、立体声、响度和解码检查；未声称已经试听。",
+  "temporaryFilesRemoved": [
+    ".premaster.wav"
+  ]
+}

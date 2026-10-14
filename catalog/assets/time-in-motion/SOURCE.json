@@ -1,0 +1,193 @@
+{
+  "subject": "TIME, IN MOTION",
+  "source_version": "最终横屏4K，2026-10-14",
+  "source": {
+    "file": "横屏-MOTION-STUDY/成片/TIME-IN-MOTION-横屏-4K.mp4",
+    "bytes": 111372211,
+    "sha256": "0cdbc50395d529ac5b96c87eb1b775c86bc6cf6e091bfdd36b9248f0e570c2f1",
+    "width": 3840,
+    "height": 2160,
+    "fps": 24,
+    "frames": 1056
+  },
+  "runtime": {
+    "file": "movie.mp4",
+    "bytes": 7604138,
+    "sha256": "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406",
+    "width": 1280,
+    "height": 720,
+    "fps": 24,
+    "frames": 1056,
+    "operation": "FFmpeg libx264 CRF23；仅缩小画幅及重编码，不改变帧数、构图、时长或剪辑；声音另从最终片无损抽取AAC。"
+  },
+  "source_code": [
+    {
+      "file": "catalog/assets/time-in-motion/production/project/原始建模/源码/build.py",
+      "original": "原始建模/源码/build.py",
+      "bytes": 13615,
+      "sha256": "90dc96cb07dec1f98582c982018d54f1876f5432ac9e364b3d66f8bdedf64780"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/原始建模/源码/movement.py",
+      "original": "原始建模/源码/movement.py",
+      "bytes": 24017,
+      "sha256": "b68615a92a6fd70570ec315600396da09ac7065175b55cee8554185384d5fd10"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/原始建模/源码/casework.py",
+      "original": "原始建模/源码/casework.py",
+      "bytes": 13831,
+      "sha256": "60643018c5162d89ab4c4cc20553adbfc120a6eca93385ace49fb45c7fbfd5d6"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/修订版/源码/geometry.py",
+      "original": "修订版/源码/geometry.py",
+      "bytes": 10768,
+      "sha256": "fdc7bd89bc79799c62f06db975b863840279cc12680b243d88602568528ece77"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/修订版/源码/mechanics.py",
+      "original": "修订版/源码/mechanics.py",
+      "bytes": 4575,
+      "sha256": "0485cfc846fbecb3ceeb97a4b5ad23cd270099c5cbd55ef00457cab6f388c6b5"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/修订版/源码/build_revision.py",
+      "original": "修订版/源码/build_revision.py",
+      "bytes": 12122,
+      "sha256": "68e125a2809d3e8fd5b46b2a7804c0d40c2a20f4bebced12703ced2ca270205a"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/修订版/源码/cinematography.py",
+      "original": "修订版/源码/cinematography.py",
+      "bytes": 13468,
+      "sha256": "f1985ad73e62add64b454e472956139dae2221ea35e43d2d3c442da4542bc56c"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/修订版/性能研究/profiles.py",
+      "original": "修订版/性能研究/profiles.py",
+      "bytes": 1750,
+      "sha256": "21f9f3a5754de0b2298a7b73de1e2c67e28ccaecfd3c5b28195878bc680da641"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/product_photography.py",
+      "original": "3比4产品展示版/三维/源码/product_photography.py",
+      "bytes": 7624,
+      "sha256": "3dd531fa975b4513f2d0546a11385ecca16d651efb103b7b60a3c9962235077c"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/build_film.py",
+      "original": "3比4产品展示版/三维/源码/build_film.py",
+      "bytes": 8220,
+      "sha256": "2aa1e6cc461f04328dcc1e0255df3d1089daa20a88bf4ec9ae7d9db16f4e237f"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/render_film.py",
+      "original": "3比4产品展示版/三维/源码/render_film.py",
+      "bytes": 3045,
+      "sha256": "bcc5044fdb5ff9a0a73a5a450668a4e94d50a429375d2695f06d6b61de0f71ea"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_opening.py",
+      "original": "竖屏金属闪回版/三维/源码/build_opening.py",
+      "bytes": 12178,
+      "sha256": "7ffb95a0ec5eb5f5886677de41d4f59f2f2d25dbae1e32f4486e9211d2c213d6"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/render_worker.py",
+      "original": "竖屏金属闪回版/三维/源码/render_worker.py",
+      "bytes": 10681,
+      "sha256": "d08bf0017d599e4fc12a42e7843aaf02da44b25843c72dca5c17417332defc92"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_lock.py",
+      "original": "竖屏金属闪回版/三维/源码/build_lock.py",
+      "bytes": 6600,
+      "sha256": "df2011174bd9232fe42397077aafd0fdaa44e19a2a419a98dd95c41803365d43"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/common.py",
+      "original": "竖屏金属闪回版/三维/源码/common.py",
+      "bytes": 5979,
+      "sha256": "f3e59cb496a2b06ab348de946c4449efe19563573fe51504ba09431e77e9331b"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/build_and_preview.py",
+      "original": "横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/build_and_preview.py",
+      "bytes": 12490,
+      "sha256": "bd6b09c8f0374a5ee186bd341dcea0b5ea5f67a993cc767add8477331cebbce9"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/project_lines.py",
+      "original": "横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/project_lines.py",
+      "bytes": 6193,
+      "sha256": "f561f3aeab3021b11840fcbcb1177c032efc3fbac6f1181554087d0f2476c7ff"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/compose_lines.py",
+      "original": "横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/compose_lines.py",
+      "bytes": 2743,
+      "sha256": "a066b2984edc2801c25d3e45a9381d40ec815e7387f2d12adcf42aa4c662ca0f"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/encode.py",
+      "original": "横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/encode.py",
+      "bytes": 4904,
+      "sha256": "82e3688c4bde852b4198e84594893389a30b935f68c2101228ed76c7d1acfb0d"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/verify_geometry.py",
+      "original": "横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/verify_geometry.py",
+      "bytes": 2867,
+      "sha256": "f3598243d75423888344858e2a2be212b647a447a2cca0e4074691bb55e81747"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/透明整表.py",
+      "original": "横屏-MOTION-STUDY/三维素材/源码/透明整表.py",
+      "bytes": 5504,
+      "sha256": "415f48c692dbabeb8b594078a4895f78b530f9bed33201fc88072d8f66f5f427"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/return_mask.py",
+      "original": "横屏-MOTION-STUDY/三维素材/源码/return_mask.py",
+      "bytes": 4500,
+      "sha256": "f4bebf2dfaf7a084b01c0e985350c1b522acf26888fdce76c3116f05f82f389e"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_structure_entry.py",
+      "original": "竖屏金属闪回版/三维/源码/build_structure_entry.py",
+      "bytes": 8503,
+      "sha256": "7a21ab923b203831357db5d6c7a5c3347986dd580fb731201b122f35f9756eae"
+    },
+    {
+      "file": "catalog/assets/time-in-motion/production/project/修订版/源码/screw_geometry.py",
+      "original": "修订版/源码/screw_geometry.py",
+      "bytes": 9796,
+      "sha256": "c4fe9ba36370510d83c6862842f787e62159461471cb7ca7bbd750858b30d00f"
+    }
+  ],
+  "editable_changes": [
+    "沿用原词块、SVG刻度、镜头取段、遮罩与13场景顺序。",
+    "为沿用现有依赖，将@remotion/media Video/Audio替换为当前包已有的OffthreadVideo/Html5Audio，CanvasImage替换为Img。",
+    "字体改为SIL OFL授权Oswald；不分发原系统HelveticaNeue。保留Film-original.jsx便于核对原编排。"
+  ],
+  "optional_assets": "editable/original-assets.json：原剪辑素材与制作场景按需准备，不进入npm。",
+  "license": "Apache-2.0；软件依赖各遵循其许可。",
+  "removed": [
+    "ordered-depth-assembly",
+    "precision-assembly-sequence"
+  ],
+  "actions": [
+    "inventory-contour-fit",
+    "axial-layer-reseat",
+    "helical-screw-seat",
+    "barrel-stored-energy",
+    "meshed-gears-drive",
+    "balance-reciprocate",
+    "fan-object-rise",
+    "framed-product-slide",
+    "word-block-rise",
+    "sparse-dial-counterturn"
+  ],
+  "composition": "time-in-motion-sequence"
+}

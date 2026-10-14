@@ -52048,164 +52048,136 @@
       },
       "demo_mode": "fixed-timeline",
       "domains": [
-        "animation"
+        "animation",
+        "video"
       ],
-      "trigger": "打开后按固定时间自动播放，可暂停、重播、定位与倍速。",
-      "objects": "真实三维金属零件、五组机芯、刻度圈、蓝钢指针、表镜与实体镜头",
-      "retain": "真实金属倒角、各向异性反射、镂空机芯、蓝钢指针与宝石轴承；保留原生24帧逐格节奏、原镜头和八层装配位置。",
-      "avoid": "不以二维卡片、平面整表图片或低精度几何重绘；不改金属材质、镜头节奏或装配位置，不插帧；轮系、摆轮与秒针仅为视觉演示。",
-      "tempo_note": "保留原生24帧/秒；Remotion仅按当前帧定位既有成片，速度只调整播放快慢；结束停在末个原生画面。",
-      "assumptions": "原三维工程与成片完整保留；独立动作与组合使用同一层位移函数和原生帧。修改场景后需Blender重渲染。",
-      "id": "ordered-depth-assembly",
-      "name": "精密零件分层拆解与回装",
+      "trigger": "打开预览按固定时间线播放；可以暂停、定位和重播。",
+      "assumptions": "怀表为动作示例，可替换主体；物理钟表状态仅为视觉演示。",
+      "id": "inventory-contour-fit",
+      "name": "陈列零件旋合归位",
       "kind": "action",
       "category": "space",
-      "duration_ms": 8000,
-      "preview_ms": 4125,
-      "summary": "精密零件沿深度方向错峰展开，镜头环绕观察分层结构，再逐层精确回装。",
-      "purpose": "展示装配结构、零件前后关系与严密复位过程，适合真实三维产品拆装。",
+      "duration_ms": 6000.0,
+      "preview_ms": 3416.6666666666665,
+      "summary": "分散陈列的真实零件按装配顺序抬起、旋合归位，实体与同机位线稿短闪切换。",
+      "purpose": "分散陈列的真实零件按装配顺序抬起、旋合归位，实体与同机位线稿短闪切换。",
       "aliases": [
-        "分层拆解",
-        "拆装",
-        "回装",
-        "爆炸视图",
-        "精密零件",
-        "深度分离",
-        "三维拆解",
-        "机械表"
+        "横向陈列",
+        "零件归位",
+        "线稿实体闪切",
+        "机械怀表",
+        "图纸装配"
       ],
       "behaviors": [
-        "depth",
-        "stagger",
-        "rotation3d",
-        "return"
+        "native-3d",
+        "frame-accurate",
+        "single-action"
       ],
+      "objects": "真实金属机芯及其摄影画面；相关标题与材质为可替换示例",
       "phases": [
-        "从完整装配开始，五组机芯、刻度圈、指针和表镜沿深度依次分开。",
-        "展开位置停留，实体镜头移向侧面，展示各层遮挡和金属反射。",
-        "零件逐层准确返回装配位置，镜头回到整表角度，结尾保持完整。"
+        "保持机壳、刻度圈、齿轮、桥板与指针横向分区陈列。",
+        "机壳先落位，轮系和摆轮随后抬起、旋转并归位，桥板与指针接续锁定。",
+        "所有零件归到同一机芯，镜头从俯视平滑转为三分之四视角。"
       ],
       "actions": [],
-      "analogy": "把精密设备逐层拉开看清内部，再按原位置完整装回。",
-      "recommendation": "适合沿同一深度轴展示真实产品的装配关系；与立体环绕的卡片绕中心运动不同，本动作保持各零件原装配位置并准确回装。",
+      "retain": "主体完整、真实零件与轴心、原生24帧节奏、原镜头和金银蓝钢材质关系。",
+      "avoid": "不要用平面贴图伪装三维零件；不要增加插帧、弹跳或任意改变装配位置。",
+      "tempo_note": "按24帧/秒，以当前帧计算固定演示时钟。",
+      "analogy": "分散陈列的真实零件按装配顺序抬起、旋合归位，实体与同机位线稿短闪切换。",
+      "recommendation": "分散陈列的真实零件按装配顺序抬起、旋合归位，实体与同机位线稿短闪切换。 与二维示意图不同，本例保留真实零件和光学摄影。",
       "source": {
-        "path": "catalog/effects/precision-assembly.js",
+        "path": "catalog/effects/time-in-motion.js",
+        "factory": "inventory-contour-fit",
         "dependencies": [
-          "catalog/effects/precision-assembly-data.js"
+          "catalog/effects/time-in-motion-data.js"
         ],
-        "factory": "ordered-depth-assembly",
         "origin": "original",
         "license": "Apache-2.0",
         "library": "blender@4.5.14",
         "native_scene": "blender",
-        "reference": {
-          "name": "分秒之间 · 用户认可的真实三维机械怀表"
+        "frame_cache": {
+          "video": "catalog/assets/time-in-motion/movie.mp4",
+          "start_frame": 96,
+          "frames": 144,
+          "fps": 24,
+          "width": 1280,
+          "height": 720,
+          "poster": "catalog/assets/time-in-motion/posters/inventory-contour-fit.jpg"
         },
-        "extraction": "保留已认可的 Blender 工程、真实建模程序、材质、灯光与镜头；只把原分层关键帧抽成可复用函数。Remotion 按24帧/秒定位原生Cycles成片，目录缩略图使用原始4K静帧；源码导出包含.blend和完整可运行程序，不依赖来源工程。",
+        "reference": {
+          "name": "TIME, IN MOTION · 用户原创横屏机械怀表作品"
+        },
+        "extraction": "从最新44秒成片的连续原生帧提炼动作；完整剪辑与对应建模、机械及镜头源码另随文字源码交付。缓存仅缩小画幅，没有重绘、重排或补帧。",
+        "production_guide": "catalog/assets/time-in-motion/README.md",
         "assets": [
-          "catalog/assets/precision-assembly/分秒之间.blend",
-          "catalog/assets/precision-assembly/成片/分层.png",
-          "catalog/assets/precision-assembly/成片/分秒之间.mp4",
-          "catalog/assets/precision-assembly/成片/机芯.png",
-          "catalog/assets/precision-assembly/成片/整表.png",
-          "catalog/assets/precision-assembly/材质/底板珍珠纹.png",
-          "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
-          "catalog/assets/precision-assembly/SOURCE.json",
-          "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
-          "catalog/assets/composition-audio/precision-assembly/sound.py"
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/inventory-contour-fit.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
         ],
         "remotion": {
-          "component": "catalog/remotion/precision-assembly.jsx",
-          "export_name": "WisePrecisionAssembly",
-          "package_name": "wise-precision-assembly",
+          "component": "catalog/remotion/time-in-motion.jsx",
+          "export_name": "WiseTimeInMotion",
+          "package_name": "wise-time-in-motion",
           "files": [
-            "catalog/assets/precision-assembly/打开与制作.command",
-            "catalog/assets/precision-assembly/制作说明.md",
-            "catalog/assets/precision-assembly/SOURCE.json",
-            "catalog/assets/precision-assembly/运行源码.py",
-            "catalog/assets/precision-assembly/使用说明.md",
-            "catalog/assets/precision-assembly/源码/build.py",
-            "catalog/assets/precision-assembly/源码/sound.py",
-            "catalog/assets/precision-assembly/源码/produce.py",
-            "catalog/assets/precision-assembly/源码/assembly_motion.py",
-            "catalog/assets/precision-assembly/源码/compose.py",
-            "catalog/assets/precision-assembly/源码/render.py",
-            "catalog/assets/precision-assembly/源码/check_scene.py",
-            "catalog/assets/precision-assembly/源码/review.py",
-            "catalog/assets/precision-assembly/源码/movement.py",
-            "catalog/assets/precision-assembly/源码/casework.py",
-            "catalog/assets/precision-assembly/材质/来源.json",
-            "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
-            "catalog/assets/composition-audio/precision-assembly/sound.py",
-            "catalog/effects/precision-assembly-data.js",
-            "catalog/remotion/precision-assembly.jsx",
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/render_film.py",
+            "catalog/assets/time-in-motion/production/project/修订版/性能研究/profiles.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/geometry.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/build.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/casework.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/movement.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/encode.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/透明整表.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/common.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
             "LICENSE",
-            "catalog/remotion/binary-assets-installer.mjs"
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/竖屏图纸实体开场/素材/零件映射.json",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
           ],
-          "file_map": {
-            "catalog/assets/precision-assembly/打开与制作.command": "public/precision-assembly/打开与制作.command",
-            "catalog/assets/precision-assembly/制作说明.md": "public/precision-assembly/制作说明.md",
-            "catalog/assets/precision-assembly/SOURCE.json": "public/precision-assembly/SOURCE.json",
-            "catalog/assets/precision-assembly/运行源码.py": "public/precision-assembly/运行源码.py",
-            "catalog/assets/precision-assembly/使用说明.md": "public/precision-assembly/使用说明.md",
-            "catalog/assets/precision-assembly/源码/build.py": "public/precision-assembly/源码/build.py",
-            "catalog/assets/precision-assembly/源码/sound.py": "public/precision-assembly/源码/sound.py",
-            "catalog/assets/precision-assembly/源码/produce.py": "public/precision-assembly/源码/produce.py",
-            "catalog/assets/precision-assembly/源码/assembly_motion.py": "public/precision-assembly/源码/assembly_motion.py",
-            "catalog/assets/precision-assembly/源码/compose.py": "public/precision-assembly/源码/compose.py",
-            "catalog/assets/precision-assembly/源码/render.py": "public/precision-assembly/源码/render.py",
-            "catalog/assets/precision-assembly/源码/check_scene.py": "public/precision-assembly/源码/check_scene.py",
-            "catalog/assets/precision-assembly/源码/review.py": "public/precision-assembly/源码/review.py",
-            "catalog/assets/precision-assembly/源码/movement.py": "public/precision-assembly/源码/movement.py",
-            "catalog/assets/precision-assembly/源码/casework.py": "public/precision-assembly/源码/casework.py",
-            "catalog/assets/precision-assembly/材质/来源.json": "public/precision-assembly/材质/来源.json"
-          },
           "binary_files": [
             {
-              "source": "catalog/assets/precision-assembly/分秒之间.blend",
-              "target": "public/precision-assembly/分秒之间.blend",
-              "bytes": 23829849,
-              "sha256": "54023d725b59887e9441634d2bb75dec355b151fd811176724dc33390c5453dd"
+              "source": "catalog/assets/time-in-motion/movie.mp4",
+              "target": "public/catalog/assets/time-in-motion/movie.mp4",
+              "bytes": 7604138,
+              "sha256": "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
             },
             {
-              "source": "catalog/assets/precision-assembly/成片/分层.png",
-              "target": "public/precision-assembly/成片/分层.png",
-              "bytes": 8343300,
-              "sha256": "6548797cd90e70721af5211530df92ba19abf336d10aac1b94a4167618547c19"
-            },
-            {
-              "source": "catalog/assets/precision-assembly/成片/分秒之间.mp4",
-              "target": "public/precision-assembly/成片/分秒之间.mp4",
-              "bytes": 28685957,
-              "sha256": "3978817ed2d908ca4a7bbc29bbd829d78f01466fb46b0df9648979066b6d3bba"
-            },
-            {
-              "source": "catalog/assets/precision-assembly/成片/机芯.png",
-              "target": "public/precision-assembly/成片/机芯.png",
-              "bytes": 10584248,
-              "sha256": "dd15f7a0e483326c6be31d18a05c859659b1e7424b6781a127dc80bf49ea5118"
-            },
-            {
-              "source": "catalog/assets/precision-assembly/成片/整表.png",
-              "target": "public/precision-assembly/成片/整表.png",
-              "bytes": 8135763,
-              "sha256": "6e8f923f6920eaec937e122cbd70f474ae3d04c9012f7187e74ac2a016c244d3"
-            },
-            {
-              "source": "catalog/assets/precision-assembly/材质/底板珍珠纹.png",
-              "target": "public/precision-assembly/材质/底板珍珠纹.png",
-              "bytes": 2531633,
-              "sha256": "75fb8171b941e41728c11a68cea43e9a8652acd9fd0bf0e9bed51859d18f010b"
-            },
-            {
-              "source": "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
-              "target": "public/precision-assembly/成片/分秒之间-声轨.wav",
-              "bytes": 4224044,
-              "sha256": "8bf5cc0934ef91f5e6cc0347839c206b689eb0e9d48eb74451a7029dd8fcf311"
+              "source": "catalog/fonts/Oswald-Bold.woff2",
+              "target": "public/catalog/fonts/Oswald-Bold.woff2",
+              "bytes": 12112,
+              "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
             }
-          ],
-          "executable_files": [
-            "public/precision-assembly/打开与制作.command"
           ],
           "packages": {
             "remotion": "4.0.532",
@@ -52217,38 +52189,37 @@
           "height": 1080,
           "fps": 24,
           "exact_frames": true,
+          "reuse_notes": "目录与默认渲染使用最终4K片的1280×720、24fps轻量缓存，保持1056帧、构图与原剪辑；不能把上采样缓存称为重新渲染4K。完整剪辑源码在catalog/assets/time-in-motion/editable/，原创建模、机械、镜头和投影源码在production/。先用import-originals.mjs按摘要准备原制作素材，才能运行studio:editable或修改Blender场景。字体改为随包授权的Oswald；原系统HelveticaNeue字体不分发，编辑版的字形与最终缓存不同。自有代码Apache-2.0；Oswald遵循SIL OFL。",
           "scripts": {
-            "check:source": "python3 public/precision-assembly/运行源码.py check",
-            "rebuild:scene": "python3 public/precision-assembly/运行源码.py rebuild",
-            "render:scene": "python3 public/precision-assembly/运行源码.py render --part assembly"
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
           },
-          "reuse_notes": "这是 Blender 4.5.14 LTS / Cycles 真实三维工程的 Remotion 接入。画面复用已认可的1920×1080、24帧/秒成片；没有重新建模、调色或插帧。完整组合22秒、528帧，独立拆装动作取第241–432帧、8秒、192帧，两者共用同一模型、assembly_motion.py 动作函数与成片。\n\n真实模型、材质、灯光、镜头和动画：public/precision-assembly/分秒之间.blend。建模：public/precision-assembly/源码/build.py、movement.py、casework.py。分层函数：public/precision-assembly/源码/assembly_motion.py，可传入其他有序零件与各层深度距离。直接双击 public/precision-assembly/打开与制作.command 打开或制作；也可执行 npm run check:source 检查，npm run rebuild:scene 从源码重建（旧工程与帧移入备份），npm run render:scene 明确启动渲染。不会自动安装 Blender、ffmpeg、ffprobe 或 Python。完整渲染耗时较长；默认复用成片。\n\n修改模型、材质或镜头后，应通过 Blender 重渲染，再更新 Remotion 的视频素材；浏览器不能实时修改该三维模型。工程内已打包纹理与字体；源码重建保留原 macOS 字体查找方式。声音仅用于完整组合；原片内嵌音轨静音，单独原声按帧同步，includeAudio={false} 可关闭。原声重合成的 sound.py 额外需要 numpy；默认无需重合成。\n\n分层动作采用原贝塞尔关键帧：首帧241，逐层延迟2帧；零件在252+2i开始、305+2i展开完、357+i结束停留、405+2i归位、432统一保持完整。五组机芯深度距离为0、0.85、1.45、2.2、3.05，刻度圈4.4、指针5.3、表镜5.8。具体机械表是示例，不是可制造或真实走时的钟表验证。自有源码Apache-2.0，系统字体与第三方软件保留原权利，见SOURCE.json与LICENSE。",
           "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
         }
       },
       "reproduction": {
-        "objects": "真实三维金属零件、五组机芯、刻度圈、蓝钢指针、表镜与实体镜头",
-        "presentation": "1920×1080横向画幅，近黑无缝摄影棚，暖金机芯、铂金壳、象牙珐琅刻度圈、蓝钢指针和红色宝石轴承。软箱灯沿真实倒角产生细窄反光，真实景深；保留比例与构图，不拉伸或裁切。",
+        "objects": "金色齿轮、银色桥板、蓝钢零件与红色宝石轴承组成的真实机芯",
+        "presentation": "1920×1080横向设计画板；近黑摄影底，金、银、暖白与蓝钢细节。画面用软箱灯照明，细窄倒角反光，不拉伸主体。",
         "materials": [
-          "零件为实体三维网格，倒角、齿轮、螺钉与轴承均由几何建立；底板珍珠纹仅提供细微凹凸与粗糙度。",
-          "金、银、黄铜与蓝钢为金属材质；表镜有透射，实体软箱灯与摄影棚照明，使用Cycles渲染。"
+          "机械部件为独立真实三维网格；棚灯、金属粗糙度、倒角与景深共同决定反射。"
         ],
-        "start_state": "完整装配的整表，镜头位于(7,3.8,30)，朝向(.25,.5,1)。",
         "phases": [
-          "从完整装配开始，五组机芯、刻度圈、指针和表镜沿深度依次分开。",
-          "展开位置停留，实体镜头移向侧面，展示各层遮挡和金属反射。",
-          "零件逐层准确返回装配位置，镜头回到整表角度，结尾保持完整。"
+          "保持机壳、刻度圈、齿轮、桥板与指针横向分区陈列。",
+          "机壳先落位，轮系和摆轮随后抬起、旋转并归位，桥板与指针接续锁定。",
+          "所有零件归到同一机芯，镜头从俯视平滑转为三分之四视角。"
         ],
-        "end_state": "所有层恢复完整装配，镜头回到整表角度，保持至8秒结束。",
         "details": [
-          "使用Blender建立真实三维模型与动画，再用Remotion按当前帧接入1920×1080、24帧/秒的原生渲染，不用二维图形模仿金属几何。",
-          "表径6个场景单位；五组机芯展开距离为0、0.85、1.45、2.2、3.05，刻度圈4.4，指针5.3，表镜5.8。以第241帧为本段首帧，每组延迟2帧：252+2i开始、305+2i达到展开距离、357+i保持到此、405+2i归位、第432帧完整。位置变化保留贝塞尔曲线。",
-          "镜头65毫米焦距；位置依次为第241帧(7,3.8,30)、310帧(16,5,26)、360帧(16.5,4.8,26)、432帧(7,3.8,30)，对应视点由(.25,.5,1)到(.65,.65,1.5)再到(.1,.6,.3)。",
-          "摆轮以48度振幅、每秒2.5次往返运动，按24帧逐帧计算；轮系保持各自固定角速度，秒针22秒扫过132度。"
+          "所有帧号均为24帧/秒设计帧；动作帧f=floor(24×动作秒数)，限制在0至143。影片帧率改变时先换算动作秒数，不直接把影片帧号当作设计帧。",
+          "共144帧；局部帧8、9、18、19、72、73切为当前真实几何的图纸投影，其他帧显示实体；不能用一张静态线稿替代全部机位。",
+          "底盘26–63帧；发条盒41–73帧、中心轮44–77帧、三轮47–81帧、四轮50–85帧、摆轮56–89帧；7片桥板从70+3i到99+2i，刻度圈94–126帧，指针105–132帧归位。",
+          "每件零件位置用u³(10−15u+6u²)插值，z轴额外抬起(0.40+0.06×(i mod 4))×sin(πu)，y轴倾斜0.08×sin(πu)弧度，z轴初始朝向逐步恢复。",
+          "镜头41–140帧从(.55,−.6,62)走到(7,3.8,31)，焦距90→70毫米，光圈f/16→f/13；总装根节点105–139帧转向最终姿态。"
         ],
-        "retain": "真实金属倒角、各向异性反射、镂空机芯、蓝钢指针与宝石轴承；保留原生24帧逐格节奏、原镜头和八层装配位置。",
-        "avoid": "不以二维卡片、平面整表图片或低精度几何重绘；不改金属材质、镜头节奏或装配位置，不插帧；轮系、摆轮与秒针仅为视觉演示。",
-        "tempo_note": "按24帧/秒逐格计算；零件和镜头的位置变化使用贝塞尔关键帧，轮系匀速转动，摆轮按正弦往返。"
+        "start_state": "保持机壳、刻度圈、齿轮、桥板与指针横向分区陈列。",
+        "end_state": "所有零件归到同一机芯，镜头从俯视平滑转为三分之四视角。",
+        "retain": "保持主体轴心、零件层高、摄影构图和原生逐格节奏。",
+        "avoid": "不要做二维整图旋转或以插帧改变机械节律。"
       }
     },
     {
@@ -52265,185 +52236,136 @@
       },
       "demo_mode": "fixed-timeline",
       "domains": [
-        "animation"
+        "animation",
+        "video"
       ],
-      "trigger": "打开后按固定时间自动播放，可暂停、重播、定位与倍速。",
-      "objects": "真实三维金属零件、五组机芯、刻度圈、蓝钢指针、表镜与实体镜头",
-      "retain": "真实金属倒角、各向异性反射、镂空机芯、蓝钢指针与宝石轴承；保留原生24帧逐格节奏、原镜头和八层装配位置。",
-      "avoid": "不以二维卡片、平面整表图片或低精度几何重绘；不改金属材质、镜头节奏或装配位置，不插帧；轮系、摆轮与秒针仅为视觉演示。",
-      "tempo_note": "保留原生24帧/秒；Remotion仅按当前帧定位既有成片，速度只调整播放快慢；结束停在末个原生画面。",
-      "assumptions": "原三维工程与成片完整保留；独立动作与组合使用同一层位移函数和原生帧。修改场景后需Blender重渲染。",
-      "id": "precision-assembly-sequence",
-      "name": "精密结构展示与拆装",
-      "kind": "composition",
-      "category": "compositions",
-      "duration_ms": 22000,
-      "preview_ms": 8291.666666666666,
-      "summary": "先展示机芯细节和摆轮运行，再呈现整表，完成分层拆解、镜头环绕与回装，最后展示完整产品。",
-      "purpose": "把材料细节、机械运行、完整外观与拆装结构串成真实三维产品展示。",
+      "trigger": "打开预览按固定时间线播放；可以暂停、定位和重播。",
+      "assumptions": "怀表为动作示例，可替换主体；物理钟表状态仅为视觉演示。",
+      "id": "axial-layer-reseat",
+      "name": "轴向分层回装",
+      "kind": "action",
+      "category": "space",
+      "duration_ms": 4000.0,
+      "preview_ms": 2666.6666666666665,
+      "summary": "真实机芯沿轴向错峰分层，镜头环绕层间结构后回到完整装配。",
+      "purpose": "真实机芯沿轴向错峰分层，镜头环绕层间结构后回到完整装配。",
       "aliases": [
-        "机械怀表",
-        "机械表发布片",
-        "分秒之间",
-        "产品拆装",
-        "机芯特写",
-        "摆轮",
-        "精密结构",
-        "三维产品展示"
+        "轴向拆解",
+        "分层回装",
+        "爆炸视图",
+        "层间环绕",
+        "机械怀表"
       ],
       "behaviors": [
-        "reveal",
-        "depth",
-        "stagger",
-        "rotation3d",
-        "return"
+        "native-3d",
+        "frame-accurate",
+        "single-action"
       ],
+      "objects": "真实金属机芯及其摄影画面；相关标题与材质为可替换示例",
       "phases": [
-        "0–6秒展示发条盒、夹板和摆轮运行；6–10秒展示完整外观。",
-        "10–18秒零件沿深度错峰展开，实体镜头环绕，再按原装配位置回装。",
-        "18–22秒保留完整整表，镜头缓慢推进，随原片淡出收尾。"
+        "完整表体以三分之四视角出现，左侧留出词块阅读区。",
+        "传动、上弦、振荡、桥板、刻度与指针六组沿深度错峰分开，镜头横向绕行。",
+        "各层沿同一轴线回装，真实金属与蓝钢零件维持结构关系。"
       ],
-      "actions": [
-        "ordered-depth-assembly"
-      ],
-      "breakdown_mode": "sequence",
-      "analogy": "先靠近看材料与运行，再看整体和拆装过程，最后回到完整产品。",
-      "recommendation": "适合同时讲清材料、运行和装配关系的真实三维产品展示；只需拆装时用关联的8秒独立动作，无需整段22秒。",
-      "audio": {
-        "tracks": [
-          {
-            "name": "分秒之间声音",
-            "src": "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
-            "start_ms": 0,
-            "offset_ms": 0,
-            "duration_ms": 22000,
-            "volume": 1,
-            "fade_in_ms": 0,
-            "fade_out_ms": 0
-          }
-        ],
-        "sources": [
-          "catalog/assets/composition-audio/precision-assembly/SOURCE.json"
-        ]
-      },
+      "actions": [],
+      "retain": "主体完整、真实零件与轴心、原生24帧节奏、原镜头和金银蓝钢材质关系。",
+      "avoid": "不要用平面贴图伪装三维零件；不要增加插帧、弹跳或任意改变装配位置。",
+      "tempo_note": "按24帧/秒，以当前帧计算固定演示时钟。",
+      "analogy": "真实机芯沿轴向错峰分层，镜头环绕层间结构后回到完整装配。",
+      "recommendation": "真实机芯沿轴向错峰分层，镜头环绕层间结构后回到完整装配。 与二维示意图不同，本例保留真实零件和光学摄影。",
       "source": {
-        "path": "catalog/effects/precision-assembly.js",
+        "path": "catalog/effects/time-in-motion.js",
+        "factory": "axial-layer-reseat",
         "dependencies": [
-          "catalog/effects/precision-assembly-data.js"
+          "catalog/effects/time-in-motion-data.js"
         ],
-        "factory": "precision-assembly-sequence",
         "origin": "original",
         "license": "Apache-2.0",
         "library": "blender@4.5.14",
         "native_scene": "blender",
-        "reference": {
-          "name": "分秒之间 · 用户认可的真实三维机械怀表"
+        "frame_cache": {
+          "video": "catalog/assets/time-in-motion/movie.mp4",
+          "start_frame": 336,
+          "frames": 96,
+          "fps": 24,
+          "width": 1280,
+          "height": 720,
+          "poster": "catalog/assets/time-in-motion/posters/axial-layer-reseat.jpg"
         },
-        "extraction": "保留已认可的 Blender 工程、真实建模程序、材质、灯光与镜头；只把原分层关键帧抽成可复用函数。Remotion 按24帧/秒定位原生Cycles成片，目录缩略图使用原始4K静帧；源码导出包含.blend和完整可运行程序，不依赖来源工程。",
+        "reference": {
+          "name": "TIME, IN MOTION · 用户原创横屏机械怀表作品"
+        },
+        "extraction": "从最新44秒成片的连续原生帧提炼动作；完整剪辑与对应建模、机械及镜头源码另随文字源码交付。缓存仅缩小画幅，没有重绘、重排或补帧。",
+        "production_guide": "catalog/assets/time-in-motion/README.md",
         "assets": [
-          "catalog/assets/precision-assembly/分秒之间.blend",
-          "catalog/assets/precision-assembly/成片/分层.png",
-          "catalog/assets/precision-assembly/成片/分秒之间.mp4",
-          "catalog/assets/precision-assembly/成片/机芯.png",
-          "catalog/assets/precision-assembly/成片/整表.png",
-          "catalog/assets/precision-assembly/材质/底板珍珠纹.png",
-          "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
-          "catalog/assets/precision-assembly/SOURCE.json",
-          "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
-          "catalog/assets/composition-audio/precision-assembly/sound.py"
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/axial-layer-reseat.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
         ],
         "remotion": {
-          "component": "catalog/remotion/precision-assembly.jsx",
-          "export_name": "WisePrecisionAssembly",
-          "package_name": "wise-precision-assembly",
+          "component": "catalog/remotion/time-in-motion.jsx",
+          "export_name": "WiseTimeInMotion",
+          "package_name": "wise-time-in-motion",
           "files": [
-            "catalog/assets/precision-assembly/打开与制作.command",
-            "catalog/assets/precision-assembly/制作说明.md",
-            "catalog/assets/precision-assembly/SOURCE.json",
-            "catalog/assets/precision-assembly/运行源码.py",
-            "catalog/assets/precision-assembly/使用说明.md",
-            "catalog/assets/precision-assembly/源码/build.py",
-            "catalog/assets/precision-assembly/源码/sound.py",
-            "catalog/assets/precision-assembly/源码/produce.py",
-            "catalog/assets/precision-assembly/源码/assembly_motion.py",
-            "catalog/assets/precision-assembly/源码/compose.py",
-            "catalog/assets/precision-assembly/源码/render.py",
-            "catalog/assets/precision-assembly/源码/check_scene.py",
-            "catalog/assets/precision-assembly/源码/review.py",
-            "catalog/assets/precision-assembly/源码/movement.py",
-            "catalog/assets/precision-assembly/源码/casework.py",
-            "catalog/assets/precision-assembly/材质/来源.json",
-            "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
-            "catalog/assets/composition-audio/precision-assembly/sound.py",
-            "catalog/effects/precision-assembly-data.js",
-            "catalog/remotion/precision-assembly.jsx",
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/render_film.py",
+            "catalog/assets/time-in-motion/production/project/修订版/性能研究/profiles.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/geometry.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/build.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/casework.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/movement.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/encode.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/透明整表.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/common.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
             "LICENSE",
-            "catalog/remotion/binary-assets-installer.mjs"
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/竖屏图纸实体开场/素材/零件映射.json",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
           ],
-          "file_map": {
-            "catalog/assets/precision-assembly/打开与制作.command": "public/precision-assembly/打开与制作.command",
-            "catalog/assets/precision-assembly/制作说明.md": "public/precision-assembly/制作说明.md",
-            "catalog/assets/precision-assembly/SOURCE.json": "public/precision-assembly/SOURCE.json",
-            "catalog/assets/precision-assembly/运行源码.py": "public/precision-assembly/运行源码.py",
-            "catalog/assets/precision-assembly/使用说明.md": "public/precision-assembly/使用说明.md",
-            "catalog/assets/precision-assembly/源码/build.py": "public/precision-assembly/源码/build.py",
-            "catalog/assets/precision-assembly/源码/sound.py": "public/precision-assembly/源码/sound.py",
-            "catalog/assets/precision-assembly/源码/produce.py": "public/precision-assembly/源码/produce.py",
-            "catalog/assets/precision-assembly/源码/assembly_motion.py": "public/precision-assembly/源码/assembly_motion.py",
-            "catalog/assets/precision-assembly/源码/compose.py": "public/precision-assembly/源码/compose.py",
-            "catalog/assets/precision-assembly/源码/render.py": "public/precision-assembly/源码/render.py",
-            "catalog/assets/precision-assembly/源码/check_scene.py": "public/precision-assembly/源码/check_scene.py",
-            "catalog/assets/precision-assembly/源码/review.py": "public/precision-assembly/源码/review.py",
-            "catalog/assets/precision-assembly/源码/movement.py": "public/precision-assembly/源码/movement.py",
-            "catalog/assets/precision-assembly/源码/casework.py": "public/precision-assembly/源码/casework.py",
-            "catalog/assets/precision-assembly/材质/来源.json": "public/precision-assembly/材质/来源.json"
-          },
           "binary_files": [
             {
-              "source": "catalog/assets/precision-assembly/分秒之间.blend",
-              "target": "public/precision-assembly/分秒之间.blend",
-              "bytes": 23829849,
-              "sha256": "54023d725b59887e9441634d2bb75dec355b151fd811176724dc33390c5453dd"
+              "source": "catalog/assets/time-in-motion/movie.mp4",
+              "target": "public/catalog/assets/time-in-motion/movie.mp4",
+              "bytes": 7604138,
+              "sha256": "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
             },
             {
-              "source": "catalog/assets/precision-assembly/成片/分层.png",
-              "target": "public/precision-assembly/成片/分层.png",
-              "bytes": 8343300,
-              "sha256": "6548797cd90e70721af5211530df92ba19abf336d10aac1b94a4167618547c19"
-            },
-            {
-              "source": "catalog/assets/precision-assembly/成片/分秒之间.mp4",
-              "target": "public/precision-assembly/成片/分秒之间.mp4",
-              "bytes": 28685957,
-              "sha256": "3978817ed2d908ca4a7bbc29bbd829d78f01466fb46b0df9648979066b6d3bba"
-            },
-            {
-              "source": "catalog/assets/precision-assembly/成片/机芯.png",
-              "target": "public/precision-assembly/成片/机芯.png",
-              "bytes": 10584248,
-              "sha256": "dd15f7a0e483326c6be31d18a05c859659b1e7424b6781a127dc80bf49ea5118"
-            },
-            {
-              "source": "catalog/assets/precision-assembly/成片/整表.png",
-              "target": "public/precision-assembly/成片/整表.png",
-              "bytes": 8135763,
-              "sha256": "6e8f923f6920eaec937e122cbd70f474ae3d04c9012f7187e74ac2a016c244d3"
-            },
-            {
-              "source": "catalog/assets/precision-assembly/材质/底板珍珠纹.png",
-              "target": "public/precision-assembly/材质/底板珍珠纹.png",
-              "bytes": 2531633,
-              "sha256": "75fb8171b941e41728c11a68cea43e9a8652acd9fd0bf0e9bed51859d18f010b"
-            },
-            {
-              "source": "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
-              "target": "public/precision-assembly/成片/分秒之间-声轨.wav",
-              "bytes": 4224044,
-              "sha256": "8bf5cc0934ef91f5e6cc0347839c206b689eb0e9d48eb74451a7029dd8fcf311"
+              "source": "catalog/fonts/Oswald-Bold.woff2",
+              "target": "public/catalog/fonts/Oswald-Bold.woff2",
+              "bytes": 12112,
+              "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
             }
-          ],
-          "executable_files": [
-            "public/precision-assembly/打开与制作.command"
           ],
           "packages": {
             "remotion": "4.0.532",
@@ -52455,38 +52377,1619 @@
           "height": 1080,
           "fps": 24,
           "exact_frames": true,
+          "reuse_notes": "目录与默认渲染使用最终4K片的1280×720、24fps轻量缓存，保持1056帧、构图与原剪辑；不能把上采样缓存称为重新渲染4K。完整剪辑源码在catalog/assets/time-in-motion/editable/，原创建模、机械、镜头和投影源码在production/。先用import-originals.mjs按摘要准备原制作素材，才能运行studio:editable或修改Blender场景。字体改为随包授权的Oswald；原系统HelveticaNeue字体不分发，编辑版的字形与最终缓存不同。自有代码Apache-2.0；Oswald遵循SIL OFL。",
           "scripts": {
-            "check:source": "python3 public/precision-assembly/运行源码.py check",
-            "rebuild:scene": "python3 public/precision-assembly/运行源码.py rebuild",
-            "render:scene": "python3 public/precision-assembly/运行源码.py render"
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
           },
-          "reuse_notes": "这是 Blender 4.5.14 LTS / Cycles 真实三维工程的 Remotion 接入。画面复用已认可的1920×1080、24帧/秒成片；没有重新建模、调色或插帧。完整组合22秒、528帧，独立拆装动作取第241–432帧、8秒、192帧，两者共用同一模型、assembly_motion.py 动作函数与成片。\n\n真实模型、材质、灯光、镜头和动画：public/precision-assembly/分秒之间.blend。建模：public/precision-assembly/源码/build.py、movement.py、casework.py。分层函数：public/precision-assembly/源码/assembly_motion.py，可传入其他有序零件与各层深度距离。直接双击 public/precision-assembly/打开与制作.command 打开或制作；也可执行 npm run check:source 检查，npm run rebuild:scene 从源码重建（旧工程与帧移入备份），npm run render:scene 明确启动渲染。不会自动安装 Blender、ffmpeg、ffprobe 或 Python。完整渲染耗时较长；默认复用成片。\n\n修改模型、材质或镜头后，应通过 Blender 重渲染，再更新 Remotion 的视频素材；浏览器不能实时修改该三维模型。工程内已打包纹理与字体；源码重建保留原 macOS 字体查找方式。声音仅用于完整组合；原片内嵌音轨静音，单独原声按帧同步，includeAudio={false} 可关闭。原声重合成的 sound.py 额外需要 numpy；默认无需重合成。\n\n分层动作采用原贝塞尔关键帧：首帧241，逐层延迟2帧；零件在252+2i开始、305+2i展开完、357+i结束停留、405+2i归位、432统一保持完整。五组机芯深度距离为0、0.85、1.45、2.2、3.05，刻度圈4.4、指针5.3、表镜5.8。具体机械表是示例，不是可制造或真实走时的钟表验证。自有源码Apache-2.0，系统字体与第三方软件保留原权利，见SOURCE.json与LICENSE。",
           "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
         }
       },
       "reproduction": {
-        "objects": "真实三维金属零件、五组机芯、刻度圈、蓝钢指针、表镜与实体镜头",
-        "presentation": "1920×1080横向画幅，近黑无缝摄影棚，暖金机芯、铂金壳、象牙珐琅刻度圈、蓝钢指针和红色宝石轴承。软箱灯沿真实倒角产生细窄反光，真实景深；保留比例与构图，不拉伸或裁切。",
+        "objects": "金色齿轮、银色桥板、蓝钢零件与红色宝石轴承组成的真实机芯",
+        "presentation": "1920×1080横向设计画板；近黑摄影底，金、银、暖白与蓝钢细节。画面用软箱灯照明，细窄倒角反光，不拉伸主体。",
         "materials": [
-          "零件为实体三维网格，倒角、齿轮、螺钉与轴承均由几何建立；底板珍珠纹仅提供细微凹凸与粗糙度。",
-          "金、银、黄铜与蓝钢为金属材质；表镜有透射，实体软箱灯与摄影棚照明，使用Cycles渲染。"
+          "机械部件为独立真实三维网格；棚灯、金属粗糙度、倒角与景深共同决定反射。"
         ],
-        "start_state": "近距离展示发条盒、镂空夹板与金属倒角，镜头缓慢推进。",
         "phases": [
-          "0–6秒展示发条盒、夹板和摆轮运行；6–10秒展示完整外观。",
-          "10–18秒零件沿深度错峰展开，实体镜头环绕，再按原装配位置回装。",
-          "18–22秒保留完整整表，镜头缓慢推进，画面淡出收尾。"
+          "完整表体以三分之四视角出现，左侧留出词块阅读区。",
+          "传动、上弦、振荡、桥板、刻度与指针六组沿深度错峰分开，镜头横向绕行。",
+          "各层沿同一轴线回装，真实金属与蓝钢零件维持结构关系。"
         ],
-        "end_state": "所有层恢复完整装配；18–22秒镜头缓慢推进，画面淡出至黑色。",
         "details": [
-          "使用Blender建立真实三维模型与动画，再用Remotion按当前帧接入1920×1080、24帧/秒的原生渲染，不用二维图形模仿金属几何。",
-          "表径6个场景单位；五组机芯展开距离为0、0.85、1.45、2.2、3.05，刻度圈4.4，指针5.3，表镜5.8。以第241帧为本段首帧，每组延迟2帧：252+2i开始、305+2i达到展开距离、357+i保持到此、405+2i归位、第432帧完整。位置变化保留贝塞尔曲线。",
-          "镜头65毫米焦距；位置依次为第241帧(7,3.8,30)、310帧(16,5,26)、360帧(16.5,4.8,26)、432帧(7,3.8,30)，对应视点由(.25,.5,1)到(.65,.65,1.5)再到(.1,.6,.3)。",
-          "摆轮以48度振幅、每秒2.5次往返运动，按24帧逐帧计算；轮系保持各自固定角速度，秒针22秒扫过132度。"
+          "所有帧号均为24帧/秒设计帧；动作帧f=floor(24×动作秒数)，限制在0至95。影片帧率改变时先换算动作秒数，不直接把影片帧号当作设计帧。",
+          "6组展开距离为0.65、1.2、1.9、2.65、3.6、4.1场景单位；每组迟0.06秒，1.5秒起用2秒展开，5.5秒起用1.65秒收拢。",
+          "三维源时钟为(36+1.7f)/24秒，f是96帧片段的当前帧；设计画板1920×1080，画面右移230像素，缩放0.87→0.89。",
+          "左侧宽750像素近黑渐变，词块EVERY / PART.位于(90,286)；每行154像素，第二行比第一行晚6帧；金色细线从第14到40帧展开。"
         ],
-        "retain": "真实金属倒角、各向异性反射、镂空机芯、蓝钢指针与宝石轴承；保留原生24帧逐格节奏、原镜头和八层装配位置。",
-        "avoid": "不以二维卡片、平面整表图片或低精度几何重绘；不改金属材质、镜头节奏或装配位置，不插帧；轮系、摆轮与秒针仅为视觉演示。",
-        "tempo_note": "按24帧/秒逐格计算；零件和镜头的位置变化使用贝塞尔关键帧，轮系匀速转动，摆轮按正弦往返。"
+        "start_state": "完整表体以三分之四视角出现，左侧留出词块阅读区。",
+        "end_state": "各层沿同一轴线回装，真实金属与蓝钢零件维持结构关系。",
+        "retain": "保持主体轴心、零件层高、摄影构图和原生逐格节奏。",
+        "avoid": "不要做二维整图旋转或以插帧改变机械节律。"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "video"
+      ],
+      "trigger": "打开预览按固定时间线播放；可以暂停、定位和重播。",
+      "assumptions": "怀表为动作示例，可替换主体；物理钟表状态仅为视觉演示。",
+      "id": "helical-screw-seat",
+      "name": "螺丝轴向旋入锁紧",
+      "kind": "action",
+      "category": "space",
+      "duration_ms": 4000.0,
+      "preview_ms": 2041.6666666666665,
+      "summary": "工具与螺丝同轴靠近，螺丝旋转时沿轴向进入孔位，最后锁紧。",
+      "purpose": "工具与螺丝同轴靠近，螺丝旋转时沿轴向进入孔位，最后锁紧。",
+      "aliases": [
+        "螺丝旋入",
+        "螺旋运动",
+        "同轴装配",
+        "旋紧",
+        "机械微距"
+      ],
+      "behaviors": [
+        "native-3d",
+        "frame-accurate",
+        "single-action"
+      ],
+      "objects": "真实金属机芯及其摄影画面；相关标题与材质为可替换示例",
+      "phases": [
+        "微距显示蓝钢螺丝、同轴工具与孔口，轴线不漂移。",
+        "工具接触螺帽后同步转动，螺丝沿螺纹轴推进，金属高光随着角度移动。",
+        "螺帽落至座面并停止推进，保持完整旋紧动作。"
+      ],
+      "actions": [],
+      "retain": "主体完整、真实零件与轴心、原生24帧节奏、原镜头和金银蓝钢材质关系。",
+      "avoid": "不要用平面贴图伪装三维零件；不要增加插帧、弹跳或任意改变装配位置。",
+      "tempo_note": "按24帧/秒，以当前帧计算固定演示时钟。",
+      "analogy": "工具与螺丝同轴靠近，螺丝旋转时沿轴向进入孔位，最后锁紧。",
+      "recommendation": "工具与螺丝同轴靠近，螺丝旋转时沿轴向进入孔位，最后锁紧。 与二维示意图不同，本例保留真实零件和光学摄影。",
+      "source": {
+        "path": "catalog/effects/time-in-motion.js",
+        "factory": "helical-screw-seat",
+        "dependencies": [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "blender@4.5.14",
+        "native_scene": "blender",
+        "frame_cache": {
+          "video": "catalog/assets/time-in-motion/movie.mp4",
+          "start_frame": 432,
+          "frames": 96,
+          "fps": 24,
+          "width": 1280,
+          "height": 720,
+          "poster": "catalog/assets/time-in-motion/posters/helical-screw-seat.jpg"
+        },
+        "reference": {
+          "name": "TIME, IN MOTION · 用户原创横屏机械怀表作品"
+        },
+        "extraction": "从最新44秒成片的连续原生帧提炼动作；完整剪辑与对应建模、机械及镜头源码另随文字源码交付。缓存仅缩小画幅，没有重绘、重排或补帧。",
+        "production_guide": "catalog/assets/time-in-motion/README.md",
+        "assets": [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/helical-screw-seat.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
+        ],
+        "remotion": {
+          "component": "catalog/remotion/time-in-motion.jsx",
+          "export_name": "WiseTimeInMotion",
+          "package_name": "wise-time-in-motion",
+          "files": [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/render_film.py",
+            "catalog/assets/time-in-motion/production/project/修订版/性能研究/profiles.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/geometry.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/build.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/casework.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/movement.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/encode.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/透明整表.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/common.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/竖屏图纸实体开场/素材/零件映射.json",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          "binary_files": [
+            {
+              "source": "catalog/assets/time-in-motion/movie.mp4",
+              "target": "public/catalog/assets/time-in-motion/movie.mp4",
+              "bytes": 7604138,
+              "sha256": "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              "source": "catalog/fonts/Oswald-Bold.woff2",
+              "target": "public/catalog/fonts/Oswald-Bold.woff2",
+              "bytes": 12112,
+              "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "exact_frames": true,
+          "reuse_notes": "目录与默认渲染使用最终4K片的1280×720、24fps轻量缓存，保持1056帧、构图与原剪辑；不能把上采样缓存称为重新渲染4K。完整剪辑源码在catalog/assets/time-in-motion/editable/，原创建模、机械、镜头和投影源码在production/。先用import-originals.mjs按摘要准备原制作素材，才能运行studio:editable或修改Blender场景。字体改为随包授权的Oswald；原系统HelveticaNeue字体不分发，编辑版的字形与最终缓存不同。自有代码Apache-2.0；Oswald遵循SIL OFL。",
+          "scripts": {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      "reproduction": {
+        "objects": "金色齿轮、银色桥板、蓝钢零件与红色宝石轴承组成的真实机芯",
+        "presentation": "1920×1080横向设计画板；近黑摄影底，金、银、暖白与蓝钢细节。画面用软箱灯照明，细窄倒角反光，不拉伸主体。",
+        "materials": [
+          "机械部件为独立真实三维网格；棚灯、金属粗糙度、倒角与景深共同决定反射。"
+        ],
+        "phases": [
+          "微距显示蓝钢螺丝、同轴工具与孔口，轴线不漂移。",
+          "工具接触螺帽后同步转动，螺丝沿螺纹轴推进，金属高光随着角度移动。",
+          "螺帽落至座面并停止推进，保持完整旋紧动作。"
+        ],
+        "details": [
+          "所有帧号均为24帧/秒设计帧；动作帧f=floor(24×动作秒数)，限制在0至95。影片帧率改变时先换算动作秒数，不直接把影片帧号当作设计帧。",
+          "本段为24帧/秒、96帧、4秒的完整旋紧；原生实体网格中保留螺纹、槽口、螺帽与座面。",
+          "镜头沿固定轴线展示推进关系，禁止只旋转平面图片；表面反光由真实金属材质与棚灯产生。",
+          "螺纹螺距0.018场景单位；源帧1–12同轴接近，13–78帧用五次平滑函数完成7圈旋入，螺丝z=0.342+7×0.018×(1−u)、θ=−7×2π×u；最后固定在z=0.342。",
+          "工具与螺丝共用角度；源帧80–96工具沿轴抬起0.37场景单位，螺丝保持锁紧；保留真实螺旋牙形，不能只让整图旋转。"
+        ],
+        "start_state": "微距显示蓝钢螺丝、同轴工具与孔口，轴线不漂移。",
+        "end_state": "螺帽落至座面并停止推进，保持完整旋紧动作。",
+        "retain": "保持主体轴心、零件层高、摄影构图和原生逐格节奏。",
+        "avoid": "不要做二维整图旋转或以插帧改变机械节律。"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "video"
+      ],
+      "trigger": "打开预览按固定时间线播放；可以暂停、定位和重播。",
+      "assumptions": "怀表为动作示例，可替换主体；物理钟表状态仅为视觉演示。",
+      "id": "barrel-stored-energy",
+      "name": "发条盒储能运行",
+      "kind": "action",
+      "category": "space",
+      "duration_ms": 2000.0,
+      "preview_ms": 1125.0,
+      "summary": "发条盒内部弹簧与轮盘围绕固定轴心运行，镜头近距离显示储能结构。",
+      "purpose": "发条盒内部弹簧与轮盘围绕固定轴心运行，镜头近距离显示储能结构。",
+      "aliases": [
+        "发条盒",
+        "储能",
+        "卷簧",
+        "机械运行",
+        "同心旋转"
+      ],
+      "behaviors": [
+        "native-3d",
+        "frame-accurate",
+        "single-action"
+      ],
+      "objects": "真实金属机芯及其摄影画面；相关标题与材质为可替换示例",
+      "phases": [
+        "金色发条盒、中心轴与宝石轴承以微距完整呈现。",
+        "弹簧和盒轮沿固定轴心运行，部件保持实体高度和连续反光。",
+        "持续保持微距阅读区，最后一帧仍为完整结构。"
+      ],
+      "actions": [],
+      "retain": "主体完整、真实零件与轴心、原生24帧节奏、原镜头和金银蓝钢材质关系。",
+      "avoid": "不要用平面贴图伪装三维零件；不要增加插帧、弹跳或任意改变装配位置。",
+      "tempo_note": "按24帧/秒，以当前帧计算固定演示时钟。",
+      "analogy": "发条盒内部弹簧与轮盘围绕固定轴心运行，镜头近距离显示储能结构。",
+      "recommendation": "发条盒内部弹簧与轮盘围绕固定轴心运行，镜头近距离显示储能结构。 与二维示意图不同，本例保留真实零件和光学摄影。",
+      "source": {
+        "path": "catalog/effects/time-in-motion.js",
+        "factory": "barrel-stored-energy",
+        "dependencies": [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "blender@4.5.14",
+        "native_scene": "blender",
+        "frame_cache": {
+          "video": "catalog/assets/time-in-motion/movie.mp4",
+          "start_frame": 576,
+          "frames": 48,
+          "fps": 24,
+          "width": 1280,
+          "height": 720,
+          "poster": "catalog/assets/time-in-motion/posters/barrel-stored-energy.jpg"
+        },
+        "reference": {
+          "name": "TIME, IN MOTION · 用户原创横屏机械怀表作品"
+        },
+        "extraction": "从最新44秒成片的连续原生帧提炼动作；完整剪辑与对应建模、机械及镜头源码另随文字源码交付。缓存仅缩小画幅，没有重绘、重排或补帧。",
+        "production_guide": "catalog/assets/time-in-motion/README.md",
+        "assets": [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/barrel-stored-energy.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
+        ],
+        "remotion": {
+          "component": "catalog/remotion/time-in-motion.jsx",
+          "export_name": "WiseTimeInMotion",
+          "package_name": "wise-time-in-motion",
+          "files": [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/render_film.py",
+            "catalog/assets/time-in-motion/production/project/修订版/性能研究/profiles.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/geometry.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/build.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/casework.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/movement.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/encode.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/透明整表.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/common.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/竖屏图纸实体开场/素材/零件映射.json",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          "binary_files": [
+            {
+              "source": "catalog/assets/time-in-motion/movie.mp4",
+              "target": "public/catalog/assets/time-in-motion/movie.mp4",
+              "bytes": 7604138,
+              "sha256": "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              "source": "catalog/fonts/Oswald-Bold.woff2",
+              "target": "public/catalog/fonts/Oswald-Bold.woff2",
+              "bytes": 12112,
+              "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "exact_frames": true,
+          "reuse_notes": "目录与默认渲染使用最终4K片的1280×720、24fps轻量缓存，保持1056帧、构图与原剪辑；不能把上采样缓存称为重新渲染4K。完整剪辑源码在catalog/assets/time-in-motion/editable/，原创建模、机械、镜头和投影源码在production/。先用import-originals.mjs按摘要准备原制作素材，才能运行studio:editable或修改Blender场景。字体改为随包授权的Oswald；原系统HelveticaNeue字体不分发，编辑版的字形与最终缓存不同。自有代码Apache-2.0；Oswald遵循SIL OFL。",
+          "scripts": {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      "reproduction": {
+        "objects": "金色齿轮、银色桥板、蓝钢零件与红色宝石轴承组成的真实机芯",
+        "presentation": "1920×1080横向设计画板；近黑摄影底，金、银、暖白与蓝钢细节。画面用软箱灯照明，细窄倒角反光，不拉伸主体。",
+        "materials": [
+          "机械部件为独立真实三维网格；棚灯、金属粗糙度、倒角与景深共同决定反射。"
+        ],
+        "phases": [
+          "金色发条盒、中心轴与宝石轴承以微距完整呈现。",
+          "弹簧和盒轮沿固定轴心运行，部件保持实体高度和连续反光。",
+          "持续保持微距阅读区，最后一帧仍为完整结构。"
+        ],
+        "details": [
+          "所有帧号均为24帧/秒设计帧；动作帧f=floor(24×动作秒数)，限制在0至47。影片帧率改变时先换算动作秒数，不直接把影片帧号当作设计帧。",
+          "使用30帧发条盒原生素材，以0.625倍速度播放为48帧，不插帧。",
+          "从原机芯的同一状态时钟计算轮系，不以任意速度转动装饰齿轮；顶部22像素说明文字、左边距96、上边距78。"
+        ],
+        "start_state": "金色发条盒、中心轴与宝石轴承以微距完整呈现。",
+        "end_state": "持续保持微距阅读区，最后一帧仍为完整结构。",
+        "retain": "保持主体轴心、零件层高、摄影构图和原生逐格节奏。",
+        "avoid": "不要做二维整图旋转或以插帧改变机械节律。"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "video"
+      ],
+      "trigger": "打开预览按固定时间线播放；可以暂停、定位和重播。",
+      "assumptions": "怀表为动作示例，可替换主体；物理钟表状态仅为视觉演示。",
+      "id": "meshed-gears-drive",
+      "name": "同轴轮系啮合传动",
+      "kind": "action",
+      "category": "space",
+      "duration_ms": 2000.0,
+      "preview_ms": 1208.3333333333333,
+      "summary": "相邻齿轮按齿数关系反向传动，轮与轴同步，保留真实啮合高度。",
+      "purpose": "相邻齿轮按齿数关系反向传动，轮与轴同步，保留真实啮合高度。",
+      "aliases": [
+        "齿轮啮合",
+        "轮系传动",
+        "反向转动",
+        "机械怀表",
+        "齿数比"
+      ],
+      "behaviors": [
+        "native-3d",
+        "frame-accurate",
+        "single-action"
+      ],
+      "objects": "真实金属机芯及其摄影画面；相关标题与材质为可替换示例",
+      "phases": [
+        "展示大金色齿轮、小钢齿轮与各自固定轴心，齿形清晰可读。",
+        "同一擒纵时钟带动复合轮系；相邻啮合轮反向转动，轮与轴保持相位。",
+        "连续传动两秒，最后保持真实轮系与层高。"
+      ],
+      "actions": [],
+      "retain": "主体完整、真实零件与轴心、原生24帧节奏、原镜头和金银蓝钢材质关系。",
+      "avoid": "不要用平面贴图伪装三维零件；不要增加插帧、弹跳或任意改变装配位置。",
+      "tempo_note": "按24帧/秒，以当前帧计算固定演示时钟。",
+      "analogy": "相邻齿轮按齿数关系反向传动，轮与轴同步，保留真实啮合高度。",
+      "recommendation": "相邻齿轮按齿数关系反向传动，轮与轴同步，保留真实啮合高度。 与二维示意图不同，本例保留真实零件和光学摄影。",
+      "source": {
+        "path": "catalog/effects/time-in-motion.js",
+        "factory": "meshed-gears-drive",
+        "dependencies": [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "blender@4.5.14",
+        "native_scene": "blender",
+        "frame_cache": {
+          "video": "catalog/assets/time-in-motion/movie.mp4",
+          "start_frame": 624,
+          "frames": 48,
+          "fps": 24,
+          "width": 1280,
+          "height": 720,
+          "poster": "catalog/assets/time-in-motion/posters/meshed-gears-drive.jpg"
+        },
+        "reference": {
+          "name": "TIME, IN MOTION · 用户原创横屏机械怀表作品"
+        },
+        "extraction": "从最新44秒成片的连续原生帧提炼动作；完整剪辑与对应建模、机械及镜头源码另随文字源码交付。缓存仅缩小画幅，没有重绘、重排或补帧。",
+        "production_guide": "catalog/assets/time-in-motion/README.md",
+        "assets": [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/meshed-gears-drive.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
+        ],
+        "remotion": {
+          "component": "catalog/remotion/time-in-motion.jsx",
+          "export_name": "WiseTimeInMotion",
+          "package_name": "wise-time-in-motion",
+          "files": [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/render_film.py",
+            "catalog/assets/time-in-motion/production/project/修订版/性能研究/profiles.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/geometry.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/build.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/casework.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/movement.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/encode.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/透明整表.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/common.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/竖屏图纸实体开场/素材/零件映射.json",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          "binary_files": [
+            {
+              "source": "catalog/assets/time-in-motion/movie.mp4",
+              "target": "public/catalog/assets/time-in-motion/movie.mp4",
+              "bytes": 7604138,
+              "sha256": "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              "source": "catalog/fonts/Oswald-Bold.woff2",
+              "target": "public/catalog/fonts/Oswald-Bold.woff2",
+              "bytes": 12112,
+              "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "exact_frames": true,
+          "reuse_notes": "目录与默认渲染使用最终4K片的1280×720、24fps轻量缓存，保持1056帧、构图与原剪辑；不能把上采样缓存称为重新渲染4K。完整剪辑源码在catalog/assets/time-in-motion/editable/，原创建模、机械、镜头和投影源码在production/。先用import-originals.mjs按摘要准备原制作素材，才能运行studio:editable或修改Blender场景。字体改为随包授权的Oswald；原系统HelveticaNeue字体不分发，编辑版的字形与最终缓存不同。自有代码Apache-2.0；Oswald遵循SIL OFL。",
+          "scripts": {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      "reproduction": {
+        "objects": "金色齿轮、银色桥板、蓝钢零件与红色宝石轴承组成的真实机芯",
+        "presentation": "1920×1080横向设计画板；近黑摄影底，金、银、暖白与蓝钢细节。画面用软箱灯照明，细窄倒角反光，不拉伸主体。",
+        "materials": [
+          "机械部件为独立真实三维网格；棚灯、金属粗糙度、倒角与景深共同决定反射。"
+        ],
+        "phases": [
+          "展示大金色齿轮、小钢齿轮与各自固定轴心，齿形清晰可读。",
+          "同一擒纵时钟带动复合轮系；相邻啮合轮反向转动，轮与轴保持相位。",
+          "连续传动两秒，最后保持真实轮系与层高。"
+        ],
+        "details": [
+          "所有帧号均为24帧/秒设计帧；动作帧f=floor(24×动作秒数)，限制在0至47。影片帧率改变时先换算动作秒数，不直接把影片帧号当作设计帧。",
+          "4组齿数分别为80/40、96/16、100/10、80/8，各组沿真实轴距与不同层高建立渐开线齿形。",
+          "角度由擒纵时钟驱动：发条盒、中心轮、三轮、四轮、擒纵轮角速度比为0.5:−1:6:−60:600。",
+          "每拍推进半齿；每个拍周期相位0.36–0.64用五次平滑函数释放，其余时间保持锁定。"
+        ],
+        "start_state": "展示大金色齿轮、小钢齿轮与各自固定轴心，齿形清晰可读。",
+        "end_state": "连续传动两秒，最后保持真实轮系与层高。",
+        "retain": "保持主体轴心、零件层高、摄影构图和原生逐格节奏。",
+        "avoid": "不要做二维整图旋转或以插帧改变机械节律。"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "video"
+      ],
+      "trigger": "打开预览按固定时间线播放；可以暂停、定位和重播。",
+      "assumptions": "怀表为动作示例，可替换主体；物理钟表状态仅为视觉演示。",
+      "id": "balance-reciprocate",
+      "name": "摆轮与游丝往返联动",
+      "kind": "action",
+      "category": "response",
+      "duration_ms": 2000.0,
+      "preview_ms": 833.3333333333334,
+      "summary": "摆轮围绕轴心大幅往返，游丝同步呼吸，擒纵叉按拍点换向。",
+      "purpose": "摆轮围绕轴心大幅往返，游丝同步呼吸，擒纵叉按拍点换向。",
+      "aliases": [
+        "摆轮往返",
+        "游丝呼吸",
+        "擒纵叉",
+        "振荡",
+        "机械节律"
+      ],
+      "behaviors": [
+        "native-3d",
+        "frame-accurate",
+        "single-action"
+      ],
+      "objects": "真实金属机芯及其摄影画面；相关标题与材质为可替换示例",
+      "phases": [
+        "金属摆轮、中心红宝石与同心游丝以微距呈现。",
+        "摆轮以正弦角度往返，游丝随振荡收放，擒纵叉交替换向。",
+        "保持固定轴心和清晰游丝，完成两秒的连续振荡。"
+      ],
+      "actions": [],
+      "retain": "主体完整、真实零件与轴心、原生24帧节奏、原镜头和金银蓝钢材质关系。",
+      "avoid": "不要用平面贴图伪装三维零件；不要增加插帧、弹跳或任意改变装配位置。",
+      "tempo_note": "按24帧/秒，以当前帧计算固定演示时钟。",
+      "analogy": "摆轮围绕轴心大幅往返，游丝同步呼吸，擒纵叉按拍点换向。",
+      "recommendation": "摆轮围绕轴心大幅往返，游丝同步呼吸，擒纵叉按拍点换向。 与二维示意图不同，本例保留真实零件和光学摄影。",
+      "source": {
+        "path": "catalog/effects/time-in-motion.js",
+        "factory": "balance-reciprocate",
+        "dependencies": [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "blender@4.5.14",
+        "native_scene": "blender",
+        "frame_cache": {
+          "video": "catalog/assets/time-in-motion/movie.mp4",
+          "start_frame": 672,
+          "frames": 48,
+          "fps": 24,
+          "width": 1280,
+          "height": 720,
+          "poster": "catalog/assets/time-in-motion/posters/balance-reciprocate.jpg"
+        },
+        "reference": {
+          "name": "TIME, IN MOTION · 用户原创横屏机械怀表作品"
+        },
+        "extraction": "从最新44秒成片的连续原生帧提炼动作；完整剪辑与对应建模、机械及镜头源码另随文字源码交付。缓存仅缩小画幅，没有重绘、重排或补帧。",
+        "production_guide": "catalog/assets/time-in-motion/README.md",
+        "assets": [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/balance-reciprocate.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
+        ],
+        "remotion": {
+          "component": "catalog/remotion/time-in-motion.jsx",
+          "export_name": "WiseTimeInMotion",
+          "package_name": "wise-time-in-motion",
+          "files": [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/render_film.py",
+            "catalog/assets/time-in-motion/production/project/修订版/性能研究/profiles.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/geometry.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/build.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/casework.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/movement.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/encode.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/透明整表.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/common.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/竖屏图纸实体开场/素材/零件映射.json",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          "binary_files": [
+            {
+              "source": "catalog/assets/time-in-motion/movie.mp4",
+              "target": "public/catalog/assets/time-in-motion/movie.mp4",
+              "bytes": 7604138,
+              "sha256": "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              "source": "catalog/fonts/Oswald-Bold.woff2",
+              "target": "public/catalog/fonts/Oswald-Bold.woff2",
+              "bytes": 12112,
+              "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "exact_frames": true,
+          "reuse_notes": "目录与默认渲染使用最终4K片的1280×720、24fps轻量缓存，保持1056帧、构图与原剪辑；不能把上采样缓存称为重新渲染4K。完整剪辑源码在catalog/assets/time-in-motion/editable/，原创建模、机械、镜头和投影源码在production/。先用import-originals.mjs按摘要准备原制作素材，才能运行studio:editable或修改Blender场景。字体改为随包授权的Oswald；原系统HelveticaNeue字体不分发，编辑版的字形与最终缓存不同。自有代码Apache-2.0；Oswald遵循SIL OFL。",
+          "scripts": {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      "reproduction": {
+        "objects": "金色齿轮、银色桥板、蓝钢零件与红色宝石轴承组成的真实机芯",
+        "presentation": "1920×1080横向设计画板；近黑摄影底，金、银、暖白与蓝钢细节。画面用软箱灯照明，细窄倒角反光，不拉伸主体。",
+        "materials": [
+          "机械部件为独立真实三维网格；棚灯、金属粗糙度、倒角与景深共同决定反射。"
+        ],
+        "phases": [
+          "金属摆轮、中心红宝石与同心游丝以微距呈现。",
+          "摆轮以正弦角度往返，游丝随振荡收放，擒纵叉交替换向。",
+          "保持固定轴心和清晰游丝，完成两秒的连续振荡。"
+        ],
+        "details": [
+          "所有帧号均为24帧/秒设计帧；动作帧f=floor(24×动作秒数)，限制在0至47。影片帧率改变时先换算动作秒数，不直接把影片帧号当作设计帧。",
+          "摆轮角度θ(t)=145°×cos(2π×2.5t)；t为三维源秒数，24帧/秒；两秒内5个完整往返。",
+          "擒纵叉在±7°之间按每拍相位0.32–0.68换向；微距保留摆轮、游丝与叉的真实轴心，不把整幅画面左右摆动。"
+        ],
+        "start_state": "金属摆轮、中心红宝石与同心游丝以微距呈现。",
+        "end_state": "保持固定轴心和清晰游丝，完成两秒的连续振荡。",
+        "retain": "保持主体轴心、零件层高、摄影构图和原生逐格节奏。",
+        "avoid": "不要做二维整图旋转或以插帧改变机械节律。"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "video"
+      ],
+      "trigger": "打开预览按固定时间线播放；可以暂停、定位和重播。",
+      "assumptions": "怀表为动作示例，可替换主体；物理钟表状态仅为视觉演示。",
+      "id": "fan-object-rise",
+      "name": "三联主体错峰升入",
+      "kind": "action",
+      "category": "entrance",
+      "duration_ms": 2000.0,
+      "preview_ms": 1250.0,
+      "summary": "三个完整主体以固定错峰从下方升入，分别倾斜落位组成三联画。",
+      "purpose": "三个完整主体以固定错峰从下方升入，分别倾斜落位组成三联画。",
+      "aliases": [
+        "扇形陈列",
+        "三联主体",
+        "错峰升入",
+        "产品陈列",
+        "上移落位"
+      ],
+      "behaviors": [
+        "native-3d",
+        "frame-accurate",
+        "single-action"
+      ],
+      "objects": "三张透明产品静帧和固定标题",
+      "phases": [
+        "暖白底与银色曲面背景，三个完整主体在画面下方等待。",
+        "三个主体分别在第0、4、8帧开始从下方上移，带不同固定倾角。",
+        "主体在第20、24、28帧落位，三联构图与细微持续转角保持。"
+      ],
+      "actions": [],
+      "retain": "透明静帧的完整轮廓、原长宽比、错峰位移和各自倾角。",
+      "avoid": "不要整体移动三张图片，不拉伸或裁切主体，不用淡入代替上移。",
+      "tempo_note": "按24帧/秒，以当前帧计算固定演示时钟。",
+      "analogy": "三个完整主体以固定错峰从下方升入，分别倾斜落位组成三联画。",
+      "recommendation": "三个完整主体以固定错峰从下方升入，分别倾斜落位组成三联画。 与二维示意图不同，本例保留真实零件和光学摄影。",
+      "source": {
+        "path": "catalog/effects/time-in-motion.js",
+        "factory": "fan-object-rise",
+        "dependencies": [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "native_scene": "remotion",
+        "frame_cache": {
+          "video": "catalog/assets/time-in-motion/movie.mp4",
+          "start_frame": 816,
+          "frames": 48,
+          "fps": 24,
+          "width": 1280,
+          "height": 720,
+          "poster": "catalog/assets/time-in-motion/posters/fan-object-rise.jpg"
+        },
+        "reference": {
+          "name": "TIME, IN MOTION · 用户原创横屏机械怀表作品"
+        },
+        "extraction": "原Form函数使用三张Blender摄影静帧进行二维错峰移位与旋转；片段缓存定位最终成片，真实可编辑编排源码同时交付。",
+        "production_guide": "catalog/assets/time-in-motion/README.md",
+        "assets": [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/fan-object-rise.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
+        ],
+        "remotion": {
+          "component": "catalog/remotion/time-in-motion.jsx",
+          "export_name": "WiseTimeInMotion",
+          "package_name": "wise-time-in-motion",
+          "files": [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/render_film.py",
+            "catalog/assets/time-in-motion/production/project/修订版/性能研究/profiles.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/geometry.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/build.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/casework.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/movement.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/encode.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/透明整表.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/common.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/竖屏图纸实体开场/素材/零件映射.json",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          "binary_files": [
+            {
+              "source": "catalog/assets/time-in-motion/movie.mp4",
+              "target": "public/catalog/assets/time-in-motion/movie.mp4",
+              "bytes": 7604138,
+              "sha256": "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              "source": "catalog/fonts/Oswald-Bold.woff2",
+              "target": "public/catalog/fonts/Oswald-Bold.woff2",
+              "bytes": 12112,
+              "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "exact_frames": true,
+          "reuse_notes": "目录与默认渲染使用最终4K片的1280×720、24fps轻量缓存，保持1056帧、构图与原剪辑；不能把上采样缓存称为重新渲染4K。完整剪辑源码在catalog/assets/time-in-motion/editable/，原创建模、机械、镜头和投影源码在production/。先用import-originals.mjs按摘要准备原制作素材，才能运行studio:editable或修改Blender场景。字体改为随包授权的Oswald；原系统HelveticaNeue字体不分发，编辑版的字形与最终缓存不同。自有代码Apache-2.0；Oswald遵循SIL OFL。",
+          "scripts": {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      "reproduction": {
+        "objects": "三张完整主体的透明PNG静帧，主体几何来自三维摄影，入场是二维图片移位和转角。",
+        "presentation": "1920×1080横向设计画板；近黑摄影底，金、银、暖白与蓝钢细节。画面用软箱灯照明，细窄倒角反光，不拉伸主体。",
+        "materials": [
+          "主体为具有完整轮廓的透明产品静帧；右侧银色曲面只用作背景。"
+        ],
+        "phases": [
+          "暖白底与银色曲面背景，三个完整主体在画面下方等待。",
+          "三个主体分别在第0、4、8帧开始从下方上移，带不同固定倾角。",
+          "主体在第20、24、28帧落位，三联构图与细微持续转角保持。"
+        ],
+        "details": [
+          "所有帧号均为24帧/秒设计帧；动作帧f=floor(24×动作秒数)，限制在0至47。影片帧率改变时先换算动作秒数，不直接把影片帧号当作设计帧。",
+          "1920×1080画板，3个主体宽740像素，x=70+545i、y=90+22i，高度按4:3保留；第二个采用斜视图，其他采用正三分之四视图。",
+          "上移位移700→0像素，用cubic-bezier(.22,1,.36,1)；初始倾角−18°、0°、18°，全段再叠加−3°→3°的线性转角。",
+          "标题FORM位于(74,57)，字号315，x位移−140→0在15帧内结束；右侧银色背景x=1120、宽800。"
+        ],
+        "start_state": "暖白底与银色曲面背景，三个完整主体在画面下方等待。",
+        "end_state": "主体在第20、24、28帧落位，三联构图与细微持续转角保持。",
+        "retain": "透明静帧的完整轮廓、原长宽比、错峰位移和各自倾角。",
+        "avoid": "不要整体移动三张图片，不拉伸或裁切主体，不用淡入代替上移。"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "video"
+      ],
+      "trigger": "打开预览按固定时间线播放；可以暂停、定位和重播。",
+      "assumptions": "怀表为动作示例，可替换主体；物理钟表状态仅为视觉演示。",
+      "id": "framed-product-slide",
+      "name": "画框侧滑显现",
+      "kind": "action",
+      "category": "layout",
+      "duration_ms": 2000.0,
+      "preview_ms": 916.6666666666666,
+      "summary": "竖向产品画框从左侧滑入，后方材质缓慢推近，右侧标题保持固定。",
+      "purpose": "竖向产品画框从左侧滑入，后方材质缓慢推近，右侧标题保持固定。",
+      "aliases": [
+        "侧滑画框",
+        "裁剪容器",
+        "产品窗口",
+        "横竖混排",
+        "材质推近"
+      ],
+      "behaviors": [
+        "native-3d",
+        "frame-accurate",
+        "single-action"
+      ],
+      "objects": "裁剪容器、内部三维视频、固定词块和玻璃背景",
+      "phases": [
+        "黑色玻璃材质作为背景，竖向画框位于左侧画外。",
+        "画框在13帧内向右进入，内部三维产品按原镜头运行。",
+        "画框稳定落位，背景继续缓慢缩小，右侧标题保持清晰。"
+      ],
+      "actions": [],
+      "retain": "画框边界、内部摄影比例和独立的背景缩放。",
+      "avoid": "不拉伸产品，不让固定标题一起移动，不用模糊或淡入代替侧滑。",
+      "tempo_note": "按24帧/秒，以当前帧计算固定演示时钟。",
+      "analogy": "竖向产品画框从左侧滑入，后方材质缓慢推近，右侧标题保持固定。",
+      "recommendation": "竖向产品画框从左侧滑入，后方材质缓慢推近，右侧标题保持固定。 与二维示意图不同，本例保留真实零件和光学摄影。",
+      "source": {
+        "path": "catalog/effects/time-in-motion.js",
+        "factory": "framed-product-slide",
+        "dependencies": [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "native_scene": "remotion",
+        "frame_cache": {
+          "video": "catalog/assets/time-in-motion/movie.mp4",
+          "start_frame": 288,
+          "frames": 48,
+          "fps": 24,
+          "width": 1280,
+          "height": 720,
+          "poster": "catalog/assets/time-in-motion/posters/framed-product-slide.jpg"
+        },
+        "reference": {
+          "name": "TIME, IN MOTION · 用户原创横屏机械怀表作品"
+        },
+        "extraction": "原Shell函数移动二维裁剪画框，画框内播放真实三维产品视频；最终片缓存和原剪辑源码共同交付。",
+        "production_guide": "catalog/assets/time-in-motion/README.md",
+        "assets": [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/framed-product-slide.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
+        ],
+        "remotion": {
+          "component": "catalog/remotion/time-in-motion.jsx",
+          "export_name": "WiseTimeInMotion",
+          "package_name": "wise-time-in-motion",
+          "files": [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/render_film.py",
+            "catalog/assets/time-in-motion/production/project/修订版/性能研究/profiles.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/geometry.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/build.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/casework.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/movement.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/encode.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/透明整表.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/common.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/竖屏图纸实体开场/素材/零件映射.json",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          "binary_files": [
+            {
+              "source": "catalog/assets/time-in-motion/movie.mp4",
+              "target": "public/catalog/assets/time-in-motion/movie.mp4",
+              "bytes": 7604138,
+              "sha256": "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              "source": "catalog/fonts/Oswald-Bold.woff2",
+              "target": "public/catalog/fonts/Oswald-Bold.woff2",
+              "bytes": 12112,
+              "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "exact_frames": true,
+          "reuse_notes": "目录与默认渲染使用最终4K片的1280×720、24fps轻量缓存，保持1056帧、构图与原剪辑；不能把上采样缓存称为重新渲染4K。完整剪辑源码在catalog/assets/time-in-motion/editable/，原创建模、机械、镜头和投影源码在production/。先用import-originals.mjs按摘要准备原制作素材，才能运行studio:editable或修改Blender场景。字体改为随包授权的Oswald；原系统HelveticaNeue字体不分发，编辑版的字形与最终缓存不同。自有代码Apache-2.0；Oswald遵循SIL OFL。",
+          "scripts": {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      "reproduction": {
+        "objects": "裁剪容器、内部三维视频、固定词块和玻璃背景",
+        "presentation": "1920×1080横向设计画板；近黑摄影底，金、银、暖白与蓝钢细节。画面用软箱灯照明，细窄倒角反光，不拉伸主体。",
+        "materials": [
+          "内部视频保留真实金属摄影；玻璃背景为独立图片层，画框为固定尺寸的裁剪容器。"
+        ],
+        "phases": [
+          "黑色玻璃材质作为背景，竖向画框位于左侧画外。",
+          "画框在13帧内向右进入，内部三维产品按原镜头运行。",
+          "画框稳定落位，背景继续缓慢缩小，右侧标题保持清晰。"
+        ],
+        "details": [
+          "所有帧号均为24帧/秒设计帧；动作帧f=floor(24×动作秒数)，限制在0至47。影片帧率改变时先换算动作秒数，不直接把影片帧号当作设计帧。",
+          "1920×1080画板；画框左80、上145、宽730、高790，overflow hidden；x位移−880→0，cubic-bezier(.22,1,.36,1)。",
+          "内部edge三维素材跳过12帧，objectPosition为50% 48%；背景玻璃亮度0.56，缩放1.14→1.04，持续48帧。",
+          "标题BOLD / BY / DESIGN.位于(910,254)，字号168，行高0.91；底部说明在x=910、距底98。"
+        ],
+        "start_state": "黑色玻璃材质作为背景，竖向画框位于左侧画外。",
+        "end_state": "画框稳定落位，背景继续缓慢缩小，右侧标题保持清晰。",
+        "retain": "画框边界、内部摄影比例和独立的背景缩放。",
+        "avoid": "不拉伸产品，不让固定标题一起移动，不用模糊或淡入代替侧滑。"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "video"
+      ],
+      "trigger": "打开预览按固定时间线播放；可以暂停、定位和重播。",
+      "assumptions": "怀表为动作示例，可替换主体；物理钟表状态仅为视觉演示。",
+      "id": "word-block-rise",
+      "name": "整词裁切升入",
+      "kind": "action",
+      "category": "writing",
+      "duration_ms": 4000,
+      "preview_ms": 1700,
+      "summary": "两行完整词块从各自裁切窗口下方上移，第二行迟6帧，显现后保持。",
+      "purpose": "两行完整词块从各自裁切窗口下方上移，第二行迟6帧，显现后保持。",
+      "objects": "两行英文词块EVERY与PART.",
+      "phases": [
+        "完整词块位于各自裁切窗口下方。",
+        "第一行上移，6帧后第二行开始，字形和词内间距保持。",
+        "每行14帧完成上移，完整停留至4秒结束。"
+      ],
+      "aliases": [
+        "TIME IN MOTION",
+        "整词升入",
+        "词块裁切"
+      ],
+      "behaviors": [
+        "text",
+        "word-block",
+        "clip-reveal"
+      ],
+      "actions": [],
+      "retain": "两行完整词块从各自裁切窗口下方上移，第二行迟6帧，显现后保持。",
+      "avoid": "不要增加回弹、模糊或改变对象之间的时间关系。",
+      "tempo_note": "固定24帧设计时钟，无退场，定位与重播均由当前帧决定。",
+      "analogy": "两行完整词块从各自裁切窗口下方上移，第二行迟6帧，显现后保持。",
+      "recommendation": "完整词块升入适合产品海报短句；逐字讲述则使用文字裁切升入。",
+      "source": {
+        "path": "catalog/effects/time-in-motion-graphics.js",
+        "factory": "word-block-rise",
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "animejs@4.5.0",
+        "reference": {
+          "name": "TIME, IN MOTION · 原创KineticWord与DialRings"
+        },
+        "extraction": "保留原创组件的运动公式与相对时序，独立示例等比容纳，并用授权字体替换系统字体。",
+        "assets": [
+          "catalog/fonts/Oswald-Bold.woff2"
+        ],
+        "remotion": {
+          "component": "catalog/remotion/time-in-motion-graphics.jsx",
+          "export_name": "WiseTimeInMotionGraphics",
+          "package_name": "wise-time-in-motion",
+          "files": [
+            "catalog/remotion/time-in-motion-graphics.jsx",
+            "catalog/effects/time-in-motion-graphics.js",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs"
+          ],
+          "binary_files": [
+            {
+              "source": "catalog/fonts/Oswald-Bold.woff2",
+              "target": "public/catalog/fonts/Oswald-Bold.woff2",
+              "bytes": 12112,
+              "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 640,
+          "height": 360,
+          "fps": 24,
+          "exact_frames": true,
+          "reuse_notes": "目录和Remotion复用同一逐帧绘制与计算。可编辑原始KineticWord、DialRings及共享motion.mjs同时交付，示例用授权的Oswald字体。自有源码Apache-2.0；Oswald为SIL OFL。",
+          "scripts": {},
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      "reproduction": {
+        "objects": "两行英文词块EVERY与PART.",
+        "presentation": "640×360横向画板，背景#101114；暖白#e9e6de与金色几何。",
+        "phases": [
+          "完整词块位于各自裁切窗口下方。",
+          "第一行上移，6帧后第二行开始，字形和词内间距保持。",
+          "每行14帧完成上移，完整停留至4秒结束。"
+        ],
+        "details": [
+          "运动计算使用24帧/秒设计时钟f=24×动作秒数；定位、暂停与变速均从当前帧和影片帧率换算。",
+          "设计画板640×360；近黑#101114、暖白#e9e6de；使用Oswald粗体，字号51.33、行高0.98、字距−0.055em；两行左边距32，顶边距122和176。",
+          "位移从112%自身高度到0；第0与6帧开始，各用14帧；曲线cubic-bezier(.16,1,.3,1)。每行作为整体移动，不做逐字符错峰，也不以透明度替代裁切。",
+          "固定窗口添加0.06em上下裁切余量，负外边距抵消余量；停留期间不移动，不设置退场。"
+        ],
+        "retain": "两行完整词块从各自裁切窗口下方上移，第二行迟6帧，显现后保持。",
+        "avoid": "不要把整个图形一起摆动，不要添加多余光效。"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "video"
+      ],
+      "trigger": "打开预览按固定时间线播放；可以暂停、定位和重播。",
+      "assumptions": "怀表为动作示例，可替换主体；物理钟表状态仅为视觉演示。",
+      "id": "sparse-dial-counterturn",
+      "name": "稀疏刻度反向旋转",
+      "kind": "action",
+      "category": "data",
+      "duration_ms": 4000,
+      "preview_ms": 1700,
+      "summary": "48条刻度沿圆周逐项建立，两段弧线分别同向和反向旋转，按拍点轻微脉动。",
+      "purpose": "48条刻度沿圆周逐项建立，两段弧线分别同向和反向旋转，按拍点轻微脉动。",
+      "objects": "同心圆、48条刻度、两段圆弧和一枚端点",
+      "phases": [
+        "同心环从0.97倍建立，刻度按圆周顺序显现。",
+        "外环正转，内弧以反向0.52倍角度转动；弧线依次描出。",
+        "保持完整几何与反向旋转，在拍点进行极轻微缩放。"
+      ],
+      "aliases": [
+        "同心刻度",
+        "反向旋转",
+        "环形刻度",
+        "节拍脉动"
+      ],
+      "behaviors": [
+        "frame-driven",
+        "reveal",
+        "counterturn"
+      ],
+      "actions": [],
+      "retain": "48条刻度沿圆周逐项建立，两段弧线分别同向和反向旋转，按拍点轻微脉动。",
+      "avoid": "不要增加回弹、模糊或改变对象之间的时间关系。",
+      "tempo_note": "固定24帧设计时钟，无退场，定位与重播均由当前帧决定。",
+      "analogy": "48条刻度沿圆周逐项建立，两段弧线分别同向和反向旋转，按拍点轻微脉动。",
+      "recommendation": "适合稀疏刻度与机械节拍；需要读数、目标锁定时选择对应信号动作。",
+      "source": {
+        "path": "catalog/effects/time-in-motion-graphics.js",
+        "factory": "sparse-dial-counterturn",
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "animejs@4.5.0",
+        "reference": {
+          "name": "TIME, IN MOTION · 原创KineticWord与DialRings"
+        },
+        "extraction": "保留原创组件的运动公式与相对时序，独立示例等比容纳，并用授权字体替换系统字体。",
+        "assets": [
+          "catalog/fonts/Oswald-Bold.woff2"
+        ],
+        "remotion": {
+          "component": "catalog/remotion/time-in-motion-graphics.jsx",
+          "export_name": "WiseTimeInMotionGraphics",
+          "package_name": "wise-time-in-motion",
+          "files": [
+            "catalog/remotion/time-in-motion-graphics.jsx",
+            "catalog/effects/time-in-motion-graphics.js",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs"
+          ],
+          "binary_files": [],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 640,
+          "height": 360,
+          "fps": 24,
+          "exact_frames": true,
+          "reuse_notes": "目录和Remotion复用同一逐帧绘制与计算。可编辑原始KineticWord、DialRings及共享motion.mjs同时交付，示例用授权的Oswald字体。自有源码Apache-2.0；Oswald为SIL OFL。",
+          "scripts": {},
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      "reproduction": {
+        "objects": "同心圆、48条刻度、两段圆弧和一枚端点",
+        "presentation": "640×360横向画板，背景#101114；暖白#e9e6de与金色几何。",
+        "phases": [
+          "同心环从0.97倍建立，刻度按圆周顺序显现。",
+          "外环正转，内弧以反向0.52倍角度转动；弧线依次描出。",
+          "保持完整几何与反向旋转，在拍点进行极轻微缩放。"
+        ],
+        "details": [
+          "运动计算使用24帧/秒设计时钟f=24×动作秒数；定位、暂停与变速均从当前帧和影片帧率换算。",
+          "设计画板640×360，SVG viewBox 1000×1000，280像素正方形置于(180,40)；背景#101114，主金#d4b57a、辅白#efe8db、暗金#8e816a。",
+          "48条刻度，12条主刻度，每7.5度一条；主线半径438→466、次线451→466，静态底圈半径388；外弧半径418、起角205°、跨度214°，内弧半径351、起角−70°、跨度92°。",
+          "0.85秒建立，外环角度−18°+18°×t，内弧角度为外环角度×−0.52；0、12、24、36帧脉动，峰值额外缩放0.007，约10.08帧回落；不加入复杂HUD文字或扫描图标。"
+        ],
+        "retain": "48条刻度沿圆周逐项建立，两段弧线分别同向和反向旋转，按拍点轻微脉动。",
+        "avoid": "不要把整个图形一起摆动，不要添加多余光效。"
+      }
+    },
+    {
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "video"
+      ],
+      "trigger": "打开预览按固定时间线播放；可以暂停、定位和重播。",
+      "assumptions": "怀表为动作示例，可替换主体；物理钟表状态仅为视觉演示。",
+      "id": "time-in-motion-sequence",
+      "name": "精密结构与词块产品展示",
+      "kind": "composition",
+      "category": "compositions",
+      "duration_ms": 44000,
+      "preview_ms": 7000,
+      "summary": "词块、陈列旋合、微距运行与三联主体按44秒时间线交接，保留原创配乐。",
+      "purpose": "以真实三维产品为核心，词块、摄影画框和机械运行共同推进。",
+      "objects": "机械怀表、词块、环形刻度、摄影画框与材质背景",
+      "phases": [
+        "词块与完整主体建立，进入陈列旋合、画框侧滑和轴向分层。",
+        "螺丝完整旋紧，接续发条盒、传动轮系和摆轮微距，随后回撤整表。",
+        "三联主体错峰入场，快切重提机械细节，主体与标题稳定收束。"
+      ],
+      "aliases": [
+        "TIME IN MOTION",
+        "最新机械怀表",
+        "44秒产品发布片",
+        "陈列旋合",
+        "机械产品展示"
+      ],
+      "behaviors": [
+        "native-3d",
+        "typography",
+        "sequence"
+      ],
+      "actions": [
+        "inventory-contour-fit",
+        "axial-layer-reseat",
+        "helical-screw-seat",
+        "barrel-stored-energy",
+        "meshed-gears-drive",
+        "balance-reciprocate",
+        "fan-object-rise",
+        "framed-product-slide",
+        "word-block-rise",
+        "sparse-dial-counterturn"
+      ],
+      "breakdown_mode": "sequence",
+      "retain": "真实主体、机械动作、词块顺序、13个镜头切点和44秒原创配乐。",
+      "avoid": "不要替换成旧怀表视频；不要通过素材叠加猜测同一三维空间。",
+      "tempo_note": "24帧/秒，共1056帧；音乐120BPM，每12帧一拍，22个两秒小节。",
+      "analogy": "从陈列零件到完整结构，再以机械运行和词块组织产品节奏。",
+      "recommendation": "需要完整产品片节奏时使用本组合；只需要一个运动关系时取关联独立动作。",
+      "audio": {
+        "tracks": [
+          {
+            "start_ms": 0,
+            "duration_ms": 44000,
+            "volume": 1,
+            "fade_in_ms": 0,
+            "fade_out_ms": 0,
+            "src": "catalog/assets/composition-audio/time-in-motion/soundtrack.m4a",
+            "offset_ms": 0
+          }
+        ]
+      },
+      "source": {
+        "path": "catalog/effects/time-in-motion.js",
+        "factory": "time-in-motion-sequence",
+        "dependencies": [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "native_scene": "remotion",
+        "frame_cache": {
+          "video": "catalog/assets/time-in-motion/movie.mp4",
+          "audio": "catalog/assets/composition-audio/time-in-motion/soundtrack.m4a",
+          "start_frame": 0,
+          "frames": 1056,
+          "fps": 24,
+          "width": 1280,
+          "height": 720,
+          "poster": "catalog/assets/time-in-motion/posters/inventory-contour-fit.jpg"
+        },
+        "reference": {
+          "name": "TIME, IN MOTION · 用户原创横屏机械怀表作品"
+        },
+        "extraction": "从最新44秒成片的连续原生帧提炼动作；完整剪辑与对应建模、机械及镜头源码另随文字源码交付。缓存仅缩小画幅，没有重绘、重排或补帧。",
+        "production_guide": "catalog/assets/time-in-motion/README.md",
+        "assets": [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/composition-audio/time-in-motion/soundtrack.m4a",
+          "catalog/assets/time-in-motion/posters/inventory-contour-fit.jpg",
+          "catalog/assets/time-in-motion/posters/axial-layer-reseat.jpg",
+          "catalog/assets/time-in-motion/posters/helical-screw-seat.jpg",
+          "catalog/assets/time-in-motion/posters/barrel-stored-energy.jpg",
+          "catalog/assets/time-in-motion/posters/meshed-gears-drive.jpg",
+          "catalog/assets/time-in-motion/posters/balance-reciprocate.jpg",
+          "catalog/assets/time-in-motion/posters/fan-object-rise.jpg",
+          "catalog/assets/time-in-motion/posters/framed-product-slide.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json",
+          "catalog/assets/composition-audio/time-in-motion/SOURCE.json",
+          "catalog/assets/composition-audio/time-in-motion/sound.py"
+        ],
+        "remotion": {
+          "component": "catalog/remotion/time-in-motion.jsx",
+          "export_name": "WiseTimeInMotion",
+          "package_name": "wise-time-in-motion",
+          "files": [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/render_film.py",
+            "catalog/assets/time-in-motion/production/project/修订版/性能研究/profiles.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/geometry.py",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/build.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/casework.py",
+            "catalog/assets/time-in-motion/production/project/原始建模/源码/movement.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/encode.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/透明整表.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/common.py",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/composition-audio/time-in-motion/sound.py",
+            "catalog/assets/composition-audio/time-in-motion/SOURCE.json",
+            "catalog/assets/composition-audio/time-in-motion/节拍锚点.json",
+            "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/竖屏图纸实体开场/素材/零件映射.json",
+            "catalog/assets/time-in-motion/production/project/修订版/源码/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          "binary_files": [
+            {
+              "source": "catalog/assets/time-in-motion/movie.mp4",
+              "target": "public/catalog/assets/time-in-motion/movie.mp4",
+              "bytes": 7604138,
+              "sha256": "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              "source": "catalog/assets/composition-audio/time-in-motion/soundtrack.m4a",
+              "target": "public/catalog/assets/composition-audio/time-in-motion/soundtrack.m4a",
+              "bytes": 1404381,
+              "sha256": "a4d43700abc273bbea5acc49c5ff270b0ad73d867e106e9758fede79793d8890"
+            },
+            {
+              "source": "catalog/fonts/Oswald-Bold.woff2",
+              "target": "public/catalog/fonts/Oswald-Bold.woff2",
+              "bytes": 12112,
+              "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 1920,
+          "height": 1080,
+          "fps": 24,
+          "exact_frames": true,
+          "reuse_notes": "目录与默认渲染使用最终4K片的1280×720、24fps轻量缓存，保持1056帧、构图与原剪辑；不能把上采样缓存称为重新渲染4K。完整剪辑源码在catalog/assets/time-in-motion/editable/，原创建模、机械、镜头和投影源码在production/。先用import-originals.mjs按摘要准备原制作素材，才能运行studio:editable或修改Blender场景。字体改为随包授权的Oswald；原系统HelveticaNeue字体不分发，编辑版的字形与最终缓存不同。自有代码Apache-2.0；Oswald遵循SIL OFL。",
+          "scripts": {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      "reproduction": {
+        "objects": "实体机械怀表、主标题、三维微距与抽象金银玻璃材质",
+        "presentation": "1920×1080横向设计画板；近黑#101114、暖白#e9e6de、金色#c2a974与#d4ba83；主体保留蓝钢细节。标题以粗体无衬线排版，完整主体有留白，内部微距可以铺满。",
+        "phases": [
+          "词块与完整主体建立，进入陈列旋合、画框侧滑和轴向分层。",
+          "螺丝完整旋紧，接续发条盒、传动轮系和摆轮微距，随后回撤整表。",
+          "三联主体错峰入场，快切重提机械细节，主体与标题稳定收束。"
+        ],
+        "preparation": [
+          "先建立独立三维机壳、轮系、桥板、游丝、指针、宝石与螺丝，完成金属材质、软箱灯和镜头，再准备同机位几何投影与alpha遮罩。",
+          "背景为原创烟灰玻璃、银色弧面和金色材质；只用作背景，不替代真实表体。英文字幕使用授权字体，三维零件与文字分别控制。"
+        ],
+        "details": [
+          "所有帧号均为24帧/秒设计帧；动作帧f=floor(24×动作秒数)，限制在0至1055。影片帧率改变时先换算动作秒数，不直接把影片帧号当作设计帧。",
+          "完整时间表：0–2秒标题与主物；2–4秒词块遮罩升入；4–10秒横向陈列旋合及6帧线稿短闪；10–12秒左右分区；12–14秒画框側滑；14–18秒轴向分层；18–22秒完整螺丝旋紧；22–24秒稀疏反向刻度；24–26秒发条盒；26–28秒轮系；28–30秒摆轮；30–34秒整表回撤；34–36秒三联主体；36–40秒每秒一组快切；40–44秒词块与主物稳定收尾。",
+          "主标题文字顺序为TIME、BEYOND / THE HOUR.、ONE. / COMPLETE. / MOVEMENT.、BOLD / BY / DESIGN.、EVERY / PART.、MADE / TO MOVE.、EVERY / DETAIL. / ALIVE.、FORM、IN / MOTION、TIME, / IN MOTION.；引号或斜线仅用于屏幕文案分行。",
+          "主要词块用14帧上移，次行晚6帧；结尾两行从局部第12与20帧开始，主体42帧内上移65像素、角度8°→−4°，材质缩放1.12→1。",
+          "原创配乐44秒、120BPM、48kHz双声道；鼓、低音、中频和声、金属细节、空间五组声部，第42秒起不再加入鼓组，保持画面与声音同一时间轴。"
+        ],
+        "retain": "保持完整44秒剪辑、文字层级、实体装配关系与声音节拍。",
+        "avoid": "不引入第三方品牌、音乐、系统字体文件或二维假机芯；不延长镜头使素材越界。"
       }
     }
   ],
@@ -52574,7 +54077,9 @@
     "sunset-character-illustration": "sunset-sun-illustration",
     "wind-companion-follow": "passage-animal-response",
     "speech-caption": "mask-stagger-text",
-    "ghost-type-overprint": "word-slam"
+    "ghost-type-overprint": "word-slam",
+    "ordered-depth-assembly": "axial-layer-reseat",
+    "precision-assembly-sequence": "time-in-motion-sequence"
   },
   "variant_redirects": {
     "material-label-stagger": "material",

@@ -1,7 +1,7 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function (global) {
   'use strict';
-  const sharedPackageVersion = "0.1.14"; // 由 scripts/build.mjs 从 package.json 同步。
+  const sharedPackageVersion = "0.1.15"; // 由 scripts/build.mjs 从 package.json 同步。
   // 此函数只在目标工程的 Node.js 中执行；浏览器复制和文件导出使用同一份安装程序。
   function installPackage({version,effectId,variantId}, {run,readInstalled,log=console.log}={}) {
     const stable=/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
@@ -299,7 +299,7 @@ registerRoot(Root);
       files['binary-assets.json']=JSON.stringify(spec.binary_files,null,2)+'\n';
       files['prepare-assets.mjs']=binaryInstaller(spec);
       files['README.md']+='\n命令行 export.mjs 已复制 binary-assets.json 列出的工程与素材，不需要再次准备。仅从目录复制文字源码时，还需运行 node prepare-assets.mjs <素材包根目录或网址>，再运行 npm run check:source。程序只复制清单里的文件，核对内容摘要并保护已有修改；模型、视频、纹理与原声不会内嵌到文字源码。\n';
-      if(effect.source.native_scene==='blender')files['README.md']+='\n完整 Blender 工程与制作素材可从 Git 单独下载，步骤见 https://github.com/WiseWong6/wise-motion/blob/main/catalog/assets/precision-assembly/获取完整工程.md 。下载后运行 node prepare-assets.mjs /完整路径/wise-motion-source；不要把 npm 包当作完整三维制作素材包。\n';
+      if(effect.source.production_guide)files['README.md']+='\n三维制作与可编辑剪辑的素材准备步骤：'+effect.source.production_guide+'。制作原件单独准备，npm 包只提供运行素材和文字源码。\n';
     }
     return files;
   }
@@ -320,8 +320,8 @@ registerRoot(Root);
       else if(base)location=base.href;
       lines.push('','工程、视频和纹理单独保存；先保存以下文字文件，再准备 binary-assets.json 中的素材。',
         '运行：node prepare-assets.mjs '+JSON.stringify(location),
-        '使用 scripts/export.mjs 导出时会自动复制所有素材与真实三维工程。');
-      if(effect.source.native_scene==='blender')lines.push('完整工程下载步骤：https://github.com/WiseWong6/wise-motion/blob/main/catalog/assets/precision-assembly/获取完整工程.md；下载后将 prepare-assets.mjs 的素材根目录指定为 wise-motion-source。');
+        '使用 scripts/export.mjs 导出时会自动复制清单中的运行素材；额外的制作原件按工程说明准备。');
+      if(effect.source.production_guide)lines.push('三维制作素材准备步骤：'+effect.source.production_guide+'。');
     }
     for(const [file,content]of Object.entries(files)){
       const fence='`'.repeat(Math.max(3,...Array.from(content.matchAll(/`+/g),m=>m[0].length+1)));
@@ -335,7 +335,7 @@ registerRoot(Root);
     if(settings.content!==undefined||effect.content!==undefined)effect=global.MotionContent.withContent(effect,settings.content===undefined?effect.content:settings.content);
     const definition = {id:effect.id, duration_ms:effect.duration_ms, loop:effect.loop, default_ease:effect.default_ease, parameters:effect.parameters};
     const hasAudio=effect.kind==='composition'&&Boolean(effect.audio?.tracks?.length);
-    const nativeScene=effect.source.native_scene==='blender';
+    const nativeScene=Boolean(effect.source.frame_cache);
     if(hasAudio||nativeScene)Object.assign(definition,effect);
     if(!hasAudio&&!nativeScene&&(effect.source.factory!==effect.id||effect.source.assets?.length))definition.source={factory:effect.source.factory,
       ...(effect.source.assets?.length?{assets:effect.source.assets}:{})};

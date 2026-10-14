@@ -29,7 +29,7 @@ node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion
 
 目录“复制源码”包含相同安装程序；命令行导出的共享组件示例带有 `install-wise-motion.cjs`，运行该文件即可。独立工程仍按自己的固定依赖安装。
 
-全部运行素材明细与校验值在 `ASSET-MANIFEST.json`。三维制作原件通过 [Git 单独下载完整工程](catalog/assets/precision-assembly/获取完整工程.md)；npm 包继续提供原成片、声音及两张目录预览，播放与渲染无需原模型。素材副本不提供目录首页；浏览请打开源码中的 `catalog/index.html`。目标工程的Remotion依赖需和包版本一致。
+全部运行素材明细与校验值在 `ASSET-MANIFEST.json`。三维制作原件与剪辑原媒体通过 [制作素材清单](catalog/assets/time-in-motion/README.md) 按摘要单独准备；npm 包提供最终横屏片的轻量缓存、声音和目录预览，播放与渲染缓存无需原模型。素材副本不提供目录首页；浏览请打开源码中的 `catalog/index.html`。目标工程的Remotion依赖需和包版本一致。
 目录中的“复制代码”提供完整Composition例子和安装步骤。`Sequence`能控制每个组件的起点；多个组件用独立画板，互不覆盖。
 翻页书在目录中保留真实交互；导出组件总是固定演示动作。
 

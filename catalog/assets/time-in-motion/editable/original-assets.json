@@ -1,0 +1,1216 @@
+[
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening.mp4",
+    "target": "public/opening.mp4",
+    "bytes": 32514784,
+    "sha256": "d3032f84c0e85e41b1bfde3984bbc437a1afdd84743d3126992aebc0354cce43"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/board-assembly.mp4",
+    "target": "public/board-assembly.mp4",
+    "bytes": 4627572,
+    "sha256": "70e956339a59d4fc3509b3573a6b184cfc10d28a3c8e6e2bfe417a0d9bc44e11"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/reveal-portrait.mp4",
+    "target": "public/reveal-portrait.mp4",
+    "bytes": 5504038,
+    "sha256": "4fa52de077e7d273b14098e97188eb98b086f09651223bfd5a600e31ea23c12a"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/edge-portrait.mp4",
+    "target": "public/edge-portrait.mp4",
+    "bytes": 6669879,
+    "sha256": "119499dabff9836b7094acdce96bc2a8bc2212acea2bbf481fcf15bc06b98a49"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/assembly.mp4",
+    "target": "public/assembly.mp4",
+    "bytes": 101814293,
+    "sha256": "24bcb57664ebbd8b2b534d6750e3dc0fa66126900c06347cfecaf7603b7adfd1"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/screw.mp4",
+    "target": "public/screw.mp4",
+    "bytes": 16533440,
+    "sha256": "3cf17d2c3b1da9a94ea5843946114a234e52c5f930d671237785ba1a74200a3e"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/barrel.mp4",
+    "target": "public/barrel.mp4",
+    "bytes": 13814420,
+    "sha256": "21cf38d9253cab458c269f901defcae2feade726edb032a15475d8f2b5cd710f"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/train.mp4",
+    "target": "public/train.mp4",
+    "bytes": 10371836,
+    "sha256": "b50f9ab32ab19193b752ed0512eb4f539dd3204536dbe4e29169e9c63b111cbe"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/balance.mp4",
+    "target": "public/balance.mp4",
+    "bytes": 23553168,
+    "sha256": "00514e3ab0d8ff411ceec38a1b59347947773282994bca432e0ae54d4be01fe9"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-portrait.mp4",
+    "target": "public/return-portrait.mp4",
+    "bytes": 12666087,
+    "sha256": "cb39958c63143eb95fe1fdb4e1caaff970274992e7136c7634d695678843dbaa"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/components.mp4",
+    "target": "public/components.mp4",
+    "bytes": 17302553,
+    "sha256": "cd124b64ff41bce09b7c4492a94b09c6798136226d004bcc2d302ee4cea78902"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/lock-portrait.mp4",
+    "target": "public/lock-portrait.mp4",
+    "bytes": 1213174,
+    "sha256": "b2577f9996bf5adef7215236c4247a2a281fdfafc4ec39b4628fd637786e9421"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/watch-front.png",
+    "target": "public/watch-front.png",
+    "bytes": 2276713,
+    "sha256": "62248d931d14a2eee66c0aabd7dbe53899f65bc5b1524046bd29e91e0f21851f"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/watch-angle.png",
+    "target": "public/watch-angle.png",
+    "bytes": 1980033,
+    "sha256": "34d21561f9a3174df98b95df57fcbce3f83229c7c6703e124379ff210abd5b3e"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/chrome-neutral.png",
+    "target": "public/chrome-neutral.png",
+    "bytes": 1961304,
+    "sha256": "a58ef392b14358059da7f59553c54ae725f1379ddc25cb7bc5fa63501c8379a4"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/glass.png",
+    "target": "public/glass.png",
+    "bytes": 1917826,
+    "sha256": "4033bd4c451a53973622a557fc317cf0018cd2fa91fc639a20ef9b0960cc4a49"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/gold.png",
+    "target": "public/gold.png",
+    "bytes": 2642816,
+    "sha256": "e73d2a4fe5681c768395248410fcb73ac56c81937e2ebc17127aca4890743170"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0000.png",
+    "target": "public/opening-alpha/F0000.png",
+    "bytes": 66714,
+    "sha256": "94dc0982f4807feb88f3c7857638168bdf971898f35d3ae3be6cf8a639c018e2"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0001.png",
+    "target": "public/opening-alpha/F0001.png",
+    "bytes": 66752,
+    "sha256": "5a9525d9893f274789b33b857cf760faf984b50f68d4735570d909ba4b68506d"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0002.png",
+    "target": "public/opening-alpha/F0002.png",
+    "bytes": 66561,
+    "sha256": "48c6234eb874194f6b8b83d10eda7f4bbcf151ff6f2b5ba02830b3e54987fcad"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0003.png",
+    "target": "public/opening-alpha/F0003.png",
+    "bytes": 66609,
+    "sha256": "2f3855079c6537235369b293afdaebea81459d5218660d5193080e5d2f8b57ed"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0004.png",
+    "target": "public/opening-alpha/F0004.png",
+    "bytes": 66836,
+    "sha256": "cd81fac446425a46a1ec67d332652a82105d7ee0ac4a60414461e042b0e1be5b"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0005.png",
+    "target": "public/opening-alpha/F0005.png",
+    "bytes": 66794,
+    "sha256": "241116741a08626010b81f9da79423127012dcf181b8264c0ca0615d216fe4c6"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0006.png",
+    "target": "public/opening-alpha/F0006.png",
+    "bytes": 66828,
+    "sha256": "27193c1fc99fd1f5c5e591573719fcd4bac5d8ffd3a50babc87d897dd4ff8f56"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0007.png",
+    "target": "public/opening-alpha/F0007.png",
+    "bytes": 66427,
+    "sha256": "9823d560218733726086937fac521b706371b224925101d4831c6fd8c873da5a"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0008.png",
+    "target": "public/opening-alpha/F0008.png",
+    "bytes": 66773,
+    "sha256": "6d7686318e654e0688ed30f4123fa9b914192472e8aebe8b38a986f1c66476c6"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0009.png",
+    "target": "public/opening-alpha/F0009.png",
+    "bytes": 66915,
+    "sha256": "67abd90120052b50fac44b0fc348a319ee375616967e17638bd3bb154f079ef3"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0010.png",
+    "target": "public/opening-alpha/F0010.png",
+    "bytes": 66694,
+    "sha256": "069af6e19f6a574038969c259b8dc25ef35001327cdd26619b8f361ec9ef0596"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0011.png",
+    "target": "public/opening-alpha/F0011.png",
+    "bytes": 67204,
+    "sha256": "c2c9acbaf6e9790d41ce413291f33839f42f639d57da2d3465b37ccd75e3e21c"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0012.png",
+    "target": "public/opening-alpha/F0012.png",
+    "bytes": 66959,
+    "sha256": "b949063f97d6bacbc9f2e1c40ed0a4d960da52a81802fcc715ccfaa0e1e90b5a"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0013.png",
+    "target": "public/opening-alpha/F0013.png",
+    "bytes": 67379,
+    "sha256": "c896b3cc59b3d2b93be95a4dc3a540cc5331a78d391eb40bccfdc77c446df2ac"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0014.png",
+    "target": "public/opening-alpha/F0014.png",
+    "bytes": 67599,
+    "sha256": "599ad189182587a572cd654eac6d7cf73d6be63982bf881335fba54084301e90"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0015.png",
+    "target": "public/opening-alpha/F0015.png",
+    "bytes": 67820,
+    "sha256": "2a1b5cccd0e66073523f27a5b323a50a79ba383b00ddbc453c73a2b023c80e3c"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0016.png",
+    "target": "public/opening-alpha/F0016.png",
+    "bytes": 67866,
+    "sha256": "3bd3db3c0983d08e3102a4dd1726808e9ee568d461393bea1b655cb89ee4867b"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0017.png",
+    "target": "public/opening-alpha/F0017.png",
+    "bytes": 68235,
+    "sha256": "ce76586557f2664d6fcad5e126b1fc74d493f057e33aee9d23d95ba5e377486e"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0018.png",
+    "target": "public/opening-alpha/F0018.png",
+    "bytes": 68216,
+    "sha256": "ae1297e1445bd175c8d9089a311060b6e99f79fbfd03a844bd0704f8ccdcbb98"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0019.png",
+    "target": "public/opening-alpha/F0019.png",
+    "bytes": 68283,
+    "sha256": "62830f81d37bb3e5abe3d54218a3958f234c5ae799150d5870cbd5c64d999680"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0020.png",
+    "target": "public/opening-alpha/F0020.png",
+    "bytes": 68469,
+    "sha256": "62202aac95b7aa3e9c0d93d1553e116447f7cc44fc5c0aad8971336156b84fb3"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0021.png",
+    "target": "public/opening-alpha/F0021.png",
+    "bytes": 68770,
+    "sha256": "0b8d92cf0d73fb339cd4a5cd80429cb1d18dce8fb301ae973a87aa05538000e0"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0022.png",
+    "target": "public/opening-alpha/F0022.png",
+    "bytes": 68838,
+    "sha256": "96f7ea709abd4350215f66b63bdc39469e1f4e38ccca38bd1eeb1a855fcb5ca7"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0023.png",
+    "target": "public/opening-alpha/F0023.png",
+    "bytes": 69243,
+    "sha256": "f7e6fcc0afa2e57d576c604b5db199d701c134f827796d1bb8c8f201f7e706cb"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0024.png",
+    "target": "public/opening-alpha/F0024.png",
+    "bytes": 69148,
+    "sha256": "31af694b0ebfb05bc618a2e269e0cc68d807fd55b82d908d1057530896b992f5"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0025.png",
+    "target": "public/opening-alpha/F0025.png",
+    "bytes": 69515,
+    "sha256": "cbd57278e4bda53cc4e4ced55420c81fec6327c2417b368a0708e6dcc321c666"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0026.png",
+    "target": "public/opening-alpha/F0026.png",
+    "bytes": 69627,
+    "sha256": "c9c25606ab212a0a9db1cc9c7d87edac0c289876ca8a499463ebf68869e31a9a"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0027.png",
+    "target": "public/opening-alpha/F0027.png",
+    "bytes": 69466,
+    "sha256": "838deac03adb6f9a6e58bf40a02e767d4c3abb0a6356fce47aa126faae09e9a3"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0028.png",
+    "target": "public/opening-alpha/F0028.png",
+    "bytes": 69943,
+    "sha256": "7a47105510fc3e01fcfad357796b40826888b3096c9951cb8f54c18baa1c6e0d"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0029.png",
+    "target": "public/opening-alpha/F0029.png",
+    "bytes": 69727,
+    "sha256": "a68b1877cddb70319175dbad8c0e44adeece18a3dc0d047814c3168e8253b83e"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0030.png",
+    "target": "public/opening-alpha/F0030.png",
+    "bytes": 70065,
+    "sha256": "16ae0f05529a78f60fc5ca451bc23f2dd081e129c5d33557556c1a770f277c81"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0031.png",
+    "target": "public/opening-alpha/F0031.png",
+    "bytes": 70138,
+    "sha256": "106ee05662da132921e0856bd62142355ae4b879a2d0dc25d81295d761c6c9e9"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0032.png",
+    "target": "public/opening-alpha/F0032.png",
+    "bytes": 70092,
+    "sha256": "3d2e69656b31eccf48f9c003ab791ec6522236266eb07dd533db14c8e85c1cbd"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0033.png",
+    "target": "public/opening-alpha/F0033.png",
+    "bytes": 70272,
+    "sha256": "8ca01c46e674e64da407a010e32770891d5b282e2566b991268d6cc9dae5f620"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0034.png",
+    "target": "public/opening-alpha/F0034.png",
+    "bytes": 70320,
+    "sha256": "79ee772ed21ef2abe48943118f904fe673a3366ca833458092b746a53d79db99"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0035.png",
+    "target": "public/opening-alpha/F0035.png",
+    "bytes": 70391,
+    "sha256": "e2fc188da46ffc3febbb0a68fa89d996ebf52bc5085ba7e081fc4fe537b4f69d"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0036.png",
+    "target": "public/opening-alpha/F0036.png",
+    "bytes": 70391,
+    "sha256": "959a0d648f923dfa9f36705f2be974845ec064db409be27678d94eb3554a42c0"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0037.png",
+    "target": "public/opening-alpha/F0037.png",
+    "bytes": 70391,
+    "sha256": "42a558708a1396a2bde03904e3d88c71fe99c927f0b4337c245e109435237a5f"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0038.png",
+    "target": "public/opening-alpha/F0038.png",
+    "bytes": 70025,
+    "sha256": "90447247fd08b32c8ed4623679b5d7bedaecc953d8e5bfc87c2de594cda6366e"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0039.png",
+    "target": "public/opening-alpha/F0039.png",
+    "bytes": 70264,
+    "sha256": "a30649da80f6fcb3a2faed3bf8bdd20377ccb12948e7f35b4a64a88764248a12"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0040.png",
+    "target": "public/opening-alpha/F0040.png",
+    "bytes": 70577,
+    "sha256": "8ce1961ec5289473e5ef8a2afabe0caf561f93ac2e0cc414278794c3e9360daf"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0041.png",
+    "target": "public/opening-alpha/F0041.png",
+    "bytes": 70273,
+    "sha256": "2abc47f6f22c7f4f47c6313376b36cc7c6c1c39d04226c1cefc8d716fe4c6e23"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0042.png",
+    "target": "public/opening-alpha/F0042.png",
+    "bytes": 70795,
+    "sha256": "9241e12aacb33ea70d05c4276312c2644c407b89d0eceddc30e66580d3c3b4bf"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0043.png",
+    "target": "public/opening-alpha/F0043.png",
+    "bytes": 70961,
+    "sha256": "af192d77309c39608d84c0202df735b9bc2a332c594f1d427191e34a1f961161"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0044.png",
+    "target": "public/opening-alpha/F0044.png",
+    "bytes": 71308,
+    "sha256": "61c2651501bcab9438ff082a14eaed7d26311a59da5c57b62662a8fe3b701f14"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0045.png",
+    "target": "public/opening-alpha/F0045.png",
+    "bytes": 71318,
+    "sha256": "28a9218725ec556fa6fac83face5b4300aadd3e52c084cf9984fb8d328f239c5"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0046.png",
+    "target": "public/opening-alpha/F0046.png",
+    "bytes": 71316,
+    "sha256": "97a9449c5c4f75a4ccaf294f9c9ea476f755ddc246f99f246e429e83ad2844a6"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0047.png",
+    "target": "public/opening-alpha/F0047.png",
+    "bytes": 72065,
+    "sha256": "25641e1d70f386f0729c63624633d4130f9875c729980d58f7ebe3c419381d49"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0048.png",
+    "target": "public/opening-alpha/F0048.png",
+    "bytes": 73467,
+    "sha256": "f2f49bca183c6a76e5d6a8cfe9150693e81370ac34924ed0631dbf44606735f6"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0049.png",
+    "target": "public/opening-alpha/F0049.png",
+    "bytes": 74062,
+    "sha256": "12482202e8fdeddcbf71f4734a36e62d545d28024974d915b9dc17cc87e54d2a"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0050.png",
+    "target": "public/opening-alpha/F0050.png",
+    "bytes": 75005,
+    "sha256": "9834d2fff4034030a64bcfb638f29a41a382113884dc50e5ee638bc718248890"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0051.png",
+    "target": "public/opening-alpha/F0051.png",
+    "bytes": 75494,
+    "sha256": "958081b6ee39e7d526d7e06b10930a3ac53791070629ae8137d9d2fb685fbf33"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0052.png",
+    "target": "public/opening-alpha/F0052.png",
+    "bytes": 75257,
+    "sha256": "7ed3b2eb3de1da341820a162c0f439ffc6caae327e16b2c2ec891d07b5733d27"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0053.png",
+    "target": "public/opening-alpha/F0053.png",
+    "bytes": 75106,
+    "sha256": "910e919ea9ac0d14861146e94694b50bdfa9612feab315d692bdc2af5311f006"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0054.png",
+    "target": "public/opening-alpha/F0054.png",
+    "bytes": 75086,
+    "sha256": "57e755ca764d10a6723ba34c0dd8e034a51e9fbfb8db54359127b31b34fabbc2"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0055.png",
+    "target": "public/opening-alpha/F0055.png",
+    "bytes": 74872,
+    "sha256": "bded1e502b6168cd6699e249fb494269d2996278871c01a7097ace2c2527efdf"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0056.png",
+    "target": "public/opening-alpha/F0056.png",
+    "bytes": 75113,
+    "sha256": "1594a94eaf724307c8eeb6f42d2de79ef7888bbd28f734f62aa8e083a7c0b6b1"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0057.png",
+    "target": "public/opening-alpha/F0057.png",
+    "bytes": 75479,
+    "sha256": "70cc4b81efef3de2671eb61c828dd4f621c44e53c77d043240da12eee4400fbd"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0058.png",
+    "target": "public/opening-alpha/F0058.png",
+    "bytes": 74459,
+    "sha256": "0c5d6b4412ca002de685fa7ed1a7e5f49f6fde7f357e6a9afb6dc6068917560c"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0059.png",
+    "target": "public/opening-alpha/F0059.png",
+    "bytes": 73587,
+    "sha256": "2f24a810b00e55652c76e52ce2d6de8a603dd7d6fea8c8bb3cc37f48a6452bf5"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0060.png",
+    "target": "public/opening-alpha/F0060.png",
+    "bytes": 72979,
+    "sha256": "200fd506994a74d661700e4df5c98e6a682f98463542d8d0fe4fdafae8baa342"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0061.png",
+    "target": "public/opening-alpha/F0061.png",
+    "bytes": 73138,
+    "sha256": "dd49cad71f509a9b725e79b7a5b74ada4b925058577863815bbb073dd9984199"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0062.png",
+    "target": "public/opening-alpha/F0062.png",
+    "bytes": 72859,
+    "sha256": "f84339974ae76150a54b7557afdc88e680e3bf77f145ca9bea4684694534ef69"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0063.png",
+    "target": "public/opening-alpha/F0063.png",
+    "bytes": 71095,
+    "sha256": "a6c1a489ff07d5279bcd8c97d8a2ebd6e5630783e383427c45aaca447bdb2b39"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0064.png",
+    "target": "public/opening-alpha/F0064.png",
+    "bytes": 68614,
+    "sha256": "d40935be522f4802727a47b6b993365a05027d7ff6315d7540496dbc05d5b362"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0065.png",
+    "target": "public/opening-alpha/F0065.png",
+    "bytes": 61597,
+    "sha256": "f4fd8367c99954a194631b8cb3f99bb095e01ecf2cd902d29caf5246283e3c06"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0066.png",
+    "target": "public/opening-alpha/F0066.png",
+    "bytes": 58305,
+    "sha256": "7153bfb44d201143f5a6b6165fe7a0ad45d904af6939cb4ed995eea4773df528"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0067.png",
+    "target": "public/opening-alpha/F0067.png",
+    "bytes": 55678,
+    "sha256": "88f74e9be168355da9c8c6824b93b400b9ceb92b7ce0e04e9b20b0dad1383c63"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0068.png",
+    "target": "public/opening-alpha/F0068.png",
+    "bytes": 51084,
+    "sha256": "50fc7a28d57918f600c3a585db50010443d77893773f71bef53da8ce0b804f53"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0069.png",
+    "target": "public/opening-alpha/F0069.png",
+    "bytes": 47805,
+    "sha256": "b1b420a0ec2fc0878ab1a156d33dd7d8cdca4903bec199236a0a8288838d9111"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0070.png",
+    "target": "public/opening-alpha/F0070.png",
+    "bytes": 43464,
+    "sha256": "e3c4ebfe3238f1295dc1601b616281cce43425088686f8d04c4b42c1f043e378"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0071.png",
+    "target": "public/opening-alpha/F0071.png",
+    "bytes": 41022,
+    "sha256": "eed93debeabfdfb53e87c7e08a81129397d534142f0afefff2b2661696dcfb2b"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0072.png",
+    "target": "public/opening-alpha/F0072.png",
+    "bytes": 39140,
+    "sha256": "66decf4a5239d9a2e7018eb22df9686210c8a8eb2dbbaee97b068b534ab71245"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0073.png",
+    "target": "public/opening-alpha/F0073.png",
+    "bytes": 39140,
+    "sha256": "4e1f66bfd7f22d5c2e6074cf30ece14394901d8e52a965db50dbc8374644750b"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0074.png",
+    "target": "public/opening-alpha/F0074.png",
+    "bytes": 39140,
+    "sha256": "654afacdc5f5742f1e9160653e467e662c247c8b80334edbe2b609c6d28936ff"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0075.png",
+    "target": "public/opening-alpha/F0075.png",
+    "bytes": 39140,
+    "sha256": "f05a3185ac4f1670c31cc223c70f28197a3e23b228bbb5d5310e04775d598ce7"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0076.png",
+    "target": "public/opening-alpha/F0076.png",
+    "bytes": 39140,
+    "sha256": "cafc1f21ad01c46e9044bc91feab022a6c823b8e1d3e50bd34a589ff52642334"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0077.png",
+    "target": "public/opening-alpha/F0077.png",
+    "bytes": 39140,
+    "sha256": "990d8a97a1de0af82d766140cf76f5dec6d3853676c06d8f625029eb49097153"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0078.png",
+    "target": "public/opening-alpha/F0078.png",
+    "bytes": 39140,
+    "sha256": "0e224affb7a86bae8db05970060392b83465c7bfa3fd0c15caa73625e2fb128e"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0079.png",
+    "target": "public/opening-alpha/F0079.png",
+    "bytes": 39140,
+    "sha256": "8f007092631be5ce7806124d5e8140a931712bb11b379152c5537bd3bd2d6841"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0080.png",
+    "target": "public/opening-alpha/F0080.png",
+    "bytes": 39140,
+    "sha256": "f7075f72b158942ad7274b1589eddb2189442b5e3dc6251af6cc7d974ccc2c63"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0081.png",
+    "target": "public/opening-alpha/F0081.png",
+    "bytes": 39140,
+    "sha256": "eac02a149130d59460899527aa6d19def9ff8383b656d9c64f088baac4af8434"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0082.png",
+    "target": "public/opening-alpha/F0082.png",
+    "bytes": 39140,
+    "sha256": "0db2db6fddf7da4a6e386ec01cf0a817a4a9a713f151d8393699e6c21ca554e4"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/opening-alpha/F0083.png",
+    "target": "public/opening-alpha/F0083.png",
+    "bytes": 39140,
+    "sha256": "ff90f7d059ab6117dd918ff4f26ae0ea1a356e0ef017a47fb29599646c25fd2e"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0588.png",
+    "target": "public/return-alpha/F0588.png",
+    "bytes": 65061,
+    "sha256": "b848f8e631b2e0a07be1b2826f6d81960e8511f61c0190e94c8fb545a6d6d872"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0589.png",
+    "target": "public/return-alpha/F0589.png",
+    "bytes": 65173,
+    "sha256": "3efdaec0d4ac9afdd2d4def0aa21728992e6069c86ba0d4c4a8930ab2905af2d"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0590.png",
+    "target": "public/return-alpha/F0590.png",
+    "bytes": 65324,
+    "sha256": "ddf751f80bbbe1bf36ef0e31ad20cb001c991a6a416eb87b0329313f74aa1d61"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0591.png",
+    "target": "public/return-alpha/F0591.png",
+    "bytes": 65286,
+    "sha256": "2541b95673826728f4f29a026e0b1f080a60e26e0112958681178cf08db8bb5f"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0592.png",
+    "target": "public/return-alpha/F0592.png",
+    "bytes": 65466,
+    "sha256": "0261a3ab4cfba772865015f0c9cd44190e0fd3e5d87cb7894ec1d6ecb4901805"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0593.png",
+    "target": "public/return-alpha/F0593.png",
+    "bytes": 65853,
+    "sha256": "fee3f17789d605087e03056aed77447e2ddf6855412cc08cb38e713263f518c2"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0594.png",
+    "target": "public/return-alpha/F0594.png",
+    "bytes": 65731,
+    "sha256": "a4c7307144d2ef028ea6a78bbfd053003a385b97131c164281501f42fb26755f"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0595.png",
+    "target": "public/return-alpha/F0595.png",
+    "bytes": 65194,
+    "sha256": "60259d1eca35564553a35b2cd2ddc03a5222cdb019ae8f54f7d0aca76a69ba97"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0596.png",
+    "target": "public/return-alpha/F0596.png",
+    "bytes": 65283,
+    "sha256": "d50cd83cbe42a1a8936c81302237e609ac90a30883429182f5b08062571468c0"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0597.png",
+    "target": "public/return-alpha/F0597.png",
+    "bytes": 64925,
+    "sha256": "d494aed58caef2d601a66fd3f11477b43f2807912cf4adc25cb749544ba38753"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0598.png",
+    "target": "public/return-alpha/F0598.png",
+    "bytes": 64235,
+    "sha256": "b471fd055b35b7568270f45042e237bffa76e233a2a782f19446d6bdb781dad4"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0599.png",
+    "target": "public/return-alpha/F0599.png",
+    "bytes": 64336,
+    "sha256": "5a67f738f90f0d8fcc6faf45831de746003c7626789298b4cec4524df2bdf89b"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0600.png",
+    "target": "public/return-alpha/F0600.png",
+    "bytes": 64328,
+    "sha256": "0428c8c47d1a7b03976edd4a3bf27d5b7e1e6534f618ba3b4b4bdd5fb9382214"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0601.png",
+    "target": "public/return-alpha/F0601.png",
+    "bytes": 63869,
+    "sha256": "29a9b48b18ecaa7ece4556c91c5b5d072c72034ce2627b566a0e04c5f3572e15"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0602.png",
+    "target": "public/return-alpha/F0602.png",
+    "bytes": 63832,
+    "sha256": "eb7aa27311fea99d2a7acb664478b65c27a107bc984d39d62f2faa5e7e158140"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0603.png",
+    "target": "public/return-alpha/F0603.png",
+    "bytes": 63449,
+    "sha256": "8e620727fac94fc02df24e350e625546e35358f04d4711f6ad8c461b59988e32"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0604.png",
+    "target": "public/return-alpha/F0604.png",
+    "bytes": 63249,
+    "sha256": "190335411b2aa279fb5774e98fc9c4106735b57c562b275fbc1e99dc209462f4"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0605.png",
+    "target": "public/return-alpha/F0605.png",
+    "bytes": 62810,
+    "sha256": "957917a0a9c6aff8e94078a12b13eed855415885c3f80b5af64354d5595b72c9"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0606.png",
+    "target": "public/return-alpha/F0606.png",
+    "bytes": 62972,
+    "sha256": "a9872db9abbbc44d49969fc62f1881a8ec1972e81062ffc8e4dfda95596c3fdd"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0607.png",
+    "target": "public/return-alpha/F0607.png",
+    "bytes": 63114,
+    "sha256": "1f045d956e58dedeb5286a3a57fbbbea7a233f1175d9e41af489baa7076335d7"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0608.png",
+    "target": "public/return-alpha/F0608.png",
+    "bytes": 62858,
+    "sha256": "a30897c493f08be3b37f4f4c2579265070cb003725fc2d46277c7cbbcda06ab6"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0609.png",
+    "target": "public/return-alpha/F0609.png",
+    "bytes": 63093,
+    "sha256": "cba10ef6887c70ccd538237868bd9486ef71ca5bb914a098296956e4acfd6f6a"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0610.png",
+    "target": "public/return-alpha/F0610.png",
+    "bytes": 63001,
+    "sha256": "6dbdeafabbe26af8c8b830f7666e97823ab12d93c172286fdc86b6948c57635c"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0611.png",
+    "target": "public/return-alpha/F0611.png",
+    "bytes": 62797,
+    "sha256": "130ac751a32aa61d6de29a0aa8d50b9fdcea27fe32883d9be8e4c375b6231bd2"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0612.png",
+    "target": "public/return-alpha/F0612.png",
+    "bytes": 62794,
+    "sha256": "e868ac61b95105ac3ced5886e38bc20b8d32a08a3b4e6637dc61f8d07e8536fb"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0613.png",
+    "target": "public/return-alpha/F0613.png",
+    "bytes": 62671,
+    "sha256": "77a64c8bfaf173492b3563870d3c91c466d11a5587be79fb1e7aca5f07cd9a67"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0614.png",
+    "target": "public/return-alpha/F0614.png",
+    "bytes": 62710,
+    "sha256": "be33ff4315cdc2a8efb0d3c6b47eb64fd23c2c8390a35dc46c130d3fe43b06f2"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0615.png",
+    "target": "public/return-alpha/F0615.png",
+    "bytes": 62579,
+    "sha256": "3eee2b9c85236715a361650c4bb04e67307b70c9ac85992622867502b2f5e4bd"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0616.png",
+    "target": "public/return-alpha/F0616.png",
+    "bytes": 62710,
+    "sha256": "cbed66f0be4909596035cf627a5f9755cc978acf8693e59e82e001410769958d"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0617.png",
+    "target": "public/return-alpha/F0617.png",
+    "bytes": 62498,
+    "sha256": "6a246b5e92b83a96b9566626144055bee5a9e6f78f6b1c5a33d69bcb11e1cfcd"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0618.png",
+    "target": "public/return-alpha/F0618.png",
+    "bytes": 62437,
+    "sha256": "04b233e37c37e7e9d397b1165e8ca7dfb9b77d3e290db08f5952a6300c71af0a"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0619.png",
+    "target": "public/return-alpha/F0619.png",
+    "bytes": 62872,
+    "sha256": "db4873915cabdf503ab3481e89ae3eb2877da61c955b5b3ee33bdaa6fe2b943c"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0620.png",
+    "target": "public/return-alpha/F0620.png",
+    "bytes": 62510,
+    "sha256": "59b53e376a0846c55067296dfc38f38363340accccd242f5d19947f7f9ca4e91"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0621.png",
+    "target": "public/return-alpha/F0621.png",
+    "bytes": 62679,
+    "sha256": "063a2355c6bdad1de1f1e439a4121b620919d2cde1f2f8fb66a6837bfc21fb6b"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0622.png",
+    "target": "public/return-alpha/F0622.png",
+    "bytes": 62930,
+    "sha256": "5fed2494d467adbbf9a3348c108e39ebe8d184a85215b53b531ccdc5e57486d4"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0623.png",
+    "target": "public/return-alpha/F0623.png",
+    "bytes": 62876,
+    "sha256": "c1e466b158bf16b76427786e77dd2a847d4ce1b926706cbb69458fc1fb41a497"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0624.png",
+    "target": "public/return-alpha/F0624.png",
+    "bytes": 62876,
+    "sha256": "a0106179f600cef12b9eb29703ae9669f6b2f4eb83761835852b340eb72ac3f5"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0625.png",
+    "target": "public/return-alpha/F0625.png",
+    "bytes": 62876,
+    "sha256": "1c728da15b5e57e25ce52da6aecaf633c96a1a1b9ffd76fc946c9f83f5e06ca1"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0626.png",
+    "target": "public/return-alpha/F0626.png",
+    "bytes": 62876,
+    "sha256": "3c8d1e55ca937e065bb9fa621e283586af66ca6983f1ea207604967db6e1e5c3"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0627.png",
+    "target": "public/return-alpha/F0627.png",
+    "bytes": 62876,
+    "sha256": "91c95b12b50744f260056e6276ee6d9d11bf59197bdd11b21fab35669091b7f4"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0628.png",
+    "target": "public/return-alpha/F0628.png",
+    "bytes": 62876,
+    "sha256": "4897bbc107b6b0e838bbff87bc000cf218aba07ec1c93fe87b9c13afdf07b5cc"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0629.png",
+    "target": "public/return-alpha/F0629.png",
+    "bytes": 62876,
+    "sha256": "96fe9968a0e5e7b5e3880250ecd1a9ff9680f87cbafd048176d7b3b0c4d1685d"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0630.png",
+    "target": "public/return-alpha/F0630.png",
+    "bytes": 62876,
+    "sha256": "43373ba355f099e433e9be15732d36617d4d77ecc2bb81dd22cf98eef94efe41"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0631.png",
+    "target": "public/return-alpha/F0631.png",
+    "bytes": 62876,
+    "sha256": "9be888ba0eab05c7c2a5ac9a0dcf3706030080cff8095a8972d30c7133c384c0"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0632.png",
+    "target": "public/return-alpha/F0632.png",
+    "bytes": 62876,
+    "sha256": "f67877ff3ed173d276c7b483a2d6574b626bc7d16c43e3caa17f551047f77d95"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0633.png",
+    "target": "public/return-alpha/F0633.png",
+    "bytes": 62876,
+    "sha256": "73471d3c30f77ead94257f0023e0c9ffe5af3bc9a436014916d59eec210aeb54"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0634.png",
+    "target": "public/return-alpha/F0634.png",
+    "bytes": 62876,
+    "sha256": "d6efb3125a7d0eb89e2d9badd721d1d77f79d882c21253ca8176947177d828ff"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0635.png",
+    "target": "public/return-alpha/F0635.png",
+    "bytes": 62876,
+    "sha256": "ed9f419069ec2a6b8b623e4bf788df332290165b0e80bce1acf28a9ecf2d6e82"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0636.png",
+    "target": "public/return-alpha/F0636.png",
+    "bytes": 62876,
+    "sha256": "625a8ebf5efd4c27e04b651ff88e7ec5e6e2d746e899a777803b1bd691cdaa26"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0637.png",
+    "target": "public/return-alpha/F0637.png",
+    "bytes": 62876,
+    "sha256": "e100e276ec717297c0721c751a9159369475a85d15e73cccb695d97564fe3cdf"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0638.png",
+    "target": "public/return-alpha/F0638.png",
+    "bytes": 62876,
+    "sha256": "7ca54ca45817960dcb91910303560bb4353d681a26eb29d0fb7703a016e5a20b"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0639.png",
+    "target": "public/return-alpha/F0639.png",
+    "bytes": 62876,
+    "sha256": "e7126fac139b3aa173c293f333f74e8414754086e40f934fb6d352a03eb0f698"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0640.png",
+    "target": "public/return-alpha/F0640.png",
+    "bytes": 62876,
+    "sha256": "458d9055bf657ab237fd486b6d2e679675a240bc24fc6801b3ce2e20877bb424"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0641.png",
+    "target": "public/return-alpha/F0641.png",
+    "bytes": 62876,
+    "sha256": "ad03d93ac1d77082f99f9fd8a4602514e4891d3d0237ca86cf85fb8b3147a992"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0642.png",
+    "target": "public/return-alpha/F0642.png",
+    "bytes": 62876,
+    "sha256": "aa380b7664f5a2749629ed355d01f402b963909290fbbf0a379b021f7d3db41d"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0643.png",
+    "target": "public/return-alpha/F0643.png",
+    "bytes": 62876,
+    "sha256": "a25be209265adc0eb0adccefdce1f2e84ea27b4b7f068781aeacbaece1e6eb11"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0644.png",
+    "target": "public/return-alpha/F0644.png",
+    "bytes": 62876,
+    "sha256": "16dab45c906bf5d1304c74655396d52db2ef71215521a2874ba6b7ca6ca7dbf5"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0645.png",
+    "target": "public/return-alpha/F0645.png",
+    "bytes": 62876,
+    "sha256": "29d4b421d17f27004ec5c6e62137f57d34ac177ab3a0a97b115ccd154d06d693"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0646.png",
+    "target": "public/return-alpha/F0646.png",
+    "bytes": 62876,
+    "sha256": "91c78de8a90ce5d66bd0a0e6928a16864dd1bc93ff9ed149df0aa0eeb5996695"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0647.png",
+    "target": "public/return-alpha/F0647.png",
+    "bytes": 62876,
+    "sha256": "427465f7efd1e3e08cd3565e9bae06cbfecdb89d852ff59395f82a59f47861f4"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0648.png",
+    "target": "public/return-alpha/F0648.png",
+    "bytes": 62876,
+    "sha256": "47ef380be29c75ee0a0667275fdc90e3a92ab2df9952e25efb742ac2624758a6"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0649.png",
+    "target": "public/return-alpha/F0649.png",
+    "bytes": 62876,
+    "sha256": "129c709486e7cca2bb963377965b8624ac850665510a0007ee2ac85ef6b731fe"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0650.png",
+    "target": "public/return-alpha/F0650.png",
+    "bytes": 62876,
+    "sha256": "6fcfe5378523bc8fe2b1f9f6c29e0f7cf31f64ffd40cf2ed7838954634a00790"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0651.png",
+    "target": "public/return-alpha/F0651.png",
+    "bytes": 62876,
+    "sha256": "a716a4b92087f2676f5a20f4986726a2cee6ba801d49dfeb37ff1072a0daa457"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0652.png",
+    "target": "public/return-alpha/F0652.png",
+    "bytes": 62876,
+    "sha256": "c459035b2fb413f614698b48caf220405862d3bbf8c94aab06dc1e48d361e56b"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0653.png",
+    "target": "public/return-alpha/F0653.png",
+    "bytes": 62876,
+    "sha256": "227a103694a1be3983f189106e90eff25ecf744e327d076131c32bdeb8b2dd0c"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0654.png",
+    "target": "public/return-alpha/F0654.png",
+    "bytes": 62876,
+    "sha256": "f3dd5716b57d10b7ee121294cf4615429099aeafb53bec3eef5052f58682f6b4"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0655.png",
+    "target": "public/return-alpha/F0655.png",
+    "bytes": 62876,
+    "sha256": "7b3679110bf4dca1a22f8d1c3355435845f97c52552e7519a5a78966c4b69de7"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0656.png",
+    "target": "public/return-alpha/F0656.png",
+    "bytes": 62876,
+    "sha256": "80aa1b763440e4f23882b11e3b9b0a9e279147c7ffd87051b48ce373f62b754f"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0657.png",
+    "target": "public/return-alpha/F0657.png",
+    "bytes": 62876,
+    "sha256": "98ba25524669078a3d5ec7f6a90243f0f1b480421e08e7605d69a59d33555cf2"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0658.png",
+    "target": "public/return-alpha/F0658.png",
+    "bytes": 62876,
+    "sha256": "d097bc75bd0872b574ec210aaaf853bb112cd052f38d3ce6d96ee1aab42b2e58"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0659.png",
+    "target": "public/return-alpha/F0659.png",
+    "bytes": 62876,
+    "sha256": "c8bd687fe0b1b0fd9d3453fe2277de9b3e5492fb042a1ca13495e46a6dcfecdf"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0660.png",
+    "target": "public/return-alpha/F0660.png",
+    "bytes": 62876,
+    "sha256": "a5c851c72ce663e0dc3e90421747cc8ada23b2a5ee4eb1c569343ecb8a859f33"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0661.png",
+    "target": "public/return-alpha/F0661.png",
+    "bytes": 62876,
+    "sha256": "44f303b3198f660247998bb83f7fdd118f1cdb93f4b915e6df9cde6225df7a15"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0662.png",
+    "target": "public/return-alpha/F0662.png",
+    "bytes": 62876,
+    "sha256": "1e0422a38d49efd93288ffcb3b8f9ab3436d2d4e2f61a0dab2098c2ff124275c"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0663.png",
+    "target": "public/return-alpha/F0663.png",
+    "bytes": 62876,
+    "sha256": "f0d7dc18c2be9295c6be2d0e6e1e97cfc6f77ed48c58a040bf160563660420fb"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/return-alpha/F0664.png",
+    "target": "public/return-alpha/F0664.png",
+    "bytes": 62876,
+    "sha256": "8ea934ea23bf0ef8cceb99932222b8a218c375700fd1b2edeb2d8fb779fac56f"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/剪辑/public/soundtrack-44.wav",
+    "target": "public/soundtrack-44.wav",
+    "bytes": 12672102,
+    "sha256": "16eda4edd338ce414f82163637a1c1f6a930f44d9cf5720c9545d5651cffb1d2"
+  },
+  {
+    "source": "横屏-MOTION-STUDY/三维素材/横屏陈列归位/模型/wide-inventory.blend",
+    "target": "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/模型/wide-inventory.blend",
+    "group": "models",
+    "bytes": 91479129,
+    "sha256": "be7b40b737a08fa8aebab84020f9e2c65c97ad64349052e543b9d6a9f2a5fbb8"
+  },
+  {
+    "source": "3比4产品展示版/三维/模型/product-film.blend",
+    "target": "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/模型/product-film.blend",
+    "group": "models",
+    "bytes": 42723784,
+    "sha256": "d6a06130a137b1dae5ca9349a09049dbbd9321e9291f0f1ab8d2f90d896bc950"
+  },
+  {
+    "source": "修订版/模型/基线怀表.blend",
+    "target": "catalog/assets/time-in-motion/production/project/修订版/模型/基线怀表.blend",
+    "group": "models",
+    "bytes": 23829849,
+    "sha256": "54023d725b59887e9441634d2bb75dec355b151fd811176724dc33390c5453dd"
+  },
+  {
+    "source": "修订版/模型/机械怀表-修订.blend",
+    "target": "catalog/assets/time-in-motion/production/project/修订版/模型/机械怀表-修订.blend",
+    "group": "models",
+    "bytes": 31813214,
+    "sha256": "59b3a9160b5e8256e2f419da980936c5ea43f6c4c4798556b780425943695b0d"
+  },
+  {
+    "source": "竖屏金属闪回版/三维/模型/opening.blend",
+    "target": "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/模型/opening.blend",
+    "group": "models",
+    "bytes": 91959443,
+    "sha256": "2fc5147cbf453c0e21f7d752c89a4410096741b426cfb48a6ae8aaf5d71eb113"
+  },
+  {
+    "source": "修订版/4K双版本/模型/横屏/opening.blend",
+    "target": "catalog/assets/time-in-motion/production/project/修订版/4K双版本/模型/横屏/opening.blend",
+    "group": "models",
+    "bytes": 36039499,
+    "sha256": "076ecb0d3bf3a082d70768ff738030eba69a9b4fb85037d0a1661f44c81661f5"
+  },
+  {
+    "source": "修订版/4K双版本/模型/横屏/assembly.blend",
+    "target": "catalog/assets/time-in-motion/production/project/修订版/4K双版本/模型/横屏/assembly.blend",
+    "group": "models",
+    "bytes": 38124157,
+    "sha256": "9d7435f2d8fce9b45a6c9ed15954d7275b265ea2a1ee8955db03476cd705c21c"
+  },
+  {
+    "source": "修订版/4K双版本/模型/横屏/screw.blend",
+    "target": "catalog/assets/time-in-motion/production/project/修订版/4K双版本/模型/横屏/screw.blend",
+    "group": "models",
+    "bytes": 36669776,
+    "sha256": "e122d66b10bb035b1695367c85630544aa0f1a847c3a4ca4b3c3086830f0830d"
+  },
+  {
+    "source": "修订版/4K双版本/模型/横屏/barrel.blend",
+    "target": "catalog/assets/time-in-motion/production/project/修订版/4K双版本/模型/横屏/barrel.blend",
+    "group": "models",
+    "bytes": 35699526,
+    "sha256": "cce068ca9a121f355a1cc1be9bdf7e93d7c7e7f4da7ba6786ccf7424129f28fd"
+  },
+  {
+    "source": "修订版/4K双版本/模型/横屏/train.blend",
+    "target": "catalog/assets/time-in-motion/production/project/修订版/4K双版本/模型/横屏/train.blend",
+    "group": "models",
+    "bytes": 35805798,
+    "sha256": "c83c6d0756bd28ebe91a4cc114a2a43a6e03df1d56a68a9dd155d4a3d6c169f8"
+  },
+  {
+    "source": "修订版/4K双版本/模型/横屏/balance.blend",
+    "target": "catalog/assets/time-in-motion/production/project/修订版/4K双版本/模型/横屏/balance.blend",
+    "group": "models",
+    "bytes": 35841222,
+    "sha256": "3e8b9f1a9611426937d4589c45959f8fd9a1d157ac3594830f802423c415f597"
+  },
+  {
+    "source": "修订版/4K双版本/模型/横屏/components.blend",
+    "target": "catalog/assets/time-in-motion/production/project/修订版/4K双版本/模型/横屏/components.blend",
+    "group": "models",
+    "bytes": 36111109,
+    "sha256": "57d898422b4efa027d3b96873cdbbbd3a73bd5600b389d5d80e08c895314f04d"
+  },
+  {
+    "source": "修订版/4K双版本/模型/竖屏/assembly.blend",
+    "target": "catalog/assets/time-in-motion/production/project/修订版/4K双版本/模型/竖屏/assembly.blend",
+    "group": "models",
+    "bytes": 38149453,
+    "sha256": "31f1a2a4b8440c283c1c9b0d1d16e2f33ce6c5d1e16906048a17479c6886d73e"
+  },
+  {
+    "source": "3比4产品展示版/三维/模型/hero.blend",
+    "target": "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/模型/hero.blend",
+    "group": "models",
+    "bytes": 35465125,
+    "sha256": "b25dd3cf34cbd966d48b64ce3c995f29a860d337de7f1c8141e14e42ad659232"
+  },
+  {
+    "source": "3比4产品展示版/三维/模型/edge.blend",
+    "target": "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/模型/edge.blend",
+    "group": "models",
+    "bytes": 35465125,
+    "sha256": "09427f3ace2a5c78ee03ff9ddae6ec0d11583b4b824b01e5a26473406455eff0"
+  },
+  {
+    "source": "3比4产品展示版/三维/模型/balance.blend",
+    "target": "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/模型/balance.blend",
+    "group": "models",
+    "bytes": 35465125,
+    "sha256": "69092043277b95fd2b19a9122e39655d7afd9ab13f8c346bfbf8d47c5576a9ed"
+  },
+  {
+    "source": "竖屏图纸实体开场/模型/opening.blend",
+    "target": "catalog/assets/time-in-motion/production/project/竖屏图纸实体开场/模型/opening.blend",
+    "group": "models",
+    "bytes": 92333167,
+    "sha256": "b9c226e4ba23b60e178e2e3c6fee30fd5f9bf2ba71992db04a10395b019f1358"
+  },
+  {
+    "source": "竖屏金属闪回版/三维/模型/structure.blend",
+    "target": "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/模型/structure.blend",
+    "group": "models",
+    "bytes": 90590892,
+    "sha256": "d6d8e783ba05b09dc23c96c3ad304469b300e50bc1d721749af587710650eb10"
+  },
+  {
+    "source": "竖屏金属闪回版/三维/模型/entry.blend",
+    "target": "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/模型/entry.blend",
+    "group": "models",
+    "bytes": 89897185,
+    "sha256": "fae21f892ad0bf2eeabd27b69d76814e843241a25fdb289a78d2c4c6a415c90c"
+  },
+  {
+    "source": "竖屏金属闪回版/三维/模型/lock.blend",
+    "target": "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/模型/lock.blend",
+    "group": "models",
+    "bytes": 36156684,
+    "sha256": "8f63948d9fc5dbe3722f142017cb9a2aed0ebf839a7f2d88dc906692fad68f63"
+  }
+]

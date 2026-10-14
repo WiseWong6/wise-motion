@@ -7,14 +7,11 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {installAssets} from '../scripts/install-assets.mjs';
+import {installAssets,isAssetFile} from '../scripts/install-assets.mjs';
 import {FRAME_SCRIPTS,FRAME_STYLES} from '../remotion/frame-document.mjs';
 const sourceOnly=[
  'vendor/duobaota/page-02.jpg','vendor/duobaota/page-10.jpg',
  'vendor/calligraphy/I.Ngaan.ttf','catalog/assets/scene-sources/letter/fonts/LXGWWenKai-Regular.ttf',
- 'catalog/assets/precision-assembly/分秒之间.blend',
- 'catalog/assets/precision-assembly/材质/底板珍珠纹.png',
- 'catalog/assets/precision-assembly/成片/机芯.png',
 ];
 const retained=[
  'catalog/fonts/LXGWWenKai-Regular.woff2',
@@ -22,11 +19,10 @@ const retained=[
  'vendor/duobaota/SOURCE.json','vendor/duobaota/README.md',
  'vendor/calligraphy/SOURCE.json','vendor/calligraphy/GPL-2.0.txt','vendor/calligraphy/README.md',
  'vendor/calligraphy/prepare-calligraphy.py',
- 'catalog/assets/precision-assembly/成片/分秒之间.mp4',
- 'catalog/assets/precision-assembly/成片/整表.png',
- 'catalog/assets/precision-assembly/成片/分层.png',
- 'catalog/assets/composition-audio/precision-assembly/soundtrack.wav',
- 'catalog/assets/precision-assembly/获取完整工程.md',
+ 'catalog/assets/time-in-motion/movie.mp4',
+ 'catalog/assets/time-in-motion/posters/inventory-contour-fit.jpg',
+ 'catalog/assets/time-in-motion/README.md',
+ 'catalog/assets/composition-audio/time-in-motion/soundtrack.m4a',
 ];
 
 test('实际分发清单排除重建原件和文档预览，保留运行字体与来源许可',()=>{
@@ -34,10 +30,15 @@ test('实际分发清单排除重建原件和文档预览，保留运行字体�
   cwd:fileURLToPath(new URL('../',import.meta.url)),encoding:'utf8',maxBuffer:4*1024*1024,
  });
  assert.equal(result.status,0,result.stderr);
- const files=new Set(JSON.parse(result.stdout)[0].files.map(file=>file.path));
+ const packed=JSON.parse(result.stdout)[0];
+ assert.ok(packed.size<200000000,'实际 npm 包必须满足项目 200 MB 预算');
+ const files=new Set(packed.files.map(file=>file.path));
  for(const file of sourceOnly)assert.ok(!files.has(file),'原件不应进入分发：'+file);
  for(const file of retained)assert.ok(files.has(file),'分发遗漏依赖或署名：'+file);
  assert.ok(![...files].some(file=>file.startsWith('docs/previews/')));
+ assert.ok(![...files].some(file=>file.includes('/precision-assembly/')));
+ for(const extension of ['.blend','.png','.mp4','.exr','.bin'])assert.equal(isAssetFile('catalog/assets/time-in-motion/production/project/任意目录/asset'+extension),false);
+ assert.equal(isAssetFile('catalog/assets/time-in-motion/production/project/修订版/源码/mechanics.py'),true);
 });
 
 test('素材安装移除旧版失效首页，保留所有绘制依赖和目标中的其它文件',async()=>{
@@ -100,7 +101,7 @@ test('素材安装移除旧版失效首页，保留所有绘制依赖和目标�
   record.files['catalog/effects/attention.js']=createHash('sha256').update('// 未经修改的旧版本').digest('hex');
   await writeFile(recordFile,JSON.stringify(record));await installAssets(target);
   assert.match(await readFile(modified,'utf8'),/count-up/);
-  for(const i of [0,3,4,5,6])await assert.rejects(stat(path.join(target,sourceOnly[i])),{code:'ENOENT'});
+  for(const i of [0,3])await assert.rejects(stat(path.join(target,sourceOnly[i])),{code:'ENOENT'});
   assert.equal(await readFile(path.join(target,sourceOnly[1]),'utf8'),'用户修改');
   assert.equal(await readFile(path.join(target,sourceOnly[2]),'utf8'),'旧版原件');
   assert.equal(await readFile(homepagePath,'utf8'),'用户修改过的旧首页','已登记但修改过的首页保留');

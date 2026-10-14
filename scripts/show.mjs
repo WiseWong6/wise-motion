@@ -47,7 +47,7 @@ export async function show(effect, {variantId, details = false} = {}) {
   ];
   if ([s.path, ...(s.dependencies || [])].includes('catalog/effects/metal-impact.js')) lines.push('渲染需要 WebGL：--gl=angle。');
   if (effect.audio?.tracks?.length) lines.push(`声音：${effect.audio.tracks.length} 条原音轨随包提供；includeAudio={false} 可关闭。`);
-  if(s.native_scene==='blender')lines.push(`真实三维工程：${path.join(root,'catalog/assets/precision-assembly/分秒之间.blend')}；建模与动画：${path.join(root,'catalog/assets/precision-assembly/源码')}。预览复用原生渲染；改场景需 Blender 重新渲染。`);
+  if(s.production_guide)lines.push(`三维制作与原素材：${path.join(root,s.production_guide)}；预览复用成片缓存，改模型需按说明准备制作素材。`);
   if (!details) { lines.push('详细动作、依赖文件和内容限制：加 --details。'); return lines.join('\n'); }
   lines.push('', '动作说明（当前实现的默认行为，可按需求改动）：', describe(effect, {}, registry), '', '源码和素材：');
   for (const file of new Set([s.path, ...(s.dependencies || []), ...(s.assets || []), ...(native?.files || []),...(native?.binary_files||[]).map(x=>x.source)])) lines.push(path.join(root, file));

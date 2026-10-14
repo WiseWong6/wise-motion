@@ -110,6 +110,6 @@ Remotion、React 等视频复用依赖由目标工程安装，版本和接入方
 
 ## 精密结构展示与拆装
 
-新增组合与独立动作以用户认可的《分秒之间》真实三维机械怀表工程为示例。模型、材质节点、灯光、镜头、动画、声音合成与接入程序为自有代码，遵循 Apache-2.0。原生 Cycles 成片和三张4K静帧保持原样；完整 Blender 工程、制作纹理和建模源码从 Git 单独获取，步骤见 [获取完整工程](catalog/assets/precision-assembly/获取完整工程.md)。npm 包继续提供成片、原声和两张目录预览，不自动下载制作原件。底板珍珠纹由 Codex 宿主内置图片生成工具生成，仅控制表面凹凸及粗糙度，不是整表图片。来源及原件摘要见 [三维工程说明](catalog/assets/precision-assembly/SOURCE.json)；原声及合成排程见 [声音说明](catalog/assets/composition-audio/precision-assembly/SOURCE.json)。
+当前怀表动作来源于用户原创的最终横屏《TIME, IN MOTION》（2026-10-14，44秒）。建模、轮系、装配、摄影、投影、剪辑、词块与刻度、声音合成及接入代码为自有源码，使用 Apache-2.0。npm 仅分发1280×720、24fps轻量成片缓存、最终原声、预览与文字源码；制作模型和原剪辑媒体不随npm下载。来源摘要、源码路径和改动记录见 [来源说明](catalog/assets/time-in-motion/SOURCE.json)，原制作素材按 [制作说明](catalog/assets/time-in-motion/README.md) 单独准备。编辑版用SIL OFL授权Oswald替换系统HelveticaNeue，不分发系统字体文件；最终成片缓存保留已有文字外观。抽象背景为用户原创生成素材，不替代真实三维几何。旧怀表条目与素材已由此版本替换。
 
 Blender 使用其自身 GPL 许可，Remotion 与 React 使用软件包附带许可；不将软件本身打包或重新授权。已保存工程内的原系统字体保持原权利归属，不声明为 Apache-2.0 字体。当前库内保留工程以供用户本地编辑；源码重建保留原 macOS 字体查找方式。轮系、摆轮与秒针用于视觉演示，没有制造或真实走时验证。

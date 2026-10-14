@@ -119,8 +119,9 @@ var FRAME_SCRIPTS = Object.freeze([
   "catalog/content.js",
   "catalog/runtime.js",
   "catalog/history-runtime.js",
-  "catalog/effects/precision-assembly-data.js",
-  "catalog/effects/precision-assembly.js",
+  "catalog/effects/time-in-motion-data.js",
+  "catalog/effects/time-in-motion.js",
+  "catalog/effects/time-in-motion-graphics.js",
   "catalog/effects/pixel-motion-data.js",
   "catalog/effects/pixel-motion.js",
   "catalog/effects/entrance.js",
@@ -52434,164 +52435,136 @@ var registry_default = {
       },
       demo_mode: "fixed-timeline",
       domains: [
-        "animation"
+        "animation",
+        "video"
       ],
-      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u81EA\u52A8\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u3001\u5B9A\u4F4D\u4E0E\u500D\u901F\u3002",
-      objects: "\u771F\u5B9E\u4E09\u7EF4\u91D1\u5C5E\u96F6\u4EF6\u3001\u4E94\u7EC4\u673A\u82AF\u3001\u523B\u5EA6\u5708\u3001\u84DD\u94A2\u6307\u9488\u3001\u8868\u955C\u4E0E\u5B9E\u4F53\u955C\u5934",
-      retain: "\u771F\u5B9E\u91D1\u5C5E\u5012\u89D2\u3001\u5404\u5411\u5F02\u6027\u53CD\u5C04\u3001\u9542\u7A7A\u673A\u82AF\u3001\u84DD\u94A2\u6307\u9488\u4E0E\u5B9D\u77F3\u8F74\u627F\uFF1B\u4FDD\u7559\u539F\u751F24\u5E27\u9010\u683C\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u516B\u5C42\u88C5\u914D\u4F4D\u7F6E\u3002",
-      avoid: "\u4E0D\u4EE5\u4E8C\u7EF4\u5361\u7247\u3001\u5E73\u9762\u6574\u8868\u56FE\u7247\u6216\u4F4E\u7CBE\u5EA6\u51E0\u4F55\u91CD\u7ED8\uFF1B\u4E0D\u6539\u91D1\u5C5E\u6750\u8D28\u3001\u955C\u5934\u8282\u594F\u6216\u88C5\u914D\u4F4D\u7F6E\uFF0C\u4E0D\u63D2\u5E27\uFF1B\u8F6E\u7CFB\u3001\u6446\u8F6E\u4E0E\u79D2\u9488\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
-      tempo_note: "\u4FDD\u7559\u539F\u751F24\u5E27/\u79D2\uFF1BRemotion\u4EC5\u6309\u5F53\u524D\u5E27\u5B9A\u4F4D\u65E2\u6709\u6210\u7247\uFF0C\u901F\u5EA6\u53EA\u8C03\u6574\u64AD\u653E\u5FEB\u6162\uFF1B\u7ED3\u675F\u505C\u5728\u672B\u4E2A\u539F\u751F\u753B\u9762\u3002",
-      assumptions: "\u539F\u4E09\u7EF4\u5DE5\u7A0B\u4E0E\u6210\u7247\u5B8C\u6574\u4FDD\u7559\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u7EC4\u5408\u4F7F\u7528\u540C\u4E00\u5C42\u4F4D\u79FB\u51FD\u6570\u548C\u539F\u751F\u5E27\u3002\u4FEE\u6539\u573A\u666F\u540E\u9700Blender\u91CD\u6E32\u67D3\u3002",
-      id: "ordered-depth-assembly",
-      name: "\u7CBE\u5BC6\u96F6\u4EF6\u5206\u5C42\u62C6\u89E3\u4E0E\u56DE\u88C5",
+      trigger: "\u6253\u5F00\u9884\u89C8\u6309\u56FA\u5B9A\u65F6\u95F4\u7EBF\u64AD\u653E\uFF1B\u53EF\u4EE5\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\u3002",
+      assumptions: "\u6000\u8868\u4E3A\u52A8\u4F5C\u793A\u4F8B\uFF0C\u53EF\u66FF\u6362\u4E3B\u4F53\uFF1B\u7269\u7406\u949F\u8868\u72B6\u6001\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+      id: "inventory-contour-fit",
+      name: "\u9648\u5217\u96F6\u4EF6\u65CB\u5408\u5F52\u4F4D",
       kind: "action",
       category: "space",
-      duration_ms: 8e3,
-      preview_ms: 4125,
-      summary: "\u7CBE\u5BC6\u96F6\u4EF6\u6CBF\u6DF1\u5EA6\u65B9\u5411\u9519\u5CF0\u5C55\u5F00\uFF0C\u955C\u5934\u73AF\u7ED5\u89C2\u5BDF\u5206\u5C42\u7ED3\u6784\uFF0C\u518D\u9010\u5C42\u7CBE\u786E\u56DE\u88C5\u3002",
-      purpose: "\u5C55\u793A\u88C5\u914D\u7ED3\u6784\u3001\u96F6\u4EF6\u524D\u540E\u5173\u7CFB\u4E0E\u4E25\u5BC6\u590D\u4F4D\u8FC7\u7A0B\uFF0C\u9002\u5408\u771F\u5B9E\u4E09\u7EF4\u4EA7\u54C1\u62C6\u88C5\u3002",
+      duration_ms: 6e3,
+      preview_ms: 3416.6666666666665,
+      summary: "\u5206\u6563\u9648\u5217\u7684\u771F\u5B9E\u96F6\u4EF6\u6309\u88C5\u914D\u987A\u5E8F\u62AC\u8D77\u3001\u65CB\u5408\u5F52\u4F4D\uFF0C\u5B9E\u4F53\u4E0E\u540C\u673A\u4F4D\u7EBF\u7A3F\u77ED\u95EA\u5207\u6362\u3002",
+      purpose: "\u5206\u6563\u9648\u5217\u7684\u771F\u5B9E\u96F6\u4EF6\u6309\u88C5\u914D\u987A\u5E8F\u62AC\u8D77\u3001\u65CB\u5408\u5F52\u4F4D\uFF0C\u5B9E\u4F53\u4E0E\u540C\u673A\u4F4D\u7EBF\u7A3F\u77ED\u95EA\u5207\u6362\u3002",
       aliases: [
-        "\u5206\u5C42\u62C6\u89E3",
-        "\u62C6\u88C5",
-        "\u56DE\u88C5",
-        "\u7206\u70B8\u89C6\u56FE",
-        "\u7CBE\u5BC6\u96F6\u4EF6",
-        "\u6DF1\u5EA6\u5206\u79BB",
-        "\u4E09\u7EF4\u62C6\u89E3",
-        "\u673A\u68B0\u8868"
+        "\u6A2A\u5411\u9648\u5217",
+        "\u96F6\u4EF6\u5F52\u4F4D",
+        "\u7EBF\u7A3F\u5B9E\u4F53\u95EA\u5207",
+        "\u673A\u68B0\u6000\u8868",
+        "\u56FE\u7EB8\u88C5\u914D"
       ],
       behaviors: [
-        "depth",
-        "stagger",
-        "rotation3d",
-        "return"
+        "native-3d",
+        "frame-accurate",
+        "single-action"
       ],
+      objects: "\u771F\u5B9E\u91D1\u5C5E\u673A\u82AF\u53CA\u5176\u6444\u5F71\u753B\u9762\uFF1B\u76F8\u5173\u6807\u9898\u4E0E\u6750\u8D28\u4E3A\u53EF\u66FF\u6362\u793A\u4F8B",
       phases: [
-        "\u4ECE\u5B8C\u6574\u88C5\u914D\u5F00\u59CB\uFF0C\u4E94\u7EC4\u673A\u82AF\u3001\u523B\u5EA6\u5708\u3001\u6307\u9488\u548C\u8868\u955C\u6CBF\u6DF1\u5EA6\u4F9D\u6B21\u5206\u5F00\u3002",
-        "\u5C55\u5F00\u4F4D\u7F6E\u505C\u7559\uFF0C\u5B9E\u4F53\u955C\u5934\u79FB\u5411\u4FA7\u9762\uFF0C\u5C55\u793A\u5404\u5C42\u906E\u6321\u548C\u91D1\u5C5E\u53CD\u5C04\u3002",
-        "\u96F6\u4EF6\u9010\u5C42\u51C6\u786E\u8FD4\u56DE\u88C5\u914D\u4F4D\u7F6E\uFF0C\u955C\u5934\u56DE\u5230\u6574\u8868\u89D2\u5EA6\uFF0C\u7ED3\u5C3E\u4FDD\u6301\u5B8C\u6574\u3002"
+        "\u4FDD\u6301\u673A\u58F3\u3001\u523B\u5EA6\u5708\u3001\u9F7F\u8F6E\u3001\u6865\u677F\u4E0E\u6307\u9488\u6A2A\u5411\u5206\u533A\u9648\u5217\u3002",
+        "\u673A\u58F3\u5148\u843D\u4F4D\uFF0C\u8F6E\u7CFB\u548C\u6446\u8F6E\u968F\u540E\u62AC\u8D77\u3001\u65CB\u8F6C\u5E76\u5F52\u4F4D\uFF0C\u6865\u677F\u4E0E\u6307\u9488\u63A5\u7EED\u9501\u5B9A\u3002",
+        "\u6240\u6709\u96F6\u4EF6\u5F52\u5230\u540C\u4E00\u673A\u82AF\uFF0C\u955C\u5934\u4ECE\u4FEF\u89C6\u5E73\u6ED1\u8F6C\u4E3A\u4E09\u5206\u4E4B\u56DB\u89C6\u89D2\u3002"
       ],
       actions: [],
-      analogy: "\u628A\u7CBE\u5BC6\u8BBE\u5907\u9010\u5C42\u62C9\u5F00\u770B\u6E05\u5185\u90E8\uFF0C\u518D\u6309\u539F\u4F4D\u7F6E\u5B8C\u6574\u88C5\u56DE\u3002",
-      recommendation: "\u9002\u5408\u6CBF\u540C\u4E00\u6DF1\u5EA6\u8F74\u5C55\u793A\u771F\u5B9E\u4EA7\u54C1\u7684\u88C5\u914D\u5173\u7CFB\uFF1B\u4E0E\u7ACB\u4F53\u73AF\u7ED5\u7684\u5361\u7247\u7ED5\u4E2D\u5FC3\u8FD0\u52A8\u4E0D\u540C\uFF0C\u672C\u52A8\u4F5C\u4FDD\u6301\u5404\u96F6\u4EF6\u539F\u88C5\u914D\u4F4D\u7F6E\u5E76\u51C6\u786E\u56DE\u88C5\u3002",
+      retain: "\u4E3B\u4F53\u5B8C\u6574\u3001\u771F\u5B9E\u96F6\u4EF6\u4E0E\u8F74\u5FC3\u3001\u539F\u751F24\u5E27\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u91D1\u94F6\u84DD\u94A2\u6750\u8D28\u5173\u7CFB\u3002",
+      avoid: "\u4E0D\u8981\u7528\u5E73\u9762\u8D34\u56FE\u4F2A\u88C5\u4E09\u7EF4\u96F6\u4EF6\uFF1B\u4E0D\u8981\u589E\u52A0\u63D2\u5E27\u3001\u5F39\u8DF3\u6216\u4EFB\u610F\u6539\u53D8\u88C5\u914D\u4F4D\u7F6E\u3002",
+      tempo_note: "\u630924\u5E27/\u79D2\uFF0C\u4EE5\u5F53\u524D\u5E27\u8BA1\u7B97\u56FA\u5B9A\u6F14\u793A\u65F6\u949F\u3002",
+      analogy: "\u5206\u6563\u9648\u5217\u7684\u771F\u5B9E\u96F6\u4EF6\u6309\u88C5\u914D\u987A\u5E8F\u62AC\u8D77\u3001\u65CB\u5408\u5F52\u4F4D\uFF0C\u5B9E\u4F53\u4E0E\u540C\u673A\u4F4D\u7EBF\u7A3F\u77ED\u95EA\u5207\u6362\u3002",
+      recommendation: "\u5206\u6563\u9648\u5217\u7684\u771F\u5B9E\u96F6\u4EF6\u6309\u88C5\u914D\u987A\u5E8F\u62AC\u8D77\u3001\u65CB\u5408\u5F52\u4F4D\uFF0C\u5B9E\u4F53\u4E0E\u540C\u673A\u4F4D\u7EBF\u7A3F\u77ED\u95EA\u5207\u6362\u3002 \u4E0E\u4E8C\u7EF4\u793A\u610F\u56FE\u4E0D\u540C\uFF0C\u672C\u4F8B\u4FDD\u7559\u771F\u5B9E\u96F6\u4EF6\u548C\u5149\u5B66\u6444\u5F71\u3002",
       source: {
-        path: "catalog/effects/precision-assembly.js",
+        path: "catalog/effects/time-in-motion.js",
+        factory: "inventory-contour-fit",
         dependencies: [
-          "catalog/effects/precision-assembly-data.js"
+          "catalog/effects/time-in-motion-data.js"
         ],
-        factory: "ordered-depth-assembly",
         origin: "original",
         license: "Apache-2.0",
         library: "blender@4.5.14",
         native_scene: "blender",
-        reference: {
-          name: "\u5206\u79D2\u4E4B\u95F4 \xB7 \u7528\u6237\u8BA4\u53EF\u7684\u771F\u5B9E\u4E09\u7EF4\u673A\u68B0\u6000\u8868"
+        frame_cache: {
+          video: "catalog/assets/time-in-motion/movie.mp4",
+          start_frame: 96,
+          frames: 144,
+          fps: 24,
+          width: 1280,
+          height: 720,
+          poster: "catalog/assets/time-in-motion/posters/inventory-contour-fit.jpg"
         },
-        extraction: "\u4FDD\u7559\u5DF2\u8BA4\u53EF\u7684 Blender \u5DE5\u7A0B\u3001\u771F\u5B9E\u5EFA\u6A21\u7A0B\u5E8F\u3001\u6750\u8D28\u3001\u706F\u5149\u4E0E\u955C\u5934\uFF1B\u53EA\u628A\u539F\u5206\u5C42\u5173\u952E\u5E27\u62BD\u6210\u53EF\u590D\u7528\u51FD\u6570\u3002Remotion \u630924\u5E27/\u79D2\u5B9A\u4F4D\u539F\u751FCycles\u6210\u7247\uFF0C\u76EE\u5F55\u7F29\u7565\u56FE\u4F7F\u7528\u539F\u59CB4K\u9759\u5E27\uFF1B\u6E90\u7801\u5BFC\u51FA\u5305\u542B.blend\u548C\u5B8C\u6574\u53EF\u8FD0\u884C\u7A0B\u5E8F\uFF0C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+        reference: {
+          name: "TIME, IN MOTION \xB7 \u7528\u6237\u539F\u521B\u6A2A\u5C4F\u673A\u68B0\u6000\u8868\u4F5C\u54C1"
+        },
+        extraction: "\u4ECE\u6700\u65B044\u79D2\u6210\u7247\u7684\u8FDE\u7EED\u539F\u751F\u5E27\u63D0\u70BC\u52A8\u4F5C\uFF1B\u5B8C\u6574\u526A\u8F91\u4E0E\u5BF9\u5E94\u5EFA\u6A21\u3001\u673A\u68B0\u53CA\u955C\u5934\u6E90\u7801\u53E6\u968F\u6587\u5B57\u6E90\u7801\u4EA4\u4ED8\u3002\u7F13\u5B58\u4EC5\u7F29\u5C0F\u753B\u5E45\uFF0C\u6CA1\u6709\u91CD\u7ED8\u3001\u91CD\u6392\u6216\u8865\u5E27\u3002",
+        production_guide: "catalog/assets/time-in-motion/README.md",
         assets: [
-          "catalog/assets/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend",
-          "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u5C42.png",
-          "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4",
-          "catalog/assets/precision-assembly/\u6210\u7247/\u673A\u82AF.png",
-          "catalog/assets/precision-assembly/\u6210\u7247/\u6574\u8868.png",
-          "catalog/assets/precision-assembly/\u6750\u8D28/\u5E95\u677F\u73CD\u73E0\u7EB9.png",
-          "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
-          "catalog/assets/precision-assembly/SOURCE.json",
-          "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
-          "catalog/assets/composition-audio/precision-assembly/sound.py"
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/inventory-contour-fit.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
         ],
         remotion: {
-          component: "catalog/remotion/precision-assembly.jsx",
-          export_name: "WisePrecisionAssembly",
-          package_name: "wise-precision-assembly",
+          component: "catalog/remotion/time-in-motion.jsx",
+          export_name: "WiseTimeInMotion",
+          package_name: "wise-time-in-motion",
           files: [
-            "catalog/assets/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command",
-            "catalog/assets/precision-assembly/\u5236\u4F5C\u8BF4\u660E.md",
-            "catalog/assets/precision-assembly/SOURCE.json",
-            "catalog/assets/precision-assembly/\u8FD0\u884C\u6E90\u7801.py",
-            "catalog/assets/precision-assembly/\u4F7F\u7528\u8BF4\u660E.md",
-            "catalog/assets/precision-assembly/\u6E90\u7801/build.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/sound.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/produce.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/assembly_motion.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/compose.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/render.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/check_scene.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/review.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/movement.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/casework.py",
-            "catalog/assets/precision-assembly/\u6750\u8D28/\u6765\u6E90.json",
-            "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
-            "catalog/assets/composition-audio/precision-assembly/sound.py",
-            "catalog/effects/precision-assembly-data.js",
-            "catalog/remotion/precision-assembly.jsx",
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/render_film.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6027\u80FD\u7814\u7A76/profiles.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/build.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/casework.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/movement.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/encode.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/\u900F\u660E\u6574\u8868.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/common.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
             "LICENSE",
-            "catalog/remotion/binary-assets-installer.mjs"
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u56FE\u7EB8\u5B9E\u4F53\u5F00\u573A/\u7D20\u6750/\u96F6\u4EF6\u6620\u5C04.json",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
           ],
-          file_map: {
-            "catalog/assets/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command": "public/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command",
-            "catalog/assets/precision-assembly/\u5236\u4F5C\u8BF4\u660E.md": "public/precision-assembly/\u5236\u4F5C\u8BF4\u660E.md",
-            "catalog/assets/precision-assembly/SOURCE.json": "public/precision-assembly/SOURCE.json",
-            "catalog/assets/precision-assembly/\u8FD0\u884C\u6E90\u7801.py": "public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py",
-            "catalog/assets/precision-assembly/\u4F7F\u7528\u8BF4\u660E.md": "public/precision-assembly/\u4F7F\u7528\u8BF4\u660E.md",
-            "catalog/assets/precision-assembly/\u6E90\u7801/build.py": "public/precision-assembly/\u6E90\u7801/build.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/sound.py": "public/precision-assembly/\u6E90\u7801/sound.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/produce.py": "public/precision-assembly/\u6E90\u7801/produce.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/assembly_motion.py": "public/precision-assembly/\u6E90\u7801/assembly_motion.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/compose.py": "public/precision-assembly/\u6E90\u7801/compose.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/render.py": "public/precision-assembly/\u6E90\u7801/render.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/check_scene.py": "public/precision-assembly/\u6E90\u7801/check_scene.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/review.py": "public/precision-assembly/\u6E90\u7801/review.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/movement.py": "public/precision-assembly/\u6E90\u7801/movement.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/casework.py": "public/precision-assembly/\u6E90\u7801/casework.py",
-            "catalog/assets/precision-assembly/\u6750\u8D28/\u6765\u6E90.json": "public/precision-assembly/\u6750\u8D28/\u6765\u6E90.json"
-          },
           binary_files: [
             {
-              source: "catalog/assets/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend",
-              target: "public/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend",
-              bytes: 23829849,
-              sha256: "54023d725b59887e9441634d2bb75dec355b151fd811176724dc33390c5453dd"
+              source: "catalog/assets/time-in-motion/movie.mp4",
+              target: "public/catalog/assets/time-in-motion/movie.mp4",
+              bytes: 7604138,
+              sha256: "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
             },
             {
-              source: "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u5C42.png",
-              target: "public/precision-assembly/\u6210\u7247/\u5206\u5C42.png",
-              bytes: 8343300,
-              sha256: "6548797cd90e70721af5211530df92ba19abf336d10aac1b94a4167618547c19"
-            },
-            {
-              source: "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4",
-              target: "public/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4",
-              bytes: 28685957,
-              sha256: "3978817ed2d908ca4a7bbc29bbd829d78f01466fb46b0df9648979066b6d3bba"
-            },
-            {
-              source: "catalog/assets/precision-assembly/\u6210\u7247/\u673A\u82AF.png",
-              target: "public/precision-assembly/\u6210\u7247/\u673A\u82AF.png",
-              bytes: 10584248,
-              sha256: "dd15f7a0e483326c6be31d18a05c859659b1e7424b6781a127dc80bf49ea5118"
-            },
-            {
-              source: "catalog/assets/precision-assembly/\u6210\u7247/\u6574\u8868.png",
-              target: "public/precision-assembly/\u6210\u7247/\u6574\u8868.png",
-              bytes: 8135763,
-              sha256: "6e8f923f6920eaec937e122cbd70f474ae3d04c9012f7187e74ac2a016c244d3"
-            },
-            {
-              source: "catalog/assets/precision-assembly/\u6750\u8D28/\u5E95\u677F\u73CD\u73E0\u7EB9.png",
-              target: "public/precision-assembly/\u6750\u8D28/\u5E95\u677F\u73CD\u73E0\u7EB9.png",
-              bytes: 2531633,
-              sha256: "75fb8171b941e41728c11a68cea43e9a8652acd9fd0bf0e9bed51859d18f010b"
-            },
-            {
-              source: "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
-              target: "public/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4-\u58F0\u8F68.wav",
-              bytes: 4224044,
-              sha256: "8bf5cc0934ef91f5e6cc0347839c206b689eb0e9d48eb74451a7029dd8fcf311"
+              source: "catalog/fonts/Oswald-Bold.woff2",
+              target: "public/catalog/fonts/Oswald-Bold.woff2",
+              bytes: 12112,
+              sha256: "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
             }
-          ],
-          executable_files: [
-            "public/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command"
           ],
           packages: {
             remotion: "4.0.532",
@@ -52603,38 +52576,37 @@ var registry_default = {
           height: 1080,
           fps: 24,
           exact_frames: true,
+          reuse_notes: "\u76EE\u5F55\u4E0E\u9ED8\u8BA4\u6E32\u67D3\u4F7F\u7528\u6700\u7EC84K\u7247\u76841280\xD7720\u300124fps\u8F7B\u91CF\u7F13\u5B58\uFF0C\u4FDD\u63011056\u5E27\u3001\u6784\u56FE\u4E0E\u539F\u526A\u8F91\uFF1B\u4E0D\u80FD\u628A\u4E0A\u91C7\u6837\u7F13\u5B58\u79F0\u4E3A\u91CD\u65B0\u6E32\u67D34K\u3002\u5B8C\u6574\u526A\u8F91\u6E90\u7801\u5728catalog/assets/time-in-motion/editable/\uFF0C\u539F\u521B\u5EFA\u6A21\u3001\u673A\u68B0\u3001\u955C\u5934\u548C\u6295\u5F71\u6E90\u7801\u5728production/\u3002\u5148\u7528import-originals.mjs\u6309\u6458\u8981\u51C6\u5907\u539F\u5236\u4F5C\u7D20\u6750\uFF0C\u624D\u80FD\u8FD0\u884Cstudio:editable\u6216\u4FEE\u6539Blender\u573A\u666F\u3002\u5B57\u4F53\u6539\u4E3A\u968F\u5305\u6388\u6743\u7684Oswald\uFF1B\u539F\u7CFB\u7EDFHelveticaNeue\u5B57\u4F53\u4E0D\u5206\u53D1\uFF0C\u7F16\u8F91\u7248\u7684\u5B57\u5F62\u4E0E\u6700\u7EC8\u7F13\u5B58\u4E0D\u540C\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\uFF1BOswald\u9075\u5FAASIL OFL\u3002",
           scripts: {
-            "check:source": "python3 public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py check",
-            "rebuild:scene": "python3 public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py rebuild",
-            "render:scene": "python3 public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py render --part assembly"
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
           },
-          reuse_notes: "\u8FD9\u662F Blender 4.5.14 LTS / Cycles \u771F\u5B9E\u4E09\u7EF4\u5DE5\u7A0B\u7684 Remotion \u63A5\u5165\u3002\u753B\u9762\u590D\u7528\u5DF2\u8BA4\u53EF\u76841920\xD71080\u300124\u5E27/\u79D2\u6210\u7247\uFF1B\u6CA1\u6709\u91CD\u65B0\u5EFA\u6A21\u3001\u8C03\u8272\u6216\u63D2\u5E27\u3002\u5B8C\u6574\u7EC4\u540822\u79D2\u3001528\u5E27\uFF0C\u72EC\u7ACB\u62C6\u88C5\u52A8\u4F5C\u53D6\u7B2C241\u2013432\u5E27\u30018\u79D2\u3001192\u5E27\uFF0C\u4E24\u8005\u5171\u7528\u540C\u4E00\u6A21\u578B\u3001assembly_motion.py \u52A8\u4F5C\u51FD\u6570\u4E0E\u6210\u7247\u3002\n\n\u771F\u5B9E\u6A21\u578B\u3001\u6750\u8D28\u3001\u706F\u5149\u3001\u955C\u5934\u548C\u52A8\u753B\uFF1Apublic/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend\u3002\u5EFA\u6A21\uFF1Apublic/precision-assembly/\u6E90\u7801/build.py\u3001movement.py\u3001casework.py\u3002\u5206\u5C42\u51FD\u6570\uFF1Apublic/precision-assembly/\u6E90\u7801/assembly_motion.py\uFF0C\u53EF\u4F20\u5165\u5176\u4ED6\u6709\u5E8F\u96F6\u4EF6\u4E0E\u5404\u5C42\u6DF1\u5EA6\u8DDD\u79BB\u3002\u76F4\u63A5\u53CC\u51FB public/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command \u6253\u5F00\u6216\u5236\u4F5C\uFF1B\u4E5F\u53EF\u6267\u884C npm run check:source \u68C0\u67E5\uFF0Cnpm run rebuild:scene \u4ECE\u6E90\u7801\u91CD\u5EFA\uFF08\u65E7\u5DE5\u7A0B\u4E0E\u5E27\u79FB\u5165\u5907\u4EFD\uFF09\uFF0Cnpm run render:scene \u660E\u786E\u542F\u52A8\u6E32\u67D3\u3002\u4E0D\u4F1A\u81EA\u52A8\u5B89\u88C5 Blender\u3001ffmpeg\u3001ffprobe \u6216 Python\u3002\u5B8C\u6574\u6E32\u67D3\u8017\u65F6\u8F83\u957F\uFF1B\u9ED8\u8BA4\u590D\u7528\u6210\u7247\u3002\n\n\u4FEE\u6539\u6A21\u578B\u3001\u6750\u8D28\u6216\u955C\u5934\u540E\uFF0C\u5E94\u901A\u8FC7 Blender \u91CD\u6E32\u67D3\uFF0C\u518D\u66F4\u65B0 Remotion \u7684\u89C6\u9891\u7D20\u6750\uFF1B\u6D4F\u89C8\u5668\u4E0D\u80FD\u5B9E\u65F6\u4FEE\u6539\u8BE5\u4E09\u7EF4\u6A21\u578B\u3002\u5DE5\u7A0B\u5185\u5DF2\u6253\u5305\u7EB9\u7406\u4E0E\u5B57\u4F53\uFF1B\u6E90\u7801\u91CD\u5EFA\u4FDD\u7559\u539F macOS \u5B57\u4F53\u67E5\u627E\u65B9\u5F0F\u3002\u58F0\u97F3\u4EC5\u7528\u4E8E\u5B8C\u6574\u7EC4\u5408\uFF1B\u539F\u7247\u5185\u5D4C\u97F3\u8F68\u9759\u97F3\uFF0C\u5355\u72EC\u539F\u58F0\u6309\u5E27\u540C\u6B65\uFF0CincludeAudio={false} \u53EF\u5173\u95ED\u3002\u539F\u58F0\u91CD\u5408\u6210\u7684 sound.py \u989D\u5916\u9700\u8981 numpy\uFF1B\u9ED8\u8BA4\u65E0\u9700\u91CD\u5408\u6210\u3002\n\n\u5206\u5C42\u52A8\u4F5C\u91C7\u7528\u539F\u8D1D\u585E\u5C14\u5173\u952E\u5E27\uFF1A\u9996\u5E27241\uFF0C\u9010\u5C42\u5EF6\u8FDF2\u5E27\uFF1B\u96F6\u4EF6\u5728252+2i\u5F00\u59CB\u3001305+2i\u5C55\u5F00\u5B8C\u3001357+i\u7ED3\u675F\u505C\u7559\u3001405+2i\u5F52\u4F4D\u3001432\u7EDF\u4E00\u4FDD\u6301\u5B8C\u6574\u3002\u4E94\u7EC4\u673A\u82AF\u6DF1\u5EA6\u8DDD\u79BB\u4E3A0\u30010.85\u30011.45\u30012.2\u30013.05\uFF0C\u523B\u5EA6\u57084.4\u3001\u6307\u94885.3\u3001\u8868\u955C5.8\u3002\u5177\u4F53\u673A\u68B0\u8868\u662F\u793A\u4F8B\uFF0C\u4E0D\u662F\u53EF\u5236\u9020\u6216\u771F\u5B9E\u8D70\u65F6\u7684\u949F\u8868\u9A8C\u8BC1\u3002\u81EA\u6709\u6E90\u7801Apache-2.0\uFF0C\u7CFB\u7EDF\u5B57\u4F53\u4E0E\u7B2C\u4E09\u65B9\u8F6F\u4EF6\u4FDD\u7559\u539F\u6743\u5229\uFF0C\u89C1SOURCE.json\u4E0ELICENSE\u3002",
           asset_installer: "catalog/remotion/binary-assets-installer.mjs"
         }
       },
       reproduction: {
-        objects: "\u771F\u5B9E\u4E09\u7EF4\u91D1\u5C5E\u96F6\u4EF6\u3001\u4E94\u7EC4\u673A\u82AF\u3001\u523B\u5EA6\u5708\u3001\u84DD\u94A2\u6307\u9488\u3001\u8868\u955C\u4E0E\u5B9E\u4F53\u955C\u5934",
-        presentation: "1920\xD71080\u6A2A\u5411\u753B\u5E45\uFF0C\u8FD1\u9ED1\u65E0\u7F1D\u6444\u5F71\u68DA\uFF0C\u6696\u91D1\u673A\u82AF\u3001\u94C2\u91D1\u58F3\u3001\u8C61\u7259\u73D0\u7405\u523B\u5EA6\u5708\u3001\u84DD\u94A2\u6307\u9488\u548C\u7EA2\u8272\u5B9D\u77F3\u8F74\u627F\u3002\u8F6F\u7BB1\u706F\u6CBF\u771F\u5B9E\u5012\u89D2\u4EA7\u751F\u7EC6\u7A84\u53CD\u5149\uFF0C\u771F\u5B9E\u666F\u6DF1\uFF1B\u4FDD\u7559\u6BD4\u4F8B\u4E0E\u6784\u56FE\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u5207\u3002",
+        objects: "\u91D1\u8272\u9F7F\u8F6E\u3001\u94F6\u8272\u6865\u677F\u3001\u84DD\u94A2\u96F6\u4EF6\u4E0E\u7EA2\u8272\u5B9D\u77F3\u8F74\u627F\u7EC4\u6210\u7684\u771F\u5B9E\u673A\u82AF",
+        presentation: "1920\xD71080\u6A2A\u5411\u8BBE\u8BA1\u753B\u677F\uFF1B\u8FD1\u9ED1\u6444\u5F71\u5E95\uFF0C\u91D1\u3001\u94F6\u3001\u6696\u767D\u4E0E\u84DD\u94A2\u7EC6\u8282\u3002\u753B\u9762\u7528\u8F6F\u7BB1\u706F\u7167\u660E\uFF0C\u7EC6\u7A84\u5012\u89D2\u53CD\u5149\uFF0C\u4E0D\u62C9\u4F38\u4E3B\u4F53\u3002",
         materials: [
-          "\u96F6\u4EF6\u4E3A\u5B9E\u4F53\u4E09\u7EF4\u7F51\u683C\uFF0C\u5012\u89D2\u3001\u9F7F\u8F6E\u3001\u87BA\u9489\u4E0E\u8F74\u627F\u5747\u7531\u51E0\u4F55\u5EFA\u7ACB\uFF1B\u5E95\u677F\u73CD\u73E0\u7EB9\u4EC5\u63D0\u4F9B\u7EC6\u5FAE\u51F9\u51F8\u4E0E\u7C97\u7CD9\u5EA6\u3002",
-          "\u91D1\u3001\u94F6\u3001\u9EC4\u94DC\u4E0E\u84DD\u94A2\u4E3A\u91D1\u5C5E\u6750\u8D28\uFF1B\u8868\u955C\u6709\u900F\u5C04\uFF0C\u5B9E\u4F53\u8F6F\u7BB1\u706F\u4E0E\u6444\u5F71\u68DA\u7167\u660E\uFF0C\u4F7F\u7528Cycles\u6E32\u67D3\u3002"
+          "\u673A\u68B0\u90E8\u4EF6\u4E3A\u72EC\u7ACB\u771F\u5B9E\u4E09\u7EF4\u7F51\u683C\uFF1B\u68DA\u706F\u3001\u91D1\u5C5E\u7C97\u7CD9\u5EA6\u3001\u5012\u89D2\u4E0E\u666F\u6DF1\u5171\u540C\u51B3\u5B9A\u53CD\u5C04\u3002"
         ],
-        start_state: "\u5B8C\u6574\u88C5\u914D\u7684\u6574\u8868\uFF0C\u955C\u5934\u4F4D\u4E8E(7,3.8,30)\uFF0C\u671D\u5411(.25,.5,1)\u3002",
         phases: [
-          "\u4ECE\u5B8C\u6574\u88C5\u914D\u5F00\u59CB\uFF0C\u4E94\u7EC4\u673A\u82AF\u3001\u523B\u5EA6\u5708\u3001\u6307\u9488\u548C\u8868\u955C\u6CBF\u6DF1\u5EA6\u4F9D\u6B21\u5206\u5F00\u3002",
-          "\u5C55\u5F00\u4F4D\u7F6E\u505C\u7559\uFF0C\u5B9E\u4F53\u955C\u5934\u79FB\u5411\u4FA7\u9762\uFF0C\u5C55\u793A\u5404\u5C42\u906E\u6321\u548C\u91D1\u5C5E\u53CD\u5C04\u3002",
-          "\u96F6\u4EF6\u9010\u5C42\u51C6\u786E\u8FD4\u56DE\u88C5\u914D\u4F4D\u7F6E\uFF0C\u955C\u5934\u56DE\u5230\u6574\u8868\u89D2\u5EA6\uFF0C\u7ED3\u5C3E\u4FDD\u6301\u5B8C\u6574\u3002"
+          "\u4FDD\u6301\u673A\u58F3\u3001\u523B\u5EA6\u5708\u3001\u9F7F\u8F6E\u3001\u6865\u677F\u4E0E\u6307\u9488\u6A2A\u5411\u5206\u533A\u9648\u5217\u3002",
+          "\u673A\u58F3\u5148\u843D\u4F4D\uFF0C\u8F6E\u7CFB\u548C\u6446\u8F6E\u968F\u540E\u62AC\u8D77\u3001\u65CB\u8F6C\u5E76\u5F52\u4F4D\uFF0C\u6865\u677F\u4E0E\u6307\u9488\u63A5\u7EED\u9501\u5B9A\u3002",
+          "\u6240\u6709\u96F6\u4EF6\u5F52\u5230\u540C\u4E00\u673A\u82AF\uFF0C\u955C\u5934\u4ECE\u4FEF\u89C6\u5E73\u6ED1\u8F6C\u4E3A\u4E09\u5206\u4E4B\u56DB\u89C6\u89D2\u3002"
         ],
-        end_state: "\u6240\u6709\u5C42\u6062\u590D\u5B8C\u6574\u88C5\u914D\uFF0C\u955C\u5934\u56DE\u5230\u6574\u8868\u89D2\u5EA6\uFF0C\u4FDD\u6301\u81F38\u79D2\u7ED3\u675F\u3002",
         details: [
-          "\u4F7F\u7528Blender\u5EFA\u7ACB\u771F\u5B9E\u4E09\u7EF4\u6A21\u578B\u4E0E\u52A8\u753B\uFF0C\u518D\u7528Remotion\u6309\u5F53\u524D\u5E27\u63A5\u51651920\xD71080\u300124\u5E27/\u79D2\u7684\u539F\u751F\u6E32\u67D3\uFF0C\u4E0D\u7528\u4E8C\u7EF4\u56FE\u5F62\u6A21\u4EFF\u91D1\u5C5E\u51E0\u4F55\u3002",
-          "\u8868\u5F846\u4E2A\u573A\u666F\u5355\u4F4D\uFF1B\u4E94\u7EC4\u673A\u82AF\u5C55\u5F00\u8DDD\u79BB\u4E3A0\u30010.85\u30011.45\u30012.2\u30013.05\uFF0C\u523B\u5EA6\u57084.4\uFF0C\u6307\u94885.3\uFF0C\u8868\u955C5.8\u3002\u4EE5\u7B2C241\u5E27\u4E3A\u672C\u6BB5\u9996\u5E27\uFF0C\u6BCF\u7EC4\u5EF6\u8FDF2\u5E27\uFF1A252+2i\u5F00\u59CB\u3001305+2i\u8FBE\u5230\u5C55\u5F00\u8DDD\u79BB\u3001357+i\u4FDD\u6301\u5230\u6B64\u3001405+2i\u5F52\u4F4D\u3001\u7B2C432\u5E27\u5B8C\u6574\u3002\u4F4D\u7F6E\u53D8\u5316\u4FDD\u7559\u8D1D\u585E\u5C14\u66F2\u7EBF\u3002",
-          "\u955C\u593465\u6BEB\u7C73\u7126\u8DDD\uFF1B\u4F4D\u7F6E\u4F9D\u6B21\u4E3A\u7B2C241\u5E27(7,3.8,30)\u3001310\u5E27(16,5,26)\u3001360\u5E27(16.5,4.8,26)\u3001432\u5E27(7,3.8,30)\uFF0C\u5BF9\u5E94\u89C6\u70B9\u7531(.25,.5,1)\u5230(.65,.65,1.5)\u518D\u5230(.1,.6,.3)\u3002",
-          "\u6446\u8F6E\u4EE548\u5EA6\u632F\u5E45\u3001\u6BCF\u79D22.5\u6B21\u5F80\u8FD4\u8FD0\u52A8\uFF0C\u630924\u5E27\u9010\u5E27\u8BA1\u7B97\uFF1B\u8F6E\u7CFB\u4FDD\u6301\u5404\u81EA\u56FA\u5B9A\u89D2\u901F\u5EA6\uFF0C\u79D2\u948822\u79D2\u626B\u8FC7132\u5EA6\u3002"
+          "\u6240\u6709\u5E27\u53F7\u5747\u4E3A24\u5E27/\u79D2\u8BBE\u8BA1\u5E27\uFF1B\u52A8\u4F5C\u5E27f=floor(24\xD7\u52A8\u4F5C\u79D2\u6570)\uFF0C\u9650\u5236\u57280\u81F3143\u3002\u5F71\u7247\u5E27\u7387\u6539\u53D8\u65F6\u5148\u6362\u7B97\u52A8\u4F5C\u79D2\u6570\uFF0C\u4E0D\u76F4\u63A5\u628A\u5F71\u7247\u5E27\u53F7\u5F53\u4F5C\u8BBE\u8BA1\u5E27\u3002",
+          "\u5171144\u5E27\uFF1B\u5C40\u90E8\u5E278\u30019\u300118\u300119\u300172\u300173\u5207\u4E3A\u5F53\u524D\u771F\u5B9E\u51E0\u4F55\u7684\u56FE\u7EB8\u6295\u5F71\uFF0C\u5176\u4ED6\u5E27\u663E\u793A\u5B9E\u4F53\uFF1B\u4E0D\u80FD\u7528\u4E00\u5F20\u9759\u6001\u7EBF\u7A3F\u66FF\u4EE3\u5168\u90E8\u673A\u4F4D\u3002",
+          "\u5E95\u76D826\u201363\u5E27\uFF1B\u53D1\u6761\u76D241\u201373\u5E27\u3001\u4E2D\u5FC3\u8F6E44\u201377\u5E27\u3001\u4E09\u8F6E47\u201381\u5E27\u3001\u56DB\u8F6E50\u201385\u5E27\u3001\u6446\u8F6E56\u201389\u5E27\uFF1B7\u7247\u6865\u677F\u4ECE70+3i\u523099+2i\uFF0C\u523B\u5EA6\u570894\u2013126\u5E27\uFF0C\u6307\u9488105\u2013132\u5E27\u5F52\u4F4D\u3002",
+          "\u6BCF\u4EF6\u96F6\u4EF6\u4F4D\u7F6E\u7528u\xB3(10\u221215u+6u\xB2)\u63D2\u503C\uFF0Cz\u8F74\u989D\u5916\u62AC\u8D77(0.40+0.06\xD7(i mod 4))\xD7sin(\u03C0u)\uFF0Cy\u8F74\u503E\u659C0.08\xD7sin(\u03C0u)\u5F27\u5EA6\uFF0Cz\u8F74\u521D\u59CB\u671D\u5411\u9010\u6B65\u6062\u590D\u3002",
+          "\u955C\u593441\u2013140\u5E27\u4ECE(.55,\u2212.6,62)\u8D70\u5230(7,3.8,31)\uFF0C\u7126\u8DDD90\u219270\u6BEB\u7C73\uFF0C\u5149\u5708f/16\u2192f/13\uFF1B\u603B\u88C5\u6839\u8282\u70B9105\u2013139\u5E27\u8F6C\u5411\u6700\u7EC8\u59FF\u6001\u3002"
         ],
-        retain: "\u771F\u5B9E\u91D1\u5C5E\u5012\u89D2\u3001\u5404\u5411\u5F02\u6027\u53CD\u5C04\u3001\u9542\u7A7A\u673A\u82AF\u3001\u84DD\u94A2\u6307\u9488\u4E0E\u5B9D\u77F3\u8F74\u627F\uFF1B\u4FDD\u7559\u539F\u751F24\u5E27\u9010\u683C\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u516B\u5C42\u88C5\u914D\u4F4D\u7F6E\u3002",
-        avoid: "\u4E0D\u4EE5\u4E8C\u7EF4\u5361\u7247\u3001\u5E73\u9762\u6574\u8868\u56FE\u7247\u6216\u4F4E\u7CBE\u5EA6\u51E0\u4F55\u91CD\u7ED8\uFF1B\u4E0D\u6539\u91D1\u5C5E\u6750\u8D28\u3001\u955C\u5934\u8282\u594F\u6216\u88C5\u914D\u4F4D\u7F6E\uFF0C\u4E0D\u63D2\u5E27\uFF1B\u8F6E\u7CFB\u3001\u6446\u8F6E\u4E0E\u79D2\u9488\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
-        tempo_note: "\u630924\u5E27/\u79D2\u9010\u683C\u8BA1\u7B97\uFF1B\u96F6\u4EF6\u548C\u955C\u5934\u7684\u4F4D\u7F6E\u53D8\u5316\u4F7F\u7528\u8D1D\u585E\u5C14\u5173\u952E\u5E27\uFF0C\u8F6E\u7CFB\u5300\u901F\u8F6C\u52A8\uFF0C\u6446\u8F6E\u6309\u6B63\u5F26\u5F80\u8FD4\u3002"
+        start_state: "\u4FDD\u6301\u673A\u58F3\u3001\u523B\u5EA6\u5708\u3001\u9F7F\u8F6E\u3001\u6865\u677F\u4E0E\u6307\u9488\u6A2A\u5411\u5206\u533A\u9648\u5217\u3002",
+        end_state: "\u6240\u6709\u96F6\u4EF6\u5F52\u5230\u540C\u4E00\u673A\u82AF\uFF0C\u955C\u5934\u4ECE\u4FEF\u89C6\u5E73\u6ED1\u8F6C\u4E3A\u4E09\u5206\u4E4B\u56DB\u89C6\u89D2\u3002",
+        retain: "\u4FDD\u6301\u4E3B\u4F53\u8F74\u5FC3\u3001\u96F6\u4EF6\u5C42\u9AD8\u3001\u6444\u5F71\u6784\u56FE\u548C\u539F\u751F\u9010\u683C\u8282\u594F\u3002",
+        avoid: "\u4E0D\u8981\u505A\u4E8C\u7EF4\u6574\u56FE\u65CB\u8F6C\u6216\u4EE5\u63D2\u5E27\u6539\u53D8\u673A\u68B0\u8282\u5F8B\u3002"
       }
     },
     {
@@ -52651,185 +52623,136 @@ var registry_default = {
       },
       demo_mode: "fixed-timeline",
       domains: [
-        "animation"
+        "animation",
+        "video"
       ],
-      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u81EA\u52A8\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u3001\u5B9A\u4F4D\u4E0E\u500D\u901F\u3002",
-      objects: "\u771F\u5B9E\u4E09\u7EF4\u91D1\u5C5E\u96F6\u4EF6\u3001\u4E94\u7EC4\u673A\u82AF\u3001\u523B\u5EA6\u5708\u3001\u84DD\u94A2\u6307\u9488\u3001\u8868\u955C\u4E0E\u5B9E\u4F53\u955C\u5934",
-      retain: "\u771F\u5B9E\u91D1\u5C5E\u5012\u89D2\u3001\u5404\u5411\u5F02\u6027\u53CD\u5C04\u3001\u9542\u7A7A\u673A\u82AF\u3001\u84DD\u94A2\u6307\u9488\u4E0E\u5B9D\u77F3\u8F74\u627F\uFF1B\u4FDD\u7559\u539F\u751F24\u5E27\u9010\u683C\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u516B\u5C42\u88C5\u914D\u4F4D\u7F6E\u3002",
-      avoid: "\u4E0D\u4EE5\u4E8C\u7EF4\u5361\u7247\u3001\u5E73\u9762\u6574\u8868\u56FE\u7247\u6216\u4F4E\u7CBE\u5EA6\u51E0\u4F55\u91CD\u7ED8\uFF1B\u4E0D\u6539\u91D1\u5C5E\u6750\u8D28\u3001\u955C\u5934\u8282\u594F\u6216\u88C5\u914D\u4F4D\u7F6E\uFF0C\u4E0D\u63D2\u5E27\uFF1B\u8F6E\u7CFB\u3001\u6446\u8F6E\u4E0E\u79D2\u9488\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
-      tempo_note: "\u4FDD\u7559\u539F\u751F24\u5E27/\u79D2\uFF1BRemotion\u4EC5\u6309\u5F53\u524D\u5E27\u5B9A\u4F4D\u65E2\u6709\u6210\u7247\uFF0C\u901F\u5EA6\u53EA\u8C03\u6574\u64AD\u653E\u5FEB\u6162\uFF1B\u7ED3\u675F\u505C\u5728\u672B\u4E2A\u539F\u751F\u753B\u9762\u3002",
-      assumptions: "\u539F\u4E09\u7EF4\u5DE5\u7A0B\u4E0E\u6210\u7247\u5B8C\u6574\u4FDD\u7559\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u7EC4\u5408\u4F7F\u7528\u540C\u4E00\u5C42\u4F4D\u79FB\u51FD\u6570\u548C\u539F\u751F\u5E27\u3002\u4FEE\u6539\u573A\u666F\u540E\u9700Blender\u91CD\u6E32\u67D3\u3002",
-      id: "precision-assembly-sequence",
-      name: "\u7CBE\u5BC6\u7ED3\u6784\u5C55\u793A\u4E0E\u62C6\u88C5",
-      kind: "composition",
-      category: "compositions",
-      duration_ms: 22e3,
-      preview_ms: 8291.666666666666,
-      summary: "\u5148\u5C55\u793A\u673A\u82AF\u7EC6\u8282\u548C\u6446\u8F6E\u8FD0\u884C\uFF0C\u518D\u5448\u73B0\u6574\u8868\uFF0C\u5B8C\u6210\u5206\u5C42\u62C6\u89E3\u3001\u955C\u5934\u73AF\u7ED5\u4E0E\u56DE\u88C5\uFF0C\u6700\u540E\u5C55\u793A\u5B8C\u6574\u4EA7\u54C1\u3002",
-      purpose: "\u628A\u6750\u6599\u7EC6\u8282\u3001\u673A\u68B0\u8FD0\u884C\u3001\u5B8C\u6574\u5916\u89C2\u4E0E\u62C6\u88C5\u7ED3\u6784\u4E32\u6210\u771F\u5B9E\u4E09\u7EF4\u4EA7\u54C1\u5C55\u793A\u3002",
+      trigger: "\u6253\u5F00\u9884\u89C8\u6309\u56FA\u5B9A\u65F6\u95F4\u7EBF\u64AD\u653E\uFF1B\u53EF\u4EE5\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\u3002",
+      assumptions: "\u6000\u8868\u4E3A\u52A8\u4F5C\u793A\u4F8B\uFF0C\u53EF\u66FF\u6362\u4E3B\u4F53\uFF1B\u7269\u7406\u949F\u8868\u72B6\u6001\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+      id: "axial-layer-reseat",
+      name: "\u8F74\u5411\u5206\u5C42\u56DE\u88C5",
+      kind: "action",
+      category: "space",
+      duration_ms: 4e3,
+      preview_ms: 2666.6666666666665,
+      summary: "\u771F\u5B9E\u673A\u82AF\u6CBF\u8F74\u5411\u9519\u5CF0\u5206\u5C42\uFF0C\u955C\u5934\u73AF\u7ED5\u5C42\u95F4\u7ED3\u6784\u540E\u56DE\u5230\u5B8C\u6574\u88C5\u914D\u3002",
+      purpose: "\u771F\u5B9E\u673A\u82AF\u6CBF\u8F74\u5411\u9519\u5CF0\u5206\u5C42\uFF0C\u955C\u5934\u73AF\u7ED5\u5C42\u95F4\u7ED3\u6784\u540E\u56DE\u5230\u5B8C\u6574\u88C5\u914D\u3002",
       aliases: [
-        "\u673A\u68B0\u6000\u8868",
-        "\u673A\u68B0\u8868\u53D1\u5E03\u7247",
-        "\u5206\u79D2\u4E4B\u95F4",
-        "\u4EA7\u54C1\u62C6\u88C5",
-        "\u673A\u82AF\u7279\u5199",
-        "\u6446\u8F6E",
-        "\u7CBE\u5BC6\u7ED3\u6784",
-        "\u4E09\u7EF4\u4EA7\u54C1\u5C55\u793A"
+        "\u8F74\u5411\u62C6\u89E3",
+        "\u5206\u5C42\u56DE\u88C5",
+        "\u7206\u70B8\u89C6\u56FE",
+        "\u5C42\u95F4\u73AF\u7ED5",
+        "\u673A\u68B0\u6000\u8868"
       ],
       behaviors: [
-        "reveal",
-        "depth",
-        "stagger",
-        "rotation3d",
-        "return"
+        "native-3d",
+        "frame-accurate",
+        "single-action"
       ],
+      objects: "\u771F\u5B9E\u91D1\u5C5E\u673A\u82AF\u53CA\u5176\u6444\u5F71\u753B\u9762\uFF1B\u76F8\u5173\u6807\u9898\u4E0E\u6750\u8D28\u4E3A\u53EF\u66FF\u6362\u793A\u4F8B",
       phases: [
-        "0\u20136\u79D2\u5C55\u793A\u53D1\u6761\u76D2\u3001\u5939\u677F\u548C\u6446\u8F6E\u8FD0\u884C\uFF1B6\u201310\u79D2\u5C55\u793A\u5B8C\u6574\u5916\u89C2\u3002",
-        "10\u201318\u79D2\u96F6\u4EF6\u6CBF\u6DF1\u5EA6\u9519\u5CF0\u5C55\u5F00\uFF0C\u5B9E\u4F53\u955C\u5934\u73AF\u7ED5\uFF0C\u518D\u6309\u539F\u88C5\u914D\u4F4D\u7F6E\u56DE\u88C5\u3002",
-        "18\u201322\u79D2\u4FDD\u7559\u5B8C\u6574\u6574\u8868\uFF0C\u955C\u5934\u7F13\u6162\u63A8\u8FDB\uFF0C\u968F\u539F\u7247\u6DE1\u51FA\u6536\u5C3E\u3002"
+        "\u5B8C\u6574\u8868\u4F53\u4EE5\u4E09\u5206\u4E4B\u56DB\u89C6\u89D2\u51FA\u73B0\uFF0C\u5DE6\u4FA7\u7559\u51FA\u8BCD\u5757\u9605\u8BFB\u533A\u3002",
+        "\u4F20\u52A8\u3001\u4E0A\u5F26\u3001\u632F\u8361\u3001\u6865\u677F\u3001\u523B\u5EA6\u4E0E\u6307\u9488\u516D\u7EC4\u6CBF\u6DF1\u5EA6\u9519\u5CF0\u5206\u5F00\uFF0C\u955C\u5934\u6A2A\u5411\u7ED5\u884C\u3002",
+        "\u5404\u5C42\u6CBF\u540C\u4E00\u8F74\u7EBF\u56DE\u88C5\uFF0C\u771F\u5B9E\u91D1\u5C5E\u4E0E\u84DD\u94A2\u96F6\u4EF6\u7EF4\u6301\u7ED3\u6784\u5173\u7CFB\u3002"
       ],
-      actions: [
-        "ordered-depth-assembly"
-      ],
-      breakdown_mode: "sequence",
-      analogy: "\u5148\u9760\u8FD1\u770B\u6750\u6599\u4E0E\u8FD0\u884C\uFF0C\u518D\u770B\u6574\u4F53\u548C\u62C6\u88C5\u8FC7\u7A0B\uFF0C\u6700\u540E\u56DE\u5230\u5B8C\u6574\u4EA7\u54C1\u3002",
-      recommendation: "\u9002\u5408\u540C\u65F6\u8BB2\u6E05\u6750\u6599\u3001\u8FD0\u884C\u548C\u88C5\u914D\u5173\u7CFB\u7684\u771F\u5B9E\u4E09\u7EF4\u4EA7\u54C1\u5C55\u793A\uFF1B\u53EA\u9700\u62C6\u88C5\u65F6\u7528\u5173\u8054\u76848\u79D2\u72EC\u7ACB\u52A8\u4F5C\uFF0C\u65E0\u9700\u6574\u6BB522\u79D2\u3002",
-      audio: {
-        tracks: [
-          {
-            name: "\u5206\u79D2\u4E4B\u95F4\u58F0\u97F3",
-            src: "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
-            start_ms: 0,
-            offset_ms: 0,
-            duration_ms: 22e3,
-            volume: 1,
-            fade_in_ms: 0,
-            fade_out_ms: 0
-          }
-        ],
-        sources: [
-          "catalog/assets/composition-audio/precision-assembly/SOURCE.json"
-        ]
-      },
+      actions: [],
+      retain: "\u4E3B\u4F53\u5B8C\u6574\u3001\u771F\u5B9E\u96F6\u4EF6\u4E0E\u8F74\u5FC3\u3001\u539F\u751F24\u5E27\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u91D1\u94F6\u84DD\u94A2\u6750\u8D28\u5173\u7CFB\u3002",
+      avoid: "\u4E0D\u8981\u7528\u5E73\u9762\u8D34\u56FE\u4F2A\u88C5\u4E09\u7EF4\u96F6\u4EF6\uFF1B\u4E0D\u8981\u589E\u52A0\u63D2\u5E27\u3001\u5F39\u8DF3\u6216\u4EFB\u610F\u6539\u53D8\u88C5\u914D\u4F4D\u7F6E\u3002",
+      tempo_note: "\u630924\u5E27/\u79D2\uFF0C\u4EE5\u5F53\u524D\u5E27\u8BA1\u7B97\u56FA\u5B9A\u6F14\u793A\u65F6\u949F\u3002",
+      analogy: "\u771F\u5B9E\u673A\u82AF\u6CBF\u8F74\u5411\u9519\u5CF0\u5206\u5C42\uFF0C\u955C\u5934\u73AF\u7ED5\u5C42\u95F4\u7ED3\u6784\u540E\u56DE\u5230\u5B8C\u6574\u88C5\u914D\u3002",
+      recommendation: "\u771F\u5B9E\u673A\u82AF\u6CBF\u8F74\u5411\u9519\u5CF0\u5206\u5C42\uFF0C\u955C\u5934\u73AF\u7ED5\u5C42\u95F4\u7ED3\u6784\u540E\u56DE\u5230\u5B8C\u6574\u88C5\u914D\u3002 \u4E0E\u4E8C\u7EF4\u793A\u610F\u56FE\u4E0D\u540C\uFF0C\u672C\u4F8B\u4FDD\u7559\u771F\u5B9E\u96F6\u4EF6\u548C\u5149\u5B66\u6444\u5F71\u3002",
       source: {
-        path: "catalog/effects/precision-assembly.js",
+        path: "catalog/effects/time-in-motion.js",
+        factory: "axial-layer-reseat",
         dependencies: [
-          "catalog/effects/precision-assembly-data.js"
+          "catalog/effects/time-in-motion-data.js"
         ],
-        factory: "precision-assembly-sequence",
         origin: "original",
         license: "Apache-2.0",
         library: "blender@4.5.14",
         native_scene: "blender",
-        reference: {
-          name: "\u5206\u79D2\u4E4B\u95F4 \xB7 \u7528\u6237\u8BA4\u53EF\u7684\u771F\u5B9E\u4E09\u7EF4\u673A\u68B0\u6000\u8868"
+        frame_cache: {
+          video: "catalog/assets/time-in-motion/movie.mp4",
+          start_frame: 336,
+          frames: 96,
+          fps: 24,
+          width: 1280,
+          height: 720,
+          poster: "catalog/assets/time-in-motion/posters/axial-layer-reseat.jpg"
         },
-        extraction: "\u4FDD\u7559\u5DF2\u8BA4\u53EF\u7684 Blender \u5DE5\u7A0B\u3001\u771F\u5B9E\u5EFA\u6A21\u7A0B\u5E8F\u3001\u6750\u8D28\u3001\u706F\u5149\u4E0E\u955C\u5934\uFF1B\u53EA\u628A\u539F\u5206\u5C42\u5173\u952E\u5E27\u62BD\u6210\u53EF\u590D\u7528\u51FD\u6570\u3002Remotion \u630924\u5E27/\u79D2\u5B9A\u4F4D\u539F\u751FCycles\u6210\u7247\uFF0C\u76EE\u5F55\u7F29\u7565\u56FE\u4F7F\u7528\u539F\u59CB4K\u9759\u5E27\uFF1B\u6E90\u7801\u5BFC\u51FA\u5305\u542B.blend\u548C\u5B8C\u6574\u53EF\u8FD0\u884C\u7A0B\u5E8F\uFF0C\u4E0D\u4F9D\u8D56\u6765\u6E90\u5DE5\u7A0B\u3002",
+        reference: {
+          name: "TIME, IN MOTION \xB7 \u7528\u6237\u539F\u521B\u6A2A\u5C4F\u673A\u68B0\u6000\u8868\u4F5C\u54C1"
+        },
+        extraction: "\u4ECE\u6700\u65B044\u79D2\u6210\u7247\u7684\u8FDE\u7EED\u539F\u751F\u5E27\u63D0\u70BC\u52A8\u4F5C\uFF1B\u5B8C\u6574\u526A\u8F91\u4E0E\u5BF9\u5E94\u5EFA\u6A21\u3001\u673A\u68B0\u53CA\u955C\u5934\u6E90\u7801\u53E6\u968F\u6587\u5B57\u6E90\u7801\u4EA4\u4ED8\u3002\u7F13\u5B58\u4EC5\u7F29\u5C0F\u753B\u5E45\uFF0C\u6CA1\u6709\u91CD\u7ED8\u3001\u91CD\u6392\u6216\u8865\u5E27\u3002",
+        production_guide: "catalog/assets/time-in-motion/README.md",
         assets: [
-          "catalog/assets/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend",
-          "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u5C42.png",
-          "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4",
-          "catalog/assets/precision-assembly/\u6210\u7247/\u673A\u82AF.png",
-          "catalog/assets/precision-assembly/\u6210\u7247/\u6574\u8868.png",
-          "catalog/assets/precision-assembly/\u6750\u8D28/\u5E95\u677F\u73CD\u73E0\u7EB9.png",
-          "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
-          "catalog/assets/precision-assembly/SOURCE.json",
-          "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
-          "catalog/assets/composition-audio/precision-assembly/sound.py"
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/axial-layer-reseat.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
         ],
         remotion: {
-          component: "catalog/remotion/precision-assembly.jsx",
-          export_name: "WisePrecisionAssembly",
-          package_name: "wise-precision-assembly",
+          component: "catalog/remotion/time-in-motion.jsx",
+          export_name: "WiseTimeInMotion",
+          package_name: "wise-time-in-motion",
           files: [
-            "catalog/assets/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command",
-            "catalog/assets/precision-assembly/\u5236\u4F5C\u8BF4\u660E.md",
-            "catalog/assets/precision-assembly/SOURCE.json",
-            "catalog/assets/precision-assembly/\u8FD0\u884C\u6E90\u7801.py",
-            "catalog/assets/precision-assembly/\u4F7F\u7528\u8BF4\u660E.md",
-            "catalog/assets/precision-assembly/\u6E90\u7801/build.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/sound.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/produce.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/assembly_motion.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/compose.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/render.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/check_scene.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/review.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/movement.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/casework.py",
-            "catalog/assets/precision-assembly/\u6750\u8D28/\u6765\u6E90.json",
-            "catalog/assets/composition-audio/precision-assembly/SOURCE.json",
-            "catalog/assets/composition-audio/precision-assembly/sound.py",
-            "catalog/effects/precision-assembly-data.js",
-            "catalog/remotion/precision-assembly.jsx",
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/render_film.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6027\u80FD\u7814\u7A76/profiles.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/build.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/casework.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/movement.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/encode.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/\u900F\u660E\u6574\u8868.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/common.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
             "LICENSE",
-            "catalog/remotion/binary-assets-installer.mjs"
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u56FE\u7EB8\u5B9E\u4F53\u5F00\u573A/\u7D20\u6750/\u96F6\u4EF6\u6620\u5C04.json",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
           ],
-          file_map: {
-            "catalog/assets/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command": "public/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command",
-            "catalog/assets/precision-assembly/\u5236\u4F5C\u8BF4\u660E.md": "public/precision-assembly/\u5236\u4F5C\u8BF4\u660E.md",
-            "catalog/assets/precision-assembly/SOURCE.json": "public/precision-assembly/SOURCE.json",
-            "catalog/assets/precision-assembly/\u8FD0\u884C\u6E90\u7801.py": "public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py",
-            "catalog/assets/precision-assembly/\u4F7F\u7528\u8BF4\u660E.md": "public/precision-assembly/\u4F7F\u7528\u8BF4\u660E.md",
-            "catalog/assets/precision-assembly/\u6E90\u7801/build.py": "public/precision-assembly/\u6E90\u7801/build.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/sound.py": "public/precision-assembly/\u6E90\u7801/sound.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/produce.py": "public/precision-assembly/\u6E90\u7801/produce.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/assembly_motion.py": "public/precision-assembly/\u6E90\u7801/assembly_motion.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/compose.py": "public/precision-assembly/\u6E90\u7801/compose.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/render.py": "public/precision-assembly/\u6E90\u7801/render.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/check_scene.py": "public/precision-assembly/\u6E90\u7801/check_scene.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/review.py": "public/precision-assembly/\u6E90\u7801/review.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/movement.py": "public/precision-assembly/\u6E90\u7801/movement.py",
-            "catalog/assets/precision-assembly/\u6E90\u7801/casework.py": "public/precision-assembly/\u6E90\u7801/casework.py",
-            "catalog/assets/precision-assembly/\u6750\u8D28/\u6765\u6E90.json": "public/precision-assembly/\u6750\u8D28/\u6765\u6E90.json"
-          },
           binary_files: [
             {
-              source: "catalog/assets/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend",
-              target: "public/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend",
-              bytes: 23829849,
-              sha256: "54023d725b59887e9441634d2bb75dec355b151fd811176724dc33390c5453dd"
+              source: "catalog/assets/time-in-motion/movie.mp4",
+              target: "public/catalog/assets/time-in-motion/movie.mp4",
+              bytes: 7604138,
+              sha256: "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
             },
             {
-              source: "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u5C42.png",
-              target: "public/precision-assembly/\u6210\u7247/\u5206\u5C42.png",
-              bytes: 8343300,
-              sha256: "6548797cd90e70721af5211530df92ba19abf336d10aac1b94a4167618547c19"
-            },
-            {
-              source: "catalog/assets/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4",
-              target: "public/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4",
-              bytes: 28685957,
-              sha256: "3978817ed2d908ca4a7bbc29bbd829d78f01466fb46b0df9648979066b6d3bba"
-            },
-            {
-              source: "catalog/assets/precision-assembly/\u6210\u7247/\u673A\u82AF.png",
-              target: "public/precision-assembly/\u6210\u7247/\u673A\u82AF.png",
-              bytes: 10584248,
-              sha256: "dd15f7a0e483326c6be31d18a05c859659b1e7424b6781a127dc80bf49ea5118"
-            },
-            {
-              source: "catalog/assets/precision-assembly/\u6210\u7247/\u6574\u8868.png",
-              target: "public/precision-assembly/\u6210\u7247/\u6574\u8868.png",
-              bytes: 8135763,
-              sha256: "6e8f923f6920eaec937e122cbd70f474ae3d04c9012f7187e74ac2a016c244d3"
-            },
-            {
-              source: "catalog/assets/precision-assembly/\u6750\u8D28/\u5E95\u677F\u73CD\u73E0\u7EB9.png",
-              target: "public/precision-assembly/\u6750\u8D28/\u5E95\u677F\u73CD\u73E0\u7EB9.png",
-              bytes: 2531633,
-              sha256: "75fb8171b941e41728c11a68cea43e9a8652acd9fd0bf0e9bed51859d18f010b"
-            },
-            {
-              source: "catalog/assets/composition-audio/precision-assembly/soundtrack.wav",
-              target: "public/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4-\u58F0\u8F68.wav",
-              bytes: 4224044,
-              sha256: "8bf5cc0934ef91f5e6cc0347839c206b689eb0e9d48eb74451a7029dd8fcf311"
+              source: "catalog/fonts/Oswald-Bold.woff2",
+              target: "public/catalog/fonts/Oswald-Bold.woff2",
+              bytes: 12112,
+              sha256: "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
             }
-          ],
-          executable_files: [
-            "public/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command"
           ],
           packages: {
             remotion: "4.0.532",
@@ -52841,38 +52764,1619 @@ var registry_default = {
           height: 1080,
           fps: 24,
           exact_frames: true,
+          reuse_notes: "\u76EE\u5F55\u4E0E\u9ED8\u8BA4\u6E32\u67D3\u4F7F\u7528\u6700\u7EC84K\u7247\u76841280\xD7720\u300124fps\u8F7B\u91CF\u7F13\u5B58\uFF0C\u4FDD\u63011056\u5E27\u3001\u6784\u56FE\u4E0E\u539F\u526A\u8F91\uFF1B\u4E0D\u80FD\u628A\u4E0A\u91C7\u6837\u7F13\u5B58\u79F0\u4E3A\u91CD\u65B0\u6E32\u67D34K\u3002\u5B8C\u6574\u526A\u8F91\u6E90\u7801\u5728catalog/assets/time-in-motion/editable/\uFF0C\u539F\u521B\u5EFA\u6A21\u3001\u673A\u68B0\u3001\u955C\u5934\u548C\u6295\u5F71\u6E90\u7801\u5728production/\u3002\u5148\u7528import-originals.mjs\u6309\u6458\u8981\u51C6\u5907\u539F\u5236\u4F5C\u7D20\u6750\uFF0C\u624D\u80FD\u8FD0\u884Cstudio:editable\u6216\u4FEE\u6539Blender\u573A\u666F\u3002\u5B57\u4F53\u6539\u4E3A\u968F\u5305\u6388\u6743\u7684Oswald\uFF1B\u539F\u7CFB\u7EDFHelveticaNeue\u5B57\u4F53\u4E0D\u5206\u53D1\uFF0C\u7F16\u8F91\u7248\u7684\u5B57\u5F62\u4E0E\u6700\u7EC8\u7F13\u5B58\u4E0D\u540C\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\uFF1BOswald\u9075\u5FAASIL OFL\u3002",
           scripts: {
-            "check:source": "python3 public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py check",
-            "rebuild:scene": "python3 public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py rebuild",
-            "render:scene": "python3 public/precision-assembly/\u8FD0\u884C\u6E90\u7801.py render"
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
           },
-          reuse_notes: "\u8FD9\u662F Blender 4.5.14 LTS / Cycles \u771F\u5B9E\u4E09\u7EF4\u5DE5\u7A0B\u7684 Remotion \u63A5\u5165\u3002\u753B\u9762\u590D\u7528\u5DF2\u8BA4\u53EF\u76841920\xD71080\u300124\u5E27/\u79D2\u6210\u7247\uFF1B\u6CA1\u6709\u91CD\u65B0\u5EFA\u6A21\u3001\u8C03\u8272\u6216\u63D2\u5E27\u3002\u5B8C\u6574\u7EC4\u540822\u79D2\u3001528\u5E27\uFF0C\u72EC\u7ACB\u62C6\u88C5\u52A8\u4F5C\u53D6\u7B2C241\u2013432\u5E27\u30018\u79D2\u3001192\u5E27\uFF0C\u4E24\u8005\u5171\u7528\u540C\u4E00\u6A21\u578B\u3001assembly_motion.py \u52A8\u4F5C\u51FD\u6570\u4E0E\u6210\u7247\u3002\n\n\u771F\u5B9E\u6A21\u578B\u3001\u6750\u8D28\u3001\u706F\u5149\u3001\u955C\u5934\u548C\u52A8\u753B\uFF1Apublic/precision-assembly/\u5206\u79D2\u4E4B\u95F4.blend\u3002\u5EFA\u6A21\uFF1Apublic/precision-assembly/\u6E90\u7801/build.py\u3001movement.py\u3001casework.py\u3002\u5206\u5C42\u51FD\u6570\uFF1Apublic/precision-assembly/\u6E90\u7801/assembly_motion.py\uFF0C\u53EF\u4F20\u5165\u5176\u4ED6\u6709\u5E8F\u96F6\u4EF6\u4E0E\u5404\u5C42\u6DF1\u5EA6\u8DDD\u79BB\u3002\u76F4\u63A5\u53CC\u51FB public/precision-assembly/\u6253\u5F00\u4E0E\u5236\u4F5C.command \u6253\u5F00\u6216\u5236\u4F5C\uFF1B\u4E5F\u53EF\u6267\u884C npm run check:source \u68C0\u67E5\uFF0Cnpm run rebuild:scene \u4ECE\u6E90\u7801\u91CD\u5EFA\uFF08\u65E7\u5DE5\u7A0B\u4E0E\u5E27\u79FB\u5165\u5907\u4EFD\uFF09\uFF0Cnpm run render:scene \u660E\u786E\u542F\u52A8\u6E32\u67D3\u3002\u4E0D\u4F1A\u81EA\u52A8\u5B89\u88C5 Blender\u3001ffmpeg\u3001ffprobe \u6216 Python\u3002\u5B8C\u6574\u6E32\u67D3\u8017\u65F6\u8F83\u957F\uFF1B\u9ED8\u8BA4\u590D\u7528\u6210\u7247\u3002\n\n\u4FEE\u6539\u6A21\u578B\u3001\u6750\u8D28\u6216\u955C\u5934\u540E\uFF0C\u5E94\u901A\u8FC7 Blender \u91CD\u6E32\u67D3\uFF0C\u518D\u66F4\u65B0 Remotion \u7684\u89C6\u9891\u7D20\u6750\uFF1B\u6D4F\u89C8\u5668\u4E0D\u80FD\u5B9E\u65F6\u4FEE\u6539\u8BE5\u4E09\u7EF4\u6A21\u578B\u3002\u5DE5\u7A0B\u5185\u5DF2\u6253\u5305\u7EB9\u7406\u4E0E\u5B57\u4F53\uFF1B\u6E90\u7801\u91CD\u5EFA\u4FDD\u7559\u539F macOS \u5B57\u4F53\u67E5\u627E\u65B9\u5F0F\u3002\u58F0\u97F3\u4EC5\u7528\u4E8E\u5B8C\u6574\u7EC4\u5408\uFF1B\u539F\u7247\u5185\u5D4C\u97F3\u8F68\u9759\u97F3\uFF0C\u5355\u72EC\u539F\u58F0\u6309\u5E27\u540C\u6B65\uFF0CincludeAudio={false} \u53EF\u5173\u95ED\u3002\u539F\u58F0\u91CD\u5408\u6210\u7684 sound.py \u989D\u5916\u9700\u8981 numpy\uFF1B\u9ED8\u8BA4\u65E0\u9700\u91CD\u5408\u6210\u3002\n\n\u5206\u5C42\u52A8\u4F5C\u91C7\u7528\u539F\u8D1D\u585E\u5C14\u5173\u952E\u5E27\uFF1A\u9996\u5E27241\uFF0C\u9010\u5C42\u5EF6\u8FDF2\u5E27\uFF1B\u96F6\u4EF6\u5728252+2i\u5F00\u59CB\u3001305+2i\u5C55\u5F00\u5B8C\u3001357+i\u7ED3\u675F\u505C\u7559\u3001405+2i\u5F52\u4F4D\u3001432\u7EDF\u4E00\u4FDD\u6301\u5B8C\u6574\u3002\u4E94\u7EC4\u673A\u82AF\u6DF1\u5EA6\u8DDD\u79BB\u4E3A0\u30010.85\u30011.45\u30012.2\u30013.05\uFF0C\u523B\u5EA6\u57084.4\u3001\u6307\u94885.3\u3001\u8868\u955C5.8\u3002\u5177\u4F53\u673A\u68B0\u8868\u662F\u793A\u4F8B\uFF0C\u4E0D\u662F\u53EF\u5236\u9020\u6216\u771F\u5B9E\u8D70\u65F6\u7684\u949F\u8868\u9A8C\u8BC1\u3002\u81EA\u6709\u6E90\u7801Apache-2.0\uFF0C\u7CFB\u7EDF\u5B57\u4F53\u4E0E\u7B2C\u4E09\u65B9\u8F6F\u4EF6\u4FDD\u7559\u539F\u6743\u5229\uFF0C\u89C1SOURCE.json\u4E0ELICENSE\u3002",
           asset_installer: "catalog/remotion/binary-assets-installer.mjs"
         }
       },
       reproduction: {
-        objects: "\u771F\u5B9E\u4E09\u7EF4\u91D1\u5C5E\u96F6\u4EF6\u3001\u4E94\u7EC4\u673A\u82AF\u3001\u523B\u5EA6\u5708\u3001\u84DD\u94A2\u6307\u9488\u3001\u8868\u955C\u4E0E\u5B9E\u4F53\u955C\u5934",
-        presentation: "1920\xD71080\u6A2A\u5411\u753B\u5E45\uFF0C\u8FD1\u9ED1\u65E0\u7F1D\u6444\u5F71\u68DA\uFF0C\u6696\u91D1\u673A\u82AF\u3001\u94C2\u91D1\u58F3\u3001\u8C61\u7259\u73D0\u7405\u523B\u5EA6\u5708\u3001\u84DD\u94A2\u6307\u9488\u548C\u7EA2\u8272\u5B9D\u77F3\u8F74\u627F\u3002\u8F6F\u7BB1\u706F\u6CBF\u771F\u5B9E\u5012\u89D2\u4EA7\u751F\u7EC6\u7A84\u53CD\u5149\uFF0C\u771F\u5B9E\u666F\u6DF1\uFF1B\u4FDD\u7559\u6BD4\u4F8B\u4E0E\u6784\u56FE\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u5207\u3002",
+        objects: "\u91D1\u8272\u9F7F\u8F6E\u3001\u94F6\u8272\u6865\u677F\u3001\u84DD\u94A2\u96F6\u4EF6\u4E0E\u7EA2\u8272\u5B9D\u77F3\u8F74\u627F\u7EC4\u6210\u7684\u771F\u5B9E\u673A\u82AF",
+        presentation: "1920\xD71080\u6A2A\u5411\u8BBE\u8BA1\u753B\u677F\uFF1B\u8FD1\u9ED1\u6444\u5F71\u5E95\uFF0C\u91D1\u3001\u94F6\u3001\u6696\u767D\u4E0E\u84DD\u94A2\u7EC6\u8282\u3002\u753B\u9762\u7528\u8F6F\u7BB1\u706F\u7167\u660E\uFF0C\u7EC6\u7A84\u5012\u89D2\u53CD\u5149\uFF0C\u4E0D\u62C9\u4F38\u4E3B\u4F53\u3002",
         materials: [
-          "\u96F6\u4EF6\u4E3A\u5B9E\u4F53\u4E09\u7EF4\u7F51\u683C\uFF0C\u5012\u89D2\u3001\u9F7F\u8F6E\u3001\u87BA\u9489\u4E0E\u8F74\u627F\u5747\u7531\u51E0\u4F55\u5EFA\u7ACB\uFF1B\u5E95\u677F\u73CD\u73E0\u7EB9\u4EC5\u63D0\u4F9B\u7EC6\u5FAE\u51F9\u51F8\u4E0E\u7C97\u7CD9\u5EA6\u3002",
-          "\u91D1\u3001\u94F6\u3001\u9EC4\u94DC\u4E0E\u84DD\u94A2\u4E3A\u91D1\u5C5E\u6750\u8D28\uFF1B\u8868\u955C\u6709\u900F\u5C04\uFF0C\u5B9E\u4F53\u8F6F\u7BB1\u706F\u4E0E\u6444\u5F71\u68DA\u7167\u660E\uFF0C\u4F7F\u7528Cycles\u6E32\u67D3\u3002"
+          "\u673A\u68B0\u90E8\u4EF6\u4E3A\u72EC\u7ACB\u771F\u5B9E\u4E09\u7EF4\u7F51\u683C\uFF1B\u68DA\u706F\u3001\u91D1\u5C5E\u7C97\u7CD9\u5EA6\u3001\u5012\u89D2\u4E0E\u666F\u6DF1\u5171\u540C\u51B3\u5B9A\u53CD\u5C04\u3002"
         ],
-        start_state: "\u8FD1\u8DDD\u79BB\u5C55\u793A\u53D1\u6761\u76D2\u3001\u9542\u7A7A\u5939\u677F\u4E0E\u91D1\u5C5E\u5012\u89D2\uFF0C\u955C\u5934\u7F13\u6162\u63A8\u8FDB\u3002",
         phases: [
-          "0\u20136\u79D2\u5C55\u793A\u53D1\u6761\u76D2\u3001\u5939\u677F\u548C\u6446\u8F6E\u8FD0\u884C\uFF1B6\u201310\u79D2\u5C55\u793A\u5B8C\u6574\u5916\u89C2\u3002",
-          "10\u201318\u79D2\u96F6\u4EF6\u6CBF\u6DF1\u5EA6\u9519\u5CF0\u5C55\u5F00\uFF0C\u5B9E\u4F53\u955C\u5934\u73AF\u7ED5\uFF0C\u518D\u6309\u539F\u88C5\u914D\u4F4D\u7F6E\u56DE\u88C5\u3002",
-          "18\u201322\u79D2\u4FDD\u7559\u5B8C\u6574\u6574\u8868\uFF0C\u955C\u5934\u7F13\u6162\u63A8\u8FDB\uFF0C\u753B\u9762\u6DE1\u51FA\u6536\u5C3E\u3002"
+          "\u5B8C\u6574\u8868\u4F53\u4EE5\u4E09\u5206\u4E4B\u56DB\u89C6\u89D2\u51FA\u73B0\uFF0C\u5DE6\u4FA7\u7559\u51FA\u8BCD\u5757\u9605\u8BFB\u533A\u3002",
+          "\u4F20\u52A8\u3001\u4E0A\u5F26\u3001\u632F\u8361\u3001\u6865\u677F\u3001\u523B\u5EA6\u4E0E\u6307\u9488\u516D\u7EC4\u6CBF\u6DF1\u5EA6\u9519\u5CF0\u5206\u5F00\uFF0C\u955C\u5934\u6A2A\u5411\u7ED5\u884C\u3002",
+          "\u5404\u5C42\u6CBF\u540C\u4E00\u8F74\u7EBF\u56DE\u88C5\uFF0C\u771F\u5B9E\u91D1\u5C5E\u4E0E\u84DD\u94A2\u96F6\u4EF6\u7EF4\u6301\u7ED3\u6784\u5173\u7CFB\u3002"
         ],
-        end_state: "\u6240\u6709\u5C42\u6062\u590D\u5B8C\u6574\u88C5\u914D\uFF1B18\u201322\u79D2\u955C\u5934\u7F13\u6162\u63A8\u8FDB\uFF0C\u753B\u9762\u6DE1\u51FA\u81F3\u9ED1\u8272\u3002",
         details: [
-          "\u4F7F\u7528Blender\u5EFA\u7ACB\u771F\u5B9E\u4E09\u7EF4\u6A21\u578B\u4E0E\u52A8\u753B\uFF0C\u518D\u7528Remotion\u6309\u5F53\u524D\u5E27\u63A5\u51651920\xD71080\u300124\u5E27/\u79D2\u7684\u539F\u751F\u6E32\u67D3\uFF0C\u4E0D\u7528\u4E8C\u7EF4\u56FE\u5F62\u6A21\u4EFF\u91D1\u5C5E\u51E0\u4F55\u3002",
-          "\u8868\u5F846\u4E2A\u573A\u666F\u5355\u4F4D\uFF1B\u4E94\u7EC4\u673A\u82AF\u5C55\u5F00\u8DDD\u79BB\u4E3A0\u30010.85\u30011.45\u30012.2\u30013.05\uFF0C\u523B\u5EA6\u57084.4\uFF0C\u6307\u94885.3\uFF0C\u8868\u955C5.8\u3002\u4EE5\u7B2C241\u5E27\u4E3A\u672C\u6BB5\u9996\u5E27\uFF0C\u6BCF\u7EC4\u5EF6\u8FDF2\u5E27\uFF1A252+2i\u5F00\u59CB\u3001305+2i\u8FBE\u5230\u5C55\u5F00\u8DDD\u79BB\u3001357+i\u4FDD\u6301\u5230\u6B64\u3001405+2i\u5F52\u4F4D\u3001\u7B2C432\u5E27\u5B8C\u6574\u3002\u4F4D\u7F6E\u53D8\u5316\u4FDD\u7559\u8D1D\u585E\u5C14\u66F2\u7EBF\u3002",
-          "\u955C\u593465\u6BEB\u7C73\u7126\u8DDD\uFF1B\u4F4D\u7F6E\u4F9D\u6B21\u4E3A\u7B2C241\u5E27(7,3.8,30)\u3001310\u5E27(16,5,26)\u3001360\u5E27(16.5,4.8,26)\u3001432\u5E27(7,3.8,30)\uFF0C\u5BF9\u5E94\u89C6\u70B9\u7531(.25,.5,1)\u5230(.65,.65,1.5)\u518D\u5230(.1,.6,.3)\u3002",
-          "\u6446\u8F6E\u4EE548\u5EA6\u632F\u5E45\u3001\u6BCF\u79D22.5\u6B21\u5F80\u8FD4\u8FD0\u52A8\uFF0C\u630924\u5E27\u9010\u5E27\u8BA1\u7B97\uFF1B\u8F6E\u7CFB\u4FDD\u6301\u5404\u81EA\u56FA\u5B9A\u89D2\u901F\u5EA6\uFF0C\u79D2\u948822\u79D2\u626B\u8FC7132\u5EA6\u3002"
+          "\u6240\u6709\u5E27\u53F7\u5747\u4E3A24\u5E27/\u79D2\u8BBE\u8BA1\u5E27\uFF1B\u52A8\u4F5C\u5E27f=floor(24\xD7\u52A8\u4F5C\u79D2\u6570)\uFF0C\u9650\u5236\u57280\u81F395\u3002\u5F71\u7247\u5E27\u7387\u6539\u53D8\u65F6\u5148\u6362\u7B97\u52A8\u4F5C\u79D2\u6570\uFF0C\u4E0D\u76F4\u63A5\u628A\u5F71\u7247\u5E27\u53F7\u5F53\u4F5C\u8BBE\u8BA1\u5E27\u3002",
+          "6\u7EC4\u5C55\u5F00\u8DDD\u79BB\u4E3A0.65\u30011.2\u30011.9\u30012.65\u30013.6\u30014.1\u573A\u666F\u5355\u4F4D\uFF1B\u6BCF\u7EC4\u8FDF0.06\u79D2\uFF0C1.5\u79D2\u8D77\u75282\u79D2\u5C55\u5F00\uFF0C5.5\u79D2\u8D77\u75281.65\u79D2\u6536\u62E2\u3002",
+          "\u4E09\u7EF4\u6E90\u65F6\u949F\u4E3A(36+1.7f)/24\u79D2\uFF0Cf\u662F96\u5E27\u7247\u6BB5\u7684\u5F53\u524D\u5E27\uFF1B\u8BBE\u8BA1\u753B\u677F1920\xD71080\uFF0C\u753B\u9762\u53F3\u79FB230\u50CF\u7D20\uFF0C\u7F29\u653E0.87\u21920.89\u3002",
+          "\u5DE6\u4FA7\u5BBD750\u50CF\u7D20\u8FD1\u9ED1\u6E10\u53D8\uFF0C\u8BCD\u5757EVERY / PART.\u4F4D\u4E8E(90,286)\uFF1B\u6BCF\u884C154\u50CF\u7D20\uFF0C\u7B2C\u4E8C\u884C\u6BD4\u7B2C\u4E00\u884C\u665A6\u5E27\uFF1B\u91D1\u8272\u7EC6\u7EBF\u4ECE\u7B2C14\u523040\u5E27\u5C55\u5F00\u3002"
         ],
-        retain: "\u771F\u5B9E\u91D1\u5C5E\u5012\u89D2\u3001\u5404\u5411\u5F02\u6027\u53CD\u5C04\u3001\u9542\u7A7A\u673A\u82AF\u3001\u84DD\u94A2\u6307\u9488\u4E0E\u5B9D\u77F3\u8F74\u627F\uFF1B\u4FDD\u7559\u539F\u751F24\u5E27\u9010\u683C\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u516B\u5C42\u88C5\u914D\u4F4D\u7F6E\u3002",
-        avoid: "\u4E0D\u4EE5\u4E8C\u7EF4\u5361\u7247\u3001\u5E73\u9762\u6574\u8868\u56FE\u7247\u6216\u4F4E\u7CBE\u5EA6\u51E0\u4F55\u91CD\u7ED8\uFF1B\u4E0D\u6539\u91D1\u5C5E\u6750\u8D28\u3001\u955C\u5934\u8282\u594F\u6216\u88C5\u914D\u4F4D\u7F6E\uFF0C\u4E0D\u63D2\u5E27\uFF1B\u8F6E\u7CFB\u3001\u6446\u8F6E\u4E0E\u79D2\u9488\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
-        tempo_note: "\u630924\u5E27/\u79D2\u9010\u683C\u8BA1\u7B97\uFF1B\u96F6\u4EF6\u548C\u955C\u5934\u7684\u4F4D\u7F6E\u53D8\u5316\u4F7F\u7528\u8D1D\u585E\u5C14\u5173\u952E\u5E27\uFF0C\u8F6E\u7CFB\u5300\u901F\u8F6C\u52A8\uFF0C\u6446\u8F6E\u6309\u6B63\u5F26\u5F80\u8FD4\u3002"
+        start_state: "\u5B8C\u6574\u8868\u4F53\u4EE5\u4E09\u5206\u4E4B\u56DB\u89C6\u89D2\u51FA\u73B0\uFF0C\u5DE6\u4FA7\u7559\u51FA\u8BCD\u5757\u9605\u8BFB\u533A\u3002",
+        end_state: "\u5404\u5C42\u6CBF\u540C\u4E00\u8F74\u7EBF\u56DE\u88C5\uFF0C\u771F\u5B9E\u91D1\u5C5E\u4E0E\u84DD\u94A2\u96F6\u4EF6\u7EF4\u6301\u7ED3\u6784\u5173\u7CFB\u3002",
+        retain: "\u4FDD\u6301\u4E3B\u4F53\u8F74\u5FC3\u3001\u96F6\u4EF6\u5C42\u9AD8\u3001\u6444\u5F71\u6784\u56FE\u548C\u539F\u751F\u9010\u683C\u8282\u594F\u3002",
+        avoid: "\u4E0D\u8981\u505A\u4E8C\u7EF4\u6574\u56FE\u65CB\u8F6C\u6216\u4EE5\u63D2\u5E27\u6539\u53D8\u673A\u68B0\u8282\u5F8B\u3002"
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation",
+        "video"
+      ],
+      trigger: "\u6253\u5F00\u9884\u89C8\u6309\u56FA\u5B9A\u65F6\u95F4\u7EBF\u64AD\u653E\uFF1B\u53EF\u4EE5\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\u3002",
+      assumptions: "\u6000\u8868\u4E3A\u52A8\u4F5C\u793A\u4F8B\uFF0C\u53EF\u66FF\u6362\u4E3B\u4F53\uFF1B\u7269\u7406\u949F\u8868\u72B6\u6001\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+      id: "helical-screw-seat",
+      name: "\u87BA\u4E1D\u8F74\u5411\u65CB\u5165\u9501\u7D27",
+      kind: "action",
+      category: "space",
+      duration_ms: 4e3,
+      preview_ms: 2041.6666666666665,
+      summary: "\u5DE5\u5177\u4E0E\u87BA\u4E1D\u540C\u8F74\u9760\u8FD1\uFF0C\u87BA\u4E1D\u65CB\u8F6C\u65F6\u6CBF\u8F74\u5411\u8FDB\u5165\u5B54\u4F4D\uFF0C\u6700\u540E\u9501\u7D27\u3002",
+      purpose: "\u5DE5\u5177\u4E0E\u87BA\u4E1D\u540C\u8F74\u9760\u8FD1\uFF0C\u87BA\u4E1D\u65CB\u8F6C\u65F6\u6CBF\u8F74\u5411\u8FDB\u5165\u5B54\u4F4D\uFF0C\u6700\u540E\u9501\u7D27\u3002",
+      aliases: [
+        "\u87BA\u4E1D\u65CB\u5165",
+        "\u87BA\u65CB\u8FD0\u52A8",
+        "\u540C\u8F74\u88C5\u914D",
+        "\u65CB\u7D27",
+        "\u673A\u68B0\u5FAE\u8DDD"
+      ],
+      behaviors: [
+        "native-3d",
+        "frame-accurate",
+        "single-action"
+      ],
+      objects: "\u771F\u5B9E\u91D1\u5C5E\u673A\u82AF\u53CA\u5176\u6444\u5F71\u753B\u9762\uFF1B\u76F8\u5173\u6807\u9898\u4E0E\u6750\u8D28\u4E3A\u53EF\u66FF\u6362\u793A\u4F8B",
+      phases: [
+        "\u5FAE\u8DDD\u663E\u793A\u84DD\u94A2\u87BA\u4E1D\u3001\u540C\u8F74\u5DE5\u5177\u4E0E\u5B54\u53E3\uFF0C\u8F74\u7EBF\u4E0D\u6F02\u79FB\u3002",
+        "\u5DE5\u5177\u63A5\u89E6\u87BA\u5E3D\u540E\u540C\u6B65\u8F6C\u52A8\uFF0C\u87BA\u4E1D\u6CBF\u87BA\u7EB9\u8F74\u63A8\u8FDB\uFF0C\u91D1\u5C5E\u9AD8\u5149\u968F\u7740\u89D2\u5EA6\u79FB\u52A8\u3002",
+        "\u87BA\u5E3D\u843D\u81F3\u5EA7\u9762\u5E76\u505C\u6B62\u63A8\u8FDB\uFF0C\u4FDD\u6301\u5B8C\u6574\u65CB\u7D27\u52A8\u4F5C\u3002"
+      ],
+      actions: [],
+      retain: "\u4E3B\u4F53\u5B8C\u6574\u3001\u771F\u5B9E\u96F6\u4EF6\u4E0E\u8F74\u5FC3\u3001\u539F\u751F24\u5E27\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u91D1\u94F6\u84DD\u94A2\u6750\u8D28\u5173\u7CFB\u3002",
+      avoid: "\u4E0D\u8981\u7528\u5E73\u9762\u8D34\u56FE\u4F2A\u88C5\u4E09\u7EF4\u96F6\u4EF6\uFF1B\u4E0D\u8981\u589E\u52A0\u63D2\u5E27\u3001\u5F39\u8DF3\u6216\u4EFB\u610F\u6539\u53D8\u88C5\u914D\u4F4D\u7F6E\u3002",
+      tempo_note: "\u630924\u5E27/\u79D2\uFF0C\u4EE5\u5F53\u524D\u5E27\u8BA1\u7B97\u56FA\u5B9A\u6F14\u793A\u65F6\u949F\u3002",
+      analogy: "\u5DE5\u5177\u4E0E\u87BA\u4E1D\u540C\u8F74\u9760\u8FD1\uFF0C\u87BA\u4E1D\u65CB\u8F6C\u65F6\u6CBF\u8F74\u5411\u8FDB\u5165\u5B54\u4F4D\uFF0C\u6700\u540E\u9501\u7D27\u3002",
+      recommendation: "\u5DE5\u5177\u4E0E\u87BA\u4E1D\u540C\u8F74\u9760\u8FD1\uFF0C\u87BA\u4E1D\u65CB\u8F6C\u65F6\u6CBF\u8F74\u5411\u8FDB\u5165\u5B54\u4F4D\uFF0C\u6700\u540E\u9501\u7D27\u3002 \u4E0E\u4E8C\u7EF4\u793A\u610F\u56FE\u4E0D\u540C\uFF0C\u672C\u4F8B\u4FDD\u7559\u771F\u5B9E\u96F6\u4EF6\u548C\u5149\u5B66\u6444\u5F71\u3002",
+      source: {
+        path: "catalog/effects/time-in-motion.js",
+        factory: "helical-screw-seat",
+        dependencies: [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        origin: "original",
+        license: "Apache-2.0",
+        library: "blender@4.5.14",
+        native_scene: "blender",
+        frame_cache: {
+          video: "catalog/assets/time-in-motion/movie.mp4",
+          start_frame: 432,
+          frames: 96,
+          fps: 24,
+          width: 1280,
+          height: 720,
+          poster: "catalog/assets/time-in-motion/posters/helical-screw-seat.jpg"
+        },
+        reference: {
+          name: "TIME, IN MOTION \xB7 \u7528\u6237\u539F\u521B\u6A2A\u5C4F\u673A\u68B0\u6000\u8868\u4F5C\u54C1"
+        },
+        extraction: "\u4ECE\u6700\u65B044\u79D2\u6210\u7247\u7684\u8FDE\u7EED\u539F\u751F\u5E27\u63D0\u70BC\u52A8\u4F5C\uFF1B\u5B8C\u6574\u526A\u8F91\u4E0E\u5BF9\u5E94\u5EFA\u6A21\u3001\u673A\u68B0\u53CA\u955C\u5934\u6E90\u7801\u53E6\u968F\u6587\u5B57\u6E90\u7801\u4EA4\u4ED8\u3002\u7F13\u5B58\u4EC5\u7F29\u5C0F\u753B\u5E45\uFF0C\u6CA1\u6709\u91CD\u7ED8\u3001\u91CD\u6392\u6216\u8865\u5E27\u3002",
+        production_guide: "catalog/assets/time-in-motion/README.md",
+        assets: [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/helical-screw-seat.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
+        ],
+        remotion: {
+          component: "catalog/remotion/time-in-motion.jsx",
+          export_name: "WiseTimeInMotion",
+          package_name: "wise-time-in-motion",
+          files: [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/render_film.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6027\u80FD\u7814\u7A76/profiles.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/build.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/casework.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/movement.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/encode.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/\u900F\u660E\u6574\u8868.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/common.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u56FE\u7EB8\u5B9E\u4F53\u5F00\u573A/\u7D20\u6750/\u96F6\u4EF6\u6620\u5C04.json",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          binary_files: [
+            {
+              source: "catalog/assets/time-in-motion/movie.mp4",
+              target: "public/catalog/assets/time-in-motion/movie.mp4",
+              bytes: 7604138,
+              sha256: "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              source: "catalog/fonts/Oswald-Bold.woff2",
+              target: "public/catalog/fonts/Oswald-Bold.woff2",
+              bytes: 12112,
+              sha256: "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1920,
+          height: 1080,
+          fps: 24,
+          exact_frames: true,
+          reuse_notes: "\u76EE\u5F55\u4E0E\u9ED8\u8BA4\u6E32\u67D3\u4F7F\u7528\u6700\u7EC84K\u7247\u76841280\xD7720\u300124fps\u8F7B\u91CF\u7F13\u5B58\uFF0C\u4FDD\u63011056\u5E27\u3001\u6784\u56FE\u4E0E\u539F\u526A\u8F91\uFF1B\u4E0D\u80FD\u628A\u4E0A\u91C7\u6837\u7F13\u5B58\u79F0\u4E3A\u91CD\u65B0\u6E32\u67D34K\u3002\u5B8C\u6574\u526A\u8F91\u6E90\u7801\u5728catalog/assets/time-in-motion/editable/\uFF0C\u539F\u521B\u5EFA\u6A21\u3001\u673A\u68B0\u3001\u955C\u5934\u548C\u6295\u5F71\u6E90\u7801\u5728production/\u3002\u5148\u7528import-originals.mjs\u6309\u6458\u8981\u51C6\u5907\u539F\u5236\u4F5C\u7D20\u6750\uFF0C\u624D\u80FD\u8FD0\u884Cstudio:editable\u6216\u4FEE\u6539Blender\u573A\u666F\u3002\u5B57\u4F53\u6539\u4E3A\u968F\u5305\u6388\u6743\u7684Oswald\uFF1B\u539F\u7CFB\u7EDFHelveticaNeue\u5B57\u4F53\u4E0D\u5206\u53D1\uFF0C\u7F16\u8F91\u7248\u7684\u5B57\u5F62\u4E0E\u6700\u7EC8\u7F13\u5B58\u4E0D\u540C\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\uFF1BOswald\u9075\u5FAASIL OFL\u3002",
+          scripts: {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      reproduction: {
+        objects: "\u91D1\u8272\u9F7F\u8F6E\u3001\u94F6\u8272\u6865\u677F\u3001\u84DD\u94A2\u96F6\u4EF6\u4E0E\u7EA2\u8272\u5B9D\u77F3\u8F74\u627F\u7EC4\u6210\u7684\u771F\u5B9E\u673A\u82AF",
+        presentation: "1920\xD71080\u6A2A\u5411\u8BBE\u8BA1\u753B\u677F\uFF1B\u8FD1\u9ED1\u6444\u5F71\u5E95\uFF0C\u91D1\u3001\u94F6\u3001\u6696\u767D\u4E0E\u84DD\u94A2\u7EC6\u8282\u3002\u753B\u9762\u7528\u8F6F\u7BB1\u706F\u7167\u660E\uFF0C\u7EC6\u7A84\u5012\u89D2\u53CD\u5149\uFF0C\u4E0D\u62C9\u4F38\u4E3B\u4F53\u3002",
+        materials: [
+          "\u673A\u68B0\u90E8\u4EF6\u4E3A\u72EC\u7ACB\u771F\u5B9E\u4E09\u7EF4\u7F51\u683C\uFF1B\u68DA\u706F\u3001\u91D1\u5C5E\u7C97\u7CD9\u5EA6\u3001\u5012\u89D2\u4E0E\u666F\u6DF1\u5171\u540C\u51B3\u5B9A\u53CD\u5C04\u3002"
+        ],
+        phases: [
+          "\u5FAE\u8DDD\u663E\u793A\u84DD\u94A2\u87BA\u4E1D\u3001\u540C\u8F74\u5DE5\u5177\u4E0E\u5B54\u53E3\uFF0C\u8F74\u7EBF\u4E0D\u6F02\u79FB\u3002",
+          "\u5DE5\u5177\u63A5\u89E6\u87BA\u5E3D\u540E\u540C\u6B65\u8F6C\u52A8\uFF0C\u87BA\u4E1D\u6CBF\u87BA\u7EB9\u8F74\u63A8\u8FDB\uFF0C\u91D1\u5C5E\u9AD8\u5149\u968F\u7740\u89D2\u5EA6\u79FB\u52A8\u3002",
+          "\u87BA\u5E3D\u843D\u81F3\u5EA7\u9762\u5E76\u505C\u6B62\u63A8\u8FDB\uFF0C\u4FDD\u6301\u5B8C\u6574\u65CB\u7D27\u52A8\u4F5C\u3002"
+        ],
+        details: [
+          "\u6240\u6709\u5E27\u53F7\u5747\u4E3A24\u5E27/\u79D2\u8BBE\u8BA1\u5E27\uFF1B\u52A8\u4F5C\u5E27f=floor(24\xD7\u52A8\u4F5C\u79D2\u6570)\uFF0C\u9650\u5236\u57280\u81F395\u3002\u5F71\u7247\u5E27\u7387\u6539\u53D8\u65F6\u5148\u6362\u7B97\u52A8\u4F5C\u79D2\u6570\uFF0C\u4E0D\u76F4\u63A5\u628A\u5F71\u7247\u5E27\u53F7\u5F53\u4F5C\u8BBE\u8BA1\u5E27\u3002",
+          "\u672C\u6BB5\u4E3A24\u5E27/\u79D2\u300196\u5E27\u30014\u79D2\u7684\u5B8C\u6574\u65CB\u7D27\uFF1B\u539F\u751F\u5B9E\u4F53\u7F51\u683C\u4E2D\u4FDD\u7559\u87BA\u7EB9\u3001\u69FD\u53E3\u3001\u87BA\u5E3D\u4E0E\u5EA7\u9762\u3002",
+          "\u955C\u5934\u6CBF\u56FA\u5B9A\u8F74\u7EBF\u5C55\u793A\u63A8\u8FDB\u5173\u7CFB\uFF0C\u7981\u6B62\u53EA\u65CB\u8F6C\u5E73\u9762\u56FE\u7247\uFF1B\u8868\u9762\u53CD\u5149\u7531\u771F\u5B9E\u91D1\u5C5E\u6750\u8D28\u4E0E\u68DA\u706F\u4EA7\u751F\u3002",
+          "\u87BA\u7EB9\u87BA\u8DDD0.018\u573A\u666F\u5355\u4F4D\uFF1B\u6E90\u5E271\u201312\u540C\u8F74\u63A5\u8FD1\uFF0C13\u201378\u5E27\u7528\u4E94\u6B21\u5E73\u6ED1\u51FD\u6570\u5B8C\u62107\u5708\u65CB\u5165\uFF0C\u87BA\u4E1Dz=0.342+7\xD70.018\xD7(1\u2212u)\u3001\u03B8=\u22127\xD72\u03C0\xD7u\uFF1B\u6700\u540E\u56FA\u5B9A\u5728z=0.342\u3002",
+          "\u5DE5\u5177\u4E0E\u87BA\u4E1D\u5171\u7528\u89D2\u5EA6\uFF1B\u6E90\u5E2780\u201396\u5DE5\u5177\u6CBF\u8F74\u62AC\u8D770.37\u573A\u666F\u5355\u4F4D\uFF0C\u87BA\u4E1D\u4FDD\u6301\u9501\u7D27\uFF1B\u4FDD\u7559\u771F\u5B9E\u87BA\u65CB\u7259\u5F62\uFF0C\u4E0D\u80FD\u53EA\u8BA9\u6574\u56FE\u65CB\u8F6C\u3002"
+        ],
+        start_state: "\u5FAE\u8DDD\u663E\u793A\u84DD\u94A2\u87BA\u4E1D\u3001\u540C\u8F74\u5DE5\u5177\u4E0E\u5B54\u53E3\uFF0C\u8F74\u7EBF\u4E0D\u6F02\u79FB\u3002",
+        end_state: "\u87BA\u5E3D\u843D\u81F3\u5EA7\u9762\u5E76\u505C\u6B62\u63A8\u8FDB\uFF0C\u4FDD\u6301\u5B8C\u6574\u65CB\u7D27\u52A8\u4F5C\u3002",
+        retain: "\u4FDD\u6301\u4E3B\u4F53\u8F74\u5FC3\u3001\u96F6\u4EF6\u5C42\u9AD8\u3001\u6444\u5F71\u6784\u56FE\u548C\u539F\u751F\u9010\u683C\u8282\u594F\u3002",
+        avoid: "\u4E0D\u8981\u505A\u4E8C\u7EF4\u6574\u56FE\u65CB\u8F6C\u6216\u4EE5\u63D2\u5E27\u6539\u53D8\u673A\u68B0\u8282\u5F8B\u3002"
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation",
+        "video"
+      ],
+      trigger: "\u6253\u5F00\u9884\u89C8\u6309\u56FA\u5B9A\u65F6\u95F4\u7EBF\u64AD\u653E\uFF1B\u53EF\u4EE5\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\u3002",
+      assumptions: "\u6000\u8868\u4E3A\u52A8\u4F5C\u793A\u4F8B\uFF0C\u53EF\u66FF\u6362\u4E3B\u4F53\uFF1B\u7269\u7406\u949F\u8868\u72B6\u6001\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+      id: "barrel-stored-energy",
+      name: "\u53D1\u6761\u76D2\u50A8\u80FD\u8FD0\u884C",
+      kind: "action",
+      category: "space",
+      duration_ms: 2e3,
+      preview_ms: 1125,
+      summary: "\u53D1\u6761\u76D2\u5185\u90E8\u5F39\u7C27\u4E0E\u8F6E\u76D8\u56F4\u7ED5\u56FA\u5B9A\u8F74\u5FC3\u8FD0\u884C\uFF0C\u955C\u5934\u8FD1\u8DDD\u79BB\u663E\u793A\u50A8\u80FD\u7ED3\u6784\u3002",
+      purpose: "\u53D1\u6761\u76D2\u5185\u90E8\u5F39\u7C27\u4E0E\u8F6E\u76D8\u56F4\u7ED5\u56FA\u5B9A\u8F74\u5FC3\u8FD0\u884C\uFF0C\u955C\u5934\u8FD1\u8DDD\u79BB\u663E\u793A\u50A8\u80FD\u7ED3\u6784\u3002",
+      aliases: [
+        "\u53D1\u6761\u76D2",
+        "\u50A8\u80FD",
+        "\u5377\u7C27",
+        "\u673A\u68B0\u8FD0\u884C",
+        "\u540C\u5FC3\u65CB\u8F6C"
+      ],
+      behaviors: [
+        "native-3d",
+        "frame-accurate",
+        "single-action"
+      ],
+      objects: "\u771F\u5B9E\u91D1\u5C5E\u673A\u82AF\u53CA\u5176\u6444\u5F71\u753B\u9762\uFF1B\u76F8\u5173\u6807\u9898\u4E0E\u6750\u8D28\u4E3A\u53EF\u66FF\u6362\u793A\u4F8B",
+      phases: [
+        "\u91D1\u8272\u53D1\u6761\u76D2\u3001\u4E2D\u5FC3\u8F74\u4E0E\u5B9D\u77F3\u8F74\u627F\u4EE5\u5FAE\u8DDD\u5B8C\u6574\u5448\u73B0\u3002",
+        "\u5F39\u7C27\u548C\u76D2\u8F6E\u6CBF\u56FA\u5B9A\u8F74\u5FC3\u8FD0\u884C\uFF0C\u90E8\u4EF6\u4FDD\u6301\u5B9E\u4F53\u9AD8\u5EA6\u548C\u8FDE\u7EED\u53CD\u5149\u3002",
+        "\u6301\u7EED\u4FDD\u6301\u5FAE\u8DDD\u9605\u8BFB\u533A\uFF0C\u6700\u540E\u4E00\u5E27\u4ECD\u4E3A\u5B8C\u6574\u7ED3\u6784\u3002"
+      ],
+      actions: [],
+      retain: "\u4E3B\u4F53\u5B8C\u6574\u3001\u771F\u5B9E\u96F6\u4EF6\u4E0E\u8F74\u5FC3\u3001\u539F\u751F24\u5E27\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u91D1\u94F6\u84DD\u94A2\u6750\u8D28\u5173\u7CFB\u3002",
+      avoid: "\u4E0D\u8981\u7528\u5E73\u9762\u8D34\u56FE\u4F2A\u88C5\u4E09\u7EF4\u96F6\u4EF6\uFF1B\u4E0D\u8981\u589E\u52A0\u63D2\u5E27\u3001\u5F39\u8DF3\u6216\u4EFB\u610F\u6539\u53D8\u88C5\u914D\u4F4D\u7F6E\u3002",
+      tempo_note: "\u630924\u5E27/\u79D2\uFF0C\u4EE5\u5F53\u524D\u5E27\u8BA1\u7B97\u56FA\u5B9A\u6F14\u793A\u65F6\u949F\u3002",
+      analogy: "\u53D1\u6761\u76D2\u5185\u90E8\u5F39\u7C27\u4E0E\u8F6E\u76D8\u56F4\u7ED5\u56FA\u5B9A\u8F74\u5FC3\u8FD0\u884C\uFF0C\u955C\u5934\u8FD1\u8DDD\u79BB\u663E\u793A\u50A8\u80FD\u7ED3\u6784\u3002",
+      recommendation: "\u53D1\u6761\u76D2\u5185\u90E8\u5F39\u7C27\u4E0E\u8F6E\u76D8\u56F4\u7ED5\u56FA\u5B9A\u8F74\u5FC3\u8FD0\u884C\uFF0C\u955C\u5934\u8FD1\u8DDD\u79BB\u663E\u793A\u50A8\u80FD\u7ED3\u6784\u3002 \u4E0E\u4E8C\u7EF4\u793A\u610F\u56FE\u4E0D\u540C\uFF0C\u672C\u4F8B\u4FDD\u7559\u771F\u5B9E\u96F6\u4EF6\u548C\u5149\u5B66\u6444\u5F71\u3002",
+      source: {
+        path: "catalog/effects/time-in-motion.js",
+        factory: "barrel-stored-energy",
+        dependencies: [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        origin: "original",
+        license: "Apache-2.0",
+        library: "blender@4.5.14",
+        native_scene: "blender",
+        frame_cache: {
+          video: "catalog/assets/time-in-motion/movie.mp4",
+          start_frame: 576,
+          frames: 48,
+          fps: 24,
+          width: 1280,
+          height: 720,
+          poster: "catalog/assets/time-in-motion/posters/barrel-stored-energy.jpg"
+        },
+        reference: {
+          name: "TIME, IN MOTION \xB7 \u7528\u6237\u539F\u521B\u6A2A\u5C4F\u673A\u68B0\u6000\u8868\u4F5C\u54C1"
+        },
+        extraction: "\u4ECE\u6700\u65B044\u79D2\u6210\u7247\u7684\u8FDE\u7EED\u539F\u751F\u5E27\u63D0\u70BC\u52A8\u4F5C\uFF1B\u5B8C\u6574\u526A\u8F91\u4E0E\u5BF9\u5E94\u5EFA\u6A21\u3001\u673A\u68B0\u53CA\u955C\u5934\u6E90\u7801\u53E6\u968F\u6587\u5B57\u6E90\u7801\u4EA4\u4ED8\u3002\u7F13\u5B58\u4EC5\u7F29\u5C0F\u753B\u5E45\uFF0C\u6CA1\u6709\u91CD\u7ED8\u3001\u91CD\u6392\u6216\u8865\u5E27\u3002",
+        production_guide: "catalog/assets/time-in-motion/README.md",
+        assets: [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/barrel-stored-energy.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
+        ],
+        remotion: {
+          component: "catalog/remotion/time-in-motion.jsx",
+          export_name: "WiseTimeInMotion",
+          package_name: "wise-time-in-motion",
+          files: [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/render_film.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6027\u80FD\u7814\u7A76/profiles.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/build.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/casework.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/movement.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/encode.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/\u900F\u660E\u6574\u8868.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/common.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u56FE\u7EB8\u5B9E\u4F53\u5F00\u573A/\u7D20\u6750/\u96F6\u4EF6\u6620\u5C04.json",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          binary_files: [
+            {
+              source: "catalog/assets/time-in-motion/movie.mp4",
+              target: "public/catalog/assets/time-in-motion/movie.mp4",
+              bytes: 7604138,
+              sha256: "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              source: "catalog/fonts/Oswald-Bold.woff2",
+              target: "public/catalog/fonts/Oswald-Bold.woff2",
+              bytes: 12112,
+              sha256: "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1920,
+          height: 1080,
+          fps: 24,
+          exact_frames: true,
+          reuse_notes: "\u76EE\u5F55\u4E0E\u9ED8\u8BA4\u6E32\u67D3\u4F7F\u7528\u6700\u7EC84K\u7247\u76841280\xD7720\u300124fps\u8F7B\u91CF\u7F13\u5B58\uFF0C\u4FDD\u63011056\u5E27\u3001\u6784\u56FE\u4E0E\u539F\u526A\u8F91\uFF1B\u4E0D\u80FD\u628A\u4E0A\u91C7\u6837\u7F13\u5B58\u79F0\u4E3A\u91CD\u65B0\u6E32\u67D34K\u3002\u5B8C\u6574\u526A\u8F91\u6E90\u7801\u5728catalog/assets/time-in-motion/editable/\uFF0C\u539F\u521B\u5EFA\u6A21\u3001\u673A\u68B0\u3001\u955C\u5934\u548C\u6295\u5F71\u6E90\u7801\u5728production/\u3002\u5148\u7528import-originals.mjs\u6309\u6458\u8981\u51C6\u5907\u539F\u5236\u4F5C\u7D20\u6750\uFF0C\u624D\u80FD\u8FD0\u884Cstudio:editable\u6216\u4FEE\u6539Blender\u573A\u666F\u3002\u5B57\u4F53\u6539\u4E3A\u968F\u5305\u6388\u6743\u7684Oswald\uFF1B\u539F\u7CFB\u7EDFHelveticaNeue\u5B57\u4F53\u4E0D\u5206\u53D1\uFF0C\u7F16\u8F91\u7248\u7684\u5B57\u5F62\u4E0E\u6700\u7EC8\u7F13\u5B58\u4E0D\u540C\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\uFF1BOswald\u9075\u5FAASIL OFL\u3002",
+          scripts: {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      reproduction: {
+        objects: "\u91D1\u8272\u9F7F\u8F6E\u3001\u94F6\u8272\u6865\u677F\u3001\u84DD\u94A2\u96F6\u4EF6\u4E0E\u7EA2\u8272\u5B9D\u77F3\u8F74\u627F\u7EC4\u6210\u7684\u771F\u5B9E\u673A\u82AF",
+        presentation: "1920\xD71080\u6A2A\u5411\u8BBE\u8BA1\u753B\u677F\uFF1B\u8FD1\u9ED1\u6444\u5F71\u5E95\uFF0C\u91D1\u3001\u94F6\u3001\u6696\u767D\u4E0E\u84DD\u94A2\u7EC6\u8282\u3002\u753B\u9762\u7528\u8F6F\u7BB1\u706F\u7167\u660E\uFF0C\u7EC6\u7A84\u5012\u89D2\u53CD\u5149\uFF0C\u4E0D\u62C9\u4F38\u4E3B\u4F53\u3002",
+        materials: [
+          "\u673A\u68B0\u90E8\u4EF6\u4E3A\u72EC\u7ACB\u771F\u5B9E\u4E09\u7EF4\u7F51\u683C\uFF1B\u68DA\u706F\u3001\u91D1\u5C5E\u7C97\u7CD9\u5EA6\u3001\u5012\u89D2\u4E0E\u666F\u6DF1\u5171\u540C\u51B3\u5B9A\u53CD\u5C04\u3002"
+        ],
+        phases: [
+          "\u91D1\u8272\u53D1\u6761\u76D2\u3001\u4E2D\u5FC3\u8F74\u4E0E\u5B9D\u77F3\u8F74\u627F\u4EE5\u5FAE\u8DDD\u5B8C\u6574\u5448\u73B0\u3002",
+          "\u5F39\u7C27\u548C\u76D2\u8F6E\u6CBF\u56FA\u5B9A\u8F74\u5FC3\u8FD0\u884C\uFF0C\u90E8\u4EF6\u4FDD\u6301\u5B9E\u4F53\u9AD8\u5EA6\u548C\u8FDE\u7EED\u53CD\u5149\u3002",
+          "\u6301\u7EED\u4FDD\u6301\u5FAE\u8DDD\u9605\u8BFB\u533A\uFF0C\u6700\u540E\u4E00\u5E27\u4ECD\u4E3A\u5B8C\u6574\u7ED3\u6784\u3002"
+        ],
+        details: [
+          "\u6240\u6709\u5E27\u53F7\u5747\u4E3A24\u5E27/\u79D2\u8BBE\u8BA1\u5E27\uFF1B\u52A8\u4F5C\u5E27f=floor(24\xD7\u52A8\u4F5C\u79D2\u6570)\uFF0C\u9650\u5236\u57280\u81F347\u3002\u5F71\u7247\u5E27\u7387\u6539\u53D8\u65F6\u5148\u6362\u7B97\u52A8\u4F5C\u79D2\u6570\uFF0C\u4E0D\u76F4\u63A5\u628A\u5F71\u7247\u5E27\u53F7\u5F53\u4F5C\u8BBE\u8BA1\u5E27\u3002",
+          "\u4F7F\u752830\u5E27\u53D1\u6761\u76D2\u539F\u751F\u7D20\u6750\uFF0C\u4EE50.625\u500D\u901F\u5EA6\u64AD\u653E\u4E3A48\u5E27\uFF0C\u4E0D\u63D2\u5E27\u3002",
+          "\u4ECE\u539F\u673A\u82AF\u7684\u540C\u4E00\u72B6\u6001\u65F6\u949F\u8BA1\u7B97\u8F6E\u7CFB\uFF0C\u4E0D\u4EE5\u4EFB\u610F\u901F\u5EA6\u8F6C\u52A8\u88C5\u9970\u9F7F\u8F6E\uFF1B\u9876\u90E822\u50CF\u7D20\u8BF4\u660E\u6587\u5B57\u3001\u5DE6\u8FB9\u8DDD96\u3001\u4E0A\u8FB9\u8DDD78\u3002"
+        ],
+        start_state: "\u91D1\u8272\u53D1\u6761\u76D2\u3001\u4E2D\u5FC3\u8F74\u4E0E\u5B9D\u77F3\u8F74\u627F\u4EE5\u5FAE\u8DDD\u5B8C\u6574\u5448\u73B0\u3002",
+        end_state: "\u6301\u7EED\u4FDD\u6301\u5FAE\u8DDD\u9605\u8BFB\u533A\uFF0C\u6700\u540E\u4E00\u5E27\u4ECD\u4E3A\u5B8C\u6574\u7ED3\u6784\u3002",
+        retain: "\u4FDD\u6301\u4E3B\u4F53\u8F74\u5FC3\u3001\u96F6\u4EF6\u5C42\u9AD8\u3001\u6444\u5F71\u6784\u56FE\u548C\u539F\u751F\u9010\u683C\u8282\u594F\u3002",
+        avoid: "\u4E0D\u8981\u505A\u4E8C\u7EF4\u6574\u56FE\u65CB\u8F6C\u6216\u4EE5\u63D2\u5E27\u6539\u53D8\u673A\u68B0\u8282\u5F8B\u3002"
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation",
+        "video"
+      ],
+      trigger: "\u6253\u5F00\u9884\u89C8\u6309\u56FA\u5B9A\u65F6\u95F4\u7EBF\u64AD\u653E\uFF1B\u53EF\u4EE5\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\u3002",
+      assumptions: "\u6000\u8868\u4E3A\u52A8\u4F5C\u793A\u4F8B\uFF0C\u53EF\u66FF\u6362\u4E3B\u4F53\uFF1B\u7269\u7406\u949F\u8868\u72B6\u6001\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+      id: "meshed-gears-drive",
+      name: "\u540C\u8F74\u8F6E\u7CFB\u556E\u5408\u4F20\u52A8",
+      kind: "action",
+      category: "space",
+      duration_ms: 2e3,
+      preview_ms: 1208.3333333333333,
+      summary: "\u76F8\u90BB\u9F7F\u8F6E\u6309\u9F7F\u6570\u5173\u7CFB\u53CD\u5411\u4F20\u52A8\uFF0C\u8F6E\u4E0E\u8F74\u540C\u6B65\uFF0C\u4FDD\u7559\u771F\u5B9E\u556E\u5408\u9AD8\u5EA6\u3002",
+      purpose: "\u76F8\u90BB\u9F7F\u8F6E\u6309\u9F7F\u6570\u5173\u7CFB\u53CD\u5411\u4F20\u52A8\uFF0C\u8F6E\u4E0E\u8F74\u540C\u6B65\uFF0C\u4FDD\u7559\u771F\u5B9E\u556E\u5408\u9AD8\u5EA6\u3002",
+      aliases: [
+        "\u9F7F\u8F6E\u556E\u5408",
+        "\u8F6E\u7CFB\u4F20\u52A8",
+        "\u53CD\u5411\u8F6C\u52A8",
+        "\u673A\u68B0\u6000\u8868",
+        "\u9F7F\u6570\u6BD4"
+      ],
+      behaviors: [
+        "native-3d",
+        "frame-accurate",
+        "single-action"
+      ],
+      objects: "\u771F\u5B9E\u91D1\u5C5E\u673A\u82AF\u53CA\u5176\u6444\u5F71\u753B\u9762\uFF1B\u76F8\u5173\u6807\u9898\u4E0E\u6750\u8D28\u4E3A\u53EF\u66FF\u6362\u793A\u4F8B",
+      phases: [
+        "\u5C55\u793A\u5927\u91D1\u8272\u9F7F\u8F6E\u3001\u5C0F\u94A2\u9F7F\u8F6E\u4E0E\u5404\u81EA\u56FA\u5B9A\u8F74\u5FC3\uFF0C\u9F7F\u5F62\u6E05\u6670\u53EF\u8BFB\u3002",
+        "\u540C\u4E00\u64D2\u7EB5\u65F6\u949F\u5E26\u52A8\u590D\u5408\u8F6E\u7CFB\uFF1B\u76F8\u90BB\u556E\u5408\u8F6E\u53CD\u5411\u8F6C\u52A8\uFF0C\u8F6E\u4E0E\u8F74\u4FDD\u6301\u76F8\u4F4D\u3002",
+        "\u8FDE\u7EED\u4F20\u52A8\u4E24\u79D2\uFF0C\u6700\u540E\u4FDD\u6301\u771F\u5B9E\u8F6E\u7CFB\u4E0E\u5C42\u9AD8\u3002"
+      ],
+      actions: [],
+      retain: "\u4E3B\u4F53\u5B8C\u6574\u3001\u771F\u5B9E\u96F6\u4EF6\u4E0E\u8F74\u5FC3\u3001\u539F\u751F24\u5E27\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u91D1\u94F6\u84DD\u94A2\u6750\u8D28\u5173\u7CFB\u3002",
+      avoid: "\u4E0D\u8981\u7528\u5E73\u9762\u8D34\u56FE\u4F2A\u88C5\u4E09\u7EF4\u96F6\u4EF6\uFF1B\u4E0D\u8981\u589E\u52A0\u63D2\u5E27\u3001\u5F39\u8DF3\u6216\u4EFB\u610F\u6539\u53D8\u88C5\u914D\u4F4D\u7F6E\u3002",
+      tempo_note: "\u630924\u5E27/\u79D2\uFF0C\u4EE5\u5F53\u524D\u5E27\u8BA1\u7B97\u56FA\u5B9A\u6F14\u793A\u65F6\u949F\u3002",
+      analogy: "\u76F8\u90BB\u9F7F\u8F6E\u6309\u9F7F\u6570\u5173\u7CFB\u53CD\u5411\u4F20\u52A8\uFF0C\u8F6E\u4E0E\u8F74\u540C\u6B65\uFF0C\u4FDD\u7559\u771F\u5B9E\u556E\u5408\u9AD8\u5EA6\u3002",
+      recommendation: "\u76F8\u90BB\u9F7F\u8F6E\u6309\u9F7F\u6570\u5173\u7CFB\u53CD\u5411\u4F20\u52A8\uFF0C\u8F6E\u4E0E\u8F74\u540C\u6B65\uFF0C\u4FDD\u7559\u771F\u5B9E\u556E\u5408\u9AD8\u5EA6\u3002 \u4E0E\u4E8C\u7EF4\u793A\u610F\u56FE\u4E0D\u540C\uFF0C\u672C\u4F8B\u4FDD\u7559\u771F\u5B9E\u96F6\u4EF6\u548C\u5149\u5B66\u6444\u5F71\u3002",
+      source: {
+        path: "catalog/effects/time-in-motion.js",
+        factory: "meshed-gears-drive",
+        dependencies: [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        origin: "original",
+        license: "Apache-2.0",
+        library: "blender@4.5.14",
+        native_scene: "blender",
+        frame_cache: {
+          video: "catalog/assets/time-in-motion/movie.mp4",
+          start_frame: 624,
+          frames: 48,
+          fps: 24,
+          width: 1280,
+          height: 720,
+          poster: "catalog/assets/time-in-motion/posters/meshed-gears-drive.jpg"
+        },
+        reference: {
+          name: "TIME, IN MOTION \xB7 \u7528\u6237\u539F\u521B\u6A2A\u5C4F\u673A\u68B0\u6000\u8868\u4F5C\u54C1"
+        },
+        extraction: "\u4ECE\u6700\u65B044\u79D2\u6210\u7247\u7684\u8FDE\u7EED\u539F\u751F\u5E27\u63D0\u70BC\u52A8\u4F5C\uFF1B\u5B8C\u6574\u526A\u8F91\u4E0E\u5BF9\u5E94\u5EFA\u6A21\u3001\u673A\u68B0\u53CA\u955C\u5934\u6E90\u7801\u53E6\u968F\u6587\u5B57\u6E90\u7801\u4EA4\u4ED8\u3002\u7F13\u5B58\u4EC5\u7F29\u5C0F\u753B\u5E45\uFF0C\u6CA1\u6709\u91CD\u7ED8\u3001\u91CD\u6392\u6216\u8865\u5E27\u3002",
+        production_guide: "catalog/assets/time-in-motion/README.md",
+        assets: [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/meshed-gears-drive.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
+        ],
+        remotion: {
+          component: "catalog/remotion/time-in-motion.jsx",
+          export_name: "WiseTimeInMotion",
+          package_name: "wise-time-in-motion",
+          files: [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/render_film.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6027\u80FD\u7814\u7A76/profiles.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/build.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/casework.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/movement.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/encode.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/\u900F\u660E\u6574\u8868.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/common.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u56FE\u7EB8\u5B9E\u4F53\u5F00\u573A/\u7D20\u6750/\u96F6\u4EF6\u6620\u5C04.json",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          binary_files: [
+            {
+              source: "catalog/assets/time-in-motion/movie.mp4",
+              target: "public/catalog/assets/time-in-motion/movie.mp4",
+              bytes: 7604138,
+              sha256: "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              source: "catalog/fonts/Oswald-Bold.woff2",
+              target: "public/catalog/fonts/Oswald-Bold.woff2",
+              bytes: 12112,
+              sha256: "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1920,
+          height: 1080,
+          fps: 24,
+          exact_frames: true,
+          reuse_notes: "\u76EE\u5F55\u4E0E\u9ED8\u8BA4\u6E32\u67D3\u4F7F\u7528\u6700\u7EC84K\u7247\u76841280\xD7720\u300124fps\u8F7B\u91CF\u7F13\u5B58\uFF0C\u4FDD\u63011056\u5E27\u3001\u6784\u56FE\u4E0E\u539F\u526A\u8F91\uFF1B\u4E0D\u80FD\u628A\u4E0A\u91C7\u6837\u7F13\u5B58\u79F0\u4E3A\u91CD\u65B0\u6E32\u67D34K\u3002\u5B8C\u6574\u526A\u8F91\u6E90\u7801\u5728catalog/assets/time-in-motion/editable/\uFF0C\u539F\u521B\u5EFA\u6A21\u3001\u673A\u68B0\u3001\u955C\u5934\u548C\u6295\u5F71\u6E90\u7801\u5728production/\u3002\u5148\u7528import-originals.mjs\u6309\u6458\u8981\u51C6\u5907\u539F\u5236\u4F5C\u7D20\u6750\uFF0C\u624D\u80FD\u8FD0\u884Cstudio:editable\u6216\u4FEE\u6539Blender\u573A\u666F\u3002\u5B57\u4F53\u6539\u4E3A\u968F\u5305\u6388\u6743\u7684Oswald\uFF1B\u539F\u7CFB\u7EDFHelveticaNeue\u5B57\u4F53\u4E0D\u5206\u53D1\uFF0C\u7F16\u8F91\u7248\u7684\u5B57\u5F62\u4E0E\u6700\u7EC8\u7F13\u5B58\u4E0D\u540C\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\uFF1BOswald\u9075\u5FAASIL OFL\u3002",
+          scripts: {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      reproduction: {
+        objects: "\u91D1\u8272\u9F7F\u8F6E\u3001\u94F6\u8272\u6865\u677F\u3001\u84DD\u94A2\u96F6\u4EF6\u4E0E\u7EA2\u8272\u5B9D\u77F3\u8F74\u627F\u7EC4\u6210\u7684\u771F\u5B9E\u673A\u82AF",
+        presentation: "1920\xD71080\u6A2A\u5411\u8BBE\u8BA1\u753B\u677F\uFF1B\u8FD1\u9ED1\u6444\u5F71\u5E95\uFF0C\u91D1\u3001\u94F6\u3001\u6696\u767D\u4E0E\u84DD\u94A2\u7EC6\u8282\u3002\u753B\u9762\u7528\u8F6F\u7BB1\u706F\u7167\u660E\uFF0C\u7EC6\u7A84\u5012\u89D2\u53CD\u5149\uFF0C\u4E0D\u62C9\u4F38\u4E3B\u4F53\u3002",
+        materials: [
+          "\u673A\u68B0\u90E8\u4EF6\u4E3A\u72EC\u7ACB\u771F\u5B9E\u4E09\u7EF4\u7F51\u683C\uFF1B\u68DA\u706F\u3001\u91D1\u5C5E\u7C97\u7CD9\u5EA6\u3001\u5012\u89D2\u4E0E\u666F\u6DF1\u5171\u540C\u51B3\u5B9A\u53CD\u5C04\u3002"
+        ],
+        phases: [
+          "\u5C55\u793A\u5927\u91D1\u8272\u9F7F\u8F6E\u3001\u5C0F\u94A2\u9F7F\u8F6E\u4E0E\u5404\u81EA\u56FA\u5B9A\u8F74\u5FC3\uFF0C\u9F7F\u5F62\u6E05\u6670\u53EF\u8BFB\u3002",
+          "\u540C\u4E00\u64D2\u7EB5\u65F6\u949F\u5E26\u52A8\u590D\u5408\u8F6E\u7CFB\uFF1B\u76F8\u90BB\u556E\u5408\u8F6E\u53CD\u5411\u8F6C\u52A8\uFF0C\u8F6E\u4E0E\u8F74\u4FDD\u6301\u76F8\u4F4D\u3002",
+          "\u8FDE\u7EED\u4F20\u52A8\u4E24\u79D2\uFF0C\u6700\u540E\u4FDD\u6301\u771F\u5B9E\u8F6E\u7CFB\u4E0E\u5C42\u9AD8\u3002"
+        ],
+        details: [
+          "\u6240\u6709\u5E27\u53F7\u5747\u4E3A24\u5E27/\u79D2\u8BBE\u8BA1\u5E27\uFF1B\u52A8\u4F5C\u5E27f=floor(24\xD7\u52A8\u4F5C\u79D2\u6570)\uFF0C\u9650\u5236\u57280\u81F347\u3002\u5F71\u7247\u5E27\u7387\u6539\u53D8\u65F6\u5148\u6362\u7B97\u52A8\u4F5C\u79D2\u6570\uFF0C\u4E0D\u76F4\u63A5\u628A\u5F71\u7247\u5E27\u53F7\u5F53\u4F5C\u8BBE\u8BA1\u5E27\u3002",
+          "4\u7EC4\u9F7F\u6570\u5206\u522B\u4E3A80/40\u300196/16\u3001100/10\u300180/8\uFF0C\u5404\u7EC4\u6CBF\u771F\u5B9E\u8F74\u8DDD\u4E0E\u4E0D\u540C\u5C42\u9AD8\u5EFA\u7ACB\u6E10\u5F00\u7EBF\u9F7F\u5F62\u3002",
+          "\u89D2\u5EA6\u7531\u64D2\u7EB5\u65F6\u949F\u9A71\u52A8\uFF1A\u53D1\u6761\u76D2\u3001\u4E2D\u5FC3\u8F6E\u3001\u4E09\u8F6E\u3001\u56DB\u8F6E\u3001\u64D2\u7EB5\u8F6E\u89D2\u901F\u5EA6\u6BD4\u4E3A0.5:\u22121:6:\u221260:600\u3002",
+          "\u6BCF\u62CD\u63A8\u8FDB\u534A\u9F7F\uFF1B\u6BCF\u4E2A\u62CD\u5468\u671F\u76F8\u4F4D0.36\u20130.64\u7528\u4E94\u6B21\u5E73\u6ED1\u51FD\u6570\u91CA\u653E\uFF0C\u5176\u4F59\u65F6\u95F4\u4FDD\u6301\u9501\u5B9A\u3002"
+        ],
+        start_state: "\u5C55\u793A\u5927\u91D1\u8272\u9F7F\u8F6E\u3001\u5C0F\u94A2\u9F7F\u8F6E\u4E0E\u5404\u81EA\u56FA\u5B9A\u8F74\u5FC3\uFF0C\u9F7F\u5F62\u6E05\u6670\u53EF\u8BFB\u3002",
+        end_state: "\u8FDE\u7EED\u4F20\u52A8\u4E24\u79D2\uFF0C\u6700\u540E\u4FDD\u6301\u771F\u5B9E\u8F6E\u7CFB\u4E0E\u5C42\u9AD8\u3002",
+        retain: "\u4FDD\u6301\u4E3B\u4F53\u8F74\u5FC3\u3001\u96F6\u4EF6\u5C42\u9AD8\u3001\u6444\u5F71\u6784\u56FE\u548C\u539F\u751F\u9010\u683C\u8282\u594F\u3002",
+        avoid: "\u4E0D\u8981\u505A\u4E8C\u7EF4\u6574\u56FE\u65CB\u8F6C\u6216\u4EE5\u63D2\u5E27\u6539\u53D8\u673A\u68B0\u8282\u5F8B\u3002"
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation",
+        "video"
+      ],
+      trigger: "\u6253\u5F00\u9884\u89C8\u6309\u56FA\u5B9A\u65F6\u95F4\u7EBF\u64AD\u653E\uFF1B\u53EF\u4EE5\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\u3002",
+      assumptions: "\u6000\u8868\u4E3A\u52A8\u4F5C\u793A\u4F8B\uFF0C\u53EF\u66FF\u6362\u4E3B\u4F53\uFF1B\u7269\u7406\u949F\u8868\u72B6\u6001\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+      id: "balance-reciprocate",
+      name: "\u6446\u8F6E\u4E0E\u6E38\u4E1D\u5F80\u8FD4\u8054\u52A8",
+      kind: "action",
+      category: "response",
+      duration_ms: 2e3,
+      preview_ms: 833.3333333333334,
+      summary: "\u6446\u8F6E\u56F4\u7ED5\u8F74\u5FC3\u5927\u5E45\u5F80\u8FD4\uFF0C\u6E38\u4E1D\u540C\u6B65\u547C\u5438\uFF0C\u64D2\u7EB5\u53C9\u6309\u62CD\u70B9\u6362\u5411\u3002",
+      purpose: "\u6446\u8F6E\u56F4\u7ED5\u8F74\u5FC3\u5927\u5E45\u5F80\u8FD4\uFF0C\u6E38\u4E1D\u540C\u6B65\u547C\u5438\uFF0C\u64D2\u7EB5\u53C9\u6309\u62CD\u70B9\u6362\u5411\u3002",
+      aliases: [
+        "\u6446\u8F6E\u5F80\u8FD4",
+        "\u6E38\u4E1D\u547C\u5438",
+        "\u64D2\u7EB5\u53C9",
+        "\u632F\u8361",
+        "\u673A\u68B0\u8282\u5F8B"
+      ],
+      behaviors: [
+        "native-3d",
+        "frame-accurate",
+        "single-action"
+      ],
+      objects: "\u771F\u5B9E\u91D1\u5C5E\u673A\u82AF\u53CA\u5176\u6444\u5F71\u753B\u9762\uFF1B\u76F8\u5173\u6807\u9898\u4E0E\u6750\u8D28\u4E3A\u53EF\u66FF\u6362\u793A\u4F8B",
+      phases: [
+        "\u91D1\u5C5E\u6446\u8F6E\u3001\u4E2D\u5FC3\u7EA2\u5B9D\u77F3\u4E0E\u540C\u5FC3\u6E38\u4E1D\u4EE5\u5FAE\u8DDD\u5448\u73B0\u3002",
+        "\u6446\u8F6E\u4EE5\u6B63\u5F26\u89D2\u5EA6\u5F80\u8FD4\uFF0C\u6E38\u4E1D\u968F\u632F\u8361\u6536\u653E\uFF0C\u64D2\u7EB5\u53C9\u4EA4\u66FF\u6362\u5411\u3002",
+        "\u4FDD\u6301\u56FA\u5B9A\u8F74\u5FC3\u548C\u6E05\u6670\u6E38\u4E1D\uFF0C\u5B8C\u6210\u4E24\u79D2\u7684\u8FDE\u7EED\u632F\u8361\u3002"
+      ],
+      actions: [],
+      retain: "\u4E3B\u4F53\u5B8C\u6574\u3001\u771F\u5B9E\u96F6\u4EF6\u4E0E\u8F74\u5FC3\u3001\u539F\u751F24\u5E27\u8282\u594F\u3001\u539F\u955C\u5934\u548C\u91D1\u94F6\u84DD\u94A2\u6750\u8D28\u5173\u7CFB\u3002",
+      avoid: "\u4E0D\u8981\u7528\u5E73\u9762\u8D34\u56FE\u4F2A\u88C5\u4E09\u7EF4\u96F6\u4EF6\uFF1B\u4E0D\u8981\u589E\u52A0\u63D2\u5E27\u3001\u5F39\u8DF3\u6216\u4EFB\u610F\u6539\u53D8\u88C5\u914D\u4F4D\u7F6E\u3002",
+      tempo_note: "\u630924\u5E27/\u79D2\uFF0C\u4EE5\u5F53\u524D\u5E27\u8BA1\u7B97\u56FA\u5B9A\u6F14\u793A\u65F6\u949F\u3002",
+      analogy: "\u6446\u8F6E\u56F4\u7ED5\u8F74\u5FC3\u5927\u5E45\u5F80\u8FD4\uFF0C\u6E38\u4E1D\u540C\u6B65\u547C\u5438\uFF0C\u64D2\u7EB5\u53C9\u6309\u62CD\u70B9\u6362\u5411\u3002",
+      recommendation: "\u6446\u8F6E\u56F4\u7ED5\u8F74\u5FC3\u5927\u5E45\u5F80\u8FD4\uFF0C\u6E38\u4E1D\u540C\u6B65\u547C\u5438\uFF0C\u64D2\u7EB5\u53C9\u6309\u62CD\u70B9\u6362\u5411\u3002 \u4E0E\u4E8C\u7EF4\u793A\u610F\u56FE\u4E0D\u540C\uFF0C\u672C\u4F8B\u4FDD\u7559\u771F\u5B9E\u96F6\u4EF6\u548C\u5149\u5B66\u6444\u5F71\u3002",
+      source: {
+        path: "catalog/effects/time-in-motion.js",
+        factory: "balance-reciprocate",
+        dependencies: [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        origin: "original",
+        license: "Apache-2.0",
+        library: "blender@4.5.14",
+        native_scene: "blender",
+        frame_cache: {
+          video: "catalog/assets/time-in-motion/movie.mp4",
+          start_frame: 672,
+          frames: 48,
+          fps: 24,
+          width: 1280,
+          height: 720,
+          poster: "catalog/assets/time-in-motion/posters/balance-reciprocate.jpg"
+        },
+        reference: {
+          name: "TIME, IN MOTION \xB7 \u7528\u6237\u539F\u521B\u6A2A\u5C4F\u673A\u68B0\u6000\u8868\u4F5C\u54C1"
+        },
+        extraction: "\u4ECE\u6700\u65B044\u79D2\u6210\u7247\u7684\u8FDE\u7EED\u539F\u751F\u5E27\u63D0\u70BC\u52A8\u4F5C\uFF1B\u5B8C\u6574\u526A\u8F91\u4E0E\u5BF9\u5E94\u5EFA\u6A21\u3001\u673A\u68B0\u53CA\u955C\u5934\u6E90\u7801\u53E6\u968F\u6587\u5B57\u6E90\u7801\u4EA4\u4ED8\u3002\u7F13\u5B58\u4EC5\u7F29\u5C0F\u753B\u5E45\uFF0C\u6CA1\u6709\u91CD\u7ED8\u3001\u91CD\u6392\u6216\u8865\u5E27\u3002",
+        production_guide: "catalog/assets/time-in-motion/README.md",
+        assets: [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/balance-reciprocate.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
+        ],
+        remotion: {
+          component: "catalog/remotion/time-in-motion.jsx",
+          export_name: "WiseTimeInMotion",
+          package_name: "wise-time-in-motion",
+          files: [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/render_film.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6027\u80FD\u7814\u7A76/profiles.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/build.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/casework.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/movement.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/encode.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/\u900F\u660E\u6574\u8868.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/common.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u56FE\u7EB8\u5B9E\u4F53\u5F00\u573A/\u7D20\u6750/\u96F6\u4EF6\u6620\u5C04.json",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          binary_files: [
+            {
+              source: "catalog/assets/time-in-motion/movie.mp4",
+              target: "public/catalog/assets/time-in-motion/movie.mp4",
+              bytes: 7604138,
+              sha256: "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              source: "catalog/fonts/Oswald-Bold.woff2",
+              target: "public/catalog/fonts/Oswald-Bold.woff2",
+              bytes: 12112,
+              sha256: "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1920,
+          height: 1080,
+          fps: 24,
+          exact_frames: true,
+          reuse_notes: "\u76EE\u5F55\u4E0E\u9ED8\u8BA4\u6E32\u67D3\u4F7F\u7528\u6700\u7EC84K\u7247\u76841280\xD7720\u300124fps\u8F7B\u91CF\u7F13\u5B58\uFF0C\u4FDD\u63011056\u5E27\u3001\u6784\u56FE\u4E0E\u539F\u526A\u8F91\uFF1B\u4E0D\u80FD\u628A\u4E0A\u91C7\u6837\u7F13\u5B58\u79F0\u4E3A\u91CD\u65B0\u6E32\u67D34K\u3002\u5B8C\u6574\u526A\u8F91\u6E90\u7801\u5728catalog/assets/time-in-motion/editable/\uFF0C\u539F\u521B\u5EFA\u6A21\u3001\u673A\u68B0\u3001\u955C\u5934\u548C\u6295\u5F71\u6E90\u7801\u5728production/\u3002\u5148\u7528import-originals.mjs\u6309\u6458\u8981\u51C6\u5907\u539F\u5236\u4F5C\u7D20\u6750\uFF0C\u624D\u80FD\u8FD0\u884Cstudio:editable\u6216\u4FEE\u6539Blender\u573A\u666F\u3002\u5B57\u4F53\u6539\u4E3A\u968F\u5305\u6388\u6743\u7684Oswald\uFF1B\u539F\u7CFB\u7EDFHelveticaNeue\u5B57\u4F53\u4E0D\u5206\u53D1\uFF0C\u7F16\u8F91\u7248\u7684\u5B57\u5F62\u4E0E\u6700\u7EC8\u7F13\u5B58\u4E0D\u540C\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\uFF1BOswald\u9075\u5FAASIL OFL\u3002",
+          scripts: {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      reproduction: {
+        objects: "\u91D1\u8272\u9F7F\u8F6E\u3001\u94F6\u8272\u6865\u677F\u3001\u84DD\u94A2\u96F6\u4EF6\u4E0E\u7EA2\u8272\u5B9D\u77F3\u8F74\u627F\u7EC4\u6210\u7684\u771F\u5B9E\u673A\u82AF",
+        presentation: "1920\xD71080\u6A2A\u5411\u8BBE\u8BA1\u753B\u677F\uFF1B\u8FD1\u9ED1\u6444\u5F71\u5E95\uFF0C\u91D1\u3001\u94F6\u3001\u6696\u767D\u4E0E\u84DD\u94A2\u7EC6\u8282\u3002\u753B\u9762\u7528\u8F6F\u7BB1\u706F\u7167\u660E\uFF0C\u7EC6\u7A84\u5012\u89D2\u53CD\u5149\uFF0C\u4E0D\u62C9\u4F38\u4E3B\u4F53\u3002",
+        materials: [
+          "\u673A\u68B0\u90E8\u4EF6\u4E3A\u72EC\u7ACB\u771F\u5B9E\u4E09\u7EF4\u7F51\u683C\uFF1B\u68DA\u706F\u3001\u91D1\u5C5E\u7C97\u7CD9\u5EA6\u3001\u5012\u89D2\u4E0E\u666F\u6DF1\u5171\u540C\u51B3\u5B9A\u53CD\u5C04\u3002"
+        ],
+        phases: [
+          "\u91D1\u5C5E\u6446\u8F6E\u3001\u4E2D\u5FC3\u7EA2\u5B9D\u77F3\u4E0E\u540C\u5FC3\u6E38\u4E1D\u4EE5\u5FAE\u8DDD\u5448\u73B0\u3002",
+          "\u6446\u8F6E\u4EE5\u6B63\u5F26\u89D2\u5EA6\u5F80\u8FD4\uFF0C\u6E38\u4E1D\u968F\u632F\u8361\u6536\u653E\uFF0C\u64D2\u7EB5\u53C9\u4EA4\u66FF\u6362\u5411\u3002",
+          "\u4FDD\u6301\u56FA\u5B9A\u8F74\u5FC3\u548C\u6E05\u6670\u6E38\u4E1D\uFF0C\u5B8C\u6210\u4E24\u79D2\u7684\u8FDE\u7EED\u632F\u8361\u3002"
+        ],
+        details: [
+          "\u6240\u6709\u5E27\u53F7\u5747\u4E3A24\u5E27/\u79D2\u8BBE\u8BA1\u5E27\uFF1B\u52A8\u4F5C\u5E27f=floor(24\xD7\u52A8\u4F5C\u79D2\u6570)\uFF0C\u9650\u5236\u57280\u81F347\u3002\u5F71\u7247\u5E27\u7387\u6539\u53D8\u65F6\u5148\u6362\u7B97\u52A8\u4F5C\u79D2\u6570\uFF0C\u4E0D\u76F4\u63A5\u628A\u5F71\u7247\u5E27\u53F7\u5F53\u4F5C\u8BBE\u8BA1\u5E27\u3002",
+          "\u6446\u8F6E\u89D2\u5EA6\u03B8(t)=145\xB0\xD7cos(2\u03C0\xD72.5t)\uFF1Bt\u4E3A\u4E09\u7EF4\u6E90\u79D2\u6570\uFF0C24\u5E27/\u79D2\uFF1B\u4E24\u79D2\u51855\u4E2A\u5B8C\u6574\u5F80\u8FD4\u3002",
+          "\u64D2\u7EB5\u53C9\u5728\xB17\xB0\u4E4B\u95F4\u6309\u6BCF\u62CD\u76F8\u4F4D0.32\u20130.68\u6362\u5411\uFF1B\u5FAE\u8DDD\u4FDD\u7559\u6446\u8F6E\u3001\u6E38\u4E1D\u4E0E\u53C9\u7684\u771F\u5B9E\u8F74\u5FC3\uFF0C\u4E0D\u628A\u6574\u5E45\u753B\u9762\u5DE6\u53F3\u6446\u52A8\u3002"
+        ],
+        start_state: "\u91D1\u5C5E\u6446\u8F6E\u3001\u4E2D\u5FC3\u7EA2\u5B9D\u77F3\u4E0E\u540C\u5FC3\u6E38\u4E1D\u4EE5\u5FAE\u8DDD\u5448\u73B0\u3002",
+        end_state: "\u4FDD\u6301\u56FA\u5B9A\u8F74\u5FC3\u548C\u6E05\u6670\u6E38\u4E1D\uFF0C\u5B8C\u6210\u4E24\u79D2\u7684\u8FDE\u7EED\u632F\u8361\u3002",
+        retain: "\u4FDD\u6301\u4E3B\u4F53\u8F74\u5FC3\u3001\u96F6\u4EF6\u5C42\u9AD8\u3001\u6444\u5F71\u6784\u56FE\u548C\u539F\u751F\u9010\u683C\u8282\u594F\u3002",
+        avoid: "\u4E0D\u8981\u505A\u4E8C\u7EF4\u6574\u56FE\u65CB\u8F6C\u6216\u4EE5\u63D2\u5E27\u6539\u53D8\u673A\u68B0\u8282\u5F8B\u3002"
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation",
+        "video"
+      ],
+      trigger: "\u6253\u5F00\u9884\u89C8\u6309\u56FA\u5B9A\u65F6\u95F4\u7EBF\u64AD\u653E\uFF1B\u53EF\u4EE5\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\u3002",
+      assumptions: "\u6000\u8868\u4E3A\u52A8\u4F5C\u793A\u4F8B\uFF0C\u53EF\u66FF\u6362\u4E3B\u4F53\uFF1B\u7269\u7406\u949F\u8868\u72B6\u6001\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+      id: "fan-object-rise",
+      name: "\u4E09\u8054\u4E3B\u4F53\u9519\u5CF0\u5347\u5165",
+      kind: "action",
+      category: "entrance",
+      duration_ms: 2e3,
+      preview_ms: 1250,
+      summary: "\u4E09\u4E2A\u5B8C\u6574\u4E3B\u4F53\u4EE5\u56FA\u5B9A\u9519\u5CF0\u4ECE\u4E0B\u65B9\u5347\u5165\uFF0C\u5206\u522B\u503E\u659C\u843D\u4F4D\u7EC4\u6210\u4E09\u8054\u753B\u3002",
+      purpose: "\u4E09\u4E2A\u5B8C\u6574\u4E3B\u4F53\u4EE5\u56FA\u5B9A\u9519\u5CF0\u4ECE\u4E0B\u65B9\u5347\u5165\uFF0C\u5206\u522B\u503E\u659C\u843D\u4F4D\u7EC4\u6210\u4E09\u8054\u753B\u3002",
+      aliases: [
+        "\u6247\u5F62\u9648\u5217",
+        "\u4E09\u8054\u4E3B\u4F53",
+        "\u9519\u5CF0\u5347\u5165",
+        "\u4EA7\u54C1\u9648\u5217",
+        "\u4E0A\u79FB\u843D\u4F4D"
+      ],
+      behaviors: [
+        "native-3d",
+        "frame-accurate",
+        "single-action"
+      ],
+      objects: "\u4E09\u5F20\u900F\u660E\u4EA7\u54C1\u9759\u5E27\u548C\u56FA\u5B9A\u6807\u9898",
+      phases: [
+        "\u6696\u767D\u5E95\u4E0E\u94F6\u8272\u66F2\u9762\u80CC\u666F\uFF0C\u4E09\u4E2A\u5B8C\u6574\u4E3B\u4F53\u5728\u753B\u9762\u4E0B\u65B9\u7B49\u5F85\u3002",
+        "\u4E09\u4E2A\u4E3B\u4F53\u5206\u522B\u5728\u7B2C0\u30014\u30018\u5E27\u5F00\u59CB\u4ECE\u4E0B\u65B9\u4E0A\u79FB\uFF0C\u5E26\u4E0D\u540C\u56FA\u5B9A\u503E\u89D2\u3002",
+        "\u4E3B\u4F53\u5728\u7B2C20\u300124\u300128\u5E27\u843D\u4F4D\uFF0C\u4E09\u8054\u6784\u56FE\u4E0E\u7EC6\u5FAE\u6301\u7EED\u8F6C\u89D2\u4FDD\u6301\u3002"
+      ],
+      actions: [],
+      retain: "\u900F\u660E\u9759\u5E27\u7684\u5B8C\u6574\u8F6E\u5ED3\u3001\u539F\u957F\u5BBD\u6BD4\u3001\u9519\u5CF0\u4F4D\u79FB\u548C\u5404\u81EA\u503E\u89D2\u3002",
+      avoid: "\u4E0D\u8981\u6574\u4F53\u79FB\u52A8\u4E09\u5F20\u56FE\u7247\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u5207\u4E3B\u4F53\uFF0C\u4E0D\u7528\u6DE1\u5165\u4EE3\u66FF\u4E0A\u79FB\u3002",
+      tempo_note: "\u630924\u5E27/\u79D2\uFF0C\u4EE5\u5F53\u524D\u5E27\u8BA1\u7B97\u56FA\u5B9A\u6F14\u793A\u65F6\u949F\u3002",
+      analogy: "\u4E09\u4E2A\u5B8C\u6574\u4E3B\u4F53\u4EE5\u56FA\u5B9A\u9519\u5CF0\u4ECE\u4E0B\u65B9\u5347\u5165\uFF0C\u5206\u522B\u503E\u659C\u843D\u4F4D\u7EC4\u6210\u4E09\u8054\u753B\u3002",
+      recommendation: "\u4E09\u4E2A\u5B8C\u6574\u4E3B\u4F53\u4EE5\u56FA\u5B9A\u9519\u5CF0\u4ECE\u4E0B\u65B9\u5347\u5165\uFF0C\u5206\u522B\u503E\u659C\u843D\u4F4D\u7EC4\u6210\u4E09\u8054\u753B\u3002 \u4E0E\u4E8C\u7EF4\u793A\u610F\u56FE\u4E0D\u540C\uFF0C\u672C\u4F8B\u4FDD\u7559\u771F\u5B9E\u96F6\u4EF6\u548C\u5149\u5B66\u6444\u5F71\u3002",
+      source: {
+        path: "catalog/effects/time-in-motion.js",
+        factory: "fan-object-rise",
+        dependencies: [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        native_scene: "remotion",
+        frame_cache: {
+          video: "catalog/assets/time-in-motion/movie.mp4",
+          start_frame: 816,
+          frames: 48,
+          fps: 24,
+          width: 1280,
+          height: 720,
+          poster: "catalog/assets/time-in-motion/posters/fan-object-rise.jpg"
+        },
+        reference: {
+          name: "TIME, IN MOTION \xB7 \u7528\u6237\u539F\u521B\u6A2A\u5C4F\u673A\u68B0\u6000\u8868\u4F5C\u54C1"
+        },
+        extraction: "\u539FForm\u51FD\u6570\u4F7F\u7528\u4E09\u5F20Blender\u6444\u5F71\u9759\u5E27\u8FDB\u884C\u4E8C\u7EF4\u9519\u5CF0\u79FB\u4F4D\u4E0E\u65CB\u8F6C\uFF1B\u7247\u6BB5\u7F13\u5B58\u5B9A\u4F4D\u6700\u7EC8\u6210\u7247\uFF0C\u771F\u5B9E\u53EF\u7F16\u8F91\u7F16\u6392\u6E90\u7801\u540C\u65F6\u4EA4\u4ED8\u3002",
+        production_guide: "catalog/assets/time-in-motion/README.md",
+        assets: [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/fan-object-rise.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
+        ],
+        remotion: {
+          component: "catalog/remotion/time-in-motion.jsx",
+          export_name: "WiseTimeInMotion",
+          package_name: "wise-time-in-motion",
+          files: [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/render_film.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6027\u80FD\u7814\u7A76/profiles.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/build.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/casework.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/movement.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/encode.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/\u900F\u660E\u6574\u8868.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/common.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u56FE\u7EB8\u5B9E\u4F53\u5F00\u573A/\u7D20\u6750/\u96F6\u4EF6\u6620\u5C04.json",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          binary_files: [
+            {
+              source: "catalog/assets/time-in-motion/movie.mp4",
+              target: "public/catalog/assets/time-in-motion/movie.mp4",
+              bytes: 7604138,
+              sha256: "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              source: "catalog/fonts/Oswald-Bold.woff2",
+              target: "public/catalog/fonts/Oswald-Bold.woff2",
+              bytes: 12112,
+              sha256: "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1920,
+          height: 1080,
+          fps: 24,
+          exact_frames: true,
+          reuse_notes: "\u76EE\u5F55\u4E0E\u9ED8\u8BA4\u6E32\u67D3\u4F7F\u7528\u6700\u7EC84K\u7247\u76841280\xD7720\u300124fps\u8F7B\u91CF\u7F13\u5B58\uFF0C\u4FDD\u63011056\u5E27\u3001\u6784\u56FE\u4E0E\u539F\u526A\u8F91\uFF1B\u4E0D\u80FD\u628A\u4E0A\u91C7\u6837\u7F13\u5B58\u79F0\u4E3A\u91CD\u65B0\u6E32\u67D34K\u3002\u5B8C\u6574\u526A\u8F91\u6E90\u7801\u5728catalog/assets/time-in-motion/editable/\uFF0C\u539F\u521B\u5EFA\u6A21\u3001\u673A\u68B0\u3001\u955C\u5934\u548C\u6295\u5F71\u6E90\u7801\u5728production/\u3002\u5148\u7528import-originals.mjs\u6309\u6458\u8981\u51C6\u5907\u539F\u5236\u4F5C\u7D20\u6750\uFF0C\u624D\u80FD\u8FD0\u884Cstudio:editable\u6216\u4FEE\u6539Blender\u573A\u666F\u3002\u5B57\u4F53\u6539\u4E3A\u968F\u5305\u6388\u6743\u7684Oswald\uFF1B\u539F\u7CFB\u7EDFHelveticaNeue\u5B57\u4F53\u4E0D\u5206\u53D1\uFF0C\u7F16\u8F91\u7248\u7684\u5B57\u5F62\u4E0E\u6700\u7EC8\u7F13\u5B58\u4E0D\u540C\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\uFF1BOswald\u9075\u5FAASIL OFL\u3002",
+          scripts: {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      reproduction: {
+        objects: "\u4E09\u5F20\u5B8C\u6574\u4E3B\u4F53\u7684\u900F\u660EPNG\u9759\u5E27\uFF0C\u4E3B\u4F53\u51E0\u4F55\u6765\u81EA\u4E09\u7EF4\u6444\u5F71\uFF0C\u5165\u573A\u662F\u4E8C\u7EF4\u56FE\u7247\u79FB\u4F4D\u548C\u8F6C\u89D2\u3002",
+        presentation: "1920\xD71080\u6A2A\u5411\u8BBE\u8BA1\u753B\u677F\uFF1B\u8FD1\u9ED1\u6444\u5F71\u5E95\uFF0C\u91D1\u3001\u94F6\u3001\u6696\u767D\u4E0E\u84DD\u94A2\u7EC6\u8282\u3002\u753B\u9762\u7528\u8F6F\u7BB1\u706F\u7167\u660E\uFF0C\u7EC6\u7A84\u5012\u89D2\u53CD\u5149\uFF0C\u4E0D\u62C9\u4F38\u4E3B\u4F53\u3002",
+        materials: [
+          "\u4E3B\u4F53\u4E3A\u5177\u6709\u5B8C\u6574\u8F6E\u5ED3\u7684\u900F\u660E\u4EA7\u54C1\u9759\u5E27\uFF1B\u53F3\u4FA7\u94F6\u8272\u66F2\u9762\u53EA\u7528\u4F5C\u80CC\u666F\u3002"
+        ],
+        phases: [
+          "\u6696\u767D\u5E95\u4E0E\u94F6\u8272\u66F2\u9762\u80CC\u666F\uFF0C\u4E09\u4E2A\u5B8C\u6574\u4E3B\u4F53\u5728\u753B\u9762\u4E0B\u65B9\u7B49\u5F85\u3002",
+          "\u4E09\u4E2A\u4E3B\u4F53\u5206\u522B\u5728\u7B2C0\u30014\u30018\u5E27\u5F00\u59CB\u4ECE\u4E0B\u65B9\u4E0A\u79FB\uFF0C\u5E26\u4E0D\u540C\u56FA\u5B9A\u503E\u89D2\u3002",
+          "\u4E3B\u4F53\u5728\u7B2C20\u300124\u300128\u5E27\u843D\u4F4D\uFF0C\u4E09\u8054\u6784\u56FE\u4E0E\u7EC6\u5FAE\u6301\u7EED\u8F6C\u89D2\u4FDD\u6301\u3002"
+        ],
+        details: [
+          "\u6240\u6709\u5E27\u53F7\u5747\u4E3A24\u5E27/\u79D2\u8BBE\u8BA1\u5E27\uFF1B\u52A8\u4F5C\u5E27f=floor(24\xD7\u52A8\u4F5C\u79D2\u6570)\uFF0C\u9650\u5236\u57280\u81F347\u3002\u5F71\u7247\u5E27\u7387\u6539\u53D8\u65F6\u5148\u6362\u7B97\u52A8\u4F5C\u79D2\u6570\uFF0C\u4E0D\u76F4\u63A5\u628A\u5F71\u7247\u5E27\u53F7\u5F53\u4F5C\u8BBE\u8BA1\u5E27\u3002",
+          "1920\xD71080\u753B\u677F\uFF0C3\u4E2A\u4E3B\u4F53\u5BBD740\u50CF\u7D20\uFF0Cx=70+545i\u3001y=90+22i\uFF0C\u9AD8\u5EA6\u63094:3\u4FDD\u7559\uFF1B\u7B2C\u4E8C\u4E2A\u91C7\u7528\u659C\u89C6\u56FE\uFF0C\u5176\u4ED6\u91C7\u7528\u6B63\u4E09\u5206\u4E4B\u56DB\u89C6\u56FE\u3002",
+          "\u4E0A\u79FB\u4F4D\u79FB700\u21920\u50CF\u7D20\uFF0C\u7528cubic-bezier(.22,1,.36,1)\uFF1B\u521D\u59CB\u503E\u89D2\u221218\xB0\u30010\xB0\u300118\xB0\uFF0C\u5168\u6BB5\u518D\u53E0\u52A0\u22123\xB0\u21923\xB0\u7684\u7EBF\u6027\u8F6C\u89D2\u3002",
+          "\u6807\u9898FORM\u4F4D\u4E8E(74,57)\uFF0C\u5B57\u53F7315\uFF0Cx\u4F4D\u79FB\u2212140\u21920\u572815\u5E27\u5185\u7ED3\u675F\uFF1B\u53F3\u4FA7\u94F6\u8272\u80CC\u666Fx=1120\u3001\u5BBD800\u3002"
+        ],
+        start_state: "\u6696\u767D\u5E95\u4E0E\u94F6\u8272\u66F2\u9762\u80CC\u666F\uFF0C\u4E09\u4E2A\u5B8C\u6574\u4E3B\u4F53\u5728\u753B\u9762\u4E0B\u65B9\u7B49\u5F85\u3002",
+        end_state: "\u4E3B\u4F53\u5728\u7B2C20\u300124\u300128\u5E27\u843D\u4F4D\uFF0C\u4E09\u8054\u6784\u56FE\u4E0E\u7EC6\u5FAE\u6301\u7EED\u8F6C\u89D2\u4FDD\u6301\u3002",
+        retain: "\u900F\u660E\u9759\u5E27\u7684\u5B8C\u6574\u8F6E\u5ED3\u3001\u539F\u957F\u5BBD\u6BD4\u3001\u9519\u5CF0\u4F4D\u79FB\u548C\u5404\u81EA\u503E\u89D2\u3002",
+        avoid: "\u4E0D\u8981\u6574\u4F53\u79FB\u52A8\u4E09\u5F20\u56FE\u7247\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u5207\u4E3B\u4F53\uFF0C\u4E0D\u7528\u6DE1\u5165\u4EE3\u66FF\u4E0A\u79FB\u3002"
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation",
+        "video"
+      ],
+      trigger: "\u6253\u5F00\u9884\u89C8\u6309\u56FA\u5B9A\u65F6\u95F4\u7EBF\u64AD\u653E\uFF1B\u53EF\u4EE5\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\u3002",
+      assumptions: "\u6000\u8868\u4E3A\u52A8\u4F5C\u793A\u4F8B\uFF0C\u53EF\u66FF\u6362\u4E3B\u4F53\uFF1B\u7269\u7406\u949F\u8868\u72B6\u6001\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+      id: "framed-product-slide",
+      name: "\u753B\u6846\u4FA7\u6ED1\u663E\u73B0",
+      kind: "action",
+      category: "layout",
+      duration_ms: 2e3,
+      preview_ms: 916.6666666666666,
+      summary: "\u7AD6\u5411\u4EA7\u54C1\u753B\u6846\u4ECE\u5DE6\u4FA7\u6ED1\u5165\uFF0C\u540E\u65B9\u6750\u8D28\u7F13\u6162\u63A8\u8FD1\uFF0C\u53F3\u4FA7\u6807\u9898\u4FDD\u6301\u56FA\u5B9A\u3002",
+      purpose: "\u7AD6\u5411\u4EA7\u54C1\u753B\u6846\u4ECE\u5DE6\u4FA7\u6ED1\u5165\uFF0C\u540E\u65B9\u6750\u8D28\u7F13\u6162\u63A8\u8FD1\uFF0C\u53F3\u4FA7\u6807\u9898\u4FDD\u6301\u56FA\u5B9A\u3002",
+      aliases: [
+        "\u4FA7\u6ED1\u753B\u6846",
+        "\u88C1\u526A\u5BB9\u5668",
+        "\u4EA7\u54C1\u7A97\u53E3",
+        "\u6A2A\u7AD6\u6DF7\u6392",
+        "\u6750\u8D28\u63A8\u8FD1"
+      ],
+      behaviors: [
+        "native-3d",
+        "frame-accurate",
+        "single-action"
+      ],
+      objects: "\u88C1\u526A\u5BB9\u5668\u3001\u5185\u90E8\u4E09\u7EF4\u89C6\u9891\u3001\u56FA\u5B9A\u8BCD\u5757\u548C\u73BB\u7483\u80CC\u666F",
+      phases: [
+        "\u9ED1\u8272\u73BB\u7483\u6750\u8D28\u4F5C\u4E3A\u80CC\u666F\uFF0C\u7AD6\u5411\u753B\u6846\u4F4D\u4E8E\u5DE6\u4FA7\u753B\u5916\u3002",
+        "\u753B\u6846\u572813\u5E27\u5185\u5411\u53F3\u8FDB\u5165\uFF0C\u5185\u90E8\u4E09\u7EF4\u4EA7\u54C1\u6309\u539F\u955C\u5934\u8FD0\u884C\u3002",
+        "\u753B\u6846\u7A33\u5B9A\u843D\u4F4D\uFF0C\u80CC\u666F\u7EE7\u7EED\u7F13\u6162\u7F29\u5C0F\uFF0C\u53F3\u4FA7\u6807\u9898\u4FDD\u6301\u6E05\u6670\u3002"
+      ],
+      actions: [],
+      retain: "\u753B\u6846\u8FB9\u754C\u3001\u5185\u90E8\u6444\u5F71\u6BD4\u4F8B\u548C\u72EC\u7ACB\u7684\u80CC\u666F\u7F29\u653E\u3002",
+      avoid: "\u4E0D\u62C9\u4F38\u4EA7\u54C1\uFF0C\u4E0D\u8BA9\u56FA\u5B9A\u6807\u9898\u4E00\u8D77\u79FB\u52A8\uFF0C\u4E0D\u7528\u6A21\u7CCA\u6216\u6DE1\u5165\u4EE3\u66FF\u4FA7\u6ED1\u3002",
+      tempo_note: "\u630924\u5E27/\u79D2\uFF0C\u4EE5\u5F53\u524D\u5E27\u8BA1\u7B97\u56FA\u5B9A\u6F14\u793A\u65F6\u949F\u3002",
+      analogy: "\u7AD6\u5411\u4EA7\u54C1\u753B\u6846\u4ECE\u5DE6\u4FA7\u6ED1\u5165\uFF0C\u540E\u65B9\u6750\u8D28\u7F13\u6162\u63A8\u8FD1\uFF0C\u53F3\u4FA7\u6807\u9898\u4FDD\u6301\u56FA\u5B9A\u3002",
+      recommendation: "\u7AD6\u5411\u4EA7\u54C1\u753B\u6846\u4ECE\u5DE6\u4FA7\u6ED1\u5165\uFF0C\u540E\u65B9\u6750\u8D28\u7F13\u6162\u63A8\u8FD1\uFF0C\u53F3\u4FA7\u6807\u9898\u4FDD\u6301\u56FA\u5B9A\u3002 \u4E0E\u4E8C\u7EF4\u793A\u610F\u56FE\u4E0D\u540C\uFF0C\u672C\u4F8B\u4FDD\u7559\u771F\u5B9E\u96F6\u4EF6\u548C\u5149\u5B66\u6444\u5F71\u3002",
+      source: {
+        path: "catalog/effects/time-in-motion.js",
+        factory: "framed-product-slide",
+        dependencies: [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        native_scene: "remotion",
+        frame_cache: {
+          video: "catalog/assets/time-in-motion/movie.mp4",
+          start_frame: 288,
+          frames: 48,
+          fps: 24,
+          width: 1280,
+          height: 720,
+          poster: "catalog/assets/time-in-motion/posters/framed-product-slide.jpg"
+        },
+        reference: {
+          name: "TIME, IN MOTION \xB7 \u7528\u6237\u539F\u521B\u6A2A\u5C4F\u673A\u68B0\u6000\u8868\u4F5C\u54C1"
+        },
+        extraction: "\u539FShell\u51FD\u6570\u79FB\u52A8\u4E8C\u7EF4\u88C1\u526A\u753B\u6846\uFF0C\u753B\u6846\u5185\u64AD\u653E\u771F\u5B9E\u4E09\u7EF4\u4EA7\u54C1\u89C6\u9891\uFF1B\u6700\u7EC8\u7247\u7F13\u5B58\u548C\u539F\u526A\u8F91\u6E90\u7801\u5171\u540C\u4EA4\u4ED8\u3002",
+        production_guide: "catalog/assets/time-in-motion/README.md",
+        assets: [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/time-in-motion/posters/framed-product-slide.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json"
+        ],
+        remotion: {
+          component: "catalog/remotion/time-in-motion.jsx",
+          export_name: "WiseTimeInMotion",
+          package_name: "wise-time-in-motion",
+          files: [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/render_film.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6027\u80FD\u7814\u7A76/profiles.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/build.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/casework.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/movement.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/encode.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/\u900F\u660E\u6574\u8868.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/common.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u56FE\u7EB8\u5B9E\u4F53\u5F00\u573A/\u7D20\u6750/\u96F6\u4EF6\u6620\u5C04.json",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          binary_files: [
+            {
+              source: "catalog/assets/time-in-motion/movie.mp4",
+              target: "public/catalog/assets/time-in-motion/movie.mp4",
+              bytes: 7604138,
+              sha256: "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              source: "catalog/fonts/Oswald-Bold.woff2",
+              target: "public/catalog/fonts/Oswald-Bold.woff2",
+              bytes: 12112,
+              sha256: "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1920,
+          height: 1080,
+          fps: 24,
+          exact_frames: true,
+          reuse_notes: "\u76EE\u5F55\u4E0E\u9ED8\u8BA4\u6E32\u67D3\u4F7F\u7528\u6700\u7EC84K\u7247\u76841280\xD7720\u300124fps\u8F7B\u91CF\u7F13\u5B58\uFF0C\u4FDD\u63011056\u5E27\u3001\u6784\u56FE\u4E0E\u539F\u526A\u8F91\uFF1B\u4E0D\u80FD\u628A\u4E0A\u91C7\u6837\u7F13\u5B58\u79F0\u4E3A\u91CD\u65B0\u6E32\u67D34K\u3002\u5B8C\u6574\u526A\u8F91\u6E90\u7801\u5728catalog/assets/time-in-motion/editable/\uFF0C\u539F\u521B\u5EFA\u6A21\u3001\u673A\u68B0\u3001\u955C\u5934\u548C\u6295\u5F71\u6E90\u7801\u5728production/\u3002\u5148\u7528import-originals.mjs\u6309\u6458\u8981\u51C6\u5907\u539F\u5236\u4F5C\u7D20\u6750\uFF0C\u624D\u80FD\u8FD0\u884Cstudio:editable\u6216\u4FEE\u6539Blender\u573A\u666F\u3002\u5B57\u4F53\u6539\u4E3A\u968F\u5305\u6388\u6743\u7684Oswald\uFF1B\u539F\u7CFB\u7EDFHelveticaNeue\u5B57\u4F53\u4E0D\u5206\u53D1\uFF0C\u7F16\u8F91\u7248\u7684\u5B57\u5F62\u4E0E\u6700\u7EC8\u7F13\u5B58\u4E0D\u540C\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\uFF1BOswald\u9075\u5FAASIL OFL\u3002",
+          scripts: {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      reproduction: {
+        objects: "\u88C1\u526A\u5BB9\u5668\u3001\u5185\u90E8\u4E09\u7EF4\u89C6\u9891\u3001\u56FA\u5B9A\u8BCD\u5757\u548C\u73BB\u7483\u80CC\u666F",
+        presentation: "1920\xD71080\u6A2A\u5411\u8BBE\u8BA1\u753B\u677F\uFF1B\u8FD1\u9ED1\u6444\u5F71\u5E95\uFF0C\u91D1\u3001\u94F6\u3001\u6696\u767D\u4E0E\u84DD\u94A2\u7EC6\u8282\u3002\u753B\u9762\u7528\u8F6F\u7BB1\u706F\u7167\u660E\uFF0C\u7EC6\u7A84\u5012\u89D2\u53CD\u5149\uFF0C\u4E0D\u62C9\u4F38\u4E3B\u4F53\u3002",
+        materials: [
+          "\u5185\u90E8\u89C6\u9891\u4FDD\u7559\u771F\u5B9E\u91D1\u5C5E\u6444\u5F71\uFF1B\u73BB\u7483\u80CC\u666F\u4E3A\u72EC\u7ACB\u56FE\u7247\u5C42\uFF0C\u753B\u6846\u4E3A\u56FA\u5B9A\u5C3A\u5BF8\u7684\u88C1\u526A\u5BB9\u5668\u3002"
+        ],
+        phases: [
+          "\u9ED1\u8272\u73BB\u7483\u6750\u8D28\u4F5C\u4E3A\u80CC\u666F\uFF0C\u7AD6\u5411\u753B\u6846\u4F4D\u4E8E\u5DE6\u4FA7\u753B\u5916\u3002",
+          "\u753B\u6846\u572813\u5E27\u5185\u5411\u53F3\u8FDB\u5165\uFF0C\u5185\u90E8\u4E09\u7EF4\u4EA7\u54C1\u6309\u539F\u955C\u5934\u8FD0\u884C\u3002",
+          "\u753B\u6846\u7A33\u5B9A\u843D\u4F4D\uFF0C\u80CC\u666F\u7EE7\u7EED\u7F13\u6162\u7F29\u5C0F\uFF0C\u53F3\u4FA7\u6807\u9898\u4FDD\u6301\u6E05\u6670\u3002"
+        ],
+        details: [
+          "\u6240\u6709\u5E27\u53F7\u5747\u4E3A24\u5E27/\u79D2\u8BBE\u8BA1\u5E27\uFF1B\u52A8\u4F5C\u5E27f=floor(24\xD7\u52A8\u4F5C\u79D2\u6570)\uFF0C\u9650\u5236\u57280\u81F347\u3002\u5F71\u7247\u5E27\u7387\u6539\u53D8\u65F6\u5148\u6362\u7B97\u52A8\u4F5C\u79D2\u6570\uFF0C\u4E0D\u76F4\u63A5\u628A\u5F71\u7247\u5E27\u53F7\u5F53\u4F5C\u8BBE\u8BA1\u5E27\u3002",
+          "1920\xD71080\u753B\u677F\uFF1B\u753B\u6846\u5DE680\u3001\u4E0A145\u3001\u5BBD730\u3001\u9AD8790\uFF0Coverflow hidden\uFF1Bx\u4F4D\u79FB\u2212880\u21920\uFF0Ccubic-bezier(.22,1,.36,1)\u3002",
+          "\u5185\u90E8edge\u4E09\u7EF4\u7D20\u6750\u8DF3\u8FC712\u5E27\uFF0CobjectPosition\u4E3A50% 48%\uFF1B\u80CC\u666F\u73BB\u7483\u4EAE\u5EA60.56\uFF0C\u7F29\u653E1.14\u21921.04\uFF0C\u6301\u7EED48\u5E27\u3002",
+          "\u6807\u9898BOLD / BY / DESIGN.\u4F4D\u4E8E(910,254)\uFF0C\u5B57\u53F7168\uFF0C\u884C\u9AD80.91\uFF1B\u5E95\u90E8\u8BF4\u660E\u5728x=910\u3001\u8DDD\u5E9598\u3002"
+        ],
+        start_state: "\u9ED1\u8272\u73BB\u7483\u6750\u8D28\u4F5C\u4E3A\u80CC\u666F\uFF0C\u7AD6\u5411\u753B\u6846\u4F4D\u4E8E\u5DE6\u4FA7\u753B\u5916\u3002",
+        end_state: "\u753B\u6846\u7A33\u5B9A\u843D\u4F4D\uFF0C\u80CC\u666F\u7EE7\u7EED\u7F13\u6162\u7F29\u5C0F\uFF0C\u53F3\u4FA7\u6807\u9898\u4FDD\u6301\u6E05\u6670\u3002",
+        retain: "\u753B\u6846\u8FB9\u754C\u3001\u5185\u90E8\u6444\u5F71\u6BD4\u4F8B\u548C\u72EC\u7ACB\u7684\u80CC\u666F\u7F29\u653E\u3002",
+        avoid: "\u4E0D\u62C9\u4F38\u4EA7\u54C1\uFF0C\u4E0D\u8BA9\u56FA\u5B9A\u6807\u9898\u4E00\u8D77\u79FB\u52A8\uFF0C\u4E0D\u7528\u6A21\u7CCA\u6216\u6DE1\u5165\u4EE3\u66FF\u4FA7\u6ED1\u3002"
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation",
+        "video"
+      ],
+      trigger: "\u6253\u5F00\u9884\u89C8\u6309\u56FA\u5B9A\u65F6\u95F4\u7EBF\u64AD\u653E\uFF1B\u53EF\u4EE5\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\u3002",
+      assumptions: "\u6000\u8868\u4E3A\u52A8\u4F5C\u793A\u4F8B\uFF0C\u53EF\u66FF\u6362\u4E3B\u4F53\uFF1B\u7269\u7406\u949F\u8868\u72B6\u6001\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+      id: "word-block-rise",
+      name: "\u6574\u8BCD\u88C1\u5207\u5347\u5165",
+      kind: "action",
+      category: "writing",
+      duration_ms: 4e3,
+      preview_ms: 1700,
+      summary: "\u4E24\u884C\u5B8C\u6574\u8BCD\u5757\u4ECE\u5404\u81EA\u88C1\u5207\u7A97\u53E3\u4E0B\u65B9\u4E0A\u79FB\uFF0C\u7B2C\u4E8C\u884C\u8FDF6\u5E27\uFF0C\u663E\u73B0\u540E\u4FDD\u6301\u3002",
+      purpose: "\u4E24\u884C\u5B8C\u6574\u8BCD\u5757\u4ECE\u5404\u81EA\u88C1\u5207\u7A97\u53E3\u4E0B\u65B9\u4E0A\u79FB\uFF0C\u7B2C\u4E8C\u884C\u8FDF6\u5E27\uFF0C\u663E\u73B0\u540E\u4FDD\u6301\u3002",
+      objects: "\u4E24\u884C\u82F1\u6587\u8BCD\u5757EVERY\u4E0EPART.",
+      phases: [
+        "\u5B8C\u6574\u8BCD\u5757\u4F4D\u4E8E\u5404\u81EA\u88C1\u5207\u7A97\u53E3\u4E0B\u65B9\u3002",
+        "\u7B2C\u4E00\u884C\u4E0A\u79FB\uFF0C6\u5E27\u540E\u7B2C\u4E8C\u884C\u5F00\u59CB\uFF0C\u5B57\u5F62\u548C\u8BCD\u5185\u95F4\u8DDD\u4FDD\u6301\u3002",
+        "\u6BCF\u884C14\u5E27\u5B8C\u6210\u4E0A\u79FB\uFF0C\u5B8C\u6574\u505C\u7559\u81F34\u79D2\u7ED3\u675F\u3002"
+      ],
+      aliases: [
+        "TIME IN MOTION",
+        "\u6574\u8BCD\u5347\u5165",
+        "\u8BCD\u5757\u88C1\u5207"
+      ],
+      behaviors: [
+        "text",
+        "word-block",
+        "clip-reveal"
+      ],
+      actions: [],
+      retain: "\u4E24\u884C\u5B8C\u6574\u8BCD\u5757\u4ECE\u5404\u81EA\u88C1\u5207\u7A97\u53E3\u4E0B\u65B9\u4E0A\u79FB\uFF0C\u7B2C\u4E8C\u884C\u8FDF6\u5E27\uFF0C\u663E\u73B0\u540E\u4FDD\u6301\u3002",
+      avoid: "\u4E0D\u8981\u589E\u52A0\u56DE\u5F39\u3001\u6A21\u7CCA\u6216\u6539\u53D8\u5BF9\u8C61\u4E4B\u95F4\u7684\u65F6\u95F4\u5173\u7CFB\u3002",
+      tempo_note: "\u56FA\u5B9A24\u5E27\u8BBE\u8BA1\u65F6\u949F\uFF0C\u65E0\u9000\u573A\uFF0C\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u5747\u7531\u5F53\u524D\u5E27\u51B3\u5B9A\u3002",
+      analogy: "\u4E24\u884C\u5B8C\u6574\u8BCD\u5757\u4ECE\u5404\u81EA\u88C1\u5207\u7A97\u53E3\u4E0B\u65B9\u4E0A\u79FB\uFF0C\u7B2C\u4E8C\u884C\u8FDF6\u5E27\uFF0C\u663E\u73B0\u540E\u4FDD\u6301\u3002",
+      recommendation: "\u5B8C\u6574\u8BCD\u5757\u5347\u5165\u9002\u5408\u4EA7\u54C1\u6D77\u62A5\u77ED\u53E5\uFF1B\u9010\u5B57\u8BB2\u8FF0\u5219\u4F7F\u7528\u6587\u5B57\u88C1\u5207\u5347\u5165\u3002",
+      source: {
+        path: "catalog/effects/time-in-motion-graphics.js",
+        factory: "word-block-rise",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "animejs@4.5.0",
+        reference: {
+          name: "TIME, IN MOTION \xB7 \u539F\u521BKineticWord\u4E0EDialRings"
+        },
+        extraction: "\u4FDD\u7559\u539F\u521B\u7EC4\u4EF6\u7684\u8FD0\u52A8\u516C\u5F0F\u4E0E\u76F8\u5BF9\u65F6\u5E8F\uFF0C\u72EC\u7ACB\u793A\u4F8B\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u5E76\u7528\u6388\u6743\u5B57\u4F53\u66FF\u6362\u7CFB\u7EDF\u5B57\u4F53\u3002",
+        assets: [
+          "catalog/fonts/Oswald-Bold.woff2"
+        ],
+        remotion: {
+          component: "catalog/remotion/time-in-motion-graphics.jsx",
+          export_name: "WiseTimeInMotionGraphics",
+          package_name: "wise-time-in-motion",
+          files: [
+            "catalog/remotion/time-in-motion-graphics.jsx",
+            "catalog/effects/time-in-motion-graphics.js",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs"
+          ],
+          binary_files: [
+            {
+              source: "catalog/fonts/Oswald-Bold.woff2",
+              target: "public/catalog/fonts/Oswald-Bold.woff2",
+              bytes: 12112,
+              sha256: "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 640,
+          height: 360,
+          fps: 24,
+          exact_frames: true,
+          reuse_notes: "\u76EE\u5F55\u548CRemotion\u590D\u7528\u540C\u4E00\u9010\u5E27\u7ED8\u5236\u4E0E\u8BA1\u7B97\u3002\u53EF\u7F16\u8F91\u539F\u59CBKineticWord\u3001DialRings\u53CA\u5171\u4EABmotion.mjs\u540C\u65F6\u4EA4\u4ED8\uFF0C\u793A\u4F8B\u7528\u6388\u6743\u7684Oswald\u5B57\u4F53\u3002\u81EA\u6709\u6E90\u7801Apache-2.0\uFF1BOswald\u4E3ASIL OFL\u3002",
+          scripts: {},
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      reproduction: {
+        objects: "\u4E24\u884C\u82F1\u6587\u8BCD\u5757EVERY\u4E0EPART.",
+        presentation: "640\xD7360\u6A2A\u5411\u753B\u677F\uFF0C\u80CC\u666F#101114\uFF1B\u6696\u767D#e9e6de\u4E0E\u91D1\u8272\u51E0\u4F55\u3002",
+        phases: [
+          "\u5B8C\u6574\u8BCD\u5757\u4F4D\u4E8E\u5404\u81EA\u88C1\u5207\u7A97\u53E3\u4E0B\u65B9\u3002",
+          "\u7B2C\u4E00\u884C\u4E0A\u79FB\uFF0C6\u5E27\u540E\u7B2C\u4E8C\u884C\u5F00\u59CB\uFF0C\u5B57\u5F62\u548C\u8BCD\u5185\u95F4\u8DDD\u4FDD\u6301\u3002",
+          "\u6BCF\u884C14\u5E27\u5B8C\u6210\u4E0A\u79FB\uFF0C\u5B8C\u6574\u505C\u7559\u81F34\u79D2\u7ED3\u675F\u3002"
+        ],
+        details: [
+          "\u8FD0\u52A8\u8BA1\u7B97\u4F7F\u752824\u5E27/\u79D2\u8BBE\u8BA1\u65F6\u949Ff=24\xD7\u52A8\u4F5C\u79D2\u6570\uFF1B\u5B9A\u4F4D\u3001\u6682\u505C\u4E0E\u53D8\u901F\u5747\u4ECE\u5F53\u524D\u5E27\u548C\u5F71\u7247\u5E27\u7387\u6362\u7B97\u3002",
+          "\u8BBE\u8BA1\u753B\u677F640\xD7360\uFF1B\u8FD1\u9ED1#101114\u3001\u6696\u767D#e9e6de\uFF1B\u4F7F\u7528Oswald\u7C97\u4F53\uFF0C\u5B57\u53F751.33\u3001\u884C\u9AD80.98\u3001\u5B57\u8DDD\u22120.055em\uFF1B\u4E24\u884C\u5DE6\u8FB9\u8DDD32\uFF0C\u9876\u8FB9\u8DDD122\u548C176\u3002",
+          "\u4F4D\u79FB\u4ECE112%\u81EA\u8EAB\u9AD8\u5EA6\u52300\uFF1B\u7B2C0\u4E0E6\u5E27\u5F00\u59CB\uFF0C\u5404\u752814\u5E27\uFF1B\u66F2\u7EBFcubic-bezier(.16,1,.3,1)\u3002\u6BCF\u884C\u4F5C\u4E3A\u6574\u4F53\u79FB\u52A8\uFF0C\u4E0D\u505A\u9010\u5B57\u7B26\u9519\u5CF0\uFF0C\u4E5F\u4E0D\u4EE5\u900F\u660E\u5EA6\u66FF\u4EE3\u88C1\u5207\u3002",
+          "\u56FA\u5B9A\u7A97\u53E3\u6DFB\u52A00.06em\u4E0A\u4E0B\u88C1\u5207\u4F59\u91CF\uFF0C\u8D1F\u5916\u8FB9\u8DDD\u62B5\u6D88\u4F59\u91CF\uFF1B\u505C\u7559\u671F\u95F4\u4E0D\u79FB\u52A8\uFF0C\u4E0D\u8BBE\u7F6E\u9000\u573A\u3002"
+        ],
+        retain: "\u4E24\u884C\u5B8C\u6574\u8BCD\u5757\u4ECE\u5404\u81EA\u88C1\u5207\u7A97\u53E3\u4E0B\u65B9\u4E0A\u79FB\uFF0C\u7B2C\u4E8C\u884C\u8FDF6\u5E27\uFF0C\u663E\u73B0\u540E\u4FDD\u6301\u3002",
+        avoid: "\u4E0D\u8981\u628A\u6574\u4E2A\u56FE\u5F62\u4E00\u8D77\u6446\u52A8\uFF0C\u4E0D\u8981\u6DFB\u52A0\u591A\u4F59\u5149\u6548\u3002"
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation",
+        "video"
+      ],
+      trigger: "\u6253\u5F00\u9884\u89C8\u6309\u56FA\u5B9A\u65F6\u95F4\u7EBF\u64AD\u653E\uFF1B\u53EF\u4EE5\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\u3002",
+      assumptions: "\u6000\u8868\u4E3A\u52A8\u4F5C\u793A\u4F8B\uFF0C\u53EF\u66FF\u6362\u4E3B\u4F53\uFF1B\u7269\u7406\u949F\u8868\u72B6\u6001\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+      id: "sparse-dial-counterturn",
+      name: "\u7A00\u758F\u523B\u5EA6\u53CD\u5411\u65CB\u8F6C",
+      kind: "action",
+      category: "data",
+      duration_ms: 4e3,
+      preview_ms: 1700,
+      summary: "48\u6761\u523B\u5EA6\u6CBF\u5706\u5468\u9010\u9879\u5EFA\u7ACB\uFF0C\u4E24\u6BB5\u5F27\u7EBF\u5206\u522B\u540C\u5411\u548C\u53CD\u5411\u65CB\u8F6C\uFF0C\u6309\u62CD\u70B9\u8F7B\u5FAE\u8109\u52A8\u3002",
+      purpose: "48\u6761\u523B\u5EA6\u6CBF\u5706\u5468\u9010\u9879\u5EFA\u7ACB\uFF0C\u4E24\u6BB5\u5F27\u7EBF\u5206\u522B\u540C\u5411\u548C\u53CD\u5411\u65CB\u8F6C\uFF0C\u6309\u62CD\u70B9\u8F7B\u5FAE\u8109\u52A8\u3002",
+      objects: "\u540C\u5FC3\u5706\u300148\u6761\u523B\u5EA6\u3001\u4E24\u6BB5\u5706\u5F27\u548C\u4E00\u679A\u7AEF\u70B9",
+      phases: [
+        "\u540C\u5FC3\u73AF\u4ECE0.97\u500D\u5EFA\u7ACB\uFF0C\u523B\u5EA6\u6309\u5706\u5468\u987A\u5E8F\u663E\u73B0\u3002",
+        "\u5916\u73AF\u6B63\u8F6C\uFF0C\u5185\u5F27\u4EE5\u53CD\u54110.52\u500D\u89D2\u5EA6\u8F6C\u52A8\uFF1B\u5F27\u7EBF\u4F9D\u6B21\u63CF\u51FA\u3002",
+        "\u4FDD\u6301\u5B8C\u6574\u51E0\u4F55\u4E0E\u53CD\u5411\u65CB\u8F6C\uFF0C\u5728\u62CD\u70B9\u8FDB\u884C\u6781\u8F7B\u5FAE\u7F29\u653E\u3002"
+      ],
+      aliases: [
+        "\u540C\u5FC3\u523B\u5EA6",
+        "\u53CD\u5411\u65CB\u8F6C",
+        "\u73AF\u5F62\u523B\u5EA6",
+        "\u8282\u62CD\u8109\u52A8"
+      ],
+      behaviors: [
+        "frame-driven",
+        "reveal",
+        "counterturn"
+      ],
+      actions: [],
+      retain: "48\u6761\u523B\u5EA6\u6CBF\u5706\u5468\u9010\u9879\u5EFA\u7ACB\uFF0C\u4E24\u6BB5\u5F27\u7EBF\u5206\u522B\u540C\u5411\u548C\u53CD\u5411\u65CB\u8F6C\uFF0C\u6309\u62CD\u70B9\u8F7B\u5FAE\u8109\u52A8\u3002",
+      avoid: "\u4E0D\u8981\u589E\u52A0\u56DE\u5F39\u3001\u6A21\u7CCA\u6216\u6539\u53D8\u5BF9\u8C61\u4E4B\u95F4\u7684\u65F6\u95F4\u5173\u7CFB\u3002",
+      tempo_note: "\u56FA\u5B9A24\u5E27\u8BBE\u8BA1\u65F6\u949F\uFF0C\u65E0\u9000\u573A\uFF0C\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u5747\u7531\u5F53\u524D\u5E27\u51B3\u5B9A\u3002",
+      analogy: "48\u6761\u523B\u5EA6\u6CBF\u5706\u5468\u9010\u9879\u5EFA\u7ACB\uFF0C\u4E24\u6BB5\u5F27\u7EBF\u5206\u522B\u540C\u5411\u548C\u53CD\u5411\u65CB\u8F6C\uFF0C\u6309\u62CD\u70B9\u8F7B\u5FAE\u8109\u52A8\u3002",
+      recommendation: "\u9002\u5408\u7A00\u758F\u523B\u5EA6\u4E0E\u673A\u68B0\u8282\u62CD\uFF1B\u9700\u8981\u8BFB\u6570\u3001\u76EE\u6807\u9501\u5B9A\u65F6\u9009\u62E9\u5BF9\u5E94\u4FE1\u53F7\u52A8\u4F5C\u3002",
+      source: {
+        path: "catalog/effects/time-in-motion-graphics.js",
+        factory: "sparse-dial-counterturn",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "animejs@4.5.0",
+        reference: {
+          name: "TIME, IN MOTION \xB7 \u539F\u521BKineticWord\u4E0EDialRings"
+        },
+        extraction: "\u4FDD\u7559\u539F\u521B\u7EC4\u4EF6\u7684\u8FD0\u52A8\u516C\u5F0F\u4E0E\u76F8\u5BF9\u65F6\u5E8F\uFF0C\u72EC\u7ACB\u793A\u4F8B\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u5E76\u7528\u6388\u6743\u5B57\u4F53\u66FF\u6362\u7CFB\u7EDF\u5B57\u4F53\u3002",
+        assets: [
+          "catalog/fonts/Oswald-Bold.woff2"
+        ],
+        remotion: {
+          component: "catalog/remotion/time-in-motion-graphics.jsx",
+          export_name: "WiseTimeInMotionGraphics",
+          package_name: "wise-time-in-motion",
+          files: [
+            "catalog/remotion/time-in-motion-graphics.jsx",
+            "catalog/effects/time-in-motion-graphics.js",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs"
+          ],
+          binary_files: [],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 640,
+          height: 360,
+          fps: 24,
+          exact_frames: true,
+          reuse_notes: "\u76EE\u5F55\u548CRemotion\u590D\u7528\u540C\u4E00\u9010\u5E27\u7ED8\u5236\u4E0E\u8BA1\u7B97\u3002\u53EF\u7F16\u8F91\u539F\u59CBKineticWord\u3001DialRings\u53CA\u5171\u4EABmotion.mjs\u540C\u65F6\u4EA4\u4ED8\uFF0C\u793A\u4F8B\u7528\u6388\u6743\u7684Oswald\u5B57\u4F53\u3002\u81EA\u6709\u6E90\u7801Apache-2.0\uFF1BOswald\u4E3ASIL OFL\u3002",
+          scripts: {},
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      reproduction: {
+        objects: "\u540C\u5FC3\u5706\u300148\u6761\u523B\u5EA6\u3001\u4E24\u6BB5\u5706\u5F27\u548C\u4E00\u679A\u7AEF\u70B9",
+        presentation: "640\xD7360\u6A2A\u5411\u753B\u677F\uFF0C\u80CC\u666F#101114\uFF1B\u6696\u767D#e9e6de\u4E0E\u91D1\u8272\u51E0\u4F55\u3002",
+        phases: [
+          "\u540C\u5FC3\u73AF\u4ECE0.97\u500D\u5EFA\u7ACB\uFF0C\u523B\u5EA6\u6309\u5706\u5468\u987A\u5E8F\u663E\u73B0\u3002",
+          "\u5916\u73AF\u6B63\u8F6C\uFF0C\u5185\u5F27\u4EE5\u53CD\u54110.52\u500D\u89D2\u5EA6\u8F6C\u52A8\uFF1B\u5F27\u7EBF\u4F9D\u6B21\u63CF\u51FA\u3002",
+          "\u4FDD\u6301\u5B8C\u6574\u51E0\u4F55\u4E0E\u53CD\u5411\u65CB\u8F6C\uFF0C\u5728\u62CD\u70B9\u8FDB\u884C\u6781\u8F7B\u5FAE\u7F29\u653E\u3002"
+        ],
+        details: [
+          "\u8FD0\u52A8\u8BA1\u7B97\u4F7F\u752824\u5E27/\u79D2\u8BBE\u8BA1\u65F6\u949Ff=24\xD7\u52A8\u4F5C\u79D2\u6570\uFF1B\u5B9A\u4F4D\u3001\u6682\u505C\u4E0E\u53D8\u901F\u5747\u4ECE\u5F53\u524D\u5E27\u548C\u5F71\u7247\u5E27\u7387\u6362\u7B97\u3002",
+          "\u8BBE\u8BA1\u753B\u677F640\xD7360\uFF0CSVG viewBox 1000\xD71000\uFF0C280\u50CF\u7D20\u6B63\u65B9\u5F62\u7F6E\u4E8E(180,40)\uFF1B\u80CC\u666F#101114\uFF0C\u4E3B\u91D1#d4b57a\u3001\u8F85\u767D#efe8db\u3001\u6697\u91D1#8e816a\u3002",
+          "48\u6761\u523B\u5EA6\uFF0C12\u6761\u4E3B\u523B\u5EA6\uFF0C\u6BCF7.5\u5EA6\u4E00\u6761\uFF1B\u4E3B\u7EBF\u534A\u5F84438\u2192466\u3001\u6B21\u7EBF451\u2192466\uFF0C\u9759\u6001\u5E95\u5708\u534A\u5F84388\uFF1B\u5916\u5F27\u534A\u5F84418\u3001\u8D77\u89D2205\xB0\u3001\u8DE8\u5EA6214\xB0\uFF0C\u5185\u5F27\u534A\u5F84351\u3001\u8D77\u89D2\u221270\xB0\u3001\u8DE8\u5EA692\xB0\u3002",
+          "0.85\u79D2\u5EFA\u7ACB\uFF0C\u5916\u73AF\u89D2\u5EA6\u221218\xB0+18\xB0\xD7t\uFF0C\u5185\u5F27\u89D2\u5EA6\u4E3A\u5916\u73AF\u89D2\u5EA6\xD7\u22120.52\uFF1B0\u300112\u300124\u300136\u5E27\u8109\u52A8\uFF0C\u5CF0\u503C\u989D\u5916\u7F29\u653E0.007\uFF0C\u7EA610.08\u5E27\u56DE\u843D\uFF1B\u4E0D\u52A0\u5165\u590D\u6742HUD\u6587\u5B57\u6216\u626B\u63CF\u56FE\u6807\u3002"
+        ],
+        retain: "48\u6761\u523B\u5EA6\u6CBF\u5706\u5468\u9010\u9879\u5EFA\u7ACB\uFF0C\u4E24\u6BB5\u5F27\u7EBF\u5206\u522B\u540C\u5411\u548C\u53CD\u5411\u65CB\u8F6C\uFF0C\u6309\u62CD\u70B9\u8F7B\u5FAE\u8109\u52A8\u3002",
+        avoid: "\u4E0D\u8981\u628A\u6574\u4E2A\u56FE\u5F62\u4E00\u8D77\u6446\u52A8\uFF0C\u4E0D\u8981\u6DFB\u52A0\u591A\u4F59\u5149\u6548\u3002"
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation",
+        "video"
+      ],
+      trigger: "\u6253\u5F00\u9884\u89C8\u6309\u56FA\u5B9A\u65F6\u95F4\u7EBF\u64AD\u653E\uFF1B\u53EF\u4EE5\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\u3002",
+      assumptions: "\u6000\u8868\u4E3A\u52A8\u4F5C\u793A\u4F8B\uFF0C\u53EF\u66FF\u6362\u4E3B\u4F53\uFF1B\u7269\u7406\u949F\u8868\u72B6\u6001\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
+      id: "time-in-motion-sequence",
+      name: "\u7CBE\u5BC6\u7ED3\u6784\u4E0E\u8BCD\u5757\u4EA7\u54C1\u5C55\u793A",
+      kind: "composition",
+      category: "compositions",
+      duration_ms: 44e3,
+      preview_ms: 7e3,
+      summary: "\u8BCD\u5757\u3001\u9648\u5217\u65CB\u5408\u3001\u5FAE\u8DDD\u8FD0\u884C\u4E0E\u4E09\u8054\u4E3B\u4F53\u630944\u79D2\u65F6\u95F4\u7EBF\u4EA4\u63A5\uFF0C\u4FDD\u7559\u539F\u521B\u914D\u4E50\u3002",
+      purpose: "\u4EE5\u771F\u5B9E\u4E09\u7EF4\u4EA7\u54C1\u4E3A\u6838\u5FC3\uFF0C\u8BCD\u5757\u3001\u6444\u5F71\u753B\u6846\u548C\u673A\u68B0\u8FD0\u884C\u5171\u540C\u63A8\u8FDB\u3002",
+      objects: "\u673A\u68B0\u6000\u8868\u3001\u8BCD\u5757\u3001\u73AF\u5F62\u523B\u5EA6\u3001\u6444\u5F71\u753B\u6846\u4E0E\u6750\u8D28\u80CC\u666F",
+      phases: [
+        "\u8BCD\u5757\u4E0E\u5B8C\u6574\u4E3B\u4F53\u5EFA\u7ACB\uFF0C\u8FDB\u5165\u9648\u5217\u65CB\u5408\u3001\u753B\u6846\u4FA7\u6ED1\u548C\u8F74\u5411\u5206\u5C42\u3002",
+        "\u87BA\u4E1D\u5B8C\u6574\u65CB\u7D27\uFF0C\u63A5\u7EED\u53D1\u6761\u76D2\u3001\u4F20\u52A8\u8F6E\u7CFB\u548C\u6446\u8F6E\u5FAE\u8DDD\uFF0C\u968F\u540E\u56DE\u64A4\u6574\u8868\u3002",
+        "\u4E09\u8054\u4E3B\u4F53\u9519\u5CF0\u5165\u573A\uFF0C\u5FEB\u5207\u91CD\u63D0\u673A\u68B0\u7EC6\u8282\uFF0C\u4E3B\u4F53\u4E0E\u6807\u9898\u7A33\u5B9A\u6536\u675F\u3002"
+      ],
+      aliases: [
+        "TIME IN MOTION",
+        "\u6700\u65B0\u673A\u68B0\u6000\u8868",
+        "44\u79D2\u4EA7\u54C1\u53D1\u5E03\u7247",
+        "\u9648\u5217\u65CB\u5408",
+        "\u673A\u68B0\u4EA7\u54C1\u5C55\u793A"
+      ],
+      behaviors: [
+        "native-3d",
+        "typography",
+        "sequence"
+      ],
+      actions: [
+        "inventory-contour-fit",
+        "axial-layer-reseat",
+        "helical-screw-seat",
+        "barrel-stored-energy",
+        "meshed-gears-drive",
+        "balance-reciprocate",
+        "fan-object-rise",
+        "framed-product-slide",
+        "word-block-rise",
+        "sparse-dial-counterturn"
+      ],
+      breakdown_mode: "sequence",
+      retain: "\u771F\u5B9E\u4E3B\u4F53\u3001\u673A\u68B0\u52A8\u4F5C\u3001\u8BCD\u5757\u987A\u5E8F\u300113\u4E2A\u955C\u5934\u5207\u70B9\u548C44\u79D2\u539F\u521B\u914D\u4E50\u3002",
+      avoid: "\u4E0D\u8981\u66FF\u6362\u6210\u65E7\u6000\u8868\u89C6\u9891\uFF1B\u4E0D\u8981\u901A\u8FC7\u7D20\u6750\u53E0\u52A0\u731C\u6D4B\u540C\u4E00\u4E09\u7EF4\u7A7A\u95F4\u3002",
+      tempo_note: "24\u5E27/\u79D2\uFF0C\u51711056\u5E27\uFF1B\u97F3\u4E50120BPM\uFF0C\u6BCF12\u5E27\u4E00\u62CD\uFF0C22\u4E2A\u4E24\u79D2\u5C0F\u8282\u3002",
+      analogy: "\u4ECE\u9648\u5217\u96F6\u4EF6\u5230\u5B8C\u6574\u7ED3\u6784\uFF0C\u518D\u4EE5\u673A\u68B0\u8FD0\u884C\u548C\u8BCD\u5757\u7EC4\u7EC7\u4EA7\u54C1\u8282\u594F\u3002",
+      recommendation: "\u9700\u8981\u5B8C\u6574\u4EA7\u54C1\u7247\u8282\u594F\u65F6\u4F7F\u7528\u672C\u7EC4\u5408\uFF1B\u53EA\u9700\u8981\u4E00\u4E2A\u8FD0\u52A8\u5173\u7CFB\u65F6\u53D6\u5173\u8054\u72EC\u7ACB\u52A8\u4F5C\u3002",
+      audio: {
+        tracks: [
+          {
+            start_ms: 0,
+            duration_ms: 44e3,
+            volume: 1,
+            fade_in_ms: 0,
+            fade_out_ms: 0,
+            src: "catalog/assets/composition-audio/time-in-motion/soundtrack.m4a",
+            offset_ms: 0
+          }
+        ]
+      },
+      source: {
+        path: "catalog/effects/time-in-motion.js",
+        factory: "time-in-motion-sequence",
+        dependencies: [
+          "catalog/effects/time-in-motion-data.js"
+        ],
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        native_scene: "remotion",
+        frame_cache: {
+          video: "catalog/assets/time-in-motion/movie.mp4",
+          audio: "catalog/assets/composition-audio/time-in-motion/soundtrack.m4a",
+          start_frame: 0,
+          frames: 1056,
+          fps: 24,
+          width: 1280,
+          height: 720,
+          poster: "catalog/assets/time-in-motion/posters/inventory-contour-fit.jpg"
+        },
+        reference: {
+          name: "TIME, IN MOTION \xB7 \u7528\u6237\u539F\u521B\u6A2A\u5C4F\u673A\u68B0\u6000\u8868\u4F5C\u54C1"
+        },
+        extraction: "\u4ECE\u6700\u65B044\u79D2\u6210\u7247\u7684\u8FDE\u7EED\u539F\u751F\u5E27\u63D0\u70BC\u52A8\u4F5C\uFF1B\u5B8C\u6574\u526A\u8F91\u4E0E\u5BF9\u5E94\u5EFA\u6A21\u3001\u673A\u68B0\u53CA\u955C\u5934\u6E90\u7801\u53E6\u968F\u6587\u5B57\u6E90\u7801\u4EA4\u4ED8\u3002\u7F13\u5B58\u4EC5\u7F29\u5C0F\u753B\u5E45\uFF0C\u6CA1\u6709\u91CD\u7ED8\u3001\u91CD\u6392\u6216\u8865\u5E27\u3002",
+        production_guide: "catalog/assets/time-in-motion/README.md",
+        assets: [
+          "catalog/assets/time-in-motion/movie.mp4",
+          "catalog/assets/composition-audio/time-in-motion/soundtrack.m4a",
+          "catalog/assets/time-in-motion/posters/inventory-contour-fit.jpg",
+          "catalog/assets/time-in-motion/posters/axial-layer-reseat.jpg",
+          "catalog/assets/time-in-motion/posters/helical-screw-seat.jpg",
+          "catalog/assets/time-in-motion/posters/barrel-stored-energy.jpg",
+          "catalog/assets/time-in-motion/posters/meshed-gears-drive.jpg",
+          "catalog/assets/time-in-motion/posters/balance-reciprocate.jpg",
+          "catalog/assets/time-in-motion/posters/fan-object-rise.jpg",
+          "catalog/assets/time-in-motion/posters/framed-product-slide.jpg",
+          "catalog/assets/time-in-motion/SOURCE.json",
+          "catalog/assets/composition-audio/time-in-motion/SOURCE.json",
+          "catalog/assets/composition-audio/time-in-motion/sound.py"
+        ],
+        remotion: {
+          component: "catalog/remotion/time-in-motion.jsx",
+          export_name: "WiseTimeInMotion",
+          package_name: "wise-time-in-motion",
+          files: [
+            "catalog/remotion/time-in-motion.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/time-in-motion-data.js",
+            "catalog/assets/time-in-motion/README.md",
+            "catalog/assets/time-in-motion/editable/Film.jsx",
+            "catalog/assets/time-in-motion/editable/Root.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+            "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+            "catalog/assets/time-in-motion/editable/import-originals.mjs",
+            "catalog/assets/time-in-motion/editable/movie.config.json",
+            "catalog/assets/time-in-motion/editable/original-assets.json",
+            "catalog/assets/time-in-motion/production/Film-original.jsx",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/build_film.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/product_photography.py",
+            "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/render_film.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6027\u80FD\u7814\u7A76/profiles.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/build_revision.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/cinematography.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/mechanics.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/build.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/casework.py",
+            "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/movement.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/build_and_preview.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/compose_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/encode.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/project_lines.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/verify_geometry.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/return_mask.py",
+            "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/\u900F\u660E\u6574\u8868.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_lock.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_opening.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/common.py",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/render_worker.py",
+            "catalog/assets/time-in-motion/verify-source.mjs",
+            "LICENSE",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/composition-audio/time-in-motion/sound.py",
+            "catalog/assets/composition-audio/time-in-motion/SOURCE.json",
+            "catalog/assets/composition-audio/time-in-motion/\u8282\u62CD\u951A\u70B9.json",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_structure_entry.py",
+            "catalog/assets/time-in-motion/SOURCE.json",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u56FE\u7EB8\u5B9E\u4F53\u5F00\u573A/\u7D20\u6750/\u96F6\u4EF6\u6620\u5C04.json",
+            "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/screw_geometry.py",
+            "catalog/assets/time-in-motion/production/extract-textures.py"
+          ],
+          binary_files: [
+            {
+              source: "catalog/assets/time-in-motion/movie.mp4",
+              target: "public/catalog/assets/time-in-motion/movie.mp4",
+              bytes: 7604138,
+              sha256: "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+            },
+            {
+              source: "catalog/assets/composition-audio/time-in-motion/soundtrack.m4a",
+              target: "public/catalog/assets/composition-audio/time-in-motion/soundtrack.m4a",
+              bytes: 1404381,
+              sha256: "a4d43700abc273bbea5acc49c5ff270b0ad73d867e106e9758fede79793d8890"
+            },
+            {
+              source: "catalog/fonts/Oswald-Bold.woff2",
+              target: "public/catalog/fonts/Oswald-Bold.woff2",
+              bytes: 12112,
+              sha256: "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1920,
+          height: 1080,
+          fps: 24,
+          exact_frames: true,
+          reuse_notes: "\u76EE\u5F55\u4E0E\u9ED8\u8BA4\u6E32\u67D3\u4F7F\u7528\u6700\u7EC84K\u7247\u76841280\xD7720\u300124fps\u8F7B\u91CF\u7F13\u5B58\uFF0C\u4FDD\u63011056\u5E27\u3001\u6784\u56FE\u4E0E\u539F\u526A\u8F91\uFF1B\u4E0D\u80FD\u628A\u4E0A\u91C7\u6837\u7F13\u5B58\u79F0\u4E3A\u91CD\u65B0\u6E32\u67D34K\u3002\u5B8C\u6574\u526A\u8F91\u6E90\u7801\u5728catalog/assets/time-in-motion/editable/\uFF0C\u539F\u521B\u5EFA\u6A21\u3001\u673A\u68B0\u3001\u955C\u5934\u548C\u6295\u5F71\u6E90\u7801\u5728production/\u3002\u5148\u7528import-originals.mjs\u6309\u6458\u8981\u51C6\u5907\u539F\u5236\u4F5C\u7D20\u6750\uFF0C\u624D\u80FD\u8FD0\u884Cstudio:editable\u6216\u4FEE\u6539Blender\u573A\u666F\u3002\u5B57\u4F53\u6539\u4E3A\u968F\u5305\u6388\u6743\u7684Oswald\uFF1B\u539F\u7CFB\u7EDFHelveticaNeue\u5B57\u4F53\u4E0D\u5206\u53D1\uFF0C\u7F16\u8F91\u7248\u7684\u5B57\u5F62\u4E0E\u6700\u7EC8\u7F13\u5B58\u4E0D\u540C\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\uFF1BOswald\u9075\u5FAASIL OFL\u3002",
+          scripts: {
+            "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+            "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+          },
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+        }
+      },
+      reproduction: {
+        objects: "\u5B9E\u4F53\u673A\u68B0\u6000\u8868\u3001\u4E3B\u6807\u9898\u3001\u4E09\u7EF4\u5FAE\u8DDD\u4E0E\u62BD\u8C61\u91D1\u94F6\u73BB\u7483\u6750\u8D28",
+        presentation: "1920\xD71080\u6A2A\u5411\u8BBE\u8BA1\u753B\u677F\uFF1B\u8FD1\u9ED1#101114\u3001\u6696\u767D#e9e6de\u3001\u91D1\u8272#c2a974\u4E0E#d4ba83\uFF1B\u4E3B\u4F53\u4FDD\u7559\u84DD\u94A2\u7EC6\u8282\u3002\u6807\u9898\u4EE5\u7C97\u4F53\u65E0\u886C\u7EBF\u6392\u7248\uFF0C\u5B8C\u6574\u4E3B\u4F53\u6709\u7559\u767D\uFF0C\u5185\u90E8\u5FAE\u8DDD\u53EF\u4EE5\u94FA\u6EE1\u3002",
+        phases: [
+          "\u8BCD\u5757\u4E0E\u5B8C\u6574\u4E3B\u4F53\u5EFA\u7ACB\uFF0C\u8FDB\u5165\u9648\u5217\u65CB\u5408\u3001\u753B\u6846\u4FA7\u6ED1\u548C\u8F74\u5411\u5206\u5C42\u3002",
+          "\u87BA\u4E1D\u5B8C\u6574\u65CB\u7D27\uFF0C\u63A5\u7EED\u53D1\u6761\u76D2\u3001\u4F20\u52A8\u8F6E\u7CFB\u548C\u6446\u8F6E\u5FAE\u8DDD\uFF0C\u968F\u540E\u56DE\u64A4\u6574\u8868\u3002",
+          "\u4E09\u8054\u4E3B\u4F53\u9519\u5CF0\u5165\u573A\uFF0C\u5FEB\u5207\u91CD\u63D0\u673A\u68B0\u7EC6\u8282\uFF0C\u4E3B\u4F53\u4E0E\u6807\u9898\u7A33\u5B9A\u6536\u675F\u3002"
+        ],
+        preparation: [
+          "\u5148\u5EFA\u7ACB\u72EC\u7ACB\u4E09\u7EF4\u673A\u58F3\u3001\u8F6E\u7CFB\u3001\u6865\u677F\u3001\u6E38\u4E1D\u3001\u6307\u9488\u3001\u5B9D\u77F3\u4E0E\u87BA\u4E1D\uFF0C\u5B8C\u6210\u91D1\u5C5E\u6750\u8D28\u3001\u8F6F\u7BB1\u706F\u548C\u955C\u5934\uFF0C\u518D\u51C6\u5907\u540C\u673A\u4F4D\u51E0\u4F55\u6295\u5F71\u4E0Ealpha\u906E\u7F69\u3002",
+          "\u80CC\u666F\u4E3A\u539F\u521B\u70DF\u7070\u73BB\u7483\u3001\u94F6\u8272\u5F27\u9762\u548C\u91D1\u8272\u6750\u8D28\uFF1B\u53EA\u7528\u4F5C\u80CC\u666F\uFF0C\u4E0D\u66FF\u4EE3\u771F\u5B9E\u8868\u4F53\u3002\u82F1\u6587\u5B57\u5E55\u4F7F\u7528\u6388\u6743\u5B57\u4F53\uFF0C\u4E09\u7EF4\u96F6\u4EF6\u4E0E\u6587\u5B57\u5206\u522B\u63A7\u5236\u3002"
+        ],
+        details: [
+          "\u6240\u6709\u5E27\u53F7\u5747\u4E3A24\u5E27/\u79D2\u8BBE\u8BA1\u5E27\uFF1B\u52A8\u4F5C\u5E27f=floor(24\xD7\u52A8\u4F5C\u79D2\u6570)\uFF0C\u9650\u5236\u57280\u81F31055\u3002\u5F71\u7247\u5E27\u7387\u6539\u53D8\u65F6\u5148\u6362\u7B97\u52A8\u4F5C\u79D2\u6570\uFF0C\u4E0D\u76F4\u63A5\u628A\u5F71\u7247\u5E27\u53F7\u5F53\u4F5C\u8BBE\u8BA1\u5E27\u3002",
+          "\u5B8C\u6574\u65F6\u95F4\u8868\uFF1A0\u20132\u79D2\u6807\u9898\u4E0E\u4E3B\u7269\uFF1B2\u20134\u79D2\u8BCD\u5757\u906E\u7F69\u5347\u5165\uFF1B4\u201310\u79D2\u6A2A\u5411\u9648\u5217\u65CB\u5408\u53CA6\u5E27\u7EBF\u7A3F\u77ED\u95EA\uFF1B10\u201312\u79D2\u5DE6\u53F3\u5206\u533A\uFF1B12\u201314\u79D2\u753B\u6846\u5074\u6ED1\uFF1B14\u201318\u79D2\u8F74\u5411\u5206\u5C42\uFF1B18\u201322\u79D2\u5B8C\u6574\u87BA\u4E1D\u65CB\u7D27\uFF1B22\u201324\u79D2\u7A00\u758F\u53CD\u5411\u523B\u5EA6\uFF1B24\u201326\u79D2\u53D1\u6761\u76D2\uFF1B26\u201328\u79D2\u8F6E\u7CFB\uFF1B28\u201330\u79D2\u6446\u8F6E\uFF1B30\u201334\u79D2\u6574\u8868\u56DE\u64A4\uFF1B34\u201336\u79D2\u4E09\u8054\u4E3B\u4F53\uFF1B36\u201340\u79D2\u6BCF\u79D2\u4E00\u7EC4\u5FEB\u5207\uFF1B40\u201344\u79D2\u8BCD\u5757\u4E0E\u4E3B\u7269\u7A33\u5B9A\u6536\u5C3E\u3002",
+          "\u4E3B\u6807\u9898\u6587\u5B57\u987A\u5E8F\u4E3ATIME\u3001BEYOND / THE HOUR.\u3001ONE. / COMPLETE. / MOVEMENT.\u3001BOLD / BY / DESIGN.\u3001EVERY / PART.\u3001MADE / TO MOVE.\u3001EVERY / DETAIL. / ALIVE.\u3001FORM\u3001IN / MOTION\u3001TIME, / IN MOTION.\uFF1B\u5F15\u53F7\u6216\u659C\u7EBF\u4EC5\u7528\u4E8E\u5C4F\u5E55\u6587\u6848\u5206\u884C\u3002",
+          "\u4E3B\u8981\u8BCD\u5757\u752814\u5E27\u4E0A\u79FB\uFF0C\u6B21\u884C\u665A6\u5E27\uFF1B\u7ED3\u5C3E\u4E24\u884C\u4ECE\u5C40\u90E8\u7B2C12\u4E0E20\u5E27\u5F00\u59CB\uFF0C\u4E3B\u4F5342\u5E27\u5185\u4E0A\u79FB65\u50CF\u7D20\u3001\u89D2\u5EA68\xB0\u2192\u22124\xB0\uFF0C\u6750\u8D28\u7F29\u653E1.12\u21921\u3002",
+          "\u539F\u521B\u914D\u4E5044\u79D2\u3001120BPM\u300148kHz\u53CC\u58F0\u9053\uFF1B\u9F13\u3001\u4F4E\u97F3\u3001\u4E2D\u9891\u548C\u58F0\u3001\u91D1\u5C5E\u7EC6\u8282\u3001\u7A7A\u95F4\u4E94\u7EC4\u58F0\u90E8\uFF0C\u7B2C42\u79D2\u8D77\u4E0D\u518D\u52A0\u5165\u9F13\u7EC4\uFF0C\u4FDD\u6301\u753B\u9762\u4E0E\u58F0\u97F3\u540C\u4E00\u65F6\u95F4\u8F74\u3002"
+        ],
+        retain: "\u4FDD\u6301\u5B8C\u657444\u79D2\u526A\u8F91\u3001\u6587\u5B57\u5C42\u7EA7\u3001\u5B9E\u4F53\u88C5\u914D\u5173\u7CFB\u4E0E\u58F0\u97F3\u8282\u62CD\u3002",
+        avoid: "\u4E0D\u5F15\u5165\u7B2C\u4E09\u65B9\u54C1\u724C\u3001\u97F3\u4E50\u3001\u7CFB\u7EDF\u5B57\u4F53\u6587\u4EF6\u6216\u4E8C\u7EF4\u5047\u673A\u82AF\uFF1B\u4E0D\u5EF6\u957F\u955C\u5934\u4F7F\u7D20\u6750\u8D8A\u754C\u3002"
       }
     }
   ],
@@ -52960,7 +54464,9 @@ var registry_default = {
     "sunset-character-illustration": "sunset-sun-illustration",
     "wind-companion-follow": "passage-animal-response",
     "speech-caption": "mask-stagger-text",
-    "ghost-type-overprint": "word-slam"
+    "ghost-type-overprint": "word-slam",
+    "ordered-depth-assembly": "axial-layer-reseat",
+    "precision-assembly-sequence": "time-in-motion-sequence"
   },
   variant_redirects: {
     "material-label-stagger": "material",
@@ -54456,30 +55962,30 @@ function CompositionAudio({ effect, speed, base }) {
   return effect.loop ? /* @__PURE__ */ React4.createElement(Loop, { durationInFrames: Math.max(1, Math.ceil(effect.duration_ms * fps / (1e3 * normalizeSpeed(speed)) - 1e-9)) }, cycle) : cycle;
 }
 
-// catalog/remotion/precision-assembly.jsx
+// catalog/remotion/native-video.jsx
 import React5, { useLayoutEffect as useLayoutEffect3, useRef as useRef3 } from "react";
-import { AbsoluteFill as AbsoluteFill2, Freeze, Html5Audio as Html5Audio2, Html5Video, OffthreadVideo, staticFile as staticFile3, useCurrentFrame as useCurrentFrame5, useRemotionEnvironment as useRemotionEnvironment2, useVideoConfig as useVideoConfig5 } from "remotion";
-
-// catalog/effects/precision-assembly-data.js
-(function(global) {
-  "use strict";
-  const choices = Object.freeze({
-    "precision-assembly-sequence": { start: 0, frames: 528, poster: "\u6574\u8868.png" },
-    "ordered-depth-assembly": { start: 240, frames: 192, poster: "\u5206\u5C42.png" }
-  });
-  function sample(effectId, timeMs) {
-    const part = choices[effectId];
-    if (!part) throw new Error("\u672A\u77E5\u4E09\u7EF4\u7247\u6BB5\uFF1A" + effectId);
-    if (!Number.isFinite(timeMs)) throw new TypeError("\u65F6\u95F4\u5FC5\u987B\u4E3A\u6709\u9650\u6570\u5B57");
-    const local = Math.max(0, Math.min(part.frames - 1, Math.floor(timeMs * 24 / 1e3 + 1e-9)));
-    return { frame: part.start + local, blenderFrame: part.start + local + 1, time: (part.start + local + 0.5) / 24 };
+import {
+  AbsoluteFill as AbsoluteFill2,
+  Freeze,
+  Html5Audio as Html5Audio2,
+  Html5Video,
+  OffthreadVideo,
+  staticFile as staticFile3,
+  useCurrentFrame as useCurrentFrame5,
+  useRemotionEnvironment as useRemotionEnvironment2,
+  useVideoConfig as useVideoConfig5
+} from "remotion";
+function sampleNativeFrame(cache, timeMs) {
+  if (!Number.isFinite(timeMs)) throw new TypeError("\u65F6\u95F4\u5FC5\u987B\u4E3A\u6709\u9650\u6570\u5B57");
+  if (!cache || !Number.isInteger(cache.frames) || cache.frames < 1 || !Number.isFinite(cache.fps) || cache.fps <= 0 || !Number.isInteger(cache.start_frame ?? 0) || (cache.start_frame ?? 0) < 0) {
+    throw new TypeError("\u539F\u751F\u5E27\u7F13\u5B58\u5B9A\u4E49\u65E0\u6548");
   }
-  global.WisePrecisionAssembly = Object.freeze({ choices, sample, fps: 24, width: 1920, height: 1080 });
-})(globalThis);
-
-// catalog/remotion/precision-assembly.jsx
-function WisePrecisionAssembly({
-  effectId = "precision-assembly-sequence",
+  const local = Math.max(0, Math.min(cache.frames - 1, Math.floor(timeMs * cache.fps / 1e3 + 1e-9)));
+  const frame = (cache.start_frame || 0) + local;
+  return { frame, time: (frame + 0.5) / cache.fps };
+}
+function WiseNativeVideo({
+  definition,
   speed = 1,
   includeAudio = true,
   assetBaseUrl,
@@ -54492,50 +55998,61 @@ function WisePrecisionAssembly({
 }) {
   const frame = useCurrentFrame5(), { fps, width: vw, height: vh } = useVideoConfig5();
   const { isRendering } = useRemotionEnvironment2();
-  const stage = useRef3(null), video = useRef3(null), announced = useRef3(false), latest = useRef3(null);
-  const data = globalThis.WisePrecisionAssembly, part = data.choices[effectId];
-  if (!part) throw new Error("\u672A\u77E5\u4E09\u7EF4\u7247\u6BB5\uFF1A" + effectId);
+  const stage = useRef3(null), video = useRef3(null), announced = useRef3(false);
   if (!Number.isFinite(speed)) throw new TypeError("\u64AD\u653E\u901F\u5EA6\u5FC5\u987B\u4E3A\u6709\u9650\u6570\u5B57");
-  const rate = Math.min(2, Math.max(0.5, speed));
-  const time = timeOverrideMs ?? Math.min(part.frames / 24 * 1e3, frame / fps * rate * 1e3);
-  const sample = data.sample(effectId, time);
-  latest.current = { time, elapsed: time, frame };
-  const base = assetBaseUrl ? new URL(assetBaseUrl.replace(/\/?$/, "/"), typeof document === "undefined" ? "http://localhost/" : document.baseURI).href : null;
-  const movie = base ? new URL("catalog/assets/precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4", base).href : staticFile3("precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4.mp4");
-  const audio = base ? new URL("catalog/assets/composition-audio/precision-assembly/soundtrack.wav", base).href : staticFile3("precision-assembly/\u6210\u7247/\u5206\u79D2\u4E4B\u95F4-\u58F0\u8F68.wav");
+  const cache = definition?.source?.frame_cache;
+  const rate = Math.max(0.5, Math.min(2, speed));
+  const time = timeOverrideMs ?? frame / fps * rate * 1e3;
+  const sample = sampleNativeFrame(cache, time);
+  const base = assetBaseUrl ? new URL(
+    assetBaseUrl.replace(/\/?$/, "/"),
+    typeof document === "undefined" ? "http://localhost/" : document.baseURI
+  ).href : null;
+  const url = (file) => base ? new URL(file, base).href : staticFile3(file);
+  const movie = url(cache.video);
   const announce = () => {
     if (announced.current) return;
     announced.current = true;
     onReady?.({ native: true, stage: stage.current, destroy() {
     }, snapshot() {
       const canvas = document.createElement("canvas");
-      canvas.width = 1920;
-      canvas.height = 1080;
-      const context = canvas.getContext("2d");
-      if (!context || !video.current || video.current.readyState < 2) throw new Error("\u65E0\u6CD5\u4FDD\u7559\u4E09\u7EF4\u9884\u89C8\u753B\u9762");
-      context.drawImage(video.current, 0, 0);
+      canvas.width = cache.width;
+      canvas.height = cache.height;
+      if (!video.current || video.current.readyState < 2) throw new Error("\u539F\u751F\u5E27\u5C1A\u672A\u5C31\u7EEA");
+      canvas.getContext("2d").drawImage(video.current, 0, 0);
       canvas.style.cssText = "width:100%;height:100%;object-fit:contain";
       return canvas;
     } });
   };
   useLayoutEffect3(() => {
-    onFrame?.(latest.current);
+    onFrame?.({ time, elapsed: time, frame });
   }, [time, frame, onFrame]);
   useLayoutEffect3(() => {
     announced.current = false;
-    return () => {
-      announced.current = false;
-    };
-  }, [effectId, movie]);
-  const style = { width: "100%", height: "100%", objectFit: "contain" };
-  const imageProps = { src: movie, muted: true, style, onError, pauseWhenBuffering: true };
-  return /* @__PURE__ */ React5.createElement("div", { ref: stage, "data-native-scene": effectId, style: { position: "relative", width: width ?? vw, height: height ?? vh, background: "#080807" } }, /* @__PURE__ */ React5.createElement(AbsoluteFill2, null, /* @__PURE__ */ React5.createElement(Freeze, { frame: sample.time * fps }, isRendering ? /* @__PURE__ */ React5.createElement(OffthreadVideo, { ...imageProps }) : /* @__PURE__ */ React5.createElement(Html5Video, { ...imageProps, ref: video, onLoadedData: announce, onSeeked: announce })), includeAudio && effectId === "precision-assembly-sequence" ? /* @__PURE__ */ React5.createElement(Html5Audio2, { src: audio, playbackRate: rate }) : null));
+  }, [definition?.id, movie]);
+  const props = {
+    src: movie,
+    muted: true,
+    pauseWhenBuffering: true,
+    onError,
+    style: { width: "100%", height: "100%", objectFit: "contain" }
+  };
+  return /* @__PURE__ */ React5.createElement(
+    "div",
+    {
+      ref: stage,
+      "data-native-scene": definition.id,
+      "data-native-frame": sample.frame,
+      style: { position: "relative", width: width ?? vw, height: height ?? vh, background: "#08090b" }
+    },
+    /* @__PURE__ */ React5.createElement(AbsoluteFill2, null, /* @__PURE__ */ React5.createElement(Freeze, { frame: sample.time * fps }, isRendering ? /* @__PURE__ */ React5.createElement(OffthreadVideo, { ...props }) : /* @__PURE__ */ React5.createElement(Html5Video, { ...props, ref: video, onLoadedData: announce, onSeeked: announce })), includeAudio && definition.kind === "composition" && cache.audio ? /* @__PURE__ */ React5.createElement(Html5Audio2, { src: url(cache.audio), playbackRate: rate }) : null)
+  );
 }
 
 // remotion/with-audio.jsx
 function WiseMotionEffect2(props) {
   const effect = resolveEffect(props.definition ?? props.effectId, props.variantId);
-  if (effect.source?.native_scene === "blender") return /* @__PURE__ */ React6.createElement(WisePrecisionAssembly, { ...props, effectId: effect.id, assetBaseUrl: props.assetBaseUrl ?? staticFile4("wise-motion") });
+  if (effect.source?.frame_cache) return /* @__PURE__ */ React6.createElement(WiseNativeVideo, { ...props, definition: effect, assetBaseUrl: props.assetBaseUrl ?? staticFile4("wise-motion") });
   if (props.includeAudio === false || effect.kind !== "composition" || !effect.audio?.tracks?.length) return /* @__PURE__ */ React6.createElement(WiseMotionEffect, { ...props });
   const defaultBase = props.assetBaseUrl ?? staticFile4("wise-motion");
   const base = typeof document === "undefined" ? defaultBase : new URL(defaultBase.replace(/\/?$/, "/"), document.baseURI).href;

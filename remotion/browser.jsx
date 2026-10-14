@@ -5,7 +5,7 @@ import {flushSync} from 'react-dom';
 import {Player} from '@remotion/player';
 import {WiseMotionEffect, getEffectMetadata, resolveEffect} from './with-audio.jsx';
 import previewApi from '../catalog/preview-size.js';
-import {WisePrecisionAssembly} from '../catalog/remotion/precision-assembly.jsx';
+import {WiseNativeVideo} from '../catalog/remotion/native-video.jsx';
 export {React, createRoot, Player, WiseMotionEffect, getEffectMetadata, resolveEffect};
 const active = new Set();
 const FPS = 60;
@@ -77,7 +77,7 @@ export function create(root, supplied, options = {}) {
     // 无声条目不分配音频设备；组合默认静音，由用户点击解锁。
     // 使用音轨自身的媒体元素。共享音频池在首次创建 AudioContext 时会重新注销音轨，
     // 将已经加载的 src 换成空白音频；直接媒体元素不经过这次池内注册切换。
-    const component=definition.source?.native_scene==='blender'?WisePrecisionAssembly:WiseMotionEffect;
+    const component=definition.source?.frame_cache?WiseNativeVideo:WiseMotionEffect;
     reactRoot.render(<Player ref={playerRef} component={component} inputProps={props}
       durationInFrames={definition.loop ? 2147483647 : metadata.durationInFrames}
       compositionWidth={640} compositionHeight={360} fps={FPS} playbackRate={speed}

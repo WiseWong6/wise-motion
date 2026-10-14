@@ -1,0 +1,152 @@
+{
+  "title": "TIME, IN MOTION",
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "seconds": 44,
+  "totalFrames": 1056,
+  "audio": "soundtrack-44.wav",
+  "scenes": [
+    {
+      "id": "Prologue",
+      "from": 0,
+      "durationInFrames": 48
+    },
+    {
+      "id": "Reveal",
+      "from": 48,
+      "durationInFrames": 48
+    },
+    {
+      "id": "Blueprint",
+      "from": 96,
+      "durationInFrames": 144
+    },
+    {
+      "id": "Hero",
+      "from": 240,
+      "durationInFrames": 48
+    },
+    {
+      "id": "Shell",
+      "from": 288,
+      "durationInFrames": 48
+    },
+    {
+      "id": "Structure",
+      "from": 336,
+      "durationInFrames": 96
+    },
+    {
+      "id": "Craft",
+      "from": 432,
+      "durationInFrames": 96
+    },
+    {
+      "id": "Contrast",
+      "from": 528,
+      "durationInFrames": 48
+    },
+    {
+      "id": "Mechanism",
+      "from": 576,
+      "durationInFrames": 144
+    },
+    {
+      "id": "Journey",
+      "from": 720,
+      "durationInFrames": 96
+    },
+    {
+      "id": "Form",
+      "from": 816,
+      "durationInFrames": 48
+    },
+    {
+      "id": "Crescendo",
+      "from": 864,
+      "durationInFrames": 96
+    },
+    {
+      "id": "Finale",
+      "from": 960,
+      "durationInFrames": 96
+    }
+  ],
+  "reviewFrames": [
+    0,
+    16,
+    32,
+    72,
+    96,
+    104,
+    115,
+    144,
+    168,
+    204,
+    239,
+    260,
+    312,
+    351,
+    380,
+    421,
+    444,
+    479,
+    515,
+    551,
+    552,
+    594,
+    643,
+    694,
+    733,
+    768,
+    804,
+    835,
+    860,
+    879,
+    900,
+    911,
+    935,
+    947,
+    978,
+    1007,
+    1020,
+    1055
+  ],
+  "cutFrames": [
+    47,
+    48,
+    95,
+    96,
+    239,
+    240,
+    287,
+    288,
+    335,
+    336,
+    431,
+    432,
+    527,
+    528,
+    575,
+    576,
+    623,
+    624,
+    671,
+    672,
+    719,
+    720,
+    815,
+    816,
+    863,
+    864,
+    887,
+    888,
+    911,
+    912,
+    935,
+    936,
+    959,
+    960
+  ]
+}

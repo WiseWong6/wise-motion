@@ -10,14 +10,12 @@ const sourceOnlyFiles=new Set([
  'vendor/calligraphy/I.Ngaan.ttf',
  'vendor/duobaota/page-02.jpg',
  'vendor/duobaota/page-10.jpg',
- 'catalog/assets/precision-assembly/分秒之间.blend',
- 'catalog/assets/precision-assembly/材质/底板珍珠纹.png',
- 'catalog/assets/precision-assembly/成片/机芯.png',
 ]);
 // 素材副本供帧组件读取；完整目录页面只保留在源码的 catalog 中。
 export function isAssetFile(relativePath){
  const normalized=relativePath.split(path.sep).join('/');
- return !['.DS_Store','.npmignore'].includes(path.basename(relativePath))&&!sourceOnlyFiles.has(normalized)&&!['catalog/index.html','catalog/remotion-player.js'].includes(normalized);
+ const productionText=!normalized.startsWith('catalog/assets/time-in-motion/production/project/')||['.py','.json','.mjs','.jsx','.md','.txt'].includes(path.extname(normalized));
+ return !['.DS_Store','.npmignore'].includes(path.basename(relativePath))&&!sourceOnlyFiles.has(normalized)&&productionText&&!['catalog/index.html','catalog/remotion-player.js'].includes(normalized);
 }
 const contains=(parent,child)=>child===parent||child.startsWith(parent+path.sep);
 async function canonicalPath(value){
@@ -87,7 +85,8 @@ export async function installAssets(destination,{overwrite=false}={}){
  await inspect('catalog');await inspect('vendor');
  if(conflicts.length)throw new Error('以下素材副本有本地修改，安装未执行：\n'+conflicts.join('\n')+'\n请保留修改；明确要替换时才使用 --overwrite。内容配置应写在项目源码或计划中。');
  await mkdir(target,{recursive:true});
- for(const name of ['catalog','vendor'])await cp(path.join(root,name),path.join(target,name),{recursive:true,force:true,filter:p=>isAssetFile(path.relative(root,p))});
+ for(const name of ['catalog','vendor'])await cp(path.join(root,name),path.join(target,name),{recursive:true,force:true,
+  filter:async p=>(await lstat(p)).isDirectory()||isAssetFile(path.relative(root,p))});
  // 升级时只清理有安装记录且内容未被用户修改的旧文件。
  for(const relative of [...sourceOnlyFiles,'catalog/index.html']){
   if(!previous[relative])continue;
