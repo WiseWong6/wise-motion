@@ -1,0 +1,58 @@
+{
+  "subject": "TIME, IN MOTION · MECHANICAL WINDOWS v2",
+  "source_version": "最终第二版，2026-10-15",
+  "source": {
+    "file": "output/MECHANICAL-WINDOWS-v2.mp4",
+    "bytes": 22054287,
+    "sha256": "d72e2a857b5a0e4ebdfa1c219b23fa1b63c98b66682a0f8fd4a5f1a8cdb24747",
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "frames": 960
+  },
+  "runtime": {
+    "file": "movie.mp4",
+    "bytes": 4861146,
+    "sha256": "643bcd13679a0da2d172fb1e7e368e2262598c01782d08c37edacee3fe26a596",
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "frames": 960,
+    "operation": "FFmpeg libx264 CRF23，等比缩为1280×720，保留960帧、原切点、窗口、文字与时长；删除音轨。"
+  },
+  "source_code": [
+    {
+      "original": "src/FilmV2.jsx",
+      "file": "catalog/assets/mechanical-windows/production/FilmV2.jsx",
+      "bytes": 8701,
+      "sha256": "7ab54a8b35037cd78f617868100c4cd4ec96e87d179e31cacb4dbd0f7bd8a7af"
+    },
+    {
+      "original": "src/windows-v2.mjs",
+      "file": "catalog/assets/mechanical-windows/production/windows-v2.mjs",
+      "bytes": 2921,
+      "sha256": "f54bd51cca65bbb69ac26f8003167ae56ddbeb675ef7329078334ca63261b22c"
+    },
+    {
+      "original": "src/timing-v2.mjs",
+      "file": "catalog/assets/mechanical-windows/production/timing-v2.mjs",
+      "bytes": 1034,
+      "sha256": "793d72b17999e852d48dc62028b4e321460ca4f823646e430a728a90501e0066"
+    }
+  ],
+  "adaptations": [
+    "原窗口数学函数与全局帧关键点共用；独立动作以自编矢量机械圆盘演示，不把它称为原三维画面。",
+    "归档原FilmV2；可编辑适配使用现有Remotion视频、图片与声音组件，系统字体换为SIL OFL的Oswald，字形与成片缓存不同。",
+    "原剪辑媒体与alpha序列只记摘要，按需显式复制；原工程只读，不进入npm。"
+  ],
+  "audio": {
+    "distributed": false,
+    "track": "The Journey",
+    "artist": "Ahjay Stelino",
+    "source": "Mixkit",
+    "license_url": "https://mixkit.co/license/modal/musicFree/",
+    "terms_url": "https://mixkit.co/terms/",
+    "decision": "许可允许指定视听用途，用户条款限制把素材作为库存再分发；动作库不分发配乐、配乐候选或带配乐的缓存。用户可从自己的已授权本地工程显式准备音轨。"
+  },
+  "license": "自有代码Apache-2.0；Oswald为SIL OFL；原第三方音乐不重新授权、不进入素材库。"
+}

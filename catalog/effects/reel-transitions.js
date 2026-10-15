@@ -75,7 +75,9 @@
   }
   for(const [id,cfg] of Object.entries(settings))F[id]=root=>make(root,cfg);
   const defaultIris = F['iris-open-transition'];
-  F['iris-open-transition'] = (root, K, definition) => ['paper-expand', 'black-cover'].includes(definition?.variant_id)
+  F['iris-open-transition'] = (root, K, definition) => definition?.variant_id === 'offset-aperture'
+    ? globalThis.WiseMechanicalWindows.make(root, definition)
+    : ['paper-expand', 'black-cover'].includes(definition?.variant_id)
     ? globalThis.WiseCircularReveal.make(root, K, definition)
     : defaultIris(root, K, definition);
   const defaultBandCut = F['glitch-band-transition'];

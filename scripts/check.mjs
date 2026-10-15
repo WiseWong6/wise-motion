@@ -62,7 +62,8 @@ for (const e of data.effects) {
   assert.ok(typeof e.source.factory === 'string' && e.source.factory.length, e.id+' 缺少绘制入口');
   assert.equal(e.source.origin, 'original');
   assert.equal(e.source.license, 'Apache-2.0');
-  assert.equal(e.source.library, e.source.frame_cache?(e.source.native_scene==='blender'?'blender@4.5.14':'remotion@4.0.532'):'animejs@4.5.0');
+  assert.ok((e.source.frame_cache ? [e.source.native_scene==='blender'?'blender@4.5.14':'remotion@4.0.532'] : ['animejs@4.5.0','remotion@4.0.532']).includes(e.source.library),e.id+' 的绘制库版本未登记');
+  if(e.source.library==='remotion@4.0.532')assert.ok(e.source.remotion,e.id+' 缺少Remotion接入');
   for(const reference of [e.source.reference,...(e.source.additional_references||[])].filter(Boolean)){
     assert.ok(typeof reference.name==='string'&&reference.name.trim(),e.id+' 缺少参考来源名称');
     if(reference.url)assert.equal(new URL(reference.url).protocol,'https:',e.id+' 的参考来源必须使用 HTTPS');

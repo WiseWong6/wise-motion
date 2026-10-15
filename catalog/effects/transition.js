@@ -1,6 +1,7 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function (F) {
   F['rapid-cut'] = (root, M, definition) => {
+    if (definition?.variant_id === 'registered-drawing') return globalThis.WiseMechanicalWindows.make(root, definition);
     if (definition?.variant_id === 'print-burst') return globalThis.WiseGeometricPoster.make(root, M, definition, 'burst');
     // 原录屏的加速帧表：首张停留 17 帧，后面每 4–5 帧硬切；只取换图节奏。
     const cuts = [0, 17, 22, 27, 32, 37, 42, 47, 52, 56];

@@ -877,6 +877,86 @@
       "sha256": "3693f3d6df25fbc17c169259c2e3467052c943b22de40637358afddba617db0b"
     },
     {
+      "path": "catalog/assets/mechanical-windows/README.md",
+      "bytes": 4353,
+      "sha256": "18ffc6fc9cd7b6d05dff25ce486d2355413049c702ea56a1c9146125f44768a2"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/SOURCE.json",
+      "bytes": 2442,
+      "sha256": "a148192ca51160f175a3644da3ce2bc3ae85b6bf5f951d172a23c1e7f90e389a"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/editable/Film.jsx",
+      "bytes": 8789,
+      "sha256": "07ba4fa69ff1ae8b210812b7e8c8510afedff48a8728d7647ecec0cc4fa9d521"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/editable/Root.jsx",
+      "bytes": 271,
+      "sha256": "b209d042294b506d8f5005dfc65917428144708f4a50381510e1186fa57c2621"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/editable/import-originals.mjs",
+      "bytes": 2684,
+      "sha256": "2540dbf5035bd02682f0ea2e6c0e278b095c3618aecb09b930aaa609974ef3a3"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/editable/original-assets.json",
+      "bytes": 39594,
+      "sha256": "2472a4b2c689c6f002c8cdce44376a41afd4e7eaa1bb059cb5f29ab6c5eb3314"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/editable/timing-v2.mjs",
+      "bytes": 1034,
+      "sha256": "793d72b17999e852d48dc62028b4e321460ca4f823646e430a728a90501e0066"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/editable/windows-v2.mjs",
+      "bytes": 125,
+      "sha256": "4f1a86bb0decaefa3ffd4604dcff06316e594e3ce18dba952b62b6de6e1de7ec"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/movie.mp4",
+      "bytes": 4861146,
+      "sha256": "643bcd13679a0da2d172fb1e7e368e2262598c01782d08c37edacee3fe26a596"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/posters/F0040.jpg",
+      "bytes": 25540,
+      "sha256": "8e0bc26d769a5c3908fb31b4a2d7047459244db7f5d507fbf97bc97de1563e7d"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/posters/F0400.jpg",
+      "bytes": 21214,
+      "sha256": "273e415086366c3185ab3c573b4221bfe39627d5209b0209dbd159b4dd5a841b"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/posters/F0600.jpg",
+      "bytes": 15190,
+      "sha256": "775323921c6ce7696ed716446e88eedb2694a851dd93ac87f4b33bebd20cc8dd"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/posters/F0830.jpg",
+      "bytes": 26219,
+      "sha256": "06ace73d3d168d54aa035863f79eddb779d6239ec77b783b011a86d123918fe6"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/production/FilmV2.jsx",
+      "bytes": 8701,
+      "sha256": "7ab54a8b35037cd78f617868100c4cd4ec96e87d179e31cacb4dbd0f7bd8a7af"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/production/timing-v2.mjs",
+      "bytes": 1034,
+      "sha256": "793d72b17999e852d48dc62028b4e321460ca4f823646e430a728a90501e0066"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/production/windows-v2.mjs",
+      "bytes": 2921,
+      "sha256": "f54bd51cca65bbb69ac26f8003167ae56ddbeb675ef7329078334ca63261b22c"
+    },
+    {
       "path": "catalog/assets/particle-scenes/SOURCE.json",
       "bytes": 1621,
       "sha256": "a66a0d41f2ae7a185625580f005e8deeffc3f6e2b563f2043663551823912eed"
@@ -1907,6 +1987,16 @@
       "sha256": "a887c75acdb4fd568e0bc54c47c81e11bc3f16614b063d24d431b11fd93c2ec9"
     },
     {
+      "path": "catalog/effects/mechanical-windows-data.js",
+      "bytes": 7120,
+      "sha256": "2d554ecae47bf85ce6f52c598167cce63300ab301e632b695a50b278b9bab72c"
+    },
+    {
+      "path": "catalog/effects/mechanical-windows.js",
+      "bytes": 6914,
+      "sha256": "db43173f68a8edb94b30cf96b9c30e4420d8ebc23026544b85725f80fce9d32d"
+    },
+    {
       "path": "catalog/effects/metal-impact.js",
       "bytes": 32766,
       "sha256": "44e30f657ac4853d1b2343528e0d2eae2248c06c9d0a8e76547d0e3dab442fd2"
@@ -2003,8 +2093,8 @@
     },
     {
       "path": "catalog/effects/reel-transitions.js",
-      "bytes": 6944,
-      "sha256": "2ee1d3999cc2eba89aa5c7fac820b2d68b81f67ef6840b42f3e336f4cff2c59f"
+      "bytes": 7057,
+      "sha256": "eb7573784f00210fbf96b7ea1feec0c3f6425354815a5338d22e5d36a19892e9"
     },
     {
       "path": "catalog/effects/sage-butterfly-mask.js",
@@ -2153,8 +2243,8 @@
     },
     {
       "path": "catalog/effects/transition.js",
-      "bytes": 5675,
-      "sha256": "eaa3e5d004e7c4535e50007ecc760442e1b1ea88b86220500e3605195325b0d4"
+      "bytes": 5796,
+      "sha256": "fb8262a1cbd0104b024a2b6085887a9f536df5ab023809d9608d05d38104fae0"
     },
     {
       "path": "catalog/effects/word-slam.js",
@@ -2163,8 +2253,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 46984,
-      "sha256": "186ebb9c1cbeec36c30bd6766a4aa2e62d3eed8432cd9495fcbf2e68fb7f3a56"
+      "bytes": 46972,
+      "sha256": "95b0a3bded12b5cd1c8bcde982dbaf5a9841531901120bd7e65366fdc98cb470"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -2248,8 +2338,8 @@
     },
     {
       "path": "catalog/lazy.js",
-      "bytes": 3588,
-      "sha256": "57084f0a832f1ab9399375ca3926a42c4b863fe96ffc5b2d48a36614121dc3f0"
+      "bytes": 3657,
+      "sha256": "2a1932a52bcf3a1509862df923ebb656af5cae85b6975a772480b315781c72d9"
     },
     {
       "path": "catalog/matching.js",
@@ -2268,13 +2358,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 2380611,
-      "sha256": "da7d8042fa67047a53125dc3adf8986ba9b944465946afbed207feafd8c0577f"
+      "bytes": 2414576,
+      "sha256": "cdaf539421eb0b5c607d54ad0c02b8fa1425facefc6ae00e39472d37dd830285"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 2941063,
-      "sha256": "fcc86a5cb839c97a47c07f8a8d1c8cb4464c66a921ee8ff7a7d5411b2ee2e411"
+      "bytes": 2983745,
+      "sha256": "412ba2bb18b8e52945c8bb5674654712cfd1bef1bd9a69b5ed0490f0d147d0f4"
     },
     {
       "path": "catalog/related-preview.js",
@@ -2300,6 +2390,11 @@
       "path": "catalog/remotion/civilization-growth.jsx",
       "bytes": 1826,
       "sha256": "f0a82e1eeaa6ca5874755d793fc41f2aab77836cba3de073c896161bbd08be55"
+    },
+    {
+      "path": "catalog/remotion/mechanical-windows.jsx",
+      "bytes": 2991,
+      "sha256": "7823373489394070b3089f0918f809e1f6dbb488250a43e5d61819231ecba67f"
     },
     {
       "path": "catalog/remotion/native-video.jsx",
@@ -2443,8 +2538,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 2676001,
-      "sha256": "d2ee156385f5c13415b4555a391ecc974ad301f713bc6f863ddae19b88d689ea"
+      "bytes": 2773011,
+      "sha256": "834a58a687e026b55c52512400d7242ccfbec79cf3f90eaab1b7ae20043ab43d"
     },
     {
       "path": "catalog/runtime.js",

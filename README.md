@@ -3,7 +3,7 @@
 理解动作需求，拆解并匹配参考，交付现有源码与接入说明。字幕、分镜、配色和整片组合由调用方的 AI 自行设计；文字动效、转场、插画和组合均可按需取用。
 
 <!-- catalog-counts:start -->
-目录有 302 个单个动作、93 个插画单图、43 个组合片段，共 438 项；数量由目录定义自动生成，详见 [目录统计](CATALOG-STATS.md)。
+目录有 306 个单个动作、93 个插画单图、44 个组合片段，共 443 项；数量由目录定义自动生成，详见 [目录统计](CATALOG-STATS.md)。
 <!-- catalog-counts:end -->
 
 ## 精选动效
@@ -174,6 +174,10 @@ WISE_MOTION_RENDER_DIR="/目标工程/renders" npm run render -- stagger-in stag
 ## 获取完整三维工程
 
 最新横屏 TIME, IN MOTION 收录 10 个独立动作与 44 秒完整组合。文字、刻度、剪辑及三维制作源码随独立工程导出；npm 只提供轻量运行素材。原剪辑媒体与 Blender 场景按摘要单独准备，见 [动作、源码与制作素材](catalog/assets/time-in-motion/README.md)。旧怀表条目与运行素材已替换，旧书签对应到新条目。
+
+## 持续窗口与机械细节
+
+MECHANICAL WINDOWS 第二版收录4个新动作、圆孔展开与闪切的2个新示例，以及32秒完整组合。窗口独立于镜头持续运行；原创几何与剪辑源码可编辑。轻量缓存静音，原媒体与配乐按需准备，见 [动作与源码说明](catalog/assets/mechanical-windows/README.md)。
 
 ## 发布组件包
 

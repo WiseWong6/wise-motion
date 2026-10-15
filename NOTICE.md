@@ -113,3 +113,7 @@ Remotion、React 等视频复用依赖由目标工程安装，版本和接入方
 当前怀表动作来源于用户原创的最终横屏《TIME, IN MOTION》（2026-10-14，44秒）。建模、轮系、装配、摄影、投影、剪辑、词块与刻度、声音合成及接入代码为自有源码，使用 Apache-2.0。npm 仅分发1280×720、24fps轻量成片缓存、最终原声、预览与文字源码；制作模型和原剪辑媒体不随npm下载。来源摘要、源码路径和改动记录见 [来源说明](catalog/assets/time-in-motion/SOURCE.json)，原制作素材按 [制作说明](catalog/assets/time-in-motion/README.md) 单独准备。编辑版用SIL OFL授权Oswald替换系统HelveticaNeue，不分发系统字体文件；最终成片缓存保留已有文字外观。抽象背景为用户原创生成素材，不替代真实三维几何。旧怀表条目与素材已由此版本替换。
 
 Blender 使用其自身 GPL 许可，Remotion 与 React 使用软件包附带许可；不将软件本身打包或重新授权。已保存工程内的原系统字体保持原权利归属，不声明为 Apache-2.0 字体。当前库内保留工程以供用户本地编辑；源码重建保留原 macOS 字体查找方式。轮系、摆轮与秒针用于视觉演示，没有制造或真实走时验证。
+
+## 持续窗口与机械细节展示
+
+第二版 MECHANICAL WINDOWS 的窗口、同位线稿短闪、双镜预入与剪辑代码来自用户原创工程。独立动作以自编矢量示意演示，完整组合保留静音最终画面。原第三方音乐 The Journey — Ahjay Stelino / Mixkit 不进入 Git 收录素材、npm或默认源码包；用户自行确认许可后可从自己的本地工程准备。原系统字体不分发，可编辑版采用随包OFL授权Oswald。来源、摘要与适配记录见 [来源说明](catalog/assets/mechanical-windows/SOURCE.json)，复用与配乐边界见 [制作说明](catalog/assets/mechanical-windows/README.md)。

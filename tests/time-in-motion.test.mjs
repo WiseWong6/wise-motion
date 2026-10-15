@@ -13,7 +13,7 @@ import {exportEffect, projectFor} from '../scripts/export.mjs';
 import {environment} from './helpers.mjs';
 const root=path.resolve(import.meta.dirname,'..');
 const get=id=>registry.effects.find(e=>e.id===id);
-const native=registry.effects.filter(e=>e.source.frame_cache);
+const native=registry.effects.filter(e=>e.source.frame_cache?.video==='catalog/assets/time-in-motion/movie.mp4');
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 
 test('新动作精确定位最终1056帧，乱序与末帧稳定，旧条目不再占用运行素材',async()=>{
