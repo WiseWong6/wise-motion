@@ -13,6 +13,7 @@
     "publish:package": "node scripts/publish-package.mjs",
     "test:files": "node --test --test-concurrency=4",
     "test:publish": "npm run test:files -- tests/package-publish.test.mjs",
+    "test:ci": "npm run check && npm run test:files -- tests/release-workflow.test.mjs tests/package-publish.test.mjs tests/package-install.test.mjs tests/asset-install.test.mjs tests/matching.test.mjs tests/source-delivery.test.mjs && npm run check:remotion",
     "build:history": "node scripts/build-history.mjs",
     "check:history": "node scripts/build-history.mjs --check",
     "test": "npm run check && npm run check:history && npm run test:files -- tests/*.test.mjs",

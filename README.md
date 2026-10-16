@@ -171,6 +171,8 @@ WISE_MOTION_RENDER_DIR="/目标工程/renders" npm run render -- stagger-in stag
 
 维护时按 [验证范围与命令](references/validation-matrix.md) 选择检查；局部测试统一使用 `npm run test:files -- tests/具体文件.test.mjs`。全量 `npm test` 另需本地私有历史档案。人工播放见 [验收步骤](tests/manual.md)，目录维护见 [维护说明](references/catalog-maintenance.md)。
 
+维护者可通过 GitHub 可信发布自动构建并上传 npm，无需长期发包密钥；支持版本标签触发和手动试运行，见 [自动发布说明](references/publishing.md)。
+
 ## 获取完整三维工程
 
 最新横屏 TIME, IN MOTION 收录 10 个独立动作与 44 秒完整组合。文字、刻度、剪辑及三维制作源码随独立工程导出；npm 只提供轻量运行素材。原剪辑媒体与 Blender 场景按摘要单独准备，见 [动作、源码与制作素材](catalog/assets/time-in-motion/README.md)。旧怀表条目与运行素材已替换，旧书签对应到新条目。

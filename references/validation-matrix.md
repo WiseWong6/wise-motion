@@ -20,6 +20,7 @@
 | 播放器与逐帧接入 | `npm run check:remotion`；另按修改范围选择声音、加载、缩略图等测试 |
 | 其他局部修改 | `npm run test:files -- tests/具体文件.test.mjs`，明确列出受影响文件 |
 | 发布程序 | `npm run test:publish`，使用本机包管理器和本地模拟仓库，不向公网发布 |
+| GitHub 发布流程 | `npm run test:ci`，检查公开仓库可独立完成的构建、目录、字体、发包和组件接入；完整范围与可信发布配置见 [自动发布说明](publishing.md) |
 | 历史来源记录 | `npm run check:history`，需要私有档案；修改后的生成步骤见 [历史来源](history.md#维护与验证) |
 | 全量回归 | `npm test`，包含普通检查、历史一致性和全部测试，需要私有档案及相关原作文件 |
 

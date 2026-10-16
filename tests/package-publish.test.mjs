@@ -19,7 +19,7 @@ const execute = promisify(execFile);
 const npmCli = await realpath(process.env.npm_execpath);
 const npmRequire = createRequire(npmCli);
 
-test('真实 npm 发布请求压缩且包内容不变，查询、试运行和失败正确处理', async () => {
+for (const trusted of [false, true]) test(`真实 npm ${trusted ? '可信发布' : '密钥发布'}请求压缩且包内容不变，查询、试运行和失败正确处理`, async () => {
   const dir = await mkdtemp(path.join(tmpdir(), 'wise-publish-'));
   const requests = [];
   let responseStatus = 201;
@@ -27,6 +27,16 @@ test('真实 npm 发布请求压缩且包内容不变，查询、试运行和失
     const chunks = [];
     for await (const chunk of request) chunks.push(chunk);
     requests.push({method: request.method, url: request.url, headers: request.headers, body: Buffer.concat(chunks)});
+    if (request.url.startsWith('/identity?')) {
+      response.writeHead(200, {'content-type': 'application/json'});
+      response.end(JSON.stringify({value: 'local-test-id-token'}));
+      return;
+    }
+    if (request.url === '/-/npm/v1/oidc/token/exchange/package/wise-motion') {
+      response.writeHead(200, {'content-type': 'application/json'});
+      response.end(JSON.stringify({token: 'local-short-lived-token'}));
+      return;
+    }
     response.writeHead(request.method === 'PUT' ? responseStatus : 200, {'content-type': 'application/json'});
     response.end(JSON.stringify(request.method === 'PUT'
       ? (responseStatus === 201 ? {ok: true} : {error: 'request too large'})
@@ -45,7 +55,7 @@ test('真实 npm 发布请求压缩且包内容不变，查询、试运行和失
       '--registry=' + registry, '--userconfig=' + path.join(dir, 'empty-user.npmrc'),
       '--globalconfig=' + path.join(dir, 'empty-global.npmrc'), '--cache=' + path.join(dir, 'cache'),
       '--logs-max=0', '--proxy=false', '--https-proxy=false',
-      `--//127.0.0.1:${server.address().port}/:_authToken=local-test-token`
+      ...(trusted ? [] : [`--//127.0.0.1:${server.address().port}/:_authToken=local-test-token`])
     ];
     // 仅测试入口追加本地配置；发布命令、HTTP 客户端和压缩均使用实际安装的 npm。
     // 空认证文件和本地假令牌保证测试不会使用用户凭据或向公网发布。
@@ -62,9 +72,15 @@ module.exports = class extends Npm {
       await writeFile(path.join(dir, 'package/source.bin'), randomBytes(32768));
       await npmRequire('tar').c({gzip: true, cwd: dir, file: filename}, ['package']);
     };
+    // 云端运行测试时也只使用本地假身份服务，不请求真实的 GitHub 凭据。
+    const env = {...process.env, npm_execpath: path.join(dir, 'bin/npm-cli.js'),
+      GITHUB_ACTIONS: trusted ? 'true' : '', GITLAB_CI: '', CIRCLECI: '', NPM_ID_TOKEN: '',
+      NODE_AUTH_TOKEN: '', NPM_TOKEN: '',
+      ACTIONS_ID_TOKEN_REQUEST_URL: trusted ? registry + 'identity' : '',
+      ACTIONS_ID_TOKEN_REQUEST_TOKEN: trusted ? 'local-workflow-token' : ''};
     const invoke = flags => execute(process.execPath,
       [path.join(root, 'scripts/publish-package.mjs'), filename, ...flags],
-      {cwd: root, env: {...process.env, npm_execpath: path.join(dir, 'bin/npm-cli.js')}, timeout: 20000});
+      {cwd: root, env, timeout: 20000});
     await pack();
     const tarball = await readFile(filename);
     const result = await invoke([]);
@@ -73,6 +89,16 @@ module.exports = class extends Npm {
     assert.equal(put.length, 1);
     assert.equal(put[0].url, '/wise-motion');
     assert.equal(put[0].headers['content-encoding'], 'gzip');
+    assert.equal(put[0].headers.authorization, 'Bearer ' + (trusted ? 'local-short-lived-token' : 'local-test-token'));
+    if (trusted) {
+      const identity = requests.find(request => request.url.startsWith('/identity?'));
+      assert.equal(new URL(identity.url, registry).searchParams.get('audience'), 'npm:127.0.0.1');
+      assert.equal(identity.headers.authorization, 'Bearer local-workflow-token');
+      const exchange = requests.find(request => request.method === 'POST');
+      assert.equal(exchange.url, '/-/npm/v1/oidc/token/exchange/package/wise-motion');
+      assert.equal(exchange.headers.authorization, 'Bearer local-test-id-token');
+      assert.equal(exchange.headers['content-encoding'], undefined, '身份交换不使用发布正文压缩');
+    }
     const jsonBytes = gunzipSync(put[0].body);
     assert.ok(put[0].body.length < jsonBytes.length);
     const metadata = JSON.parse(jsonBytes);
@@ -89,7 +115,7 @@ module.exports = class extends Npm {
     requests.length = 0;
     const dryRun = await invoke(['--dry-run']);
     assert.match(dryRun.stderr, /dry-run/);
-    assert.ok(requests.every(request => request.method === 'GET'));
+    assert.ok(!requests.some(request => request.method === 'PUT'), '试运行不上传包；可信身份交换可以发生');
     requests.length = 0;
     responseStatus = 413;
     await assert.rejects(invoke([]), error => error.code === 1 && /E413/.test(error.stderr) && !/\+ wise-motion@/.test(error.stdout));
