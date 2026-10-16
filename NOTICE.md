@@ -117,3 +117,5 @@ Blender 使用其自身 GPL 许可，Remotion 与 React 使用软件包附带许
 ## 持续窗口与机械细节展示
 
 第二版 MECHANICAL WINDOWS 的窗口、同位线稿短闪、双镜预入与剪辑代码来自用户原创工程。独立动作以自编矢量示意演示，完整组合保留静音最终画面。原第三方音乐 The Journey — Ahjay Stelino / Mixkit 不进入 Git 收录素材、npm或默认源码包；用户自行确认许可后可从自己的本地工程准备。原系统字体不分发，可编辑版采用随包OFL授权Oswald。来源、摘要与适配记录见 [来源说明](catalog/assets/mechanical-windows/SOURCE.json)，复用与配乐边界见 [制作说明](catalog/assets/mechanical-windows/README.md)。
+
+MECHANICAL PULSE v4.2 的18秒实景组合、菱形跨镜展开及六个动作示例来自用户原创剪辑和窗口/轮廓排版源码；来源与摘要见 catalog/assets/mechanical-pulse/SOURCE.json。原制作代码原样归档，目录与可编辑工程共用逐帧几何。产品主体WebP保持原尺寸及无损alpha；完整组合使用1280×720静音缓存。系统HelveticaNeue不分发，编辑版使用已有SIL OFL授权Oswald。原片第三方配乐 The Journey — Ahjay Stelino / Mixkit 不进入本素材包；仅支持用户显式准备自己已授权的本地音轨，适用许可及条款见该目录README。

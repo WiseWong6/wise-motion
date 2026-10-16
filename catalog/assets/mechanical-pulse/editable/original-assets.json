@@ -1,0 +1,107 @@
+[
+  {
+    "source": "public/assembly.mp4",
+    "target": "public/assembly.mp4",
+    "group": "editable",
+    "bytes": 101814293,
+    "sha256": "24bcb57664ebbd8b2b534d6750e3dc0fa66126900c06347cfecaf7603b7adfd1"
+  },
+  {
+    "source": "public/screw.mp4",
+    "target": "public/screw.mp4",
+    "group": "editable",
+    "bytes": 16533440,
+    "sha256": "3cf17d2c3b1da9a94ea5843946114a234e52c5f930d671237785ba1a74200a3e"
+  },
+  {
+    "source": "public/barrel.mp4",
+    "target": "public/barrel.mp4",
+    "group": "editable",
+    "bytes": 13814420,
+    "sha256": "21cf38d9253cab458c269f901defcae2feade726edb032a15475d8f2b5cd710f"
+  },
+  {
+    "source": "public/train.mp4",
+    "target": "public/train.mp4",
+    "group": "editable",
+    "bytes": 10371836,
+    "sha256": "b50f9ab32ab19193b752ed0512eb4f539dd3204536dbe4e29169e9c63b111cbe"
+  },
+  {
+    "source": "public/balance.mp4",
+    "target": "public/balance.mp4",
+    "group": "editable",
+    "bytes": 23553168,
+    "sha256": "00514e3ab0d8ff411ceec38a1b59347947773282994bca432e0ae54d4be01fe9"
+  },
+  {
+    "source": "public/board-clean.mp4",
+    "target": "public/board-clean.mp4",
+    "group": "editable",
+    "bytes": 4069304,
+    "sha256": "b2fbe1c439c195cac7929493939154257f96af03b9d6b58f486b9113dcfccf48"
+  },
+  {
+    "source": "public/blueprint.png",
+    "target": "public/blueprint.png",
+    "group": "editable",
+    "bytes": 189227,
+    "sha256": "cc3307ea912d7e7c9c93b5a903529790b4e9482e27f8474f85f221ae2715e221"
+  },
+  {
+    "source": "public/chrome-neutral.png",
+    "target": "public/chrome-neutral.png",
+    "group": "editable",
+    "bytes": 1961304,
+    "sha256": "a58ef392b14358059da7f59553c54ae725f1379ddc25cb7bc5fa63501c8379a4"
+  },
+  {
+    "source": "public/glass.png",
+    "target": "public/glass.png",
+    "group": "editable",
+    "bytes": 1917826,
+    "sha256": "4033bd4c451a53973622a557fc317cf0018cd2fa91fc639a20ef9b0960cc4a49"
+  },
+  {
+    "source": "public/return-portrait.mp4",
+    "target": "public/return-portrait.mp4",
+    "group": "editable",
+    "bytes": 12666087,
+    "sha256": "cb39958c63143eb95fe1fdb4e1caaff970274992e7136c7634d695678843dbaa"
+  },
+  {
+    "source": "public/edge-portrait.mp4",
+    "target": "public/edge-portrait.mp4",
+    "group": "editable",
+    "bytes": 6669879,
+    "sha256": "119499dabff9836b7094acdce96bc2a8bc2212acea2bbf481fcf15bc06b98a49"
+  },
+  {
+    "source": "public/reveal-portrait.mp4",
+    "target": "public/reveal-portrait.mp4",
+    "group": "editable",
+    "bytes": 5504038,
+    "sha256": "4fa52de077e7d273b14098e97188eb98b086f09651223bfd5a600e31ea23c12a"
+  },
+  {
+    "source": "public/watch-front.png",
+    "target": "public/watch-front.png",
+    "group": "editable",
+    "bytes": 2276713,
+    "sha256": "62248d931d14a2eee66c0aabd7dbe53899f65bc5b1524046bd29e91e0f21851f"
+  },
+  {
+    "source": "public/watch-angle.png",
+    "target": "public/watch-angle.png",
+    "group": "editable",
+    "bytes": 1980033,
+    "sha256": "34d21561f9a3174df98b95df57fcbce3f83229c7c6703e124379ff210abd5b3e"
+  },
+  {
+    "source": "public/score-v4.2.wav",
+    "target": "public/score-v4.2.wav",
+    "group": "audio",
+    "bytes": 5184282,
+    "sha256": "7ab190db6c0b870a1283fa60bbb58da16b0e1db52ee0c85fef599be33c2223e8"
+  }
+]

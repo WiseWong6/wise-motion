@@ -96,9 +96,11 @@
     draw(0);return draw;
   }
   for(const id of ['cross-aperture-turn','rect-aperture-breathe','three-column-aperture','next-shot-preentry'])
-    F[id]=(root,_kit,definition={})=>make(root,{...definition,id});
+    F[id]=(root,_kit,definition={})=>['continuous-diagonal','vertical-column-rise','paced-overlap'].includes(definition.variant_id)
+      ?global.WiseSpatialApertures.make(root,{...definition,id}):make(root,{...definition,id});
   F['mechanical-window-sequence']=(root,_kit,definition)=>poster(root,definition||api.sequence);
   F['mechanical-window-sequence'].requiresPreparation=true;
   F['mechanical-window-sequence'].breakdown=api.breakdown;
   api.make=make;
+  api.drawDisc=disc;
 })(globalThis);

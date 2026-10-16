@@ -2852,7 +2852,9 @@
         "新画面",
         "覆盖",
         "擦除切换",
-        "擦移切换"
+        "擦移切换",
+        "矩窗接镜与文案交接",
+        "MECHANICAL PULSE v4.2"
       ],
       "behaviors": [
         "transition",
@@ -2933,7 +2935,148 @@
           "这里 t 为动作秒数（播放速度1时等于播放秒数）；设计时钟 u=0.7+1.8×限制到0至1的((t−0.15)/0.6)，单位为秒。下列标明 u 的阶段使用设计时钟，不是实际播放时长；归一进度 p=u/2.9。设计时钟在两端钳住，不靠上一帧保留状态。",
           "设计时钟u=0.7至2.5秒只打开新页裁剪区域：左边固定，右裁剪从100%缩到0。旧页位置不变，新页从左至右覆盖全页，不移动整块面板。"
         ]
-      }
+      },
+      "variants": [
+        {
+          "id": "standard",
+          "label": "从左向右擦入",
+          "duration_ms": 1200,
+          "preview_ms": 557,
+          "summary": "一块新画面从边缘推进，覆盖原画面。",
+          "source": {
+            "path": "catalog/effects/transition.js",
+            "factory": "wipe",
+            "origin": "original",
+            "license": "Apache-2.0",
+            "library": "animejs@4.5.0",
+            "reference_url": "https://animejs.com/documentation/"
+          },
+          "reproduction": {
+            "objects": "前后两个画面",
+            "presentation": "640×360横向画板，近黑底#0a0a0b、暖白主体#f4f1ea、灰色辅助线#62626b；深灰面#151517，细边#3a3a40。浅色主题用暖白底#f7f5f0、深色主体#222226；保留构图、相对尺寸与色相。两块重叠的520×258圆角面板，左上角(60,38)；旧页“这一刻。”，新页“下一刻。”，新页使用较亮深灰#242428。",
+            "phases": [
+              "原画面完整显示。",
+              "新画面的边界从左向右推进。",
+              "新画面完全覆盖原画面。"
+            ],
+            "retain": "一块新画面从边缘推进，覆盖原画面。",
+            "avoid": "只做一次场景交接，不连续闪切。",
+            "details": [
+              "这里 t 为动作秒数（播放速度1时等于播放秒数）；设计时钟 u=0.7+1.8×限制到0至1的((t−0.15)/0.6)，单位为秒。下列标明 u 的阶段使用设计时钟，不是实际播放时长；归一进度 p=u/2.9。设计时钟在两端钳住，不靠上一帧保留状态。",
+              "设计时钟u=0.7至2.5秒只打开新页裁剪区域：左边固定，右裁剪从100%缩到0。旧页位置不变，新页从左至右覆盖全页，不移动整块面板。"
+            ]
+          }
+        },
+        {
+          "id": "overlap-copy-handoff",
+          "label": "矩窗接镜与文案交接",
+          "duration_ms": 700.0,
+          "preview_ms": 333.3333333333333,
+          "summary": "新画面从右向左擦入，旧主体在下层继续移动；旧文案先退、新文案后显，避免边缘切碎文字。",
+          "purpose": "新画面从右向左擦入，旧主体在下层继续移动；旧文案先退、新文案后显，避免边缘切碎文字。",
+          "objects": "前后两个运行的产品画面，以及分开的旧、新文案层",
+          "phases": [
+            "旧文案已经退出，旧主体继续移动。",
+            "下一画面以矩形边界从右向左展开16帧。",
+            "窗口完成后，新文案在12–20帧淡显并上移28像素。"
+          ],
+          "retain": "矩形接镜、双层持续运动和互不重叠的文案交接。",
+          "avoid": "不把两套文字一起裁成碎片，不让旧文案直到擦边经过才消失，不移动整张新画面代替裁剪。",
+          "tempo_note": "30fps，共21帧；末帧20。",
+          "recommendation": "新画面从右向左擦入，旧主体在下层继续移动；旧文案先退、新文案后显，避免边缘切碎文字。",
+          "reproduction": {
+            "objects": "前后两个运行的产品画面，以及分开的旧、新文案层",
+            "presentation": "1920×1080横向画板、30fps；近黑底#101211、暖白线条#eeeee5与金色重点#bba67b。窗口示意使用自编机械圆盘，可替换成自己的完整画面；不同画幅等比容纳。",
+            "phases": [
+              "旧文案已经退出，旧主体继续移动。",
+              "下一画面以矩形边界从右向左展开16帧。",
+              "窗口完成后，新文案在12–20帧淡显并上移28像素。"
+            ],
+            "details": [
+              "30fps，共21个采样帧，末帧20。旧画面0–15帧在底层延续，新画面从自己的0帧开始运行。",
+              "裁剪左边界left=1920×(1−cubic-bezier(.45,0,.2,1)(clamp(f/16)))，右、上、下边界固定；0–15帧只显示[left,1920]，第16帧全幅。",
+              "旧文案须在动作起点前完成淡出，保持opacity=0；新文案opacity在12–20帧线性0→1，y位移28→0使用cubic-bezier(.16,1,.3,1)。",
+              "文案显隐单独于画面裁剪；在12帧以前新文案不可见，旧文案不随擦边留下残片。示意文案为FORM.与IN MOTION.。"
+            ],
+            "retain": "矩形接镜、双层持续运动和互不重叠的文案交接。",
+            "avoid": "不把两套文字一起裁成碎片，不让旧文案直到擦边经过才消失，不移动整张新画面代替裁剪。"
+          },
+          "source": {
+            "path": "catalog/effects/transition.js",
+            "factory": "wipe",
+            "dependencies": [
+              "catalog/effects/mechanical-windows-data.js",
+              "catalog/effects/mechanical-windows.js",
+              "catalog/effects/spatial-apertures-data.js",
+              "catalog/effects/spatial-apertures.js"
+            ],
+            "origin": "original",
+            "license": "Apache-2.0",
+            "library": "remotion@4.0.532",
+            "reference": {
+              "name": "MECHANICAL PULSE v4.2 · 用户原创几何编舞与轮廓排版"
+            },
+            "extraction": "提取作者原创窗口与排版函数，保留全局帧、持续展开、同位短闪和双镜重叠；未复制外部模板代码。",
+            "production_guide": "catalog/assets/mechanical-pulse/README.md",
+            "remotion": {
+              "component": "catalog/remotion/spatial-apertures.jsx",
+              "export_name": "WiseSpatialApertures",
+              "package_name": "wise-spatial-apertures",
+              "files": [
+                "catalog/remotion/spatial-apertures.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/effects/spatial-apertures-data.js",
+                "catalog/effects/spatial-apertures.js",
+                "catalog/assets/mechanical-pulse/README.md",
+                "catalog/assets/mechanical-pulse/SOURCE.json",
+                "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+                "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+                "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+                "LICENSE",
+                "catalog/fonts/OFL-Oswald.txt",
+                "catalog/remotion/binary-assets-installer.mjs"
+              ],
+              "packages": {
+                "remotion": "4.0.532",
+                "@remotion/cli": "4.0.532",
+                "react": "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              "width": 1920,
+              "height": 1080,
+              "fps": 30,
+              "exact_frames": true,
+              "reuse_notes": "目录、独立动作与编辑工程共用逐帧窗口和轮廓排版函数；独立窗口以自编矢量圆盘示意，可通过SpatialWindowClip换成自己的图像或视频。AlignedSilhouetteRow接受自己的主体内容、主体锚点与旋转后轮廓边界；默认主体使用原图尺寸、alpha保真的WebP。自有代码Apache-2.0。",
+              "scripts": {
+                "render": "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              },
+              "binary_files": [
+                {
+                  "source": "catalog/fonts/Oswald-Bold.woff2",
+                  "target": "public/catalog/fonts/Oswald-Bold.woff2",
+                  "bytes": 12112,
+                  "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+                }
+              ],
+              "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+            }
+          },
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          }
+        }
+      ]
     },
     {
       "kind": "action",
@@ -2975,7 +3118,9 @@
         "印刷纹理快闪",
         "背景纹理叠加",
         "MECHANICAL WINDOWS",
-        "同位线稿短闪"
+        "同位线稿短闪",
+        "全幅双次图纸短闪",
+        "MECHANICAL PULSE v4.2"
       ],
       "behaviors": [
         "transition",
@@ -3168,6 +3313,103 @@
               "scripts": {
                 "render": "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
               }
+            }
+          }
+        },
+        {
+          "id": "full-frame-blueprint",
+          "label": "全幅双次图纸短闪",
+          "duration_ms": 3333.3333333333335,
+          "preview_ms": 333.3333333333333,
+          "summary": "完整实体画面与同构图图纸两次直接替换，每次8帧，图纸期间保持全幅。",
+          "purpose": "完整实体画面与同构图图纸两次直接替换，每次8帧，图纸期间保持全幅。",
+          "objects": "完整实体画面和构图一致的暖白线稿",
+          "phases": [
+            "实体画面先显示8帧。",
+            "线稿显示8帧后切回实体，间隔12帧后再显示8帧。",
+            "恢复实体并保持至片段结束。"
+          ],
+          "retain": "两次各8帧的同位全幅短闪与中间实体间隔。",
+          "avoid": "不裁剪图纸，不加交叉淡化或缩放，不将实体冻结为图纸的替代。",
+          "tempo_note": "30fps，共100帧；末帧99。",
+          "recommendation": "完整实体画面与同构图图纸两次直接替换，每次8帧，图纸期间保持全幅。",
+          "reproduction": {
+            "objects": "完整实体画面和构图一致的暖白线稿",
+            "presentation": "1920×1080横向画板、30fps；近黑底#101211、暖白线条#eeeee5与金色重点#bba67b。窗口示意使用自编机械圆盘，可替换成自己的完整画面；不同画幅等比容纳。",
+            "phases": [
+              "实体画面先显示8帧。",
+              "线稿显示8帧后切回实体，间隔12帧后再显示8帧。",
+              "恢复实体并保持至片段结束。"
+            ],
+            "details": [
+              "30fps，共100帧；线稿可见区间严格为[8,16)和[28,36)，其余时间实体可见。",
+              "不加过渡插值；只改变同位图层显隐。相同机位、比例、锚点和画幅；线稿与实体均覆盖全画板。",
+              "实体底层按自身时间继续播放，线稿层位于其上方；窗口轨道在整个100帧保持全幅。"
+            ],
+            "retain": "两次各8帧的同位全幅短闪与中间实体间隔。",
+            "avoid": "不裁剪图纸，不加交叉淡化或缩放，不将实体冻结为图纸的替代。"
+          },
+          "source": {
+            "path": "catalog/effects/transition.js",
+            "factory": "rapid-cut",
+            "dependencies": [
+              "catalog/effects/mechanical-windows-data.js",
+              "catalog/effects/mechanical-windows.js",
+              "catalog/effects/spatial-apertures-data.js",
+              "catalog/effects/spatial-apertures.js"
+            ],
+            "origin": "original",
+            "license": "Apache-2.0",
+            "library": "remotion@4.0.532",
+            "reference": {
+              "name": "MECHANICAL PULSE v4.2 · 用户原创几何编舞与轮廓排版"
+            },
+            "extraction": "提取作者原创窗口与排版函数，保留全局帧、持续展开、同位短闪和双镜重叠；未复制外部模板代码。",
+            "production_guide": "catalog/assets/mechanical-pulse/README.md",
+            "remotion": {
+              "component": "catalog/remotion/spatial-apertures.jsx",
+              "export_name": "WiseSpatialApertures",
+              "package_name": "wise-spatial-apertures",
+              "files": [
+                "catalog/remotion/spatial-apertures.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/effects/spatial-apertures-data.js",
+                "catalog/effects/spatial-apertures.js",
+                "catalog/assets/mechanical-pulse/README.md",
+                "catalog/assets/mechanical-pulse/SOURCE.json",
+                "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+                "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+                "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+                "LICENSE"
+              ],
+              "packages": {
+                "remotion": "4.0.532",
+                "@remotion/cli": "4.0.532",
+                "react": "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              "width": 1920,
+              "height": 1080,
+              "fps": 30,
+              "exact_frames": true,
+              "reuse_notes": "目录、独立动作与编辑工程共用逐帧窗口和轮廓排版函数；独立窗口以自编矢量圆盘示意，可通过SpatialWindowClip换成自己的图像或视频。AlignedSilhouetteRow接受自己的主体内容、主体锚点与旋转后轮廓边界；默认主体使用原图尺寸、alpha保真的WebP。自有代码Apache-2.0。",
+              "scripts": {
+                "render": "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
             }
           }
         }
@@ -53340,7 +53582,7 @@
       "trigger": "打开预览按固定时间线播放；可以暂停、定位和重播。",
       "assumptions": "怀表为动作示例，可替换主体；物理钟表状态仅为视觉演示。",
       "id": "fan-object-rise",
-      "name": "三联主体错峰升入",
+      "name": "三联主体升入",
       "kind": "action",
       "category": "entrance",
       "duration_ms": 2000.0,
@@ -53352,7 +53594,10 @@
         "三联主体",
         "错峰升入",
         "产品陈列",
-        "上移落位"
+        "上移落位",
+        "轮廓等距同步升入",
+        "MECHANICAL PULSE v4.2",
+        "三联主体错峰升入"
       ],
       "behaviors": [
         "native-3d",
@@ -53505,7 +53750,273 @@
         "end_state": "主体在第20、24、28帧落位，三联构图与细微持续转角保持。",
         "retain": "透明静帧的完整轮廓、原长宽比、错峰位移和各自倾角。",
         "avoid": "不要整体移动三张图片，不拉伸或裁切主体，不用淡入代替上移。"
-      }
+      },
+      "variants": [
+        {
+          "id": "standard",
+          "label": "错峰倾转升入",
+          "duration_ms": 2000.0,
+          "preview_ms": 1250.0,
+          "summary": "三个完整主体以固定错峰从下方升入，分别倾斜落位组成三联画。",
+          "source": {
+            "path": "catalog/effects/time-in-motion.js",
+            "factory": "fan-object-rise",
+            "dependencies": [
+              "catalog/effects/time-in-motion-data.js"
+            ],
+            "origin": "original",
+            "license": "Apache-2.0",
+            "library": "remotion@4.0.532",
+            "native_scene": "remotion",
+            "frame_cache": {
+              "video": "catalog/assets/time-in-motion/movie.mp4",
+              "start_frame": 816,
+              "frames": 48,
+              "fps": 24,
+              "width": 1280,
+              "height": 720,
+              "poster": "catalog/assets/time-in-motion/posters/fan-object-rise.jpg"
+            },
+            "reference": {
+              "name": "TIME, IN MOTION · 用户原创横屏机械怀表作品"
+            },
+            "extraction": "原Form函数使用三张Blender摄影静帧进行二维错峰移位与旋转；片段缓存定位最终成片，真实可编辑编排源码同时交付。",
+            "production_guide": "catalog/assets/time-in-motion/README.md",
+            "assets": [
+              "catalog/assets/time-in-motion/movie.mp4",
+              "catalog/assets/time-in-motion/posters/fan-object-rise.jpg",
+              "catalog/assets/time-in-motion/SOURCE.json"
+            ],
+            "remotion": {
+              "component": "catalog/remotion/time-in-motion.jsx",
+              "export_name": "WiseTimeInMotion",
+              "package_name": "wise-time-in-motion",
+              "files": [
+                "catalog/remotion/time-in-motion.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/time-in-motion-data.js",
+                "catalog/assets/time-in-motion/README.md",
+                "catalog/assets/time-in-motion/editable/Film.jsx",
+                "catalog/assets/time-in-motion/editable/Root.jsx",
+                "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+                "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+                "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+                "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+                "catalog/assets/time-in-motion/editable/import-originals.mjs",
+                "catalog/assets/time-in-motion/editable/movie.config.json",
+                "catalog/assets/time-in-motion/editable/original-assets.json",
+                "catalog/assets/time-in-motion/production/Film-original.jsx",
+                "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/build_film.py",
+                "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/product_photography.py",
+                "catalog/assets/time-in-motion/production/project/3比4产品展示版/三维/源码/render_film.py",
+                "catalog/assets/time-in-motion/production/project/修订版/性能研究/profiles.py",
+                "catalog/assets/time-in-motion/production/project/修订版/源码/build_revision.py",
+                "catalog/assets/time-in-motion/production/project/修订版/源码/cinematography.py",
+                "catalog/assets/time-in-motion/production/project/修订版/源码/geometry.py",
+                "catalog/assets/time-in-motion/production/project/修订版/源码/mechanics.py",
+                "catalog/assets/time-in-motion/production/project/原始建模/源码/build.py",
+                "catalog/assets/time-in-motion/production/project/原始建模/源码/casework.py",
+                "catalog/assets/time-in-motion/production/project/原始建模/源码/movement.py",
+                "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/build_and_preview.py",
+                "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/compose_lines.py",
+                "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/encode.py",
+                "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/project_lines.py",
+                "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/横屏陈列归位/源码/verify_geometry.py",
+                "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/return_mask.py",
+                "catalog/assets/time-in-motion/production/project/横屏-MOTION-STUDY/三维素材/源码/透明整表.py",
+                "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_lock.py",
+                "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_opening.py",
+                "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/common.py",
+                "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/render_worker.py",
+                "catalog/assets/time-in-motion/verify-source.mjs",
+                "LICENSE",
+                "catalog/remotion/binary-assets-installer.mjs",
+                "catalog/assets/time-in-motion/production/project/竖屏金属闪回版/三维/源码/build_structure_entry.py",
+                "catalog/assets/time-in-motion/SOURCE.json",
+                "catalog/fonts/OFL-Oswald.txt",
+                "catalog/assets/time-in-motion/production/project/竖屏图纸实体开场/素材/零件映射.json",
+                "catalog/assets/time-in-motion/production/project/修订版/源码/screw_geometry.py",
+                "catalog/assets/time-in-motion/production/extract-textures.py"
+              ],
+              "binary_files": [
+                {
+                  "source": "catalog/assets/time-in-motion/movie.mp4",
+                  "target": "public/catalog/assets/time-in-motion/movie.mp4",
+                  "bytes": 7604138,
+                  "sha256": "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+                },
+                {
+                  "source": "catalog/fonts/Oswald-Bold.woff2",
+                  "target": "public/catalog/fonts/Oswald-Bold.woff2",
+                  "bytes": 12112,
+                  "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+                }
+              ],
+              "packages": {
+                "remotion": "4.0.532",
+                "@remotion/cli": "4.0.532",
+                "react": "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              "width": 1920,
+              "height": 1080,
+              "fps": 24,
+              "exact_frames": true,
+              "reuse_notes": "目录与默认渲染使用最终4K片的1280×720、24fps轻量缓存，保持1056帧、构图与原剪辑；不能把上采样缓存称为重新渲染4K。完整剪辑源码在catalog/assets/time-in-motion/editable/，原创建模、机械、镜头和投影源码在production/。先用import-originals.mjs按摘要准备原制作素材，才能运行studio:editable或修改Blender场景。字体改为随包授权的Oswald；原系统HelveticaNeue字体不分发，编辑版的字形与最终缓存不同。自有代码Apache-2.0；Oswald遵循SIL OFL。",
+              "scripts": {
+                "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+                "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+                "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+              },
+              "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+            }
+          },
+          "reproduction": {
+            "objects": "三张完整主体的透明PNG静帧，主体几何来自三维摄影，入场是二维图片移位和转角。",
+            "presentation": "1920×1080横向设计画板；近黑摄影底，金、银、暖白与蓝钢细节。画面用软箱灯照明，细窄倒角反光，不拉伸主体。",
+            "materials": [
+              "主体为具有完整轮廓的透明产品静帧；右侧银色曲面只用作背景。"
+            ],
+            "phases": [
+              "暖白底与银色曲面背景，三个完整主体在画面下方等待。",
+              "三个主体分别在第0、4、8帧开始从下方上移，带不同固定倾角。",
+              "主体在第20、24、28帧落位，三联构图与细微持续转角保持。"
+            ],
+            "details": [
+              "所有帧号均为24帧/秒设计帧；动作帧f=floor(24×动作秒数)，限制在0至47。影片帧率改变时先换算动作秒数，不直接把影片帧号当作设计帧。",
+              "1920×1080画板，3个主体宽740像素，x=70+545i、y=90+22i，高度按4:3保留；第二个采用斜视图，其他采用正三分之四视图。",
+              "上移位移700→0像素，用cubic-bezier(.22,1,.36,1)；初始倾角−18°、0°、18°，全段再叠加−3°→3°的线性转角。",
+              "标题FORM位于(74,57)，字号315，x位移−140→0在15帧内结束；右侧银色背景x=1120、宽800。"
+            ],
+            "start_state": "暖白底与银色曲面背景，三个完整主体在画面下方等待。",
+            "end_state": "主体在第20、24、28帧落位，三联构图与细微持续转角保持。",
+            "retain": "透明静帧的完整轮廓、原长宽比、错峰位移和各自倾角。",
+            "avoid": "不要整体移动三张图片，不拉伸或裁切主体，不用淡入代替上移。"
+          }
+        },
+        {
+          "id": "aligned-silhouette",
+          "label": "轮廓等距同步升入",
+          "duration_ms": 1866.6666666666667,
+          "preview_ms": 400.0,
+          "summary": "三主体按旋转后的可见轮廓等距排布，共用上移曲线和持续微移，主体锚点始终同高。",
+          "purpose": "三主体按旋转后的可见轮廓等距排布，共用上移曲线和持续微移，主体锚点始终同高。",
+          "objects": "三张透明产品图与各自剔除附属件后的主体中心锚点",
+          "phases": [
+            "三张图以固定姿态、等距可见轮廓和同高主体中心排好。",
+            "三主体共用48像素向上的入场，不做各自错峰。",
+            "入场结束后仍共同缓慢上移，间距和中心高度关系保持。"
+          ],
+          "retain": "同高主体中心、真实轮廓等距和共同上移；落定后仍缓慢运动。",
+          "avoid": "不按图片盒子算间隙，不把吊环或透明留白中心当成主体锚点，不错峰、不单独漂移。",
+          "tempo_note": "30fps，共56帧；末帧55。",
+          "recommendation": "三主体按旋转后的可见轮廓等距排布，共用上移曲线和持续微移，主体锚点始终同高。",
+          "reproduction": {
+            "objects": "三张透明产品图与各自剔除附属件后的主体中心锚点",
+            "presentation": "1920×1080横屏；近黑底、银金产品和蓝钢细节。三张透明产品图保留原始比例、完整主体与实际alpha轮廓，不拉伸。",
+            "phases": [
+              "三张图以固定姿态、等距可见轮廓和同高主体中心排好。",
+              "三主体共用48像素向上的入场，不做各自错峰。",
+              "入场结束后仍共同缓慢上移，间距和中心高度关系保持。"
+            ],
+            "details": [
+              "30fps，共56帧，末帧55。原图1800×2400；左/中/右显示宽700/720/700，固定角度−11°/0°/+11°。",
+              "左、右主体源锚点(923.511028,1310.621828)，中间(941.058877,1309.165607)。旋转与缩放围绕各自主体锚点进行。",
+              "相对于锚点、缩放并旋转后的alpha横向边界依次为[−233.260613,233.615857]、[−212.023551,213.176449]、[−230.104533,230.866955]。以这些可见边界排版，透明图片外框不参与间距计算。",
+              "画幅宽1920，左右可见边距各96。gap=(1920−192−三轮廓宽度总和)/2=187.476020。按可见左界顺推centerX，再用left=centerX−anchorX×显示宽/原图宽求图片位置。",
+              "三个主体centerY=710+offsetY；offsetY=48×(1−cubic-bezier(.16,1,.3,1)(clamp(f/12)))−16×clamp(f/55)。0–12帧完成入场，全56帧叠加0→−16像素群组上移。",
+              "更换素材时重新测量主体中心及旋转后alpha轮廓；不要沿用示例的图片外框或源锚点数值。"
+            ],
+            "retain": "同高主体中心、真实轮廓等距和共同上移；落定后仍缓慢运动。",
+            "avoid": "不按图片盒子算间隙，不把吊环或透明留白中心当成主体锚点，不错峰、不单独漂移。"
+          },
+          "source": {
+            "path": "catalog/effects/time-in-motion.js",
+            "factory": "fan-object-rise",
+            "dependencies": [
+              "catalog/effects/time-in-motion-data.js",
+              "catalog/effects/mechanical-windows-data.js",
+              "catalog/effects/mechanical-windows.js",
+              "catalog/effects/spatial-apertures-data.js",
+              "catalog/effects/spatial-apertures.js"
+            ],
+            "origin": "original",
+            "license": "Apache-2.0",
+            "library": "remotion@4.0.532",
+            "reference": {
+              "name": "MECHANICAL PULSE v4.2 · 用户原创几何编舞与轮廓排版"
+            },
+            "extraction": "提取作者原创窗口与排版函数，保留全局帧、持续展开、同位短闪和双镜重叠；未复制外部模板代码。",
+            "production_guide": "catalog/assets/mechanical-pulse/README.md",
+            "remotion": {
+              "component": "catalog/remotion/spatial-apertures.jsx",
+              "export_name": "WiseSpatialApertures",
+              "package_name": "wise-spatial-apertures",
+              "files": [
+                "catalog/remotion/spatial-apertures.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/effects/spatial-apertures-data.js",
+                "catalog/effects/spatial-apertures.js",
+                "catalog/assets/mechanical-pulse/README.md",
+                "catalog/assets/mechanical-pulse/SOURCE.json",
+                "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+                "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+                "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+                "LICENSE",
+                "catalog/remotion/binary-assets-installer.mjs"
+              ],
+              "packages": {
+                "remotion": "4.0.532",
+                "@remotion/cli": "4.0.532",
+                "react": "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              "width": 1920,
+              "height": 1080,
+              "fps": 30,
+              "exact_frames": true,
+              "reuse_notes": "目录、独立动作与编辑工程共用逐帧窗口和轮廓排版函数；独立窗口以自编矢量圆盘示意，可通过SpatialWindowClip换成自己的图像或视频。AlignedSilhouetteRow接受自己的主体内容、主体锚点与旋转后轮廓边界；默认主体使用原图尺寸、alpha保真的WebP。自有代码Apache-2.0。",
+              "scripts": {
+                "render": "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              },
+              "binary_files": [
+                {
+                  "source": "catalog/assets/mechanical-pulse/watch-front.webp",
+                  "target": "public/catalog/assets/mechanical-pulse/watch-front.webp",
+                  "bytes": 209108,
+                  "sha256": "c207abcde5917eb41da04211675208375d9eec34c99838c979162be9a1b21dfb"
+                },
+                {
+                  "source": "catalog/assets/mechanical-pulse/watch-angle.webp",
+                  "target": "public/catalog/assets/mechanical-pulse/watch-angle.webp",
+                  "bytes": 178668,
+                  "sha256": "8bb67f973f2cba191d736bb568aad24ef9f2ca31bd338df14a7b1e8900511dbb"
+                }
+              ],
+              "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+            },
+            "assets": [
+              "catalog/assets/mechanical-pulse/watch-front.webp",
+              "catalog/assets/mechanical-pulse/watch-angle.webp"
+            ]
+          },
+          "requires_preparation": true,
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          }
+        }
+      ]
     },
     {
       "loop": false,
@@ -54194,7 +54705,9 @@
         "MECHANICAL WINDOWS",
         "持续窗口",
         "机械窗口",
-        "等臂十字旋转开窗"
+        "等臂十字旋转开窗",
+        "斜十字持续扩展",
+        "MECHANICAL PULSE v4.2"
       ],
       "behaviors": [
         "mask",
@@ -54268,7 +54781,177 @@
         ],
         "retain": "等长、等粗的十字窗口持续平移和旋转，切换后方画面时保持同一条窗口轨道。",
         "avoid": "不要将十字画成粗细不同的条带，不在换镜时重新起动窗口，也不添加圆瓣或光效。"
-      }
+      },
+      "variants": [
+        {
+          "id": "standard",
+          "label": "旋转后回正",
+          "duration_ms": 4666.666666666667,
+          "preview_ms": 2633.3333333333335,
+          "summary": "等长、等粗的十字窗口持续平移和旋转，切换后方画面时保持同一条窗口轨道。",
+          "source": {
+            "path": "catalog/effects/mechanical-windows.js",
+            "factory": "cross-aperture-turn",
+            "dependencies": [
+              "catalog/effects/mechanical-windows-data.js"
+            ],
+            "origin": "original",
+            "license": "Apache-2.0",
+            "library": "remotion@4.0.532",
+            "reference": {
+              "name": "MECHANICAL WINDOWS v2 · 用户原创持续窗口与剪辑源码"
+            },
+            "extraction": "提取作者原创窗口函数、关键点、同位短闪与双镜重叠；独立示意由自编矢量绘制，完整组合保留静音最终画面。",
+            "production_guide": "catalog/assets/mechanical-windows/README.md",
+            "remotion": {
+              "component": "catalog/remotion/mechanical-windows.jsx",
+              "export_name": "WiseMechanicalWindows",
+              "package_name": "wise-mechanical-windows",
+              "files": [
+                "catalog/remotion/mechanical-windows.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/assets/mechanical-windows/README.md",
+                "catalog/assets/mechanical-windows/SOURCE.json",
+                "catalog/assets/mechanical-windows/production/windows-v2.mjs",
+                "catalog/assets/mechanical-windows/production/timing-v2.mjs",
+                "LICENSE"
+              ],
+              "packages": {
+                "remotion": "4.0.532",
+                "@remotion/cli": "4.0.532",
+                "react": "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              "width": 1920,
+              "height": 1080,
+              "fps": 30,
+              "exact_frames": true,
+              "reuse_notes": "目录与独立工程共用原窗口数学函数及同一逐帧绘制。独立动作使用自编矢量机械示意，窗口尺寸、关键点和相对时序来自原创代码；可替换示意层。自有程序Apache-2.0。",
+              "scripts": {
+                "render": "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          "reproduction": {
+            "objects": "两张可替换的机械圆盘示意画面与两根等宽矩形组成的十字裁剪区",
+            "presentation": "1920×1080横向画板，近黑底#101211、暖白线条#eeeee5与金色重点#bba67b；自编机械圆盘示意，不使用外部照片。画幅改变时等比容纳。",
+            "phases": [
+              "全幅画面向等臂十字窗口收拢。",
+              "十字向右上方移动并转到负28度，后方画面在第80帧切换，窗口继续原来的运动。",
+              "十字转回水平并扩展到完整画面。"
+            ],
+            "details": [
+              "画板1920×1080，两根矩形长度同为2800，共用厚度h、中心(cx,cy)和角度；两个矩形的并集作为可见区，不是两条斜带叠加。",
+              "所有关键点以30fps的局部帧f表示，段内p钳位0至1，再用p²(3−2p)插值；f=30×动作秒数，总长140帧，末帧139。",
+              "cx关键点(0,960)/(38,960)/(78,1190)/(140,1190)；cy为(0,540)/(38,540)/(78,450)/(140,450)。",
+              "共用厚度h为(0,1084)/(24,590)/(38,590)/(68,450)/(102,440)/(116,460)/(140,2400)；角度为(0,0)/(38,0)/(91,−28)/(118,−28)/(140,0)。",
+              "第80帧仅替换后方画面；窗口位于镜头时序组件外，由同一局部帧直接计算，定位和重播不得重置其中心、厚度或旋转。"
+            ],
+            "retain": "等长、等粗的十字窗口持续平移和旋转，切换后方画面时保持同一条窗口轨道。",
+            "avoid": "不要将十字画成粗细不同的条带，不在换镜时重新起动窗口，也不添加圆瓣或光效。"
+          }
+        },
+        {
+          "id": "continuous-diagonal",
+          "label": "斜十字持续扩展",
+          "duration_ms": 3000.0,
+          "preview_ms": 2066.666666666667,
+          "summary": "十字先收窄再旋转，保持负28度跨镜，宽度在下一镜继续增加直至全幅。",
+          "purpose": "十字先收窄再旋转，保持负28度跨镜，宽度在下一镜继续增加直至全幅。",
+          "objects": "两个等宽、等长矩形的并集与三张依次换镜的画面",
+          "phases": [
+            "全幅收成十字，横竖笔画保持等宽。",
+            "短暂停顿后旋至负28度，向左上方工具轴心缓移。",
+            "保持斜向姿态持续变宽，后方两次换镜不重启窗口。"
+          ],
+          "retain": "收窄后旋转、斜向持续展开、完整工具动作和全局窗口时钟。",
+          "avoid": "不要在换镜点停住或重置十字，不改变横竖笔画的共同厚度。",
+          "tempo_note": "30fps，共90帧；末帧89。",
+          "recommendation": "十字先收窄再旋转，保持负28度跨镜，宽度在下一镜继续增加直至全幅。",
+          "reproduction": {
+            "objects": "两个等宽、等长矩形的并集与三张依次换镜的画面",
+            "presentation": "1920×1080横向画板、30fps；近黑底#101211、暖白线条#eeeee5与金色重点#bba67b。窗口示意使用自编机械圆盘，可替换成自己的完整画面；不同画幅等比容纳。",
+            "phases": [
+              "全幅收成十字，横竖笔画保持等宽。",
+              "短暂停顿后旋至负28度，向左上方工具轴心缓移。",
+              "保持斜向姿态持续变宽，后方两次换镜不重启窗口。"
+            ],
+            "details": [
+              "所有帧均为30fps局部帧，共90帧；末帧89。两根矩形长度同为3600，交叉共用厚度、中心与角度。",
+              "cx关键点为(0,1230)/(22,1230)/(62,1190)，cy为(0,540)/(22,540)/(62,450)，未指明的段使用线性插值。",
+              "厚度为(0,1084)/(10,600，p³)/(12,600)/(21,520)/(44,520)/(82,W，p²)/(90,W)。角度为(0,0)/(12,0)/(21,−28，1−(1−p)³)/(90,−28)。",
+              "W=2×max(abs((x−1190)sin28°+(y−450)cos28°))+4，四个角点为(−2,−2)/(1922,−2)/(−2,1082)/(1922,1082)。",
+              "后方镜头在22和62帧直接切换；几何放在镜头Sequence之外。44–82帧的宽度曲线必须穿过62帧，不能在换镜点暂停。"
+            ],
+            "retain": "收窄后旋转、斜向持续展开、完整工具动作和全局窗口时钟。",
+            "avoid": "不要在换镜点停住或重置十字，不改变横竖笔画的共同厚度。"
+          },
+          "source": {
+            "path": "catalog/effects/mechanical-windows.js",
+            "factory": "cross-aperture-turn",
+            "dependencies": [
+              "catalog/effects/mechanical-windows-data.js",
+              "catalog/effects/spatial-apertures-data.js",
+              "catalog/effects/spatial-apertures.js"
+            ],
+            "origin": "original",
+            "license": "Apache-2.0",
+            "library": "remotion@4.0.532",
+            "reference": {
+              "name": "MECHANICAL PULSE v4.2 · 用户原创几何编舞与轮廓排版"
+            },
+            "extraction": "提取作者原创窗口与排版函数，保留全局帧、持续展开、同位短闪和双镜重叠；未复制外部模板代码。",
+            "production_guide": "catalog/assets/mechanical-pulse/README.md",
+            "remotion": {
+              "component": "catalog/remotion/spatial-apertures.jsx",
+              "export_name": "WiseSpatialApertures",
+              "package_name": "wise-spatial-apertures",
+              "files": [
+                "catalog/remotion/spatial-apertures.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/effects/spatial-apertures-data.js",
+                "catalog/effects/spatial-apertures.js",
+                "catalog/assets/mechanical-pulse/README.md",
+                "catalog/assets/mechanical-pulse/SOURCE.json",
+                "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+                "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+                "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+                "LICENSE"
+              ],
+              "packages": {
+                "remotion": "4.0.532",
+                "@remotion/cli": "4.0.532",
+                "react": "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              "width": 1920,
+              "height": 1080,
+              "fps": 30,
+              "exact_frames": true,
+              "reuse_notes": "目录、独立动作与编辑工程共用逐帧窗口和轮廓排版函数；独立窗口以自编矢量圆盘示意，可通过SpatialWindowClip换成自己的图像或视频。AlignedSilhouetteRow接受自己的主体内容、主体锚点与旋转后轮廓边界；默认主体使用原图尺寸、alpha保真的WebP。自有代码Apache-2.0。",
+              "scripts": {
+                "render": "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          }
+        }
+      ]
     },
     {
       "kind": "action",
@@ -54421,7 +55104,9 @@
         "MECHANICAL WINDOWS",
         "持续窗口",
         "机械窗口",
-        "三列直窗错峰开合"
+        "三列直窗错峰开合",
+        "三列纵向错峰开窗",
+        "MECHANICAL PULSE v4.2"
       ],
       "behaviors": [
         "mask",
@@ -54494,7 +55179,174 @@
         ],
         "retain": "中央竖窗收窄，左右两列以不同关键点展开，跨换镜保持同一编舞，最后合成全幅。",
         "avoid": "不要改成百叶片逐条翻转，不让窗口改变高度或旋转，不把同一画面复制为三个独立播放时钟。"
-      }
+      },
+      "variants": [
+        {
+          "id": "standard",
+          "label": "三列宽度错峰开合",
+          "duration_ms": 4066.6666666666665,
+          "preview_ms": 1400.0,
+          "summary": "中央竖窗收窄，左右两列以不同关键点展开，跨换镜保持同一编舞，最后合成全幅。",
+          "source": {
+            "path": "catalog/effects/mechanical-windows.js",
+            "factory": "three-column-aperture",
+            "dependencies": [
+              "catalog/effects/mechanical-windows-data.js"
+            ],
+            "origin": "original",
+            "license": "Apache-2.0",
+            "library": "remotion@4.0.532",
+            "reference": {
+              "name": "MECHANICAL WINDOWS v2 · 用户原创持续窗口与剪辑源码"
+            },
+            "extraction": "提取作者原创窗口函数、关键点、同位短闪与双镜重叠；独立示意由自编矢量绘制，完整组合保留静音最终画面。",
+            "production_guide": "catalog/assets/mechanical-windows/README.md",
+            "remotion": {
+              "component": "catalog/remotion/mechanical-windows.jsx",
+              "export_name": "WiseMechanicalWindows",
+              "package_name": "wise-mechanical-windows",
+              "files": [
+                "catalog/remotion/mechanical-windows.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/assets/mechanical-windows/README.md",
+                "catalog/assets/mechanical-windows/SOURCE.json",
+                "catalog/assets/mechanical-windows/production/windows-v2.mjs",
+                "catalog/assets/mechanical-windows/production/timing-v2.mjs",
+                "LICENSE"
+              ],
+              "packages": {
+                "remotion": "4.0.532",
+                "@remotion/cli": "4.0.532",
+                "react": "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              "width": 1920,
+              "height": 1080,
+              "fps": 30,
+              "exact_frames": true,
+              "reuse_notes": "目录与独立工程共用原窗口数学函数及同一逐帧绘制。独立动作使用自编矢量机械示意，窗口尺寸、关键点和相对时序来自原创代码；可替换示意层。自有程序Apache-2.0。",
+              "scripts": {
+                "render": "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          "reproduction": {
+            "objects": "一张完整画面、三个高度2400的竖向矩形窗口",
+            "presentation": "1920×1080横向画板，近黑底#101211、暖白线条#eeeee5与金色重点#bba67b；自编机械圆盘示意，不使用外部照片。画幅改变时等比容纳。",
+            "phases": [
+              "中央宽窗开始收窄，左右窗口尚未展开。",
+              "三列按不同关键点调整宽度，在换镜时持续原来的运动。",
+              "中间和两侧共同展开，完整显露画面。"
+            ],
+            "details": [
+              "1920×1080画板；三列中心分别为(970,540)、(510,540)、(1430,540)，高度同为2400；取三个矩形的并集，不拼接三份不同视频。",
+              "30fps局部帧，总长122帧；相邻关键点用钳位后的p²(3−2p)插值。中列宽度为(0,2300)/(22,400)/(54,420)/(92,520)/(122,2300)。",
+              "左列宽度为(0,0)/(12,110)/(37,230)/(64,310)/(92,390)/(122,1100)；右列为(0,0)/(18,100)/(50,240)/(70,330)/(92,430)/(122,1100)。",
+              "后方画面在局部第12、92帧交接；三个窗口的时间不重置，末段覆盖完整画板。"
+            ],
+            "retain": "中央竖窗收窄，左右两列以不同关键点展开，跨换镜保持同一编舞，最后合成全幅。",
+            "avoid": "不要改成百叶片逐条翻转，不让窗口改变高度或旋转，不把同一画面复制为三个独立播放时钟。"
+          }
+        },
+        {
+          "id": "vertical-column-rise",
+          "label": "三列纵向错峰开窗",
+          "duration_ms": 766.6666666666667,
+          "preview_ms": 333.3333333333333,
+          "summary": "三列等宽直窗按左、中、右顺序从中线向上下展开，交叠消除列缝后全幅交接。",
+          "purpose": "三列等宽直窗按左、中、右顺序从中线向上下展开，交叠消除列缝后全幅交接。",
+          "objects": "同一张完整画面和三列竖向矩形窗口",
+          "phases": [
+            "三列高度为零，画面等待显露。",
+            "左中右依次从中心向上下展开。",
+            "最后一列展开后恢复完整画面。"
+          ],
+          "retain": "列间错峰、中心向双向展开和同一底图。",
+          "avoid": "不做三份独立视频，不从底部单向擦入，不保留列缝。",
+          "tempo_note": "30fps，共23帧；末帧22。",
+          "recommendation": "三列等宽直窗按左、中、右顺序从中线向上下展开，交叠消除列缝后全幅交接。",
+          "reproduction": {
+            "objects": "同一张完整画面和三列竖向矩形窗口",
+            "presentation": "1920×1080横向画板、30fps；近黑底#101211、暖白线条#eeeee5与金色重点#bba67b。窗口示意使用自编机械圆盘，可替换成自己的完整画面；不同画幅等比容纳。",
+            "phases": [
+              "三列高度为零，画面等待显露。",
+              "左中右依次从中心向上下展开。",
+              "最后一列展开后恢复完整画面。"
+            ],
+            "details": [
+              "共23帧，局部0–21帧为三列并集，第22帧全幅。三列中心x=320/960/1600，y=540，宽644。",
+              "左列0–12帧、中列4–17帧、右列8–22帧高度0→1084，均使用1−(1−p)³，p钳位0至1。",
+              "三列裁剪的是同一幅1920×1080图像，不分别缩放或复制为三个不同镜头；窗口边缘重叠4像素避免缝隙。"
+            ],
+            "retain": "列间错峰、中心向双向展开和同一底图。",
+            "avoid": "不做三份独立视频，不从底部单向擦入，不保留列缝。"
+          },
+          "source": {
+            "path": "catalog/effects/mechanical-windows.js",
+            "factory": "three-column-aperture",
+            "dependencies": [
+              "catalog/effects/mechanical-windows-data.js",
+              "catalog/effects/spatial-apertures-data.js",
+              "catalog/effects/spatial-apertures.js"
+            ],
+            "origin": "original",
+            "license": "Apache-2.0",
+            "library": "remotion@4.0.532",
+            "reference": {
+              "name": "MECHANICAL PULSE v4.2 · 用户原创几何编舞与轮廓排版"
+            },
+            "extraction": "提取作者原创窗口与排版函数，保留全局帧、持续展开、同位短闪和双镜重叠；未复制外部模板代码。",
+            "production_guide": "catalog/assets/mechanical-pulse/README.md",
+            "remotion": {
+              "component": "catalog/remotion/spatial-apertures.jsx",
+              "export_name": "WiseSpatialApertures",
+              "package_name": "wise-spatial-apertures",
+              "files": [
+                "catalog/remotion/spatial-apertures.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/effects/spatial-apertures-data.js",
+                "catalog/effects/spatial-apertures.js",
+                "catalog/assets/mechanical-pulse/README.md",
+                "catalog/assets/mechanical-pulse/SOURCE.json",
+                "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+                "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+                "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+                "LICENSE"
+              ],
+              "packages": {
+                "remotion": "4.0.532",
+                "@remotion/cli": "4.0.532",
+                "react": "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              "width": 1920,
+              "height": 1080,
+              "fps": 30,
+              "exact_frames": true,
+              "reuse_notes": "目录、独立动作与编辑工程共用逐帧窗口和轮廓排版函数；独立窗口以自编矢量圆盘示意，可通过SpatialWindowClip换成自己的图像或视频。AlignedSilhouetteRow接受自己的主体内容、主体锚点与旋转后轮廓边界；默认主体使用原图尺寸、alpha保真的WebP。自有代码Apache-2.0。",
+              "scripts": {
+                "render": "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          }
+        }
+      ]
     },
     {
       "kind": "action",
@@ -54534,7 +55386,9 @@
         "MECHANICAL WINDOWS",
         "持续窗口",
         "机械窗口",
-        "后镜提前圆窗进入"
+        "后镜提前圆窗进入",
+        "十六帧圆窗预入",
+        "MECHANICAL PULSE v4.2"
       ],
       "behaviors": [
         "mask",
@@ -54606,7 +55460,173 @@
         ],
         "retain": "当前画面继续运行，下一画面从右侧圆形窗口提前显露，约0.4秒后接管全幅。",
         "avoid": "不要冻结后方画面，不在窗口尚未展开时先硬切，不以单张截图冒充两个运行镜头。"
-      }
+      },
+      "variants": [
+        {
+          "id": "standard",
+          "label": "十二帧圆窗预入",
+          "duration_ms": 433.33333333333337,
+          "preview_ms": 200.0,
+          "summary": "当前画面继续运行，下一画面从右侧圆形窗口提前显露，约0.4秒后接管全幅。",
+          "source": {
+            "path": "catalog/effects/mechanical-windows.js",
+            "factory": "next-shot-preentry",
+            "dependencies": [
+              "catalog/effects/mechanical-windows-data.js"
+            ],
+            "origin": "original",
+            "license": "Apache-2.0",
+            "library": "remotion@4.0.532",
+            "reference": {
+              "name": "MECHANICAL WINDOWS v2 · 用户原创持续窗口与剪辑源码"
+            },
+            "extraction": "提取作者原创窗口函数、关键点、同位短闪与双镜重叠；独立示意由自编矢量绘制，完整组合保留静音最终画面。",
+            "production_guide": "catalog/assets/mechanical-windows/README.md",
+            "remotion": {
+              "component": "catalog/remotion/mechanical-windows.jsx",
+              "export_name": "WiseMechanicalWindows",
+              "package_name": "wise-mechanical-windows",
+              "files": [
+                "catalog/remotion/mechanical-windows.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/assets/mechanical-windows/README.md",
+                "catalog/assets/mechanical-windows/SOURCE.json",
+                "catalog/assets/mechanical-windows/production/windows-v2.mjs",
+                "catalog/assets/mechanical-windows/production/timing-v2.mjs",
+                "LICENSE"
+              ],
+              "packages": {
+                "remotion": "4.0.532",
+                "@remotion/cli": "4.0.532",
+                "react": "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              "width": 1920,
+              "height": 1080,
+              "fps": 30,
+              "exact_frames": true,
+              "reuse_notes": "目录与独立工程共用原窗口数学函数及同一逐帧绘制。独立动作使用自编矢量机械示意，窗口尺寸、关键点和相对时序来自原创代码；可替换示意层。自有程序Apache-2.0。",
+              "scripts": {
+                "render": "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          "reproduction": {
+            "objects": "两个同时推进的画面层，以及中心偏右的圆形裁剪区域",
+            "presentation": "1920×1080横向画板，近黑底#101211、暖白线条#eeeee5与金色重点#bba67b；自编机械圆盘示意，不使用外部照片。画幅改变时等比容纳。",
+            "phases": [
+              "背景画面继续播放，下一画面从自己的起点开始运行。",
+              "偏右圆窗扩大，两层在同一时间内同时保持运动。",
+              "圆窗覆盖全幅，由下一画面接管。"
+            ],
+            "details": [
+              "1920×1080画板；圆心固定(1430,540)，半径在局部第0至12帧由0扩大到1900，使用p²(3−2p)。",
+              "使用30fps，共13个可见帧；第12帧为0.4秒。新画面开始时保留背景，不提前把背景替换为新画面，也不取静帧冒充双镜播放。",
+              "矢量示例中背景圆盘每帧旋转0.35度，前景每帧反向旋转0.6度，二者都直接读取同一当前帧；可将两组示意替换成拥有独立局部时钟的视频。"
+            ],
+            "retain": "当前画面继续运行，下一画面从右侧圆形窗口提前显露，约0.4秒后接管全幅。",
+            "avoid": "不要冻结后方画面，不在窗口尚未展开时先硬切，不以单张截图冒充两个运行镜头。"
+          }
+        },
+        {
+          "id": "paced-overlap",
+          "label": "十六帧圆窗预入",
+          "duration_ms": 566.6666666666666,
+          "preview_ms": 233.33333333333334,
+          "summary": "下一画面从右侧主体轴心展开，旧画面在16帧重叠期内继续运行。",
+          "purpose": "下一画面从右侧主体轴心展开，旧画面在16帧重叠期内继续运行。",
+          "objects": "两个同时运行的完整画面和右偏圆形裁剪区",
+          "phases": [
+            "旧画面继续运行，新画面从自己的起点开始。",
+            "新画面从右侧主体中心的圆窗显露。",
+            "第16帧完整接管，圆窗外的旧画面退出。"
+          ],
+          "retain": "16帧双镜重叠与偏右主体中心圆形显露。",
+          "avoid": "不冻结旧画面，不在显露完成前硬切底层，不把视频放成有边框的小卡片。",
+          "tempo_note": "30fps，共17帧；末帧16。",
+          "recommendation": "下一画面从右侧主体轴心展开，旧画面在16帧重叠期内继续运行。",
+          "reproduction": {
+            "objects": "两个同时运行的完整画面和右偏圆形裁剪区",
+            "presentation": "1920×1080横向画板、30fps；近黑底#101211、暖白线条#eeeee5与金色重点#bba67b。窗口示意使用自编机械圆盘，可替换成自己的完整画面；不同画幅等比容纳。",
+            "phases": [
+              "旧画面继续运行，新画面从自己的起点开始。",
+              "新画面从右侧主体中心的圆窗显露。",
+              "第16帧完整接管，圆窗外的旧画面退出。"
+            ],
+            "details": [
+              "30fps，共17个采样帧；0–15帧为双镜重叠，第16帧全幅接管。",
+              "圆心(1430,540)，半径在0–16帧从0到1640，用cubic-bezier(.16,1,.3,1)。",
+              "旧、新视频分别保有自己的局部时钟，预入只裁剪新层，不暂停或提前替换旧层。"
+            ],
+            "retain": "16帧双镜重叠与偏右主体中心圆形显露。",
+            "avoid": "不冻结旧画面，不在显露完成前硬切底层，不把视频放成有边框的小卡片。"
+          },
+          "source": {
+            "path": "catalog/effects/mechanical-windows.js",
+            "factory": "next-shot-preentry",
+            "dependencies": [
+              "catalog/effects/mechanical-windows-data.js",
+              "catalog/effects/spatial-apertures-data.js",
+              "catalog/effects/spatial-apertures.js"
+            ],
+            "origin": "original",
+            "license": "Apache-2.0",
+            "library": "remotion@4.0.532",
+            "reference": {
+              "name": "MECHANICAL PULSE v4.2 · 用户原创几何编舞与轮廓排版"
+            },
+            "extraction": "提取作者原创窗口与排版函数，保留全局帧、持续展开、同位短闪和双镜重叠；未复制外部模板代码。",
+            "production_guide": "catalog/assets/mechanical-pulse/README.md",
+            "remotion": {
+              "component": "catalog/remotion/spatial-apertures.jsx",
+              "export_name": "WiseSpatialApertures",
+              "package_name": "wise-spatial-apertures",
+              "files": [
+                "catalog/remotion/spatial-apertures.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/effects/spatial-apertures-data.js",
+                "catalog/effects/spatial-apertures.js",
+                "catalog/assets/mechanical-pulse/README.md",
+                "catalog/assets/mechanical-pulse/SOURCE.json",
+                "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+                "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+                "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+                "LICENSE"
+              ],
+              "packages": {
+                "remotion": "4.0.532",
+                "@remotion/cli": "4.0.532",
+                "react": "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              "width": 1920,
+              "height": 1080,
+              "fps": 30,
+              "exact_frames": true,
+              "reuse_notes": "目录、独立动作与编辑工程共用逐帧窗口和轮廓排版函数；独立窗口以自编矢量圆盘示意，可通过SpatialWindowClip换成自己的图像或视频。AlignedSilhouetteRow接受自己的主体内容、主体锚点与旋转后轮廓边界；默认主体使用原图尺寸、alpha保真的WebP。自有代码Apache-2.0。",
+              "scripts": {
+                "render": "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          "parameters": {
+            "speed": {
+              "label": "播放速度",
+              "default": 1,
+              "min": 0.5,
+              "max": 2,
+              "step": 0.25
+            }
+          }
+        }
+      ]
     },
     {
       "kind": "composition",
@@ -54787,6 +55807,346 @@
         ],
         "retain": "同位图纸、真实机械、连续窗口与双镜预入关系。",
         "avoid": "不在复制输出写本机路径，不将素材缓存放大称为三维重建，不自动引入配乐。"
+      }
+    },
+    {
+      "kind": "action",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "video"
+      ],
+      "trigger": "打开预览播放；可暂停、重播和任意定位。",
+      "actions": [],
+      "assumptions": "机械圆盘为可替换的自编矢量载体，不作为制造或真实走时模型。",
+      "id": "diamond-aperture-release",
+      "name": "菱形窗口跨镜展开",
+      "category": "transition",
+      "duration_ms": 2000,
+      "preview_ms": 1000,
+      "summary": "固定中心的45度方窗跨过三段画面单向展开，后两次换镜不重启窗口。",
+      "purpose": "让多个短镜头共享一个展开动作，形成连续的视觉句子。",
+      "objects": "一张完整微距画面、中心固定且旋转45度的正方形裁剪区",
+      "phases": [
+        "第一张画面在较小菱形窗口中出现。",
+        "窗口持续单向增大，后方两次换镜各落一拍。",
+        "第50帧覆盖全幅，最后10帧保持全幅。"
+      ],
+      "aliases": [
+        "菱形开窗",
+        "连续展开",
+        "跨镜窗口",
+        "MECHANICAL PULSE v4.2"
+      ],
+      "behaviors": [
+        "mask",
+        "continuous-window",
+        "expand",
+        "cut"
+      ],
+      "retain": "一次持续展开穿过三镜，中心、45度和长宽比保持。",
+      "avoid": "不重复收缩，不每镜重启，不添加白色底卡或额外缩放。",
+      "analogy": "等长、等粗的十字窗口持续平移和旋转，切换后方画面时保持同一条窗口轨道。",
+      "recommendation": "多个微距镜头要保持同一展开轨道时使用；需要圆窗预入取后镜提前圆窗进入。",
+      "tempo_note": "30fps，共60帧；20/40帧换镜，50帧全幅。",
+      "source": {
+        "path": "catalog/effects/spatial-apertures.js",
+        "factory": "diamond-aperture-release",
+        "dependencies": [
+          "catalog/effects/mechanical-windows-data.js",
+          "catalog/effects/mechanical-windows.js",
+          "catalog/effects/spatial-apertures-data.js"
+        ],
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "reference": {
+          "name": "MECHANICAL PULSE v4.2 · 用户原创几何编舞与轮廓排版"
+        },
+        "extraction": "提取作者原创窗口与排版函数，保留全局帧、持续展开、同位短闪和双镜重叠；未复制外部模板代码。",
+        "production_guide": "catalog/assets/mechanical-pulse/README.md",
+        "remotion": {
+          "component": "catalog/remotion/spatial-apertures.jsx",
+          "export_name": "WiseSpatialApertures",
+          "package_name": "wise-spatial-apertures",
+          "files": [
+            "catalog/remotion/spatial-apertures.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/mechanical-windows-data.js",
+            "catalog/effects/mechanical-windows.js",
+            "catalog/effects/spatial-apertures-data.js",
+            "catalog/effects/spatial-apertures.js",
+            "catalog/assets/mechanical-pulse/README.md",
+            "catalog/assets/mechanical-pulse/SOURCE.json",
+            "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+            "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+            "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+            "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+            "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+            "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+            "LICENSE"
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 1920,
+          "height": 1080,
+          "fps": 30,
+          "exact_frames": true,
+          "reuse_notes": "目录、独立动作与编辑工程共用逐帧窗口和轮廓排版函数；独立窗口以自编矢量圆盘示意，可通过SpatialWindowClip换成自己的图像或视频。AlignedSilhouetteRow接受自己的主体内容、主体锚点与旋转后轮廓边界；默认主体使用原图尺寸、alpha保真的WebP。自有代码Apache-2.0。",
+          "scripts": {
+            "render": "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+          }
+        }
+      },
+      "reproduction": {
+        "objects": "一张完整微距画面、中心固定且旋转45度的正方形裁剪区",
+        "presentation": "1920×1080横向画板、30fps；近黑底#101211、暖白线条#eeeee5与金色重点#bba67b。窗口示意使用自编机械圆盘，可替换成自己的完整画面；不同画幅等比容纳。",
+        "phases": [
+          "第一张画面在较小菱形窗口中出现。",
+          "窗口持续单向增大，后方两次换镜各落一拍。",
+          "第50帧覆盖全幅，最后10帧保持全幅。"
+        ],
+        "details": [
+          "30fps，共60帧。标准正方形中心固定(960,540)，旋转45度，宽高相等。",
+          "边长关键点为(0,720)/(20,1300)/(40,1900)/(50,2132)，分段线性、单调增大。第50–59帧使用全幅窗口。",
+          "后方画面在20、40帧硬切。三镜共用一个0–59帧的窗口时钟，第二、三镜不重新收窗。",
+          "微距画面保持原16:9构图，不额外放大或平移。示意在每次换镜替换底图，窗口仍按同一个当前帧计算。"
+        ],
+        "retain": "一次持续展开穿过三镜，中心、45度和长宽比保持。",
+        "avoid": "不重复收缩，不每镜重启，不添加白色底卡或额外缩放。"
+      }
+    },
+    {
+      "kind": "composition",
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "demo_mode": "fixed-timeline",
+      "domains": [
+        "animation",
+        "video"
+      ],
+      "trigger": "打开预览播放；可暂停、重播和任意定位。",
+      "actions": [
+        "three-column-aperture",
+        "rapid-cut",
+        "inventory-contour-fit",
+        "cross-aperture-turn",
+        "axial-layer-reseat",
+        "helical-screw-seat",
+        "diamond-aperture-release",
+        "barrel-stored-energy",
+        "meshed-gears-drive",
+        "balance-reciprocate",
+        "next-shot-preentry",
+        "fan-object-rise",
+        "wipe"
+      ],
+      "assumptions": "机械圆盘为可替换的自编矢量载体，不作为制造或真实走时模型。",
+      "id": "spatial-mechanical-sequence",
+      "name": "实景层次与连续开窗展示",
+      "category": "compositions",
+      "duration_ms": 18000,
+      "preview_ms": 10000,
+      "summary": "以跨镜斜十字、一次菱形展开、轮廓等距同步升入和矩形接镜组织18秒实景产品展示。",
+      "purpose": "在几何剪辑中保留真实空间、材质深度和持续运动。",
+      "objects": "真实机械产品影像、独立几何窗口、同位图纸、三张透明主体与简洁英文标题",
+      "phases": [
+        "三列开窗引入完整主体，零件陈列与全幅图纸两次短闪。",
+        "长臂十字收窄旋转，跨过结构和工具；单一菱形窗接续三段微距。",
+        "细节与材质双镜圆窗交接，三主体按轮廓同步升入，矩形接镜完成落版。"
+      ],
+      "aliases": [
+        "MECHANICAL PULSE",
+        "v4.2",
+        "18秒怀表",
+        "实景窗口",
+        "轮廓等距"
+      ],
+      "behaviors": [
+        "mask",
+        "continuous-window",
+        "silhouette-layout",
+        "overlap",
+        "sequence"
+      ],
+      "action_variants": {
+        "cross-aperture-turn": "continuous-diagonal",
+        "three-column-aperture": "vertical-column-rise",
+        "rapid-cut": "full-frame-blueprint",
+        "next-shot-preentry": "paced-overlap",
+        "fan-object-rise": "aligned-silhouette",
+        "wipe": "overlap-copy-handoff"
+      },
+      "breakdown_mode": "sequence",
+      "retain": "完整实景、材质层次、窗口跨镜持续运动、主体轮廓等距与18秒节奏。",
+      "avoid": "不因切镜重置窗口，不冻结重叠底层，不抠掉原视频真实台面和阴影，不把三主体的透明外框用于等距。",
+      "analogy": "窗口像持续移动的取景框，镜头在它后方交接。",
+      "recommendation": "需要18秒完整实景窗口编舞时使用；单个机制取关联动作的新示例，32秒早期剪辑仍用持续窗口与机械细节展示。",
+      "tempo_note": "30fps，共540帧/18秒；20帧一拍组织宏观微距，重叠交接各16帧。",
+      "source": {
+        "path": "catalog/effects/spatial-apertures.js",
+        "factory": "spatial-mechanical-sequence",
+        "dependencies": [
+          "catalog/effects/mechanical-windows-data.js",
+          "catalog/effects/mechanical-windows.js",
+          "catalog/effects/spatial-apertures-data.js"
+        ],
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "reference": {
+          "name": "MECHANICAL PULSE v4.2 · 用户原创几何编舞与轮廓排版"
+        },
+        "extraction": "提取作者原创窗口与排版函数，保留全局帧、持续展开、同位短闪和双镜重叠；未复制外部模板代码。",
+        "production_guide": "catalog/assets/mechanical-pulse/README.md",
+        "remotion": {
+          "component": "catalog/remotion/spatial-apertures.jsx",
+          "export_name": "WiseSpatialApertures",
+          "package_name": "wise-spatial-apertures",
+          "files": [
+            "catalog/remotion/spatial-apertures.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/mechanical-windows-data.js",
+            "catalog/effects/mechanical-windows.js",
+            "catalog/effects/spatial-apertures-data.js",
+            "catalog/effects/spatial-apertures.js",
+            "catalog/assets/mechanical-pulse/README.md",
+            "catalog/assets/mechanical-pulse/SOURCE.json",
+            "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+            "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+            "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+            "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+            "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+            "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+            "LICENSE",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/mechanical-pulse/production/FilmV3.jsx",
+            "catalog/assets/mechanical-pulse/production/FilmV4.jsx",
+            "catalog/assets/mechanical-pulse/production/SpatialScenes.jsx",
+            "catalog/assets/mechanical-pulse/editable/FilmV3.jsx",
+            "catalog/assets/mechanical-pulse/editable/FilmV4.jsx",
+            "catalog/assets/mechanical-pulse/editable/Root.jsx",
+            "catalog/assets/mechanical-pulse/editable/SpatialScenes.jsx",
+            "catalog/assets/mechanical-pulse/editable/form-layout.mjs",
+            "catalog/assets/mechanical-pulse/editable/import-originals.mjs",
+            "catalog/assets/mechanical-pulse/editable/original-assets.json",
+            "catalog/assets/mechanical-pulse/editable/timing-v42.mjs",
+            "catalog/assets/mechanical-pulse/editable/windows-v3.mjs",
+            "catalog/assets/mechanical-pulse/editable/windows-v4.mjs",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/verify-source.mjs"
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 1920,
+          "height": 1080,
+          "fps": 30,
+          "exact_frames": true,
+          "reuse_notes": "默认播放1280×720、30fps、540帧的静音缓存，保留原4K成片的构图、文字、窗口及切点；它不等同于4K重渲染。编辑镜头时按README准备自己的原媒体，再运行studio:editable。编辑版使用OFL Oswald，字形与缓存不同。第三方配乐只支持显式准备自己已授权的本地文件，默认关闭。独立动作与编辑版共用原窗口、排版与帧表。",
+          "scripts": {
+            "render": "remotion render index.jsx Motion out/motion.mp4 --concurrency=2",
+            "studio:editable": "remotion studio catalog/assets/mechanical-pulse/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/mechanical-pulse/editable/Root.jsx MechanicalPulse out/edited.mp4 --concurrency=2",
+            "check:source": "node verify-source.mjs"
+          },
+          "binary_files": [
+            {
+              "source": "catalog/assets/mechanical-pulse/movie.mp4",
+              "target": "public/catalog/assets/mechanical-pulse/movie.mp4",
+              "bytes": 3317754,
+              "sha256": "fc1f6ab8aac84716d94fd99a942d5a4d8e791b388c777f637d5d604650d54968"
+            },
+            {
+              "source": "catalog/assets/mechanical-pulse/watch-front.webp",
+              "target": "public/catalog/assets/mechanical-pulse/watch-front.webp",
+              "bytes": 209108,
+              "sha256": "c207abcde5917eb41da04211675208375d9eec34c99838c979162be9a1b21dfb"
+            },
+            {
+              "source": "catalog/assets/mechanical-pulse/watch-angle.webp",
+              "target": "public/catalog/assets/mechanical-pulse/watch-angle.webp",
+              "bytes": 178668,
+              "sha256": "8bb67f973f2cba191d736bb568aad24ef9f2ca31bd338df14a7b1e8900511dbb"
+            },
+            {
+              "source": "catalog/fonts/Oswald-Bold.woff2",
+              "target": "public/catalog/fonts/Oswald-Bold.woff2",
+              "bytes": 12112,
+              "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          "file_map": {
+            "catalog/assets/time-in-motion/verify-source.mjs": "verify-source.mjs"
+          },
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs"
+        },
+        "native_scene": "remotion",
+        "frame_cache": {
+          "video": "catalog/assets/mechanical-pulse/movie.mp4",
+          "start_frame": 0,
+          "frames": 540,
+          "fps": 30,
+          "width": 1280,
+          "height": 720,
+          "poster": "catalog/assets/mechanical-pulse/posters/F0300.jpg"
+        },
+        "assets": [
+          "catalog/assets/mechanical-pulse/movie.mp4",
+          "catalog/assets/mechanical-pulse/posters/F0300.jpg",
+          "catalog/assets/mechanical-pulse/SOURCE.json",
+          "catalog/assets/mechanical-pulse/watch-front.webp",
+          "catalog/assets/mechanical-pulse/watch-angle.webp"
+        ]
+      },
+      "requires_preparation": true,
+      "reproduction": {
+        "objects": "真实机械产品影像、独立几何窗口、同位图纸、三张透明主体与简洁英文标题",
+        "presentation": "1920×1080横屏设计，近黑#080a0a、暖纸#eeece3、金色#bba67b，真实金属与蓝钢细节。左文右图、全幅微距与三联主体交替；制作英文采用授权Oswald，主体保持原构图。",
+        "phases": [
+          "三列开窗引入完整主体，零件陈列与全幅图纸两次短闪。",
+          "长臂十字收窄旋转，跨过结构和工具；单一菱形窗接续三段微距。",
+          "细节与材质双镜圆窗交接，三主体按轮廓同步升入，矩形接镜完成落版。"
+        ],
+        "details": [
+          "1920×1080设计，30fps，共540帧/18秒。镜头起点0/40/140/180/220/280/300/320/340/372/420/460；前340帧与后半段共用同一时间线。",
+          "图纸显露为全局[48,56)与[68,76)，0–21帧为三列开窗；零件陈列40–139帧保持全幅。",
+          "十字158–247帧，F170后旋到−28度，F202–240厚度连续增加，穿过F220工具切点；F240后完整露出工具动作。",
+          "微距280/300/320各20帧，速率1.875/3/3.375；45度方窗边长720→1300→1900→2132，F330后全幅。",
+          "细节F340–387，源3.8秒、1.95倍；材质F372–419，源0.15秒、1.75倍。材质圆心(1430,540)，半径0→1640，16帧、cubic-bezier(.16,1,.3,1)，底层保持运动。",
+          "细节与材质右侧栏left=930、width=990、高1080；实际竖片按原3:4比例contain为810×1080。左侧文字保留独立版区，金属环境纹理轻微缩放。",
+          "三主体F420–475，固定−11/0/+11度，中心Y=710+共同偏移，可见边距96、间隙187.476020；共同48→0入场与0→−16持续上移叠加。",
+          "结尾F460–539；右向左矩形16帧接入，三主体底层持续至475；旧文案F450–460淡出，新文案F472–480出现。F528–539画面统一淡出。"
+        ],
+        "retain": "完整实景、材质层次、窗口跨镜持续运动、主体轮廓等距与18秒节奏。",
+        "avoid": "不因切镜重置窗口，不冻结重叠底层，不抠掉原视频真实台面和阴影，不把三主体的透明外框用于等距。"
       }
     }
   ],

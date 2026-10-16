@@ -7,6 +7,7 @@ export const FRAME_SCRIPTS = Object.freeze([
   "catalog/runtime.js",
   "catalog/history-runtime.js",
   "catalog/effects/mechanical-windows-data.js",
+  "catalog/effects/spatial-apertures-data.js",
   "catalog/effects/time-in-motion-data.js",
   "catalog/effects/time-in-motion.js",
   "catalog/effects/time-in-motion-graphics.js",
@@ -96,5 +97,6 @@ export const FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/butterfly-mask.js",
   "catalog/effects/sage-butterfly-mask.js",
   "catalog/effects/reel-extract.js",
-  "catalog/effects/mechanical-windows.js"
+  "catalog/effects/mechanical-windows.js",
+  "catalog/effects/spatial-apertures.js"
 ]);

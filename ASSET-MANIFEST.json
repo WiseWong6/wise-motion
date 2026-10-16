@@ -877,6 +877,146 @@
       "sha256": "3693f3d6df25fbc17c169259c2e3467052c943b22de40637358afddba617db0b"
     },
     {
+      "path": "catalog/assets/mechanical-pulse/README.md",
+      "bytes": 5605,
+      "sha256": "afff9d24524c53f47f2c09cbe0836d38c45d70b803b64c9d0511f4772e4b32f9"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/SOURCE.json",
+      "bytes": 4486,
+      "sha256": "0cf43e8d3805acd6ec8868e1c95fa7fb0c7e0dc36360c5579f93bd46a6f85f45"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/editable/FilmV3.jsx",
+      "bytes": 11052,
+      "sha256": "8a82d86e051602696a2633a4637a88f398081f7a77f0b33099da8316b775db07"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/editable/FilmV4.jsx",
+      "bytes": 4447,
+      "sha256": "f5244ac819f402822f25583abc46d3602f430c1f44caeb21d47ed1b9875e0218"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/editable/Root.jsx",
+      "bytes": 342,
+      "sha256": "182349c5a1b0eb5a4bcff65607776945758164eb7d2f197d3fa6b6702135a185"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/editable/SpatialScenes.jsx",
+      "bytes": 8963,
+      "sha256": "563c5d0f2b9c1b3b623abe9ceaa0f4b122db0d0a9c909a14027bf1cfc68e3fff"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/editable/form-layout.mjs",
+      "bytes": 161,
+      "sha256": "0847be9b5436db4ffd3161f75acfbfcaa2dad4769dd40c125fc4ecb14e8341a2"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/editable/import-originals.mjs",
+      "bytes": 2682,
+      "sha256": "2a660d77cae3eeafd116dcc7116387ca93561c2620e3c8a2bd71703e59e85d92"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/editable/original-assets.json",
+      "bytes": 3221,
+      "sha256": "41b986fa095464b8eeb013b5e3e5152996284276adf8419e38e96294b2ca5714"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/editable/timing-v42.mjs",
+      "bytes": 501,
+      "sha256": "87602469827105ab1ab7d112f4bf9a3224026e4fe0e175c4c44183f58edd2c1a"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/editable/windows-v3.mjs",
+      "bytes": 138,
+      "sha256": "d8c3f21824ec0c570d0b5ff25478d5c967134117cf68826c4536676860ff1182"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/editable/windows-v4.mjs",
+      "bytes": 138,
+      "sha256": "d8c3f21824ec0c570d0b5ff25478d5c967134117cf68826c4536676860ff1182"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/movie.mp4",
+      "bytes": 3317754,
+      "sha256": "fc1f6ab8aac84716d94fd99a942d5a4d8e791b388c777f637d5d604650d54968"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/posters/F0179.jpg",
+      "bytes": 65865,
+      "sha256": "6138c06ad0506ce9e17d0da7a8791f6e0306976d86ff8611c673e11438aa95a7"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/posters/F0300.jpg",
+      "bytes": 49035,
+      "sha256": "0edb0b50ef928071e756f22b7b7bddc6bc693a0a45cd2f05f40c34a7778c36df"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/posters/F0432.jpg",
+      "bytes": 133157,
+      "sha256": "1c6093b9f73c94e1f123f77eaaa8593e0bef1f9dd17f2d33f38ffd4b52c16076"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/posters/F0480.jpg",
+      "bytes": 86389,
+      "sha256": "d905f26e6649f6ad8e526048b0b43fb8673d97fe6ca506b7860b34a8cd642a08"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/production/FilmV3.jsx",
+      "bytes": 11044,
+      "sha256": "0946e4b210acbce0a5f5a2572149caff9aded4d68bca67694494a5976de9cb50"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/production/FilmV4.jsx",
+      "bytes": 4363,
+      "sha256": "f54e30124c0951f33f3c7bb9b8404a0120eabb2ee565931691a92a15eb5abe2b"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/production/SpatialScenes.jsx",
+      "bytes": 8946,
+      "sha256": "7afbbdebdf7e11c2d8ff776d9b1d9d33cf7dbf98292ef84826e3a2a4450c692d"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+      "bytes": 2479,
+      "sha256": "f71a91cc47abcdd46259f447d1f5cbb42b224aa7079e591ad869f9115d550c8c"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+      "bytes": 501,
+      "sha256": "87602469827105ab1ab7d112f4bf9a3224026e4fe0e175c4c44183f58edd2c1a"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+      "bytes": 4264,
+      "sha256": "bc6f33d379645521f2968b7edaa382639f467fc093838d8708ebb985399f803a"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+      "bytes": 1282,
+      "sha256": "46344c8b073b53067f1d082b4e693d240fff8f07396c13fda7ed05d8bff120ea"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+      "bytes": 1521,
+      "sha256": "8291b471bccfc513540bb0b611853ce96d4b0abb4d64800347a0ec69bac7de8e"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+      "bytes": 1935,
+      "sha256": "a138c3d39ae293114e6c29c3b0b79b6b0cf171a851467a30e90bfa9ce7a807c8"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/watch-angle.webp",
+      "bytes": 178668,
+      "sha256": "8bb67f973f2cba191d736bb568aad24ef9f2ca31bd338df14a7b1e8900511dbb"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/watch-front.webp",
+      "bytes": 209108,
+      "sha256": "c207abcde5917eb41da04211675208375d9eec34c99838c979162be9a1b21dfb"
+    },
+    {
       "path": "catalog/assets/mechanical-windows/README.md",
       "bytes": 4353,
       "sha256": "18ffc6fc9cd7b6d05dff25ce486d2355413049c702ea56a1c9146125f44768a2"
@@ -1993,8 +2133,8 @@
     },
     {
       "path": "catalog/effects/mechanical-windows.js",
-      "bytes": 6914,
-      "sha256": "db43173f68a8edb94b30cf96b9c30e4420d8ebc23026544b85725f80fce9d32d"
+      "bytes": 7095,
+      "sha256": "2790bfe3ff45aabbf03434e3b7424bbfeb7fb3cf8500539a0770e30ffa8002d6"
     },
     {
       "path": "catalog/effects/metal-impact.js",
@@ -2207,6 +2347,16 @@
       "sha256": "1881fc5892af1539fa5ba854edec6b05e55e7769ecf228f27897ec746e5494ed"
     },
     {
+      "path": "catalog/effects/spatial-apertures-data.js",
+      "bytes": 10501,
+      "sha256": "5e6b1956d234363b887cdc8df286c7b57c5f8e7232c02b9f74d78d6036fbc18d"
+    },
+    {
+      "path": "catalog/effects/spatial-apertures.js",
+      "bytes": 6912,
+      "sha256": "f99cd05ef6f9c43faae405c1e32cbf3c141ab108d7ebf55f5195542095edaa58"
+    },
+    {
       "path": "catalog/effects/speech-caption.js",
       "bytes": 6289,
       "sha256": "cdbe9927ec4ed201dbbbff5e21c01d9cb9baef1ae132d240741e01646954d462"
@@ -2238,13 +2388,13 @@
     },
     {
       "path": "catalog/effects/time-in-motion.js",
-      "bytes": 4203,
-      "sha256": "1d459301de9155895b7de4f16c4cec9415c4f81073d700323e1d10593694d4f4"
+      "bytes": 4317,
+      "sha256": "9c0a158b5a99eb9e53be56ada4d7bfce99bc2316952891c241e117397f630275"
     },
     {
       "path": "catalog/effects/transition.js",
-      "bytes": 5796,
-      "sha256": "fb8262a1cbd0104b024a2b6085887a9f536df5ab023809d9608d05d38104fae0"
+      "bytes": 6052,
+      "sha256": "4d7eefa279c68d6a0c33ee08b522ad3d27e629f1e4598d685f2c7204b39bd7ad"
     },
     {
       "path": "catalog/effects/word-slam.js",
@@ -2254,7 +2404,7 @@
     {
       "path": "catalog/export.js",
       "bytes": 46972,
-      "sha256": "95b0a3bded12b5cd1c8bcde982dbaf5a9841531901120bd7e65366fdc98cb470"
+      "sha256": "b909c59d2d5f010e3433f13ae7c42ed5be72ee0e1e07f23b0b1e45940f3a1336"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -2338,8 +2488,8 @@
     },
     {
       "path": "catalog/lazy.js",
-      "bytes": 3657,
-      "sha256": "2a1932a52bcf3a1509862df923ebb656af5cae85b6975a772480b315781c72d9"
+      "bytes": 3724,
+      "sha256": "fce326ffb85e2a7014cb660e2dcf864e913650d8cd5e953be67e60cf480a50d4"
     },
     {
       "path": "catalog/matching.js",
@@ -2358,13 +2508,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 2414576,
-      "sha256": "cdaf539421eb0b5c607d54ad0c02b8fa1425facefc6ae00e39472d37dd830285"
+      "bytes": 2475061,
+      "sha256": "8b4beff34d25cf1d7f43cb484f29bf8fc1fbbc14a2234d15aa3306fcf87e10c2"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 2983745,
-      "sha256": "412ba2bb18b8e52945c8bb5674654712cfd1bef1bd9a69b5ed0490f0d147d0f4"
+      "bytes": 3062771,
+      "sha256": "5c1f0a8f5808fb00abc882b47f210dd950336fa4b15eece31dd956be415b2710"
     },
     {
       "path": "catalog/related-preview.js",
@@ -2522,6 +2672,11 @@
       "sha256": "81c6e8b5c5e82ec7bb2ffec928def489d54c087e70c32039d4abc5f232a701e8"
     },
     {
+      "path": "catalog/remotion/spatial-apertures.jsx",
+      "bytes": 4575,
+      "sha256": "22fec2c3a9009f6937a5163341bd962ae60af1f089c76dff8535e6b259f32f31"
+    },
+    {
       "path": "catalog/remotion/speech-caption.jsx",
       "bytes": 2035,
       "sha256": "0b477dd723900ded415796ac3dcb7e8fc2e6853b9edf539253d50dcca102508c"
@@ -2538,8 +2693,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 2773011,
-      "sha256": "834a58a687e026b55c52512400d7242ccfbec79cf3f90eaab1b7ae20043ab43d"
+      "bytes": 2881238,
+      "sha256": "55d5f4414a9833dd03b49711ae25c389b0b99691b5cd198078e2b3e40c1cadaa"
     },
     {
       "path": "catalog/runtime.js",

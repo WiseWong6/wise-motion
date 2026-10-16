@@ -1,0 +1,112 @@
+{
+  "title": "TIME, IN MOTION / MECHANICAL PULSE v4.2",
+  "revision": "2026-10-15 v4.2",
+  "original_video": {
+    "file": "output/MECHANICAL-PULSE-v4.2-4K.mp4",
+    "bytes": 42562769,
+    "sha256": "5c81ed3e6c4fe21a28a21d5db5391d7ed1606579edb3f2748f26f1e64f305118",
+    "width": 3840,
+    "height": 2160,
+    "fps": 30,
+    "frames": 540
+  },
+  "runtime": {
+    "file": "movie.mp4",
+    "bytes": 3317754,
+    "sha256": "fc1f6ab8aac84716d94fd99a942d5a4d8e791b388c777f637d5d604650d54968",
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "frames": 540,
+    "operation": "FFmpeg libx264 CRF23; 1280x720; video-only; exact frame count and cuts retained."
+  },
+  "source_code": [
+    {
+      "original": "src/FilmV4.jsx",
+      "file": "catalog/assets/mechanical-pulse/production/FilmV4.jsx",
+      "bytes": 4363,
+      "sha256": "f54e30124c0951f33f3c7bb9b8404a0120eabb2ee565931691a92a15eb5abe2b"
+    },
+    {
+      "original": "src/FilmV3.jsx",
+      "file": "catalog/assets/mechanical-pulse/production/FilmV3.jsx",
+      "bytes": 11044,
+      "sha256": "0946e4b210acbce0a5f5a2572149caff9aded4d68bca67694494a5976de9cb50"
+    },
+    {
+      "original": "src/SpatialScenes.jsx",
+      "file": "catalog/assets/mechanical-pulse/production/SpatialScenes.jsx",
+      "bytes": 8946,
+      "sha256": "7afbbdebdf7e11c2d8ff776d9b1d9d33cf7dbf98292ef84826e3a2a4450c692d"
+    },
+    {
+      "original": "src/windows-v4.mjs",
+      "file": "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+      "bytes": 1935,
+      "sha256": "a138c3d39ae293114e6c29c3b0b79b6b0cf171a851467a30e90bfa9ce7a807c8"
+    },
+    {
+      "original": "src/windows-v32.mjs",
+      "file": "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+      "bytes": 1521,
+      "sha256": "8291b471bccfc513540bb0b611853ce96d4b0abb4d64800347a0ec69bac7de8e"
+    },
+    {
+      "original": "src/windows-v31.mjs",
+      "file": "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+      "bytes": 1282,
+      "sha256": "46344c8b073b53067f1d082b4e693d240fff8f07396c13fda7ed05d8bff120ea"
+    },
+    {
+      "original": "src/windows-v3.mjs",
+      "file": "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+      "bytes": 4264,
+      "sha256": "bc6f33d379645521f2968b7edaa382639f467fc093838d8708ebb985399f803a"
+    },
+    {
+      "original": "src/timing-v42.mjs",
+      "file": "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+      "bytes": 501,
+      "sha256": "87602469827105ab1ab7d112f4bf9a3224026e4fe0e175c4c44183f58edd2c1a"
+    },
+    {
+      "original": "src/form-layout.mjs",
+      "file": "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+      "bytes": 2479,
+      "sha256": "f71a91cc47abcdd46259f447d1f5cbb42b224aa7079e591ad869f9115d550c8c"
+    }
+  ],
+  "adaptations": [
+    "Shared frame-driven geometry and measured silhouette layout; independent actions use editable vector carriers or alpha-preserving WebP product stills.",
+    "Editable final edit uses pinned existing OffthreadVideo/Img/Html5Audio; HelveticaNeue replaced by OFL Oswald. This changes text glyphs.",
+    "No original footage, alpha sequences, system fonts or third-party music in npm. Optional local-media importer verifies every hash before copying."
+  ],
+  "audio": {
+    "distributed": false,
+    "track": "The Journey",
+    "artist": "Ahjay Stelino",
+    "source": "Mixkit",
+    "license_url": "https://mixkit.co/license/modal/musicFree/",
+    "terms_url": "https://mixkit.co/terms/",
+    "decision": "Video-only cache. Optional explicitly selected local audio; no standalone score distribution."
+  },
+  "license": "User-authored code Apache-2.0; Oswald SIL OFL; external music not relicensed.",
+  "image_adaptations": [
+    {
+      "original": "public/watch-front.png",
+      "original_sha256": "62248d931d14a2eee66c0aabd7dbe53899f65bc5b1524046bd29e91e0f21851f",
+      "runtime": "watch-front.webp",
+      "sha256": "c207abcde5917eb41da04211675208375d9eec34c99838c979162be9a1b21dfb",
+      "bytes": 209108,
+      "operation": "cwebp q85, alpha_q100, native 1800x2400; alpha footprint unchanged"
+    },
+    {
+      "original": "public/watch-angle.png",
+      "original_sha256": "34d21561f9a3174df98b95df57fcbce3f83229c7c6703e124379ff210abd5b3e",
+      "runtime": "watch-angle.webp",
+      "sha256": "8bb67f973f2cba191d736bb568aad24ef9f2ca31bd338df14a7b1e8900511dbb",
+      "bytes": 178668,
+      "operation": "cwebp q85, alpha_q100, native 1800x2400; alpha footprint unchanged"
+    }
+  ]
+}

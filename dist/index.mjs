@@ -120,6 +120,7 @@ var FRAME_SCRIPTS = Object.freeze([
   "catalog/runtime.js",
   "catalog/history-runtime.js",
   "catalog/effects/mechanical-windows-data.js",
+  "catalog/effects/spatial-apertures-data.js",
   "catalog/effects/time-in-motion-data.js",
   "catalog/effects/time-in-motion.js",
   "catalog/effects/time-in-motion-graphics.js",
@@ -209,7 +210,8 @@ var FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/butterfly-mask.js",
   "catalog/effects/sage-butterfly-mask.js",
   "catalog/effects/reel-extract.js",
-  "catalog/effects/mechanical-windows.js"
+  "catalog/effects/mechanical-windows.js",
+  "catalog/effects/spatial-apertures.js"
 ]);
 
 // remotion/frame-document.mjs
@@ -3241,7 +3243,9 @@ var registry_default = {
         "\u65B0\u753B\u9762",
         "\u8986\u76D6",
         "\u64E6\u9664\u5207\u6362",
-        "\u64E6\u79FB\u5207\u6362"
+        "\u64E6\u79FB\u5207\u6362",
+        "\u77E9\u7A97\u63A5\u955C\u4E0E\u6587\u6848\u4EA4\u63A5",
+        "MECHANICAL PULSE v4.2"
       ],
       behaviors: [
         "transition",
@@ -3322,7 +3326,148 @@ var registry_default = {
           "\u8FD9\u91CC t \u4E3A\u52A8\u4F5C\u79D2\u6570\uFF08\u64AD\u653E\u901F\u5EA61\u65F6\u7B49\u4E8E\u64AD\u653E\u79D2\u6570\uFF09\uFF1B\u8BBE\u8BA1\u65F6\u949F u=0.7+1.8\xD7\u9650\u5236\u52300\u81F31\u7684((t\u22120.15)/0.6)\uFF0C\u5355\u4F4D\u4E3A\u79D2\u3002\u4E0B\u5217\u6807\u660E u \u7684\u9636\u6BB5\u4F7F\u7528\u8BBE\u8BA1\u65F6\u949F\uFF0C\u4E0D\u662F\u5B9E\u9645\u64AD\u653E\u65F6\u957F\uFF1B\u5F52\u4E00\u8FDB\u5EA6 p=u/2.9\u3002\u8BBE\u8BA1\u65F6\u949F\u5728\u4E24\u7AEF\u94B3\u4F4F\uFF0C\u4E0D\u9760\u4E0A\u4E00\u5E27\u4FDD\u7559\u72B6\u6001\u3002",
           "\u8BBE\u8BA1\u65F6\u949Fu=0.7\u81F32.5\u79D2\u53EA\u6253\u5F00\u65B0\u9875\u88C1\u526A\u533A\u57DF\uFF1A\u5DE6\u8FB9\u56FA\u5B9A\uFF0C\u53F3\u88C1\u526A\u4ECE100%\u7F29\u52300\u3002\u65E7\u9875\u4F4D\u7F6E\u4E0D\u53D8\uFF0C\u65B0\u9875\u4ECE\u5DE6\u81F3\u53F3\u8986\u76D6\u5168\u9875\uFF0C\u4E0D\u79FB\u52A8\u6574\u5757\u9762\u677F\u3002"
         ]
-      }
+      },
+      variants: [
+        {
+          id: "standard",
+          label: "\u4ECE\u5DE6\u5411\u53F3\u64E6\u5165",
+          duration_ms: 1200,
+          preview_ms: 557,
+          summary: "\u4E00\u5757\u65B0\u753B\u9762\u4ECE\u8FB9\u7F18\u63A8\u8FDB\uFF0C\u8986\u76D6\u539F\u753B\u9762\u3002",
+          source: {
+            path: "catalog/effects/transition.js",
+            factory: "wipe",
+            origin: "original",
+            license: "Apache-2.0",
+            library: "animejs@4.5.0",
+            reference_url: "https://animejs.com/documentation/"
+          },
+          reproduction: {
+            objects: "\u524D\u540E\u4E24\u4E2A\u753B\u9762",
+            presentation: "640\xD7360\u6A2A\u5411\u753B\u677F\uFF0C\u8FD1\u9ED1\u5E95#0a0a0b\u3001\u6696\u767D\u4E3B\u4F53#f4f1ea\u3001\u7070\u8272\u8F85\u52A9\u7EBF#62626b\uFF1B\u6DF1\u7070\u9762#151517\uFF0C\u7EC6\u8FB9#3a3a40\u3002\u6D45\u8272\u4E3B\u9898\u7528\u6696\u767D\u5E95#f7f5f0\u3001\u6DF1\u8272\u4E3B\u4F53#222226\uFF1B\u4FDD\u7559\u6784\u56FE\u3001\u76F8\u5BF9\u5C3A\u5BF8\u4E0E\u8272\u76F8\u3002\u4E24\u5757\u91CD\u53E0\u7684520\xD7258\u5706\u89D2\u9762\u677F\uFF0C\u5DE6\u4E0A\u89D2(60,38)\uFF1B\u65E7\u9875\u201C\u8FD9\u4E00\u523B\u3002\u201D\uFF0C\u65B0\u9875\u201C\u4E0B\u4E00\u523B\u3002\u201D\uFF0C\u65B0\u9875\u4F7F\u7528\u8F83\u4EAE\u6DF1\u7070#242428\u3002",
+            phases: [
+              "\u539F\u753B\u9762\u5B8C\u6574\u663E\u793A\u3002",
+              "\u65B0\u753B\u9762\u7684\u8FB9\u754C\u4ECE\u5DE6\u5411\u53F3\u63A8\u8FDB\u3002",
+              "\u65B0\u753B\u9762\u5B8C\u5168\u8986\u76D6\u539F\u753B\u9762\u3002"
+            ],
+            retain: "\u4E00\u5757\u65B0\u753B\u9762\u4ECE\u8FB9\u7F18\u63A8\u8FDB\uFF0C\u8986\u76D6\u539F\u753B\u9762\u3002",
+            avoid: "\u53EA\u505A\u4E00\u6B21\u573A\u666F\u4EA4\u63A5\uFF0C\u4E0D\u8FDE\u7EED\u95EA\u5207\u3002",
+            details: [
+              "\u8FD9\u91CC t \u4E3A\u52A8\u4F5C\u79D2\u6570\uFF08\u64AD\u653E\u901F\u5EA61\u65F6\u7B49\u4E8E\u64AD\u653E\u79D2\u6570\uFF09\uFF1B\u8BBE\u8BA1\u65F6\u949F u=0.7+1.8\xD7\u9650\u5236\u52300\u81F31\u7684((t\u22120.15)/0.6)\uFF0C\u5355\u4F4D\u4E3A\u79D2\u3002\u4E0B\u5217\u6807\u660E u \u7684\u9636\u6BB5\u4F7F\u7528\u8BBE\u8BA1\u65F6\u949F\uFF0C\u4E0D\u662F\u5B9E\u9645\u64AD\u653E\u65F6\u957F\uFF1B\u5F52\u4E00\u8FDB\u5EA6 p=u/2.9\u3002\u8BBE\u8BA1\u65F6\u949F\u5728\u4E24\u7AEF\u94B3\u4F4F\uFF0C\u4E0D\u9760\u4E0A\u4E00\u5E27\u4FDD\u7559\u72B6\u6001\u3002",
+              "\u8BBE\u8BA1\u65F6\u949Fu=0.7\u81F32.5\u79D2\u53EA\u6253\u5F00\u65B0\u9875\u88C1\u526A\u533A\u57DF\uFF1A\u5DE6\u8FB9\u56FA\u5B9A\uFF0C\u53F3\u88C1\u526A\u4ECE100%\u7F29\u52300\u3002\u65E7\u9875\u4F4D\u7F6E\u4E0D\u53D8\uFF0C\u65B0\u9875\u4ECE\u5DE6\u81F3\u53F3\u8986\u76D6\u5168\u9875\uFF0C\u4E0D\u79FB\u52A8\u6574\u5757\u9762\u677F\u3002"
+            ]
+          }
+        },
+        {
+          id: "overlap-copy-handoff",
+          label: "\u77E9\u7A97\u63A5\u955C\u4E0E\u6587\u6848\u4EA4\u63A5",
+          duration_ms: 700,
+          preview_ms: 333.3333333333333,
+          summary: "\u65B0\u753B\u9762\u4ECE\u53F3\u5411\u5DE6\u64E6\u5165\uFF0C\u65E7\u4E3B\u4F53\u5728\u4E0B\u5C42\u7EE7\u7EED\u79FB\u52A8\uFF1B\u65E7\u6587\u6848\u5148\u9000\u3001\u65B0\u6587\u6848\u540E\u663E\uFF0C\u907F\u514D\u8FB9\u7F18\u5207\u788E\u6587\u5B57\u3002",
+          purpose: "\u65B0\u753B\u9762\u4ECE\u53F3\u5411\u5DE6\u64E6\u5165\uFF0C\u65E7\u4E3B\u4F53\u5728\u4E0B\u5C42\u7EE7\u7EED\u79FB\u52A8\uFF1B\u65E7\u6587\u6848\u5148\u9000\u3001\u65B0\u6587\u6848\u540E\u663E\uFF0C\u907F\u514D\u8FB9\u7F18\u5207\u788E\u6587\u5B57\u3002",
+          objects: "\u524D\u540E\u4E24\u4E2A\u8FD0\u884C\u7684\u4EA7\u54C1\u753B\u9762\uFF0C\u4EE5\u53CA\u5206\u5F00\u7684\u65E7\u3001\u65B0\u6587\u6848\u5C42",
+          phases: [
+            "\u65E7\u6587\u6848\u5DF2\u7ECF\u9000\u51FA\uFF0C\u65E7\u4E3B\u4F53\u7EE7\u7EED\u79FB\u52A8\u3002",
+            "\u4E0B\u4E00\u753B\u9762\u4EE5\u77E9\u5F62\u8FB9\u754C\u4ECE\u53F3\u5411\u5DE6\u5C55\u5F0016\u5E27\u3002",
+            "\u7A97\u53E3\u5B8C\u6210\u540E\uFF0C\u65B0\u6587\u6848\u572812\u201320\u5E27\u6DE1\u663E\u5E76\u4E0A\u79FB28\u50CF\u7D20\u3002"
+          ],
+          retain: "\u77E9\u5F62\u63A5\u955C\u3001\u53CC\u5C42\u6301\u7EED\u8FD0\u52A8\u548C\u4E92\u4E0D\u91CD\u53E0\u7684\u6587\u6848\u4EA4\u63A5\u3002",
+          avoid: "\u4E0D\u628A\u4E24\u5957\u6587\u5B57\u4E00\u8D77\u88C1\u6210\u788E\u7247\uFF0C\u4E0D\u8BA9\u65E7\u6587\u6848\u76F4\u5230\u64E6\u8FB9\u7ECF\u8FC7\u624D\u6D88\u5931\uFF0C\u4E0D\u79FB\u52A8\u6574\u5F20\u65B0\u753B\u9762\u4EE3\u66FF\u88C1\u526A\u3002",
+          tempo_note: "30fps\uFF0C\u517121\u5E27\uFF1B\u672B\u5E2720\u3002",
+          recommendation: "\u65B0\u753B\u9762\u4ECE\u53F3\u5411\u5DE6\u64E6\u5165\uFF0C\u65E7\u4E3B\u4F53\u5728\u4E0B\u5C42\u7EE7\u7EED\u79FB\u52A8\uFF1B\u65E7\u6587\u6848\u5148\u9000\u3001\u65B0\u6587\u6848\u540E\u663E\uFF0C\u907F\u514D\u8FB9\u7F18\u5207\u788E\u6587\u5B57\u3002",
+          reproduction: {
+            objects: "\u524D\u540E\u4E24\u4E2A\u8FD0\u884C\u7684\u4EA7\u54C1\u753B\u9762\uFF0C\u4EE5\u53CA\u5206\u5F00\u7684\u65E7\u3001\u65B0\u6587\u6848\u5C42",
+            presentation: "1920\xD71080\u6A2A\u5411\u753B\u677F\u300130fps\uFF1B\u8FD1\u9ED1\u5E95#101211\u3001\u6696\u767D\u7EBF\u6761#eeeee5\u4E0E\u91D1\u8272\u91CD\u70B9#bba67b\u3002\u7A97\u53E3\u793A\u610F\u4F7F\u7528\u81EA\u7F16\u673A\u68B0\u5706\u76D8\uFF0C\u53EF\u66FF\u6362\u6210\u81EA\u5DF1\u7684\u5B8C\u6574\u753B\u9762\uFF1B\u4E0D\u540C\u753B\u5E45\u7B49\u6BD4\u5BB9\u7EB3\u3002",
+            phases: [
+              "\u65E7\u6587\u6848\u5DF2\u7ECF\u9000\u51FA\uFF0C\u65E7\u4E3B\u4F53\u7EE7\u7EED\u79FB\u52A8\u3002",
+              "\u4E0B\u4E00\u753B\u9762\u4EE5\u77E9\u5F62\u8FB9\u754C\u4ECE\u53F3\u5411\u5DE6\u5C55\u5F0016\u5E27\u3002",
+              "\u7A97\u53E3\u5B8C\u6210\u540E\uFF0C\u65B0\u6587\u6848\u572812\u201320\u5E27\u6DE1\u663E\u5E76\u4E0A\u79FB28\u50CF\u7D20\u3002"
+            ],
+            details: [
+              "30fps\uFF0C\u517121\u4E2A\u91C7\u6837\u5E27\uFF0C\u672B\u5E2720\u3002\u65E7\u753B\u97620\u201315\u5E27\u5728\u5E95\u5C42\u5EF6\u7EED\uFF0C\u65B0\u753B\u9762\u4ECE\u81EA\u5DF1\u76840\u5E27\u5F00\u59CB\u8FD0\u884C\u3002",
+              "\u88C1\u526A\u5DE6\u8FB9\u754Cleft=1920\xD7(1\u2212cubic-bezier(.45,0,.2,1)(clamp(f/16)))\uFF0C\u53F3\u3001\u4E0A\u3001\u4E0B\u8FB9\u754C\u56FA\u5B9A\uFF1B0\u201315\u5E27\u53EA\u663E\u793A[left,1920]\uFF0C\u7B2C16\u5E27\u5168\u5E45\u3002",
+              "\u65E7\u6587\u6848\u987B\u5728\u52A8\u4F5C\u8D77\u70B9\u524D\u5B8C\u6210\u6DE1\u51FA\uFF0C\u4FDD\u6301opacity=0\uFF1B\u65B0\u6587\u6848opacity\u572812\u201320\u5E27\u7EBF\u60270\u21921\uFF0Cy\u4F4D\u79FB28\u21920\u4F7F\u7528cubic-bezier(.16,1,.3,1)\u3002",
+              "\u6587\u6848\u663E\u9690\u5355\u72EC\u4E8E\u753B\u9762\u88C1\u526A\uFF1B\u572812\u5E27\u4EE5\u524D\u65B0\u6587\u6848\u4E0D\u53EF\u89C1\uFF0C\u65E7\u6587\u6848\u4E0D\u968F\u64E6\u8FB9\u7559\u4E0B\u6B8B\u7247\u3002\u793A\u610F\u6587\u6848\u4E3AFORM.\u4E0EIN MOTION.\u3002"
+            ],
+            retain: "\u77E9\u5F62\u63A5\u955C\u3001\u53CC\u5C42\u6301\u7EED\u8FD0\u52A8\u548C\u4E92\u4E0D\u91CD\u53E0\u7684\u6587\u6848\u4EA4\u63A5\u3002",
+            avoid: "\u4E0D\u628A\u4E24\u5957\u6587\u5B57\u4E00\u8D77\u88C1\u6210\u788E\u7247\uFF0C\u4E0D\u8BA9\u65E7\u6587\u6848\u76F4\u5230\u64E6\u8FB9\u7ECF\u8FC7\u624D\u6D88\u5931\uFF0C\u4E0D\u79FB\u52A8\u6574\u5F20\u65B0\u753B\u9762\u4EE3\u66FF\u88C1\u526A\u3002"
+          },
+          source: {
+            path: "catalog/effects/transition.js",
+            factory: "wipe",
+            dependencies: [
+              "catalog/effects/mechanical-windows-data.js",
+              "catalog/effects/mechanical-windows.js",
+              "catalog/effects/spatial-apertures-data.js",
+              "catalog/effects/spatial-apertures.js"
+            ],
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            reference: {
+              name: "MECHANICAL PULSE v4.2 \xB7 \u7528\u6237\u539F\u521B\u51E0\u4F55\u7F16\u821E\u4E0E\u8F6E\u5ED3\u6392\u7248"
+            },
+            extraction: "\u63D0\u53D6\u4F5C\u8005\u539F\u521B\u7A97\u53E3\u4E0E\u6392\u7248\u51FD\u6570\uFF0C\u4FDD\u7559\u5168\u5C40\u5E27\u3001\u6301\u7EED\u5C55\u5F00\u3001\u540C\u4F4D\u77ED\u95EA\u548C\u53CC\u955C\u91CD\u53E0\uFF1B\u672A\u590D\u5236\u5916\u90E8\u6A21\u677F\u4EE3\u7801\u3002",
+            production_guide: "catalog/assets/mechanical-pulse/README.md",
+            remotion: {
+              component: "catalog/remotion/spatial-apertures.jsx",
+              export_name: "WiseSpatialApertures",
+              package_name: "wise-spatial-apertures",
+              files: [
+                "catalog/remotion/spatial-apertures.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/effects/spatial-apertures-data.js",
+                "catalog/effects/spatial-apertures.js",
+                "catalog/assets/mechanical-pulse/README.md",
+                "catalog/assets/mechanical-pulse/SOURCE.json",
+                "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+                "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+                "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+                "LICENSE",
+                "catalog/fonts/OFL-Oswald.txt",
+                "catalog/remotion/binary-assets-installer.mjs"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 1920,
+              height: 1080,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u76EE\u5F55\u3001\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u7F16\u8F91\u5DE5\u7A0B\u5171\u7528\u9010\u5E27\u7A97\u53E3\u548C\u8F6E\u5ED3\u6392\u7248\u51FD\u6570\uFF1B\u72EC\u7ACB\u7A97\u53E3\u4EE5\u81EA\u7F16\u77E2\u91CF\u5706\u76D8\u793A\u610F\uFF0C\u53EF\u901A\u8FC7SpatialWindowClip\u6362\u6210\u81EA\u5DF1\u7684\u56FE\u50CF\u6216\u89C6\u9891\u3002AlignedSilhouetteRow\u63A5\u53D7\u81EA\u5DF1\u7684\u4E3B\u4F53\u5185\u5BB9\u3001\u4E3B\u4F53\u951A\u70B9\u4E0E\u65CB\u8F6C\u540E\u8F6E\u5ED3\u8FB9\u754C\uFF1B\u9ED8\u8BA4\u4E3B\u4F53\u4F7F\u7528\u539F\u56FE\u5C3A\u5BF8\u3001alpha\u4FDD\u771F\u7684WebP\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\u3002",
+              scripts: {
+                render: "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              },
+              binary_files: [
+                {
+                  source: "catalog/fonts/Oswald-Bold.woff2",
+                  target: "public/catalog/fonts/Oswald-Bold.woff2",
+                  bytes: 12112,
+                  sha256: "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+                }
+              ],
+              asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+            }
+          },
+          parameters: {
+            speed: {
+              label: "\u64AD\u653E\u901F\u5EA6",
+              default: 1,
+              min: 0.5,
+              max: 2,
+              step: 0.25
+            }
+          }
+        }
+      ]
     },
     {
       kind: "action",
@@ -3364,7 +3509,9 @@ var registry_default = {
         "\u5370\u5237\u7EB9\u7406\u5FEB\u95EA",
         "\u80CC\u666F\u7EB9\u7406\u53E0\u52A0",
         "MECHANICAL WINDOWS",
-        "\u540C\u4F4D\u7EBF\u7A3F\u77ED\u95EA"
+        "\u540C\u4F4D\u7EBF\u7A3F\u77ED\u95EA",
+        "\u5168\u5E45\u53CC\u6B21\u56FE\u7EB8\u77ED\u95EA",
+        "MECHANICAL PULSE v4.2"
       ],
       behaviors: [
         "transition",
@@ -3557,6 +3704,103 @@ var registry_default = {
               scripts: {
                 render: "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
               }
+            }
+          }
+        },
+        {
+          id: "full-frame-blueprint",
+          label: "\u5168\u5E45\u53CC\u6B21\u56FE\u7EB8\u77ED\u95EA",
+          duration_ms: 3333.3333333333335,
+          preview_ms: 333.3333333333333,
+          summary: "\u5B8C\u6574\u5B9E\u4F53\u753B\u9762\u4E0E\u540C\u6784\u56FE\u56FE\u7EB8\u4E24\u6B21\u76F4\u63A5\u66FF\u6362\uFF0C\u6BCF\u6B218\u5E27\uFF0C\u56FE\u7EB8\u671F\u95F4\u4FDD\u6301\u5168\u5E45\u3002",
+          purpose: "\u5B8C\u6574\u5B9E\u4F53\u753B\u9762\u4E0E\u540C\u6784\u56FE\u56FE\u7EB8\u4E24\u6B21\u76F4\u63A5\u66FF\u6362\uFF0C\u6BCF\u6B218\u5E27\uFF0C\u56FE\u7EB8\u671F\u95F4\u4FDD\u6301\u5168\u5E45\u3002",
+          objects: "\u5B8C\u6574\u5B9E\u4F53\u753B\u9762\u548C\u6784\u56FE\u4E00\u81F4\u7684\u6696\u767D\u7EBF\u7A3F",
+          phases: [
+            "\u5B9E\u4F53\u753B\u9762\u5148\u663E\u793A8\u5E27\u3002",
+            "\u7EBF\u7A3F\u663E\u793A8\u5E27\u540E\u5207\u56DE\u5B9E\u4F53\uFF0C\u95F4\u969412\u5E27\u540E\u518D\u663E\u793A8\u5E27\u3002",
+            "\u6062\u590D\u5B9E\u4F53\u5E76\u4FDD\u6301\u81F3\u7247\u6BB5\u7ED3\u675F\u3002"
+          ],
+          retain: "\u4E24\u6B21\u54048\u5E27\u7684\u540C\u4F4D\u5168\u5E45\u77ED\u95EA\u4E0E\u4E2D\u95F4\u5B9E\u4F53\u95F4\u9694\u3002",
+          avoid: "\u4E0D\u88C1\u526A\u56FE\u7EB8\uFF0C\u4E0D\u52A0\u4EA4\u53C9\u6DE1\u5316\u6216\u7F29\u653E\uFF0C\u4E0D\u5C06\u5B9E\u4F53\u51BB\u7ED3\u4E3A\u56FE\u7EB8\u7684\u66FF\u4EE3\u3002",
+          tempo_note: "30fps\uFF0C\u5171100\u5E27\uFF1B\u672B\u5E2799\u3002",
+          recommendation: "\u5B8C\u6574\u5B9E\u4F53\u753B\u9762\u4E0E\u540C\u6784\u56FE\u56FE\u7EB8\u4E24\u6B21\u76F4\u63A5\u66FF\u6362\uFF0C\u6BCF\u6B218\u5E27\uFF0C\u56FE\u7EB8\u671F\u95F4\u4FDD\u6301\u5168\u5E45\u3002",
+          reproduction: {
+            objects: "\u5B8C\u6574\u5B9E\u4F53\u753B\u9762\u548C\u6784\u56FE\u4E00\u81F4\u7684\u6696\u767D\u7EBF\u7A3F",
+            presentation: "1920\xD71080\u6A2A\u5411\u753B\u677F\u300130fps\uFF1B\u8FD1\u9ED1\u5E95#101211\u3001\u6696\u767D\u7EBF\u6761#eeeee5\u4E0E\u91D1\u8272\u91CD\u70B9#bba67b\u3002\u7A97\u53E3\u793A\u610F\u4F7F\u7528\u81EA\u7F16\u673A\u68B0\u5706\u76D8\uFF0C\u53EF\u66FF\u6362\u6210\u81EA\u5DF1\u7684\u5B8C\u6574\u753B\u9762\uFF1B\u4E0D\u540C\u753B\u5E45\u7B49\u6BD4\u5BB9\u7EB3\u3002",
+            phases: [
+              "\u5B9E\u4F53\u753B\u9762\u5148\u663E\u793A8\u5E27\u3002",
+              "\u7EBF\u7A3F\u663E\u793A8\u5E27\u540E\u5207\u56DE\u5B9E\u4F53\uFF0C\u95F4\u969412\u5E27\u540E\u518D\u663E\u793A8\u5E27\u3002",
+              "\u6062\u590D\u5B9E\u4F53\u5E76\u4FDD\u6301\u81F3\u7247\u6BB5\u7ED3\u675F\u3002"
+            ],
+            details: [
+              "30fps\uFF0C\u5171100\u5E27\uFF1B\u7EBF\u7A3F\u53EF\u89C1\u533A\u95F4\u4E25\u683C\u4E3A[8,16)\u548C[28,36)\uFF0C\u5176\u4F59\u65F6\u95F4\u5B9E\u4F53\u53EF\u89C1\u3002",
+              "\u4E0D\u52A0\u8FC7\u6E21\u63D2\u503C\uFF1B\u53EA\u6539\u53D8\u540C\u4F4D\u56FE\u5C42\u663E\u9690\u3002\u76F8\u540C\u673A\u4F4D\u3001\u6BD4\u4F8B\u3001\u951A\u70B9\u548C\u753B\u5E45\uFF1B\u7EBF\u7A3F\u4E0E\u5B9E\u4F53\u5747\u8986\u76D6\u5168\u753B\u677F\u3002",
+              "\u5B9E\u4F53\u5E95\u5C42\u6309\u81EA\u8EAB\u65F6\u95F4\u7EE7\u7EED\u64AD\u653E\uFF0C\u7EBF\u7A3F\u5C42\u4F4D\u4E8E\u5176\u4E0A\u65B9\uFF1B\u7A97\u53E3\u8F68\u9053\u5728\u6574\u4E2A100\u5E27\u4FDD\u6301\u5168\u5E45\u3002"
+            ],
+            retain: "\u4E24\u6B21\u54048\u5E27\u7684\u540C\u4F4D\u5168\u5E45\u77ED\u95EA\u4E0E\u4E2D\u95F4\u5B9E\u4F53\u95F4\u9694\u3002",
+            avoid: "\u4E0D\u88C1\u526A\u56FE\u7EB8\uFF0C\u4E0D\u52A0\u4EA4\u53C9\u6DE1\u5316\u6216\u7F29\u653E\uFF0C\u4E0D\u5C06\u5B9E\u4F53\u51BB\u7ED3\u4E3A\u56FE\u7EB8\u7684\u66FF\u4EE3\u3002"
+          },
+          source: {
+            path: "catalog/effects/transition.js",
+            factory: "rapid-cut",
+            dependencies: [
+              "catalog/effects/mechanical-windows-data.js",
+              "catalog/effects/mechanical-windows.js",
+              "catalog/effects/spatial-apertures-data.js",
+              "catalog/effects/spatial-apertures.js"
+            ],
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            reference: {
+              name: "MECHANICAL PULSE v4.2 \xB7 \u7528\u6237\u539F\u521B\u51E0\u4F55\u7F16\u821E\u4E0E\u8F6E\u5ED3\u6392\u7248"
+            },
+            extraction: "\u63D0\u53D6\u4F5C\u8005\u539F\u521B\u7A97\u53E3\u4E0E\u6392\u7248\u51FD\u6570\uFF0C\u4FDD\u7559\u5168\u5C40\u5E27\u3001\u6301\u7EED\u5C55\u5F00\u3001\u540C\u4F4D\u77ED\u95EA\u548C\u53CC\u955C\u91CD\u53E0\uFF1B\u672A\u590D\u5236\u5916\u90E8\u6A21\u677F\u4EE3\u7801\u3002",
+            production_guide: "catalog/assets/mechanical-pulse/README.md",
+            remotion: {
+              component: "catalog/remotion/spatial-apertures.jsx",
+              export_name: "WiseSpatialApertures",
+              package_name: "wise-spatial-apertures",
+              files: [
+                "catalog/remotion/spatial-apertures.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/effects/spatial-apertures-data.js",
+                "catalog/effects/spatial-apertures.js",
+                "catalog/assets/mechanical-pulse/README.md",
+                "catalog/assets/mechanical-pulse/SOURCE.json",
+                "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+                "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+                "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+                "LICENSE"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 1920,
+              height: 1080,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u76EE\u5F55\u3001\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u7F16\u8F91\u5DE5\u7A0B\u5171\u7528\u9010\u5E27\u7A97\u53E3\u548C\u8F6E\u5ED3\u6392\u7248\u51FD\u6570\uFF1B\u72EC\u7ACB\u7A97\u53E3\u4EE5\u81EA\u7F16\u77E2\u91CF\u5706\u76D8\u793A\u610F\uFF0C\u53EF\u901A\u8FC7SpatialWindowClip\u6362\u6210\u81EA\u5DF1\u7684\u56FE\u50CF\u6216\u89C6\u9891\u3002AlignedSilhouetteRow\u63A5\u53D7\u81EA\u5DF1\u7684\u4E3B\u4F53\u5185\u5BB9\u3001\u4E3B\u4F53\u951A\u70B9\u4E0E\u65CB\u8F6C\u540E\u8F6E\u5ED3\u8FB9\u754C\uFF1B\u9ED8\u8BA4\u4E3B\u4F53\u4F7F\u7528\u539F\u56FE\u5C3A\u5BF8\u3001alpha\u4FDD\u771F\u7684WebP\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\u3002",
+              scripts: {
+                render: "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          parameters: {
+            speed: {
+              label: "\u64AD\u653E\u901F\u5EA6",
+              default: 1,
+              min: 0.5,
+              max: 2,
+              step: 0.25
             }
           }
         }
@@ -53729,7 +53973,7 @@ var registry_default = {
       trigger: "\u6253\u5F00\u9884\u89C8\u6309\u56FA\u5B9A\u65F6\u95F4\u7EBF\u64AD\u653E\uFF1B\u53EF\u4EE5\u6682\u505C\u3001\u5B9A\u4F4D\u548C\u91CD\u64AD\u3002",
       assumptions: "\u6000\u8868\u4E3A\u52A8\u4F5C\u793A\u4F8B\uFF0C\u53EF\u66FF\u6362\u4E3B\u4F53\uFF1B\u7269\u7406\u949F\u8868\u72B6\u6001\u4EC5\u4E3A\u89C6\u89C9\u6F14\u793A\u3002",
       id: "fan-object-rise",
-      name: "\u4E09\u8054\u4E3B\u4F53\u9519\u5CF0\u5347\u5165",
+      name: "\u4E09\u8054\u4E3B\u4F53\u5347\u5165",
       kind: "action",
       category: "entrance",
       duration_ms: 2e3,
@@ -53741,7 +53985,10 @@ var registry_default = {
         "\u4E09\u8054\u4E3B\u4F53",
         "\u9519\u5CF0\u5347\u5165",
         "\u4EA7\u54C1\u9648\u5217",
-        "\u4E0A\u79FB\u843D\u4F4D"
+        "\u4E0A\u79FB\u843D\u4F4D",
+        "\u8F6E\u5ED3\u7B49\u8DDD\u540C\u6B65\u5347\u5165",
+        "MECHANICAL PULSE v4.2",
+        "\u4E09\u8054\u4E3B\u4F53\u9519\u5CF0\u5347\u5165"
       ],
       behaviors: [
         "native-3d",
@@ -53894,7 +54141,273 @@ var registry_default = {
         end_state: "\u4E3B\u4F53\u5728\u7B2C20\u300124\u300128\u5E27\u843D\u4F4D\uFF0C\u4E09\u8054\u6784\u56FE\u4E0E\u7EC6\u5FAE\u6301\u7EED\u8F6C\u89D2\u4FDD\u6301\u3002",
         retain: "\u900F\u660E\u9759\u5E27\u7684\u5B8C\u6574\u8F6E\u5ED3\u3001\u539F\u957F\u5BBD\u6BD4\u3001\u9519\u5CF0\u4F4D\u79FB\u548C\u5404\u81EA\u503E\u89D2\u3002",
         avoid: "\u4E0D\u8981\u6574\u4F53\u79FB\u52A8\u4E09\u5F20\u56FE\u7247\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u5207\u4E3B\u4F53\uFF0C\u4E0D\u7528\u6DE1\u5165\u4EE3\u66FF\u4E0A\u79FB\u3002"
-      }
+      },
+      variants: [
+        {
+          id: "standard",
+          label: "\u9519\u5CF0\u503E\u8F6C\u5347\u5165",
+          duration_ms: 2e3,
+          preview_ms: 1250,
+          summary: "\u4E09\u4E2A\u5B8C\u6574\u4E3B\u4F53\u4EE5\u56FA\u5B9A\u9519\u5CF0\u4ECE\u4E0B\u65B9\u5347\u5165\uFF0C\u5206\u522B\u503E\u659C\u843D\u4F4D\u7EC4\u6210\u4E09\u8054\u753B\u3002",
+          source: {
+            path: "catalog/effects/time-in-motion.js",
+            factory: "fan-object-rise",
+            dependencies: [
+              "catalog/effects/time-in-motion-data.js"
+            ],
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            native_scene: "remotion",
+            frame_cache: {
+              video: "catalog/assets/time-in-motion/movie.mp4",
+              start_frame: 816,
+              frames: 48,
+              fps: 24,
+              width: 1280,
+              height: 720,
+              poster: "catalog/assets/time-in-motion/posters/fan-object-rise.jpg"
+            },
+            reference: {
+              name: "TIME, IN MOTION \xB7 \u7528\u6237\u539F\u521B\u6A2A\u5C4F\u673A\u68B0\u6000\u8868\u4F5C\u54C1"
+            },
+            extraction: "\u539FForm\u51FD\u6570\u4F7F\u7528\u4E09\u5F20Blender\u6444\u5F71\u9759\u5E27\u8FDB\u884C\u4E8C\u7EF4\u9519\u5CF0\u79FB\u4F4D\u4E0E\u65CB\u8F6C\uFF1B\u7247\u6BB5\u7F13\u5B58\u5B9A\u4F4D\u6700\u7EC8\u6210\u7247\uFF0C\u771F\u5B9E\u53EF\u7F16\u8F91\u7F16\u6392\u6E90\u7801\u540C\u65F6\u4EA4\u4ED8\u3002",
+            production_guide: "catalog/assets/time-in-motion/README.md",
+            assets: [
+              "catalog/assets/time-in-motion/movie.mp4",
+              "catalog/assets/time-in-motion/posters/fan-object-rise.jpg",
+              "catalog/assets/time-in-motion/SOURCE.json"
+            ],
+            remotion: {
+              component: "catalog/remotion/time-in-motion.jsx",
+              export_name: "WiseTimeInMotion",
+              package_name: "wise-time-in-motion",
+              files: [
+                "catalog/remotion/time-in-motion.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/time-in-motion-data.js",
+                "catalog/assets/time-in-motion/README.md",
+                "catalog/assets/time-in-motion/editable/Film.jsx",
+                "catalog/assets/time-in-motion/editable/Root.jsx",
+                "catalog/assets/time-in-motion/editable/graphics/DialRings.jsx",
+                "catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx",
+                "catalog/assets/time-in-motion/editable/graphics/index.jsx",
+                "catalog/assets/time-in-motion/editable/graphics/motion.mjs",
+                "catalog/assets/time-in-motion/editable/import-originals.mjs",
+                "catalog/assets/time-in-motion/editable/movie.config.json",
+                "catalog/assets/time-in-motion/editable/original-assets.json",
+                "catalog/assets/time-in-motion/production/Film-original.jsx",
+                "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/build_film.py",
+                "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/product_photography.py",
+                "catalog/assets/time-in-motion/production/project/3\u6BD44\u4EA7\u54C1\u5C55\u793A\u7248/\u4E09\u7EF4/\u6E90\u7801/render_film.py",
+                "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6027\u80FD\u7814\u7A76/profiles.py",
+                "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/build_revision.py",
+                "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/cinematography.py",
+                "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/geometry.py",
+                "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/mechanics.py",
+                "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/build.py",
+                "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/casework.py",
+                "catalog/assets/time-in-motion/production/project/\u539F\u59CB\u5EFA\u6A21/\u6E90\u7801/movement.py",
+                "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/build_and_preview.py",
+                "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/compose_lines.py",
+                "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/encode.py",
+                "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/project_lines.py",
+                "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6A2A\u5C4F\u9648\u5217\u5F52\u4F4D/\u6E90\u7801/verify_geometry.py",
+                "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/return_mask.py",
+                "catalog/assets/time-in-motion/production/project/\u6A2A\u5C4F-MOTION-STUDY/\u4E09\u7EF4\u7D20\u6750/\u6E90\u7801/\u900F\u660E\u6574\u8868.py",
+                "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_lock.py",
+                "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_opening.py",
+                "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/common.py",
+                "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/render_worker.py",
+                "catalog/assets/time-in-motion/verify-source.mjs",
+                "LICENSE",
+                "catalog/remotion/binary-assets-installer.mjs",
+                "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u91D1\u5C5E\u95EA\u56DE\u7248/\u4E09\u7EF4/\u6E90\u7801/build_structure_entry.py",
+                "catalog/assets/time-in-motion/SOURCE.json",
+                "catalog/fonts/OFL-Oswald.txt",
+                "catalog/assets/time-in-motion/production/project/\u7AD6\u5C4F\u56FE\u7EB8\u5B9E\u4F53\u5F00\u573A/\u7D20\u6750/\u96F6\u4EF6\u6620\u5C04.json",
+                "catalog/assets/time-in-motion/production/project/\u4FEE\u8BA2\u7248/\u6E90\u7801/screw_geometry.py",
+                "catalog/assets/time-in-motion/production/extract-textures.py"
+              ],
+              binary_files: [
+                {
+                  source: "catalog/assets/time-in-motion/movie.mp4",
+                  target: "public/catalog/assets/time-in-motion/movie.mp4",
+                  bytes: 7604138,
+                  sha256: "edbe4c0b3d53144ae73985eeb9d73d379ba1e733fd0fbf87e788e8a86bf4a406"
+                },
+                {
+                  source: "catalog/fonts/Oswald-Bold.woff2",
+                  target: "public/catalog/fonts/Oswald-Bold.woff2",
+                  bytes: 12112,
+                  sha256: "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+                }
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 1920,
+              height: 1080,
+              fps: 24,
+              exact_frames: true,
+              reuse_notes: "\u76EE\u5F55\u4E0E\u9ED8\u8BA4\u6E32\u67D3\u4F7F\u7528\u6700\u7EC84K\u7247\u76841280\xD7720\u300124fps\u8F7B\u91CF\u7F13\u5B58\uFF0C\u4FDD\u63011056\u5E27\u3001\u6784\u56FE\u4E0E\u539F\u526A\u8F91\uFF1B\u4E0D\u80FD\u628A\u4E0A\u91C7\u6837\u7F13\u5B58\u79F0\u4E3A\u91CD\u65B0\u6E32\u67D34K\u3002\u5B8C\u6574\u526A\u8F91\u6E90\u7801\u5728catalog/assets/time-in-motion/editable/\uFF0C\u539F\u521B\u5EFA\u6A21\u3001\u673A\u68B0\u3001\u955C\u5934\u548C\u6295\u5F71\u6E90\u7801\u5728production/\u3002\u5148\u7528import-originals.mjs\u6309\u6458\u8981\u51C6\u5907\u539F\u5236\u4F5C\u7D20\u6750\uFF0C\u624D\u80FD\u8FD0\u884Cstudio:editable\u6216\u4FEE\u6539Blender\u573A\u666F\u3002\u5B57\u4F53\u6539\u4E3A\u968F\u5305\u6388\u6743\u7684Oswald\uFF1B\u539F\u7CFB\u7EDFHelveticaNeue\u5B57\u4F53\u4E0D\u5206\u53D1\uFF0C\u7F16\u8F91\u7248\u7684\u5B57\u5F62\u4E0E\u6700\u7EC8\u7F13\u5B58\u4E0D\u540C\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\uFF1BOswald\u9075\u5FAASIL OFL\u3002",
+              scripts: {
+                "studio:editable": "remotion studio catalog/assets/time-in-motion/editable/Root.jsx",
+                "render:editable": "remotion render catalog/assets/time-in-motion/editable/Root.jsx TimeInMotion out/edited.mp4 --concurrency=2",
+                "check:source": "node catalog/assets/time-in-motion/verify-source.mjs"
+              },
+              asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+            }
+          },
+          reproduction: {
+            objects: "\u4E09\u5F20\u5B8C\u6574\u4E3B\u4F53\u7684\u900F\u660EPNG\u9759\u5E27\uFF0C\u4E3B\u4F53\u51E0\u4F55\u6765\u81EA\u4E09\u7EF4\u6444\u5F71\uFF0C\u5165\u573A\u662F\u4E8C\u7EF4\u56FE\u7247\u79FB\u4F4D\u548C\u8F6C\u89D2\u3002",
+            presentation: "1920\xD71080\u6A2A\u5411\u8BBE\u8BA1\u753B\u677F\uFF1B\u8FD1\u9ED1\u6444\u5F71\u5E95\uFF0C\u91D1\u3001\u94F6\u3001\u6696\u767D\u4E0E\u84DD\u94A2\u7EC6\u8282\u3002\u753B\u9762\u7528\u8F6F\u7BB1\u706F\u7167\u660E\uFF0C\u7EC6\u7A84\u5012\u89D2\u53CD\u5149\uFF0C\u4E0D\u62C9\u4F38\u4E3B\u4F53\u3002",
+            materials: [
+              "\u4E3B\u4F53\u4E3A\u5177\u6709\u5B8C\u6574\u8F6E\u5ED3\u7684\u900F\u660E\u4EA7\u54C1\u9759\u5E27\uFF1B\u53F3\u4FA7\u94F6\u8272\u66F2\u9762\u53EA\u7528\u4F5C\u80CC\u666F\u3002"
+            ],
+            phases: [
+              "\u6696\u767D\u5E95\u4E0E\u94F6\u8272\u66F2\u9762\u80CC\u666F\uFF0C\u4E09\u4E2A\u5B8C\u6574\u4E3B\u4F53\u5728\u753B\u9762\u4E0B\u65B9\u7B49\u5F85\u3002",
+              "\u4E09\u4E2A\u4E3B\u4F53\u5206\u522B\u5728\u7B2C0\u30014\u30018\u5E27\u5F00\u59CB\u4ECE\u4E0B\u65B9\u4E0A\u79FB\uFF0C\u5E26\u4E0D\u540C\u56FA\u5B9A\u503E\u89D2\u3002",
+              "\u4E3B\u4F53\u5728\u7B2C20\u300124\u300128\u5E27\u843D\u4F4D\uFF0C\u4E09\u8054\u6784\u56FE\u4E0E\u7EC6\u5FAE\u6301\u7EED\u8F6C\u89D2\u4FDD\u6301\u3002"
+            ],
+            details: [
+              "\u6240\u6709\u5E27\u53F7\u5747\u4E3A24\u5E27/\u79D2\u8BBE\u8BA1\u5E27\uFF1B\u52A8\u4F5C\u5E27f=floor(24\xD7\u52A8\u4F5C\u79D2\u6570)\uFF0C\u9650\u5236\u57280\u81F347\u3002\u5F71\u7247\u5E27\u7387\u6539\u53D8\u65F6\u5148\u6362\u7B97\u52A8\u4F5C\u79D2\u6570\uFF0C\u4E0D\u76F4\u63A5\u628A\u5F71\u7247\u5E27\u53F7\u5F53\u4F5C\u8BBE\u8BA1\u5E27\u3002",
+              "1920\xD71080\u753B\u677F\uFF0C3\u4E2A\u4E3B\u4F53\u5BBD740\u50CF\u7D20\uFF0Cx=70+545i\u3001y=90+22i\uFF0C\u9AD8\u5EA6\u63094:3\u4FDD\u7559\uFF1B\u7B2C\u4E8C\u4E2A\u91C7\u7528\u659C\u89C6\u56FE\uFF0C\u5176\u4ED6\u91C7\u7528\u6B63\u4E09\u5206\u4E4B\u56DB\u89C6\u56FE\u3002",
+              "\u4E0A\u79FB\u4F4D\u79FB700\u21920\u50CF\u7D20\uFF0C\u7528cubic-bezier(.22,1,.36,1)\uFF1B\u521D\u59CB\u503E\u89D2\u221218\xB0\u30010\xB0\u300118\xB0\uFF0C\u5168\u6BB5\u518D\u53E0\u52A0\u22123\xB0\u21923\xB0\u7684\u7EBF\u6027\u8F6C\u89D2\u3002",
+              "\u6807\u9898FORM\u4F4D\u4E8E(74,57)\uFF0C\u5B57\u53F7315\uFF0Cx\u4F4D\u79FB\u2212140\u21920\u572815\u5E27\u5185\u7ED3\u675F\uFF1B\u53F3\u4FA7\u94F6\u8272\u80CC\u666Fx=1120\u3001\u5BBD800\u3002"
+            ],
+            start_state: "\u6696\u767D\u5E95\u4E0E\u94F6\u8272\u66F2\u9762\u80CC\u666F\uFF0C\u4E09\u4E2A\u5B8C\u6574\u4E3B\u4F53\u5728\u753B\u9762\u4E0B\u65B9\u7B49\u5F85\u3002",
+            end_state: "\u4E3B\u4F53\u5728\u7B2C20\u300124\u300128\u5E27\u843D\u4F4D\uFF0C\u4E09\u8054\u6784\u56FE\u4E0E\u7EC6\u5FAE\u6301\u7EED\u8F6C\u89D2\u4FDD\u6301\u3002",
+            retain: "\u900F\u660E\u9759\u5E27\u7684\u5B8C\u6574\u8F6E\u5ED3\u3001\u539F\u957F\u5BBD\u6BD4\u3001\u9519\u5CF0\u4F4D\u79FB\u548C\u5404\u81EA\u503E\u89D2\u3002",
+            avoid: "\u4E0D\u8981\u6574\u4F53\u79FB\u52A8\u4E09\u5F20\u56FE\u7247\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u5207\u4E3B\u4F53\uFF0C\u4E0D\u7528\u6DE1\u5165\u4EE3\u66FF\u4E0A\u79FB\u3002"
+          }
+        },
+        {
+          id: "aligned-silhouette",
+          label: "\u8F6E\u5ED3\u7B49\u8DDD\u540C\u6B65\u5347\u5165",
+          duration_ms: 1866.6666666666667,
+          preview_ms: 400,
+          summary: "\u4E09\u4E3B\u4F53\u6309\u65CB\u8F6C\u540E\u7684\u53EF\u89C1\u8F6E\u5ED3\u7B49\u8DDD\u6392\u5E03\uFF0C\u5171\u7528\u4E0A\u79FB\u66F2\u7EBF\u548C\u6301\u7EED\u5FAE\u79FB\uFF0C\u4E3B\u4F53\u951A\u70B9\u59CB\u7EC8\u540C\u9AD8\u3002",
+          purpose: "\u4E09\u4E3B\u4F53\u6309\u65CB\u8F6C\u540E\u7684\u53EF\u89C1\u8F6E\u5ED3\u7B49\u8DDD\u6392\u5E03\uFF0C\u5171\u7528\u4E0A\u79FB\u66F2\u7EBF\u548C\u6301\u7EED\u5FAE\u79FB\uFF0C\u4E3B\u4F53\u951A\u70B9\u59CB\u7EC8\u540C\u9AD8\u3002",
+          objects: "\u4E09\u5F20\u900F\u660E\u4EA7\u54C1\u56FE\u4E0E\u5404\u81EA\u5254\u9664\u9644\u5C5E\u4EF6\u540E\u7684\u4E3B\u4F53\u4E2D\u5FC3\u951A\u70B9",
+          phases: [
+            "\u4E09\u5F20\u56FE\u4EE5\u56FA\u5B9A\u59FF\u6001\u3001\u7B49\u8DDD\u53EF\u89C1\u8F6E\u5ED3\u548C\u540C\u9AD8\u4E3B\u4F53\u4E2D\u5FC3\u6392\u597D\u3002",
+            "\u4E09\u4E3B\u4F53\u5171\u752848\u50CF\u7D20\u5411\u4E0A\u7684\u5165\u573A\uFF0C\u4E0D\u505A\u5404\u81EA\u9519\u5CF0\u3002",
+            "\u5165\u573A\u7ED3\u675F\u540E\u4ECD\u5171\u540C\u7F13\u6162\u4E0A\u79FB\uFF0C\u95F4\u8DDD\u548C\u4E2D\u5FC3\u9AD8\u5EA6\u5173\u7CFB\u4FDD\u6301\u3002"
+          ],
+          retain: "\u540C\u9AD8\u4E3B\u4F53\u4E2D\u5FC3\u3001\u771F\u5B9E\u8F6E\u5ED3\u7B49\u8DDD\u548C\u5171\u540C\u4E0A\u79FB\uFF1B\u843D\u5B9A\u540E\u4ECD\u7F13\u6162\u8FD0\u52A8\u3002",
+          avoid: "\u4E0D\u6309\u56FE\u7247\u76D2\u5B50\u7B97\u95F4\u9699\uFF0C\u4E0D\u628A\u540A\u73AF\u6216\u900F\u660E\u7559\u767D\u4E2D\u5FC3\u5F53\u6210\u4E3B\u4F53\u951A\u70B9\uFF0C\u4E0D\u9519\u5CF0\u3001\u4E0D\u5355\u72EC\u6F02\u79FB\u3002",
+          tempo_note: "30fps\uFF0C\u517156\u5E27\uFF1B\u672B\u5E2755\u3002",
+          recommendation: "\u4E09\u4E3B\u4F53\u6309\u65CB\u8F6C\u540E\u7684\u53EF\u89C1\u8F6E\u5ED3\u7B49\u8DDD\u6392\u5E03\uFF0C\u5171\u7528\u4E0A\u79FB\u66F2\u7EBF\u548C\u6301\u7EED\u5FAE\u79FB\uFF0C\u4E3B\u4F53\u951A\u70B9\u59CB\u7EC8\u540C\u9AD8\u3002",
+          reproduction: {
+            objects: "\u4E09\u5F20\u900F\u660E\u4EA7\u54C1\u56FE\u4E0E\u5404\u81EA\u5254\u9664\u9644\u5C5E\u4EF6\u540E\u7684\u4E3B\u4F53\u4E2D\u5FC3\u951A\u70B9",
+            presentation: "1920\xD71080\u6A2A\u5C4F\uFF1B\u8FD1\u9ED1\u5E95\u3001\u94F6\u91D1\u4EA7\u54C1\u548C\u84DD\u94A2\u7EC6\u8282\u3002\u4E09\u5F20\u900F\u660E\u4EA7\u54C1\u56FE\u4FDD\u7559\u539F\u59CB\u6BD4\u4F8B\u3001\u5B8C\u6574\u4E3B\u4F53\u4E0E\u5B9E\u9645alpha\u8F6E\u5ED3\uFF0C\u4E0D\u62C9\u4F38\u3002",
+            phases: [
+              "\u4E09\u5F20\u56FE\u4EE5\u56FA\u5B9A\u59FF\u6001\u3001\u7B49\u8DDD\u53EF\u89C1\u8F6E\u5ED3\u548C\u540C\u9AD8\u4E3B\u4F53\u4E2D\u5FC3\u6392\u597D\u3002",
+              "\u4E09\u4E3B\u4F53\u5171\u752848\u50CF\u7D20\u5411\u4E0A\u7684\u5165\u573A\uFF0C\u4E0D\u505A\u5404\u81EA\u9519\u5CF0\u3002",
+              "\u5165\u573A\u7ED3\u675F\u540E\u4ECD\u5171\u540C\u7F13\u6162\u4E0A\u79FB\uFF0C\u95F4\u8DDD\u548C\u4E2D\u5FC3\u9AD8\u5EA6\u5173\u7CFB\u4FDD\u6301\u3002"
+            ],
+            details: [
+              "30fps\uFF0C\u517156\u5E27\uFF0C\u672B\u5E2755\u3002\u539F\u56FE1800\xD72400\uFF1B\u5DE6/\u4E2D/\u53F3\u663E\u793A\u5BBD700/720/700\uFF0C\u56FA\u5B9A\u89D2\u5EA6\u221211\xB0/0\xB0/+11\xB0\u3002",
+              "\u5DE6\u3001\u53F3\u4E3B\u4F53\u6E90\u951A\u70B9(923.511028,1310.621828)\uFF0C\u4E2D\u95F4(941.058877,1309.165607)\u3002\u65CB\u8F6C\u4E0E\u7F29\u653E\u56F4\u7ED5\u5404\u81EA\u4E3B\u4F53\u951A\u70B9\u8FDB\u884C\u3002",
+              "\u76F8\u5BF9\u4E8E\u951A\u70B9\u3001\u7F29\u653E\u5E76\u65CB\u8F6C\u540E\u7684alpha\u6A2A\u5411\u8FB9\u754C\u4F9D\u6B21\u4E3A[\u2212233.260613,233.615857]\u3001[\u2212212.023551,213.176449]\u3001[\u2212230.104533,230.866955]\u3002\u4EE5\u8FD9\u4E9B\u53EF\u89C1\u8FB9\u754C\u6392\u7248\uFF0C\u900F\u660E\u56FE\u7247\u5916\u6846\u4E0D\u53C2\u4E0E\u95F4\u8DDD\u8BA1\u7B97\u3002",
+              "\u753B\u5E45\u5BBD1920\uFF0C\u5DE6\u53F3\u53EF\u89C1\u8FB9\u8DDD\u540496\u3002gap=(1920\u2212192\u2212\u4E09\u8F6E\u5ED3\u5BBD\u5EA6\u603B\u548C)/2=187.476020\u3002\u6309\u53EF\u89C1\u5DE6\u754C\u987A\u63A8centerX\uFF0C\u518D\u7528left=centerX\u2212anchorX\xD7\u663E\u793A\u5BBD/\u539F\u56FE\u5BBD\u6C42\u56FE\u7247\u4F4D\u7F6E\u3002",
+              "\u4E09\u4E2A\u4E3B\u4F53centerY=710+offsetY\uFF1BoffsetY=48\xD7(1\u2212cubic-bezier(.16,1,.3,1)(clamp(f/12)))\u221216\xD7clamp(f/55)\u30020\u201312\u5E27\u5B8C\u6210\u5165\u573A\uFF0C\u516856\u5E27\u53E0\u52A00\u2192\u221216\u50CF\u7D20\u7FA4\u7EC4\u4E0A\u79FB\u3002",
+              "\u66F4\u6362\u7D20\u6750\u65F6\u91CD\u65B0\u6D4B\u91CF\u4E3B\u4F53\u4E2D\u5FC3\u53CA\u65CB\u8F6C\u540Ealpha\u8F6E\u5ED3\uFF1B\u4E0D\u8981\u6CBF\u7528\u793A\u4F8B\u7684\u56FE\u7247\u5916\u6846\u6216\u6E90\u951A\u70B9\u6570\u503C\u3002"
+            ],
+            retain: "\u540C\u9AD8\u4E3B\u4F53\u4E2D\u5FC3\u3001\u771F\u5B9E\u8F6E\u5ED3\u7B49\u8DDD\u548C\u5171\u540C\u4E0A\u79FB\uFF1B\u843D\u5B9A\u540E\u4ECD\u7F13\u6162\u8FD0\u52A8\u3002",
+            avoid: "\u4E0D\u6309\u56FE\u7247\u76D2\u5B50\u7B97\u95F4\u9699\uFF0C\u4E0D\u628A\u540A\u73AF\u6216\u900F\u660E\u7559\u767D\u4E2D\u5FC3\u5F53\u6210\u4E3B\u4F53\u951A\u70B9\uFF0C\u4E0D\u9519\u5CF0\u3001\u4E0D\u5355\u72EC\u6F02\u79FB\u3002"
+          },
+          source: {
+            path: "catalog/effects/time-in-motion.js",
+            factory: "fan-object-rise",
+            dependencies: [
+              "catalog/effects/time-in-motion-data.js",
+              "catalog/effects/mechanical-windows-data.js",
+              "catalog/effects/mechanical-windows.js",
+              "catalog/effects/spatial-apertures-data.js",
+              "catalog/effects/spatial-apertures.js"
+            ],
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            reference: {
+              name: "MECHANICAL PULSE v4.2 \xB7 \u7528\u6237\u539F\u521B\u51E0\u4F55\u7F16\u821E\u4E0E\u8F6E\u5ED3\u6392\u7248"
+            },
+            extraction: "\u63D0\u53D6\u4F5C\u8005\u539F\u521B\u7A97\u53E3\u4E0E\u6392\u7248\u51FD\u6570\uFF0C\u4FDD\u7559\u5168\u5C40\u5E27\u3001\u6301\u7EED\u5C55\u5F00\u3001\u540C\u4F4D\u77ED\u95EA\u548C\u53CC\u955C\u91CD\u53E0\uFF1B\u672A\u590D\u5236\u5916\u90E8\u6A21\u677F\u4EE3\u7801\u3002",
+            production_guide: "catalog/assets/mechanical-pulse/README.md",
+            remotion: {
+              component: "catalog/remotion/spatial-apertures.jsx",
+              export_name: "WiseSpatialApertures",
+              package_name: "wise-spatial-apertures",
+              files: [
+                "catalog/remotion/spatial-apertures.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/effects/spatial-apertures-data.js",
+                "catalog/effects/spatial-apertures.js",
+                "catalog/assets/mechanical-pulse/README.md",
+                "catalog/assets/mechanical-pulse/SOURCE.json",
+                "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+                "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+                "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+                "LICENSE",
+                "catalog/remotion/binary-assets-installer.mjs"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 1920,
+              height: 1080,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u76EE\u5F55\u3001\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u7F16\u8F91\u5DE5\u7A0B\u5171\u7528\u9010\u5E27\u7A97\u53E3\u548C\u8F6E\u5ED3\u6392\u7248\u51FD\u6570\uFF1B\u72EC\u7ACB\u7A97\u53E3\u4EE5\u81EA\u7F16\u77E2\u91CF\u5706\u76D8\u793A\u610F\uFF0C\u53EF\u901A\u8FC7SpatialWindowClip\u6362\u6210\u81EA\u5DF1\u7684\u56FE\u50CF\u6216\u89C6\u9891\u3002AlignedSilhouetteRow\u63A5\u53D7\u81EA\u5DF1\u7684\u4E3B\u4F53\u5185\u5BB9\u3001\u4E3B\u4F53\u951A\u70B9\u4E0E\u65CB\u8F6C\u540E\u8F6E\u5ED3\u8FB9\u754C\uFF1B\u9ED8\u8BA4\u4E3B\u4F53\u4F7F\u7528\u539F\u56FE\u5C3A\u5BF8\u3001alpha\u4FDD\u771F\u7684WebP\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\u3002",
+              scripts: {
+                render: "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              },
+              binary_files: [
+                {
+                  source: "catalog/assets/mechanical-pulse/watch-front.webp",
+                  target: "public/catalog/assets/mechanical-pulse/watch-front.webp",
+                  bytes: 209108,
+                  sha256: "c207abcde5917eb41da04211675208375d9eec34c99838c979162be9a1b21dfb"
+                },
+                {
+                  source: "catalog/assets/mechanical-pulse/watch-angle.webp",
+                  target: "public/catalog/assets/mechanical-pulse/watch-angle.webp",
+                  bytes: 178668,
+                  sha256: "8bb67f973f2cba191d736bb568aad24ef9f2ca31bd338df14a7b1e8900511dbb"
+                }
+              ],
+              asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+            },
+            assets: [
+              "catalog/assets/mechanical-pulse/watch-front.webp",
+              "catalog/assets/mechanical-pulse/watch-angle.webp"
+            ]
+          },
+          requires_preparation: true,
+          parameters: {
+            speed: {
+              label: "\u64AD\u653E\u901F\u5EA6",
+              default: 1,
+              min: 0.5,
+              max: 2,
+              step: 0.25
+            }
+          }
+        }
+      ]
     },
     {
       loop: false,
@@ -54583,7 +55096,9 @@ var registry_default = {
         "MECHANICAL WINDOWS",
         "\u6301\u7EED\u7A97\u53E3",
         "\u673A\u68B0\u7A97\u53E3",
-        "\u7B49\u81C2\u5341\u5B57\u65CB\u8F6C\u5F00\u7A97"
+        "\u7B49\u81C2\u5341\u5B57\u65CB\u8F6C\u5F00\u7A97",
+        "\u659C\u5341\u5B57\u6301\u7EED\u6269\u5C55",
+        "MECHANICAL PULSE v4.2"
       ],
       behaviors: [
         "mask",
@@ -54657,7 +55172,177 @@ var registry_default = {
         ],
         retain: "\u7B49\u957F\u3001\u7B49\u7C97\u7684\u5341\u5B57\u7A97\u53E3\u6301\u7EED\u5E73\u79FB\u548C\u65CB\u8F6C\uFF0C\u5207\u6362\u540E\u65B9\u753B\u9762\u65F6\u4FDD\u6301\u540C\u4E00\u6761\u7A97\u53E3\u8F68\u9053\u3002",
         avoid: "\u4E0D\u8981\u5C06\u5341\u5B57\u753B\u6210\u7C97\u7EC6\u4E0D\u540C\u7684\u6761\u5E26\uFF0C\u4E0D\u5728\u6362\u955C\u65F6\u91CD\u65B0\u8D77\u52A8\u7A97\u53E3\uFF0C\u4E5F\u4E0D\u6DFB\u52A0\u5706\u74E3\u6216\u5149\u6548\u3002"
-      }
+      },
+      variants: [
+        {
+          id: "standard",
+          label: "\u65CB\u8F6C\u540E\u56DE\u6B63",
+          duration_ms: 4666.666666666667,
+          preview_ms: 2633.3333333333335,
+          summary: "\u7B49\u957F\u3001\u7B49\u7C97\u7684\u5341\u5B57\u7A97\u53E3\u6301\u7EED\u5E73\u79FB\u548C\u65CB\u8F6C\uFF0C\u5207\u6362\u540E\u65B9\u753B\u9762\u65F6\u4FDD\u6301\u540C\u4E00\u6761\u7A97\u53E3\u8F68\u9053\u3002",
+          source: {
+            path: "catalog/effects/mechanical-windows.js",
+            factory: "cross-aperture-turn",
+            dependencies: [
+              "catalog/effects/mechanical-windows-data.js"
+            ],
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            reference: {
+              name: "MECHANICAL WINDOWS v2 \xB7 \u7528\u6237\u539F\u521B\u6301\u7EED\u7A97\u53E3\u4E0E\u526A\u8F91\u6E90\u7801"
+            },
+            extraction: "\u63D0\u53D6\u4F5C\u8005\u539F\u521B\u7A97\u53E3\u51FD\u6570\u3001\u5173\u952E\u70B9\u3001\u540C\u4F4D\u77ED\u95EA\u4E0E\u53CC\u955C\u91CD\u53E0\uFF1B\u72EC\u7ACB\u793A\u610F\u7531\u81EA\u7F16\u77E2\u91CF\u7ED8\u5236\uFF0C\u5B8C\u6574\u7EC4\u5408\u4FDD\u7559\u9759\u97F3\u6700\u7EC8\u753B\u9762\u3002",
+            production_guide: "catalog/assets/mechanical-windows/README.md",
+            remotion: {
+              component: "catalog/remotion/mechanical-windows.jsx",
+              export_name: "WiseMechanicalWindows",
+              package_name: "wise-mechanical-windows",
+              files: [
+                "catalog/remotion/mechanical-windows.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/assets/mechanical-windows/README.md",
+                "catalog/assets/mechanical-windows/SOURCE.json",
+                "catalog/assets/mechanical-windows/production/windows-v2.mjs",
+                "catalog/assets/mechanical-windows/production/timing-v2.mjs",
+                "LICENSE"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 1920,
+              height: 1080,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u76EE\u5F55\u4E0E\u72EC\u7ACB\u5DE5\u7A0B\u5171\u7528\u539F\u7A97\u53E3\u6570\u5B66\u51FD\u6570\u53CA\u540C\u4E00\u9010\u5E27\u7ED8\u5236\u3002\u72EC\u7ACB\u52A8\u4F5C\u4F7F\u7528\u81EA\u7F16\u77E2\u91CF\u673A\u68B0\u793A\u610F\uFF0C\u7A97\u53E3\u5C3A\u5BF8\u3001\u5173\u952E\u70B9\u548C\u76F8\u5BF9\u65F6\u5E8F\u6765\u81EA\u539F\u521B\u4EE3\u7801\uFF1B\u53EF\u66FF\u6362\u793A\u610F\u5C42\u3002\u81EA\u6709\u7A0B\u5E8FApache-2.0\u3002",
+              scripts: {
+                render: "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          reproduction: {
+            objects: "\u4E24\u5F20\u53EF\u66FF\u6362\u7684\u673A\u68B0\u5706\u76D8\u793A\u610F\u753B\u9762\u4E0E\u4E24\u6839\u7B49\u5BBD\u77E9\u5F62\u7EC4\u6210\u7684\u5341\u5B57\u88C1\u526A\u533A",
+            presentation: "1920\xD71080\u6A2A\u5411\u753B\u677F\uFF0C\u8FD1\u9ED1\u5E95#101211\u3001\u6696\u767D\u7EBF\u6761#eeeee5\u4E0E\u91D1\u8272\u91CD\u70B9#bba67b\uFF1B\u81EA\u7F16\u673A\u68B0\u5706\u76D8\u793A\u610F\uFF0C\u4E0D\u4F7F\u7528\u5916\u90E8\u7167\u7247\u3002\u753B\u5E45\u6539\u53D8\u65F6\u7B49\u6BD4\u5BB9\u7EB3\u3002",
+            phases: [
+              "\u5168\u5E45\u753B\u9762\u5411\u7B49\u81C2\u5341\u5B57\u7A97\u53E3\u6536\u62E2\u3002",
+              "\u5341\u5B57\u5411\u53F3\u4E0A\u65B9\u79FB\u52A8\u5E76\u8F6C\u5230\u8D1F28\u5EA6\uFF0C\u540E\u65B9\u753B\u9762\u5728\u7B2C80\u5E27\u5207\u6362\uFF0C\u7A97\u53E3\u7EE7\u7EED\u539F\u6765\u7684\u8FD0\u52A8\u3002",
+              "\u5341\u5B57\u8F6C\u56DE\u6C34\u5E73\u5E76\u6269\u5C55\u5230\u5B8C\u6574\u753B\u9762\u3002"
+            ],
+            details: [
+              "\u753B\u677F1920\xD71080\uFF0C\u4E24\u6839\u77E9\u5F62\u957F\u5EA6\u540C\u4E3A2800\uFF0C\u5171\u7528\u539A\u5EA6h\u3001\u4E2D\u5FC3(cx,cy)\u548C\u89D2\u5EA6\uFF1B\u4E24\u4E2A\u77E9\u5F62\u7684\u5E76\u96C6\u4F5C\u4E3A\u53EF\u89C1\u533A\uFF0C\u4E0D\u662F\u4E24\u6761\u659C\u5E26\u53E0\u52A0\u3002",
+              "\u6240\u6709\u5173\u952E\u70B9\u4EE530fps\u7684\u5C40\u90E8\u5E27f\u8868\u793A\uFF0C\u6BB5\u5185p\u94B3\u4F4D0\u81F31\uFF0C\u518D\u7528p\xB2(3\u22122p)\u63D2\u503C\uFF1Bf=30\xD7\u52A8\u4F5C\u79D2\u6570\uFF0C\u603B\u957F140\u5E27\uFF0C\u672B\u5E27139\u3002",
+              "cx\u5173\u952E\u70B9(0,960)/(38,960)/(78,1190)/(140,1190)\uFF1Bcy\u4E3A(0,540)/(38,540)/(78,450)/(140,450)\u3002",
+              "\u5171\u7528\u539A\u5EA6h\u4E3A(0,1084)/(24,590)/(38,590)/(68,450)/(102,440)/(116,460)/(140,2400)\uFF1B\u89D2\u5EA6\u4E3A(0,0)/(38,0)/(91,\u221228)/(118,\u221228)/(140,0)\u3002",
+              "\u7B2C80\u5E27\u4EC5\u66FF\u6362\u540E\u65B9\u753B\u9762\uFF1B\u7A97\u53E3\u4F4D\u4E8E\u955C\u5934\u65F6\u5E8F\u7EC4\u4EF6\u5916\uFF0C\u7531\u540C\u4E00\u5C40\u90E8\u5E27\u76F4\u63A5\u8BA1\u7B97\uFF0C\u5B9A\u4F4D\u548C\u91CD\u64AD\u4E0D\u5F97\u91CD\u7F6E\u5176\u4E2D\u5FC3\u3001\u539A\u5EA6\u6216\u65CB\u8F6C\u3002"
+            ],
+            retain: "\u7B49\u957F\u3001\u7B49\u7C97\u7684\u5341\u5B57\u7A97\u53E3\u6301\u7EED\u5E73\u79FB\u548C\u65CB\u8F6C\uFF0C\u5207\u6362\u540E\u65B9\u753B\u9762\u65F6\u4FDD\u6301\u540C\u4E00\u6761\u7A97\u53E3\u8F68\u9053\u3002",
+            avoid: "\u4E0D\u8981\u5C06\u5341\u5B57\u753B\u6210\u7C97\u7EC6\u4E0D\u540C\u7684\u6761\u5E26\uFF0C\u4E0D\u5728\u6362\u955C\u65F6\u91CD\u65B0\u8D77\u52A8\u7A97\u53E3\uFF0C\u4E5F\u4E0D\u6DFB\u52A0\u5706\u74E3\u6216\u5149\u6548\u3002"
+          }
+        },
+        {
+          id: "continuous-diagonal",
+          label: "\u659C\u5341\u5B57\u6301\u7EED\u6269\u5C55",
+          duration_ms: 3e3,
+          preview_ms: 2066.666666666667,
+          summary: "\u5341\u5B57\u5148\u6536\u7A84\u518D\u65CB\u8F6C\uFF0C\u4FDD\u6301\u8D1F28\u5EA6\u8DE8\u955C\uFF0C\u5BBD\u5EA6\u5728\u4E0B\u4E00\u955C\u7EE7\u7EED\u589E\u52A0\u76F4\u81F3\u5168\u5E45\u3002",
+          purpose: "\u5341\u5B57\u5148\u6536\u7A84\u518D\u65CB\u8F6C\uFF0C\u4FDD\u6301\u8D1F28\u5EA6\u8DE8\u955C\uFF0C\u5BBD\u5EA6\u5728\u4E0B\u4E00\u955C\u7EE7\u7EED\u589E\u52A0\u76F4\u81F3\u5168\u5E45\u3002",
+          objects: "\u4E24\u4E2A\u7B49\u5BBD\u3001\u7B49\u957F\u77E9\u5F62\u7684\u5E76\u96C6\u4E0E\u4E09\u5F20\u4F9D\u6B21\u6362\u955C\u7684\u753B\u9762",
+          phases: [
+            "\u5168\u5E45\u6536\u6210\u5341\u5B57\uFF0C\u6A2A\u7AD6\u7B14\u753B\u4FDD\u6301\u7B49\u5BBD\u3002",
+            "\u77ED\u6682\u505C\u987F\u540E\u65CB\u81F3\u8D1F28\u5EA6\uFF0C\u5411\u5DE6\u4E0A\u65B9\u5DE5\u5177\u8F74\u5FC3\u7F13\u79FB\u3002",
+            "\u4FDD\u6301\u659C\u5411\u59FF\u6001\u6301\u7EED\u53D8\u5BBD\uFF0C\u540E\u65B9\u4E24\u6B21\u6362\u955C\u4E0D\u91CD\u542F\u7A97\u53E3\u3002"
+          ],
+          retain: "\u6536\u7A84\u540E\u65CB\u8F6C\u3001\u659C\u5411\u6301\u7EED\u5C55\u5F00\u3001\u5B8C\u6574\u5DE5\u5177\u52A8\u4F5C\u548C\u5168\u5C40\u7A97\u53E3\u65F6\u949F\u3002",
+          avoid: "\u4E0D\u8981\u5728\u6362\u955C\u70B9\u505C\u4F4F\u6216\u91CD\u7F6E\u5341\u5B57\uFF0C\u4E0D\u6539\u53D8\u6A2A\u7AD6\u7B14\u753B\u7684\u5171\u540C\u539A\u5EA6\u3002",
+          tempo_note: "30fps\uFF0C\u517190\u5E27\uFF1B\u672B\u5E2789\u3002",
+          recommendation: "\u5341\u5B57\u5148\u6536\u7A84\u518D\u65CB\u8F6C\uFF0C\u4FDD\u6301\u8D1F28\u5EA6\u8DE8\u955C\uFF0C\u5BBD\u5EA6\u5728\u4E0B\u4E00\u955C\u7EE7\u7EED\u589E\u52A0\u76F4\u81F3\u5168\u5E45\u3002",
+          reproduction: {
+            objects: "\u4E24\u4E2A\u7B49\u5BBD\u3001\u7B49\u957F\u77E9\u5F62\u7684\u5E76\u96C6\u4E0E\u4E09\u5F20\u4F9D\u6B21\u6362\u955C\u7684\u753B\u9762",
+            presentation: "1920\xD71080\u6A2A\u5411\u753B\u677F\u300130fps\uFF1B\u8FD1\u9ED1\u5E95#101211\u3001\u6696\u767D\u7EBF\u6761#eeeee5\u4E0E\u91D1\u8272\u91CD\u70B9#bba67b\u3002\u7A97\u53E3\u793A\u610F\u4F7F\u7528\u81EA\u7F16\u673A\u68B0\u5706\u76D8\uFF0C\u53EF\u66FF\u6362\u6210\u81EA\u5DF1\u7684\u5B8C\u6574\u753B\u9762\uFF1B\u4E0D\u540C\u753B\u5E45\u7B49\u6BD4\u5BB9\u7EB3\u3002",
+            phases: [
+              "\u5168\u5E45\u6536\u6210\u5341\u5B57\uFF0C\u6A2A\u7AD6\u7B14\u753B\u4FDD\u6301\u7B49\u5BBD\u3002",
+              "\u77ED\u6682\u505C\u987F\u540E\u65CB\u81F3\u8D1F28\u5EA6\uFF0C\u5411\u5DE6\u4E0A\u65B9\u5DE5\u5177\u8F74\u5FC3\u7F13\u79FB\u3002",
+              "\u4FDD\u6301\u659C\u5411\u59FF\u6001\u6301\u7EED\u53D8\u5BBD\uFF0C\u540E\u65B9\u4E24\u6B21\u6362\u955C\u4E0D\u91CD\u542F\u7A97\u53E3\u3002"
+            ],
+            details: [
+              "\u6240\u6709\u5E27\u5747\u4E3A30fps\u5C40\u90E8\u5E27\uFF0C\u517190\u5E27\uFF1B\u672B\u5E2789\u3002\u4E24\u6839\u77E9\u5F62\u957F\u5EA6\u540C\u4E3A3600\uFF0C\u4EA4\u53C9\u5171\u7528\u539A\u5EA6\u3001\u4E2D\u5FC3\u4E0E\u89D2\u5EA6\u3002",
+              "cx\u5173\u952E\u70B9\u4E3A(0,1230)/(22,1230)/(62,1190)\uFF0Ccy\u4E3A(0,540)/(22,540)/(62,450)\uFF0C\u672A\u6307\u660E\u7684\u6BB5\u4F7F\u7528\u7EBF\u6027\u63D2\u503C\u3002",
+              "\u539A\u5EA6\u4E3A(0,1084)/(10,600\uFF0Cp\xB3)/(12,600)/(21,520)/(44,520)/(82,W\uFF0Cp\xB2)/(90,W)\u3002\u89D2\u5EA6\u4E3A(0,0)/(12,0)/(21,\u221228\uFF0C1\u2212(1\u2212p)\xB3)/(90,\u221228)\u3002",
+              "W=2\xD7max(abs((x\u22121190)sin28\xB0+(y\u2212450)cos28\xB0))+4\uFF0C\u56DB\u4E2A\u89D2\u70B9\u4E3A(\u22122,\u22122)/(1922,\u22122)/(\u22122,1082)/(1922,1082)\u3002",
+              "\u540E\u65B9\u955C\u5934\u572822\u548C62\u5E27\u76F4\u63A5\u5207\u6362\uFF1B\u51E0\u4F55\u653E\u5728\u955C\u5934Sequence\u4E4B\u5916\u300244\u201382\u5E27\u7684\u5BBD\u5EA6\u66F2\u7EBF\u5FC5\u987B\u7A7F\u8FC762\u5E27\uFF0C\u4E0D\u80FD\u5728\u6362\u955C\u70B9\u6682\u505C\u3002"
+            ],
+            retain: "\u6536\u7A84\u540E\u65CB\u8F6C\u3001\u659C\u5411\u6301\u7EED\u5C55\u5F00\u3001\u5B8C\u6574\u5DE5\u5177\u52A8\u4F5C\u548C\u5168\u5C40\u7A97\u53E3\u65F6\u949F\u3002",
+            avoid: "\u4E0D\u8981\u5728\u6362\u955C\u70B9\u505C\u4F4F\u6216\u91CD\u7F6E\u5341\u5B57\uFF0C\u4E0D\u6539\u53D8\u6A2A\u7AD6\u7B14\u753B\u7684\u5171\u540C\u539A\u5EA6\u3002"
+          },
+          source: {
+            path: "catalog/effects/mechanical-windows.js",
+            factory: "cross-aperture-turn",
+            dependencies: [
+              "catalog/effects/mechanical-windows-data.js",
+              "catalog/effects/spatial-apertures-data.js",
+              "catalog/effects/spatial-apertures.js"
+            ],
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            reference: {
+              name: "MECHANICAL PULSE v4.2 \xB7 \u7528\u6237\u539F\u521B\u51E0\u4F55\u7F16\u821E\u4E0E\u8F6E\u5ED3\u6392\u7248"
+            },
+            extraction: "\u63D0\u53D6\u4F5C\u8005\u539F\u521B\u7A97\u53E3\u4E0E\u6392\u7248\u51FD\u6570\uFF0C\u4FDD\u7559\u5168\u5C40\u5E27\u3001\u6301\u7EED\u5C55\u5F00\u3001\u540C\u4F4D\u77ED\u95EA\u548C\u53CC\u955C\u91CD\u53E0\uFF1B\u672A\u590D\u5236\u5916\u90E8\u6A21\u677F\u4EE3\u7801\u3002",
+            production_guide: "catalog/assets/mechanical-pulse/README.md",
+            remotion: {
+              component: "catalog/remotion/spatial-apertures.jsx",
+              export_name: "WiseSpatialApertures",
+              package_name: "wise-spatial-apertures",
+              files: [
+                "catalog/remotion/spatial-apertures.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/effects/spatial-apertures-data.js",
+                "catalog/effects/spatial-apertures.js",
+                "catalog/assets/mechanical-pulse/README.md",
+                "catalog/assets/mechanical-pulse/SOURCE.json",
+                "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+                "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+                "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+                "LICENSE"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 1920,
+              height: 1080,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u76EE\u5F55\u3001\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u7F16\u8F91\u5DE5\u7A0B\u5171\u7528\u9010\u5E27\u7A97\u53E3\u548C\u8F6E\u5ED3\u6392\u7248\u51FD\u6570\uFF1B\u72EC\u7ACB\u7A97\u53E3\u4EE5\u81EA\u7F16\u77E2\u91CF\u5706\u76D8\u793A\u610F\uFF0C\u53EF\u901A\u8FC7SpatialWindowClip\u6362\u6210\u81EA\u5DF1\u7684\u56FE\u50CF\u6216\u89C6\u9891\u3002AlignedSilhouetteRow\u63A5\u53D7\u81EA\u5DF1\u7684\u4E3B\u4F53\u5185\u5BB9\u3001\u4E3B\u4F53\u951A\u70B9\u4E0E\u65CB\u8F6C\u540E\u8F6E\u5ED3\u8FB9\u754C\uFF1B\u9ED8\u8BA4\u4E3B\u4F53\u4F7F\u7528\u539F\u56FE\u5C3A\u5BF8\u3001alpha\u4FDD\u771F\u7684WebP\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\u3002",
+              scripts: {
+                render: "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          parameters: {
+            speed: {
+              label: "\u64AD\u653E\u901F\u5EA6",
+              default: 1,
+              min: 0.5,
+              max: 2,
+              step: 0.25
+            }
+          }
+        }
+      ]
     },
     {
       kind: "action",
@@ -54810,7 +55495,9 @@ var registry_default = {
         "MECHANICAL WINDOWS",
         "\u6301\u7EED\u7A97\u53E3",
         "\u673A\u68B0\u7A97\u53E3",
-        "\u4E09\u5217\u76F4\u7A97\u9519\u5CF0\u5F00\u5408"
+        "\u4E09\u5217\u76F4\u7A97\u9519\u5CF0\u5F00\u5408",
+        "\u4E09\u5217\u7EB5\u5411\u9519\u5CF0\u5F00\u7A97",
+        "MECHANICAL PULSE v4.2"
       ],
       behaviors: [
         "mask",
@@ -54883,7 +55570,174 @@ var registry_default = {
         ],
         retain: "\u4E2D\u592E\u7AD6\u7A97\u6536\u7A84\uFF0C\u5DE6\u53F3\u4E24\u5217\u4EE5\u4E0D\u540C\u5173\u952E\u70B9\u5C55\u5F00\uFF0C\u8DE8\u6362\u955C\u4FDD\u6301\u540C\u4E00\u7F16\u821E\uFF0C\u6700\u540E\u5408\u6210\u5168\u5E45\u3002",
         avoid: "\u4E0D\u8981\u6539\u6210\u767E\u53F6\u7247\u9010\u6761\u7FFB\u8F6C\uFF0C\u4E0D\u8BA9\u7A97\u53E3\u6539\u53D8\u9AD8\u5EA6\u6216\u65CB\u8F6C\uFF0C\u4E0D\u628A\u540C\u4E00\u753B\u9762\u590D\u5236\u4E3A\u4E09\u4E2A\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3002"
-      }
+      },
+      variants: [
+        {
+          id: "standard",
+          label: "\u4E09\u5217\u5BBD\u5EA6\u9519\u5CF0\u5F00\u5408",
+          duration_ms: 4066.6666666666665,
+          preview_ms: 1400,
+          summary: "\u4E2D\u592E\u7AD6\u7A97\u6536\u7A84\uFF0C\u5DE6\u53F3\u4E24\u5217\u4EE5\u4E0D\u540C\u5173\u952E\u70B9\u5C55\u5F00\uFF0C\u8DE8\u6362\u955C\u4FDD\u6301\u540C\u4E00\u7F16\u821E\uFF0C\u6700\u540E\u5408\u6210\u5168\u5E45\u3002",
+          source: {
+            path: "catalog/effects/mechanical-windows.js",
+            factory: "three-column-aperture",
+            dependencies: [
+              "catalog/effects/mechanical-windows-data.js"
+            ],
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            reference: {
+              name: "MECHANICAL WINDOWS v2 \xB7 \u7528\u6237\u539F\u521B\u6301\u7EED\u7A97\u53E3\u4E0E\u526A\u8F91\u6E90\u7801"
+            },
+            extraction: "\u63D0\u53D6\u4F5C\u8005\u539F\u521B\u7A97\u53E3\u51FD\u6570\u3001\u5173\u952E\u70B9\u3001\u540C\u4F4D\u77ED\u95EA\u4E0E\u53CC\u955C\u91CD\u53E0\uFF1B\u72EC\u7ACB\u793A\u610F\u7531\u81EA\u7F16\u77E2\u91CF\u7ED8\u5236\uFF0C\u5B8C\u6574\u7EC4\u5408\u4FDD\u7559\u9759\u97F3\u6700\u7EC8\u753B\u9762\u3002",
+            production_guide: "catalog/assets/mechanical-windows/README.md",
+            remotion: {
+              component: "catalog/remotion/mechanical-windows.jsx",
+              export_name: "WiseMechanicalWindows",
+              package_name: "wise-mechanical-windows",
+              files: [
+                "catalog/remotion/mechanical-windows.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/assets/mechanical-windows/README.md",
+                "catalog/assets/mechanical-windows/SOURCE.json",
+                "catalog/assets/mechanical-windows/production/windows-v2.mjs",
+                "catalog/assets/mechanical-windows/production/timing-v2.mjs",
+                "LICENSE"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 1920,
+              height: 1080,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u76EE\u5F55\u4E0E\u72EC\u7ACB\u5DE5\u7A0B\u5171\u7528\u539F\u7A97\u53E3\u6570\u5B66\u51FD\u6570\u53CA\u540C\u4E00\u9010\u5E27\u7ED8\u5236\u3002\u72EC\u7ACB\u52A8\u4F5C\u4F7F\u7528\u81EA\u7F16\u77E2\u91CF\u673A\u68B0\u793A\u610F\uFF0C\u7A97\u53E3\u5C3A\u5BF8\u3001\u5173\u952E\u70B9\u548C\u76F8\u5BF9\u65F6\u5E8F\u6765\u81EA\u539F\u521B\u4EE3\u7801\uFF1B\u53EF\u66FF\u6362\u793A\u610F\u5C42\u3002\u81EA\u6709\u7A0B\u5E8FApache-2.0\u3002",
+              scripts: {
+                render: "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          reproduction: {
+            objects: "\u4E00\u5F20\u5B8C\u6574\u753B\u9762\u3001\u4E09\u4E2A\u9AD8\u5EA62400\u7684\u7AD6\u5411\u77E9\u5F62\u7A97\u53E3",
+            presentation: "1920\xD71080\u6A2A\u5411\u753B\u677F\uFF0C\u8FD1\u9ED1\u5E95#101211\u3001\u6696\u767D\u7EBF\u6761#eeeee5\u4E0E\u91D1\u8272\u91CD\u70B9#bba67b\uFF1B\u81EA\u7F16\u673A\u68B0\u5706\u76D8\u793A\u610F\uFF0C\u4E0D\u4F7F\u7528\u5916\u90E8\u7167\u7247\u3002\u753B\u5E45\u6539\u53D8\u65F6\u7B49\u6BD4\u5BB9\u7EB3\u3002",
+            phases: [
+              "\u4E2D\u592E\u5BBD\u7A97\u5F00\u59CB\u6536\u7A84\uFF0C\u5DE6\u53F3\u7A97\u53E3\u5C1A\u672A\u5C55\u5F00\u3002",
+              "\u4E09\u5217\u6309\u4E0D\u540C\u5173\u952E\u70B9\u8C03\u6574\u5BBD\u5EA6\uFF0C\u5728\u6362\u955C\u65F6\u6301\u7EED\u539F\u6765\u7684\u8FD0\u52A8\u3002",
+              "\u4E2D\u95F4\u548C\u4E24\u4FA7\u5171\u540C\u5C55\u5F00\uFF0C\u5B8C\u6574\u663E\u9732\u753B\u9762\u3002"
+            ],
+            details: [
+              "1920\xD71080\u753B\u677F\uFF1B\u4E09\u5217\u4E2D\u5FC3\u5206\u522B\u4E3A(970,540)\u3001(510,540)\u3001(1430,540)\uFF0C\u9AD8\u5EA6\u540C\u4E3A2400\uFF1B\u53D6\u4E09\u4E2A\u77E9\u5F62\u7684\u5E76\u96C6\uFF0C\u4E0D\u62FC\u63A5\u4E09\u4EFD\u4E0D\u540C\u89C6\u9891\u3002",
+              "30fps\u5C40\u90E8\u5E27\uFF0C\u603B\u957F122\u5E27\uFF1B\u76F8\u90BB\u5173\u952E\u70B9\u7528\u94B3\u4F4D\u540E\u7684p\xB2(3\u22122p)\u63D2\u503C\u3002\u4E2D\u5217\u5BBD\u5EA6\u4E3A(0,2300)/(22,400)/(54,420)/(92,520)/(122,2300)\u3002",
+              "\u5DE6\u5217\u5BBD\u5EA6\u4E3A(0,0)/(12,110)/(37,230)/(64,310)/(92,390)/(122,1100)\uFF1B\u53F3\u5217\u4E3A(0,0)/(18,100)/(50,240)/(70,330)/(92,430)/(122,1100)\u3002",
+              "\u540E\u65B9\u753B\u9762\u5728\u5C40\u90E8\u7B2C12\u300192\u5E27\u4EA4\u63A5\uFF1B\u4E09\u4E2A\u7A97\u53E3\u7684\u65F6\u95F4\u4E0D\u91CD\u7F6E\uFF0C\u672B\u6BB5\u8986\u76D6\u5B8C\u6574\u753B\u677F\u3002"
+            ],
+            retain: "\u4E2D\u592E\u7AD6\u7A97\u6536\u7A84\uFF0C\u5DE6\u53F3\u4E24\u5217\u4EE5\u4E0D\u540C\u5173\u952E\u70B9\u5C55\u5F00\uFF0C\u8DE8\u6362\u955C\u4FDD\u6301\u540C\u4E00\u7F16\u821E\uFF0C\u6700\u540E\u5408\u6210\u5168\u5E45\u3002",
+            avoid: "\u4E0D\u8981\u6539\u6210\u767E\u53F6\u7247\u9010\u6761\u7FFB\u8F6C\uFF0C\u4E0D\u8BA9\u7A97\u53E3\u6539\u53D8\u9AD8\u5EA6\u6216\u65CB\u8F6C\uFF0C\u4E0D\u628A\u540C\u4E00\u753B\u9762\u590D\u5236\u4E3A\u4E09\u4E2A\u72EC\u7ACB\u64AD\u653E\u65F6\u949F\u3002"
+          }
+        },
+        {
+          id: "vertical-column-rise",
+          label: "\u4E09\u5217\u7EB5\u5411\u9519\u5CF0\u5F00\u7A97",
+          duration_ms: 766.6666666666667,
+          preview_ms: 333.3333333333333,
+          summary: "\u4E09\u5217\u7B49\u5BBD\u76F4\u7A97\u6309\u5DE6\u3001\u4E2D\u3001\u53F3\u987A\u5E8F\u4ECE\u4E2D\u7EBF\u5411\u4E0A\u4E0B\u5C55\u5F00\uFF0C\u4EA4\u53E0\u6D88\u9664\u5217\u7F1D\u540E\u5168\u5E45\u4EA4\u63A5\u3002",
+          purpose: "\u4E09\u5217\u7B49\u5BBD\u76F4\u7A97\u6309\u5DE6\u3001\u4E2D\u3001\u53F3\u987A\u5E8F\u4ECE\u4E2D\u7EBF\u5411\u4E0A\u4E0B\u5C55\u5F00\uFF0C\u4EA4\u53E0\u6D88\u9664\u5217\u7F1D\u540E\u5168\u5E45\u4EA4\u63A5\u3002",
+          objects: "\u540C\u4E00\u5F20\u5B8C\u6574\u753B\u9762\u548C\u4E09\u5217\u7AD6\u5411\u77E9\u5F62\u7A97\u53E3",
+          phases: [
+            "\u4E09\u5217\u9AD8\u5EA6\u4E3A\u96F6\uFF0C\u753B\u9762\u7B49\u5F85\u663E\u9732\u3002",
+            "\u5DE6\u4E2D\u53F3\u4F9D\u6B21\u4ECE\u4E2D\u5FC3\u5411\u4E0A\u4E0B\u5C55\u5F00\u3002",
+            "\u6700\u540E\u4E00\u5217\u5C55\u5F00\u540E\u6062\u590D\u5B8C\u6574\u753B\u9762\u3002"
+          ],
+          retain: "\u5217\u95F4\u9519\u5CF0\u3001\u4E2D\u5FC3\u5411\u53CC\u5411\u5C55\u5F00\u548C\u540C\u4E00\u5E95\u56FE\u3002",
+          avoid: "\u4E0D\u505A\u4E09\u4EFD\u72EC\u7ACB\u89C6\u9891\uFF0C\u4E0D\u4ECE\u5E95\u90E8\u5355\u5411\u64E6\u5165\uFF0C\u4E0D\u4FDD\u7559\u5217\u7F1D\u3002",
+          tempo_note: "30fps\uFF0C\u517123\u5E27\uFF1B\u672B\u5E2722\u3002",
+          recommendation: "\u4E09\u5217\u7B49\u5BBD\u76F4\u7A97\u6309\u5DE6\u3001\u4E2D\u3001\u53F3\u987A\u5E8F\u4ECE\u4E2D\u7EBF\u5411\u4E0A\u4E0B\u5C55\u5F00\uFF0C\u4EA4\u53E0\u6D88\u9664\u5217\u7F1D\u540E\u5168\u5E45\u4EA4\u63A5\u3002",
+          reproduction: {
+            objects: "\u540C\u4E00\u5F20\u5B8C\u6574\u753B\u9762\u548C\u4E09\u5217\u7AD6\u5411\u77E9\u5F62\u7A97\u53E3",
+            presentation: "1920\xD71080\u6A2A\u5411\u753B\u677F\u300130fps\uFF1B\u8FD1\u9ED1\u5E95#101211\u3001\u6696\u767D\u7EBF\u6761#eeeee5\u4E0E\u91D1\u8272\u91CD\u70B9#bba67b\u3002\u7A97\u53E3\u793A\u610F\u4F7F\u7528\u81EA\u7F16\u673A\u68B0\u5706\u76D8\uFF0C\u53EF\u66FF\u6362\u6210\u81EA\u5DF1\u7684\u5B8C\u6574\u753B\u9762\uFF1B\u4E0D\u540C\u753B\u5E45\u7B49\u6BD4\u5BB9\u7EB3\u3002",
+            phases: [
+              "\u4E09\u5217\u9AD8\u5EA6\u4E3A\u96F6\uFF0C\u753B\u9762\u7B49\u5F85\u663E\u9732\u3002",
+              "\u5DE6\u4E2D\u53F3\u4F9D\u6B21\u4ECE\u4E2D\u5FC3\u5411\u4E0A\u4E0B\u5C55\u5F00\u3002",
+              "\u6700\u540E\u4E00\u5217\u5C55\u5F00\u540E\u6062\u590D\u5B8C\u6574\u753B\u9762\u3002"
+            ],
+            details: [
+              "\u517123\u5E27\uFF0C\u5C40\u90E80\u201321\u5E27\u4E3A\u4E09\u5217\u5E76\u96C6\uFF0C\u7B2C22\u5E27\u5168\u5E45\u3002\u4E09\u5217\u4E2D\u5FC3x=320/960/1600\uFF0Cy=540\uFF0C\u5BBD644\u3002",
+              "\u5DE6\u52170\u201312\u5E27\u3001\u4E2D\u52174\u201317\u5E27\u3001\u53F3\u52178\u201322\u5E27\u9AD8\u5EA60\u21921084\uFF0C\u5747\u4F7F\u75281\u2212(1\u2212p)\xB3\uFF0Cp\u94B3\u4F4D0\u81F31\u3002",
+              "\u4E09\u5217\u88C1\u526A\u7684\u662F\u540C\u4E00\u5E451920\xD71080\u56FE\u50CF\uFF0C\u4E0D\u5206\u522B\u7F29\u653E\u6216\u590D\u5236\u4E3A\u4E09\u4E2A\u4E0D\u540C\u955C\u5934\uFF1B\u7A97\u53E3\u8FB9\u7F18\u91CD\u53E04\u50CF\u7D20\u907F\u514D\u7F1D\u9699\u3002"
+            ],
+            retain: "\u5217\u95F4\u9519\u5CF0\u3001\u4E2D\u5FC3\u5411\u53CC\u5411\u5C55\u5F00\u548C\u540C\u4E00\u5E95\u56FE\u3002",
+            avoid: "\u4E0D\u505A\u4E09\u4EFD\u72EC\u7ACB\u89C6\u9891\uFF0C\u4E0D\u4ECE\u5E95\u90E8\u5355\u5411\u64E6\u5165\uFF0C\u4E0D\u4FDD\u7559\u5217\u7F1D\u3002"
+          },
+          source: {
+            path: "catalog/effects/mechanical-windows.js",
+            factory: "three-column-aperture",
+            dependencies: [
+              "catalog/effects/mechanical-windows-data.js",
+              "catalog/effects/spatial-apertures-data.js",
+              "catalog/effects/spatial-apertures.js"
+            ],
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            reference: {
+              name: "MECHANICAL PULSE v4.2 \xB7 \u7528\u6237\u539F\u521B\u51E0\u4F55\u7F16\u821E\u4E0E\u8F6E\u5ED3\u6392\u7248"
+            },
+            extraction: "\u63D0\u53D6\u4F5C\u8005\u539F\u521B\u7A97\u53E3\u4E0E\u6392\u7248\u51FD\u6570\uFF0C\u4FDD\u7559\u5168\u5C40\u5E27\u3001\u6301\u7EED\u5C55\u5F00\u3001\u540C\u4F4D\u77ED\u95EA\u548C\u53CC\u955C\u91CD\u53E0\uFF1B\u672A\u590D\u5236\u5916\u90E8\u6A21\u677F\u4EE3\u7801\u3002",
+            production_guide: "catalog/assets/mechanical-pulse/README.md",
+            remotion: {
+              component: "catalog/remotion/spatial-apertures.jsx",
+              export_name: "WiseSpatialApertures",
+              package_name: "wise-spatial-apertures",
+              files: [
+                "catalog/remotion/spatial-apertures.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/effects/spatial-apertures-data.js",
+                "catalog/effects/spatial-apertures.js",
+                "catalog/assets/mechanical-pulse/README.md",
+                "catalog/assets/mechanical-pulse/SOURCE.json",
+                "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+                "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+                "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+                "LICENSE"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 1920,
+              height: 1080,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u76EE\u5F55\u3001\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u7F16\u8F91\u5DE5\u7A0B\u5171\u7528\u9010\u5E27\u7A97\u53E3\u548C\u8F6E\u5ED3\u6392\u7248\u51FD\u6570\uFF1B\u72EC\u7ACB\u7A97\u53E3\u4EE5\u81EA\u7F16\u77E2\u91CF\u5706\u76D8\u793A\u610F\uFF0C\u53EF\u901A\u8FC7SpatialWindowClip\u6362\u6210\u81EA\u5DF1\u7684\u56FE\u50CF\u6216\u89C6\u9891\u3002AlignedSilhouetteRow\u63A5\u53D7\u81EA\u5DF1\u7684\u4E3B\u4F53\u5185\u5BB9\u3001\u4E3B\u4F53\u951A\u70B9\u4E0E\u65CB\u8F6C\u540E\u8F6E\u5ED3\u8FB9\u754C\uFF1B\u9ED8\u8BA4\u4E3B\u4F53\u4F7F\u7528\u539F\u56FE\u5C3A\u5BF8\u3001alpha\u4FDD\u771F\u7684WebP\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\u3002",
+              scripts: {
+                render: "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          parameters: {
+            speed: {
+              label: "\u64AD\u653E\u901F\u5EA6",
+              default: 1,
+              min: 0.5,
+              max: 2,
+              step: 0.25
+            }
+          }
+        }
+      ]
     },
     {
       kind: "action",
@@ -54923,7 +55777,9 @@ var registry_default = {
         "MECHANICAL WINDOWS",
         "\u6301\u7EED\u7A97\u53E3",
         "\u673A\u68B0\u7A97\u53E3",
-        "\u540E\u955C\u63D0\u524D\u5706\u7A97\u8FDB\u5165"
+        "\u540E\u955C\u63D0\u524D\u5706\u7A97\u8FDB\u5165",
+        "\u5341\u516D\u5E27\u5706\u7A97\u9884\u5165",
+        "MECHANICAL PULSE v4.2"
       ],
       behaviors: [
         "mask",
@@ -54995,7 +55851,173 @@ var registry_default = {
         ],
         retain: "\u5F53\u524D\u753B\u9762\u7EE7\u7EED\u8FD0\u884C\uFF0C\u4E0B\u4E00\u753B\u9762\u4ECE\u53F3\u4FA7\u5706\u5F62\u7A97\u53E3\u63D0\u524D\u663E\u9732\uFF0C\u7EA60.4\u79D2\u540E\u63A5\u7BA1\u5168\u5E45\u3002",
         avoid: "\u4E0D\u8981\u51BB\u7ED3\u540E\u65B9\u753B\u9762\uFF0C\u4E0D\u5728\u7A97\u53E3\u5C1A\u672A\u5C55\u5F00\u65F6\u5148\u786C\u5207\uFF0C\u4E0D\u4EE5\u5355\u5F20\u622A\u56FE\u5192\u5145\u4E24\u4E2A\u8FD0\u884C\u955C\u5934\u3002"
-      }
+      },
+      variants: [
+        {
+          id: "standard",
+          label: "\u5341\u4E8C\u5E27\u5706\u7A97\u9884\u5165",
+          duration_ms: 433.33333333333337,
+          preview_ms: 200,
+          summary: "\u5F53\u524D\u753B\u9762\u7EE7\u7EED\u8FD0\u884C\uFF0C\u4E0B\u4E00\u753B\u9762\u4ECE\u53F3\u4FA7\u5706\u5F62\u7A97\u53E3\u63D0\u524D\u663E\u9732\uFF0C\u7EA60.4\u79D2\u540E\u63A5\u7BA1\u5168\u5E45\u3002",
+          source: {
+            path: "catalog/effects/mechanical-windows.js",
+            factory: "next-shot-preentry",
+            dependencies: [
+              "catalog/effects/mechanical-windows-data.js"
+            ],
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            reference: {
+              name: "MECHANICAL WINDOWS v2 \xB7 \u7528\u6237\u539F\u521B\u6301\u7EED\u7A97\u53E3\u4E0E\u526A\u8F91\u6E90\u7801"
+            },
+            extraction: "\u63D0\u53D6\u4F5C\u8005\u539F\u521B\u7A97\u53E3\u51FD\u6570\u3001\u5173\u952E\u70B9\u3001\u540C\u4F4D\u77ED\u95EA\u4E0E\u53CC\u955C\u91CD\u53E0\uFF1B\u72EC\u7ACB\u793A\u610F\u7531\u81EA\u7F16\u77E2\u91CF\u7ED8\u5236\uFF0C\u5B8C\u6574\u7EC4\u5408\u4FDD\u7559\u9759\u97F3\u6700\u7EC8\u753B\u9762\u3002",
+            production_guide: "catalog/assets/mechanical-windows/README.md",
+            remotion: {
+              component: "catalog/remotion/mechanical-windows.jsx",
+              export_name: "WiseMechanicalWindows",
+              package_name: "wise-mechanical-windows",
+              files: [
+                "catalog/remotion/mechanical-windows.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/assets/mechanical-windows/README.md",
+                "catalog/assets/mechanical-windows/SOURCE.json",
+                "catalog/assets/mechanical-windows/production/windows-v2.mjs",
+                "catalog/assets/mechanical-windows/production/timing-v2.mjs",
+                "LICENSE"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 1920,
+              height: 1080,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u76EE\u5F55\u4E0E\u72EC\u7ACB\u5DE5\u7A0B\u5171\u7528\u539F\u7A97\u53E3\u6570\u5B66\u51FD\u6570\u53CA\u540C\u4E00\u9010\u5E27\u7ED8\u5236\u3002\u72EC\u7ACB\u52A8\u4F5C\u4F7F\u7528\u81EA\u7F16\u77E2\u91CF\u673A\u68B0\u793A\u610F\uFF0C\u7A97\u53E3\u5C3A\u5BF8\u3001\u5173\u952E\u70B9\u548C\u76F8\u5BF9\u65F6\u5E8F\u6765\u81EA\u539F\u521B\u4EE3\u7801\uFF1B\u53EF\u66FF\u6362\u793A\u610F\u5C42\u3002\u81EA\u6709\u7A0B\u5E8FApache-2.0\u3002",
+              scripts: {
+                render: "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          reproduction: {
+            objects: "\u4E24\u4E2A\u540C\u65F6\u63A8\u8FDB\u7684\u753B\u9762\u5C42\uFF0C\u4EE5\u53CA\u4E2D\u5FC3\u504F\u53F3\u7684\u5706\u5F62\u88C1\u526A\u533A\u57DF",
+            presentation: "1920\xD71080\u6A2A\u5411\u753B\u677F\uFF0C\u8FD1\u9ED1\u5E95#101211\u3001\u6696\u767D\u7EBF\u6761#eeeee5\u4E0E\u91D1\u8272\u91CD\u70B9#bba67b\uFF1B\u81EA\u7F16\u673A\u68B0\u5706\u76D8\u793A\u610F\uFF0C\u4E0D\u4F7F\u7528\u5916\u90E8\u7167\u7247\u3002\u753B\u5E45\u6539\u53D8\u65F6\u7B49\u6BD4\u5BB9\u7EB3\u3002",
+            phases: [
+              "\u80CC\u666F\u753B\u9762\u7EE7\u7EED\u64AD\u653E\uFF0C\u4E0B\u4E00\u753B\u9762\u4ECE\u81EA\u5DF1\u7684\u8D77\u70B9\u5F00\u59CB\u8FD0\u884C\u3002",
+              "\u504F\u53F3\u5706\u7A97\u6269\u5927\uFF0C\u4E24\u5C42\u5728\u540C\u4E00\u65F6\u95F4\u5185\u540C\u65F6\u4FDD\u6301\u8FD0\u52A8\u3002",
+              "\u5706\u7A97\u8986\u76D6\u5168\u5E45\uFF0C\u7531\u4E0B\u4E00\u753B\u9762\u63A5\u7BA1\u3002"
+            ],
+            details: [
+              "1920\xD71080\u753B\u677F\uFF1B\u5706\u5FC3\u56FA\u5B9A(1430,540)\uFF0C\u534A\u5F84\u5728\u5C40\u90E8\u7B2C0\u81F312\u5E27\u75310\u6269\u5927\u52301900\uFF0C\u4F7F\u7528p\xB2(3\u22122p)\u3002",
+              "\u4F7F\u752830fps\uFF0C\u517113\u4E2A\u53EF\u89C1\u5E27\uFF1B\u7B2C12\u5E27\u4E3A0.4\u79D2\u3002\u65B0\u753B\u9762\u5F00\u59CB\u65F6\u4FDD\u7559\u80CC\u666F\uFF0C\u4E0D\u63D0\u524D\u628A\u80CC\u666F\u66FF\u6362\u4E3A\u65B0\u753B\u9762\uFF0C\u4E5F\u4E0D\u53D6\u9759\u5E27\u5192\u5145\u53CC\u955C\u64AD\u653E\u3002",
+              "\u77E2\u91CF\u793A\u4F8B\u4E2D\u80CC\u666F\u5706\u76D8\u6BCF\u5E27\u65CB\u8F6C0.35\u5EA6\uFF0C\u524D\u666F\u6BCF\u5E27\u53CD\u5411\u65CB\u8F6C0.6\u5EA6\uFF0C\u4E8C\u8005\u90FD\u76F4\u63A5\u8BFB\u53D6\u540C\u4E00\u5F53\u524D\u5E27\uFF1B\u53EF\u5C06\u4E24\u7EC4\u793A\u610F\u66FF\u6362\u6210\u62E5\u6709\u72EC\u7ACB\u5C40\u90E8\u65F6\u949F\u7684\u89C6\u9891\u3002"
+            ],
+            retain: "\u5F53\u524D\u753B\u9762\u7EE7\u7EED\u8FD0\u884C\uFF0C\u4E0B\u4E00\u753B\u9762\u4ECE\u53F3\u4FA7\u5706\u5F62\u7A97\u53E3\u63D0\u524D\u663E\u9732\uFF0C\u7EA60.4\u79D2\u540E\u63A5\u7BA1\u5168\u5E45\u3002",
+            avoid: "\u4E0D\u8981\u51BB\u7ED3\u540E\u65B9\u753B\u9762\uFF0C\u4E0D\u5728\u7A97\u53E3\u5C1A\u672A\u5C55\u5F00\u65F6\u5148\u786C\u5207\uFF0C\u4E0D\u4EE5\u5355\u5F20\u622A\u56FE\u5192\u5145\u4E24\u4E2A\u8FD0\u884C\u955C\u5934\u3002"
+          }
+        },
+        {
+          id: "paced-overlap",
+          label: "\u5341\u516D\u5E27\u5706\u7A97\u9884\u5165",
+          duration_ms: 566.6666666666666,
+          preview_ms: 233.33333333333334,
+          summary: "\u4E0B\u4E00\u753B\u9762\u4ECE\u53F3\u4FA7\u4E3B\u4F53\u8F74\u5FC3\u5C55\u5F00\uFF0C\u65E7\u753B\u9762\u572816\u5E27\u91CD\u53E0\u671F\u5185\u7EE7\u7EED\u8FD0\u884C\u3002",
+          purpose: "\u4E0B\u4E00\u753B\u9762\u4ECE\u53F3\u4FA7\u4E3B\u4F53\u8F74\u5FC3\u5C55\u5F00\uFF0C\u65E7\u753B\u9762\u572816\u5E27\u91CD\u53E0\u671F\u5185\u7EE7\u7EED\u8FD0\u884C\u3002",
+          objects: "\u4E24\u4E2A\u540C\u65F6\u8FD0\u884C\u7684\u5B8C\u6574\u753B\u9762\u548C\u53F3\u504F\u5706\u5F62\u88C1\u526A\u533A",
+          phases: [
+            "\u65E7\u753B\u9762\u7EE7\u7EED\u8FD0\u884C\uFF0C\u65B0\u753B\u9762\u4ECE\u81EA\u5DF1\u7684\u8D77\u70B9\u5F00\u59CB\u3002",
+            "\u65B0\u753B\u9762\u4ECE\u53F3\u4FA7\u4E3B\u4F53\u4E2D\u5FC3\u7684\u5706\u7A97\u663E\u9732\u3002",
+            "\u7B2C16\u5E27\u5B8C\u6574\u63A5\u7BA1\uFF0C\u5706\u7A97\u5916\u7684\u65E7\u753B\u9762\u9000\u51FA\u3002"
+          ],
+          retain: "16\u5E27\u53CC\u955C\u91CD\u53E0\u4E0E\u504F\u53F3\u4E3B\u4F53\u4E2D\u5FC3\u5706\u5F62\u663E\u9732\u3002",
+          avoid: "\u4E0D\u51BB\u7ED3\u65E7\u753B\u9762\uFF0C\u4E0D\u5728\u663E\u9732\u5B8C\u6210\u524D\u786C\u5207\u5E95\u5C42\uFF0C\u4E0D\u628A\u89C6\u9891\u653E\u6210\u6709\u8FB9\u6846\u7684\u5C0F\u5361\u7247\u3002",
+          tempo_note: "30fps\uFF0C\u517117\u5E27\uFF1B\u672B\u5E2716\u3002",
+          recommendation: "\u4E0B\u4E00\u753B\u9762\u4ECE\u53F3\u4FA7\u4E3B\u4F53\u8F74\u5FC3\u5C55\u5F00\uFF0C\u65E7\u753B\u9762\u572816\u5E27\u91CD\u53E0\u671F\u5185\u7EE7\u7EED\u8FD0\u884C\u3002",
+          reproduction: {
+            objects: "\u4E24\u4E2A\u540C\u65F6\u8FD0\u884C\u7684\u5B8C\u6574\u753B\u9762\u548C\u53F3\u504F\u5706\u5F62\u88C1\u526A\u533A",
+            presentation: "1920\xD71080\u6A2A\u5411\u753B\u677F\u300130fps\uFF1B\u8FD1\u9ED1\u5E95#101211\u3001\u6696\u767D\u7EBF\u6761#eeeee5\u4E0E\u91D1\u8272\u91CD\u70B9#bba67b\u3002\u7A97\u53E3\u793A\u610F\u4F7F\u7528\u81EA\u7F16\u673A\u68B0\u5706\u76D8\uFF0C\u53EF\u66FF\u6362\u6210\u81EA\u5DF1\u7684\u5B8C\u6574\u753B\u9762\uFF1B\u4E0D\u540C\u753B\u5E45\u7B49\u6BD4\u5BB9\u7EB3\u3002",
+            phases: [
+              "\u65E7\u753B\u9762\u7EE7\u7EED\u8FD0\u884C\uFF0C\u65B0\u753B\u9762\u4ECE\u81EA\u5DF1\u7684\u8D77\u70B9\u5F00\u59CB\u3002",
+              "\u65B0\u753B\u9762\u4ECE\u53F3\u4FA7\u4E3B\u4F53\u4E2D\u5FC3\u7684\u5706\u7A97\u663E\u9732\u3002",
+              "\u7B2C16\u5E27\u5B8C\u6574\u63A5\u7BA1\uFF0C\u5706\u7A97\u5916\u7684\u65E7\u753B\u9762\u9000\u51FA\u3002"
+            ],
+            details: [
+              "30fps\uFF0C\u517117\u4E2A\u91C7\u6837\u5E27\uFF1B0\u201315\u5E27\u4E3A\u53CC\u955C\u91CD\u53E0\uFF0C\u7B2C16\u5E27\u5168\u5E45\u63A5\u7BA1\u3002",
+              "\u5706\u5FC3(1430,540)\uFF0C\u534A\u5F84\u57280\u201316\u5E27\u4ECE0\u52301640\uFF0C\u7528cubic-bezier(.16,1,.3,1)\u3002",
+              "\u65E7\u3001\u65B0\u89C6\u9891\u5206\u522B\u4FDD\u6709\u81EA\u5DF1\u7684\u5C40\u90E8\u65F6\u949F\uFF0C\u9884\u5165\u53EA\u88C1\u526A\u65B0\u5C42\uFF0C\u4E0D\u6682\u505C\u6216\u63D0\u524D\u66FF\u6362\u65E7\u5C42\u3002"
+            ],
+            retain: "16\u5E27\u53CC\u955C\u91CD\u53E0\u4E0E\u504F\u53F3\u4E3B\u4F53\u4E2D\u5FC3\u5706\u5F62\u663E\u9732\u3002",
+            avoid: "\u4E0D\u51BB\u7ED3\u65E7\u753B\u9762\uFF0C\u4E0D\u5728\u663E\u9732\u5B8C\u6210\u524D\u786C\u5207\u5E95\u5C42\uFF0C\u4E0D\u628A\u89C6\u9891\u653E\u6210\u6709\u8FB9\u6846\u7684\u5C0F\u5361\u7247\u3002"
+          },
+          source: {
+            path: "catalog/effects/mechanical-windows.js",
+            factory: "next-shot-preentry",
+            dependencies: [
+              "catalog/effects/mechanical-windows-data.js",
+              "catalog/effects/spatial-apertures-data.js",
+              "catalog/effects/spatial-apertures.js"
+            ],
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            reference: {
+              name: "MECHANICAL PULSE v4.2 \xB7 \u7528\u6237\u539F\u521B\u51E0\u4F55\u7F16\u821E\u4E0E\u8F6E\u5ED3\u6392\u7248"
+            },
+            extraction: "\u63D0\u53D6\u4F5C\u8005\u539F\u521B\u7A97\u53E3\u4E0E\u6392\u7248\u51FD\u6570\uFF0C\u4FDD\u7559\u5168\u5C40\u5E27\u3001\u6301\u7EED\u5C55\u5F00\u3001\u540C\u4F4D\u77ED\u95EA\u548C\u53CC\u955C\u91CD\u53E0\uFF1B\u672A\u590D\u5236\u5916\u90E8\u6A21\u677F\u4EE3\u7801\u3002",
+            production_guide: "catalog/assets/mechanical-pulse/README.md",
+            remotion: {
+              component: "catalog/remotion/spatial-apertures.jsx",
+              export_name: "WiseSpatialApertures",
+              package_name: "wise-spatial-apertures",
+              files: [
+                "catalog/remotion/spatial-apertures.jsx",
+                "catalog/remotion/native-video.jsx",
+                "catalog/effects/mechanical-windows-data.js",
+                "catalog/effects/mechanical-windows.js",
+                "catalog/effects/spatial-apertures-data.js",
+                "catalog/effects/spatial-apertures.js",
+                "catalog/assets/mechanical-pulse/README.md",
+                "catalog/assets/mechanical-pulse/SOURCE.json",
+                "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+                "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+                "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+                "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+                "LICENSE"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 1920,
+              height: 1080,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u76EE\u5F55\u3001\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u7F16\u8F91\u5DE5\u7A0B\u5171\u7528\u9010\u5E27\u7A97\u53E3\u548C\u8F6E\u5ED3\u6392\u7248\u51FD\u6570\uFF1B\u72EC\u7ACB\u7A97\u53E3\u4EE5\u81EA\u7F16\u77E2\u91CF\u5706\u76D8\u793A\u610F\uFF0C\u53EF\u901A\u8FC7SpatialWindowClip\u6362\u6210\u81EA\u5DF1\u7684\u56FE\u50CF\u6216\u89C6\u9891\u3002AlignedSilhouetteRow\u63A5\u53D7\u81EA\u5DF1\u7684\u4E3B\u4F53\u5185\u5BB9\u3001\u4E3B\u4F53\u951A\u70B9\u4E0E\u65CB\u8F6C\u540E\u8F6E\u5ED3\u8FB9\u754C\uFF1B\u9ED8\u8BA4\u4E3B\u4F53\u4F7F\u7528\u539F\u56FE\u5C3A\u5BF8\u3001alpha\u4FDD\u771F\u7684WebP\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\u3002",
+              scripts: {
+                render: "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+              }
+            }
+          },
+          parameters: {
+            speed: {
+              label: "\u64AD\u653E\u901F\u5EA6",
+              default: 1,
+              min: 0.5,
+              max: 2,
+              step: 0.25
+            }
+          }
+        }
+      ]
     },
     {
       kind: "composition",
@@ -55176,6 +56198,346 @@ var registry_default = {
         ],
         retain: "\u540C\u4F4D\u56FE\u7EB8\u3001\u771F\u5B9E\u673A\u68B0\u3001\u8FDE\u7EED\u7A97\u53E3\u4E0E\u53CC\u955C\u9884\u5165\u5173\u7CFB\u3002",
         avoid: "\u4E0D\u5728\u590D\u5236\u8F93\u51FA\u5199\u672C\u673A\u8DEF\u5F84\uFF0C\u4E0D\u5C06\u7D20\u6750\u7F13\u5B58\u653E\u5927\u79F0\u4E3A\u4E09\u7EF4\u91CD\u5EFA\uFF0C\u4E0D\u81EA\u52A8\u5F15\u5165\u914D\u4E50\u3002"
+      }
+    },
+    {
+      kind: "action",
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation",
+        "video"
+      ],
+      trigger: "\u6253\u5F00\u9884\u89C8\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      actions: [],
+      assumptions: "\u673A\u68B0\u5706\u76D8\u4E3A\u53EF\u66FF\u6362\u7684\u81EA\u7F16\u77E2\u91CF\u8F7D\u4F53\uFF0C\u4E0D\u4F5C\u4E3A\u5236\u9020\u6216\u771F\u5B9E\u8D70\u65F6\u6A21\u578B\u3002",
+      id: "diamond-aperture-release",
+      name: "\u83F1\u5F62\u7A97\u53E3\u8DE8\u955C\u5C55\u5F00",
+      category: "transition",
+      duration_ms: 2e3,
+      preview_ms: 1e3,
+      summary: "\u56FA\u5B9A\u4E2D\u5FC3\u768445\u5EA6\u65B9\u7A97\u8DE8\u8FC7\u4E09\u6BB5\u753B\u9762\u5355\u5411\u5C55\u5F00\uFF0C\u540E\u4E24\u6B21\u6362\u955C\u4E0D\u91CD\u542F\u7A97\u53E3\u3002",
+      purpose: "\u8BA9\u591A\u4E2A\u77ED\u955C\u5934\u5171\u4EAB\u4E00\u4E2A\u5C55\u5F00\u52A8\u4F5C\uFF0C\u5F62\u6210\u8FDE\u7EED\u7684\u89C6\u89C9\u53E5\u5B50\u3002",
+      objects: "\u4E00\u5F20\u5B8C\u6574\u5FAE\u8DDD\u753B\u9762\u3001\u4E2D\u5FC3\u56FA\u5B9A\u4E14\u65CB\u8F6C45\u5EA6\u7684\u6B63\u65B9\u5F62\u88C1\u526A\u533A",
+      phases: [
+        "\u7B2C\u4E00\u5F20\u753B\u9762\u5728\u8F83\u5C0F\u83F1\u5F62\u7A97\u53E3\u4E2D\u51FA\u73B0\u3002",
+        "\u7A97\u53E3\u6301\u7EED\u5355\u5411\u589E\u5927\uFF0C\u540E\u65B9\u4E24\u6B21\u6362\u955C\u5404\u843D\u4E00\u62CD\u3002",
+        "\u7B2C50\u5E27\u8986\u76D6\u5168\u5E45\uFF0C\u6700\u540E10\u5E27\u4FDD\u6301\u5168\u5E45\u3002"
+      ],
+      aliases: [
+        "\u83F1\u5F62\u5F00\u7A97",
+        "\u8FDE\u7EED\u5C55\u5F00",
+        "\u8DE8\u955C\u7A97\u53E3",
+        "MECHANICAL PULSE v4.2"
+      ],
+      behaviors: [
+        "mask",
+        "continuous-window",
+        "expand",
+        "cut"
+      ],
+      retain: "\u4E00\u6B21\u6301\u7EED\u5C55\u5F00\u7A7F\u8FC7\u4E09\u955C\uFF0C\u4E2D\u5FC3\u300145\u5EA6\u548C\u957F\u5BBD\u6BD4\u4FDD\u6301\u3002",
+      avoid: "\u4E0D\u91CD\u590D\u6536\u7F29\uFF0C\u4E0D\u6BCF\u955C\u91CD\u542F\uFF0C\u4E0D\u6DFB\u52A0\u767D\u8272\u5E95\u5361\u6216\u989D\u5916\u7F29\u653E\u3002",
+      analogy: "\u7B49\u957F\u3001\u7B49\u7C97\u7684\u5341\u5B57\u7A97\u53E3\u6301\u7EED\u5E73\u79FB\u548C\u65CB\u8F6C\uFF0C\u5207\u6362\u540E\u65B9\u753B\u9762\u65F6\u4FDD\u6301\u540C\u4E00\u6761\u7A97\u53E3\u8F68\u9053\u3002",
+      recommendation: "\u591A\u4E2A\u5FAE\u8DDD\u955C\u5934\u8981\u4FDD\u6301\u540C\u4E00\u5C55\u5F00\u8F68\u9053\u65F6\u4F7F\u7528\uFF1B\u9700\u8981\u5706\u7A97\u9884\u5165\u53D6\u540E\u955C\u63D0\u524D\u5706\u7A97\u8FDB\u5165\u3002",
+      tempo_note: "30fps\uFF0C\u517160\u5E27\uFF1B20/40\u5E27\u6362\u955C\uFF0C50\u5E27\u5168\u5E45\u3002",
+      source: {
+        path: "catalog/effects/spatial-apertures.js",
+        factory: "diamond-aperture-release",
+        dependencies: [
+          "catalog/effects/mechanical-windows-data.js",
+          "catalog/effects/mechanical-windows.js",
+          "catalog/effects/spatial-apertures-data.js"
+        ],
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        reference: {
+          name: "MECHANICAL PULSE v4.2 \xB7 \u7528\u6237\u539F\u521B\u51E0\u4F55\u7F16\u821E\u4E0E\u8F6E\u5ED3\u6392\u7248"
+        },
+        extraction: "\u63D0\u53D6\u4F5C\u8005\u539F\u521B\u7A97\u53E3\u4E0E\u6392\u7248\u51FD\u6570\uFF0C\u4FDD\u7559\u5168\u5C40\u5E27\u3001\u6301\u7EED\u5C55\u5F00\u3001\u540C\u4F4D\u77ED\u95EA\u548C\u53CC\u955C\u91CD\u53E0\uFF1B\u672A\u590D\u5236\u5916\u90E8\u6A21\u677F\u4EE3\u7801\u3002",
+        production_guide: "catalog/assets/mechanical-pulse/README.md",
+        remotion: {
+          component: "catalog/remotion/spatial-apertures.jsx",
+          export_name: "WiseSpatialApertures",
+          package_name: "wise-spatial-apertures",
+          files: [
+            "catalog/remotion/spatial-apertures.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/mechanical-windows-data.js",
+            "catalog/effects/mechanical-windows.js",
+            "catalog/effects/spatial-apertures-data.js",
+            "catalog/effects/spatial-apertures.js",
+            "catalog/assets/mechanical-pulse/README.md",
+            "catalog/assets/mechanical-pulse/SOURCE.json",
+            "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+            "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+            "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+            "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+            "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+            "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+            "LICENSE"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1920,
+          height: 1080,
+          fps: 30,
+          exact_frames: true,
+          reuse_notes: "\u76EE\u5F55\u3001\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u7F16\u8F91\u5DE5\u7A0B\u5171\u7528\u9010\u5E27\u7A97\u53E3\u548C\u8F6E\u5ED3\u6392\u7248\u51FD\u6570\uFF1B\u72EC\u7ACB\u7A97\u53E3\u4EE5\u81EA\u7F16\u77E2\u91CF\u5706\u76D8\u793A\u610F\uFF0C\u53EF\u901A\u8FC7SpatialWindowClip\u6362\u6210\u81EA\u5DF1\u7684\u56FE\u50CF\u6216\u89C6\u9891\u3002AlignedSilhouetteRow\u63A5\u53D7\u81EA\u5DF1\u7684\u4E3B\u4F53\u5185\u5BB9\u3001\u4E3B\u4F53\u951A\u70B9\u4E0E\u65CB\u8F6C\u540E\u8F6E\u5ED3\u8FB9\u754C\uFF1B\u9ED8\u8BA4\u4E3B\u4F53\u4F7F\u7528\u539F\u56FE\u5C3A\u5BF8\u3001alpha\u4FDD\u771F\u7684WebP\u3002\u81EA\u6709\u4EE3\u7801Apache-2.0\u3002",
+          scripts: {
+            render: "remotion render index.jsx Motion out/motion.mp4 --concurrency=2"
+          }
+        }
+      },
+      reproduction: {
+        objects: "\u4E00\u5F20\u5B8C\u6574\u5FAE\u8DDD\u753B\u9762\u3001\u4E2D\u5FC3\u56FA\u5B9A\u4E14\u65CB\u8F6C45\u5EA6\u7684\u6B63\u65B9\u5F62\u88C1\u526A\u533A",
+        presentation: "1920\xD71080\u6A2A\u5411\u753B\u677F\u300130fps\uFF1B\u8FD1\u9ED1\u5E95#101211\u3001\u6696\u767D\u7EBF\u6761#eeeee5\u4E0E\u91D1\u8272\u91CD\u70B9#bba67b\u3002\u7A97\u53E3\u793A\u610F\u4F7F\u7528\u81EA\u7F16\u673A\u68B0\u5706\u76D8\uFF0C\u53EF\u66FF\u6362\u6210\u81EA\u5DF1\u7684\u5B8C\u6574\u753B\u9762\uFF1B\u4E0D\u540C\u753B\u5E45\u7B49\u6BD4\u5BB9\u7EB3\u3002",
+        phases: [
+          "\u7B2C\u4E00\u5F20\u753B\u9762\u5728\u8F83\u5C0F\u83F1\u5F62\u7A97\u53E3\u4E2D\u51FA\u73B0\u3002",
+          "\u7A97\u53E3\u6301\u7EED\u5355\u5411\u589E\u5927\uFF0C\u540E\u65B9\u4E24\u6B21\u6362\u955C\u5404\u843D\u4E00\u62CD\u3002",
+          "\u7B2C50\u5E27\u8986\u76D6\u5168\u5E45\uFF0C\u6700\u540E10\u5E27\u4FDD\u6301\u5168\u5E45\u3002"
+        ],
+        details: [
+          "30fps\uFF0C\u517160\u5E27\u3002\u6807\u51C6\u6B63\u65B9\u5F62\u4E2D\u5FC3\u56FA\u5B9A(960,540)\uFF0C\u65CB\u8F6C45\u5EA6\uFF0C\u5BBD\u9AD8\u76F8\u7B49\u3002",
+          "\u8FB9\u957F\u5173\u952E\u70B9\u4E3A(0,720)/(20,1300)/(40,1900)/(50,2132)\uFF0C\u5206\u6BB5\u7EBF\u6027\u3001\u5355\u8C03\u589E\u5927\u3002\u7B2C50\u201359\u5E27\u4F7F\u7528\u5168\u5E45\u7A97\u53E3\u3002",
+          "\u540E\u65B9\u753B\u9762\u572820\u300140\u5E27\u786C\u5207\u3002\u4E09\u955C\u5171\u7528\u4E00\u4E2A0\u201359\u5E27\u7684\u7A97\u53E3\u65F6\u949F\uFF0C\u7B2C\u4E8C\u3001\u4E09\u955C\u4E0D\u91CD\u65B0\u6536\u7A97\u3002",
+          "\u5FAE\u8DDD\u753B\u9762\u4FDD\u6301\u539F16:9\u6784\u56FE\uFF0C\u4E0D\u989D\u5916\u653E\u5927\u6216\u5E73\u79FB\u3002\u793A\u610F\u5728\u6BCF\u6B21\u6362\u955C\u66FF\u6362\u5E95\u56FE\uFF0C\u7A97\u53E3\u4ECD\u6309\u540C\u4E00\u4E2A\u5F53\u524D\u5E27\u8BA1\u7B97\u3002"
+        ],
+        retain: "\u4E00\u6B21\u6301\u7EED\u5C55\u5F00\u7A7F\u8FC7\u4E09\u955C\uFF0C\u4E2D\u5FC3\u300145\u5EA6\u548C\u957F\u5BBD\u6BD4\u4FDD\u6301\u3002",
+        avoid: "\u4E0D\u91CD\u590D\u6536\u7F29\uFF0C\u4E0D\u6BCF\u955C\u91CD\u542F\uFF0C\u4E0D\u6DFB\u52A0\u767D\u8272\u5E95\u5361\u6216\u989D\u5916\u7F29\u653E\u3002"
+      }
+    },
+    {
+      kind: "composition",
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      domains: [
+        "animation",
+        "video"
+      ],
+      trigger: "\u6253\u5F00\u9884\u89C8\u64AD\u653E\uFF1B\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      actions: [
+        "three-column-aperture",
+        "rapid-cut",
+        "inventory-contour-fit",
+        "cross-aperture-turn",
+        "axial-layer-reseat",
+        "helical-screw-seat",
+        "diamond-aperture-release",
+        "barrel-stored-energy",
+        "meshed-gears-drive",
+        "balance-reciprocate",
+        "next-shot-preentry",
+        "fan-object-rise",
+        "wipe"
+      ],
+      assumptions: "\u673A\u68B0\u5706\u76D8\u4E3A\u53EF\u66FF\u6362\u7684\u81EA\u7F16\u77E2\u91CF\u8F7D\u4F53\uFF0C\u4E0D\u4F5C\u4E3A\u5236\u9020\u6216\u771F\u5B9E\u8D70\u65F6\u6A21\u578B\u3002",
+      id: "spatial-mechanical-sequence",
+      name: "\u5B9E\u666F\u5C42\u6B21\u4E0E\u8FDE\u7EED\u5F00\u7A97\u5C55\u793A",
+      category: "compositions",
+      duration_ms: 18e3,
+      preview_ms: 1e4,
+      summary: "\u4EE5\u8DE8\u955C\u659C\u5341\u5B57\u3001\u4E00\u6B21\u83F1\u5F62\u5C55\u5F00\u3001\u8F6E\u5ED3\u7B49\u8DDD\u540C\u6B65\u5347\u5165\u548C\u77E9\u5F62\u63A5\u955C\u7EC4\u7EC718\u79D2\u5B9E\u666F\u4EA7\u54C1\u5C55\u793A\u3002",
+      purpose: "\u5728\u51E0\u4F55\u526A\u8F91\u4E2D\u4FDD\u7559\u771F\u5B9E\u7A7A\u95F4\u3001\u6750\u8D28\u6DF1\u5EA6\u548C\u6301\u7EED\u8FD0\u52A8\u3002",
+      objects: "\u771F\u5B9E\u673A\u68B0\u4EA7\u54C1\u5F71\u50CF\u3001\u72EC\u7ACB\u51E0\u4F55\u7A97\u53E3\u3001\u540C\u4F4D\u56FE\u7EB8\u3001\u4E09\u5F20\u900F\u660E\u4E3B\u4F53\u4E0E\u7B80\u6D01\u82F1\u6587\u6807\u9898",
+      phases: [
+        "\u4E09\u5217\u5F00\u7A97\u5F15\u5165\u5B8C\u6574\u4E3B\u4F53\uFF0C\u96F6\u4EF6\u9648\u5217\u4E0E\u5168\u5E45\u56FE\u7EB8\u4E24\u6B21\u77ED\u95EA\u3002",
+        "\u957F\u81C2\u5341\u5B57\u6536\u7A84\u65CB\u8F6C\uFF0C\u8DE8\u8FC7\u7ED3\u6784\u548C\u5DE5\u5177\uFF1B\u5355\u4E00\u83F1\u5F62\u7A97\u63A5\u7EED\u4E09\u6BB5\u5FAE\u8DDD\u3002",
+        "\u7EC6\u8282\u4E0E\u6750\u8D28\u53CC\u955C\u5706\u7A97\u4EA4\u63A5\uFF0C\u4E09\u4E3B\u4F53\u6309\u8F6E\u5ED3\u540C\u6B65\u5347\u5165\uFF0C\u77E9\u5F62\u63A5\u955C\u5B8C\u6210\u843D\u7248\u3002"
+      ],
+      aliases: [
+        "MECHANICAL PULSE",
+        "v4.2",
+        "18\u79D2\u6000\u8868",
+        "\u5B9E\u666F\u7A97\u53E3",
+        "\u8F6E\u5ED3\u7B49\u8DDD"
+      ],
+      behaviors: [
+        "mask",
+        "continuous-window",
+        "silhouette-layout",
+        "overlap",
+        "sequence"
+      ],
+      action_variants: {
+        "cross-aperture-turn": "continuous-diagonal",
+        "three-column-aperture": "vertical-column-rise",
+        "rapid-cut": "full-frame-blueprint",
+        "next-shot-preentry": "paced-overlap",
+        "fan-object-rise": "aligned-silhouette",
+        wipe: "overlap-copy-handoff"
+      },
+      breakdown_mode: "sequence",
+      retain: "\u5B8C\u6574\u5B9E\u666F\u3001\u6750\u8D28\u5C42\u6B21\u3001\u7A97\u53E3\u8DE8\u955C\u6301\u7EED\u8FD0\u52A8\u3001\u4E3B\u4F53\u8F6E\u5ED3\u7B49\u8DDD\u4E0E18\u79D2\u8282\u594F\u3002",
+      avoid: "\u4E0D\u56E0\u5207\u955C\u91CD\u7F6E\u7A97\u53E3\uFF0C\u4E0D\u51BB\u7ED3\u91CD\u53E0\u5E95\u5C42\uFF0C\u4E0D\u62A0\u6389\u539F\u89C6\u9891\u771F\u5B9E\u53F0\u9762\u548C\u9634\u5F71\uFF0C\u4E0D\u628A\u4E09\u4E3B\u4F53\u7684\u900F\u660E\u5916\u6846\u7528\u4E8E\u7B49\u8DDD\u3002",
+      analogy: "\u7A97\u53E3\u50CF\u6301\u7EED\u79FB\u52A8\u7684\u53D6\u666F\u6846\uFF0C\u955C\u5934\u5728\u5B83\u540E\u65B9\u4EA4\u63A5\u3002",
+      recommendation: "\u9700\u898118\u79D2\u5B8C\u6574\u5B9E\u666F\u7A97\u53E3\u7F16\u821E\u65F6\u4F7F\u7528\uFF1B\u5355\u4E2A\u673A\u5236\u53D6\u5173\u8054\u52A8\u4F5C\u7684\u65B0\u793A\u4F8B\uFF0C32\u79D2\u65E9\u671F\u526A\u8F91\u4ECD\u7528\u6301\u7EED\u7A97\u53E3\u4E0E\u673A\u68B0\u7EC6\u8282\u5C55\u793A\u3002",
+      tempo_note: "30fps\uFF0C\u5171540\u5E27/18\u79D2\uFF1B20\u5E27\u4E00\u62CD\u7EC4\u7EC7\u5B8F\u89C2\u5FAE\u8DDD\uFF0C\u91CD\u53E0\u4EA4\u63A5\u540416\u5E27\u3002",
+      source: {
+        path: "catalog/effects/spatial-apertures.js",
+        factory: "spatial-mechanical-sequence",
+        dependencies: [
+          "catalog/effects/mechanical-windows-data.js",
+          "catalog/effects/mechanical-windows.js",
+          "catalog/effects/spatial-apertures-data.js"
+        ],
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        reference: {
+          name: "MECHANICAL PULSE v4.2 \xB7 \u7528\u6237\u539F\u521B\u51E0\u4F55\u7F16\u821E\u4E0E\u8F6E\u5ED3\u6392\u7248"
+        },
+        extraction: "\u63D0\u53D6\u4F5C\u8005\u539F\u521B\u7A97\u53E3\u4E0E\u6392\u7248\u51FD\u6570\uFF0C\u4FDD\u7559\u5168\u5C40\u5E27\u3001\u6301\u7EED\u5C55\u5F00\u3001\u540C\u4F4D\u77ED\u95EA\u548C\u53CC\u955C\u91CD\u53E0\uFF1B\u672A\u590D\u5236\u5916\u90E8\u6A21\u677F\u4EE3\u7801\u3002",
+        production_guide: "catalog/assets/mechanical-pulse/README.md",
+        remotion: {
+          component: "catalog/remotion/spatial-apertures.jsx",
+          export_name: "WiseSpatialApertures",
+          package_name: "wise-spatial-apertures",
+          files: [
+            "catalog/remotion/spatial-apertures.jsx",
+            "catalog/remotion/native-video.jsx",
+            "catalog/effects/mechanical-windows-data.js",
+            "catalog/effects/mechanical-windows.js",
+            "catalog/effects/spatial-apertures-data.js",
+            "catalog/effects/spatial-apertures.js",
+            "catalog/assets/mechanical-pulse/README.md",
+            "catalog/assets/mechanical-pulse/SOURCE.json",
+            "catalog/assets/mechanical-pulse/production/windows-v4.mjs",
+            "catalog/assets/mechanical-pulse/production/windows-v32.mjs",
+            "catalog/assets/mechanical-pulse/production/windows-v31.mjs",
+            "catalog/assets/mechanical-pulse/production/windows-v3.mjs",
+            "catalog/assets/mechanical-pulse/production/form-layout.mjs",
+            "catalog/assets/mechanical-pulse/production/timing-v42.mjs",
+            "LICENSE",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/mechanical-pulse/production/FilmV3.jsx",
+            "catalog/assets/mechanical-pulse/production/FilmV4.jsx",
+            "catalog/assets/mechanical-pulse/production/SpatialScenes.jsx",
+            "catalog/assets/mechanical-pulse/editable/FilmV3.jsx",
+            "catalog/assets/mechanical-pulse/editable/FilmV4.jsx",
+            "catalog/assets/mechanical-pulse/editable/Root.jsx",
+            "catalog/assets/mechanical-pulse/editable/SpatialScenes.jsx",
+            "catalog/assets/mechanical-pulse/editable/form-layout.mjs",
+            "catalog/assets/mechanical-pulse/editable/import-originals.mjs",
+            "catalog/assets/mechanical-pulse/editable/original-assets.json",
+            "catalog/assets/mechanical-pulse/editable/timing-v42.mjs",
+            "catalog/assets/mechanical-pulse/editable/windows-v3.mjs",
+            "catalog/assets/mechanical-pulse/editable/windows-v4.mjs",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/time-in-motion/verify-source.mjs"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1920,
+          height: 1080,
+          fps: 30,
+          exact_frames: true,
+          reuse_notes: "\u9ED8\u8BA4\u64AD\u653E1280\xD7720\u300130fps\u3001540\u5E27\u7684\u9759\u97F3\u7F13\u5B58\uFF0C\u4FDD\u7559\u539F4K\u6210\u7247\u7684\u6784\u56FE\u3001\u6587\u5B57\u3001\u7A97\u53E3\u53CA\u5207\u70B9\uFF1B\u5B83\u4E0D\u7B49\u540C\u4E8E4K\u91CD\u6E32\u67D3\u3002\u7F16\u8F91\u955C\u5934\u65F6\u6309README\u51C6\u5907\u81EA\u5DF1\u7684\u539F\u5A92\u4F53\uFF0C\u518D\u8FD0\u884Cstudio:editable\u3002\u7F16\u8F91\u7248\u4F7F\u7528OFL Oswald\uFF0C\u5B57\u5F62\u4E0E\u7F13\u5B58\u4E0D\u540C\u3002\u7B2C\u4E09\u65B9\u914D\u4E50\u53EA\u652F\u6301\u663E\u5F0F\u51C6\u5907\u81EA\u5DF1\u5DF2\u6388\u6743\u7684\u672C\u5730\u6587\u4EF6\uFF0C\u9ED8\u8BA4\u5173\u95ED\u3002\u72EC\u7ACB\u52A8\u4F5C\u4E0E\u7F16\u8F91\u7248\u5171\u7528\u539F\u7A97\u53E3\u3001\u6392\u7248\u4E0E\u5E27\u8868\u3002",
+          scripts: {
+            render: "remotion render index.jsx Motion out/motion.mp4 --concurrency=2",
+            "studio:editable": "remotion studio catalog/assets/mechanical-pulse/editable/Root.jsx",
+            "render:editable": "remotion render catalog/assets/mechanical-pulse/editable/Root.jsx MechanicalPulse out/edited.mp4 --concurrency=2",
+            "check:source": "node verify-source.mjs"
+          },
+          binary_files: [
+            {
+              source: "catalog/assets/mechanical-pulse/movie.mp4",
+              target: "public/catalog/assets/mechanical-pulse/movie.mp4",
+              bytes: 3317754,
+              sha256: "fc1f6ab8aac84716d94fd99a942d5a4d8e791b388c777f637d5d604650d54968"
+            },
+            {
+              source: "catalog/assets/mechanical-pulse/watch-front.webp",
+              target: "public/catalog/assets/mechanical-pulse/watch-front.webp",
+              bytes: 209108,
+              sha256: "c207abcde5917eb41da04211675208375d9eec34c99838c979162be9a1b21dfb"
+            },
+            {
+              source: "catalog/assets/mechanical-pulse/watch-angle.webp",
+              target: "public/catalog/assets/mechanical-pulse/watch-angle.webp",
+              bytes: 178668,
+              sha256: "8bb67f973f2cba191d736bb568aad24ef9f2ca31bd338df14a7b1e8900511dbb"
+            },
+            {
+              source: "catalog/fonts/Oswald-Bold.woff2",
+              target: "public/catalog/fonts/Oswald-Bold.woff2",
+              bytes: 12112,
+              sha256: "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+            }
+          ],
+          file_map: {
+            "catalog/assets/time-in-motion/verify-source.mjs": "verify-source.mjs"
+          },
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs"
+        },
+        native_scene: "remotion",
+        frame_cache: {
+          video: "catalog/assets/mechanical-pulse/movie.mp4",
+          start_frame: 0,
+          frames: 540,
+          fps: 30,
+          width: 1280,
+          height: 720,
+          poster: "catalog/assets/mechanical-pulse/posters/F0300.jpg"
+        },
+        assets: [
+          "catalog/assets/mechanical-pulse/movie.mp4",
+          "catalog/assets/mechanical-pulse/posters/F0300.jpg",
+          "catalog/assets/mechanical-pulse/SOURCE.json",
+          "catalog/assets/mechanical-pulse/watch-front.webp",
+          "catalog/assets/mechanical-pulse/watch-angle.webp"
+        ]
+      },
+      requires_preparation: true,
+      reproduction: {
+        objects: "\u771F\u5B9E\u673A\u68B0\u4EA7\u54C1\u5F71\u50CF\u3001\u72EC\u7ACB\u51E0\u4F55\u7A97\u53E3\u3001\u540C\u4F4D\u56FE\u7EB8\u3001\u4E09\u5F20\u900F\u660E\u4E3B\u4F53\u4E0E\u7B80\u6D01\u82F1\u6587\u6807\u9898",
+        presentation: "1920\xD71080\u6A2A\u5C4F\u8BBE\u8BA1\uFF0C\u8FD1\u9ED1#080a0a\u3001\u6696\u7EB8#eeece3\u3001\u91D1\u8272#bba67b\uFF0C\u771F\u5B9E\u91D1\u5C5E\u4E0E\u84DD\u94A2\u7EC6\u8282\u3002\u5DE6\u6587\u53F3\u56FE\u3001\u5168\u5E45\u5FAE\u8DDD\u4E0E\u4E09\u8054\u4E3B\u4F53\u4EA4\u66FF\uFF1B\u5236\u4F5C\u82F1\u6587\u91C7\u7528\u6388\u6743Oswald\uFF0C\u4E3B\u4F53\u4FDD\u6301\u539F\u6784\u56FE\u3002",
+        phases: [
+          "\u4E09\u5217\u5F00\u7A97\u5F15\u5165\u5B8C\u6574\u4E3B\u4F53\uFF0C\u96F6\u4EF6\u9648\u5217\u4E0E\u5168\u5E45\u56FE\u7EB8\u4E24\u6B21\u77ED\u95EA\u3002",
+          "\u957F\u81C2\u5341\u5B57\u6536\u7A84\u65CB\u8F6C\uFF0C\u8DE8\u8FC7\u7ED3\u6784\u548C\u5DE5\u5177\uFF1B\u5355\u4E00\u83F1\u5F62\u7A97\u63A5\u7EED\u4E09\u6BB5\u5FAE\u8DDD\u3002",
+          "\u7EC6\u8282\u4E0E\u6750\u8D28\u53CC\u955C\u5706\u7A97\u4EA4\u63A5\uFF0C\u4E09\u4E3B\u4F53\u6309\u8F6E\u5ED3\u540C\u6B65\u5347\u5165\uFF0C\u77E9\u5F62\u63A5\u955C\u5B8C\u6210\u843D\u7248\u3002"
+        ],
+        details: [
+          "1920\xD71080\u8BBE\u8BA1\uFF0C30fps\uFF0C\u5171540\u5E27/18\u79D2\u3002\u955C\u5934\u8D77\u70B90/40/140/180/220/280/300/320/340/372/420/460\uFF1B\u524D340\u5E27\u4E0E\u540E\u534A\u6BB5\u5171\u7528\u540C\u4E00\u65F6\u95F4\u7EBF\u3002",
+          "\u56FE\u7EB8\u663E\u9732\u4E3A\u5168\u5C40[48,56)\u4E0E[68,76)\uFF0C0\u201321\u5E27\u4E3A\u4E09\u5217\u5F00\u7A97\uFF1B\u96F6\u4EF6\u9648\u521740\u2013139\u5E27\u4FDD\u6301\u5168\u5E45\u3002",
+          "\u5341\u5B57158\u2013247\u5E27\uFF0CF170\u540E\u65CB\u5230\u221228\u5EA6\uFF0CF202\u2013240\u539A\u5EA6\u8FDE\u7EED\u589E\u52A0\uFF0C\u7A7F\u8FC7F220\u5DE5\u5177\u5207\u70B9\uFF1BF240\u540E\u5B8C\u6574\u9732\u51FA\u5DE5\u5177\u52A8\u4F5C\u3002",
+          "\u5FAE\u8DDD280/300/320\u540420\u5E27\uFF0C\u901F\u73871.875/3/3.375\uFF1B45\u5EA6\u65B9\u7A97\u8FB9\u957F720\u21921300\u21921900\u21922132\uFF0CF330\u540E\u5168\u5E45\u3002",
+          "\u7EC6\u8282F340\u2013387\uFF0C\u6E903.8\u79D2\u30011.95\u500D\uFF1B\u6750\u8D28F372\u2013419\uFF0C\u6E900.15\u79D2\u30011.75\u500D\u3002\u6750\u8D28\u5706\u5FC3(1430,540)\uFF0C\u534A\u5F840\u21921640\uFF0C16\u5E27\u3001cubic-bezier(.16,1,.3,1)\uFF0C\u5E95\u5C42\u4FDD\u6301\u8FD0\u52A8\u3002",
+          "\u7EC6\u8282\u4E0E\u6750\u8D28\u53F3\u4FA7\u680Fleft=930\u3001width=990\u3001\u9AD81080\uFF1B\u5B9E\u9645\u7AD6\u7247\u6309\u539F3:4\u6BD4\u4F8Bcontain\u4E3A810\xD71080\u3002\u5DE6\u4FA7\u6587\u5B57\u4FDD\u7559\u72EC\u7ACB\u7248\u533A\uFF0C\u91D1\u5C5E\u73AF\u5883\u7EB9\u7406\u8F7B\u5FAE\u7F29\u653E\u3002",
+          "\u4E09\u4E3B\u4F53F420\u2013475\uFF0C\u56FA\u5B9A\u221211/0/+11\u5EA6\uFF0C\u4E2D\u5FC3Y=710+\u5171\u540C\u504F\u79FB\uFF0C\u53EF\u89C1\u8FB9\u8DDD96\u3001\u95F4\u9699187.476020\uFF1B\u5171\u540C48\u21920\u5165\u573A\u4E0E0\u2192\u221216\u6301\u7EED\u4E0A\u79FB\u53E0\u52A0\u3002",
+          "\u7ED3\u5C3EF460\u2013539\uFF1B\u53F3\u5411\u5DE6\u77E9\u5F6216\u5E27\u63A5\u5165\uFF0C\u4E09\u4E3B\u4F53\u5E95\u5C42\u6301\u7EED\u81F3475\uFF1B\u65E7\u6587\u6848F450\u2013460\u6DE1\u51FA\uFF0C\u65B0\u6587\u6848F472\u2013480\u51FA\u73B0\u3002F528\u2013539\u753B\u9762\u7EDF\u4E00\u6DE1\u51FA\u3002"
+        ],
+        retain: "\u5B8C\u6574\u5B9E\u666F\u3001\u6750\u8D28\u5C42\u6B21\u3001\u7A97\u53E3\u8DE8\u955C\u6301\u7EED\u8FD0\u52A8\u3001\u4E3B\u4F53\u8F6E\u5ED3\u7B49\u8DDD\u4E0E18\u79D2\u8282\u594F\u3002",
+        avoid: "\u4E0D\u56E0\u5207\u955C\u91CD\u7F6E\u7A97\u53E3\uFF0C\u4E0D\u51BB\u7ED3\u91CD\u53E0\u5E95\u5C42\uFF0C\u4E0D\u62A0\u6389\u539F\u89C6\u9891\u771F\u5B9E\u53F0\u9762\u548C\u9634\u5F71\uFF0C\u4E0D\u628A\u4E09\u4E3B\u4F53\u7684\u900F\u660E\u5916\u6846\u7528\u4E8E\u7B49\u8DDD\u3002"
       }
     }
   ],

@@ -1,6 +1,7 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function (F) {
   F['rapid-cut'] = (root, M, definition) => {
+    if (definition?.variant_id === 'full-frame-blueprint') return globalThis.WiseSpatialApertures.make(root, definition);
     if (definition?.variant_id === 'registered-drawing') return globalThis.WiseMechanicalWindows.make(root, definition);
     if (definition?.variant_id === 'print-burst') return globalThis.WiseGeometricPoster.make(root, M, definition, 'burst');
     // 原录屏的加速帧表：首张停留 17 帧，后面每 4–5 帧硬切；只取换图节奏。
@@ -32,7 +33,8 @@
       active = next;
     };
   };
-  F.wipe = (root, M) => {
+  F.wipe = (root, M, definition) => {
+    if (definition?.variant_id === 'overlap-copy-handoff') return globalThis.WiseSpatialApertures.make(root, definition);
     const s = M.scene(root, '<div class="panel"><strong>这一刻。</strong><small>原画面</small></div><div class="panel alt"><strong>下一刻。</strong><small>新画面</small></div>');
     return (t, o) => { const p = M.span(t, 700, 2500, o.ease); s.one('.panel.alt').style.clipPath = `inset(0 ${(1 - p) * 100}% 0 0 round 24px)`; };
   };

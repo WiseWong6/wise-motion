@@ -14,7 +14,7 @@
 现实类比：从陈列零件到完整结构，再以机械运行和词块组织产品节奏。
 需要保留：真实主体、机械动作、词块顺序、13个镜头切点和44秒原创配乐。
 明确排除：不要替换成旧怀表视频；不要通过素材叠加猜测同一三维空间。
-对应参考：本地目录「精密结构与词块产品展示」；所用动作：陈列零件旋合归位、轴向分层回装、螺丝轴向旋入锁紧、发条盒储能运行、同轴轮系啮合传动、摆轮与游丝往返联动、三联主体错峰升入、画框侧滑显现、整词裁切升入、稀疏刻度反向旋转
+对应参考：本地目录「精密结构与词块产品展示」；所用动作：陈列零件旋合归位、轴向分层回装、螺丝轴向旋入锁紧、发条盒储能运行、同轴轮系啮合传动、摆轮与游丝往返联动、三联主体升入、画框侧滑显现、整词裁切升入、稀疏刻度反向旋转
 源码：catalog/effects/time-in-motion.js 中的 time-in-motion-sequence
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：怀表为动作示例，可替换主体；物理钟表状态仅为视觉演示。
@@ -33,7 +33,7 @@
 - 效果参考 TIME, IN MOTION · 用户原创横屏机械怀表作品。
 - 从最新44秒成片的连续原生帧提炼动作；完整剪辑与对应建模、机械及镜头源码另随文字源码交付。缓存仅缩小画幅，没有重绘、重排或补帧。许可为 Apache-2.0。Remotion、React与所用素材遵循各自许可，见来源说明。
 
-所用动作：[陈列零件旋合归位](inventory-contour-fit.md)、[轴向分层回装](axial-layer-reseat.md)、[螺丝轴向旋入锁紧](helical-screw-seat.md)、[发条盒储能运行](barrel-stored-energy.md)、[同轴轮系啮合传动](meshed-gears-drive.md)、[摆轮与游丝往返联动](balance-reciprocate.md)、[三联主体错峰升入](fan-object-rise.md)、[画框侧滑显现](framed-product-slide.md)、[整词裁切升入](word-block-rise.md)、[稀疏刻度反向旋转](sparse-dial-counterturn.md)。
+所用动作：[陈列零件旋合归位](inventory-contour-fit.md)、[轴向分层回装](axial-layer-reseat.md)、[螺丝轴向旋入锁紧](helical-screw-seat.md)、[发条盒储能运行](barrel-stored-energy.md)、[同轴轮系啮合传动](meshed-gears-drive.md)、[摆轮与游丝往返联动](balance-reciprocate.md)、[三联主体升入](fan-object-rise.md)、[画框侧滑显现](framed-product-slide.md)、[整词裁切升入](word-block-rise.md)、[稀疏刻度反向旋转](sparse-dial-counterturn.md)。
 
 ## Remotion 复用
 
