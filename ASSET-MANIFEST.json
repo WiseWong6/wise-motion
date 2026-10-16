@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "catalog/app.css",
-      "bytes": 46388,
-      "sha256": "137668f878a5690fea3e36422e5e1d819fd487a71b9817e1546736c5cc2444ad"
+      "bytes": 46482,
+      "sha256": "59557e27bf4cf1cb66a069b0385cb92007754bf81e8cce78f31852bdac73d0cb"
     },
     {
       "path": "catalog/app.js",
@@ -2248,8 +2248,8 @@
     },
     {
       "path": "catalog/effects/aboutlove.js",
-      "bytes": 8437,
-      "sha256": "7841c67ad731f3fa42b7f2b882d6549fdfe89105f9a6f3bf9eb403d61e2f8ce1"
+      "bytes": 8648,
+      "sha256": "189eabd9471464e57f39f7ff3dd1f86097fec883ad4d7bcccaacc00ed60eb367"
     },
     {
       "path": "catalog/effects/attention.js",
@@ -2818,8 +2818,8 @@
     },
     {
       "path": "catalog/preview-size.js",
-      "bytes": 673,
-      "sha256": "c49b5d1a47271319f47884a69772afca705087780f81234fe91031a39072a8c8"
+      "bytes": 743,
+      "sha256": "54bdc97d752bb4971fd6ca1d4130e56852597f166caad392a56f2eaa1adc2c0a"
     },
     {
       "path": "catalog/registry-data.js",
@@ -2833,8 +2833,8 @@
     },
     {
       "path": "catalog/related-preview.js",
-      "bytes": 6503,
-      "sha256": "6671a5f29a3bddf9759bdb4d01bca0b2b2baa9cc27c2e2b9d0f039ef23a630da"
+      "bytes": 6637,
+      "sha256": "76c7db2eec542931a261b5f21036d5bd551df54297896e12035ab8126ca78be5"
     },
     {
       "path": "catalog/remotion/aboutlove.jsx",
@@ -3013,8 +3013,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 3394220,
-      "sha256": "3aef4f40eabdb6aeb69066df515bdc3f91d5fce8e7fe503dbf25e0c5ed133f1f"
+      "bytes": 3394434,
+      "sha256": "d6914d466c3f42626fbb168538ecf4951d0738b460332d6e07560ed6619cc8c4"
     },
     {
       "path": "catalog/runtime.js",

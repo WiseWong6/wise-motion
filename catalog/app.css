@@ -555,7 +555,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
 .related-dialog-head h2 { margin:6px 0 0; font-size:20px; font-weight:700; }
 .related-dialog-head p { margin:0; }
 .related-dialog > .hint { margin:12px 0 16px; }
-.related-preview { position:relative; width:100%; aspect-ratio:16 / 9; overflow:hidden; background:var(--canvas); border:1px solid var(--line); border-radius:var(--r-sm); }
+.related-preview { position:relative; width:100%; max-width:calc(60dvh * var(--preview-ratio,16 / 9)); margin-inline:auto; aspect-ratio:var(--preview-ratio,16 / 9); overflow:hidden; background:var(--canvas); border:1px solid var(--line); border-radius:var(--r-sm); }
 .related-playbar { display:flex; align-items:center; gap:12px; margin-top:12px; }
 .related-playbar input { flex:1; min-width:0; }
 .related-playbar output { min-width:74px; text-align:right; color:var(--muted); font-size:12px; font-variant-numeric:tabular-nums; }

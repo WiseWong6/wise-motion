@@ -51,13 +51,16 @@
   const env={__timelines:{},__alMode:config.mode||'full',__alNoCaret:Boolean(config.omit_caret),__alAllows:group=>!config.mode||config.mode==='full'||config.mode===group};
   const mount=p=>{
    const scene=global.WiseAboutLoveData.scenes[p.scene];if(!scene)throw Error('动作场景不存在：'+p.scene);
-   const el=doc.createElement('div');el.className='al-piece';el.dataset.sourceScene=scene.id;el.style.zIndex=String(scene.track);el.style.visibility='hidden';stage.append(el);
+   const el=doc.createElement('div');el.className='al-piece';el.dataset.sourceScene=scene.id;el.style.visibility='hidden';stage.append(el);
    if(!config.composition){el.innerHTML=scene.html;el.querySelectorAll('canvas').forEach(trackCanvas);}
    // Font loading, source initialization and all offscreen canvases belong to this instance.
    return {...p,el,scene};
   };
   const segments=(config.segments||[{scene:config.scene,scene_id:config.scene_id,start:config.start,at:0,duration:duration/1000}]).map(mount);
   const overlays=(config.overlays||[]).map(mount),pieces=[...segments,...overlays];
+  // Keep source track order without isolating each scene: the film's soft-light
+  // canvas must blend with the main picture, rather than an empty wrapper.
+  for(const p of [...pieces].sort((a,b)=>a.scene.track-b.scene.track))stage.append(p.el);
   const fonts=acquireFonts(doc,config.version,fontBaseUrl);
   function preparePiece(p){
    if(p.timeline)return;

@@ -44,8 +44,8 @@ test('初始设置、相同主题及尺寸不重复提交播放器，真正的�
  }finally{h.close();}
 });
 test('原画预览填满对应比例，窗口缩放与静态保留不把竖画再次缩进横框',()=>{
- for(const [width,height,viewportWidth,viewportHeight] of [[900,1200,540,720],[1080,1920,405,720],[900,1080,600,720],[640,360,1280,720]]){
-  const h=browserHarness({scene:{width,height}});
+ for(const [width,height,viewportWidth,viewportHeight] of [[900,1200,540,720],[1080,1920,405,720],[900,1080,600,720],[640,360,1280,720]])for(const original of [{scene:{width,height}},{source:{remotion:{width,height}}}]){
+  const h=browserHarness(original);
   try{
    h.root.getBoundingClientRect=()=>({width:viewportWidth,height:viewportHeight});h.controller.fit();
    const mount=h.root.firstElementChild;

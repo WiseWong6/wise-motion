@@ -156,6 +156,16 @@ test('three approved full sequences retain all main scenes and persistent layers
     assert.equal(def.aboutlove.segments.length,count);assert.equal(def.aboutlove.overlays.length,layers);
     const shadow=el.firstChild.shadowRoot;
     assert.equal(shadow.querySelectorAll('.al-piece').length,count+layers);
+    const ordered=[...shadow.querySelectorAll('.al-piece')];
+    const sourcePieces=[...def.aboutlove.segments,...def.aboutlove.overlays]
+     .map(p=>w.WiseAboutLoveData.scenes[p.scene]).sort((a,b)=>a.track-b.track);
+    assert.deepEqual(ordered.map(p=>p.dataset.sourceScene),sourcePieces.map(p=>p.id),'主画面、背景与字幕保持原轨道顺序');
+    for(const piece of ordered)assert.ok(!piece.style.zIndex||piece.style.zIndex==='auto','片段外壳不能隔断颗粒层与主画面的混合');
+    if(id==='aboutlove-word-world-sequence'){
+     const film=ordered.find(p=>p.dataset.sourceScene==='film');
+     assert.equal(film,ordered.at(-1),'胶片层位于主画面和字幕之上');
+     assert.match(film.querySelector('style').textContent,/#film-canvas\s*\{\s*mix-blend-mode:\s*soft-light/,'保留原胶片柔光混合，不能改成不透明灰底');
+    }
     for(const part of def.aboutlove.segments){
      const ms=(part.at+part.duration*.5)*1000;draw(ms);
      assert.equal(el.dataset.sourceScene,part.scene_id);

@@ -23,6 +23,8 @@ test('全部组合直接关联独立动作，弹窗从头自动播放且不改�
         await players.get(d.getElementById('related-preview')).ready;
         assert.ok(d.getElementById('related-dialog').open);
         assert.equal(d.getElementById('related-title').textContent,target.name);
+        const size=w.MotionPreview.size(target);
+        assert.equal(Number(d.getElementById('related-preview').style.getPropertyValue('--preview-ratio')),size.width/size.height,target.name+' 弹窗保持原画幅');
         assert.equal(d.querySelector('#related-preview .motion-stage').dataset.effect,id);
         assert.equal(d.getElementById('related-scrub').value,'0');
         assert.equal(d.getElementById('related-play').getAttribute('aria-label'),'暂停相关动作');

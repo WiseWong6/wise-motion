@@ -2,7 +2,33 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {environment} from './helpers.mjs';
+import {data,environment} from './helpers.mjs';
+import previewApi from '../catalog/preview-size.js';
+
+test('预览优先采用原画尺寸，完整组合沿用交付画幅，缺少尺寸时才使用默认横幅',()=>{
+ for(const effect of data.effects.filter(e=>e.aboutlove?.composition)){
+  assert.deepEqual(previewApi.size(effect),{width:270,height:360},effect.name);
+  assert.equal(effect.source.remotion.width/effect.source.remotion.height,3/4);
+ }
+ assert.deepEqual(previewApi.size({scene:{width:900,height:1080},source:{remotion:{width:1920,height:1080}}}),{width:300,height:360});
+ assert.deepEqual(previewApi.size({scene:{width:0,height:1080},source:{remotion:{width:1080,height:1440}}}),{width:270,height:360});
+ assert.deepEqual(previewApi.size({source:{remotion:{width:NaN,height:1440}}}),{width:640,height:360});
+});
+
+test('三组关于爱组合使用原竖幅外框，切回普通动作时恢复横幅',async()=>{
+ const env=await environment(true,{staticPreview:true});
+ try{
+  const d=env.w.document,shell=d.getElementById('preview').closest('.preview-shell');
+  d.querySelector('[data-kind="composition"]').click();
+  for(const effect of data.effects.filter(e=>e.aboutlove?.composition)){
+   d.querySelector(`[data-effect="${effect.id}"]`).click();
+   assert.equal(Number(shell.style.getPropertyValue('--preview-ratio')),3/4,effect.name);
+  }
+  d.querySelector('[data-kind="action"]').click();
+  d.querySelector('[data-effect="fade-rise"]').click();
+  assert.equal(Number(shell.style.getPropertyValue('--preview-ratio')),16/9);
+ }finally{env.close();}
+});
 
 test('切换不同原画比例后预览框同步适配，原作画布保持自身尺寸并恢复横画',async()=>{
  const env=await environment(true,{staticPreview:true});

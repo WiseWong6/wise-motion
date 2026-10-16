@@ -26,6 +26,8 @@
       $('related-variant').innerHTML=(selected.variants||[]).map(item=>`<option value="${global.MotionKit.escape(item.id)}">${global.MotionKit.escape(item.label)}</option>`).join('');
       $('related-variant').value=selected.variant_id||'';
       host.setAttribute('aria-label',selected.name);
+      const size=global.MotionPreview.size(selected);
+      host.style.setProperty('--preview-ratio',String(size.width/size.height));
       player=selected.kind==='recipe'
         ?global.MotionHistoryRuntime.create(host,selected,{caseId:selected.selected_entry.id,onUpdate:sync})
         :(global.MotionLocalPreview||global.MotionRuntime).create(host,selected,{onUpdate:sync});
