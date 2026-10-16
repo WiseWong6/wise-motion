@@ -1,5 +1,5 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
-import React, {useId, useLayoutEffect, useRef} from 'react';
+import React, {useId} from 'react';
 import {AbsoluteFill, useCurrentFrame, useVideoConfig} from 'remotion';
 import '../effects/mechanical-windows-data.js';
 import '../effects/mechanical-windows.js';
@@ -30,21 +30,7 @@ export function MechanicalWindowClip({effectId='cross-aperture-turn',variantId,s
 }
 
 export function WiseMechanicalWindows({effectId='cross-aperture-turn',variantId,speed=1,...props}) {
-  if(effectId==='mechanical-window-sequence')return <WiseNativeVideo {...props}
-    definition={props.definition||globalThis.WiseMechanicalWindows.sequence} speed={speed}/>;
-  return <WindowDemonstration effectId={effectId} variantId={variantId} speed={speed}/>;
-}
-function WindowDemonstration({effectId,variantId,speed}) {
-  const frame=useCurrentFrame(),{fps,width,height}=useVideoConfig();
-  const root=useRef(null),painter=useRef(null);
-  useLayoutEffect(()=>{
-    painter.current=globalThis.WiseMechanicalWindows.make(root.current,{id:effectId,variant_id:variantId});
-    return ()=>{painter.current?.destroy();painter.current=null;};
-  },[effectId,variantId]);
-  useLayoutEffect(()=>{painter.current?.(frame/fps*1000*speed);},[frame,fps,speed,effectId,variantId]);
-  const scale=Math.min(width/640,height/360);
-  return <AbsoluteFill style={{background:'#101211',overflow:'hidden'}}>
-    <div ref={root} style={{position:'absolute',width:640,height:360,left:(width-640*scale)/2,
-      top:(height-360*scale)/2,transformOrigin:'0 0',transform:`scale(${scale})`}}/>
-  </AbsoluteFill>;
+  return <WiseNativeVideo {...props}
+    definition={props.definition?.source?.frame_cache?props.definition:
+      globalThis.WiseMechanicalWindows.definitionFor(effectId,variantId)} speed={speed}/>;
 }

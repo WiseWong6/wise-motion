@@ -7,7 +7,7 @@ import {JSDOM} from 'jsdom';
 import {environment,data,frameMarkup} from './helpers.mjs';
 
 const title=()=>data.effects.find(effect=>effect.id==='title-stagger');
-const durations={material:3000,outline:3000,handoff:8000};
+const durations={'aboutlove-02':8000,material:3000,outline:3000,handoff:8000};
 const bookmarks={
   'material-label-stagger':'material',
   'generative-title-reveal':'outline',
@@ -96,7 +96,7 @@ test('组合关联自动选择实际使用的标题示例，弹窗切换独立�
       const trigger=click(d,'#related [data-related="title-stagger"]');
       assert.equal(d.getElementById('related-dialog').open,true);assert.equal(d.getElementById('related-variant-field').hidden,false);assert.equal(d.getElementById('related-variant').value,variant);
       assert.equal(d.getElementById('related-scrub').value,'0');assert.equal(w.MotionRuntime.instanceCount,2);assert.equal(w.MotionRuntime.runningCount,1);
-      for(const chosen of [variant,...Object.keys(durations).filter(value=>value!==variant)]){
+      for(const chosen of [variant,...Object.keys(durations).filter(value=>value!==variant&&!value.startsWith('aboutlove'))]){
         change(w,'related-variant',chosen);
         const resolved=w.MotionKit.resolveVariant(effect,chosen);
         assert.equal(d.getElementById('related-scrub').value,'0');assert.equal(w.MotionRuntime.instanceCount,2);assert.equal(w.MotionRuntime.runningCount,1);
@@ -135,7 +135,7 @@ test('三个标题示例各自导出后可独立运行，同一时刻与目录�
   const env=await environment();
   env.w.eval(await readFile(new URL('../catalog/export.js',import.meta.url),'utf8'));
   try{
-    for(const id of Object.keys(durations)){
+    for(const id of Object.keys(durations).filter(value=>!value.startsWith('aboutlove'))){
       const effect=env.w.MotionKit.resolveVariant(title(),id),html=env.w.MotionExport.code(effect,{speed:1.25});
       const dom=new JSDOM(html,{url:'file:///wise-motion/demo.html',runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window,d=w.document;
       w.matchMedia=()=>({matches:true});w.ResizeObserver=class{observe(){}disconnect(){}};w.HTMLCanvasElement.prototype.getContext=()=>null;

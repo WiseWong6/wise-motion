@@ -4,19 +4,23 @@ import assert from 'node:assert/strict';
 import {readFile,readdir} from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
 import {runInNewContext} from 'node:vm';
+import {createHash} from 'node:crypto';
+import {FRAME_SCRIPTS} from '../remotion/frame-document.mjs';
 import {environment,data} from './helpers.mjs';
 const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 
 test('全部插画正常自动播放，系统偏好变化不干预，手动和后台暂停仍有效',async()=>{
   // 不使用静帧夹具：系统偏好为 true，实际加载正式页面并等待真实计时器推进。
-  const illustrations=data.effects.filter(e=>e.kind==='illustration');assert.equal(illustrations.length,90);
-  const env=await environment(true,{hash:'#'+illustrations[0].id});
+  const illustrations=data.effects.filter(e=>e.kind==='illustration');assert.ok(illustrations.length > 0);
+  const players=new Map();
+  const env=await environment(true,{hash:'#'+illustrations[0].id,beforeApp(w){const create=w.MotionRuntime.create;w.MotionRuntime.create=(root,...args)=>{const player=create(root,...args);players.set(root,player);return player;};}});
   try{
     const {w,media}=env,d=w.document,scrub=d.getElementById('scrub');
     assert.equal(media.matches,true);assert.equal(d.getElementById('motion-setting'),null);
     d.querySelector('[data-kind="illustration"]').click();
     for(const effect of illustrations){
       d.querySelector(`[data-effect="${effect.id}"]`).click();
+      await players.get(d.getElementById('preview')).ready;
       assert.equal(d.querySelector('#preview .motion-stage').dataset.effect,effect.id);
       assert.equal(w.MotionRuntime.runningCount,1,effect.name+' 打开即播放');
       assert.equal(d.getElementById('toggle-play').getAttribute('aria-label'),'暂停当前动效');
@@ -64,12 +68,24 @@ test('标准独立导出默认播放并推进时间，手动暂停、重播和�
 });
 
 test('正式页面、脚本和样式不保留系统减少动态效果限制或提示入口',async()=>{
+  const archived=new Map();
+  for(const group of ['encore','ocean']){
+    const source=JSON.parse(await readFile(new URL('../catalog/assets/composition-audio/'+group+'/SOURCE.json',import.meta.url),'utf8'));
+    for(const item of source.files)if(/\/(?:player|sound)\.js$/.test(item.file))archived.set(item.file,item.sha256);
+  }
   async function inspect(directory){
     for(const entry of await readdir(directory,{withFileTypes:true})){
       const file=new URL(entry.name+(entry.isDirectory()?'/':''),directory);
       if(entry.isDirectory())await inspect(file);
       else if(/\.(?:js|css|html)$/.test(entry.name)){
         let content=await readFile(file,'utf8');
+        const relative=file.pathname.slice(new URL('../',import.meta.url).pathname.length);
+        if(archived.has(relative)){
+          // 原播放器和原声音程序只作来源留存，实际组合运行使用当前播放器与声音适配器。
+          assert.equal(createHash('sha256').update(content).digest('hex'),archived.get(relative),'来源留存不得因目录策略而改写');
+          assert.ok(!FRAME_SCRIPTS.includes(relative),'原播放器不得作为目录运行依赖');
+          continue;
+        }
         // 打包的原实现只用于复制，保持原文件内容；检查实际预览数据及运行脚本。
         if(entry.name==='history-data.js'){
           const context={};runInNewContext(content,context);

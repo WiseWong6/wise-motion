@@ -1,25 +1,28 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {data, environment} from './helpers.mjs';
+import {data, environment,legacyDefinition,frameMarkup as originalFrameMarkup} from './helpers.mjs';
+const frameMarkup=root=>originalFrameMarkup(root,{canonicalAttributes:true});
 test('全部标准样例在任意定位后均可回到相同画面，资源可全部释放', async () => {
   const env = await environment();
   try {
     const {w,listeners} = env, root = w.document.getElementById('root');
     for (const e of data.effects) {
       const player = w.MotionRuntime.create(root, e);
+      await player.ready;assert.equal(player.error,null,e.id);
       assert.equal(w.MotionRuntime.instanceCount, 1, e.id);
       assert.equal(w.MotionRuntime.runningCount, 0, e.id);
       for (const p of [0,.2,.48,.8,1]) {
         const time = e.duration_ms * p;
-        player.seek(time); const snapshot = root.innerHTML;
-        assert.ok(!/NaN|Infinity|undefined/.test(snapshot), e.id + ' 有无效画面参数');
+        player.seek(time); const snapshot = frameMarkup(root);
+        // 内嵌图片的编码字节可恰好出现 NaN 等字母，只检查实际图形参数和文字。
+        assert.ok(!/NaN|Infinity|undefined/.test(snapshot.replace(/data:[^"]*/g,'data:asset')), e.id + ' 有无效画面参数');
         player.seek(e.duration_ms * (1 - p)); player.seek(time);
-        assert.equal(root.innerHTML, snapshot, e.id + ' 反复定位改变了结果');
+        assert.equal(frameMarkup(root), snapshot, e.id + ' 反复定位改变了结果');
       }
       for (const easing of e.parameters.ease?.options || ['linear']) {
-        player.setEase(easing); player.seek(e.preview_ms); const snapshot = root.innerHTML;
-        player.seek(0); player.seek(e.preview_ms); assert.equal(root.innerHTML, snapshot, e.id + ' 调节节奏后不可重复');
+        player.setEase(easing); player.seek(e.preview_ms); const snapshot = frameMarkup(root);
+        player.seek(0); player.seek(e.preview_ms); assert.equal(frameMarkup(root), snapshot, e.id + ' 调节节奏后不可重复');
       }
       player.setSpeed(.5); assert.equal(player.speed, .5);
       player.setSpeed(2); assert.equal(player.speed, 2);
@@ -58,7 +61,7 @@ test('数字和逐字显现的允许节奏不会反向退回', async () => {
   try {
     const {w} = env, root = w.document.getElementById('root');
     for (const id of ['count-up','type-reveal']) {
-      const e = data.effects.find(x => x.id === id);
+      const e = legacyDefinition(data.effects.find(x => x.id === id));
       const player = w.MotionRuntime.create(root,e);
       for (const easing of e.parameters.ease?.options || [e.default_ease]) {
         player.setEase(easing); let previous = 0;

@@ -2,6 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {readHistorySource} from './history-sources.mjs';
 import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {history,state} from '../scripts/history.mjs';
@@ -39,7 +40,7 @@ test('每条历史审查均有出处，案例源码与原片范围没有混并�
     }
   }
   const evidence=JSON.parse(await readFile(state+'/source-evidence.json','utf8'));
-  for(const file of evidence)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256,file.file+' 在本次审查期间发生改变');
+  for(const file of evidence)assert.equal(createHash('sha256').update(await readHistorySource(file)).digest('hex'),file.sha256,file.file+' 在本次审查期间发生改变');
 });
 test('相似旧名称不偷换动作：柱高、内部翻卷、时间压缩与有停顿回放保持差别',()=>{
   const find=id=>historical.recipes.find(r=>r.history_id===id);

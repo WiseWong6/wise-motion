@@ -81,5 +81,5 @@ test('合并后的标题动作在三个组合中仍指向各自原样式和原�
     assert.equal(variants.get(variant)?.duration_ms,duration,variant+' 保留原时长');
     assert.equal(variants.get(variant)?.timing,undefined,variant+' 不额外压缩原时序');
   }
-  assert.equal(title.timing,undefined,'三种标题保留各自原时钟');
+  assert.equal(title.timing??undefined,undefined,'标题示例各自保留原时钟');
 });

@@ -181,7 +181,18 @@
   const formOffset = frame => tween(frame,0,12,48,0,settle) + tween(frame,0,55,0,-16);
   const getAlignedFormLayout = (offsetY=0) => layoutSilhouettes(formItems,{offsetY});
   const sequence = {"id":"spatial-mechanical-sequence","kind":"composition","duration_ms":18000,"source":{"frame_cache":{"video":"catalog/assets/mechanical-pulse/movie.mp4","start_frame":0,"frames":540,"fps":30,"width":1280,"height":720,"poster":"catalog/assets/mechanical-pulse/posters/F0300.jpg"}}};
+  const posterFrames={'continuous-diagonal':220,'diamond-aperture-release':310,'vertical-column-rise':10,
+    'full-frame-blueprint':50,'paced-overlap':379,'aligned-silhouette':432,'overlap-copy-handoff':470};
+  function definitionFor(id,variantId){
+    const mode=variantId&&variantId!=='standard'?variantId:id,clip=clips[mode];
+    if(!clip)throw new Error('未知空间动作：'+mode);
+    return {id,kind:mode===sequence.id?'composition':'action',duration_ms:clip.frames/30*1000,
+      ...(variantId?{variant_id:variantId}:{}),source:{frame_cache:{...sequence.source.frame_cache,
+        start_frame:clip.start,frames:clip.frames,
+        poster:posterFrames[mode]===undefined?sequence.source.frame_cache.poster:
+          'catalog/assets/mechanical-pulse/posters/F'+String(posterFrames[mode]).padStart(4,'0')+'.jpg'}}};
+  }
   const breakdown = [{"id":"Opening","name":"三列开窗","start":0.0,"end":1333.3333333333333,"time":"0.00–1.33秒","detail":"三列高度错峰展开，后方标题与完整产品上移。","actions":["three-column-aperture"]},{"id":"Board","name":"完整图纸双闪","start":1333.3333333333333,"end":4666.666666666667,"time":"1.33–4.67秒","detail":"陈列装配与两次各8帧的全幅同位图纸短闪。","actions":["rapid-cut","inventory-contour-fit"]},{"id":"Cross","name":"旋转斜十字跨镜","start":4666.666666666667,"end":9333.333333333334,"time":"4.67–9.33秒","detail":"十字先收窄后旋转，持续加宽穿过结构与工具换镜。","actions":["cross-aperture-turn","axial-layer-reseat","helical-screw-seat"]},{"id":"Macros","name":"一窗三镜","start":9333.333333333334,"end":11333.333333333334,"time":"9.33–11.33秒","detail":"45度方窗跨三段微距一次展开，每镜20帧。","actions":["diamond-aperture-release","barrel-stored-energy","meshed-gears-drive","balance-reciprocate"]},{"id":"Detail","name":"细节实景","start":11333.333333333334,"end":12933.333333333334,"time":"11.33–12.93秒","detail":"真实背景与阴影保留；下一个材质镜头提前16帧进入。","actions":["next-shot-preentry"]},{"id":"Material","name":"材质圆窗预入","start":12400.0,"end":14000.0,"time":"12.40–14.00秒","detail":"右偏圆窗16帧展开，竖幅原视频完整装入全高分栏。","actions":["next-shot-preentry"]},{"id":"Form","name":"轮廓等距同步升入","start":14000.0,"end":15866.666666666668,"time":"14.00–15.87秒","detail":"主体中心同高，可见轮廓等距，全组共用入场与持续上移。","actions":["fan-object-rise"]},{"id":"Finale","name":"矩窗与文案交接","start":15333.333333333334,"end":18000.0,"time":"15.33–18.00秒","detail":"旧主体在底层延续，新画面矩形展开16帧；新文案稍后出现，最后12帧淡出。","actions":["wipe"]}];
-  global.WiseSpatialApertures = {sequence,breakdown,clamp,tween,key,bezier,settle,windowState,stateFor,frameFor,clips,
+  global.WiseSpatialApertures = {sequence,breakdown,definitionFor,clamp,tween,key,bezier,settle,windowState,stateFor,frameFor,clips,
     drawingFlashes,isDrawingFlash,crossOpenWidth,formItems,layoutSilhouettes,formOffset,getAlignedFormLayout};
 })(globalThis);

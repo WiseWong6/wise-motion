@@ -23,9 +23,9 @@ node scripts/export.mjs diamond-aperture-release --out-dir /另一空目录
 node scripts/export.mjs cross-aperture-turn --variant continuous-diagonal --out-dir /第三空目录
 ```
 
-进入导出目录运行 `npm install`、`npm run studio`。默认完整组合使用一个1280×720、30fps静音缓存保留原4K片的摄影、字体、窗口和切点；放大缓存不等于重新渲染4K。`npm run check:source` 校验随附缓存、字体和主体图。媒体单独列入 binary-assets.json，不转成base64写入文字源码。
+进入导出目录运行 `npm install`、`npm run studio`。开窗、短闪、镜头交接与完整组合共用一个1280×720、30fps静音缓存；单个动作按原片全局帧截取，保留原4K片的摄影、字体、窗口和切点。放大缓存不等于重新渲染4K。`npm run check:source` 校验随附缓存、字体或主体图。媒体单独列入 binary-assets.json，不转成base64写入文字源码。
 
-独立开窗动作使用自编矢量载体；轮廓入场使用原尺寸1800×2400的产品WebP，RGB有损压缩、alpha无损。几何在 `catalog/effects/spatial-apertures-data.js` 共用，包含全局窗口、贝塞尔求值、主体锚点和轮廓排版。原作者未改动的九个制作模块在 `production/`，用于追溯及逐帧回归。
+默认组件 `WiseSpatialApertures` 显示原片对应片段，不另画机械示意；轮廓入场继续使用原尺寸1800×2400的产品WebP，RGB有损压缩、alpha无损。换自己的素材可使用下面的窗口组件、短闪和文案状态函数，原动作代码仍可编辑。几何在 `catalog/effects/spatial-apertures-data.js` 共用，包含全局窗口、贝塞尔求值、主体锚点和轮廓排版。原作者未改动的九个制作模块在 `production/`，用于追溯及逐帧回归。
 
 ## 换自己的素材
 

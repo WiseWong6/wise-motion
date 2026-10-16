@@ -1,0 +1,37 @@
+{
+  "title": "文字世界 · 雨幕到心字组合",
+  "source_duration_ms": 79600,
+  "opening_trim_ms": 0,
+  "duration_ms": 79600,
+  "tracks": [
+    {
+      "name": "原配乐",
+      "src": "catalog/assets/composition-audio/aboutlove/world/world-bgm.flac",
+      "start_ms": 0,
+      "duration_ms": 79600,
+      "offset_ms": 0,
+      "volume": 1
+    },
+    {
+      "name": "原图形与环境音效",
+      "src": "catalog/assets/composition-audio/aboutlove/world/world-sfx.flac",
+      "start_ms": 0,
+      "duration_ms": 75110,
+      "offset_ms": 0,
+      "volume": 0.316228,
+      "fade_out_ms": 80
+    },
+    {
+      "name": "原合声",
+      "src": "catalog/assets/composition-audio/aboutlove/world/world-chorus.flac",
+      "start_ms": 0,
+      "duration_ms": 79600,
+      "offset_ms": 0,
+      "volume": 0.316228
+    }
+  ],
+  "omissions": [
+    "光标与逐字输入移除，结语整句同时进入；音效声部在75.11秒起静音以取消键击及其混响。"
+  ],
+  "audio_encoding": "原WAV转为FLAC无损播放文件，原MP3短音效保持；排程、偏移、音量与淡出保持。"
+}

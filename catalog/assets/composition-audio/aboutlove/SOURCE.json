@@ -1,0 +1,159 @@
+{
+  "title": "关于爱完整组合原声",
+  "scope": "原音仅用于三套完整组合，独立动作保持无声。原WAV转换为FLAC无损播放文件，解码后的声音样本与原件完全一致；原MP3与来源文档逐字节保留。播放起点与偏移见各组合recipe.json。",
+  "files": [
+    {
+      "version": "monologue",
+      "original": "what-love-means/assets/audio/monologue-bgm.wav",
+      "file": "catalog/assets/composition-audio/aboutlove/monologue/monologue-bgm.flac",
+      "bytes": 5276570,
+      "sha256": "83eba55b1ef3a7fd16beb55994f5c405ae6e4dedf2225a0378b807de6b130367",
+      "original_bytes": 18345678,
+      "original_sha256": "0fee384ca5ee3c3f69fea3948a151aedf1d4efc652b607d146d3e708424ccbae",
+      "conversion": {
+        "format": "FLAC",
+        "lossless": true,
+        "compression_level": 12,
+        "decoded_pcm_format": "s16le",
+        "decoded_pcm_bytes": 18345600,
+        "decoded_pcm_sha256": "ec1a915e6fd5f5e0b197bd907f54a1badf3a86cb41731f2dde521b2e8110f745",
+        "verification": "源WAV与播放用FLAC分别解码，声音样本的字节数和SHA-256完全一致。"
+      }
+    },
+    {
+      "version": "monologue",
+      "original": "what-love-means/.media/index.md",
+      "file": "catalog/assets/composition-audio/aboutlove/monologue/original/media-index.md",
+      "bytes": 494,
+      "sha256": "18d29c58b91bb5933838e4f3b4b7797c10301f4a986e0b1901acd7dac70bdf1d"
+    },
+    {
+      "version": "motion",
+      "original": "love-motion-reel/assets/audio/reel-bgm.wav",
+      "file": "catalog/assets/composition-audio/aboutlove/motion/reel-bgm.flac",
+      "bytes": 6442387,
+      "sha256": "5827745ee55115c8a6243f94ed810698984f3d6b2a9f39077a31bd2887735bfa",
+      "original_bytes": 10823982,
+      "original_sha256": "ad499b776460cabba6d517859fd47f08ff1ec8d4c651fdd0402b76a153c836c3",
+      "conversion": {
+        "format": "FLAC",
+        "lossless": true,
+        "compression_level": 12,
+        "decoded_pcm_format": "s16le",
+        "decoded_pcm_bytes": 10823904,
+        "decoded_pcm_sha256": "404a75ae766bb1f4bf5efc0695dff1a0bb751f0f62c08ed0e4bd43bbf59c3a30",
+        "verification": "源WAV与播放用FLAC分别解码，声音样本的字节数和SHA-256完全一致。"
+      }
+    },
+    {
+      "version": "motion",
+      "original": "love-motion-reel/.media/audio/sfx/sfx_003.mp3",
+      "file": "catalog/assets/composition-audio/aboutlove/motion/sfx_003.mp3",
+      "bytes": 11702,
+      "sha256": "075e17bdac5c13662a1c9530050e0046f81d4138e00eb3bf30427a7b4404103d"
+    },
+    {
+      "version": "motion",
+      "original": "love-motion-reel/.media/audio/sfx/sfx_002.mp3",
+      "file": "catalog/assets/composition-audio/aboutlove/motion/sfx_002.mp3",
+      "bytes": 84427,
+      "sha256": "760b72bdaad71f83350e2ef3a9d037daf58f44855a05a6cce25d990f1ffb888a"
+    },
+    {
+      "version": "motion",
+      "original": "love-motion-reel/.media/audio/sfx/sfx_001.mp3",
+      "file": "catalog/assets/composition-audio/aboutlove/motion/sfx_001.mp3",
+      "bytes": 82944,
+      "sha256": "fb832995477784f44ba8533359d20caf706195b52117ecc2a33b3e63e3c1307b"
+    },
+    {
+      "version": "motion",
+      "original": "love-motion-reel/.media/index.md",
+      "file": "catalog/assets/composition-audio/aboutlove/motion/original/media-index.md",
+      "bytes": 756,
+      "sha256": "19339503539f75e5be9e3f1ec89942bafe892e59bb8999f996c2324a6f700c8c"
+    },
+    {
+      "version": "world",
+      "original": "language-is-my-world/assets/audio/world-bgm.wav",
+      "file": "catalog/assets/composition-audio/aboutlove/world/world-bgm.flac",
+      "bytes": 3818361,
+      "sha256": "5e19395f6fbe495783e751afc130604184fa011cb237681a8d86fc5a64bb2dd7",
+      "original_bytes": 15283274,
+      "original_sha256": "e17f9a0d52622489a980d80d3b0302302331e3ffd2423f7b6993f6260b98dabc",
+      "conversion": {
+        "format": "FLAC",
+        "lossless": true,
+        "compression_level": 12,
+        "decoded_pcm_format": "s16le",
+        "decoded_pcm_bytes": 15283196,
+        "decoded_pcm_sha256": "8742fd3d06be64ad6da69b6634973eef914c0317a9d4c1b237428b8b9228c8d7",
+        "verification": "源WAV与播放用FLAC分别解码，声音样本的字节数和SHA-256完全一致。"
+      }
+    },
+    {
+      "version": "world",
+      "original": "language-is-my-world/assets/audio/world-sfx.wav",
+      "file": "catalog/assets/composition-audio/aboutlove/world/world-sfx.flac",
+      "bytes": 3811172,
+      "sha256": "350d00c5fdbc263060cd5b988827c7b5b5a1692b04868f5bc32b774629a18cb5",
+      "original_bytes": 15283274,
+      "original_sha256": "5547f398d5cb870bd08793f88579e0b45a629de77b9248f339b352d1e9e35a9b",
+      "conversion": {
+        "format": "FLAC",
+        "lossless": true,
+        "compression_level": 12,
+        "decoded_pcm_format": "s16le",
+        "decoded_pcm_bytes": 15283196,
+        "decoded_pcm_sha256": "cf71350cbe8790b8132a6c9b421d755095948169d700fb52608dbfaf33e05f5d",
+        "verification": "源WAV与播放用FLAC分别解码，声音样本的字节数和SHA-256完全一致。"
+      }
+    },
+    {
+      "version": "world",
+      "original": "language-is-my-world/assets/audio/world-chorus.wav",
+      "file": "catalog/assets/composition-audio/aboutlove/world/world-chorus.flac",
+      "bytes": 536972,
+      "sha256": "c522d9df004ff1f5bf6f3de017564c0edf2920de41da34420b06413f277ec9d5",
+      "original_bytes": 15283274,
+      "original_sha256": "b27e7998967516d1c181a6b5123fcefa84fc6b516e8f5beff5b95c575c20ec07",
+      "conversion": {
+        "format": "FLAC",
+        "lossless": true,
+        "compression_level": 12,
+        "decoded_pcm_format": "s16le",
+        "decoded_pcm_bytes": 15283196,
+        "decoded_pcm_sha256": "5df40179da28319a62d612b4649f04c67955edce456007b48ccead3e609dd160",
+        "verification": "源WAV与播放用FLAC分别解码，声音样本的字节数和SHA-256完全一致。"
+      }
+    },
+    {
+      "version": "world",
+      "original": "language-is-my-world/.media/index.md",
+      "file": "catalog/assets/composition-audio/aboutlove/world/original/media-index.md",
+      "bytes": 1555,
+      "sha256": "0a8736fa0f9c1a6c9437be56f5b1d723a7396678cdb6e6d45e866fdd369b3fc7"
+    },
+    {
+      "version": "world",
+      "original": "language-is-my-world/tools/make_audio.py",
+      "file": "catalog/assets/composition-audio/aboutlove/world/original/tools-make_audio.py",
+      "bytes": 21057,
+      "sha256": "c4661283c78c42b991607ef8d9fc300c74b14005740e0429913a7bd88d01b5e2"
+    },
+    {
+      "version": "world",
+      "original": "language-is-my-world/tools/make_chorus_voices.py",
+      "file": "catalog/assets/composition-audio/aboutlove/world/original/tools-make_chorus_voices.py",
+      "bytes": 1957,
+      "sha256": "dd53e4600596a973fb52449889b55b5d26a0ad9b7140b58c3630341eb1d5a127"
+    }
+  ],
+  "rights": "自有适配程序采用Apache-2.0；录音、音乐的来源、署名和权利以随附原作记录为准，不将程序许可套用于第三方录音。原作没有附完整许可证的录音仍保留其权利，不声明为Apache-2.0。",
+  "adaptation": [
+    "内心独白裁去开头2.1秒的纯等候，配乐同步从2.1秒开始。",
+    "动态图形裁去开头0.95秒的纯等候，配乐同步裁切，音效保持与原画面相同偏移。",
+    "文字世界取消片尾光标和逐字输入；音效声部75.11秒起静音，配乐与合声保留。",
+    "五条原WAV转为FLAC无损格式，逐条验证解码样本的字节数和SHA-256与原文件一致；不改变采样率、声道或声音内容。原件路径与原文件摘要一并保留。"
+  ]
+}

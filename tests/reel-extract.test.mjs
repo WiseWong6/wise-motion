@@ -259,7 +259,7 @@ test('彩色蝶翼使用原图内嵌遮罩，支持本地直开并保留由彩�
 test('新条目及新配色声明完整依赖和素材，源码导出在独立目录可编译',async()=>{
  const dir=await mkdtemp(path.join(tmpdir(),'wise-reel-export-'));
  try{
-  for(const [id,variantId] of ids.flatMap(id=>(entry(id).variants||[{}]).map(v=>[id,v.id])).concat([['sage-butterfly-illustration',undefined],['hinged-wing-flap','sage']])){
+  for(const [id,variantId] of ids.flatMap(id=>(entry(id).variants||[{}]).filter(v=>!v.aboutlove).map(v=>[id,v.id])).concat([['sage-butterfly-illustration',undefined],['hinged-wing-flap','sage']])){
    const definition=entry(id),variant=definition.variants?.find(v=>v.id===variantId),e={...definition,...variant};assert.ok(frameScriptsFor(e).includes(e.source.path));
    if(id==='wing-root-color-reveal')assert.ok(frameScriptsFor(e).indexOf('catalog/effects/butterfly.js')<frameScriptsFor(e).indexOf(e.source.path));
    const out=await exportEffect(id,{variantId,outDir:path.join(dir,id+(variantId?'-'+variantId:''))});

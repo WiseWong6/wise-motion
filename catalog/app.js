@@ -88,7 +88,8 @@
   }
   const rememberedKind = readKind();
   const rememberedSelection = readSelection();
-  const defaultEffectId = 'glass-interface-sequence';
+  // 新收录的组合追加在目录末尾，默认入口随收录自动更新。
+  const defaultEffectId = [...data.effects].reverse().find(effect => effect.kind === 'composition')?.id || 'fade-rise';
   let kind = rememberedKind || 'composition', category = 'all', tab = 'prompt', selected = null, controller = null;
   let debounce = null, resumeAfterVisible = false, lastPlayback = null, lastPaused = null, outputVersion = 0;
   let navigationIds = [];
@@ -287,10 +288,12 @@
     $('panel-code').querySelector('.output-label').textContent = effect.source?.remotion ? '完整工程源码' : '接入示例与源码路径';
     const isCurrent = () => selected === effect && controller === current && outputVersion === version && !current.destroyed;
     const values = settings();
-    // 提示词不依赖完整源码表；组合的图层说明在真实绘制文件就绪后补齐。
-    const paintPrompt = () => { if (isCurrent()) $('prompt').textContent = MotionExport.prompt(effect, settings(), data); };
+    // 组合拆解复用预览已准备的原绘制器，不在主页面重复载入整套素材。
+    const paintPrompt = () => { if (isCurrent()) $('prompt').textContent = MotionExport.prompt(effect,
+      {...settings(),compositionLayers:MotionComposition.layers(effect,current)}, data); };
     paintPrompt();
-    const promptWait = effect.kind === 'composition' ? globalThis.MotionLazy?.ensure(effect) : null;
+    const promptWait = effect.kind === 'composition'
+      ? effect.source?.frame_cache ? globalThis.MotionLazy?.ensure(effect) : current.ready : null;
     if (promptWait) promptWait.then(paintPrompt, () => {});
     document.querySelectorAll('.copy-status').forEach(element => { element.textContent = ''; });
     // 普通条目的短用法无需源码表；完整独立工程只在代码页签打开时生成。
@@ -482,6 +485,7 @@
       : effect.kind==='recipe' ? MotionHistoryRuntime.create($('preview'),effect,{onUpdate:syncPlayer,caseId:effect.selected_entry.id}) : MotionRuntime.create($('preview'), effect, {onUpdate:syncPlayer});
     controller.setSpeed(Number($('speed').value));
     controller.setEase($('ease').value);
+    MotionThumbs.prioritize(controller.ready);
     MotionComposition.select(effect,controller,preserved?.compositionView);
     if (preserved) {
       controller.seek(preserved.time);
@@ -1012,8 +1016,6 @@
   bindSlidingPill(document.querySelector('.output-tabs'));
 
   setDirectory(!directoryMedia.matches);
-  renderCategories();
-  renderList();
   const requestedId=location.hash.slice(1);
   const requestedEffect=()=>data.redirects?.[requestedId]||requestedId||defaultEffectId;
   let hashNavigation = 0;
@@ -1052,6 +1054,7 @@
     }
   }
   if ((kind === 'recipe' && !historyReady) || (requestedEffect() && !data.effects.some(effect => effect.id === requestedEffect()))) {
+    renderCategories();renderList();
     loadHistory().then(selectInitial).catch(selectInitial);
   } else selectInitial();
 })();

@@ -4,6 +4,8 @@
   const $ = id => document.getElementById(id);
   const panel=$('composition-panel'),list=$('composition-layers'),status=$('composition-status');
   let layers=[],nodes=[],buttons=[],player=null,selected=-1,mode='stack',duration=0,paintVersion=0,sequential=false;
+  const compositionLayers=(effect,controller)=>effect.kind==='composition'
+    ? global.MotionFactories?.[effect.id]?.breakdown || controller?.session?.doc?.defaultView?.MotionFactories?.[effect.id]?.breakdown || [] : [];
   function isolate(targets,visible) {
     for(const node of targets) {
       const show=!visible||visible.has(node.dataset.layer)||targets.some(child=>visible.has(child.dataset.layer)&&node.contains(child));
@@ -55,13 +57,14 @@
     paint();
   });
   global.MotionComposition = {
+    layers:compositionLayers,
     isolate(root,ids) { isolate([...root.querySelectorAll('[data-layer]')],ids?new Set(ids):null); },
     select(effect,controller,view) {
-      player=null;sequential=effect.breakdown_mode==='sequence';layers=effect.kind==='composition' ? global.MotionFactories[effect.id]?.breakdown || [] : [];
+      player=null;sequential=effect.breakdown_mode==='sequence';layers=compositionLayers(effect,controller);
       if(effect.kind==='composition'&&!layers.length){
-        // 拆解清单来自尚未载入的绘制文件；载入后只在仍是同一个预览时重新建立。
-        const wait=global.MotionLazy?.ensure(effect);
-        if(wait)wait.then(()=>{if(!controller.destroyed&&global.MotionFactories[effect.id]?.breakdown)this.select(effect,controller,view);},()=>{});
+        // 原绘制器也保存在隔离预览里；首帧就绪后直接取它的拆解清单。
+        const wait=effect.source?.frame_cache?global.MotionLazy?.ensure(effect):controller.ready;
+        if(wait)wait.then(()=>{if(!controller.destroyed&&compositionLayers(effect,controller).length)this.select(effect,controller,view);},()=>{});
       }
       panel.hidden=!layers.length;
       nodes=[];buttons=[];list.replaceChildren();

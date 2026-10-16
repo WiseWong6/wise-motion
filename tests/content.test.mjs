@@ -4,7 +4,9 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {environment, frameMarkup} from './helpers.mjs';
-import {resolveEffect} from '../remotion/clock.mjs';
+import {resolveEffect as resolveCurrentEffect} from '../remotion/clock.mjs';
+// 内容替换接口属于保留的原示例；新默认动作另做来源与逐帧检查。
+const resolveEffect=(id,variant)=>resolveCurrentEffect(id,variant??(['type-reveal','count-up'].includes(id)?'original':undefined));
 import contentApi from '../catalog/content.js';
 const {validateContent,withContent}=contentApi;
 const baseline={...JSON.parse(await readFile(new URL('./fixtures/content-defaults.json',import.meta.url),'utf8')),...JSON.parse(await readFile(new URL('./fixtures/content-phase-two-defaults.json',import.meta.url),'utf8'))};

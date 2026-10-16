@@ -2,12 +2,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {readHistorySource} from './history-sources.mjs';
 import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import vm from 'node:vm';
 import {JSDOM} from 'jsdom';
-import {environment,data,themed,sourceDefinition} from './helpers.mjs';
-function render(w,root,id){const e=sourceDefinition(data.effects.find(e=>e.id===id)),draw=w.MotionFactories[id](root,w.MotionKit,e);return p=>draw(p*e.duration_ms,{duration:e.duration_ms,ease:e.default_ease});}
+import {environment,data,themed,sourceDefinition,legacyDefinition} from './helpers.mjs';
+function render(w,root,id){const e=sourceDefinition(legacyDefinition(data.effects.find(e=>e.id===id))),draw=w.MotionFactories[id](root,w.MotionKit,e);return p=>draw(p*e.duration_ms,{duration:e.duration_ms,ease:e.default_ease});}
 const part=(root,id)=>root.querySelector(`[data-part="${id}"]`);
 const number=(root,id,key)=>Number(part(root,id).getAttribute(key));
 test('词云保留原十三词、云形、独立漂移与实际收拢时钟，反复定位后稳定停住',async()=>{
@@ -75,7 +76,7 @@ test('词云保留原十三词、云形、独立漂移与实际收拢时钟，�
     assert.ok(w.MotionHistory.excluded.some(e=>e.id==='tutorial-word-cloud'));
     assert.ok(!w.MotionHistory.recipes.some(e=>e.history_id==='tutorial-word-cloud'));
     const cross=JSON.parse(await readFile(new URL('../../../state/wise-motion/history/crosswalk.json',import.meta.url),'utf8'));
-    for(const file of cross.rules['tutorial-word-cloud'].migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256,'原工程保持只读');
+    for(const file of cross.rules['tutorial-word-cloud'].migration.files)assert.equal(createHash('sha256').update(await readHistorySource(file)).digest('hex'),file.sha256,'原工程保持只读');
   }finally{env.w.MotionThumbs.disposeAll();env.close();}
 });
 test('词云全文在淡入、漂移和收拢全过程位于云形内，并保留词间空隙',async()=>{
@@ -128,7 +129,7 @@ test('词云全文在淡入、漂移和收拢全过程位于云形内，并保�
 });
 test('论据图标保持原词点、细线与基线生长，定位和缩略图完整，旧图标入口清理',async()=>{
   const sourceRoot='/Users/wisewong/Documents/Developer/wise-video/resume-tutorial/wise-resume-writing/';
-  const original=new JSDOM(await readFile(sourceRoot+'editions/compact/preview.html','utf8'));
+  const original=new JSDOM(await readHistorySource(sourceRoot+'editions/compact/preview.html','utf8'));
   const timing=JSON.parse(await readFile(sourceRoot+'editions/compact/timing.json','utf8'));
   const cue=timing.cues.find(c=>c.id==='s026'),icons=[...original.window.document.querySelectorAll('[data-icon-cue="s026"]')];
   const clock=word=>cue.start+cue.charAt[cue.text.indexOf(word)],anchor=clock('经历');
@@ -191,7 +192,7 @@ test('论据图标保持原词点、细线与基线生长，定位和缩略图�
     }
     assert.equal(data.effects.filter(e=>e.id==='stroke-draw').length,1,'保留已有的平滑心电图描线');
     const cross=JSON.parse(await readFile(new URL('../../../state/wise-motion/history/crosswalk.json',import.meta.url),'utf8'));
-    for(const file of cross.rules['resume-icons'].migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256,'原工程应保持只读');
+    for(const file of cross.rules['resume-icons'].migration.files)assert.equal(createHash('sha256').update(await readHistorySource(file)).digest('hex'),file.sha256,'原工程应保持只读');
   }finally{env.w.MotionThumbs.disposeAll();env.close();original.window.close();}
 });
 test('成组展开保留原六卡的缩放和标签时差，缩略图完整并清理重复历史入口',async()=>{

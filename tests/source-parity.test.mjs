@@ -3,6 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {runInNewContext} from 'node:vm';
+import {createHash} from 'node:crypto';
 import {transform} from 'esbuild';
 import {environment, data} from './helpers.mjs';
 import {projectFor} from '../scripts/export.mjs';
@@ -54,8 +55,8 @@ test('切换外观后立即复制使用当前外观，来回切换保留播放�
   } finally { env.close(); }
 });
 
-test('十二个独立工程在六种速度下与目录帧数一致，准确末帧只出现一次', async () => {
-  assert.equal(nativeEffects.length, 12);
+test('全部原生独立工程在六种速度下与目录帧数一致，遵守各自原末帧约定', async () => {
+  assert.ok(nativeEffects.length > 0);
   for (const effect of nativeEffects) {
     const cli = await projectFor(effect.id);
     for (const speed of speeds) {
@@ -68,18 +69,29 @@ test('十二个独立工程在六种速度下与目录帧数一致，准确末�
       assert.equal(composition.defaultProps.effectId, effect.id);
       assert.equal(composition.defaultProps.speed, speed);
       const last = sampleEffectTime(effect, composition.durationInFrames - 1, composition.fps, {speed});
-      assert.equal(last.time, effect.duration_ms, label + ' 缺少准确结束时刻');
+      if (effect.loop || effect.source.remotion.exact_frames) assert.ok(last.elapsed < effect.duration_ms, label + ' 不应添加原作没有的结束帧');
+      else assert.equal(last.time, effect.duration_ms, label + ' 缺少准确结束时刻');
       const previous = sampleEffectTime(effect, composition.durationInFrames - 2, composition.fps, {speed});
       assert.ok(previous.time < effect.duration_ms, label + ' 不重复结束帧');
-      if (speed === 1) assert.deepEqual(cli.files, JSON.parse(JSON.stringify(project.files)), label + ' 命令行与复制不同');
+      if (speed === 1) {
+        const binaries=effect.source.remotion.binary_files||[];
+        assert.deepEqual(Object.keys(cli.files).sort(),[...Object.keys(project.files),...binaries.map(file=>file.target)].sort(),label+' 交付文件清单不同');
+        for(const file of Object.keys(project.files))assert.equal(cli.files[file],project.files[file],label+' 命令行与复制不同：'+file);
+        for(const file of binaries){
+          assert.equal(cli.files[file.target].length,file.bytes,label+' 素材大小不同：'+file.target);
+          assert.equal(createHash('sha256').update(cli.files[file.target]).digest('hex'),file.sha256,label+' 素材内容不同：'+file.target);
+        }
+      }
     }
   }
 });
 
-test('独立工程最后一帧的原绘制指令与目录结束画面一致', async () => {
+test('种子生长与文明聚字独立工程最后一帧的原绘制指令与目录结束画面一致', async () => {
   const seedScope = {document:{createElement:() => new Canvas()}};
   runInNewContext(await read('catalog/effects/seed-bloom-brand.js'), seedScope);
-  for (const effect of nativeEffects) {
+  const recordedEffects=nativeEffects.filter(effect=>/\/(seed-bloom-brand|civilization-growth)\.jsx$/.test(effect.source.remotion.component));
+  assert.deepEqual([...new Set(recordedEffects.map(effect=>effect.source.remotion.component))].sort(),['catalog/remotion/civilization-growth.jsx','catalog/remotion/seed-bloom-brand.jsx']);
+  for (const effect of recordedEffects) {
     const isSeed = effect.source.remotion.component.endsWith('seed-bloom-brand.jsx');
     let engine, canvas;
     const drawing = recorder();

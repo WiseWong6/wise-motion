@@ -1,5 +1,5 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
-import React,{useId,useLayoutEffect,useRef} from 'react';
+import React,{useId} from 'react';
 import {AbsoluteFill,Img,staticFile,useCurrentFrame,useVideoConfig} from 'remotion';
 import '../effects/mechanical-windows-data.js';
 import '../effects/mechanical-windows.js';
@@ -46,18 +46,7 @@ export function AlignedSilhouetteRow({items=api.formItems,margin=96,centerY=710,
 }
 
 export function WiseSpatialApertures({effectId='diamond-aperture-release',variantId,speed=1,...props}) {
-  if(effectId==='spatial-mechanical-sequence')return <WiseNativeVideo {...props} definition={props.definition||api.sequence} speed={speed}/>;
   if(variantId==='aligned-silhouette')return <AbsoluteFill style={{background:'#101211'}}><AlignedSilhouetteRow speed={speed}/></AbsoluteFill>;
-  return <Demonstration effectId={effectId} variantId={variantId} speed={speed}/>;
-}
-function Demonstration({effectId,variantId,speed}) {
-  const frame=useCurrentFrame(),{fps,width,height}=useVideoConfig(),root=useRef(null),painter=useRef(null);
-  useLayoutEffect(()=>{painter.current=api.make(root.current,{id:effectId,variant_id:variantId});
-    return()=>{painter.current?.destroy();painter.current=null;};},[effectId,variantId]);
-  useLayoutEffect(()=>{painter.current?.(frame/fps*1000*speed);},[frame,fps,speed,effectId,variantId]);
-  const scale=Math.min(width/640,height/360);
-  return <AbsoluteFill style={{background:'#101211',overflow:'hidden'}}>
-    {variantId==='overlap-copy-handoff'&&<style>{`@font-face{font-family:Oswald;src:url('${staticFile('catalog/fonts/Oswald-Bold.woff2')}');font-weight:700;}`}</style>}
-    <div ref={root} style={{position:'absolute',width:640,height:360,
-    left:(width-640*scale)/2,top:(height-360*scale)/2,transformOrigin:'0 0',transform:`scale(${scale})`}}/></AbsoluteFill>;
+  return <WiseNativeVideo {...props} definition={props.definition?.source?.frame_cache?props.definition:
+    api.definitionFor(effectId,variantId)} speed={speed}/>;
 }

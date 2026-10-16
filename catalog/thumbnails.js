@@ -18,13 +18,28 @@
   }
   function saveFrame(effect, stage) {
     forgetFrame(effect);
-    const bytes = [...stage.querySelectorAll('canvas')].reduce((sum, canvas) => sum + canvas.width * canvas.height * 4, 0);
+    // Imported scenes keep their canvases inside shadow roots, beyond ordinary selectors.
+    let bytes = 0;
+    const roots = [stage];
+    while (roots.length) {
+      const root = roots.pop();
+      if (root.shadowRoot) roots.push(root.shadowRoot);
+      for (const node of root.querySelectorAll('*')) {
+        if (node.localName === 'canvas') bytes += node.width * node.height * 4;
+        if (node.shadowRoot) roots.push(node.shadowRoot);
+      }
+    }
     if (bytes > canvasLimit) return;
     frames.set(effect, {stage, bytes}); canvasBytes += bytes;
     while (frames.size > frameLimit || canvasBytes > canvasLimit) forgetFrame(frames.keys().next().value);
   }
   const jobs = new Map();
   let queue = Promise.resolve(), running = false, suspended = false, resume = [];
+  let foreground = Promise.resolve(), replacePriority=()=>{};
+  const yieldForInput = () => new Promise(resolve => {
+    if (global.requestIdleCallback) global.requestIdleCallback(resolve,{timeout:200});
+    else global.setTimeout(resolve,16);
+  });
   /* 和主预览共用完整 16:9 画板，不放大裁掉卡片底部。 */
   let observer = null;
   const supported = typeof IntersectionObserver === 'function';
@@ -36,6 +51,13 @@
     running=true;
     queue=Promise.resolve().then(async()=>{
       try{while(jobs.size){
+        // 主预览先交付首帧；每张缩略图前留出输入与页面绘制的机会。
+        const priority=foreground;
+        await priority;
+        if(priority!==foreground)continue;
+        await yieldForInput();
+        if(priority!==foreground)continue;
+        if(!jobs.size)break;
         // 可见范围通知和素材返回的先后都不代表列表顺序；每次按当前页面顺序取下一张。
         const [job]=[...jobs.values()].sort((a,b)=>{
           const position=a.host.compareDocumentPosition(b.host);
@@ -45,8 +67,6 @@
         if(!current(job.host,job.state))continue;
         try{await paint(job.host,job.effect,job.state);}
         catch(error){unavailable(job.host,job.state,error.message||'动画预览准备失败。');}
-        // 每张之间给点击、滚动和主预览留出机会。
-        await new Promise(resolve=>global.setTimeout(resolve,0));
       }}finally{running=false;}
     });
   }
@@ -202,6 +222,7 @@
     pending.delete(host);painted.delete(host);host.replaceChildren();host.removeAttribute('title');delete host.dataset.previewState;
   }
   function disposeAll(){
+    replacePriority();foreground=Promise.resolve();
     [...states.keys()].forEach(host=>release(host,false));frames.clear();canvasBytes=0;observer?.disconnect();
     if(resizeFrame){global.cancelAnimationFrame(resizeFrame);resizeFrame=0;}
   }
@@ -215,6 +236,11 @@
   });
 
   global.MotionThumbs = {
+    prioritize(ready) {
+      replacePriority();
+      const changed=new Promise(resolve=>{replacePriority=resolve;});
+      foreground=Promise.race([Promise.resolve(ready).catch(()=>{}),changed]);
+    },
     /* 卡片进入列表时登记；真正绘制等到它滚动到可视区附近。 */
     attach(host, effect) {
       if (!host) return;

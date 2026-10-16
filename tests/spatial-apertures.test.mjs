@@ -6,6 +6,7 @@ import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {runInNewContext} from 'node:vm';
+import {createRequire} from 'node:module';
 import {spawnSync} from 'node:child_process';
 import {build} from 'esbuild';
 import {Easing} from 'remotion';
@@ -77,24 +78,27 @@ test('所有新动作与示例可乱序定位，原有默认入口继续使用�
     const {w}=env;
     for(const [id,variant]of selections.slice(0,-1)){
       const e=resolveEffect(id,variant),stage=w.document.createElement('div');
-      const draw=w.MotionFactories[id](stage,w.MotionKit,e);await draw.ready;
+      const draw=w.MotionKit.createRenderer(stage,e);await draw.ready;
       assert.equal(e.audio,undefined);
       if(variant==='aligned-silhouette'){
         assert.equal(stage.querySelectorAll('[data-silhouette]').length,3);
         assert.equal(stage.querySelectorAll('[data-disc],clipPath,text').length,0);
+      }else{
+        const cache=e.source.frame_cache;
+        assert.deepEqual(cache,plain(w.WiseSpatialApertures.definitionFor(id,variant).source.frame_cache));
+        assert.equal(e.duration_ms,cache.frames/30*1000);
+        assert.equal(stage.querySelector('img').getAttribute('src'),cache.poster.replace(/^catalog\//,''));
+        assert.equal(stage.querySelector('[data-disc],svg'),null,'原片不能被示意齿轮替代');
       }
       if(variant!=='full-frame-blueprint')assert.equal(stage.querySelector('[data-layer="drawing"]'),null);
       for(const ms of [0,e.preview_ms,e.duration_ms,100,e.preview_ms]){
         draw(ms);const before=frameMarkup(stage);draw(0);draw(e.duration_ms);draw(ms);assert.equal(frameMarkup(stage),before,id);
+        if(variant!=='aligned-silhouette')assert.equal(Number(stage.dataset.nativeFrame),w.WiseSpatialApertures.frameFor(variant||id,ms));
       }
-      if(variant==='paced-overlap'){
-        draw(200);const one=stage.querySelector('[data-layer="before"] [data-disc]').getAttribute('transform');
-        draw(300);assert.notEqual(stage.querySelector('[data-layer="before"] [data-disc]').getAttribute('transform'),one);
-        assert.equal(stage.querySelector('[data-layer="before"]').style.display,'block');
-      }
-      if(variant==='overlap-copy-handoff'){
-        draw(8/30*1000);assert.equal(stage.querySelector('[data-copy="old"]').style.opacity,'0');assert.equal(stage.querySelector('[data-copy="new"]').style.opacity,'0');
-        draw(20/30*1000);assert.equal(stage.querySelector('[data-copy="new"]').style.opacity,'1');
+      if(variant!=='aligned-silhouette'){
+        const cache=e.source.frame_cache;
+        draw(0);assert.equal(Number(stage.dataset.nativeFrame),cache.start_frame);
+        draw(1e9);assert.equal(Number(stage.dataset.nativeFrame),cache.start_frame+cache.frames-1);
       }
       draw.destroy();assert.equal(stage.childNodes.length,0);
     }
@@ -121,6 +125,18 @@ test('八个独立导出均可编译；完整编辑版无新媒体依赖，原�
       assert.ok(result.outputFiles[0].text.includes('WiseSpatialApertures'));
       const project=await projectFor(id,{variantId});
       for(const[file,content]of Object.entries(project.files))if(typeof content==='string'&&/\.(jsx?|mjs|json)$/.test(file))assert.doesNotMatch(content,/data:video\/[^;]+;base64,/);
+      const module={exports:{}};
+      const compiled=await build({entryPoints:[path.join(out.directory,'catalog/remotion/spatial-apertures.jsx')],bundle:true,write:false,format:'cjs',platform:'node',external:['react','remotion'],logLevel:'silent'});
+      // Match CommonJS module scope: the data API and React component deliberately share a name.
+      runInNewContext('(function(module,exports,require){\n'+compiled.outputFiles[0].text+'\n})',{})(module,module.exports,createRequire(import.meta.url));
+      assert.equal(typeof module.exports.WiseSpatialApertures,'function',id+' / '+variantId+': '+Object.keys(module.exports));
+      const element=module.exports.WiseSpatialApertures({effectId:id,variantId});
+      if(variantId!=='aligned-silhouette'){
+        assert.equal(element.type.name,'WiseNativeVideo');
+        assert.deepEqual(plain(element.props.definition.source.frame_cache),resolveEffect(id,variantId).source.frame_cache);
+        assert.equal(hash(await readFile(path.join(out.directory,'public',asset,'movie.mp4'))),hash(await readFile(path.join(root,asset,'movie.mp4'))));
+      }
+      assert.equal(spawnSync(process.execPath,['verify-source.mjs'],{cwd:out.directory,encoding:'utf8'}).status,0);
       if(id==='spatial-mechanical-sequence'){
         const editable=await build({entryPoints:[path.join(out.directory,asset,'editable/Root.jsx')],bundle:true,write:false,format:'esm',platform:'node',external:['react','remotion'],logLevel:'silent'});assert.ok(editable.outputFiles[0].text.includes('SHAPED'));
         for(const file of ['FilmV3.jsx','FilmV4.jsx','SpatialScenes.jsx'])assert.doesNotMatch(await readFile(path.join(out.directory,asset,'editable',file),'utf8'),/@remotion\/media|HelveticaNeue/);

@@ -16,12 +16,13 @@ test('透明开关默认页面不变；仅清理外壳且不重写主题色位',
  assert.equal(createFrameDocument(opts),createFrameDocument({...opts,transparent:false}));
  const html=createFrameDocument({...opts,transparent:true});assert.match(html,/color-scheme:normal/);assert.match(html,/\.motion-stage::before,\.motion-stage::after/);assert.doesNotMatch(html,/--stage:transparent/);
  assert.throws(()=>createFrameDocument({...opts,transparent:'true'}),/布尔/);
- for(const id of ['type-reveal','count-up','word-focus'])assert.equal(layerStatus(resolveEffect(id)),'overlay-ok',id+' 当前源码审计过期');
+ assert.equal(layerStatus(resolveEffect('word-focus')),'overlay-ok');
+ for(const id of ['type-reveal','count-up'])assert.equal(layerStatus(resolveEffect(id)),'own-background',id+' 新默认动作须另行取证');
  assert.equal(layerStatus(resolveEffect('particle-word')),'own-background');
 });
 // 合成审计记录只验证检查分支，不作为画面取证，也不写回权威记录。
 function auditFixture(){
- const results=['type-reveal','count-up','word-focus'].map(id=>({id,variant:null,status:'overlay-ok',fingerprint:layerFingerprint(resolveEffect(id))}));
+ const results=['word-focus'].map(id=>({id,variant:null,status:'overlay-ok',fingerprint:layerFingerprint(resolveEffect(id))}));
  return {version:LAYER_AUDIT_VERSION,results};
 }
 async function componentWithAudit(report,fingerprints){
@@ -36,8 +37,8 @@ async function componentWithAudit(report,fingerprints){
 
 test('组件拒绝过期记录、未获准条目和改写后的绘制定义',async()=>{
  const report=auditFixture(),fingerprints=verifiedLayerFingerprints({report});
- const render=await componentWithAudit(report,fingerprints),definition=resolveEffect('type-reveal');
- assert.match(render({effectId:definition.id,content:{text:'新的文字'}}),/<iframe/);
+ const render=await componentWithAudit(report,fingerprints),definition=resolveEffect('word-focus');
+ assert.match(render({effectId:definition.id,content:{words:['新的','文字','内容']}}),/<iframe/);
  for(const changed of [
   {...resolveEffect('particle-word'),layer:'overlay-ok'},
   {...definition,source:{...definition.source,path:'catalog/effects/word-slam.js'}},
@@ -65,7 +66,7 @@ test('组件拒绝过期记录、未获准条目和改写后的绘制定义',asy
 });
 
 test('目录按钮与无关绘制器清单不影响审计，绘制、字体和适配器变化仍使记录失效',()=>{
- const definition=resolveEffect('type-reveal'),before=layerFingerprint(definition),read=file=>readFileSync(new URL('../'+file,import.meta.url));
+ const definition=resolveEffect('word-focus'),before=layerFingerprint(definition),read=file=>readFileSync(new URL('../'+file,import.meta.url));
  const changed=target=>layerFingerprint(definition,file=>file===target?Buffer.concat([read(file),Buffer.from('\n/* changed */')]):read(file));
  for(const file of ['catalog/app.css','remotion/frame-scripts.mjs'])assert.equal(changed(file),before,file);
  for(const file of ['catalog/frame.css','catalog/scenes.css','catalog/effects/attention.js','catalog/fonts/Oswald-Bold.woff2','remotion/frame-document.mjs','remotion/index.jsx','remotion/clock.mjs','remotion/layer-policy.mjs'])assert.notEqual(changed(file),before,file);
@@ -73,7 +74,7 @@ test('目录按钮与无关绘制器清单不影响审计，绘制、字体和�
 
 test('提示词说明不影响已取证的透明资格，绘制参数和样式仍须重新验证',()=>{
  const report=JSON.parse(readFileSync(new URL('../catalog/layer-audit.json',import.meta.url)));
- for(const id of ['type-reveal','count-up','word-focus']){
+ for(const id of ['word-focus']){
   const definition=resolveEffect(id),before=layerFingerprint(definition);
   const audit=report.results.find(row=>row.id===id);
   assert.equal(before,audit.fingerprint,id+' 应保留原已验证记录');

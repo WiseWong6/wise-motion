@@ -4,7 +4,7 @@
 
 收录4个新动作：等臂十字旋转开窗、轴心矩窗连续伸缩、三列直窗错峰开合、后镜提前圆窗进入；复用圆孔扩张转场的“偏心表盘开窗”示例，以及节拍闪切的“同位线稿短闪”示例。结构装配、螺丝旋紧、发条、轮系和摆轮继续关联已有动作。
 
-独立动作提供自编矢量机械示意，窗口函数、关键点、短闪帧表及双镜重叠关系来自原代码。它们是可编辑的运动机制，示意图并非原三维镜头。完整组合用1280×720轻量缓存保留原摄影、文字、窗口和全部切点；放大缓存不代表重新制作1080p或4K。
+独立动作与完整组合共用1280×720静音缓存。单个动作按原成片的全局帧截取，保留真实手表、材质、背景、文字、窗口和换镜，不另画机械示意。原窗口函数、关键点、短闪帧表及双镜重叠关系仍独立可编辑；放大缓存不代表重新制作1080p或4K。
 
 ```sh
 node scripts/export.mjs mechanical-window-sequence --out-dir /新的空目录
@@ -12,11 +12,11 @@ node scripts/export.mjs cross-aperture-turn --out-dir /另一个空目录
 node scripts/export.mjs iris-open-transition --variant offset-aperture --out-dir /又一个空目录
 ```
 
-进入导出目录运行 `npm install`、`npm run studio`。完整组合还提供 `npm run check:source`；二进制素材按SHA256核对，不写成base64进入文字源码。
+进入导出目录运行 `npm install`、`npm run studio`。单个动作和完整组合都提供 `npm run check:source`；命令行导出自动复制运行视频，二进制素材按SHA256核对，不写成base64进入文字源码。
 
 ## 用在自己的素材上
 
-逐帧组件同时导出 `MechanicalWindowClip`，可直接裁剪自己的图片或视频，不必保留矢量示意。剪裁层保持1920×1080设计坐标，在其他画幅中等比容纳：
+默认组件 `WiseMechanicalWindows` 用于观看原片对应片段；同一工程另导出 `MechanicalWindowClip`，可用原窗口运动裁剪自己的图片或视频。剪裁层保持1920×1080设计坐标，在其他画幅中等比容纳：
 
 ```jsx
 import {OffthreadVideo, staticFile} from 'remotion';

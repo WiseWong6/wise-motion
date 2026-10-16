@@ -98,5 +98,10 @@ export const FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/sage-butterfly-mask.js",
   "catalog/effects/reel-extract.js",
   "catalog/effects/mechanical-windows.js",
-  "catalog/effects/spatial-apertures.js"
+  "catalog/effects/spatial-apertures.js",
+  "catalog/effects/aboutlove-clock.js",
+  "catalog/effects/aboutlove-fonts.js",
+  "catalog/effects/aboutlove-data.js",
+  "catalog/effects/aboutlove-entries.js",
+  "catalog/effects/aboutlove.js"
 ]);

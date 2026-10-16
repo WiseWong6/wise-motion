@@ -45,15 +45,28 @@ test('首屏脚本控制在预算内，浏览器播放器复用页面数据且�
   const html=await readFile(new URL('../catalog/index.html',import.meta.url),'utf8');
   const scripts=[...html.matchAll(/<script src="([^"]+)"/g)].map(match=>match[1]);
   const sizes=await Promise.all(scripts.map(file=>stat(new URL('../catalog/'+file,import.meta.url))));
-  assert.ok(sizes.reduce((sum,file)=>sum+file.size,0)<3_600_000,'首屏不应恢复重复目录或大体积绘制数据');
+  assert.ok(sizes.reduce((sum,file)=>sum+file.size,0)<2_900_000,'首屏不应恢复整套绘制代码、重复目录或大体积素材');
+  assert.ok(scripts.length<=22,'动作代码通过既有按需入口载入');
   const env=await environment();
   try {
     const {w}=env;
+    assert.deepEqual(JSON.parse(JSON.stringify(w.MotionRegistry)),data,'精简后的浏览器清单须完整保留目录数据');
     w.MotionRegistry.effects=w.MotionRegistry.effects.map(effect=>effect.id==='stagger-in'?{...effect,name:'页面中的当前定义'}:effect);
     w.eval(await readFile(new URL('../catalog/remotion-player.js',import.meta.url),'utf8'));
     assert.equal(w.WiseRemotion.resolveEffect('stagger-in').name,'页面中的当前定义');
     assert.ok(w.WiseRemotion.resolveEffect('balloon-drive-journey').audio.tracks.length);
   } finally {env.close();}
+});
+
+test('默认组合与动作书签都只创建一遍目录卡片',async()=>{
+ for(const hash of ['', '#fade-rise']){
+  let attached=0;
+  const env=await environment(true,{hash,staticPreview:true,beforeApp(w){
+   const attach=w.MotionThumbs.attach;w.MotionThumbs.attach=(...args)=>{attached++;return attach(...args);};
+  }});
+  try{assert.equal(attached,env.w.document.querySelectorAll('.effect-item').length);}
+  finally{env.close();}
+ }
 });
 
 test('筛选保留已有卡片与缩略图，移出的卡片释放内容', async () => {

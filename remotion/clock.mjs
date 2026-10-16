@@ -33,10 +33,10 @@ export function getEffectMetadata(effectId, options = {}) {
   const speed = normalizeSpeed(options.speed);
   const durationMs = definition.duration_ms;
   if (!Number.isFinite(durationMs) || durationMs <= 0) throw new TypeError('动效时长必须是正数');
-  // 非循环片段包含准确末帧；循环末端进入下一周期，不能再加一张重复帧。
+  // 普通非循环片段包含准确末帧；循环与按原帧数交付的片段不额外添加结束帧。
   const frameSpan = durationMs * fps / (1000 * speed);
   // 去除整帧边界的运算尾差，防止 157.00000000000003 多算一帧。
-  const durationInFrames = Math.max(1, Math.ceil(frameSpan - 1e-9) + (definition.loop ? 0 : 1));
+  const durationInFrames = Math.max(1, Math.ceil(frameSpan - 1e-9) + (definition.loop || definition.source?.remotion?.exact_frames ? 0 : 1));
   return {effectId: definition.id, variantId: definition.variant_id, width: MOTION_WIDTH,
     height: MOTION_HEIGHT, fps, durationMs, durationInFrames, loop: Boolean(definition.loop), speed};
 }

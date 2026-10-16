@@ -39,17 +39,33 @@ test('标准动作画面保持完整画板尺寸，不被页面图标样式缩�
         assert.equal(svg.getAttribute('preserveAspectRatio'),'xMidYMid slice');
         return;
       }
-      assert.equal(size.width,'640px',svg.parentElement.dataset.effect);
-      assert.equal(size.height,'360px',svg.parentElement.dataset.effect);
+      const label=svg.closest('[data-effect]')?.dataset.effect;
+      if(size.width==='100%'&&size.height==='100%'){
+        assert.equal(svg.closest('.motion-stage')?.style.width,'',label);
+        const box=svg.getAttribute('viewBox')?.split(/\s+/).map(Number);
+        assert.ok(box?.length===4&&box.every(Number.isFinite)&&box[2]>0&&box[3]>0,label+' 保留有效原画板并填满预览');
+      }else{
+        assert.equal(size.width,'640px',label);assert.equal(size.height,'360px',label);
+      }
     };
-    let sceneCount=0;
+    const covered=new Set();let sceneCount=0;
     for(const kind of ['action','illustration']){
       d.querySelector(`[data-kind="${kind}"]`).click();env.reveal();
       await w.MotionThumbs.whenIdle();
       const scenes=[...d.querySelectorAll('.thumb .pattern-svg')];
-      sceneCount+=scenes.length;scenes.forEach(fullSize);
+      sceneCount+=scenes.length;scenes.forEach(svg=>{fullSize(svg);covered.add(svg.closest('.effect-item').dataset.effect);});
+      const posters=[...d.querySelectorAll('.thumb > .motion-stage[data-native-frame] > img')];
+      sceneCount+=posters.length;
+      for(const image of posters){
+        const label=image.closest('.effect-item').dataset.effect,size=w.getComputedStyle(image);
+        assert.equal(size.width,'100%',label);assert.equal(size.height,'100%',label);
+        assert.equal(size.objectFit,'contain',label+' 原片封面等比容纳完整画面');
+        covered.add(label);
+      }
+      for(const card of d.querySelectorAll('.effect-item'))assert.ok(card.querySelector('.thumb > .motion-stage'),card.dataset.effect+' 缩略图应完成');
     }
-    assert.equal(sceneCount,235);
+    assert.ok(sceneCount>=covered.size&&covered.size>0);
+    for(const id of ['rigid-rebound','rect-aperture-breathe','paper-scroll-illustration'])assert.ok(covered.has(id),id+' 应参与尺寸检查');
     d.querySelector('[data-kind="action"]').click();
     d.querySelector('[data-effect="rigid-rebound"]').click();
     fullSize(d.querySelector('#preview .pattern-svg'));

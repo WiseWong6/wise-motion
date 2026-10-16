@@ -107,7 +107,7 @@ WISE_MOTION_RENDER_DIR="/视频工程绝对路径/renders" npm run render -- sta
 
 目录 `catalog/index.html` 本地直接打开；只有视频打包和导出使用 Remotion 的临时服务。正式入口无需维护目录中的基准、对照报告或临时历史数据。
 
-`npm run check` 检查目录结构与字体覆盖；`npm test` 还包含原绘制与历史迁移回归，需保留私有历史档案；模拟页面测试使用原同步绘制器，实际 Remotion 页面另有浏览器和视频验收。新增或修改动效须按影响范围重新验证，不能用结构检查代替真实观看。
+按 [验证范围与命令](references/validation-matrix.md) 选择局部或全量检查。模拟页面测试使用原同步绘制器，实际 Remotion 页面另有浏览器和视频验收；结构检查不能代替真实观看。
 
 薪火生长与文明聚字及六个分段提供独立的 `CivilizationGrowth` 逐帧组件，位于 `catalog/remotion/civilization-growth.jsx`。复制源码包含全部内嵌图片、真实书法轮廓、纸纹、字体、粒子公式和许可，使用 Remotion 4.0.532。
 

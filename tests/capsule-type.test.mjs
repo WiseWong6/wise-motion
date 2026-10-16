@@ -50,7 +50,7 @@ const tick=()=>new Promise(resolve=>setTimeout(resolve,0));
 
 test('登记一个完整组合与三个真实动作，提示词和复制页面可离线迁移',async()=>{
  assert.equal(entries.length,4);assert.equal(composition.duration_ms,5000);assert.equal(composition.actions.length,3);
- assert.match(await read('catalog/index.html'),/src="effects\/capsule-type\.js"/);
+ assert.match(await read('catalog/lazy.js'),/"effects\/capsule-type\.js"/);
  const env=await environment({unsupported:true});try{
   const layers=env.w.MotionFactories[composition.id].breakdown;
   assert.deepEqual([...new Set(layers.flatMap(layer=>Array.from(layer.actions)))].sort(),composition.actions.slice().sort());

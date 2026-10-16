@@ -223,7 +223,7 @@ test('独立星点删除后组合星空仍保留，提示词使用真实图案�
  const root=w.document.createElement('div'),draw=w.MotionFactories[composition.id](root,w.MotionKit,composition);await draw.ready;draw(3000);
  assert.ok(root.querySelector('[data-layer="sky"]'));assert.deepEqual(Array.from(w.MotionFactories[composition.id].breakdown.find(row=>row.id==='sky').actions),[]);draw.destroy();
  const prompt=w.MotionExport.prompt(composition,{},data);for(const term of ['黄金','打铁花','2002','21.133333','字幕'])assert.ok(prompt.includes(term),term);assert.doesNotMatch(prompt,/多涡流场|三圈文字圆|160颗/);
- const page=await read('catalog/index.html');assert.match(page,/effects\/point-domain-flow.js/);assert.doesNotMatch(page,/local-preview.js/);
+ const page=await read('catalog/index.html');assert.doesNotMatch(page,/<script src="effects\/point-domain-flow.js"/);assert.match(await read('catalog/lazy.js'),/effects\/point-domain-flow.js/);assert.doesNotMatch(page,/local-preview.js/);
  for(const id of ['grid-bend-spread','multivortex-release'])assert.equal(data.redirects[id],'grid-flow-unfold');
  }finally{e.close();}
 });

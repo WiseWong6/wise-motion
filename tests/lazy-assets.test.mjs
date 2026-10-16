@@ -4,14 +4,53 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {environment, data} from './helpers.mjs';
 
-const heavy = ['effects/pixel-motion-data.js','effects/pixel-motion.js','effects/butterfly-mask.js','effects/sage-butterfly-mask.js','effects/reel-extract.js','effects/civilization-images.js', 'effects/rasengan-illustrations.js', 'effects/civilization-growth.js', 'remotion-sources.js',...data.effects.filter(e=>e.scene).flatMap(e=>[e.source.path,...(e.source.dependencies||[])]).map(f=>f.replace(/^catalog\//,''))];
+const heavy = ['effects/cat-mouth.js','effects/point-domain-flow.js','effects/pixel-motion-data.js','effects/pixel-motion.js','effects/butterfly-mask.js','effects/sage-butterfly-mask.js','effects/reel-extract.js','effects/civilization-images.js', 'effects/rasengan-illustrations.js', 'effects/civilization-growth.js', 'remotion-sources.js',...data.effects.filter(e=>e.scene).flatMap(e=>[e.source.path,...(e.source.dependencies||[])]).map(f=>f.replace(/^catalog\//,''))];
 const effect = id => data.effects.find(item => item.id === id);
+
+test('组合首帧及拆解共用隔离预览的内容，主页面不重复准备字体和场景',async()=>{
+ const layers=[{id:'rain',name:'雨幕片段',start:0,end:9000,time:'0–9 秒',detail:'原绘制器中的片段说明'}];
+ let finish,controller;
+ const page=await environment(true,{hash:'',lazyAssets:true,beforeApp(w){
+  w.MotionRuntime.create=(root,definition)=>{
+   const frame=w.document.createElement('iframe');root.replaceChildren(frame);
+   let release;const ready=new Promise(resolve=>{release=resolve;});
+   controller={ready,currentTime:0,paused:true,destroyed:false,speed:1,stage:frame.contentDocument.body,
+    session:{doc:frame.contentDocument},play(){this.paused=false;},pause(){this.paused=true;},seek(time){this.currentTime=time;},
+    setSpeed(){},setEase(){},destroy(){this.destroyed=true;release(false);}};
+   finish=()=>{frame.contentWindow.MotionFactories={[definition.id]:{breakdown:layers}};release(true);};return controller;
+  };
+ }});
+ try{
+  const {w}=page,d=w.document;
+  assert.deepEqual(page.lazyRequests,[]);assert.equal(w.WiseAboutLoveFonts,undefined);assert.equal(w.WiseAboutLoveData,undefined);
+  assert.equal(d.getElementById('composition-panel').hidden,true);
+  finish();await new Promise(resolve=>setImmediate(resolve));
+  assert.equal(d.getElementById('composition-panel').hidden,false);
+  assert.equal(d.querySelectorAll('[data-composition-layer]').length,1);
+  assert.match(d.getElementById('prompt').textContent,/文字雨冻结、换焦、复流/);assert.match(d.getElementById('prompt').textContent,/贯穿双语字幕/);
+  assert.deepEqual(page.lazyRequests,[],'展示拆解和提示词不能在主页面再解析字体或准备场景');
+  assert.equal(w.WiseAboutLoveFonts,undefined);assert.equal(w.WiseAboutLoveData,undefined);
+ }finally{controller?.destroy();page.close();}
+});
+
+test('所有动作和示例的声明都能按需载入真实绘制器，共用文件只执行一次',async()=>{
+ const page=await environment(true,{staticPreview:true,lazyAssets:true});
+ try{
+  const {w}=page;
+  for(const entry of data.effects)for(const variant of [undefined,...(entry.variants||[]).map(item=>item.id)]){
+   const selected=w.MotionKit.resolveVariant(entry,variant);
+   await w.MotionLazy.ensure(selected);
+   assert.equal(typeof w.MotionFactories[selected.source.factory||selected.id],'function',selected.id+'/'+variant);
+  }
+  assert.equal(new Set(page.lazyRequests).size,page.lazyRequests.length);
+ }finally{page.close();}
+});
 
 test('较大的绘制文件仅在对应条目需要时载入，并行请求只执行一次',async()=>{
   const page=await environment(true,{staticPreview:true,lazyAssets:true});
   try {
     const {w}=page;
-    const files=['reel-extract','letter-settle','hud-targeting','data-motion','osmanthus-motion','settle-grow-spread','history-nature','claude-tile-illustrations','motion-oasis','material-evolution'].map(name=>'effects/'+name+'.js');
+    const files=['cat-mouth','point-domain-flow','reel-extract','letter-settle','hud-targeting','data-motion','osmanthus-motion','settle-grow-spread','history-nature','claude-tile-illustrations','motion-oasis','material-evolution'].map(name=>'effects/'+name+'.js');
     assert.deepEqual(page.lazyRequests,[]);
     for(const file of files){
       const entry=data.effects.find(item=>item.source.path==='catalog/'+file);
@@ -35,6 +74,9 @@ test('浏览和复制提示词不加载完整源码表，打开需要它的代�
     assert.equal(w.MotionLazy.ensureCode(effect('fade-rise')), null);
     assert.deepEqual(page.lazyRequests, [], '普通用法不需要完整源码表');
 
+    // 此结构环境使用同页绘制器；浏览器的隔离预览自行准备这些绘制代码。
+    await w.MotionLazy.ensure(effect('seed-sprout-bloom'));
+    const previewRequests=[...page.lazyRequests];
     d.getElementById('tab-prompt').click();
     d.querySelector('[data-effect="seed-sprout-bloom"]').click();
     assert.equal(w.MotionRemotionSources, undefined);
@@ -43,7 +85,7 @@ test('浏览和复制提示词不加载完整源码表，打开需要它的代�
     d.execCommand = () => { copied = d.activeElement.value; return true; };
     d.getElementById('copy-prompt').click();
     assert.match(copied, /动效说明/);
-    assert.deepEqual(page.lazyRequests, []);
+    assert.deepEqual(page.lazyRequests, previewRequests);
 
     d.getElementById('tab-code').click();
     assert.equal(d.getElementById('copy-code').disabled, true);
@@ -52,10 +94,10 @@ test('浏览和复制提示词不加载完整源码表，打开需要它的代�
     await new Promise(resolve => setImmediate(resolve));
     assert.equal(d.getElementById('copy-code').disabled, false);
     assert.match(d.getElementById('code').textContent, /Remotion 完整工程/);
-    assert.deepEqual(page.lazyRequests, ['remotion-sources.js']);
+    assert.deepEqual(page.lazyRequests, [...previewRequests,'remotion-sources.js']);
     d.getElementById('tab-prompt').click();
     d.getElementById('tab-code').click();
-    assert.deepEqual(page.lazyRequests, ['remotion-sources.js']);
+    assert.deepEqual(page.lazyRequests, [...previewRequests,'remotion-sources.js']);
   } finally { page.close(); }
 });
 
@@ -65,6 +107,7 @@ test('源码准备期间切换条目，迟到结果不能覆盖新提示词和�
     const {w} = page, d = w.document;
     let finish, copies = 0;
     const pending = new Promise(resolve => { finish = resolve; });
+    await w.MotionLazy.ensure(effect('seed-sprout-bloom'));
     w.MotionLazy.ensureCode = () => pending;
     d.execCommand = () => { copies++; return true; };
     d.querySelector('[data-effect="seed-sprout-bloom"]').click();

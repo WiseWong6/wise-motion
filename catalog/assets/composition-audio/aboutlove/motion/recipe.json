@@ -1,0 +1,52 @@
+{
+  "title": "动态图形 · 信号到心形组合",
+  "source_duration_ms": 61300,
+  "opening_trim_ms": 950,
+  "duration_ms": 60350,
+  "tracks": [
+    {
+      "name": "原配乐",
+      "src": "catalog/assets/composition-audio/aboutlove/motion/reel-bgm.flac",
+      "start_ms": 0,
+      "duration_ms": 60350,
+      "offset_ms": 950,
+      "volume": 0.85
+    },
+    {
+      "name": "启动轻击",
+      "src": "catalog/assets/composition-audio/aboutlove/motion/sfx_003.mp3",
+      "start_ms": 650,
+      "duration_ms": 400,
+      "offset_ms": 0,
+      "volume": 0.5
+    },
+    {
+      "name": "标题轻击",
+      "src": "catalog/assets/composition-audio/aboutlove/motion/sfx_003.mp3",
+      "start_ms": 4625,
+      "duration_ms": 400,
+      "offset_ms": 0,
+      "volume": 0.6
+    },
+    {
+      "name": "失真音效",
+      "src": "catalog/assets/composition-audio/aboutlove/motion/sfx_002.mp3",
+      "start_ms": 33900,
+      "duration_ms": 900,
+      "offset_ms": 0,
+      "volume": 0.45
+    },
+    {
+      "name": "轮廓冲击",
+      "src": "catalog/assets/composition-audio/aboutlove/motion/sfx_001.mp3",
+      "start_ms": 49575,
+      "duration_ms": 2600,
+      "offset_ms": 0,
+      "volume": 0.6
+    }
+  ],
+  "omissions": [
+    "移除等候光标、三点，裁掉开头纯等待时段。"
+  ],
+  "audio_encoding": "原WAV转为FLAC无损播放文件，原MP3短音效保持；排程、偏移、音量与淡出保持。"
+}

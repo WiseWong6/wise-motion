@@ -63,7 +63,7 @@ test('纸卷仅保留标准目录入口，原作只读，复制代码与目录�
   for(const file of review.migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
   const env=await environment(true);
   try{
-    const {w}=env,d=w.document;d.querySelector('[data-kind="illustration"]').click();env.reveal();
+    const {w}=env,d=w.document;d.querySelector('[data-kind="illustration"]').click();await env.reveal();
     const card=d.querySelector(`[data-effect="${effect.id}"]`);assert.ok(card.querySelector('text'));card.click();
     assert.equal(d.querySelector('#preview .motion-stage').dataset.effect,effect.id);
     assert.ok(!w.MotionHistory.recipes.some(r=>r.history_id==='naive-scroll-unroll'));

@@ -42,7 +42,7 @@ test('目录的声音、播放和重播按钮把本次点击传给播放器',asy
 
 test('声音资源仅登记在完整组合，所有外观、时间与文件可独立复用', async () => {
   const voiced = effectDefinitions.filter(effect => effect.audio);
-  assert.equal(voiced.length, 19);
+  assert.equal(voiced.length, 22);
   for (const effect of effectDefinitions) {
     if (effect.kind !== 'composition') assert.equal(effect.audio, undefined, effect.id);
     for (const variant of effect.variants || [null]) {

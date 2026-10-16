@@ -110,8 +110,9 @@ test('本地目录按需载入像素组合，五段拆解可隔离，相关动�
   const layers=[...d.querySelectorAll('#preview [data-layer]')];
   assert.equal(layers.filter(n=>!n.hasAttribute('data-composition-hidden')).length,1);
   assert.equal(layers.find(n=>!n.hasAttribute('data-composition-hidden')).dataset.layer,'city');
-  d.querySelector('[data-related="shape-morph"]').click();
-  await w.MotionLazy.ensure(selectEffect('shape-morph','pixel-motion'));await new Promise(resolve=>setImmediate(resolve));
+  // 结构环境使用同页绘制器；浏览器的隔离预览会自行准备所选示例的依赖。
+  await w.MotionLazy.ensure(selectEffect('shape-morph','pixel-motion'));
+  d.querySelector('[data-related="shape-morph"]').click();await new Promise(resolve=>setImmediate(resolve));
   assert.equal(d.getElementById('related-variant').value,'pixel-motion');
   assert.equal(d.querySelector('#related-preview [data-pixel-motion]').dataset.pixelMotion,'morph');
   d.getElementById('related-close').click();

@@ -2,12 +2,20 @@
 import {readFile} from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
 import {installSceneCanvas} from './scene-canvas-fixture.mjs';
+import {installAboutloveFixture} from './aboutlove-fixture.mjs';
 import {historyTestData} from './history-fixture.mjs';
+import {resolveEffect} from '../remotion/clock.mjs';
 export const data = JSON.parse(await readFile(new URL('../catalog/registry.json', import.meta.url), 'utf8'));
+// 已获准替换默认动作时，旧画面与内容槽的回归检查显式选择保留示例。
+export function legacyDefinition(effect) {
+  return effect?.aboutlove && effect.variants?.some(v=>v.id==='original')
+    ? resolveEffect(effect,'original') : effect;
+}
 // 原片对照测试使用设计时钟；目录节奏另测，避免把原动作关系也改成新预期。
 export function sourceDefinition(effect) {
   if (!effect.timing) return effect;
-  const {timing,...source} = effect;
+  // This is already a selected source clock; a retained variant must not restore catalog timing.
+  const {timing,variants,...source} = effect;
   return {...source, duration_ms:timing.source_duration_ms, preview_ms:timing.source_preview_ms};
 }
 export function motionTime(effect, sourceTime) {
@@ -17,8 +25,16 @@ export function motionTime(effect, sourceTime) {
   return t.start_ms+(t.end_ms-t.start_ms)*p;
 }
 // 不同画板的图形标识不同；只统一标识与浮点末位，仍逐项核对画面属性。
-export function frameMarkup(root) {
-  let value=root.innerHTML;
+export function frameMarkup(root,{canonicalAttributes=false}={}) {
+  // React 移除后重新添加的属性顺序可变化；比较完整属性值，不把顺序当作画面变化。
+  // 直接读取结构，不为每次取样复制成千上万的图形节点。
+  function structure(node) {
+    if(node.nodeType!==1)return [node.nodeType,node.nodeValue];
+    const attributes=Array.from(node.attributes,attr=>[attr.namespaceURI,attr.name,attr.value]).sort((a,b)=>a[1].localeCompare(b[1]));
+    return [node.namespaceURI,node.localName,attributes,Array.from(node.childNodes,structure)];
+  }
+  // 已保存的画面摘要继续沿用原 HTML；只在检查反复定位时消除属性排列的无关差异。
+  let value=canonicalAttributes?JSON.stringify(Array.from(root.childNodes,structure)):root.innerHTML;
   [...root.querySelectorAll('[id]')].forEach((node,i)=>{value=value.replaceAll(node.id,'fixed-id-'+i);});
   return value.replace(/-?\d+\.\d+(?:e[-+]?\d+)?/gi,n=>String(Math.round(Number(n)*1e7)/1e7));
 }
@@ -31,6 +47,8 @@ export async function environment(withApp = false, options = {}) {
   const hash = options.hash ?? (withApp ? '#fade-rise' : '');
   const dom = new JSDOM(html, {url:'file:///wise-motion/catalog/index.html'+hash,runScripts:'outside-only',pretendToBeVisual:true});
   const w = dom.window;
+  // 结构测试把空闲机会交给微任务；真实调度先后另用可控队列验证。
+  w.requestIdleCallback = callback => w.queueMicrotask(() => callback({timeRemaining:()=>50,didTimeout:false}));
   if (options.sessionStorage) Object.defineProperty(w, 'sessionStorage', {value:options.sessionStorage});
   // 页面按需追加的脚本没有网络可取：直接从源码目录读取、执行，再触发 onload，并记录载入顺序。
   const lazyRequests = [];
@@ -45,6 +63,7 @@ export async function environment(withApp = false, options = {}) {
   // 只做结构与控制检查。jsdom 没有像素绘制能力，显式返回空值，避免能力探测噪声。
   w.HTMLCanvasElement.prototype.getContext = () => null;
   installSceneCanvas(w);
+  installAboutloveFixture(w);
   // jsdom 无图片解码能力；结构检查视本地图片为已准备。异步边界另用独立环境测试。
   if (!options.realImagePreparation) {
     Object.defineProperty(w.HTMLImageElement.prototype, 'complete', {get: () => true, configurable: true});
@@ -81,7 +100,7 @@ export async function environment(withApp = false, options = {}) {
       // 历史数据在浏览器中按需加载；测试无网络，提前提供这份数据。
       if (file === 'catalog/app.js'&&!options.lazyHistory) sources.push('catalog/history-data.js');
       // 大体积素材在浏览器中按需载入；除非专项测试要检查载入过程，否则提前执行并登记为已就绪。
-      if (file === 'catalog/app.js'&&!options.lazyAssets) sources.push('catalog/effects/mechanical-windows-data.js','catalog/effects/mechanical-windows.js','catalog/effects/spatial-apertures-data.js','catalog/effects/spatial-apertures.js','catalog/effects/time-in-motion-data.js','catalog/effects/time-in-motion.js','catalog/effects/time-in-motion-graphics.js','catalog/effects/pixel-motion-data.js','catalog/effects/pixel-motion.js', 'catalog/effects/butterfly-mask.js','catalog/effects/sage-butterfly-mask.js','catalog/effects/reel-extract.js','catalog/effects/letter-settle.js','catalog/effects/hud-targeting.js','catalog/effects/data-motion.js','catalog/effects/osmanthus-motion.js','catalog/effects/settle-grow-spread.js','catalog/effects/history-nature.js','catalog/effects/claude-tile-illustrations.js','catalog/effects/motion-oasis.js','catalog/effects/material-evolution.js',"catalog/effects/scene-source-runtime.js","catalog/effects/scene-osmanthus-data.js","catalog/effects/scene-ink-data.js","catalog/effects/scene-dandelion.js","catalog/effects/scene-drive.js","catalog/effects/scene-factory.js","catalog/effects/scene-ink.js","catalog/effects/scene-letter-images.js","catalog/effects/scene-letter.js","catalog/effects/scene-ocean.js","catalog/effects/scene-osmanthus.js","catalog/effects/scene-selfie-images.js","catalog/effects/scene-selfie.js","catalog/effects/scene-snow.js","catalog/effects/scene-window-data.js","catalog/effects/scene-window-media.js","catalog/effects/scene-window.js",'catalog/effects/civilization-images.js','catalog/effects/rasengan-illustrations.js','catalog/effects/civilization-growth.js','catalog/remotion-sources.js','mark-lazy-loaded');
+      if (file === 'catalog/app.js'&&!options.lazyAssets) sources.push(...JSON.parse((await readFile(new URL('../catalog/lazy.js',import.meta.url),'utf8')).match(/const EFFECT_FILES = (\[[^;]+\]);/)[1]).map(file=>'catalog/'+file).filter(file=>!sources.includes(file)),'catalog/remotion-sources.js','mark-lazy-loaded');
       // jsdom检查原绘制和目录结构；Remotion由专项测试检查。
       // jsdom没有媒体解码器，这里不把无媒体能力误判为视频准备中。
       if(file !== 'catalog/remotion-player.js') sources.push(file);

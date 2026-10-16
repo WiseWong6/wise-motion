@@ -205,7 +205,8 @@ test('目录可以搜索并复制独立源码页面，复制页面不依赖私�
  const env=await environment();try{
   const html=await readFile(new URL('../catalog/index.html',import.meta.url),'utf8');
   const lazy=await readFile(new URL('../catalog/lazy.js',import.meta.url),'utf8');
-  assert.ok(html.includes('effects/motion-oasis.js')||(html.includes('src="lazy.js"')&&lazy.includes("'effects/motion-oasis.js'")),'目录须直接载入或按需载入城市绘制文件');
+  const files=JSON.parse(lazy.match(/const EFFECT_FILES = (\[[^;]+\]);/)[1]);
+  assert.ok(html.includes('effects/motion-oasis.js')||(html.includes('src="lazy.js"')&&files.includes('effects/motion-oasis.js')),'目录须直接载入或按需载入城市绘制文件');
   assert.equal(env.w.MotionMatch.rank(data,'动效绿洲')[0].effect.id,'motion-oasis-sequence');
   for(const e of fresh){
    const code=env.w.MotionExport.code(e);assert.ok(code.includes('catalog/effects/motion-oasis.js'));if(e.kind==='composition'){assert.ok(code.includes('catalog_data'));assert.ok(code.includes('\"action\": '+env.w.MotionRegistry.effects.filter(x=>x.kind==='action').length));}assert.doesNotMatch(code,/\/Users\/|<video|opus-scene/);

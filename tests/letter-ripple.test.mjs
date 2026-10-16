@@ -2,6 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {readHistorySource} from './history-sources.mjs';
 import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import vm from 'node:vm';
@@ -10,7 +11,7 @@ import {history,state} from '../scripts/history.mjs';
 const effect=data.effects.find(e=>e.id==='letter-ripple');
 const cross=JSON.parse(await readFile(state+'/crosswalk.json','utf8'));
 const files=cross.rules['letter-ripple'].migration.files;
-const original=await readFile(files[0].file,'utf8');
+const original=await readHistorySource(files[0],'utf8');
 const adapter=await readFile(files[1].file,'utf8');
 const adapted=await readFile(new URL('../catalog/effects/letter-ripple.js',import.meta.url),'utf8');
 const extract=(source,a,b)=>{
@@ -83,7 +84,7 @@ test('正式入口、缩略图、旧名搜索和导出完整，定位稳定且�
   const historical=await history(data);assert.equal(effect.category,'writing');
   assert.ok(!historical.recipes.some(e=>e.history_id==='letter-ripple'));
   assert.ok(historical.excluded.some(e=>e.id==='letter-ripple'));
-  for(const file of files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
+  for(const file of files)assert.equal(createHash('sha256').update(await readHistorySource(file)).digest('hex'),file.sha256);
   const env=await environment(true,{staticPreview:true,hash:'#letter-ripple'});
   try{
     const {w}=env,d=w.document;await env.reveal('[data-effect="letter-ripple"] .thumb');assert.equal(d.getElementById('preview-title').textContent,effect.name);

@@ -12,11 +12,11 @@ const browserSource=await readFile(new URL('../remotion/browser.jsx',import.meta
 const browserCode=(await transform(browserSource,{loader:'jsx',format:'cjs'})).code;
 function browserHarness(overrides={},hooks={}){
  const dom=new JSDOM('<!doctype html><div id="root"></div>',{url:'file:///wise-motion/catalog/index.html'}),w=dom.window;
- let tree,frame=0,unmounts=0,sessionDocument;const observers=[];
+ let tree,frame=0,unmounts=0,renders=0,sessionDocument;const observers=[];
  const events=new Map(),playEvents=[];
  const player={muted:true,play(event){playEvents.push(event);},pause(){},mute(){this.muted=true;},unmute(){this.muted=false;},isMuted(){return this.muted;},seekTo(value){frame=value;},getCurrentFrame(){return frame;},addEventListener(name,callback){events.set(name,callback);},removeEventListener(name){events.delete(name);}};
  const React={createRef:()=>({current:null}),createElement:(type,props)=>({type,props})};
- const reactRoot={render(value){tree=value;value.props.ref.current=player;},unmount(){unmounts++;hooks.onUnmount?.(sessionDocument);}};
+ const reactRoot={render(value){renders++;tree=value;value.props.ref.current=player;},unmount(){unmounts++;hooks.onUnmount?.(sessionDocument);}};
  const modules={react:React,'react-dom/client':{createRoot:()=>reactRoot},'react-dom':{flushSync:fn=>fn()},'@remotion/player':{Player(){ }},'./with-audio.jsx':{WiseMotionEffect(){},getEffectMetadata:()=>({durationInFrames:Math.ceil((overrides.duration_ms??2000)*60/1000-1e-9)+1}),resolveEffect:input=>input},'../catalog/preview-size.js':previewApi};
  const exports={};const context={exports,module:{exports},require:name=>modules[name],document:w.document,URL,queueMicrotask,
  MutationObserver:class{constructor(callback){this.callback=callback;observers.push(this);}observe(){}disconnect(){}},MotionKit:{resolveVariant:input=>input},devicePixelRatio:1};
@@ -28,8 +28,21 @@ function browserHarness(overrides={},hooks={}){
  sessionDocument.body.innerHTML='<script>window.mustNotRun=true</script><div class="motion-stage"><b>保留画面</b></div>';
  let destroys=0;const session={doc:sessionDocument,stage:sessionDocument.querySelector('.motion-stage'),destroy(preserve){destroys++;hooks.onDestroy?.(sessionDocument,preserve);}};
  tree.props.inputProps.onReady(session);
- return {controller,w,root,session,player,events,playEvents,get tree(){return tree;},get frame(){return frame;},get unmounts(){return unmounts;},get destroys(){return destroys;},observers,close(){controller.destroy();w.close();}};
+ return {controller,w,root,session,player,events,playEvents,get tree(){return tree;},get renders(){return renders;},get frame(){return frame;},get unmounts(){return unmounts;},get destroys(){return destroys;},observers,close(){controller.destroy();w.close();}};
 }
+test('初始设置、相同主题及尺寸不重复提交播放器，真正的设置变化保留当前帧',()=>{
+ const h=browserHarness({parameters:{ease:{options:['linear','outCubic']}}});try{
+  const initial=h.renders,mount=h.root.firstElementChild,observer=new h.w.MutationObserver(()=>{});
+  observer.observe(mount,{attributes:true,attributeFilter:['style']});
+  for(let i=0;i<60;i++){h.controller.setSpeed(1);h.controller.setEase('linear');h.controller.fit();h.observers[0].callback();}
+  assert.equal(h.renders,initial);assert.equal(observer.takeRecords().length,0);
+  h.controller.seek(600);const frame=h.frame,before=h.renders;
+  h.controller.setSpeed(1.5);h.controller.setEase('outCubic');
+  assert.equal(h.renders,before+2);assert.equal(h.frame,frame);assert.equal(h.tree.props.playbackRate,1.5);
+  assert.throws(()=>h.controller.setSpeed(NaN),/有限/);assert.throws(()=>h.controller.setEase('missing'),/不支持/);
+  observer.disconnect();
+ }finally{h.close();}
+});
 test('原画预览填满对应比例，窗口缩放与静态保留不把竖画再次缩进横框',()=>{
  for(const [width,height,viewportWidth,viewportHeight] of [[900,1200,540,720],[1080,1920,405,720],[900,1080,600,720],[640,360,1280,720]]){
   const h=browserHarness({scene:{width,height}});

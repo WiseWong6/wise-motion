@@ -2,13 +2,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {readHistorySource} from './history-sources.mjs';
 import {createHash} from 'node:crypto';
 import {JSDOM} from 'jsdom';
 import {environment,data,themed,sourceDefinition} from './helpers.mjs';
 
 test('定位公式保留原词点、两步合行和细线，缩略图完整，重播及倒拖保持同一批文字',async()=>{
   const source='/Users/wisewong/Documents/Developer/wise-video/resume-tutorial/wise-resume-writing/';
-  const original=new JSDOM(await readFile(source+'editions/compact/preview.html','utf8'));
+  const original=new JSDOM(await readHistorySource(source+'editions/compact/preview.html','utf8'));
   const cues=JSON.parse(await readFile(source+'editions/compact/timing.json','utf8')).cues;
   const point=(id,word)=>{const cue=cues.find(c=>c.id===id);return cue.start+cue.charAt[cue.text.indexOf(word)];};
   const anchor=point('s020','几年'),demo=seconds=>120+(seconds-anchor)*500;
@@ -77,6 +78,6 @@ test('定位公式保留原词点、两步合行和细线，缩略图完整，�
     assert.ok(!w.MotionHistory.recipes.some(e=>e.history_id==='resume-evolve'));
     assert.ok(data.effects.some(e=>e.id==='layout-reorder'),'保留已有的布局重排');
     const cross=JSON.parse(await readFile(new URL('../../../state/wise-motion/history/crosswalk.json',import.meta.url),'utf8'));
-    for(const file of cross.rules['resume-evolve'].migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256,'原工程保持只读');
+    for(const file of cross.rules['resume-evolve'].migration.files)assert.equal(createHash('sha256').update(await readHistorySource(file)).digest('hex'),file.sha256,'原工程保持只读');
   }finally{env.w.MotionThumbs.disposeAll();env.close();original.window.close();}
 });

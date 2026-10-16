@@ -77,7 +77,7 @@
     }
   ],
   "adaptations": [
-    "Shared frame-driven geometry and measured silhouette layout; independent actions use editable vector carriers or alpha-preserving WebP product stills.",
+    "独立开窗、短闪与镜头交接示例按原成片全局帧截取，复用同一静音视频，不另画机械示意；原窗口函数、帧表及双层状态函数继续独立可编辑。轮廓入场保持原尺寸、alpha保真的产品WebP及实测排版。",
     "Editable final edit uses pinned existing OffthreadVideo/Img/Html5Audio; HelveticaNeue replaced by OFL Oswald. This changes text glyphs.",
     "No original footage, alpha sequences, system fonts or third-party music in npm. Optional local-media importer verifies every hash before copying."
   ],

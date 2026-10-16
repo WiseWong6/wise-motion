@@ -27,7 +27,7 @@ test('粒子上升翻卷基础两倍速，气柱在云帽下方可见，倒序�
 
 test('套印与撞入合并后各示例仍可独立定位，旧套印书签和来源依赖准确',async()=>{
  const merged=data.effects.find(e=>e.id==='word-slam');
- assert.deepEqual(merged.variants.map(v=>v.id),['original','pixel-motion','overprint']);
+ assert.deepEqual(merged.variants.filter(v=>!v.aboutlove).map(v=>v.id),['original','pixel-motion','overprint']);
  assert.equal(data.effects.some(e=>e.id==='ghost-type-overprint'),false);
  const overprint=resolveEffect(merged.id,'overprint');
  assert.equal(overprint.duration_ms,3000);assert.equal(overprint.timing,null);assert.deepEqual(overprint.content_slots,[]);

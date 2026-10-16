@@ -3,7 +3,7 @@
 理解动作需求，拆解并匹配参考，交付现有源码与接入说明。字幕、分镜、配色和整片组合由调用方的 AI 自行设计；文字动效、转场、插画和组合均可按需取用。
 
 <!-- catalog-counts:start -->
-目录有 307 个单个动作、93 个插画单图、45 个组合片段，共 445 项；数量由目录定义自动生成，详见 [目录统计](CATALOG-STATS.md)。
+目录有 319 个单个动作、93 个插画单图、48 个组合片段，共 460 项；数量由目录定义自动生成，详见 [目录统计](CATALOG-STATS.md)。
 <!-- catalog-counts:end -->
 
 ## 精选动效
@@ -169,7 +169,7 @@ WISE_MOTION_RENDER_DIR="/目标工程/renders" npm run render -- stagger-in stag
 
 视频渲染使用 Remotion 临时服务；本地目录可直接打开。文件名或绝对输出路径必须位于指定产物目录内。
 
-维护目录后运行 `npm run check`、`python3 scripts/verify_project_skills.py` 及受影响测试。`npm test` 还包含历史迁移检查，需本地私有档案。技术核对见 [验证矩阵](references/validation-matrix.md)，人工播放见 [验收步骤](tests/manual.md)，目录维护见 [维护说明](references/catalog-maintenance.md)。
+维护时按 [验证范围与命令](references/validation-matrix.md) 选择检查；局部测试统一使用 `npm run test:files -- tests/具体文件.test.mjs`。全量 `npm test` 另需本地私有历史档案。人工播放见 [验收步骤](tests/manual.md)，目录维护见 [维护说明](references/catalog-maintenance.md)。
 
 ## 获取完整三维工程
 

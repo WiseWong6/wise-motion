@@ -250,7 +250,7 @@
     if(entry)for(const note of new Set(entry.cases.map(c=>describe(c.note)).filter(Boolean)))if(!phases.includes(note)&&note!==retain)lines.push('动作细节：'+note);
     const paper=effect.id==='dither-lab-book'&&settings.bookSettings;
     if(paper)lines.push('纸页设置：图片留白 '+paper.padding+' 像素，图片圆角 '+paper.radius+' 像素，书脊阴影 '+paper.crease+'%。');
-    const layers=effect.kind==='composition'&&(spec.layers??global.MotionFactories?.[effect.id]?.breakdown);
+    const layers=effect.kind==='composition'&&(spec.layers??settings.compositionLayers??global.MotionFactories?.[effect.id]?.breakdown);
     if(layers?.length)lines.push('', (effect.breakdown_mode==='sequence'?'镜头顺序':'组成图层')+'（实际播放秒数，正文参数按动作时钟）：',...layers.map(layer=>describe(layer.name)+' · '+(layer.start/1000/speed).toFixed(2)+'–'+(layer.end/1000/speed).toFixed(2)+' 秒：'+describe(layer.detail)));
     if(effect.kind==='composition'&&effect.audio?.tracks?.length)lines.push('', '声音：需要提供与以下轨道对应的音频文件作为输入；轨道名称仅作说明，未提供对应音频输入时不能复现指定音频，不能凭名称编造曲风、鼓点或音乐。声音与画面共用播放时间；暂停、定位、重播和变速同时作用于声音。',
       ...effect.audio.tracks.map((track,i)=>{

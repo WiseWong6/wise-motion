@@ -31,7 +31,7 @@ test('纸面显影使用完整的本地图集，主目录与导出页均能按�
   assert.equal(createHash('sha256').update(bytes).digest('hex'),record.sha256);
   assert.deepEqual(losslessWebpDimensions(bytes),[1536,1024]);
   assert.equal(record.tool,'Codex 内置 image_gen.imagegen');assert.ok(record.prompt);
-  const index=await source('catalog/index.html');assert.match(index,/src="effects\/cyanotype\.js"/);
+  const lazy=await source('catalog/lazy.js');assert.match(lazy,/"effects\/cyanotype\.js"/);
   for(const {url,html,expected} of [
     {url:'file:///relocated/wise-motion/catalog/index.html',html:'<div id="root"></div><script src="effects/cyanotype.js"></script>',expected:'file:///relocated/wise-motion/catalog/assets/cyanotype/botanical-atlas.webp'},
     {url:'file:///relocated/wise-motion/demo.html',html:'<div id="root"></div><script src="catalog/effects/cyanotype.js"></script>',expected:'file:///relocated/wise-motion/catalog/assets/cyanotype/botanical-atlas.webp'}

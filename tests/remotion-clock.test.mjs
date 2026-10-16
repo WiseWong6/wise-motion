@@ -62,7 +62,7 @@ test('所有条目和变体可解析，元数据与末帧一致，原注册表�
       assert.equal(metadata.height, 360);
       assert.equal(metadata.durationMs, resolved.duration_ms);
       const end = sampleEffectTime(resolved, metadata.durationInFrames - 1, metadata.fps, {speed});
-      if (!resolved.loop) {
+      if (!resolved.loop && !resolved.source?.remotion?.exact_frames) {
         assert.equal(end.time, resolved.duration_ms, effect.id);
         if (metadata.durationInFrames > 1) assert.ok(sampleEffectTime(resolved, metadata.durationInFrames - 2, metadata.fps, {speed}).time < resolved.duration_ms, effect.id + ' 不得额外重复末帧');
       }
@@ -96,11 +96,11 @@ test('源时间映射交给原绘制核心，取样模块不再次缩放', () =>
 test('隔离页保持全部效果脚本的原始加载顺序，排除目录控制脚本', async () => {
   const html = await readFile(new URL('../catalog/index.html', import.meta.url), 'utf8');
   const originals = [...html.matchAll(/<script src="(effects\/[^\"]+)"/g)].map(match => 'catalog/' + match[1]);
-  const lazy = (await readFile(new URL('../catalog/lazy.js', import.meta.url), 'utf8')).match(/EFFECT_FILES = \[([^\]]+)\]/)[1].match(/effects\/[^']+/g).map(file => 'catalog/' + file);
+  const lazy = JSON.parse((await readFile(new URL('../catalog/lazy.js', import.meta.url), 'utf8')).match(/const EFFECT_FILES = (\[[^;]+\]);/)[1]).map(file => 'catalog/' + file);
   assert.equal(new Set(lazy).size,lazy.length,'按需加载清单不得重复');
   const frameEffects = FRAME_SCRIPTS.filter(path => path.startsWith('catalog/effects/'));
-  assert.deepEqual(frameEffects.filter(path => !lazy.includes(path)), originals, '目录页同步载入的绘制与隔离页顺序一致');
-  assert.deepEqual(frameEffects.filter(path => lazy.includes(path)).sort(), lazy.slice().sort(), '按需载入的绘制仍在隔离页里');
+  assert.deepEqual(frameEffects.filter(path => originals.includes(path)), originals, '目录页同步载入的绘制与隔离页顺序一致');
+  assert.deepEqual(frameEffects,lazy,'按需清单与隔离页完整保留原始绘制顺序');
   assert.ok(!FRAME_SCRIPTS.includes('catalog/app.js'));
   assert.ok(!FRAME_SCRIPTS.includes('catalog/player-glass.js'));
   const document = createFrameDocument({assetBaseUrl:'file:///project/',theme:'light'});

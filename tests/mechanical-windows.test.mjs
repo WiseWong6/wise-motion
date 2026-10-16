@@ -7,6 +7,7 @@ import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {runInNewContext} from 'node:vm';
+import {createRequire} from 'node:module';
 import {build} from 'esbuild';
 import registry from '../catalog/registry.json' with {type:'json'};
 import {windowState as authorState,contains} from '../catalog/assets/mechanical-windows/production/windows-v2.mjs';
@@ -48,7 +49,7 @@ test('960帧窗口与作者原函数一致，跨镜几何连续，原稿和源�
   assert.equal(hash(cache),source.runtime.sha256);assert.ok(cache.length<10_000_000);
 });
 
-test('独立动作共享同一几何；偏心圆窗和同位短闪复用旧动作，乱序定位与双镜预入正确',async()=>{
+test('独立动作显示原片片段，逐帧定位一致；偏心圆窗和同位短闪保留原有入口',async()=>{
   const env=await environment();
   try{
     const {w}=env,host=w.document.getElementById('root');
@@ -57,26 +58,19 @@ test('独立动作共享同一几何；偏心圆窗和同位短闪复用旧动�
       const e=resolveEffect(id,variant),stage=w.document.createElement('div');host.replaceChildren(stage);
       assert.equal(e.kind,'action');assert.equal(e.audio,undefined);
       const draw=w.MotionFactories[id](stage,w.MotionKit,e);
+      await draw.ready;
+      const mode=variant||id,cache=e.source.frame_cache,expected=w.WiseMechanicalWindows.definitionFor(id,variant);
+      assert.deepEqual(cache,plain(expected.source.frame_cache));
+      assert.equal(e.duration_ms,cache.frames/30*1000);
+      assert.equal(stage.querySelector('img').getAttribute('src'),cache.poster.replace(/^catalog\//,''));
+      assert.equal(stage.querySelector('[data-disc],svg'),null,'原片不能被示意齿轮替代');
       for(const ms of [0,e.preview_ms,e.duration_ms,100,e.preview_ms]){
         draw(ms);const one=frameMarkup(stage);draw(0);draw(e.duration_ms);draw(ms);
         assert.equal(hash(Buffer.from(frameMarkup(stage))),hash(Buffer.from(one)),id+' @ '+ms);
+        assert.equal(Number(stage.dataset.nativeFrame),w.WiseMechanicalWindows.frameFor(mode,ms));
       }
-      if(id==='cross-aperture-turn'){
-        draw(79/30*1000);const a=stage.querySelector('clipPath').innerHTML;
-        draw(80/30*1000);assert.notEqual(stage.querySelector('clipPath').innerHTML,a);
-        assert.equal(stage.dataset.designFrame,'400');assert.equal(stage.dataset.picture,'after');
-      }
-      if(id==='next-shot-preentry'){
-        draw(0);assert.equal(stage.querySelector('clipPath circle').getAttribute('r'),'0');
-        draw(200);const a=stage.querySelector('[data-picture="before"] [data-disc]').getAttribute('transform');
-        draw(300);assert.notEqual(stage.querySelector('[data-picture="before"] [data-disc]').getAttribute('transform'),a);
-        assert.equal(stage.dataset.picture,'two-live-layers');
-        draw(400);assert.equal(stage.querySelector('clipPath circle').getAttribute('r'),'1900');
-      }
-      if(variant==='registered-drawing')for(const [f,visible]of [[9,false],[10,true],[16,true],[17,false],[29,false],[30,true],[38,true],[39,false]]){
-        draw(f/30*1000);assert.equal(stage.querySelector('[data-picture="drawing"]').style.display!=='none',visible);
-      }
-      if(variant==='offset-aperture'){draw(0);const circle=stage.querySelector('clipPath circle');assert.equal(circle.getAttribute('cx'),'430');assert.equal(circle.getAttribute('r'),'150');}
+      draw(0);assert.equal(Number(stage.dataset.nativeFrame),cache.start_frame);
+      draw(1e9);assert.equal(Number(stage.dataset.nativeFrame),cache.start_frame+cache.frames-1);
       draw.destroy();assert.equal(stage.childNodes.length,0);
     }
     const comp=resolveEffect('mechanical-window-sequence');
@@ -115,6 +109,17 @@ test('七个入口可独立编译，编辑版无新增媒体依赖和系统字�
       assert.ok(result.outputFiles[0].text.includes('WiseMechanicalWindows'));
       const project=await projectFor(id,{variantId});
       for(const [file,content]of Object.entries(project.files))if(typeof content==='string'&&/\.(jsx?|mjs|json)$/.test(file))assert.doesNotMatch(content,/data:video\/[^;]+;base64,/);
+      assert.equal(hash(await readFile(path.join(out.directory,'public/catalog/assets/mechanical-windows/movie.mp4'))),
+        hash(await readFile(path.join(root,'catalog/assets/mechanical-windows/movie.mp4'))));
+      assert.equal(spawnSync(process.execPath,['verify-source.mjs'],{cwd:out.directory,encoding:'utf8'}).status,0);
+      const module={exports:{}};
+      const compiled=await build({entryPoints:[path.join(out.directory,'catalog/remotion/mechanical-windows.jsx')],bundle:true,write:false,format:'cjs',platform:'node',external:['react','remotion'],logLevel:'silent'});
+      // Match CommonJS module scope: the data API and React component deliberately share a name.
+      runInNewContext('(function(module,exports,require){\n'+compiled.outputFiles[0].text+'\n})',{})(module,module.exports,createRequire(import.meta.url));
+      assert.equal(typeof module.exports.WiseMechanicalWindows,'function',id+' / '+variantId+': '+Object.keys(module.exports));
+      const element=module.exports.WiseMechanicalWindows({effectId:id,variantId});
+      assert.equal(element.type.name,'WiseNativeVideo');
+      assert.deepEqual(plain(element.props.definition.source.frame_cache),resolveEffect(id,variantId).source.frame_cache);
       if(id==='mechanical-window-sequence'){
         const editable=await build({entryPoints:[path.join(out.directory,'catalog/assets/mechanical-windows/editable/Root.jsx')],bundle:true,write:false,format:'esm',platform:'node',external:['react','remotion'],logLevel:'silent'});
         assert.ok(editable.outputFiles[0].text.includes('A WORLD'));

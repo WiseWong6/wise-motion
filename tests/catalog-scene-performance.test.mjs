@@ -40,6 +40,8 @@ test('原作缩略图只生成代表帧，相同时间不重复绘制，诊断�
 test('准备缩略图之间响应页面事件，切走的下一张卡片不再启动',async()=>{
  const env=await environment(),{w}=env;
  w.eval(await readFile(new URL('../catalog/thumbnails.js',import.meta.url),'utf8'));
+ // 本项检查真实页面事件的执行机会，空闲回调使用独立事件，不能用结构环境的微任务替身。
+ w.requestIdleCallback=fn=>w.setTimeout(fn,16);
  try{for(const cancel of [false,true]){
   const events=[],hosts=[w.document.createElement('div'),w.document.createElement('div')];
   const effects=['fade-rise','scale-in'].map(id=>data.effects.find(e=>e.id===id));

@@ -156,11 +156,13 @@ test('十六项可反复定位、双实例裁剪互不冲突，末尾停住且�
 });
 
 test('正式目录加载全部十六项，缩略图、点击预览与独立导出使用同一原插画',async()=>{
-  const env=await environment(true,{staticPreview:true});
+  const env=await environment(true,{staticPreview:true,lazyAssets:true});
   try{
     const {w}=env,d=w.document;
-    assert.equal(d.querySelectorAll('script[src="effects/claude-tile-illustrations.js"]').length,1);
+    assert.equal(d.querySelectorAll('script[src="effects/claude-tile-illustrations.js"]').length,0);
+    assert.ok(w.MotionLazy.effectFiles.includes('effects/claude-tile-illustrations.js'));
     d.querySelector('[data-kind="illustration"]').click();env.reveal();await w.MotionThumbs.whenIdle();
+    assert.equal(env.lazyRequests.filter(file=>file==='effects/claude-tile-illustrations.js').length,1);
     for(const def of definitions){
       const card=d.querySelector(`[data-effect="${def.id}"]`);assert.ok(card,def.name+' 目录卡片');
       const thumb=card.querySelector('.thumb .motion-stage');assert.ok(thumb,def.name+' 缩略图');

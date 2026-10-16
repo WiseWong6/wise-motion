@@ -3,18 +3,173 @@
   "files": [
     {
       "path": "catalog/app.css",
-      "bytes": 46624,
-      "sha256": "a442cb740cb25b806765c8787efe68f7ba0bb4689c07b7749c10666fd985bdde"
+      "bytes": 46388,
+      "sha256": "137668f878a5690fea3e36422e5e1d819fd487a71b9817e1546736c5cc2444ad"
     },
     {
       "path": "catalog/app.js",
-      "bytes": 60470,
-      "sha256": "f3f501f68ffa646da77086fcf387611cab71ac4da57d7c76996b9e0147a3c285"
+      "bytes": 60784,
+      "sha256": "1d8b0261ab6ae5493d3108602e6b1d84d57187d0643f5b53edbafaacfbacfe28"
     },
     {
       "path": "catalog/assets/WEBP-SOURCES.json",
       "bytes": 53449,
       "sha256": "e5ffc08f2955a0cd8d737d24ff338d0e562fa78c6a7ff6e861963bffadc1b85f"
+    },
+    {
+      "path": "catalog/assets/aboutlove/README.md",
+      "bytes": 4020,
+      "sha256": "9fbbfa9249df3a75fb94919c8d262ed0763baea75aa731d2f78f222b88809152"
+    },
+    {
+      "path": "catalog/assets/aboutlove/SOURCE.json",
+      "bytes": 22420,
+      "sha256": "c516aef672275ad22bbcbfe4275935a7bffb3acf2eb796ed45fc74a52e481edc"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/10272f7791336451d71c80668eaa9532f5fe173685887ded8efe73d8d4e36e2a.woff2",
+      "bytes": 270632,
+      "sha256": "10272f7791336451d71c80668eaa9532f5fe173685887ded8efe73d8d4e36e2a"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/16bf0d654469baa008f00b01a527b6142f841f2e0ea01b847d39a9f39db62053.woff2",
+      "bytes": 92296,
+      "sha256": "16bf0d654469baa008f00b01a527b6142f841f2e0ea01b847d39a9f39db62053"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/1c0f989ae61bc39d17a2acd5e0b05ccfe893bbf07390edef9564e7ac9d89955d.woff2",
+      "bytes": 93460,
+      "sha256": "1c0f989ae61bc39d17a2acd5e0b05ccfe893bbf07390edef9564e7ac9d89955d"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/31198dbb34f1f86a5e47e50c3e49026a6ef2bcd4753534b4d207422fa4a4f7e0.woff2",
+      "bytes": 2665324,
+      "sha256": "31198dbb34f1f86a5e47e50c3e49026a6ef2bcd4753534b4d207422fa4a4f7e0"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/3c89803d9192d106772b77415c0e415b25242de6f4dd2094a64ef77674ed0338.woff2",
+      "bytes": 42880,
+      "sha256": "3c89803d9192d106772b77415c0e415b25242de6f4dd2094a64ef77674ed0338"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/595133e30417c7686d412146869c4a6bb0697e88bce764beef048c88814213bb.woff2",
+      "bytes": 267392,
+      "sha256": "595133e30417c7686d412146869c4a6bb0697e88bce764beef048c88814213bb"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/66e6e9081841836973e2ecd0c2b3620c7aababcf0149d8b40e9ce230168eaf05.woff2",
+      "bytes": 43644,
+      "sha256": "66e6e9081841836973e2ecd0c2b3620c7aababcf0149d8b40e9ce230168eaf05"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/75d6ca7d9636209cb1bc0799c16486b8228ba9a7831282c89a2515a0252eb3d6.woff2",
+      "bytes": 199088,
+      "sha256": "75d6ca7d9636209cb1bc0799c16486b8228ba9a7831282c89a2515a0252eb3d6"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/796668611f80b64d5adf182fde3b6f29ed83b4e7cbec7b96937e84ac01364792.ttf",
+      "bytes": 495684,
+      "sha256": "796668611f80b64d5adf182fde3b6f29ed83b4e7cbec7b96937e84ac01364792"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/8a08d13f8a6c0d51be379a60af84f945f65369a67e509ee3c3bdcc421254d7c1.ttf",
+      "bytes": 451664,
+      "sha256": "8a08d13f8a6c0d51be379a60af84f945f65369a67e509ee3c3bdcc421254d7c1"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/8b00b49db07909673e2bd56201a6b344a01d0c6de9c63c8d5fb68be0dd524701.woff2",
+      "bytes": 269028,
+      "sha256": "8b00b49db07909673e2bd56201a6b344a01d0c6de9c63c8d5fb68be0dd524701"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/9f2165c2b6f9b417fbc76d82e34022aaabf7852de267c086bd8e6b6dba424a00.woff2",
+      "bytes": 267680,
+      "sha256": "9f2165c2b6f9b417fbc76d82e34022aaabf7852de267c086bd8e6b6dba424a00"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/Alimama.txt",
+      "bytes": 1985,
+      "sha256": "d5c5a2e3deb6e800bdd902441904d6e3f7cf247e0f755a92124b7517aa38831a"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/Mono.txt",
+      "bytes": 4463,
+      "sha256": "0983abed9371adc8958c321bf8d8036324b4a2e8cc324682b0fe0c699e63a009"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/Newsreader.txt",
+      "bytes": 4394,
+      "sha256": "fdfad38143ec470553cae82a1e45320bdd1b9ec70415d37bd0171051d8a4ded8"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/Oswald.txt",
+      "bytes": 4390,
+      "sha256": "0687c51a3126ae6963389181135a2eaea02f2e88f31230d27409952f28e84da5"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/Sans.txt",
+      "bytes": 4463,
+      "sha256": "fcac737e761ec63dbfbdce11030a1780161920d80315edba9c8beff1c2bac5a2"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/Serif.txt",
+      "bytes": 4463,
+      "sha256": "9ff5bb567e1b92c801fc1069e5fbf992ff8efccacb9db94e5959a5b3ba9bb903"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/WenKai.txt",
+      "bytes": 5171,
+      "sha256": "1a25e35da1031c6c3436fde545bb9cb5aca954e9873afe510c834b8b79bd21a0"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/b92f559319c423939e2dfd43d7cc7b717ecce1f2a13145feec564281a31a0fb9.woff2",
+      "bytes": 129388,
+      "sha256": "b92f559319c423939e2dfd43d7cc7b717ecce1f2a13145feec564281a31a0fb9"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/c2e658b9d93b459667ca51c1f0e1e8d598c4dcb8e3cf9b0dd7ddb423f7d50a6b.woff2",
+      "bytes": 67432,
+      "sha256": "c2e658b9d93b459667ca51c1f0e1e8d598c4dcb8e3cf9b0dd7ddb423f7d50a6b"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/d1cca405edf21f74321ee89f9e8302098c1022e31e838bb3ea3254924db3e2b6.woff2",
+      "bytes": 270580,
+      "sha256": "d1cca405edf21f74321ee89f9e8302098c1022e31e838bb3ea3254924db3e2b6"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/dc0fa3ad4444a285026a591d1e8d6c5b51b553959517d01c09c6dc2b2a6e178a.woff2",
+      "bytes": 200324,
+      "sha256": "dc0fa3ad4444a285026a591d1e8d6c5b51b553959517d01c09c6dc2b2a6e178a"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/dd7acc4088790d295b086b833c501aa9d57997328da456de26e26bc4223e2bb5.woff2",
+      "bytes": 129512,
+      "sha256": "dd7acc4088790d295b086b833c501aa9d57997328da456de26e26bc4223e2bb5"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302.woff2",
+      "bytes": 12112,
+      "sha256": "e794c1589fdd38232b647a6e86dfe4e19068774ec18591e6c42bdddac140c302"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/ec9a16a5ffff79c4158276409c591bde4b5cbe12c82508e7dbddc31d0786b324.woff2",
+      "bytes": 199340,
+      "sha256": "ec9a16a5ffff79c4158276409c591bde4b5cbe12c82508e7dbddc31d0786b324"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/f0cef07852bf621bd673137ca9131658e947223f74d6c67ada560ac9c31083f9.woff2",
+      "bytes": 268636,
+      "sha256": "f0cef07852bf621bd673137ca9131658e947223f74d6c67ada560ac9c31083f9"
+    },
+    {
+      "path": "catalog/assets/aboutlove/fonts/f5daa3e8e78c7c0d02a1c859f6de493a88829a2787d6e950dcefd2a59adbdcf9.woff2",
+      "bytes": 200404,
+      "sha256": "f5daa3e8e78c7c0d02a1c859f6de493a88829a2787d6e950dcefd2a59adbdcf9"
+    },
+    {
+      "path": "catalog/assets/aboutlove/verify-source.mjs",
+      "bytes": 1198,
+      "sha256": "f1a48b3452406639e617043b390b17c8d83b2ea0845c15a85cd51d4e46c2e38e"
     },
     {
       "path": "catalog/assets/butterfly/SOURCE.json",
@@ -275,6 +430,91 @@
       "path": "catalog/assets/composition-audio/SOURCE.json",
       "bytes": 8762,
       "sha256": "af53b9cea9b6e44e0fa51322154098fa00f86ba6e428d7e138cdd4e6385fb31e"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/SOURCE.json",
+      "bytes": 7616,
+      "sha256": "4e613ff7c7e3997c3857298f367f28b7c5a850f08012402659f8c4988c7cadc1"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/monologue/monologue-bgm.flac",
+      "bytes": 5276570,
+      "sha256": "83eba55b1ef3a7fd16beb55994f5c405ae6e4dedf2225a0378b807de6b130367"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/monologue/original/media-index.md",
+      "bytes": 494,
+      "sha256": "18d29c58b91bb5933838e4f3b4b7797c10301f4a986e0b1901acd7dac70bdf1d"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/monologue/recipe.json",
+      "bytes": 593,
+      "sha256": "974357deedf77a8e7bfc981275899f4807421571421d581c3849a37b602b4596"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/motion/original/media-index.md",
+      "bytes": 756,
+      "sha256": "19339503539f75e5be9e3f1ec89942bafe892e59bb8999f996c2324a6f700c8c"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/motion/recipe.json",
+      "bytes": 1439,
+      "sha256": "7c55684a5a90195a4c745c1cfcfc7772d36146b9d58cfa3523e4265a6e731f98"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/motion/reel-bgm.flac",
+      "bytes": 6442387,
+      "sha256": "5827745ee55115c8a6243f94ed810698984f3d6b2a9f39077a31bd2887735bfa"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/motion/sfx_001.mp3",
+      "bytes": 82944,
+      "sha256": "fb832995477784f44ba8533359d20caf706195b52117ecc2a33b3e63e3c1307b"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/motion/sfx_002.mp3",
+      "bytes": 84427,
+      "sha256": "760b72bdaad71f83350e2ef3a9d037daf58f44855a05a6cce25d990f1ffb888a"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/motion/sfx_003.mp3",
+      "bytes": 11702,
+      "sha256": "075e17bdac5c13662a1c9530050e0046f81d4138e00eb3bf30427a7b4404103d"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/world/original/media-index.md",
+      "bytes": 1555,
+      "sha256": "0a8736fa0f9c1a6c9437be56f5b1d723a7396678cdb6e6d45e866fdd369b3fc7"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/world/original/tools-make_audio.py",
+      "bytes": 21057,
+      "sha256": "c4661283c78c42b991607ef8d9fc300c74b14005740e0429913a7bd88d01b5e2"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/world/original/tools-make_chorus_voices.py",
+      "bytes": 1957,
+      "sha256": "dd53e4600596a973fb52449889b55b5d26a0ad9b7140b58c3630341eb1d5a127"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/world/recipe.json",
+      "bytes": 1111,
+      "sha256": "9307882df614a87a87a26c6e98f2f91bdeb7e83cd318ebc849cab86260a45540"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/world/world-bgm.flac",
+      "bytes": 3818361,
+      "sha256": "5e19395f6fbe495783e751afc130604184fa011cb237681a8d86fc5a64bb2dd7"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/world/world-chorus.flac",
+      "bytes": 536972,
+      "sha256": "c522d9df004ff1f5bf6f3de017564c0edf2920de41da34420b06413f277ec9d5"
+    },
+    {
+      "path": "catalog/assets/composition-audio/aboutlove/world/world-sfx.flac",
+      "bytes": 3811172,
+      "sha256": "350d00c5fdbc263060cd5b988827c7b5b5a1692b04868f5bc32b774629a18cb5"
     },
     {
       "path": "catalog/assets/composition-audio/dandelion/README.md",
@@ -878,13 +1118,13 @@
     },
     {
       "path": "catalog/assets/mechanical-pulse/README.md",
-      "bytes": 5605,
-      "sha256": "afff9d24524c53f47f2c09cbe0836d38c45d70b803b64c9d0511f4772e4b32f9"
+      "bytes": 5833,
+      "sha256": "ec97ea13d4a392519bf4f1b688dff57e115f7ad2af145b2c483db078246ccf31"
     },
     {
       "path": "catalog/assets/mechanical-pulse/SOURCE.json",
-      "bytes": 4486,
-      "sha256": "0cf43e8d3805acd6ec8868e1c95fa7fb0c7e0dc36360c5579f93bd46a6f85f45"
+      "bytes": 4600,
+      "sha256": "01edc63d0e3d8b03e7077a06d7a9c43cf1a390e4a1e0fe82a501c908e4ba1484"
     },
     {
       "path": "catalog/assets/mechanical-pulse/editable/FilmV3.jsx",
@@ -942,9 +1182,24 @@
       "sha256": "fc1f6ab8aac84716d94fd99a942d5a4d8e791b388c777f637d5d604650d54968"
     },
     {
+      "path": "catalog/assets/mechanical-pulse/posters/F0010.jpg",
+      "bytes": 22434,
+      "sha256": "99152631930bb0fce146c78609245089314eaec0acc2a4efd35d500e179bd2df"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/posters/F0050.jpg",
+      "bytes": 18641,
+      "sha256": "a110b0fb4f8a97db46b1b39a448f7ec05d65d62097bb18b54911d405528c14c3"
+    },
+    {
       "path": "catalog/assets/mechanical-pulse/posters/F0179.jpg",
       "bytes": 65865,
       "sha256": "6138c06ad0506ce9e17d0da7a8791f6e0306976d86ff8611c673e11438aa95a7"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/posters/F0220.jpg",
+      "bytes": 22387,
+      "sha256": "c40a8c9a517270fe77e41b4c055f8a233cdf2feb0c84fc02d888a75d51fe684f"
     },
     {
       "path": "catalog/assets/mechanical-pulse/posters/F0300.jpg",
@@ -952,9 +1207,24 @@
       "sha256": "0edb0b50ef928071e756f22b7b7bddc6bc693a0a45cd2f05f40c34a7778c36df"
     },
     {
+      "path": "catalog/assets/mechanical-pulse/posters/F0310.jpg",
+      "bytes": 20915,
+      "sha256": "0aa3f59e43bc7a7b9c1e5f00b300131343acccd470d69e5fca25fa156b2ea1e4"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/posters/F0379.jpg",
+      "bytes": 43415,
+      "sha256": "76189c9e2366cf91ca744cfce753baff1f079bfd0ed215f598a305cecfdf1d6e"
+    },
+    {
       "path": "catalog/assets/mechanical-pulse/posters/F0432.jpg",
       "bytes": 133157,
       "sha256": "1c6093b9f73c94e1f123f77eaaa8593e0bef1f9dd17f2d33f38ffd4b52c16076"
+    },
+    {
+      "path": "catalog/assets/mechanical-pulse/posters/F0470.jpg",
+      "bytes": 26216,
+      "sha256": "550ff40c91117d4e4531b022b09917434c794568df262f0021f621150ea234b8"
     },
     {
       "path": "catalog/assets/mechanical-pulse/posters/F0480.jpg",
@@ -1018,13 +1288,13 @@
     },
     {
       "path": "catalog/assets/mechanical-windows/README.md",
-      "bytes": 4353,
-      "sha256": "18ffc6fc9cd7b6d05dff25ce486d2355413049c702ea56a1c9146125f44768a2"
+      "bytes": 4459,
+      "sha256": "fea070cf64d2ecb2ec955176596a066909e1354a4a41dfd6abffa0dfe547ac10"
     },
     {
       "path": "catalog/assets/mechanical-windows/SOURCE.json",
-      "bytes": 2442,
-      "sha256": "a148192ca51160f175a3644da3ce2bc3ae85b6bf5f951d172a23c1e7f90e389a"
+      "bytes": 2526,
+      "sha256": "fcd474aed5ccc5b65502f68fad46127191e045c10d8d71c62f92ef509786feb7"
     },
     {
       "path": "catalog/assets/mechanical-windows/editable/Film.jsx",
@@ -1067,6 +1337,16 @@
       "sha256": "8e0bc26d769a5c3908fb31b4a2d7047459244db7f5d507fbf97bc97de1563e7d"
     },
     {
+      "path": "catalog/assets/mechanical-windows/posters/F0092.jpg",
+      "bytes": 19181,
+      "sha256": "b93d799faf2d895018160d55c47624adb67eb372bd92d1d063a26cb4a11e49a5"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/posters/F0399.jpg",
+      "bytes": 25165,
+      "sha256": "1da9356dc14f8732cfa735f72580e60e1ce39e440e9c7631d8128e69a0a305ca"
+    },
+    {
       "path": "catalog/assets/mechanical-windows/posters/F0400.jpg",
       "bytes": 21214,
       "sha256": "273e415086366c3185ab3c573b4221bfe39627d5209b0209dbd159b4dd5a841b"
@@ -1075,6 +1355,16 @@
       "path": "catalog/assets/mechanical-windows/posters/F0600.jpg",
       "bytes": 15190,
       "sha256": "775323921c6ce7696ed716446e88eedb2694a851dd93ac87f4b33bebd20cc8dd"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/posters/F0632.jpg",
+      "bytes": 14914,
+      "sha256": "aeb7fbed8dc22ec4924f62f9401409a17c4e5820d5ae1aeaeded5209094d04a2"
+    },
+    {
+      "path": "catalog/assets/mechanical-windows/posters/F0794.jpg",
+      "bytes": 35319,
+      "sha256": "0e57793a5969a2b099ed78ab38d73d12a79313fea174416afbdc02caff62b5c1"
     },
     {
       "path": "catalog/assets/mechanical-windows/posters/F0830.jpg",
@@ -1923,8 +2213,8 @@
     },
     {
       "path": "catalog/composition-controls.js",
-      "bytes": 6384,
-      "sha256": "1a26c6e30d1bcb50970c01d9bec22de0940f24942e18502484f5b96ad701de2d"
+      "bytes": 6615,
+      "sha256": "7ccddc5d362cf06189b6da4ebb99dbd576bf9f41596727b3a785ac10b5815212"
     },
     {
       "path": "catalog/content.js",
@@ -1935,6 +2225,31 @@
       "path": "catalog/dropdown.js",
       "bytes": 7300,
       "sha256": "2c4b846d1aeaac64f889d08849121f4f98784cf35b2d09a02e71ff21809f138c"
+    },
+    {
+      "path": "catalog/effects/aboutlove-clock.js",
+      "bytes": 7682,
+      "sha256": "bb1c4b8b2b854360fdad840428a81a2f17f14089ad7f40011f2cfd755cd87a5b"
+    },
+    {
+      "path": "catalog/effects/aboutlove-data.js",
+      "bytes": 331226,
+      "sha256": "17dca0935c2b64d2a9ec5266c0548c20d9825e29260ec35a58bc3c6fe7819433"
+    },
+    {
+      "path": "catalog/effects/aboutlove-entries.js",
+      "bytes": 36675,
+      "sha256": "0fbcda01e8cb8e67a14af819a05db758721912c22849c068ad4890997aa4b054"
+    },
+    {
+      "path": "catalog/effects/aboutlove-fonts.js",
+      "bytes": 8064,
+      "sha256": "1db3168bcc004925b5b78c1cb6c884dd1d533f09f95041c6e0c1e084dde91c9a"
+    },
+    {
+      "path": "catalog/effects/aboutlove.js",
+      "bytes": 8437,
+      "sha256": "7841c67ad731f3fa42b7f2b882d6549fdfe89105f9a6f3bf9eb403d61e2f8ce1"
     },
     {
       "path": "catalog/effects/attention.js",
@@ -2128,13 +2443,13 @@
     },
     {
       "path": "catalog/effects/mechanical-windows-data.js",
-      "bytes": 7120,
-      "sha256": "2d554ecae47bf85ce6f52c598167cce63300ab301e632b695a50b278b9bab72c"
+      "bytes": 8063,
+      "sha256": "96178f6e2f8c0e039e11bfbdcf6c4b5d3791d8a9490479da51b35d90f0fc7319"
     },
     {
       "path": "catalog/effects/mechanical-windows.js",
-      "bytes": 7095,
-      "sha256": "2790bfe3ff45aabbf03434e3b7424bbfeb7fb3cf8500539a0770e30ffa8002d6"
+      "bytes": 2137,
+      "sha256": "feca70bd536a23500c8c0f5d2a833b25983988c2262fe837b8a3ac6d00efc9f5"
     },
     {
       "path": "catalog/effects/metal-impact.js",
@@ -2348,13 +2663,13 @@
     },
     {
       "path": "catalog/effects/spatial-apertures-data.js",
-      "bytes": 10501,
-      "sha256": "5e6b1956d234363b887cdc8df286c7b57c5f8e7232c02b9f74d78d6036fbc18d"
+      "bytes": 11345,
+      "sha256": "b4b51501ea2319274c48ea721b98556abdbd3f4dcee6c3d896c6d3628eed517a"
     },
     {
       "path": "catalog/effects/spatial-apertures.js",
-      "bytes": 6912,
-      "sha256": "f99cd05ef6f9c43faae405c1e32cbf3c141ab108d7ebf55f5195542095edaa58"
+      "bytes": 3702,
+      "sha256": "8dfbfbb2d44dfc47302ef3a0092e7eb445ec62c211dac64dfa7d7ed28e660699"
     },
     {
       "path": "catalog/effects/speech-caption.js",
@@ -2403,8 +2718,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 46972,
-      "sha256": "b909c59d2d5f010e3433f13ae7c42ed5be72ee0e1e07f23b0b1e45940f3a1336"
+      "bytes": 47000,
+      "sha256": "6488bee71bef0e218fc1c5bfaca9ced59fde7215e9123c57fa4af59a0ef4bd01"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -2478,18 +2793,18 @@
     },
     {
       "path": "catalog/layer-audit.json",
-      "bytes": 16674,
-      "sha256": "5fa0e14dac19e956f43d6fbab2a03efb896a9ad83df54626e19f3d2e742ce70a"
+      "bytes": 17436,
+      "sha256": "a66a1214fb6ddd8e87808015213712fbe1468bfd7d5e117c6bc5119c12da00e4"
     },
     {
       "path": "catalog/layer-fingerprints.json",
-      "bytes": 303,
-      "sha256": "cc88eca135ac43327937003d667311ff74740830ea6bdecdedb9b3ec296db0a3"
+      "bytes": 130,
+      "sha256": "dd5faac3556c8b88b34c5f7e2aef9583a38405b8f5a35578a063f8895a68ec66"
     },
     {
       "path": "catalog/lazy.js",
-      "bytes": 3724,
-      "sha256": "fce326ffb85e2a7014cb660e2dcf864e913650d8cd5e953be67e60cf480a50d4"
+      "bytes": 5335,
+      "sha256": "12dbcb448af707c5d92cac3a41748c7b51351d2e49d92840539ef0e5049b0ffb"
     },
     {
       "path": "catalog/matching.js",
@@ -2508,18 +2823,23 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 2475061,
-      "sha256": "8b4beff34d25cf1d7f43cb484f29bf8fc1fbbc14a2234d15aa3306fcf87e10c2"
+      "bytes": 1787239,
+      "sha256": "7971c2f6e66b2bb535b1e14a43a6b06831c9ae924fec76366670f2184f3addee"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 3062771,
-      "sha256": "5c1f0a8f5808fb00abc882b47f210dd950336fa4b15eece31dd956be415b2710"
+      "bytes": 4127630,
+      "sha256": "74cac44e1d7c2828df51b86964a584a0dffc07a7cf80899f2a8fad99ad0306d9"
     },
     {
       "path": "catalog/related-preview.js",
       "bytes": 6503,
       "sha256": "6671a5f29a3bddf9759bdb4d01bca0b2b2baa9cc27c2e2b9d0f039ef23a630da"
+    },
+    {
+      "path": "catalog/remotion/aboutlove.jsx",
+      "bytes": 3068,
+      "sha256": "3a5ba7e5299752fab7f10f1f7862760e17d417e0bd28f84586b7a6059970c278"
     },
     {
       "path": "catalog/remotion/binary-assets-installer.mjs",
@@ -2543,8 +2863,8 @@
     },
     {
       "path": "catalog/remotion/mechanical-windows.jsx",
-      "bytes": 2991,
-      "sha256": "7823373489394070b3089f0918f809e1f6dbb488250a43e5d61819231ecba67f"
+      "bytes": 2077,
+      "sha256": "dcb4cdb62218f42dcecf04e30fca63c10fd0a24632136ca25097e5693da54cb5"
     },
     {
       "path": "catalog/remotion/native-video.jsx",
@@ -2673,8 +2993,8 @@
     },
     {
       "path": "catalog/remotion/spatial-apertures.jsx",
-      "bytes": 4575,
-      "sha256": "22fec2c3a9009f6937a5163341bd962ae60af1f089c76dff8535e6b259f32f31"
+      "bytes": 3555,
+      "sha256": "02f6ecca781958a48fffd7c9dd059896afe3c04a0f68dad29f4f4bf26181ee78"
     },
     {
       "path": "catalog/remotion/speech-caption.jsx",
@@ -2693,8 +3013,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 2881238,
-      "sha256": "55d5f4414a9833dd03b49711ae25c389b0b99691b5cd198078e2b3e40c1cadaa"
+      "bytes": 3394220,
+      "sha256": "3aef4f40eabdb6aeb69066df515bdc3f91d5fce8e7fe503dbf25e0c5ed133f1f"
     },
     {
       "path": "catalog/runtime.js",
@@ -2708,8 +3028,8 @@
     },
     {
       "path": "catalog/thumbnails.js",
-      "bytes": 13207,
-      "sha256": "3d29205a31555122674b835f653cd5422852b2b31629ff2d77534d354d8ff850"
+      "bytes": 14215,
+      "sha256": "a78d5fa6d8709eb6fa87842a739b010ca53902c42d12c032105bab9ca10a21af"
     },
     {
       "path": "catalog/wise-avatar.webp",

@@ -92,7 +92,9 @@ export function create(root, supplied, options = {}) {
     const box=root.getBoundingClientRect();const ratio=globalThis.devicePixelRatio||1;
     const raw=Math.min(box.width/previewSize.width,box.height/previewSize.height)||1;
     const scale=Math.max(.01,Math.floor(raw*640*ratio)/(640*ratio));
-    mount.style.width=640*scale+'px';mount.style.height=360*scale+'px';
+    const width=640*scale+'px',height=360*scale+'px';
+    if(mount.style.width!==width)mount.style.width=width;
+    if(mount.style.height!==height)mount.style.height=height;
   }
   function seek(ms,cumulative=false) {
     if(destroyed)return;if(!Number.isFinite(ms))throw new TypeError('时间必须是有限数字');
@@ -122,8 +124,8 @@ export function create(root, supplied, options = {}) {
       if(resume&&(!preparing||event))playerRef.current?.play(event);
       notify();
     },
-    setSpeed(value){if(destroyed)return;if(!Number.isFinite(value))throw new TypeError('速度必须是有限数字');speed=Math.max(.5,Math.min(2,value));flushSync(render);},
-    setEase(value){if(destroyed)return;const parameter=definition.parameters.ease;if(!parameter)ease=definition.default_ease;else if(parameter.options.includes(value))ease=value;else throw new TypeError('不支持的速度变化');flushSync(render);},
+    setSpeed(value){if(destroyed)return;if(!Number.isFinite(value))throw new TypeError('速度必须是有限数字');const next=Math.max(.5,Math.min(2,value));if(next===speed)return;speed=next;flushSync(render);},
+    setEase(value){if(destroyed)return;const parameter=definition.parameters.ease;const next=!parameter?definition.default_ease:parameter.options.includes(value)?value:null;if(next===null)throw new TypeError('不支持的速度变化');if(next===ease)return;ease=next;flushSync(render);},
     destroy(preserve=false){if(destroyed)return;playing=false;playerRef.current?.pause();destroyed=true;preparing=false;playerRef.current?.removeEventListener?.('mutechange',onMuteChange);observer?.disconnect();themeObserver.disconnect();active.delete(controller);settleReady(false);
       let snapshot,nativeSnapshot;
       try {
@@ -143,7 +145,7 @@ export function create(root, supplied, options = {}) {
     if(muted!==next){muted=next;notify();}
   };
   const observer=typeof ResizeObserver!=='undefined'?new ResizeObserver(fit):null;observer?.observe(root);
-  const themeObserver=new MutationObserver(()=>{theme=document.documentElement.dataset.theme||'dark';if(session?.doc)session.doc.documentElement.dataset.theme=theme;flushSync(render);});themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+  const themeObserver=new MutationObserver(()=>{const next=document.documentElement.dataset.theme||'dark';if(next===theme)return;theme=next;if(session?.doc)session.doc.documentElement.dataset.theme=theme;flushSync(render);});themeObserver.observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
   active.add(controller);fit();flushSync(render);
   playerRef.current?.addEventListener('mutechange',onMuteChange);
   playerRef.current?.addEventListener('ended',()=>{playing=false;time=definition.duration_ms;notify();});

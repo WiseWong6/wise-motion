@@ -228,7 +228,7 @@ test('右栏名称与两个输出共用复制按钮，复制失败时选中对�
     assert.notEqual(copied,name('fade-rise'));
     d.querySelector('[data-effect="fade-rise"]').click();
     d.getElementById('copy-prompt').click(); await settle();
-    assert.match(copied,/请使用 Remotion 实现以下动效/); assert.doesNotMatch(copied,/来源与许可：/); assert.match(copied,/需要保留：/);
+    assert.match(copied,/请使用 Remotion 实现以下动效/); assert.doesNotMatch(copied,/来源与许可：/); assert.match(copied,/^# 需要保留\s*$/m);
     d.getElementById('tab-code').click();
     assert.ok(!d.getElementById('panel-code').hidden); assert.ok(d.getElementById('panel-prompt').hidden);
     assert.equal(d.querySelector('#panel-code .output-label').textContent,'接入示例与源码路径');

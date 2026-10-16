@@ -201,7 +201,7 @@ test('异步缩略图逐个准备并仅画代表时刻，画完释放资源且�
     const a=host(w),b=host(w),next={...definition,id:'preparation-next',preview_ms:720};
     w.MotionThumbs.attach(a,definition);w.MotionThumbs.attach(b,next);
     let finished=false;const idle=w.MotionThumbs.whenIdle().then(()=>{finished=true;});
-    await delay(0);assert.equal(first.definitions.length,1);assert.equal(second.definitions.length,0);assert.equal(finished,false);
+    await first.started;assert.equal(first.definitions.length,1);assert.equal(second.definitions.length,0);assert.equal(finished,false);
     for(const node of [a,b]){
       assert.equal(node.querySelectorAll('.thumb-loading .apple-pulse-dot').length,3);
       assert.equal(node.dataset.previewState,'loading');
@@ -230,7 +230,7 @@ test('移除正在准备的缩略图会立即释放并让后续条目继续，�
   try{
     const {w}=env,old=delayedFactory(w),next=delayedFactory(w,'preparation-next'),node=host(w),other=host(w);
     w.MotionThumbs.attach(node,definition);w.MotionThumbs.attach(other,{...definition,id:'preparation-next'});
-    await delay(0);assert.equal(old.definitions.length,1);
+    await old.started;assert.equal(old.definitions.length,1);
     w.MotionThumbs.release(node);assert.equal(old.destroyed,1);assert.equal(node.childElementCount,0);
     assert.equal(node.dataset.previewState,undefined);
     await next.started;assert.equal(next.definitions.length,1,'取消等待后应开始后面的条目');
@@ -256,7 +256,7 @@ test('一个异步缩略图准备失败不阻塞后续，普通缩略图也按�
     };
     w.MotionThumbs.attach(a,definition);w.MotionThumbs.attach(b,{...definition,id:'preparation-next'});
     w.MotionThumbs.attach(c,{...definition,id:'preparation-legacy'});
-    await delay(0);assert.equal(legacyDraws,0);assert.equal(legacyDisposals,0);
+    await failed.started;assert.equal(legacyDraws,0);assert.equal(legacyDisposals,0);
     failed.reject(new Error('缩略图形状无法加载'));await next.started;assert.equal(next.definitions.length,1);
     next.resolve();await w.MotionThumbs.whenIdle();
     assert.equal(legacyDraws,1);assert.equal(legacyDisposals,1);assert.equal(c.querySelector('.motion-stage').dataset.time,'640');

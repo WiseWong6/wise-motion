@@ -2,6 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {readHistorySource} from './history-sources.mjs';
 import {createHash} from 'node:crypto';
 import vm from 'node:vm';
 import {environment,data,frameMarkup} from './helpers.mjs';
@@ -9,7 +10,7 @@ import {history,state} from '../scripts/history.mjs';
 const effect=data.effects.find(e=>e.id==='letter-settle');
 const cross=JSON.parse(await readFile(state+'/crosswalk.json','utf8'));
 const migration=cross.rules['letter-settle'].migration;
-const original=await readFile(migration.files[0].file,'utf8');
+const original=await readHistorySource(migration.files[0],'utf8');
 const adapted=await readFile(new URL('../catalog/effects/letter-settle.js',import.meta.url),'utf8');
 const n=(node,key)=>Number(node.getAttribute(key));
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-9,`${a} 与 ${b} 不一致`);
@@ -75,7 +76,7 @@ test('组合入口、旧名搜索与缩略图一致，原单物品入口合并�
   const historical=await history(data);assert.equal(effect.kind,'composition');
   assert.ok(!historical.recipes.some(e=>e.history_id==='letter-settle'));
   assert.ok(historical.excluded.some(e=>e.id==='letter-settle'));
-  for(const file of migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
+  for(const file of migration.files)assert.equal(createHash('sha256').update(await readHistorySource(file)).digest('hex'),file.sha256);
   const env=await environment(true,{staticPreview:true,hash:'#letter-settle'});
   try{
     const {w}=env,d=w.document;await env.reveal('[data-effect="letter-settle"] .thumb');assert.equal(d.getElementById('preview-title').textContent,effect.name);

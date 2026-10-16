@@ -651,10 +651,6 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
 }
 
 /* ── 外观适配 ──────────────────────────────────────────────────── */
-@media (prefers-reduced-motion:reduce) {
-  .apple-pulse-dot { animation:none; transform:none; opacity:1; }
-  .follow-link,.github-link,.follow-link .icon-morph-glyph,.github-link .icon-morph-glyph,.github-sparkle { transition:none; }
-}
 /* 打开「降低透明度」后玻璃必须退回实色，否则文字会糊在背景上读不清。 */
 @media (prefers-reduced-transparency: reduce) {
   .sidebar-shell,.directory,.inspector,.playbar,.select-menu {

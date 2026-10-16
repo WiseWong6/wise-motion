@@ -2,6 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
+import {readHistorySource} from './history-sources.mjs';
 import {createHash} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {runInNewContext} from 'node:vm';
@@ -30,13 +31,13 @@ test('三项迁入数据分类且原文件未改，五个历史入口剔除，�
   for(const id of migrated){
     const migration=crosswalk.rules[id].migration,e=effect(migration.effect);
     assert.equal(e.kind,'action');assert.equal(e.category,'data');assert.equal(rank(data,e.name)[0].effect.id,e.id);
-    for(const file of migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
+    for(const file of migration.files)assert.equal(createHash('sha256').update(await readHistorySource(file)).digest('hex'),file.sha256);
   }
 });
 
 test('双百分数平缓交接，柱高、读数和柱顶保持同步且可倒拖',async()=>{
   const files=crosswalk.rules['resume-count'].migration.files;
-  const original=new JSDOM(await readFile(files.find(f=>f.file.endsWith('preview.html')).file,'utf8'));
+  const original=new JSDOM(await readHistorySource(files.find(f=>f.file.endsWith('preview.html')),'utf8'));
   const values=[...original.window.document.querySelectorAll('[data-count-to]')].map(n=>{
     const rise=JSON.parse(n.parentElement.dataset.evolve)[0];
     return {target:+n.dataset.countTo,y:+n.getAttribute('y'),height:+rise.from.attr.transform.match(/0 ([\d.]+)/)[1]};

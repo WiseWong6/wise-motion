@@ -4,8 +4,9 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {history,state} from '../scripts/history.mjs';
-import {environment,data,frameMarkup} from './helpers.mjs';
-const effect=data.effects.find(e=>e.id==='rect-wave-field');
+import {environment,data,frameMarkup,legacyDefinition} from './helpers.mjs';
+const current=data.effects.find(e=>e.id==='rect-wave-field');
+const effect=legacyDefinition(current);
 const n=(node,key)=>Number(node.getAttribute(key));
 
 test('点阵各列等高、数量固定；波浪全过程点不重叠、无裁切并保持点的身份',async()=>{
@@ -65,13 +66,14 @@ test('矩形波浪正式纳入且历史去重，旧名称能找到；距离传�
   for(const file of cross.rules['tutorial-probability'].migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);
   const env=await environment(true,{staticPreview:true,hash:'#rect-wave-field'});
   try{
-    const {w}=env,d=w.document;await env.reveal('[data-effect="rect-wave-field"] .thumb');assert.equal(d.getElementById('preview-title').textContent,effect.name);
+    const {w}=env,d=w.document;await env.reveal('[data-effect="rect-wave-field"] .thumb');assert.equal(d.getElementById('preview-title').textContent,current.name);
     for(const query of [effect.name,'概率点阵收拢','概率场收拢'])assert.equal(w.MotionMatch.rank(data,query)[0].effect.id,effect.id);
     assert.equal(w.MotionMatch.rank(data,'波浪按距离传播')[0].effect.id,'wave-grid');
     const thumb=d.querySelector('[data-effect="rect-wave-field"] .thumb .motion-stage'),root=d.createElement('div');
-    const player=w.MotionRuntime.create(root,effect);player.seek(effect.preview_ms);
+    const player=w.MotionRuntime.create(root,current);await player.ready;player.seek(current.preview_ms);
     assert.equal(frameMarkup(thumb),frameMarkup(root.firstElementChild));player.destroy();
-    assert.match(d.getElementById('code').textContent,/catalog\/effects\/rect-wave-field\.js/);
+    d.querySelector('[data-tab="code"]').click();
+    assert.match(d.getElementById('code').textContent,/catalog\/remotion\/aboutlove\.jsx/);
     assert.equal(w.MotionRuntime.instanceCount,1);assert.equal(w.MotionRuntime.runningCount,0);
   }finally{env.w.MotionThumbs.disposeAll();env.close();}
 });

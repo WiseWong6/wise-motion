@@ -2,7 +2,7 @@
 import test,{before,after} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {environment,data} from './helpers.mjs';
+import {environment,data,legacyDefinition} from './helpers.mjs';
 
 let env;
 before(async()=>{
@@ -10,7 +10,7 @@ before(async()=>{
   env.w.eval(await readFile(new URL('../catalog/export.js',import.meta.url),'utf8'));
 });
 after(()=>env?.close());
-const definition=id=>data.effects.find(effect=>effect.id===id);
+const definition=id=>legacyDefinition(data.effects.find(effect=>effect.id===id));
 const prompt=(id,settings={})=>env.w.MotionExport.prompt(definition(id),settings,data);
 
 test('所有可替换内容的默认画面数据进入提示词；各示例只读取自身内容槽',()=>{

@@ -205,7 +205,7 @@ for(const [oldId,targetId] of Object.entries(migrations)){
       assert.equal(d.getElementById('preview-title').textContent,definition.name);
       assert.equal(w.MotionRuntime.instanceCount,1);assert.equal(w.MotionHistoryRuntime.instanceCount,0);
       assert.equal(d.querySelectorAll('script[src="history-data.js"]').length,0,'已迁移的旧入口无需加载历史裁剪数据');
-      assert.ok(d.querySelector(`script[src="${definition.source.path.replace(/^catalog\//,'')}"]`),'正式页面应引用新动作源码');
+      assert.ok(w.MotionLazy.loaded.includes(definition.source.path.replace(/^catalog\//,'')),'正式绘制源码须已通过目录入口准备');
       assert.equal(d.querySelectorAll('#preview video').length,0,'正式预览不能仍播放原视频');
       const code=d.getElementById('code').textContent;
       assert.ok(code.split('\n').includes(definition.source.path),'复制说明必须完整列出实际绘制源码');

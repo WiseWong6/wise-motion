@@ -29,7 +29,7 @@
 
 ## 本地包与边界
 
-- 体积大的素材或绘制数据（含 `remotion-sources.js` 复制源码表）不得写进 `catalog/index.html` 的同步脚本；登记到 `catalog/lazy.js`，由缩略图、组合拆解和提示词与代码生成按需载入。`tests/lazy-assets.test.mjs` 检查首屏不含这些文件。新增此类文件时同步更新 `lazy.js` 的文件列表和 `tests/helpers.mjs` 的预载列表。
+- 体积大的素材或绘制数据（含 `remotion-sources.js` 复制源码表）不得写进 `catalog/index.html` 的同步脚本；登记到 `catalog/lazy.js`，由缩略图、组合拆解和提示词与代码生成按需载入。测试环境从该文件读取同一份清单，不另维护预载列表；绘制隔离页的脚本顺序由 `remotion/frame-scripts.mjs` 定义，相关检查核对两者一致。`tests/lazy-assets.test.mjs` 检查首屏不含这些文件。
 - 完整独立工程的源码表只在打开需要它的代码页签时载入；浏览动效、复制提示词和普通条目的短用法不触发它。准备期间禁用代码复制，切换条目、参数或页签后忽略旧载入回调。缩略图观察实际侧栏滚动区，在上下各 320 像素范围内提前准备；远处卡片保持未绘制。
 - 目录播放器共用已载入的 `registry-data.js`，不再内嵌一份完整目录；单独使用浏览器播放器的页面也必须先载入该数据文件，独立 Remotion 组件仍自带定义。播放条和目录选中状态只在数值改变时写入。缩略图滚出预备范围后取消未开始的绘制；离开列表的缓存同时受 128 张与 64 MiB 画布像素预算约束，调整尺寸时先集中读取尺寸，再统一更新缩放。
 - 源码交付入口是 `scripts/show.mjs`、`scripts/export.mjs` 与 [快速上手](quickstart.md)。快速上手速选表里的条目必须保持在目录内且不是插画（`tests/source-delivery.test.mjs` 检查）；改名或删除条目时同步修改。

@@ -1,0 +1,655 @@
+{
+  "title": "Aboutlove 动作收录来源",
+  "source_revision": "f63b9275784ebac84fc89bb9aa260c2aeaf8b0d3",
+  "historical_revision": "9e4afc81162a5deb0c5ec59ab69c82301e73fd45",
+  "source_files_sha256": {
+    "monologue/index.html": "c885c184f77aa80fd86e70a6d9f6889b597a1a5617f87e6c94cf3b8b9e8b5204",
+    "monologue/assets/fonts/love-serif-sc-light.woff2": "16bf0d654469baa008f00b01a527b6142f841f2e0ea01b847d39a9f39db62053",
+    "monologue/assets/fonts/love-serif-sc-semibold.woff2": "1c0f989ae61bc39d17a2acd5e0b05ccfe893bbf07390edef9564e7ac9d89955d",
+    "monologue/assets/fonts/love-sans-sc-regular.woff2": "c2e658b9d93b459667ca51c1f0e1e8d598c4dcb8e3cf9b0dd7ddb423f7d50a6b",
+    "monologue/assets/fonts/Newsreader.ttf": "8a08d13f8a6c0d51be379a60af84f945f65369a67e509ee3c3bdcc421254d7c1",
+    "monologue/assets/fonts/Newsreader-Italic.ttf": "796668611f80b64d5adf182fde3b6f29ed83b4e7cbec7b96937e84ac01364792",
+    "monologue/compositions/bg.html": "3bdf1a61057a870fea91b655bececaee7ce4946a1aa9cb1de26a73a1fd72d6ef",
+    "monologue/compositions/b1.html": "9e4e68be5d45a585a8df592080f019a86465c11dc68896ec00daa8085b131afd",
+    "monologue/compositions/b2.html": "b0e1f9a45cbb528a561123142aa27757b247f92a811d6d5b0115b137178e9ecb",
+    "monologue/compositions/b3.html": "3270e4ae0df420d8e832f10131956e873b8a32b6d7873caeec5b4cddd44bd35a",
+    "monologue/compositions/b4.html": "fc50e62e4e4d6d3e8e7d1fb6e8075bac4050d335b562d179c6ce65e767bde432",
+    "monologue/compositions/b5.html": "5720ffae7db8a826b07a8174eb68a24ffb747572b5062bcd565266d96fd72fa5",
+    "monologue/compositions/b6.html": "0e289a5b3d15fdbdbee4467235ead1e926608bda5d118614b133115a1090d277",
+    "monologue/compositions/b7.html": "ba74266635a3cb001d580fb049607190e517819ff25cb6f7485c3c685c59184e",
+    "monologue/compositions/b8.html": "c76d69735f1cd3e0424379d4e3131ce9dbce0649cb1ff23d360821416f821ab9",
+    "monologue/compositions/b9.html": "750a954b3c39af5618d7b1148b9b9b864a11a4bcfddec5e9de970523d87e01d7",
+    "motion/index.html": "179ec6f72b762d4688e070f2fd4b34b7fe140e6f77f48168af132ff60eec62cf",
+    "motion/assets/fonts/love-sans-sc-heavy.woff2": "66e6e9081841836973e2ecd0c2b3620c7aababcf0149d8b40e9ce230168eaf05",
+    "motion/assets/fonts/love-sans-sc-regular.woff2": "3c89803d9192d106772b77415c0e415b25242de6f4dd2094a64ef77674ed0338",
+    "motion/assets/fonts/Newsreader-Italic.ttf": "796668611f80b64d5adf182fde3b6f29ed83b4e7cbec7b96937e84ac01364792",
+    "motion/compositions/s1-boot.html": "37d346799173a19883005c8ee8fdaf01d1afc690e3fe387b4ea71d819bb50e3d",
+    "motion/compositions/s2-words.html": "bdc090313a542341c4c5c4429f3d21295d078f82a29e17196e6ad12025448e01",
+    "motion/compositions/s3-attention.html": "1f738975e155a60056f38958228e6ad750aec92c2a9907116474935b2b99f71f",
+    "motion/compositions/s4-matrix.html": "f820018cc2cbe93a0796de34a7867e4f2de6bf8fa7fdf318dfdb8fcf8d4bd472",
+    "motion/compositions/s5-feel.html": "b6bb3dbc8a16ceb1204828eebdb605acc968718f4479304d904194afc5157f2b",
+    "motion/compositions/s6-forget.html": "3cc71f458384ead8facf39db5d51e3e0f30e52685e0107c38e9d844e879c2ad0",
+    "motion/compositions/s7-remember.html": "5ed2873f73b867d99a20af025391766c4eb57b86d92170ee026f63623133789b",
+    "motion/compositions/s8-love.html": "34dad9b49bfd1a116698a9593e893d23b3ff8cde25f2573f945c3c55590c85ff",
+    "motion/compositions/s9-end.html": "78129185f40fe0d4f916a02543d6a187c0dba4ffb0eafb16bf4351ad19db8832",
+    "motion/compositions/hud.html": "a7745c4435614093c0110a31980887ec0ae3a1f13346b2f711783954634d7d33",
+    "world/index.html": "db4d720dd695dca69b8e7c4a1f2204e82332000f3f7f9ea424e07a2e147888f2",
+    "world/assets/fonts/ink-kai.woff2": "dd7acc4088790d295b086b833c501aa9d57997328da456de26e26bc4223e2bb5",
+    "world/assets/fonts/ink-serif.woff2": "9f2165c2b6f9b417fbc76d82e34022aaabf7852de267c086bd8e6b6dba424a00",
+    "world/assets/fonts/voice-mono-light.woff2": "ec9a16a5ffff79c4158276409c591bde4b5cbe12c82508e7dbddc31d0786b324",
+    "world/assets/fonts/voice-mono-regular.woff2": "f5daa3e8e78c7c0d02a1c859f6de493a88829a2787d6e950dcefd2a59adbdcf9",
+    "world/assets/fonts/note-kai.woff2": "dd7acc4088790d295b086b833c501aa9d57997328da456de26e26bc4223e2bb5",
+    "world/assets/fonts/Newsreader-Italic.ttf": "796668611f80b64d5adf182fde3b6f29ed83b4e7cbec7b96937e84ac01364792",
+    "world/assets/fonts/song-light.woff2": "f0cef07852bf621bd673137ca9131658e947223f74d6c67ada560ac9c31083f9",
+    "world/assets/fonts/song.woff2": "10272f7791336451d71c80668eaa9532f5fe173685887ded8efe73d8d4e36e2a",
+    "world/assets/fonts/brush.woff2": "22024df74ef27637d847dd1a788d8a7eb75530ed336f83df2e9413e34cd7e34d",
+    "world/assets/weave.js": "607d2794e23a65eacd73943e682dc1b909122a410c5bb0b4313d9397e50c1046",
+    "world/compositions/s1-rain.html": "0fb0558335bf72b1b15fa7e20d74956b47d96584e6d48a6578f3695c588d7062",
+    "world/compositions/s2-world.html": "9c4ff61b139fe359f69ddf583de6031af6150595dfb6eda15619df8b0cc83b8f",
+    "world/compositions/s3-one.html": "000f68398812b1c956450725c5479073e846b4bccbe84c521d5852e795a4a836",
+    "world/compositions/s4-care.html": "cfa6a2b79d8dc876951475e6c022b03339126efe98c342131c4f47fd6f6b0dcd",
+    "world/compositions/s5-heart.html": "a94b11cc0501413275a553fed29587e373c7f74b5c2838480e9d5a08cc597e0d",
+    "world/compositions/s6-end.html": "557e8f54bc7b614e7d7ce146eaee551574931fe9db870795cccf720b959d043d",
+    "world/compositions/voice.html": "7f5737539d1673b77bb3258886d675bd356c1afc9654bef986f905b7ac9e0430",
+    "world/compositions/film.html": "29f014a95fa2287def60bd7182b67aa1e360102cc3b1e5c59175af82eaf856f7",
+    "world-earlier/index.html": "88f95d55467e0c9f6248138abb27578530720bb4932d53dbabf61f01185d8b3d",
+    "world-earlier/assets/fonts/ink-kai.woff2": "b92f559319c423939e2dfd43d7cc7b717ecce1f2a13145feec564281a31a0fb9",
+    "world-earlier/assets/fonts/ink-serif.woff2": "595133e30417c7686d412146869c4a6bb0697e88bce764beef048c88814213bb",
+    "world-earlier/assets/fonts/voice-mono-light.woff2": "75d6ca7d9636209cb1bc0799c16486b8228ba9a7831282c89a2515a0252eb3d6",
+    "world-earlier/assets/fonts/voice-mono-regular.woff2": "dc0fa3ad4444a285026a591d1e8d6c5b51b553959517d01c09c6dc2b2a6e178a",
+    "world-earlier/assets/fonts/note-kai.woff2": "b92f559319c423939e2dfd43d7cc7b717ecce1f2a13145feec564281a31a0fb9",
+    "world-earlier/assets/fonts/Newsreader-Italic.ttf": "796668611f80b64d5adf182fde3b6f29ed83b4e7cbec7b96937e84ac01364792",
+    "world-earlier/assets/fonts/song-light.woff2": "8b00b49db07909673e2bd56201a6b344a01d0c6de9c63c8d5fb68be0dd524701",
+    "world-earlier/assets/fonts/song.woff2": "d1cca405edf21f74321ee89f9e8302098c1022e31e838bb3ea3254924db3e2b6",
+    "world-earlier/assets/fonts/brush.woff2": "22024df74ef27637d847dd1a788d8a7eb75530ed336f83df2e9413e34cd7e34d",
+    "world-earlier/compositions/s1-rain.html": "0fb0558335bf72b1b15fa7e20d74956b47d96584e6d48a6578f3695c588d7062",
+    "world-earlier/compositions/s2-world.html": "9c4ff61b139fe359f69ddf583de6031af6150595dfb6eda15619df8b0cc83b8f",
+    "world-earlier/compositions/s3-one.html": "88559884402850c1ea4a9a3badada2057e7d618017a0f1268815bcbe6b0af28d",
+    "world-earlier/compositions/s4-heart.html": "6b6af286631ce0b1b04b7879001f0e1da4a2afb16c4a1d3d252391ea770b67d1",
+    "world-earlier/compositions/s5-care.html": "97f090844a2f05db77082a47c6372dccacf2355817a84cad6d88bee10e1781c0",
+    "world-earlier/compositions/s6-end.html": "13db7ec9b2e42dfa788f0a19401e2ade46dd0b06a8dfff1ef0fbf338fed38c20",
+    "world-earlier/compositions/voice.html": "703d7877add6d83ee49198af8db2932c0a765f80fdd4b3fce31fa51b2251e966",
+    "world-earlier/compositions/film.html": "61025ab11f82d051fc92153f972b7a1d83157bc26222ae1aa7fa7b10072b670f",
+    "monologue/compositions/b0.html": "c7844f76eed392d8eb85ae918e1d76b538418ee15277527de8f361588966dc89",
+    "monologue/compositions/b10.html": "0818919d8094248a84d620f06da7d5c5839a35bc7eeff4f526f865cdc26fc5d2",
+    "monologue/assets/audio/monologue-bgm.wav": "0fee384ca5ee3c3f69fea3948a151aedf1d4efc652b607d146d3e708424ccbae",
+    "monologue/.media/index.md": "18d29c58b91bb5933838e4f3b4b7797c10301f4a986e0b1901acd7dac70bdf1d",
+    "motion/assets/audio/reel-bgm.wav": "ad499b776460cabba6d517859fd47f08ff1ec8d4c651fdd0402b76a153c836c3",
+    "motion/.media/audio/sfx/sfx_003.mp3": "075e17bdac5c13662a1c9530050e0046f81d4138e00eb3bf30427a7b4404103d",
+    "motion/.media/audio/sfx/sfx_002.mp3": "760b72bdaad71f83350e2ef3a9d037daf58f44855a05a6cce25d990f1ffb888a",
+    "motion/.media/audio/sfx/sfx_001.mp3": "fb832995477784f44ba8533359d20caf706195b52117ecc2a33b3e63e3c1307b",
+    "motion/.media/index.md": "19339503539f75e5be9e3f1ec89942bafe892e59bb8999f996c2324a6f700c8c",
+    "world/assets/audio/world-bgm.wav": "e17f9a0d52622489a980d80d3b0302302331e3ffd2423f7b6993f6260b98dabc",
+    "world/assets/audio/world-sfx.wav": "5547f398d5cb870bd08793f88579e0b45a629de77b9248f339b352d1e9e35a9b",
+    "world/assets/audio/world-chorus.wav": "b27e7998967516d1c181a6b5123fcefa84fc6b516e8f5beff5b95c575c20ec07",
+    "world/.media/index.md": "0a8736fa0f9c1a6c9437be56f5b1d723a7396678cdb6e6d45e866fdd369b3fc7",
+    "world/tools/make_audio.py": "c4661283c78c42b991607ef8d9fc300c74b14005740e0429913a7bd88d01b5e2",
+    "world/tools/make_chorus_voices.py": "dd53e4600596a973fb52449889b55b5d26a0ad9b7140b58c3630341eb1d5a127"
+  },
+  "decisions": [
+    {
+      "audit": "aboutlove-01",
+      "decision": "replace",
+      "target": "type-reveal",
+      "variants": [
+        "aboutlove-01"
+      ]
+    },
+    {
+      "audit": "aboutlove-02",
+      "decision": "replace",
+      "target": "title-stagger",
+      "variants": [
+        "aboutlove-02"
+      ]
+    },
+    {
+      "audit": "aboutlove-03",
+      "decision": "excluded",
+      "reason": "用户明确不要"
+    },
+    {
+      "audit": "aboutlove-04",
+      "decision": "example",
+      "target": "stroke-draw",
+      "variants": [
+        "aboutlove-04"
+      ]
+    },
+    {
+      "audit": "aboutlove-05",
+      "decision": "replace",
+      "target": "stagger-crossfade",
+      "variants": [
+        "aboutlove-05",
+        "aboutlove-05-2"
+      ]
+    },
+    {
+      "audit": "aboutlove-06",
+      "decision": "example",
+      "target": "vertical-feed",
+      "variants": [
+        "aboutlove-06"
+      ]
+    },
+    {
+      "audit": "aboutlove-07",
+      "decision": "example",
+      "target": "progress-readout",
+      "variants": [
+        "aboutlove-07",
+        "aboutlove-07-2",
+        "aboutlove-07-3",
+        "aboutlove-07-4"
+      ]
+    },
+    {
+      "audit": "aboutlove-08",
+      "decision": "example",
+      "target": "dimension-line",
+      "variants": [
+        "aboutlove-08"
+      ]
+    },
+    {
+      "audit": "aboutlove-09",
+      "decision": "new",
+      "target": "sentence-depth-tunnel",
+      "variants": [
+        "aboutlove-09"
+      ]
+    },
+    {
+      "audit": "aboutlove-10",
+      "decision": "new",
+      "target": "weighted-node-signal",
+      "variants": [
+        "aboutlove-10"
+      ]
+    },
+    {
+      "audit": "aboutlove-11",
+      "decision": "new",
+      "target": "heat-grid-converge",
+      "variants": [
+        "aboutlove-11"
+      ]
+    },
+    {
+      "audit": "aboutlove-12",
+      "decision": "merged",
+      "target": "heartbeat-follow",
+      "variant": "aboutlove-45",
+      "reason": "前进尾迹已包含在批准替换的心电轨迹里"
+    },
+    {
+      "audit": "aboutlove-13",
+      "decision": "example",
+      "target": "frame-jitter-type",
+      "variants": [
+        "aboutlove-13",
+        "aboutlove-13-2"
+      ]
+    },
+    {
+      "audit": "aboutlove-14",
+      "decision": "example",
+      "target": "fragment-replace",
+      "variants": [
+        "aboutlove-14"
+      ]
+    },
+    {
+      "audit": "aboutlove-15",
+      "decision": "example",
+      "target": "curve-path",
+      "variants": [
+        "aboutlove-15"
+      ]
+    },
+    {
+      "audit": "aboutlove-16",
+      "decision": "example",
+      "target": "particle-word",
+      "variants": [
+        "aboutlove-16"
+      ]
+    },
+    {
+      "audit": "aboutlove-17",
+      "decision": "example",
+      "target": "center-ripple-emit",
+      "variants": [
+        "aboutlove-17"
+      ]
+    },
+    {
+      "audit": "aboutlove-18",
+      "decision": "example",
+      "target": "point-morph",
+      "variants": [
+        "aboutlove-18"
+      ]
+    },
+    {
+      "audit": "aboutlove-19",
+      "decision": "example",
+      "target": "word-slam",
+      "variants": [
+        "aboutlove-19",
+        "aboutlove-19-2"
+      ]
+    },
+    {
+      "audit": "aboutlove-20",
+      "decision": "new",
+      "target": "rain-freeze-resume",
+      "variants": [
+        "aboutlove-20"
+      ]
+    },
+    {
+      "audit": "aboutlove-21",
+      "decision": "example",
+      "target": "pivot-swing",
+      "variants": [
+        "aboutlove-21"
+      ]
+    },
+    {
+      "audit": "aboutlove-22",
+      "decision": "new",
+      "target": "ridge-text-write",
+      "variants": [
+        "aboutlove-22"
+      ]
+    },
+    {
+      "audit": "aboutlove-23",
+      "decision": "example",
+      "target": "glyph-bar-collapse",
+      "variants": [
+        "aboutlove-23"
+      ]
+    },
+    {
+      "audit": "aboutlove-24",
+      "decision": "new",
+      "target": "word-river-evaporate",
+      "variants": [
+        "aboutlove-24"
+      ]
+    },
+    {
+      "audit": "aboutlove-25",
+      "decision": "example",
+      "target": "arc-branch-flicker",
+      "variants": [
+        "aboutlove-25"
+      ]
+    },
+    {
+      "audit": "aboutlove-26",
+      "decision": "example",
+      "target": "glyph-rain-fall",
+      "variants": [
+        "aboutlove-26"
+      ]
+    },
+    {
+      "audit": "aboutlove-27",
+      "decision": "example",
+      "target": "crt-collapse",
+      "variants": [
+        "aboutlove-27"
+      ]
+    },
+    {
+      "audit": "aboutlove-28",
+      "decision": "replace",
+      "target": "orbit",
+      "variants": [
+        "aboutlove-28"
+      ]
+    },
+    {
+      "audit": "aboutlove-29",
+      "decision": "new",
+      "target": "spark-follow-text",
+      "variants": [
+        "aboutlove-29"
+      ]
+    },
+    {
+      "audit": "aboutlove-30",
+      "decision": "example",
+      "target": "word-cloud-lift",
+      "variants": [
+        "aboutlove-30",
+        "aboutlove-30-2"
+      ]
+    },
+    {
+      "audit": "aboutlove-31",
+      "decision": "new",
+      "target": "phrase-weave-glyph",
+      "variants": [
+        "aboutlove-31"
+      ]
+    },
+    {
+      "audit": "aboutlove-32",
+      "decision": "example",
+      "target": "material-like-pop",
+      "variants": [
+        "aboutlove-32",
+        "aboutlove-32-2"
+      ]
+    },
+    {
+      "audit": "aboutlove-33",
+      "decision": "example",
+      "target": "cursive-regular-morph",
+      "variants": [
+        "aboutlove-33"
+      ]
+    },
+    {
+      "audit": "aboutlove-34",
+      "decision": "example",
+      "target": "prompt-char-gather",
+      "variants": [
+        "aboutlove-34"
+      ]
+    },
+    {
+      "audit": "aboutlove-35",
+      "decision": "excluded",
+      "reason": "用户明确不要"
+    },
+    {
+      "audit": "aboutlove-36",
+      "decision": "example",
+      "target": "rapid-cut",
+      "variants": [
+        "aboutlove-36"
+      ]
+    },
+    {
+      "audit": "aboutlove-37",
+      "decision": "example",
+      "target": "stamp-land",
+      "variants": [
+        "aboutlove-37",
+        "aboutlove-37-2"
+      ]
+    },
+    {
+      "audit": "aboutlove-38",
+      "decision": "example",
+      "target": "stagger-in",
+      "variants": [
+        "aboutlove-38",
+        "aboutlove-38-2",
+        "aboutlove-38-3"
+      ]
+    },
+    {
+      "audit": "aboutlove-39",
+      "decision": "example",
+      "target": "stamp-land",
+      "variants": [
+        "aboutlove-39",
+        "aboutlove-39-2"
+      ]
+    },
+    {
+      "audit": "aboutlove-40",
+      "decision": "replace",
+      "target": "zoom-transition",
+      "variants": [
+        "aboutlove-40",
+        "aboutlove-40-2"
+      ]
+    },
+    {
+      "audit": "aboutlove-41",
+      "decision": "replace",
+      "target": "count-up",
+      "variants": [
+        "aboutlove-41"
+      ]
+    },
+    {
+      "audit": "aboutlove-42",
+      "decision": "example",
+      "target": "weighted-node-signal",
+      "variants": [
+        "aboutlove-42"
+      ]
+    },
+    {
+      "audit": "aboutlove-43",
+      "decision": "replace",
+      "target": "wave-grid",
+      "variants": [
+        "aboutlove-43"
+      ]
+    },
+    {
+      "audit": "aboutlove-44",
+      "decision": "replace",
+      "target": "rect-wave-field",
+      "variants": [
+        "aboutlove-44"
+      ]
+    },
+    {
+      "audit": "aboutlove-45",
+      "decision": "replace",
+      "target": "heartbeat-follow",
+      "variants": [
+        "aboutlove-45"
+      ]
+    },
+    {
+      "audit": "aboutlove-46",
+      "decision": "new",
+      "target": "lap-outline-echo",
+      "variants": [
+        "aboutlove-46"
+      ]
+    },
+    {
+      "audit": "aboutlove-47",
+      "decision": "example",
+      "target": "subtitle-cell-focus",
+      "variants": [
+        "aboutlove-47"
+      ]
+    },
+    {
+      "audit": "aboutlove-48",
+      "decision": "new",
+      "target": "frozen-depth-focus",
+      "variants": [
+        "aboutlove-48"
+      ]
+    },
+    {
+      "audit": "aboutlove-49",
+      "decision": "example",
+      "target": "group-stagger",
+      "variants": [
+        "aboutlove-49"
+      ]
+    },
+    {
+      "audit": "aboutlove-50",
+      "decision": "example",
+      "target": "center-ripple-emit",
+      "variants": [
+        "aboutlove-50"
+      ]
+    },
+    {
+      "audit": "aboutlove-51",
+      "decision": "example",
+      "target": "spiral-draw-spin",
+      "variants": [
+        "aboutlove-51"
+      ]
+    },
+    {
+      "audit": "aboutlove-52",
+      "decision": "example",
+      "target": "sunset-water-reflection",
+      "variants": [
+        "aboutlove-52"
+      ]
+    },
+    {
+      "audit": "aboutlove-53",
+      "decision": "example",
+      "target": "rapid-cut",
+      "variants": [
+        "aboutlove-53"
+      ]
+    },
+    {
+      "audit": "aboutlove-54",
+      "decision": "example",
+      "target": "frame-jitter-type",
+      "variants": [
+        "aboutlove-54",
+        "aboutlove-54-2"
+      ]
+    },
+    {
+      "audit": "aboutlove-55",
+      "decision": "new",
+      "target": "word-sphere-arrival",
+      "variants": [
+        "aboutlove-55"
+      ]
+    },
+    {
+      "audit": "aboutlove-56",
+      "decision": "example",
+      "target": "word-sphere-arrival",
+      "variants": [
+        "aboutlove-56"
+      ]
+    },
+    {
+      "audit": "aboutlove-57",
+      "decision": "example",
+      "target": "neon-type-flicker",
+      "variants": [
+        "aboutlove-57"
+      ]
+    },
+    {
+      "audit": "aboutlove-58",
+      "decision": "example",
+      "target": "wing-root-color-reveal",
+      "variants": [
+        "aboutlove-58"
+      ]
+    },
+    {
+      "audit": "aboutlove-59",
+      "decision": "example",
+      "target": "emission-drift",
+      "variants": [
+        "aboutlove-59"
+      ]
+    },
+    {
+      "audit": "aboutlove-60",
+      "decision": "example",
+      "target": "shared-object",
+      "variants": [
+        "aboutlove-60",
+        "aboutlove-60-2"
+      ]
+    },
+    {
+      "audit": "aboutlove-61",
+      "decision": "new",
+      "target": "glyph-unit-reflow",
+      "variants": [
+        "aboutlove-61"
+      ]
+    },
+    {
+      "audit": "aboutlove-62",
+      "decision": "example",
+      "target": "film-scratch-flicker",
+      "variants": [
+        "aboutlove-62"
+      ]
+    }
+  ],
+  "scope": "收录获批独立动作、示例与三套完整组合；两项光标动作和早期完整组合排除，不内置GSAP。原音仅用于完整组合。",
+  "adaptation": [
+    "原作者绘图公式、固定随机种子和内部尺寸保持。",
+    "原属性时间线改为本包的固定时间求值器；用Remotion帧号驱动，不引入GSAP。",
+    "图层裁切、按示例隐藏非目标文字；世界场景按原绘制区块选择图层。",
+    "未自带的普通拉丁界面字体统一使用本目录Oswald；字形造型保留来源字体。",
+    "绕行轮廓修复：恢复双光点和短尾迹，完整展示0至7.74秒，每完成一圈留下整层轮廓。",
+    "完整组合共用单动作绘制，加入连续背景、边角标注、字幕和胶片图层；源场景时间在切换时保持连续。",
+    "完整组合去掉光标、三点；文字世界结语改为整句同时显现，相关键击音效取消。",
+    "完整组合的原WAV以FLAC无损格式分发，声音样本一致；原MP3短音效不转码。来源原件摘要与播放文件摘要分别记录在声音来源文件。"
+  ],
+  "verification": "见维护验收记录；本清单只记录来源与获批对应，不代表视觉验收。",
+  "font_adjustments": [
+    {
+      "family": "阿里妈妈东方大楷",
+      "source": "https://fonts.alibabadesign.com/AlimamaDongFangDaKai/AlimamaDongFangDaKai-Regular.zip",
+      "file": "AlimamaDongFangDaKai-Regular.woff2",
+      "sha256": "31198dbb34f1f86a5e47e50c3e49026a6ef2bcd4753534b4d207422fa4a4f7e0",
+      "bytes": 2665324,
+      "change": "使用官方完整网页字体替代原工程裁字版本；不改写字库，保留字形与原许可。",
+      "legal_statement": "https://www.yuque.com/alimama_ai-font/vfse9w/lwpwexz8c2tf4ebi",
+      "embedding_faq": "https://www.yuque.com/alimama_ai-font/vfse9w/co47p8ge57qsanz2"
+    }
+  ],
+  "compositions": [
+    {
+      "id": "aboutlove-monologue-sequence",
+      "name": "内心独白 · 双语叙事组合",
+      "decision": "approved",
+      "source_version": "monologue",
+      "opening_trim_ms": 2100,
+      "original_duration_ms": 104000,
+      "duration_ms": 101900
+    },
+    {
+      "id": "aboutlove-motion-sequence",
+      "name": "动态图形 · 信号到心形组合",
+      "decision": "approved",
+      "source_version": "motion",
+      "opening_trim_ms": 950,
+      "original_duration_ms": 61300,
+      "duration_ms": 60350
+    },
+    {
+      "id": "aboutlove-word-world-sequence",
+      "name": "文字世界 · 雨幕到心字组合",
+      "decision": "approved",
+      "source_version": "world",
+      "opening_trim_ms": 0,
+      "original_duration_ms": 79600,
+      "duration_ms": 79600
+    }
+  ],
+  "excluded_compositions": [
+    {
+      "version": "world-earlier",
+      "name": "文字世界 · 早期差异示例",
+      "reason": "用户明确不要，不纳入完整组合。此前已批准的独立动作示例保留。"
+    }
+  ]
+}

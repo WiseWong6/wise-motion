@@ -50,7 +50,7 @@ const tick=()=>new Promise(resolve=>setTimeout(resolve,0));
 
 test('金属组合及三个独立动作的离线复制和目录入口有效',async()=>{
  assert.equal(entries.length,4);assert.equal(composition.duration_ms,5300);assert.equal(composition.actions.length,3);
- assert.match(await read('catalog/index.html'),/src="effects\/metal-impact\.js"/);
+ assert.match(await read('catalog/lazy.js'),/"effects\/metal-impact\.js"/);
  const env=await environment({unsupported:true});try{
   const layers=env.w.MotionFactories[composition.id].breakdown;
   assert.deepEqual([...new Set(layers.flatMap(layer=>Array.from(layer.actions)))].sort(),composition.actions.slice().sort());

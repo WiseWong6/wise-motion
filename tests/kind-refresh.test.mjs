@@ -16,13 +16,14 @@ function checkList(w,kind){
   assert.equal(cards.length,effects.filter(e=>e.kind===kind).length);
   for(const card of cards)assert.equal(effects.find(e=>e.id===card.dataset.effect).kind,kind);
 }
-test('首次打开默认选中玻璃卡片组合，品牌入口指向个人网站',async()=>{
+test('首次打开默认选中最新收录的组合，品牌入口指向个人网站',async()=>{
  const env=await environment(true,{staticPreview:true,hash:''});
  try{
   const d=env.w.document;
+  const latest=data.effects.filter(effect=>effect.kind==='composition').at(-1);
   assert.equal(activeKind(d),'composition');checkList(env.w,'composition');
-  assert.equal(d.querySelector('.effect-item[aria-current="true"]').dataset.effect,'glass-interface-sequence');
-  assert.equal(d.getElementById('preview-title').textContent,'玻璃卡片显现折射');
+  assert.equal(d.querySelector('.effect-item[aria-current="true"]').dataset.effect,latest.id);
+  assert.equal(d.getElementById('preview-title').textContent,latest.name);
   const brand=d.querySelector('.brand');
   assert.equal(brand.href,'https://wisewong.com/');assert.equal(brand.target,'_blank');
  }finally{env.close();}

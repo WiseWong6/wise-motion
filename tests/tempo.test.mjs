@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {data,environment,sourceDefinition,motionTime,frameMarkup} from './helpers.mjs';
+import {data,environment,sourceDefinition,motionTime,frameMarkup,legacyDefinition} from './helpers.mjs';
 
 function sameFrame(actual,expected,message) {
   const a=frameMarkup(actual),b=frameMarkup(expected);
@@ -11,7 +11,7 @@ function sameFrame(actual,expected,message) {
 }
 
 test('同类动作共用主要时长与末尾停顿，循环和特殊节拍分别保留',()=>{
-  const get=id=>data.effects.find(e=>e.id===id);
+  const get=id=>legacyDefinition(data.effects.find(e=>e.id===id));
   for(const ids of [
     ['fade-rise','scale-in','card-flip','wipe'],
     ['dimension-line','ruler-ticks','leader-callout'],
@@ -65,7 +65,7 @@ test('新节奏的入场与回摆可重新定位，速度滑块不改变定位�
   try {
     const {w}=env,root=w.document.getElementById('root');
     for(const id of ['fade-rise','count-up','timeline-progress','rigid-rebound']) {
-      const e=data.effects.find(e=>e.id===id),player=w.MotionRuntime.create(root,e);
+      const e=legacyDefinition(data.effects.find(e=>e.id===id)),player=w.MotionRuntime.create(root,e);
       const source=e.timing.source_start_ms+(e.timing.source_end_ms-e.timing.source_start_ms)*.4;
       player.seek(motionTime(e,source));const snapshot=root.innerHTML;
       player.setSpeed(.5);player.seek(player.currentTime);assert.equal(root.innerHTML,snapshot,id);

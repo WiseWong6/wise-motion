@@ -1,8 +1,6 @@
 {
   "version": 2,
   "fingerprints": {
-    "count-up/": "86ff27ce4a7e0a0a56f12107cbb9b0d13c0d8d67d5b2a0e3e663e0a684d30b17",
-    "type-reveal/": "01c4fb9ff752c3931151280dce06ae49107f4fda074397b01a84349dfd8bb6dd",
-    "word-focus/": "de448396fe4296a693f6aac3219fdbd0ea9c666f6ded62c55a0053c1f27c0b02"
+    "word-focus/": "c5f0ec049e47abc2cd261dd7079204150eeecc988a382ac1ab3229bd3a950ea6"
   }
 }

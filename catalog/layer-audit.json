@@ -438,7 +438,7 @@
     {
       "id": "word-focus",
       "variant": null,
-      "fingerprint": "de448396fe4296a693f6aac3219fdbd0ea9c666f6ded62c55a0053c1f27c0b02",
+      "fingerprint": "c5f0ec049e47abc2cd261dd7079204150eeecc988a382ac1ab3229bd3a950ea6",
       "status": "overlay-ok",
       "samples": [
         {
@@ -665,7 +665,18 @@
           "edge": 0,
           "fraction": 0.009379340277777778
         }
-      ]
+      ],
+      "revalidation": {
+        "effect": "word-focus",
+        "reason": "仅修改原生条目的帧数计算；此条目未开启原帧数模式，取样绘制函数逐字未变。其余全部绘制依赖的合并指纹与原透明取证完全相同。",
+        "previous_fingerprint": "de448396fe4296a693f6aac3219fdbd0ea9c666f6ded62c55a0053c1f27c0b02",
+        "current_fingerprint": "c5f0ec049e47abc2cd261dd7079204150eeecc988a382ac1ab3229bd3a950ea6",
+        "old_clock_sha256": "e96240e8c42c93f20b0ffb166a637bf368b087b6d329c2c806f4cb66ff8243a3",
+        "current_clock_sha256": "00769c802c3fe05cf8bb825ea618bfe6f2bf8ddf0425c78acd713779ce6d10d9",
+        "metadata_cases": 63,
+        "retained_alpha_samples": 28,
+        "rendered_again": false
+      }
     }
   ],
   "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7790.0 Safari/537.36",

@@ -215,7 +215,8 @@ test('新增圆面示例保留零半径、中点、终态与原来的标准转�
   const env = await environment();
   try {
     const iris = def('iris-open-transition');
-    assert.deepEqual(iris.variants.map(variant => variant.id), ['standard', 'paper-expand', 'black-cover']);
+    assert.equal(iris.variants[0].id, 'standard');
+    for(const id of ['standard','paper-expand','black-cover'])assert.equal(iris.variants.filter(variant=>variant.id===id).length,1,'原有圆面示例应保留且唯一');
     for (const [variant, duration, x, y] of [['paper-expand', 0.45, 540, 1180], ['black-cover', 0.4, 540, 850]]) {
       const sample = env.w.WiseCircularReveal.sample;
       assert.equal(sample(-1, variant).radiusPercent, 0);

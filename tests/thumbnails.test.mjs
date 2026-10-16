@@ -60,6 +60,24 @@ test('缺失或抛错的绘制器明确标注缩略图失败，其他条目仍�
 });
 const tick=()=>new Promise(resolve=>setTimeout(resolve,0));
 
+test('主预览首帧优先，快速切换不会被旧准备阻塞，缩略图在空闲机会绘制',async()=>{
+ const env=await environment();
+ try{
+  await load(env,'thumbnails.js');const {w}=env,idle=[],events=[];
+  w.requestIdleCallback=callback=>{idle.push(callback);};
+  let ready;const pending=new Promise(resolve=>{ready=resolve;});
+  const effect={id:'priority-fixture',duration_ms:1000,preview_ms:500};
+  w.MotionFactories[effect.id]=()=>{events.push('prepare');return()=>events.push('draw');};
+  const host=w.document.createElement('div');w.document.body.append(host);
+  w.MotionThumbs.prioritize(new Promise(()=>{}));w.MotionThumbs.attach(host,effect);env.reveal();await tick();
+  assert.equal(idle.length,0);assert.deepEqual(events,[]);
+  w.MotionThumbs.prioritize(pending);await tick();assert.equal(idle.length,0);
+  ready();await tick();assert.equal(idle.length,1);assert.deepEqual(events,[]);
+  idle.shift()();await w.MotionThumbs.whenIdle();assert.deepEqual(events,['prepare','draw']);
+  assert.equal(host.dataset.previewState,'ready');assert.equal(w.MotionRuntime.instanceCount,0);
+ }finally{close(env);}
+});
+
 test('快速滚走取消尚未开始的缩略图，重新进入后再准备',async()=>{
   const env=await environment();
   try{
@@ -82,13 +100,21 @@ test('离开列表的画布缓存不超过64 MiB，尺寸调整先统一读取�
   try{
     const {w}=env;w.IntersectionObserver=undefined;await load(env,'thumbnails.js');
     const draws=new Map(),events=[];
-    w.MotionFactories['large-cache']=stage=>{const canvas=w.document.createElement('canvas');canvas.width=canvas.height=2048;stage.append(canvas);return()=>draws.set(stage.dataset.effect,(draws.get(stage.dataset.effect)||0)+1);};
     const effects=Array.from({length:5},(_,i)=>({id:'large-cache-'+i,source:{factory:'large-cache'},duration_ms:1000,preview_ms:500}));
     const host=w.document.createElement('span');w.document.body.append(host);
     async function visit(effect){w.MotionThumbs.attach(host,effect);await w.MotionThumbs.whenIdle();w.MotionThumbs.release(host);}
-    for(const effect of effects)await visit(effect);
-    await visit(effects[4]);assert.equal(draws.get(effects[4].id),1);
-    await visit(effects[0]);assert.equal(draws.get(effects[0].id),2,'第五张16 MiB画布应淘汰最早的缓存');
+    for(const isolated of [false,true]){
+      w.MotionThumbs.disposeAll();draws.clear();
+      w.MotionFactories['large-cache']=stage=>{
+        const canvas=w.document.createElement('canvas');canvas.width=canvas.height=2048;
+        const target=isolated?stage.attachShadow({mode:'open'}):stage;
+        if(isolated){const nested=w.document.createElement('div');target.append(nested);nested.attachShadow({mode:'open'}).append(canvas);}else target.append(canvas);
+        return()=>draws.set(stage.dataset.effect,(draws.get(stage.dataset.effect)||0)+1);
+      };
+      for(const effect of effects)await visit(effect);
+      await visit(effects[4]);assert.equal(draws.get(effects[4].id),1);
+      await visit(effects[0]);assert.equal(draws.get(effects[0].id),2,'普通画布与多层隔离容器内的画布都计入64 MiB上限');
+    }
     for(let i=0;i<2;i++){
       const node=w.document.createElement('span'),stage=w.document.createElement('div');node.className='thumb';stage.className='motion-stage';node.append(stage);w.document.body.append(node);
       node.getBoundingClientRect=()=>{events.push('read');return{width:160,height:90};};
@@ -279,7 +305,8 @@ test('历史左栏全部接入对应原作缩略图，静态单帧与原片定�
     const oldVideos=[...d.querySelectorAll('.thumb video')];
     d.querySelector('[data-kind="action"]').click();env.reveal();await w.MotionThumbs.whenIdle();
     for(const video of oldVideos)assert.equal(video.getAttribute('src'),null);
-    assert.equal(d.querySelectorAll('.thumb .motion-stage').length,data.effects.filter(e=>e.kind==='action').length);assert.equal(w.MotionRuntime.instanceCount,1);
+    const actions=data.effects.filter(e=>e.kind==='action');
+    assert.deepEqual([...d.querySelectorAll('.effect-item')].map(card=>[card.dataset.effect,card.querySelector('.thumb > .motion-stage')?.dataset.effect]).sort(),actions.map(effect=>[effect.id,effect.id]).sort());assert.equal(w.MotionRuntime.instanceCount,1);
   }finally{close(env);}
 });
 

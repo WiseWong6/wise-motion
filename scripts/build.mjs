@@ -55,7 +55,25 @@ const sharedImageCopy = `Object.defineProperty(globalThis.MotionRemotionSources,
 await output('catalog/remotion-sources.js', '/* Generated from registered Remotion source files. Apache-2.0. */\nglobalThis.MotionRemotionSources = ' + JSON.stringify(remotionFiles).replace(/</g, '\\u003c') + ';\n' + sharedImageCopy);
 const {describe} = createRequire(import.meta.url)('../catalog/matching.js');
 await mkdir(path.join(root, 'references/effects'), {recursive: true});
-await output('catalog/registry-data.js', '/* 自动生成自 registry.json；请修改权威定义后运行 node scripts/build.mjs。Apache-2.0 */\nglobalThis.MotionRegistry = ' + JSON.stringify(registry) + ';\n');
+// 重复的长说明只写一份字符串；对象与数组仍各自创建，保持目录数据和可编辑性。
+function browserRegistrySource(registry) {
+  const counts=new Map();
+  function count(value) {
+    if(typeof value==='string')counts.set(value,(counts.get(value)||0)+1);
+    else if(value&&typeof value==='object')for(const item of Object.values(value))count(item);
+  }
+  count(registry);
+  const shared=new Map();
+  for(const [value,n] of counts)if(n>1&&(n-1)*Buffer.byteLength(JSON.stringify(value))>n*6+12)shared.set(value,'$'+shared.size.toString(36));
+  function serialize(value) {
+    if(typeof value==='string')return shared.get(value)||JSON.stringify(value);
+    if(Array.isArray(value))return '['+value.map(serialize).join(',')+']';
+    if(value&&typeof value==='object')return '{'+Object.entries(value).map(([key,item])=>JSON.stringify(key)+':'+serialize(item)).join(',')+'}';
+    return JSON.stringify(value);
+  }
+  return '(function(){const '+[...shared].map(([value,name])=>name+'='+JSON.stringify(value)).join(',')+';\nglobalThis.MotionRegistry = '+serialize(registry)+';})();\n';
+}
+await output('catalog/registry-data.js', '/* 自动生成自 registry.json；请修改权威定义后运行 node scripts/build.mjs。Apache-2.0 */\n' + browserRegistrySource(registry));
 // 首屏三个页签数量从正式目录生成。
 const tabKinds=['action','composition','illustration'];
 const tabCounts=Object.fromEntries(tabKinds.map(kind=>[kind,registry.effects.filter(effect=>effect.kind===kind).length]));
@@ -96,7 +114,7 @@ for (const c of registry.categories) {
         `- [逐帧组件](../../${fields.source.remotion.component})与目录共用实际绘制函数。`,
         '- 复制源码或命令行导出包含固定依赖、绘制源码、本地素材清单与许可；字体素材随命令行导出复制。', '');
     }
-    if(e.source.remotion)detail.push('## Remotion 复用', '', `- [逐帧画面组件](../../${e.source.remotion.component})与目录共用实际绘制源码。`, e.source.frame_cache?'- 目录“复制源码”提供完整独立工程、固定依赖版本与许可；二进制工程和素材单独准备，命令行导出自动复制；“复制提示词”按 Remotion 当前帧驱动画面。':'- 目录“复制源码”提供完整独立工程、固定依赖版本、内嵌矢量与许可；“复制提示词”按 Remotion 当前帧驱动画面。', `- 输出画幅 ${e.source.remotion.width}×${e.source.remotion.height}，每秒 ${e.source.remotion.fps} 帧；${e.source.frame_cache?'按原制作帧时钟定位视频缓存；运行素材与已登记文字源码随独立导出提供。原制作媒体按制作说明单独准备，修改三维场景须另行重渲染。':'等比保留逻辑画板，无外部图片、声音或字体请求。'}`, '');
+    if(e.source.remotion)detail.push('## Remotion 复用', '', `- [逐帧画面组件](../../${e.source.remotion.component})与目录共用实际绘制源码。`, e.source.frame_cache?'- 目录“复制源码”提供完整独立工程、固定依赖版本与许可；二进制工程和素材单独准备，命令行导出自动复制；“复制提示词”按 Remotion 当前帧驱动画面。':e.aboutlove?'- 目录“复制源码”提供完整独立工程、实际绘制函数、固定依赖版本、本地字体清单与许可；字体和完整组合的原声由命令行导出自动复制。':'- 目录“复制源码”提供完整独立工程、固定依赖版本、内嵌矢量与许可；“复制提示词”按 Remotion 当前帧驱动画面。', `- 输出画幅 ${e.source.remotion.width}×${e.source.remotion.height}，每秒 ${e.source.remotion.fps} 帧；${e.source.frame_cache?'按原制作帧时钟定位视频缓存；运行素材与已登记文字源码随独立导出提供。原制作媒体按制作说明单独准备，修改三维场景须另行重渲染。':e.aboutlove?.composition?'等比保留1080×1440竖幅；字体与原声随独立工程交付并从本地加载。':e.aboutlove?'等比保留逻辑画板；原字体随独立工程交付并从本地加载。':'等比保留逻辑画板，无外部图片、声音或字体请求。'}`, '');
     await output(`references/effects/${e.id}.md`, detail.join('\n'));
   }
 }

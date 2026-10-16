@@ -7,19 +7,20 @@ const click=(d,selector)=>{const node=d.querySelector(selector);assert.ok(node,s
 function seek(w,id,value){const input=w.document.getElementById(id);input.value=value;input.dispatchEvent(new w.Event('input'));}
 
 test('全部组合直接关联独立动作，弹窗从头自动播放且不改变主组合',async()=>{
-  const env=await environment(true,{staticPreview:true,hash:'#paper-spiral-sequence'});
+  const players=new Map();
+  const env=await environment(true,{staticPreview:true,hash:'#paper-spiral-sequence',beforeApp(w){const create=w.MotionRuntime.create;w.MotionRuntime.create=(root,...args)=>{const player=create(root,...args);players.set(root,player);return player;};}});
   try{
     const {w}=env,d=w.document;
     for(const effect of data.effects.filter(e=>e.kind==='composition')){
       click(d,`[data-effect="${effect.id}"]`);
-      if(effect.source.native_scene==='blender')await Promise.resolve();
+      await players.get(d.getElementById('preview')).ready;
       seek(w,'scrub',650);
       assert.deepEqual([...d.querySelectorAll('#related [data-related]')].map(n=>n.dataset.related),effect.actions);
       assert.ok(effect.actions.length);
       for(const id of effect.actions){
         const target=w.MotionKit.resolveVariant(data.effects.find(e=>e.id===id),effect.action_variants?.[id]),time=d.getElementById('scrub').value,original=frameMarkup(d.getElementById('preview')),hash=w.location.hash,observers=env.listeners.size;
         const trigger=click(d,`#related [data-related="${id}"]`);
-        if(target.source.native_scene==='blender')await Promise.resolve();
+        await players.get(d.getElementById('related-preview')).ready;
         assert.ok(d.getElementById('related-dialog').open);
         assert.equal(d.getElementById('related-title').textContent,target.name);
         assert.equal(d.querySelector('#related-preview .motion-stage').dataset.effect,id);
@@ -29,7 +30,7 @@ test('全部组合直接关联独立动作，弹窗从头自动播放且不改�
         assert.equal(d.querySelector('#related-preview [data-composition-hidden]'),null);
         // 用独立动作自身的工厂对照中间态，弹窗不再渲染完整组合后隐藏其它层。
         seek(w,'related-scrub',500);
-        const host=d.createElement('div'),reference=w.MotionRuntime.create(host,target);reference.seek(target.duration_ms*.5);
+        const host=d.createElement('div'),reference=w.MotionRuntime.create(host,target);await reference.ready;reference.seek(target.duration_ms*.5);
         assert.equal(frameMarkup(d.querySelector('#related-preview .motion-stage')),frameMarkup(host.firstElementChild));reference.destroy();
         assert.equal(w.location.hash,hash);assert.equal(d.getElementById('scrub').value,time);assert.equal(frameMarkup(d.getElementById('preview')),original);
         click(d,'#related-close');assert.equal(w.MotionRuntime.instanceCount,1);assert.equal(env.listeners.size,observers);assert.equal(d.activeElement,trigger);

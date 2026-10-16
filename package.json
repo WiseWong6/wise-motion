@@ -11,12 +11,13 @@
     "check": "node scripts/check.mjs && npm run check:fonts",
     "check:fonts": "python3 scripts/build-fonts.py --check",
     "publish:package": "node scripts/publish-package.mjs",
-    "test:publish": "node --test tests/package-publish.test.mjs",
+    "test:files": "node --test --test-concurrency=4",
+    "test:publish": "npm run test:files -- tests/package-publish.test.mjs",
     "build:history": "node scripts/build-history.mjs",
     "check:history": "node scripts/build-history.mjs --check",
-    "test": "npm run check && npm run check:history && node --test tests/*.test.mjs",
+    "test": "npm run check && npm run check:history && npm run test:files -- tests/*.test.mjs",
     "build:remotion": "node scripts/build-remotion.mjs",
-    "check:remotion": "node --test tests/remotion-clock.test.mjs tests/remotion-adapter-regressions.test.mjs tests/remotion-resource-boundaries.test.mjs tests/remotion-production.test.mjs",
+    "check:remotion": "npm run test:files -- tests/remotion-clock.test.mjs tests/remotion-adapter-regressions.test.mjs tests/remotion-resource-boundaries.test.mjs tests/remotion-production.test.mjs",
     "render": "node scripts/render-remotion.mjs"
   },
   "devDependencies": {
