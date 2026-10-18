@@ -172,14 +172,6 @@
     {id:'labels',actions:['title-stagger'],name:'年份说明与结语',start:150,end:8000,time:'0.15–8.00 秒',detail:'年份逐字升入，说明按每秒60字键入；5.4秒开始退场，再按原错峰升入两行结语，黄色术语以每秒50字出现。组合和独立动作共用文字层与时钟。'},
     {id:'timeline',actions:['timeline-keyframe-playhead'],name:'关键帧与游标',start:900,end:6010,time:'0.90–6.01 秒',detail:'五行关键帧每个错开 0.025 秒弹出。游标每两秒扫描一次，靠近的关键帧变白并放大，与小球共享循环时间。'}
   ];
-  function shapeLayer(){return '<g data-layer="shapes"><circle data-shape="disc" cx="1700" fill="#ffc93c"/><circle data-shape="ring" cx="160" r="170" fill="none" stroke="#1fb5a8"/><rect data-shape="square" fill="#ff9aa2"/></g>';}
-  function shapeMotion(root){
-    const disc=root.querySelector('[data-shape="disc"]'),ring=root.querySelector('[data-shape="ring"]'),square=root.querySelector('[data-shape="square"]');
-    return t=>{const wave=Math.sin(t*1.3)*12,a=outBack(span(t,3.1,3.8)),b=outBack(span(t,3.3,4)),c=outBack(span(t,3.5,4.1));attrs(disc,{cy:170+wave,r:250*a});attrs(ring,{cy:980-wave,r:170*b,'stroke-width':44*b});attrs(square,{x:-40*c,y:-40*c,width:80*c,height:80*c,transform:`translate(920 ${900+wave}) rotate(${t*.6*180/Math.PI})`});};
-  }
-  F['shape-pop-float']=root=>{base(root,'几何形状弹出漂浮','#f4efe6',shapeLayer());return clock(5000,shapeMotion(root),3);};
-  F['shape-pop-float'].layer=shapeLayer;
-  F['shape-pop-float'].motion=shapeMotion;
 })(globalThis.MotionFactories);
 
 /* Pixel example shares the imported painter; preserve every existing example and factory helper. */

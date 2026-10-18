@@ -273,6 +273,19 @@ html[data-theme="light"] { --thumbnail-art-filter:brightness(.48) saturate(1.25)
   transition:opacity .32s cubic-bezier(.2,.8,.3,1);
 }
 .playbar.is-away { opacity:0; pointer-events:none; }
+/* 画面和控制条进入同一个全屏容器，画幅随当前示例变化。 */
+.preview-shell:fullscreen {
+  display:grid; place-items:center; width:100%; height:100%; max-width:none;
+  margin:0; padding:0; background:var(--canvas); overflow:hidden;
+}
+.preview-shell:fullscreen #preview {
+  width:min(100%,calc(100dvh * var(--preview-ratio))); height:auto;
+  max-height:100%; border-radius:0; box-shadow:none;
+}
+.preview-shell:fullscreen .playbar {
+  position:absolute; left:0; right:0; bottom:max(16px,env(safe-area-inset-bottom));
+  width:min(460px,calc(100% - 32px)); margin:0 auto; opacity:1; pointer-events:auto;
+}
 /* 材质层只负责背景折射和示例里的那层玻璃皮。文字、按钮画在它上面，不会被位移。
    不支持背景模糊时这一层不出现；减少透明度时连同该层一起隐藏。 */
 .playbar-glass { display:none; }
@@ -597,6 +610,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow:0 0 0 3px v
 .select-menu [role="option"] > span:first-child { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .option-check { display:grid; place-items:center; width:14px; height:14px; flex:none; color:var(--accent); }
 .option-check svg { width:14px; height:14px; }
+.select-menu [role="option"]:disabled { opacity:.5; cursor:default; }
 
 /* ── 响应式：桌面三栏 / 窄桌面两栏与目录抽屉 / 手机预览在前 ────── */
 @media (min-width:1120px) {

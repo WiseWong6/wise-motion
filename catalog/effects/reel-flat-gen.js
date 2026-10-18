@@ -12,6 +12,7 @@
   const hash=n=>{const s=Math.sin(n*127.1+311.7)*43758.5453;return s-Math.floor(s);};
   const colors=['#ff6b4a','#1fb5a8','#ffc93c','#1d2b53','#ff9aa2'];
   const set=(n,k,v)=>{const s=String(v);if(n.getAttribute(k)!==s)n.setAttribute(k,s);};
+  const attrs=(n,a)=>{for(const [k,v] of Object.entries(a))set(n,k,v);};
   const text=(n,value)=>{if(n.textContent!==value)n.textContent=value;};
   let serial=0;
   const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -30,6 +31,13 @@
   function generativeTitle(id){return `<g data-layer="title">${label('2020',110,330,210,'none','data-gen-year stroke="#fff" stroke-width="2" letter-spacing="-4"')}${titleRows(generativeRows,id,'gen-title')}</g>`;}
   function generativeTitleMotion(root){const rows=titleMotion(root,generativeRows,'gen-title'),year=root.querySelector('[data-gen-year]');return t=>{set(year,'stroke-opacity',.9*prog(t,.3,.9));rows(t);};}
   function once(draw){let last=-Infinity;return ms=>{const next=Math.max(0,ms);if(next===last)return;draw(next/1000);last=next;};}
+
+  // 仅保留手机组合的原位装饰，不注册为独立动作。
+  function shapeLayer(){return '<g data-layer="shapes"><circle data-shape="disc" cx="1700" fill="#ffc93c"/><circle data-shape="ring" cx="160" r="170" fill="none" stroke="#1fb5a8"/><rect data-shape="square" fill="#ff9aa2"/></g>';}
+  function shapeMotion(root){
+    const disc=root.querySelector('[data-shape="disc"]'),ring=root.querySelector('[data-shape="ring"]'),square=root.querySelector('[data-shape="square"]');
+    return t=>{const wave=Math.sin(t*1.3)*12,a=back(prog(t,3.1,3.8)),b=back(prog(t,3.3,4)),c=back(prog(t,3.5,4.1));attrs(disc,{cy:170+wave,r:250*a});attrs(ring,{cy:980-wave,r:170*b,'stroke-width':44*b});attrs(square,{x:-40*c,y:-40*c,width:80*c,height:80*c,transform:`translate(920 ${900+wave}) rotate(${t*.6*180/Math.PI})`});};
+  }
 
   function tiles(root){
     root.innerHTML=svg('方圆阵列波次翻转',`<g data-layer="tiles">${Array.from({length:91},(_,i)=>`<rect data-tile="${i}"/>`).join('')}</g>`);
@@ -92,9 +100,9 @@
     const frames=micro?[index]:[0,1,2,3];
     let body=`<g data-phone-rig>${showShell?shell(id):''}<g ${showShell?`clip-path="url(#${id}-screen)"`:''}><g data-layer="cards">${frames.map(cardFrame).join('')}</g>${names.map(n=>widgets[n]()).join('')}</g></g>`;
     const display=micro?`translate(960 540) scale(2.6) translate(-1340 ${-(cardY(index)+65)})`:whole?'':'translate(-380 0)';
-    root.innerHTML=svg('手机卡片交互',`${whole?F['shape-pop-float'].layer()+materialLabels(id):''}<g data-display transform="${display}">${body}</g>`);
+    root.innerHTML=svg('手机卡片交互',`${whole?shapeLayer()+materialLabels(id):''}<g data-display transform="${display}">${body}</g>`);
     const renderCards=cardsMotion(root,whole||cards),renderPhone=phoneMotion(root),draw=names.map(n=>widgetMotion(root,n));
-    const drawShapes=whole?F['shape-pop-float'].motion(root):null,drawLabels=whole?materialLabelMotion(root):null;
+    const drawShapes=whole?shapeMotion(root):null,drawLabels=whole?materialLabelMotion(root):null;
     const starts={whole:3,rise:3,cards:3.5,switch:4.6,spinner:4.1,like:5.3,fab:4.8};
     return once(sec=>{const t=Math.round((sec+starts[mode])*1e9)/1e9;renderPhone(whole||rise?t:4);renderCards(rise?4.5:t);drawShapes?.(t);drawLabels?.(t);
       draw.forEach((render,i)=>render(rise||cards?(names[i]==='fab'?4.5:4.6):mode==='fab'&&names[i]!=='fab'?5:t));
@@ -168,7 +176,7 @@
   F['material-fab-panel']=root=>phone(root,'fab');
   F['material-phone-sequence']=root=>phone(root,'whole');
   F['material-phone-sequence'].breakdown=[
-    {id:'shapes',actions:['shape-pop-float'],name:'几何装饰弹出漂浮',start:100,end:5000,time:'0.10–5.00 秒',detail:'复用原有几何形状弹出漂浮：黄圆盘、青圆环和粉色方块错峰回弹，方块保持旋转。'},
+    {id:'shapes',actions:[],reason:'按用户要求删除独立动作，原图形仅保留在完整组合中。',name:'原位几何装饰',start:100,end:5000,time:'0.10–5.00 秒',detail:'黄圆盘、青圆环和粉色方块按原位置错峰回弹并同步漂浮，方块保持旋转。'},
     {id:'labels',actions:['title-stagger'],name:'年份标题与四项词条',start:300,end:2480,time:'0.30–2.48 秒',detail:'2014 逐字回弹升入，随后两行原标题从遮罩升起；四条彩点词条每项晚 0.16 秒从左淡入。'},
     {id:'phone',actions:['material-phone-rise'],name:'手机斜升回正',start:200,end:1000,time:'0.20–1.00 秒',detail:'机身和屏内所有内容共同从下方 800 像素、倾斜 0.25 弧度的位置升起回正。'},
     {id:'cards',actions:['material-card-stagger'],name:'卡片错峰回弹',start:700,end:3400,time:'0.70–3.40 秒',detail:'四张卡片每张晚 0.12 秒上移回弹；第二卡内进度条按原时钟填充。'},

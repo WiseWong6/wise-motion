@@ -103,5 +103,6 @@ export const FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/aboutlove-fonts.js",
   "catalog/effects/aboutlove-data.js",
   "catalog/effects/aboutlove-entries.js",
-  "catalog/effects/aboutlove.js"
+  "catalog/effects/aboutlove.js",
+  "catalog/effects/lego-kingdom.js"
 ]);

@@ -1,7 +1,7 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function(F){
   'use strict';
-  // 原片八处交接的遮罩与附加光效；两张示意画面只作为可替换载体。
+  // 保留的原片交接遮罩与附加光效；两张示意画面只作为可替换载体。
   const W=1920,H=1080,diagonal=Math.hypot(W,H);
   const clamp=v=>Math.max(0,Math.min(1,v));
   const cubic=p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
@@ -18,8 +18,7 @@
     'radial-flash-transition':{name:'中心闪亮切换',type:'flash',at:22,d:.5},
     'tile-wave-transition':{name:'方块由中心铺开转场',type:'tiles',at:30,d:.9},
     'diagonal-edge-transition':{name:'斜边推移转场',type:'diag',at:38,d:.7},
-    'pixel-dissolve-transition':{name:'像素错序显露转场',type:'pixel',at:46,d:.8},
-    'iris-flash-transition':{name:'圆孔扩张与闪亮交接',type:'iris',at:54,d:.5,flash:true}
+    'pixel-dissolve-transition':{name:'像素错序显露转场',type:'pixel',at:46,d:.8}
   };
   // 参数直接来自原 transClip，不把方块波与像素随机显露混为同一种遮罩。
   function mask(type,p,t){
@@ -77,8 +76,6 @@
   const defaultIris = F['iris-open-transition'];
   F['iris-open-transition'] = (root, K, definition) => definition?.variant_id === 'offset-aperture'
     ? globalThis.WiseMechanicalWindows.make(root, definition)
-    : ['paper-expand', 'black-cover'].includes(definition?.variant_id)
-    ? globalThis.WiseCircularReveal.make(root, K, definition)
     : defaultIris(root, K, definition);
   const defaultBandCut = F['glitch-band-transition'];
   F['glitch-band-transition'] = (root, K, definition) => definition?.variant_id === 'poster-cut'

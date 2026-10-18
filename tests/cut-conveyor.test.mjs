@@ -5,6 +5,7 @@ import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {history,state} from '../scripts/history.mjs';
 import {environment,data} from './helpers.mjs';
+import {resolveEffect} from '../remotion/clock.mjs';
 
 const crosswalk=JSON.parse(await readFile(state+'/crosswalk.json','utf8'));
 const migration=id=>crosswalk.rules[id].migration;
@@ -18,7 +19,7 @@ test('快切按原录屏加速帧表换图，边界只有一张画面，最后�
   assert.equal(changes.length,10);
   const env=await environment();
   try{
-    const {w}=env,root=w.document.getElementById('root'),effect=data.effects.find(e=>e.id==='rapid-cut');
+    const {w}=env,root=w.document.getElementById('root'),effect=resolveEffect('rapid-cut','standard');
     const render=w.MotionFactories[effect.id](root,w.MotionKit,effect);
     const active=()=>[...root.querySelectorAll('[data-shot]')].filter(n=>n.getAttribute('display')!=='none');
     const expect=(time,index)=>{render(time);assert.equal(active().length,1);assert.equal(Number(active()[0].dataset.shot),index);};
@@ -92,7 +93,7 @@ test('新动作缩略图静止且完整，主预览与缩略图的裁切窗口�
     const {w}=env,d=w.document;await env.reveal('[data-effect="rapid-cut"] .thumb,[data-effect="card-conveyor"] .thumb');
     for(const id of ['rapid-cut','card-conveyor']){
       const card=d.querySelector(`[data-effect="${id}"]`),thumb=card.querySelector('.thumb');
-      assert.ok(thumb.querySelector('.pattern-svg'));assert.equal(thumb.querySelector('.history-placeholder'),null);
+      assert.ok(thumb.querySelector(id==='rapid-cut'?'img':'.pattern-svg'));assert.equal(thumb.querySelector('.history-placeholder'),null);
       const staticFrame=thumb.innerHTML;card.click();
       // 初次载入定位在缩略图时刻，不借用缩略图里的可变裁切窗口。
       const playerMask=d.querySelector('#preview [data-mask="upper"]'),thumbMask=thumb.querySelector('[data-mask="upper"]');

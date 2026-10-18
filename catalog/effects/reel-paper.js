@@ -106,10 +106,6 @@
     standalone(root,'螺线描画并自转','<circle data-guide="disc" cx="960" cy="540" r="360" fill="#f1e4c8"/>'+spiralMarkup);
     return stepped(spiralMotion(root,960,540));
   };
-  F['planar-dot-orbit']=root=>{
-    standalone(root,'圆点平面公转','<circle data-guide="orbit" cx="960" cy="540" r="400" fill="none" stroke="#f1e4c8" stroke-width="2"/><circle data-guide="center" cx="960" cy="540" r="8" fill="#f1e4c8"/>'+orbitMarkup);
-    return stepped(orbitMotion(root,960,540));
-  };
   let serial=0;
   F['paper-disc-pop']=root=>{
     standalone(root,'剪纸圆盘回弹与圆心节拍',discMarkup(960,540));
@@ -164,7 +160,7 @@
     {id:'paper',actions:['paper-strip-stagger'],name:'纸条滑入',start:1000/6,end:19000/12,time:'0.17–1.58 秒',detail:'五条纸条从左右错峰进入；到位后边缘仍逐格轻颤。时间条标出滑入区间。'},
     {id:'disc',actions:['paper-disc-pop'],name:'圆盘弹入',start:1000/6,end:750,time:'0.17–0.75 秒',detail:'奶油色圆盘放大后回弹落定。圆心从 0.25 秒起出现，每半秒胀缩一次。时间条标出圆盘弹入区间。'},
     {id:'spiral',actions:['spiral-draw-spin'],name:'螺线绘转',start:7000/12,end:6000,time:'0.58 秒起',detail:'螺线从右侧起笔，边画边自转，约 4.33 秒画齐后继续旋转；描画越接近末尾越慢。'},
-    {id:'orbit',actions:['planar-dot-orbit'],name:'圆点公转',start:1000/6,end:6000,time:'0.17 秒起',detail:'外圈黑点随圆盘一起长大，沿圆周持续绕行，与螺线同时运动。'},
+    {id:'orbit',actions:[],reason:'保留组合原有的圆点公转画面；已撤下独立示例，不再关联动作入口。',name:'圆点公转',start:1000/6,end:6000,time:'0.17 秒起',detail:'外圈黑点随圆盘一起长大，沿圆周持续绕行，与螺线同时运动。'},
     {id:'text',actions:['paper-title-stagger'],name:'文字升入',start:2000/3,end:10000/3,time:'0.67–3.33 秒',detail:'年代标题、年份、两行字幕依次逐字升入；年份带回弹，各行有自己的裁剪框。'}
   ];
 })(globalThis.MotionFactories);

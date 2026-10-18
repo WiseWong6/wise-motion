@@ -3,19 +3,20 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {runInNewContext} from 'node:vm';
-import {data,environment} from './helpers.mjs';
+import {environment} from './helpers.mjs';
+import {resolveEffect} from '../remotion/clock.mjs';
 const source=await readFile('/Users/wisewong/Documents/Developer/wise-video/claude-showreel-2026/reel.js','utf8');
 const math=source.slice(source.indexOf('const clamp ='),source.indexOf('function noise2'));
 const originalMask=source.slice(source.indexOf('function transClip'),source.indexOf('function transFx'));
-const cases=[['iris-open-transition','iris',4,.8],['slat-alternate-transition','slats',10,.7],['glitch-band-transition','glitch',16,.45],['radial-flash-transition','flash',22,.5],['tile-wave-transition','tiles',30,.9],['diagonal-edge-transition','diag',38,.7],['pixel-dissolve-transition','pixel',46,.8],['iris-flash-transition','iris',54,.5]];
+const cases=[['iris-open-transition','iris',4,.8],['slat-alternate-transition','slats',10,.7],['glitch-band-transition','glitch',16,.45],['radial-flash-transition','flash',22,.5],['tile-wave-transition','tiles',30,.9],['diagonal-edge-transition','diag',38,.7],['pixel-dissolve-transition','pixel',46,.8]];
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-6,`${a} != ${b}`);
 const nums=text=>(text.match(/-?\d+(?:\.\d+)?(?:e[-+]?\d+)?/gi)||[]).map(Number);
-const get=id=>data.effects.find(e=>e.id===id);
+const get=id=>resolveEffect(id,{'iris-open-transition':'standard','glitch-band-transition':'standard','tile-wave-transition':'original'}[id]);
 function original(type,p,t){
   const commands=[],ctx={beginPath(){},rect(...v){commands.push(['rect',...v]);},arc(...v){commands.push(['arc',...v]);},moveTo(...v){commands.push(['move',...v]);},lineTo(...v){commands.push(['line',...v]);},closePath(){},clip(){}};
   const c={ctx,W:1920,H:1080,TAU:Math.PI*2};runInNewContext(math+originalMask+'\nglobalThis.draw=transClip;',c);c.draw(type,p,t);return commands;
 }
-test('八种交接逐项对应原片遮罩几何、随机次序与真实时长',async()=>{
+test('七种交接逐项对应原片遮罩几何、随机次序与真实时长',async()=>{
   const env=await environment();try{
     const {w}=env,root=w.document.getElementById('root');
     for(const [id,type,at,d] of cases){
@@ -45,7 +46,7 @@ test('闪亮在换页中点达到峰值，撕裂彩带离开有效窗口后清�
     for(const [id,type,,d] of cases){
       const player=w.MotionRuntime.create(root,get(id));
       player.seek(500+d*500);const alpha=+root.querySelector('[data-layer="flash"]').getAttribute('opacity');
-      assert.equal(alpha,type==='flash'||id==='iris-flash-transition'?1:0);
+      assert.equal(alpha,type==='flash'?1:0);
       if(type==='glitch')assert.equal(root.querySelector('[data-layer="glitch"]').getAttribute('opacity'),'1');
       for(const time of [0,540,600,800,1300]){player.seek(time);const frame=root.innerHTML;player.seek(1800);player.seek(time);assert.equal(root.innerHTML,frame);}
       player.seek(1500);const observer=new w.MutationObserver(()=>{});observer.observe(root,{subtree:true,attributes:true,childList:true});player.seek(1700);assert.equal(observer.takeRecords().length,0,id+' 静置时不应继续改变隐藏碎片');observer.disconnect();

@@ -153,12 +153,12 @@ test('剪纸组合可直接访问，缩略图使用同一帧且不增加播放�
   }finally{env.w.MotionThumbs.disposeAll();env.close();}
 });
 
-test('三个独立动作与组合里的实际图形逐帧对应，只对右侧图形做居中',async()=>{
+test('两个独立动作与组合里的实际图形逐帧对应，只对右侧图形做居中',async()=>{
   const env=await environment();
   try{
     const {w}=env,d=w.document,composition=d.createElement('div');
     const whole=w.MotionRuntime.create(composition,get());
-    for(const id of ['paper-strip-stagger','spiral-draw-spin','planar-dot-orbit']){
+    for(const id of ['paper-strip-stagger','spiral-draw-spin']){
       const effect=data.effects.find(e=>e.id===id),root=d.createElement('div');
       const player=w.MotionRuntime.create(root,effect);
       assert.equal(root.querySelectorAll('[data-char]').length,0,'独立动作不应偷偷建立整页文字后隐藏');
@@ -168,15 +168,11 @@ test('三个独立动作与组合里的实际图形逐帧对应，只对右侧�
         for(const node of root.querySelectorAll('[data-layer]')){
           const original=composition.querySelector(`[data-part="${node.dataset.part}"]`);
           if(id==='paper-strip-stagger')assert.equal(node.outerHTML,original.outerHTML,'纸条坐标、毛边与倾角须一致');
-          else if(id==='spiral-draw-spin'){
+          else{
             assert.equal(node.getAttribute('d'),original.getAttribute('d'));
             assert.equal(node.getAttribute('visibility'),original.getAttribute('visibility'));
             const a=transform(node),b=transform(original);close(a[0]+440,b[0]);close(a[1],b[1]);close(a[2],b[2]);
             assert.equal(node.getAttribute('stroke-width'),original.getAttribute('stroke-width'));
-          }else{
-            close(+node.getAttribute('cx')+440,+original.getAttribute('cx'));
-            close(+node.getAttribute('cy'),+original.getAttribute('cy'));
-            close(+node.getAttribute('r'),+original.getAttribute('r'));
           }
         }
       }

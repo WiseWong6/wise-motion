@@ -14,7 +14,7 @@
 现实类比：同一个视觉主体接力变化，把生长、群飞、照明和文字连接起来。
 需要保留：种子落地生长为蒲公英，炸开旋转化蝶，汇成太阳；光束回弹成O，扩黑接WISE MOTION字标。 保留原几何、群体旋转、形态交接与每秒60帧的实际时间安排。
 明确排除：蒲公英不加叶子或根，群体旋转不改成单颗自转，圆形触地不压扁，片尾不加中文；不替换真实字形。
-对应参考：本地目录「生长化蝶与光形字标」；所用动作：落种即生长成冠、种子向外散开、散开旋转化蝶汇聚、沿光束触地回弹成圆、圆形扩黑与字标展开
+对应参考：本地目录「生长化蝶与光形字标」；所用动作：种子落地生长、种子向外散开、化蝶飞向一处、圆形落地回弹、圆形铺满展开字标
 源码：catalog/effects/seed-bloom-brand.js 中的 seed-bloom-brand-sequence
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：自有代码绘制，独立动作与完整组合共用实际图形、轨迹和时间换算；素材在实例内准备。
@@ -33,7 +33,7 @@
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
 - 从用户确认的8.2秒品牌动效提取实际绘制源码。冠毛、气流和蝶翼复用目录自有几何；Outfit Medium字形遵循SIL OFL 1.1。目录播放与Remotion帧组件共用绘制和独立实例，不依赖原工程、视频、图片或联网字体。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[落种即生长成冠](seed-sprout-bloom.md)、[种子向外散开](dandelion-radial-release.md)、[散开旋转化蝶汇聚](flock-turn-gather.md)、[沿光束触地回弹成圆](sunbeam-circle-rebound.md)、[圆形扩黑与字标展开](circle-expand-wordmark.md)。
+所用动作：[种子落地生长](seed-sprout-bloom.md)、[种子向外散开](dandelion-radial-release.md)、[化蝶飞向一处](flock-turn-gather.md)、[圆形落地回弹](sunbeam-circle-rebound.md)、[圆形铺满展开字标](circle-expand-wordmark.md)。
 
 ## Remotion 复用
 

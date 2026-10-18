@@ -44,7 +44,7 @@ test('声音资源仅登记在完整组合，所有外观、时间与文件可�
   const voiced = effectDefinitions.filter(effect => effect.audio);
   assert.equal(voiced.length, 22);
   for (const effect of effectDefinitions) {
-    if (effect.kind !== 'composition') assert.equal(effect.audio, undefined, effect.id);
+    if (effect.kind !== 'composition') assert.ok(effect.audio == null, effect.id);
     for (const variant of effect.variants || [null]) {
       const resolved = resolveEffect(effect.id, variant?.id);
       for (const track of resolved.audio?.tracks || []) {

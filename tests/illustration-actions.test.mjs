@@ -6,20 +6,21 @@ import {JSDOM} from 'jsdom';
 import {environment,data,frameMarkup} from './helpers.mjs';
 import {frameScriptsFor} from '../remotion/frame-document.mjs';
 
-// 原目录插画与动作一对一复用的约定；迁入场景的分离主体和交互动作由 scenes-adoption.test.mjs 单独验证。
-const illustrations=data.effects.filter(e=>e.kind==='illustration'&&!e.scene);
+// 原目录一对一复用；分离场景由 scenes-adoption 验证，视频主体由 video-illustrations 验证。
+const videoSources=new Set(['pixel-motion.js','time-in-motion-graphics.js','aboutlove.js','lego-kingdom.js'].map(file=>'catalog/effects/'+file));
+const illustrations=data.effects.filter(e=>e.kind==='illustration'&&!e.scene&&!videoSources.has(e.source.path));
 const animated=illustrations.filter(e=>e.actions.length);
-const noActionIds=['book-geometric-illustration','selfie-phone-illustration','spiral-galaxy-illustration'];
+const noActionIds=['book-geometric-illustration','selfie-phone-illustration','spiral-galaxy-illustration','claude-spectrum-illustration'];
 const definition=id=>data.effects.find(e=>e.id===id);
 const actionFor=(w,art)=>w.MotionKit.resolveVariant(definition(art.actions[0]),art.action_variants?.[art.actions[0]]);
 
 test('插画关联真实保留的动作，同类示例合并，删除后的动作不重新登记',()=>{
-  assert.equal(animated.length,63);
+  assert.equal(animated.length,62);
   assert.deepEqual(illustrations.filter(e=>!e.actions.length).map(e=>e.id).sort(),noActionIds.sort());
   for(const art of animated)for(const id of art.actions)assert.equal(definition(id)?.kind,'action',art.id);
   assert.equal(definition('drafting-tools-illustration').actions[0],definition('folio-cards-illustration').actions[0]);
   for(const [art,id] of [['claude-flow-field-illustration','generative-flow-field'],
-    ['claude-spectrum-illustration','hud-spectrum-bars'],['claude-frame-counter-illustration','progress-readout'],
+    ['claude-frame-counter-illustration','progress-readout'],
     ['terminal-window-illustration','terminal-code']])assert.deepEqual(definition(art).actions,[id]);
 });
 

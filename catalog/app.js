@@ -169,6 +169,8 @@
     blocked: () => $('search').value.trim() !== ''
   });
   const easing = MotionDropdown($('ease'), $('ease-options'));
+  const variants = MotionSelect($('effect-variant'));
+  const relatedVariants = MotionSelect($('related-variant'));
 
   function renderCategories() {
     const cats = [{id:'all', name:{action:'全部动作',illustration:'全部插画',composition:'全部组合',recipe:'全部历史配方'}[kind]}, ...data.categories.filter(x => data.effects.some(e=>e.kind===kind&&e.category===x.id))];
@@ -450,6 +452,8 @@
     effect = MotionKit.resolveVariant(effect,variantId||preserved?.variantId);
     categories.close();
     easing.close();
+    variants.close();
+    relatedVariants.close();
     controller?.destroy();
     selected = effect;
     resumeAfterVisible = false;
@@ -459,13 +463,16 @@
     $('effect-variant-field').hidden = !effect.variants?.length;
     $('effect-variant').innerHTML = (effect.variants||[]).map(item=>`<option value="${MotionKit.escape(item.id)}">${MotionKit.escape(item.label)}</option>`).join('');
     $('effect-variant').value = effect.variant_id || '';
+    variants.refresh(true);
     renderSource(effect);
     $('selection-status').textContent = `当前动效：${effect.name}。${effect.summary}`;
     $('preview').setAttribute('aria-label', effect.name);
     const previewSize = MotionPreview.size(effect);
     $('preview').closest('.preview-shell').style.setProperty('--preview-ratio', String(previewSize.width / previewSize.height));
     paintSpeed(preserved?.speed || 1);
-    easing.setOptions((effect.parameters.ease?.options || [effect.default_ease]).map(value => ({value, label:MotionMatch.easeLabels[value]})), preserved?.ease || effect.default_ease);
+    const easeOptions = effect.parameters.ease?.options || [effect.default_ease];
+    const selectedEase = easeOptions.includes(preserved?.ease) ? preserved.ease : effect.default_ease;
+    easing.setOptions(easeOptions.map(value => ({value, label:MotionMatch.easeLabels[value]})), selectedEase);
     $('ease-label').hidden = !effect.parameters.ease;
     const related = effect.kind==='recipe' ? effect.actions : effect.actions.length ? effect.actions : data.effects.filter(e => e.kind==='composition'&&e.actions.includes(effect.id)).map(e => e.id);
     $('related').innerHTML = related.length
@@ -673,7 +680,10 @@
     const button = event.target.closest('[data-related]');
     if (!button) return;
     const effect=data.effects.find(e=>e.id===button.dataset.related);
-    if(effect)relatedPreview.open(MotionKit.resolveVariant(effect,selected?.action_variants?.[effect.id]),button);
+    if(effect){
+      relatedPreview.open(MotionKit.resolveVariant(effect,selected?.action_variants?.[effect.id]),button);
+      relatedVariants.refresh(true);
+    }
   });
   function clearSearch() {
     clearTimeout(debounce);
@@ -708,9 +718,10 @@
   $('restart').addEventListener('click', event => controller?.restart(true,event), true);
   const stage = document.querySelector('.stage');
   const playbar = document.querySelector('.playbar');
+  const previewShell = $('preview').closest('.preview-shell');
   let pointerInStage = false;
   function showPlaybar(visible) {
-    playbar.classList.toggle('is-away', !visible);
+    playbar.classList.toggle('is-away', !visible && document.fullscreenElement !== previewShell);
   }
   stage.addEventListener('pointerenter', () => { pointerInStage = true; showPlaybar(true); });
   stage.addEventListener('pointerleave', () => {
@@ -749,10 +760,19 @@
   $('fullscreen').addEventListener('click', async () => {
     try {
       if (document.fullscreenElement) await document.exitFullscreen();
-      else await $('preview').requestFullscreen();
+      else await previewShell.requestFullscreen();
     } catch (_) {
       // 浏览器拒绝全屏时保持当前视图，不打断操作。
     }
+  });
+  document.addEventListener('fullscreenchange', () => {
+    const full = document.fullscreenElement === previewShell;
+    const label = full ? '退出全屏' : '全屏预览';
+    $('fullscreen').setAttribute('aria-label', label);
+    $('fullscreen').title = label;
+    showPlaybar(full || pointerInStage || playbar.contains(document.activeElement));
+    if (controller?.fit) controller.fit();
+    else MotionRuntime.fit($('preview'));
   });
 
   const tabs = document.querySelector('.output-tabs');
@@ -775,7 +795,7 @@
     if(relatedPreview.active)return;
     if (['ArrowLeft','ArrowRight'].includes(event.key) && !event.defaultPrevented && !event.isComposing &&
       !event.metaKey && !event.ctrlKey && !event.altKey && !event.shiftKey &&
-      !event.target.closest('input,textarea,select,pre,[contenteditable]:not([contenteditable="false"]),[role="tablist"],[role="listbox"],[role="menu"]') &&
+      !event.target.closest('input,textarea,select,pre,.variant-select,[contenteditable]:not([contenteditable="false"]),[role="tablist"],[role="listbox"],[role="menu"]') &&
       $('category-filter').getAttribute('aria-expanded') !== 'true' && $('ease').getAttribute('aria-expanded') !== 'true' &&
       !(directoryMedia.matches && !$('directory-panel').hidden)) {
       if (navigateEffect(event.key === 'ArrowRight' ? 1 : -1)) event.preventDefault();
@@ -1042,9 +1062,10 @@
   function selectInitial(){
     if (selected || hashNavigation) return;
     const requested = data.effects.find(effect=>effect.id===requestedEffect());
-    // 新链接按动效所在页签打开；同一页面刷新和加载期间的手动切换优先。
-    if (!rememberedKind && kindToken === 0) kind = requested?.kind || 'action';
-    const remembered = data.effects.find(effect=>effect.id===rememberedSelection?.id && effect.kind===kind);
+    // 明确指定动效的链接始终打开目标；无书签时才恢复上次浏览的位置。
+    // 等待历史数据期间的手动切换仍优先，不覆盖已经选中的画面。
+    if (kindToken === 0 && (requestedId || !rememberedKind)) kind = requested?.kind || 'action';
+    const remembered = !requestedId && data.effects.find(effect=>effect.id===rememberedSelection?.id && effect.kind===kind);
     const effect=remembered||(requested?.kind===kind ? requested : null)||data.effects.find(effect=>effect.kind===kind)||data.effects.find(effect=>effect.id==='fade-rise');
     renderCategories();renderList();rememberKind();
     const caseId=remembered ? rememberedSelection.caseId : effect.entries?.find(entry=>entry.source_rule_id===requestedId.replace(/^history-/,''))?.id;

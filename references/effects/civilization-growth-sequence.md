@@ -14,7 +14,7 @@
 现实类比：从一簇火和一颗种子，走向文明的创造与延续。
 需要保留：保留固定纸底、真实字形、图形比例、同一批花朵与粒子身份；所有状态由时间确定。
 明确排除：不改成图片轮播，不追加说明字幕，不使用活字收尾，不把三火四火叠成实心书法，不让字标再次收走。
-对应参考：本地目录「薪火生长与文明聚字」；所用动作：草楷墨迹换形、字形增殖与点线接续、横排闪烁换形、抽芽闪变与绽放、缩拢收入群像、群像散点聚字
+对应参考：本地目录「薪火生长与文明聚字」；所用动作：草书变楷书、字形复制重组、图形闪烁变形、发芽开花、图像缩小归拢、图像散开聚字
 源码：catalog/effects/civilization-growth.js 中的 civilization-growth-sequence
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：固定640×360逻辑画板；纸纹、书法轮廓、种子与花朵部件、文明插画和字标粒子均已内嵌。
@@ -33,7 +33,7 @@
 - 复刻自 [Kimi K3 开源宣传片](https://www.youtube.com/watch?v=5GlCGOXUYHg)。
 - 从已确认的草楷火、横排生长、文明群像及粒子聚字逐帧工程收录。保留实际绘制与18.6秒排程；独立分段直接共用实际画面函数。末尾复用粒子聚散成字的7000粒子目标和运动公式，增加从群像真实墨迹出发并停留字标的承接。代码Apache-2.0；草书与衬线字形及Oswald按SIL OFL，颜体字形按GPL-2.0-or-later，具体来源见SOURCE.json；生成插画保留内置图片工具来源记录。原Kimi条目及素材独立保留。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[草楷墨迹换形](cursive-regular-morph.md)、[字形增殖与点线接续](glyph-multiply-structure.md)、[横排闪烁换形](row-flash-transform.md)、[抽芽闪变与绽放](botanical-grow-bloom.md)、[缩拢收入群像](motifs-gather-atlas.md)、[群像散点聚字](image-particles-wordmark.md)。
+所用动作：[草书变楷书](cursive-regular-morph.md)、[字形复制重组](glyph-multiply-structure.md)、[图形闪烁变形](row-flash-transform.md)、[发芽开花](botanical-grow-bloom.md)、[图像缩小归拢](motifs-gather-atlas.md)、[图像散开聚字](image-particles-wordmark.md)。
 
 ## Remotion 复用
 

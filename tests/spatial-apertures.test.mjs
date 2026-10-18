@@ -103,7 +103,7 @@ test('所有新动作与示例可乱序定位，原有默认入口继续使用�
       draw.destroy();assert.equal(stage.childNodes.length,0);
     }
     const make=w.WiseSpatialApertures.make;w.WiseSpatialApertures.make=()=>{throw Error('默认动作被替换');};
-    try{for(const id of ['cross-aperture-turn','three-column-aperture','next-shot-preentry','rapid-cut','wipe','fan-object-rise']){
+    try{for(const id of ['cross-aperture-turn','three-column-aperture','next-shot-preentry','wipe','fan-object-rise']){
       const stage=w.document.createElement('div'),e=resolveEffect(id),draw=w.MotionFactories[id](stage,w.MotionKit,e);
       await draw.ready;draw(e.preview_ms,{ease:'linear'});assert.ok(stage.childNodes.length);draw.destroy?.();
       if(id==='fan-object-rise'){

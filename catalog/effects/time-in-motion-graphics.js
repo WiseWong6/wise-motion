@@ -12,10 +12,6 @@
     }
     return 1 - (1 - (a+b)/2)**3;
   }
-  function wordState(frame) {
-    if (!Number.isFinite(frame)) throw new TypeError('帧必须为有限数字');
-    return [0, 6].map(start => ({y: 112 * (1 - ease((frame-start)/14)), visible: frame >= start}));
-  }
   function dialState(frame) {
     if (!Number.isFinite(frame)) throw new TypeError('帧必须为有限数字');
     const local = Math.max(0, frame), enter = .85 * 24, open = ease(local/enter);
@@ -32,19 +28,6 @@
     const d = root.ownerDocument, node = d.createElement('div');
     node.style.cssText='position:absolute;inset:0;background:#101114;color:#e9e6de;overflow:hidden';
     root.replaceChildren(node); return node;
-  }
-  function word(root) {
-    const node=board(root), words=['EVERY','PART.'];
-    const glyphs=words.map((text,i)=>{
-      const clip=node.ownerDocument.createElement('div'), glyph=node.ownerDocument.createElement('span');
-      clip.style.cssText='position:absolute;left:32px;top:'+(122+i*54)+'px;overflow:hidden;padding-block:.06em;margin-block:-.06em;font:700 51.33px/.98 Oswald,sans-serif;letter-spacing:-.055em';
-      glyph.textContent=text;glyph.style.display='block';clip.append(glyph);node.append(clip);return glyph;
-    });
-    let gone=false;
-    const draw=ms=>{if(gone)return;wordState(ms*24/1000).forEach((state,i)=>{
-      glyphs[i].style.transform='translateY('+state.y+'%)';glyphs[i].style.visibility=state.visible?'visible':'hidden';
-    });};
-    draw.destroy=()=>{gone=true;};draw(0);return draw;
   }
   const point=(r,a)=>{const v=a*Math.PI/180;return [500+Math.cos(v)*r,500+Math.sin(v)*r];};
   const arc=(r,a,span)=>{const p=point(r,a),q=point(r,a+span);return 'M '+p.join(' ')+' A '+r+' '+r+' 0 '+(span>180?1:0)+' 1 '+q.join(' ');};
@@ -70,7 +53,7 @@
       b.setAttribute('stroke-dashoffset',1-s.innerArc);b.setAttribute('opacity',.62+s.pulse*.2);dot.setAttribute('opacity',s.dot);
     };draw.destroy=()=>{gone=true;};draw(0);return draw;
   }
-  F['word-block-rise']=word;
   F['sparse-dial-counterturn']=dial;
-  global.WiseTimeInMotionGraphics=Object.freeze({wordState,dialState});
+  F['time-dial-illustration']=dial;
+  global.WiseTimeInMotionGraphics=Object.freeze({dialState});
 })(globalThis);

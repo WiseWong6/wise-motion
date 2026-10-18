@@ -30,6 +30,14 @@ export function WiseNativeVideo({definition, speed = 1, includeAudio = true,
     typeof document === 'undefined' ? 'http://localhost/' : document.baseURI).href : null;
   const url = file => base ? new URL(file, base).href : staticFile(file);
   const movie = url(cache.video);
+  // 预览组件会默认按局部时长追加 #t=0,时长；截取原片中段时会把目标帧排除。
+  // 显式提供源片范围；视频导出继续使用原始地址。
+  const start = cache.start_frame || 0;
+  const previewMovie = `${movie.replace(/#.*$/, '')}#t=${start / cache.fps},${(start + cache.frames) / cache.fps}`;
+  // 原片帧号不能直接传入 Freeze，会被短片段自身的总帧数截断。
+  // Freeze 只接收局部帧，源片偏移及半帧取样位置由媒体裁切参数承担。
+  const localFrame = (sample.frame - start) / cache.fps * fps;
+  const trimBefore = (start + 0.5) / cache.fps * fps;
   const announce = () => {
     if (announced.current) return;
     announced.current = true;
@@ -44,12 +52,12 @@ export function WiseNativeVideo({definition, speed = 1, includeAudio = true,
   };
   useLayoutEffect(() => {onFrame?.({time, elapsed: time, frame});}, [time, frame, onFrame]);
   useLayoutEffect(() => {announced.current = false;}, [definition?.id, movie]);
-  const props = {src: movie, muted: true, pauseWhenBuffering: true, onError,
+  const props = {src: isRendering ? movie : previewMovie, trimBefore, muted: true, pauseWhenBuffering: true, onError,
     style: {width: '100%', height: '100%', objectFit: 'contain'}};
   return <div ref={stage} data-native-scene={definition.id} data-native-frame={sample.frame}
     style={{position: 'relative', width: width ?? vw, height: height ?? vh, background: '#08090b'}}>
     <AbsoluteFill>
-      <Freeze frame={sample.time * fps}>
+      <Freeze frame={localFrame}>
         {isRendering ? <OffthreadVideo {...props}/> :
           <Html5Video {...props} ref={video} onLoadedData={announce} onSeeked={announce}/>}
       </Freeze>

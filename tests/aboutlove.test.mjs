@@ -38,7 +38,7 @@ test('local font files retain their original bytes and resolve from either catal
  }finally{dom.window.close();}
 });
 
-test('approved intake covers every retained audit item and excludes both caret items',async()=>{
+test('approved intake covers retained audit items without restoring removed examples',async()=>{
  const data=JSON.parse(await readFile(new URL('../catalog/assets/aboutlove/SOURCE.json',import.meta.url)));
  assert.equal(data.decisions.length,62);
  assert.deepEqual(data.decisions.filter(x=>x.decision==='excluded').map(x=>x.audit),['aboutlove-03','aboutlove-35']);
@@ -46,8 +46,26 @@ test('approved intake covers every retained audit item and excludes both caret i
  assert.equal(data.decisions.filter(x=>x.decision==='new').length,12);
  const {w,dom}=env();
  for(const decision of data.decisions.filter(x=>x.target)){
-  const entry=w.WiseAboutLoveEntries[decision.target];assert.ok(entry,decision.audit);
-  for(const variant of decision.variants||[decision.variant])assert.ok(entry.variants[variant]||entry.aboutlove?.audit===variant,decision.audit+'/'+variant);
+  const entry=w.WiseAboutLoveEntries[decision.target];
+  if(['glyph-bar-collapse','stagger-in','dimension-line','vertical-feed','film-scratch-flicker'].includes(decision.target)){
+   assert.equal(entry,undefined,'该动作的自有场景独立示例已全部撤下，不再注册对应绘制入口');
+   continue;
+  }
+  assert.ok(entry,decision.audit);
+  for(const variant of decision.variants||[decision.variant]){
+   const removed=decision.target==='progress-readout'&&['aboutlove-07-2','aboutlove-07-3','aboutlove-07-4'].includes(variant)
+    ||decision.target==='stamp-land'&&['aboutlove-37-2','aboutlove-39-2'].includes(variant)
+    ||decision.target==='word-slam'&&variant==='aboutlove-19-2'
+    ||decision.target==='word-cloud-lift'&&variant==='aboutlove-30-2'
+    ||decision.target==='frame-jitter-type'&&['aboutlove-13','aboutlove-13-2','aboutlove-54'].includes(variant)
+    ||decision.target==='material-like-pop'&&variant==='aboutlove-32-2'
+    ||decision.target==='center-ripple-emit'&&variant==='aboutlove-50'
+    ||decision.target==='shared-object'&&variant==='aboutlove-60'
+    ||decision.target==='zoom-transition'&&variant==='aboutlove-40-2';
+   if(removed){
+    assert.equal(Object.hasOwn(entry.variants,variant),false,'已撤下的示例不因原始收录记录恢复');
+   }else assert.ok(entry.variants[variant]||entry.aboutlove?.audit===variant,decision.audit+'/'+variant);
+  }
  }
  dom.window.close();
 });
@@ -102,10 +120,10 @@ test('full sequences prepare only requested scenes and release deferred scene re
  }finally{dom.window.close();}
 });
 
-test('all 74 source examples initialize, draw finite operations and support repeated seeks',async()=>{
+test('all 53 retained source examples initialize, draw finite operations and support repeated seeks',async()=>{
  const {w,dom,faces}=env();let count=0;
  try{
-  for(const [id,entry]of Object.entries(w.WiseAboutLoveEntries).filter(([,e])=>!e.aboutlove?.composition))for(const [variant,def]of Object.entries(entry.variants).length?Object.entries(entry.variants):[['default',entry]]){
+  for(const [id,entry]of Object.entries(w.WiseAboutLoveEntries).filter(([,e])=>!e.aboutlove?.composition&&e.kind!=='illustration'))for(const [variant,def]of Object.entries(entry.variants).length?Object.entries(entry.variants):[['default',entry]]){
    const el=root(w);let draw;
    try{
     draw=w.WiseAboutLove.create(el,def.aboutlove,def.duration_ms);await draw.ready;
@@ -118,7 +136,44 @@ test('all 74 source examples initialize, draw finite operations and support repe
    }catch(error){throw new Error(id+'/'+variant+': '+error.message,{cause:error});}
    finally{draw?.destroy();assert.equal(el.children.length,0);el.remove();assert.equal(faces.size,0,id+'/'+variant+' font release');}
   }
-  assert.equal(count,74);
+  assert.equal(count,53);
+ }finally{dom.window.close();}
+});
+
+test('token association arcs remain visible and draw in sequence through backward seeks',async()=>{
+ const registry=JSON.parse(await readFile(new URL('../catalog/registry.json',import.meta.url)));
+ const variant=registry.effects.find(e=>e.id==='stroke-draw').variants.find(v=>v.id==='aboutlove-04');
+ const {w,dom}=env(),def=w.WiseAboutLoveEntries['stroke-draw'].variants['aboutlove-04'];
+ const el=root(w),draw=w.WiseAboutLove.create(el,def.aboutlove,def.duration_ms);
+ try{
+  await draw.ready;
+  assert.deepEqual(JSON.parse(JSON.stringify(def.aboutlove)),variant.aboutlove,'目录和独立示例采用相同图层配置');
+  const shadow=el.firstChild.shadowRoot,arcs=[...shadow.querySelectorAll('.love-b2-arc')],chips=[...shadow.querySelectorAll('.love-b2-chip')];
+  assert.equal(arcs.length,6);assert.equal(chips.length,5);
+  for(const node of [...arcs,...chips])assert.equal(node.closest(def.aboutlove.hide),null,'弧线与词元及其父层不能被隐藏');
+  for(const node of shadow.querySelectorAll('.tag,.zh,.rule,.en'))assert.ok(node.matches(def.aboutlove.hide),'只隐藏独立示例不需要的说明文字');
+  const offsets=()=>arcs.map(arc=>Number(arc.style.strokeDashoffset));
+  draw(0);assert.ok(offsets().every(offset=>offset===640));assert.ok(chips.every(chip=>chip.style.opacity==='0'));
+  draw(1200);const partial=offsets();
+  assert.ok(partial[0]>0&&partial[0]<partial[1]&&partial[1]<partial[2],'弧线按原有时差依次描绘');
+  assert.ok(chips.every(chip=>chip.style.opacity==='1'));
+  draw(3000);assert.ok(offsets().every(offset=>offset===0),'六根弧线全部描完');
+  draw(1200);assert.deepEqual(offsets(),partial,'倒回相同时刻恢复相同描线进度');
+  draw(0);assert.ok(offsets().every(offset=>offset===640),'重播恢复未描绘状态');
+ }finally{draw.destroy();dom.window.close();}
+});
+
+test('删除独立颗粒示例后保留原胶片动作与完整组合的纹理覆盖',async()=>{
+ const registry=JSON.parse(await readFile(new URL('../catalog/registry.json',import.meta.url)));
+ const effect=registry.effects.find(e=>e.id==='film-scratch-flicker');
+ assert.equal(effect.variants,undefined);assert.equal(effect.source.path,'catalog/effects/reel-grit-key.js');
+ const {w,dom}=env();
+ try{
+  assert.equal(w.WiseAboutLoveEntries['film-scratch-flicker'],undefined);
+  const composition=w.WiseAboutLoveEntries['aboutlove-word-world-sequence'];
+  assert.ok(composition.aboutlove.overlays.some(o=>o.scene==='world/compositions/film.html'));
+  assert.deepEqual(JSON.parse(JSON.stringify(composition.breakdown.find(l=>l.id==='film').actions)),[]);
+  assert.equal(registry.effects.find(e=>e.id==='aboutlove-word-world-sequence').action_variants['film-scratch-flicker'],undefined);
  }finally{dom.window.close();}
 });
 
@@ -140,9 +195,9 @@ test('orbiting heads and short tails continue while one complete outline is reta
   assert.equal(capture(4100).outlines,2);const last=capture(7740);assert.equal(last.outlines,5);assert.equal(last.heads.length,2);
   const opening=capture(0);assert.equal(opening.outlines,0);assert.equal(opening.heads.length,2);assert.equal(opening.tails,0);
   assert.deepEqual(capture(2600),after,'回拖后圈数、光点与尾迹完全恢复');
-  const trail=w.WiseAboutLoveEntries['curve-path'].variants['aboutlove-15'];
+  const trail=w.WiseAboutLoveEntries['curve-path'];
   const other=root(w),short=w.WiseAboutLove.create(other,trail.aboutlove,trail.duration_ms);await short.ready;
-  assert.equal(trail.aboutlove.mode,'trail','旧的纯短尾迹示例保持独立');short.destroy();other.remove();
+  assert.equal(trail.aboutlove.mode,'trail','双光点默认示例保留短尾迹');short.destroy();other.remove();
  }finally{draw.destroy();dom.window.close();}
 });
 
@@ -154,6 +209,16 @@ test('three approved full sequences retain all main scenes and persistent layers
    const def=w.WiseAboutLoveEntries[id],el=root(w),draw=w.WiseAboutLove.create(el,def.aboutlove,def.duration_ms);await draw.ready;
    try{
     assert.equal(def.aboutlove.segments.length,count);assert.equal(def.aboutlove.overlays.length,layers);
+    if(id==='aboutlove-monologue-sequence'){
+     const background=def.breakdown.find(row=>row.id==='love-bg');
+     assert.deepEqual(Array.from(background.actions),[],'贯穿背景保留完整画面，移除已撤下的词墙与读数示例关联');
+     assert.ok(background.reason,'未关联独立动作的贯穿背景有保留说明');
+     assert.deepEqual(Array.from(def.aboutlove.overlays,part=>[part.scene,part.scene_id]),[['monologue/compositions/bg.html','love-bg']],'原贯穿图层仍完整绘制');
+    }
+    if(id==='aboutlove-motion-sequence'){
+     assert.ok(def.breakdown.every(row=>!row.actions.includes('frame-jitter-type')),'完整组合保留原画面，不关联已撤下的文字错位示例');
+     assert.ok(def.breakdown.every(row=>!row.actions.includes('dimension-line')),'完整组合保留扫描画面，不关联已撤下的尺寸线示例');
+    }
     const shadow=el.firstChild.shadowRoot;
     assert.equal(shadow.querySelectorAll('.al-piece').length,count+layers);
     const ordered=[...shadow.querySelectorAll('.al-piece')];
@@ -162,9 +227,13 @@ test('three approved full sequences retain all main scenes and persistent layers
     assert.deepEqual(ordered.map(p=>p.dataset.sourceScene),sourcePieces.map(p=>p.id),'主画面、背景与字幕保持原轨道顺序');
     for(const piece of ordered)assert.ok(!piece.style.zIndex||piece.style.zIndex==='auto','片段外壳不能隔断颗粒层与主画面的混合');
     if(id==='aboutlove-word-world-sequence'){
+     assert.deepEqual(Array.from(def.breakdown.find(row=>row.id==='voice').actions),[],'原字幕保留在组合中，不关联已撤下的独立示例');
+     assert.ok(def.breakdown.every(row=>!row.actions.includes('glyph-bar-collapse')),'完整组合保留山形压平画面，不关联已撤下的独立示例');
+     assert.ok(def.breakdown.every(row=>!row.actions.includes('center-ripple-emit')),'完整组合保留地面涟漪，不关联已撤下的独立示例');
      const film=ordered.find(p=>p.dataset.sourceScene==='film');
      assert.equal(film,ordered.at(-1),'胶片层位于主画面和字幕之上');
      assert.match(film.querySelector('style').textContent,/#film-canvas\s*\{\s*mix-blend-mode:\s*soft-light/,'保留原胶片柔光混合，不能改成不透明灰底');
+     assert.equal(film.querySelector('#film-canvas').style.mixBlendMode,'','完整组合不使用独立纹理的显示覆盖');
     }
     for(const part of def.aboutlove.segments){
      const ms=(part.at+part.duration*.5)*1000;draw(ms);

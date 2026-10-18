@@ -66,7 +66,7 @@ test('默认查看精简，详细查看保留内容限制、素材、许可和�
 });
 
 test('普通动作与带素材和声音的组合使用浏览器同一组件示例，可编译接入', async () => temporary(async dir => {
-  for (const id of ['word-slam', 'balloon-drive-journey', 'sunset-pickup-journey', 'terminal-code', 'local-scan']) {
+  for (const id of ['word-slam', 'balloon-drive-journey', 'sunset-pickup-journey', 'terminal-code', 'local-scan', 'ring-construction']) {
     const variantId = id === 'terminal-code' ? 'command-log' : undefined;
     const effect = selectEffect(id, variantId);
     const out = await exportEffect(effect.name, {variantId, outDir:path.join(dir, id)});

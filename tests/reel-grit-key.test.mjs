@@ -7,7 +7,7 @@ import {environment,data,frameMarkup} from './helpers.mjs';
 
 const source=await readFile('/Users/wisewong/Documents/Developer/wise-video/claude-showreel-2026/reel.js','utf8');
 const local=await readFile(new URL('../catalog/effects/reel-grit-key.js',import.meta.url),'utf8');
-const defs=[['frame-jitter-type',1900,700],['film-scratch-flicker',3000,900],['panel-rise-collapse',6200,1700],['ball-bounce-trails',6200,1650],['timeline-keyframe-playhead',6200,1750],['keyframe-workbench',8000,2200],['shape-pop-float',5000,1600]].map(([id,duration_ms,preview_ms])=>({id,duration_ms,preview_ms,default_ease:'linear',parameters:{speed:{min:.5,max:2}},loop:false}));
+const defs=[['frame-jitter-type',1900,700],['film-scratch-flicker',3000,900],['panel-rise-collapse',6200,1700],['ball-bounce-trails',6200,1650],['timeline-keyframe-playhead',6200,1750],['keyframe-workbench',8000,2200]].map(([id,duration_ms,preview_ms])=>({id,duration_ms,preview_ms,default_ease:'linear',parameters:{speed:{min:.5,max:2}},loop:false}));
 const definition=(id,variantId)=>{
   if(!['title-stagger','word-slam'].includes(id))return defs.find(d=>d.id===id);
   const base=data.effects.find(e=>e.id===id),variant=base?.variants?.find(v=>v.id===variantId);
@@ -41,7 +41,6 @@ function originalGrit(t){const r=recorder();runInNewContext(source.slice(source.
 function originalComp(t){const r=recorder();runInNewContext(source.slice(source.indexOf('function easeHandles('),source.indexOf('function drawGraph('))+';drawComp({x:120,y:230,w:980,h:470},T);',Object.assign(r.box,{T:t}));return r.events;}
 function originalGraph(t){const r=recorder();runInNewContext(source.slice(source.indexOf('function easeHandles('),source.indexOf('function drawPanel('))+source.slice(source.indexOf('function drawGraph('),source.indexOf('function drawTimeline('))+';drawGraph({x:1130,y:230,w:670,h:470},T);',Object.assign(r.box,{T:t}));return r.events;}
 function originalTimeline(t){const r=recorder();runInNewContext(source.slice(source.indexOf('function easeHandles('),source.indexOf('function drawPanel('))+source.slice(source.indexOf('function drawTimeline('),source.indexOf('function sKey('))+';drawTimeline({x:120,y:730,w:1680,h:210},T);',Object.assign(r.box,{T:t}));return r.events;}
-function originalShapes(t){const r=recorder(),start=source.indexOf('const PAL ='),end=source.indexOf('  const tx = VERT ? 64 : 130;',start);runInNewContext(source.slice(start,end)+'};sFlat(T,T+30);',Object.assign(r.box,{T:t}));return r.events;}
 function originalKey(t){
   const r=recorder();Object.assign(r.box,{drawPanel(P){r.events.push({type:'panel',x:P.x,y:P.y,w:P.w,h:P.h,title:P.title,opacity:r.ctx.globalAlpha,transforms:r.ctx.transforms.slice()});},drawComp(){},drawGraph(){},drawTimeline(){},T:t});
   runInNewContext(source.slice(source.indexOf('function setFont('),source.indexOf('function chevron('))+source.slice(source.indexOf('function sKey('),source.indexOf('/* ============================================================',source.indexOf('function sKey(')))+';sKey(T,T+22);',r.box);
@@ -142,12 +141,8 @@ test('时间线增高并居中，文字行距足够，二十六关键帧保留�
   }finally{e.close();}
 });
 
-test('几何弹出保持原位置裁切、圆环线宽、错峰与同步漂浮',async()=>{
-  const e=await setup();try{const root=e.w.document.getElementById('root'),p=e.w.MotionRuntime.create(root,definition('shape-pop-float'));
-    for(const ms of [0,100,250,300,350,500,700,750,1000,1600,3000,5000]){p.seek(ms);const ref=originalShapes(3+ms/1000),disc=ref.find(v=>v.type==='fill'&&v.fill==='#ffc93c'&&v.path[0]?.[0]==='arc'),ring=ref.find(v=>v.type==='stroke'&&v.stroke==='#1fb5a8'),square=ref.find(v=>v.type==='rect'&&v.fill==='#ff9aa2');const d=root.querySelector('[data-shape="disc"]'),r=root.querySelector('[data-shape="ring"]'),s=root.querySelector('[data-shape="square"]');
-      for(const [k,i]of [['cx',1],['cy',2],['r',3]])near(+d.getAttribute(k),disc.path[0][i]);near(+r.getAttribute('stroke-width'),ring.width);near(+r.getAttribute('cy'),ring.path[0][2]);near(+r.getAttribute('r'),ring.path[0][3]);for(const [i,k]of ['x','y','width','height'].entries())near(+s.getAttribute(k),square.args[i]);const tr=square.transforms.at(-2);near(nums(s.getAttribute('transform'))[1],tr[2]);
-    }p.destroy();
-  }finally{e.close();}
+test('已撤下的弹出悬浮不再注册公共绘制入口',async()=>{
+  const e=await setup();try{assert.equal(Object.hasOwn(e.w.MotionFactories,'shape-pop-float'),false);}finally{e.close();}
 });
 
 test('三窗组合还原原曲线和方块联动，独立曲线确实使用同一绘制函数',async()=>{

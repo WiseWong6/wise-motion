@@ -14,7 +14,7 @@
 现实类比：原小葵转身前往快门、按下后翻倒起身，倒计时期间返回身边；屏内外姿态同步。
 需要保留：保留原轮廓、比例、材质、固定数据及时间关系；原小葵转身前往快门、按下后翻倒起身，倒计时期间返回身边；屏内外姿态同步。
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
-对应参考：本地目录「小葵和我」；所用动作：足迹约束下转身与返回、自拍小葵多视角、我和小葵的自拍预览、手机透视画面、斜放手机
+对应参考：本地目录「小葵和我」；所用动作：转身前进返回、自拍小葵多视角、我和小葵的自拍预览、手机透视画面、斜放手机
 源码：catalog/effects/scene-selfie.js 中的 xiaokui-selfie-journey
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
@@ -33,4 +33,4 @@
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
 - 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[足迹约束下转身与返回](selfie-foot-turn.md)、[自拍小葵多视角](selfie-cat-illustration.md)、[我和小葵的自拍预览](selfie-preview-illustration.md)、[手机透视画面](selfie-phone-screen-illustration.md)、[斜放手机](selfie-phone-illustration.md)。
+所用动作：[转身前进返回](selfie-foot-turn.md)、[自拍小葵多视角](selfie-cat-illustration.md)、[我和小葵的自拍预览](selfie-preview-illustration.md)、[手机透视画面](selfie-phone-screen-illustration.md)、[斜放手机](selfie-phone-illustration.md)。

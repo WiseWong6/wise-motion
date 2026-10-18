@@ -32,7 +32,7 @@ node "<技能目录>/scripts/export.mjs" stagger-in --out-dir "/目标工程/卡
 | 标题加卡片 | `title-content` | `title`；`cards` 固定三项，每项 `title`、`description` |
 | 错峰卡片 | `stagger-in` | `labels` 固定四项 |
 | 依次强调 | `word-focus` | `words` 固定三项 |
-| 数字与对比 | `count-up`、`bar-growth` | 前者见组件说明；后者 `items` 固定六项，每项 `label`、`value`，百分比整数 0–100 |
+| 数字与对比 | `bar-growth` | `items` 固定六项，每项 `label`、`value`，百分比整数 0–100 |
 | 终端 | `terminal-code` 的两个变体 | 先用 `show --variant` 查各自结构 |
 | 时间轴 | `timeline-progress` | `items` 固定七项，每项 `date`、`line1`、`line2` |
 | 界面操作 | `interface-feedback`、`button-press-status` | `states` 固定三个状态；前者另有 `result` |
@@ -48,17 +48,17 @@ node "<技能目录>/scripts/export.mjs" stagger-in --out-dir "/目标工程/卡
 
 | 动作要做的事 | 首选 | 备选 |
 | --- | --- | --- |
-| 开场金句、大字 | `word-slam` 文字撞入换位 | `type-reveal` 文字逐字显现、`particle-word` 粒子聚散成字 |
-| 标题加内容 | `title-content` 标题内容展开 | `title-stagger` 标题依次呈现、`fade-rise` 淡入上移 |
-| 几项内容依次出现 | `stagger-in` 错峰入场 | `group-expand` 卡片逐张放大、`material-card-stagger` 错峰升入回弹 |
+| 开场金句、大字 | `word-slam` 文字冲撞叠影 | `type-reveal` 文字逐字亮起、`particle-word` 粒子聚散成字 |
+| 标题加内容 | `title-content` 标题内容展开 | `title-stagger` 双语标题依次进出、`fade-rise` 淡入上移 |
+| 几项内容依次出现 | `stagger-in` 依次入场 | `group-expand` 卡片逐张放大、`material-card-stagger` 依次上弹入场 |
 | 强调一个词 | `word-focus` 词语划线强调 | `dim-focus` 周围淡化聚焦、`focus-zoom` 放大聚焦 |
-| 数字与对比 | `count-up` 读数递增 | `bar-growth` 柱条依次长高、`benchmark-columns` 数据分栏对比 |
-| 展示代码或提示词 | `terminal-code` 代码逐行输入 | `glyph-code-fill` 字形内文字流动、`live-code-readout` 代码参数联动 |
-| 零散的东西收到一起 | `motifs-gather-atlas` 缩拢收入群像 | `line-converge` 连线汇聚、`card-compress-merge` 卡片压缩合并 |
-| 步骤与流程 | `staged-build` 内容逐层累积 | `experience-progress` 卡片逐项聚焦、`timeline-progress` 时间轴依次点亮 |
-| 演示界面操作 | `interface-feedback` 按钮操作反馈 | `button-press-status` 按钮按压换态 |
-| 切到下一段 | `wipe` 画面擦入切换 | `shared-object` 同一主体跨场、`zoom-transition` 缩放穿越转场、`page-cover` 新页推入覆盖 |
-| 结尾字标 | `seed-bloom-brand-sequence` 生长化蝶与光形字标 | `outro-credit-lift` 文字分层升入、`particle-word` 粒子聚散成字 |
-| 背景氛围 | `diffuse-light-drift` 弥散光团流动 | `film-scratch-flicker` 胶片纹理闪动 |
+| 数字与对比 | `count-up` 数字加速至无穷 | `bar-growth` 柱条依次长高、`benchmark-columns` 数据分栏对比 |
+| 展示代码或提示词 | `terminal-code` 代码逐行输入 | `glyph-code-fill` 代码在字内滚动、`live-code-readout` 代码参数联动 |
+| 零散的东西收到一起 | `motifs-gather-atlas` 图像缩小归拢 | `line-converge` 连线汇聚、`card-compress-merge` 卡片压缩合并 |
+| 步骤与流程 | `staged-build` 内容逐层叠加 | `experience-progress` 卡片逐项聚焦、`timeline-progress` 时间轴依次点亮 |
+| 演示界面操作 | `interface-feedback` 按钮操作反馈 | `button-press-status` 按钮点击换状态 |
+| 切到下一段 | `wipe` 擦除转场 | `shared-object` 主体连接两场、`zoom-transition` 放大模糊转场、`page-cover` 新页推入覆盖 |
+| 结尾字标 | `seed-bloom-brand-sequence` 生长化蝶与光形字标 | `outro-credit-lift` 多行文字升入、`particle-word` 粒子聚散成字 |
+| 背景氛围 | `diffuse-light-drift` 柔光缓慢流动 | `film-scratch-flicker` 胶片纹理闪动 |
 
 没有合适的候选就说明缺口；也可按 [目录索引](index.md) 分类浏览，由调用方继续创作。

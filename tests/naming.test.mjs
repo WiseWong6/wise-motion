@@ -39,9 +39,10 @@ test('提炼后的旧名称仍可找到标准动作，原题和各案例范围�
   assert.equal(rank(data,'条纹落日')[0].effect.id,'striped-sun-rise');
   assert.ok(historical.excluded.some(r=>r.id==='reel-striped-sun'));
   const mask=snapshot.rules.find(r=>r.id==='reel-mask-transitions');
-  const maskEffects=crosswalk.rules[mask.id].patterns.map(id=>data.effects.find(e=>e.id===id));
-  assert.equal(mask.cases.length,8);assert.equal(maskEffects.length,8);
-  assert.equal(new Set(maskEffects.map(e=>e.name)).size,8,'不能用配方总名抹掉八种转场的区别');
+  const maskEffects=crosswalk.rules[mask.id].patterns.filter(id=>id!=='iris-flash-transition').map(id=>data.effects.find(e=>e.id===id));
+  assert.equal(mask.cases.length,8);assert.equal(maskEffects.length,7);
+  assert.ok(!data.effects.some(e=>e.id==='iris-flash-transition'),'已删除的圆孔闪光转场不应恢复');
+  assert.equal(new Set(maskEffects.map(e=>e.name)).size,7,'不能用配方总名抹掉保留的七种转场的区别');
   assert.ok(historical.excluded.some(r=>r.id==='reel-bezier-editor'));
   const curve=data.effects.find(e=>e.id==='bezier-editor');
   for(const name of ['曲线手柄回弹定位','曲线驱动小球'])assert.ok(curve.aliases.includes(name));

@@ -56,18 +56,18 @@ test('持续滚动周期接缝和逐项顺序按定义执行', async () => {
     assert.ok(Number(cards[1].style.opacity) > Number(cards[2].style.opacity)); player.destroy();
   } finally { env.close(); }
 });
-test('数字和逐字显现的允许节奏不会反向退回', async () => {
+test('逐字显现的允许节奏不会反向退回', async () => {
   const env = await environment();
   try {
     const {w} = env, root = w.document.getElementById('root');
-    for (const id of ['count-up','type-reveal']) {
+    for (const id of ['type-reveal']) {
       const e = legacyDefinition(data.effects.find(x => x.id === id));
       const player = w.MotionRuntime.create(root,e);
       for (const easing of e.parameters.ease?.options || [e.default_ease]) {
         player.setEase(easing); let previous = 0;
         for (let t = 0; t <= e.duration_ms; t += 50) {
           player.seek(t);
-          const value = id === 'count-up' ? Number(root.querySelector('.big-number').textContent) : root.querySelector('.typed-text').textContent.length;
+          const value = root.querySelector('.typed-text').textContent.length;
           assert.ok(value >= previous, id + ' 的已显示内容退回了'); previous = value;
         }
       }

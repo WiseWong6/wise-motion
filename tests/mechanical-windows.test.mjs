@@ -53,7 +53,7 @@ test('独立动作显示原片片段，逐帧定位一致；偏心圆窗和同�
   const env=await environment();
   try{
     const {w}=env,host=w.document.getElementById('root');
-    const samples=[...ids.map(id=>[id,undefined]),['iris-open-transition','offset-aperture'],['rapid-cut','registered-drawing']];
+    const samples=[...ids.map(id=>[id,undefined]),['iris-open-transition','offset-aperture']];
     for(const [id,variant]of samples){
       const e=resolveEffect(id,variant),stage=w.document.createElement('div');host.replaceChildren(stage);
       assert.equal(e.kind,'action');assert.equal(e.audio,undefined);
@@ -77,7 +77,8 @@ test('独立动作显示原片片段，逐帧定位一致；偏心圆窗和同�
     assert.equal(comp.audio,undefined);
     assert.deepEqual([...new Set(w.MotionFactories[comp.id].breakdown.flatMap(x=>Array.from(x.actions)))].sort(),comp.actions.slice().sort());
     assert.equal(comp.action_variants['iris-open-transition'],'offset-aperture');
-    assert.equal(comp.action_variants['rapid-cut'],'registered-drawing');
+    assert.ok(!comp.actions.includes('rapid-cut'),'保留组合中的原线稿闪动，不再关联已删除的独立示例');
+    assert.equal(comp.action_variants['rapid-cut'],undefined);
   }finally{env.close();}
 });
 
@@ -87,7 +88,7 @@ test('圆孔与闪切的原有示例继续使用原绘制入口',async()=>{
     const {w}=env,api=w.WiseMechanicalWindows,original=api.make;
     api.make=()=>{throw new Error('原有示例不应进入新增窗口绘制器');};
     try{
-      for(const [id,variants]of [['iris-open-transition',['standard','paper-expand','black-cover']],['rapid-cut',['standard','print-burst']]]){
+      for(const [id,variants]of [['iris-open-transition',['standard']],['rapid-cut',['standard','print-burst']]]){
         for(const variant of variants){
           const stage=w.document.createElement('div'),definition=resolveEffect(id,variant);
           const draw=w.MotionFactories[id](stage,w.MotionKit,definition);
@@ -99,10 +100,10 @@ test('圆孔与闪切的原有示例继续使用原绘制入口',async()=>{
   }finally{env.close();}
 });
 
-test('七个入口可独立编译，编辑版无新增媒体依赖和系统字体，媒体不嵌入源码',async()=>{
+test('六个入口可独立编译，编辑版无新增媒体依赖和系统字体，媒体不嵌入源码',async()=>{
   const temporary=await mkdtemp(path.join(tmpdir(),'wise-windows-source-'));
   try{
-    const selections=[...ids.map(id=>[id,undefined]),['iris-open-transition','offset-aperture'],['rapid-cut','registered-drawing'],['mechanical-window-sequence',undefined]];
+    const selections=[...ids.map(id=>[id,undefined]),['iris-open-transition','offset-aperture'],['mechanical-window-sequence',undefined]];
     for(const [id,variantId]of selections){
       const out=await exportEffect(id,{variantId,outDir:path.join(temporary,id)});
       const result=await build({entryPoints:[path.join(out.directory,'index.jsx')],bundle:true,write:false,format:'esm',platform:'node',external:['react','remotion'],logLevel:'silent'});

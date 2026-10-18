@@ -14,7 +14,7 @@
 现实类比：从启动扫描、文字隧道、点网传导、热力格，到心电失真、像素漂散、轮廓绕行和粒子聚心，保留同一主题的前后呼应与场间交接。
 需要保留：从启动扫描、文字隧道、点网传导、热力格，到心电失真、像素漂散、轮廓绕行和粒子聚心，保留同一主题的前后呼应与场间交接。
 明确排除：不改变阶段先后，不省略贯穿图层，不加入等候光标或三点。
-对应参考：本地目录「动态图形 · 信号到心形组合」；所用动作：尺寸线双端展开、文字逐格错位、文字撞入与错位套印、缩小显现落定、整景放大虚化退场、字句隧道加速穿越、指数读数冲到无穷、点网逐拍加权传导、热力格逐拍收敛成轮廓、格阵沿斜线逐格长出、热力格逐拍随机翻亮、心电轨迹突然失真再恢复、进度读数同步、文字碎散替换、沿曲线行进、绕行每圈留下完整轮廓、粒子聚散成字、同心涟漪扩散、点阵换形、错峰入场、字格轮换提亮
+对应参考：本地目录「动态图形 · 信号到心形组合」；所用动作：文字冲撞叠影、缩小入场、放大模糊转场、穿越文字隧道、数字加速至无穷、节点传递光点、色块显出轮廓、方格斜向依次长出、色块随机闪亮、心电线失真恢复、进度与数字同步、文字破碎换字、沿曲线移动、绕圈叠出轮廓、粒子聚散成字、同心涟漪扩散、点阵换形、文字轮流提亮
 源码：catalog/effects/aboutlove.js 中的 aboutlove-motion-sequence
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：原设计1080×1440竖幅等比显示；保留原字体造型、固定随机关系与逐格节奏。
@@ -33,7 +33,7 @@
 - 效果参考 Aboutlove 自有场景。
 - 提取自有场景的绘制函数、固定随机关系、字形和时间编排；目录与逐帧组件共用同一实现。许可为 Apache-2.0。Remotion、React与所用素材遵循各自许可，见来源说明。
 
-所用动作：[尺寸线双端展开](dimension-line.md)、[文字逐格错位](frame-jitter-type.md)、[文字撞入与错位套印](word-slam.md)、[缩小显现落定](stamp-land.md)、[整景放大虚化退场](zoom-transition.md)、[字句隧道加速穿越](sentence-depth-tunnel.md)、[指数读数冲到无穷](count-up.md)、[点网逐拍加权传导](weighted-node-signal.md)、[热力格逐拍收敛成轮廓](heat-grid-converge.md)、[格阵沿斜线逐格长出](wave-grid.md)、[热力格逐拍随机翻亮](rect-wave-field.md)、[心电轨迹突然失真再恢复](heartbeat-follow.md)、[进度读数同步](progress-readout.md)、[文字碎散替换](fragment-replace.md)、[沿曲线行进](curve-path.md)、[绕行每圈留下完整轮廓](lap-outline-echo.md)、[粒子聚散成字](particle-word.md)、[同心涟漪扩散](center-ripple-emit.md)、[点阵换形](point-morph.md)、[错峰入场](stagger-in.md)、[字格轮换提亮](subtitle-cell-focus.md)。
+所用动作：[文字冲撞叠影](word-slam.md)、[缩小入场](stamp-land.md)、[放大模糊转场](zoom-transition.md)、[穿越文字隧道](sentence-depth-tunnel.md)、[数字加速至无穷](count-up.md)、[节点传递光点](weighted-node-signal.md)、[色块显出轮廓](heat-grid-converge.md)、[方格斜向依次长出](wave-grid.md)、[色块随机闪亮](rect-wave-field.md)、[心电线失真恢复](heartbeat-follow.md)、[进度与数字同步](progress-readout.md)、[文字破碎换字](fragment-replace.md)、[沿曲线移动](curve-path.md)、[绕圈叠出轮廓](lap-outline-echo.md)、[粒子聚散成字](particle-word.md)、[同心涟漪扩散](center-ripple-emit.md)、[点阵换形](point-morph.md)、[文字轮流提亮](subtitle-cell-focus.md)。
 
 ## Remotion 复用
 

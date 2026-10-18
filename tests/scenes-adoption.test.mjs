@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {environment,data} from './helpers.mjs';
-const selected=data.effects.filter(e=>e.scene||['encore-full-journey','ring-construction','ring-construction-journey','energy-density-growth','energy-discharge-journey','mushroom-sphere-idealize','mushroom-sphere-journey','ring-sphere-journey'].includes(e.id));
+const selected=data.effects.filter(e=>e.scene||['encore-full-journey','ring-construction','energy-density-growth','energy-discharge-journey','mushroom-sphere-idealize','mushroom-sphere-journey','ring-sphere-journey'].includes(e.id));
 test('十组原作的独立主体、组合及所有造型示例可以初始化、定位和回看',async()=>{
  const env=await environment();const {w}=env;w.WiseSceneDiagnostics=true;let count=0;const failures=[];
  try{for(const effect of selected)for(const variant of effect.variants||[{}]){

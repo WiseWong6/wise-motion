@@ -211,27 +211,20 @@ test('逐翼换色、翼根显露与外部飞行姿态可倒序定位', async ()
   } finally {dom.window.close();}
 });
 
-test('新增圆面示例保留零半径、中点、终态与原来的标准转场', async () => {
+test('圆孔转场默认使用偏心表盘，删除两项圆面示例并保留标准转场', async () => {
   const env = await environment();
   try {
     const iris = def('iris-open-transition');
-    assert.equal(iris.variants[0].id, 'standard');
-    for(const id of ['standard','paper-expand','black-cover'])assert.equal(iris.variants.filter(variant=>variant.id===id).length,1,'原有圆面示例应保留且唯一');
-    for (const [variant, duration, x, y] of [['paper-expand', 0.45, 540, 1180], ['black-cover', 0.4, 540, 850]]) {
-      const sample = env.w.WiseCircularReveal.sample;
-      assert.equal(sample(-1, variant).radiusPercent, 0);
-      assert.equal(sample(duration / 2, variant).radiusPercent, 60);
-      assert.equal(sample(duration, variant).clipPath, `circle(120% at ${x}px ${y}px)`);
-      assert.equal(sample(duration + 10, variant).radiusPercent, 120);
-      const originalRoot = env.w.document.createElement('div');
-      const effect = env.w.MotionKit.resolveVariant(iris, variant);
-      assert.ok(frameScriptsFor(effect).includes('catalog/effects/circular-reveal.js'));
-      const player = env.w.MotionRuntime.create(originalRoot, effect);
-      player.seek(150); assert.equal(originalRoot.querySelector('[data-circle-cover]').style.clipPath, sample(0, variant).clipPath);
-      player.seek(150 + duration * 1000); const complete = originalRoot.innerHTML;
-      player.seek(0); player.seek(150 + duration * 1000); assert.equal(originalRoot.innerHTML, complete);
-      player.destroy();
-    }
+    assert.deepEqual(iris.variants.map(variant=>variant.id), ['offset-aperture','standard']);
+    const selected = env.w.MotionKit.resolveVariant(iris);
+    assert.equal(selected.variant_id,'offset-aperture');
+    assert.equal(selected.duration_ms,80/30*1000);
+    assert.equal(selected.source.frame_cache.poster,'catalog/assets/mechanical-windows/posters/F0040.jpg');
+    const player = env.w.MotionRuntime.create(env.w.document.getElementById('root'), selected);
+    await player.ready;
+    assert.ok(env.w.document.querySelector('#root img'));
+    player.seek(0);player.seek(selected.duration_ms);player.seek(selected.preview_ms);
+    player.destroy();
     const standard = env.w.MotionRuntime.create(env.w.document.getElementById('root'), env.w.MotionKit.resolveVariant(iris, 'standard'));
     standard.seek(900); assert.ok(env.w.document.querySelector('[data-mask]')); standard.destroy();
   } finally {env.close();}

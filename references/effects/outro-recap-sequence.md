@@ -14,7 +14,7 @@
 现实类比：彩色短线散开后，完成态的年代轴缩小下移，原片标题升起，七色色带错峰展开。
 需要保留：原七色、原标题字形和字距、原节点位置与缩放、原色带长度及各自进入时刻；三个独立动作复用实际图层。
 明确排除：不恢复已经剔除的年代扫描，不增加字内扫光或新的扫描条；不把无关基础动作加入组成列表。
-对应参考：本地目录「散射归位片尾展开」；所用动作：短线向外散开、时间轴缩小下移、色带错峰展开、文字分层升入
+对应参考：本地目录「散射归位片尾展开」；所用动作：短线向外散开、时间轴缩小下移、色带依次展开、多行文字升入
 源码：catalog/effects/reel-prompt-outro.js 中的 outro-recap-sequence
 来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：以原片 54–60 秒片尾为底，仅把年代扫描替换为静态完成态；其余下移、标题、色带与淡黑仍用原时钟。 深浅模式均保留原深色画面。 普通英文与数字按目录规范使用 Oswald Bold，中文及混排正文用 Light；原逐字落点与换行保持，片尾 CLAUDE 主字是造型轮廓例外。
@@ -33,4 +33,4 @@
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
 - 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[短线向外散开](radial-line-burst.md)、[时间轴缩小下移](timeline-dock-down.md)、[色带错峰展开](color-segment-stagger.md)、[文字分层升入](outro-credit-lift.md)。
+所用动作：[短线向外散开](radial-line-burst.md)、[时间轴缩小下移](timeline-dock-down.md)、[色带依次展开](color-segment-stagger.md)、[多行文字升入](outro-credit-lift.md)。

@@ -5,6 +5,7 @@ import {readFile} from 'node:fs/promises';
 import {runInNewContext} from 'node:vm';
 import {history,state} from '../scripts/history.mjs';
 import {data} from './helpers.mjs';
+import {resolveEffect} from '../remotion/clock.mjs';
 const snapshot=JSON.parse(await readFile(state+'/source-snapshot.json','utf8'));
 const crosswalk=JSON.parse(await readFile(state+'/crosswalk.json','utf8'));
 const imported=snapshot.imports.find(x=>x.source==='showreel'&&x.date==='2026-10-02');
@@ -22,7 +23,7 @@ test('演进史所有配方均有提炼或去重结论，既有剔除结论没�
     assert.ok(audit.reason,rule.title+' 未说明后续去向');
     assert.ok(!historical.recipes.some(r=>r.history_id===rule.id),rule.title+' 重复留在历史列表');
     if(audit.completion_batch==='20261002'){
-      for(const id of audit.patterns)assert.ok(data.effects.some(e=>e.id===id),rule.title+' 缺少已提取动作 '+id);
+      for(const id of audit.patterns.filter(id=>!['planar-dot-orbit','iris-flash-transition','shape-pop-float'].includes(id)))assert.ok(data.effects.some(e=>e.id===id),rule.title+' 缺少已提取动作 '+id);
       for(const [id,variant] of Object.entries(audit.action_variants||{}))assert.ok(data.effects.find(e=>e.id===id)?.variants?.some(v=>v.id===variant),rule.title+' 缺少已提取示例 '+variant);
     }
   }
@@ -40,7 +41,8 @@ test('八处转场保留原片案例和源码依据，标准动作时长对应�
     const c=rule.cases.find(c=>c.id===id),start=scenes[i+1].s-transitions[i+1].d/2,end=scenes[i+1].s+transitions[i+1].d/2;
     assert.ok(c.start<=start+1e-9&&c.end>=end-1e-9,id+' 未覆盖真实交接');
     if(imported.added_cases.includes(id)){assert.ok(Math.abs(c.start-start)<1e-9);assert.ok(Math.abs(c.end-end)<1e-9);}
-    const e=data.effects.find(e=>e.id===standard[i]);assert.ok(e);assert.match(e.tempo_note,new RegExp(String(transitions[i+1].d).replace('.','\\.')+'秒'));
+    if(standard[i]==='iris-flash-transition'){assert.ok(!data.effects.some(e=>e.id===standard[i]),'已删除的圆孔闪光转场不应恢复');return;}
+    const e=resolveEffect(standard[i],{'iris-open-transition':'standard','glitch-band-transition':'standard','tile-wave-transition':'original'}[standard[i]]);assert.ok(e);assert.match(e.tempo_note,new RegExp(String(transitions[i+1].d).replace('.','\\.')+'秒'));
   });
   for(const rule of snapshot.rules.filter(r=>r.id.startsWith('reel-')))for(const c of rule.cases){
     assert.ok(c.start>=0&&c.end<=60&&c.end>c.start);
@@ -63,7 +65,7 @@ test('通用名称下的原片动作能按来源搜索，历史关联指向实�
   runInNewContext(await readFile(new URL('../catalog/matching.js',import.meta.url),'utf8'),context);
   const scenes={
     sIntro:['char-color-cycle','letter-hole-zoom'],
-    sBass:['paper-strip-stagger','spiral-draw-spin','planar-dot-orbit'],
+    sBass:['paper-strip-stagger','spiral-draw-spin'],
     sNeon:['striped-sun-rise','perspective-grid-flow','neon-horizon'],
     sGrit:['word-slam'],sKey:['bezier-editor','motion-compare'],sOutro:['timeline-progress']
   };

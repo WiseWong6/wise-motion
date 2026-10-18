@@ -14,7 +14,7 @@
 现实类比：原流场从稀疏向密集显影，局部电弧沿球内真实轨迹逐渐加入。
 需要保留：保留原流线形状、蓝色亮芯与球内电弧路径；完整保留先显影、再逐步接入电弧的次序，整体以四倍速播放。
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
-对应参考：本地目录「能量球显影与局部电弧」；所用动作：能量流线持续增密、蓝色能量球、球形分叉电弧
+对应参考：本地目录「能量球显影与局部电弧」；所用动作：能量流线渐密、蓝色能量球、球形分叉电弧
 源码：catalog/effects/rasengan-illustrations.js 中的 energy-discharge-journey
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
@@ -33,4 +33,4 @@
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
 - 共用原流场与电弧绘制，从已保存轨迹的有效起点开始取样；原二十四秒片段整体以四倍速播放，三秒后局部电弧逐渐接入，完整播放六秒。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[能量流线持续增密](energy-density-growth.md)、[蓝色能量球](rasengan-illustration.md)、[球形分叉电弧](lightning-orb-illustration.md)。
+所用动作：[能量流线渐密](energy-density-growth.md)、[蓝色能量球](rasengan-illustration.md)、[球形分叉电弧](lightning-orb-illustration.md)。

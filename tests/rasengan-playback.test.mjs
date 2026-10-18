@@ -41,3 +41,30 @@ test('套印与撞入合并后各示例仍可独立定位，旧套印书签和�
   draw(1250);const frame=root.innerHTML;draw(0);draw(2999);draw(1250);assert.equal(root.innerHTML,frame);draw.destroy?.();
  }finally{env.close();}
 });
+
+test('环线增厚只保留单个动作，旧烟圈名称与目录链接指向同一原动作',async()=>{
+ const {selectEffect}=await import('../scripts/show.mjs');
+ const kept=selectEffect('烟圈增厚与剖面展开');
+ assert.equal(kept.id,'ring-construction');
+ assert.equal(kept.kind,'action');assert.equal(kept.duration_ms,20000);
+ assert.equal(data.effects.some(e=>e.id==='ring-construction-journey'),false);
+ assert.equal(data.redirects['ring-construction-journey'],kept.id);
+ assert.ok(data.effects.find(e=>e.id==='ring-sphere-journey').actions.includes(kept.id));
+ const env=await environment(true,{hash:'#ring-construction-journey',staticPreview:true});
+ try{
+  const {w}=env;
+  assert.equal(w.document.querySelector('.effect-item[aria-current="true"]').dataset.effect,kept.id);
+  const root=w.document.createElement('div'),draw=w.MotionKit.createRenderer(root,kept);
+  try{
+   const frames=new Map();
+   for(const time of [0,4000,6000,8000,10500,15000,19000,20000,8000,0]){
+    draw(time);assert.doesNotMatch(root.innerHTML,/NaN|Infinity/);
+    const frame=JSON.stringify(paths(root));assert.ok(paths(root).length>0);
+    if(frames.has(time))assert.equal(frame,frames.get(time),'回看应保持同一画面');
+    frames.set(time,frame);
+   }
+   assert.notEqual(frames.get(6000),frames.get(10500),'展开剖面时画面应变化');
+   assert.notEqual(frames.get(15000),frames.get(19000),'收回剖面时画面应变化');
+  }finally{draw.destroy();}
+ }finally{env.close();}
+});

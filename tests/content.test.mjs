@@ -6,7 +6,7 @@ import {createHash} from 'node:crypto';
 import {environment, frameMarkup} from './helpers.mjs';
 import {resolveEffect as resolveCurrentEffect} from '../remotion/clock.mjs';
 // 内容替换接口属于保留的原示例；新默认动作另做来源与逐帧检查。
-const resolveEffect=(id,variant)=>resolveCurrentEffect(id,variant??(['type-reveal','count-up'].includes(id)?'original':undefined));
+const resolveEffect=(id,variant)=>resolveCurrentEffect(id,variant??(id==='type-reveal'?'original':undefined));
 import contentApi from '../catalog/content.js';
 const {validateContent,withContent}=contentApi;
 const baseline={...JSON.parse(await readFile(new URL('./fixtures/content-defaults.json',import.meta.url),'utf8')),...JSON.parse(await readFile(new URL('./fixtures/content-phase-two-defaults.json',import.meta.url),'utf8'))};
@@ -38,15 +38,12 @@ for(const [key,frames] of Object.entries(baseline))test(key+'：默认及显式�
 
 test('内容对象、字数、行数、色调和格式错误在绘制前报错',()=>{
   const rejects=(id,content,variant)=>assert.throws(()=>validateContent(resolveEffect(id,variant),content));
-  rejects('count-up',null);rejects('count-up',{value:NaN});rejects('count-up',{value:'1M'});
-  rejects('count-up',{decimals:1});rejects('count-up',{format:'custom'});rejects('count-up',{unknown:1});
   rejects('type-reveal',{text:'12345678901234'});rejects('type-reveal',{text:'a\nb'});
   rejects('word-slam',{words:[]});rejects('word-slam',{words:['']});
   rejects('terminal-code',{lines:[[['text','red']]]});rejects('terminal-code',{lines:['x']});
   rejects('terminal-code',{lines:Array(4).fill([['x','ink']])});
   rejects('terminal-code',{lines:Array(9).fill('x'.repeat(21))},'command-log');
   rejects('terminal-code',{lines:['x']},'command-log');rejects('particle-word',{text:'🐰'});
-  validateContent(resolveEffect('count-up'),{value:0,from:-1,prefix:'',suffix:'',caption:'',format:'decimal',decimals:2});
 });
 
 test('输入复制到每个实例，原目录定义和调用者对象不被改写',()=>{
@@ -107,22 +104,6 @@ test('只换终端标题时，代码和日志的字体、字宽与动作仍保�
         const rows=root=>[...root.querySelectorAll(selector)].map(node=>node.outerHTML);
         assert.deepEqual(rows(after.root),rows(before.root),variant+' @ '+ms);
       }
-    }
-  }finally{env.close();}
-});
-
-test('计数支持单位、前缀、千分位、小数和倒数；紧凑单位不会过早进位',async()=>{
-  const env=await environment();
-  try{
-    fonts(env);
-    for(const [content,expected] of [
-      [{value:1e6,format:'compact',suffix:' tokens'},'1M tokens'],
-      [{value:500000,format:'compact'},'500K'],[{value:999999,format:'compact'},'1M'],
-      [{value:1,prefix:'NO.'},'NO.1'],[{from:12000,value:-1234.5,format:'thousands',decimals:2},'-1,234.50'],
-      [{value:0,from:12,format:'decimal',decimals:2},'0.00']]){
-      const {root,draw}=painter(env,'count-up',content);await draw.ready;draw(1800);
-      assert.equal(root.querySelector('.big-number').textContent,expected);
-      const end=frameMarkup(root);draw(400);draw(1800);assert.equal(frameMarkup(root),end);
     }
   }finally{env.close();}
 });

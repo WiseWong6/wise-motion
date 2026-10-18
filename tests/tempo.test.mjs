@@ -15,8 +15,8 @@ test('同类动作共用主要时长与末尾停顿，循环和特殊节拍分�
   for(const ids of [
     ['fade-rise','scale-in','card-flip','wipe'],
     ['dimension-line','ruler-ticks','leader-callout'],
-    ['count-up','progress-readout','bar-growth','sector-appear','trend-draw','map-paint','stroke-draw','tone-grow'],
-    ['rigid-rebound','vertical-rebound','gauge-rebound','flat-to-volume','timeline-progress'],
+    ['progress-readout','bar-growth','sector-appear','trend-draw','map-paint','stroke-draw','tone-grow'],
+    ['rigid-rebound','gauge-rebound','flat-to-volume','timeline-progress'],
     ['formula-evolve','experience-progress','terminal-code','theme-card-layout','benchmark-columns']
   ]) {
     const durations=ids.map(id=>get(id).timing.end_ms-get(id).timing.start_ms);
@@ -26,8 +26,9 @@ test('同类动作共用主要时长与末尾停顿，循环和特殊节拍分�
     assert.equal(effect.timing.start_ms,150,effect.id);
     assert.equal(effect.duration_ms-effect.timing.end_ms,450,effect.id);
   }
+  assert.equal(get('count-up').timing,null,'数字加速至无穷仅保留原片时钟');
   for(const id of ['rapid-cut','card-conveyor','data-pulse','word-cloud-lift','dither-lab-book',
-    ...data.effects.filter(e=>e.id.endsWith('-illustration')).map(e=>e.id)]) assert.equal(get(id).timing,undefined,id);
+    ...data.effects.filter(e=>e.id.endsWith('-illustration')).map(e=>e.id)]) assert.ok(get(id).timing==null,id);
 });
 
 test('统一节奏只重新对应时间，保留原作画面、顺序、终点和连续累计时间',async()=>{
@@ -64,7 +65,7 @@ test('新节奏的入场与回摆可重新定位，速度滑块不改变定位�
   const env=await environment();
   try {
     const {w}=env,root=w.document.getElementById('root');
-    for(const id of ['fade-rise','count-up','timeline-progress','rigid-rebound']) {
+    for(const id of ['fade-rise','bar-growth','timeline-progress','rigid-rebound']) {
       const e=legacyDefinition(data.effects.find(e=>e.id===id)),player=w.MotionRuntime.create(root,e);
       const source=e.timing.source_start_ms+(e.timing.source_end_ms-e.timing.source_start_ms)*.4;
       player.seek(motionTime(e,source));const snapshot=root.innerHTML;

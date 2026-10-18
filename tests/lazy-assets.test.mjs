@@ -10,7 +10,8 @@ const effect = id => data.effects.find(item => item.id === id);
 test('组合首帧及拆解共用隔离预览的内容，主页面不重复准备字体和场景',async()=>{
  const layers=[{id:'rain',name:'雨幕片段',start:0,end:9000,time:'0–9 秒',detail:'原绘制器中的片段说明'}];
  let finish,controller;
- const page=await environment(true,{hash:'',lazyAssets:true,beforeApp(w){
+ // This fixture inspects the rain composition, regardless of the newest default.
+ const page=await environment(true,{hash:'#aboutlove-word-world-sequence',lazyAssets:true,beforeApp(w){
   w.MotionRuntime.create=(root,definition)=>{
    const frame=w.document.createElement('iframe');root.replaceChildren(frame);
    let release;const ready=new Promise(resolve=>{release=resolve;});

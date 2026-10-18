@@ -999,7 +999,6 @@ function sourceRing(P, t, mode) {
   }
 }
 
-  register('ring-construction-journey',(P,t)=>sourceRing(P,t));
   register('ring-construction',(P,t)=>sourceRing(P,t));
   // 独立增密动作覆盖保存轨迹的有效区间，开场已有尾迹，结尾也不越界停住。
   const densityMotionStart=C.finale(0).time,densityTrackStart=packedFields.driven.start+C.finale(0).trail;
@@ -1137,7 +1136,6 @@ function sourceMushroom(P, time, opacity = 1) {
 })(globalThis);
 
 /* SCENE ENTRIES */
-MotionFactories["ring-construction-journey"].breakdown=[{"id": "build", "name": "环面构建与增密", "start": 0, "end": 8000, "time": "0—8秒", "detail": "环面构建与增密在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "smoke-ring-illustration", "vortex-ring-illustration"]}, {"id": "section", "name": "剖面展开与翻卷", "start": 8000, "end": 20000, "time": "8—20秒", "detail": "剖面展开与翻卷在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "smoke-ring-illustration", "vortex-ring-illustration"]}];
 MotionFactories["mushroom-sphere-journey"].breakdown=[{"id": "plume", "name": "烟羽上升与头部回卷", "start": 0, "end": 7000, "time": "0—7秒", "detail": "烟羽上升与头部回卷在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["mushroom-cloud-illustration", "hill-vortex-illustration"]}, {"id": "sphere", "name": "头部收成理想球涡", "start": 7000, "end": 13000, "time": "7—13秒", "detail": "头部收成理想球涡在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["mushroom-cloud-illustration", "hill-vortex-illustration"]}];
 MotionFactories["ring-sphere-journey"].breakdown=[{"id": "ring", "name": "环线构建与剖面展开", "start": 0, "end": 19000, "time": "0—19秒", "detail": "环线构建与剖面展开在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "smoke-ring-illustration", "vortex-ring-illustration", "mushroom-cloud-illustration", "hill-vortex-illustration"]}, {"id": "bridge", "name": "烟羽回卷交接", "start": 19000, "end": 32000, "time": "19—32秒", "detail": "烟羽回卷交接在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "smoke-ring-illustration", "vortex-ring-illustration", "mushroom-cloud-illustration", "hill-vortex-illustration"]}, {"id": "sphere", "name": "球涡继续翻卷", "start": 32000, "end": 42000, "time": "32—42秒", "detail": "球涡继续翻卷在这段时间内保留完整画面与前后交接；共用整段时间轴。", "actions": ["ring-construction", "smoke-ring-illustration", "vortex-ring-illustration", "mushroom-cloud-illustration", "hill-vortex-illustration"]}];
 MotionFactories["energy-discharge-journey"].breakdown=[{"id":"field","name":"能量流线显影增密","start":0,"end":3000,"time":"0—3秒","detail":"开场即呈现稀疏球体，流线显影、增密和镜头变化随整段以四倍速播放。","actions":["energy-density-growth","rasengan-illustration","lightning-orb-illustration"]},{"id":"electric","name":"局部电弧逐渐接入","start":3000,"end":6000,"time":"3—6秒","detail":"三秒后局部电弧从弱到强逐步接入，流线继续连续翻卷。","actions":["energy-density-growth","rasengan-illustration","lightning-orb-illustration"]}];

@@ -14,7 +14,7 @@
 现实类比：翻阅一本有纸张厚度的图稿册
 需要保留：固定书脊、左右基础页与活动纸页共存，正反面及阴影随角度变化。
 明确排除：不要只换图片或让整本书横向旋转。
-对应参考：本地目录「插画翻页书」；所用动作：绕书脊翻页、几何网点插画、纸张光影
+对应参考：本地目录「插画翻页书」；所用动作：书页翻动、几何网点插画、纸面光影变化
 源码：catalog/effects/dither-book.js 中的 dither-lab-book
 来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：画面使用本地矢量插图和程序绘制的纸纹。仅参考原组件的行为与空间关系，未移植其代码或图片。 图片留白、圆角和书脊阴影可在右侧调整，复制代码保留当前纸页设置。 画面统一采用展示片时间线的近黑/暖白与少量彩色强调，白天按同一色相适配；原几何与动作关系保留。 三个组成部分与本组合共用实际纸页结构、矢量图和光影函数，可在组合拆解中逐层查看。
@@ -33,4 +33,4 @@
 - 效果参考 [Amicro · 3D Dither Lab Book](https://amicro.vercel.app/3d)。
 - 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[绕书脊翻页](book-spine-turn.md)、[几何网点插画](book-geometric-illustration.md)、[纸张光影](book-paper-light.md)。
+所用动作：[书页翻动](book-spine-turn.md)、[几何网点插画](book-geometric-illustration.md)、[纸面光影变化](book-paper-light.md)。

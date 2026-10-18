@@ -14,7 +14,7 @@
 现实类比：雨字冻结后复流，接成山河天气，再展开词球、追光织字、重排成心；保留同一字群跨场承接，以及文字灯的点亮、上浮和熄灭。
 需要保留：雨字冻结后复流，接成山河天气，再展开词球、追光织字、重排成心；保留同一字群跨场承接，以及文字灯的点亮、上浮和熄灭。
 明确排除：不打断同一字群跨场的身份与位置，不加入光标或逐字输入。
-对应参考：本地目录「文字世界 · 雨幕到心字组合」；所用动作：立体文字雨冻结后复流、绕点摆动、冻结雨幕前后换焦、按距离依次响应、同心涟漪扩散、沿文字山脊书写并追随镜头、字符压成横笔、流动字句向上蒸散、电弧分叉闪动、字符异速下落、关机收缩熄灭、缩小显现落定、螺线描绘旋转、水面倒影起伏、节拍闪切、文字逐格错位、多语词球转动与向心光点、球面词群展开与吸回、光点追上移动文字并点亮、文字漂移收拢、短句拆成文字单元沿弧织字、同一主体跨场、填色放大回弹、翼根扩散换色、释出扩散飘移、可读文字按偏旁重新排字、文字按序消退、文字绕弧汇聚、错峰入场、胶片纹理闪动
+对应参考：本地目录「文字世界 · 雨幕到心字组合」；所用动作：文字雨暂停后继续、绕点摆动、前后景切换焦点、按距离依次响应、跟拍文字书写、词句流动蒸发、电弧分叉闪动、字符持续下落、电视关机、螺旋线边画边转、水面倒影起伏、节拍闪切、文字抖动、文字球旋转、文字成球再吸回、光点追字点亮、词句分层上浮、文字拼成大字、主体连接两场、填色放大回弹、翅膀向外染色、烟雾扩散飘走、文字重排换字、文字逐个淡出、文字绕弧汇聚
 源码：catalog/effects/aboutlove.js 中的 aboutlove-word-world-sequence
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：原设计1080×1440竖幅等比显示；保留原字体造型、固定随机关系与逐格节奏。
@@ -33,7 +33,7 @@
 - 效果参考 Aboutlove 自有场景。
 - 提取自有场景的绘制函数、固定随机关系、字形和时间编排；目录与逐帧组件共用同一实现。许可为 Apache-2.0。Remotion、React与所用素材遵循各自许可，见来源说明。
 
-所用动作：[立体文字雨冻结后复流](rain-freeze-resume.md)、[绕点摆动](pivot-swing.md)、[冻结雨幕前后换焦](frozen-depth-focus.md)、[按距离依次响应](group-stagger.md)、[同心涟漪扩散](center-ripple-emit.md)、[沿文字山脊书写并追随镜头](ridge-text-write.md)、[字符压成横笔](glyph-bar-collapse.md)、[流动字句向上蒸散](word-river-evaporate.md)、[电弧分叉闪动](arc-branch-flicker.md)、[字符异速下落](glyph-rain-fall.md)、[关机收缩熄灭](crt-collapse.md)、[缩小显现落定](stamp-land.md)、[螺线描绘旋转](spiral-draw-spin.md)、[水面倒影起伏](sunset-water-reflection.md)、[节拍闪切](rapid-cut.md)、[文字逐格错位](frame-jitter-type.md)、[多语词球转动与向心光点](orbit.md)、[球面词群展开与吸回](word-sphere-arrival.md)、[光点追上移动文字并点亮](spark-follow-text.md)、[文字漂移收拢](word-cloud-lift.md)、[短句拆成文字单元沿弧织字](phrase-weave-glyph.md)、[同一主体跨场](shared-object.md)、[填色放大回弹](material-like-pop.md)、[翼根扩散换色](wing-root-color-reveal.md)、[释出扩散飘移](emission-drift.md)、[可读文字按偏旁重新排字](glyph-unit-reflow.md)、[文字按序消退](stagger-crossfade.md)、[文字绕弧汇聚](prompt-char-gather.md)、[错峰入场](stagger-in.md)、[胶片纹理闪动](film-scratch-flicker.md)。
+所用动作：[文字雨暂停后继续](rain-freeze-resume.md)、[绕点摆动](pivot-swing.md)、[前后景切换焦点](frozen-depth-focus.md)、[按距离依次响应](group-stagger.md)、[跟拍文字书写](ridge-text-write.md)、[词句流动蒸发](word-river-evaporate.md)、[电弧分叉闪动](arc-branch-flicker.md)、[字符持续下落](glyph-rain-fall.md)、[电视关机](crt-collapse.md)、[螺旋线边画边转](spiral-draw-spin.md)、[水面倒影起伏](sunset-water-reflection.md)、[节拍闪切](rapid-cut.md)、[文字抖动](frame-jitter-type.md)、[文字球旋转](orbit.md)、[文字成球再吸回](word-sphere-arrival.md)、[光点追字点亮](spark-follow-text.md)、[词句分层上浮](word-cloud-lift.md)、[文字拼成大字](phrase-weave-glyph.md)、[主体连接两场](shared-object.md)、[填色放大回弹](material-like-pop.md)、[翅膀向外染色](wing-root-color-reveal.md)、[烟雾扩散飘走](emission-drift.md)、[文字重排换字](glyph-unit-reflow.md)、[文字逐个淡出](stagger-crossfade.md)、[文字绕弧汇聚](prompt-char-gather.md)。
 
 ## Remotion 复用
 

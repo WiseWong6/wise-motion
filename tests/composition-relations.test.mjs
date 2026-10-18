@@ -14,17 +14,17 @@ const definitions=new Map(effects.map(effect=>[effect.id,effect]));
 // 按真实绘制函数核对关系；这些行的顺序与目录 actions 顺序不同，不能按位置配对。
 const horizon={stars:[],sun:['striped-sun-rise'],grid:['perspective-grid-flow']};
 const expected={
-  'paper-spiral-sequence':{paper:['paper-strip-stagger'],disc:['paper-disc-pop'],spiral:['spiral-draw-spin'],orbit:['planar-dot-orbit'],text:['paper-title-stagger']},
+  'paper-spiral-sequence':{paper:['paper-strip-stagger'],disc:['paper-disc-pop'],spiral:['spiral-draw-spin'],orbit:[],text:['paper-title-stagger']},
   'neon-horizon':horizon,
   'neon-title-sequence':{...horizon,chrome:['chrome-outline-echo'],neon:['neon-type-flicker'],flare:['cross-flare-travel'],caption:['caption-type-caret']},
   'keyframe-workbench':{panels:['panel-rise-collapse'],bounce:['ball-bounce-trails'],graph:['bezier-editor'],timeline:['timeline-keyframe-playhead'],'large-graph':['bezier-editor'],labels:['title-stagger']},
-  'material-phone-sequence':{shapes:['shape-pop-float'],labels:['title-stagger'],phone:['material-phone-rise'],cards:['material-card-stagger'],switch:['material-switch-spring'],spinner:['material-spinner-arc'],like:['material-like-pop'],fab:['material-fab-panel']},
+  'material-phone-sequence':{shapes:[],labels:['title-stagger'],phone:['material-phone-rise'],cards:['material-card-stagger'],switch:['material-switch-spring'],spinner:['material-spinner-arc'],like:['material-like-pop'],fab:['material-fab-panel']},
   'generative-point-sequence':{field:['generative-flow-field'],points:['generative-point-morph'],frame:['generative-frame-readout'],title:['title-stagger'],code:[]},
   'prompt-to-core-sequence':{ui:['prompt-ui-push'],border:['prompt-border-trace'],letters:['prompt-chinese-type','prompt-char-gather'],send:['send-press-ring'],core:['core-ring-expand'],labels:[]},
   'outro-recap-sequence':{burst:['radial-line-burst'],axis:['timeline-dock-down'],credits:['outro-credit-lift'],segments:['color-segment-stagger']}
 };
 
-test('八个组合的四十四个拆解行都明确声明独立动作，每层保留准确的动作关联',()=>{
+test('八个组合的四十四个拆解行都明确声明是否关联独立动作，每层保留准确的动作关联',()=>{
   let count=0;
   for(const id of Object.keys(expected)){
     const rows=factories[id].breakdown;
@@ -65,6 +65,20 @@ test('真实图层关系不依赖列表顺序，同一文字层保留写入和�
   assert.equal(rows[0].id,'stars');
   assert.deepEqual(Array.from(rows[0].actions),[],'组合星点仍绘制，已删除独立关联');
   assert.equal(definitions.has('star-twinkle'),false);
+  const orbit=factories['paper-spiral-sequence'].breakdown.find(row=>row.id==='orbit');
+  assert.deepEqual(Array.from(orbit.actions),[],'组合保留公转圆点，不再关联已撤下的独立示例');
+  assert.ok(orbit.reason);
+  assert.equal(Object.hasOwn(factories,'planar-dot-orbit'),false);
+  assert.equal(definitions.has('planar-dot-orbit'),false);
+  const shapes=factories['material-phone-sequence'].breakdown.find(row=>row.id==='shapes');
+  assert.deepEqual(Array.from(shapes.actions),[],'原图形装饰仍在组合内绘制，已删除独立关联');
+  assert.ok(shapes.reason,'保留原图形并删除独立关联时应说明边界');
+  assert.equal(Object.hasOwn(factories,'shape-pop-float'),false);
+  assert.equal(definitions.has('shape-pop-float'),false);
+  for(const effect of effects)for(const entry of [effect,...(effect.variants||[])]){
+    assert.ok(!entry.actions?.includes('shape-pop-float'),effect.id+' 不保留已删除的独立动作关联');
+    assert.equal(Object.hasOwn(entry.action_variants||{},'shape-pop-float'),false,effect.id+' 不保留已删除动作的示例选择');
+  }
   assert.deepEqual(Array.from(factories['prompt-to-core-sequence'].breakdown.find(row=>row.id==='letters').actions),['prompt-chinese-type','prompt-char-gather']);
 });
 

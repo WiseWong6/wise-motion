@@ -14,7 +14,7 @@
 现实类比：窗口像持续移动的取景框，镜头在它后方交接。
 需要保留：完整实景、材质层次、窗口跨镜持续运动、主体轮廓等距与18秒节奏。
 明确排除：不因切镜重置窗口，不冻结重叠底层，不抠掉原视频真实台面和阴影，不把三主体的透明外框用于等距。
-对应参考：本地目录「实景层次与连续开窗展示」；所用动作：三列直窗错峰开合、节拍闪切、陈列零件旋合归位、等臂十字旋转开窗、轴向分层回装、螺丝轴向旋入锁紧、菱形窗口跨镜展开、发条盒储能运行、同轴轮系啮合传动、摆轮与游丝往返联动、后镜提前圆窗进入、三联主体升入、画面擦入切换
+对应参考：本地目录「实景层次与连续开窗展示」；所用动作：三列窗口依次开合、节拍闪切、零件旋转组装、十字旋转转场、零件拆开复位、螺丝旋入锁紧、菱形开窗转场、发条转动、齿轮咬合转动、摆轮游丝联动、圆窗叠入下一幕、三列依次升入、擦除转场
 源码：catalog/effects/spatial-apertures.js 中的 spatial-mechanical-sequence
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：完整组合按原成片显示；运行缓存保留原摄影、文字、窗口和切点，原制作源码与可编辑适配随工程归档。
@@ -33,7 +33,7 @@
 - 效果参考 MECHANICAL PULSE v4.2 · 用户原创几何编舞与轮廓排版。
 - 保留作者原创窗口、排版和剪辑源码，完整组合与独立开窗示例共用原成片静音缓存；原窗口和状态函数另可用于自己的素材。许可为 Apache-2.0。Remotion、React与所用素材遵循各自许可，见来源说明。
 
-所用动作：[三列直窗错峰开合](three-column-aperture.md)、[节拍闪切](rapid-cut.md)、[陈列零件旋合归位](inventory-contour-fit.md)、[等臂十字旋转开窗](cross-aperture-turn.md)、[轴向分层回装](axial-layer-reseat.md)、[螺丝轴向旋入锁紧](helical-screw-seat.md)、[菱形窗口跨镜展开](diamond-aperture-release.md)、[发条盒储能运行](barrel-stored-energy.md)、[同轴轮系啮合传动](meshed-gears-drive.md)、[摆轮与游丝往返联动](balance-reciprocate.md)、[后镜提前圆窗进入](next-shot-preentry.md)、[三联主体升入](fan-object-rise.md)、[画面擦入切换](wipe.md)。
+所用动作：[三列窗口依次开合](three-column-aperture.md)、[节拍闪切](rapid-cut.md)、[零件旋转组装](inventory-contour-fit.md)、[十字旋转转场](cross-aperture-turn.md)、[零件拆开复位](axial-layer-reseat.md)、[螺丝旋入锁紧](helical-screw-seat.md)、[菱形开窗转场](diamond-aperture-release.md)、[发条转动](barrel-stored-energy.md)、[齿轮咬合转动](meshed-gears-drive.md)、[摆轮游丝联动](balance-reciprocate.md)、[圆窗叠入下一幕](next-shot-preentry.md)、[三列依次升入](fan-object-rise.md)、[擦除转场](wipe.md)。
 
 ## Remotion 复用
 

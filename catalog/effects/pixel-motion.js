@@ -138,7 +138,8 @@
   const choices={
     'particle-word':'gather','scale-in':'pops','ball-bounce-trails':'ball','shape-morph':'morph',
     'word-slam':'kinetic','star-twinkle':'stars','pixel-dissolve-transition':'dissolve','squash-bounce':'idle',
-    'pixel-hop-squash':'hop','parallax-city-scroll':'city','particle-ballistic-fall':'confetti'
+    'pixel-hop-squash':'hop','parallax-city-scroll':'city','particle-ballistic-fall':'confetti',
+    'pixel-robot-illustration':'idle','pixel-city-illustration':'city','seamless-scroll':'city'
   };
   const sourceClips={gather:[0,120],pops:[120,180],hop:[120,180],city:[300,240],ball:[300,240],morph:[300,240],kinetic:[540,210],stars:[0,120],confetti:[750,150],idle:[750,150],dissolve:[0,12]};
   function indices(seconds,{part}={}){
@@ -187,7 +188,7 @@
     factory:(root,kit,definition)=>factory(root,kit,definition,choices[definition.id]),
     route(id,prior){return Object.assign((root,kit,definition={})=>definition.variant_id==='pixel-motion'?factory(root,kit,definition,choices[id]):prior(root,kit,definition),prior);}};
   F['pixel-motion-sequence']=(root,kit,definition)=>factory(root,kit,definition);
-  for(const id of ['pixel-hop-squash','particle-ballistic-fall'])F[id]=(root,kit,definition)=>factory(root,kit,definition,choices[id]);
+  for(const id of ['pixel-hop-squash','particle-ballistic-fall','pixel-robot-illustration','pixel-city-illustration'])F[id]=(root,kit,definition)=>factory(root,kit,definition,choices[id]);
   F['pixel-motion-sequence'].breakdown=[
     {id:'opening',name:'像素聚字与星点',time:'0–2.67 秒',start:0,end:4000,detail:'固定像素错峰聚成 WISE，星点逐格闪烁；末尾随机像素消退。',actions:['particle-word','pixel-dissolve-transition']},
     {id:'hop',name:'横移连跳与图形回弹',time:'2.67–6.67 秒',start:4000,end:10000,detail:'机器人向右连跳，触地压扁、腾空拉长；五个图形错峰放大回弹。',actions:['pixel-hop-squash','scale-in']},

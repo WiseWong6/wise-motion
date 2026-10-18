@@ -1,31 +1,17 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import React, {useLayoutEffect, useRef} from 'react';
-import {AbsoluteFill, staticFile, useCurrentFrame, useDelayRender, useVideoConfig} from 'remotion';
+import {AbsoluteFill, useCurrentFrame, useVideoConfig} from 'remotion';
 import '../effects/time-in-motion-graphics.js';
 
-export function WiseTimeInMotionGraphics({effectId = 'word-block-rise', speed = 1, fontSrc}) {
+export function WiseTimeInMotionGraphics({effectId = 'sparse-dial-counterturn', speed = 1}) {
   const frame = useCurrentFrame(), {fps, width, height} = useVideoConfig();
-  const {delayRender, continueRender, cancelRender} = useDelayRender();
   const root = useRef(null), painter = useRef(null), time = useRef(0);
   time.current = frame / fps * speed * 1000;
-  const src = fontSrc || staticFile('catalog/fonts/Oswald-Bold.woff2');
   useLayoutEffect(() => {
-    let alive = true, done = false, face;
-    const handle = delayRender('准备可编辑动效');
-    const release = () => {if (!done) {done = true; continueRender(handle);}};
-    const mount = () => {
-      if (!alive) return;
-      painter.current = globalThis.MotionFactories[effectId](root.current);
-      painter.current(time.current); release();
-    };
-    if (effectId === 'word-block-rise') {
-      face = new FontFace('Oswald', 'url(' + JSON.stringify(src) + ')', {weight: '700'});
-      face.load().then(() => {if (alive) {document.fonts.add(face); mount();}})
-        .catch(error => {if (alive) {release(); cancelRender(error);}});
-    } else mount();
-    return () => {alive = false; painter.current?.destroy(); painter.current = null;
-      root.current?.replaceChildren(); if (face) document.fonts.delete(face); release();};
-  }, [effectId, src, delayRender, continueRender, cancelRender]);
+    const draw = globalThis.MotionFactories[effectId](root.current);
+    painter.current = draw; draw(time.current);
+    return () => {draw.destroy(); painter.current = null; root.current?.replaceChildren();};
+  }, [effectId]);
   useLayoutEffect(() => {painter.current?.(time.current);}, [frame, fps, speed]);
   const scale = Math.min(width / 640, height / 360);
   return <AbsoluteFill style={{background: '#101114', overflow: 'hidden'}}>

@@ -14,7 +14,7 @@
 现实类比：同一个画面从墨迹开始，一路换成字符、点线、立体材料和科学图鉴，最后变成发布字标。
 需要保留：七段共用同一毫秒时钟和实际绘制函数；前后段保留字符团、三个圆柱、三个球和月球的轮廓及位置承接；每段独立预览与整片使用同一绘制逻辑，保留快速切换、短暂停留和结尾黑屏。
 明确排除：不替换为七个通用几何演示，不按段落重新给已有对象做入场，不随意改变段落先后，不给整片统一套缓动，不播放原片视频或用原片JPG画面代替代码。
-对应参考：本地目录「KIMI K3 开源宣传片复刻」；所用动作：笔画接续成字、字符压成横笔、点线变圆柱、形态连续重组、球体合拢换材质、群像显现清场、字形快切收尾
+对应参考：本地目录「KIMI K3 开源宣传片复刻」；所用动作：笔画拼成字、文字压成横线、点线变圆柱、形态连续重组、球体合并换材质、群像显现退场、字形快速切换
 源码：catalog/effects/material-evolution.js 中的 material-evolution-sequence
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用已精修的书法轮廓、粒子排布、空间结构及透明材质作为固定示例；内容替换需提供相应轮廓、位置与材质输入，专用转场排程保持不变。
@@ -33,6 +33,6 @@
 - 效果参考 [Kimi K3 开源发布宣传片（open weights）](https://www.youtube.com/watch?v=5GlCGOXUYHg)。
 - 沿用材质演变绘制函数与七段固定排程。开头37个姿态直接描摹颜真卿宋拓多宝佛塔碑册第二开左页“道樹萌牙”的道字，片尾道字复用同一轮廓；一二三各自描摹同册第十开完整原字，中段一二的粒子边界与片尾共用原字轮廓，数字及英文由随包 Oswald Bold 生成，最终字标为 WISE MOTION。原帖页图、字框坐标、CC BY 4.0 署名及处理方式见 vendor/duobaota/SOURCE.json。项目程序为 Apache-2.0，字体为 SIL OFL 1.1。纤维球、月面与版画保留原生成素材记录，Kimi 原片保留动作与材质参考署名。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[笔画接续成字](brush-glyph-build.md)、[字符压成横笔](glyph-bar-collapse.md)、[点线变圆柱](dots-lines-cylinders.md)、[形态连续重组](material-form-chain.md)、[球体合拢换材质](spheres-material-merge.md)、[群像显现清场](atlas-reveal-clear.md)、[字形快切收尾](glyph-cut-ending.md)。
+所用动作：[笔画拼成字](brush-glyph-build.md)、[文字压成横线](glyph-bar-collapse.md)、[点线变圆柱](dots-lines-cylinders.md)、[形态连续重组](material-form-chain.md)、[球体合并换材质](spheres-material-merge.md)、[群像显现退场](atlas-reveal-clear.md)、[字形快速切换](glyph-cut-ending.md)。
 
 补充效果参考：[颜真卿宋拓多宝佛塔碑册（国立故宫博物院，台北；直接描摹道、一、二、三）](https://digitalarchive.npm.gov.tw/Collection/Detail/1947?dep=P)。

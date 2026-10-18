@@ -1,0 +1,1132 @@
+{
+  "project": "lego-claude",
+  "adopted": "2026-10-18 Asia/Shanghai",
+  "version_basis": "Current complete working tree, including uncommitted revisions. Git HEAD alone is not the adopted version.",
+  "git_head": "1e761b492e08ac1883bf1fb1b09e89928df2c895",
+  "working_tree_status": " M LOCAL_MEDIA.md\n M capture/recording4-shots.mjs\n M video/src/components/Subtitles.tsx\n M video/src/data/recording4-shots.json\n M video/src/scenes/Brief.tsx\n M video/src/scenes/Open.tsx\n M video/src/timeline.json\n M video/tools/apply-recording4.py\n?? capture/alternate-terrain.mjs\n?? capture/kingdom-alternate-white.html\n?? video/public/voiceover/recording4/compare-restored-tail.wav\n",
+  "latest_revision": "video/voiceover/revisions/20261018-growth-subtitle-tail/README.md",
+  "video": {
+    "path": "video/out/lego-kingdom-draft-4k-final-revision.mp4",
+    "bytes": 522019721,
+    "sha256": "29f631ecacaa32280b52a66e2f402852a9440d18ffa0f8ef491db63cd83ac800",
+    "width": 2880,
+    "height": 3840,
+    "fps": 30,
+    "frames": 2402,
+    "duration": 80.066667
+  },
+  "sources": {
+    "video/src/components/BrickWipe.tsx": {
+      "bytes": 2663,
+      "sha256": "bdc05d8c0990cd2ecf656867ea16123f6c7b2a896e4dcb4c60cd9f70460e8331"
+    },
+    "video/src/scenes/Brief.tsx": {
+      "bytes": 17905,
+      "sha256": "0937d3df58f98dd349200c32c385d438caa65542e8b5556b2143896d5c4bf85c"
+    },
+    "video/src/timeline.ts": {
+      "bytes": 3140,
+      "sha256": "4738fe108fd4fef14d4ee4e9fe29f6334a83e1af2c4b875d5c9784611c66bdbc"
+    },
+    "video/src/timeline.json": {
+      "bytes": 9342,
+      "sha256": "0cabe3c9168b26eaac27a0dbdb7ec56727c4265c81e5f5204a0ff48e8557dc72"
+    },
+    "video/src/data/visual-timing.json": {
+      "bytes": 1603,
+      "sha256": "82343046a7ebb91d5731a0828b245c305f55c2018b5bfd3239e38f9aafc4ce9c"
+    },
+    "video/src/data/recording4-shots.json": {
+      "bytes": 15260,
+      "sha256": "5db7b0657b7b0eb2f3f038315c022cca3bb93e0b8113d511f7369ce5252eae9d"
+    },
+    "video/src/scenes/Kingdom.tsx": {
+      "bytes": 8410,
+      "sha256": "25d346bc45b46ae6e2d9e8380416fbaf2f61dbcdb9d86508f20f8a9f7feacd95"
+    },
+    "video/src/components/Bits.tsx": {
+      "bytes": 7116,
+      "sha256": "6d533cc01e15f1daa2cc61b05afad6ff5d3a04e642486a31bfb90b0bfbb460d6"
+    },
+    "video/src/scenes/Open.tsx": {
+      "bytes": 5700,
+      "sha256": "edfdbe558684d1946a0a974842fbcb7129f864e4f707fb93074f30c84ebc578e"
+    },
+    "video/src/components/Screen.tsx": {
+      "bytes": 1409,
+      "sha256": "7b366408b837038eff26a2b1560951ab56be4976ca8b011d821cf4eb684e4b04"
+    },
+    "video/src/data/recording-timing.json": {
+      "bytes": 1260,
+      "sha256": "118db816c6f132a6d7dcb4a2f96912e13643e13e0cb5ca11172ee42ba5d585d1"
+    },
+    "video/src/scenes/Speed.tsx": {
+      "bytes": 6600,
+      "sha256": "496a7ec16a93c611537c8eca6fab639d7ae4168590ef480ea0d8d55c41685ece"
+    },
+    "video/src/components/EfficiencyModelReveal.tsx": {
+      "bytes": 4612,
+      "sha256": "4e01358728367cde02cc5d6fd70665e69a8c8ab0b439c06e4aa8ab2fc59c5348"
+    },
+    "video/src/scenes/StandaloneEfficiency.tsx": {
+      "bytes": 1748,
+      "sha256": "d2d748d921cce242d4ef37cbd08f90980ed95252f6de852ad413be5c5b117fa8"
+    },
+    "video/src/scenes/Finale.tsx": {
+      "bytes": 16218,
+      "sha256": "a42377768d9da93738c2cdf34789db867e0237bd723e625366faf927c82b396f"
+    },
+    "video/src/components/SignatureOutro.tsx": {
+      "bytes": 5213,
+      "sha256": "6dbc978c783e70ce60c76c53a2801358a059f42ed7028685a3325f352723127a"
+    },
+    "capture/shots-latest.mjs": {
+      "bytes": 7269,
+      "sha256": "8370a7010d1507a32070750e592fabbb22aad06dffb1b55d258d731070348213"
+    },
+    "capture/recording4-shots.mjs": {
+      "bytes": 19560,
+      "sha256": "9b1f12aed71fe806c447cdb3623a89960c258a2df1d02c941933c4daac9305da"
+    },
+    "capture/preset-parts.mjs": {
+      "bytes": 13412,
+      "sha256": "403f0f963bc6df7ce1081ebe5f6451cf67ba0f9716b881999878081b2628062b"
+    },
+    "video/src/scenes/Parts.tsx": {
+      "bytes": 1050,
+      "sha256": "eb3a18085a447de07f9aa5b7566720786a9a6b117824215ff66a8c637cbf1927"
+    },
+    "video/src/components/Baseplate.tsx": {
+      "bytes": 913,
+      "sha256": "a89ca8adfade5811dfaa9521a9cf613879212053042c2b4baf560ff2df034e9a"
+    },
+    "video/src/data/engine-blocks.json": {
+      "bytes": 1523,
+      "sha256": "f71799f9249aee2d3fcc9656b5af3df9d047eb6b2d7faf1e09ab029fd0d9dec5"
+    }
+  },
+  "motions": [
+    {
+      "id": "tile-wave-transition",
+      "variant": "lego-kingdom",
+      "mode": "brick-wipe",
+      "frames": 44,
+      "source_files": [
+        "video/src/components/BrickWipe.tsx"
+      ]
+    },
+    {
+      "id": "stagger-drop",
+      "variant": "lego-kingdom",
+      "mode": "matrix-scan",
+      "frames": 65,
+      "source_files": [
+        "video/src/scenes/Brief.tsx",
+        "video/src/data/engine-blocks.json",
+        "video/src/timeline.ts",
+        "video/src/timeline.json",
+        "video/src/data/visual-timing.json"
+      ]
+    },
+    {
+      "id": "mindmap-follow",
+      "variant": "lego-kingdom",
+      "mode": "path-packets",
+      "frames": 13,
+      "source_files": [
+        "video/src/scenes/Brief.tsx",
+        "video/src/timeline.ts"
+      ]
+    },
+    {
+      "id": "leader-callout",
+      "variant": "lego-kingdom",
+      "mode": "tracked-labels",
+      "frames": 93,
+      "source_files": [
+        "video/src/scenes/Brief.tsx",
+        "video/src/components/Shot.tsx",
+        "video/src/data/recording4-shots.json",
+        "capture/recording4-shots.mjs",
+        "capture/alternate-terrain.mjs"
+      ]
+    },
+    {
+      "id": "follow",
+      "variant": "lego-kingdom",
+      "mode": "cursor-trail",
+      "frames": 51,
+      "source_files": [
+        "video/src/scenes/Kingdom.tsx",
+        "video/src/components/Bits.tsx",
+        "video/src/data/recording4-shots.json"
+      ]
+    },
+    {
+      "id": "lego-engine-flow",
+      "variant": null,
+      "mode": "engine-flow",
+      "frames": 65,
+      "source_files": [
+        "video/src/scenes/Brief.tsx",
+        "video/src/components/Baseplate.tsx",
+        "video/src/data/engine-blocks.json",
+        "video/src/timeline.ts",
+        "video/src/timeline.json",
+        "video/src/data/visual-timing.json"
+      ]
+    },
+    {
+      "id": "stagger-in",
+      "variant": "lego-kingdom-grid",
+      "mode": "efficiency-grid",
+      "frames": 96,
+      "source_files": [
+        "video/src/components/EfficiencyModelReveal.tsx",
+        "video/src/scenes/StandaloneEfficiency.tsx",
+        "video/src/components/Baseplate.tsx",
+        "video/src/timeline.json",
+        "video/src/timeline.ts",
+        "video/src/data/visual-timing.json"
+      ]
+    },
+    {
+      "id": "lego-comparison-timer",
+      "variant": null,
+      "mode": "comparison-timer",
+      "frames": 370,
+      "source_files": [
+        "video/src/scenes/Finale.tsx",
+        "video/src/components/Bits.tsx",
+        "video/src/components/Baseplate.tsx",
+        "video/src/timeline.json",
+        "video/src/timeline.ts",
+        "video/src/data/visual-timing.json"
+      ]
+    },
+    {
+      "id": "interface-feedback",
+      "variant": "lego-kingdom-file",
+      "mode": "file-editor-send",
+      "frames": 189,
+      "source_files": [
+        "video/src/scenes/Finale.tsx",
+        "video/src/components/Bits.tsx",
+        "video/src/components/Baseplate.tsx",
+        "video/src/timeline.json",
+        "video/src/timeline.ts",
+        "video/src/data/visual-timing.json"
+      ]
+    },
+    {
+      "id": "progress-readout",
+      "variant": "lego-kingdom",
+      "mode": "verdict-checklist",
+      "frames": 167,
+      "source_files": [
+        "video/src/scenes/Finale.tsx",
+        "video/src/components/Bits.tsx",
+        "video/src/timeline.json"
+      ]
+    }
+  ],
+  "rights": {
+    "code": "User-authorized source extraction and integration under Wise Motion Apache-2.0; unrelated project assets are not relicensed.",
+    "fonts": "Original Oswald Light/Regular/Medium/SemiBold/Bold and IBM Plex Mono Light/Regular carry OFL metadata; license text bundled. Chinese text still uses existing OFL Source Han Sans SC because the source PuHuiTi files had no bundled license. Chinese appearance is not claimed faithful.",
+    "geometry": "Original program-drawn 2D layers plus explicitly requested original kingdom image frames for leader labels. The backdrop is raster imagery, not editable 3D geometry.",
+    "excluded": [
+      "screen recordings",
+      "portrait and outro icon assets",
+      "voiceover and background audio",
+      "point wordmark",
+      "Alibaba PuHuiTi without a bundled license",
+      "original kingdom 3D meshes/materials/camera"
+    ]
+  },
+  "layout_background": {
+    "authorization": "User explicitly requested original LEGO Kingdom backdrop for leader labels on 2026-10-18; local integration only, no publication performed.",
+    "license": "Project-specific user-provided visual assets. No blanket public redistribution license is asserted.",
+    "timing": {
+      "fps": 30,
+      "frames": 93,
+      "cutAt": 46,
+      "originalBoard": [
+        1080,
+        1440
+      ],
+      "first": "output 0..45 -> clean-white source 0..45",
+      "second": "output 46..92 -> alternate source 0..46",
+      "sourceTransform": "none",
+      "additionalCameraTransform": false
+    },
+    "preparation": {
+      "sourceWidth": 2880,
+      "sourceHeight": 3840,
+      "width": 1080,
+      "height": 1440,
+      "resize": "ffmpeg scale=1080:1440:flags=lanczos,format=rgb24",
+      "encoding": "cwebp -lossless -z 6",
+      "audio": "No source audio stream; only image frames delivered",
+      "pictureContent": "Original shot frames only. DraftWatermark, subtitles and portrait are added by Main.tsx and not present in these source shots."
+    },
+    "segments": [
+      {
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "firstOutputFrame": 0,
+        "frames": 46,
+        "sha256": "a903ecfbcc10f68e9a8e9dc0b400701c1dc571d9ce5c0fdfe132fc89e395863c",
+        "bytes": 49918363,
+        "firstSourceFrame": 0,
+        "lastSourceFrame": 45
+      },
+      {
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "firstOutputFrame": 46,
+        "frames": 47,
+        "sha256": "551758e3e408459c9f033e7878c80406f86f684c3dae4061f7caed81a13626bf",
+        "bytes": 49474217,
+        "firstSourceFrame": 0,
+        "lastSourceFrame": 46
+      }
+    ],
+    "files": [
+      {
+        "frame": 0,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 0,
+        "path": "catalog/assets/lego-kingdom/layout/frame-000.webp",
+        "bytes": 630650,
+        "sha256": "3da2859dce4f9fcbebdc9c5348b56286af8306839b3193b44584516bf5ceb91e",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 1,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 1,
+        "path": "catalog/assets/lego-kingdom/layout/frame-001.webp",
+        "bytes": 630092,
+        "sha256": "cbd55725bc2bacbfb48a59c13554e2315739b1824930b0ed8bff43faf3edd8d5",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 2,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 2,
+        "path": "catalog/assets/lego-kingdom/layout/frame-002.webp",
+        "bytes": 628160,
+        "sha256": "95a7b8052f1717768a7c5c2e92dca225251cda1c1cb6ec8663edd9124f7f2ee9",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 3,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 3,
+        "path": "catalog/assets/lego-kingdom/layout/frame-003.webp",
+        "bytes": 627294,
+        "sha256": "a6af849cf8f636bfd0a78713c7367869f848f183b6ca1462b9d8b8f5fa8fb7e0",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 4,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 4,
+        "path": "catalog/assets/lego-kingdom/layout/frame-004.webp",
+        "bytes": 633444,
+        "sha256": "d9cd7deab9714bbbad10f20de4c332f4241602f4a90e7ed87d18247f798e3f82",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 5,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 5,
+        "path": "catalog/assets/lego-kingdom/layout/frame-005.webp",
+        "bytes": 627406,
+        "sha256": "6e68c806cae03bc2c93b772c28685f0f54d87f5de8a509dbfeddbfbdd496e606",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 6,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 6,
+        "path": "catalog/assets/lego-kingdom/layout/frame-006.webp",
+        "bytes": 629080,
+        "sha256": "cde0cd5a77094a0e9fe6d3f318be98215efe3d1c5169156dcc99774c97799590",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 7,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 7,
+        "path": "catalog/assets/lego-kingdom/layout/frame-007.webp",
+        "bytes": 627932,
+        "sha256": "a900fce3c9257a3165e1854e5534463529347c4ff0fe9d08f8cb88e7ee64be75",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 8,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 8,
+        "path": "catalog/assets/lego-kingdom/layout/frame-008.webp",
+        "bytes": 636944,
+        "sha256": "7feb26c5586c7814493da1bae4c3af05b738ee95f524bf4f31367975a6e6ec69",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 9,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 9,
+        "path": "catalog/assets/lego-kingdom/layout/frame-009.webp",
+        "bytes": 630204,
+        "sha256": "f38a24ef7fa1df3dac701a8d3080958a22af89076095895ddfb57b08cf5a0faa",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 10,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 10,
+        "path": "catalog/assets/lego-kingdom/layout/frame-010.webp",
+        "bytes": 634192,
+        "sha256": "fa973d10bc513d62ee036adfcd83325c3459501824c0e8dc1bba0593fd01e4b9",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 11,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 11,
+        "path": "catalog/assets/lego-kingdom/layout/frame-011.webp",
+        "bytes": 633586,
+        "sha256": "096bbbf79e2d37449da780f967b26246dd9277554b0345e308321b655ee094e3",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 12,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 12,
+        "path": "catalog/assets/lego-kingdom/layout/frame-012.webp",
+        "bytes": 642876,
+        "sha256": "dcc68460223f413fbabc67bb79b89d18806347d565acbb2ab9428c9a4f9949ed",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 13,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 13,
+        "path": "catalog/assets/lego-kingdom/layout/frame-013.webp",
+        "bytes": 636592,
+        "sha256": "3f2788d79242c63eedecf3b53d3db1121f1d56ccf4d8d8001e06625dfc463912",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 14,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 14,
+        "path": "catalog/assets/lego-kingdom/layout/frame-014.webp",
+        "bytes": 640892,
+        "sha256": "2cef36ae7d9749e3689ea2f94d1b4b96556530bfaff3cd358642e67b7eb8ad0a",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 15,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 15,
+        "path": "catalog/assets/lego-kingdom/layout/frame-015.webp",
+        "bytes": 640316,
+        "sha256": "a59f55cfeae693390026741fa5c8079c2276cc6bc8b88f078c25b36c45add62e",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 16,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 16,
+        "path": "catalog/assets/lego-kingdom/layout/frame-016.webp",
+        "bytes": 650322,
+        "sha256": "beb54097a8b5aa9389b43575bb5670bca808c30319962fff627e7e99c956a7e5",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 17,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 17,
+        "path": "catalog/assets/lego-kingdom/layout/frame-017.webp",
+        "bytes": 643014,
+        "sha256": "a86af3b0be53bfad7a1104a87ed2063962c108843232c64be7081083d810e637",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 18,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 18,
+        "path": "catalog/assets/lego-kingdom/layout/frame-018.webp",
+        "bytes": 648494,
+        "sha256": "5eccc1b6a28044f9b24f623521b6e7187a3106408ba1aa97710678251738a18f",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 19,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 19,
+        "path": "catalog/assets/lego-kingdom/layout/frame-019.webp",
+        "bytes": 648238,
+        "sha256": "b0c1405c3e7cc7be89cdfa434dc36400c867744c66bbc31acc706628d61b834d",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 20,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 20,
+        "path": "catalog/assets/lego-kingdom/layout/frame-020.webp",
+        "bytes": 659270,
+        "sha256": "c4ce3eb33f06ecef7ed267baeddfe5bb054e410a0d75080db525a4ff64f223c4",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 21,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 21,
+        "path": "catalog/assets/lego-kingdom/layout/frame-021.webp",
+        "bytes": 652158,
+        "sha256": "9c8d35bcbf07b43418f8894dfa0f664c0541548672e7400cb25cd8b8a9b3fd23",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 22,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 22,
+        "path": "catalog/assets/lego-kingdom/layout/frame-022.webp",
+        "bytes": 657322,
+        "sha256": "f9e6a99958ba7fc03322fa04f3a715666a49641f11c560c5952b289007a4c7d7",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 23,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 23,
+        "path": "catalog/assets/lego-kingdom/layout/frame-023.webp",
+        "bytes": 657980,
+        "sha256": "007f094695863628f6bae6835c69291810db6e12abaaffb10f5c64947d5765c4",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 24,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 24,
+        "path": "catalog/assets/lego-kingdom/layout/frame-024.webp",
+        "bytes": 669918,
+        "sha256": "93e36deea6438fa2683b7dd0154712b1f85097758a5d5c104c92f2aa4b1e0d41",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 25,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 25,
+        "path": "catalog/assets/lego-kingdom/layout/frame-025.webp",
+        "bytes": 663050,
+        "sha256": "845e9e18912772fa5bf49d6e8acfe77b1036f29e2f74f9684aca6a69a5a96a87",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 26,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 26,
+        "path": "catalog/assets/lego-kingdom/layout/frame-026.webp",
+        "bytes": 667808,
+        "sha256": "24f2d91be5f3ca646bbc505e983130e56d7c41f9f5a4b3558661eb6923d4f080",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 27,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 27,
+        "path": "catalog/assets/lego-kingdom/layout/frame-027.webp",
+        "bytes": 669066,
+        "sha256": "19b497536d8087cc7a870e63af9a2e6561847da4700205bedc256c7f7fd68184",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 28,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 28,
+        "path": "catalog/assets/lego-kingdom/layout/frame-028.webp",
+        "bytes": 680984,
+        "sha256": "113e6d397d2deb9c8455e398d0a3b008d66312edf9e87734331047ae7eb7ebde",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 29,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 29,
+        "path": "catalog/assets/lego-kingdom/layout/frame-029.webp",
+        "bytes": 674272,
+        "sha256": "aca54d98dd2475b41e6c3f0156a582b9b91745d01094052c2526cb3822469328",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 30,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 30,
+        "path": "catalog/assets/lego-kingdom/layout/frame-030.webp",
+        "bytes": 680068,
+        "sha256": "f68497ac393c7ccd88847fe24b171b70119cda04461d33d82748fc8e65a88859",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 31,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 31,
+        "path": "catalog/assets/lego-kingdom/layout/frame-031.webp",
+        "bytes": 679644,
+        "sha256": "bcbcd40b554f72deab36a496cab2131e60a2b54b751b0df29f8d4f1956e91bdb",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 32,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 32,
+        "path": "catalog/assets/lego-kingdom/layout/frame-032.webp",
+        "bytes": 692548,
+        "sha256": "951fee3797e0d8f7372effda1a942cc744a276edb7a700e1398f679092ab61c3",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 33,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 33,
+        "path": "catalog/assets/lego-kingdom/layout/frame-033.webp",
+        "bytes": 685080,
+        "sha256": "ede557b3f991b446320b0624833c697eccafa5473fe131cd73ba5a1e3f5c8f10",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 34,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 34,
+        "path": "catalog/assets/lego-kingdom/layout/frame-034.webp",
+        "bytes": 689592,
+        "sha256": "0160e6c47894a29d991864d6ab52ddaa73d56d2d87afc945558755909de19bb7",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 35,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 35,
+        "path": "catalog/assets/lego-kingdom/layout/frame-035.webp",
+        "bytes": 690352,
+        "sha256": "2eece4fd7ccb034baf150454a1f2f8be82a7e015781e980b8f73978b008b6eca",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 36,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 36,
+        "path": "catalog/assets/lego-kingdom/layout/frame-036.webp",
+        "bytes": 702582,
+        "sha256": "346f13b2e9acc1e76a0fd043e4a8006798d85bf05f31fe50f35146b319090d2c",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 37,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 37,
+        "path": "catalog/assets/lego-kingdom/layout/frame-037.webp",
+        "bytes": 694756,
+        "sha256": "96aae75da586e8d5daf20f6ebdfb4d421ae660c8d7fecc0d9ee69f8a302cb770",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 38,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 38,
+        "path": "catalog/assets/lego-kingdom/layout/frame-038.webp",
+        "bytes": 699408,
+        "sha256": "8026ac8b6063dd97f0e557b4552eeb0538ca180f7b00bc34322cc025edede38e",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 39,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 39,
+        "path": "catalog/assets/lego-kingdom/layout/frame-039.webp",
+        "bytes": 699010,
+        "sha256": "7bfe1cbef078410ea4b798821495903d6f11b9228e2063b20d7797a0b7ab3eea",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 40,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 40,
+        "path": "catalog/assets/lego-kingdom/layout/frame-040.webp",
+        "bytes": 712272,
+        "sha256": "8a809b6a3ed3ebfaba9522130f0875227593d15abfb36f0f5c11947587370af9",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 41,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 41,
+        "path": "catalog/assets/lego-kingdom/layout/frame-041.webp",
+        "bytes": 703618,
+        "sha256": "cdd8c69cbc54c4f3ff3c510b0e38cf51fc2e3651368386836ac68923ae9e6ee7",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 42,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 42,
+        "path": "catalog/assets/lego-kingdom/layout/frame-042.webp",
+        "bytes": 707320,
+        "sha256": "73d9109bdde0dc36af9596704e86b0e7de8b89535b68e127736456f3a9a1554f",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 43,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 43,
+        "path": "catalog/assets/lego-kingdom/layout/frame-043.webp",
+        "bytes": 706898,
+        "sha256": "4c5ec933b4a4930899b01e46e4905e21b420ba620f302f2969da74aa33979e00",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 44,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 44,
+        "path": "catalog/assets/lego-kingdom/layout/frame-044.webp",
+        "bytes": 718934,
+        "sha256": "8ccf308b91530358523e286b85ec20587517b103a8c5644b917045d08a8b3a17",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 45,
+        "source": "video/public/shots/recording4/layout-clean-white-4k.mp4",
+        "sourceFrame": 45,
+        "path": "catalog/assets/lego-kingdom/layout/frame-045.webp",
+        "bytes": 708946,
+        "sha256": "4f6d5163e13aaf0726ee5ad535a8dd2e976b17d61949507a98732a99ffb0f7e7",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 46,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 0,
+        "path": "catalog/assets/lego-kingdom/layout/frame-046.webp",
+        "bytes": 1092274,
+        "sha256": "ddcbb2591a31bd2557ccf92f440c06abf81a232b7fc82c67a178ff3826b9cb06",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 47,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 1,
+        "path": "catalog/assets/lego-kingdom/layout/frame-047.webp",
+        "bytes": 1085328,
+        "sha256": "8ea67187b37d1557f7757f708f9b32849db8bc8698c21aee41d21470c58b63f7",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 48,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 2,
+        "path": "catalog/assets/lego-kingdom/layout/frame-048.webp",
+        "bytes": 1092182,
+        "sha256": "88ae7c5994e6d4d392dcdc3b7a52f16e560f59660fc1dab23809f98aec0f76b5",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 49,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 3,
+        "path": "catalog/assets/lego-kingdom/layout/frame-049.webp",
+        "bytes": 1088922,
+        "sha256": "2ea048b7fe859a71e1e6d5ef0ef9b87df24b0876b3a2418e53e31c27c56ba7b6",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 50,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 4,
+        "path": "catalog/assets/lego-kingdom/layout/frame-050.webp",
+        "bytes": 1103268,
+        "sha256": "b7aebb440f9bae8a3d25542d8a7d708c4c90735b8b1fe2b813c64cddd772652d",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 51,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 5,
+        "path": "catalog/assets/lego-kingdom/layout/frame-051.webp",
+        "bytes": 1092488,
+        "sha256": "c150f84287d924e6faf315a79c1d4e8a096b10a4612136969c65130158875050",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 52,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 6,
+        "path": "catalog/assets/lego-kingdom/layout/frame-052.webp",
+        "bytes": 1097300,
+        "sha256": "778b23fbdeba4fa064e2195c6e7d0ad33576940b2f2f36524432866ca2cef061",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 53,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 7,
+        "path": "catalog/assets/lego-kingdom/layout/frame-053.webp",
+        "bytes": 1095738,
+        "sha256": "c8729737797505fa8e02bd23399c2cfcb4c2ee56f2c906961308710e316a32bb",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 54,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 8,
+        "path": "catalog/assets/lego-kingdom/layout/frame-054.webp",
+        "bytes": 1108562,
+        "sha256": "436898949b4b8da992c1dff4b6dabd435a9a7671737325ec902d9fad0a83d998",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 55,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 9,
+        "path": "catalog/assets/lego-kingdom/layout/frame-055.webp",
+        "bytes": 1097552,
+        "sha256": "305721a5eb2bdf345f2aeb9b89d006c695f46c93bd2779a40764aead4e4b1aab",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 56,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 10,
+        "path": "catalog/assets/lego-kingdom/layout/frame-056.webp",
+        "bytes": 1103242,
+        "sha256": "a1f4031b55aa2e720f797b8bb9a21e70dd7d9f8171361ffdc3b613355d2c6251",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 57,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 11,
+        "path": "catalog/assets/lego-kingdom/layout/frame-057.webp",
+        "bytes": 1100496,
+        "sha256": "7e44891a8b8902ded385544a1d57939f0db66ee8dc566f77890fba0d519b8e72",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 58,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 12,
+        "path": "catalog/assets/lego-kingdom/layout/frame-058.webp",
+        "bytes": 1113912,
+        "sha256": "b49a6657a414189dc0de8ec5dde4908acc65f25bbd2aa25ea8a21a32cdc332e2",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 59,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 13,
+        "path": "catalog/assets/lego-kingdom/layout/frame-059.webp",
+        "bytes": 1102448,
+        "sha256": "c1da3746afcd16e10603c74d742f25e695ccfa737a84ac96dc940a7814a96c92",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 60,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 14,
+        "path": "catalog/assets/lego-kingdom/layout/frame-060.webp",
+        "bytes": 1108066,
+        "sha256": "f943d5c6c5d7a526e9e4e4a49101a106793ef82f909ea008b8908551ecd4f56e",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 61,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 15,
+        "path": "catalog/assets/lego-kingdom/layout/frame-061.webp",
+        "bytes": 1105048,
+        "sha256": "e73bc54b050a8702a5cef6e989c41e2b4890220c57fb567be155ff56983e73d1",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 62,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 16,
+        "path": "catalog/assets/lego-kingdom/layout/frame-062.webp",
+        "bytes": 1118352,
+        "sha256": "790dac360d188bcc1691641d7983ce89cf15f2f990bfe493bc3547883193536e",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 63,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 17,
+        "path": "catalog/assets/lego-kingdom/layout/frame-063.webp",
+        "bytes": 1106832,
+        "sha256": "94612990ef4104cb518c2c53d5986dc2da6cd4f5cd77f7f2bd04f900f2436dab",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 64,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 18,
+        "path": "catalog/assets/lego-kingdom/layout/frame-064.webp",
+        "bytes": 1113708,
+        "sha256": "d501e4c6e80dda24d44d081792f202a2b6abf6674cb80442c3276c35d8ae7355",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 65,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 19,
+        "path": "catalog/assets/lego-kingdom/layout/frame-065.webp",
+        "bytes": 1109088,
+        "sha256": "1ebcc32e3d7ad3e9af914e9e6c68d4461d369a22234fe81eeac7a818fce3613b",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 66,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 20,
+        "path": "catalog/assets/lego-kingdom/layout/frame-066.webp",
+        "bytes": 1123814,
+        "sha256": "790227fbf1f50d587b6534133545a368784dc2f06d06b34bb0597751c31cb1a9",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 67,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 21,
+        "path": "catalog/assets/lego-kingdom/layout/frame-067.webp",
+        "bytes": 1111138,
+        "sha256": "455e6ef24780cb558ef68871debff7f5c84e8b0b4efb04aabb0ed56ea8478f37",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 68,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 22,
+        "path": "catalog/assets/lego-kingdom/layout/frame-068.webp",
+        "bytes": 1117704,
+        "sha256": "4c8491847fe0c7270edd9779e954d57c65e0745ba5c5bfdc1193efb44437ccf5",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 69,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 23,
+        "path": "catalog/assets/lego-kingdom/layout/frame-069.webp",
+        "bytes": 1113764,
+        "sha256": "4b817fb4140d0489e7fd04ae07eb96f24fd94d8398a2cbf9229f5344a49a693a",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 70,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 24,
+        "path": "catalog/assets/lego-kingdom/layout/frame-070.webp",
+        "bytes": 1127668,
+        "sha256": "ac0703909f6f4d005e2122d27c58a5a1b4d386e2914bb0da68f4d093b1317112",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 71,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 25,
+        "path": "catalog/assets/lego-kingdom/layout/frame-071.webp",
+        "bytes": 1115360,
+        "sha256": "0cc0e2bd5f607729c11ba1490b07d1353c6c2627ffa0efcad981c855d8b7185d",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 72,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 26,
+        "path": "catalog/assets/lego-kingdom/layout/frame-072.webp",
+        "bytes": 1122366,
+        "sha256": "dbc607af04698831187cc399aa32143103c340a9dd0058f63b82a3e68017ecfc",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 73,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 27,
+        "path": "catalog/assets/lego-kingdom/layout/frame-073.webp",
+        "bytes": 1118706,
+        "sha256": "05eda39c97e8920f1c5c935cf800518c26ec1f06774d2ca5ae65b30f9a40b2b1",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 74,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 28,
+        "path": "catalog/assets/lego-kingdom/layout/frame-074.webp",
+        "bytes": 1133462,
+        "sha256": "09f8e757453716d7cbdd5d1d5de787c2e5e3ea738b93f171ad0db1961ef0a1ed",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 75,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 29,
+        "path": "catalog/assets/lego-kingdom/layout/frame-075.webp",
+        "bytes": 1121192,
+        "sha256": "31339c4bd1141eb83a5e5e68710d31272291a9589776fcb66821aedf8f2baa29",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 76,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 30,
+        "path": "catalog/assets/lego-kingdom/layout/frame-076.webp",
+        "bytes": 1127526,
+        "sha256": "696f1f314eb37e8dc822b82481301ae9faf9da01fa3fd5566fe2ddeff7b817b4",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 77,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 31,
+        "path": "catalog/assets/lego-kingdom/layout/frame-077.webp",
+        "bytes": 1123482,
+        "sha256": "3cb78e84908b173ae4b0f717cdeae3c8eb81e74503e5966b374125c4608a80f2",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 78,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 32,
+        "path": "catalog/assets/lego-kingdom/layout/frame-078.webp",
+        "bytes": 1137678,
+        "sha256": "020889fd1383ccdc73385152ee6b0a8bb9218a952c7a8ee810d18a0242700458",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 79,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 33,
+        "path": "catalog/assets/lego-kingdom/layout/frame-079.webp",
+        "bytes": 1125156,
+        "sha256": "e3b8bcf5e774acb7086b8adcc1881f4edbd09c76aa5d99ff919e036699336f8c",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 80,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 34,
+        "path": "catalog/assets/lego-kingdom/layout/frame-080.webp",
+        "bytes": 1132302,
+        "sha256": "14ad44f71015c23b3d0e73ea12582aff15f0c697ce900048f5089f0721627b92",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 81,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 35,
+        "path": "catalog/assets/lego-kingdom/layout/frame-081.webp",
+        "bytes": 1127794,
+        "sha256": "a71120aa3bd0f52d34152b2836f39a2a2368e0df7b5aa7ec7acf584736537243",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 82,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 36,
+        "path": "catalog/assets/lego-kingdom/layout/frame-082.webp",
+        "bytes": 1140666,
+        "sha256": "a0ee2f43963bd7578a908d9e286f6ee0444273c53853f5e4273321c065b30fc7",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 83,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 37,
+        "path": "catalog/assets/lego-kingdom/layout/frame-083.webp",
+        "bytes": 1130944,
+        "sha256": "25cf9117368a868b787f3e48ab89e84a858772e2ccf815a0efa59d0b35b956d6",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 84,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 38,
+        "path": "catalog/assets/lego-kingdom/layout/frame-084.webp",
+        "bytes": 1137056,
+        "sha256": "4bee35c433665cbf1762b557d103f0897c02219af7bde1725d111b25f599a542",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 85,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 39,
+        "path": "catalog/assets/lego-kingdom/layout/frame-085.webp",
+        "bytes": 1132396,
+        "sha256": "a7bbe07c52b6a782a477eaef5fa1c747c3d000c6bf0e1f6a57035e27feb4b21b",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 86,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 40,
+        "path": "catalog/assets/lego-kingdom/layout/frame-086.webp",
+        "bytes": 1145626,
+        "sha256": "cec7c1446e1aa0e9b5499db02fd947ce5a6906e4f398155eca48cbb993e382e8",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 87,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 41,
+        "path": "catalog/assets/lego-kingdom/layout/frame-087.webp",
+        "bytes": 1134388,
+        "sha256": "83a28d9a157c1299d4d3fae489d965b408aab868232a942800b2b54d85a5e564",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 88,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 42,
+        "path": "catalog/assets/lego-kingdom/layout/frame-088.webp",
+        "bytes": 1141464,
+        "sha256": "a7e8623a775d1a7a9ce608d308339632a9df0f0fe603babe476be9048d54b315",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 89,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 43,
+        "path": "catalog/assets/lego-kingdom/layout/frame-089.webp",
+        "bytes": 1136856,
+        "sha256": "a681aa2d353e3164fe79c610f81b2e0b19bc4eff75f1d52f973f0521522b6dc9",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 90,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 44,
+        "path": "catalog/assets/lego-kingdom/layout/frame-090.webp",
+        "bytes": 1146486,
+        "sha256": "73abd0d67ad922b3642aee0e590b3244274dd46e571cd89a037250da71f910f5",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 91,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 45,
+        "path": "catalog/assets/lego-kingdom/layout/frame-091.webp",
+        "bytes": 1136412,
+        "sha256": "a7cf27429ee0794b6326041fcef2ab944c811a5f705a1a64cac79cc04440bcfd",
+        "losslessPixelMatch": true
+      },
+      {
+        "frame": 92,
+        "source": "video/public/shots/recording4/layout-alternate-4k.mp4",
+        "sourceFrame": 46,
+        "path": "catalog/assets/lego-kingdom/layout/frame-092.webp",
+        "bytes": 1139910,
+        "sha256": "9df32d1b07621ab300f412f8a09db08c87dd59f4737fe78bde072852b907ca86",
+        "losslessPixelMatch": true
+      }
+    ]
+  }
+}

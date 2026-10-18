@@ -73,18 +73,22 @@ test('汽车轮毂、方向盘和轻微起伏逐时刻对照原驾驶曲线',asy
  vm.runInContext(await readFile(scenes+'xiaokui-balloon-drive/xiaokui-car.js','utf8'),o);
  vm.runInContext(await readFile(scenes+'xiaokui-balloon-drive/scene.js','utf8')+'\nglobalThis.motion={driveDistance,vehicleBob,xiaokuiSteering,CAR_SCALE};',o);
  const env=await environment();try{
-  const {w}=env,root=w.document.getElementById('root'),e=def('drive-car-illustration'),draw=w.MotionFactories[e.id](root,w.MotionKit,e),frames=[];
-  for(const t of [0,.3,.6,1.4,2.5,3,.6]){
-   draw(t*1000);const transforms=[...root.querySelectorAll('path')].map(n=>n.getAttribute('transform'));
-   for(const center of [426,976]){
-    const path=transforms.find(value=>value.includes(`translate(${center} 1078)`));
-    const angle=+path.match(new RegExp(`translate\\(${center} 1078\\) rotate\\(([^)]+)`))[1];
-    near(angle,o.motion.driveDistance(t)/o.motion.CAR_SCALE/(96*.52)*180/Math.PI);
-   }
-   const driver=transforms.find(value=>value.includes('translate(763 854) rotate('));
-   near(+driver.match(/translate\(763 854\) rotate\(([^)]+)/)[1],o.motion.xiaokuiSteering(t)*.55*180/Math.PI);
-   near(+transforms[0].match(/translate\(320 ([^)]+)/)[1],260+o.motion.vehicleBob(t));frames.push(frameMarkup(root));
-  }assert.equal(frames[2],frames[6]);assert.ok(new Set(frames).size>4);
+  const {w}=env,root=w.document.getElementById('root');
+  for(const id of ['drive-car-illustration','rolling-distance']){
+   const e=def(id),draw=w.MotionKit.createRenderer(root,e),frames=[];
+   for(const t of [0,.3,.6,1.4,2.5,3,.6]){
+    draw(t*1000);const transforms=[...root.querySelectorAll('path')].map(n=>n.getAttribute('transform'));
+    for(const center of [426,976]){
+     const path=transforms.find(value=>value.includes(`translate(${center} 1078)`));
+     const angle=+path.match(new RegExp(`translate\\(${center} 1078\\) rotate\\(([^)]+)`))[1];
+     near(angle,o.motion.driveDistance(t)/o.motion.CAR_SCALE/(96*.52)*180/Math.PI);
+    }
+    const driver=transforms.find(value=>value.includes('translate(763 854) rotate('));
+    near(+driver.match(/translate\(763 854\) rotate\(([^)]+)/)[1],o.motion.xiaokuiSteering(t)*.55*180/Math.PI);
+    near(+transforms[0].match(/translate\(320 ([^)]+)/)[1],260+o.motion.vehicleBob(t));frames.push(frameMarkup(root));
+   }assert.equal(frames[2],frames[6]);assert.ok(new Set(frames).size>4);
+   draw.destroy?.();
+  }
  }finally{env.close();}
 });
 function strokeContext(){
@@ -98,8 +102,8 @@ test('蒲公英插画与 scenes 原作逐笔一致，整体等比缩放不单改
  assert.match(isolated,/function seed\([^\n]+floret\(c,0,0,35,/, '独立种子的来源调用已变化，需要重新对照');
  const env=await environment();try{
   const {w}=env,root=w.document.getElementById('root'),e=def('dandelion-radial-release'),render=w.MotionFactories[e.id](root,w.MotionKit,e);for(const ms of [0,249,250,400,800,1000,400]){render(ms);near(+root.firstElementChild.dataset.radius,j.openingEvent(1.4+ms/1000).radius);}
-  for(const id of ['dandelion-subject-illustration','dandelion-seed-illustration']){
-   const ar=w.document.createElement('div'),draw=w.MotionFactories[id](ar,w.MotionKit,def(id)),subject=id.includes('subject'),frames=[];
+  for(const id of ['dandelion-subject-illustration','dandelion-seed-illustration','pivot-swing']){
+   const ar=w.document.createElement('div'),draw=w.MotionKit.createRenderer(ar,def(id)),subject=id.includes('subject'),frames=[];
    for(const ms of [0,450,1200,2500,3000,1200]){
     draw(ms);const ctx=strokeContext();
     if(subject){

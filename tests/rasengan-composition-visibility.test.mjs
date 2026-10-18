@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {environment,data} from './helpers.mjs';
 
-const ids=['energy-discharge-journey','ring-sphere-journey','ring-construction-journey','mushroom-sphere-journey'];
+const ids=['energy-discharge-journey','ring-sphere-journey','mushroom-sphere-journey'];
 test('能量球和环涡组合进入拆解图层后仍保持完整画板尺寸',async()=>{
  const env=await environment(),{w}=env,root=w.document.getElementById('root');root.className='motion-stage';
  try{

@@ -14,7 +14,7 @@
 现实类比：六张苹果空间黑银玻璃卡侧转展开，音乐、天气和控制中心依次向前，凸泡放大短信文字后收成字标。
 需要保留：1066×600设计画板，完整组合7.2秒。针孔透视焦距1250；每卡绕三轴旋转，前后表面相距10像素；8×6网格投影正面，圆角侧壁真实连接；按相机空间深度由远到近绘制。1.05–1.9秒音乐，1.9–2.75秒天气，2.75–3.6秒控制中心，3.6–4.4秒六卡展开，4.4–5.35秒短信卡接回，5.35–6.3秒凸泡折射与退场，6.3–7.2秒字标收尾。每次交接约0.5秒，以连续平滑曲线连接，展示阶段轻微漂移；各卡相差16毫秒进入，无反复回弹和镜头顶动。字标使用“字色依次轮换”中的 Oswald Bold 原生轮廓；WISE 与 MOTION 同一字重、56像素大写高度、同一基线，字距按参考字标的负20字体单位缩放。两个 O 均采用字体本身轮廓，凸泡在首个 O 的真实中心淡出。 Siri 空间卡从左向右进场并显示监听波形；音乐封面三圈涟漪以1.35秒周期向外扩散并淡出，前景时增强，进度同步推进；控制面板亮度先由32%升至86%再回74%，音量稍后由18%升至66%再回46%；蓝牙保持竖直中轴与交叉双三角。四条短信从4.28秒起按0.25秒间隔逐条逐字输出，每条0.21秒。
 明确排除：不使用平面剪切冒充透视，不将六张卡压成平铺列表，不引入紫绿青配色，不增加凸泡深色内圈、整圈描边或外部网络素材。 界面统一采用苹果空间风格；对话使用短信或 Siri，不使用创作助手对话。
-对应参考：本地目录「玻璃卡片显现折射」；所用动作：弥散光团流动、透光卡片错层、凸泡伸缩折射、Siri 空间卡、短信空间卡、系统设置空间卡、音乐空间卡、天气空间卡、控制中心空间卡
+对应参考：本地目录「玻璃卡片显现折射」；所用动作：柔光缓慢流动、玻璃卡片交错穿行、玻璃伸缩折射、Siri 空间卡、短信空间卡、系统设置空间卡、音乐空间卡、天气空间卡、控制中心空间卡
 源码：catalog/effects/glass-light.js 中的 glass-interface-sequence
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：以苹果空间界面为统一视觉参考；六张卡全部独立绘制，短信内容、天气和音乐信息为固定演示数据。
@@ -33,6 +33,6 @@
 - 效果参考 [Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)。
 - 基于本项目六张黑银卡、背景、凸泡像素采样和字标绘制重新编排；空间投影、圆角侧壁与镜头交接为自编实现，无第三方媒体。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[弥散光团流动](diffuse-light-drift.md)、[透光卡片错层](glass-card-stagger.md)、[凸泡伸缩折射](convex-glass-lens.md)、[Siri 空间卡](glass-voice-card-illustration.md)、[短信空间卡](glass-dialogue-card-illustration.md)、[系统设置空间卡](glass-control-card-illustration.md)、[音乐空间卡](glass-music-card-illustration.md)、[天气空间卡](glass-weather-card-illustration.md)、[控制中心空间卡](glass-controls-card-illustration.md)。
+所用动作：[柔光缓慢流动](diffuse-light-drift.md)、[玻璃卡片交错穿行](glass-card-stagger.md)、[玻璃伸缩折射](convex-glass-lens.md)、[Siri 空间卡](glass-voice-card-illustration.md)、[短信空间卡](glass-dialogue-card-illustration.md)、[系统设置空间卡](glass-control-card-illustration.md)、[音乐空间卡](glass-music-card-illustration.md)、[天气空间卡](glass-weather-card-illustration.md)、[控制中心空间卡](glass-controls-card-illustration.md)。
 
 补充效果参考：[Apple 液态玻璃设计](https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/)。

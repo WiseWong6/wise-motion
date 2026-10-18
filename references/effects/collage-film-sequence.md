@@ -14,7 +14,7 @@
 现实类比：把一座纸上机械工坊启动，让人物跑过纸台，最后重新拼成一张品牌海报。
 需要保留：14秒完整三段结构、每秒12格、纸白炭黑朱红配色、纸面纤维与网点；保留圆孔和斜切两次转场以及末尾两秒定格。
 明确排除：不缩短为单段文字入场，不替换成视频播放，不添加音轨，不去掉折尺、受力纸台和碎片归位。
-对应参考：本地目录「剪贴联动与海报归位」；所用动作：字片折落归位、曲柄牵引联动、连节折尺展开、折纸支架受力回弹、剪影跑动与弹离、碎片散开归位
+对应参考：本地目录「剪贴联动与海报归位」；所用动作：纸片文字翻落、连杆带动转轮、逐节展开、折纸受压回弹、剪影助跑翻跃、碎片散开归位
 源码：catalog/effects/collage-film.js 中的 collage-film-sequence
 来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：1600×900设计坐标等比呈现在640×360逻辑画板；纸白、炭黑与少量朱红；字片用本地Oswald粗体字形。
@@ -33,4 +33,4 @@
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
 - 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[字片折落归位](cutout-type-fold.md)、[曲柄牵引联动](crank-linked-turn.md)、[连节折尺展开](joint-rule-unfold.md)、[折纸支架受力回弹](folded-step-rebound.md)、[剪影跑动与弹离](cutout-stride-leap.md)、[碎片散开归位](scraps-return-layout.md)。
+所用动作：[纸片文字翻落](cutout-type-fold.md)、[连杆带动转轮](crank-linked-turn.md)、[逐节展开](joint-rule-unfold.md)、[折纸受压回弹](folded-step-rebound.md)、[剪影助跑翻跃](cutout-stride-leap.md)、[碎片散开归位](scraps-return-layout.md)。

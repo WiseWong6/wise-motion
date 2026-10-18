@@ -333,7 +333,7 @@ registerRoot(Root);
   function catalogCode(effect, settings = {}) {
     effect = global.MotionKit.resolveVariant(effect, settings.variantId || effect.variant_id);
     if(settings.content!==undefined||effect.content!==undefined)effect=global.MotionContent.withContent(effect,settings.content===undefined?effect.content:settings.content);
-    const definition = {id:effect.id, duration_ms:effect.duration_ms, loop:effect.loop, default_ease:effect.default_ease, parameters:effect.parameters};
+    const definition = {id:effect.id, name:effect.name, duration_ms:effect.duration_ms, loop:effect.loop, default_ease:effect.default_ease, parameters:effect.parameters};
     const hasAudio=effect.kind==='composition'&&Boolean(effect.audio?.tracks?.length);
     const nativeScene=Boolean(effect.source.frame_cache);
     if(hasAudio||nativeScene)Object.assign(definition,effect);
@@ -343,6 +343,7 @@ registerRoot(Root);
     if(effect.variant_id)definition.variant_id=effect.variant_id;
     if(effect.content){definition.content=effect.content;definition.content_slots=effect.content_slots;}
     if(effect.timing)definition.timing=effect.timing;
+    if(effect.aboutlove)definition.aboutlove=effect.aboutlove;
     if(effect.id==='dither-lab-book' && settings.bookSettings)definition.paper_settings=settings.bookSettings;
     const speed = Math.min(2, Math.max(.5, Number(settings.speed) || 1));
     const ease = effect.parameters.ease?.options.includes(settings.ease) ? settings.ease : effect.default_ease;

@@ -32,7 +32,7 @@ function original(scene,t){
  const ctx={globalAlpha:1,globalCompositeOperation:'source-over',save(){stack.push({fillStyle:this.fillStyle,strokeStyle:this.strokeStyle,globalAlpha:this.globalAlpha,lineWidth:this.lineWidth,globalCompositeOperation:this.globalCompositeOperation});},restore(){Object.assign(this,stack.pop());},
   beginPath(){path=[];},roundRect(...v){path.push(['roundRect',...v]);},arc(...v){path.push(['arc',...v]);},moveTo(...v){path.push(['M',...v]);},lineTo(...v){path.push(['L',...v]);},bezierCurveTo(...v){path.push(['C',...v]);},
   fill(){fills.push({path:[...path],fill:this.fillStyle,alpha:this.globalAlpha});},stroke(){strokes.push({path:[...path],stroke:this.strokeStyle,width:this.lineWidth,alpha:this.globalAlpha});},
-  fillRect(...v){rects.push({v,fill:this.fillStyle,alpha:this.globalAlpha,operation:this.globalCompositeOperation});},
+  fillRect(...v){rects.push({v,fill:this.fillStyle,alpha:this.globalAlpha,operation:this.globalCompositeOperation,transforms:transforms.slice()});},
   clip(){},translate(...v){transforms.push(['translate',...v]);},rotate(...v){transforms.push(['rotate',...v]);},scale(...v){transforms.push(['scale',...v]);},strokeText(){},fillText(){},setLineDash(){},rect(...v){path.push(['rect',...v]);},strokeRect(){}
  };
  const sandbox={ctx,W:1920,H:1080,VERT:false,TAU:Math.PI*2,S:shared.window.SHARED,F:{avenir:'Avenir',mono:'Menlo'},txt(s,x,y,o){labels.push({s,x,y,...o,alpha:o.alpha??1});},revealChars(s,x,y,t,o){reveals.push({s,x,y,t,...o});},setFont(){},typeOn(){}};
@@ -170,22 +170,37 @@ test('组合与独立动作复用实际图形，来源时钟只平移且控件�
 });
 
 
-test('手机组合补齐原位装饰、年份标题与四词条，独立动作共用同一图层',async()=>{
+test('手机组合保留原位装饰、年份标题与四词条，文字动作共用同一图层',async()=>{
  const env=await setup();try{const w=env.w,d=w.document,root=d.getElementById('root'),combo=w.MotionRuntime.create(root,definition('material-phone-sequence'));
-  const isolated=d.createElement('div'),single=w.MotionRuntime.create(isolated,definition('title-stagger','material')),shapesRoot=d.createElement('div'),shape=w.MotionRuntime.create(shapesRoot,definition('shape-pop-float'));
+  const isolated=d.createElement('div'),single=w.MotionRuntime.create(isolated,definition('title-stagger','material'));
   const clean=n=>n.outerHTML.replace(/motion-flat(?:-labels)?-\d+/g,'fixed-id');
   assert.equal(root.querySelector('[data-display]').getAttribute('transform'),'','手机必须回到原右列位置，为左文案留位');
   for(const t of [3,3.35,3.72,4.12,4.52,5.18,5.48]){
-   combo.seek((t-3)*1000);single.seek((t-3)*1000);shape.seek((t-3)*1000);
+   combo.seek((t-3)*1000);single.seek((t-3)*1000);
    assert.equal(clean(root.querySelector('[data-layer="labels"]')),clean(isolated.querySelector('[data-layer="labels"]')));
-   assert.equal(clean(root.querySelector('[data-layer="shapes"]')),clean(shapesRoot.querySelector('[data-layer="shapes"]')));
    const ref=original('flat',t),rows=[...root.querySelectorAll('[data-title-layer="material-title"] [data-label-row]')];
    assert.equal(rows.length,3);rows.forEach((row,k)=>{const r=ref.reveals[k];assert.equal(row.textContent,r.s);[...row.querySelectorAll('text')].forEach((n,i)=>{const u=Math.max(0,Math.min(1,(t-r.start-i*r.stagger)/(r.dur||.7))),p=k===0?1+2.70158*(u-1)**3+1.70158*(u-1)**2:u>=1?1:1-2**(-10*u);near(+n.getAttribute('y'),r.y+(1-p)*r.size*1.1);assert.equal(n.getAttribute('fill'),r.color);near(+n.getAttribute('font-size'),[192,72,36][k]);});});
    [...root.querySelectorAll('[data-material-word]')].forEach((node,i)=>{const r=ref.labels.find(x=>x.s.startsWith('0'+(i+1)+'   ')),shown=+node.getAttribute('opacity')>0;assert.equal(shown,!!r);if(r){const label=node.querySelector('text');assert.equal(label.textContent,r.s);near(+label.getAttribute('x'),r.x);near(+label.getAttribute('y'),r.y);const u=Math.max(0,Math.min(1,(t-4.4-i*.16)/.6)),p=u>=1?1:1-2**(-10*u);near(+node.getAttribute('opacity'),p);near(numbers(node.getAttribute('transform'))[0],(1-p)*-40);}});
   }
   assert.equal(isolated.querySelectorAll('[data-phone-rig],[data-shape]').length,0,'文字子动作不创建手机或装饰节点');
   assert.ok([...isolated.querySelectorAll('text')].every(n=>n.getAttribute('font-family')==='Oswald,sans-serif'&&n.getAttribute('font-weight')==='700'));
-  const frame=isolated.innerHTML;single.seek(0);single.seek(2480);assert.equal(isolated.innerHTML,frame);single.destroy();shape.destroy();combo.destroy();
+  const frame=isolated.innerHTML;single.seek(0);single.seek(2480);assert.equal(isolated.innerHTML,frame);single.destroy();combo.destroy();
+ }finally{env.close();}
+});
+
+test('手机组合装饰保持原图形、位置、错峰与漂浮公式，不恢复独立动作',async()=>{
+ const env=await setup();try{const w=env.w,root=w.document.getElementById('root'),combo=w.MotionRuntime.create(root,definition('material-phone-sequence'));
+  assert.equal(Object.hasOwn(w.MotionFactories,'shape-pop-float'),false);
+  assert.equal(root.querySelectorAll('[data-layer="shapes"] [data-shape]').length,3);
+  for(const ms of [0,100,250,300,350,500,700,750,1000,1600,3000,5000]){
+   combo.seek(ms);const ref=original('flat',3+ms/1000),disc=ref.fills.find(v=>v.fill==='#ffc93c'&&v.path[0]?.[0]==='arc'),ring=ref.strokes.find(v=>v.stroke==='#1fb5a8'),square=ref.rects.find(v=>v.fill==='#ff9aa2');
+   const d=root.querySelector('[data-shape="disc"]'),r=root.querySelector('[data-shape="ring"]'),s=root.querySelector('[data-shape="square"]');
+   for(const [k,i]of [['cx',1],['cy',2],['r',3]]){near(+d.getAttribute(k),disc.path[0][i]);near(+r.getAttribute(k),ring.path[0][i]);}
+   assert.equal(d.getAttribute('fill'),disc.fill);assert.equal(r.getAttribute('fill'),'none');assert.equal(r.getAttribute('stroke'),ring.stroke);near(+r.getAttribute('stroke-width'),ring.width);
+   assert.equal(s.getAttribute('fill'),square.fill);for(const [i,k]of ['x','y','width','height'].entries())near(+s.getAttribute(k),square.v[i]);
+   const pose=numbers(s.getAttribute('transform')),translation=square.transforms.at(-2),rotation=square.transforms.at(-1);near(pose[0],translation[1]);near(pose[1],translation[2]);near(pose[2]*Math.PI/180,rotation[1]);
+  }
+  const snapshot=root.innerHTML;combo.seek(0);combo.seek(5000);assert.equal(root.innerHTML,snapshot);combo.destroy();assert.equal(w.MotionRuntime.instanceCount,0);
  }finally{env.close();}
 });
 

@@ -42,8 +42,6 @@ node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion
 ```jsx
 <WiseMotionEffect effectId="word-slam" content={{words: ['开始', '聚焦', '完成']}} />
 <WiseMotionEffect effectId="type-reveal" content={{text: '让想法动起来'}} />
-<WiseMotionEffect effectId="count-up" content={{value: 1000000, format: 'compact', suffix: ' tokens'}} />
-<WiseMotionEffect effectId="count-up" content={{value: 1, prefix: 'NO.'}} />
 <WiseMotionEffect effectId="terminal-code" variantId="default" content={{
   title: '创作终端',
   lines: [[['const ', 'muted'], ['idea = "新画面";', 'teal']], [['render(idea);', 'ink']]],
@@ -54,15 +52,14 @@ node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion
 | --- | --- |
 | 撞字 `word-slam` | `words`：1–8 项，每项最多 16 字；保留切词节拍，少于八词时停在末词 |
 | 逐字显现 `type-reveal` | `text`：最多 13 字，保证原打字时钟内完成；自动适配字宽 |
-| 计数 `count-up` | `value` 目标数、`from` 起点（均为 ±1 万亿内有限数字）、`prefix`/`suffix`（各最多 16 字）、`caption`（最多 44 字）、`decimals`（0–6）、`format` |
 | 代码终端 `terminal-code/default` | `title` 最多 32 字；`lines` 1–3 行，每行最多 60 字，由 `[文字, 色调]` 对组成，色调仅 `ink`、`muted`、`teal`；实际字宽超出最小字号承载范围仍会报错 |
 | 日志终端 `terminal-code/command-log` | `title` 最多 40 字；`lines` 必须九行纯文字，首行最多 20 字、其他行最多 40 字；保留原先后顺序、调试状态、成功状态和颜色 |
 
 标题卡片、错峰卡片、词语强调、百分比柱图、时间轴、按钮反馈和粒子聚字也支持自定义内容，字段与数量见 [内容覆盖表](references/quickstart.md#内容覆盖与边界)。默认值、记录字段和字数限制用 `show.mjs <id> --details` 查看。
 
-`transparent={true}` 的候选为逐字显现、计数、词语强调，使用时还须通过对当前源码有效的透明审计；过期记录会被拒绝。此属性关闭页面外壳的底色、暗角和颗粒；具体取用见 [内容与透明背景](references/quickstart.md#内容与透明背景)。
+`transparent={true}` 的候选为逐字显现、词语强调，使用时还须通过对当前源码有效的透明审计；过期记录会被拒绝。此属性关闭页面外壳的底色、暗角和颗粒；具体取用见 [内容与透明背景](references/quickstart.md#内容与透明背景)。
 
-数字格式 `integer` 为整数（小数位须为 0），`decimal` 固定小数位，`thousands` 加英文千分位，`compact` 使用 K/M/B/T。内容对象不接受未登记字段、换行和控制字符。不支持的动效传入非空内容会报错，不会静默忽略。内容槽没有通用字体或颜色参数；中文使用包内思源黑体，纯英文/数字使用 Oswald，罕见字符另行核对。
+内容对象不接受未登记字段、换行和控制字符。不支持的动效传入非空内容会报错，不会静默忽略。内容槽没有通用字体或颜色参数；中文使用包内思源黑体，纯英文/数字使用 Oswald，罕见字符另行核对。
 
 用 `show.mjs <id> --variant <样式 id> --details` 查看当前样式的内容默认值、限制和真实绘制路径；通过组件 `content` 传入即可。`export.mjs` 写出目录复制功能提供的工程或组件示例，见 [快速上手](references/quickstart.md)。
 

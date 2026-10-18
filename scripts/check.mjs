@@ -102,13 +102,19 @@ for (const e of data.effects) {
 }
 const factories = {}; const context = vm.createContext({MotionFactories: factories});
 for (const file of files) vm.runInContext(await read(file), context, {filename:file});
-const drawings=data.effects.flatMap(e=>[e,...(e.variants||[]).map(({id,label,...fields})=>({...e,...fields}))]);
+const drawings=data.effects.flatMap(e=>[resolveEffect(e),...(e.variants||[]).map(v=>resolveEffect(e,v.id))]);
 assert.deepEqual(Object.keys(factories).sort(), [...new Set(drawings.map(x => x.source.factory))].sort());
 assert.ok(Object.values(factories).every(x => typeof x === 'function'));
 for(const e of drawings){
   const source=e.source,owner=data.effects.find(x=>x.id===source.factory);
-  assert.ok(owner,e.id+' 的绘制入口未登记');
-  if(source.factory!==e.id){
+  if(!owner){
+    // A variant may register its own painter without creating a duplicate
+    // catalog entry. The owner must explicitly declare that exact factory.
+    const variant=data.effects.find(x=>x.id===e.id)?.variants?.find(v=>v.id===e.variant_id);
+    assert.ok(variant?.source?.factory===source.factory,e.id+' 的示例绘制入口未登记');
+    const owners=new Set(drawings.filter(x=>x.source.factory===source.factory).map(x=>x.id));
+    assert.equal(owners.size,1,e.id+' 的独立示例绘制入口被其他条目复用');
+  }else if(source.factory!==e.id){
     assert.equal(owner.source.path,source.path,e.id+' 的共享绘制来源不一致');
     assert.ok(owner.kind==='illustration'&&owner.actions.includes(e.id),e.id+' 未与源插画关联');
   }
@@ -173,13 +179,14 @@ assert.equal(historical.recipes.length+historical.excluded.length+historical.mer
 assert.equal(new Set(historical.recipes.map(x=>x.id)).size,0);
 assert.ok(historical.recipes.every(r=>r.entries.length&&r.source_clock&&r.source_parameters&&r.review.preserve.length));
 const extractSources=(await readdir(path.join(root,'catalog/remotion/reel-extract'))).filter(name=>/\.(jsx|js|mjs)$/.test(name)).map(name=>'catalog/remotion/reel-extract/'+name);
-const ownFiles = [...extractSources,'catalog/runtime.js','catalog/history-runtime.js','catalog/history.css','catalog/export.js','catalog/dropdown.js','catalog/matching.js','catalog/app.js','catalog/app.css','catalog/frame.css','catalog/scenes.css','catalog/book-controls.js','catalog/book-controls.css','catalog/composition-controls.js','catalog/related-preview.js', ...files];
+const legoSources=(await readdir(path.join(root,'catalog/remotion/lego-kingdom'))).filter(name=>/\.(jsx|js|mjs)$/.test(name)).map(name=>'catalog/remotion/lego-kingdom/'+name);
+const ownFiles = [...extractSources,...legoSources,'catalog/runtime.js','catalog/history-runtime.js','catalog/history.css','catalog/export.js','catalog/dropdown.js','catalog/matching.js','catalog/app.js','catalog/app.css','catalog/frame.css','catalog/scenes.css','catalog/book-controls.js','catalog/book-controls.css','catalog/composition-controls.js','catalog/related-preview.js', ...files];
 for (const file of ownFiles) {
   const content = await read(file);
   assert.ok(!/\bfetch\s*\(|\bXMLHttpRequest\b|\bWebSocket\b|\bEventSource\b|\bimport\s*\(|@import\s|url\(\s*["']?(?:https?:|\/\/)/.test(content), '运行时有联网或模块依赖：' + file);
   // React DOM uses random suffixes only for private node/listener property names.
   // Permit these two exact library expressions; all drawing sources remain subject to the full check.
-  const clockSource=file==='catalog/effects/reel-extract.js'
+  const clockSource=['catalog/effects/reel-extract.js','catalog/effects/lego-kingdom.js'].includes(file)
     ? content.replace(/Math\.random\(\)\.toString\(36\)\.slice\(2\)(?=,\w+="__reactFiber\$")/g,'"react-node-key"')
       .replace(/("_reactListening"\+)Math\.random\(\)\.toString\(36\)\.slice\(2\)/g,'$1"react-listener-key"')
     : content;

@@ -4,6 +4,8 @@ Copyright © 2026 Wise Wong. 更新日期：2026 年 10 月 15 日。
 
 本文件统一列明 Wise Motion 的项目许可、作品署名、视觉参考、素材来源与第三方依赖。目录数量见 [目录统计](CATALOG-STATS.md)；逐项来源记录与原许可文件随包保留。
 
+乐高视频保留的二维动作按用户授权从当前完整工作区提取；同机制归入已有条目示例，来源与校验见 [来源记录](catalog/assets/lego-kingdom/SOURCE.json)。随包包含原 Oswald 与 IBM Plex Mono 字体及其 OFL 许可；中文字体仍用思源黑体，不能宣称完全视觉还原。原片录屏框、头像、品牌点阵字、音轨和可编辑三维模型未纳入。引线示例按用户明确要求附原乐高王国两段镜头的无声图像帧，仅获本地接入授权，不声明该项目素材可公开再分发。具体边界见 [说明](catalog/assets/lego-kingdom/README.md)。
+
 本次 Aboutlove 动作与完整组合来自 Wise Wong 提供的自有场景；逐项来源与改动见 [来源记录](catalog/assets/aboutlove/SOURCE.json)，字体原许可和复用限制见 [字体说明](catalog/assets/aboutlove/README.md)。思源、霞鹜文楷、Newsreader 与 Oswald 保留 SIL OFL 1.1；阿里妈妈东方大楷保留其专有免费使用法律声明，并使用官方未经改写的完整网页字体。自有固定时间求值器取代原工程的动画调用，不包含 GSAP 程序。原声仅随完整组合提供，其来源、排程与权利见 [声音来源记录](catalog/assets/composition-audio/aboutlove/SOURCE.json)，录音和音乐不自动适用程序的 Apache-2.0 许可。
 
 ## 一、项目许可与适用范围

@@ -96,7 +96,7 @@ test('组合与各动作示例独立准备资源，任意回拖保持相同绘�
 test('海报闪切与参考节拍一致，独立动作与组合共用同一画面',async()=>{
  const env=await setup();try{
   const {burstStart,burstEnd,sample}=env.w.WiseGeometricPoster;
-  const full=player(env),flash=player(env,definitions[2]),build=player(env,definitions[1]),reference=player(env,by('glitch-band-transition'));
+  const full=player(env),flash=player(env,definitions[2]),build=player(env,definitions[1]),reference=player(env,{...by('glitch-band-transition'),variant_id:'standard'});
   await Promise.all([full.p.ready,flash.p.ready,build.p.ready,reference.p.ready]);
   for(const offset of [0,.02,.03,.05,.1,.15,.2,.25,.3,.35,.4,.43,.45]){
    const pose=sample(burstStart+offset).scene.bandCut;
@@ -140,9 +140,9 @@ test('字体准备期间保留定位与暂停，失败或销毁不留下绘制�
  }finally{still.close();}
 });
 
-test('已有动作默认示例保持原样，新增示例与组合均可离线复制',async()=>{
+test('保留的图形示例与印刷示例均可离线复制',async()=>{
  const env=await setup();try{
-  for(const id of ['rapid-cut','glitch-band-transition','mask-stagger-text']){const {p,root}=player(env,by(id));assert.equal(root.querySelector('canvas'),null);assert.ok(root.querySelector('svg'));p.seek(by(id).preview_ms);p.destroy();}
+  for(const id of ['rapid-cut','glitch-band-transition','mask-stagger-text']){const definition=['rapid-cut','glitch-band-transition'].includes(id)?{...by(id),variant_id:'standard'}:by(id);const {p,root}=player(env,definition);assert.equal(root.querySelector('canvas'),null);assert.ok(root.querySelector('svg'));p.seek(definition.preview_ms);p.destroy();}
   for(const e of definitions){
    const code=env.w.MotionExport.code(e);assert.match(code,/catalog\/effects\/geometric-poster\.js/);assert.doesNotMatch(code,/\/Users\/|state\/wise-motion|src="(?:poster|motion)\.js"/);
    for(const [,resource]of code.matchAll(/(?:src|href)="([^"]+)"/g))assert.ok((await stat(new URL('../'+resource,import.meta.url))).isFile());
@@ -176,7 +176,8 @@ test('旧示例缩略图同步绘制，海报示例等待准备后留下一张�
   for(const e of definitions.slice(2)){
    const start=env.buffers.length;
    const host=env.w.document.createElement('div');env.w.document.body.append(host);
-   env.w.MotionThumbs.attach(host,by(e.id));await env.w.MotionThumbs.whenIdle();assert.ok(host.querySelector('.pattern-svg'));
+   const original=['rapid-cut','glitch-band-transition'].includes(e.id)?{...by(e.id),variant_id:'standard'}:by(e.id);
+   env.w.MotionThumbs.attach(host,original);await env.w.MotionThumbs.whenIdle();assert.ok(host.querySelector('.pattern-svg'));
    env.w.MotionThumbs.release(host);
    env.w.MotionThumbs.attach(host,env.w.MotionKit.resolveVariant(e));
    await env.w.MotionThumbs.whenIdle();

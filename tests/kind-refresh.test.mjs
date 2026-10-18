@@ -45,7 +45,7 @@ test('三个目录页签在重新打开同一页面后恢复，列表与预览�
   }
 });
 
-test('新动效链接打开对应页签，在该链接中切换后刷新仍保留当前页签',async()=>{
+test('明确指定动效的链接刷新后仍打开目标页签，不受上次切换影响',async()=>{
   const memory=storage();
   const base=await environment(true,{staticPreview:true,hash:'',sessionStorage:memory});
   try{base.w.document.querySelector('[data-kind="composition"]').click();}finally{base.close();}
@@ -57,7 +57,10 @@ test('新动效链接打开对应页签，在该链接中切换后刷新仍保�
     d.querySelector('[data-kind="action"]').click();
   }finally{link.close();}
   const refreshed=await environment(true,{staticPreview:true,sessionStorage:memory,hash:'#steel-ruler-illustration'});
-  try{assert.equal(activeKind(refreshed.w.document),'action');checkList(refreshed.w,'action');}finally{refreshed.close();}
+  try{
+    assert.equal(activeKind(refreshed.w.document),'illustration');checkList(refreshed.w,'illustration');
+    assert.equal(refreshed.w.document.querySelector('.effect-item[aria-current="true"]').dataset.effect,'steel-ruler-illustration');
+  }finally{refreshed.close();}
 });
 
 test('旧历史页签记忆自动回到默认组合，不加载历史数据',async()=>{

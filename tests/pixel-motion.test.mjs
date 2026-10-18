@@ -7,10 +7,11 @@ import {runInNewContext} from 'node:vm';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {build} from 'esbuild';
+import {JSDOM} from 'jsdom';
 import {exportEffect} from '../scripts/export.mjs';
 import {selectEffect} from '../scripts/show.mjs';
 import {environment,data} from './helpers.mjs';
-import {frameScriptsFor} from '../remotion/frame-document.mjs';
+import {createFrameDocument,frameScriptsFor} from '../remotion/frame-document.mjs';
 const baseline=JSON.parse(await readFile(new URL('./pixel-motion-baseline.json',import.meta.url),'utf8'));
 const cityBaseline=JSON.parse(await readFile(new URL('./pixel-motion-city-baseline.json',import.meta.url),'utf8'));
 const context={atob,MotionFactories:{}};
@@ -35,6 +36,65 @@ test('同帧重复、倒序与乱序定位不改变像素；加速仍按原像�
  for(const f of [0,96,306,751,891])assert.equal(digest((f+.49)/30/1.5),reference(f));
  for(const t of [-1,NaN,Infinity])assert.throws(()=>api.indices(t));
  for(const part of api.parts){const before=digest(1.25,part);api.indices(0,{part});assert.equal(digest(1.25,part),before,part);}
+});
+
+test('像素图形错峰回弹只加载声明的依赖即可绘制，定位与重播保留原像素',async()=>{
+ const definition=selectEffect('scale-in','pixel-motion');
+ const dom=new JSDOM(createFrameDocument({assetBaseUrl:'file:///wise-motion/',definition}),{runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;
+ let pixels;
+ w.HTMLCanvasElement.prototype.getContext=function(type){
+  assert.equal(type,'2d');
+  return {createImageData:(width,height)=>({data:new Uint8ClampedArray(width*height*4)}),
+   putImageData(image){pixels=Uint8ClampedArray.from(image.data);},clearRect(){pixels.fill(0);}};
+ };
+ try{
+  w.eval(w.document.querySelector('script').textContent);
+  for(const file of frameScriptsFor(definition))w.eval(await readFile(new URL('../'+file,import.meta.url),'utf8'));
+  const session=await w.__wiseMotionCreateSession({definition});
+  assert.equal(session.stage.querySelector('[data-pixel-motion]')?.dataset.pixelMotion,'pops');
+  assert.equal(session.stage.querySelectorAll('canvas').length,1);
+  const hashes=new Map();
+  for(const time of [0,1000,2000,4000,0,2000]){
+   await session.draw(time,time,'playback');
+   assert.deepEqual(pixels,Uint8ClampedArray.from(api.rgba(api.indices(time/1000,{part:'pops'}))),'播放器时间 '+time);
+   const hash=createHash('sha256').update(pixels).digest('hex');
+   if(hashes.has(time))assert.equal(hash,hashes.get(time),'重播与反向定位不能留下旧画面');
+   hashes.set(time,hash);
+  }
+  assert.equal(new Set(hashes.values()).size,4,'不能只创建画布而始终显示空白或同一帧');
+ }finally{w.__wiseMotionSession?.destroy();w.anime?.engine?.pause();w.close();}
+});
+
+test('下拉选择像素图形错峰回弹时重置不兼容曲线，可以暂停、定位和重播',async()=>{
+ let player;const errors=[];
+ const page=await environment(true,{hash:'#scale-in',beforeApp(w){
+  w.addEventListener('error',event=>errors.push(event.error));
+  const create=w.MotionRuntime.create;w.MotionRuntime.create=(...args)=>(player=create(...args));
+ }});
+ try{
+  const {w}=page,d=w.document,trigger=d.getElementById('effect-variant-trigger');
+  trigger.getBoundingClientRect=()=>({top:100,bottom:136,left:20,right:300,width:280,height:36});
+  const choose=async value=>{
+   trigger.click();
+   d.querySelector(`#effect-variant-options [data-value="${value}"]`).click();
+   await player.ready;
+  };
+  assert.equal(d.getElementById('ease').value,'outCubic');
+  await choose('pixel-motion');
+  assert.deepEqual(errors,[]);
+  assert.equal(player.destroyed,false);
+  assert.equal(player.error,null);
+  assert.equal(player.paused,false);
+  assert.equal(d.getElementById('ease').value,'linear');
+  assert.equal(d.querySelector('#preview [data-pixel-motion]')?.dataset.pixelMotion,'pops');
+  player.pause();player.seek(2000);assert.equal(player.currentTime,2000);assert.equal(player.paused,true);
+  player.seek(4000);assert.equal(player.currentTime,4000);
+  player.restart(false);assert.equal(player.currentTime,0);assert.equal(player.paused,true);
+  player.play();assert.equal(player.paused,false);
+  await choose('original');assert.equal(d.querySelector('#preview [data-pixel-motion]'),null);
+  await choose('pixel-motion');assert.equal(player.paused,false);assert.equal(player.error,null);
+  assert.deepEqual(errors,[]);
+ }finally{page.close();}
 });
 
 test('组合关联9个真实动作，7个现有条目精确指向像素示例；独立动作只绘制对应主体',async()=>{
@@ -74,7 +134,7 @@ test('组合关联9个真实动作，7个现有条目精确指向像素示例；
 test('完整组合与像素示例导出的独立工程可以编译，默认参数保留准确示例',async()=>{
  const dir=await mkdtemp(path.join(tmpdir(),'wise-pixel-source-'));
  try{
-  for(const [id,variantId]of [['pixel-motion-sequence'],['shape-morph','pixel-motion'],['particle-ballistic-fall']]){
+  for(const [id,variantId]of [['pixel-motion-sequence'],['scale-in','pixel-motion'],['shape-morph','pixel-motion'],['particle-ballistic-fall']]){
    const out=await exportEffect(id,{variantId,outDir:path.join(dir,id)});
    assert.equal(out.kind,'standalone');
    const entry=await readFile(path.join(out.directory,'index.jsx'),'utf8');

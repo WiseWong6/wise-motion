@@ -49,7 +49,7 @@ test('星月和自拍缩略图读完原图后保留画面，螺旋丸组合有�
  const env=await environment(),{w}=env;
  try{
   enforcePixelOrigin(w);w.eval(await readFile(new URL('../catalog/thumbnails.js',import.meta.url),'utf8'));
-  const ids=['star-letter-journey','xiaokui-selfie-journey','ring-construction-journey','mushroom-sphere-journey','ring-sphere-journey','energy-discharge-journey'];
+  const ids=['star-letter-journey','xiaokui-selfie-journey','ring-construction','mushroom-sphere-journey','ring-sphere-journey','energy-discharge-journey'];
   const hosts=ids.map(id=>{const host=w.document.createElement('div');host.className='thumb';w.document.body.append(host);w.MotionThumbs.attach(host,data.effects.find(e=>e.id===id));return host;});
   env.reveal();await w.MotionThumbs.whenIdle();
   for(const [i,host]of hosts.entries()){

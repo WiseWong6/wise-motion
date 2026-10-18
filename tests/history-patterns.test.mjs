@@ -34,12 +34,16 @@ test('词云保留原十三词、云形、独立漂移与实际收拢时钟，�
   const env=await environment(true);
   try{
     const {w}=env,d=w.document;await env.reveal('[data-effect="word-cloud-lift"] .thumb');
-    const effect=sourceDefinition(data.effects.find(e=>e.id==='word-cloud-lift')),card=d.querySelector('[data-effect="word-cloud-lift"]');
+    const effect=sourceDefinition(legacyDefinition(data.effects.find(e=>e.id==='word-cloud-lift'))),card=d.querySelector('[data-effect="word-cloud-lift"]');
     assert.equal(effect.category,'writing');assert.equal(effect.loop,false);
     assert.equal(w.MotionMatch.rank(data,'词云')[0].effect.id,effect.id);
-    const thumbnail=[...card.querySelectorAll('.thumb [data-cloud-word]')];
-    assert.equal(thumbnail.length,13);assert.ok(thumbnail.every(n=>n.getAttribute('opacity')==='1'));
+    assert.equal(card.querySelector('.thumb .motion-stage').dataset.variant,'aboutlove-30','缩略图默认展示文字灯');
     card.click();assert.equal(d.querySelector('#preview .motion-stage').dataset.effect,effect.id);
+    assert.equal(d.querySelector('#preview .motion-stage').dataset.variant,'aboutlove-30','打开条目默认展示文字灯');
+    const variant=d.getElementById('effect-variant');
+    assert.deepEqual([...variant.options].map(option=>option.value),['aboutlove-30','original']);
+    variant.value='original';variant.dispatchEvent(new w.Event('change'));
+    assert.equal(d.querySelectorAll('#preview [data-cloud-word]').length,13,'原有词云继续可以切换');
     const root=d.createElement('div'),draw=w.MotionFactories[effect.id](root,w.MotionKit,effect);
     const words=[...root.querySelectorAll('[data-cloud-word]')],cloud=part(root,'cloud');
     assert.equal(root.querySelector('svg > g').getAttribute('font-weight'),'300');
@@ -83,7 +87,7 @@ test('词云全文在淡入、漂移和收拢全过程位于云形内，并保�
   const env=await environment();
   try{
     const {w}=env,root=w.document.getElementById('root');
-    const effect=sourceDefinition(data.effects.find(e=>e.id==='word-cloud-lift'));
+    const effect=sourceDefinition(legacyDefinition(data.effects.find(e=>e.id==='word-cloud-lift')));
     const draw=w.MotionFactories[effect.id](root,w.MotionKit,effect),cloud=part(root,'cloud');
     // 按实际云形采样；用整字宽和一行字高包住文字，避免只检查文字中心点。
     const values=cloud.getAttribute('d').match(/-?\d+(?:\.\d+)?/g).map(Number);
@@ -354,7 +358,7 @@ test('滚动、刹停和轮播按不同的速度与停留关系执行',async()=>
     draw(.3);assert.notEqual(root.innerHTML,first);draw(.45);const second=root.innerHTML;draw(.6);assert.equal(root.innerHTML,second);
   }finally{env.close();}
 });
-test('文稿公共前缀与清墨间隔得到保留',async()=>{
+test('文稿公共前缀与输入框动作得到保留',async()=>{
   const original=await readFile('/Users/wisewong/Documents/Developer/wise-video/Naive-NO.5-Flash/promo-atelier/src/scenes/Input.tsx','utf8');
   const value=name=>original.match(new RegExp("const "+name+" = '([^']*)';"))[1];
   const draft=value('DRAFT'),prefix=value('KEEP'),final=value('FINAL_A')+value('FINAL_B')+value('FINAL_C');
@@ -392,8 +396,6 @@ test('文稿公共前缀与清墨间隔得到保留',async()=>{
     assert.equal(part(root,'outline').getAttribute('stroke-dashoffset'),'0');assert.equal(part(root,'toolbar').style.opacity,'1');
     assert.ok(part(root,'ruler').getAttribute('d').startsWith('M20 '));
     draw(.61);const paused=root.innerHTML;draw(0);draw(.61);assert.equal(root.innerHTML,paused,'反复定位改变了输入框画面');
-    draw=render(w,root,'stagger-crossfade');draw(.5);assert.equal(number(root,'old','opacity'),0);assert.equal(number(root,'new','opacity'),0);
-
   }finally{env.close();}
 });
 test('事件在指针到达对应位置时才触发，遮挡带闭合时覆盖完整',async()=>{
@@ -408,15 +410,11 @@ test('事件在指针到达对应位置时才触发，遮挡带闭合时覆盖�
     for(let i=0;i<8;i++){assert.equal(number(root,'shade'+i,'rx'),0);assert.equal(part(root,'shade'+i).getAttribute('transform'),'translate(0 0)');}
   }finally{env.close();}
 });
-test('物理关系保持挂点、面积以及轮子随行程转动',async()=>{
+test('弹跳形变保持面积',async()=>{
   const env=await environment();
   try{
     const {w}=env,root=w.document.getElementById('root');
-    let draw=render(w,root,'pivot-swing');const pin=part(root,'pin').outerHTML;draw(.25);draw(.7);assert.equal(part(root,'pin').outerHTML,pin);
-    draw=render(w,root,'squash-bounce');for(const p of [.1,.2,.33,.6,1]){draw(p);assert.ok(Math.abs(number(root,'ball','rx')*number(root,'ball','ry')-4096)<1e-8);}
-    draw=render(w,root,'rolling-distance');
-    const measure=p=>{draw(p);return [Number(part(root,'car').getAttribute('transform').match(/translate\(([-.\d]+)/)[1]),Number(part(root,'wheel0').getAttribute('transform').match(/rotate\(([-.\d]+)/)[1])];};
-    const [x0,a0]=measure(.2),[x1,a1]=measure(.7),r=number(root,'hub0','r');assert.ok(Math.abs((x1-x0)-(a1-a0)*Math.PI/180*r)<1e-7);
+    const draw=render(w,root,'squash-bounce');for(const p of [.1,.2,.33,.6,1]){draw(p);assert.ok(Math.abs(number(root,'ball','rx')*number(root,'ball','ry')-1024)<1e-8);}
   }finally{env.close();}
 });
 test('固定点身份不因换形重建',async()=>{

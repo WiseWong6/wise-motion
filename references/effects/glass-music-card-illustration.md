@@ -14,7 +14,7 @@
 现实类比：音乐空间卡保留空间运动，封面涟漪扩散，播放进度前进；卡外透明。
 需要保留：保留原卡片比例、圆角、十像素厚度、焦距1250、黑银材质和完整控件；使用 spatialCardsAt 的位置、旋转、比例、透明度与镜头参数，并使用 cardMotionAt 的内部状态。封面涟漪扩散，播放进度前进。
 明确排除：只绘制这一张卡，不携带其他卡片、全幅背景、凸泡、字标或声音。 界面统一采用苹果空间风格；对话使用短信或 Siri，不使用创作助手对话。
-对应参考：本地目录「音乐空间卡」；所用动作：透光卡片错层
+对应参考：本地目录「音乐空间卡」；所用动作：玻璃卡片交错穿行
 源码：catalog/effects/glass-light.js 中的 glass-music-card-illustration
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：沿用原1066×600画板与完整七点二秒时钟，只保留选中的卡片；卡片内部采样银灰光场，卡外透明。
@@ -33,6 +33,6 @@
 - 效果参考 [Apple Vision Pro 空间界面](https://www.apple.com/newsroom/2023/06/introducing-apple-vision-pro/)。
 - 与玻璃界面共用空间姿态、卡内动作和材质绘制；独立展示只移除其他图层，不冻结时间。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[透光卡片错层](glass-card-stagger.md)。
+所用动作：[玻璃卡片交错穿行](glass-card-stagger.md)。
 
 补充效果参考：[Apple 液态玻璃设计](https://www.apple.com/newsroom/2025/06/apple-introduces-a-delightful-and-elegant-new-software-design/)。

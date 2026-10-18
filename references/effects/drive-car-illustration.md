@@ -14,7 +14,7 @@
 现实类比：原小葵坐在蓝色敞篷车内，保留车身、方向盘、车轮和驾驶姿态。
 需要保留：保留批准造型的全部原曲线、车色、驾驶猫、方向盘、车灯、轮毂与弧形保险杠。
 明确排除：不带原场景、背景、字幕、音频或外围控件。
-对应参考：本地目录「小葵敞篷车」；所用动作：轮子随行程转动
+对应参考：本地目录「小葵敞篷车」；所用动作：车轮随行转动
 源码：catalog/effects/history-nature.js 中的 drive-car-illustration
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：透明底，跟车取景固定横向中心；车轮仍按原行程转动，车身保留原竖向轻微起伏。
@@ -33,4 +33,4 @@
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
 - 直接复用 drawXiaokuiCar、driveDistance、vehicleBob，恢复真实时间和行程；独立跟车取景仅移除背景和气球。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[轮子随行程转动](rolling-distance.md)。
+所用动作：[车轮随行转动](rolling-distance.md)。

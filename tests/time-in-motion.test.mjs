@@ -53,8 +53,11 @@ test('原机械运动与文字源码真实交付，独立导出可编译且没�
     assert.match(source,/def state\(t\)/);assert.match(source,/math\.radians\(145\)/);
     assert.ok(await stat(path.join(out.directory,'catalog/assets/time-in-motion/editable/graphics/KineticWord.jsx')));
     assert.equal(spawnSync(process.execPath,['catalog/assets/time-in-motion/verify-source.mjs'],{cwd:out.directory,encoding:'utf8'}).status,0);
-    const project=await projectFor('word-block-rise');
-    assert.ok(Object.keys(project.files).some(f=>f.endsWith('KineticWord.jsx')));
+    const project=await projectFor('sparse-dial-counterturn');
+    assert.ok(Object.keys(project.files).some(f=>f.endsWith('DialRings.jsx')));
+    const graphics=await exportEffect('sparse-dial-counterturn',{outDir:path.join(temporary,'dial')});
+    const standalone=await build({entryPoints:[path.join(graphics.directory,'index.jsx')],bundle:true,write:false,format:'esm',platform:'node',external:['react','remotion'],logLevel:'silent'});
+    assert.ok(standalone.outputFiles[0].text.includes('sparse-dial-counterturn'));
     for(const file of spec.files){const bytes=await readFile(path.join(root,file),'utf8');assert.doesNotMatch(bytes,/data:video\/[^;]+;base64,/);}
     const conflict=path.join(temporary,'conflict');await mkdir(conflict);await writeFile(path.join(conflict,'index.jsx'),'保留用户修改');
     await assert.rejects(exportEffect('inventory-contour-fit',{outDir:conflict}),/目标文件已存在/);
@@ -62,7 +65,7 @@ test('原机械运动与文字源码真实交付，独立导出可编译且没�
   }finally{await rm(temporary,{recursive:true,force:true});}
 });
 
-test('词块和刻度按当前帧绘制，独立动作无声，完整组合拆解与关联保持一致',async()=>{
+test('移除词块独立动作后保留完整组合画面，刻度仍按当前帧绘制',async()=>{
   const env=await environment(true,{staticPreview:true,hash:'#time-in-motion-sequence'});
   try{
     const {w}=env,d=w.document;
@@ -71,8 +74,10 @@ test('词块和刻度按当前帧绘制，独立动作无声，完整组合拆�
     assert.ok(Number(d.querySelector('#preview .motion-stage').dataset.nativeFrame)>=96);
     assert.ok([...d.querySelectorAll('[data-composition-mode]')].every(button=>button.hidden));
     const state=w.WiseTimeInMotionGraphics;
-    assert.ok(state.wordState(0)[0].y>111);assert.equal(state.wordState(0)[1].visible,false);
-    assert.ok(state.wordState(20).every(x=>Math.abs(x.y)<1e-5));
+    assert.equal(get('word-block-rise'),undefined);
+    assert.equal(w.MotionFactories['word-block-rise'],undefined);
+    assert.ok(w.MotionFactories['time-in-motion-sequence'].breakdown.every(row=>!row.actions.includes('word-block-rise')));
+    for(const id of ['Prologue','Reveal','Finale'])assert.ok(w.MotionFactories['time-in-motion-sequence'].breakdown.find(row=>row.id===id).reason);
     assert.equal(state.dialState(48).angle,18);assert.equal(state.dialState(48).innerAngle,-9.36);
     const stage=d.createElement('div'),draw=w.MotionFactories['sparse-dial-counterturn'](stage);
     draw(1200);const saved=stage.innerHTML;draw(0);draw(4000);draw(1200);assert.equal(stage.innerHTML,saved);draw.destroy();

@@ -14,7 +14,7 @@
 现实类比：窗口像持续移动的取景框，镜头在它后方交接。
 需要保留：960帧、原构图、真实三维影像、窗口关键点、同位线稿短闪与双镜重叠。
 明确排除：不将窗口重置到每个镜头局部帧，不冻结后方视频，不把宽窄不同的条带冒充等臂十字。
-对应参考：本地目录「持续窗口与机械细节展示」；所用动作：圆孔扩张转场、节拍闪切、陈列零件旋合归位、等臂十字旋转开窗、轴向分层回装、螺丝轴向旋入锁紧、轴心矩窗连续伸缩、发条盒储能运行、同轴轮系啮合传动、摆轮与游丝往返联动、后镜提前圆窗进入、三列直窗错峰开合
+对应参考：本地目录「持续窗口与机械细节展示」；所用动作：圆形开窗转场、零件旋转组装、十字旋转转场、零件拆开复位、螺丝旋入锁紧、矩形窗口伸缩、发条转动、齿轮咬合转动、摆轮游丝联动、圆窗叠入下一幕、三列窗口依次开合
 源码：catalog/effects/mechanical-windows.js 中的 mechanical-window-sequence
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：完整组合按原成片显示；运行缓存保留原摄影、文字、窗口和切点，原制作源码与可编辑适配随工程归档。
@@ -33,7 +33,7 @@
 - 效果参考 MECHANICAL WINDOWS v2 · 用户原创持续窗口与剪辑源码。
 - 保留作者原创窗口、排版和剪辑源码，完整组合与独立开窗示例共用原成片静音缓存；原窗口和状态函数另可用于自己的素材。许可为 Apache-2.0。Remotion、React与所用素材遵循各自许可，见来源说明。
 
-所用动作：[圆孔扩张转场](iris-open-transition.md)、[节拍闪切](rapid-cut.md)、[陈列零件旋合归位](inventory-contour-fit.md)、[等臂十字旋转开窗](cross-aperture-turn.md)、[轴向分层回装](axial-layer-reseat.md)、[螺丝轴向旋入锁紧](helical-screw-seat.md)、[轴心矩窗连续伸缩](rect-aperture-breathe.md)、[发条盒储能运行](barrel-stored-energy.md)、[同轴轮系啮合传动](meshed-gears-drive.md)、[摆轮与游丝往返联动](balance-reciprocate.md)、[后镜提前圆窗进入](next-shot-preentry.md)、[三列直窗错峰开合](three-column-aperture.md)。
+所用动作：[圆形开窗转场](iris-open-transition.md)、[零件旋转组装](inventory-contour-fit.md)、[十字旋转转场](cross-aperture-turn.md)、[零件拆开复位](axial-layer-reseat.md)、[螺丝旋入锁紧](helical-screw-seat.md)、[矩形窗口伸缩](rect-aperture-breathe.md)、[发条转动](barrel-stored-energy.md)、[齿轮咬合转动](meshed-gears-drive.md)、[摆轮游丝联动](balance-reciprocate.md)、[圆窗叠入下一幕](next-shot-preentry.md)、[三列窗口依次开合](three-column-aperture.md)。
 
 ## Remotion 复用
 

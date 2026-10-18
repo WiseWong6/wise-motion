@@ -22,7 +22,6 @@ test('所有可替换内容的默认画面数据进入提示词；各示例只�
     assert.match(output,/引号内仅是屏幕显示内容/);
     for(const slot of resolved.content_slots) {
       assert.ok(output.includes(slot.label),effect.id+'/'+variant.id+': '+slot.id);
-      if(effect.id==='count-up'&&slot.id==='format') {assert.match(output,/数值格式：整数（四舍五入）/);continue;}
       const strings=value=>typeof value==='string'?[value]:Array.isArray(value)?value.flatMap(strings):value&&typeof value==='object'?Object.values(value).flatMap(strings):[];
       // 代码的色调是元数据，用中文色调说明；其他文字按原值完整引用。
       const values=slot.type==='code-lines'?slot.default.flat().map(token=>token[0]):strings(slot.default);
@@ -30,7 +29,7 @@ test('所有可替换内容的默认画面数据进入提示词；各示例只�
     }
     supported++;
   }
-  assert.equal(supported,13);
+  assert.equal(supported,12);
   const pixel=prompt('word-slam',{variantId:'pixel-motion'});
   assert.doesNotMatch(pixel,/依次撞入的词：|CUT|SCRATCH/);
 });
@@ -63,32 +62,6 @@ test('撞字词数和终端行数随当前内容变化，默认词序及默认�
   assert.match(terminal,/"文字":"输出结果","色调":"青绿色强调文字"/);
   assert.match(terminal,/1行/);
   assert.doesNotMatch(terminal,/creative-session|一个画面|让它动起来|三行/);
-});
-
-test('倒数、非零起点和等值读数按当前输入描述；数值格式与空单位准确输出',()=>{
-  const descending=prompt('count-up',{content:{from:12000,value:-1234.5,format:'thousands',decimals:2,prefix:'',suffix:'',caption:'完成量'}});
-  for(const value of ['开始数值：12000','结束数值：-1234.5','小数位数：2','说明文字："完成量"','数值前缀：""','数值后缀：""','三位分组'])assert.ok(descending.includes(value),value);
-  assert.match(descending,/逐步下降/);
-  assert.doesNotMatch(descending,/从零开始|数字从零增长/);
-  assert.match(prompt('count-up',{content:{from:7,value:7}}),/开始数值与结束数值相同，读数保持不变/);
-  assert.throws(()=>prompt('count-up',{content:{value:'500'}}),/数值|数字/);
-});
-
-test('中文数值单位改变整行读数字体；自定义小数格式和测宽字号不再沿用默认整数说明',()=>{
-  const effect=definition('count-up');
-  const copy={...effect,reproduction:{...effect.reproduction,
-    presentation:'读数使用 Oswald 粗体，说明使用思源黑体。',
-    details:['每帧将数值四舍五入为整数，字号保持不变。']}};
-  const output=env.w.MotionExport.prompt(copy,{content:{from:10.5,value:128.75,format:'decimal',decimals:2,prefix:'约',suffix:'件'}},data);
-  assert.match(output,/数值前缀："约"/);
-  assert.match(output,/数值后缀："件"/);
-  assert.match(output,/数值格式：固定小数位/);
-  assert.match(output,/数值、前缀、后缀整行使用 思源黑体 粗体/);
-  assert.match(output,/先测量变化范围内数字与单位的最宽组合/);
-  assert.doesNotMatch(output,/Oswald|四舍五入为整数|字号保持不变/);
-  const ascii=prompt('count-up',{content:{caption:'中文说明'}});
-  assert.match(ascii,/数值、前缀、后缀整行使用 Oswald 粗体/);
-  assert.match(ascii,/说明文字使用思源黑体细体/);
 });
 
 test('逐项适配文字和整组按钮分别说明真实字体选择及宽度，屏幕输入不会改写提示词',()=>{

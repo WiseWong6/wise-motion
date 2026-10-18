@@ -14,7 +14,7 @@
 现实类比：手裁纸条先把画面搭起来，年代与字幕逐字站定，图盘里的线条继续绘出并旋转。
 需要保留：原橙底、黑纸条与奶油圆盘配色，原 Futura 字形和文字排版；每秒十二格的共同时间、五条纸条各自方向与错峰、逐字裁剪与年份回弹；螺线以角度推进绘制且从绘制开始就自转，中心节拍与外圈公转保留。
 明确排除：不改成整张卡片淡入，不用普通同心圆替代内旋螺线，不把描画与旋转拆成互斥两段；不附带下一段霓虹转场或声音。
-对应参考：本地目录「纸条铺展螺线旋转」；所用动作：双向错峰滑入、螺线描绘旋转、圆点平面绕转、圆盘逐格回弹、文字逐格升入
+对应参考：本地目录「纸条铺展螺线旋转」；所用动作：左右交替滑入、螺旋线边画边转、圆盘定格回弹、文字定格升入
 源码：catalog/effects/reel-paper.js 中的 paper-spiral-sequence
 来源与许可：自编示例，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：按本机 Claude 动效演进史原片四至十秒及 sBass 源码重写；保留原固定文案、Futura Bold 轮廓、橙黑奶油色和画面比例，深浅模式均保留这组原画配色。省去声音与下一页转场；纹理沿用目录静态薄层。
@@ -33,4 +33,4 @@
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
 - 自编效果未复制官方示例素材；许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[双向错峰滑入](paper-strip-stagger.md)、[螺线描绘旋转](spiral-draw-spin.md)、[圆点平面绕转](planar-dot-orbit.md)、[圆盘逐格回弹](paper-disc-pop.md)、[文字逐格升入](paper-title-stagger.md)。
+所用动作：[左右交替滑入](paper-strip-stagger.md)、[螺旋线边画边转](spiral-draw-spin.md)、[圆盘定格回弹](paper-disc-pop.md)、[文字定格升入](paper-title-stagger.md)。

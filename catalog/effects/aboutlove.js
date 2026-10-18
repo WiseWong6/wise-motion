@@ -52,7 +52,12 @@
   const mount=p=>{
    const scene=global.WiseAboutLoveData.scenes[p.scene];if(!scene)throw Error('动作场景不存在：'+p.scene);
    const el=doc.createElement('div');el.className='al-piece';el.dataset.sourceScene=scene.id;el.style.visibility='hidden';stage.append(el);
-   if(!config.composition){el.innerHTML=scene.html;el.querySelectorAll('canvas').forEach(trackCanvas);}
+   if(!config.composition){
+    el.innerHTML=scene.html;el.querySelectorAll('canvas').forEach(trackCanvas);
+    // An isolated texture has no picture to blend with. Show its original pixels;
+    // full compositions retain the source's soft-light overlay.
+    if(config.mode==='grain')el.querySelector('#film-canvas').style.mixBlendMode='normal';
+   }
    // Font loading, source initialization and all offscreen canvases belong to this instance.
    return {...p,el,scene};
   };
