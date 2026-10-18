@@ -244,7 +244,7 @@
     ]
   },
   "layout_background": {
-    "authorization": "User explicitly requested original LEGO Kingdom backdrop for leader labels on 2026-10-18; local integration only, no publication performed.",
+    "authorization": "User requested the original LEGO Kingdom backdrop on 2026-10-18, then authorized the overall release and asked for versioned on-demand distribution via GitHub. Scope is the 93 integrated background frames; unrelated source-project assets are excluded.",
     "license": "Project-specific user-provided visual assets. No blanket public redistribution license is asserted.",
     "timing": {
       "fps": 30,

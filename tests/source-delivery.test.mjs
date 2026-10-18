@@ -83,6 +83,8 @@ test('普通动作与带素材和声音的组合使用浏览器同一组件示�
     assert.ok(source.includes(installer),'浏览器复制和导出必须使用同一安装程序');
     assert.ok(installer.includes(JSON.stringify({version:packageVersion,effectId:effect.id,...(effect.variant_id?{variantId:effect.variant_id}:{})})),'优先安装版本必须与当前交付版本一致');
     assert.match(guide,/node install-wise-motion\.cjs/);
+    assert.ok(guide.includes('--effect '+effect.id),'素材命令按当前动效准备');
+    if(variantId)assert.ok(guide.includes('--variant '+variantId));
     if (variantId) assert.match(source, /"variantId": "command-log"/);
     for (const asset of effect.source.assets || []) assert.ok(source.includes(asset), asset);
     if (effect.audio) assert.match(source, /includeAudio=\{false\}/);
@@ -90,6 +92,14 @@ test('普通动作与带素材和声音的组合使用浏览器同一组件示�
     assert.ok(compiled.outputFiles[0].text.includes('WiseMotionEffect'));
   }
 }));
+
+test('积木原生工程提供固定版本的素材下载命令与完整摘要',()=>{
+  const effect=selectEffect('leader-callout','lego-kingdom');
+  const {files}=browser.projectFiles(effect);
+  assert.ok(files['README.md'].includes('https://raw.githubusercontent.com/WiseWong6/wise-motion/v'+packageVersion+'/'));
+  assert.equal(JSON.parse(files['binary-assets.json']).filter(item=>item.source.includes('/layout/')).length,93);
+  assert.ok(browser.remotionCode(effect).includes('node prepare-assets.mjs "https://raw.githubusercontent.com/WiseWong6/wise-motion/v'+packageVersion+'/"'));
+});
 
 test('目录复制包含当前实际绘制源码路径，线上复制给出源码地址，导出保持可迁用', async () => {
   const local = await browserExporter(pathToFileURL(path.join(root,'catalog/index.html')).href);

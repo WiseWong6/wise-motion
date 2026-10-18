@@ -1,7 +1,10 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function (global) {
   'use strict';
-  const sharedPackageVersion = "0.1.19"; // 由 scripts/build.mjs 从 package.json 同步。
+  const sharedPackageVersion = "0.1.20"; // 由 scripts/build.mjs 从 package.json 同步。
+  const githubAssetBase = () => 'https://raw.githubusercontent.com/WiseWong6/wise-motion/v'+sharedPackageVersion+'/';
+  const hasDownloadAssets = spec => spec.binary_files?.some(item=>item.source.startsWith('catalog/assets/lego-kingdom/layout/'));
+  const assetInstallCommand = effect => 'node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion --effect '+effect.id+(effect.variant_id?' --variant '+effect.variant_id:'');
   // 此函数只在目标工程的 Node.js 中执行；浏览器复制和文件导出使用同一份安装程序。
   function installPackage({version,effectId,variantId}, {run,readInstalled,log=console.log}={}) {
     const stable=/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)$/;
@@ -299,6 +302,7 @@ registerRoot(Root);
       files['binary-assets.json']=JSON.stringify(spec.binary_files,null,2)+'\n';
       files['prepare-assets.mjs']=binaryInstaller(spec);
       files['README.md']+='\n命令行 export.mjs 已复制 binary-assets.json 列出的工程与素材，不需要再次准备。仅从目录复制文字源码时，还需运行 node prepare-assets.mjs <素材包根目录或网址>，再运行 npm run check:source。程序只复制清单里的文件，核对内容摘要并保护已有修改；模型、视频、纹理与原声不会内嵌到文字源码。\n';
+      if(hasDownloadAssets(spec))files['README.md']+='\n积木背景不进入 npm 主包。没有完整本地素材时，运行 `node prepare-assets.mjs '+githubAssetBase()+'`，从当前版本下载清单里的文件；校验后保存在工程中，后续播放不联网。\n';
       if(effect.source.production_guide)files['README.md']+='\n制作与可编辑剪辑的素材准备步骤：'+effect.source.production_guide+'。制作原件单独准备，npm 包只提供运行素材和文字源码。\n';
     }
     return files;
@@ -318,6 +322,7 @@ registerRoot(Root);
       let location='<素材包根目录或网址>';
       if(base?.protocol==='file:')location=decodeURIComponent(base.pathname);
       else if(base)location=base.href;
+      else if(hasDownloadAssets(effect.source.remotion))location=githubAssetBase();
       lines.push('','工程、视频和纹理单独保存；先保存以下文字文件，再准备 binary-assets.json 中的素材。',
         '运行：node prepare-assets.mjs '+JSON.stringify(location),
         '使用 scripts/export.mjs 导出时会自动复制清单中的运行素材；额外的制作原件按工程说明准备。');
@@ -476,11 +481,11 @@ ${drawingSources.map(file=>'node_modules/wise-motion/'+file).join('\n')}
 
 在独立目标工程运行下方整段命令：优先安装当前版本，尚未上架时自动降级为同系列最近的已发布稳定版，依赖随所选包版本安装。
 ${packageInstallCommand({effectId:effect.id,variantId:effect.variant_id})}
-node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion
+${assetInstallCommand(effect)}
 将 src/index.jsx 写为：import {registerRoot} from 'remotion'; import {Root} from './Root'; registerRoot(Root);
 npx remotion render src/index.jsx Effect output.mp4${renderFlags}
 
-组件内部仍使用原绘制代码；这些实际文件和全部字体、图片、材质随包携带：
+组件内部仍使用原绘制代码；代码、字体和常用素材随包提供，大素材按清单从对应 GitHub 版本准备：
 ${[...files, ...(effect.source.assets || [])].join('\n')}
 ${effect.kind==='composition'&&effect.audio?.tracks?.length?'组合的原声音文件、合成源码与固定排程一同随包提供；组件默认带声音，设置 includeAudio={false} 可关闭。导出声音随帧同步定位和变速。':''}
 素材明细见包内 ASSET-MANIFEST.json。安装后只访问目标工程 public/wise-motion，
@@ -508,7 +513,7 @@ export const Root = () => <Composition id="Effect" component={Effect}
       'src/Root.jsx':remotionCode(effect,settings),
       'src/index.jsx':"import {registerRoot} from 'remotion';\nimport {Root} from './Root.jsx';\nregisterRoot(Root);\n",
       'install-wise-motion.cjs':packageInstaller({effectId:effect.id,variantId:effect.variant_id}),
-      'README.md':'# '+effect.name+'\n\n这是共享组件包的接入示例；运行前需准备包和素材。导出未安装依赖。'+(effect.variant_id?'\n样式：'+effect.variant_id+'（'+effect.variant_name+'）。':'')+'\n\n在本目录安装公开包并准备素材：\n\n```sh\nnode install-wise-motion.cjs\nnode node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion\nnpx remotion studio src/index.jsx\n# 渲染\nnpx remotion render src/index.jsx Effect output.mp4'+(usesGl?' --gl=angle':'')+'\n```\n\n安装程序优先使用当前交付版本 '+sharedPackageVersion+'；该版本尚未上架时，自动降级为同一版本系列最近的已发布稳定版，并安装该包声明的配套依赖。实际版本会显示并固定到项目依赖中；重跑安装程序会再次优先检查当前交付版本。联网、权限和依赖冲突不会触发降级。旧版缺少所选动效或样式时会报错，请等待上架或安装从当前源码打包的包文件。\n\n源码入口与原素材路径见 src/Root.jsx 顶部注释；对应文件和许可均随共享包提供。修改 settings 可调整条目支持的内容、样式、速度与缓动；内容字段需符合该条目的接口。'+(effect.kind==='composition'&&effect.audio?.tracks?.length?'组合保留原声音，设置 includeAudio={false} 可关闭。':'')+'\n'
+      'README.md':'# '+effect.name+'\n\n这是共享组件包的接入示例；运行前需准备包和素材。导出未安装依赖。'+(effect.variant_id?'\n样式：'+effect.variant_id+'（'+effect.variant_name+'）。':'')+'\n\n在本目录安装公开包并准备素材：\n\n```sh\nnode install-wise-motion.cjs\n'+assetInstallCommand(effect)+'\nnpx remotion studio src/index.jsx\n# 渲染\nnpx remotion render src/index.jsx Effect output.mp4'+(usesGl?' --gl=angle':'')+'\n```\n\n安装程序优先使用当前交付版本 '+sharedPackageVersion+'；该版本尚未上架时，自动降级为同一版本系列最近的已发布稳定版，并安装该包声明的配套依赖。实际版本会显示并固定到项目依赖中；重跑安装程序会再次优先检查当前交付版本。联网、权限和依赖冲突不会触发降级。旧版缺少所选动效或样式时会报错，请等待上架或安装从当前源码打包的包文件。\n\n源码入口与原素材路径见 src/Root.jsx 顶部注释；代码、字体和许可随共享包提供；大素材按当前版本下载并校验，安装后本地使用。修改 settings 可调整条目支持的内容、样式、速度与缓动；内容字段需符合该条目的接口。'+(effect.kind==='composition'&&effect.audio?.tracks?.length?'组合保留原声音，设置 includeAudio={false} 可关闭。':'')+'\n'
     };
     return {kind:'shared-package',files};
   }

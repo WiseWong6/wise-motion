@@ -6,3 +6,5 @@
 /assets/time-in-motion/production/project/**/.缓存/
 /assets/time-in-motion/production/project/**/public/
 /assets/time-in-motion/production/**/*.blend
+# 积木背景按对应 GitHub 版本下载，保持原始无损帧；运行清单、来源与许可仍随包。
+/assets/lego-kingdom/layout/*.webp

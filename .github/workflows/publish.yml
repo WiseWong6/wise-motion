@@ -81,4 +81,6 @@ jobs:
         if: github.event_name == 'push' || !inputs.dry_run
         env:
           PACKAGE_FILE: ${{ steps.package.outputs.file }}
-        run: npm run publish:package -- "$PACKAGE_FILE"
+        run: |
+          node scripts/verify-download-assets.mjs
+          npm run publish:package -- "$PACKAGE_FILE"

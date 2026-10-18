@@ -22,7 +22,7 @@ const Scene=()=> <WiseMotionEffect effectId="stagger-in" />;
 
 ```sh
 node "<技能目录>/scripts/install-package.mjs"
-node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion
+node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion --effect stagger-in
 ```
 
 `<技能目录>` 是当前源码或技能安装入口的实际目录，命令须在目标工程内运行，无需先安装 npm 包。安装程序优先使用当前源码版本；该版本尚未上架时，自动降级为同一版本系列最近的已发布稳定版，配套依赖按所选包的声明安装。实际版本会显示并固定到项目依赖中；重跑命令会再次优先检查当前源码版本。联网、权限和依赖冲突不会触发降级。命令末尾可加动效名称和样式名称，以检查旧版是否已有所选内容；旧版不含新内容时，需等待上架或安装从当前源码打包的包文件。
@@ -30,6 +30,8 @@ node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion
 目录“复制源码”包含相同安装程序；命令行导出的共享组件示例带有 `install-wise-motion.cjs`，运行该文件即可。独立工程仍按自己的固定依赖安装。
 
 全部运行素材明细与校验值在 `ASSET-MANIFEST.json`。三维制作原件与剪辑原媒体通过 [制作素材清单](catalog/assets/time-in-motion/README.md) 按摘要单独准备；npm 包提供最终横屏片的轻量缓存、声音和目录预览，播放与渲染缓存无需原模型。素材副本不提供目录首页；浏览请打开源码中的 `catalog/index.html`。目标工程的Remotion依赖需和包版本一致。
+
+积木背景的93张无损播放帧按需提供，不进入 npm 主包。安装时用 `--effect <动效编号>` 和可选的 `--variant <样式编号>` 选择所需大素材；例如 `--effect leader-callout --variant lego-kingdom` 准备九点引线背景，其他动作不下载这组帧。不带选择参数仍准备全部素材。下载固定到包版本对应的 GitHub 标签，校验字节数和 SHA-256 后保存在目标工程；重复安装复用相同文件，播放与渲染无需联网。首次准备需要访问 GitHub，失败会停止且不会写入部分素材；完整 Git 源码可离线安装。
 目录中的“复制代码”提供完整Composition例子和安装步骤。`Sequence`能控制每个组件的起点；多个组件用独立画板，互不覆盖。
 翻页书在目录中保留真实交互；导出组件总是固定演示动作。
 

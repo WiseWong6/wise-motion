@@ -18,9 +18,13 @@ for(const item of manifest){
     current=path.join(current,part);
     try{const info=await lstat(current);if(info.isSymbolicLink()||(info.isFile()&&info.nlink>1))throw Error('素材目标不能是链接：'+current);}catch(e){if(e.code!=='ENOENT')throw e;}
   }
+  try{
+    if(hash(await readFile(target))!==item.sha256)throw Error('已有文件不同，未覆盖：'+target);
+    continue; // 已校验的本地素材支持离线重跑，不必重新下载。
+  }catch(e){if(e.code!=='ENOENT')throw e;}
   let bytes;
   if(/^https?:/.test(base)){
-    const response=await fetch(new URL(item.source,base.replace(/\/?$/,'/')));
+    const response=await fetch(new URL(item.source,base.replace(/\/?$/,'/')),{signal:AbortSignal.timeout(60000)});
     if(!response.ok)throw Error('无法取得素材：'+item.source);
     bytes=Buffer.from(await response.arrayBuffer());
   }else{

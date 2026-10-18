@@ -1,5 +1,5 @@
 {
-  "purpose": "实际绘制依赖、字体和素材，随包提供并复制到目标工程 public/wise-motion",
+  "purpose": "实际绘制依赖、字体和素材；标记 github 的大素材从对应版本按需准备，其余随包提供，安装后均位于目标工程 public/wise-motion",
   "files": [
     {
       "path": "catalog/app.css",
@@ -1093,13 +1093,13 @@
     },
     {
       "path": "catalog/assets/lego-kingdom/README.md",
-      "bytes": 2570,
-      "sha256": "92e8ff7e6036dab9c27c0def22bef379068482beb56d16b002e1d50c6d2ef1f6"
+      "bytes": 3122,
+      "sha256": "ab079d6b08155481c7459d7df6b1baa1b90a8d344847c44f0d7093016b92ccbb"
     },
     {
       "path": "catalog/assets/lego-kingdom/SOURCE.json",
-      "bytes": 43590,
-      "sha256": "0404ce48319d2f1a680ef759ad688f0558c48bbef58ce0973ac733f3b0e183d6"
+      "bytes": 43702,
+      "sha256": "55c794becfe5defacbca8414587c01c4ba0af5ed1cdb07377bb94c241cfa6581"
     },
     {
       "path": "catalog/assets/lego-kingdom/fonts/IBMPlexMono-Light.ttf",
@@ -1149,467 +1149,560 @@
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-000.webp",
       "bytes": 630650,
-      "sha256": "3da2859dce4f9fcbebdc9c5348b56286af8306839b3193b44584516bf5ceb91e"
+      "sha256": "3da2859dce4f9fcbebdc9c5348b56286af8306839b3193b44584516bf5ceb91e",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-001.webp",
       "bytes": 630092,
-      "sha256": "cbd55725bc2bacbfb48a59c13554e2315739b1824930b0ed8bff43faf3edd8d5"
+      "sha256": "cbd55725bc2bacbfb48a59c13554e2315739b1824930b0ed8bff43faf3edd8d5",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-002.webp",
       "bytes": 628160,
-      "sha256": "95a7b8052f1717768a7c5c2e92dca225251cda1c1cb6ec8663edd9124f7f2ee9"
+      "sha256": "95a7b8052f1717768a7c5c2e92dca225251cda1c1cb6ec8663edd9124f7f2ee9",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-003.webp",
       "bytes": 627294,
-      "sha256": "a6af849cf8f636bfd0a78713c7367869f848f183b6ca1462b9d8b8f5fa8fb7e0"
+      "sha256": "a6af849cf8f636bfd0a78713c7367869f848f183b6ca1462b9d8b8f5fa8fb7e0",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-004.webp",
       "bytes": 633444,
-      "sha256": "d9cd7deab9714bbbad10f20de4c332f4241602f4a90e7ed87d18247f798e3f82"
+      "sha256": "d9cd7deab9714bbbad10f20de4c332f4241602f4a90e7ed87d18247f798e3f82",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-005.webp",
       "bytes": 627406,
-      "sha256": "6e68c806cae03bc2c93b772c28685f0f54d87f5de8a509dbfeddbfbdd496e606"
+      "sha256": "6e68c806cae03bc2c93b772c28685f0f54d87f5de8a509dbfeddbfbdd496e606",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-006.webp",
       "bytes": 629080,
-      "sha256": "cde0cd5a77094a0e9fe6d3f318be98215efe3d1c5169156dcc99774c97799590"
+      "sha256": "cde0cd5a77094a0e9fe6d3f318be98215efe3d1c5169156dcc99774c97799590",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-007.webp",
       "bytes": 627932,
-      "sha256": "a900fce3c9257a3165e1854e5534463529347c4ff0fe9d08f8cb88e7ee64be75"
+      "sha256": "a900fce3c9257a3165e1854e5534463529347c4ff0fe9d08f8cb88e7ee64be75",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-008.webp",
       "bytes": 636944,
-      "sha256": "7feb26c5586c7814493da1bae4c3af05b738ee95f524bf4f31367975a6e6ec69"
+      "sha256": "7feb26c5586c7814493da1bae4c3af05b738ee95f524bf4f31367975a6e6ec69",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-009.webp",
       "bytes": 630204,
-      "sha256": "f38a24ef7fa1df3dac701a8d3080958a22af89076095895ddfb57b08cf5a0faa"
+      "sha256": "f38a24ef7fa1df3dac701a8d3080958a22af89076095895ddfb57b08cf5a0faa",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-010.webp",
       "bytes": 634192,
-      "sha256": "fa973d10bc513d62ee036adfcd83325c3459501824c0e8dc1bba0593fd01e4b9"
+      "sha256": "fa973d10bc513d62ee036adfcd83325c3459501824c0e8dc1bba0593fd01e4b9",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-011.webp",
       "bytes": 633586,
-      "sha256": "096bbbf79e2d37449da780f967b26246dd9277554b0345e308321b655ee094e3"
+      "sha256": "096bbbf79e2d37449da780f967b26246dd9277554b0345e308321b655ee094e3",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-012.webp",
       "bytes": 642876,
-      "sha256": "dcc68460223f413fbabc67bb79b89d18806347d565acbb2ab9428c9a4f9949ed"
+      "sha256": "dcc68460223f413fbabc67bb79b89d18806347d565acbb2ab9428c9a4f9949ed",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-013.webp",
       "bytes": 636592,
-      "sha256": "3f2788d79242c63eedecf3b53d3db1121f1d56ccf4d8d8001e06625dfc463912"
+      "sha256": "3f2788d79242c63eedecf3b53d3db1121f1d56ccf4d8d8001e06625dfc463912",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-014.webp",
       "bytes": 640892,
-      "sha256": "2cef36ae7d9749e3689ea2f94d1b4b96556530bfaff3cd358642e67b7eb8ad0a"
+      "sha256": "2cef36ae7d9749e3689ea2f94d1b4b96556530bfaff3cd358642e67b7eb8ad0a",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-015.webp",
       "bytes": 640316,
-      "sha256": "a59f55cfeae693390026741fa5c8079c2276cc6bc8b88f078c25b36c45add62e"
+      "sha256": "a59f55cfeae693390026741fa5c8079c2276cc6bc8b88f078c25b36c45add62e",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-016.webp",
       "bytes": 650322,
-      "sha256": "beb54097a8b5aa9389b43575bb5670bca808c30319962fff627e7e99c956a7e5"
+      "sha256": "beb54097a8b5aa9389b43575bb5670bca808c30319962fff627e7e99c956a7e5",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-017.webp",
       "bytes": 643014,
-      "sha256": "a86af3b0be53bfad7a1104a87ed2063962c108843232c64be7081083d810e637"
+      "sha256": "a86af3b0be53bfad7a1104a87ed2063962c108843232c64be7081083d810e637",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-018.webp",
       "bytes": 648494,
-      "sha256": "5eccc1b6a28044f9b24f623521b6e7187a3106408ba1aa97710678251738a18f"
+      "sha256": "5eccc1b6a28044f9b24f623521b6e7187a3106408ba1aa97710678251738a18f",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-019.webp",
       "bytes": 648238,
-      "sha256": "b0c1405c3e7cc7be89cdfa434dc36400c867744c66bbc31acc706628d61b834d"
+      "sha256": "b0c1405c3e7cc7be89cdfa434dc36400c867744c66bbc31acc706628d61b834d",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-020.webp",
       "bytes": 659270,
-      "sha256": "c4ce3eb33f06ecef7ed267baeddfe5bb054e410a0d75080db525a4ff64f223c4"
+      "sha256": "c4ce3eb33f06ecef7ed267baeddfe5bb054e410a0d75080db525a4ff64f223c4",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-021.webp",
       "bytes": 652158,
-      "sha256": "9c8d35bcbf07b43418f8894dfa0f664c0541548672e7400cb25cd8b8a9b3fd23"
+      "sha256": "9c8d35bcbf07b43418f8894dfa0f664c0541548672e7400cb25cd8b8a9b3fd23",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-022.webp",
       "bytes": 657322,
-      "sha256": "f9e6a99958ba7fc03322fa04f3a715666a49641f11c560c5952b289007a4c7d7"
+      "sha256": "f9e6a99958ba7fc03322fa04f3a715666a49641f11c560c5952b289007a4c7d7",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-023.webp",
       "bytes": 657980,
-      "sha256": "007f094695863628f6bae6835c69291810db6e12abaaffb10f5c64947d5765c4"
+      "sha256": "007f094695863628f6bae6835c69291810db6e12abaaffb10f5c64947d5765c4",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-024.webp",
       "bytes": 669918,
-      "sha256": "93e36deea6438fa2683b7dd0154712b1f85097758a5d5c104c92f2aa4b1e0d41"
+      "sha256": "93e36deea6438fa2683b7dd0154712b1f85097758a5d5c104c92f2aa4b1e0d41",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-025.webp",
       "bytes": 663050,
-      "sha256": "845e9e18912772fa5bf49d6e8acfe77b1036f29e2f74f9684aca6a69a5a96a87"
+      "sha256": "845e9e18912772fa5bf49d6e8acfe77b1036f29e2f74f9684aca6a69a5a96a87",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-026.webp",
       "bytes": 667808,
-      "sha256": "24f2d91be5f3ca646bbc505e983130e56d7c41f9f5a4b3558661eb6923d4f080"
+      "sha256": "24f2d91be5f3ca646bbc505e983130e56d7c41f9f5a4b3558661eb6923d4f080",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-027.webp",
       "bytes": 669066,
-      "sha256": "19b497536d8087cc7a870e63af9a2e6561847da4700205bedc256c7f7fd68184"
+      "sha256": "19b497536d8087cc7a870e63af9a2e6561847da4700205bedc256c7f7fd68184",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-028.webp",
       "bytes": 680984,
-      "sha256": "113e6d397d2deb9c8455e398d0a3b008d66312edf9e87734331047ae7eb7ebde"
+      "sha256": "113e6d397d2deb9c8455e398d0a3b008d66312edf9e87734331047ae7eb7ebde",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-029.webp",
       "bytes": 674272,
-      "sha256": "aca54d98dd2475b41e6c3f0156a582b9b91745d01094052c2526cb3822469328"
+      "sha256": "aca54d98dd2475b41e6c3f0156a582b9b91745d01094052c2526cb3822469328",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-030.webp",
       "bytes": 680068,
-      "sha256": "f68497ac393c7ccd88847fe24b171b70119cda04461d33d82748fc8e65a88859"
+      "sha256": "f68497ac393c7ccd88847fe24b171b70119cda04461d33d82748fc8e65a88859",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-031.webp",
       "bytes": 679644,
-      "sha256": "bcbcd40b554f72deab36a496cab2131e60a2b54b751b0df29f8d4f1956e91bdb"
+      "sha256": "bcbcd40b554f72deab36a496cab2131e60a2b54b751b0df29f8d4f1956e91bdb",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-032.webp",
       "bytes": 692548,
-      "sha256": "951fee3797e0d8f7372effda1a942cc744a276edb7a700e1398f679092ab61c3"
+      "sha256": "951fee3797e0d8f7372effda1a942cc744a276edb7a700e1398f679092ab61c3",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-033.webp",
       "bytes": 685080,
-      "sha256": "ede557b3f991b446320b0624833c697eccafa5473fe131cd73ba5a1e3f5c8f10"
+      "sha256": "ede557b3f991b446320b0624833c697eccafa5473fe131cd73ba5a1e3f5c8f10",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-034.webp",
       "bytes": 689592,
-      "sha256": "0160e6c47894a29d991864d6ab52ddaa73d56d2d87afc945558755909de19bb7"
+      "sha256": "0160e6c47894a29d991864d6ab52ddaa73d56d2d87afc945558755909de19bb7",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-035.webp",
       "bytes": 690352,
-      "sha256": "2eece4fd7ccb034baf150454a1f2f8be82a7e015781e980b8f73978b008b6eca"
+      "sha256": "2eece4fd7ccb034baf150454a1f2f8be82a7e015781e980b8f73978b008b6eca",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-036.webp",
       "bytes": 702582,
-      "sha256": "346f13b2e9acc1e76a0fd043e4a8006798d85bf05f31fe50f35146b319090d2c"
+      "sha256": "346f13b2e9acc1e76a0fd043e4a8006798d85bf05f31fe50f35146b319090d2c",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-037.webp",
       "bytes": 694756,
-      "sha256": "96aae75da586e8d5daf20f6ebdfb4d421ae660c8d7fecc0d9ee69f8a302cb770"
+      "sha256": "96aae75da586e8d5daf20f6ebdfb4d421ae660c8d7fecc0d9ee69f8a302cb770",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-038.webp",
       "bytes": 699408,
-      "sha256": "8026ac8b6063dd97f0e557b4552eeb0538ca180f7b00bc34322cc025edede38e"
+      "sha256": "8026ac8b6063dd97f0e557b4552eeb0538ca180f7b00bc34322cc025edede38e",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-039.webp",
       "bytes": 699010,
-      "sha256": "7bfe1cbef078410ea4b798821495903d6f11b9228e2063b20d7797a0b7ab3eea"
+      "sha256": "7bfe1cbef078410ea4b798821495903d6f11b9228e2063b20d7797a0b7ab3eea",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-040.webp",
       "bytes": 712272,
-      "sha256": "8a809b6a3ed3ebfaba9522130f0875227593d15abfb36f0f5c11947587370af9"
+      "sha256": "8a809b6a3ed3ebfaba9522130f0875227593d15abfb36f0f5c11947587370af9",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-041.webp",
       "bytes": 703618,
-      "sha256": "cdd8c69cbc54c4f3ff3c510b0e38cf51fc2e3651368386836ac68923ae9e6ee7"
+      "sha256": "cdd8c69cbc54c4f3ff3c510b0e38cf51fc2e3651368386836ac68923ae9e6ee7",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-042.webp",
       "bytes": 707320,
-      "sha256": "73d9109bdde0dc36af9596704e86b0e7de8b89535b68e127736456f3a9a1554f"
+      "sha256": "73d9109bdde0dc36af9596704e86b0e7de8b89535b68e127736456f3a9a1554f",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-043.webp",
       "bytes": 706898,
-      "sha256": "4c5ec933b4a4930899b01e46e4905e21b420ba620f302f2969da74aa33979e00"
+      "sha256": "4c5ec933b4a4930899b01e46e4905e21b420ba620f302f2969da74aa33979e00",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-044.webp",
       "bytes": 718934,
-      "sha256": "8ccf308b91530358523e286b85ec20587517b103a8c5644b917045d08a8b3a17"
+      "sha256": "8ccf308b91530358523e286b85ec20587517b103a8c5644b917045d08a8b3a17",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-045.webp",
       "bytes": 708946,
-      "sha256": "4f6d5163e13aaf0726ee5ad535a8dd2e976b17d61949507a98732a99ffb0f7e7"
+      "sha256": "4f6d5163e13aaf0726ee5ad535a8dd2e976b17d61949507a98732a99ffb0f7e7",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-046.webp",
       "bytes": 1092274,
-      "sha256": "ddcbb2591a31bd2557ccf92f440c06abf81a232b7fc82c67a178ff3826b9cb06"
+      "sha256": "ddcbb2591a31bd2557ccf92f440c06abf81a232b7fc82c67a178ff3826b9cb06",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-047.webp",
       "bytes": 1085328,
-      "sha256": "8ea67187b37d1557f7757f708f9b32849db8bc8698c21aee41d21470c58b63f7"
+      "sha256": "8ea67187b37d1557f7757f708f9b32849db8bc8698c21aee41d21470c58b63f7",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-048.webp",
       "bytes": 1092182,
-      "sha256": "88ae7c5994e6d4d392dcdc3b7a52f16e560f59660fc1dab23809f98aec0f76b5"
+      "sha256": "88ae7c5994e6d4d392dcdc3b7a52f16e560f59660fc1dab23809f98aec0f76b5",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-049.webp",
       "bytes": 1088922,
-      "sha256": "2ea048b7fe859a71e1e6d5ef0ef9b87df24b0876b3a2418e53e31c27c56ba7b6"
+      "sha256": "2ea048b7fe859a71e1e6d5ef0ef9b87df24b0876b3a2418e53e31c27c56ba7b6",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-050.webp",
       "bytes": 1103268,
-      "sha256": "b7aebb440f9bae8a3d25542d8a7d708c4c90735b8b1fe2b813c64cddd772652d"
+      "sha256": "b7aebb440f9bae8a3d25542d8a7d708c4c90735b8b1fe2b813c64cddd772652d",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-051.webp",
       "bytes": 1092488,
-      "sha256": "c150f84287d924e6faf315a79c1d4e8a096b10a4612136969c65130158875050"
+      "sha256": "c150f84287d924e6faf315a79c1d4e8a096b10a4612136969c65130158875050",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-052.webp",
       "bytes": 1097300,
-      "sha256": "778b23fbdeba4fa064e2195c6e7d0ad33576940b2f2f36524432866ca2cef061"
+      "sha256": "778b23fbdeba4fa064e2195c6e7d0ad33576940b2f2f36524432866ca2cef061",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-053.webp",
       "bytes": 1095738,
-      "sha256": "c8729737797505fa8e02bd23399c2cfcb4c2ee56f2c906961308710e316a32bb"
+      "sha256": "c8729737797505fa8e02bd23399c2cfcb4c2ee56f2c906961308710e316a32bb",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-054.webp",
       "bytes": 1108562,
-      "sha256": "436898949b4b8da992c1dff4b6dabd435a9a7671737325ec902d9fad0a83d998"
+      "sha256": "436898949b4b8da992c1dff4b6dabd435a9a7671737325ec902d9fad0a83d998",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-055.webp",
       "bytes": 1097552,
-      "sha256": "305721a5eb2bdf345f2aeb9b89d006c695f46c93bd2779a40764aead4e4b1aab"
+      "sha256": "305721a5eb2bdf345f2aeb9b89d006c695f46c93bd2779a40764aead4e4b1aab",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-056.webp",
       "bytes": 1103242,
-      "sha256": "a1f4031b55aa2e720f797b8bb9a21e70dd7d9f8171361ffdc3b613355d2c6251"
+      "sha256": "a1f4031b55aa2e720f797b8bb9a21e70dd7d9f8171361ffdc3b613355d2c6251",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-057.webp",
       "bytes": 1100496,
-      "sha256": "7e44891a8b8902ded385544a1d57939f0db66ee8dc566f77890fba0d519b8e72"
+      "sha256": "7e44891a8b8902ded385544a1d57939f0db66ee8dc566f77890fba0d519b8e72",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-058.webp",
       "bytes": 1113912,
-      "sha256": "b49a6657a414189dc0de8ec5dde4908acc65f25bbd2aa25ea8a21a32cdc332e2"
+      "sha256": "b49a6657a414189dc0de8ec5dde4908acc65f25bbd2aa25ea8a21a32cdc332e2",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-059.webp",
       "bytes": 1102448,
-      "sha256": "c1da3746afcd16e10603c74d742f25e695ccfa737a84ac96dc940a7814a96c92"
+      "sha256": "c1da3746afcd16e10603c74d742f25e695ccfa737a84ac96dc940a7814a96c92",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-060.webp",
       "bytes": 1108066,
-      "sha256": "f943d5c6c5d7a526e9e4e4a49101a106793ef82f909ea008b8908551ecd4f56e"
+      "sha256": "f943d5c6c5d7a526e9e4e4a49101a106793ef82f909ea008b8908551ecd4f56e",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-061.webp",
       "bytes": 1105048,
-      "sha256": "e73bc54b050a8702a5cef6e989c41e2b4890220c57fb567be155ff56983e73d1"
+      "sha256": "e73bc54b050a8702a5cef6e989c41e2b4890220c57fb567be155ff56983e73d1",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-062.webp",
       "bytes": 1118352,
-      "sha256": "790dac360d188bcc1691641d7983ce89cf15f2f990bfe493bc3547883193536e"
+      "sha256": "790dac360d188bcc1691641d7983ce89cf15f2f990bfe493bc3547883193536e",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-063.webp",
       "bytes": 1106832,
-      "sha256": "94612990ef4104cb518c2c53d5986dc2da6cd4f5cd77f7f2bd04f900f2436dab"
+      "sha256": "94612990ef4104cb518c2c53d5986dc2da6cd4f5cd77f7f2bd04f900f2436dab",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-064.webp",
       "bytes": 1113708,
-      "sha256": "d501e4c6e80dda24d44d081792f202a2b6abf6674cb80442c3276c35d8ae7355"
+      "sha256": "d501e4c6e80dda24d44d081792f202a2b6abf6674cb80442c3276c35d8ae7355",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-065.webp",
       "bytes": 1109088,
-      "sha256": "1ebcc32e3d7ad3e9af914e9e6c68d4461d369a22234fe81eeac7a818fce3613b"
+      "sha256": "1ebcc32e3d7ad3e9af914e9e6c68d4461d369a22234fe81eeac7a818fce3613b",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-066.webp",
       "bytes": 1123814,
-      "sha256": "790227fbf1f50d587b6534133545a368784dc2f06d06b34bb0597751c31cb1a9"
+      "sha256": "790227fbf1f50d587b6534133545a368784dc2f06d06b34bb0597751c31cb1a9",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-067.webp",
       "bytes": 1111138,
-      "sha256": "455e6ef24780cb558ef68871debff7f5c84e8b0b4efb04aabb0ed56ea8478f37"
+      "sha256": "455e6ef24780cb558ef68871debff7f5c84e8b0b4efb04aabb0ed56ea8478f37",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-068.webp",
       "bytes": 1117704,
-      "sha256": "4c8491847fe0c7270edd9779e954d57c65e0745ba5c5bfdc1193efb44437ccf5"
+      "sha256": "4c8491847fe0c7270edd9779e954d57c65e0745ba5c5bfdc1193efb44437ccf5",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-069.webp",
       "bytes": 1113764,
-      "sha256": "4b817fb4140d0489e7fd04ae07eb96f24fd94d8398a2cbf9229f5344a49a693a"
+      "sha256": "4b817fb4140d0489e7fd04ae07eb96f24fd94d8398a2cbf9229f5344a49a693a",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-070.webp",
       "bytes": 1127668,
-      "sha256": "ac0703909f6f4d005e2122d27c58a5a1b4d386e2914bb0da68f4d093b1317112"
+      "sha256": "ac0703909f6f4d005e2122d27c58a5a1b4d386e2914bb0da68f4d093b1317112",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-071.webp",
       "bytes": 1115360,
-      "sha256": "0cc0e2bd5f607729c11ba1490b07d1353c6c2627ffa0efcad981c855d8b7185d"
+      "sha256": "0cc0e2bd5f607729c11ba1490b07d1353c6c2627ffa0efcad981c855d8b7185d",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-072.webp",
       "bytes": 1122366,
-      "sha256": "dbc607af04698831187cc399aa32143103c340a9dd0058f63b82a3e68017ecfc"
+      "sha256": "dbc607af04698831187cc399aa32143103c340a9dd0058f63b82a3e68017ecfc",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-073.webp",
       "bytes": 1118706,
-      "sha256": "05eda39c97e8920f1c5c935cf800518c26ec1f06774d2ca5ae65b30f9a40b2b1"
+      "sha256": "05eda39c97e8920f1c5c935cf800518c26ec1f06774d2ca5ae65b30f9a40b2b1",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-074.webp",
       "bytes": 1133462,
-      "sha256": "09f8e757453716d7cbdd5d1d5de787c2e5e3ea738b93f171ad0db1961ef0a1ed"
+      "sha256": "09f8e757453716d7cbdd5d1d5de787c2e5e3ea738b93f171ad0db1961ef0a1ed",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-075.webp",
       "bytes": 1121192,
-      "sha256": "31339c4bd1141eb83a5e5e68710d31272291a9589776fcb66821aedf8f2baa29"
+      "sha256": "31339c4bd1141eb83a5e5e68710d31272291a9589776fcb66821aedf8f2baa29",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-076.webp",
       "bytes": 1127526,
-      "sha256": "696f1f314eb37e8dc822b82481301ae9faf9da01fa3fd5566fe2ddeff7b817b4"
+      "sha256": "696f1f314eb37e8dc822b82481301ae9faf9da01fa3fd5566fe2ddeff7b817b4",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-077.webp",
       "bytes": 1123482,
-      "sha256": "3cb78e84908b173ae4b0f717cdeae3c8eb81e74503e5966b374125c4608a80f2"
+      "sha256": "3cb78e84908b173ae4b0f717cdeae3c8eb81e74503e5966b374125c4608a80f2",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-078.webp",
       "bytes": 1137678,
-      "sha256": "020889fd1383ccdc73385152ee6b0a8bb9218a952c7a8ee810d18a0242700458"
+      "sha256": "020889fd1383ccdc73385152ee6b0a8bb9218a952c7a8ee810d18a0242700458",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-079.webp",
       "bytes": 1125156,
-      "sha256": "e3b8bcf5e774acb7086b8adcc1881f4edbd09c76aa5d99ff919e036699336f8c"
+      "sha256": "e3b8bcf5e774acb7086b8adcc1881f4edbd09c76aa5d99ff919e036699336f8c",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-080.webp",
       "bytes": 1132302,
-      "sha256": "14ad44f71015c23b3d0e73ea12582aff15f0c697ce900048f5089f0721627b92"
+      "sha256": "14ad44f71015c23b3d0e73ea12582aff15f0c697ce900048f5089f0721627b92",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-081.webp",
       "bytes": 1127794,
-      "sha256": "a71120aa3bd0f52d34152b2836f39a2a2368e0df7b5aa7ec7acf584736537243"
+      "sha256": "a71120aa3bd0f52d34152b2836f39a2a2368e0df7b5aa7ec7acf584736537243",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-082.webp",
       "bytes": 1140666,
-      "sha256": "a0ee2f43963bd7578a908d9e286f6ee0444273c53853f5e4273321c065b30fc7"
+      "sha256": "a0ee2f43963bd7578a908d9e286f6ee0444273c53853f5e4273321c065b30fc7",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-083.webp",
       "bytes": 1130944,
-      "sha256": "25cf9117368a868b787f3e48ab89e84a858772e2ccf815a0efa59d0b35b956d6"
+      "sha256": "25cf9117368a868b787f3e48ab89e84a858772e2ccf815a0efa59d0b35b956d6",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-084.webp",
       "bytes": 1137056,
-      "sha256": "4bee35c433665cbf1762b557d103f0897c02219af7bde1725d111b25f599a542"
+      "sha256": "4bee35c433665cbf1762b557d103f0897c02219af7bde1725d111b25f599a542",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-085.webp",
       "bytes": 1132396,
-      "sha256": "a7bbe07c52b6a782a477eaef5fa1c747c3d000c6bf0e1f6a57035e27feb4b21b"
+      "sha256": "a7bbe07c52b6a782a477eaef5fa1c747c3d000c6bf0e1f6a57035e27feb4b21b",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-086.webp",
       "bytes": 1145626,
-      "sha256": "cec7c1446e1aa0e9b5499db02fd947ce5a6906e4f398155eca48cbb993e382e8"
+      "sha256": "cec7c1446e1aa0e9b5499db02fd947ce5a6906e4f398155eca48cbb993e382e8",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-087.webp",
       "bytes": 1134388,
-      "sha256": "83a28d9a157c1299d4d3fae489d965b408aab868232a942800b2b54d85a5e564"
+      "sha256": "83a28d9a157c1299d4d3fae489d965b408aab868232a942800b2b54d85a5e564",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-088.webp",
       "bytes": 1141464,
-      "sha256": "a7e8623a775d1a7a9ce608d308339632a9df0f0fe603babe476be9048d54b315"
+      "sha256": "a7e8623a775d1a7a9ce608d308339632a9df0f0fe603babe476be9048d54b315",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-089.webp",
       "bytes": 1136856,
-      "sha256": "a681aa2d353e3164fe79c610f81b2e0b19bc4eff75f1d52f973f0521522b6dc9"
+      "sha256": "a681aa2d353e3164fe79c610f81b2e0b19bc4eff75f1d52f973f0521522b6dc9",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-090.webp",
       "bytes": 1146486,
-      "sha256": "73abd0d67ad922b3642aee0e590b3244274dd46e571cd89a037250da71f910f5"
+      "sha256": "73abd0d67ad922b3642aee0e590b3244274dd46e571cd89a037250da71f910f5",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-091.webp",
       "bytes": 1136412,
-      "sha256": "a7cf27429ee0794b6326041fcef2ab944c811a5f705a1a64cac79cc04440bcfd"
+      "sha256": "a7cf27429ee0794b6326041fcef2ab944c811a5f705a1a64cac79cc04440bcfd",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/layout/frame-092.webp",
       "bytes": 1139910,
-      "sha256": "9df32d1b07621ab300f412f8a09db08c87dd59f4737fe78bde072852b907ca86"
+      "sha256": "9df32d1b07621ab300f412f8a09db08c87dd59f4737fe78bde072852b907ca86",
+      "delivery": "github"
     },
     {
       "path": "catalog/assets/lego-kingdom/verify-source.mjs",
@@ -3248,8 +3341,8 @@
     },
     {
       "path": "catalog/export.js",
-      "bytes": 47081,
-      "sha256": "6f87ce5f9166ad09963172f8cba85ebf8cecf9186571cd182c4c2f4f2d429a7e"
+      "bytes": 47892,
+      "sha256": "189dc651b32f42a5b6b7d84c882733b74ece81554c22f8dcb2e2dd7d1b6f6c94"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -3373,8 +3466,8 @@
     },
     {
       "path": "catalog/remotion/binary-assets-installer.mjs",
-      "bytes": 2138,
-      "sha256": "58486c46927922748ecd07f016585b02efe351bb142c54a98c5791387337d262"
+      "bytes": 2415,
+      "sha256": "1a9a674bf479e4edc62979550fd1dc7304bc3feaf6475b16249375b9b2a7b4f4"
     },
     {
       "path": "catalog/remotion/butterfly.jsx",
@@ -3588,8 +3681,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 3531891,
-      "sha256": "2d924248ac7f68320332fac1ce24b76848be7b8b26eed123203f95a3c460741c"
+      "bytes": 3532838,
+      "sha256": "38d39b6c5eaa9dae6e19de41e8147b3a33a85124e99fe6d600926fb7b0f70597"
     },
     {
       "path": "catalog/runtime.js",

@@ -2,12 +2,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mkdtemp,mkdir,readFile,writeFile,rm,stat} from 'node:fs/promises';
+import {readFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
-import {installAssets,isAssetFile} from '../scripts/install-assets.mjs';
+import {installAssets,isAssetFile,isDownloadAsset} from '../scripts/install-assets.mjs';
 import {FRAME_SCRIPTS,FRAME_STYLES} from '../remotion/frame-document.mjs';
 const sourceOnly=[
  'vendor/duobaota/page-02.jpg','vendor/duobaota/page-10.jpg',
@@ -35,6 +36,11 @@ test('实际分发清单排除重建原件和文档预览，保留运行字体�
  const files=new Set(packed.files.map(file=>file.path));
  for(const file of sourceOnly)assert.ok(!files.has(file),'原件不应进入分发：'+file);
  for(const file of retained)assert.ok(files.has(file),'分发遗漏依赖或署名：'+file);
+ assert.ok(![...files].some(isDownloadAsset),'积木无损背景应按需下载，不进入主包');
+ const manifest=JSON.parse(readFileSync(new URL('../ASSET-MANIFEST.json',import.meta.url),'utf8'));
+ const deferred=manifest.files.filter(item=>isDownloadAsset(item.path));
+ assert.equal(deferred.length,93);
+ assert.ok(deferred.every(item=>item.delivery==='github'&&item.sha256.length===64&&item.bytes>0));
  assert.ok(![...files].some(file=>file.startsWith('docs/previews/')));
  assert.ok(![...files].some(file=>file.includes('/precision-assembly/')));
  for(const extension of ['.blend','.png','.mp4','.exr','.bin'])assert.equal(isAssetFile('catalog/assets/time-in-motion/production/project/任意目录/asset'+extension),false);
