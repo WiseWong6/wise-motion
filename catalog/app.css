@@ -279,8 +279,9 @@ html[data-theme="light"] { --thumbnail-art-filter:brightness(.48) saturate(1.25)
   margin:0; padding:0; background:var(--canvas); overflow:hidden;
 }
 .preview-shell:fullscreen #preview {
-  width:min(100%,calc(100dvh * var(--preview-ratio))); height:auto;
-  max-height:100%; border-radius:0; box-shadow:none;
+  /* 播放器内容为绝对定位，全屏时直接给定宽高，避免网格自动高度塌缩。 */
+  width:min(100dvw,calc(100dvh * var(--preview-ratio)));
+  height:min(100dvh,calc(100dvw / var(--preview-ratio))); border-radius:0; box-shadow:none;
 }
 .preview-shell:fullscreen .playbar {
   position:absolute; left:0; right:0; bottom:max(16px,env(safe-area-inset-bottom));

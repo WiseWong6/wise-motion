@@ -65,7 +65,12 @@ export function create(root, supplied, options = {}) {
   const onReady = value => {
     if(destroyed){value.destroy();return;}
     session=value;preparing=false;
-    if(session.doc)session.doc.documentElement.dataset.theme=theme;
+    if(session.doc){
+      session.doc.documentElement.dataset.theme=theme;
+      // 预览由 iframe 边界裁切；内部两层重复裁切会让 Chrome 全屏切换后漏画舞台。
+      session.doc.getElementById('wise-motion-viewport')?.style.setProperty('overflow','visible');
+      session.stage?.style.setProperty('overflow','visible');
+    }
     settleReady(true);if(playing)playerRef.current?.play();notify();
   };
   const metadata=getEffectMetadata(definition.id,{definition});

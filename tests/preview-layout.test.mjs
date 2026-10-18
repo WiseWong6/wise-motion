@@ -77,7 +77,27 @@ test('全屏样式解除普通窗口宽度上限，横竖画面等比容纳并�
  const css=await readFile(new URL('../catalog/app.css',import.meta.url),'utf8');
  const rule=selector=>{const start=css.indexOf(selector+' {');assert.ok(start>=0,selector);return css.slice(start,css.indexOf('}',start));};
  assert.match(rule('.preview-shell:fullscreen'),/max-width:none/);
- assert.match(rule('.preview-shell:fullscreen #preview'),/100dvh \* var\(--preview-ratio\)/);
+ const preview=rule('.preview-shell:fullscreen #preview').replace(/\/\*[\s\S]*?\*\//g,'');
+ // 核对正式样式的尺寸公式；这不替代浏览器实际布局与播放验收。
+ const dimension=(axis,screenWidth,screenHeight,ratio)=>{
+  const value=new RegExp('(?:[;{]\\s*)'+axis+':([^;]+)').exec(preview)?.[1];
+  assert.ok(value,'全屏画面必须有明确的'+axis);
+  const expression=value.replaceAll('var(--preview-ratio)',String(ratio))
+   .replace(/([\d.]+)dvw/g,(_,n)=>String(Number(n)*screenWidth/100))
+   .replace(/([\d.]+)dvh/g,(_,n)=>String(Number(n)*screenHeight/100))
+   .replace(/\bcalc\(/g,'(');
+  assert.match(expression,/^[\d.\s(),*/+\-min]+$/,'全屏尺寸不能依赖自动高度或网格内的百分比');
+  return Function('min','return ('+expression+')')(Math.min);
+ };
+ for(const [screenWidth,screenHeight] of [[1920,1080],[1080,1920],[3440,1440],[844,390]]){
+  for(const ratio of [16/9,.75,1,1080/320]){
+   const width=dimension('width',screenWidth,screenHeight,ratio),height=dimension('height',screenWidth,screenHeight,ratio);
+   assert.ok(width>0&&height>0,'全屏画面不能塌成零尺寸');
+   assert.ok(width<=screenWidth&&height<=screenHeight,'全屏画面不能超出屏幕');
+   assert.ok(Math.abs(width/height-ratio)<1e-10,'横竖画面都应保持原比例');
+   assert.ok(Math.abs(width-screenWidth)<1e-10||Math.abs(height-screenHeight)<1e-10,'画面至少一边应铺满屏幕');
+  }
+ }
  const bar=rule('.preview-shell:fullscreen .playbar');
  assert.match(bar,/position:absolute/);assert.match(bar,/safe-area-inset-bottom/);assert.match(bar,/opacity:1/);assert.match(bar,/pointer-events:auto/);
 });
