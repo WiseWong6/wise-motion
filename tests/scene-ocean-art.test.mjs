@@ -7,6 +7,9 @@ test('座板托举在原海面背景上绘制，回看保持相同画面和原�
  const env=await environment(),{w}=env,root=w.document.getElementById('root');let render,full;
  try{
   w.WiseSceneDiagnostics=true;
+  assert.equal(data.effects.some(e=>e.id==='sunset-character-illustration'),false);
+  assert.equal(w.MotionFactories['sunset-character-illustration'],undefined);
+  assert.equal(data.redirects['sunset-character-illustration'],'sunset-sun-illustration');
   const effect=data.effects.find(e=>e.id==='seat-water-lift');
   render=w.MotionKit.createRenderer(root,effect);await render.ready;
   const ctx=root.querySelector('canvas').getContext('2d'),calls=[];

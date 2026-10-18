@@ -31,12 +31,13 @@
   }
   const point=(r,a)=>{const v=a*Math.PI/180;return [500+Math.cos(v)*r,500+Math.sin(v)*r];};
   const arc=(r,a,span)=>{const p=point(r,a),q=point(r,a+span);return 'M '+p.join(' ')+' A '+r+' '+r+' 0 '+(span>180?1:0)+' 1 '+q.join(' ');};
-  function dial(root) {
+  function dial(root, size = 280) {
     const host=board(root), d=root.ownerDocument;
     const svg=(tag,attrs,parent)=>{const n=d.createElementNS('http://www.w3.org/2000/svg',tag);
       for(const [key,value]of Object.entries(attrs))n.setAttribute(key,value);(parent||host).append(n);return n;};
-    const main=svg('svg',{viewBox:'0 0 1000 1000',fill:'none',width:280,height:280});
-    main.style.cssText='position:absolute;left:180px;top:40px;overflow:visible';
+    const main=svg('svg',{viewBox:'0 0 1000 1000',fill:'none',width:size,height:size});
+    // Keep the drawing size independent of the page's small SVG icon rule.
+    main.style.cssText='position:absolute;width:'+size+'px;height:'+size+'px;left:'+(640-size)/2+'px;top:'+(360-size)/2+'px;transform-origin:50% 50%;overflow:visible';
     svg('circle',{cx:500,cy:500,r:388,stroke:'#8e816a','stroke-width':1.3,opacity:.26},main);
     const outer=svg('g',{},main),inner=svg('g',{},main);
     const ticks=Array.from({length:48},(_,i)=>{const major=i%4===0,p=point(major?438:451,-90+i*7.5),q=point(466,-90+i*7.5);
@@ -53,7 +54,6 @@
       b.setAttribute('stroke-dashoffset',1-s.innerArc);b.setAttribute('opacity',.62+s.pulse*.2);dot.setAttribute('opacity',s.dot);
     };draw.destroy=()=>{gone=true;};draw(0);return draw;
   }
-  F['sparse-dial-counterturn']=dial;
-  F['time-dial-illustration']=dial;
+  F['sparse-dial-counterturn']=root=>dial(root);
   global.WiseTimeInMotionGraphics=Object.freeze({dialState});
 })(globalThis);

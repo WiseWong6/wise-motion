@@ -3013,8 +3013,8 @@
     },
     {
       "path": "catalog/effects/pixel-motion.js",
-      "bytes": 12002,
-      "sha256": "ed89596dbf060ae8b82589749c13f2436c5c4216a91650eb0fa8ec82e68cc777"
+      "bytes": 12266,
+      "sha256": "373847f06eb90c5177bc0bbe42bb655e9239d6ad9b24e482d2e2ba9b4daaa5e3"
     },
     {
       "path": "catalog/effects/point-domain-flow.js",
@@ -3098,8 +3098,8 @@
     },
     {
       "path": "catalog/effects/scene-factory.js",
-      "bytes": 111296,
-      "sha256": "8a997d3742ad96dde068f00b455f27a3e43d3b90d662f2dfc938f74c6f66392e"
+      "bytes": 108821,
+      "sha256": "5283eceea2abcaba50b19f8b7c728221c86d4a7a17859f617acbd237701f1c0f"
     },
     {
       "path": "catalog/effects/scene-ink-data.js",
@@ -3123,8 +3123,8 @@
     },
     {
       "path": "catalog/effects/scene-ocean.js",
-      "bytes": 63940,
-      "sha256": "0f8bded288cfe81aaf826de30ac06d393ddbcfbe9b19489bf503c809dd3fa3a2"
+      "bytes": 62652,
+      "sha256": "2d5c5ceb950ad2a94c4249e8a207a1863a8cf7a7fac800b675b2bb4edbbc821d"
     },
     {
       "path": "catalog/effects/scene-osmanthus-data.js",
@@ -3228,8 +3228,8 @@
     },
     {
       "path": "catalog/effects/time-in-motion-graphics.js",
-      "bytes": 3810,
-      "sha256": "a1951785d2464a292c7cb8812a20952584f9b84b44e9adc6b919175b7575c1c6"
+      "bytes": 3963,
+      "sha256": "d12bcbc4687e0ba68dcade872c295287a6d1edce97e80e612e9e1feff2627c02"
     },
     {
       "path": "catalog/effects/time-in-motion.js",
@@ -3353,13 +3353,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1804043,
-      "sha256": "725a24071ff9b6f0c1443905d084502367e1b9e59bc910a79ff373798aa252da"
+      "bytes": 1785007,
+      "sha256": "c13da9aac0d731e834062a6f27c4e4b806e2768b52a97c01b4e679cbcc0c358d"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 4125930,
-      "sha256": "09f847155733aaaa8034cea2e8e282a1ce67df1488ea309327d4dced191d5033"
+      "bytes": 4053306,
+      "sha256": "827007f728eff3ef07a7dac977300b2c4f3747da62bebdcdca8e500712a1d21d"
     },
     {
       "path": "catalog/related-preview.js",
@@ -3588,8 +3588,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 3531470,
-      "sha256": "4c15ed8e420a6ced997d37d31d230f42ff653b4eddfd70c5cfc7244eaa7191be"
+      "bytes": 3531891,
+      "sha256": "2d924248ac7f68320332fac1ce24b76848be7b8b26eed123203f95a3c460741c"
     },
     {
       "path": "catalog/runtime.js",

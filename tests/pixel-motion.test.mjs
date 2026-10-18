@@ -38,6 +38,22 @@ test('同帧重复、倒序与乱序定位不改变像素；加速仍按原像�
  for(const part of api.parts){const before=digest(1.25,part);api.indices(0,{part});assert.equal(digest(1.25,part),before,part);}
 });
 
+test('机器人插画始终显示五个横排角色，配色独立且完整留在画板中央',()=>{
+ assert.equal(api.choices['pixel-robot-illustration'],'robots');
+ assert.equal(context.MotionFactories['pixel-city-illustration'],undefined);
+ for(const time of [0,.25,.6,1.2,2.4,10/3]){
+  const img=api.indices(time,{part:'robots'}),colors=[10,3,4,5,2],counts=colors.map(()=>0);
+  for(let y=0;y<180;y++)for(let x=0;x<320;x++){
+   const color=img[y*320+x];if(color===255)continue;
+   assert.ok(x>=20&&x<300&&y>=60&&y<112,'五个角色应在画板中央，不裁切或滑出');
+   const column=Math.floor((x-20)/56);
+   if(color===colors[column])counts[column]++;
+  }
+  assert.ok(counts.every(n=>n>400),'五列都必须有完整的彩色身体');
+ }
+ assert.notEqual(digest(0,'robots'),digest(.6,'robots'),'横排后仍有自身动作');
+});
+
 test('像素图形错峰回弹只加载声明的依赖即可绘制，定位与重播保留原像素',async()=>{
  const definition=selectEffect('scale-in','pixel-motion');
  const dom=new JSDOM(createFrameDocument({assetBaseUrl:'file:///wise-motion/',definition}),{runScripts:'outside-only',pretendToBeVisual:true}),w=dom.window;

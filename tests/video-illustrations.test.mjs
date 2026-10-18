@@ -15,8 +15,6 @@ import {exportEffect} from '../scripts/export.mjs';
 
 const subjects=[
  ['pixel-robot-illustration','squash-bounce','pixel-motion'],
- ['pixel-city-illustration','seamless-scroll','pixel-motion'],
- ['time-dial-illustration','sparse-dial-counterturn'],
  ['lego-brick-illustration'],
  ['aboutlove-moon-illustration','spiral-draw-spin','aboutlove-51'],
  ['aboutlove-mountains-illustration','ridge-text-write'],
@@ -45,7 +43,7 @@ function paint(draw,root,time){
 }
 
 test('新增视频主体全部进入插画分类，原动作与准确示例可独立找到',()=>{
- assert.equal(definitions.length,9);
+ assert.equal(definitions.length,7);
  for(const [index,def]of definitions.entries()){
   assert.equal(def.kind,'illustration');assert.ok(def.category.startsWith('illustration-'));
   assert.ok(def.source.remotion);assert.ok(!def.audio?.tracks?.length);
@@ -55,7 +53,9 @@ test('新增视频主体全部进入插画分类，原动作与准确示例可�
   for(const id of def.actions)assert.equal(resolveEffect(id,def.action_variants[id]).kind,'action');
  }
  assert.equal(data.effects.some(e=>e.id==='parallax-city-scroll'),false,'不恢复已删除的旧动作入口');
- assert.equal(resolveEffect('seamless-scroll').variant_id,'original','原连续滚动仍为默认示例');
+ assert.equal(data.effects.some(e=>e.id==='pixel-city-illustration'),false,'城市插画已撤下');
+ assert.equal(resolveEffect('seamless-scroll').source.path,'catalog/effects/continuous.js','连续滚动保留原卡片示例');
+ assert.ok(!resolveEffect('seamless-scroll').variants?.some(v=>v.id==='pixel-motion'),'附带的城市滚动示例已撤下');
 });
 
 test('仅加载声明依赖即可绘制所有新插画，倒回同一时间恢复同一状态',async()=>{
@@ -76,8 +76,8 @@ test('仅加载声明依赖即可绘制所有新插画，倒回同一时间恢�
     try{await compare.ready;assert.deepEqual(paint(compare,other,def.duration_ms*.37),expected,def.id+' 原图层与节奏一致');}
     finally{compare.destroy();}
    }
-   if(def.id.startsWith('pixel-')){
-    const api=env.w.WisePixelMotion,part=def.id==='pixel-city-illustration'?'city':'idle';
+   if(def.id==='pixel-robot-illustration'){
+    const api=env.w.WisePixelMotion,part='robots';
     assert.equal(env.root.querySelector('[data-pixel-motion]').dataset.pixelMotion,part);
     assert.equal(api.choices[def.id],part);
     assert.deepEqual(api.indices(.6,{part:api.choices[def.id]}),api.indices(.6,{part}));

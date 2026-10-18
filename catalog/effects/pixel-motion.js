@@ -36,13 +36,19 @@
     }
   }
   function stars(img,t){D.stars.forEach(([x,y],i)=>{if((i+Math.trunc(t*6))%7)set(img,x,y,i%3?15:14);});}
-  function robot(img,x,y,t,sq=1,c=10){
-    const w=24*(2-sq),h=22*sq,by=y-h;
-    rect(img,x-w/2,by,w,h,c);rect(img,x-w/2+3,by+4,w-6,8,0);
+  function robot(img,x,y,t,sq=1,c=10,scale=1){
+    const w=24*(2-sq)*scale,h=22*sq*scale,by=y-h;
+    rect(img,x-w/2,by,w,h,c);rect(img,x-w/2+3*scale,by+4*scale,w-6*scale,8*scale,0);
     const blink=mod(t*1.3,3)<.1;
-    for(const e of [-1,1])rect(img,x+e*5-2,by+6+(blink?2:0),3,blink?1:4,11);
-    rect(img,x-1,by-5,2,5,13);rect(img,x-2,by-8,4,3,Math.trunc(t*4)%2?3:4);
-    rect(img,x-w/2-4,by+h*.4+Math.sin(t*8)*2,4,3,c);rect(img,x+w/2,by+h*.4-Math.sin(t*8)*2,4,3,c);
+    for(const e of [-1,1])rect(img,x+(e*5-2)*scale,by+(6+(blink?2:0))*scale,3*scale,(blink?1:4)*scale,11);
+    rect(img,x-scale,by-5*scale,2*scale,5*scale,13);rect(img,x-2*scale,by-8*scale,4*scale,3*scale,Math.trunc(t*4)%2?3:4);
+    rect(img,x-w/2-4*scale,by+h*.4+Math.sin(t*8)*2*scale,4*scale,3*scale,c);rect(img,x+w/2,by+h*.4-Math.sin(t*8)*2*scale,4*scale,3*scale,c);
+  }
+  function robots(img,u){
+    [10,3,4,5,2].forEach((color,i)=>{
+      const t=u+i*.24;
+      robot(img,48+i*56,112,t,1+.15*Math.sin(t*10),color,1.5);
+    });
   }
   function gather(img,t){
     logo.forEach(([tx,ty],i)=>{
@@ -133,15 +139,15 @@
       const s=eob(u/.6)*3;text(img,'WISE',W/2,80,u<.6?Math.max(1,Math.trunc(s)):3,11);dissolve(img,f);
     }
   }
-  const parts={gather,pops,hop,city,ball,morph,kinetic,stars,confetti,idle:(img,u)=>robot(img,W/2,150,u,1+.15*Math.sin(u*10),10),
+  const parts={gather,pops,hop,city,ball,morph,kinetic,stars,confetti,robots,idle:(img,u)=>robot(img,W/2,150,u,1+.15*Math.sin(u*10),10),
     dissolve:(img,u)=>{full(img,108);dissolve(img,Math.min(119,108+Math.floor(u*30+1e-9)));}};
   const choices={
     'particle-word':'gather','scale-in':'pops','ball-bounce-trails':'ball','shape-morph':'morph',
     'word-slam':'kinetic','star-twinkle':'stars','pixel-dissolve-transition':'dissolve','squash-bounce':'idle',
     'pixel-hop-squash':'hop','parallax-city-scroll':'city','particle-ballistic-fall':'confetti',
-    'pixel-robot-illustration':'idle','pixel-city-illustration':'city','seamless-scroll':'city'
+    'pixel-robot-illustration':'robots'
   };
-  const sourceClips={gather:[0,120],pops:[120,180],hop:[120,180],city:[300,240],ball:[300,240],morph:[300,240],kinetic:[540,210],stars:[0,120],confetti:[750,150],idle:[750,150],dissolve:[0,12]};
+  const sourceClips={gather:[0,120],pops:[120,180],hop:[120,180],city:[300,240],ball:[300,240],morph:[300,240],kinetic:[540,210],stars:[0,120],confetti:[750,150],idle:[750,150],robots:[0,150],dissolve:[0,12]};
   function indices(seconds,{part}={}){
     if(!Number.isFinite(seconds)||seconds<0)throw new TypeError('像素动效时间必须为非负有限数');
     const img=new Uint8Array(W*H);
@@ -188,7 +194,7 @@
     factory:(root,kit,definition)=>factory(root,kit,definition,choices[definition.id]),
     route(id,prior){return Object.assign((root,kit,definition={})=>definition.variant_id==='pixel-motion'?factory(root,kit,definition,choices[id]):prior(root,kit,definition),prior);}};
   F['pixel-motion-sequence']=(root,kit,definition)=>factory(root,kit,definition);
-  for(const id of ['pixel-hop-squash','particle-ballistic-fall','pixel-robot-illustration','pixel-city-illustration'])F[id]=(root,kit,definition)=>factory(root,kit,definition,choices[id]);
+  for(const id of ['pixel-hop-squash','particle-ballistic-fall','pixel-robot-illustration'])F[id]=(root,kit,definition)=>factory(root,kit,definition,choices[id]);
   F['pixel-motion-sequence'].breakdown=[
     {id:'opening',name:'像素聚字与星点',time:'0–2.67 秒',start:0,end:4000,detail:'固定像素错峰聚成 WISE，星点逐格闪烁；末尾随机像素消退。',actions:['particle-word','pixel-dissolve-transition']},
     {id:'hop',name:'横移连跳与图形回弹',time:'2.67–6.67 秒',start:4000,end:10000,detail:'机器人向右连跳，触地压扁、腾空拉长；五个图形错峰放大回弹。',actions:['pixel-hop-squash','scale-in']},

@@ -92,7 +92,10 @@ test('实际隔离页面按声明载入每个新入口，首帧和后续帧都�
         assert.equal(Number(scene.dataset.sourceFrame),expected,definition.id);
         frames.push(scene.innerHTML);
       }
-      assert.notEqual(frames[0],frames[1],definition.id+' 时间应推进而非卡住首帧');
+      if(definition.id==='lego-brick-illustration'){
+        assert.equal(frames[0],frames[1],definition.id+' 静态插画预览应保持一致');
+        assert.equal(frames[0],frames[2],definition.id+' 静态插画末帧应保持一致');
+      }else assert.notEqual(frames[0],frames[1],definition.id+' 时间应推进而非卡住首帧');
     }finally{session?.destroy();close(dom);}
   }
 });

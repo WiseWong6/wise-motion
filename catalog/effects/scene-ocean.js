@@ -1287,24 +1287,6 @@ function drawFlight(ctx, story) {
   // 托举动作共用原海面、夕阳倒影和接触水纹，再叠加飞机与座板。
   if(mode==='flight'){draw('sea');draw('flight');return;}
   if(mode==='airplane'){c.save();c.translate(width/2,height/2);drawAirplane(c,Math.min(width,height)*.16);c.restore();return;}
-  if(mode==='seat'){
-    // 原片空载、完全展开且摆动已停的姿态；独立插画不受握绳动作影响。
-    const pose={...flightAt(18.25),darkness:0,ropeGrip:0};
-    const seat=swingSeatGeometry(sunR,pose.deploy);
-    const ropes=[-1,1].map(side=>{
-      const rope=ropeAt(pose,side,pose.length);
-      // 没有飞机或握绳角色时，上端对齐座板连接点，两根绳子竖直悬挂。
-      return {...rope,topX:rope.bottomX,guide:{...rope.guide,x:rope.bottomX}};
-    });
-    const left=Math.min(seat.left,...ropes.map(r=>r.topX));
-    const right=Math.max(seat.right+seat.offset,...ropes.map(r=>r.topX));
-    const top=Math.min(...ropes.map(r=>r.topY)),bottom=pose.length+seat.thickness;
-    const zoom=Math.min(width*.78/(right-left),height*.7/(bottom-top));
-    c.save();c.translate(width/2,height/2);c.scale(zoom,zoom);c.translate(-(left+right)/2,-(top+bottom)/2);
-    c.strokeStyle=rgba(255,252,244,.92);c.lineWidth=Math.max(.9,sunR*.024);c.lineCap='round';
-    for(const rope of ropes){traceRope(c,rope);c.stroke();}
-    drawSwingSeat(c,pose.length,sunR,pose.deploy,pose);c.restore();
-  }
  },inspect:t=>flightAt(storyTime(sourceTime(t)))};
 
 }
@@ -1314,6 +1296,5 @@ function drawFlight(ctx, story) {
 /* SCENE ENTRIES */
 WiseSceneRuntime.register("seat-water-lift",{"family": "ocean", "mode": "flight", "start": 0, "width": 900, "height": 1200});
 WiseSceneRuntime.register("sunset-airplane-illustration",{"family": "ocean", "mode": "airplane", "start": 0, "width": 900, "height": 1200});
-WiseSceneRuntime.register("sunset-swing-illustration",{"family": "ocean", "mode": "seat", "start": 0, "width": 900, "height": 1200});
 WiseSceneRuntime.register("sunset-sea-illustration",{"family": "ocean", "mode": "water", "start": 0, "width": 900, "height": 1200});
-WiseSceneRuntime.register("sunset-pickup-journey",{"family":"ocean","mode":"full","start":0,"width":900,"height":1200,"breakdown":[{"id":"sea","name":"夕阳、海面与接触水纹","start":0,"end":21500,"time":"0—21.5秒","detail":"暖色天空与海面保持低对比波纹；太阳、座板和滴水在各自接触位置引起倒影与涟漪。","actions":["sunset-sun-illustration","sunset-water-reflection","sunset-sea-illustration"]},{"id":"night","name":"暮色与星空","start":0,"end":21500,"time":"0—21.5秒","detail":"晚霞逐渐变暗，星点沿太阳被接走后的时序显现。","actions":["sunset-sea-illustration"]},{"id":"flight","name":"飞机、柔绳、座板与太阳","start":0,"end":21500,"time":"0—21.5秒","detail":"飞机减速放下绳索，座板入水托起握绳太阳；负重回升、滴水、收绳与巡航连续接续。","actions":["seat-water-lift","squash-bounce","advected-trail","sunset-airplane-illustration","sunset-swing-illustration","sunset-sun-illustration"]}],"layers":["sea","night","flight"],"playback_rate":2});
+WiseSceneRuntime.register("sunset-pickup-journey",{"family":"ocean","mode":"full","start":0,"width":900,"height":1200,"breakdown":[{"id":"sea","name":"夕阳、海面与接触水纹","start":0,"end":21500,"time":"0—21.5秒","detail":"暖色天空与海面保持低对比波纹；太阳、座板和滴水在各自接触位置引起倒影与涟漪。","actions":["sunset-sun-illustration","sunset-water-reflection","sunset-sea-illustration"]},{"id":"night","name":"暮色与星空","start":0,"end":21500,"time":"0—21.5秒","detail":"晚霞逐渐变暗，星点沿太阳被接走后的时序显现。","actions":["sunset-sea-illustration"]},{"id":"flight","name":"飞机、柔绳、座板与太阳","start":0,"end":21500,"time":"0—21.5秒","detail":"飞机减速放下绳索，座板入水托起握绳太阳；负重回升、滴水、收绳与巡航连续接续。","actions":["seat-water-lift","squash-bounce","advected-trail","sunset-airplane-illustration","sunset-sun-illustration"]}],"layers":["sea","night","flight"],"playback_rate":2});

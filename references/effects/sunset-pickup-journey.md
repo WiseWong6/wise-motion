@@ -14,7 +14,7 @@
 现实类比：保留当前原源码的暖色竖版：飞机接走太阳、收绳巡航，最后进入夜色与星空。
 需要保留：保留原轮廓、比例、材质、固定数据及时间关系；保留当前原源码的暖色竖版：飞机接走太阳、收绳巡航，最后进入夜色与星空。
 明确排除：不改变原画法，不重排接触位置，不添加独立播放时钟、音频或外部工程依赖。
-对应参考：本地目录「海面上的夕阳」；所用动作：入水托起回升、落地压扁回弹、水面倒影起伏、尾迹飘散消失、暖色太阳、夕阳飞机、柔绳与秋千座板、夕阳水面反馈
+对应参考：本地目录「海面上的夕阳」；所用动作：入水托起回升、落地压扁回弹、水面倒影起伏、尾迹飘散消失、暖色太阳、夕阳飞机、夕阳水面反馈
 源码：catalog/effects/scene-ocean.js 中的 sunset-pickup-journey
 来源与许可：原码提取与接入，Apache-2.0；Anime.js 4.5.0，MIT。
 关键假设：使用迁入的原作绘制，原尺寸等比适配目录；保留原色。插画只调用对应主体的实际绘制函数，组合保留前后关系。
@@ -33,4 +33,4 @@
 - [Anime.js 官方文档](https://animejs.com/documentation/)；使用固定版本 4.5.0 的计时器与速度曲线。
 - 从用户确认的自有原作迁入实际绘制和时序；原作代码只读，关联动作与插画共用本地绘制，原工程不参与运行；完整组合使用随包原声音与排程，独立动作和插画保持无声。许可为 Apache-2.0。第三方 Anime.js 保留 MIT 许可。
 
-所用动作：[入水托起回升](seat-water-lift.md)、[落地压扁回弹](squash-bounce.md)、[水面倒影起伏](sunset-water-reflection.md)、[尾迹飘散消失](advected-trail.md)、[暖色太阳](sunset-sun-illustration.md)、[夕阳飞机](sunset-airplane-illustration.md)、[柔绳与秋千座板](sunset-swing-illustration.md)、[夕阳水面反馈](sunset-sea-illustration.md)。
+所用动作：[入水托起回升](seat-water-lift.md)、[落地压扁回弹](squash-bounce.md)、[水面倒影起伏](sunset-water-reflection.md)、[尾迹飘散消失](advected-trail.md)、[暖色太阳](sunset-sun-illustration.md)、[夕阳飞机](sunset-airplane-illustration.md)、[夕阳水面反馈](sunset-sea-illustration.md)。
