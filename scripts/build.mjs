@@ -11,6 +11,8 @@ const {buildCivilization} = await import('./build-civilization.mjs');
 await buildCivilization(checking);
 const {buildLegoMotion} = await import('./build-lego-motion.mjs');
 await buildLegoMotion(checking);
+const {buildReviewMotion} = await import('./build-review-motion.mjs');
+await buildReviewMotion(checking);
 const {spawnSync}=await import('node:child_process');
 const sceneImages=spawnSync(process.execPath,[path.join(root,'scripts/build-scene-images.mjs'),...(checking?['--check']:[])],{encoding:'utf8'});
 if(sceneImages.status!==0)throw new Error(sceneImages.stderr||sceneImages.stdout||'原图片封装生成失败');

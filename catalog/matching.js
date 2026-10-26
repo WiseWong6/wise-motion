@@ -110,7 +110,7 @@
       `明确排除：${effect.avoid}`,
       `对应参考：本地目录「${effect.name}」${actions.length ? '；所用动作：' + actions.join('、') : ''}`,
       `源码：${effect.source.path} 中的 ${effect.source.factory}`,
-      `来源与许可：${effect.source.extraction ? '原码提取与接入' : '自编示例'}，Apache-2.0；${nativeScene ? 'Blender、Remotion与系统字体保留各自权利，详见随包来源说明' : 'Anime.js 4.5.0，MIT'}。`,
+      `来源与许可：${effect.source.extraction ? '原码提取与接入' : '自编示例'}，Apache-2.0；${effect.source.license_note || (nativeScene ? 'Blender、Remotion与系统字体保留各自权利，详见随包来源说明' : 'Anime.js 4.5.0，MIT')}。`,
       `关键假设：${effect.assumptions}`
     ].join('\n');
   }

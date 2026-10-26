@@ -1082,6 +1082,51 @@
       "sha256": "f30c40e763c2c66d6bb96ab09201b97d7b8fb17b2f38bcba3347f6c94f548351"
     },
     {
+      "path": "catalog/assets/deepseek-review/AUDIO.json",
+      "bytes": 3856,
+      "sha256": "49395c3f4c13538b9b1f2aec8526337a876e3827ee86162772bdbe6dea35226c"
+    },
+    {
+      "path": "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+      "bytes": 108496,
+      "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
+    },
+    {
+      "path": "catalog/assets/deepseek-review/README.md",
+      "bytes": 918,
+      "sha256": "6b6a2cb824a6b526a05844e3d5bb5e19e24deeadb9435a94465ebda10c4938f0"
+    },
+    {
+      "path": "catalog/assets/deepseek-review/SOURCE.json",
+      "bytes": 2344,
+      "sha256": "d55cfd7313588357222d1429d5d57f6e347c9d86b936a86d033ba9bec10c0a1f"
+    },
+    {
+      "path": "catalog/assets/deepseek-review/closing.wav",
+      "bytes": 1318478,
+      "sha256": "fd2a190225fe546ceac48efbde1b54800e8b617502b507aa0890cf1f4207872e"
+    },
+    {
+      "path": "catalog/assets/deepseek-review/pareto.wav",
+      "bytes": 1260878,
+      "sha256": "19ef6c8be68efb0dcf8180262bc8f8f82a08759216bcc119bac96609144ab6ce"
+    },
+    {
+      "path": "catalog/assets/deepseek-review/scores.wav",
+      "bytes": 876878,
+      "sha256": "fa4de3db44972679d1d11ab9c40eb63b04433d32e07217493f9d387e441b2583"
+    },
+    {
+      "path": "catalog/assets/deepseek-review/search.wav",
+      "bytes": 1561678,
+      "sha256": "24541bb2444ea264e705d93836ca9bb60583975cfbc17e2180c2cd619f9bd239"
+    },
+    {
+      "path": "catalog/assets/deepseek-review/verify-source.mjs",
+      "bytes": 586,
+      "sha256": "2840e6722988e23c341475be476712098b6689318778f4ad262aa24f2c21fa51"
+    },
+    {
       "path": "catalog/assets/glass-light/SOURCE.json",
       "bytes": 2144,
       "sha256": "bc788f375269ff48e469d92861efde048ad4c8305efa3fee0252cc823f0772ed"
@@ -2960,6 +3005,11 @@
       "sha256": "4cd968aad702395cc4893db1a48a40314f8146b59ebe4ddf59ed261393f84465"
     },
     {
+      "path": "catalog/effects/deepseek-review.js",
+      "bytes": 275899,
+      "sha256": "5cfc404072fbc61c5ee75a1e4df0430bc5358ecf1ef82a0cc43e7e43f8d21e65"
+    },
+    {
       "path": "catalog/effects/dither-book.js",
       "bytes": 21965,
       "sha256": "fe38f274bafeec9f75649ee8edbf17777d3c6d323da06447bcde473201458f2b"
@@ -3426,13 +3476,13 @@
     },
     {
       "path": "catalog/lazy.js",
-      "bytes": 5361,
-      "sha256": "c02d11c7bc34ce5de074928dfa80bb574901e632fdde18dc6c2e4f4281605a55"
+      "bytes": 5390,
+      "sha256": "e56ea9dcd554b6b82a732efb3b466ae52bb3121e0014de823c10f54e851d97c1"
     },
     {
       "path": "catalog/matching.js",
-      "bytes": 11066,
-      "sha256": "dbaf70352be4e68db67feaa87b5ee6e2907ef976ac2f1207a3035993c9015a84"
+      "bytes": 11098,
+      "sha256": "41d062546418e953af7b70fc086601985956615c8078b06ce7ccfda078ce751c"
     },
     {
       "path": "catalog/player-glass.js",
@@ -3446,13 +3496,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1785007,
-      "sha256": "c13da9aac0d731e834062a6f27c4e4b806e2768b52a97c01b4e679cbcc0c358d"
+      "bytes": 1813362,
+      "sha256": "16559da672cb8390b6025cefb96c4bf72fdd10000a20989de8233cab01681ae4"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 4053306,
-      "sha256": "827007f728eff3ef07a7dac977300b2c4f3747da62bebdcdca8e500712a1d21d"
+      "bytes": 4143565,
+      "sha256": "452e3f9887ce6de7ad56066b388f521a59327c554a98d9cad44ce26b04ee2141"
     },
     {
       "path": "catalog/related-preview.js",
@@ -3483,6 +3533,71 @@
       "path": "catalog/remotion/civilization-growth.jsx",
       "bytes": 1826,
       "sha256": "f0a82e1eeaa6ca5874755d793fc41f2aab77836cba3de073c896161bbd08be55"
+    },
+    {
+      "path": "catalog/remotion/deepseek-review/S13Closing.tsx",
+      "bytes": 9437,
+      "sha256": "18941dcc80cdb8a1962fdcd0eb121277953b966d79eb99e015e1552cf24c678b"
+    },
+    {
+      "path": "catalog/remotion/deepseek-review/S2Scores.tsx",
+      "bytes": 3399,
+      "sha256": "8b8442491d95aa05f6c2550ee829897182f09d37e06a864bcb29506704836b87"
+    },
+    {
+      "path": "catalog/remotion/deepseek-review/S3Pareto.tsx",
+      "bytes": 8159,
+      "sha256": "8c0652372bd556adb78dd250e53cba3e972da77c1464241a7a4608f28c0b0162"
+    },
+    {
+      "path": "catalog/remotion/deepseek-review/S5Search.tsx",
+      "bytes": 6050,
+      "sha256": "fa303dd68946a44549ce1739f682e90152821899de69d2027d771b8616492adf"
+    },
+    {
+      "path": "catalog/remotion/deepseek-review/Scene.jsx",
+      "bytes": 4142,
+      "sha256": "5b0862da56faa5773f0dd93f7d4c681786233df2b2aa4c161cdd50845524b192"
+    },
+    {
+      "path": "catalog/remotion/deepseek-review/SceneShell.tsx",
+      "bytes": 411,
+      "sha256": "1e0663410d4f06e82aae67466b8da556bd81c52a0825c68c74c8d39a1135b3e2"
+    },
+    {
+      "path": "catalog/remotion/deepseek-review/anim.ts",
+      "bytes": 946,
+      "sha256": "2b448d778a69e4dbd643294d017fee614471884849c48bb5d7abf615efb50dd8"
+    },
+    {
+      "path": "catalog/remotion/deepseek-review/catalog.jsx",
+      "bytes": 1815,
+      "sha256": "3229a97bcafe6f958e2564c174946c0fcbbeb3429071a1cc3cd67e73fb169dcb"
+    },
+    {
+      "path": "catalog/remotion/deepseek-review/data.ts",
+      "bytes": 913,
+      "sha256": "96df9846110cead704eb4c88d455ddaf6d8d6e0947988bd1d8e13850f2424a78"
+    },
+    {
+      "path": "catalog/remotion/deepseek-review/fonts.js",
+      "bytes": 515,
+      "sha256": "1b3192ae23a9a3801c5ba8319faa40de828fdc904bd4f67843984f3478c9b19d"
+    },
+    {
+      "path": "catalog/remotion/deepseek-review/index.jsx",
+      "bytes": 1801,
+      "sha256": "d2f15678a7ec0b78dc0e020b211eb04574382af0f05c86bad13bccb08e54d5e0"
+    },
+    {
+      "path": "catalog/remotion/deepseek-review/theme.ts",
+      "bytes": 3109,
+      "sha256": "4de2567d7f3045f8a8b36178b416f38b9cd3a0e7222e0f13bc9bc8a1f1660769"
+    },
+    {
+      "path": "catalog/remotion/deepseek-review/timing.js",
+      "bytes": 757,
+      "sha256": "1153ad3942488ca42e7ebc3021e990a6c33a103d828f52df009653218cf2eb43"
     },
     {
       "path": "catalog/remotion/lego-kingdom/AmbientActions.jsx",
@@ -3681,8 +3796,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 3532838,
-      "sha256": "38d39b6c5eaa9dae6e19de41e8147b3a33a85124e99fe6d600926fb7b0f70597"
+      "bytes": 3583740,
+      "sha256": "a9488f317cc8e1fbdb068d8e72d63cd40a3ff5bd602b8d25e603e1c1c7729fed"
     },
     {
       "path": "catalog/runtime.js",

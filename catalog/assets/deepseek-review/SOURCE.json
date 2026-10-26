@@ -1,0 +1,62 @@
+{
+  "source": "用户提供的 DeepSeek 模型测评视频工程",
+  "license": "Apache-2.0（提取的自有绘制源码）；字体与依赖保留各自许可。",
+  "source_fps": 30,
+  "source_canvas": [
+    1080,
+    1440
+  ],
+  "files": {
+    "src/scenes/S2Scores.tsx": {
+      "bytes": 3316,
+      "sha256": "2d38e7358ec638f818733a0933f212d2fb3dd6e1df4a9d1a0a21ce31bcc2c09e"
+    },
+    "src/scenes/S3Pareto.tsx": {
+      "bytes": 8025,
+      "sha256": "dccb2e46da72953cdee0760a485def4d84401f5667fc946a2507feb091018aca"
+    },
+    "src/scenes/S5Search.tsx": {
+      "bytes": 6008,
+      "sha256": "439e945b2dc1b2cbeff35c231c8618cd1fe2288c5e86fd77014f81e7f312c165"
+    },
+    "src/scenes/S13Closing.tsx": {
+      "bytes": 9347,
+      "sha256": "a2ddcb19a5c6babde28b4ead546876c536c0d0bd3e40e10228c75557bba0e800"
+    },
+    "src/theme.ts": {
+      "bytes": 3569,
+      "sha256": "478f59e3d1eacce4b66165b832cc7ae55b8ce54f394462860b0d354ee697dc9c"
+    },
+    "src/components/anim.ts": {
+      "bytes": 877,
+      "sha256": "055ae2bb7a10db4d6a3aee40353dbf235bec7566957bd7e604bd287fea17737b"
+    },
+    "src/components/SceneShell.tsx": {
+      "bytes": 600,
+      "sha256": "ac366598a96f5f22dbba628fccb28522a9aa22e9bdc47dc1b39ec04cde99ce02"
+    },
+    "src/fonts.ts": {
+      "bytes": 1736,
+      "sha256": "758de7c42b9a3496c403c9debfce9067812fe9b01540caf3e942485dd28ecf90"
+    },
+    "src/data.ts": {
+      "bytes": 1797,
+      "sha256": "271180a0e578b1d6dc9c45b77f61da58b36f67e2e9ed895cf0fc137dafbcb0cd"
+    },
+    "src/generated/timeline.ts": {
+      "bytes": 11519,
+      "sha256": "e67e6fccaba284ed1fffeba77670fde6e97f1d3c15f3cb6c166ad23549cdc7af"
+    },
+    "src/Reel.tsx": {
+      "bytes": 6378,
+      "sha256": "0fc427c4a1734fdf2a8a6d5c74192a3d9308ace547295dd0dc13a5591c94d5a5"
+    }
+  },
+  "changes": [
+    "将当前帧改为显式参数；独立动作通过原画板裁切复用同一个组件。",
+    "保留原图形、时间边界、数据与字体字形，目录及独立工程共用源码。",
+    "原片的模型名称和数据仅作为用户提供的演示内容保存，未重新核验为当前公开评测结论。",
+    "完整场景保留本地原配音、对应音乐段与搜索音效；跨场景转场音效不属于独立片段。",
+    "帕累托曲线为解释性示意，坐标和曲线不是实测数据。"
+  ]
+}

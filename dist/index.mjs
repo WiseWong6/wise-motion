@@ -217,7 +217,8 @@ var FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/aboutlove-data.js",
   "catalog/effects/aboutlove-entries.js",
   "catalog/effects/aboutlove.js",
-  "catalog/effects/lego-kingdom.js"
+  "catalog/effects/lego-kingdom.js",
+  "catalog/effects/deepseek-review.js"
 ]);
 
 // remotion/frame-document.mjs
@@ -1336,7 +1337,8 @@ var registry_default = {
         "\u4E50\u9AD8\u89C6\u9891",
         "lego-claude",
         "\u767E\u683C\u659C\u5411\u98DE\u5165\u7D2F\u8BA1",
-        "\u9519\u5CF0\u5165\u573A"
+        "\u9519\u5CF0\u5165\u573A",
+        "\u7ED3\u679C\u5361\u7247\u4F9D\u6B21\u5165\u573A"
       ],
       behaviors: [
         "appear",
@@ -1752,6 +1754,149 @@ var registry_default = {
               "\u539F1080\xD71440\u5E03\u5C40\u4E0E\u201C\u5B8C\u6210\u57CE\u5821/\u5EA7\u201D\u539F\u6587\uFF1B\u7B2C36\u89C6\u89C9\u5E27\u5F00\u59CB\uFF0C\u6BCF\u683C\u9519\u5F000.48\u89C6\u89C9\u5E27\u3001\u98DE\u884C4.5\u5E27\uFF1B80\u8F93\u51FA\u5E27\u5230100\uFF0C\u672B15\u8F93\u51FA\u5E27\u753B\u5B8C\u6210\u5708\u3002\u4EC5\u63D0\u53D6\u767E\u683C\u7EDF\u8BA1\uFF0C\u4E0D\u5305\u542B\u539F\u54C1\u724C\u9897\u7C92\u5B57\u548C\u573A\u666F\u6807\u9898\u3002"
             ]
           }
+        },
+        {
+          loop: false,
+          default_ease: "linear",
+          parameters: {
+            speed: {
+              label: "\u64AD\u653E\u901F\u5EA6",
+              default: 1,
+              min: 0.5,
+              max: 2,
+              step: 0.25
+            }
+          },
+          demo_mode: "fixed-timeline",
+          timing: null,
+          content_slots: [],
+          layer: "own-background",
+          domains: [
+            "animation",
+            "document"
+          ],
+          trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
+          assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
+          id: "deepseek-results",
+          label: "\u7ED3\u679C\u5361\u7247\u4F9D\u6B21\u5165\u573A",
+          summary: "\u641C\u7D22\u7ED3\u679C\u6309\u987A\u5E8F\u4ECE\u5DE6\u4FA7\u8FDB\u5165\uFF0C\u4FDD\u7559\u6807\u9898\u548C\u6765\u6E90\u3002",
+          purpose: "\u641C\u7D22\u7ED3\u679C\u6309\u987A\u5E8F\u4ECE\u5DE6\u4FA7\u8FDB\u5165\uFF0C\u4FDD\u7559\u6807\u9898\u548C\u6765\u6E90\u3002",
+          objects: "\u7ED3\u679C\u5361\u7247\u4F9D\u6B21\u5165\u573A",
+          phases: [
+            "\u6309\u56FA\u5B9A\u5E27\u5B9A\u4F4D\u539F\u59CB\u8D77\u70B9\u3002",
+            "\u641C\u7D22\u7ED3\u679C\u6309\u987A\u5E8F\u4ECE\u5DE6\u4FA7\u8FDB\u5165\uFF0C\u4FDD\u7559\u6807\u9898\u548C\u6765\u6E90\u3002",
+            "\u4FDD\u7559\u539F\u52A8\u4F5C\u672B\u5E27\uFF0C\u91CD\u64AD\u56DE\u5230\u540C\u4E00\u8D77\u70B9\u3002"
+          ],
+          retain: "\u4ECE\u539F\u7B2C104\u5E27\u5F00\u59CB\uFF0C\u4E09\u6761\u7ED3\u679C\u5206\u522B\u5728\u5F52\u4E00\u8FDB\u5EA60.43/0.45/0.47\u8FDB\u5165\uFF0C\u52300.52/0.54/0.56\u843D\u5B9A\uFF1B\u6A2A\u5411\u4F4D\u79FB\u22121020\u52300\uFF0C\u4F7F\u7528(0.16,1,0.3,1)\u7F13\u52A8\u3002",
+          avoid: "\u4E0D\u6253\u65AD\u5BF9\u8C61\u8FDE\u7EED\u53D8\u5316\uFF0C\u4E0D\u6539\u53D8\u539F\u51E0\u4F55\u548C\u5E27\u8282\u594F\u3002",
+          duration_ms: 1133.3333333333333,
+          preview_ms: 1e3,
+          source: {
+            path: "catalog/effects/deepseek-review.js",
+            factory: "deepseek-results-enter",
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            assets: [
+              "catalog/fonts/SourceHanSansSC-Light.woff2",
+              "catalog/fonts/SourceHanSansSC-Bold.woff2",
+              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              "catalog/assets/deepseek-review/SOURCE.json",
+              "catalog/assets/deepseek-review/README.md"
+            ],
+            reference: {
+              name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
+            },
+            extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
+            remotion: {
+              component: "catalog/remotion/deepseek-review/index.jsx",
+              export_name: "WiseReviewMotion",
+              package_name: "wise-review-motion",
+              files: [
+                "catalog/remotion/deepseek-review/S13Closing.tsx",
+                "catalog/remotion/deepseek-review/S2Scores.tsx",
+                "catalog/remotion/deepseek-review/S3Pareto.tsx",
+                "catalog/remotion/deepseek-review/S5Search.tsx",
+                "catalog/remotion/deepseek-review/Scene.jsx",
+                "catalog/remotion/deepseek-review/SceneShell.tsx",
+                "catalog/remotion/deepseek-review/anim.ts",
+                "catalog/remotion/deepseek-review/data.ts",
+                "catalog/remotion/deepseek-review/fonts.js",
+                "catalog/remotion/deepseek-review/index.jsx",
+                "catalog/remotion/deepseek-review/theme.ts",
+                "catalog/remotion/deepseek-review/timing.js",
+                "catalog/assets/deepseek-review/SOURCE.json",
+                "catalog/assets/deepseek-review/AUDIO.json",
+                "catalog/assets/deepseek-review/README.md",
+                "catalog/assets/deepseek-review/verify-source.mjs",
+                "LICENSE",
+                "catalog/fonts/OFL.txt",
+                "catalog/fonts/OFL-Oswald.txt",
+                "catalog/assets/reel-extract/React-LICENSE.txt",
+                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+                "catalog/remotion/binary-assets-installer.mjs"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 912,
+              height: 520,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
+              binary_files: [
+                {
+                  source: "catalog/fonts/SourceHanSansSC-Light.woff2",
+                  target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
+                  bytes: 11128356,
+                  sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
+                },
+                {
+                  source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
+                  target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
+                  bytes: 12816312,
+                  sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
+                },
+                {
+                  source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+                  target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
+                  bytes: 108496,
+                  sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
+                }
+              ],
+              asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+              scripts: {
+                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
+              }
+            },
+            license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
+          },
+          actions: [],
+          audio: null,
+          recommendation: "\u641C\u7D22\u7ED3\u679C\u6309\u987A\u5E8F\u4ECE\u5DE6\u4FA7\u8FDB\u5165\uFF0C\u4FDD\u7559\u6807\u9898\u548C\u6765\u6E90\u3002\uFF1B\u9700\u8981\u539F\u7247\u8FD9\u79CD\u7EC4\u5408\u5173\u7CFB\u65F6\u9009\u62E9\u6B64\u793A\u4F8B\u3002",
+          tempo_note: "\u630930\u5E27\u65F6\u949F\u64AD\u653E\uFF0C\u517134\u5E27\u3002",
+          reproduction: {
+            objects: "\u7ED3\u679C\u5361\u7247\u4F9D\u6B21\u5165\u573A",
+            presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002\u6B64\u793A\u4F8B\u53EA\u88C1\u51FA912\xD7520\u56FE\u5F62\u8303\u56F4\uFF0C\u4E0D\u6539\u539F\u56FE\u5F62\u5750\u6807\u3002",
+            phases: [
+              "\u663E\u793A\u539F\u52A8\u4F5C\u8D77\u70B9\u3002",
+              "\u641C\u7D22\u7ED3\u679C\u6309\u987A\u5E8F\u4ECE\u5DE6\u4FA7\u8FDB\u5165\uFF0C\u4FDD\u7559\u6807\u9898\u548C\u6765\u6E90\u3002",
+              "\u4FDD\u6301\u7ED3\u675F\u59FF\u6001\u3002"
+            ],
+            retain: "\u4ECE\u539F\u7B2C104\u5E27\u5F00\u59CB\uFF0C\u4E09\u6761\u7ED3\u679C\u5206\u522B\u5728\u5F52\u4E00\u8FDB\u5EA60.43/0.45/0.47\u8FDB\u5165\uFF0C\u52300.52/0.54/0.56\u843D\u5B9A\uFF1B\u6A2A\u5411\u4F4D\u79FB\u22121020\u52300\uFF0C\u4F7F\u7528(0.16,1,0.3,1)\u7F13\u52A8\u3002",
+            avoid: "\u4E0D\u4EE5\u65B0\u4E00\u6279\u5143\u7D20\u66FF\u6362\u6B63\u5728\u8FD0\u52A8\u7684\u5143\u7D20\u3002",
+            details: [
+              "\u4ECE\u539F\u7B2C104\u5E27\u5F00\u59CB\uFF0C\u4E09\u6761\u7ED3\u679C\u5206\u522B\u5728\u5F52\u4E00\u8FDB\u5EA60.43/0.45/0.47\u8FDB\u5165\uFF0C\u52300.52/0.54/0.56\u843D\u5B9A\uFF1B\u6A2A\u5411\u4F4D\u79FB\u22121020\u52300\uFF0C\u4F7F\u7528(0.16,1,0.3,1)\u7F13\u52A8\u3002"
+            ]
+          },
+          aliases: [
+            "\u7ED3\u679C\u5361\u7247\u4F9D\u6B21\u5165\u573A",
+            "\u641C\u7D22\u7ED3\u679C\u6309\u987A\u5E8F\u4ECE\u5DE6\u4FA7\u8FDB\u5165\uFF0C\u4FDD\u7559\u6807\u9898\u548C\u6765\u6E90\u3002"
+          ]
         }
       ],
       layer: "own-background",
@@ -2032,7 +2177,8 @@ var registry_default = {
         "\u6CBF\u66F2\u7EBF\u884C\u8FDB",
         "\u6CBF\u66F2\u884C\u8FDB",
         "\u53CC\u5149\u70B9\u53CD\u5411\u7ED5\u8F6E\u5ED3\u52A0\u901F",
-        "aboutlove"
+        "aboutlove",
+        "\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001"
       ],
       behaviors: [
         "continuous",
@@ -2202,7 +2348,159 @@ var registry_default = {
         audit: "aboutlove-15"
       },
       timing: null,
-      content_slots: []
+      content_slots: [],
+      variants: [
+        {
+          id: "original",
+          label: "\u539F\u6709\u793A\u4F8B",
+          summary: "\u4E24\u4E2A\u4EAE\u70B9\u6CBF\u540C\u4E00\u5FC3\u5F62\u53CD\u5411\u52A0\u901F\u8FD0\u884C\uFF0C\u77ED\u5C3E\u8FF9\u9010\u6E10\u8870\u51CF\uFF0C\u5DF2\u7ECF\u8DD1\u8FC7\u7684\u5708\u7559\u4E0B\u653E\u5927\u6DE1\u53BB\u7684\u8F6E\u5ED3\u3002",
+          duration_ms: 7740,
+          preview_ms: 4644
+        },
+        {
+          loop: false,
+          default_ease: "linear",
+          parameters: {
+            speed: {
+              label: "\u64AD\u653E\u901F\u5EA6",
+              default: 1,
+              min: 0.5,
+              max: 2,
+              step: 0.25
+            }
+          },
+          demo_mode: "fixed-timeline",
+          timing: null,
+          content_slots: [],
+          layer: "own-background",
+          domains: [
+            "animation",
+            "document"
+          ],
+          trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
+          assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
+          id: "deepseek-delivery",
+          label: "\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001",
+          summary: "\u4E24\u4EFD\u6587\u6863\u6CBF\u4E8C\u6B21\u66F2\u7EBF\u4ECE\u4FDD\u7559\u7ED3\u679C\u8FDB\u5165\u6A21\u578B\u6846\u3002",
+          purpose: "\u4E24\u4EFD\u6587\u6863\u6CBF\u4E8C\u6B21\u66F2\u7EBF\u4ECE\u4FDD\u7559\u7ED3\u679C\u8FDB\u5165\u6A21\u578B\u6846\u3002",
+          objects: "\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001",
+          phases: [
+            "\u6309\u56FA\u5B9A\u5E27\u5B9A\u4F4D\u539F\u59CB\u8D77\u70B9\u3002",
+            "\u4E24\u4EFD\u6587\u6863\u6CBF\u4E8C\u6B21\u66F2\u7EBF\u4ECE\u4FDD\u7559\u7ED3\u679C\u8FDB\u5165\u6A21\u578B\u6846\u3002",
+            "\u4FDD\u7559\u539F\u52A8\u4F5C\u672B\u5E27\uFF0C\u91CD\u64AD\u56DE\u5230\u540C\u4E00\u8D77\u70B9\u3002"
+          ],
+          retain: "\u622A\u53D6\u539F194\u2013243\u5E27\u3002\u4E24\u6761\u4E8C\u6B21\u66F2\u7EBF\u4ECE(400,72+168i)\uFF0C\u63A7\u5236\u70B9(450,72+168i)\uFF0C\u5230(480,328+112i)\uFF1B\u6587\u686320\xD726\uFF0C\u900F\u660E\u5EA6sin(\u8FDB\u5EA6\xD7\u03C0)\uFF0C\u7B2C\u4E8C\u4EFD\u9519\u540E0.025\u5F52\u4E00\u8FDB\u5EA6\u3002",
+          avoid: "\u4E0D\u6253\u65AD\u5BF9\u8C61\u8FDE\u7EED\u53D8\u5316\uFF0C\u4E0D\u6539\u53D8\u539F\u51E0\u4F55\u548C\u5E27\u8282\u594F\u3002",
+          duration_ms: 1666.6666666666667,
+          preview_ms: 1e3,
+          source: {
+            path: "catalog/effects/deepseek-review.js",
+            factory: "deepseek-result-delivery",
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            assets: [
+              "catalog/fonts/SourceHanSansSC-Light.woff2",
+              "catalog/fonts/SourceHanSansSC-Bold.woff2",
+              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              "catalog/assets/deepseek-review/SOURCE.json",
+              "catalog/assets/deepseek-review/README.md"
+            ],
+            reference: {
+              name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
+            },
+            extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
+            remotion: {
+              component: "catalog/remotion/deepseek-review/index.jsx",
+              export_name: "WiseReviewMotion",
+              package_name: "wise-review-motion",
+              files: [
+                "catalog/remotion/deepseek-review/S13Closing.tsx",
+                "catalog/remotion/deepseek-review/S2Scores.tsx",
+                "catalog/remotion/deepseek-review/S3Pareto.tsx",
+                "catalog/remotion/deepseek-review/S5Search.tsx",
+                "catalog/remotion/deepseek-review/Scene.jsx",
+                "catalog/remotion/deepseek-review/SceneShell.tsx",
+                "catalog/remotion/deepseek-review/anim.ts",
+                "catalog/remotion/deepseek-review/data.ts",
+                "catalog/remotion/deepseek-review/fonts.js",
+                "catalog/remotion/deepseek-review/index.jsx",
+                "catalog/remotion/deepseek-review/theme.ts",
+                "catalog/remotion/deepseek-review/timing.js",
+                "catalog/assets/deepseek-review/SOURCE.json",
+                "catalog/assets/deepseek-review/AUDIO.json",
+                "catalog/assets/deepseek-review/README.md",
+                "catalog/assets/deepseek-review/verify-source.mjs",
+                "LICENSE",
+                "catalog/fonts/OFL.txt",
+                "catalog/fonts/OFL-Oswald.txt",
+                "catalog/assets/reel-extract/React-LICENSE.txt",
+                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+                "catalog/remotion/binary-assets-installer.mjs"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 912,
+              height: 600,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
+              binary_files: [
+                {
+                  source: "catalog/fonts/SourceHanSansSC-Light.woff2",
+                  target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
+                  bytes: 11128356,
+                  sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
+                },
+                {
+                  source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
+                  target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
+                  bytes: 12816312,
+                  sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
+                },
+                {
+                  source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+                  target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
+                  bytes: 108496,
+                  sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
+                }
+              ],
+              asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+              scripts: {
+                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
+              }
+            },
+            license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
+          },
+          actions: [],
+          audio: null,
+          recommendation: "\u4E24\u4EFD\u6587\u6863\u6CBF\u4E8C\u6B21\u66F2\u7EBF\u4ECE\u4FDD\u7559\u7ED3\u679C\u8FDB\u5165\u6A21\u578B\u6846\u3002\uFF1B\u9700\u8981\u539F\u7247\u8FD9\u79CD\u7EC4\u5408\u5173\u7CFB\u65F6\u9009\u62E9\u6B64\u793A\u4F8B\u3002",
+          tempo_note: "\u630930\u5E27\u65F6\u949F\u64AD\u653E\uFF0C\u517150\u5E27\u3002",
+          reproduction: {
+            objects: "\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001",
+            presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002\u6B64\u793A\u4F8B\u53EA\u88C1\u51FA912\xD7600\u56FE\u5F62\u8303\u56F4\uFF0C\u4E0D\u6539\u539F\u56FE\u5F62\u5750\u6807\u3002",
+            phases: [
+              "\u663E\u793A\u539F\u52A8\u4F5C\u8D77\u70B9\u3002",
+              "\u4E24\u4EFD\u6587\u6863\u6CBF\u4E8C\u6B21\u66F2\u7EBF\u4ECE\u4FDD\u7559\u7ED3\u679C\u8FDB\u5165\u6A21\u578B\u6846\u3002",
+              "\u4FDD\u6301\u7ED3\u675F\u59FF\u6001\u3002"
+            ],
+            retain: "\u622A\u53D6\u539F194\u2013243\u5E27\u3002\u4E24\u6761\u4E8C\u6B21\u66F2\u7EBF\u4ECE(400,72+168i)\uFF0C\u63A7\u5236\u70B9(450,72+168i)\uFF0C\u5230(480,328+112i)\uFF1B\u6587\u686320\xD726\uFF0C\u900F\u660E\u5EA6sin(\u8FDB\u5EA6\xD7\u03C0)\uFF0C\u7B2C\u4E8C\u4EFD\u9519\u540E0.025\u5F52\u4E00\u8FDB\u5EA6\u3002",
+            avoid: "\u4E0D\u4EE5\u65B0\u4E00\u6279\u5143\u7D20\u66FF\u6362\u6B63\u5728\u8FD0\u52A8\u7684\u5143\u7D20\u3002",
+            details: [
+              "\u622A\u53D6\u539F194\u2013243\u5E27\u3002\u4E24\u6761\u4E8C\u6B21\u66F2\u7EBF\u4ECE(400,72+168i)\uFF0C\u63A7\u5236\u70B9(450,72+168i)\uFF0C\u5230(480,328+112i)\uFF1B\u6587\u686320\xD726\uFF0C\u900F\u660E\u5EA6sin(\u8FDB\u5EA6\xD7\u03C0)\uFF0C\u7B2C\u4E8C\u4EFD\u9519\u540E0.025\u5F52\u4E00\u8FDB\u5EA6\u3002"
+            ]
+          },
+          aliases: [
+            "\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001",
+            "\u4E24\u4EFD\u6587\u6863\u6CBF\u4E8C\u6B21\u66F2\u7EBF\u4ECE\u4FDD\u7559\u7ED3\u679C\u8FDB\u5165\u6A21\u578B\u6846\u3002"
+          ]
+        }
+      ]
     },
     {
       kind: "action",
@@ -4394,7 +4692,9 @@ var registry_default = {
         "\u7F51\u683C",
         "\u5E03\u5C40\u91CD\u6392",
         "\u5217\u8868\u91CD\u6392\u4E3A\u7F51\u683C",
-        "\u5217\u8868\u7F51\u683C\u91CD\u6392"
+        "\u5217\u8868\u7F51\u683C\u91CD\u6392",
+        "\u626B\u63CF\u5254\u9664\u4E0E\u8865\u4F4D",
+        "\u521B\u4F5C\u5361\u7247\u53D8\u526A\u8F91\u8F68\u9053"
       ],
       behaviors: [
         "layout",
@@ -4477,7 +4777,302 @@ var registry_default = {
           "\u8FD9\u91CC t \u4E3A\u52A8\u4F5C\u79D2\u6570\uFF08\u64AD\u653E\u901F\u5EA61\u65F6\u7B49\u4E8E\u64AD\u653E\u79D2\u6570\uFF09\uFF1B\u8BBE\u8BA1\u65F6\u949F u=0.8+2.1\xD7\u9650\u5236\u52300\u81F31\u7684((t\u22120.15)/1.2)\uFF0C\u5355\u4F4D\u4E3A\u79D2\u3002\u4E0B\u5217\u6807\u660E u \u7684\u9636\u6BB5\u4F7F\u7528\u8BBE\u8BA1\u65F6\u949F\uFF0C\u4E0D\u662F\u5B9E\u9645\u64AD\u653E\u65F6\u957F\uFF1B\u5F52\u4E00\u8FDB\u5EA6 p=u/3.3\u3002\u8BBE\u8BA1\u65F6\u949F\u5728\u4E24\u7AEF\u94B3\u4F4F\uFF0C\u4E0D\u9760\u4E0A\u4E00\u5E27\u4FDD\u7559\u72B6\u6001\u3002",
           "\u8BBE\u8BA1\u65F6\u949Fu=0.8\u81F32.9\u79D2\uFF0C\u4FDD\u6301\u6BCF\u5757\u5185\u5BB9\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u79FB\u52A8\u5E76\u6539\u53D8\u5C3A\u5BF8\u4E3A168\xD798\uFF1B\u7EC8\u70B9\u5DE6\u4E0A\u89D2(144+182(i%2),92+112floor(i/2))\uFF0C\u6784\u6210\u4E24\u5217\u4E24\u884C\u3002\u5C3A\u5BF8\u4E0E\u4F4D\u7F6E\u5171\u7528\u540C\u4E00\u8FDB\u5EA6\u3002"
         ]
-      }
+      },
+      variants: [
+        {
+          id: "original",
+          label: "\u539F\u6709\u793A\u4F8B",
+          summary: "\u540C\u4E00\u7EC4\u5185\u5BB9\u4ECE\u5217\u8868\u5E73\u6ED1\u53D8\u6210\u7F51\u683C\u3002",
+          duration_ms: 1800,
+          preview_ms: 1064
+        },
+        {
+          loop: false,
+          default_ease: "linear",
+          parameters: {
+            speed: {
+              label: "\u64AD\u653E\u901F\u5EA6",
+              default: 1,
+              min: 0.5,
+              max: 2,
+              step: 0.25
+            }
+          },
+          demo_mode: "fixed-timeline",
+          timing: null,
+          content_slots: [],
+          layer: "own-background",
+          domains: [
+            "animation",
+            "document"
+          ],
+          trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
+          assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
+          id: "deepseek-filter",
+          label: "\u626B\u63CF\u5254\u9664\u4E0E\u8865\u4F4D",
+          summary: "\u626B\u63CF\u7EBF\u68C0\u67E5\u4E09\u6761\u7ED3\u679C\uFF0C\u5E72\u6270\u9879\u9000\u51FA\uFF0C\u7B2C\u4E09\u9879\u5411\u4E0A\u8865\u4F4D\u3002",
+          purpose: "\u626B\u63CF\u7EBF\u68C0\u67E5\u4E09\u6761\u7ED3\u679C\uFF0C\u5E72\u6270\u9879\u9000\u51FA\uFF0C\u7B2C\u4E09\u9879\u5411\u4E0A\u8865\u4F4D\u3002",
+          objects: "\u626B\u63CF\u5254\u9664\u4E0E\u8865\u4F4D",
+          phases: [
+            "\u6309\u56FA\u5B9A\u5E27\u5B9A\u4F4D\u539F\u59CB\u8D77\u70B9\u3002",
+            "\u626B\u63CF\u7EBF\u68C0\u67E5\u4E09\u6761\u7ED3\u679C\uFF0C\u5E72\u6270\u9879\u9000\u51FA\uFF0C\u7B2C\u4E09\u9879\u5411\u4E0A\u8865\u4F4D\u3002",
+            "\u4FDD\u7559\u539F\u52A8\u4F5C\u672B\u5E27\uFF0C\u91CD\u64AD\u56DE\u5230\u540C\u4E00\u8D77\u70B9\u3002"
+          ],
+          retain: "\u622A\u53D6\u539F122\u2013189\u5E27\u3002\u626B\u63CF\u6A2A\u8DE8912\u5BBD\u5EA6\uFF1B\u5F52\u4E00\u8FDB\u5EA60.65\u20130.77\uFF0C\u7B2C\u4E8C\u9879\u53F3\u79FB1080\u5E76\u6DE1\u51FA\uFF0C\u7B2C\u4E09\u9879\u540C\u65F6\u5411\u4E0A168\uFF1B0.74\u20130.87\u4FDD\u7559\u5361\u7247\u4ECE912\u7F29\u5230400\u5BBD\u3002",
+          avoid: "\u4E0D\u6253\u65AD\u5BF9\u8C61\u8FDE\u7EED\u53D8\u5316\uFF0C\u4E0D\u6539\u53D8\u539F\u51E0\u4F55\u548C\u5E27\u8282\u594F\u3002",
+          duration_ms: 2266.6666666666665,
+          preview_ms: 2066.666666666667,
+          source: {
+            path: "catalog/effects/deepseek-review.js",
+            factory: "deepseek-results-filter",
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            assets: [
+              "catalog/fonts/SourceHanSansSC-Light.woff2",
+              "catalog/fonts/SourceHanSansSC-Bold.woff2",
+              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              "catalog/assets/deepseek-review/SOURCE.json",
+              "catalog/assets/deepseek-review/README.md"
+            ],
+            reference: {
+              name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
+            },
+            extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
+            remotion: {
+              component: "catalog/remotion/deepseek-review/index.jsx",
+              export_name: "WiseReviewMotion",
+              package_name: "wise-review-motion",
+              files: [
+                "catalog/remotion/deepseek-review/S13Closing.tsx",
+                "catalog/remotion/deepseek-review/S2Scores.tsx",
+                "catalog/remotion/deepseek-review/S3Pareto.tsx",
+                "catalog/remotion/deepseek-review/S5Search.tsx",
+                "catalog/remotion/deepseek-review/Scene.jsx",
+                "catalog/remotion/deepseek-review/SceneShell.tsx",
+                "catalog/remotion/deepseek-review/anim.ts",
+                "catalog/remotion/deepseek-review/data.ts",
+                "catalog/remotion/deepseek-review/fonts.js",
+                "catalog/remotion/deepseek-review/index.jsx",
+                "catalog/remotion/deepseek-review/theme.ts",
+                "catalog/remotion/deepseek-review/timing.js",
+                "catalog/assets/deepseek-review/SOURCE.json",
+                "catalog/assets/deepseek-review/AUDIO.json",
+                "catalog/assets/deepseek-review/README.md",
+                "catalog/assets/deepseek-review/verify-source.mjs",
+                "LICENSE",
+                "catalog/fonts/OFL.txt",
+                "catalog/fonts/OFL-Oswald.txt",
+                "catalog/assets/reel-extract/React-LICENSE.txt",
+                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+                "catalog/remotion/binary-assets-installer.mjs"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 912,
+              height: 520,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
+              binary_files: [
+                {
+                  source: "catalog/fonts/SourceHanSansSC-Light.woff2",
+                  target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
+                  bytes: 11128356,
+                  sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
+                },
+                {
+                  source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
+                  target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
+                  bytes: 12816312,
+                  sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
+                },
+                {
+                  source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+                  target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
+                  bytes: 108496,
+                  sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
+                }
+              ],
+              asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+              scripts: {
+                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
+              }
+            },
+            license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
+          },
+          actions: [],
+          audio: null,
+          recommendation: "\u626B\u63CF\u7EBF\u68C0\u67E5\u4E09\u6761\u7ED3\u679C\uFF0C\u5E72\u6270\u9879\u9000\u51FA\uFF0C\u7B2C\u4E09\u9879\u5411\u4E0A\u8865\u4F4D\u3002\uFF1B\u9700\u8981\u539F\u7247\u8FD9\u79CD\u7EC4\u5408\u5173\u7CFB\u65F6\u9009\u62E9\u6B64\u793A\u4F8B\u3002",
+          tempo_note: "\u630930\u5E27\u65F6\u949F\u64AD\u653E\uFF0C\u517168\u5E27\u3002",
+          reproduction: {
+            objects: "\u626B\u63CF\u5254\u9664\u4E0E\u8865\u4F4D",
+            presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002\u6B64\u793A\u4F8B\u53EA\u88C1\u51FA912\xD7520\u56FE\u5F62\u8303\u56F4\uFF0C\u4E0D\u6539\u539F\u56FE\u5F62\u5750\u6807\u3002",
+            phases: [
+              "\u663E\u793A\u539F\u52A8\u4F5C\u8D77\u70B9\u3002",
+              "\u626B\u63CF\u7EBF\u68C0\u67E5\u4E09\u6761\u7ED3\u679C\uFF0C\u5E72\u6270\u9879\u9000\u51FA\uFF0C\u7B2C\u4E09\u9879\u5411\u4E0A\u8865\u4F4D\u3002",
+              "\u4FDD\u6301\u7ED3\u675F\u59FF\u6001\u3002"
+            ],
+            retain: "\u622A\u53D6\u539F122\u2013189\u5E27\u3002\u626B\u63CF\u6A2A\u8DE8912\u5BBD\u5EA6\uFF1B\u5F52\u4E00\u8FDB\u5EA60.65\u20130.77\uFF0C\u7B2C\u4E8C\u9879\u53F3\u79FB1080\u5E76\u6DE1\u51FA\uFF0C\u7B2C\u4E09\u9879\u540C\u65F6\u5411\u4E0A168\uFF1B0.74\u20130.87\u4FDD\u7559\u5361\u7247\u4ECE912\u7F29\u5230400\u5BBD\u3002",
+            avoid: "\u4E0D\u4EE5\u65B0\u4E00\u6279\u5143\u7D20\u66FF\u6362\u6B63\u5728\u8FD0\u52A8\u7684\u5143\u7D20\u3002",
+            details: [
+              "\u622A\u53D6\u539F122\u2013189\u5E27\u3002\u626B\u63CF\u6A2A\u8DE8912\u5BBD\u5EA6\uFF1B\u5F52\u4E00\u8FDB\u5EA60.65\u20130.77\uFF0C\u7B2C\u4E8C\u9879\u53F3\u79FB1080\u5E76\u6DE1\u51FA\uFF0C\u7B2C\u4E09\u9879\u540C\u65F6\u5411\u4E0A168\uFF1B0.74\u20130.87\u4FDD\u7559\u5361\u7247\u4ECE912\u7F29\u5230400\u5BBD\u3002"
+            ]
+          },
+          aliases: [
+            "\u626B\u63CF\u5254\u9664\u4E0E\u8865\u4F4D",
+            "\u626B\u63CF\u7EBF\u68C0\u67E5\u4E09\u6761\u7ED3\u679C\uFF0C\u5E72\u6270\u9879\u9000\u51FA\uFF0C\u7B2C\u4E09\u9879\u5411\u4E0A\u8865\u4F4D\u3002"
+          ]
+        },
+        {
+          loop: false,
+          default_ease: "linear",
+          parameters: {
+            speed: {
+              label: "\u64AD\u653E\u901F\u5EA6",
+              default: 1,
+              min: 0.5,
+              max: 2,
+              step: 0.25
+            }
+          },
+          demo_mode: "fixed-timeline",
+          timing: null,
+          content_slots: [],
+          layer: "own-background",
+          domains: [
+            "animation",
+            "document"
+          ],
+          trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
+          assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
+          id: "deepseek-tracks",
+          label: "\u521B\u4F5C\u5361\u7247\u53D8\u526A\u8F91\u8F68\u9053",
+          summary: "\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5361\u4FDD\u6301\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u62C9\u5BBD\u5E76\u53D8\u6210\u526A\u8F91\u8F68\u9053\u3002",
+          purpose: "\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5361\u4FDD\u6301\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u62C9\u5BBD\u5E76\u53D8\u6210\u526A\u8F91\u8F68\u9053\u3002",
+          objects: "\u521B\u4F5C\u5361\u7247\u53D8\u526A\u8F91\u8F68\u9053",
+          phases: [
+            "\u6309\u56FA\u5B9A\u5E27\u5B9A\u4F4D\u539F\u59CB\u8D77\u70B9\u3002",
+            "\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5361\u4FDD\u6301\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u62C9\u5BBD\u5E76\u53D8\u6210\u526A\u8F91\u8F68\u9053\u3002",
+            "\u4FDD\u7559\u539F\u52A8\u4F5C\u672B\u5E27\uFF0C\u91CD\u64AD\u56DE\u5230\u540C\u4E00\u8D77\u70B9\u3002"
+          ],
+          retain: "\u622A\u53D6\u539F90\u2013205\u5E27\u3002\u539F95\u2013122\u5E27\uFF0C\u5361\u7247\u4ECE(728,554+170i)\u548C268\xD7112\u8FDE\u7EED\u79FB\u5230(184,806+88i)\u548C712\xD768\uFF1B\u5185\u90E8\u6587\u5B57\u3001\u955C\u5934\u7F29\u7565\u56FE\u3001\u6CE2\u5F62\u4E5F\u968F\u540C\u4E00\u8FDB\u5EA6\u91CD\u6392\u3002",
+          avoid: "\u4E0D\u6253\u65AD\u5BF9\u8C61\u8FDE\u7EED\u53D8\u5316\uFF0C\u4E0D\u6539\u53D8\u539F\u51E0\u4F55\u548C\u5E27\u8282\u594F\u3002",
+          duration_ms: 3866.6666666666665,
+          preview_ms: 2566.666666666667,
+          source: {
+            path: "catalog/effects/deepseek-review.js",
+            factory: "deepseek-creative-tracks",
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            assets: [
+              "catalog/fonts/SourceHanSansSC-Light.woff2",
+              "catalog/fonts/SourceHanSansSC-Bold.woff2",
+              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              "catalog/assets/deepseek-review/SOURCE.json",
+              "catalog/assets/deepseek-review/README.md"
+            ],
+            reference: {
+              name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
+            },
+            extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
+            remotion: {
+              component: "catalog/remotion/deepseek-review/index.jsx",
+              export_name: "WiseReviewMotion",
+              package_name: "wise-review-motion",
+              files: [
+                "catalog/remotion/deepseek-review/S13Closing.tsx",
+                "catalog/remotion/deepseek-review/S2Scores.tsx",
+                "catalog/remotion/deepseek-review/S3Pareto.tsx",
+                "catalog/remotion/deepseek-review/S5Search.tsx",
+                "catalog/remotion/deepseek-review/Scene.jsx",
+                "catalog/remotion/deepseek-review/SceneShell.tsx",
+                "catalog/remotion/deepseek-review/anim.ts",
+                "catalog/remotion/deepseek-review/data.ts",
+                "catalog/remotion/deepseek-review/fonts.js",
+                "catalog/remotion/deepseek-review/index.jsx",
+                "catalog/remotion/deepseek-review/theme.ts",
+                "catalog/remotion/deepseek-review/timing.js",
+                "catalog/assets/deepseek-review/SOURCE.json",
+                "catalog/assets/deepseek-review/AUDIO.json",
+                "catalog/assets/deepseek-review/README.md",
+                "catalog/assets/deepseek-review/verify-source.mjs",
+                "LICENSE",
+                "catalog/fonts/OFL.txt",
+                "catalog/fonts/OFL-Oswald.txt",
+                "catalog/assets/reel-extract/React-LICENSE.txt",
+                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+                "catalog/remotion/binary-assets-installer.mjs"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 840,
+              height: 790,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
+              binary_files: [
+                {
+                  source: "catalog/fonts/SourceHanSansSC-Light.woff2",
+                  target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
+                  bytes: 11128356,
+                  sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
+                },
+                {
+                  source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
+                  target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
+                  bytes: 12816312,
+                  sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
+                },
+                {
+                  source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+                  target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
+                  bytes: 108496,
+                  sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
+                }
+              ],
+              asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+              scripts: {
+                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
+              }
+            },
+            license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
+          },
+          actions: [],
+          audio: null,
+          recommendation: "\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5361\u4FDD\u6301\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u62C9\u5BBD\u5E76\u53D8\u6210\u526A\u8F91\u8F68\u9053\u3002\uFF1B\u9700\u8981\u539F\u7247\u8FD9\u79CD\u7EC4\u5408\u5173\u7CFB\u65F6\u9009\u62E9\u6B64\u793A\u4F8B\u3002",
+          tempo_note: "\u630930\u5E27\u65F6\u949F\u64AD\u653E\uFF0C\u5171116\u5E27\u3002",
+          reproduction: {
+            objects: "\u521B\u4F5C\u5361\u7247\u53D8\u526A\u8F91\u8F68\u9053",
+            presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002\u6B64\u793A\u4F8B\u53EA\u88C1\u51FA840\xD7790\u56FE\u5F62\u8303\u56F4\uFF0C\u4E0D\u6539\u539F\u56FE\u5F62\u5750\u6807\u3002",
+            phases: [
+              "\u663E\u793A\u539F\u52A8\u4F5C\u8D77\u70B9\u3002",
+              "\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5361\u4FDD\u6301\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u62C9\u5BBD\u5E76\u53D8\u6210\u526A\u8F91\u8F68\u9053\u3002",
+              "\u4FDD\u6301\u7ED3\u675F\u59FF\u6001\u3002"
+            ],
+            retain: "\u622A\u53D6\u539F90\u2013205\u5E27\u3002\u539F95\u2013122\u5E27\uFF0C\u5361\u7247\u4ECE(728,554+170i)\u548C268\xD7112\u8FDE\u7EED\u79FB\u5230(184,806+88i)\u548C712\xD768\uFF1B\u5185\u90E8\u6587\u5B57\u3001\u955C\u5934\u7F29\u7565\u56FE\u3001\u6CE2\u5F62\u4E5F\u968F\u540C\u4E00\u8FDB\u5EA6\u91CD\u6392\u3002",
+            avoid: "\u4E0D\u4EE5\u65B0\u4E00\u6279\u5143\u7D20\u66FF\u6362\u6B63\u5728\u8FD0\u52A8\u7684\u5143\u7D20\u3002",
+            details: [
+              "\u622A\u53D6\u539F90\u2013205\u5E27\u3002\u539F95\u2013122\u5E27\uFF0C\u5361\u7247\u4ECE(728,554+170i)\u548C268\xD7112\u8FDE\u7EED\u79FB\u5230(184,806+88i)\u548C712\xD768\uFF1B\u5185\u90E8\u6587\u5B57\u3001\u955C\u5934\u7F29\u7565\u56FE\u3001\u6CE2\u5F62\u4E5F\u968F\u540C\u4E00\u8FDB\u5EA6\u91CD\u6392\u3002"
+            ]
+          },
+          aliases: [
+            "\u521B\u4F5C\u5361\u7247\u53D8\u526A\u8F91\u8F68\u9053",
+            "\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5361\u4FDD\u6301\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u62C9\u5BBD\u5E76\u53D8\u6210\u526A\u8F91\u8F68\u9053\u3002"
+          ]
+        }
+      ]
     },
     {
       id: "column-to-row",
@@ -9541,7 +10136,8 @@ var registry_default = {
         "\u5FAA\u7EBF\u63CF\u7ED8",
         "\u5F27\u7EBF\u4F9D\u6B21\u63CF\u51FA\u5E76\u5173\u8054\u8BCD\u5143",
         "aboutlove",
-        "\u7EBF\u6761\u9010\u6BB5\u63CF\u7ED8"
+        "\u7EBF\u6761\u9010\u6BB5\u63CF\u7ED8",
+        "\u6027\u80FD\u5F00\u9500\u66F2\u7EBF"
       ],
       behaviors: [
         "reveal",
@@ -9854,6 +10450,149 @@ var registry_default = {
             ]
           },
           loop: false
+        },
+        {
+          loop: false,
+          default_ease: "linear",
+          parameters: {
+            speed: {
+              label: "\u64AD\u653E\u901F\u5EA6",
+              default: 1,
+              min: 0.5,
+              max: 2,
+              step: 0.25
+            }
+          },
+          demo_mode: "fixed-timeline",
+          timing: null,
+          content_slots: [],
+          layer: "own-background",
+          domains: [
+            "animation",
+            "document"
+          ],
+          trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
+          assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
+          id: "deepseek-pareto",
+          label: "\u6027\u80FD\u5F00\u9500\u66F2\u7EBF",
+          summary: "\u65E7\u66F2\u7EBF\u5148\u51FA\u73B0\uFF0C\u65B0\u66F2\u7EBF\u63CF\u51FA\uFF0C\u6807\u8BB0\u79FB\u52A8\u5E76\u63ED\u793A\u659C\u7EBF\u6539\u5584\u533A\u57DF\u3002",
+          purpose: "\u65E7\u66F2\u7EBF\u5148\u51FA\u73B0\uFF0C\u65B0\u66F2\u7EBF\u63CF\u51FA\uFF0C\u6807\u8BB0\u79FB\u52A8\u5E76\u63ED\u793A\u659C\u7EBF\u6539\u5584\u533A\u57DF\u3002",
+          objects: "\u6027\u80FD\u5F00\u9500\u66F2\u7EBF",
+          phases: [
+            "\u6309\u56FA\u5B9A\u5E27\u5B9A\u4F4D\u539F\u59CB\u8D77\u70B9\u3002",
+            "\u65E7\u66F2\u7EBF\u5148\u51FA\u73B0\uFF0C\u65B0\u66F2\u7EBF\u63CF\u51FA\uFF0C\u6807\u8BB0\u79FB\u52A8\u5E76\u63ED\u793A\u659C\u7EBF\u6539\u5584\u533A\u57DF\u3002",
+            "\u4FDD\u7559\u539F\u52A8\u4F5C\u672B\u5E27\uFF0C\u91CD\u64AD\u56DE\u5230\u540C\u4E00\u8D77\u70B9\u3002"
+          ],
+          retain: "\u622A\u53D6\u539F57\u2013196\u5E27\u3002\u4FDD\u7559\u4E24\u6761\u6307\u6570\u66F2\u7EBF\uFF1A\u65E70.95\xD7(1\u2212exp(\u22122.6\xD7(x\u22120.05)))\uFF0C\u65B01\u2212exp(\u22124.5\xD7(x\u22120.03)))\uFF1B\u6807\u8BB0\u4ECEx=0.62\u79FB\u52300.39\uFF0C\u5404\u81EAy\u53D6\u66F2\u7EBF\u503C\uFF0C\u5750\u6807\u4E3A\u793A\u610F\u3002",
+          avoid: "\u4E0D\u6253\u65AD\u5BF9\u8C61\u8FDE\u7EED\u53D8\u5316\uFF0C\u4E0D\u6539\u53D8\u539F\u51E0\u4F55\u548C\u5E27\u8282\u594F\u3002",
+          duration_ms: 4666.666666666667,
+          preview_ms: 4300,
+          source: {
+            path: "catalog/effects/deepseek-review.js",
+            factory: "deepseek-pareto-curve",
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            assets: [
+              "catalog/fonts/SourceHanSansSC-Light.woff2",
+              "catalog/fonts/SourceHanSansSC-Bold.woff2",
+              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              "catalog/assets/deepseek-review/SOURCE.json",
+              "catalog/assets/deepseek-review/README.md"
+            ],
+            reference: {
+              name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
+            },
+            extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
+            remotion: {
+              component: "catalog/remotion/deepseek-review/index.jsx",
+              export_name: "WiseReviewMotion",
+              package_name: "wise-review-motion",
+              files: [
+                "catalog/remotion/deepseek-review/S13Closing.tsx",
+                "catalog/remotion/deepseek-review/S2Scores.tsx",
+                "catalog/remotion/deepseek-review/S3Pareto.tsx",
+                "catalog/remotion/deepseek-review/S5Search.tsx",
+                "catalog/remotion/deepseek-review/Scene.jsx",
+                "catalog/remotion/deepseek-review/SceneShell.tsx",
+                "catalog/remotion/deepseek-review/anim.ts",
+                "catalog/remotion/deepseek-review/data.ts",
+                "catalog/remotion/deepseek-review/fonts.js",
+                "catalog/remotion/deepseek-review/index.jsx",
+                "catalog/remotion/deepseek-review/theme.ts",
+                "catalog/remotion/deepseek-review/timing.js",
+                "catalog/assets/deepseek-review/SOURCE.json",
+                "catalog/assets/deepseek-review/AUDIO.json",
+                "catalog/assets/deepseek-review/README.md",
+                "catalog/assets/deepseek-review/verify-source.mjs",
+                "LICENSE",
+                "catalog/fonts/OFL.txt",
+                "catalog/fonts/OFL-Oswald.txt",
+                "catalog/assets/reel-extract/React-LICENSE.txt",
+                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+                "catalog/remotion/binary-assets-installer.mjs"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 912,
+              height: 652,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
+              binary_files: [
+                {
+                  source: "catalog/fonts/SourceHanSansSC-Light.woff2",
+                  target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
+                  bytes: 11128356,
+                  sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
+                },
+                {
+                  source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
+                  target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
+                  bytes: 12816312,
+                  sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
+                },
+                {
+                  source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+                  target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
+                  bytes: 108496,
+                  sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
+                }
+              ],
+              asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+              scripts: {
+                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
+              }
+            },
+            license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
+          },
+          actions: [],
+          audio: null,
+          recommendation: "\u65E7\u66F2\u7EBF\u5148\u51FA\u73B0\uFF0C\u65B0\u66F2\u7EBF\u63CF\u51FA\uFF0C\u6807\u8BB0\u79FB\u52A8\u5E76\u63ED\u793A\u659C\u7EBF\u6539\u5584\u533A\u57DF\u3002\uFF1B\u9700\u8981\u539F\u7247\u8FD9\u79CD\u7EC4\u5408\u5173\u7CFB\u65F6\u9009\u62E9\u6B64\u793A\u4F8B\u3002",
+          tempo_note: "\u630930\u5E27\u65F6\u949F\u64AD\u653E\uFF0C\u5171140\u5E27\u3002",
+          reproduction: {
+            objects: "\u6027\u80FD\u5F00\u9500\u66F2\u7EBF",
+            presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002\u6B64\u793A\u4F8B\u53EA\u88C1\u51FA912\xD7652\u56FE\u5F62\u8303\u56F4\uFF0C\u4E0D\u6539\u539F\u56FE\u5F62\u5750\u6807\u3002",
+            phases: [
+              "\u663E\u793A\u539F\u52A8\u4F5C\u8D77\u70B9\u3002",
+              "\u65E7\u66F2\u7EBF\u5148\u51FA\u73B0\uFF0C\u65B0\u66F2\u7EBF\u63CF\u51FA\uFF0C\u6807\u8BB0\u79FB\u52A8\u5E76\u63ED\u793A\u659C\u7EBF\u6539\u5584\u533A\u57DF\u3002",
+              "\u4FDD\u6301\u7ED3\u675F\u59FF\u6001\u3002"
+            ],
+            retain: "\u622A\u53D6\u539F57\u2013196\u5E27\u3002\u4FDD\u7559\u4E24\u6761\u6307\u6570\u66F2\u7EBF\uFF1A\u65E70.95\xD7(1\u2212exp(\u22122.6\xD7(x\u22120.05)))\uFF0C\u65B01\u2212exp(\u22124.5\xD7(x\u22120.03)))\uFF1B\u6807\u8BB0\u4ECEx=0.62\u79FB\u52300.39\uFF0C\u5404\u81EAy\u53D6\u66F2\u7EBF\u503C\uFF0C\u5750\u6807\u4E3A\u793A\u610F\u3002",
+            avoid: "\u4E0D\u4EE5\u65B0\u4E00\u6279\u5143\u7D20\u66FF\u6362\u6B63\u5728\u8FD0\u52A8\u7684\u5143\u7D20\u3002",
+            details: [
+              "\u622A\u53D6\u539F57\u2013196\u5E27\u3002\u4FDD\u7559\u4E24\u6761\u6307\u6570\u66F2\u7EBF\uFF1A\u65E70.95\xD7(1\u2212exp(\u22122.6\xD7(x\u22120.05)))\uFF0C\u65B01\u2212exp(\u22124.5\xD7(x\u22120.03)))\uFF1B\u6807\u8BB0\u4ECEx=0.62\u79FB\u52300.39\uFF0C\u5404\u81EAy\u53D6\u66F2\u7EBF\u503C\uFF0C\u5750\u6807\u4E3A\u793A\u610F\u3002"
+            ]
+          },
+          aliases: [
+            "\u6027\u80FD\u5F00\u9500\u66F2\u7EBF",
+            "\u65E7\u66F2\u7EBF\u5148\u51FA\u73B0\uFF0C\u65B0\u66F2\u7EBF\u63CF\u51FA\uFF0C\u6807\u8BB0\u79FB\u52A8\u5E76\u63ED\u793A\u659C\u7EBF\u6539\u5584\u533A\u57DF\u3002"
+          ]
         }
       ],
       layer: "own-background",
@@ -18801,7 +19540,8 @@ var registry_default = {
         "\u7AD6\u5411\u67F1\u56FE",
         "\u6570\u636E\u52A8\u6548",
         "\u67F1\u6761\u4ECE\u57FA\u7EBF\u957F\u9AD8",
-        "\u57FA\u7EBF\u751F\u957F"
+        "\u57FA\u7EBF\u751F\u957F",
+        "\u5341\u4E00\u9879\u6210\u7EE9\u589E\u91CF"
       ],
       behaviors: [
         "sequence",
@@ -18915,7 +19655,159 @@ var registry_default = {
           "\u8FD9\u91CC t \u4E3A\u52A8\u4F5C\u79D2\u6570\uFF08\u64AD\u653E\u901F\u5EA61\u65F6\u7B49\u4E8E\u64AD\u653E\u79D2\u6570\uFF09\uFF1B\u8BBE\u8BA1\u65F6\u949F u=0+1.16\xD7\u9650\u5236\u52300\u81F31\u7684((t\u22120.15)/1.2)\uFF0C\u5355\u4F4D\u4E3A\u79D2\u3002\u4E0B\u5217\u6807\u660E u \u7684\u9636\u6BB5\u4F7F\u7528\u8BBE\u8BA1\u65F6\u949F\uFF0C\u4E0D\u662F\u5B9E\u9645\u64AD\u653E\u65F6\u957F\uFF1B\u5F52\u4E00\u8FDB\u5EA6 p=u/3\u3002\u8BBE\u8BA1\u65F6\u949F\u5728\u4E24\u7AEF\u94B3\u4F4F\uFF0C\u4E0D\u9760\u4E0A\u4E00\u5E27\u4FDD\u7559\u72B6\u6001\u3002",
           "\u8BBE\u8BA1\u65F6\u949Fu=p\xD73\u79D2\uFF1B\u5750\u6807\u8F74\u5148\u4E8E\u67F1\u3002\u7B2Ci\u67F1\u4ECEu=0.11+0.09i\u79D2\u8D77\u75280.58\u79D2\u7531\u5E95\u5411\u4E0A\u957F\uFF0C\u7C7B\u522B\u6807\u7B7E\u665A0.08\u79D2\u3001\u6570\u503C\u665A0.34\u79D2\u5F00\u59CB\u663E\u73B0\uFF1B\u9ED8\u8BA4\u793A\u4F8B\u6570\u503C92/87/81/76/68/61\uFF0C\u66FF\u6362\u6570\u636E\u7528\u5B9E\u9645\u69FD\u503C\u3002\u6570\u503C\u4F4D\u4E8E\u6700\u7EC8\u9876\u7AEF\uFF0C\u4E0D\u968F\u7740\u67F1\u9876\u98DE\u52A8\u3002"
         ]
-      }
+      },
+      variants: [
+        {
+          id: "original",
+          label: "\u539F\u6709\u793A\u4F8B",
+          summary: "\u516D\u6839\u7EC6\u7EBF\u67F1\u4ECE\u540C\u4E00\u5E95\u7EBF\u4F9D\u6B21\u957F\u9AD8\uFF0C\u9996\u67F1\u4EE5\u84DD\u8272\u6392\u7EBF\u5F3A\u8C03\u3002",
+          duration_ms: 1800,
+          preview_ms: 1575
+        },
+        {
+          loop: false,
+          default_ease: "linear",
+          parameters: {
+            speed: {
+              label: "\u64AD\u653E\u901F\u5EA6",
+              default: 1,
+              min: 0.5,
+              max: 2,
+              step: 0.25
+            }
+          },
+          demo_mode: "fixed-timeline",
+          timing: null,
+          content_slots: [],
+          layer: "own-background",
+          domains: [
+            "animation",
+            "document"
+          ],
+          trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
+          assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
+          id: "deepseek-gains",
+          label: "\u5341\u4E00\u9879\u6210\u7EE9\u589E\u91CF",
+          summary: "\u5341\u4E00\u6839\u67F1\u9519\u5CF0\u957F\u9AD8\uFF0C\u8BFB\u6570\u4E0E\u67F1\u9AD8\u6309\u540C\u4E00\u8FDB\u5EA6\u589E\u52A0\u3002",
+          purpose: "\u5341\u4E00\u6839\u67F1\u9519\u5CF0\u957F\u9AD8\uFF0C\u8BFB\u6570\u4E0E\u67F1\u9AD8\u6309\u540C\u4E00\u8FDB\u5EA6\u589E\u52A0\u3002",
+          objects: "\u5341\u4E00\u9879\u6210\u7EE9\u589E\u91CF",
+          phases: [
+            "\u6309\u56FA\u5B9A\u5E27\u5B9A\u4F4D\u539F\u59CB\u8D77\u70B9\u3002",
+            "\u5341\u4E00\u6839\u67F1\u9519\u5CF0\u957F\u9AD8\uFF0C\u8BFB\u6570\u4E0E\u67F1\u9AD8\u6309\u540C\u4E00\u8FDB\u5EA6\u589E\u52A0\u3002",
+            "\u4FDD\u7559\u539F\u52A8\u4F5C\u672B\u5E27\uFF0C\u91CD\u64AD\u56DE\u5230\u540C\u4E00\u8D77\u70B9\u3002"
+          ],
+          retain: "\u622A\u53D6\u539F66\u2013136\u5E27\u3002\u7B2Ci\u67F1\u4ECE66+2i\u523099+2i\u5E27\u7EBF\u6027\u589E\u957F\uFF0C\u5E95\u7EBF320\uFF0C\u5BBD58\uFF0C\u6700\u5927\u9AD8\u5EA6256\uFF0C\u6570\u503C\u663E\u793A\u4E00\u4F4D\u5C0F\u6570\uFF0C\u9996\u9879\u84DD\u8272\uFF0C\u5176\u4F59\u6DF1\u8272\u3002",
+          avoid: "\u4E0D\u6253\u65AD\u5BF9\u8C61\u8FDE\u7EED\u53D8\u5316\uFF0C\u4E0D\u6539\u53D8\u539F\u51E0\u4F55\u548C\u5E27\u8282\u594F\u3002",
+          duration_ms: 2366.6666666666665,
+          preview_ms: 2e3,
+          source: {
+            path: "catalog/effects/deepseek-review.js",
+            factory: "deepseek-gain-bars",
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            assets: [
+              "catalog/fonts/SourceHanSansSC-Light.woff2",
+              "catalog/fonts/SourceHanSansSC-Bold.woff2",
+              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              "catalog/assets/deepseek-review/SOURCE.json",
+              "catalog/assets/deepseek-review/README.md"
+            ],
+            reference: {
+              name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
+            },
+            extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
+            remotion: {
+              component: "catalog/remotion/deepseek-review/index.jsx",
+              export_name: "WiseReviewMotion",
+              package_name: "wise-review-motion",
+              files: [
+                "catalog/remotion/deepseek-review/S13Closing.tsx",
+                "catalog/remotion/deepseek-review/S2Scores.tsx",
+                "catalog/remotion/deepseek-review/S3Pareto.tsx",
+                "catalog/remotion/deepseek-review/S5Search.tsx",
+                "catalog/remotion/deepseek-review/Scene.jsx",
+                "catalog/remotion/deepseek-review/SceneShell.tsx",
+                "catalog/remotion/deepseek-review/anim.ts",
+                "catalog/remotion/deepseek-review/data.ts",
+                "catalog/remotion/deepseek-review/fonts.js",
+                "catalog/remotion/deepseek-review/index.jsx",
+                "catalog/remotion/deepseek-review/theme.ts",
+                "catalog/remotion/deepseek-review/timing.js",
+                "catalog/assets/deepseek-review/SOURCE.json",
+                "catalog/assets/deepseek-review/AUDIO.json",
+                "catalog/assets/deepseek-review/README.md",
+                "catalog/assets/deepseek-review/verify-source.mjs",
+                "LICENSE",
+                "catalog/fonts/OFL.txt",
+                "catalog/fonts/OFL-Oswald.txt",
+                "catalog/assets/reel-extract/React-LICENSE.txt",
+                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+                "catalog/remotion/binary-assets-installer.mjs"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 912,
+              height: 576,
+              fps: 30,
+              exact_frames: true,
+              reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
+              binary_files: [
+                {
+                  source: "catalog/fonts/SourceHanSansSC-Light.woff2",
+                  target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
+                  bytes: 11128356,
+                  sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
+                },
+                {
+                  source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
+                  target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
+                  bytes: 12816312,
+                  sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
+                },
+                {
+                  source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+                  target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
+                  bytes: 108496,
+                  sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
+                }
+              ],
+              asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+              scripts: {
+                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
+              }
+            },
+            license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
+          },
+          actions: [],
+          audio: null,
+          recommendation: "\u5341\u4E00\u6839\u67F1\u9519\u5CF0\u957F\u9AD8\uFF0C\u8BFB\u6570\u4E0E\u67F1\u9AD8\u6309\u540C\u4E00\u8FDB\u5EA6\u589E\u52A0\u3002\uFF1B\u9700\u8981\u539F\u7247\u8FD9\u79CD\u7EC4\u5408\u5173\u7CFB\u65F6\u9009\u62E9\u6B64\u793A\u4F8B\u3002",
+          tempo_note: "\u630930\u5E27\u65F6\u949F\u64AD\u653E\uFF0C\u517171\u5E27\u3002",
+          reproduction: {
+            objects: "\u5341\u4E00\u9879\u6210\u7EE9\u589E\u91CF",
+            presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002\u6B64\u793A\u4F8B\u53EA\u88C1\u51FA912\xD7576\u56FE\u5F62\u8303\u56F4\uFF0C\u4E0D\u6539\u539F\u56FE\u5F62\u5750\u6807\u3002",
+            phases: [
+              "\u663E\u793A\u539F\u52A8\u4F5C\u8D77\u70B9\u3002",
+              "\u5341\u4E00\u6839\u67F1\u9519\u5CF0\u957F\u9AD8\uFF0C\u8BFB\u6570\u4E0E\u67F1\u9AD8\u6309\u540C\u4E00\u8FDB\u5EA6\u589E\u52A0\u3002",
+              "\u4FDD\u6301\u7ED3\u675F\u59FF\u6001\u3002"
+            ],
+            retain: "\u622A\u53D6\u539F66\u2013136\u5E27\u3002\u7B2Ci\u67F1\u4ECE66+2i\u523099+2i\u5E27\u7EBF\u6027\u589E\u957F\uFF0C\u5E95\u7EBF320\uFF0C\u5BBD58\uFF0C\u6700\u5927\u9AD8\u5EA6256\uFF0C\u6570\u503C\u663E\u793A\u4E00\u4F4D\u5C0F\u6570\uFF0C\u9996\u9879\u84DD\u8272\uFF0C\u5176\u4F59\u6DF1\u8272\u3002",
+            avoid: "\u4E0D\u4EE5\u65B0\u4E00\u6279\u5143\u7D20\u66FF\u6362\u6B63\u5728\u8FD0\u52A8\u7684\u5143\u7D20\u3002",
+            details: [
+              "\u622A\u53D6\u539F66\u2013136\u5E27\u3002\u7B2Ci\u67F1\u4ECE66+2i\u523099+2i\u5E27\u7EBF\u6027\u589E\u957F\uFF0C\u5E95\u7EBF320\uFF0C\u5BBD58\uFF0C\u6700\u5927\u9AD8\u5EA6256\uFF0C\u6570\u503C\u663E\u793A\u4E00\u4F4D\u5C0F\u6570\uFF0C\u9996\u9879\u84DD\u8272\uFF0C\u5176\u4F59\u6DF1\u8272\u3002"
+            ]
+          },
+          aliases: [
+            "\u5341\u4E00\u9879\u6210\u7EE9\u589E\u91CF",
+            "\u5341\u4E00\u6839\u67F1\u9519\u5CF0\u957F\u9AD8\uFF0C\u8BFB\u6570\u4E0E\u67F1\u9AD8\u6309\u540C\u4E00\u8FDB\u5EA6\u589E\u52A0\u3002"
+          ]
+        }
+      ]
     },
     {
       id: "sector-appear",
@@ -75137,6 +76029,814 @@ var registry_default = {
       },
       action_variants: {
         "particle-word": "aboutlove-16"
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      timing: null,
+      content_slots: [],
+      layer: "own-background",
+      domains: [
+        "animation",
+        "document"
+      ],
+      trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
+      id: "search-filter-delivery",
+      name: "\u641C\u7D22\u7B5B\u9009\u4E0E\u9012\u9001",
+      kind: "composition",
+      category: "composition-interface",
+      summary: "\u641C\u7D22\u6846\u8F93\u5165\u5173\u952E\u8BCD\uFF0C\u4E09\u6761\u7ED3\u679C\u4F9D\u6B21\u6ED1\u5165\u3002\u626B\u63CF\u7ED3\u679C\uFF0C\u5212\u9664\u5E72\u6270\u9879\u5E76\u79FB\u51FA\uFF0C\u5176\u4F59\u6761\u76EE\u5411\u4E0A\u8865\u4F4D\u3002\u4FDD\u7559\u7684\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001\u5230\u6A21\u578B\uFF0C\u76EE\u6807\u6846\u63A5\u6536\u4E24\u9879\u5185\u5BB9\u3002",
+      purpose: "\u5C55\u793A\u68C0\u7D22\u5185\u5BB9\u5982\u4F55\u7ECF\u8FC7\u7B5B\u9009\u540E\u8FDB\u5165\u4E0B\u4E00\u6B65\uFF0C\u9002\u5408\u89E3\u91CA\u641C\u7D22\u8FC7\u6EE4\u548C\u8D44\u6599\u6574\u7406\u3002",
+      objects: "\u641C\u7D22\u6846\u3001\u4E09\u6761\u7ED3\u679C\u3001\u626B\u63CF\u7EBF\u3001\u4E24\u4E2A\u6587\u6863\u4E0E\u6A21\u578B\u63A5\u6536\u6846",
+      phases: [
+        "\u641C\u7D22\u6846\u8F93\u5165\u5173\u952E\u8BCD\uFF0C\u4E09\u6761\u7ED3\u679C\u4F9D\u6B21\u6ED1\u5165\u3002",
+        "\u626B\u63CF\u7ED3\u679C\uFF0C\u5212\u9664\u5E72\u6270\u9879\u5E76\u79FB\u51FA\uFF0C\u5176\u4F59\u6761\u76EE\u5411\u4E0A\u8865\u4F4D\u3002",
+        "\u4FDD\u7559\u7684\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001\u5230\u6A21\u578B\uFF0C\u76EE\u6807\u6846\u63A5\u6536\u4E24\u9879\u5185\u5BB9\u3002"
+      ],
+      aliases: [
+        "\u641C\u7D22\u8FC7\u6EE4",
+        "GEO",
+        "\u641C\u7D22\u626B\u63CF",
+        "\u5254\u9664\u5E72\u6270\u9879",
+        "\u6709\u6548\u5185\u5BB9\u9012\u9001\u7ED9\u6A21\u578B"
+      ],
+      behaviors: [
+        "sequence",
+        "reveal",
+        "layout"
+      ],
+      retain: "\u7B2C0\u201370\u5E27\u6807\u9898\u4ECE\u4E2D\u592E\u4E0A\u79FB\uFF1B\u7B2C58\u201395\u5E27\u8F93\u5165\uFF1B\u7ED3\u679C\u7B2C104\u5E27\u5F00\u59CB\u51FA\u73B0\uFF0C122\u2013158\u5E27\u626B\u63CF\uFF0C158\u2013187\u5E27\u5254\u9664\uFF0C180\u2013211\u5E27\u7F29\u7A84\uFF0C199\u2013241\u5E27\u6CBF\u66F2\u7EBF\u9012\u9001\u3002",
+      avoid: "\u4E0D\u4EE5\u6574\u9875\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u8FDE\u7EED\u52A8\u4F5C\uFF0C\u4E0D\u63D0\u524D\u79FB\u52A8\u6807\u9898\u8BA9\u4F4D\uFF0C\u4E0D\u6539\u53D8\u6570\u636E\u4E0E\u51E0\u4F55\u6BD4\u4F8B\u3002",
+      duration_ms: 8133.333333333333,
+      preview_ms: 7666.666666666667,
+      source: {
+        path: "catalog/effects/deepseek-review.js",
+        factory: "search-filter-delivery",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        assets: [
+          "catalog/fonts/SourceHanSansSC-Light.woff2",
+          "catalog/fonts/SourceHanSansSC-Bold.woff2",
+          "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+          "catalog/assets/deepseek-review/scores.wav",
+          "catalog/assets/deepseek-review/pareto.wav",
+          "catalog/assets/deepseek-review/search.wav",
+          "catalog/assets/deepseek-review/closing.wav",
+          "catalog/assets/deepseek-review/SOURCE.json",
+          "catalog/assets/deepseek-review/README.md"
+        ],
+        reference: {
+          name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
+        },
+        extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
+        remotion: {
+          component: "catalog/remotion/deepseek-review/index.jsx",
+          export_name: "WiseReviewMotion",
+          package_name: "wise-review-motion",
+          files: [
+            "catalog/remotion/deepseek-review/S13Closing.tsx",
+            "catalog/remotion/deepseek-review/S2Scores.tsx",
+            "catalog/remotion/deepseek-review/S3Pareto.tsx",
+            "catalog/remotion/deepseek-review/S5Search.tsx",
+            "catalog/remotion/deepseek-review/Scene.jsx",
+            "catalog/remotion/deepseek-review/SceneShell.tsx",
+            "catalog/remotion/deepseek-review/anim.ts",
+            "catalog/remotion/deepseek-review/data.ts",
+            "catalog/remotion/deepseek-review/fonts.js",
+            "catalog/remotion/deepseek-review/index.jsx",
+            "catalog/remotion/deepseek-review/theme.ts",
+            "catalog/remotion/deepseek-review/timing.js",
+            "catalog/assets/deepseek-review/SOURCE.json",
+            "catalog/assets/deepseek-review/AUDIO.json",
+            "catalog/assets/deepseek-review/README.md",
+            "catalog/assets/deepseek-review/verify-source.mjs",
+            "LICENSE",
+            "catalog/fonts/OFL.txt",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1080,
+          height: 1440,
+          fps: 30,
+          exact_frames: true,
+          reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
+          binary_files: [
+            {
+              source: "catalog/fonts/SourceHanSansSC-Light.woff2",
+              target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
+              bytes: 11128356,
+              sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
+            },
+            {
+              source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
+              target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
+              bytes: 12816312,
+              sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
+            },
+            {
+              source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              bytes: 108496,
+              sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
+            },
+            {
+              source: "catalog/assets/deepseek-review/scores.wav",
+              target: "public/catalog/assets/deepseek-review/scores.wav",
+              bytes: 876878,
+              sha256: "fa4de3db44972679d1d11ab9c40eb63b04433d32e07217493f9d387e441b2583"
+            },
+            {
+              source: "catalog/assets/deepseek-review/pareto.wav",
+              target: "public/catalog/assets/deepseek-review/pareto.wav",
+              bytes: 1260878,
+              sha256: "19ef6c8be68efb0dcf8180262bc8f8f82a08759216bcc119bac96609144ab6ce"
+            },
+            {
+              source: "catalog/assets/deepseek-review/search.wav",
+              target: "public/catalog/assets/deepseek-review/search.wav",
+              bytes: 1561678,
+              sha256: "24541bb2444ea264e705d93836ca9bb60583975cfbc17e2180c2cd619f9bd239"
+            },
+            {
+              source: "catalog/assets/deepseek-review/closing.wav",
+              target: "public/catalog/assets/deepseek-review/closing.wav",
+              bytes: 1318478,
+              sha256: "fd2a190225fe546ceac48efbde1b54800e8b617502b507aa0890cf1f4207872e"
+            }
+          ],
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+          scripts: {
+            "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
+          }
+        },
+        license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
+      },
+      actions: [
+        "stagger-in",
+        "layout-reorder",
+        "curve-path"
+      ],
+      action_variants: {
+        "stagger-in": "deepseek-results",
+        "layout-reorder": "deepseek-filter",
+        "curve-path": "deepseek-delivery"
+      },
+      analogy: "\u641C\u7D22\u6846\u8F93\u5165\u5173\u952E\u8BCD\uFF0C\u4E09\u6761\u7ED3\u679C\u4F9D\u6B21\u6ED1\u5165\u3002\u626B\u63CF\u7ED3\u679C\uFF0C\u5212\u9664\u5E72\u6270\u9879\u5E76\u79FB\u51FA\uFF0C\u5176\u4F59\u6761\u76EE\u5411\u4E0A\u8865\u4F4D\u3002\u4FDD\u7559\u7684\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001\u5230\u6A21\u578B\uFF0C\u76EE\u6807\u6846\u63A5\u6536\u4E24\u9879\u5185\u5BB9\u3002",
+      tempo_note: "244\u5E27\uFF0C\u6BCF\u79D230\u5E27\uFF1B\u901F\u5EA6\u6574\u4F53\u8C03\u6574\uFF0C\u4FDD\u7559\u5185\u90E8\u5148\u540E\u3002",
+      recommendation: "\u5C55\u793A\u68C0\u7D22\u5185\u5BB9\u5982\u4F55\u7ECF\u8FC7\u7B5B\u9009\u540E\u8FDB\u5165\u4E0B\u4E00\u6B65\uFF0C\u9002\u5408\u89E3\u91CA\u641C\u7D22\u8FC7\u6EE4\u548C\u8D44\u6599\u6574\u7406\u3002",
+      audio: {
+        tracks: [
+          {
+            src: "catalog/assets/deepseek-review/search.wav",
+            name: "\u539F\u7247\u65C1\u767D\u3001\u97F3\u4E50\u4E0E\u573A\u5185\u97F3\u6548",
+            start_ms: 0,
+            offset_ms: 0,
+            duration_ms: 8133.333333333333,
+            volume: 1,
+            rate: 1,
+            fade_in_ms: 0,
+            fade_out_ms: 0
+          }
+        ]
+      },
+      reproduction: {
+        objects: "\u641C\u7D22\u6846\u3001\u4E09\u6761\u7ED3\u679C\u3001\u626B\u63CF\u7EBF\u3001\u4E24\u4E2A\u6587\u6863\u4E0E\u6A21\u578B\u63A5\u6536\u6846",
+        presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002",
+        phases: [
+          "\u641C\u7D22\u6846\u8F93\u5165\u5173\u952E\u8BCD\uFF0C\u4E09\u6761\u7ED3\u679C\u4F9D\u6B21\u6ED1\u5165\u3002",
+          "\u626B\u63CF\u7ED3\u679C\uFF0C\u5212\u9664\u5E72\u6270\u9879\u5E76\u79FB\u51FA\uFF0C\u5176\u4F59\u6761\u76EE\u5411\u4E0A\u8865\u4F4D\u3002",
+          "\u4FDD\u7559\u7684\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001\u5230\u6A21\u578B\uFF0C\u76EE\u6807\u6846\u63A5\u6536\u4E24\u9879\u5185\u5BB9\u3002"
+        ],
+        retain: "\u7B2C0\u201370\u5E27\u6807\u9898\u4ECE\u4E2D\u592E\u4E0A\u79FB\uFF1B\u7B2C58\u201395\u5E27\u8F93\u5165\uFF1B\u7ED3\u679C\u7B2C104\u5E27\u5F00\u59CB\u51FA\u73B0\uFF0C122\u2013158\u5E27\u626B\u63CF\uFF0C158\u2013187\u5E27\u5254\u9664\uFF0C180\u2013211\u5E27\u7F29\u7A84\uFF0C199\u2013241\u5E27\u6CBF\u66F2\u7EBF\u9012\u9001\u3002",
+        avoid: "\u540C\u4E00\u5BF9\u8C61\u8FDE\u7EED\u8FD0\u52A8\uFF0C\u4E0D\u80FD\u9500\u6BC1\u518D\u6DE1\u5165\uFF1B\u630930\u5E27\u6E90\u65F6\u949F\u5B9A\u4F4D\u3002",
+        details: [
+          "\u7B2C0\u201370\u5E27\u6807\u9898\u4ECE\u4E2D\u592E\u4E0A\u79FB\uFF1B\u7B2C58\u201395\u5E27\u8F93\u5165\uFF1B\u7ED3\u679C\u7B2C104\u5E27\u5F00\u59CB\u51FA\u73B0\uFF0C122\u2013158\u5E27\u626B\u63CF\uFF0C158\u2013187\u5E27\u5254\u9664\uFF0C180\u2013211\u5E27\u7F29\u7A84\uFF0C199\u2013241\u5E27\u6CBF\u66F2\u7EBF\u9012\u9001\u3002"
+        ]
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      timing: null,
+      content_slots: [],
+      layer: "own-background",
+      domains: [
+        "animation",
+        "document"
+      ],
+      trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
+      id: "creative-cards-to-tracks",
+      name: "\u5361\u7247\u53D8\u6210\u526A\u8F91\u8F68\u9053",
+      kind: "composition",
+      category: "composition-interface",
+      summary: "\u6295\u5165\u8FDB\u5165\u6A21\u578B\uFF0C\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5F20\u5361\u7247\u4F9D\u6B21\u51FA\u73B0\u3002\u4FDD\u6301\u4E09\u5F20\u5361\u7247\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u79FB\u4F4D\u5E76\u62C9\u5BBD\u4E3A\u4E09\u6761\u526A\u8F91\u8F68\u9053\u3002\u9884\u89C8\u753B\u9762\u8FD0\u52A8\uFF0C\u64AD\u653E\u5934\u7A7F\u8FC7\u4E09\u6761\u8F68\u9053\uFF0C\u5B8C\u6210\u6807\u8BB0\u6536\u675F\u3002",
+      purpose: "\u5C55\u793A\u591A\u4E2A\u521B\u4F5C\u80FD\u529B\u5982\u4F55\u6C47\u6210\u4E00\u4EFD\u4F5C\u54C1\uFF1B\u9002\u5408\u8BB2\u8FF0\u5267\u672C\u3001\u955C\u5934\u548C\u58F0\u97F3\u7684\u534F\u540C\u3002",
+      objects: "\u6295\u5165\u7B26\u53F7\u3001\u6A21\u578B\u3001\u4E09\u5F20\u8F93\u51FA\u5361\u3001\u526A\u8F91\u7A97\u53E3\u3001\u64AD\u653E\u5934",
+      phases: [
+        "\u6295\u5165\u8FDB\u5165\u6A21\u578B\uFF0C\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5F20\u5361\u7247\u4F9D\u6B21\u51FA\u73B0\u3002",
+        "\u4FDD\u6301\u4E09\u5F20\u5361\u7247\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u79FB\u4F4D\u5E76\u62C9\u5BBD\u4E3A\u4E09\u6761\u526A\u8F91\u8F68\u9053\u3002",
+        "\u9884\u89C8\u753B\u9762\u8FD0\u52A8\uFF0C\u64AD\u653E\u5934\u7A7F\u8FC7\u4E09\u6761\u8F68\u9053\uFF0C\u5B8C\u6210\u6807\u8BB0\u6536\u675F\u3002"
+      ],
+      aliases: [
+        "\u5267\u672C\u955C\u5934\u58F0\u97F3",
+        "\u521B\u4F5C\u6D41\u7A0B",
+        "\u5361\u7247\u53D8\u8F68\u9053",
+        "\u8FDE\u7EED\u53D8\u6210\u526A\u8F91\u8F68\u9053",
+        "\u526A\u8F91\u65F6\u95F4\u7EBF"
+      ],
+      behaviors: [
+        "sequence",
+        "reveal",
+        "layout"
+      ],
+      retain: "\u4FDD\u7559\u539F\u65C1\u767D\u8282\u70B963/97/138\u5E27\uFF1B\u7B2C95\u2013122\u5E27\u4E09\u5361\u4F4D\u7F6E\u4E0E\u5C3A\u5BF8\u5171\u7528\u540C\u4E00\u5E73\u6ED1\u8FDB\u5EA6\uFF0C\u4ECE(728,554+170i)\u548C268\xD7112\u53D8\u4E3A(184,806+88i)\u548C712\xD768\uFF1B\u64AD\u653E\u5934\u7B2C140\u2013174\u5E27\u5411\u53F3\u63A8\u8FDB\u3002",
+      avoid: "\u4E0D\u4EE5\u6574\u9875\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u8FDE\u7EED\u52A8\u4F5C\uFF0C\u4E0D\u63D0\u524D\u79FB\u52A8\u6807\u9898\u8BA9\u4F4D\uFF0C\u4E0D\u6539\u53D8\u6570\u636E\u4E0E\u51E0\u4F55\u6BD4\u4F8B\u3002",
+      duration_ms: 6866.666666666666,
+      preview_ms: 5566.666666666666,
+      source: {
+        path: "catalog/effects/deepseek-review.js",
+        factory: "creative-cards-to-tracks",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        assets: [
+          "catalog/fonts/SourceHanSansSC-Light.woff2",
+          "catalog/fonts/SourceHanSansSC-Bold.woff2",
+          "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+          "catalog/assets/deepseek-review/scores.wav",
+          "catalog/assets/deepseek-review/pareto.wav",
+          "catalog/assets/deepseek-review/search.wav",
+          "catalog/assets/deepseek-review/closing.wav",
+          "catalog/assets/deepseek-review/SOURCE.json",
+          "catalog/assets/deepseek-review/README.md"
+        ],
+        reference: {
+          name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
+        },
+        extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
+        remotion: {
+          component: "catalog/remotion/deepseek-review/index.jsx",
+          export_name: "WiseReviewMotion",
+          package_name: "wise-review-motion",
+          files: [
+            "catalog/remotion/deepseek-review/S13Closing.tsx",
+            "catalog/remotion/deepseek-review/S2Scores.tsx",
+            "catalog/remotion/deepseek-review/S3Pareto.tsx",
+            "catalog/remotion/deepseek-review/S5Search.tsx",
+            "catalog/remotion/deepseek-review/Scene.jsx",
+            "catalog/remotion/deepseek-review/SceneShell.tsx",
+            "catalog/remotion/deepseek-review/anim.ts",
+            "catalog/remotion/deepseek-review/data.ts",
+            "catalog/remotion/deepseek-review/fonts.js",
+            "catalog/remotion/deepseek-review/index.jsx",
+            "catalog/remotion/deepseek-review/theme.ts",
+            "catalog/remotion/deepseek-review/timing.js",
+            "catalog/assets/deepseek-review/SOURCE.json",
+            "catalog/assets/deepseek-review/AUDIO.json",
+            "catalog/assets/deepseek-review/README.md",
+            "catalog/assets/deepseek-review/verify-source.mjs",
+            "LICENSE",
+            "catalog/fonts/OFL.txt",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1080,
+          height: 1440,
+          fps: 30,
+          exact_frames: true,
+          reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
+          binary_files: [
+            {
+              source: "catalog/fonts/SourceHanSansSC-Light.woff2",
+              target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
+              bytes: 11128356,
+              sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
+            },
+            {
+              source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
+              target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
+              bytes: 12816312,
+              sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
+            },
+            {
+              source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              bytes: 108496,
+              sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
+            },
+            {
+              source: "catalog/assets/deepseek-review/scores.wav",
+              target: "public/catalog/assets/deepseek-review/scores.wav",
+              bytes: 876878,
+              sha256: "fa4de3db44972679d1d11ab9c40eb63b04433d32e07217493f9d387e441b2583"
+            },
+            {
+              source: "catalog/assets/deepseek-review/pareto.wav",
+              target: "public/catalog/assets/deepseek-review/pareto.wav",
+              bytes: 1260878,
+              sha256: "19ef6c8be68efb0dcf8180262bc8f8f82a08759216bcc119bac96609144ab6ce"
+            },
+            {
+              source: "catalog/assets/deepseek-review/search.wav",
+              target: "public/catalog/assets/deepseek-review/search.wav",
+              bytes: 1561678,
+              sha256: "24541bb2444ea264e705d93836ca9bb60583975cfbc17e2180c2cd619f9bd239"
+            },
+            {
+              source: "catalog/assets/deepseek-review/closing.wav",
+              target: "public/catalog/assets/deepseek-review/closing.wav",
+              bytes: 1318478,
+              sha256: "fd2a190225fe546ceac48efbde1b54800e8b617502b507aa0890cf1f4207872e"
+            }
+          ],
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+          scripts: {
+            "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
+          }
+        },
+        license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
+      },
+      actions: [
+        "layout-reorder"
+      ],
+      action_variants: {
+        "layout-reorder": "deepseek-tracks"
+      },
+      analogy: "\u6295\u5165\u8FDB\u5165\u6A21\u578B\uFF0C\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5F20\u5361\u7247\u4F9D\u6B21\u51FA\u73B0\u3002\u4FDD\u6301\u4E09\u5F20\u5361\u7247\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u79FB\u4F4D\u5E76\u62C9\u5BBD\u4E3A\u4E09\u6761\u526A\u8F91\u8F68\u9053\u3002\u9884\u89C8\u753B\u9762\u8FD0\u52A8\uFF0C\u64AD\u653E\u5934\u7A7F\u8FC7\u4E09\u6761\u8F68\u9053\uFF0C\u5B8C\u6210\u6807\u8BB0\u6536\u675F\u3002",
+      tempo_note: "206\u5E27\uFF0C\u6BCF\u79D230\u5E27\uFF1B\u901F\u5EA6\u6574\u4F53\u8C03\u6574\uFF0C\u4FDD\u7559\u5185\u90E8\u5148\u540E\u3002",
+      recommendation: "\u5C55\u793A\u591A\u4E2A\u521B\u4F5C\u80FD\u529B\u5982\u4F55\u6C47\u6210\u4E00\u4EFD\u4F5C\u54C1\uFF1B\u9002\u5408\u8BB2\u8FF0\u5267\u672C\u3001\u955C\u5934\u548C\u58F0\u97F3\u7684\u534F\u540C\u3002",
+      audio: {
+        tracks: [
+          {
+            src: "catalog/assets/deepseek-review/closing.wav",
+            name: "\u539F\u7247\u65C1\u767D\u3001\u97F3\u4E50\u4E0E\u573A\u5185\u97F3\u6548",
+            start_ms: 0,
+            offset_ms: 0,
+            duration_ms: 6866.666666666666,
+            volume: 1,
+            rate: 1,
+            fade_in_ms: 0,
+            fade_out_ms: 0
+          }
+        ]
+      },
+      reproduction: {
+        objects: "\u6295\u5165\u7B26\u53F7\u3001\u6A21\u578B\u3001\u4E09\u5F20\u8F93\u51FA\u5361\u3001\u526A\u8F91\u7A97\u53E3\u3001\u64AD\u653E\u5934",
+        presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002",
+        phases: [
+          "\u6295\u5165\u8FDB\u5165\u6A21\u578B\uFF0C\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5F20\u5361\u7247\u4F9D\u6B21\u51FA\u73B0\u3002",
+          "\u4FDD\u6301\u4E09\u5F20\u5361\u7247\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u79FB\u4F4D\u5E76\u62C9\u5BBD\u4E3A\u4E09\u6761\u526A\u8F91\u8F68\u9053\u3002",
+          "\u9884\u89C8\u753B\u9762\u8FD0\u52A8\uFF0C\u64AD\u653E\u5934\u7A7F\u8FC7\u4E09\u6761\u8F68\u9053\uFF0C\u5B8C\u6210\u6807\u8BB0\u6536\u675F\u3002"
+        ],
+        retain: "\u4FDD\u7559\u539F\u65C1\u767D\u8282\u70B963/97/138\u5E27\uFF1B\u7B2C95\u2013122\u5E27\u4E09\u5361\u4F4D\u7F6E\u4E0E\u5C3A\u5BF8\u5171\u7528\u540C\u4E00\u5E73\u6ED1\u8FDB\u5EA6\uFF0C\u4ECE(728,554+170i)\u548C268\xD7112\u53D8\u4E3A(184,806+88i)\u548C712\xD768\uFF1B\u64AD\u653E\u5934\u7B2C140\u2013174\u5E27\u5411\u53F3\u63A8\u8FDB\u3002",
+        avoid: "\u540C\u4E00\u5BF9\u8C61\u8FDE\u7EED\u8FD0\u52A8\uFF0C\u4E0D\u80FD\u9500\u6BC1\u518D\u6DE1\u5165\uFF1B\u630930\u5E27\u6E90\u65F6\u949F\u5B9A\u4F4D\u3002",
+        details: [
+          "\u4FDD\u7559\u539F\u65C1\u767D\u8282\u70B963/97/138\u5E27\uFF1B\u7B2C95\u2013122\u5E27\u4E09\u5361\u4F4D\u7F6E\u4E0E\u5C3A\u5BF8\u5171\u7528\u540C\u4E00\u5E73\u6ED1\u8FDB\u5EA6\uFF0C\u4ECE(728,554+170i)\u548C268\xD7112\u53D8\u4E3A(184,806+88i)\u548C712\xD768\uFF1B\u64AD\u653E\u5934\u7B2C140\u2013174\u5E27\u5411\u53F3\u63A8\u8FDB\u3002"
+        ]
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      timing: null,
+      content_slots: [],
+      layer: "own-background",
+      domains: [
+        "animation",
+        "document"
+      ],
+      trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
+      id: "benchmark-gain-sequence",
+      name: "\u57FA\u51C6\u6210\u7EE9\u4F9D\u6B21\u63D0\u5347",
+      kind: "composition",
+      category: "composition-interface",
+      summary: "\u6807\u9898\u5C45\u4E2D\u51FA\u73B0\uFF0C\u7136\u540E\u4E0A\u79FB\u3002\u8BA1\u6570\u4ECE\u96F6\u5230\u5341\u4E00\uFF0C\u5341\u4E00\u6839\u67F1\u6309\u987A\u5E8F\u4ECE\u5171\u540C\u5E95\u7EBF\u957F\u9AD8\u3002\u6BCF\u6839\u67F1\u4E0A\u7684\u589E\u91CF\u8BFB\u6570\u8DDF\u968F\u67F1\u9AD8\uFF0C\u5230\u539F\u793A\u4F8B\u6570\u503C\u65F6\u843D\u5B9A\u3002",
+      purpose: "\u5C55\u793A\u591A\u9879\u6570\u636E\u540C\u65F6\u6539\u5584\uFF0C\u5148\u7ED9\u6574\u4F53\u6570\u91CF\u518D\u5C55\u5F00\u6BCF\u9879\u5DEE\u5F02\u3002",
+      objects: "\u6807\u9898\u3001\u5341\u4E00\u9879\u8BA1\u6570\u3001\u5341\u4E00\u6839\u67F1\u6761\u3001\u540D\u79F0\u4E0E\u589E\u91CF\u8BFB\u6570",
+      phases: [
+        "\u6807\u9898\u5C45\u4E2D\u51FA\u73B0\uFF0C\u7136\u540E\u4E0A\u79FB\u3002",
+        "\u8BA1\u6570\u4ECE\u96F6\u5230\u5341\u4E00\uFF0C\u5341\u4E00\u6839\u67F1\u6309\u987A\u5E8F\u4ECE\u5171\u540C\u5E95\u7EBF\u957F\u9AD8\u3002",
+        "\u6BCF\u6839\u67F1\u4E0A\u7684\u589E\u91CF\u8BFB\u6570\u8DDF\u968F\u67F1\u9AD8\uFF0C\u5230\u539F\u793A\u4F8B\u6570\u503C\u65F6\u843D\u5B9A\u3002"
+      ],
+      aliases: [
+        "\u5F00\u5934\u6570\u636E",
+        "\u5341\u4E00\u9879\u57FA\u51C6",
+        "11\u9879\u6210\u7EE9",
+        "\u6210\u7EE9\u63D0\u5347",
+        "\u8BC4\u5206\u63D0\u5347"
+      ],
+      behaviors: [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      retain: "\u6807\u9898\u7B2C16\u201342\u5E27\u4E0A\u79FB\uFF0C\u8BA1\u657044\u201390\u5E27\uFF1B\u7B2Ci\u67F1\u4ECE66+2i\u523099+2i\u5E27\u7EBF\u6027\u957F\u9AD8\uFF0C58\u50CF\u7D20\u5BBD\u3001\u6700\u5927256\u50CF\u7D20\u9AD8\uFF1B\u589E\u91CF\u4E3A11.1\u30018.8\u30017.5\u30015.8\u30015.7\u30014.1\u30013.6\u30012.9\u30012.8\u30012.8\u30012.0\uFF0C\u9996\u67F1\u84DD\u8272\uFF0C\u5176\u4F59\u6DF1\u8272\u3002",
+      avoid: "\u4E0D\u4EE5\u6574\u9875\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u8FDE\u7EED\u52A8\u4F5C\uFF0C\u4E0D\u63D0\u524D\u79FB\u52A8\u6807\u9898\u8BA9\u4F4D\uFF0C\u4E0D\u6539\u53D8\u6570\u636E\u4E0E\u51E0\u4F55\u6BD4\u4F8B\u3002",
+      duration_ms: 4566.666666666666,
+      preview_ms: 4200,
+      source: {
+        path: "catalog/effects/deepseek-review.js",
+        factory: "benchmark-gain-sequence",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        assets: [
+          "catalog/fonts/SourceHanSansSC-Light.woff2",
+          "catalog/fonts/SourceHanSansSC-Bold.woff2",
+          "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+          "catalog/assets/deepseek-review/scores.wav",
+          "catalog/assets/deepseek-review/pareto.wav",
+          "catalog/assets/deepseek-review/search.wav",
+          "catalog/assets/deepseek-review/closing.wav",
+          "catalog/assets/deepseek-review/SOURCE.json",
+          "catalog/assets/deepseek-review/README.md"
+        ],
+        reference: {
+          name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
+        },
+        extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
+        remotion: {
+          component: "catalog/remotion/deepseek-review/index.jsx",
+          export_name: "WiseReviewMotion",
+          package_name: "wise-review-motion",
+          files: [
+            "catalog/remotion/deepseek-review/S13Closing.tsx",
+            "catalog/remotion/deepseek-review/S2Scores.tsx",
+            "catalog/remotion/deepseek-review/S3Pareto.tsx",
+            "catalog/remotion/deepseek-review/S5Search.tsx",
+            "catalog/remotion/deepseek-review/Scene.jsx",
+            "catalog/remotion/deepseek-review/SceneShell.tsx",
+            "catalog/remotion/deepseek-review/anim.ts",
+            "catalog/remotion/deepseek-review/data.ts",
+            "catalog/remotion/deepseek-review/fonts.js",
+            "catalog/remotion/deepseek-review/index.jsx",
+            "catalog/remotion/deepseek-review/theme.ts",
+            "catalog/remotion/deepseek-review/timing.js",
+            "catalog/assets/deepseek-review/SOURCE.json",
+            "catalog/assets/deepseek-review/AUDIO.json",
+            "catalog/assets/deepseek-review/README.md",
+            "catalog/assets/deepseek-review/verify-source.mjs",
+            "LICENSE",
+            "catalog/fonts/OFL.txt",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1080,
+          height: 1440,
+          fps: 30,
+          exact_frames: true,
+          reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
+          binary_files: [
+            {
+              source: "catalog/fonts/SourceHanSansSC-Light.woff2",
+              target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
+              bytes: 11128356,
+              sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
+            },
+            {
+              source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
+              target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
+              bytes: 12816312,
+              sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
+            },
+            {
+              source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              bytes: 108496,
+              sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
+            },
+            {
+              source: "catalog/assets/deepseek-review/scores.wav",
+              target: "public/catalog/assets/deepseek-review/scores.wav",
+              bytes: 876878,
+              sha256: "fa4de3db44972679d1d11ab9c40eb63b04433d32e07217493f9d387e441b2583"
+            },
+            {
+              source: "catalog/assets/deepseek-review/pareto.wav",
+              target: "public/catalog/assets/deepseek-review/pareto.wav",
+              bytes: 1260878,
+              sha256: "19ef6c8be68efb0dcf8180262bc8f8f82a08759216bcc119bac96609144ab6ce"
+            },
+            {
+              source: "catalog/assets/deepseek-review/search.wav",
+              target: "public/catalog/assets/deepseek-review/search.wav",
+              bytes: 1561678,
+              sha256: "24541bb2444ea264e705d93836ca9bb60583975cfbc17e2180c2cd619f9bd239"
+            },
+            {
+              source: "catalog/assets/deepseek-review/closing.wav",
+              target: "public/catalog/assets/deepseek-review/closing.wav",
+              bytes: 1318478,
+              sha256: "fd2a190225fe546ceac48efbde1b54800e8b617502b507aa0890cf1f4207872e"
+            }
+          ],
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+          scripts: {
+            "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
+          }
+        },
+        license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
+      },
+      actions: [
+        "bar-growth"
+      ],
+      action_variants: {
+        "bar-growth": "deepseek-gains"
+      },
+      analogy: "\u6807\u9898\u5C45\u4E2D\u51FA\u73B0\uFF0C\u7136\u540E\u4E0A\u79FB\u3002\u8BA1\u6570\u4ECE\u96F6\u5230\u5341\u4E00\uFF0C\u5341\u4E00\u6839\u67F1\u6309\u987A\u5E8F\u4ECE\u5171\u540C\u5E95\u7EBF\u957F\u9AD8\u3002\u6BCF\u6839\u67F1\u4E0A\u7684\u589E\u91CF\u8BFB\u6570\u8DDF\u968F\u67F1\u9AD8\uFF0C\u5230\u539F\u793A\u4F8B\u6570\u503C\u65F6\u843D\u5B9A\u3002",
+      tempo_note: "137\u5E27\uFF0C\u6BCF\u79D230\u5E27\uFF1B\u901F\u5EA6\u6574\u4F53\u8C03\u6574\uFF0C\u4FDD\u7559\u5185\u90E8\u5148\u540E\u3002",
+      recommendation: "\u5C55\u793A\u591A\u9879\u6570\u636E\u540C\u65F6\u6539\u5584\uFF0C\u5148\u7ED9\u6574\u4F53\u6570\u91CF\u518D\u5C55\u5F00\u6BCF\u9879\u5DEE\u5F02\u3002",
+      audio: {
+        tracks: [
+          {
+            src: "catalog/assets/deepseek-review/scores.wav",
+            name: "\u539F\u7247\u65C1\u767D\u3001\u97F3\u4E50\u4E0E\u573A\u5185\u97F3\u6548",
+            start_ms: 0,
+            offset_ms: 0,
+            duration_ms: 4566.666666666666,
+            volume: 1,
+            rate: 1,
+            fade_in_ms: 0,
+            fade_out_ms: 0
+          }
+        ]
+      },
+      reproduction: {
+        objects: "\u6807\u9898\u3001\u5341\u4E00\u9879\u8BA1\u6570\u3001\u5341\u4E00\u6839\u67F1\u6761\u3001\u540D\u79F0\u4E0E\u589E\u91CF\u8BFB\u6570",
+        presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002",
+        phases: [
+          "\u6807\u9898\u5C45\u4E2D\u51FA\u73B0\uFF0C\u7136\u540E\u4E0A\u79FB\u3002",
+          "\u8BA1\u6570\u4ECE\u96F6\u5230\u5341\u4E00\uFF0C\u5341\u4E00\u6839\u67F1\u6309\u987A\u5E8F\u4ECE\u5171\u540C\u5E95\u7EBF\u957F\u9AD8\u3002",
+          "\u6BCF\u6839\u67F1\u4E0A\u7684\u589E\u91CF\u8BFB\u6570\u8DDF\u968F\u67F1\u9AD8\uFF0C\u5230\u539F\u793A\u4F8B\u6570\u503C\u65F6\u843D\u5B9A\u3002"
+        ],
+        retain: "\u6807\u9898\u7B2C16\u201342\u5E27\u4E0A\u79FB\uFF0C\u8BA1\u657044\u201390\u5E27\uFF1B\u7B2Ci\u67F1\u4ECE66+2i\u523099+2i\u5E27\u7EBF\u6027\u957F\u9AD8\uFF0C58\u50CF\u7D20\u5BBD\u3001\u6700\u5927256\u50CF\u7D20\u9AD8\uFF1B\u589E\u91CF\u4E3A11.1\u30018.8\u30017.5\u30015.8\u30015.7\u30014.1\u30013.6\u30012.9\u30012.8\u30012.8\u30012.0\uFF0C\u9996\u67F1\u84DD\u8272\uFF0C\u5176\u4F59\u6DF1\u8272\u3002",
+        avoid: "\u540C\u4E00\u5BF9\u8C61\u8FDE\u7EED\u8FD0\u52A8\uFF0C\u4E0D\u80FD\u9500\u6BC1\u518D\u6DE1\u5165\uFF1B\u630930\u5E27\u6E90\u65F6\u949F\u5B9A\u4F4D\u3002",
+        details: [
+          "\u6807\u9898\u7B2C16\u201342\u5E27\u4E0A\u79FB\uFF0C\u8BA1\u657044\u201390\u5E27\uFF1B\u7B2Ci\u67F1\u4ECE66+2i\u523099+2i\u5E27\u7EBF\u6027\u957F\u9AD8\uFF0C58\u50CF\u7D20\u5BBD\u3001\u6700\u5927256\u50CF\u7D20\u9AD8\uFF1B\u589E\u91CF\u4E3A11.1\u30018.8\u30017.5\u30015.8\u30015.7\u30014.1\u30013.6\u30012.9\u30012.8\u30012.8\u30012.0\uFF0C\u9996\u67F1\u84DD\u8272\uFF0C\u5176\u4F59\u6DF1\u8272\u3002"
+        ]
+      }
+    },
+    {
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      demo_mode: "fixed-timeline",
+      timing: null,
+      content_slots: [],
+      layer: "own-background",
+      domains: [
+        "animation",
+        "document"
+      ],
+      trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
+      id: "pareto-efficiency-sequence",
+      name: "\u6027\u80FD\u5F00\u9500\u66F2\u7EBF\u5BF9\u6BD4",
+      kind: "composition",
+      category: "composition-interface",
+      summary: "\u6807\u9898\u5148\u5C45\u4E2D\uFF0C\u968F\u8BB2\u8FF0\u4E0A\u79FB\uFF0C\u56DB\u9879\u6307\u6807\u4F9D\u6B21\u51FA\u73B0\u3002\u5750\u6807\u4E0E\u65E7\u66F2\u7EBF\u51FA\u73B0\uFF0C\u65B0\u66F2\u7EBF\u968F\u540E\u63CF\u51FA\u3002\u6807\u8BB0\u79FB\u5411\u5DE6\u4E0A\uFF0C\u6539\u5584\u533A\u659C\u7EBF\u9010\u6E10\u5C55\u5F00\uFF0C\u5E76\u6807\u51FA\u76F8\u540C\u4EFB\u52A1\u51CF\u5C11\u5F00\u9500\u3002",
+      purpose: "\u89E3\u91CA\u6027\u80FD\u4E0E\u8D44\u6E90\u5F00\u9500\u4E00\u8D77\u6539\u5584\uFF0C\u9002\u5408\u8D8B\u52BF\u8BF4\u660E\uFF1B\u793A\u4F8B\u66F2\u7EBF\u4E0D\u8868\u793A\u5B9E\u9645\u6D4B\u91CF\u5750\u6807\u3002",
+      objects: "\u56DB\u9879\u6307\u6807\u3001\u65B0\u65E7\u66F2\u7EBF\u3001\u79FB\u52A8\u6807\u8BB0\u3001\u659C\u7EBF\u533A\u57DF\u4E0E\u8282\u7701\u7BAD\u5934",
+      phases: [
+        "\u6807\u9898\u5148\u5C45\u4E2D\uFF0C\u968F\u8BB2\u8FF0\u4E0A\u79FB\uFF0C\u56DB\u9879\u6307\u6807\u4F9D\u6B21\u51FA\u73B0\u3002",
+        "\u5750\u6807\u4E0E\u65E7\u66F2\u7EBF\u51FA\u73B0\uFF0C\u65B0\u66F2\u7EBF\u968F\u540E\u63CF\u51FA\u3002",
+        "\u6807\u8BB0\u79FB\u5411\u5DE6\u4E0A\uFF0C\u6539\u5584\u533A\u659C\u7EBF\u9010\u6E10\u5C55\u5F00\uFF0C\u5E76\u6807\u51FA\u76F8\u540C\u4EFB\u52A1\u51CF\u5C11\u5F00\u9500\u3002"
+      ],
+      aliases: [
+        "\u5E15\u7D2F\u6258\u6539\u5584",
+        "\u6027\u80FD\u5F00\u9500",
+        "\u6210\u672C\u6027\u80FD\u66F2\u7EBF",
+        "\u5206\u6570\u66F4\u9AD8",
+        "\u6027\u80FD\u66F4\u9AD8\u5F00\u9500\u66F4\u4F4E"
+      ],
+      behaviors: [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      retain: "\u56FE\u8868\u4FDD\u7559\u539F241\u5E27\u8BBE\u8BA1\u8282\u594F\uFF0C\u5728197\u5E27\u7247\u6BB5\u5185\u64AD\u653E\uFF1B\u8F74\u7EBF\u4ECE\u8BBE\u8BA1\u8FDB\u5EA60.24\u8D77\u5EFA\u7ACB\uFF0C\u65E7\u66F2\u7EBF0.27\u20130.48\u63ED\u793A\uFF0C\u65B0\u66F2\u7EBF0.34\u20130.78\u63CF\u51FA\uFF0C\u6807\u8BB00.39\u20130.78\u79FB\u5411\u5DE6\u4E0A\uFF1B\u659C\u7EBF\u533A\u57DF\u968F\u6A2A\u5411\u906E\u7F69\u5C55\u5F00\u3002",
+      avoid: "\u4E0D\u4EE5\u6574\u9875\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u8FDE\u7EED\u52A8\u4F5C\uFF0C\u4E0D\u63D0\u524D\u79FB\u52A8\u6807\u9898\u8BA9\u4F4D\uFF0C\u4E0D\u6539\u53D8\u6570\u636E\u4E0E\u51E0\u4F55\u6BD4\u4F8B\u3002",
+      duration_ms: 6566.666666666666,
+      preview_ms: 6200,
+      source: {
+        path: "catalog/effects/deepseek-review.js",
+        factory: "pareto-efficiency-sequence",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        assets: [
+          "catalog/fonts/SourceHanSansSC-Light.woff2",
+          "catalog/fonts/SourceHanSansSC-Bold.woff2",
+          "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+          "catalog/assets/deepseek-review/scores.wav",
+          "catalog/assets/deepseek-review/pareto.wav",
+          "catalog/assets/deepseek-review/search.wav",
+          "catalog/assets/deepseek-review/closing.wav",
+          "catalog/assets/deepseek-review/SOURCE.json",
+          "catalog/assets/deepseek-review/README.md"
+        ],
+        reference: {
+          name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
+        },
+        extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
+        remotion: {
+          component: "catalog/remotion/deepseek-review/index.jsx",
+          export_name: "WiseReviewMotion",
+          package_name: "wise-review-motion",
+          files: [
+            "catalog/remotion/deepseek-review/S13Closing.tsx",
+            "catalog/remotion/deepseek-review/S2Scores.tsx",
+            "catalog/remotion/deepseek-review/S3Pareto.tsx",
+            "catalog/remotion/deepseek-review/S5Search.tsx",
+            "catalog/remotion/deepseek-review/Scene.jsx",
+            "catalog/remotion/deepseek-review/SceneShell.tsx",
+            "catalog/remotion/deepseek-review/anim.ts",
+            "catalog/remotion/deepseek-review/data.ts",
+            "catalog/remotion/deepseek-review/fonts.js",
+            "catalog/remotion/deepseek-review/index.jsx",
+            "catalog/remotion/deepseek-review/theme.ts",
+            "catalog/remotion/deepseek-review/timing.js",
+            "catalog/assets/deepseek-review/SOURCE.json",
+            "catalog/assets/deepseek-review/AUDIO.json",
+            "catalog/assets/deepseek-review/README.md",
+            "catalog/assets/deepseek-review/verify-source.mjs",
+            "LICENSE",
+            "catalog/fonts/OFL.txt",
+            "catalog/fonts/OFL-Oswald.txt",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1080,
+          height: 1440,
+          fps: 30,
+          exact_frames: true,
+          reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
+          binary_files: [
+            {
+              source: "catalog/fonts/SourceHanSansSC-Light.woff2",
+              target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
+              bytes: 11128356,
+              sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
+            },
+            {
+              source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
+              target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
+              bytes: 12816312,
+              sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
+            },
+            {
+              source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
+              bytes: 108496,
+              sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
+            },
+            {
+              source: "catalog/assets/deepseek-review/scores.wav",
+              target: "public/catalog/assets/deepseek-review/scores.wav",
+              bytes: 876878,
+              sha256: "fa4de3db44972679d1d11ab9c40eb63b04433d32e07217493f9d387e441b2583"
+            },
+            {
+              source: "catalog/assets/deepseek-review/pareto.wav",
+              target: "public/catalog/assets/deepseek-review/pareto.wav",
+              bytes: 1260878,
+              sha256: "19ef6c8be68efb0dcf8180262bc8f8f82a08759216bcc119bac96609144ab6ce"
+            },
+            {
+              source: "catalog/assets/deepseek-review/search.wav",
+              target: "public/catalog/assets/deepseek-review/search.wav",
+              bytes: 1561678,
+              sha256: "24541bb2444ea264e705d93836ca9bb60583975cfbc17e2180c2cd619f9bd239"
+            },
+            {
+              source: "catalog/assets/deepseek-review/closing.wav",
+              target: "public/catalog/assets/deepseek-review/closing.wav",
+              bytes: 1318478,
+              sha256: "fd2a190225fe546ceac48efbde1b54800e8b617502b507aa0890cf1f4207872e"
+            }
+          ],
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+          scripts: {
+            "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
+          }
+        },
+        license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
+      },
+      actions: [
+        "stroke-draw"
+      ],
+      action_variants: {
+        "stroke-draw": "deepseek-pareto"
+      },
+      analogy: "\u6807\u9898\u5148\u5C45\u4E2D\uFF0C\u968F\u8BB2\u8FF0\u4E0A\u79FB\uFF0C\u56DB\u9879\u6307\u6807\u4F9D\u6B21\u51FA\u73B0\u3002\u5750\u6807\u4E0E\u65E7\u66F2\u7EBF\u51FA\u73B0\uFF0C\u65B0\u66F2\u7EBF\u968F\u540E\u63CF\u51FA\u3002\u6807\u8BB0\u79FB\u5411\u5DE6\u4E0A\uFF0C\u6539\u5584\u533A\u659C\u7EBF\u9010\u6E10\u5C55\u5F00\uFF0C\u5E76\u6807\u51FA\u76F8\u540C\u4EFB\u52A1\u51CF\u5C11\u5F00\u9500\u3002",
+      tempo_note: "197\u5E27\uFF0C\u6BCF\u79D230\u5E27\uFF1B\u901F\u5EA6\u6574\u4F53\u8C03\u6574\uFF0C\u4FDD\u7559\u5185\u90E8\u5148\u540E\u3002",
+      recommendation: "\u89E3\u91CA\u6027\u80FD\u4E0E\u8D44\u6E90\u5F00\u9500\u4E00\u8D77\u6539\u5584\uFF0C\u9002\u5408\u8D8B\u52BF\u8BF4\u660E\uFF1B\u793A\u4F8B\u66F2\u7EBF\u4E0D\u8868\u793A\u5B9E\u9645\u6D4B\u91CF\u5750\u6807\u3002",
+      audio: {
+        tracks: [
+          {
+            src: "catalog/assets/deepseek-review/pareto.wav",
+            name: "\u539F\u7247\u65C1\u767D\u3001\u97F3\u4E50\u4E0E\u573A\u5185\u97F3\u6548",
+            start_ms: 0,
+            offset_ms: 0,
+            duration_ms: 6566.666666666666,
+            volume: 1,
+            rate: 1,
+            fade_in_ms: 0,
+            fade_out_ms: 0
+          }
+        ]
+      },
+      reproduction: {
+        objects: "\u56DB\u9879\u6307\u6807\u3001\u65B0\u65E7\u66F2\u7EBF\u3001\u79FB\u52A8\u6807\u8BB0\u3001\u659C\u7EBF\u533A\u57DF\u4E0E\u8282\u7701\u7BAD\u5934",
+        presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002",
+        phases: [
+          "\u6807\u9898\u5148\u5C45\u4E2D\uFF0C\u968F\u8BB2\u8FF0\u4E0A\u79FB\uFF0C\u56DB\u9879\u6307\u6807\u4F9D\u6B21\u51FA\u73B0\u3002",
+          "\u5750\u6807\u4E0E\u65E7\u66F2\u7EBF\u51FA\u73B0\uFF0C\u65B0\u66F2\u7EBF\u968F\u540E\u63CF\u51FA\u3002",
+          "\u6807\u8BB0\u79FB\u5411\u5DE6\u4E0A\uFF0C\u6539\u5584\u533A\u659C\u7EBF\u9010\u6E10\u5C55\u5F00\uFF0C\u5E76\u6807\u51FA\u76F8\u540C\u4EFB\u52A1\u51CF\u5C11\u5F00\u9500\u3002"
+        ],
+        retain: "\u56FE\u8868\u4FDD\u7559\u539F241\u5E27\u8BBE\u8BA1\u8282\u594F\uFF0C\u5728197\u5E27\u7247\u6BB5\u5185\u64AD\u653E\uFF1B\u8F74\u7EBF\u4ECE\u8BBE\u8BA1\u8FDB\u5EA60.24\u8D77\u5EFA\u7ACB\uFF0C\u65E7\u66F2\u7EBF0.27\u20130.48\u63ED\u793A\uFF0C\u65B0\u66F2\u7EBF0.34\u20130.78\u63CF\u51FA\uFF0C\u6807\u8BB00.39\u20130.78\u79FB\u5411\u5DE6\u4E0A\uFF1B\u659C\u7EBF\u533A\u57DF\u968F\u6A2A\u5411\u906E\u7F69\u5C55\u5F00\u3002",
+        avoid: "\u540C\u4E00\u5BF9\u8C61\u8FDE\u7EED\u8FD0\u52A8\uFF0C\u4E0D\u80FD\u9500\u6BC1\u518D\u6DE1\u5165\uFF1B\u630930\u5E27\u6E90\u65F6\u949F\u5B9A\u4F4D\u3002",
+        details: [
+          "\u56FE\u8868\u4FDD\u7559\u539F241\u5E27\u8BBE\u8BA1\u8282\u594F\uFF0C\u5728197\u5E27\u7247\u6BB5\u5185\u64AD\u653E\uFF1B\u8F74\u7EBF\u4ECE\u8BBE\u8BA1\u8FDB\u5EA60.24\u8D77\u5EFA\u7ACB\uFF0C\u65E7\u66F2\u7EBF0.27\u20130.48\u63ED\u793A\uFF0C\u65B0\u66F2\u7EBF0.34\u20130.78\u63CF\u51FA\uFF0C\u6807\u8BB00.39\u20130.78\u79FB\u5411\u5DE6\u4E0A\uFF1B\u659C\u7EBF\u533A\u57DF\u968F\u6A2A\u5411\u906E\u7F69\u5C55\u5F00\u3002"
+        ]
       }
     }
   ],
