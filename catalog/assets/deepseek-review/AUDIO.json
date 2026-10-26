@@ -1,49 +1,5 @@
 [
   {
-    "scene": "scores",
-    "start_frame": 101,
-    "frames": 137,
-    "voice_delay_frames": 5,
-    "voice_gain": 1,
-    "music_gain": "0.20 / 0.12 during narration; eight-frame ramps",
-    "filter": [
-      "[0:a]aresample=48000,adelay=8000S:all=1,apad,atrim=duration=4.566666666666666[v]",
-      "[1:a]volume='0.2-0.08*(min(1,max(0,(t-(0.16666666666666666-8/30))/(8/30)))*min(1,max(0,((4.233333333333333+8/30)-t)/(8/30))))':eval=frame[b]",
-      "[v][b]amix=inputs=2:normalize=0,atrim=duration=4.566666666666666[out]"
-    ],
-    "inputs": {
-      "public/voiceover/paced/scores.wav": {
-        "sha256": "2b3b98b8936c2ad611d19d909c9e92e0439f20d126426a689499fb5e6a790551"
-      },
-      "public/bed.wav": {
-        "sha256": "395809d38c034f8b2eae45edcf76b7bd9bb3a26404b441c8aad8be982c360c20"
-      }
-    },
-    "output": "scores.wav"
-  },
-  {
-    "scene": "pareto",
-    "start_frame": 228,
-    "frames": 197,
-    "voice_delay_frames": 5,
-    "voice_gain": 1,
-    "music_gain": "0.20 / 0.12 during narration; eight-frame ramps",
-    "filter": [
-      "[0:a]aresample=48000,adelay=8000S:all=1,apad,atrim=duration=6.566666666666666[v]",
-      "[1:a]volume='0.2-0.08*(min(1,max(0,(t-(0.16666666666666666-8/30))/(8/30)))*min(1,max(0,((6.233333333333333+8/30)-t)/(8/30))))':eval=frame[b]",
-      "[v][b]amix=inputs=2:normalize=0,atrim=duration=6.566666666666666[out]"
-    ],
-    "inputs": {
-      "public/voiceover/paced/pareto.wav": {
-        "sha256": "f53f11c4fd96b0c6a4c719bb94e17249ce6c82f94b7e4231d1afabd04aff1a94"
-      },
-      "public/bed.wav": {
-        "sha256": "395809d38c034f8b2eae45edcf76b7bd9bb3a26404b441c8aad8be982c360c20"
-      }
-    },
-    "output": "pareto.wav"
-  },
-  {
     "scene": "search",
     "start_frame": 1391,
     "frames": 244,

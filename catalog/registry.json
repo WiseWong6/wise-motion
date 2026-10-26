@@ -1416,13 +1416,11 @@
               "package_name": "wise-review-motion",
               "files": [
                 "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S2Scores.tsx",
                 "catalog/remotion/deepseek-review/S3Pareto.tsx",
                 "catalog/remotion/deepseek-review/S5Search.tsx",
                 "catalog/remotion/deepseek-review/Scene.jsx",
                 "catalog/remotion/deepseek-review/SceneShell.tsx",
                 "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/data.ts",
                 "catalog/remotion/deepseek-review/fonts.js",
                 "catalog/remotion/deepseek-review/index.jsx",
                 "catalog/remotion/deepseek-review/theme.ts",
@@ -2018,13 +2016,11 @@
               "package_name": "wise-review-motion",
               "files": [
                 "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S2Scores.tsx",
                 "catalog/remotion/deepseek-review/S3Pareto.tsx",
                 "catalog/remotion/deepseek-review/S5Search.tsx",
                 "catalog/remotion/deepseek-review/Scene.jsx",
                 "catalog/remotion/deepseek-review/SceneShell.tsx",
                 "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/data.ts",
                 "catalog/remotion/deepseek-review/fonts.js",
                 "catalog/remotion/deepseek-review/index.jsx",
                 "catalog/remotion/deepseek-review/theme.ts",
@@ -4447,13 +4443,11 @@
               "package_name": "wise-review-motion",
               "files": [
                 "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S2Scores.tsx",
                 "catalog/remotion/deepseek-review/S3Pareto.tsx",
                 "catalog/remotion/deepseek-review/S5Search.tsx",
                 "catalog/remotion/deepseek-review/Scene.jsx",
                 "catalog/remotion/deepseek-review/SceneShell.tsx",
                 "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/data.ts",
                 "catalog/remotion/deepseek-review/fonts.js",
                 "catalog/remotion/deepseek-review/index.jsx",
                 "catalog/remotion/deepseek-review/theme.ts",
@@ -4590,13 +4584,11 @@
               "package_name": "wise-review-motion",
               "files": [
                 "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S2Scores.tsx",
                 "catalog/remotion/deepseek-review/S3Pareto.tsx",
                 "catalog/remotion/deepseek-review/S5Search.tsx",
                 "catalog/remotion/deepseek-review/Scene.jsx",
                 "catalog/remotion/deepseek-review/SceneShell.tsx",
                 "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/data.ts",
                 "catalog/remotion/deepseek-review/fonts.js",
                 "catalog/remotion/deepseek-review/index.jsx",
                 "catalog/remotion/deepseek-review/theme.ts",
@@ -9738,8 +9730,7 @@
         "循线描绘",
         "弧线依次描出并关联词元",
         "aboutlove",
-        "线条逐段描绘",
-        "性能开销曲线"
+        "线条逐段描绘"
       ],
       "behaviors": [
         "reveal",
@@ -10052,149 +10043,6 @@
             ]
           },
           "loop": false
-        },
-        {
-          "loop": false,
-          "default_ease": "linear",
-          "parameters": {
-            "speed": {
-              "label": "播放速度",
-              "default": 1,
-              "min": 0.5,
-              "max": 2,
-              "step": 0.25
-            }
-          },
-          "demo_mode": "fixed-timeline",
-          "timing": null,
-          "content_slots": [],
-          "layer": "own-background",
-          "domains": [
-            "animation",
-            "document"
-          ],
-          "trigger": "按固定时间顺序播放，可暂停、重播和任意定位。",
-          "assumptions": "保留用户提供的原示例；模型与评测内容不作为当前事实核验结论，曲线为解释性示意。原工程不修改。",
-          "id": "deepseek-pareto",
-          "label": "性能开销曲线",
-          "summary": "旧曲线先出现，新曲线描出，标记移动并揭示斜线改善区域。",
-          "purpose": "旧曲线先出现，新曲线描出，标记移动并揭示斜线改善区域。",
-          "objects": "性能开销曲线",
-          "phases": [
-            "按固定帧定位原始起点。",
-            "旧曲线先出现，新曲线描出，标记移动并揭示斜线改善区域。",
-            "保留原动作末帧，重播回到同一起点。"
-          ],
-          "retain": "截取原57–196帧。保留两条指数曲线：旧0.95×(1−exp(−2.6×(x−0.05)))，新1−exp(−4.5×(x−0.03)))；标记从x=0.62移到0.39，各自y取曲线值，坐标为示意。",
-          "avoid": "不打断对象连续变化，不改变原几何和帧节奏。",
-          "duration_ms": 4666.666666666667,
-          "preview_ms": 4300.0,
-          "source": {
-            "path": "catalog/effects/deepseek-review.js",
-            "factory": "deepseek-pareto-curve",
-            "origin": "original",
-            "license": "Apache-2.0",
-            "library": "remotion@4.0.532",
-            "assets": [
-              "catalog/fonts/SourceHanSansSC-Light.woff2",
-              "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "catalog/assets/deepseek-review/SOURCE.json",
-              "catalog/assets/deepseek-review/README.md"
-            ],
-            "reference": {
-              "name": "用户提供的 DeepSeek 测评视频绘制源码"
-            },
-            "extraction": "保留原画板、字体、图形与30帧时钟；独立动作按取景范围复用相同组件。",
-            "remotion": {
-              "component": "catalog/remotion/deepseek-review/index.jsx",
-              "export_name": "WiseReviewMotion",
-              "package_name": "wise-review-motion",
-              "files": [
-                "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S2Scores.tsx",
-                "catalog/remotion/deepseek-review/S3Pareto.tsx",
-                "catalog/remotion/deepseek-review/S5Search.tsx",
-                "catalog/remotion/deepseek-review/Scene.jsx",
-                "catalog/remotion/deepseek-review/SceneShell.tsx",
-                "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/data.ts",
-                "catalog/remotion/deepseek-review/fonts.js",
-                "catalog/remotion/deepseek-review/index.jsx",
-                "catalog/remotion/deepseek-review/theme.ts",
-                "catalog/remotion/deepseek-review/timing.js",
-                "catalog/assets/deepseek-review/SOURCE.json",
-                "catalog/assets/deepseek-review/AUDIO.json",
-                "catalog/assets/deepseek-review/README.md",
-                "catalog/assets/deepseek-review/verify-source.mjs",
-                "LICENSE",
-                "catalog/fonts/OFL.txt",
-                "catalog/fonts/OFL-Oswald.txt",
-                "catalog/assets/reel-extract/React-LICENSE.txt",
-                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-                "catalog/remotion/binary-assets-installer.mjs"
-              ],
-              "packages": {
-                "remotion": "4.0.532",
-                "@remotion/cli": "4.0.532",
-                "react": "19.3.0",
-                "react-dom": "19.3.0"
-              },
-              "width": 912,
-              "height": 652,
-              "fps": 30,
-              "exact_frames": true,
-              "reuse_notes": "原绘制与时间参数直接保留；中文使用思源黑体 Light / Bold，英文与数字使用原 Oswald Bold。字体随工程交付。完整组合含原片配音、对应音乐及搜索音效，独立动作无声；没有在线素材请求。按当前帧重算全部姿态，可任意定位与重播。默认 effectId 与 variantId 对应所选条目，speed 可调0.5–2；图形与示例内容在实际组件中编辑。数据为用户提供的示例，帕累托曲线为示意。运行 npm run check:source 核对随包素材。",
-              "binary_files": [
-                {
-                  "source": "catalog/fonts/SourceHanSansSC-Light.woff2",
-                  "target": "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-                  "bytes": 11128356,
-                  "sha256": "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-                },
-                {
-                  "source": "catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  "target": "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  "bytes": 12816312,
-                  "sha256": "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-                },
-                {
-                  "source": "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  "target": "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  "bytes": 108496,
-                  "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-                }
-              ],
-              "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
-              "scripts": {
-                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-              }
-            },
-            "license_note": "Remotion、React、原配音与字体保留各自权利，详见随包来源说明"
-          },
-          "actions": [],
-          "audio": null,
-          "recommendation": "旧曲线先出现，新曲线描出，标记移动并揭示斜线改善区域。；需要原片这种组合关系时选择此示例。",
-          "tempo_note": "按30帧时钟播放，共140帧。",
-          "reproduction": {
-            "objects": "性能开销曲线",
-            "presentation": "原逻辑画板1080×1440，白底#FFFFFF，文字#0B0B12，强调蓝#4D6BFE，辅助线rgba(11,11,18,0.16)。主标题72、次标题48、正文32、标注24、主数字192；中文非粗体用思源黑体Light，英文及数字用Oswald Bold。等比容纳，不能拉伸。此示例只裁出912×652图形范围，不改原图形坐标。",
-            "phases": [
-              "显示原动作起点。",
-              "旧曲线先出现，新曲线描出，标记移动并揭示斜线改善区域。",
-              "保持结束姿态。"
-            ],
-            "retain": "截取原57–196帧。保留两条指数曲线：旧0.95×(1−exp(−2.6×(x−0.05)))，新1−exp(−4.5×(x−0.03)))；标记从x=0.62移到0.39，各自y取曲线值，坐标为示意。",
-            "avoid": "不以新一批元素替换正在运动的元素。",
-            "details": [
-              "截取原57–196帧。保留两条指数曲线：旧0.95×(1−exp(−2.6×(x−0.05)))，新1−exp(−4.5×(x−0.03)))；标记从x=0.62移到0.39，各自y取曲线值，坐标为示意。"
-            ]
-          },
-          "aliases": [
-            "性能开销曲线",
-            "旧曲线先出现，新曲线描出，标记移动并揭示斜线改善区域。"
-          ]
         }
       ],
       "layer": "own-background",
@@ -19142,8 +18990,7 @@
         "竖向柱图",
         "数据动效",
         "柱条从基线长高",
-        "基线生长",
-        "十一项成绩增量"
+        "基线生长"
       ],
       "behaviors": [
         "sequence",
@@ -19257,159 +19104,7 @@
           "这里 t 为动作秒数（播放速度1时等于播放秒数）；设计时钟 u=0+1.16×限制到0至1的((t−0.15)/1.2)，单位为秒。下列标明 u 的阶段使用设计时钟，不是实际播放时长；归一进度 p=u/3。设计时钟在两端钳住，不靠上一帧保留状态。",
           "设计时钟u=p×3秒；坐标轴先于柱。第i柱从u=0.11+0.09i秒起用0.58秒由底向上长，类别标签晚0.08秒、数值晚0.34秒开始显现；默认示例数值92/87/81/76/68/61，替换数据用实际槽值。数值位于最终顶端，不随着柱顶飞动。"
         ]
-      },
-      "variants": [
-        {
-          "id": "original",
-          "label": "原有示例",
-          "summary": "六根细线柱从同一底线依次长高，首柱以蓝色排线强调。",
-          "duration_ms": 1800,
-          "preview_ms": 1575
-        },
-        {
-          "loop": false,
-          "default_ease": "linear",
-          "parameters": {
-            "speed": {
-              "label": "播放速度",
-              "default": 1,
-              "min": 0.5,
-              "max": 2,
-              "step": 0.25
-            }
-          },
-          "demo_mode": "fixed-timeline",
-          "timing": null,
-          "content_slots": [],
-          "layer": "own-background",
-          "domains": [
-            "animation",
-            "document"
-          ],
-          "trigger": "按固定时间顺序播放，可暂停、重播和任意定位。",
-          "assumptions": "保留用户提供的原示例；模型与评测内容不作为当前事实核验结论，曲线为解释性示意。原工程不修改。",
-          "id": "deepseek-gains",
-          "label": "十一项成绩增量",
-          "summary": "十一根柱错峰长高，读数与柱高按同一进度增加。",
-          "purpose": "十一根柱错峰长高，读数与柱高按同一进度增加。",
-          "objects": "十一项成绩增量",
-          "phases": [
-            "按固定帧定位原始起点。",
-            "十一根柱错峰长高，读数与柱高按同一进度增加。",
-            "保留原动作末帧，重播回到同一起点。"
-          ],
-          "retain": "截取原66–136帧。第i柱从66+2i到99+2i帧线性增长，底线320，宽58，最大高度256，数值显示一位小数，首项蓝色，其余深色。",
-          "avoid": "不打断对象连续变化，不改变原几何和帧节奏。",
-          "duration_ms": 2366.6666666666665,
-          "preview_ms": 2000.0,
-          "source": {
-            "path": "catalog/effects/deepseek-review.js",
-            "factory": "deepseek-gain-bars",
-            "origin": "original",
-            "license": "Apache-2.0",
-            "library": "remotion@4.0.532",
-            "assets": [
-              "catalog/fonts/SourceHanSansSC-Light.woff2",
-              "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "catalog/assets/deepseek-review/SOURCE.json",
-              "catalog/assets/deepseek-review/README.md"
-            ],
-            "reference": {
-              "name": "用户提供的 DeepSeek 测评视频绘制源码"
-            },
-            "extraction": "保留原画板、字体、图形与30帧时钟；独立动作按取景范围复用相同组件。",
-            "remotion": {
-              "component": "catalog/remotion/deepseek-review/index.jsx",
-              "export_name": "WiseReviewMotion",
-              "package_name": "wise-review-motion",
-              "files": [
-                "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S2Scores.tsx",
-                "catalog/remotion/deepseek-review/S3Pareto.tsx",
-                "catalog/remotion/deepseek-review/S5Search.tsx",
-                "catalog/remotion/deepseek-review/Scene.jsx",
-                "catalog/remotion/deepseek-review/SceneShell.tsx",
-                "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/data.ts",
-                "catalog/remotion/deepseek-review/fonts.js",
-                "catalog/remotion/deepseek-review/index.jsx",
-                "catalog/remotion/deepseek-review/theme.ts",
-                "catalog/remotion/deepseek-review/timing.js",
-                "catalog/assets/deepseek-review/SOURCE.json",
-                "catalog/assets/deepseek-review/AUDIO.json",
-                "catalog/assets/deepseek-review/README.md",
-                "catalog/assets/deepseek-review/verify-source.mjs",
-                "LICENSE",
-                "catalog/fonts/OFL.txt",
-                "catalog/fonts/OFL-Oswald.txt",
-                "catalog/assets/reel-extract/React-LICENSE.txt",
-                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-                "catalog/remotion/binary-assets-installer.mjs"
-              ],
-              "packages": {
-                "remotion": "4.0.532",
-                "@remotion/cli": "4.0.532",
-                "react": "19.3.0",
-                "react-dom": "19.3.0"
-              },
-              "width": 912,
-              "height": 576,
-              "fps": 30,
-              "exact_frames": true,
-              "reuse_notes": "原绘制与时间参数直接保留；中文使用思源黑体 Light / Bold，英文与数字使用原 Oswald Bold。字体随工程交付。完整组合含原片配音、对应音乐及搜索音效，独立动作无声；没有在线素材请求。按当前帧重算全部姿态，可任意定位与重播。默认 effectId 与 variantId 对应所选条目，speed 可调0.5–2；图形与示例内容在实际组件中编辑。数据为用户提供的示例，帕累托曲线为示意。运行 npm run check:source 核对随包素材。",
-              "binary_files": [
-                {
-                  "source": "catalog/fonts/SourceHanSansSC-Light.woff2",
-                  "target": "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-                  "bytes": 11128356,
-                  "sha256": "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-                },
-                {
-                  "source": "catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  "target": "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  "bytes": 12816312,
-                  "sha256": "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-                },
-                {
-                  "source": "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  "target": "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  "bytes": 108496,
-                  "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-                }
-              ],
-              "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
-              "scripts": {
-                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-              }
-            },
-            "license_note": "Remotion、React、原配音与字体保留各自权利，详见随包来源说明"
-          },
-          "actions": [],
-          "audio": null,
-          "recommendation": "十一根柱错峰长高，读数与柱高按同一进度增加。；需要原片这种组合关系时选择此示例。",
-          "tempo_note": "按30帧时钟播放，共71帧。",
-          "reproduction": {
-            "objects": "十一项成绩增量",
-            "presentation": "原逻辑画板1080×1440，白底#FFFFFF，文字#0B0B12，强调蓝#4D6BFE，辅助线rgba(11,11,18,0.16)。主标题72、次标题48、正文32、标注24、主数字192；中文非粗体用思源黑体Light，英文及数字用Oswald Bold。等比容纳，不能拉伸。此示例只裁出912×576图形范围，不改原图形坐标。",
-            "phases": [
-              "显示原动作起点。",
-              "十一根柱错峰长高，读数与柱高按同一进度增加。",
-              "保持结束姿态。"
-            ],
-            "retain": "截取原66–136帧。第i柱从66+2i到99+2i帧线性增长，底线320，宽58，最大高度256，数值显示一位小数，首项蓝色，其余深色。",
-            "avoid": "不以新一批元素替换正在运动的元素。",
-            "details": [
-              "截取原66–136帧。第i柱从66+2i到99+2i帧线性增长，底线320，宽58，最大高度256，数值显示一位小数，首项蓝色，其余深色。"
-            ]
-          },
-          "aliases": [
-            "十一项成绩增量",
-            "十一根柱错峰长高，读数与柱高按同一进度增加。"
-          ]
-        }
-      ]
+      }
     },
     {
       "id": "sector-appear",
@@ -75693,8 +75388,6 @@
           "catalog/fonts/SourceHanSansSC-Light.woff2",
           "catalog/fonts/SourceHanSansSC-Bold.woff2",
           "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-          "catalog/assets/deepseek-review/scores.wav",
-          "catalog/assets/deepseek-review/pareto.wav",
           "catalog/assets/deepseek-review/search.wav",
           "catalog/assets/deepseek-review/closing.wav",
           "catalog/assets/deepseek-review/SOURCE.json",
@@ -75710,13 +75403,11 @@
           "package_name": "wise-review-motion",
           "files": [
             "catalog/remotion/deepseek-review/S13Closing.tsx",
-            "catalog/remotion/deepseek-review/S2Scores.tsx",
             "catalog/remotion/deepseek-review/S3Pareto.tsx",
             "catalog/remotion/deepseek-review/S5Search.tsx",
             "catalog/remotion/deepseek-review/Scene.jsx",
             "catalog/remotion/deepseek-review/SceneShell.tsx",
             "catalog/remotion/deepseek-review/anim.ts",
-            "catalog/remotion/deepseek-review/data.ts",
             "catalog/remotion/deepseek-review/fonts.js",
             "catalog/remotion/deepseek-review/index.jsx",
             "catalog/remotion/deepseek-review/theme.ts",
@@ -75762,18 +75453,6 @@
               "target": "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
               "bytes": 108496,
               "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/scores.wav",
-              "target": "public/catalog/assets/deepseek-review/scores.wav",
-              "bytes": 876878,
-              "sha256": "fa4de3db44972679d1d11ab9c40eb63b04433d32e07217493f9d387e441b2583"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/pareto.wav",
-              "target": "public/catalog/assets/deepseek-review/pareto.wav",
-              "bytes": 1260878,
-              "sha256": "19ef6c8be68efb0dcf8180262bc8f8f82a08759216bcc119bac96609144ab6ce"
             },
             {
               "source": "catalog/assets/deepseek-review/search.wav",
@@ -75898,8 +75577,6 @@
           "catalog/fonts/SourceHanSansSC-Light.woff2",
           "catalog/fonts/SourceHanSansSC-Bold.woff2",
           "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-          "catalog/assets/deepseek-review/scores.wav",
-          "catalog/assets/deepseek-review/pareto.wav",
           "catalog/assets/deepseek-review/search.wav",
           "catalog/assets/deepseek-review/closing.wav",
           "catalog/assets/deepseek-review/SOURCE.json",
@@ -75915,13 +75592,11 @@
           "package_name": "wise-review-motion",
           "files": [
             "catalog/remotion/deepseek-review/S13Closing.tsx",
-            "catalog/remotion/deepseek-review/S2Scores.tsx",
             "catalog/remotion/deepseek-review/S3Pareto.tsx",
             "catalog/remotion/deepseek-review/S5Search.tsx",
             "catalog/remotion/deepseek-review/Scene.jsx",
             "catalog/remotion/deepseek-review/SceneShell.tsx",
             "catalog/remotion/deepseek-review/anim.ts",
-            "catalog/remotion/deepseek-review/data.ts",
             "catalog/remotion/deepseek-review/fonts.js",
             "catalog/remotion/deepseek-review/index.jsx",
             "catalog/remotion/deepseek-review/theme.ts",
@@ -75967,18 +75642,6 @@
               "target": "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
               "bytes": 108496,
               "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/scores.wav",
-              "target": "public/catalog/assets/deepseek-review/scores.wav",
-              "bytes": 876878,
-              "sha256": "fa4de3db44972679d1d11ab9c40eb63b04433d32e07217493f9d387e441b2583"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/pareto.wav",
-              "target": "public/catalog/assets/deepseek-review/pareto.wav",
-              "bytes": 1260878,
-              "sha256": "19ef6c8be68efb0dcf8180262bc8f8f82a08759216bcc119bac96609144ab6ce"
             },
             {
               "source": "catalog/assets/deepseek-review/search.wav",
@@ -76060,236 +75723,39 @@
         "document"
       ],
       "trigger": "按固定时间顺序播放，可暂停、重播和任意定位。",
-      "assumptions": "保留用户提供的原示例；模型与评测内容不作为当前事实核验结论，曲线为解释性示意。原工程不修改。",
-      "id": "benchmark-gain-sequence",
-      "name": "基准成绩依次提升",
-      "kind": "composition",
-      "category": "composition-interface",
-      "summary": "标题居中出现，然后上移。计数从零到十一，十一根柱按顺序从共同底线长高。每根柱上的增量读数跟随柱高，到原示例数值时落定。",
-      "purpose": "展示多项数据同时改善，先给整体数量再展开每项差异。",
-      "objects": "标题、十一项计数、十一根柱条、名称与增量读数",
-      "phases": [
-        "标题居中出现，然后上移。",
-        "计数从零到十一，十一根柱按顺序从共同底线长高。",
-        "每根柱上的增量读数跟随柱高，到原示例数值时落定。"
-      ],
-      "aliases": [
-        "开头数据",
-        "十一项基准",
-        "11项成绩",
-        "成绩提升",
-        "评分提升"
-      ],
-      "behaviors": [
-        "sequence",
-        "reveal",
-        "data"
-      ],
-      "retain": "标题第16–42帧上移，计数44–90帧；第i柱从66+2i到99+2i帧线性长高，58像素宽、最大256像素高；增量为11.1、8.8、7.5、5.8、5.7、4.1、3.6、2.9、2.8、2.8、2.0，首柱蓝色，其余深色。",
-      "avoid": "不以整页淡入替代内部连续动作，不提前移动标题让位，不改变数据与几何比例。",
-      "duration_ms": 4566.666666666666,
-      "preview_ms": 4200.0,
-      "source": {
-        "path": "catalog/effects/deepseek-review.js",
-        "factory": "benchmark-gain-sequence",
-        "origin": "original",
-        "license": "Apache-2.0",
-        "library": "remotion@4.0.532",
-        "assets": [
-          "catalog/fonts/SourceHanSansSC-Light.woff2",
-          "catalog/fonts/SourceHanSansSC-Bold.woff2",
-          "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-          "catalog/assets/deepseek-review/scores.wav",
-          "catalog/assets/deepseek-review/pareto.wav",
-          "catalog/assets/deepseek-review/search.wav",
-          "catalog/assets/deepseek-review/closing.wav",
-          "catalog/assets/deepseek-review/SOURCE.json",
-          "catalog/assets/deepseek-review/README.md"
-        ],
-        "reference": {
-          "name": "用户提供的 DeepSeek 测评视频绘制源码"
-        },
-        "extraction": "保留原画板、字体、图形与30帧时钟；独立动作按取景范围复用相同组件。",
-        "remotion": {
-          "component": "catalog/remotion/deepseek-review/index.jsx",
-          "export_name": "WiseReviewMotion",
-          "package_name": "wise-review-motion",
-          "files": [
-            "catalog/remotion/deepseek-review/S13Closing.tsx",
-            "catalog/remotion/deepseek-review/S2Scores.tsx",
-            "catalog/remotion/deepseek-review/S3Pareto.tsx",
-            "catalog/remotion/deepseek-review/S5Search.tsx",
-            "catalog/remotion/deepseek-review/Scene.jsx",
-            "catalog/remotion/deepseek-review/SceneShell.tsx",
-            "catalog/remotion/deepseek-review/anim.ts",
-            "catalog/remotion/deepseek-review/data.ts",
-            "catalog/remotion/deepseek-review/fonts.js",
-            "catalog/remotion/deepseek-review/index.jsx",
-            "catalog/remotion/deepseek-review/theme.ts",
-            "catalog/remotion/deepseek-review/timing.js",
-            "catalog/assets/deepseek-review/SOURCE.json",
-            "catalog/assets/deepseek-review/AUDIO.json",
-            "catalog/assets/deepseek-review/README.md",
-            "catalog/assets/deepseek-review/verify-source.mjs",
-            "LICENSE",
-            "catalog/fonts/OFL.txt",
-            "catalog/fonts/OFL-Oswald.txt",
-            "catalog/assets/reel-extract/React-LICENSE.txt",
-            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-            "catalog/remotion/binary-assets-installer.mjs"
-          ],
-          "packages": {
-            "remotion": "4.0.532",
-            "@remotion/cli": "4.0.532",
-            "react": "19.3.0",
-            "react-dom": "19.3.0"
-          },
-          "width": 1080,
-          "height": 1440,
-          "fps": 30,
-          "exact_frames": true,
-          "reuse_notes": "原绘制与时间参数直接保留；中文使用思源黑体 Light / Bold，英文与数字使用原 Oswald Bold。字体随工程交付。完整组合含原片配音、对应音乐及搜索音效，独立动作无声；没有在线素材请求。按当前帧重算全部姿态，可任意定位与重播。默认 effectId 与 variantId 对应所选条目，speed 可调0.5–2；图形与示例内容在实际组件中编辑。数据为用户提供的示例，帕累托曲线为示意。运行 npm run check:source 核对随包素材。",
-          "binary_files": [
-            {
-              "source": "catalog/fonts/SourceHanSansSC-Light.woff2",
-              "target": "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-              "bytes": 11128356,
-              "sha256": "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-            },
-            {
-              "source": "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "target": "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "bytes": 12816312,
-              "sha256": "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "target": "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "bytes": 108496,
-              "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/scores.wav",
-              "target": "public/catalog/assets/deepseek-review/scores.wav",
-              "bytes": 876878,
-              "sha256": "fa4de3db44972679d1d11ab9c40eb63b04433d32e07217493f9d387e441b2583"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/pareto.wav",
-              "target": "public/catalog/assets/deepseek-review/pareto.wav",
-              "bytes": 1260878,
-              "sha256": "19ef6c8be68efb0dcf8180262bc8f8f82a08759216bcc119bac96609144ab6ce"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/search.wav",
-              "target": "public/catalog/assets/deepseek-review/search.wav",
-              "bytes": 1561678,
-              "sha256": "24541bb2444ea264e705d93836ca9bb60583975cfbc17e2180c2cd619f9bd239"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/closing.wav",
-              "target": "public/catalog/assets/deepseek-review/closing.wav",
-              "bytes": 1318478,
-              "sha256": "fd2a190225fe546ceac48efbde1b54800e8b617502b507aa0890cf1f4207872e"
-            }
-          ],
-          "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
-          "scripts": {
-            "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-          }
-        },
-        "license_note": "Remotion、React、原配音与字体保留各自权利，详见随包来源说明"
-      },
-      "actions": [
-        "bar-growth"
-      ],
-      "action_variants": {
-        "bar-growth": "deepseek-gains"
-      },
-      "analogy": "标题居中出现，然后上移。计数从零到十一，十一根柱按顺序从共同底线长高。每根柱上的增量读数跟随柱高，到原示例数值时落定。",
-      "tempo_note": "137帧，每秒30帧；速度整体调整，保留内部先后。",
-      "recommendation": "展示多项数据同时改善，先给整体数量再展开每项差异。",
-      "audio": {
-        "tracks": [
-          {
-            "src": "catalog/assets/deepseek-review/scores.wav",
-            "name": "原片旁白、音乐与场内音效",
-            "start_ms": 0,
-            "offset_ms": 0,
-            "duration_ms": 4566.666666666666,
-            "volume": 1,
-            "rate": 1,
-            "fade_in_ms": 0,
-            "fade_out_ms": 0
-          }
-        ]
-      },
-      "reproduction": {
-        "objects": "标题、十一项计数、十一根柱条、名称与增量读数",
-        "presentation": "原逻辑画板1080×1440，白底#FFFFFF，文字#0B0B12，强调蓝#4D6BFE，辅助线rgba(11,11,18,0.16)。主标题72、次标题48、正文32、标注24、主数字192；中文非粗体用思源黑体Light，英文及数字用Oswald Bold。等比容纳，不能拉伸。",
-        "phases": [
-          "标题居中出现，然后上移。",
-          "计数从零到十一，十一根柱按顺序从共同底线长高。",
-          "每根柱上的增量读数跟随柱高，到原示例数值时落定。"
-        ],
-        "retain": "标题第16–42帧上移，计数44–90帧；第i柱从66+2i到99+2i帧线性长高，58像素宽、最大256像素高；增量为11.1、8.8、7.5、5.8、5.7、4.1、3.6、2.9、2.8、2.8、2.0，首柱蓝色，其余深色。",
-        "avoid": "同一对象连续运动，不能销毁再淡入；按30帧源时钟定位。",
-        "details": [
-          "标题第16–42帧上移，计数44–90帧；第i柱从66+2i到99+2i帧线性长高，58像素宽、最大256像素高；增量为11.1、8.8、7.5、5.8、5.7、4.1、3.6、2.9、2.8、2.8、2.0，首柱蓝色，其余深色。"
-        ]
-      }
-    },
-    {
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "demo_mode": "fixed-timeline",
-      "timing": null,
-      "content_slots": [],
-      "layer": "own-background",
-      "domains": [
-        "animation",
-        "document"
-      ],
-      "trigger": "按固定时间顺序播放，可暂停、重播和任意定位。",
-      "assumptions": "保留用户提供的原示例；模型与评测内容不作为当前事实核验结论，曲线为解释性示意。原工程不修改。",
+      "assumptions": "曲线用于说明性能与开销的关系，坐标不是实测数据。",
       "id": "pareto-efficiency-sequence",
       "name": "性能开销曲线对比",
-      "kind": "composition",
-      "category": "composition-interface",
-      "summary": "标题先居中，随讲述上移，四项指标依次出现。坐标与旧曲线出现，新曲线随后描出。标记移向左上，改善区斜线逐渐展开，并标出相同任务减少开销。",
+      "kind": "action",
+      "category": "data",
+      "summary": "坐标轴与旧曲线先出现，新曲线随后描出；标记移向左上，斜线区域展开，展示性能与开销的改善。",
       "purpose": "解释性能与资源开销一起改善，适合趋势说明；示例曲线不表示实际测量坐标。",
-      "objects": "四项指标、新旧曲线、移动标记、斜线区域与节省箭头",
+      "objects": "坐标轴、新旧曲线、移动标记、斜线改善区域与节省箭头",
       "phases": [
-        "标题先居中，随讲述上移，四项指标依次出现。",
-        "坐标与旧曲线出现，新曲线随后描出。",
-        "标记移向左上，改善区斜线逐渐展开，并标出相同任务减少开销。"
+        "坐标轴展开，旧曲线从左向右出现。",
+        "新曲线逐段描出，标记从旧位置连续移向左上。",
+        "斜线改善区域展开，节省箭头和标注出现。"
       ],
       "aliases": [
         "帕累托改善",
         "性能开销",
         "成本性能曲线",
         "分数更高",
-        "性能更高开销更低"
+        "性能更高开销更低",
+        "性能开销曲线",
+        "新旧曲线对比",
+        "效率曲线",
+        "帕累托曲线"
       ],
       "behaviors": [
         "sequence",
         "reveal",
         "data"
       ],
-      "retain": "图表保留原241帧设计节奏，在197帧片段内播放；轴线从设计进度0.24起建立，旧曲线0.27–0.48揭示，新曲线0.34–0.78描出，标记0.39–0.78移向左上；斜线区域随横向遮罩展开。",
-      "avoid": "不以整页淡入替代内部连续动作，不提前移动标题让位，不改变数据与几何比例。",
-      "duration_ms": 6566.666666666666,
-      "preview_ms": 6200.0,
+      "retain": "仅保留底部曲线图，按30帧时钟播放原57–196帧，共140帧；保留两条指数曲线、标记位置与移动、斜线区域和节省箭头。",
+      "avoid": "不要添加标题或指标行，不用整图缩放或淡入替代曲线描绘与标记移动。",
+      "duration_ms": 4666.666666666667,
+      "preview_ms": 4300.0,
       "source": {
         "path": "catalog/effects/deepseek-review.js",
         "factory": "pareto-efficiency-sequence",
@@ -76300,10 +75766,6 @@
           "catalog/fonts/SourceHanSansSC-Light.woff2",
           "catalog/fonts/SourceHanSansSC-Bold.woff2",
           "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-          "catalog/assets/deepseek-review/scores.wav",
-          "catalog/assets/deepseek-review/pareto.wav",
-          "catalog/assets/deepseek-review/search.wav",
-          "catalog/assets/deepseek-review/closing.wav",
           "catalog/assets/deepseek-review/SOURCE.json",
           "catalog/assets/deepseek-review/README.md"
         ],
@@ -76317,13 +75779,11 @@
           "package_name": "wise-review-motion",
           "files": [
             "catalog/remotion/deepseek-review/S13Closing.tsx",
-            "catalog/remotion/deepseek-review/S2Scores.tsx",
             "catalog/remotion/deepseek-review/S3Pareto.tsx",
             "catalog/remotion/deepseek-review/S5Search.tsx",
             "catalog/remotion/deepseek-review/Scene.jsx",
             "catalog/remotion/deepseek-review/SceneShell.tsx",
             "catalog/remotion/deepseek-review/anim.ts",
-            "catalog/remotion/deepseek-review/data.ts",
             "catalog/remotion/deepseek-review/fonts.js",
             "catalog/remotion/deepseek-review/index.jsx",
             "catalog/remotion/deepseek-review/theme.ts",
@@ -76346,8 +75806,8 @@
             "react": "19.3.0",
             "react-dom": "19.3.0"
           },
-          "width": 1080,
-          "height": 1440,
+          "width": 912,
+          "height": 652,
           "fps": 30,
           "exact_frames": true,
           "reuse_notes": "原绘制与时间参数直接保留；中文使用思源黑体 Light / Bold，英文与数字使用原 Oswald Bold。字体随工程交付。完整组合含原片配音、对应音乐及搜索音效，独立动作无声；没有在线素材请求。按当前帧重算全部姿态，可任意定位与重播。默认 effectId 与 variantId 对应所选条目，speed 可调0.5–2；图形与示例内容在实际组件中编辑。数据为用户提供的示例，帕累托曲线为示意。运行 npm run check:source 核对随包素材。",
@@ -76369,30 +75829,6 @@
               "target": "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
               "bytes": 108496,
               "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/scores.wav",
-              "target": "public/catalog/assets/deepseek-review/scores.wav",
-              "bytes": 876878,
-              "sha256": "fa4de3db44972679d1d11ab9c40eb63b04433d32e07217493f9d387e441b2583"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/pareto.wav",
-              "target": "public/catalog/assets/deepseek-review/pareto.wav",
-              "bytes": 1260878,
-              "sha256": "19ef6c8be68efb0dcf8180262bc8f8f82a08759216bcc119bac96609144ab6ce"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/search.wav",
-              "target": "public/catalog/assets/deepseek-review/search.wav",
-              "bytes": 1561678,
-              "sha256": "24541bb2444ea264e705d93836ca9bb60583975cfbc17e2180c2cd619f9bd239"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/closing.wav",
-              "target": "public/catalog/assets/deepseek-review/closing.wav",
-              "bytes": 1318478,
-              "sha256": "fd2a190225fe546ceac48efbde1b54800e8b617502b507aa0890cf1f4207872e"
             }
           ],
           "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
@@ -76402,42 +75838,25 @@
         },
         "license_note": "Remotion、React、原配音与字体保留各自权利，详见随包来源说明"
       },
-      "actions": [
-        "stroke-draw"
-      ],
-      "action_variants": {
-        "stroke-draw": "deepseek-pareto"
-      },
-      "analogy": "标题先居中，随讲述上移，四项指标依次出现。坐标与旧曲线出现，新曲线随后描出。标记移向左上，改善区斜线逐渐展开，并标出相同任务减少开销。",
-      "tempo_note": "197帧，每秒30帧；速度整体调整，保留内部先后。",
+      "actions": [],
+      "analogy": "坐标轴与旧曲线先出现，新曲线随后描出；标记移向左上，斜线区域展开，展示性能与开销的改善。",
+      "tempo_note": "140帧，每秒30帧，约4.67秒；从图表出现处直接起动，速度整体调整。",
       "recommendation": "解释性能与资源开销一起改善，适合趋势说明；示例曲线不表示实际测量坐标。",
-      "audio": {
-        "tracks": [
-          {
-            "src": "catalog/assets/deepseek-review/pareto.wav",
-            "name": "原片旁白、音乐与场内音效",
-            "start_ms": 0,
-            "offset_ms": 0,
-            "duration_ms": 6566.666666666666,
-            "volume": 1,
-            "rate": 1,
-            "fade_in_ms": 0,
-            "fade_out_ms": 0
-          }
-        ]
-      },
+      "audio": null,
       "reproduction": {
-        "objects": "四项指标、新旧曲线、移动标记、斜线区域与节省箭头",
-        "presentation": "原逻辑画板1080×1440，白底#FFFFFF，文字#0B0B12，强调蓝#4D6BFE，辅助线rgba(11,11,18,0.16)。主标题72、次标题48、正文32、标注24、主数字192；中文非粗体用思源黑体Light，英文及数字用Oswald Bold。等比容纳，不能拉伸。",
+        "objects": "坐标轴、新旧曲线、移动标记、斜线改善区域与节省箭头",
+        "presentation": "912×652图表画板，白底#FFFFFF，坐标轴#0B0B12，新曲线与标记蓝色#4D6BFE，旧曲线为灰色虚线。标注24像素，中文非粗体使用思源黑体Light，粗体使用思源黑体Bold，英文及数字使用Oswald Bold。等比容纳，不能拉伸。",
         "phases": [
-          "标题先居中，随讲述上移，四项指标依次出现。",
-          "坐标与旧曲线出现，新曲线随后描出。",
-          "标记移向左上，改善区斜线逐渐展开，并标出相同任务减少开销。"
+          "坐标轴展开，旧曲线从左向右出现。",
+          "新曲线逐段描出，标记从旧位置连续移向左上。",
+          "斜线改善区域展开，节省箭头和标注出现。"
         ],
-        "retain": "图表保留原241帧设计节奏，在197帧片段内播放；轴线从设计进度0.24起建立，旧曲线0.27–0.48揭示，新曲线0.34–0.78描出，标记0.39–0.78移向左上；斜线区域随横向遮罩展开。",
-        "avoid": "同一对象连续运动，不能销毁再淡入；按30帧源时钟定位。",
+        "retain": "仅保留底部曲线图，按30帧时钟播放原57–196帧，共140帧；保留两条指数曲线、标记位置与移动、斜线区域和节省箭头。",
+        "avoid": "不要添加标题或指标行，不用整图缩放或淡入替代曲线描绘与标记移动。",
         "details": [
-          "图表保留原241帧设计节奏，在197帧片段内播放；轴线从设计进度0.24起建立，旧曲线0.27–0.48揭示，新曲线0.34–0.78描出，标记0.39–0.78移向左上；斜线区域随横向遮罩展开。"
+          "动作第0–139帧对应设计时钟第57–196帧；设计进度p=帧号/240。轴线在p=0.24–0.37展开，旧曲线在0.27–0.48揭示，新曲线在0.34–0.78描出，标记在0.39–0.78移向左上。",
+          "旧曲线为0.95×(1−exp(−2.6×(x−0.05)))，新曲线为1−exp(−4.5×(x−0.03)))；旧标记x=0.62，新标记x=0.39，各自y取对应曲线值。图内横坐标为44+840x，纵坐标为576−520y。",
+          "两条曲线各取65个点，旧线4像素宽并用8/8虚线，新线8像素宽。改善区域使用45度、间隔14像素的斜线，从左向右揭示；节省箭头与文字随后出现。"
         ]
       }
     }

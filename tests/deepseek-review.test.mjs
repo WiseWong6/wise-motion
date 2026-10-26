@@ -18,8 +18,8 @@ const {SPECS,ReviewScene,resolveMotion,sourceFrame}=module.exports;
 const markup=(s,f)=>renderToStaticMarkup(React.createElement(ReviewScene,{spec:s,frame:f}));
 const spec=id=>SPECS.find(s=>s.id===id);
 
-test('四个完整组合与六个复用示例保留30帧边界，可反向定位',()=>{
- assert.equal(SPECS.filter(s=>s.kind==='composition').length,4);assert.equal(SPECS.length,10);
+test('两个组合、一个数据动作与四个复用示例保留30帧边界，可反向定位',()=>{
+ assert.equal(SPECS.filter(s=>s.kind==='composition').length,2);assert.equal(SPECS.length,7);
  for(const s of SPECS){
   const d=resolveEffect(s.exportId||s.id,s.variantId);assert.equal(d.source.factory,s.id);
   assert.equal(resolveMotion(s.exportId||s.id,s.variantId),s);
@@ -55,15 +55,23 @@ test('搜索先剔除中间项再递送，三张创作卡保持节点身份变�
  }finally{dom.window.close();}
 });
 
-test('十一柱数值与比例一致，两个图表保留原始绘制曲线',()=>{
- const dom=new JSDOM(markup(spec('benchmark-gain-sequence'),136));
+test('性能开销只保留独立数据图，已删除成绩展示和重复曲线入口',()=>{
+ const s=spec('pareto-efficiency-sequence'),d=resolveEffect(s.id);
+ assert.equal(d.kind,'action');assert.equal(d.category,'data');
+ assert.deepEqual(d.actions,[]);assert.equal(d.audio,null);
+ assert.deepEqual(s.viewport,[0,0,912,652]);
+ assert.equal(effectDefinitions.some(e=>e.id==='benchmark-gain-sequence'),false);
+ assert.equal(effectDefinitions.find(e=>e.id==='bar-growth').variants,undefined);
+ assert.equal(effectDefinitions.find(e=>e.id==='stroke-draw').variants.some(v=>v.id==='deepseek-pareto'),false);
+ const dom=new JSDOM(markup(s,196));
  try{
-  const svg=dom.window.document.querySelector('svg');const bars=[...svg.querySelectorAll('g')].filter(g=>g.querySelector('rect'));
-  assert.equal(bars.length,11);
-  assert.equal(bars[0].querySelector('rect').getAttribute('height'),'256');
-  assert.equal(bars[0].querySelector('text').textContent,'+11.1');
-  assert.equal(bars[10].querySelector('text').textContent,'+2.0');
-  assert.match(markup(spec('pareto-efficiency-sequence'),196),/同样任务，更少开销/);
+  const svg=dom.window.document.querySelector('svg');
+  assert.equal(svg.getAttribute('viewBox'),'0 0 912 652');
+  assert.deepEqual([...svg.querySelectorAll('text')].map(n=>n.textContent),['↑ 任务表现','每项任务的费用 / 时间 →','上一版','新版','同样任务，更少开销']);
+  const oldMarker=svg.querySelector('circle'),newMarker=svg.querySelectorAll('circle')[1];
+  assert.ok(Number(newMarker.getAttribute('cx'))<Number(oldMarker.getAttribute('cx')));
+  assert.ok(Number(newMarker.getAttribute('cy'))<Number(oldMarker.getAttribute('cy')));
+  assert.doesNotMatch(dom.window.document.body.textContent,/性能更高|任务开销更低|分数|耗时|输出|单价|基准成绩/);
  }finally{dom.window.close();}
 });
 
@@ -95,12 +103,14 @@ test('导出包含实际绘制源码、本地原字体，只有完整组合携�
   const project=await projectFor(s.exportId||s.id,{variantId:s.variantId});
   assert.ok(project.files['catalog/remotion/deepseek-review/S5Search.tsx']);
   assert.ok(project.files['catalog/remotion/deepseek-review/S13Closing.tsx']);
+  assert.equal(project.files['catalog/remotion/deepseek-review/S2Scores.tsx'],undefined);
+  assert.equal(Object.keys(project.files).some(name=>/deepseek-review\/(scores|pareto)\.wav$/.test(name)),false);
   assert.ok(project.files['public/catalog/assets/deepseek-review/Oswald-Bold.ttf']);
   assert.equal(!!project.files['public/catalog/assets/deepseek-review/search.wav'],s.kind==='composition');
   for(const [name,data] of Object.entries(project.files))if(typeof data==='string')assert.doesNotMatch(data,/\/Users\/|localhost:/,name+' 不能依赖原工程路径');
  }
  const {rank}=require('../catalog/matching.js');
- for(const id of ['search-filter-delivery','creative-cards-to-tracks','benchmark-gain-sequence','pareto-efficiency-sequence']){
+ for(const id of ['search-filter-delivery','creative-cards-to-tracks','pareto-efficiency-sequence']){
   const effect=effectDefinitions.find(e=>e.id===id);assert.equal(rank({effects:effectDefinitions},effect.name)[0].effect.id,id);
  }
 });
