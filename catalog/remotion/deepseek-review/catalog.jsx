@@ -3,7 +3,7 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 import {flushSync} from 'react-dom';
 import {FONT_FACES} from './fonts.js';
-import {SPECS,ReviewScene,sourceFrame,layersFor} from './Scene.jsx';
+import {SPECS,ReviewScene,sourceFrame} from './Scene.jsx';
 const scriptUrl=globalThis.document?.currentScript?.src;
 let serial=0;
 for(const spec of SPECS){
@@ -19,6 +19,5 @@ for(const spec of SPECS){
   if(doc.fonts?.load)draw.ready=Promise.all(FONT_FACES.map(f=>doc.fonts.load(`${f.weight.split(' ')[0]} 32px "${f.family}"`,f.unicodeRange?'DeepSeek 11':'模型')));
   return draw;
  };
- if(spec.kind==='composition')make.breakdown=layersFor(spec);
  (globalThis.MotionFactories||={})[spec.id]=make;
 }

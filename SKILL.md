@@ -33,3 +33,5 @@ node "<技能目录>/scripts/export.mjs" <编号或名称> --out-dir <目标目�
 - 组件和素材接入：[组件说明](REMOTION.md)、[播放接口](references/runtime-interface.md)、[Remotion 接入](references/remotion-production.md)。保留时长、循环、透明背景支持和运行环境等技术事实。
 - 检查：[验证矩阵](references/validation-matrix.md)。区分文件检查、实际渲染与人工播放；默认不截图或启动浏览器。
 - 维护目录：[目录维护](references/catalog-maintenance.md)；追溯来源：[历史来源](references/history.md)、[来源与许可](references/sources.md)、[版权说明](NOTICE.md)。
+
+从现有工程收录动效时，按[目录维护](references/catalog-maintenance.md#从工程摘取动效)核对完整动作范围、画幅和节奏，再同步预览与源码交付。

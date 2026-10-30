@@ -126,6 +126,10 @@ MECHANICAL PULSE v4.2 的18秒实景组合、菱形跨镜展开及六个动作�
 
 ## DeepSeek 测评动效
 
-搜索筛选与递送、创作卡片变剪辑轨道、基准成绩和性能开销曲线，来自用户授权的自有视频绘制源码。保留30帧原时钟与图形参数，完整场景携带原配音和音乐片段。来源摘要及调整边界见 [来源说明](catalog/assets/deepseek-review/README.md)。
+性能开销曲线，来自用户授权的自有视频绘制源码。保留30帧原时钟与图形参数。来源摘要及调整边界见 [来源说明](catalog/assets/deepseek-review/README.md)。
 
-思源黑体与原 Oswald Bold 采用 SIL OFL 1.1；字形及排版数据未改写。React、React DOM、Remotion 保留各自许可。数值仅为原片示例，曲线为解释性示意，未新增当前评测事实背书。
+思源黑体与原 Oswald Bold 采用 SIL OFL 1.1；字形及排版数据未改写。React、React DOM、Remotion 保留各自许可。数值仅为原片示例，曲线为解释性示意，未新增当前评测事实背书。搜索筛选与递送、创作卡片变轨道组合已按用户要求下架。
+
+## 知识库视频所选动作
+
+来自用户确认的向量与知识库最终工程。实际绘制代码、时间与固定随机种子按确认范围提取，来源校验见 [来源记录](catalog/assets/knowledge-video/SOURCE.json)。字体按 [得意黑 OFL](catalog/assets/knowledge-video/OFL-SmileySans.txt) 提供；空间点云保留 [上游署名](catalog/assets/knowledge-video/3D-Chladni-NOTICE.md) 与 [Apache 许可](catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt)。用户头像属于示例素材，实际复用时可替换；论文结构图保留 Google 署名与 CC BY-SA 4.0，见 [图片来源](catalog/assets/knowledge-video/Transformer-CREDITS.md)。原工程配音未纳入。

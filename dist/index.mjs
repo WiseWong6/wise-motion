@@ -218,7 +218,8 @@ var FRAME_SCRIPTS = Object.freeze([
   "catalog/effects/aboutlove-entries.js",
   "catalog/effects/aboutlove.js",
   "catalog/effects/lego-kingdom.js",
-  "catalog/effects/deepseek-review.js"
+  "catalog/effects/deepseek-review.js",
+  "catalog/effects/knowledge-video.js"
 ]);
 
 // remotion/frame-document.mjs
@@ -1754,147 +1755,6 @@ var registry_default = {
               "\u539F1080\xD71440\u5E03\u5C40\u4E0E\u201C\u5B8C\u6210\u57CE\u5821/\u5EA7\u201D\u539F\u6587\uFF1B\u7B2C36\u89C6\u89C9\u5E27\u5F00\u59CB\uFF0C\u6BCF\u683C\u9519\u5F000.48\u89C6\u89C9\u5E27\u3001\u98DE\u884C4.5\u5E27\uFF1B80\u8F93\u51FA\u5E27\u5230100\uFF0C\u672B15\u8F93\u51FA\u5E27\u753B\u5B8C\u6210\u5708\u3002\u4EC5\u63D0\u53D6\u767E\u683C\u7EDF\u8BA1\uFF0C\u4E0D\u5305\u542B\u539F\u54C1\u724C\u9897\u7C92\u5B57\u548C\u573A\u666F\u6807\u9898\u3002"
             ]
           }
-        },
-        {
-          loop: false,
-          default_ease: "linear",
-          parameters: {
-            speed: {
-              label: "\u64AD\u653E\u901F\u5EA6",
-              default: 1,
-              min: 0.5,
-              max: 2,
-              step: 0.25
-            }
-          },
-          demo_mode: "fixed-timeline",
-          timing: null,
-          content_slots: [],
-          layer: "own-background",
-          domains: [
-            "animation",
-            "document"
-          ],
-          trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
-          assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
-          id: "deepseek-results",
-          label: "\u7ED3\u679C\u5361\u7247\u4F9D\u6B21\u5165\u573A",
-          summary: "\u641C\u7D22\u7ED3\u679C\u6309\u987A\u5E8F\u4ECE\u5DE6\u4FA7\u8FDB\u5165\uFF0C\u4FDD\u7559\u6807\u9898\u548C\u6765\u6E90\u3002",
-          purpose: "\u641C\u7D22\u7ED3\u679C\u6309\u987A\u5E8F\u4ECE\u5DE6\u4FA7\u8FDB\u5165\uFF0C\u4FDD\u7559\u6807\u9898\u548C\u6765\u6E90\u3002",
-          objects: "\u7ED3\u679C\u5361\u7247\u4F9D\u6B21\u5165\u573A",
-          phases: [
-            "\u6309\u56FA\u5B9A\u5E27\u5B9A\u4F4D\u539F\u59CB\u8D77\u70B9\u3002",
-            "\u641C\u7D22\u7ED3\u679C\u6309\u987A\u5E8F\u4ECE\u5DE6\u4FA7\u8FDB\u5165\uFF0C\u4FDD\u7559\u6807\u9898\u548C\u6765\u6E90\u3002",
-            "\u4FDD\u7559\u539F\u52A8\u4F5C\u672B\u5E27\uFF0C\u91CD\u64AD\u56DE\u5230\u540C\u4E00\u8D77\u70B9\u3002"
-          ],
-          retain: "\u4ECE\u539F\u7B2C104\u5E27\u5F00\u59CB\uFF0C\u4E09\u6761\u7ED3\u679C\u5206\u522B\u5728\u5F52\u4E00\u8FDB\u5EA60.43/0.45/0.47\u8FDB\u5165\uFF0C\u52300.52/0.54/0.56\u843D\u5B9A\uFF1B\u6A2A\u5411\u4F4D\u79FB\u22121020\u52300\uFF0C\u4F7F\u7528(0.16,1,0.3,1)\u7F13\u52A8\u3002",
-          avoid: "\u4E0D\u6253\u65AD\u5BF9\u8C61\u8FDE\u7EED\u53D8\u5316\uFF0C\u4E0D\u6539\u53D8\u539F\u51E0\u4F55\u548C\u5E27\u8282\u594F\u3002",
-          duration_ms: 1133.3333333333333,
-          preview_ms: 1e3,
-          source: {
-            path: "catalog/effects/deepseek-review.js",
-            factory: "deepseek-results-enter",
-            origin: "original",
-            license: "Apache-2.0",
-            library: "remotion@4.0.532",
-            assets: [
-              "catalog/fonts/SourceHanSansSC-Light.woff2",
-              "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "catalog/assets/deepseek-review/SOURCE.json",
-              "catalog/assets/deepseek-review/README.md"
-            ],
-            reference: {
-              name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
-            },
-            extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
-            remotion: {
-              component: "catalog/remotion/deepseek-review/index.jsx",
-              export_name: "WiseReviewMotion",
-              package_name: "wise-review-motion",
-              files: [
-                "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S3Pareto.tsx",
-                "catalog/remotion/deepseek-review/S5Search.tsx",
-                "catalog/remotion/deepseek-review/Scene.jsx",
-                "catalog/remotion/deepseek-review/SceneShell.tsx",
-                "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/fonts.js",
-                "catalog/remotion/deepseek-review/index.jsx",
-                "catalog/remotion/deepseek-review/theme.ts",
-                "catalog/remotion/deepseek-review/timing.js",
-                "catalog/assets/deepseek-review/SOURCE.json",
-                "catalog/assets/deepseek-review/AUDIO.json",
-                "catalog/assets/deepseek-review/README.md",
-                "catalog/assets/deepseek-review/verify-source.mjs",
-                "LICENSE",
-                "catalog/fonts/OFL.txt",
-                "catalog/fonts/OFL-Oswald.txt",
-                "catalog/assets/reel-extract/React-LICENSE.txt",
-                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-                "catalog/remotion/binary-assets-installer.mjs"
-              ],
-              packages: {
-                remotion: "4.0.532",
-                "@remotion/cli": "4.0.532",
-                react: "19.3.0",
-                "react-dom": "19.3.0"
-              },
-              width: 912,
-              height: 520,
-              fps: 30,
-              exact_frames: true,
-              reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
-              binary_files: [
-                {
-                  source: "catalog/fonts/SourceHanSansSC-Light.woff2",
-                  target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-                  bytes: 11128356,
-                  sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-                },
-                {
-                  source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  bytes: 12816312,
-                  sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-                },
-                {
-                  source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  bytes: 108496,
-                  sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-                }
-              ],
-              asset_installer: "catalog/remotion/binary-assets-installer.mjs",
-              scripts: {
-                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-              }
-            },
-            license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
-          },
-          actions: [],
-          audio: null,
-          recommendation: "\u641C\u7D22\u7ED3\u679C\u6309\u987A\u5E8F\u4ECE\u5DE6\u4FA7\u8FDB\u5165\uFF0C\u4FDD\u7559\u6807\u9898\u548C\u6765\u6E90\u3002\uFF1B\u9700\u8981\u539F\u7247\u8FD9\u79CD\u7EC4\u5408\u5173\u7CFB\u65F6\u9009\u62E9\u6B64\u793A\u4F8B\u3002",
-          tempo_note: "\u630930\u5E27\u65F6\u949F\u64AD\u653E\uFF0C\u517134\u5E27\u3002",
-          reproduction: {
-            objects: "\u7ED3\u679C\u5361\u7247\u4F9D\u6B21\u5165\u573A",
-            presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002\u6B64\u793A\u4F8B\u53EA\u88C1\u51FA912\xD7520\u56FE\u5F62\u8303\u56F4\uFF0C\u4E0D\u6539\u539F\u56FE\u5F62\u5750\u6807\u3002",
-            phases: [
-              "\u663E\u793A\u539F\u52A8\u4F5C\u8D77\u70B9\u3002",
-              "\u641C\u7D22\u7ED3\u679C\u6309\u987A\u5E8F\u4ECE\u5DE6\u4FA7\u8FDB\u5165\uFF0C\u4FDD\u7559\u6807\u9898\u548C\u6765\u6E90\u3002",
-              "\u4FDD\u6301\u7ED3\u675F\u59FF\u6001\u3002"
-            ],
-            retain: "\u4ECE\u539F\u7B2C104\u5E27\u5F00\u59CB\uFF0C\u4E09\u6761\u7ED3\u679C\u5206\u522B\u5728\u5F52\u4E00\u8FDB\u5EA60.43/0.45/0.47\u8FDB\u5165\uFF0C\u52300.52/0.54/0.56\u843D\u5B9A\uFF1B\u6A2A\u5411\u4F4D\u79FB\u22121020\u52300\uFF0C\u4F7F\u7528(0.16,1,0.3,1)\u7F13\u52A8\u3002",
-            avoid: "\u4E0D\u4EE5\u65B0\u4E00\u6279\u5143\u7D20\u66FF\u6362\u6B63\u5728\u8FD0\u52A8\u7684\u5143\u7D20\u3002",
-            details: [
-              "\u4ECE\u539F\u7B2C104\u5E27\u5F00\u59CB\uFF0C\u4E09\u6761\u7ED3\u679C\u5206\u522B\u5728\u5F52\u4E00\u8FDB\u5EA60.43/0.45/0.47\u8FDB\u5165\uFF0C\u52300.52/0.54/0.56\u843D\u5B9A\uFF1B\u6A2A\u5411\u4F4D\u79FB\u22121020\u52300\uFF0C\u4F7F\u7528(0.16,1,0.3,1)\u7F13\u52A8\u3002"
-            ]
-          },
-          aliases: [
-            "\u7ED3\u679C\u5361\u7247\u4F9D\u6B21\u5165\u573A",
-            "\u641C\u7D22\u7ED3\u679C\u6309\u987A\u5E8F\u4ECE\u5DE6\u4FA7\u8FDB\u5165\uFF0C\u4FDD\u7559\u6807\u9898\u548C\u6765\u6E90\u3002"
-          ]
         }
       ],
       layer: "own-background",
@@ -2346,157 +2206,7 @@ var registry_default = {
         audit: "aboutlove-15"
       },
       timing: null,
-      content_slots: [],
-      variants: [
-        {
-          id: "original",
-          label: "\u539F\u6709\u793A\u4F8B",
-          summary: "\u4E24\u4E2A\u4EAE\u70B9\u6CBF\u540C\u4E00\u5FC3\u5F62\u53CD\u5411\u52A0\u901F\u8FD0\u884C\uFF0C\u77ED\u5C3E\u8FF9\u9010\u6E10\u8870\u51CF\uFF0C\u5DF2\u7ECF\u8DD1\u8FC7\u7684\u5708\u7559\u4E0B\u653E\u5927\u6DE1\u53BB\u7684\u8F6E\u5ED3\u3002",
-          duration_ms: 7740,
-          preview_ms: 4644
-        },
-        {
-          loop: false,
-          default_ease: "linear",
-          parameters: {
-            speed: {
-              label: "\u64AD\u653E\u901F\u5EA6",
-              default: 1,
-              min: 0.5,
-              max: 2,
-              step: 0.25
-            }
-          },
-          demo_mode: "fixed-timeline",
-          timing: null,
-          content_slots: [],
-          layer: "own-background",
-          domains: [
-            "animation",
-            "document"
-          ],
-          trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
-          assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
-          id: "deepseek-delivery",
-          label: "\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001",
-          summary: "\u4E24\u4EFD\u6587\u6863\u6CBF\u4E8C\u6B21\u66F2\u7EBF\u4ECE\u4FDD\u7559\u7ED3\u679C\u8FDB\u5165\u6A21\u578B\u6846\u3002",
-          purpose: "\u4E24\u4EFD\u6587\u6863\u6CBF\u4E8C\u6B21\u66F2\u7EBF\u4ECE\u4FDD\u7559\u7ED3\u679C\u8FDB\u5165\u6A21\u578B\u6846\u3002",
-          objects: "\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001",
-          phases: [
-            "\u6309\u56FA\u5B9A\u5E27\u5B9A\u4F4D\u539F\u59CB\u8D77\u70B9\u3002",
-            "\u4E24\u4EFD\u6587\u6863\u6CBF\u4E8C\u6B21\u66F2\u7EBF\u4ECE\u4FDD\u7559\u7ED3\u679C\u8FDB\u5165\u6A21\u578B\u6846\u3002",
-            "\u4FDD\u7559\u539F\u52A8\u4F5C\u672B\u5E27\uFF0C\u91CD\u64AD\u56DE\u5230\u540C\u4E00\u8D77\u70B9\u3002"
-          ],
-          retain: "\u622A\u53D6\u539F194\u2013243\u5E27\u3002\u4E24\u6761\u4E8C\u6B21\u66F2\u7EBF\u4ECE(400,72+168i)\uFF0C\u63A7\u5236\u70B9(450,72+168i)\uFF0C\u5230(480,328+112i)\uFF1B\u6587\u686320\xD726\uFF0C\u900F\u660E\u5EA6sin(\u8FDB\u5EA6\xD7\u03C0)\uFF0C\u7B2C\u4E8C\u4EFD\u9519\u540E0.025\u5F52\u4E00\u8FDB\u5EA6\u3002",
-          avoid: "\u4E0D\u6253\u65AD\u5BF9\u8C61\u8FDE\u7EED\u53D8\u5316\uFF0C\u4E0D\u6539\u53D8\u539F\u51E0\u4F55\u548C\u5E27\u8282\u594F\u3002",
-          duration_ms: 1666.6666666666667,
-          preview_ms: 1e3,
-          source: {
-            path: "catalog/effects/deepseek-review.js",
-            factory: "deepseek-result-delivery",
-            origin: "original",
-            license: "Apache-2.0",
-            library: "remotion@4.0.532",
-            assets: [
-              "catalog/fonts/SourceHanSansSC-Light.woff2",
-              "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "catalog/assets/deepseek-review/SOURCE.json",
-              "catalog/assets/deepseek-review/README.md"
-            ],
-            reference: {
-              name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
-            },
-            extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
-            remotion: {
-              component: "catalog/remotion/deepseek-review/index.jsx",
-              export_name: "WiseReviewMotion",
-              package_name: "wise-review-motion",
-              files: [
-                "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S3Pareto.tsx",
-                "catalog/remotion/deepseek-review/S5Search.tsx",
-                "catalog/remotion/deepseek-review/Scene.jsx",
-                "catalog/remotion/deepseek-review/SceneShell.tsx",
-                "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/fonts.js",
-                "catalog/remotion/deepseek-review/index.jsx",
-                "catalog/remotion/deepseek-review/theme.ts",
-                "catalog/remotion/deepseek-review/timing.js",
-                "catalog/assets/deepseek-review/SOURCE.json",
-                "catalog/assets/deepseek-review/AUDIO.json",
-                "catalog/assets/deepseek-review/README.md",
-                "catalog/assets/deepseek-review/verify-source.mjs",
-                "LICENSE",
-                "catalog/fonts/OFL.txt",
-                "catalog/fonts/OFL-Oswald.txt",
-                "catalog/assets/reel-extract/React-LICENSE.txt",
-                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-                "catalog/remotion/binary-assets-installer.mjs"
-              ],
-              packages: {
-                remotion: "4.0.532",
-                "@remotion/cli": "4.0.532",
-                react: "19.3.0",
-                "react-dom": "19.3.0"
-              },
-              width: 912,
-              height: 600,
-              fps: 30,
-              exact_frames: true,
-              reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
-              binary_files: [
-                {
-                  source: "catalog/fonts/SourceHanSansSC-Light.woff2",
-                  target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-                  bytes: 11128356,
-                  sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-                },
-                {
-                  source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  bytes: 12816312,
-                  sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-                },
-                {
-                  source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  bytes: 108496,
-                  sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-                }
-              ],
-              asset_installer: "catalog/remotion/binary-assets-installer.mjs",
-              scripts: {
-                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-              }
-            },
-            license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
-          },
-          actions: [],
-          audio: null,
-          recommendation: "\u4E24\u4EFD\u6587\u6863\u6CBF\u4E8C\u6B21\u66F2\u7EBF\u4ECE\u4FDD\u7559\u7ED3\u679C\u8FDB\u5165\u6A21\u578B\u6846\u3002\uFF1B\u9700\u8981\u539F\u7247\u8FD9\u79CD\u7EC4\u5408\u5173\u7CFB\u65F6\u9009\u62E9\u6B64\u793A\u4F8B\u3002",
-          tempo_note: "\u630930\u5E27\u65F6\u949F\u64AD\u653E\uFF0C\u517150\u5E27\u3002",
-          reproduction: {
-            objects: "\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001",
-            presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002\u6B64\u793A\u4F8B\u53EA\u88C1\u51FA912\xD7600\u56FE\u5F62\u8303\u56F4\uFF0C\u4E0D\u6539\u539F\u56FE\u5F62\u5750\u6807\u3002",
-            phases: [
-              "\u663E\u793A\u539F\u52A8\u4F5C\u8D77\u70B9\u3002",
-              "\u4E24\u4EFD\u6587\u6863\u6CBF\u4E8C\u6B21\u66F2\u7EBF\u4ECE\u4FDD\u7559\u7ED3\u679C\u8FDB\u5165\u6A21\u578B\u6846\u3002",
-              "\u4FDD\u6301\u7ED3\u675F\u59FF\u6001\u3002"
-            ],
-            retain: "\u622A\u53D6\u539F194\u2013243\u5E27\u3002\u4E24\u6761\u4E8C\u6B21\u66F2\u7EBF\u4ECE(400,72+168i)\uFF0C\u63A7\u5236\u70B9(450,72+168i)\uFF0C\u5230(480,328+112i)\uFF1B\u6587\u686320\xD726\uFF0C\u900F\u660E\u5EA6sin(\u8FDB\u5EA6\xD7\u03C0)\uFF0C\u7B2C\u4E8C\u4EFD\u9519\u540E0.025\u5F52\u4E00\u8FDB\u5EA6\u3002",
-            avoid: "\u4E0D\u4EE5\u65B0\u4E00\u6279\u5143\u7D20\u66FF\u6362\u6B63\u5728\u8FD0\u52A8\u7684\u5143\u7D20\u3002",
-            details: [
-              "\u622A\u53D6\u539F194\u2013243\u5E27\u3002\u4E24\u6761\u4E8C\u6B21\u66F2\u7EBF\u4ECE(400,72+168i)\uFF0C\u63A7\u5236\u70B9(450,72+168i)\uFF0C\u5230(480,328+112i)\uFF1B\u6587\u686320\xD726\uFF0C\u900F\u660E\u5EA6sin(\u8FDB\u5EA6\xD7\u03C0)\uFF0C\u7B2C\u4E8C\u4EFD\u9519\u540E0.025\u5F52\u4E00\u8FDB\u5EA6\u3002"
-            ]
-          },
-          aliases: [
-            "\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001",
-            "\u4E24\u4EFD\u6587\u6863\u6CBF\u4E8C\u6B21\u66F2\u7EBF\u4ECE\u4FDD\u7559\u7ED3\u679C\u8FDB\u5165\u6A21\u578B\u6846\u3002"
-          ]
-        }
-      ]
+      content_slots: []
     },
     {
       kind: "action",
@@ -4773,298 +4483,7 @@ var registry_default = {
           "\u8FD9\u91CC t \u4E3A\u52A8\u4F5C\u79D2\u6570\uFF08\u64AD\u653E\u901F\u5EA61\u65F6\u7B49\u4E8E\u64AD\u653E\u79D2\u6570\uFF09\uFF1B\u8BBE\u8BA1\u65F6\u949F u=0.8+2.1\xD7\u9650\u5236\u52300\u81F31\u7684((t\u22120.15)/1.2)\uFF0C\u5355\u4F4D\u4E3A\u79D2\u3002\u4E0B\u5217\u6807\u660E u \u7684\u9636\u6BB5\u4F7F\u7528\u8BBE\u8BA1\u65F6\u949F\uFF0C\u4E0D\u662F\u5B9E\u9645\u64AD\u653E\u65F6\u957F\uFF1B\u5F52\u4E00\u8FDB\u5EA6 p=u/3.3\u3002\u8BBE\u8BA1\u65F6\u949F\u5728\u4E24\u7AEF\u94B3\u4F4F\uFF0C\u4E0D\u9760\u4E0A\u4E00\u5E27\u4FDD\u7559\u72B6\u6001\u3002",
           "\u8BBE\u8BA1\u65F6\u949Fu=0.8\u81F32.9\u79D2\uFF0C\u4FDD\u6301\u6BCF\u5757\u5185\u5BB9\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u79FB\u52A8\u5E76\u6539\u53D8\u5C3A\u5BF8\u4E3A168\xD798\uFF1B\u7EC8\u70B9\u5DE6\u4E0A\u89D2(144+182(i%2),92+112floor(i/2))\uFF0C\u6784\u6210\u4E24\u5217\u4E24\u884C\u3002\u5C3A\u5BF8\u4E0E\u4F4D\u7F6E\u5171\u7528\u540C\u4E00\u8FDB\u5EA6\u3002"
         ]
-      },
-      variants: [
-        {
-          id: "original",
-          label: "\u539F\u6709\u793A\u4F8B",
-          summary: "\u540C\u4E00\u7EC4\u5185\u5BB9\u4ECE\u5217\u8868\u5E73\u6ED1\u53D8\u6210\u7F51\u683C\u3002",
-          duration_ms: 1800,
-          preview_ms: 1064
-        },
-        {
-          loop: false,
-          default_ease: "linear",
-          parameters: {
-            speed: {
-              label: "\u64AD\u653E\u901F\u5EA6",
-              default: 1,
-              min: 0.5,
-              max: 2,
-              step: 0.25
-            }
-          },
-          demo_mode: "fixed-timeline",
-          timing: null,
-          content_slots: [],
-          layer: "own-background",
-          domains: [
-            "animation",
-            "document"
-          ],
-          trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
-          assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
-          id: "deepseek-filter",
-          label: "\u626B\u63CF\u5254\u9664\u4E0E\u8865\u4F4D",
-          summary: "\u626B\u63CF\u7EBF\u68C0\u67E5\u4E09\u6761\u7ED3\u679C\uFF0C\u5E72\u6270\u9879\u9000\u51FA\uFF0C\u7B2C\u4E09\u9879\u5411\u4E0A\u8865\u4F4D\u3002",
-          purpose: "\u626B\u63CF\u7EBF\u68C0\u67E5\u4E09\u6761\u7ED3\u679C\uFF0C\u5E72\u6270\u9879\u9000\u51FA\uFF0C\u7B2C\u4E09\u9879\u5411\u4E0A\u8865\u4F4D\u3002",
-          objects: "\u626B\u63CF\u5254\u9664\u4E0E\u8865\u4F4D",
-          phases: [
-            "\u6309\u56FA\u5B9A\u5E27\u5B9A\u4F4D\u539F\u59CB\u8D77\u70B9\u3002",
-            "\u626B\u63CF\u7EBF\u68C0\u67E5\u4E09\u6761\u7ED3\u679C\uFF0C\u5E72\u6270\u9879\u9000\u51FA\uFF0C\u7B2C\u4E09\u9879\u5411\u4E0A\u8865\u4F4D\u3002",
-            "\u4FDD\u7559\u539F\u52A8\u4F5C\u672B\u5E27\uFF0C\u91CD\u64AD\u56DE\u5230\u540C\u4E00\u8D77\u70B9\u3002"
-          ],
-          retain: "\u622A\u53D6\u539F122\u2013189\u5E27\u3002\u626B\u63CF\u6A2A\u8DE8912\u5BBD\u5EA6\uFF1B\u5F52\u4E00\u8FDB\u5EA60.65\u20130.77\uFF0C\u7B2C\u4E8C\u9879\u53F3\u79FB1080\u5E76\u6DE1\u51FA\uFF0C\u7B2C\u4E09\u9879\u540C\u65F6\u5411\u4E0A168\uFF1B0.74\u20130.87\u4FDD\u7559\u5361\u7247\u4ECE912\u7F29\u5230400\u5BBD\u3002",
-          avoid: "\u4E0D\u6253\u65AD\u5BF9\u8C61\u8FDE\u7EED\u53D8\u5316\uFF0C\u4E0D\u6539\u53D8\u539F\u51E0\u4F55\u548C\u5E27\u8282\u594F\u3002",
-          duration_ms: 2266.6666666666665,
-          preview_ms: 2066.666666666667,
-          source: {
-            path: "catalog/effects/deepseek-review.js",
-            factory: "deepseek-results-filter",
-            origin: "original",
-            license: "Apache-2.0",
-            library: "remotion@4.0.532",
-            assets: [
-              "catalog/fonts/SourceHanSansSC-Light.woff2",
-              "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "catalog/assets/deepseek-review/SOURCE.json",
-              "catalog/assets/deepseek-review/README.md"
-            ],
-            reference: {
-              name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
-            },
-            extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
-            remotion: {
-              component: "catalog/remotion/deepseek-review/index.jsx",
-              export_name: "WiseReviewMotion",
-              package_name: "wise-review-motion",
-              files: [
-                "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S3Pareto.tsx",
-                "catalog/remotion/deepseek-review/S5Search.tsx",
-                "catalog/remotion/deepseek-review/Scene.jsx",
-                "catalog/remotion/deepseek-review/SceneShell.tsx",
-                "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/fonts.js",
-                "catalog/remotion/deepseek-review/index.jsx",
-                "catalog/remotion/deepseek-review/theme.ts",
-                "catalog/remotion/deepseek-review/timing.js",
-                "catalog/assets/deepseek-review/SOURCE.json",
-                "catalog/assets/deepseek-review/AUDIO.json",
-                "catalog/assets/deepseek-review/README.md",
-                "catalog/assets/deepseek-review/verify-source.mjs",
-                "LICENSE",
-                "catalog/fonts/OFL.txt",
-                "catalog/fonts/OFL-Oswald.txt",
-                "catalog/assets/reel-extract/React-LICENSE.txt",
-                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-                "catalog/remotion/binary-assets-installer.mjs"
-              ],
-              packages: {
-                remotion: "4.0.532",
-                "@remotion/cli": "4.0.532",
-                react: "19.3.0",
-                "react-dom": "19.3.0"
-              },
-              width: 912,
-              height: 520,
-              fps: 30,
-              exact_frames: true,
-              reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
-              binary_files: [
-                {
-                  source: "catalog/fonts/SourceHanSansSC-Light.woff2",
-                  target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-                  bytes: 11128356,
-                  sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-                },
-                {
-                  source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  bytes: 12816312,
-                  sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-                },
-                {
-                  source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  bytes: 108496,
-                  sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-                }
-              ],
-              asset_installer: "catalog/remotion/binary-assets-installer.mjs",
-              scripts: {
-                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-              }
-            },
-            license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
-          },
-          actions: [],
-          audio: null,
-          recommendation: "\u626B\u63CF\u7EBF\u68C0\u67E5\u4E09\u6761\u7ED3\u679C\uFF0C\u5E72\u6270\u9879\u9000\u51FA\uFF0C\u7B2C\u4E09\u9879\u5411\u4E0A\u8865\u4F4D\u3002\uFF1B\u9700\u8981\u539F\u7247\u8FD9\u79CD\u7EC4\u5408\u5173\u7CFB\u65F6\u9009\u62E9\u6B64\u793A\u4F8B\u3002",
-          tempo_note: "\u630930\u5E27\u65F6\u949F\u64AD\u653E\uFF0C\u517168\u5E27\u3002",
-          reproduction: {
-            objects: "\u626B\u63CF\u5254\u9664\u4E0E\u8865\u4F4D",
-            presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002\u6B64\u793A\u4F8B\u53EA\u88C1\u51FA912\xD7520\u56FE\u5F62\u8303\u56F4\uFF0C\u4E0D\u6539\u539F\u56FE\u5F62\u5750\u6807\u3002",
-            phases: [
-              "\u663E\u793A\u539F\u52A8\u4F5C\u8D77\u70B9\u3002",
-              "\u626B\u63CF\u7EBF\u68C0\u67E5\u4E09\u6761\u7ED3\u679C\uFF0C\u5E72\u6270\u9879\u9000\u51FA\uFF0C\u7B2C\u4E09\u9879\u5411\u4E0A\u8865\u4F4D\u3002",
-              "\u4FDD\u6301\u7ED3\u675F\u59FF\u6001\u3002"
-            ],
-            retain: "\u622A\u53D6\u539F122\u2013189\u5E27\u3002\u626B\u63CF\u6A2A\u8DE8912\u5BBD\u5EA6\uFF1B\u5F52\u4E00\u8FDB\u5EA60.65\u20130.77\uFF0C\u7B2C\u4E8C\u9879\u53F3\u79FB1080\u5E76\u6DE1\u51FA\uFF0C\u7B2C\u4E09\u9879\u540C\u65F6\u5411\u4E0A168\uFF1B0.74\u20130.87\u4FDD\u7559\u5361\u7247\u4ECE912\u7F29\u5230400\u5BBD\u3002",
-            avoid: "\u4E0D\u4EE5\u65B0\u4E00\u6279\u5143\u7D20\u66FF\u6362\u6B63\u5728\u8FD0\u52A8\u7684\u5143\u7D20\u3002",
-            details: [
-              "\u622A\u53D6\u539F122\u2013189\u5E27\u3002\u626B\u63CF\u6A2A\u8DE8912\u5BBD\u5EA6\uFF1B\u5F52\u4E00\u8FDB\u5EA60.65\u20130.77\uFF0C\u7B2C\u4E8C\u9879\u53F3\u79FB1080\u5E76\u6DE1\u51FA\uFF0C\u7B2C\u4E09\u9879\u540C\u65F6\u5411\u4E0A168\uFF1B0.74\u20130.87\u4FDD\u7559\u5361\u7247\u4ECE912\u7F29\u5230400\u5BBD\u3002"
-            ]
-          },
-          aliases: [
-            "\u626B\u63CF\u5254\u9664\u4E0E\u8865\u4F4D",
-            "\u626B\u63CF\u7EBF\u68C0\u67E5\u4E09\u6761\u7ED3\u679C\uFF0C\u5E72\u6270\u9879\u9000\u51FA\uFF0C\u7B2C\u4E09\u9879\u5411\u4E0A\u8865\u4F4D\u3002"
-          ]
-        },
-        {
-          loop: false,
-          default_ease: "linear",
-          parameters: {
-            speed: {
-              label: "\u64AD\u653E\u901F\u5EA6",
-              default: 1,
-              min: 0.5,
-              max: 2,
-              step: 0.25
-            }
-          },
-          demo_mode: "fixed-timeline",
-          timing: null,
-          content_slots: [],
-          layer: "own-background",
-          domains: [
-            "animation",
-            "document"
-          ],
-          trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
-          assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
-          id: "deepseek-tracks",
-          label: "\u521B\u4F5C\u5361\u7247\u53D8\u526A\u8F91\u8F68\u9053",
-          summary: "\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5361\u4FDD\u6301\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u62C9\u5BBD\u5E76\u53D8\u6210\u526A\u8F91\u8F68\u9053\u3002",
-          purpose: "\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5361\u4FDD\u6301\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u62C9\u5BBD\u5E76\u53D8\u6210\u526A\u8F91\u8F68\u9053\u3002",
-          objects: "\u521B\u4F5C\u5361\u7247\u53D8\u526A\u8F91\u8F68\u9053",
-          phases: [
-            "\u6309\u56FA\u5B9A\u5E27\u5B9A\u4F4D\u539F\u59CB\u8D77\u70B9\u3002",
-            "\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5361\u4FDD\u6301\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u62C9\u5BBD\u5E76\u53D8\u6210\u526A\u8F91\u8F68\u9053\u3002",
-            "\u4FDD\u7559\u539F\u52A8\u4F5C\u672B\u5E27\uFF0C\u91CD\u64AD\u56DE\u5230\u540C\u4E00\u8D77\u70B9\u3002"
-          ],
-          retain: "\u622A\u53D6\u539F90\u2013205\u5E27\u3002\u539F95\u2013122\u5E27\uFF0C\u5361\u7247\u4ECE(728,554+170i)\u548C268\xD7112\u8FDE\u7EED\u79FB\u5230(184,806+88i)\u548C712\xD768\uFF1B\u5185\u90E8\u6587\u5B57\u3001\u955C\u5934\u7F29\u7565\u56FE\u3001\u6CE2\u5F62\u4E5F\u968F\u540C\u4E00\u8FDB\u5EA6\u91CD\u6392\u3002",
-          avoid: "\u4E0D\u6253\u65AD\u5BF9\u8C61\u8FDE\u7EED\u53D8\u5316\uFF0C\u4E0D\u6539\u53D8\u539F\u51E0\u4F55\u548C\u5E27\u8282\u594F\u3002",
-          duration_ms: 3866.6666666666665,
-          preview_ms: 2566.666666666667,
-          source: {
-            path: "catalog/effects/deepseek-review.js",
-            factory: "deepseek-creative-tracks",
-            origin: "original",
-            license: "Apache-2.0",
-            library: "remotion@4.0.532",
-            assets: [
-              "catalog/fonts/SourceHanSansSC-Light.woff2",
-              "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "catalog/assets/deepseek-review/SOURCE.json",
-              "catalog/assets/deepseek-review/README.md"
-            ],
-            reference: {
-              name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
-            },
-            extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
-            remotion: {
-              component: "catalog/remotion/deepseek-review/index.jsx",
-              export_name: "WiseReviewMotion",
-              package_name: "wise-review-motion",
-              files: [
-                "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S3Pareto.tsx",
-                "catalog/remotion/deepseek-review/S5Search.tsx",
-                "catalog/remotion/deepseek-review/Scene.jsx",
-                "catalog/remotion/deepseek-review/SceneShell.tsx",
-                "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/fonts.js",
-                "catalog/remotion/deepseek-review/index.jsx",
-                "catalog/remotion/deepseek-review/theme.ts",
-                "catalog/remotion/deepseek-review/timing.js",
-                "catalog/assets/deepseek-review/SOURCE.json",
-                "catalog/assets/deepseek-review/AUDIO.json",
-                "catalog/assets/deepseek-review/README.md",
-                "catalog/assets/deepseek-review/verify-source.mjs",
-                "LICENSE",
-                "catalog/fonts/OFL.txt",
-                "catalog/fonts/OFL-Oswald.txt",
-                "catalog/assets/reel-extract/React-LICENSE.txt",
-                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-                "catalog/remotion/binary-assets-installer.mjs"
-              ],
-              packages: {
-                remotion: "4.0.532",
-                "@remotion/cli": "4.0.532",
-                react: "19.3.0",
-                "react-dom": "19.3.0"
-              },
-              width: 840,
-              height: 790,
-              fps: 30,
-              exact_frames: true,
-              reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
-              binary_files: [
-                {
-                  source: "catalog/fonts/SourceHanSansSC-Light.woff2",
-                  target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-                  bytes: 11128356,
-                  sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-                },
-                {
-                  source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  bytes: 12816312,
-                  sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-                },
-                {
-                  source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  bytes: 108496,
-                  sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-                }
-              ],
-              asset_installer: "catalog/remotion/binary-assets-installer.mjs",
-              scripts: {
-                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-              }
-            },
-            license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
-          },
-          actions: [],
-          audio: null,
-          recommendation: "\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5361\u4FDD\u6301\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u62C9\u5BBD\u5E76\u53D8\u6210\u526A\u8F91\u8F68\u9053\u3002\uFF1B\u9700\u8981\u539F\u7247\u8FD9\u79CD\u7EC4\u5408\u5173\u7CFB\u65F6\u9009\u62E9\u6B64\u793A\u4F8B\u3002",
-          tempo_note: "\u630930\u5E27\u65F6\u949F\u64AD\u653E\uFF0C\u5171116\u5E27\u3002",
-          reproduction: {
-            objects: "\u521B\u4F5C\u5361\u7247\u53D8\u526A\u8F91\u8F68\u9053",
-            presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002\u6B64\u793A\u4F8B\u53EA\u88C1\u51FA840\xD7790\u56FE\u5F62\u8303\u56F4\uFF0C\u4E0D\u6539\u539F\u56FE\u5F62\u5750\u6807\u3002",
-            phases: [
-              "\u663E\u793A\u539F\u52A8\u4F5C\u8D77\u70B9\u3002",
-              "\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5361\u4FDD\u6301\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u62C9\u5BBD\u5E76\u53D8\u6210\u526A\u8F91\u8F68\u9053\u3002",
-              "\u4FDD\u6301\u7ED3\u675F\u59FF\u6001\u3002"
-            ],
-            retain: "\u622A\u53D6\u539F90\u2013205\u5E27\u3002\u539F95\u2013122\u5E27\uFF0C\u5361\u7247\u4ECE(728,554+170i)\u548C268\xD7112\u8FDE\u7EED\u79FB\u5230(184,806+88i)\u548C712\xD768\uFF1B\u5185\u90E8\u6587\u5B57\u3001\u955C\u5934\u7F29\u7565\u56FE\u3001\u6CE2\u5F62\u4E5F\u968F\u540C\u4E00\u8FDB\u5EA6\u91CD\u6392\u3002",
-            avoid: "\u4E0D\u4EE5\u65B0\u4E00\u6279\u5143\u7D20\u66FF\u6362\u6B63\u5728\u8FD0\u52A8\u7684\u5143\u7D20\u3002",
-            details: [
-              "\u622A\u53D6\u539F90\u2013205\u5E27\u3002\u539F95\u2013122\u5E27\uFF0C\u5361\u7247\u4ECE(728,554+170i)\u548C268\xD7112\u8FDE\u7EED\u79FB\u5230(184,806+88i)\u548C712\xD768\uFF1B\u5185\u90E8\u6587\u5B57\u3001\u955C\u5934\u7F29\u7565\u56FE\u3001\u6CE2\u5F62\u4E5F\u968F\u540C\u4E00\u8FDB\u5EA6\u91CD\u6392\u3002"
-            ]
-          },
-          aliases: [
-            "\u521B\u4F5C\u5361\u7247\u53D8\u526A\u8F91\u8F68\u9053",
-            "\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5361\u4FDD\u6301\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u62C9\u5BBD\u5E76\u53D8\u6210\u526A\u8F91\u8F68\u9053\u3002"
-          ]
-        }
-      ]
+      }
     },
     {
       id: "column-to-row",
@@ -75747,380 +75166,6 @@ var registry_default = {
         "document"
       ],
       trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
-      assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
-      id: "search-filter-delivery",
-      name: "\u641C\u7D22\u7B5B\u9009\u4E0E\u9012\u9001",
-      kind: "composition",
-      category: "composition-interface",
-      summary: "\u641C\u7D22\u6846\u8F93\u5165\u5173\u952E\u8BCD\uFF0C\u4E09\u6761\u7ED3\u679C\u4F9D\u6B21\u6ED1\u5165\u3002\u626B\u63CF\u7ED3\u679C\uFF0C\u5212\u9664\u5E72\u6270\u9879\u5E76\u79FB\u51FA\uFF0C\u5176\u4F59\u6761\u76EE\u5411\u4E0A\u8865\u4F4D\u3002\u4FDD\u7559\u7684\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001\u5230\u6A21\u578B\uFF0C\u76EE\u6807\u6846\u63A5\u6536\u4E24\u9879\u5185\u5BB9\u3002",
-      purpose: "\u5C55\u793A\u68C0\u7D22\u5185\u5BB9\u5982\u4F55\u7ECF\u8FC7\u7B5B\u9009\u540E\u8FDB\u5165\u4E0B\u4E00\u6B65\uFF0C\u9002\u5408\u89E3\u91CA\u641C\u7D22\u8FC7\u6EE4\u548C\u8D44\u6599\u6574\u7406\u3002",
-      objects: "\u641C\u7D22\u6846\u3001\u4E09\u6761\u7ED3\u679C\u3001\u626B\u63CF\u7EBF\u3001\u4E24\u4E2A\u6587\u6863\u4E0E\u6A21\u578B\u63A5\u6536\u6846",
-      phases: [
-        "\u641C\u7D22\u6846\u8F93\u5165\u5173\u952E\u8BCD\uFF0C\u4E09\u6761\u7ED3\u679C\u4F9D\u6B21\u6ED1\u5165\u3002",
-        "\u626B\u63CF\u7ED3\u679C\uFF0C\u5212\u9664\u5E72\u6270\u9879\u5E76\u79FB\u51FA\uFF0C\u5176\u4F59\u6761\u76EE\u5411\u4E0A\u8865\u4F4D\u3002",
-        "\u4FDD\u7559\u7684\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001\u5230\u6A21\u578B\uFF0C\u76EE\u6807\u6846\u63A5\u6536\u4E24\u9879\u5185\u5BB9\u3002"
-      ],
-      aliases: [
-        "\u641C\u7D22\u8FC7\u6EE4",
-        "GEO",
-        "\u641C\u7D22\u626B\u63CF",
-        "\u5254\u9664\u5E72\u6270\u9879",
-        "\u6709\u6548\u5185\u5BB9\u9012\u9001\u7ED9\u6A21\u578B"
-      ],
-      behaviors: [
-        "sequence",
-        "reveal",
-        "layout"
-      ],
-      retain: "\u7B2C0\u201370\u5E27\u6807\u9898\u4ECE\u4E2D\u592E\u4E0A\u79FB\uFF1B\u7B2C58\u201395\u5E27\u8F93\u5165\uFF1B\u7ED3\u679C\u7B2C104\u5E27\u5F00\u59CB\u51FA\u73B0\uFF0C122\u2013158\u5E27\u626B\u63CF\uFF0C158\u2013187\u5E27\u5254\u9664\uFF0C180\u2013211\u5E27\u7F29\u7A84\uFF0C199\u2013241\u5E27\u6CBF\u66F2\u7EBF\u9012\u9001\u3002",
-      avoid: "\u4E0D\u4EE5\u6574\u9875\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u8FDE\u7EED\u52A8\u4F5C\uFF0C\u4E0D\u63D0\u524D\u79FB\u52A8\u6807\u9898\u8BA9\u4F4D\uFF0C\u4E0D\u6539\u53D8\u6570\u636E\u4E0E\u51E0\u4F55\u6BD4\u4F8B\u3002",
-      duration_ms: 8133.333333333333,
-      preview_ms: 7666.666666666667,
-      source: {
-        path: "catalog/effects/deepseek-review.js",
-        factory: "search-filter-delivery",
-        origin: "original",
-        license: "Apache-2.0",
-        library: "remotion@4.0.532",
-        assets: [
-          "catalog/fonts/SourceHanSansSC-Light.woff2",
-          "catalog/fonts/SourceHanSansSC-Bold.woff2",
-          "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-          "catalog/assets/deepseek-review/search.wav",
-          "catalog/assets/deepseek-review/closing.wav",
-          "catalog/assets/deepseek-review/SOURCE.json",
-          "catalog/assets/deepseek-review/README.md"
-        ],
-        reference: {
-          name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
-        },
-        extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
-        remotion: {
-          component: "catalog/remotion/deepseek-review/index.jsx",
-          export_name: "WiseReviewMotion",
-          package_name: "wise-review-motion",
-          files: [
-            "catalog/remotion/deepseek-review/S13Closing.tsx",
-            "catalog/remotion/deepseek-review/S3Pareto.tsx",
-            "catalog/remotion/deepseek-review/S5Search.tsx",
-            "catalog/remotion/deepseek-review/Scene.jsx",
-            "catalog/remotion/deepseek-review/SceneShell.tsx",
-            "catalog/remotion/deepseek-review/anim.ts",
-            "catalog/remotion/deepseek-review/fonts.js",
-            "catalog/remotion/deepseek-review/index.jsx",
-            "catalog/remotion/deepseek-review/theme.ts",
-            "catalog/remotion/deepseek-review/timing.js",
-            "catalog/assets/deepseek-review/SOURCE.json",
-            "catalog/assets/deepseek-review/AUDIO.json",
-            "catalog/assets/deepseek-review/README.md",
-            "catalog/assets/deepseek-review/verify-source.mjs",
-            "LICENSE",
-            "catalog/fonts/OFL.txt",
-            "catalog/fonts/OFL-Oswald.txt",
-            "catalog/assets/reel-extract/React-LICENSE.txt",
-            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-            "catalog/remotion/binary-assets-installer.mjs"
-          ],
-          packages: {
-            remotion: "4.0.532",
-            "@remotion/cli": "4.0.532",
-            react: "19.3.0",
-            "react-dom": "19.3.0"
-          },
-          width: 1080,
-          height: 1440,
-          fps: 30,
-          exact_frames: true,
-          reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
-          binary_files: [
-            {
-              source: "catalog/fonts/SourceHanSansSC-Light.woff2",
-              target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-              bytes: 11128356,
-              sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-            },
-            {
-              source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-              bytes: 12816312,
-              sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-            },
-            {
-              source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              bytes: 108496,
-              sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-            },
-            {
-              source: "catalog/assets/deepseek-review/search.wav",
-              target: "public/catalog/assets/deepseek-review/search.wav",
-              bytes: 1561678,
-              sha256: "24541bb2444ea264e705d93836ca9bb60583975cfbc17e2180c2cd619f9bd239"
-            },
-            {
-              source: "catalog/assets/deepseek-review/closing.wav",
-              target: "public/catalog/assets/deepseek-review/closing.wav",
-              bytes: 1318478,
-              sha256: "fd2a190225fe546ceac48efbde1b54800e8b617502b507aa0890cf1f4207872e"
-            }
-          ],
-          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
-          scripts: {
-            "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-          }
-        },
-        license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
-      },
-      actions: [
-        "stagger-in",
-        "layout-reorder",
-        "curve-path"
-      ],
-      action_variants: {
-        "stagger-in": "deepseek-results",
-        "layout-reorder": "deepseek-filter",
-        "curve-path": "deepseek-delivery"
-      },
-      analogy: "\u641C\u7D22\u6846\u8F93\u5165\u5173\u952E\u8BCD\uFF0C\u4E09\u6761\u7ED3\u679C\u4F9D\u6B21\u6ED1\u5165\u3002\u626B\u63CF\u7ED3\u679C\uFF0C\u5212\u9664\u5E72\u6270\u9879\u5E76\u79FB\u51FA\uFF0C\u5176\u4F59\u6761\u76EE\u5411\u4E0A\u8865\u4F4D\u3002\u4FDD\u7559\u7684\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001\u5230\u6A21\u578B\uFF0C\u76EE\u6807\u6846\u63A5\u6536\u4E24\u9879\u5185\u5BB9\u3002",
-      tempo_note: "244\u5E27\uFF0C\u6BCF\u79D230\u5E27\uFF1B\u901F\u5EA6\u6574\u4F53\u8C03\u6574\uFF0C\u4FDD\u7559\u5185\u90E8\u5148\u540E\u3002",
-      recommendation: "\u5C55\u793A\u68C0\u7D22\u5185\u5BB9\u5982\u4F55\u7ECF\u8FC7\u7B5B\u9009\u540E\u8FDB\u5165\u4E0B\u4E00\u6B65\uFF0C\u9002\u5408\u89E3\u91CA\u641C\u7D22\u8FC7\u6EE4\u548C\u8D44\u6599\u6574\u7406\u3002",
-      audio: {
-        tracks: [
-          {
-            src: "catalog/assets/deepseek-review/search.wav",
-            name: "\u539F\u7247\u65C1\u767D\u3001\u97F3\u4E50\u4E0E\u573A\u5185\u97F3\u6548",
-            start_ms: 0,
-            offset_ms: 0,
-            duration_ms: 8133.333333333333,
-            volume: 1,
-            rate: 1,
-            fade_in_ms: 0,
-            fade_out_ms: 0
-          }
-        ]
-      },
-      reproduction: {
-        objects: "\u641C\u7D22\u6846\u3001\u4E09\u6761\u7ED3\u679C\u3001\u626B\u63CF\u7EBF\u3001\u4E24\u4E2A\u6587\u6863\u4E0E\u6A21\u578B\u63A5\u6536\u6846",
-        presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002",
-        phases: [
-          "\u641C\u7D22\u6846\u8F93\u5165\u5173\u952E\u8BCD\uFF0C\u4E09\u6761\u7ED3\u679C\u4F9D\u6B21\u6ED1\u5165\u3002",
-          "\u626B\u63CF\u7ED3\u679C\uFF0C\u5212\u9664\u5E72\u6270\u9879\u5E76\u79FB\u51FA\uFF0C\u5176\u4F59\u6761\u76EE\u5411\u4E0A\u8865\u4F4D\u3002",
-          "\u4FDD\u7559\u7684\u6587\u6863\u6CBF\u66F2\u7EBF\u9012\u9001\u5230\u6A21\u578B\uFF0C\u76EE\u6807\u6846\u63A5\u6536\u4E24\u9879\u5185\u5BB9\u3002"
-        ],
-        retain: "\u7B2C0\u201370\u5E27\u6807\u9898\u4ECE\u4E2D\u592E\u4E0A\u79FB\uFF1B\u7B2C58\u201395\u5E27\u8F93\u5165\uFF1B\u7ED3\u679C\u7B2C104\u5E27\u5F00\u59CB\u51FA\u73B0\uFF0C122\u2013158\u5E27\u626B\u63CF\uFF0C158\u2013187\u5E27\u5254\u9664\uFF0C180\u2013211\u5E27\u7F29\u7A84\uFF0C199\u2013241\u5E27\u6CBF\u66F2\u7EBF\u9012\u9001\u3002",
-        avoid: "\u540C\u4E00\u5BF9\u8C61\u8FDE\u7EED\u8FD0\u52A8\uFF0C\u4E0D\u80FD\u9500\u6BC1\u518D\u6DE1\u5165\uFF1B\u630930\u5E27\u6E90\u65F6\u949F\u5B9A\u4F4D\u3002",
-        details: [
-          "\u7B2C0\u201370\u5E27\u6807\u9898\u4ECE\u4E2D\u592E\u4E0A\u79FB\uFF1B\u7B2C58\u201395\u5E27\u8F93\u5165\uFF1B\u7ED3\u679C\u7B2C104\u5E27\u5F00\u59CB\u51FA\u73B0\uFF0C122\u2013158\u5E27\u626B\u63CF\uFF0C158\u2013187\u5E27\u5254\u9664\uFF0C180\u2013211\u5E27\u7F29\u7A84\uFF0C199\u2013241\u5E27\u6CBF\u66F2\u7EBF\u9012\u9001\u3002"
-        ]
-      }
-    },
-    {
-      loop: false,
-      default_ease: "linear",
-      parameters: {
-        speed: {
-          label: "\u64AD\u653E\u901F\u5EA6",
-          default: 1,
-          min: 0.5,
-          max: 2,
-          step: 0.25
-        }
-      },
-      demo_mode: "fixed-timeline",
-      timing: null,
-      content_slots: [],
-      layer: "own-background",
-      domains: [
-        "animation",
-        "document"
-      ],
-      trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
-      assumptions: "\u4FDD\u7559\u7528\u6237\u63D0\u4F9B\u7684\u539F\u793A\u4F8B\uFF1B\u6A21\u578B\u4E0E\u8BC4\u6D4B\u5185\u5BB9\u4E0D\u4F5C\u4E3A\u5F53\u524D\u4E8B\u5B9E\u6838\u9A8C\u7ED3\u8BBA\uFF0C\u66F2\u7EBF\u4E3A\u89E3\u91CA\u6027\u793A\u610F\u3002\u539F\u5DE5\u7A0B\u4E0D\u4FEE\u6539\u3002",
-      id: "creative-cards-to-tracks",
-      name: "\u5361\u7247\u53D8\u6210\u526A\u8F91\u8F68\u9053",
-      kind: "composition",
-      category: "composition-interface",
-      summary: "\u6295\u5165\u8FDB\u5165\u6A21\u578B\uFF0C\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5F20\u5361\u7247\u4F9D\u6B21\u51FA\u73B0\u3002\u4FDD\u6301\u4E09\u5F20\u5361\u7247\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u79FB\u4F4D\u5E76\u62C9\u5BBD\u4E3A\u4E09\u6761\u526A\u8F91\u8F68\u9053\u3002\u9884\u89C8\u753B\u9762\u8FD0\u52A8\uFF0C\u64AD\u653E\u5934\u7A7F\u8FC7\u4E09\u6761\u8F68\u9053\uFF0C\u5B8C\u6210\u6807\u8BB0\u6536\u675F\u3002",
-      purpose: "\u5C55\u793A\u591A\u4E2A\u521B\u4F5C\u80FD\u529B\u5982\u4F55\u6C47\u6210\u4E00\u4EFD\u4F5C\u54C1\uFF1B\u9002\u5408\u8BB2\u8FF0\u5267\u672C\u3001\u955C\u5934\u548C\u58F0\u97F3\u7684\u534F\u540C\u3002",
-      objects: "\u6295\u5165\u7B26\u53F7\u3001\u6A21\u578B\u3001\u4E09\u5F20\u8F93\u51FA\u5361\u3001\u526A\u8F91\u7A97\u53E3\u3001\u64AD\u653E\u5934",
-      phases: [
-        "\u6295\u5165\u8FDB\u5165\u6A21\u578B\uFF0C\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5F20\u5361\u7247\u4F9D\u6B21\u51FA\u73B0\u3002",
-        "\u4FDD\u6301\u4E09\u5F20\u5361\u7247\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u79FB\u4F4D\u5E76\u62C9\u5BBD\u4E3A\u4E09\u6761\u526A\u8F91\u8F68\u9053\u3002",
-        "\u9884\u89C8\u753B\u9762\u8FD0\u52A8\uFF0C\u64AD\u653E\u5934\u7A7F\u8FC7\u4E09\u6761\u8F68\u9053\uFF0C\u5B8C\u6210\u6807\u8BB0\u6536\u675F\u3002"
-      ],
-      aliases: [
-        "\u5267\u672C\u955C\u5934\u58F0\u97F3",
-        "\u521B\u4F5C\u6D41\u7A0B",
-        "\u5361\u7247\u53D8\u8F68\u9053",
-        "\u8FDE\u7EED\u53D8\u6210\u526A\u8F91\u8F68\u9053",
-        "\u526A\u8F91\u65F6\u95F4\u7EBF"
-      ],
-      behaviors: [
-        "sequence",
-        "reveal",
-        "layout"
-      ],
-      retain: "\u4FDD\u7559\u539F\u65C1\u767D\u8282\u70B963/97/138\u5E27\uFF1B\u7B2C95\u2013122\u5E27\u4E09\u5361\u4F4D\u7F6E\u4E0E\u5C3A\u5BF8\u5171\u7528\u540C\u4E00\u5E73\u6ED1\u8FDB\u5EA6\uFF0C\u4ECE(728,554+170i)\u548C268\xD7112\u53D8\u4E3A(184,806+88i)\u548C712\xD768\uFF1B\u64AD\u653E\u5934\u7B2C140\u2013174\u5E27\u5411\u53F3\u63A8\u8FDB\u3002",
-      avoid: "\u4E0D\u4EE5\u6574\u9875\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u8FDE\u7EED\u52A8\u4F5C\uFF0C\u4E0D\u63D0\u524D\u79FB\u52A8\u6807\u9898\u8BA9\u4F4D\uFF0C\u4E0D\u6539\u53D8\u6570\u636E\u4E0E\u51E0\u4F55\u6BD4\u4F8B\u3002",
-      duration_ms: 6866.666666666666,
-      preview_ms: 5566.666666666666,
-      source: {
-        path: "catalog/effects/deepseek-review.js",
-        factory: "creative-cards-to-tracks",
-        origin: "original",
-        license: "Apache-2.0",
-        library: "remotion@4.0.532",
-        assets: [
-          "catalog/fonts/SourceHanSansSC-Light.woff2",
-          "catalog/fonts/SourceHanSansSC-Bold.woff2",
-          "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-          "catalog/assets/deepseek-review/search.wav",
-          "catalog/assets/deepseek-review/closing.wav",
-          "catalog/assets/deepseek-review/SOURCE.json",
-          "catalog/assets/deepseek-review/README.md"
-        ],
-        reference: {
-          name: "\u7528\u6237\u63D0\u4F9B\u7684 DeepSeek \u6D4B\u8BC4\u89C6\u9891\u7ED8\u5236\u6E90\u7801"
-        },
-        extraction: "\u4FDD\u7559\u539F\u753B\u677F\u3001\u5B57\u4F53\u3001\u56FE\u5F62\u4E0E30\u5E27\u65F6\u949F\uFF1B\u72EC\u7ACB\u52A8\u4F5C\u6309\u53D6\u666F\u8303\u56F4\u590D\u7528\u76F8\u540C\u7EC4\u4EF6\u3002",
-        remotion: {
-          component: "catalog/remotion/deepseek-review/index.jsx",
-          export_name: "WiseReviewMotion",
-          package_name: "wise-review-motion",
-          files: [
-            "catalog/remotion/deepseek-review/S13Closing.tsx",
-            "catalog/remotion/deepseek-review/S3Pareto.tsx",
-            "catalog/remotion/deepseek-review/S5Search.tsx",
-            "catalog/remotion/deepseek-review/Scene.jsx",
-            "catalog/remotion/deepseek-review/SceneShell.tsx",
-            "catalog/remotion/deepseek-review/anim.ts",
-            "catalog/remotion/deepseek-review/fonts.js",
-            "catalog/remotion/deepseek-review/index.jsx",
-            "catalog/remotion/deepseek-review/theme.ts",
-            "catalog/remotion/deepseek-review/timing.js",
-            "catalog/assets/deepseek-review/SOURCE.json",
-            "catalog/assets/deepseek-review/AUDIO.json",
-            "catalog/assets/deepseek-review/README.md",
-            "catalog/assets/deepseek-review/verify-source.mjs",
-            "LICENSE",
-            "catalog/fonts/OFL.txt",
-            "catalog/fonts/OFL-Oswald.txt",
-            "catalog/assets/reel-extract/React-LICENSE.txt",
-            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-            "catalog/remotion/binary-assets-installer.mjs"
-          ],
-          packages: {
-            remotion: "4.0.532",
-            "@remotion/cli": "4.0.532",
-            react: "19.3.0",
-            "react-dom": "19.3.0"
-          },
-          width: 1080,
-          height: 1440,
-          fps: 30,
-          exact_frames: true,
-          reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
-          binary_files: [
-            {
-              source: "catalog/fonts/SourceHanSansSC-Light.woff2",
-              target: "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-              bytes: 11128356,
-              sha256: "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-            },
-            {
-              source: "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              target: "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-              bytes: 12816312,
-              sha256: "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-            },
-            {
-              source: "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              target: "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              bytes: 108496,
-              sha256: "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-            },
-            {
-              source: "catalog/assets/deepseek-review/search.wav",
-              target: "public/catalog/assets/deepseek-review/search.wav",
-              bytes: 1561678,
-              sha256: "24541bb2444ea264e705d93836ca9bb60583975cfbc17e2180c2cd619f9bd239"
-            },
-            {
-              source: "catalog/assets/deepseek-review/closing.wav",
-              target: "public/catalog/assets/deepseek-review/closing.wav",
-              bytes: 1318478,
-              sha256: "fd2a190225fe546ceac48efbde1b54800e8b617502b507aa0890cf1f4207872e"
-            }
-          ],
-          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
-          scripts: {
-            "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-          }
-        },
-        license_note: "Remotion\u3001React\u3001\u539F\u914D\u97F3\u4E0E\u5B57\u4F53\u4FDD\u7559\u5404\u81EA\u6743\u5229\uFF0C\u8BE6\u89C1\u968F\u5305\u6765\u6E90\u8BF4\u660E"
-      },
-      actions: [
-        "layout-reorder"
-      ],
-      action_variants: {
-        "layout-reorder": "deepseek-tracks"
-      },
-      analogy: "\u6295\u5165\u8FDB\u5165\u6A21\u578B\uFF0C\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5F20\u5361\u7247\u4F9D\u6B21\u51FA\u73B0\u3002\u4FDD\u6301\u4E09\u5F20\u5361\u7247\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u79FB\u4F4D\u5E76\u62C9\u5BBD\u4E3A\u4E09\u6761\u526A\u8F91\u8F68\u9053\u3002\u9884\u89C8\u753B\u9762\u8FD0\u52A8\uFF0C\u64AD\u653E\u5934\u7A7F\u8FC7\u4E09\u6761\u8F68\u9053\uFF0C\u5B8C\u6210\u6807\u8BB0\u6536\u675F\u3002",
-      tempo_note: "206\u5E27\uFF0C\u6BCF\u79D230\u5E27\uFF1B\u901F\u5EA6\u6574\u4F53\u8C03\u6574\uFF0C\u4FDD\u7559\u5185\u90E8\u5148\u540E\u3002",
-      recommendation: "\u5C55\u793A\u591A\u4E2A\u521B\u4F5C\u80FD\u529B\u5982\u4F55\u6C47\u6210\u4E00\u4EFD\u4F5C\u54C1\uFF1B\u9002\u5408\u8BB2\u8FF0\u5267\u672C\u3001\u955C\u5934\u548C\u58F0\u97F3\u7684\u534F\u540C\u3002",
-      audio: {
-        tracks: [
-          {
-            src: "catalog/assets/deepseek-review/closing.wav",
-            name: "\u539F\u7247\u65C1\u767D\u3001\u97F3\u4E50\u4E0E\u573A\u5185\u97F3\u6548",
-            start_ms: 0,
-            offset_ms: 0,
-            duration_ms: 6866.666666666666,
-            volume: 1,
-            rate: 1,
-            fade_in_ms: 0,
-            fade_out_ms: 0
-          }
-        ]
-      },
-      reproduction: {
-        objects: "\u6295\u5165\u7B26\u53F7\u3001\u6A21\u578B\u3001\u4E09\u5F20\u8F93\u51FA\u5361\u3001\u526A\u8F91\u7A97\u53E3\u3001\u64AD\u653E\u5934",
-        presentation: "\u539F\u903B\u8F91\u753B\u677F1080\xD71440\uFF0C\u767D\u5E95#FFFFFF\uFF0C\u6587\u5B57#0B0B12\uFF0C\u5F3A\u8C03\u84DD#4D6BFE\uFF0C\u8F85\u52A9\u7EBFrgba(11,11,18,0.16)\u3002\u4E3B\u6807\u989872\u3001\u6B21\u6807\u989848\u3001\u6B63\u658732\u3001\u6807\u6CE824\u3001\u4E3B\u6570\u5B57192\uFF1B\u4E2D\u6587\u975E\u7C97\u4F53\u7528\u601D\u6E90\u9ED1\u4F53Light\uFF0C\u82F1\u6587\u53CA\u6570\u5B57\u7528Oswald Bold\u3002\u7B49\u6BD4\u5BB9\u7EB3\uFF0C\u4E0D\u80FD\u62C9\u4F38\u3002",
-        phases: [
-          "\u6295\u5165\u8FDB\u5165\u6A21\u578B\uFF0C\u5267\u672C\u3001\u955C\u5934\u3001\u58F0\u97F3\u4E09\u5F20\u5361\u7247\u4F9D\u6B21\u51FA\u73B0\u3002",
-          "\u4FDD\u6301\u4E09\u5F20\u5361\u7247\u8EAB\u4EFD\uFF0C\u8FDE\u7EED\u79FB\u4F4D\u5E76\u62C9\u5BBD\u4E3A\u4E09\u6761\u526A\u8F91\u8F68\u9053\u3002",
-          "\u9884\u89C8\u753B\u9762\u8FD0\u52A8\uFF0C\u64AD\u653E\u5934\u7A7F\u8FC7\u4E09\u6761\u8F68\u9053\uFF0C\u5B8C\u6210\u6807\u8BB0\u6536\u675F\u3002"
-        ],
-        retain: "\u4FDD\u7559\u539F\u65C1\u767D\u8282\u70B963/97/138\u5E27\uFF1B\u7B2C95\u2013122\u5E27\u4E09\u5361\u4F4D\u7F6E\u4E0E\u5C3A\u5BF8\u5171\u7528\u540C\u4E00\u5E73\u6ED1\u8FDB\u5EA6\uFF0C\u4ECE(728,554+170i)\u548C268\xD7112\u53D8\u4E3A(184,806+88i)\u548C712\xD768\uFF1B\u64AD\u653E\u5934\u7B2C140\u2013174\u5E27\u5411\u53F3\u63A8\u8FDB\u3002",
-        avoid: "\u540C\u4E00\u5BF9\u8C61\u8FDE\u7EED\u8FD0\u52A8\uFF0C\u4E0D\u80FD\u9500\u6BC1\u518D\u6DE1\u5165\uFF1B\u630930\u5E27\u6E90\u65F6\u949F\u5B9A\u4F4D\u3002",
-        details: [
-          "\u4FDD\u7559\u539F\u65C1\u767D\u8282\u70B963/97/138\u5E27\uFF1B\u7B2C95\u2013122\u5E27\u4E09\u5361\u4F4D\u7F6E\u4E0E\u5C3A\u5BF8\u5171\u7528\u540C\u4E00\u5E73\u6ED1\u8FDB\u5EA6\uFF0C\u4ECE(728,554+170i)\u548C268\xD7112\u53D8\u4E3A(184,806+88i)\u548C712\xD768\uFF1B\u64AD\u653E\u5934\u7B2C140\u2013174\u5E27\u5411\u53F3\u63A8\u8FDB\u3002"
-        ]
-      }
-    },
-    {
-      loop: false,
-      default_ease: "linear",
-      parameters: {
-        speed: {
-          label: "\u64AD\u653E\u901F\u5EA6",
-          default: 1,
-          min: 0.5,
-          max: 2,
-          step: 0.25
-        }
-      },
-      demo_mode: "fixed-timeline",
-      timing: null,
-      content_slots: [],
-      layer: "own-background",
-      domains: [
-        "animation",
-        "document"
-      ],
-      trigger: "\u6309\u56FA\u5B9A\u65F6\u95F4\u987A\u5E8F\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u548C\u4EFB\u610F\u5B9A\u4F4D\u3002",
       assumptions: "\u66F2\u7EBF\u7528\u4E8E\u8BF4\u660E\u6027\u80FD\u4E0E\u5F00\u9500\u7684\u5173\u7CFB\uFF0C\u5750\u6807\u4E0D\u662F\u5B9E\u6D4B\u6570\u636E\u3002",
       id: "pareto-efficiency-sequence",
       name: "\u6027\u80FD\u5F00\u9500\u66F2\u7EBF\u5BF9\u6BD4",
@@ -76176,18 +75221,13 @@ var registry_default = {
           export_name: "WiseReviewMotion",
           package_name: "wise-review-motion",
           files: [
-            "catalog/remotion/deepseek-review/S13Closing.tsx",
             "catalog/remotion/deepseek-review/S3Pareto.tsx",
-            "catalog/remotion/deepseek-review/S5Search.tsx",
             "catalog/remotion/deepseek-review/Scene.jsx",
-            "catalog/remotion/deepseek-review/SceneShell.tsx",
             "catalog/remotion/deepseek-review/anim.ts",
             "catalog/remotion/deepseek-review/fonts.js",
             "catalog/remotion/deepseek-review/index.jsx",
             "catalog/remotion/deepseek-review/theme.ts",
-            "catalog/remotion/deepseek-review/timing.js",
             "catalog/assets/deepseek-review/SOURCE.json",
-            "catalog/assets/deepseek-review/AUDIO.json",
             "catalog/assets/deepseek-review/README.md",
             "catalog/assets/deepseek-review/verify-source.mjs",
             "LICENSE",
@@ -76208,7 +75248,7 @@ var registry_default = {
           height: 652,
           fps: 30,
           exact_frames: true,
-          reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u5B8C\u6574\u7EC4\u5408\u542B\u539F\u7247\u914D\u97F3\u3001\u5BF9\u5E94\u97F3\u4E50\u53CA\u641C\u7D22\u97F3\u6548\uFF0C\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
+          reuse_notes: "\u539F\u7ED8\u5236\u4E0E\u65F6\u95F4\u53C2\u6570\u76F4\u63A5\u4FDD\u7559\uFF1B\u4E2D\u6587\u4F7F\u7528\u601D\u6E90\u9ED1\u4F53 Light / Bold\uFF0C\u82F1\u6587\u4E0E\u6570\u5B57\u4F7F\u7528\u539F Oswald Bold\u3002\u5B57\u4F53\u968F\u5DE5\u7A0B\u4EA4\u4ED8\u3002\u72EC\u7ACB\u52A8\u4F5C\u65E0\u58F0\uFF1B\u6CA1\u6709\u5728\u7EBF\u7D20\u6750\u8BF7\u6C42\u3002\u6309\u5F53\u524D\u5E27\u91CD\u7B97\u5168\u90E8\u59FF\u6001\uFF0C\u53EF\u4EFB\u610F\u5B9A\u4F4D\u4E0E\u91CD\u64AD\u3002\u9ED8\u8BA4 effectId \u4E0E variantId \u5BF9\u5E94\u6240\u9009\u6761\u76EE\uFF0Cspeed \u53EF\u8C030.5\u20132\uFF1B\u56FE\u5F62\u4E0E\u793A\u4F8B\u5185\u5BB9\u5728\u5B9E\u9645\u7EC4\u4EF6\u4E2D\u7F16\u8F91\u3002\u6570\u636E\u4E3A\u7528\u6237\u63D0\u4F9B\u7684\u793A\u4F8B\uFF0C\u5E15\u7D2F\u6258\u66F2\u7EBF\u4E3A\u793A\u610F\u3002\u8FD0\u884C npm run check:source \u6838\u5BF9\u968F\u5305\u7D20\u6750\u3002",
           binary_files: [
             {
               source: "catalog/fonts/SourceHanSansSC-Light.woff2",
@@ -76255,6 +75295,1537 @@ var registry_default = {
           "\u52A8\u4F5C\u7B2C0\u2013139\u5E27\u5BF9\u5E94\u8BBE\u8BA1\u65F6\u949F\u7B2C57\u2013196\u5E27\uFF1B\u8BBE\u8BA1\u8FDB\u5EA6p=\u5E27\u53F7/240\u3002\u8F74\u7EBF\u5728p=0.24\u20130.37\u5C55\u5F00\uFF0C\u65E7\u66F2\u7EBF\u57280.27\u20130.48\u63ED\u793A\uFF0C\u65B0\u66F2\u7EBF\u57280.34\u20130.78\u63CF\u51FA\uFF0C\u6807\u8BB0\u57280.39\u20130.78\u79FB\u5411\u5DE6\u4E0A\u3002",
           "\u65E7\u66F2\u7EBF\u4E3A0.95\xD7(1\u2212exp(\u22122.6\xD7(x\u22120.05)))\uFF0C\u65B0\u66F2\u7EBF\u4E3A1\u2212exp(\u22124.5\xD7(x\u22120.03)))\uFF1B\u65E7\u6807\u8BB0x=0.62\uFF0C\u65B0\u6807\u8BB0x=0.39\uFF0C\u5404\u81EAy\u53D6\u5BF9\u5E94\u66F2\u7EBF\u503C\u3002\u56FE\u5185\u6A2A\u5750\u6807\u4E3A44+840x\uFF0C\u7EB5\u5750\u6807\u4E3A576\u2212520y\u3002",
           "\u4E24\u6761\u66F2\u7EBF\u5404\u53D665\u4E2A\u70B9\uFF0C\u65E7\u7EBF4\u50CF\u7D20\u5BBD\u5E76\u75288/8\u865A\u7EBF\uFF0C\u65B0\u7EBF8\u50CF\u7D20\u5BBD\u3002\u6539\u5584\u533A\u57DF\u4F7F\u752845\u5EA6\u3001\u95F4\u969414\u50CF\u7D20\u7684\u659C\u7EBF\uFF0C\u4ECE\u5DE6\u5411\u53F3\u63ED\u793A\uFF1B\u8282\u7701\u7BAD\u5934\u4E0E\u6587\u5B57\u968F\u540E\u51FA\u73B0\u3002"
+        ]
+      }
+    },
+    {
+      id: "dimensions-unfold-fold",
+      name: "\u5750\u6807\u5C55\u5F00\u6210\u4E07\u7EF4",
+      kind: "action",
+      category: "space",
+      summary: "\u4E09\u6761\u5750\u6807\u8F74\u5C55\u5F00\u6210\u4E03\u6392\u6EDA\u52A8\u77ED\u7EBF\uFF0C\u7EF4\u6570\u5347\u5230\u4E00\u4E07\uFF0C\u518D\u6536\u56DE\u5750\u6807\u8F74\u5E76\u5C55\u5F00\u5411\u91CF\u6247\u5F62\u3002",
+      purpose: "\u9002\u5408\u89E3\u91CA\u7EF4\u5EA6\u589E\u591A\u53CA\u9AD8\u7EF4\u96BE\u4EE5\u76F4\u63A5\u753B\u51FA\uFF1B\u77ED\u7EBF\u662F\u793A\u610F\uFF0C\u4E0D\u8868\u793A\u771F\u5B9E\u7684\u4E00\u4E07\u6761\u8F74\u3002",
+      objects: "\u5750\u6807\u8F74\u3001840 \u6BB5\u77ED\u7EBF\u3001\u7EF4\u6570\u8BFB\u6570\u3001\u4E03\u652F\u5546\u54C1\u5411\u91CF",
+      phases: [
+        "\u5750\u6807\u8F74\u62C6\u5F00\uFF0C\u77ED\u7EBF\u5C55\u5F00\u6210\u4E03\u6392\u3002",
+        "\u77ED\u7EBF\u6EDA\u52A8\uFF0C\u6570\u5B57\u4ECE 3 \u589E\u81F3 10,000+\u3002",
+        "\u540C\u4E00\u6279\u77ED\u7EBF\u6536\u56DE\u4E09\u8F74\uFF0C\u793A\u610F\u5411\u91CF\u4F9D\u6B21\u5C55\u5F00\u3002"
+      ],
+      aliases: [
+        "\u65E0\u6570\u7EF4",
+        "\u9AD8\u7EF4",
+        "\u4E07\u7EF4",
+        "\u5750\u6807\u5C55\u5F00",
+        "\u6761\u7801"
+      ],
+      behaviors: [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      retain: "\u4FDD\u7559\u4E03\u6392\u6EDA\u52A8\u3001\u56FA\u5B9A\u79CD\u5B50303\u3001\u4E09\u8F74\u6765\u56DE\u5BF9\u5E94\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u6539\u539F\u51E0\u4F55\u548C\u6750\u8D28\uFF0C\u4E0D\u4EE5\u6574\u4F53\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u52A8\u4F5C\u3002",
+      duration_ms: 3500.0000000000005,
+      preview_ms: 1653.8461538461556,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/knowledge-video.js",
+        factory: "dimensions-unfold-fold",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        assets: [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        reference: {
+          name: "\u7528\u6237\u63D0\u4F9B\u7684\u5411\u91CF\u4E0E\u77E5\u8BC6\u5E93\u6700\u7EC8\u5DE5\u7A0B"
+        },
+        extraction: "\u63092026\u5E7410\u670830\u65E5\u786E\u8BA4\u8303\u56F4\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\u3002\u4FDD\u7559\u56FA\u5B9A\u79CD\u5B50\u3001\u51E0\u4F55\u3001\u5B57\u4F53\u4E0E\u6E90\u65F6\u95F4\uFF1B\u5F53\u524D\u5E27\u9A71\u52A8\uFF0C\u539F\u5DE5\u7A0B\u53EA\u8BFB\u3002\u8868\u683C\u6309\u7528\u6237\u8981\u6C42\u6062\u590D8\u5217\u3002",
+        remotion: {
+          component: "catalog/remotion/knowledge-video/index.jsx",
+          export_name: "WiseKnowledgeMotion",
+          package_name: "wise-knowledge-motion",
+          files: [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 990,
+          height: 990,
+          fps: 60,
+          reuse_notes: "\u9884\u89C8\u4E0E\u9010\u5E27\u5BFC\u51FA\u4F7F\u7528\u540C\u4E00\u7ED8\u5236\u51FD\u6570\u3002speed=1\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF1B\u56FA\u5B9A\u793A\u4F8B\u5728\u7EC4\u4EF6\u6E90\u7801\u5185\u7F16\u8F91\u3002\u539F\u5B57\u4F53\u4E0E\u5934\u50CF\u968F\u5DE5\u7A0B\u63D0\u4F9B\uFF0C\u5B9E\u9645\u53D6\u666F\u5C3A\u5BF8\u89C1\u672C\u6761\u76EE\uFF1B\u4E0D\u5305\u542B\u914D\u97F3\u3002",
+          binary_files: [
+            {
+              source: "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              target: "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              bytes: 2003884,
+              sha256: "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              source: "catalog/assets/knowledge-video/wise-avatar.png",
+              target: "public/catalog/assets/knowledge-video/wise-avatar.png",
+              bytes: 1287166,
+              sha256: "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+          scripts: {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      content_slots: [],
+      layer: "own-background",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      analogy: "\u4E09\u6761\u5750\u6807\u8F74\u5C55\u5F00\u6210\u4E03\u6392\u6EDA\u52A8\u77ED\u7EBF\uFF0C\u7EF4\u6570\u5347\u5230\u4E00\u4E07\uFF0C\u518D\u6536\u56DE\u5750\u6807\u8F74\u5E76\u5C55\u5F00\u5411\u91CF\u6247\u5F62\u3002",
+      assumptions: "\u5185\u5BB9\u548C\u6570\u636E\u4E3A\u539F\u5DE5\u7A0B\u7684\u56FA\u5B9A\u8BB2\u89E3\u793A\u4F8B\u3002\u9002\u5408\u89E3\u91CA\u7EF4\u5EA6\u589E\u591A\u53CA\u9AD8\u7EF4\u96BE\u4EE5\u76F4\u63A5\u753B\u51FA\uFF1B\u77ED\u7EBF\u662F\u793A\u610F\uFF0C\u4E0D\u8868\u793A\u771F\u5B9E\u7684\u4E00\u4E07\u6761\u8F74\u3002",
+      tempo_note: "\u9ED8\u8BA4\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF0C\u7EA63.50\u79D2\u3002",
+      recommendation: "\u9002\u5408\u89E3\u91CA\u7EF4\u5EA6\u589E\u591A\u53CA\u9AD8\u7EF4\u96BE\u4EE5\u76F4\u63A5\u753B\u51FA\uFF1B\u77ED\u7EBF\u662F\u793A\u610F\uFF0C\u4E0D\u8868\u793A\u771F\u5B9E\u7684\u4E00\u4E07\u6761\u8F74\u3002",
+      reproduction: {
+        presentation: "\u539F\u753B\u677F1080\xD71440\uFF0C\u6309\u4E3B\u4F53\u8303\u56F445\u3001200\u3001990\u3001990\u7B49\u6BD4\u53D6\u666F\uFF1B\u8FD1\u9ED1\u80CC\u666F\u3001\u6696\u91D1\u4E0E\u94F6\u767D\u3001\u539F\u5F97\u610F\u9ED1\u5B57\u4F53\u3002",
+        objects: "\u5750\u6807\u8F74\u3001840 \u6BB5\u77ED\u7EBF\u3001\u7EF4\u6570\u8BFB\u6570\u3001\u4E03\u652F\u5546\u54C1\u5411\u91CF",
+        retain: "\u4FDD\u7559\u4E03\u6392\u6EDA\u52A8\u3001\u56FA\u5B9A\u79CD\u5B50303\u3001\u4E09\u8F74\u6765\u56DE\u5BF9\u5E94\u3002",
+        phases: [
+          "\u5750\u6807\u8F74\u62C6\u5F00\uFF0C\u77ED\u7EBF\u5C55\u5F00\u6210\u4E03\u6392\u3002",
+          "\u77ED\u7EBF\u6EDA\u52A8\uFF0C\u6570\u5B57\u4ECE 3 \u589E\u81F3 10,000+\u3002",
+          "\u540C\u4E00\u6279\u77ED\u7EBF\u6536\u56DE\u4E09\u8F74\uFF0C\u793A\u610F\u5411\u91CF\u4F9D\u6B21\u5C55\u5F00\u3002"
+        ],
+        avoid: "\u4E0D\u52A0\u5165\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u53BB\u4E3B\u4F53\u3002",
+        details: [
+          "\u5F53\u524D\u64AD\u653E\u79D2\u4E581.3\uFF0C\u518D\u52A0\u539F\u573A\u666F17.65\u79D2\uFF1B\u523022.2\u79D2\u4FDD\u6301\u3002",
+          "\u4FDD\u7559\u4E03\u6392\u6EDA\u52A8\u3001\u56FA\u5B9A\u79CD\u5B50303\u3001\u4E09\u8F74\u6765\u56DE\u5BF9\u5E94\u3002",
+          "\u53EA\u521B\u5EFA\u5DF2\u9009\u4E3B\u4F53\uFF1B\u672A\u5E26\u6574\u6BB5\u89C6\u9891\u3001\u914D\u97F3\u6216\u5728\u7EBF\u8D44\u6E90\u3002"
+        ]
+      }
+    },
+    {
+      id: "related-sentences-converge",
+      name: "\u76F8\u5173\u53E5\u5B50\u9010\u6E10\u9760\u8FD1",
+      kind: "action",
+      category: "space",
+      summary: "\u7ACB\u4F53\u6846\u67B6\u4E0E\u56DB\u7EC4\u7C92\u5B50\u5EFA\u7ACB\uFF0C\u4E24\u6761\u76F8\u5173\u53E5\u5B50\u9010\u6E10\u9760\u8FD1\uFF0C\u5176\u4ED6\u53E5\u5B50\u4FDD\u6301\u5206\u79BB\u3002",
+      purpose: "\u9002\u5408\u8BF4\u660E\u8BED\u4E49\u8BAD\u7EC3\u3001\u5173\u8054\u53D8\u5316\uFF1B\u8FD9\u662F\u56FA\u5B9A\u793A\u610F\u4F4D\u7F6E\uFF0C\u4E0D\u505A\u771F\u5B9E\u6A21\u578B\u8FD0\u7B97\u3002",
+      objects: "\u7ACB\u4F53\u7EBF\u6846\u3001\u56DB\u7EC4\u7C92\u5B50\u3001\u53E5\u5B50\u6807\u7B7E\u3001\u8FDE\u63A5\u7EBF\u4E0E\u8BAD\u7EC3\u8BFB\u6570",
+      phases: [
+        "\u6846\u67B6\u4E0E\u7C92\u5B50\u9010\u6B65\u5EFA\u7ACB\u3002",
+        "\u76F8\u5173\u4E24\u7EC4\u5728\u540C\u4E00\u76F8\u673A\u7A7A\u95F4\u5185\u9760\u8FD1\u3002",
+        "\u6807\u7B7E\u3001\u8FDE\u7EBF\u4E0E\u8BAD\u7EC3\u8BFB\u6570\u4FDD\u6301\u5BF9\u5E94\u3002"
+      ],
+      aliases: [
+        "\u8BED\u4E49\u9760\u8FD1",
+        "\u76F8\u5173\u53E5\u5B50",
+        "\u8BAD\u7EC3\u7A7A\u95F4"
+      ],
+      behaviors: [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      retain: "\u4EC5\u4FDD\u7559\u76F8\u5173\u53E5\u5B50\u9760\u8FD1\uFF0C\u4E0D\u542B\u8BCD\u7FA4\u805A\u62E2\u4E0E\u540C\u8BCD\u5206\u5411\u4E24\u7C7B\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u6539\u539F\u51E0\u4F55\u548C\u6750\u8D28\uFF0C\u4E0D\u4EE5\u6574\u4F53\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u52A8\u4F5C\u3002",
+      duration_ms: 4207.692307692307,
+      preview_ms: 3553.846153846152,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/knowledge-video.js",
+        factory: "related-sentences-converge",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        assets: [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        reference: {
+          name: "\u7528\u6237\u63D0\u4F9B\u7684\u5411\u91CF\u4E0E\u77E5\u8BC6\u5E93\u6700\u7EC8\u5DE5\u7A0B"
+        },
+        extraction: "\u63092026\u5E7410\u670830\u65E5\u786E\u8BA4\u8303\u56F4\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\u3002\u4FDD\u7559\u56FA\u5B9A\u79CD\u5B50\u3001\u51E0\u4F55\u3001\u5B57\u4F53\u4E0E\u6E90\u65F6\u95F4\uFF1B\u5F53\u524D\u5E27\u9A71\u52A8\uFF0C\u539F\u5DE5\u7A0B\u53EA\u8BFB\u3002\u8868\u683C\u6309\u7528\u6237\u8981\u6C42\u6062\u590D8\u5217\u3002",
+        remotion: {
+          component: "catalog/remotion/knowledge-video/index.jsx",
+          export_name: "WiseKnowledgeMotion",
+          package_name: "wise-knowledge-motion",
+          files: [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 950,
+          height: 1150,
+          fps: 60,
+          reuse_notes: "\u9884\u89C8\u4E0E\u9010\u5E27\u5BFC\u51FA\u4F7F\u7528\u540C\u4E00\u7ED8\u5236\u51FD\u6570\u3002speed=1\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF1B\u56FA\u5B9A\u793A\u4F8B\u5728\u7EC4\u4EF6\u6E90\u7801\u5185\u7F16\u8F91\u3002\u539F\u5B57\u4F53\u4E0E\u5934\u50CF\u968F\u5DE5\u7A0B\u63D0\u4F9B\uFF0C\u5B9E\u9645\u53D6\u666F\u5C3A\u5BF8\u89C1\u672C\u6761\u76EE\uFF1B\u4E0D\u5305\u542B\u914D\u97F3\u3002",
+          binary_files: [
+            {
+              source: "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              target: "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              bytes: 2003884,
+              sha256: "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              source: "catalog/assets/knowledge-video/wise-avatar.png",
+              target: "public/catalog/assets/knowledge-video/wise-avatar.png",
+              bytes: 1287166,
+              sha256: "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+          scripts: {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      content_slots: [],
+      layer: "own-background",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      analogy: "\u7ACB\u4F53\u6846\u67B6\u4E0E\u56DB\u7EC4\u7C92\u5B50\u5EFA\u7ACB\uFF0C\u4E24\u6761\u76F8\u5173\u53E5\u5B50\u9010\u6E10\u9760\u8FD1\uFF0C\u5176\u4ED6\u53E5\u5B50\u4FDD\u6301\u5206\u79BB\u3002",
+      assumptions: "\u5185\u5BB9\u548C\u6570\u636E\u4E3A\u539F\u5DE5\u7A0B\u7684\u56FA\u5B9A\u8BB2\u89E3\u793A\u4F8B\u3002\u9002\u5408\u8BF4\u660E\u8BED\u4E49\u8BAD\u7EC3\u3001\u5173\u8054\u53D8\u5316\uFF1B\u8FD9\u662F\u56FA\u5B9A\u793A\u610F\u4F4D\u7F6E\uFF0C\u4E0D\u505A\u771F\u5B9E\u6A21\u578B\u8FD0\u7B97\u3002",
+      tempo_note: "\u9ED8\u8BA4\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF0C\u7EA64.21\u79D2\u3002",
+      recommendation: "\u9002\u5408\u8BF4\u660E\u8BED\u4E49\u8BAD\u7EC3\u3001\u5173\u8054\u53D8\u5316\uFF1B\u8FD9\u662F\u56FA\u5B9A\u793A\u610F\u4F4D\u7F6E\uFF0C\u4E0D\u505A\u771F\u5B9E\u6A21\u578B\u8FD0\u7B97\u3002",
+      reproduction: {
+        presentation: "\u539F\u753B\u677F1080\xD71440\uFF0C\u6309\u4E3B\u4F53\u8303\u56F465\u300190\u3001950\u30011150\u7B49\u6BD4\u53D6\u666F\uFF1B\u8FD1\u9ED1\u80CC\u666F\u3001\u6696\u91D1\u4E0E\u94F6\u767D\u3001\u539F\u5F97\u610F\u9ED1\u5B57\u4F53\u3002",
+        objects: "\u7ACB\u4F53\u7EBF\u6846\u3001\u56DB\u7EC4\u7C92\u5B50\u3001\u53E5\u5B50\u6807\u7B7E\u3001\u8FDE\u63A5\u7EBF\u4E0E\u8BAD\u7EC3\u8BFB\u6570",
+        retain: "\u4EC5\u4FDD\u7559\u76F8\u5173\u53E5\u5B50\u9760\u8FD1\uFF0C\u4E0D\u542B\u8BCD\u7FA4\u805A\u62E2\u4E0E\u540C\u8BCD\u5206\u5411\u4E24\u7C7B\u3002",
+        phases: [
+          "\u6846\u67B6\u4E0E\u7C92\u5B50\u9010\u6B65\u5EFA\u7ACB\u3002",
+          "\u76F8\u5173\u4E24\u7EC4\u5728\u540C\u4E00\u76F8\u673A\u7A7A\u95F4\u5185\u9760\u8FD1\u3002",
+          "\u6807\u7B7E\u3001\u8FDE\u7EBF\u4E0E\u8BAD\u7EC3\u8BFB\u6570\u4FDD\u6301\u5BF9\u5E94\u3002"
+        ],
+        avoid: "\u4E0D\u52A0\u5165\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u53BB\u4E3B\u4F53\u3002",
+        details: [
+          "\u5F53\u524D\u64AD\u653E\u79D2\u4E581.3\uFF0C\u518D\u52A0\u539F\u573A\u666F46.88\u79D2\uFF1B\u523052.35\u79D2\u4FDD\u6301\u3002",
+          "\u4EC5\u4FDD\u7559\u76F8\u5173\u53E5\u5B50\u9760\u8FD1\uFF0C\u4E0D\u542B\u8BCD\u7FA4\u805A\u62E2\u4E0E\u540C\u8BCD\u5206\u5411\u4E24\u7C7B\u3002",
+          "\u53EA\u521B\u5EFA\u5DF2\u9009\u4E3B\u4F53\uFF1B\u672A\u5E26\u6574\u6BB5\u89C6\u9891\u3001\u914D\u97F3\u6216\u5728\u7EBF\u8D44\u6E90\u3002"
+        ]
+      }
+    },
+    {
+      id: "context-silk-flow",
+      name: "\u5149\u4E1D\u4F20\u9012\u8BCD\u8BED\u5173\u8054",
+      kind: "action",
+      category: "connection",
+      summary: "\u591A\u6839\u7EC6\u5149\u4E1D\u6CBF\u56FA\u5B9A\u5F27\u7EBF\u663E\u73B0\uFF0C\u518D\u6301\u7EED\u6D41\u52A8\uFF1B\u5305\u62EC\u4E0A\u4E0B\u6587\u6C47\u5165\u4E0E\u4EA4\u9519\u5173\u8054\u52A0\u4E0B\u65B9\u8F93\u51FA\u4E24\u79CD\u6837\u5F0F\u3002",
+      purpose: "\u9002\u5408\u8868\u8FBE\u4E0A\u4E0B\u6587\u53C2\u8003\u548C\u4FE1\u606F\u4EA4\u6362\uFF1B\u4ECE\u5149\u4E1D\u663E\u73B0\u5F00\u59CB\uFF0C\u4E0D\u5E26\u524D\u9762\u7684\u754C\u9762\u5165\u573A\u3002",
+      objects: "\u56FA\u5B9A\u5F27\u7EBF\u4E0A\u7684\u7EC6\u5149\u4E1D\u3001\u8BCD\u8BED\u6846\u3001\u4E0B\u65B9\u7AD6\u5411\u8F93\u51FA",
+      phases: [
+        "\u8BCD\u8BED\u6846\u5DF2\u5C31\u4F4D\uFF0C\u5149\u4E1D\u4ECE\u7AEF\u70B9\u663E\u73B0\u3002",
+        "\u4EAE\u7EB9\u6CBF\u540C\u4E00\u6761\u56FA\u5B9A\u5F27\u7EBF\u884C\u8FDB\u3002",
+        "\u7B2C\u4E8C\u79CD\u6837\u5F0F\u7EE7\u7EED\u6CBF\u4E0B\u65B9\u7AD6\u5411\u5149\u4E1D\u8F93\u51FA\u3002"
+      ],
+      aliases: [
+        "\u5149\u4E1D",
+        "\u6CE8\u610F\u529B",
+        "\u4E0A\u4E0B\u6587",
+        "\u4EA4\u9519\u5149\u7EBF",
+        "\u8F93\u51FA\u5149\u675F"
+      ],
+      behaviors: [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      retain: "\u56FA\u5B9A\u66F2\u7EBF\u3001\u4E0D\u7F29\u653E\u5F62\u72B6\uFF1B\u4FDD\u7559\u539F\u968F\u673A\u79CD\u5B50\u3001\u7EBF\u5BBD\u3001\u4EAE\u7EB9\u4E0E\u95F4\u6B47\u6D41\u52A8\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u6539\u539F\u51E0\u4F55\u548C\u6750\u8D28\uFF0C\u4E0D\u4EE5\u6574\u4F53\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u52A8\u4F5C\u3002",
+      duration_ms: 2353.8461538461556,
+      preview_ms: 1676.9230769230767,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/knowledge-video.js",
+        factory: "context-silk-flow",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        assets: [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        reference: {
+          name: "\u7528\u6237\u63D0\u4F9B\u7684\u5411\u91CF\u4E0E\u77E5\u8BC6\u5E93\u6700\u7EC8\u5DE5\u7A0B"
+        },
+        extraction: "\u63092026\u5E7410\u670830\u65E5\u786E\u8BA4\u8303\u56F4\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\u3002\u4FDD\u7559\u56FA\u5B9A\u79CD\u5B50\u3001\u51E0\u4F55\u3001\u5B57\u4F53\u4E0E\u6E90\u65F6\u95F4\uFF1B\u5F53\u524D\u5E27\u9A71\u52A8\uFF0C\u539F\u5DE5\u7A0B\u53EA\u8BFB\u3002\u8868\u683C\u6309\u7528\u6237\u8981\u6C42\u6062\u590D8\u5217\u3002",
+        remotion: {
+          component: "catalog/remotion/knowledge-video/index.jsx",
+          export_name: "WiseKnowledgeMotion",
+          package_name: "wise-knowledge-motion",
+          files: [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 950,
+          height: 900,
+          fps: 60,
+          reuse_notes: "\u9884\u89C8\u4E0E\u9010\u5E27\u5BFC\u51FA\u4F7F\u7528\u540C\u4E00\u7ED8\u5236\u51FD\u6570\u3002speed=1\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF1B\u56FA\u5B9A\u793A\u4F8B\u5728\u7EC4\u4EF6\u6E90\u7801\u5185\u7F16\u8F91\u3002\u539F\u5B57\u4F53\u4E0E\u5934\u50CF\u968F\u5DE5\u7A0B\u63D0\u4F9B\uFF0C\u5B9E\u9645\u53D6\u666F\u5C3A\u5BF8\u89C1\u672C\u6761\u76EE\uFF1B\u4E0D\u5305\u542B\u914D\u97F3\u3002",
+          binary_files: [
+            {
+              source: "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              target: "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              bytes: 2003884,
+              sha256: "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              source: "catalog/assets/knowledge-video/wise-avatar.png",
+              target: "public/catalog/assets/knowledge-video/wise-avatar.png",
+              bytes: 1287166,
+              sha256: "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+          scripts: {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      content_slots: [],
+      layer: "own-background",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      analogy: "\u591A\u6839\u7EC6\u5149\u4E1D\u6CBF\u56FA\u5B9A\u5F27\u7EBF\u663E\u73B0\uFF0C\u518D\u6301\u7EED\u6D41\u52A8\uFF1B\u5305\u62EC\u4E0A\u4E0B\u6587\u6C47\u5165\u4E0E\u4EA4\u9519\u5173\u8054\u52A0\u4E0B\u65B9\u8F93\u51FA\u4E24\u79CD\u6837\u5F0F\u3002",
+      assumptions: "\u5185\u5BB9\u548C\u6570\u636E\u4E3A\u539F\u5DE5\u7A0B\u7684\u56FA\u5B9A\u8BB2\u89E3\u793A\u4F8B\u3002\u9002\u5408\u8868\u8FBE\u4E0A\u4E0B\u6587\u53C2\u8003\u548C\u4FE1\u606F\u4EA4\u6362\uFF1B\u4ECE\u5149\u4E1D\u663E\u73B0\u5F00\u59CB\uFF0C\u4E0D\u5E26\u524D\u9762\u7684\u754C\u9762\u5165\u573A\u3002",
+      tempo_note: "\u9ED8\u8BA4\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF0C\u7EA62.35\u79D2\u3002",
+      recommendation: "\u9002\u5408\u8868\u8FBE\u4E0A\u4E0B\u6587\u53C2\u8003\u548C\u4FE1\u606F\u4EA4\u6362\uFF1B\u4ECE\u5149\u4E1D\u663E\u73B0\u5F00\u59CB\uFF0C\u4E0D\u5E26\u524D\u9762\u7684\u754C\u9762\u5165\u573A\u3002",
+      reproduction: {
+        presentation: "\u539F\u753B\u677F1080\xD71440\uFF0C\u6309\u4E3B\u4F53\u8303\u56F465\u300170\u3001950\u3001900\u7B49\u6BD4\u53D6\u666F\uFF1B\u8FD1\u9ED1\u80CC\u666F\u3001\u6696\u91D1\u4E0E\u94F6\u767D\u3001\u539F\u5F97\u610F\u9ED1\u5B57\u4F53\u3002",
+        objects: "\u56FA\u5B9A\u5F27\u7EBF\u4E0A\u7684\u7EC6\u5149\u4E1D\u3001\u8BCD\u8BED\u6846\u3001\u4E0B\u65B9\u7AD6\u5411\u8F93\u51FA",
+        retain: "\u56FA\u5B9A\u66F2\u7EBF\u3001\u4E0D\u7F29\u653E\u5F62\u72B6\uFF1B\u4FDD\u7559\u539F\u968F\u673A\u79CD\u5B50\u3001\u7EBF\u5BBD\u3001\u4EAE\u7EB9\u4E0E\u95F4\u6B47\u6D41\u52A8\u3002",
+        phases: [
+          "\u8BCD\u8BED\u6846\u5DF2\u5C31\u4F4D\uFF0C\u5149\u4E1D\u4ECE\u7AEF\u70B9\u663E\u73B0\u3002",
+          "\u4EAE\u7EB9\u6CBF\u540C\u4E00\u6761\u56FA\u5B9A\u5F27\u7EBF\u884C\u8FDB\u3002",
+          "\u7B2C\u4E8C\u79CD\u6837\u5F0F\u7EE7\u7EED\u6CBF\u4E0B\u65B9\u7AD6\u5411\u5149\u4E1D\u8F93\u51FA\u3002"
+        ],
+        avoid: "\u4E0D\u52A0\u5165\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u53BB\u4E3B\u4F53\u3002",
+        details: [
+          "\u5F53\u524D\u64AD\u653E\u79D2\u4E581.3\uFF0C\u518D\u52A0\u539F\u573A\u666F31.32\u79D2\uFF1B\u523034.38\u79D2\u4FDD\u6301\u3002",
+          "\u56FA\u5B9A\u66F2\u7EBF\u3001\u4E0D\u7F29\u653E\u5F62\u72B6\uFF1B\u4FDD\u7559\u539F\u968F\u673A\u79CD\u5B50\u3001\u7EBF\u5BBD\u3001\u4EAE\u7EB9\u4E0E\u95F4\u6B47\u6D41\u52A8\u3002",
+          "\u53EA\u521B\u5EFA\u5DF2\u9009\u4E3B\u4F53\uFF1B\u672A\u5E26\u6574\u6BB5\u89C6\u9891\u3001\u914D\u97F3\u6216\u5728\u7EBF\u8D44\u6E90\u3002"
+        ]
+      },
+      variants: [
+        {
+          id: "context",
+          label: "\u4E0A\u4E0B\u6587\u6C47\u5165\u5173\u952E\u8BCD",
+          summary: "\u4E0A\u4E0B\u6587\u6C47\u5165\u5173\u952E\u8BCD\uFF0C\u4ECE\u5149\u4E1D\u5F00\u59CB\u663E\u73B0\u5230\u540E\u7EED\u6D41\u52A8\u3002",
+          duration_ms: 2353.8461538461556,
+          preview_ms: 1676.9230769230767,
+          source: {
+            path: "catalog/effects/knowledge-video.js",
+            factory: "context-silk-flow",
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            assets: [
+              "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "catalog/assets/knowledge-video/wise-avatar.png",
+              "catalog/assets/knowledge-video/SOURCE.json",
+              "catalog/assets/knowledge-video/README.md",
+              "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+              "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+              "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+            ],
+            reference: {
+              name: "\u7528\u6237\u63D0\u4F9B\u7684\u5411\u91CF\u4E0E\u77E5\u8BC6\u5E93\u6700\u7EC8\u5DE5\u7A0B"
+            },
+            extraction: "\u63092026\u5E7410\u670830\u65E5\u786E\u8BA4\u8303\u56F4\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\u3002\u4FDD\u7559\u56FA\u5B9A\u79CD\u5B50\u3001\u51E0\u4F55\u3001\u5B57\u4F53\u4E0E\u6E90\u65F6\u95F4\uFF1B\u5F53\u524D\u5E27\u9A71\u52A8\uFF0C\u539F\u5DE5\u7A0B\u53EA\u8BFB\u3002\u8868\u683C\u6309\u7528\u6237\u8981\u6C42\u6062\u590D8\u5217\u3002",
+            remotion: {
+              component: "catalog/remotion/knowledge-video/index.jsx",
+              export_name: "WiseKnowledgeMotion",
+              package_name: "wise-knowledge-motion",
+              files: [
+                "catalog/remotion/knowledge-video/drawing.js",
+                "catalog/remotion/knowledge-video/frame.js",
+                "catalog/remotion/knowledge-video/index.jsx",
+                "catalog/remotion/knowledge-video/line-growth.js",
+                "catalog/remotion/knowledge-video/painter.js",
+                "catalog/remotion/knowledge-video/scenes.js",
+                "catalog/remotion/knowledge-video/silk-flow.js",
+                "catalog/remotion/knowledge-video/source-layout.js",
+                "catalog/remotion/knowledge-video/space3d.js",
+                "catalog/remotion/knowledge-video/specs.js",
+                "catalog/assets/knowledge-video/README.md",
+                "catalog/assets/knowledge-video/SOURCE.json",
+                "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+                "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+                "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+                "LICENSE",
+                "catalog/assets/reel-extract/React-LICENSE.txt",
+                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+                "catalog/remotion/binary-assets-installer.mjs",
+                "catalog/assets/knowledge-video/verify-source.mjs"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 950,
+              height: 900,
+              fps: 60,
+              reuse_notes: "\u9884\u89C8\u4E0E\u9010\u5E27\u5BFC\u51FA\u4F7F\u7528\u540C\u4E00\u7ED8\u5236\u51FD\u6570\u3002speed=1\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF1B\u56FA\u5B9A\u793A\u4F8B\u5728\u7EC4\u4EF6\u6E90\u7801\u5185\u7F16\u8F91\u3002\u539F\u5B57\u4F53\u4E0E\u5934\u50CF\u968F\u5DE5\u7A0B\u63D0\u4F9B\uFF0C\u5B9E\u9645\u53D6\u666F\u5C3A\u5BF8\u89C1\u672C\u6761\u76EE\uFF1B\u4E0D\u5305\u542B\u914D\u97F3\u3002",
+              binary_files: [
+                {
+                  source: "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+                  target: "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+                  bytes: 2003884,
+                  sha256: "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+                },
+                {
+                  source: "catalog/assets/knowledge-video/wise-avatar.png",
+                  target: "public/catalog/assets/knowledge-video/wise-avatar.png",
+                  bytes: 1287166,
+                  sha256: "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+                }
+              ],
+              asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+              scripts: {
+                "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+              }
+            }
+          },
+          objects: "\u4E24\u884C\u8BCD\u8BED\u6846\u3001\u6C47\u5165\u82F9\u679C\u5173\u952E\u8BCD\u7684\u56FA\u5B9A\u5F27\u5F62\u5149\u4E1D",
+          phases: [
+            "\u8BCD\u8BED\u6846\u5DF2\u5C31\u4F4D\uFF0C\u7EC6\u5149\u4E1D\u4ECE\u4E0A\u4E0B\u6587\u8BCD\u8BED\u7AEF\u70B9\u663E\u73B0\u3002",
+            "\u5149\u4E1D\u6CBF\u539F\u56FA\u5B9A\u5F27\u7EBF\u6C47\u5165\u82F9\u679C\u5173\u952E\u8BCD\u3002",
+            "\u4EAE\u7EB9\u7EE7\u7EED\u5728\u540C\u4E00\u66F2\u7EBF\u4E0A\u6D41\u52A8\uFF0C\u4FDD\u7559\u4E24\u884C\u4E0A\u4E0B\u6587\u793A\u4F8B\u3002"
+          ],
+          tempo_note: "\u9ED8\u8BA4\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF0C\u7EA62.35\u79D2\u3002",
+          reproduction: {
+            presentation: "\u539F\u753B\u677F1080\xD71440\uFF0C\u6309\u4E3B\u4F53\u8303\u56F465\u300170\u3001950\u3001900\u7B49\u6BD4\u53D6\u666F\uFF1B\u8FD1\u9ED1\u80CC\u666F\u3001\u6696\u91D1\u4E0E\u94F6\u767D\u3001\u539F\u5F97\u610F\u9ED1\u5B57\u4F53\u3002",
+            objects: "\u4E24\u884C\u8BCD\u8BED\u6846\u3001\u6C47\u5165\u82F9\u679C\u5173\u952E\u8BCD\u7684\u56FA\u5B9A\u5F27\u5F62\u5149\u4E1D",
+            retain: "\u56FA\u5B9A\u66F2\u7EBF\u3001\u4E0D\u7F29\u653E\u5F62\u72B6\uFF1B\u4FDD\u7559\u539F\u968F\u673A\u79CD\u5B50\u3001\u7EBF\u5BBD\u3001\u4EAE\u7EB9\u4E0E\u95F4\u6B47\u6D41\u52A8\u3002",
+            phases: [
+              "\u8BCD\u8BED\u6846\u5DF2\u5C31\u4F4D\uFF0C\u7EC6\u5149\u4E1D\u4ECE\u4E0A\u4E0B\u6587\u8BCD\u8BED\u7AEF\u70B9\u663E\u73B0\u3002",
+              "\u5149\u4E1D\u6CBF\u539F\u56FA\u5B9A\u5F27\u7EBF\u6C47\u5165\u82F9\u679C\u5173\u952E\u8BCD\u3002",
+              "\u4EAE\u7EB9\u7EE7\u7EED\u5728\u540C\u4E00\u66F2\u7EBF\u4E0A\u6D41\u52A8\uFF0C\u4FDD\u7559\u4E24\u884C\u4E0A\u4E0B\u6587\u793A\u4F8B\u3002"
+            ],
+            avoid: "\u4E0D\u52A0\u5165\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u53BB\u4E3B\u4F53\u3002",
+            details: [
+              "\u5F53\u524D\u64AD\u653E\u79D2\u4E581.3\uFF0C\u518D\u52A0\u539F\u573A\u666F31.32\u79D2\uFF1B\u523034.38\u79D2\u4FDD\u6301\u3002",
+              "\u56FA\u5B9A\u66F2\u7EBF\u3001\u4E0D\u7F29\u653E\u5F62\u72B6\uFF1B\u4FDD\u7559\u539F\u968F\u673A\u79CD\u5B50\u3001\u7EBF\u5BBD\u3001\u4EAE\u7EB9\u4E0E\u95F4\u6B47\u6D41\u52A8\u3002",
+              "\u53EA\u521B\u5EFA\u5DF2\u9009\u4E3B\u4F53\uFF1B\u672A\u5E26\u6574\u6BB5\u89C6\u9891\u3001\u914D\u97F3\u6216\u5728\u7EBF\u8D44\u6E90\u3002"
+            ]
+          }
+        },
+        {
+          id: "cross",
+          label: "\u4EA4\u9519\u5173\u8054\u4E0E\u4E0B\u65B9\u8F93\u51FA",
+          summary: "\u4EA4\u9519\u5173\u8054\u4E0E\u4E0B\u65B9\u8F93\u51FA\uFF0C\u4ECE\u5149\u4E1D\u5F00\u59CB\u663E\u73B0\u5230\u540E\u7EED\u6D41\u52A8\u3002",
+          duration_ms: 3069.2307692307695,
+          preview_ms: 2261.5384615384623,
+          source: {
+            path: "catalog/effects/knowledge-video.js",
+            factory: "context-silk-flow-cross",
+            origin: "original",
+            license: "Apache-2.0",
+            library: "remotion@4.0.532",
+            assets: [
+              "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "catalog/assets/knowledge-video/wise-avatar.png",
+              "catalog/assets/knowledge-video/SOURCE.json",
+              "catalog/assets/knowledge-video/README.md",
+              "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+              "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+              "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+            ],
+            reference: {
+              name: "\u7528\u6237\u63D0\u4F9B\u7684\u5411\u91CF\u4E0E\u77E5\u8BC6\u5E93\u6700\u7EC8\u5DE5\u7A0B"
+            },
+            extraction: "\u63092026\u5E7410\u670830\u65E5\u786E\u8BA4\u8303\u56F4\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\u3002\u4FDD\u7559\u56FA\u5B9A\u79CD\u5B50\u3001\u51E0\u4F55\u3001\u5B57\u4F53\u4E0E\u6E90\u65F6\u95F4\uFF1B\u5F53\u524D\u5E27\u9A71\u52A8\uFF0C\u539F\u5DE5\u7A0B\u53EA\u8BFB\u3002\u8868\u683C\u6309\u7528\u6237\u8981\u6C42\u6062\u590D8\u5217\u3002",
+            remotion: {
+              component: "catalog/remotion/knowledge-video/index.jsx",
+              export_name: "WiseKnowledgeMotion",
+              package_name: "wise-knowledge-motion",
+              files: [
+                "catalog/remotion/knowledge-video/drawing.js",
+                "catalog/remotion/knowledge-video/frame.js",
+                "catalog/remotion/knowledge-video/index.jsx",
+                "catalog/remotion/knowledge-video/line-growth.js",
+                "catalog/remotion/knowledge-video/painter.js",
+                "catalog/remotion/knowledge-video/scenes.js",
+                "catalog/remotion/knowledge-video/silk-flow.js",
+                "catalog/remotion/knowledge-video/source-layout.js",
+                "catalog/remotion/knowledge-video/space3d.js",
+                "catalog/remotion/knowledge-video/specs.js",
+                "catalog/assets/knowledge-video/README.md",
+                "catalog/assets/knowledge-video/SOURCE.json",
+                "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+                "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+                "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+                "LICENSE",
+                "catalog/assets/reel-extract/React-LICENSE.txt",
+                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+                "catalog/remotion/binary-assets-installer.mjs",
+                "catalog/assets/knowledge-video/verify-source.mjs"
+              ],
+              packages: {
+                remotion: "4.0.532",
+                "@remotion/cli": "4.0.532",
+                react: "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              width: 880,
+              height: 390,
+              fps: 60,
+              reuse_notes: "\u9884\u89C8\u4E0E\u9010\u5E27\u5BFC\u51FA\u4F7F\u7528\u540C\u4E00\u7ED8\u5236\u51FD\u6570\u3002speed=1\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF1B\u56FA\u5B9A\u793A\u4F8B\u5728\u7EC4\u4EF6\u6E90\u7801\u5185\u7F16\u8F91\u3002\u539F\u5B57\u4F53\u4E0E\u5934\u50CF\u968F\u5DE5\u7A0B\u63D0\u4F9B\uFF0C\u5B9E\u9645\u53D6\u666F\u5C3A\u5BF8\u89C1\u672C\u6761\u76EE\uFF1B\u4E0D\u5305\u542B\u914D\u97F3\u3002",
+              binary_files: [
+                {
+                  source: "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+                  target: "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+                  bytes: 2003884,
+                  sha256: "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+                },
+                {
+                  source: "catalog/assets/knowledge-video/wise-avatar.png",
+                  target: "public/catalog/assets/knowledge-video/wise-avatar.png",
+                  bytes: 1287166,
+                  sha256: "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+                }
+              ],
+              asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+              scripts: {
+                "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+              }
+            }
+          },
+          objects: "\u4E24\u53E5\u8F93\u5165\u3001\u4EA4\u9519\u5F27\u7EBF\u3001\u4E0B\u65B9\u7AD6\u5411\u8F93\u51FA\u5149\u4E1D\u548C\u8F93\u51FA\u5361",
+          phases: [
+            "\u4E24\u53E5\u8F93\u5165\u5DF2\u5C31\u4F4D\uFF0C\u4EA4\u9519\u5149\u4E1D\u6CBF\u56FA\u5B9A\u5F27\u7EBF\u663E\u73B0\u3002",
+            "\u4E0B\u65B9\u7AD6\u5411\u8F93\u51FA\u5149\u4E1D\u9010\u6E10\u663E\u73B0\u3002",
+            "\u4E24\u7EC4\u5149\u4E1D\u7EE7\u7EED\u6D41\u52A8\uFF0C\u4FDD\u7559\u5B8C\u6574\u540E\u7EED\u6D41\u52A8\u6BB5\u3002"
+          ],
+          tempo_note: "\u9ED8\u8BA4\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF0C\u7EA63.07\u79D2\u3002",
+          reproduction: {
+            presentation: "\u539F\u753B\u677F1080\xD71440\uFF0C\u6309\u4E3B\u4F53\u8303\u56F4120\u3001740\u3001880\u3001390\u7B49\u6BD4\u53D6\u666F\uFF1B\u8FD1\u9ED1\u80CC\u666F\u3001\u6696\u91D1\u4E0E\u94F6\u767D\u3001\u539F\u5F97\u610F\u9ED1\u5B57\u4F53\u3002",
+            objects: "\u4E24\u53E5\u8F93\u5165\u3001\u4EA4\u9519\u5F27\u7EBF\u3001\u4E0B\u65B9\u7AD6\u5411\u8F93\u51FA\u5149\u4E1D\u548C\u8F93\u51FA\u5361",
+            retain: "\u56FA\u5B9A\u66F2\u7EBF\u3001\u4E0D\u7F29\u653E\u5F62\u72B6\uFF1B\u4FDD\u7559\u539F\u968F\u673A\u79CD\u5B50\u3001\u7EBF\u5BBD\u3001\u4EAE\u7EB9\u4E0E\u95F4\u6B47\u6D41\u52A8\u3002",
+            phases: [
+              "\u4E24\u53E5\u8F93\u5165\u5DF2\u5C31\u4F4D\uFF0C\u4EA4\u9519\u5149\u4E1D\u6CBF\u56FA\u5B9A\u5F27\u7EBF\u663E\u73B0\u3002",
+              "\u4E0B\u65B9\u7AD6\u5411\u8F93\u51FA\u5149\u4E1D\u9010\u6E10\u663E\u73B0\u3002",
+              "\u4E24\u7EC4\u5149\u4E1D\u7EE7\u7EED\u6D41\u52A8\uFF0C\u4FDD\u7559\u5B8C\u6574\u540E\u7EED\u6D41\u52A8\u6BB5\u3002"
+            ],
+            avoid: "\u4E0D\u52A0\u5165\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u53BB\u4E3B\u4F53\u3002",
+            details: [
+              "\u5F53\u524D\u64AD\u653E\u79D2\u4E581.3\uFF0C\u518D\u52A0\u539F\u573A\u666F11.86\u79D2\uFF1B\u523015.85\u79D2\u4FDD\u6301\u3002",
+              "\u56FA\u5B9A\u66F2\u7EBF\u3001\u4E0D\u7F29\u653E\u5F62\u72B6\uFF1B\u4FDD\u7559\u539F\u968F\u673A\u79CD\u5B50\u3001\u7EBF\u5BBD\u3001\u4EAE\u7EB9\u4E0E\u95F4\u6B47\u6D41\u52A8\u3002",
+              "\u53EA\u521B\u5EFA\u5DF2\u9009\u4E3B\u4F53\uFF1B\u672A\u5E26\u6574\u6BB5\u89C6\u9891\u3001\u914D\u97F3\u6216\u5728\u7EBF\u8D44\u6E90\u3002"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      id: "cosine-gauge-sweep",
+      name: "\u4EEA\u8868\u6307\u9488\u4E0E\u8BFB\u6570\u8054\u52A8",
+      kind: "illustration",
+      category: "illustration-interface",
+      summary: "\u534A\u5706\u4EEA\u8868\u9010\u6E10\u63CF\u51FA\uFF0C\u6307\u9488\u626B\u5230\u6307\u5B9A\u503C\uFF0C\u6570\u5B57\u540C\u6B65\u53D8\u5316\u5E76\u8F7B\u5FAE\u5F39\u52A8\u5F3A\u8C03\u3002",
+      purpose: "\u9002\u5408\u5206\u6570\u3001\u76F8\u4F3C\u5EA6\u6216\u4FE1\u53F7\u72B6\u6001\u8BF4\u660E\uFF1B\u56FA\u5B9A\u793A\u4F8B\u8303\u56F4\u4E3A\u8D1F\u4E00\u5230\u6B63\u4E00\u3002",
+      objects: "\u534A\u5706\u523B\u5EA6\u3001\u6307\u9488\u3001\u586B\u5145\u5F27\u4E0E\u8BFB\u6570",
+      phases: [
+        "\u4EEA\u8868\u5F27\u4E0E\u523B\u5EA6\u51FA\u73B0\u3002",
+        "\u6307\u9488\u548C\u586B\u5145\u5F27\u8054\u52A8\uFF0C\u6570\u5B57\u5230 0.74\u3002",
+        "\u8BFB\u6570\u8F7B\u5FAE\u5F39\u52A8\u540E\u4FDD\u6301\u3002"
+      ],
+      aliases: [
+        "\u4EEA\u8868\u76D8",
+        "\u6307\u9488",
+        "\u4F59\u5F26\u8BFB\u6570"
+      ],
+      behaviors: [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      retain: "\u4FDD\u7559 21 \u4E2A\u523B\u5EA6\u548C\u539F\u6307\u9488\u51E0\u4F55\uFF0C\u8BFB\u6570\u4E0E\u6307\u9488\u4F7F\u7528\u540C\u4E00\u8FDB\u5EA6\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u6539\u539F\u51E0\u4F55\u548C\u6750\u8D28\uFF0C\u4E0D\u4EE5\u6574\u4F53\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u52A8\u4F5C\u3002",
+      duration_ms: 3707.6923076923076,
+      preview_ms: 3053.8461538461543,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/knowledge-video.js",
+        factory: "cosine-gauge-sweep",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        assets: [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        reference: {
+          name: "\u7528\u6237\u63D0\u4F9B\u7684\u5411\u91CF\u4E0E\u77E5\u8BC6\u5E93\u6700\u7EC8\u5DE5\u7A0B"
+        },
+        extraction: "\u63092026\u5E7410\u670830\u65E5\u786E\u8BA4\u8303\u56F4\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\u3002\u4FDD\u7559\u56FA\u5B9A\u79CD\u5B50\u3001\u51E0\u4F55\u3001\u5B57\u4F53\u4E0E\u6E90\u65F6\u95F4\uFF1B\u5F53\u524D\u5E27\u9A71\u52A8\uFF0C\u539F\u5DE5\u7A0B\u53EA\u8BFB\u3002\u8868\u683C\u6309\u7528\u6237\u8981\u6C42\u6062\u590D8\u5217\u3002",
+        remotion: {
+          component: "catalog/remotion/knowledge-video/index.jsx",
+          export_name: "WiseKnowledgeMotion",
+          package_name: "wise-knowledge-motion",
+          files: [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 840,
+          height: 760,
+          fps: 60,
+          reuse_notes: "\u9884\u89C8\u4E0E\u9010\u5E27\u5BFC\u51FA\u4F7F\u7528\u540C\u4E00\u7ED8\u5236\u51FD\u6570\u3002speed=1\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF1B\u56FA\u5B9A\u793A\u4F8B\u5728\u7EC4\u4EF6\u6E90\u7801\u5185\u7F16\u8F91\u3002\u539F\u5B57\u4F53\u4E0E\u5934\u50CF\u968F\u5DE5\u7A0B\u63D0\u4F9B\uFF0C\u5B9E\u9645\u53D6\u666F\u5C3A\u5BF8\u89C1\u672C\u6761\u76EE\uFF1B\u4E0D\u5305\u542B\u914D\u97F3\u3002",
+          binary_files: [
+            {
+              source: "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              target: "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              bytes: 2003884,
+              sha256: "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              source: "catalog/assets/knowledge-video/wise-avatar.png",
+              target: "public/catalog/assets/knowledge-video/wise-avatar.png",
+              bytes: 1287166,
+              sha256: "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+          scripts: {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      content_slots: [],
+      layer: "own-background",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      analogy: "\u534A\u5706\u4EEA\u8868\u9010\u6E10\u63CF\u51FA\uFF0C\u6307\u9488\u626B\u5230\u6307\u5B9A\u503C\uFF0C\u6570\u5B57\u540C\u6B65\u53D8\u5316\u5E76\u8F7B\u5FAE\u5F39\u52A8\u5F3A\u8C03\u3002",
+      assumptions: "\u5185\u5BB9\u548C\u6570\u636E\u4E3A\u539F\u5DE5\u7A0B\u7684\u56FA\u5B9A\u8BB2\u89E3\u793A\u4F8B\u3002\u9002\u5408\u5206\u6570\u3001\u76F8\u4F3C\u5EA6\u6216\u4FE1\u53F7\u72B6\u6001\u8BF4\u660E\uFF1B\u56FA\u5B9A\u793A\u4F8B\u8303\u56F4\u4E3A\u8D1F\u4E00\u5230\u6B63\u4E00\u3002",
+      tempo_note: "\u9ED8\u8BA4\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF0C\u7EA63.71\u79D2\u3002",
+      recommendation: "\u9002\u5408\u5206\u6570\u3001\u76F8\u4F3C\u5EA6\u6216\u4FE1\u53F7\u72B6\u6001\u8BF4\u660E\uFF1B\u56FA\u5B9A\u793A\u4F8B\u8303\u56F4\u4E3A\u8D1F\u4E00\u5230\u6B63\u4E00\u3002",
+      reproduction: {
+        presentation: "\u539F\u753B\u677F1080\xD71440\uFF0C\u6309\u4E3B\u4F53\u8303\u56F4120\u3001430\u3001840\u3001760\u7B49\u6BD4\u53D6\u666F\uFF1B\u8FD1\u9ED1\u80CC\u666F\u3001\u6696\u91D1\u4E0E\u94F6\u767D\u3001\u539F\u5F97\u610F\u9ED1\u5B57\u4F53\u3002",
+        objects: "\u534A\u5706\u523B\u5EA6\u3001\u6307\u9488\u3001\u586B\u5145\u5F27\u4E0E\u8BFB\u6570",
+        retain: "\u4FDD\u7559 21 \u4E2A\u523B\u5EA6\u548C\u539F\u6307\u9488\u51E0\u4F55\uFF0C\u8BFB\u6570\u4E0E\u6307\u9488\u4F7F\u7528\u540C\u4E00\u8FDB\u5EA6\u3002",
+        phases: [
+          "\u4EEA\u8868\u5F27\u4E0E\u523B\u5EA6\u51FA\u73B0\u3002",
+          "\u6307\u9488\u548C\u586B\u5145\u5F27\u8054\u52A8\uFF0C\u6570\u5B57\u5230 0.74\u3002",
+          "\u8BFB\u6570\u8F7B\u5FAE\u5F39\u52A8\u540E\u4FDD\u6301\u3002"
+        ],
+        avoid: "\u4E0D\u52A0\u5165\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u53BB\u4E3B\u4F53\u3002",
+        details: [
+          "\u5F53\u524D\u64AD\u653E\u79D2\u4E581.3\uFF0C\u518D\u52A0\u539F\u573A\u666F5.58\u79D2\uFF1B\u523010.4\u79D2\u4FDD\u6301\u3002",
+          "\u4FDD\u7559 21 \u4E2A\u523B\u5EA6\u548C\u539F\u6307\u9488\u51E0\u4F55\uFF0C\u8BFB\u6570\u4E0E\u6307\u9488\u4F7F\u7528\u540C\u4E00\u8FDB\u5EA6\u3002",
+          "\u53EA\u521B\u5EFA\u5DF2\u9009\u4E3B\u4F53\uFF1B\u672A\u5E26\u6574\u6BB5\u89C6\u9891\u3001\u914D\u97F3\u6216\u5728\u7EBF\u8D44\u6E90\u3002"
+        ]
+      }
+    },
+    {
+      id: "vector-angle-swing",
+      name: "\u5411\u91CF\u5939\u89D2\u6765\u56DE\u6446\u52A8",
+      kind: "illustration",
+      category: "illustration-diagram",
+      summary: "\u540C\u4E00\u539F\u70B9\u7684\u4E24\u652F\u7BAD\u5934\u6539\u53D8\u5939\u89D2\uFF0C\u6247\u5F62\u3001\u89D2\u5EA6\u7B26\u53F7\u4E0E\u4F59\u5F26\u8BFB\u6570\u4E00\u8D77\u53D8\u5316\u3002",
+      purpose: "\u9002\u5408\u89E3\u91CA\u65B9\u5411\u76F8\u4F3C\u4E0E\u4F59\u5F26\u5173\u7CFB\uFF1B\u4FDD\u7559\u6765\u56DE\u6446\u52A8\uFF0C\u4E0D\u53EA\u622A\u53D6\u4E00\u6B21\u53D8\u5316\u3002",
+      objects: "\u94F6\u8272\u7F51\u683C\u3001\u4E24\u652F\u5411\u91CF\u3001\u5939\u89D2\u6247\u5F62\u3001\u516C\u5F0F\u548C\u8BFB\u6570",
+      phases: [
+        "\u7B2C\u4E8C\u652F\u7BAD\u5934\u957F\u51FA\uFF0C\u5939\u89D2\u6807\u8BB0\u51FA\u73B0\u3002",
+        "\u7BAD\u5934\u9760\u8FD1\u540E\u6446\u5F00\uFF0C\u4F59\u5F26\u8BFB\u6570\u968F\u5939\u89D2\u53D8\u5316\u3002",
+        "\u7BAD\u5934\u518D\u6B21\u9760\u8FD1\uFF0C\u4FDD\u7559\u6700\u7EC8\u72B6\u6001\u3002"
+      ],
+      aliases: [
+        "\u5411\u91CF\u5939\u89D2",
+        "\u7BAD\u5934\u6446\u52A8",
+        "\u4F59\u5F26\u76F8\u4F3C\u5EA6"
+      ],
+      behaviors: [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      retain: "\u7BAD\u5934\u3001\u89D2\u5EA6\u6247\u5F62\u4E0E\u8BFB\u6570\u5171\u540C\u53D6\u540C\u4E00\u4E2A\u89D2\u5EA6\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u6539\u539F\u51E0\u4F55\u548C\u6750\u8D28\uFF0C\u4E0D\u4EE5\u6574\u4F53\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u52A8\u4F5C\u3002",
+      duration_ms: 5115.384615384615,
+      preview_ms: 4769.2307692307695,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/knowledge-video.js",
+        factory: "vector-angle-swing",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        assets: [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        reference: {
+          name: "\u7528\u6237\u63D0\u4F9B\u7684\u5411\u91CF\u4E0E\u77E5\u8BC6\u5E93\u6700\u7EC8\u5DE5\u7A0B"
+        },
+        extraction: "\u63092026\u5E7410\u670830\u65E5\u786E\u8BA4\u8303\u56F4\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\u3002\u4FDD\u7559\u56FA\u5B9A\u79CD\u5B50\u3001\u51E0\u4F55\u3001\u5B57\u4F53\u4E0E\u6E90\u65F6\u95F4\uFF1B\u5F53\u524D\u5E27\u9A71\u52A8\uFF0C\u539F\u5DE5\u7A0B\u53EA\u8BFB\u3002\u8868\u683C\u6309\u7528\u6237\u8981\u6C42\u6062\u590D8\u5217\u3002",
+        remotion: {
+          component: "catalog/remotion/knowledge-video/index.jsx",
+          export_name: "WiseKnowledgeMotion",
+          package_name: "wise-knowledge-motion",
+          files: [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 960,
+          height: 1030,
+          fps: 60,
+          reuse_notes: "\u9884\u89C8\u4E0E\u9010\u5E27\u5BFC\u51FA\u4F7F\u7528\u540C\u4E00\u7ED8\u5236\u51FD\u6570\u3002speed=1\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF1B\u56FA\u5B9A\u793A\u4F8B\u5728\u7EC4\u4EF6\u6E90\u7801\u5185\u7F16\u8F91\u3002\u539F\u5B57\u4F53\u4E0E\u5934\u50CF\u968F\u5DE5\u7A0B\u63D0\u4F9B\uFF0C\u5B9E\u9645\u53D6\u666F\u5C3A\u5BF8\u89C1\u672C\u6761\u76EE\uFF1B\u4E0D\u5305\u542B\u914D\u97F3\u3002",
+          binary_files: [
+            {
+              source: "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              target: "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              bytes: 2003884,
+              sha256: "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              source: "catalog/assets/knowledge-video/wise-avatar.png",
+              target: "public/catalog/assets/knowledge-video/wise-avatar.png",
+              bytes: 1287166,
+              sha256: "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+          scripts: {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      content_slots: [],
+      layer: "own-background",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      analogy: "\u540C\u4E00\u539F\u70B9\u7684\u4E24\u652F\u7BAD\u5934\u6539\u53D8\u5939\u89D2\uFF0C\u6247\u5F62\u3001\u89D2\u5EA6\u7B26\u53F7\u4E0E\u4F59\u5F26\u8BFB\u6570\u4E00\u8D77\u53D8\u5316\u3002",
+      assumptions: "\u5185\u5BB9\u548C\u6570\u636E\u4E3A\u539F\u5DE5\u7A0B\u7684\u56FA\u5B9A\u8BB2\u89E3\u793A\u4F8B\u3002\u9002\u5408\u89E3\u91CA\u65B9\u5411\u76F8\u4F3C\u4E0E\u4F59\u5F26\u5173\u7CFB\uFF1B\u4FDD\u7559\u6765\u56DE\u6446\u52A8\uFF0C\u4E0D\u53EA\u622A\u53D6\u4E00\u6B21\u53D8\u5316\u3002",
+      tempo_note: "\u9ED8\u8BA4\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF0C\u7EA65.12\u79D2\u3002",
+      recommendation: "\u9002\u5408\u89E3\u91CA\u65B9\u5411\u76F8\u4F3C\u4E0E\u4F59\u5F26\u5173\u7CFB\uFF1B\u4FDD\u7559\u6765\u56DE\u6446\u52A8\uFF0C\u4E0D\u53EA\u622A\u53D6\u4E00\u6B21\u53D8\u5316\u3002",
+      reproduction: {
+        presentation: "\u539F\u753B\u677F1080\xD71440\uFF0C\u6309\u4E3B\u4F53\u8303\u56F460\u3001200\u3001960\u30011030\u7B49\u6BD4\u53D6\u666F\uFF1B\u8FD1\u9ED1\u80CC\u666F\u3001\u6696\u91D1\u4E0E\u94F6\u767D\u3001\u539F\u5F97\u610F\u9ED1\u5B57\u4F53\u3002",
+        objects: "\u94F6\u8272\u7F51\u683C\u3001\u4E24\u652F\u5411\u91CF\u3001\u5939\u89D2\u6247\u5F62\u3001\u516C\u5F0F\u548C\u8BFB\u6570",
+        retain: "\u7BAD\u5934\u3001\u89D2\u5EA6\u6247\u5F62\u4E0E\u8BFB\u6570\u5171\u540C\u53D6\u540C\u4E00\u4E2A\u89D2\u5EA6\u3002",
+        phases: [
+          "\u7B2C\u4E8C\u652F\u7BAD\u5934\u957F\u51FA\uFF0C\u5939\u89D2\u6807\u8BB0\u51FA\u73B0\u3002",
+          "\u7BAD\u5934\u9760\u8FD1\u540E\u6446\u5F00\uFF0C\u4F59\u5F26\u8BFB\u6570\u968F\u5939\u89D2\u53D8\u5316\u3002",
+          "\u7BAD\u5934\u518D\u6B21\u9760\u8FD1\uFF0C\u4FDD\u7559\u6700\u7EC8\u72B6\u6001\u3002"
+        ],
+        avoid: "\u4E0D\u52A0\u5165\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u53BB\u4E3B\u4F53\u3002",
+        details: [
+          "\u5F53\u524D\u64AD\u653E\u79D2\u4E581.3\uFF0C\u518D\u52A0\u539F\u573A\u666F4.55\u79D2\uFF1B\u523011.2\u79D2\u4FDD\u6301\u3002",
+          "\u7BAD\u5934\u3001\u89D2\u5EA6\u6247\u5F62\u4E0E\u8BFB\u6570\u5171\u540C\u53D6\u540C\u4E00\u4E2A\u89D2\u5EA6\u3002",
+          "\u53EA\u521B\u5EFA\u5DF2\u9009\u4E3B\u4F53\uFF1B\u672A\u5E26\u6574\u6BB5\u89C6\u9891\u3001\u914D\u97F3\u6216\u5728\u7EBF\u8D44\u6E90\u3002"
+        ]
+      }
+    },
+    {
+      id: "purchase-table-vector",
+      name: "\u8D2D\u4E70\u8868\u683C\u7A81\u51FA\u4E00\u884C",
+      kind: "illustration",
+      category: "illustration-interface",
+      summary: "\u4E09\u884C\u516B\u5217\u8D2D\u4E70\u8BB0\u5F55\u5728\u5BBD\u5C4F\u4E2D\u5C55\u5F00\uFF0C\u732B\u7CAE\u4E00\u884C\u4EAE\u8D77\uFF0C\u5176\u4F59\u4E24\u884C\u53D8\u6697\uFF0C\u5B8C\u6574\u6570\u5B57\u884C\u63D0\u5230\u4E0B\u65B9\u3002",
+      purpose: "\u9002\u5408\u8BB2\u89E3\u8868\u683C\u4E00\u884C\u5982\u4F55\u6210\u4E3A\u5411\u91CF\uFF1B\u6A2A\u5411\u5B8C\u6574\u516B\u5217\uFF0C\u5217\u95F4\u4FDD\u7559\u5BBD\u88D5\u95F4\u8DDD\u3002",
+      objects: "\u516B\u5217\u7528\u6237\u3001\u4E09\u884C\u8D2D\u4E70\u8BB0\u5F55\u3001\u884C\u9AD8\u4EAE\u548C\u6570\u5B57\u884C",
+      phases: [
+        "\u516B\u4E2A\u7528\u6237\u4E0E\u732B\u7CAE\u8D2D\u4E70\u8BB0\u5F55\u51FA\u73B0\u3002",
+        "\u732B\u7802\u548C\u72D7\u7CAE\u8BB0\u5F55\u6309\u540C\u4E00\u5217\u987A\u5E8F\u586B\u5165\u3002",
+        "\u7A81\u51FA\u732B\u7CAE\u4E00\u884C\uFF0C\u5E76\u5C55\u793A\u5B8C\u6574\u7684\u516B\u4E2A\u6570\u5B57\u3002"
+      ],
+      aliases: [
+        "\u732B\u7CAE\u8868\u683C",
+        "\u8D2D\u4E70\u8BB0\u5F55",
+        "\u8868\u683C\u53D8\u5411\u91CF",
+        "\u516B\u5217"
+      ],
+      behaviors: [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      retain: "\u4E09\u884C\u516B\u5217\u539F\u59CB\u6570\u636E\u4E0D\u53D8\uFF1B\u6A2A\u5411\u94FA\u5F00\uFF0C\u5217\u4E2D\u5FC3\u95F4\u8DDD160\u50CF\u7D20\uFF1B\u4E0D\u538B\u6210\u4E09\u5217\uFF0C\u4E0D\u628A\u8BB0\u5F55\u8F6C\u7F6E\u3002",
+      avoid: "\u4E0D\u88C1\u53BB\u5217\u6216\u538B\u7F29\u5217\u8DDD\uFF0C\u4E0D\u4EE5\u6574\u4F53\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u52A8\u4F5C\u3002",
+      duration_ms: 5423.076923076923,
+      preview_ms: 4730.7692307692305,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/knowledge-video.js",
+        factory: "purchase-table-vector",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        assets: [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        reference: {
+          name: "\u7528\u6237\u63D0\u4F9B\u7684\u5411\u91CF\u4E0E\u77E5\u8BC6\u5E93\u6700\u7EC8\u5DE5\u7A0B"
+        },
+        extraction: "\u63D0\u53D6\u539F\u5DE5\u7A0B\u7684\u4E09\u884C\u516B\u5217\u8D2D\u4E70\u8BB0\u5F55\u4E0E\u884C\u9AD8\u4EAE\u52A8\u4F5C\uFF0C\u6309\u7528\u6237\u786E\u8BA4\u4F7F\u7528\u5BBD\u5C4F\u5E03\u5C40\u548C\u6210\u72472\u500D\u901F\u5EA6\uFF1B\u5B57\u4F53\u3001\u6570\u636E\u4E0E\u5185\u90E8\u52A8\u4F5C\u4FDD\u6301\uFF0C\u5F53\u524D\u5E27\u9A71\u52A8\uFF0C\u539F\u5DE5\u7A0B\u53EA\u8BFB\u3002",
+        remotion: {
+          component: "catalog/remotion/knowledge-video/index.jsx",
+          export_name: "WiseKnowledgeMotion",
+          package_name: "wise-knowledge-motion",
+          files: [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1600,
+          height: 900,
+          fps: 60,
+          reuse_notes: "\u9884\u89C8\u4E0E\u9010\u5E27\u5BFC\u51FA\u4F7F\u7528\u540C\u4E00\u7ED8\u5236\u51FD\u6570\u3002speed=1\u4E3A\u6210\u7247\u76842\u500D\u901F\u5EA6\uFF0C\u7EA65.42\u79D2\uFF1B\u6E90\u5DE5\u7A0B\u65F6\u95F4\u63092.6\u500D\u6620\u5C04\u3002\u4E09\u884C\u516B\u5217\u94FA\u57281600\xD7900\u6A2A\u5411\u753B\u677F\u5185\uFF0C\u5217\u4E2D\u5FC3\u95F4\u8DDD160\u50CF\u7D20\u3002\u56FA\u5B9A\u5185\u5BB9\u5728\u7EC4\u4EF6\u6E90\u7801\u4E2D\u7F16\u8F91\uFF0C\u4E0D\u542B\u914D\u97F3\u3002",
+          binary_files: [
+            {
+              source: "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              target: "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              bytes: 2003884,
+              sha256: "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              source: "catalog/assets/knowledge-video/wise-avatar.png",
+              target: "public/catalog/assets/knowledge-video/wise-avatar.png",
+              bytes: 1287166,
+              sha256: "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+          scripts: {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      actions: [],
+      demo_mode: "fixed-timeline",
+      content_slots: [],
+      layer: "own-background",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      analogy: "\u4E09\u884C\u516B\u5217\u8D2D\u4E70\u8BB0\u5F55\u5728\u5BBD\u5C4F\u4E2D\u5C55\u5F00\uFF0C\u732B\u7CAE\u4E00\u884C\u4EAE\u8D77\uFF0C\u5176\u4F59\u4E24\u884C\u53D8\u6697\uFF0C\u5B8C\u6574\u6570\u5B57\u884C\u63D0\u5230\u4E0B\u65B9\u3002",
+      assumptions: "\u5185\u5BB9\u548C\u6570\u636E\u4E3A\u56FA\u5B9A\u8BB2\u89E3\u793A\u4F8B\u3002\u9002\u5408\u8BB2\u89E3\u8868\u683C\u4E00\u884C\u5982\u4F55\u6210\u4E3A\u5411\u91CF\uFF1B\u6A2A\u5411\u5B8C\u6574\u516B\u5217\uFF0C\u5217\u95F4\u4FDD\u7559\u5BBD\u88D5\u95F4\u8DDD\u3002",
+      tempo_note: "\u9ED8\u8BA4\u4EE5\u6210\u7247\u76842\u500D\u901F\u5EA6\u64AD\u653E\uFF0C\u7EA65.42\u79D2\uFF1B\u64AD\u653E\u63A7\u4EF6\u76841\u500D\u4EE3\u8868\u6B64\u9ED8\u8BA4\u8282\u594F\u3002",
+      recommendation: "\u9002\u5408\u8BB2\u89E3\u8868\u683C\u4E00\u884C\u5982\u4F55\u6210\u4E3A\u5411\u91CF\uFF1B\u6A2A\u5411\u5B8C\u6574\u516B\u5217\uFF0C\u5217\u95F4\u4FDD\u7559\u5BBD\u88D5\u95F4\u8DDD\u3002",
+      reproduction: {
+        presentation: "1600\xD7900\u6A2A\u5C4F\u753B\u677F\uFF0C\u8FD1\u9ED1\u80CC\u666F\u3001\u6696\u91D1\u4E0E\u94F6\u767D\u3001\u5F97\u610F\u9ED1\u5B57\u4F53\uFF1B\u516B\u5217\u4E2D\u5FC3\u95F4\u8DDD160\u50CF\u7D20\uFF0C\u884C\u9AD8\u4EAE\u5BBD1504\u50CF\u7D20\uFF0C\u4E0B\u65B9\u5C45\u4E2D\u663E\u793A\u5B8C\u6574\u6570\u5B57\u884C\u3002",
+        objects: "\u516B\u5217\u7528\u6237\u3001\u4E09\u884C\u8D2D\u4E70\u8BB0\u5F55\u3001\u884C\u9AD8\u4EAE\u548C\u6570\u5B57\u884C",
+        retain: "\u4E09\u884C\u516B\u5217\u539F\u59CB\u6570\u636E\u4E0D\u53D8\uFF1B\u6A2A\u5411\u94FA\u5F00\uFF0C\u5217\u4E2D\u5FC3\u95F4\u8DDD160\u50CF\u7D20\uFF1B\u4E0D\u538B\u6210\u4E09\u5217\uFF0C\u4E0D\u628A\u8BB0\u5F55\u8F6C\u7F6E\u3002",
+        phases: [
+          "\u516B\u4E2A\u7528\u6237\u4E0E\u732B\u7CAE\u8D2D\u4E70\u8BB0\u5F55\u51FA\u73B0\u3002",
+          "\u732B\u7802\u548C\u72D7\u7CAE\u8BB0\u5F55\u6309\u540C\u4E00\u5217\u987A\u5E8F\u586B\u5165\u3002",
+          "\u7A81\u51FA\u732B\u7CAE\u4E00\u884C\uFF0C\u5E76\u5C55\u793A\u5B8C\u6574\u7684\u516B\u4E2A\u6570\u5B57\u3002"
+        ],
+        avoid: "\u4E0D\u52A0\u5165\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u53BB\u4E3B\u4F53\u3002",
+        details: [
+          "\u5F53\u524D\u64AD\u653E\u79D2\u4E582.6\uFF0C\u518D\u52A0\u539F\u573A\u666F0\u79D2\uFF1B\u523014.1\u79D2\u4FDD\u6301\uFF0C\u7247\u6BB5\u7EA65.42\u79D2\u3002",
+          "\u4E09\u884C\u516B\u5217\u539F\u59CB\u6570\u636E\u4E0D\u53D8\uFF1B\u6A2A\u5411\u94FA\u5F00\uFF0C\u5217\u4E2D\u5FC3\u95F4\u8DDD160\u50CF\u7D20\uFF1B\u4E0D\u538B\u6210\u4E09\u5217\uFF0C\u4E0D\u628A\u8BB0\u5F55\u8F6C\u7F6E\u3002",
+          "\u53EA\u521B\u5EFA\u5DF2\u9009\u4E3B\u4F53\uFF1B\u672A\u5E26\u6574\u6BB5\u89C6\u9891\u3001\u914D\u97F3\u6216\u5728\u7EBF\u8D44\u6E90\u3002"
+        ]
+      }
+    },
+    {
+      id: "paper-card-drop",
+      name: "\u8BBA\u6587\u8D44\u6599\u4F9D\u6B21\u5165\u573A",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "3:4\u7AD6\u5C4F\u4E2D\uFF0C\u8BBA\u6587\u9875\u5148\u503E\u659C\u843D\u5B9A\uFF0C\u5E74\u4EFD\u4E0E\u4F5C\u8005\u4FE1\u606F\u968F\u540E\u663E\u73B0\uFF0C\u53F3\u4E0B\u7ED3\u6784\u56FE\u6700\u540E\u8FDB\u5165\u3002",
+      purpose: "\u9002\u5408\u5206\u4E09\u62CD\u4ECB\u7ECD\u8BBA\u6587\u3001\u5E74\u4EE3\u4E0E\u7ED3\u6784\u56FE\uFF0C\u4FDD\u7559\u4E00\u7EC4\u8D44\u6599\u4F9D\u6B21\u5165\u573A\u7684\u5B8C\u6574\u5173\u7CFB\u3002",
+      objects: "\u8BBA\u6587\u9875\u3001\u5E74\u4EFD\u4E0E\u4F5C\u8005\u4FE1\u606F\u3001\u53F3\u4E0B\u7ED3\u6784\u56FE\u4E09\u7EC4\u8D44\u6599",
+      phases: [
+        "\u8BBA\u6587\u9875\u4ECE\u4E0A\u65B9\u503E\u659C\u843D\u5B9A\u3002",
+        "\u5E74\u4EFD\u4E0E\u4F5C\u8005\u4FE1\u606F\u4F9D\u6B21\u7531\u6A21\u7CCA\u53D8\u6E05\u6670\u3002",
+        "\u53F3\u4E0B\u7ED3\u6784\u56FE\u503E\u659C\u8FDB\u5165\uFF0C\u4E09\u7EC4\u8D44\u6599\u5171\u540C\u505C\u7559\u3002"
+      ],
+      aliases: [
+        "\u8BBA\u6587\u5361",
+        "Attention Is All You Need",
+        "\u7814\u7A76\u5F15\u7528",
+        "\u8BBA\u6587\u5361\u503E\u659C\u843D\u5B9A",
+        "\u8BBA\u6587\u4E09\u7EC4\u8D44\u6599",
+        "\u7AD6\u5C4F\u8BBA\u6587",
+        "3:4"
+      ],
+      behaviors: [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      retain: "3:4\u7AD6\u5C4F\u3001\u4E09\u7EC4\u8D44\u6599\u3001\u5148\u540E\u987A\u5E8F\u3001\u503E\u659C\u843D\u5B9A\u4E0E\u7531\u6A21\u7CCA\u53D8\u6E05\u6670\u7684\u5165\u573A\uFF1B\u4FDD\u7559\u56FE\u5185\u7F72\u540D\u3002",
+      avoid: "\u4E0D\u53EA\u622A\u8BBA\u6587\u9875\uFF0C\u4E0D\u628A\u4E09\u7EC4\u8D44\u6599\u538B\u6210\u6A2A\u5C4F\uFF0C\u4E0D\u63D0\u524D\u5207\u65AD\u7ED3\u6784\u56FE\u5165\u573A\u3002",
+      duration_ms: 2923.0769230769206,
+      preview_ms: 2692.307692307692,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/knowledge-video.js",
+        factory: "paper-card-drop",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        assets: [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+          "catalog/assets/knowledge-video/transformer.png",
+          "catalog/assets/knowledge-video/Transformer-CREDITS.md"
+        ],
+        reference: {
+          name: "\u7528\u6237\u63D0\u4F9B\u7684\u5411\u91CF\u4E0E\u77E5\u8BC6\u5E93\u6700\u7EC8\u5DE5\u7A0B"
+        },
+        extraction: "\u4ECE\u539F\u5DE5\u7A0B\u63D0\u53D6\u8BBA\u6587\u9875\u3001\u5E74\u4EFD\u4F5C\u8005\u4E0E\u7ED3\u6784\u56FE\u7684\u5B8C\u6574\u5165\u573A\u987A\u5E8F\uFF1B3:4\u7AD6\u5C4F\u3001\u539F\u5B57\u4F53\u3001\u503E\u659C\u548C\u65F6\u95F4\u5173\u7CFB\u4FDD\u6301\uFF0C\u5F53\u524D\u5E27\u9A71\u52A8\uFF0C\u539F\u5DE5\u7A0B\u53EA\u8BFB\u3002",
+        remotion: {
+          component: "catalog/remotion/knowledge-video/index.jsx",
+          export_name: "WiseKnowledgeMotion",
+          package_name: "wise-knowledge-motion",
+          files: [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs",
+            "catalog/assets/knowledge-video/Transformer-CREDITS.md"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 1080,
+          height: 1440,
+          fps: 60,
+          reuse_notes: "1080\xD71440\u7AD6\u5C4F\uFF0C\u4E09\u7EC4\u8D44\u6599\u6309\u539F\u7247\u987A\u5E8F\u5165\u573A\uFF1Bspeed=1\u6CBF\u7528\u6210\u7247\u8282\u594F\uFF0C\u7EA62.92\u79D2\u3002\u5B57\u4F53\u4E0E\u7ED3\u6784\u56FE\u968F\u5DE5\u7A0B\u63D0\u4F9B\uFF0C\u7ED3\u6784\u56FE\u7F72\u540D\u548C\u8BB8\u53EF\u72EC\u7ACB\u4FDD\u7559\u3002\u56FA\u5B9A\u5185\u5BB9\u5728\u7EC4\u4EF6\u6E90\u7801\u4E2D\u7F16\u8F91\uFF0C\u4E0D\u542B\u914D\u97F3\u3002",
+          binary_files: [
+            {
+              source: "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              target: "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              bytes: 2003884,
+              sha256: "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              source: "catalog/assets/knowledge-video/wise-avatar.png",
+              target: "public/catalog/assets/knowledge-video/wise-avatar.png",
+              bytes: 1287166,
+              sha256: "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            },
+            {
+              source: "catalog/assets/knowledge-video/transformer.png",
+              target: "public/catalog/assets/knowledge-video/transformer.png",
+              bytes: 145389,
+              sha256: "b491875a5a262910ab3e3ac9c377a425ef637f824d1bbf2e6416c2a651035356"
+            }
+          ],
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+          scripts: {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      actions: [
+        "tilt-drop-settle"
+      ],
+      demo_mode: "fixed-timeline",
+      content_slots: [],
+      layer: "own-background",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      analogy: "3:4\u7AD6\u5C4F\u4E2D\uFF0C\u8BBA\u6587\u9875\u5148\u503E\u659C\u843D\u5B9A\uFF0C\u5E74\u4EFD\u4E0E\u4F5C\u8005\u4FE1\u606F\u968F\u540E\u663E\u73B0\uFF0C\u53F3\u4E0B\u7ED3\u6784\u56FE\u6700\u540E\u8FDB\u5165\u3002",
+      assumptions: "\u8BBA\u6587\u6587\u5B57\u4E0E\u7ED3\u6784\u56FE\u4E3A\u56FA\u5B9A\u8BB2\u89E3\u793A\u4F8B\uFF1B\u4E09\u7EC4\u8D44\u6599\u6CBF\u7528\u539F\u5DE5\u7A0B\u7F16\u6392\u3002",
+      tempo_note: "\u6CBF\u7528\u6210\u7247\u8282\u594F\uFF0C\u7EA62.92\u79D2\uFF1B\u4E09\u7EC4\u8D44\u6599\u4F9D\u6B21\u5165\u573A\uFF0C\u6700\u540E\u5171\u540C\u505C\u7559\u3002",
+      recommendation: "\u9002\u5408\u5206\u4E09\u62CD\u4ECB\u7ECD\u8BBA\u6587\u3001\u5E74\u4EE3\u4E0E\u7ED3\u6784\u56FE\uFF0C\u4FDD\u7559\u4E00\u7EC4\u8D44\u6599\u4F9D\u6B21\u5165\u573A\u7684\u5B8C\u6574\u5173\u7CFB\u3002",
+      reproduction: {
+        presentation: "1080\xD71440\u76843:4\u7AD6\u5C4F\uFF0C\u8FD1\u9ED1\u80CC\u666F\uFF1B\u4E0A\u65B9\u6D45\u8272\u8BBA\u6587\u9875\uFF0C\u5DE6\u4E0B\u6696\u91D1\u5E74\u4EFD\u4E0E\u4F5C\u8005\u4FE1\u606F\uFF0C\u53F3\u4E0B\u767D\u5E95\u7ED3\u6784\u56FE\u5361\u7247\u3002",
+        objects: "\u8BBA\u6587\u9875\u3001\u5E74\u4EFD\u4E0E\u4F5C\u8005\u4FE1\u606F\u3001\u53F3\u4E0B\u7ED3\u6784\u56FE\u4E09\u7EC4\u8D44\u6599",
+        retain: "3:4\u7AD6\u5C4F\u3001\u4E09\u7EC4\u8D44\u6599\u3001\u5148\u540E\u987A\u5E8F\u3001\u503E\u659C\u843D\u5B9A\u4E0E\u7531\u6A21\u7CCA\u53D8\u6E05\u6670\u7684\u5165\u573A\uFF1B\u4FDD\u7559\u56FE\u5185\u7F72\u540D\u3002",
+        phases: [
+          "\u8BBA\u6587\u9875\u4ECE\u4E0A\u65B9\u503E\u659C\u843D\u5B9A\u3002",
+          "\u5E74\u4EFD\u4E0E\u4F5C\u8005\u4FE1\u606F\u4F9D\u6B21\u7531\u6A21\u7CCA\u53D8\u6E05\u6670\u3002",
+          "\u53F3\u4E0B\u7ED3\u6784\u56FE\u503E\u659C\u8FDB\u5165\uFF0C\u4E09\u7EC4\u8D44\u6599\u5171\u540C\u505C\u7559\u3002"
+        ],
+        avoid: "\u4E0D\u53EA\u622A\u8BBA\u6587\u9875\uFF0C\u4E0D\u628A\u4E09\u7EC4\u8D44\u6599\u538B\u6210\u6A2A\u5C4F\uFF0C\u4E0D\u63D0\u524D\u5207\u65AD\u7ED3\u6784\u56FE\u5165\u573A\u3002",
+        details: [
+          "\u5F53\u524D\u64AD\u653E\u79D2\u4E581.3\uFF0C\u518D\u52A0\u539F\u573A\u666F34.7\u79D2\uFF1B\u523038.5\u79D2\u4FDD\u6301\u3002",
+          "\u8BBA\u6587\u9875\u5728\u8D77\u70B9\u8FDB\u5165\uFF1B\u5E74\u4EFD\u665A0.4\u79D2\u3001\u4F5C\u8005\u665A0.7\u79D2\uFF0C\u7ED3\u6784\u56FE\u665A2.32\u79D2\u8FDB\u5165\uFF0C\u65F6\u95F4\u6309\u6E90\u573A\u666F\u79D2\u8BA1\u3002",
+          "\u8BBA\u6587\u9875\u5DE6110\u3001\u4E0A150\uFF0C\u843D\u5B9A\u89D2\u5EA6-1\u5EA6\uFF1B\u7ED3\u6784\u56FE\u5DE6640\u3001\u4E0A690\uFF0C\u843D\u5B9A\u89D2\u5EA64\u5EA6\uFF1B\u5361\u7247\u843D\u5B9A\u5747\u75280.7\u6E90\u79D2\u3002"
+        ]
+      },
+      previous_names: [
+        "\u8BBA\u6587\u5361\u503E\u659C\u843D\u5B9A"
+      ]
+    },
+    {
+      id: "cat-context-links",
+      name: "\u4E2D\u5FC3\u8BCD\u8FDE\u63A5\u5468\u56F4\u8BCD\u8BED",
+      kind: "illustration",
+      category: "illustration-diagram",
+      summary: "\u4E2D\u5FC3\u7684\u732B\u6807\u7B7E\u5148\u5F39\u51FA\uFF0C\u5468\u56F4\u8BCD\u8BED\u4F9D\u6B21\u51FA\u73B0\uFF0C\u8FDE\u63A5\u7EBF\u4ECE\u8FB9\u7F18\u4F38\u5230\u5404\u8BCD\u8BED\u8FB9\u7F18\u3002",
+      purpose: "\u9002\u5408\u8868\u8FBE\u4E00\u4E2A\u8BCD\u4E0E\u5468\u8FB9\u8BED\u5883\u7684\u5173\u7CFB\uFF1B\u4EC5\u4FDD\u7559\u4E0B\u65B9\u5173\u7CFB\u56FE\u3002",
+      objects: "\u4E2D\u5FC3\u8BCD\u3001\u516D\u4E2A\u5468\u56F4\u8BCD\u3001\u8FB9\u7F18\u76F8\u63A5\u7684\u8FDE\u7EBF",
+      phases: [
+        "\u4E2D\u5FC3\u8BCD\u5F39\u51FA\u3002",
+        "\u5468\u56F4\u516D\u4E2A\u8BCD\u9519\u5CF0\u51FA\u73B0\u3002",
+        "\u8FDE\u7EBF\u4F9D\u6B21\u957F\u51FA\uFF0C\u7AEF\u70B9\u95EA\u5149\u540E\u505C\u7559\u3002"
+      ],
+      aliases: [
+        "\u732B\u4E2D\u5FC3\u7EBF",
+        "\u4E2D\u5FC3\u8BCD",
+        "\u8BED\u5883\u8FDE\u7EBF"
+      ],
+      behaviors: [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      retain: "\u8FDE\u7EBF\u5728\u6807\u7B7E\u8FB9\u7F18\u7ED3\u675F\uFF0C\u4E0D\u7A7F\u8FC7\u5B57\uFF1B\u4E0D\u5E26\u4E0A\u65B9\u4EBA\u7269\u6863\u6848\u5361\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u6539\u539F\u51E0\u4F55\u548C\u6750\u8D28\uFF0C\u4E0D\u4EE5\u6574\u4F53\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u52A8\u4F5C\u3002",
+      duration_ms: 2923.0769230769233,
+      preview_ms: 2076.9230769230776,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/knowledge-video.js",
+        factory: "cat-context-links",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        assets: [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        reference: {
+          name: "\u7528\u6237\u63D0\u4F9B\u7684\u5411\u91CF\u4E0E\u77E5\u8BC6\u5E93\u6700\u7EC8\u5DE5\u7A0B"
+        },
+        extraction: "\u63092026\u5E7410\u670830\u65E5\u786E\u8BA4\u8303\u56F4\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\u3002\u4FDD\u7559\u56FA\u5B9A\u79CD\u5B50\u3001\u51E0\u4F55\u3001\u5B57\u4F53\u4E0E\u6E90\u65F6\u95F4\uFF1B\u5F53\u524D\u5E27\u9A71\u52A8\uFF0C\u539F\u5DE5\u7A0B\u53EA\u8BFB\u3002\u8868\u683C\u6309\u7528\u6237\u8981\u6C42\u6062\u590D8\u5217\u3002",
+        remotion: {
+          component: "catalog/remotion/knowledge-video/index.jsx",
+          export_name: "WiseKnowledgeMotion",
+          package_name: "wise-knowledge-motion",
+          files: [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 880,
+          height: 540,
+          fps: 60,
+          reuse_notes: "\u9884\u89C8\u4E0E\u9010\u5E27\u5BFC\u51FA\u4F7F\u7528\u540C\u4E00\u7ED8\u5236\u51FD\u6570\u3002speed=1\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF1B\u56FA\u5B9A\u793A\u4F8B\u5728\u7EC4\u4EF6\u6E90\u7801\u5185\u7F16\u8F91\u3002\u539F\u5B57\u4F53\u4E0E\u5934\u50CF\u968F\u5DE5\u7A0B\u63D0\u4F9B\uFF0C\u5B9E\u9645\u53D6\u666F\u5C3A\u5BF8\u89C1\u672C\u6761\u76EE\uFF1B\u4E0D\u5305\u542B\u914D\u97F3\u3002",
+          binary_files: [
+            {
+              source: "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              target: "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              bytes: 2003884,
+              sha256: "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              source: "catalog/assets/knowledge-video/wise-avatar.png",
+              target: "public/catalog/assets/knowledge-video/wise-avatar.png",
+              bytes: 1287166,
+              sha256: "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+          scripts: {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      actions: [
+        "stroke-draw",
+        "stagger-in"
+      ],
+      demo_mode: "fixed-timeline",
+      content_slots: [],
+      layer: "own-background",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      analogy: "\u4E2D\u5FC3\u7684\u732B\u6807\u7B7E\u5148\u5F39\u51FA\uFF0C\u5468\u56F4\u8BCD\u8BED\u4F9D\u6B21\u51FA\u73B0\uFF0C\u8FDE\u63A5\u7EBF\u4ECE\u8FB9\u7F18\u4F38\u5230\u5404\u8BCD\u8BED\u8FB9\u7F18\u3002",
+      assumptions: "\u5185\u5BB9\u548C\u6570\u636E\u4E3A\u539F\u5DE5\u7A0B\u7684\u56FA\u5B9A\u8BB2\u89E3\u793A\u4F8B\u3002\u9002\u5408\u8868\u8FBE\u4E00\u4E2A\u8BCD\u4E0E\u5468\u8FB9\u8BED\u5883\u7684\u5173\u7CFB\uFF1B\u4EC5\u4FDD\u7559\u4E0B\u65B9\u5173\u7CFB\u56FE\u3002",
+      tempo_note: "\u9ED8\u8BA4\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF0C\u7EA62.92\u79D2\u3002",
+      recommendation: "\u9002\u5408\u8868\u8FBE\u4E00\u4E2A\u8BCD\u4E0E\u5468\u8FB9\u8BED\u5883\u7684\u5173\u7CFB\uFF1B\u4EC5\u4FDD\u7559\u4E0B\u65B9\u5173\u7CFB\u56FE\u3002",
+      reproduction: {
+        presentation: "\u539F\u753B\u677F1080\xD71440\uFF0C\u6309\u4E3B\u4F53\u8303\u56F4100\u3001570\u3001880\u3001540\u7B49\u6BD4\u53D6\u666F\uFF1B\u8FD1\u9ED1\u80CC\u666F\u3001\u6696\u91D1\u4E0E\u94F6\u767D\u3001\u539F\u5F97\u610F\u9ED1\u5B57\u4F53\u3002",
+        objects: "\u4E2D\u5FC3\u8BCD\u3001\u516D\u4E2A\u5468\u56F4\u8BCD\u3001\u8FB9\u7F18\u76F8\u63A5\u7684\u8FDE\u7EBF",
+        retain: "\u8FDE\u7EBF\u5728\u6807\u7B7E\u8FB9\u7F18\u7ED3\u675F\uFF0C\u4E0D\u7A7F\u8FC7\u5B57\uFF1B\u4E0D\u5E26\u4E0A\u65B9\u4EBA\u7269\u6863\u6848\u5361\u3002",
+        phases: [
+          "\u4E2D\u5FC3\u8BCD\u5F39\u51FA\u3002",
+          "\u5468\u56F4\u516D\u4E2A\u8BCD\u9519\u5CF0\u51FA\u73B0\u3002",
+          "\u8FDE\u7EBF\u4F9D\u6B21\u957F\u51FA\uFF0C\u7AEF\u70B9\u95EA\u5149\u540E\u505C\u7559\u3002"
+        ],
+        avoid: "\u4E0D\u52A0\u5165\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u53BB\u4E3B\u4F53\u3002",
+        details: [
+          "\u5F53\u524D\u64AD\u653E\u79D2\u4E581.3\uFF0C\u518D\u52A0\u539F\u573A\u666F11.7\u79D2\uFF1B\u523015.5\u79D2\u4FDD\u6301\u3002",
+          "\u8FDE\u7EBF\u5728\u6807\u7B7E\u8FB9\u7F18\u7ED3\u675F\uFF0C\u4E0D\u7A7F\u8FC7\u5B57\uFF1B\u4E0D\u5E26\u4E0A\u65B9\u4EBA\u7269\u6863\u6848\u5361\u3002",
+          "\u53EA\u521B\u5EFA\u5DF2\u9009\u4E3B\u4F53\uFF1B\u672A\u5E26\u6574\u6BB5\u89C6\u9891\u3001\u914D\u97F3\u6216\u5728\u7EBF\u8D44\u6E90\u3002"
+        ]
+      }
+    },
+    {
+      id: "farewell-actions",
+      name: "\u4EBA\u7269\u544A\u522B\u4E0E\u4E09\u8FDE\u70B9\u4EAE",
+      kind: "illustration",
+      category: "illustration-object",
+      summary: "\u4EBA\u7269\u4E0E\u544A\u522B\u6587\u5B57\u51FA\u73B0\uFF0C\u70B9\u8D5E\u3001\u6536\u85CF\u3001\u5173\u6CE8\u4F9D\u6B21\u63CF\u8FB9\uFF0C\u5F39\u52A8\u70B9\u4EAE\u5E76\u6563\u51FA\u77ED\u5C04\u7EBF\u3002",
+      purpose: "\u9002\u5408\u89C6\u9891\u544A\u522B\u4E0E\u4E09\u8FDE\u5F15\u5BFC\uFF1B\u4F7F\u7528\u65F6\u66FF\u6362\u793A\u4F8B\u5934\u50CF\u4E0E\u7F72\u540D\u3002",
+      objects: "\u4EBA\u7269\u5934\u50CF\u3001\u544A\u522B\u6587\u5B57\u3001\u4E09\u8FDE\u56FE\u6807\u3001\u77ED\u5C04\u7EBF\u4E0E\u661F\u70B9",
+      phases: [
+        "\u4EBA\u7269\u548C\u7F72\u540D\u8F7B\u5FAE\u5F39\u51FA\u3002",
+        "\u544A\u522B\u6587\u5B57\u4E0E\u4E09\u4E2A\u56FE\u6807\u4F9D\u6B21\u51FA\u73B0\u3002",
+        "\u56FE\u6807\u4F9D\u6B21\u5F39\u52A8\u70B9\u4EAE\uFF0C\u77ED\u5C04\u7EBF\u6563\u5F00\u3002"
+      ],
+      aliases: [
+        "\u544A\u522B",
+        "\u7247\u5C3E",
+        "\u4E09\u8FDE",
+        "\u70B9\u8D5E\u6536\u85CF\u5173\u6CE8"
+      ],
+      behaviors: [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      retain: "\u4FDD\u7559\u539F\u5934\u50CF\u6D6E\u52A8\u3001\u4E09\u8FDE\u63CF\u8FB9\u3001\u70B9\u4EAE\u548C\u5C04\u7EBF\uFF1B\u72EC\u7ACB\u793A\u4F8B\u65E0\u65C1\u767D\u3002",
+      avoid: "\u4E0D\u6DFB\u52A0\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u6539\u539F\u51E0\u4F55\u548C\u6750\u8D28\uFF0C\u4E0D\u4EE5\u6574\u4F53\u6DE1\u5165\u66FF\u4EE3\u5185\u90E8\u52A8\u4F5C\u3002",
+      duration_ms: 3130.769230769231,
+      preview_ms: 2107.6923076923063,
+      loop: false,
+      default_ease: "linear",
+      parameters: {
+        speed: {
+          label: "\u64AD\u653E\u901F\u5EA6",
+          default: 1,
+          min: 0.5,
+          max: 2,
+          step: 0.25
+        }
+      },
+      source: {
+        path: "catalog/effects/knowledge-video.js",
+        factory: "farewell-actions",
+        origin: "original",
+        license: "Apache-2.0",
+        library: "remotion@4.0.532",
+        assets: [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        reference: {
+          name: "\u7528\u6237\u63D0\u4F9B\u7684\u5411\u91CF\u4E0E\u77E5\u8BC6\u5E93\u6700\u7EC8\u5DE5\u7A0B"
+        },
+        extraction: "\u63092026\u5E7410\u670830\u65E5\u786E\u8BA4\u8303\u56F4\u63D0\u53D6\u5B9E\u9645\u7ED8\u5236\u51FD\u6570\u3002\u4FDD\u7559\u56FA\u5B9A\u79CD\u5B50\u3001\u51E0\u4F55\u3001\u5B57\u4F53\u4E0E\u6E90\u65F6\u95F4\uFF1B\u5F53\u524D\u5E27\u9A71\u52A8\uFF0C\u539F\u5DE5\u7A0B\u53EA\u8BFB\u3002\u8868\u683C\u6309\u7528\u6237\u8981\u6C42\u6062\u590D8\u5217\u3002",
+        remotion: {
+          component: "catalog/remotion/knowledge-video/index.jsx",
+          export_name: "WiseKnowledgeMotion",
+          package_name: "wise-knowledge-motion",
+          files: [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          packages: {
+            remotion: "4.0.532",
+            "@remotion/cli": "4.0.532",
+            react: "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          width: 680,
+          height: 1020,
+          fps: 60,
+          reuse_notes: "\u9884\u89C8\u4E0E\u9010\u5E27\u5BFC\u51FA\u4F7F\u7528\u540C\u4E00\u7ED8\u5236\u51FD\u6570\u3002speed=1\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF1B\u56FA\u5B9A\u793A\u4F8B\u5728\u7EC4\u4EF6\u6E90\u7801\u5185\u7F16\u8F91\u3002\u539F\u5B57\u4F53\u4E0E\u5934\u50CF\u968F\u5DE5\u7A0B\u63D0\u4F9B\uFF0C\u5B9E\u9645\u53D6\u666F\u5C3A\u5BF8\u89C1\u672C\u6761\u76EE\uFF1B\u4E0D\u5305\u542B\u914D\u97F3\u3002",
+          binary_files: [
+            {
+              source: "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              target: "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              bytes: 2003884,
+              sha256: "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              source: "catalog/assets/knowledge-video/wise-avatar.png",
+              target: "public/catalog/assets/knowledge-video/wise-avatar.png",
+              bytes: 1287166,
+              sha256: "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          asset_installer: "catalog/remotion/binary-assets-installer.mjs",
+          scripts: {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      actions: [
+        "stagger-in",
+        "material-like-pop"
+      ],
+      demo_mode: "fixed-timeline",
+      content_slots: [],
+      layer: "own-background",
+      domains: [
+        "animation"
+      ],
+      trigger: "\u6253\u5F00\u540E\u6309\u56FA\u5B9A\u65F6\u95F4\u64AD\u653E\uFF0C\u53EF\u6682\u505C\u3001\u91CD\u64AD\u4E0E\u4EFB\u610F\u5B9A\u4F4D\u3002",
+      analogy: "\u4EBA\u7269\u4E0E\u544A\u522B\u6587\u5B57\u51FA\u73B0\uFF0C\u70B9\u8D5E\u3001\u6536\u85CF\u3001\u5173\u6CE8\u4F9D\u6B21\u63CF\u8FB9\uFF0C\u5F39\u52A8\u70B9\u4EAE\u5E76\u6563\u51FA\u77ED\u5C04\u7EBF\u3002",
+      assumptions: "\u5185\u5BB9\u548C\u6570\u636E\u4E3A\u539F\u5DE5\u7A0B\u7684\u56FA\u5B9A\u8BB2\u89E3\u793A\u4F8B\u3002\u9002\u5408\u89C6\u9891\u544A\u522B\u4E0E\u4E09\u8FDE\u5F15\u5BFC\uFF1B\u4F7F\u7528\u65F6\u66FF\u6362\u793A\u4F8B\u5934\u50CF\u4E0E\u7F72\u540D\u3002",
+      tempo_note: "\u9ED8\u8BA4\u6CBF\u7528\u6210\u72471.3\u500D\u8282\u594F\uFF0C\u7EA63.13\u79D2\u3002",
+      recommendation: "\u9002\u5408\u89C6\u9891\u544A\u522B\u4E0E\u4E09\u8FDE\u5F15\u5BFC\uFF1B\u4F7F\u7528\u65F6\u66FF\u6362\u793A\u4F8B\u5934\u50CF\u4E0E\u7F72\u540D\u3002",
+      reproduction: {
+        presentation: "\u539F\u753B\u677F1080\xD71440\uFF0C\u6309\u4E3B\u4F53\u8303\u56F4200\u3001220\u3001680\u30011020\u7B49\u6BD4\u53D6\u666F\uFF1B\u8FD1\u9ED1\u80CC\u666F\u3001\u6696\u91D1\u4E0E\u94F6\u767D\u3001\u539F\u5F97\u610F\u9ED1\u5B57\u4F53\u3002",
+        objects: "\u4EBA\u7269\u5934\u50CF\u3001\u544A\u522B\u6587\u5B57\u3001\u4E09\u8FDE\u56FE\u6807\u3001\u77ED\u5C04\u7EBF\u4E0E\u661F\u70B9",
+        retain: "\u4FDD\u7559\u539F\u5934\u50CF\u6D6E\u52A8\u3001\u4E09\u8FDE\u63CF\u8FB9\u3001\u70B9\u4EAE\u548C\u5C04\u7EBF\uFF1B\u72EC\u7ACB\u793A\u4F8B\u65E0\u65C1\u767D\u3002",
+        phases: [
+          "\u4EBA\u7269\u548C\u7F72\u540D\u8F7B\u5FAE\u5F39\u51FA\u3002",
+          "\u544A\u522B\u6587\u5B57\u4E0E\u4E09\u4E2A\u56FE\u6807\u4F9D\u6B21\u51FA\u73B0\u3002",
+          "\u56FE\u6807\u4F9D\u6B21\u5F39\u52A8\u70B9\u4EAE\uFF0C\u77ED\u5C04\u7EBF\u6563\u5F00\u3002"
+        ],
+        avoid: "\u4E0D\u52A0\u5165\u672A\u9009\u7247\u6BB5\uFF0C\u4E0D\u62C9\u4F38\u6216\u88C1\u53BB\u4E3B\u4F53\u3002",
+        details: [
+          "\u5F53\u524D\u64AD\u653E\u79D2\u4E581.3\uFF0C\u518D\u52A0\u539F\u573A\u666F12.96\u79D2\uFF1B\u523017.03\u79D2\u4FDD\u6301\u3002",
+          "\u4FDD\u7559\u539F\u5934\u50CF\u6D6E\u52A8\u3001\u4E09\u8FDE\u63CF\u8FB9\u3001\u70B9\u4EAE\u548C\u5C04\u7EBF\uFF1B\u72EC\u7ACB\u793A\u4F8B\u65E0\u65C1\u767D\u3002",
+          "\u53EA\u521B\u5EFA\u5DF2\u9009\u4E3B\u4F53\uFF1B\u672A\u5E26\u6574\u6BB5\u89C6\u9891\u3001\u914D\u97F3\u6216\u5728\u7EBF\u8D44\u6E90\u3002"
         ]
       }
     }

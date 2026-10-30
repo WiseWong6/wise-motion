@@ -1,9 +1,9 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import React,{useLayoutEffect} from 'react';
-import {AbsoluteFill,Html5Audio,staticFile,useCurrentFrame,useDelayRender,useVideoConfig} from 'remotion';
+import {AbsoluteFill,staticFile,useCurrentFrame,useDelayRender,useVideoConfig} from 'remotion';
 import {FONT_FACES} from './fonts.js';
 import {ReviewScene,resolveMotion,sourceFrame} from './Scene.jsx';
-export function WiseReviewMotion({effectId='search-filter-delivery',variantId,speed=1,includeAudio=true}){
+export function WiseReviewMotion({effectId='pareto-efficiency-sequence',variantId,speed=1}){
  const frame=useCurrentFrame(),{fps,width,height}=useVideoConfig();
  const {delayRender,continueRender,cancelRender}=useDelayRender();
  useLayoutEffect(()=>{
@@ -17,6 +17,5 @@ export function WiseReviewMotion({effectId='search-filter-delivery',variantId,sp
  const [, ,w,h]=spec.viewport,scale=Math.min(width/w,height/h);
  return <AbsoluteFill style={{background:'#FFFFFF',overflow:'hidden'}}>
   <div style={{position:'absolute',left:(width-w*scale)/2,top:(height-h*scale)/2,width:w,height:h,transform:`scale(${scale})`,transformOrigin:'0 0'}}><ReviewScene spec={spec} frame={sourceFrame(spec,frame/fps*rate)}/></div>
-  {includeAudio&&spec.kind==='composition'?<Html5Audio src={staticFile(`catalog/assets/deepseek-review/${spec.scene}.wav`)} playbackRate={rate}/>:null}
  </AbsoluteFill>;
 }

@@ -1,7 +1,7 @@
 /* Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0 */
 (function (global) {
   'use strict';
-  const sharedPackageVersion = "0.1.21"; // 由 scripts/build.mjs 从 package.json 同步。
+  const sharedPackageVersion = "0.1.22"; // 由 scripts/build.mjs 从 package.json 同步。
   const githubAssetBase = () => 'https://raw.githubusercontent.com/WiseWong6/wise-motion/v'+sharedPackageVersion+'/';
   const hasDownloadAssets = spec => spec.binary_files?.some(item=>item.source.startsWith('catalog/assets/lego-kingdom/layout/'));
   const assetInstallCommand = effect => 'node node_modules/wise-motion/scripts/install-assets.mjs public/wise-motion --effect '+effect.id+(effect.variant_id?' --variant '+effect.variant_id:'');

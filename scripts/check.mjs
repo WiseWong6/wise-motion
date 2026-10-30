@@ -181,7 +181,8 @@ assert.ok(historical.recipes.every(r=>r.entries.length&&r.source_clock&&r.source
 const extractSources=(await readdir(path.join(root,'catalog/remotion/reel-extract'))).filter(name=>/\.(jsx|js|mjs)$/.test(name)).map(name=>'catalog/remotion/reel-extract/'+name);
 const legoSources=(await readdir(path.join(root,'catalog/remotion/lego-kingdom'))).filter(name=>/\.(jsx|js|mjs)$/.test(name)).map(name=>'catalog/remotion/lego-kingdom/'+name);
 const reviewSources=(await readdir(path.join(root,'catalog/remotion/deepseek-review'))).filter(name=>/\.(tsx?|jsx?|mjs)$/.test(name)).map(name=>'catalog/remotion/deepseek-review/'+name);
-const ownFiles = [...extractSources,...legoSources,...reviewSources,'catalog/runtime.js','catalog/history-runtime.js','catalog/history.css','catalog/export.js','catalog/dropdown.js','catalog/matching.js','catalog/app.js','catalog/app.css','catalog/frame.css','catalog/scenes.css','catalog/book-controls.js','catalog/book-controls.css','catalog/composition-controls.js','catalog/related-preview.js', ...files];
+const knowledgeSources=(await readdir(path.join(root,'catalog/remotion/knowledge-video'))).filter(name=>/\.(jsx?|mjs)$/.test(name)).map(name=>'catalog/remotion/knowledge-video/'+name);
+const ownFiles = [...knowledgeSources,...extractSources,...legoSources,...reviewSources,'catalog/runtime.js','catalog/history-runtime.js','catalog/history.css','catalog/export.js','catalog/dropdown.js','catalog/matching.js','catalog/app.js','catalog/app.css','catalog/frame.css','catalog/scenes.css','catalog/book-controls.js','catalog/book-controls.css','catalog/composition-controls.js','catalog/related-preview.js', ...files];
 for (const file of ownFiles) {
   const content = await read(file);
   assert.ok(!/\bfetch\s*\(|\bXMLHttpRequest\b|\bWebSocket\b|\bEventSource\b|\bimport\s*\(|@import\s|url\(\s*["']?(?:https?:|\/\/)/.test(content), '运行时有联网或模块依赖：' + file);

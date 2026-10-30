@@ -1356,147 +1356,6 @@
               "原1080×1440布局与“完成城堡/座”原文；第36视觉帧开始，每格错开0.48视觉帧、飞行4.5帧；80输出帧到100，末15输出帧画完成圈。仅提取百格统计，不包含原品牌颗粒字和场景标题。"
             ]
           }
-        },
-        {
-          "loop": false,
-          "default_ease": "linear",
-          "parameters": {
-            "speed": {
-              "label": "播放速度",
-              "default": 1,
-              "min": 0.5,
-              "max": 2,
-              "step": 0.25
-            }
-          },
-          "demo_mode": "fixed-timeline",
-          "timing": null,
-          "content_slots": [],
-          "layer": "own-background",
-          "domains": [
-            "animation",
-            "document"
-          ],
-          "trigger": "按固定时间顺序播放，可暂停、重播和任意定位。",
-          "assumptions": "保留用户提供的原示例；模型与评测内容不作为当前事实核验结论，曲线为解释性示意。原工程不修改。",
-          "id": "deepseek-results",
-          "label": "结果卡片依次入场",
-          "summary": "搜索结果按顺序从左侧进入，保留标题和来源。",
-          "purpose": "搜索结果按顺序从左侧进入，保留标题和来源。",
-          "objects": "结果卡片依次入场",
-          "phases": [
-            "按固定帧定位原始起点。",
-            "搜索结果按顺序从左侧进入，保留标题和来源。",
-            "保留原动作末帧，重播回到同一起点。"
-          ],
-          "retain": "从原第104帧开始，三条结果分别在归一进度0.43/0.45/0.47进入，到0.52/0.54/0.56落定；横向位移−1020到0，使用(0.16,1,0.3,1)缓动。",
-          "avoid": "不打断对象连续变化，不改变原几何和帧节奏。",
-          "duration_ms": 1133.3333333333333,
-          "preview_ms": 1000.0,
-          "source": {
-            "path": "catalog/effects/deepseek-review.js",
-            "factory": "deepseek-results-enter",
-            "origin": "original",
-            "license": "Apache-2.0",
-            "library": "remotion@4.0.532",
-            "assets": [
-              "catalog/fonts/SourceHanSansSC-Light.woff2",
-              "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "catalog/assets/deepseek-review/SOURCE.json",
-              "catalog/assets/deepseek-review/README.md"
-            ],
-            "reference": {
-              "name": "用户提供的 DeepSeek 测评视频绘制源码"
-            },
-            "extraction": "保留原画板、字体、图形与30帧时钟；独立动作按取景范围复用相同组件。",
-            "remotion": {
-              "component": "catalog/remotion/deepseek-review/index.jsx",
-              "export_name": "WiseReviewMotion",
-              "package_name": "wise-review-motion",
-              "files": [
-                "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S3Pareto.tsx",
-                "catalog/remotion/deepseek-review/S5Search.tsx",
-                "catalog/remotion/deepseek-review/Scene.jsx",
-                "catalog/remotion/deepseek-review/SceneShell.tsx",
-                "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/fonts.js",
-                "catalog/remotion/deepseek-review/index.jsx",
-                "catalog/remotion/deepseek-review/theme.ts",
-                "catalog/remotion/deepseek-review/timing.js",
-                "catalog/assets/deepseek-review/SOURCE.json",
-                "catalog/assets/deepseek-review/AUDIO.json",
-                "catalog/assets/deepseek-review/README.md",
-                "catalog/assets/deepseek-review/verify-source.mjs",
-                "LICENSE",
-                "catalog/fonts/OFL.txt",
-                "catalog/fonts/OFL-Oswald.txt",
-                "catalog/assets/reel-extract/React-LICENSE.txt",
-                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-                "catalog/remotion/binary-assets-installer.mjs"
-              ],
-              "packages": {
-                "remotion": "4.0.532",
-                "@remotion/cli": "4.0.532",
-                "react": "19.3.0",
-                "react-dom": "19.3.0"
-              },
-              "width": 912,
-              "height": 520,
-              "fps": 30,
-              "exact_frames": true,
-              "reuse_notes": "原绘制与时间参数直接保留；中文使用思源黑体 Light / Bold，英文与数字使用原 Oswald Bold。字体随工程交付。完整组合含原片配音、对应音乐及搜索音效，独立动作无声；没有在线素材请求。按当前帧重算全部姿态，可任意定位与重播。默认 effectId 与 variantId 对应所选条目，speed 可调0.5–2；图形与示例内容在实际组件中编辑。数据为用户提供的示例，帕累托曲线为示意。运行 npm run check:source 核对随包素材。",
-              "binary_files": [
-                {
-                  "source": "catalog/fonts/SourceHanSansSC-Light.woff2",
-                  "target": "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-                  "bytes": 11128356,
-                  "sha256": "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-                },
-                {
-                  "source": "catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  "target": "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  "bytes": 12816312,
-                  "sha256": "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-                },
-                {
-                  "source": "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  "target": "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  "bytes": 108496,
-                  "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-                }
-              ],
-              "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
-              "scripts": {
-                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-              }
-            },
-            "license_note": "Remotion、React、原配音与字体保留各自权利，详见随包来源说明"
-          },
-          "actions": [],
-          "audio": null,
-          "recommendation": "搜索结果按顺序从左侧进入，保留标题和来源。；需要原片这种组合关系时选择此示例。",
-          "tempo_note": "按30帧时钟播放，共34帧。",
-          "reproduction": {
-            "objects": "结果卡片依次入场",
-            "presentation": "原逻辑画板1080×1440，白底#FFFFFF，文字#0B0B12，强调蓝#4D6BFE，辅助线rgba(11,11,18,0.16)。主标题72、次标题48、正文32、标注24、主数字192；中文非粗体用思源黑体Light，英文及数字用Oswald Bold。等比容纳，不能拉伸。此示例只裁出912×520图形范围，不改原图形坐标。",
-            "phases": [
-              "显示原动作起点。",
-              "搜索结果按顺序从左侧进入，保留标题和来源。",
-              "保持结束姿态。"
-            ],
-            "retain": "从原第104帧开始，三条结果分别在归一进度0.43/0.45/0.47进入，到0.52/0.54/0.56落定；横向位移−1020到0，使用(0.16,1,0.3,1)缓动。",
-            "avoid": "不以新一批元素替换正在运动的元素。",
-            "details": [
-              "从原第104帧开始，三条结果分别在归一进度0.43/0.45/0.47进入，到0.52/0.54/0.56落定；横向位移−1020到0，使用(0.16,1,0.3,1)缓动。"
-            ]
-          },
-          "aliases": [
-            "结果卡片依次入场",
-            "搜索结果按顺序从左侧进入，保留标题和来源。"
-          ]
         }
       ],
       "layer": "own-background",
@@ -1948,157 +1807,7 @@
         "audit": "aboutlove-15"
       },
       "timing": null,
-      "content_slots": [],
-      "variants": [
-        {
-          "id": "original",
-          "label": "原有示例",
-          "summary": "两个亮点沿同一心形反向加速运行，短尾迹逐渐衰减，已经跑过的圈留下放大淡去的轮廓。",
-          "duration_ms": 7740,
-          "preview_ms": 4644
-        },
-        {
-          "loop": false,
-          "default_ease": "linear",
-          "parameters": {
-            "speed": {
-              "label": "播放速度",
-              "default": 1,
-              "min": 0.5,
-              "max": 2,
-              "step": 0.25
-            }
-          },
-          "demo_mode": "fixed-timeline",
-          "timing": null,
-          "content_slots": [],
-          "layer": "own-background",
-          "domains": [
-            "animation",
-            "document"
-          ],
-          "trigger": "按固定时间顺序播放，可暂停、重播和任意定位。",
-          "assumptions": "保留用户提供的原示例；模型与评测内容不作为当前事实核验结论，曲线为解释性示意。原工程不修改。",
-          "id": "deepseek-delivery",
-          "label": "文档沿曲线递送",
-          "summary": "两份文档沿二次曲线从保留结果进入模型框。",
-          "purpose": "两份文档沿二次曲线从保留结果进入模型框。",
-          "objects": "文档沿曲线递送",
-          "phases": [
-            "按固定帧定位原始起点。",
-            "两份文档沿二次曲线从保留结果进入模型框。",
-            "保留原动作末帧，重播回到同一起点。"
-          ],
-          "retain": "截取原194–243帧。两条二次曲线从(400,72+168i)，控制点(450,72+168i)，到(480,328+112i)；文档20×26，透明度sin(进度×π)，第二份错后0.025归一进度。",
-          "avoid": "不打断对象连续变化，不改变原几何和帧节奏。",
-          "duration_ms": 1666.6666666666667,
-          "preview_ms": 1000.0,
-          "source": {
-            "path": "catalog/effects/deepseek-review.js",
-            "factory": "deepseek-result-delivery",
-            "origin": "original",
-            "license": "Apache-2.0",
-            "library": "remotion@4.0.532",
-            "assets": [
-              "catalog/fonts/SourceHanSansSC-Light.woff2",
-              "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "catalog/assets/deepseek-review/SOURCE.json",
-              "catalog/assets/deepseek-review/README.md"
-            ],
-            "reference": {
-              "name": "用户提供的 DeepSeek 测评视频绘制源码"
-            },
-            "extraction": "保留原画板、字体、图形与30帧时钟；独立动作按取景范围复用相同组件。",
-            "remotion": {
-              "component": "catalog/remotion/deepseek-review/index.jsx",
-              "export_name": "WiseReviewMotion",
-              "package_name": "wise-review-motion",
-              "files": [
-                "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S3Pareto.tsx",
-                "catalog/remotion/deepseek-review/S5Search.tsx",
-                "catalog/remotion/deepseek-review/Scene.jsx",
-                "catalog/remotion/deepseek-review/SceneShell.tsx",
-                "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/fonts.js",
-                "catalog/remotion/deepseek-review/index.jsx",
-                "catalog/remotion/deepseek-review/theme.ts",
-                "catalog/remotion/deepseek-review/timing.js",
-                "catalog/assets/deepseek-review/SOURCE.json",
-                "catalog/assets/deepseek-review/AUDIO.json",
-                "catalog/assets/deepseek-review/README.md",
-                "catalog/assets/deepseek-review/verify-source.mjs",
-                "LICENSE",
-                "catalog/fonts/OFL.txt",
-                "catalog/fonts/OFL-Oswald.txt",
-                "catalog/assets/reel-extract/React-LICENSE.txt",
-                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-                "catalog/remotion/binary-assets-installer.mjs"
-              ],
-              "packages": {
-                "remotion": "4.0.532",
-                "@remotion/cli": "4.0.532",
-                "react": "19.3.0",
-                "react-dom": "19.3.0"
-              },
-              "width": 912,
-              "height": 600,
-              "fps": 30,
-              "exact_frames": true,
-              "reuse_notes": "原绘制与时间参数直接保留；中文使用思源黑体 Light / Bold，英文与数字使用原 Oswald Bold。字体随工程交付。完整组合含原片配音、对应音乐及搜索音效，独立动作无声；没有在线素材请求。按当前帧重算全部姿态，可任意定位与重播。默认 effectId 与 variantId 对应所选条目，speed 可调0.5–2；图形与示例内容在实际组件中编辑。数据为用户提供的示例，帕累托曲线为示意。运行 npm run check:source 核对随包素材。",
-              "binary_files": [
-                {
-                  "source": "catalog/fonts/SourceHanSansSC-Light.woff2",
-                  "target": "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-                  "bytes": 11128356,
-                  "sha256": "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-                },
-                {
-                  "source": "catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  "target": "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  "bytes": 12816312,
-                  "sha256": "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-                },
-                {
-                  "source": "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  "target": "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  "bytes": 108496,
-                  "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-                }
-              ],
-              "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
-              "scripts": {
-                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-              }
-            },
-            "license_note": "Remotion、React、原配音与字体保留各自权利，详见随包来源说明"
-          },
-          "actions": [],
-          "audio": null,
-          "recommendation": "两份文档沿二次曲线从保留结果进入模型框。；需要原片这种组合关系时选择此示例。",
-          "tempo_note": "按30帧时钟播放，共50帧。",
-          "reproduction": {
-            "objects": "文档沿曲线递送",
-            "presentation": "原逻辑画板1080×1440，白底#FFFFFF，文字#0B0B12，强调蓝#4D6BFE，辅助线rgba(11,11,18,0.16)。主标题72、次标题48、正文32、标注24、主数字192；中文非粗体用思源黑体Light，英文及数字用Oswald Bold。等比容纳，不能拉伸。此示例只裁出912×600图形范围，不改原图形坐标。",
-            "phases": [
-              "显示原动作起点。",
-              "两份文档沿二次曲线从保留结果进入模型框。",
-              "保持结束姿态。"
-            ],
-            "retain": "截取原194–243帧。两条二次曲线从(400,72+168i)，控制点(450,72+168i)，到(480,328+112i)；文档20×26，透明度sin(进度×π)，第二份错后0.025归一进度。",
-            "avoid": "不以新一批元素替换正在运动的元素。",
-            "details": [
-              "截取原194–243帧。两条二次曲线从(400,72+168i)，控制点(450,72+168i)，到(480,328+112i)；文档20×26，透明度sin(进度×π)，第二份错后0.025归一进度。"
-            ]
-          },
-          "aliases": [
-            "文档沿曲线递送",
-            "两份文档沿二次曲线从保留结果进入模型框。"
-          ]
-        }
-      ]
+      "content_slots": []
     },
     {
       "kind": "action",
@@ -4375,298 +4084,7 @@
           "这里 t 为动作秒数（播放速度1时等于播放秒数）；设计时钟 u=0.8+2.1×限制到0至1的((t−0.15)/1.2)，单位为秒。下列标明 u 的阶段使用设计时钟，不是实际播放时长；归一进度 p=u/3.3。设计时钟在两端钳住，不靠上一帧保留状态。",
           "设计时钟u=0.8至2.9秒，保持每块内容身份，连续移动并改变尺寸为168×98；终点左上角(144+182(i%2),92+112floor(i/2))，构成两列两行。尺寸与位置共用同一进度。"
         ]
-      },
-      "variants": [
-        {
-          "id": "original",
-          "label": "原有示例",
-          "summary": "同一组内容从列表平滑变成网格。",
-          "duration_ms": 1800,
-          "preview_ms": 1064
-        },
-        {
-          "loop": false,
-          "default_ease": "linear",
-          "parameters": {
-            "speed": {
-              "label": "播放速度",
-              "default": 1,
-              "min": 0.5,
-              "max": 2,
-              "step": 0.25
-            }
-          },
-          "demo_mode": "fixed-timeline",
-          "timing": null,
-          "content_slots": [],
-          "layer": "own-background",
-          "domains": [
-            "animation",
-            "document"
-          ],
-          "trigger": "按固定时间顺序播放，可暂停、重播和任意定位。",
-          "assumptions": "保留用户提供的原示例；模型与评测内容不作为当前事实核验结论，曲线为解释性示意。原工程不修改。",
-          "id": "deepseek-filter",
-          "label": "扫描剔除与补位",
-          "summary": "扫描线检查三条结果，干扰项退出，第三项向上补位。",
-          "purpose": "扫描线检查三条结果，干扰项退出，第三项向上补位。",
-          "objects": "扫描剔除与补位",
-          "phases": [
-            "按固定帧定位原始起点。",
-            "扫描线检查三条结果，干扰项退出，第三项向上补位。",
-            "保留原动作末帧，重播回到同一起点。"
-          ],
-          "retain": "截取原122–189帧。扫描横跨912宽度；归一进度0.65–0.77，第二项右移1080并淡出，第三项同时向上168；0.74–0.87保留卡片从912缩到400宽。",
-          "avoid": "不打断对象连续变化，不改变原几何和帧节奏。",
-          "duration_ms": 2266.6666666666665,
-          "preview_ms": 2066.666666666667,
-          "source": {
-            "path": "catalog/effects/deepseek-review.js",
-            "factory": "deepseek-results-filter",
-            "origin": "original",
-            "license": "Apache-2.0",
-            "library": "remotion@4.0.532",
-            "assets": [
-              "catalog/fonts/SourceHanSansSC-Light.woff2",
-              "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "catalog/assets/deepseek-review/SOURCE.json",
-              "catalog/assets/deepseek-review/README.md"
-            ],
-            "reference": {
-              "name": "用户提供的 DeepSeek 测评视频绘制源码"
-            },
-            "extraction": "保留原画板、字体、图形与30帧时钟；独立动作按取景范围复用相同组件。",
-            "remotion": {
-              "component": "catalog/remotion/deepseek-review/index.jsx",
-              "export_name": "WiseReviewMotion",
-              "package_name": "wise-review-motion",
-              "files": [
-                "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S3Pareto.tsx",
-                "catalog/remotion/deepseek-review/S5Search.tsx",
-                "catalog/remotion/deepseek-review/Scene.jsx",
-                "catalog/remotion/deepseek-review/SceneShell.tsx",
-                "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/fonts.js",
-                "catalog/remotion/deepseek-review/index.jsx",
-                "catalog/remotion/deepseek-review/theme.ts",
-                "catalog/remotion/deepseek-review/timing.js",
-                "catalog/assets/deepseek-review/SOURCE.json",
-                "catalog/assets/deepseek-review/AUDIO.json",
-                "catalog/assets/deepseek-review/README.md",
-                "catalog/assets/deepseek-review/verify-source.mjs",
-                "LICENSE",
-                "catalog/fonts/OFL.txt",
-                "catalog/fonts/OFL-Oswald.txt",
-                "catalog/assets/reel-extract/React-LICENSE.txt",
-                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-                "catalog/remotion/binary-assets-installer.mjs"
-              ],
-              "packages": {
-                "remotion": "4.0.532",
-                "@remotion/cli": "4.0.532",
-                "react": "19.3.0",
-                "react-dom": "19.3.0"
-              },
-              "width": 912,
-              "height": 520,
-              "fps": 30,
-              "exact_frames": true,
-              "reuse_notes": "原绘制与时间参数直接保留；中文使用思源黑体 Light / Bold，英文与数字使用原 Oswald Bold。字体随工程交付。完整组合含原片配音、对应音乐及搜索音效，独立动作无声；没有在线素材请求。按当前帧重算全部姿态，可任意定位与重播。默认 effectId 与 variantId 对应所选条目，speed 可调0.5–2；图形与示例内容在实际组件中编辑。数据为用户提供的示例，帕累托曲线为示意。运行 npm run check:source 核对随包素材。",
-              "binary_files": [
-                {
-                  "source": "catalog/fonts/SourceHanSansSC-Light.woff2",
-                  "target": "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-                  "bytes": 11128356,
-                  "sha256": "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-                },
-                {
-                  "source": "catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  "target": "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  "bytes": 12816312,
-                  "sha256": "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-                },
-                {
-                  "source": "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  "target": "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  "bytes": 108496,
-                  "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-                }
-              ],
-              "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
-              "scripts": {
-                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-              }
-            },
-            "license_note": "Remotion、React、原配音与字体保留各自权利，详见随包来源说明"
-          },
-          "actions": [],
-          "audio": null,
-          "recommendation": "扫描线检查三条结果，干扰项退出，第三项向上补位。；需要原片这种组合关系时选择此示例。",
-          "tempo_note": "按30帧时钟播放，共68帧。",
-          "reproduction": {
-            "objects": "扫描剔除与补位",
-            "presentation": "原逻辑画板1080×1440，白底#FFFFFF，文字#0B0B12，强调蓝#4D6BFE，辅助线rgba(11,11,18,0.16)。主标题72、次标题48、正文32、标注24、主数字192；中文非粗体用思源黑体Light，英文及数字用Oswald Bold。等比容纳，不能拉伸。此示例只裁出912×520图形范围，不改原图形坐标。",
-            "phases": [
-              "显示原动作起点。",
-              "扫描线检查三条结果，干扰项退出，第三项向上补位。",
-              "保持结束姿态。"
-            ],
-            "retain": "截取原122–189帧。扫描横跨912宽度；归一进度0.65–0.77，第二项右移1080并淡出，第三项同时向上168；0.74–0.87保留卡片从912缩到400宽。",
-            "avoid": "不以新一批元素替换正在运动的元素。",
-            "details": [
-              "截取原122–189帧。扫描横跨912宽度；归一进度0.65–0.77，第二项右移1080并淡出，第三项同时向上168；0.74–0.87保留卡片从912缩到400宽。"
-            ]
-          },
-          "aliases": [
-            "扫描剔除与补位",
-            "扫描线检查三条结果，干扰项退出，第三项向上补位。"
-          ]
-        },
-        {
-          "loop": false,
-          "default_ease": "linear",
-          "parameters": {
-            "speed": {
-              "label": "播放速度",
-              "default": 1,
-              "min": 0.5,
-              "max": 2,
-              "step": 0.25
-            }
-          },
-          "demo_mode": "fixed-timeline",
-          "timing": null,
-          "content_slots": [],
-          "layer": "own-background",
-          "domains": [
-            "animation",
-            "document"
-          ],
-          "trigger": "按固定时间顺序播放，可暂停、重播和任意定位。",
-          "assumptions": "保留用户提供的原示例；模型与评测内容不作为当前事实核验结论，曲线为解释性示意。原工程不修改。",
-          "id": "deepseek-tracks",
-          "label": "创作卡片变剪辑轨道",
-          "summary": "剧本、镜头、声音三卡保持身份，连续拉宽并变成剪辑轨道。",
-          "purpose": "剧本、镜头、声音三卡保持身份，连续拉宽并变成剪辑轨道。",
-          "objects": "创作卡片变剪辑轨道",
-          "phases": [
-            "按固定帧定位原始起点。",
-            "剧本、镜头、声音三卡保持身份，连续拉宽并变成剪辑轨道。",
-            "保留原动作末帧，重播回到同一起点。"
-          ],
-          "retain": "截取原90–205帧。原95–122帧，卡片从(728,554+170i)和268×112连续移到(184,806+88i)和712×68；内部文字、镜头缩略图、波形也随同一进度重排。",
-          "avoid": "不打断对象连续变化，不改变原几何和帧节奏。",
-          "duration_ms": 3866.6666666666665,
-          "preview_ms": 2566.666666666667,
-          "source": {
-            "path": "catalog/effects/deepseek-review.js",
-            "factory": "deepseek-creative-tracks",
-            "origin": "original",
-            "license": "Apache-2.0",
-            "library": "remotion@4.0.532",
-            "assets": [
-              "catalog/fonts/SourceHanSansSC-Light.woff2",
-              "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "catalog/assets/deepseek-review/SOURCE.json",
-              "catalog/assets/deepseek-review/README.md"
-            ],
-            "reference": {
-              "name": "用户提供的 DeepSeek 测评视频绘制源码"
-            },
-            "extraction": "保留原画板、字体、图形与30帧时钟；独立动作按取景范围复用相同组件。",
-            "remotion": {
-              "component": "catalog/remotion/deepseek-review/index.jsx",
-              "export_name": "WiseReviewMotion",
-              "package_name": "wise-review-motion",
-              "files": [
-                "catalog/remotion/deepseek-review/S13Closing.tsx",
-                "catalog/remotion/deepseek-review/S3Pareto.tsx",
-                "catalog/remotion/deepseek-review/S5Search.tsx",
-                "catalog/remotion/deepseek-review/Scene.jsx",
-                "catalog/remotion/deepseek-review/SceneShell.tsx",
-                "catalog/remotion/deepseek-review/anim.ts",
-                "catalog/remotion/deepseek-review/fonts.js",
-                "catalog/remotion/deepseek-review/index.jsx",
-                "catalog/remotion/deepseek-review/theme.ts",
-                "catalog/remotion/deepseek-review/timing.js",
-                "catalog/assets/deepseek-review/SOURCE.json",
-                "catalog/assets/deepseek-review/AUDIO.json",
-                "catalog/assets/deepseek-review/README.md",
-                "catalog/assets/deepseek-review/verify-source.mjs",
-                "LICENSE",
-                "catalog/fonts/OFL.txt",
-                "catalog/fonts/OFL-Oswald.txt",
-                "catalog/assets/reel-extract/React-LICENSE.txt",
-                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-                "catalog/remotion/binary-assets-installer.mjs"
-              ],
-              "packages": {
-                "remotion": "4.0.532",
-                "@remotion/cli": "4.0.532",
-                "react": "19.3.0",
-                "react-dom": "19.3.0"
-              },
-              "width": 840,
-              "height": 790,
-              "fps": 30,
-              "exact_frames": true,
-              "reuse_notes": "原绘制与时间参数直接保留；中文使用思源黑体 Light / Bold，英文与数字使用原 Oswald Bold。字体随工程交付。完整组合含原片配音、对应音乐及搜索音效，独立动作无声；没有在线素材请求。按当前帧重算全部姿态，可任意定位与重播。默认 effectId 与 variantId 对应所选条目，speed 可调0.5–2；图形与示例内容在实际组件中编辑。数据为用户提供的示例，帕累托曲线为示意。运行 npm run check:source 核对随包素材。",
-              "binary_files": [
-                {
-                  "source": "catalog/fonts/SourceHanSansSC-Light.woff2",
-                  "target": "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-                  "bytes": 11128356,
-                  "sha256": "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-                },
-                {
-                  "source": "catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  "target": "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-                  "bytes": 12816312,
-                  "sha256": "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-                },
-                {
-                  "source": "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  "target": "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-                  "bytes": 108496,
-                  "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-                }
-              ],
-              "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
-              "scripts": {
-                "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-              }
-            },
-            "license_note": "Remotion、React、原配音与字体保留各自权利，详见随包来源说明"
-          },
-          "actions": [],
-          "audio": null,
-          "recommendation": "剧本、镜头、声音三卡保持身份，连续拉宽并变成剪辑轨道。；需要原片这种组合关系时选择此示例。",
-          "tempo_note": "按30帧时钟播放，共116帧。",
-          "reproduction": {
-            "objects": "创作卡片变剪辑轨道",
-            "presentation": "原逻辑画板1080×1440，白底#FFFFFF，文字#0B0B12，强调蓝#4D6BFE，辅助线rgba(11,11,18,0.16)。主标题72、次标题48、正文32、标注24、主数字192；中文非粗体用思源黑体Light，英文及数字用Oswald Bold。等比容纳，不能拉伸。此示例只裁出840×790图形范围，不改原图形坐标。",
-            "phases": [
-              "显示原动作起点。",
-              "剧本、镜头、声音三卡保持身份，连续拉宽并变成剪辑轨道。",
-              "保持结束姿态。"
-            ],
-            "retain": "截取原90–205帧。原95–122帧，卡片从(728,554+170i)和268×112连续移到(184,806+88i)和712×68；内部文字、镜头缩略图、波形也随同一进度重排。",
-            "avoid": "不以新一批元素替换正在运动的元素。",
-            "details": [
-              "截取原90–205帧。原95–122帧，卡片从(728,554+170i)和268×112连续移到(184,806+88i)和712×68；内部文字、镜头缩略图、波形也随同一进度重排。"
-            ]
-          },
-          "aliases": [
-            "创作卡片变剪辑轨道",
-            "剧本、镜头、声音三卡保持身份，连续拉宽并变成剪辑轨道。"
-          ]
-        }
-      ]
+      }
     },
     {
       "id": "column-to-row",
@@ -75349,380 +74767,6 @@
         "document"
       ],
       "trigger": "按固定时间顺序播放，可暂停、重播和任意定位。",
-      "assumptions": "保留用户提供的原示例；模型与评测内容不作为当前事实核验结论，曲线为解释性示意。原工程不修改。",
-      "id": "search-filter-delivery",
-      "name": "搜索筛选与递送",
-      "kind": "composition",
-      "category": "composition-interface",
-      "summary": "搜索框输入关键词，三条结果依次滑入。扫描结果，划除干扰项并移出，其余条目向上补位。保留的文档沿曲线递送到模型，目标框接收两项内容。",
-      "purpose": "展示检索内容如何经过筛选后进入下一步，适合解释搜索过滤和资料整理。",
-      "objects": "搜索框、三条结果、扫描线、两个文档与模型接收框",
-      "phases": [
-        "搜索框输入关键词，三条结果依次滑入。",
-        "扫描结果，划除干扰项并移出，其余条目向上补位。",
-        "保留的文档沿曲线递送到模型，目标框接收两项内容。"
-      ],
-      "aliases": [
-        "搜索过滤",
-        "GEO",
-        "搜索扫描",
-        "剔除干扰项",
-        "有效内容递送给模型"
-      ],
-      "behaviors": [
-        "sequence",
-        "reveal",
-        "layout"
-      ],
-      "retain": "第0–70帧标题从中央上移；第58–95帧输入；结果第104帧开始出现，122–158帧扫描，158–187帧剔除，180–211帧缩窄，199–241帧沿曲线递送。",
-      "avoid": "不以整页淡入替代内部连续动作，不提前移动标题让位，不改变数据与几何比例。",
-      "duration_ms": 8133.333333333333,
-      "preview_ms": 7666.666666666667,
-      "source": {
-        "path": "catalog/effects/deepseek-review.js",
-        "factory": "search-filter-delivery",
-        "origin": "original",
-        "license": "Apache-2.0",
-        "library": "remotion@4.0.532",
-        "assets": [
-          "catalog/fonts/SourceHanSansSC-Light.woff2",
-          "catalog/fonts/SourceHanSansSC-Bold.woff2",
-          "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-          "catalog/assets/deepseek-review/search.wav",
-          "catalog/assets/deepseek-review/closing.wav",
-          "catalog/assets/deepseek-review/SOURCE.json",
-          "catalog/assets/deepseek-review/README.md"
-        ],
-        "reference": {
-          "name": "用户提供的 DeepSeek 测评视频绘制源码"
-        },
-        "extraction": "保留原画板、字体、图形与30帧时钟；独立动作按取景范围复用相同组件。",
-        "remotion": {
-          "component": "catalog/remotion/deepseek-review/index.jsx",
-          "export_name": "WiseReviewMotion",
-          "package_name": "wise-review-motion",
-          "files": [
-            "catalog/remotion/deepseek-review/S13Closing.tsx",
-            "catalog/remotion/deepseek-review/S3Pareto.tsx",
-            "catalog/remotion/deepseek-review/S5Search.tsx",
-            "catalog/remotion/deepseek-review/Scene.jsx",
-            "catalog/remotion/deepseek-review/SceneShell.tsx",
-            "catalog/remotion/deepseek-review/anim.ts",
-            "catalog/remotion/deepseek-review/fonts.js",
-            "catalog/remotion/deepseek-review/index.jsx",
-            "catalog/remotion/deepseek-review/theme.ts",
-            "catalog/remotion/deepseek-review/timing.js",
-            "catalog/assets/deepseek-review/SOURCE.json",
-            "catalog/assets/deepseek-review/AUDIO.json",
-            "catalog/assets/deepseek-review/README.md",
-            "catalog/assets/deepseek-review/verify-source.mjs",
-            "LICENSE",
-            "catalog/fonts/OFL.txt",
-            "catalog/fonts/OFL-Oswald.txt",
-            "catalog/assets/reel-extract/React-LICENSE.txt",
-            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-            "catalog/remotion/binary-assets-installer.mjs"
-          ],
-          "packages": {
-            "remotion": "4.0.532",
-            "@remotion/cli": "4.0.532",
-            "react": "19.3.0",
-            "react-dom": "19.3.0"
-          },
-          "width": 1080,
-          "height": 1440,
-          "fps": 30,
-          "exact_frames": true,
-          "reuse_notes": "原绘制与时间参数直接保留；中文使用思源黑体 Light / Bold，英文与数字使用原 Oswald Bold。字体随工程交付。完整组合含原片配音、对应音乐及搜索音效，独立动作无声；没有在线素材请求。按当前帧重算全部姿态，可任意定位与重播。默认 effectId 与 variantId 对应所选条目，speed 可调0.5–2；图形与示例内容在实际组件中编辑。数据为用户提供的示例，帕累托曲线为示意。运行 npm run check:source 核对随包素材。",
-          "binary_files": [
-            {
-              "source": "catalog/fonts/SourceHanSansSC-Light.woff2",
-              "target": "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-              "bytes": 11128356,
-              "sha256": "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-            },
-            {
-              "source": "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "target": "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "bytes": 12816312,
-              "sha256": "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "target": "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "bytes": 108496,
-              "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/search.wav",
-              "target": "public/catalog/assets/deepseek-review/search.wav",
-              "bytes": 1561678,
-              "sha256": "24541bb2444ea264e705d93836ca9bb60583975cfbc17e2180c2cd619f9bd239"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/closing.wav",
-              "target": "public/catalog/assets/deepseek-review/closing.wav",
-              "bytes": 1318478,
-              "sha256": "fd2a190225fe546ceac48efbde1b54800e8b617502b507aa0890cf1f4207872e"
-            }
-          ],
-          "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
-          "scripts": {
-            "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-          }
-        },
-        "license_note": "Remotion、React、原配音与字体保留各自权利，详见随包来源说明"
-      },
-      "actions": [
-        "stagger-in",
-        "layout-reorder",
-        "curve-path"
-      ],
-      "action_variants": {
-        "stagger-in": "deepseek-results",
-        "layout-reorder": "deepseek-filter",
-        "curve-path": "deepseek-delivery"
-      },
-      "analogy": "搜索框输入关键词，三条结果依次滑入。扫描结果，划除干扰项并移出，其余条目向上补位。保留的文档沿曲线递送到模型，目标框接收两项内容。",
-      "tempo_note": "244帧，每秒30帧；速度整体调整，保留内部先后。",
-      "recommendation": "展示检索内容如何经过筛选后进入下一步，适合解释搜索过滤和资料整理。",
-      "audio": {
-        "tracks": [
-          {
-            "src": "catalog/assets/deepseek-review/search.wav",
-            "name": "原片旁白、音乐与场内音效",
-            "start_ms": 0,
-            "offset_ms": 0,
-            "duration_ms": 8133.333333333333,
-            "volume": 1,
-            "rate": 1,
-            "fade_in_ms": 0,
-            "fade_out_ms": 0
-          }
-        ]
-      },
-      "reproduction": {
-        "objects": "搜索框、三条结果、扫描线、两个文档与模型接收框",
-        "presentation": "原逻辑画板1080×1440，白底#FFFFFF，文字#0B0B12，强调蓝#4D6BFE，辅助线rgba(11,11,18,0.16)。主标题72、次标题48、正文32、标注24、主数字192；中文非粗体用思源黑体Light，英文及数字用Oswald Bold。等比容纳，不能拉伸。",
-        "phases": [
-          "搜索框输入关键词，三条结果依次滑入。",
-          "扫描结果，划除干扰项并移出，其余条目向上补位。",
-          "保留的文档沿曲线递送到模型，目标框接收两项内容。"
-        ],
-        "retain": "第0–70帧标题从中央上移；第58–95帧输入；结果第104帧开始出现，122–158帧扫描，158–187帧剔除，180–211帧缩窄，199–241帧沿曲线递送。",
-        "avoid": "同一对象连续运动，不能销毁再淡入；按30帧源时钟定位。",
-        "details": [
-          "第0–70帧标题从中央上移；第58–95帧输入；结果第104帧开始出现，122–158帧扫描，158–187帧剔除，180–211帧缩窄，199–241帧沿曲线递送。"
-        ]
-      }
-    },
-    {
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "demo_mode": "fixed-timeline",
-      "timing": null,
-      "content_slots": [],
-      "layer": "own-background",
-      "domains": [
-        "animation",
-        "document"
-      ],
-      "trigger": "按固定时间顺序播放，可暂停、重播和任意定位。",
-      "assumptions": "保留用户提供的原示例；模型与评测内容不作为当前事实核验结论，曲线为解释性示意。原工程不修改。",
-      "id": "creative-cards-to-tracks",
-      "name": "卡片变成剪辑轨道",
-      "kind": "composition",
-      "category": "composition-interface",
-      "summary": "投入进入模型，剧本、镜头、声音三张卡片依次出现。保持三张卡片身份，连续移位并拉宽为三条剪辑轨道。预览画面运动，播放头穿过三条轨道，完成标记收束。",
-      "purpose": "展示多个创作能力如何汇成一份作品；适合讲述剧本、镜头和声音的协同。",
-      "objects": "投入符号、模型、三张输出卡、剪辑窗口、播放头",
-      "phases": [
-        "投入进入模型，剧本、镜头、声音三张卡片依次出现。",
-        "保持三张卡片身份，连续移位并拉宽为三条剪辑轨道。",
-        "预览画面运动，播放头穿过三条轨道，完成标记收束。"
-      ],
-      "aliases": [
-        "剧本镜头声音",
-        "创作流程",
-        "卡片变轨道",
-        "连续变成剪辑轨道",
-        "剪辑时间线"
-      ],
-      "behaviors": [
-        "sequence",
-        "reveal",
-        "layout"
-      ],
-      "retain": "保留原旁白节点63/97/138帧；第95–122帧三卡位置与尺寸共用同一平滑进度，从(728,554+170i)和268×112变为(184,806+88i)和712×68；播放头第140–174帧向右推进。",
-      "avoid": "不以整页淡入替代内部连续动作，不提前移动标题让位，不改变数据与几何比例。",
-      "duration_ms": 6866.666666666666,
-      "preview_ms": 5566.666666666666,
-      "source": {
-        "path": "catalog/effects/deepseek-review.js",
-        "factory": "creative-cards-to-tracks",
-        "origin": "original",
-        "license": "Apache-2.0",
-        "library": "remotion@4.0.532",
-        "assets": [
-          "catalog/fonts/SourceHanSansSC-Light.woff2",
-          "catalog/fonts/SourceHanSansSC-Bold.woff2",
-          "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-          "catalog/assets/deepseek-review/search.wav",
-          "catalog/assets/deepseek-review/closing.wav",
-          "catalog/assets/deepseek-review/SOURCE.json",
-          "catalog/assets/deepseek-review/README.md"
-        ],
-        "reference": {
-          "name": "用户提供的 DeepSeek 测评视频绘制源码"
-        },
-        "extraction": "保留原画板、字体、图形与30帧时钟；独立动作按取景范围复用相同组件。",
-        "remotion": {
-          "component": "catalog/remotion/deepseek-review/index.jsx",
-          "export_name": "WiseReviewMotion",
-          "package_name": "wise-review-motion",
-          "files": [
-            "catalog/remotion/deepseek-review/S13Closing.tsx",
-            "catalog/remotion/deepseek-review/S3Pareto.tsx",
-            "catalog/remotion/deepseek-review/S5Search.tsx",
-            "catalog/remotion/deepseek-review/Scene.jsx",
-            "catalog/remotion/deepseek-review/SceneShell.tsx",
-            "catalog/remotion/deepseek-review/anim.ts",
-            "catalog/remotion/deepseek-review/fonts.js",
-            "catalog/remotion/deepseek-review/index.jsx",
-            "catalog/remotion/deepseek-review/theme.ts",
-            "catalog/remotion/deepseek-review/timing.js",
-            "catalog/assets/deepseek-review/SOURCE.json",
-            "catalog/assets/deepseek-review/AUDIO.json",
-            "catalog/assets/deepseek-review/README.md",
-            "catalog/assets/deepseek-review/verify-source.mjs",
-            "LICENSE",
-            "catalog/fonts/OFL.txt",
-            "catalog/fonts/OFL-Oswald.txt",
-            "catalog/assets/reel-extract/React-LICENSE.txt",
-            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
-            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
-            "catalog/remotion/binary-assets-installer.mjs"
-          ],
-          "packages": {
-            "remotion": "4.0.532",
-            "@remotion/cli": "4.0.532",
-            "react": "19.3.0",
-            "react-dom": "19.3.0"
-          },
-          "width": 1080,
-          "height": 1440,
-          "fps": 30,
-          "exact_frames": true,
-          "reuse_notes": "原绘制与时间参数直接保留；中文使用思源黑体 Light / Bold，英文与数字使用原 Oswald Bold。字体随工程交付。完整组合含原片配音、对应音乐及搜索音效，独立动作无声；没有在线素材请求。按当前帧重算全部姿态，可任意定位与重播。默认 effectId 与 variantId 对应所选条目，speed 可调0.5–2；图形与示例内容在实际组件中编辑。数据为用户提供的示例，帕累托曲线为示意。运行 npm run check:source 核对随包素材。",
-          "binary_files": [
-            {
-              "source": "catalog/fonts/SourceHanSansSC-Light.woff2",
-              "target": "public/catalog/fonts/SourceHanSansSC-Light.woff2",
-              "bytes": 11128356,
-              "sha256": "1dca2cebb6d402694e345e1e52aed9eeded6af7988400274175374ff5485bca0"
-            },
-            {
-              "source": "catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "target": "public/catalog/fonts/SourceHanSansSC-Bold.woff2",
-              "bytes": 12816312,
-              "sha256": "892bb1effd51c2227de7857eae337a00feed596a1c95430bb0d3925d6089d08b"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "target": "public/catalog/assets/deepseek-review/Oswald-Bold.ttf",
-              "bytes": 108496,
-              "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/search.wav",
-              "target": "public/catalog/assets/deepseek-review/search.wav",
-              "bytes": 1561678,
-              "sha256": "24541bb2444ea264e705d93836ca9bb60583975cfbc17e2180c2cd619f9bd239"
-            },
-            {
-              "source": "catalog/assets/deepseek-review/closing.wav",
-              "target": "public/catalog/assets/deepseek-review/closing.wav",
-              "bytes": 1318478,
-              "sha256": "fd2a190225fe546ceac48efbde1b54800e8b617502b507aa0890cf1f4207872e"
-            }
-          ],
-          "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
-          "scripts": {
-            "check:source": "node catalog/assets/deepseek-review/verify-source.mjs"
-          }
-        },
-        "license_note": "Remotion、React、原配音与字体保留各自权利，详见随包来源说明"
-      },
-      "actions": [
-        "layout-reorder"
-      ],
-      "action_variants": {
-        "layout-reorder": "deepseek-tracks"
-      },
-      "analogy": "投入进入模型，剧本、镜头、声音三张卡片依次出现。保持三张卡片身份，连续移位并拉宽为三条剪辑轨道。预览画面运动，播放头穿过三条轨道，完成标记收束。",
-      "tempo_note": "206帧，每秒30帧；速度整体调整，保留内部先后。",
-      "recommendation": "展示多个创作能力如何汇成一份作品；适合讲述剧本、镜头和声音的协同。",
-      "audio": {
-        "tracks": [
-          {
-            "src": "catalog/assets/deepseek-review/closing.wav",
-            "name": "原片旁白、音乐与场内音效",
-            "start_ms": 0,
-            "offset_ms": 0,
-            "duration_ms": 6866.666666666666,
-            "volume": 1,
-            "rate": 1,
-            "fade_in_ms": 0,
-            "fade_out_ms": 0
-          }
-        ]
-      },
-      "reproduction": {
-        "objects": "投入符号、模型、三张输出卡、剪辑窗口、播放头",
-        "presentation": "原逻辑画板1080×1440，白底#FFFFFF，文字#0B0B12，强调蓝#4D6BFE，辅助线rgba(11,11,18,0.16)。主标题72、次标题48、正文32、标注24、主数字192；中文非粗体用思源黑体Light，英文及数字用Oswald Bold。等比容纳，不能拉伸。",
-        "phases": [
-          "投入进入模型，剧本、镜头、声音三张卡片依次出现。",
-          "保持三张卡片身份，连续移位并拉宽为三条剪辑轨道。",
-          "预览画面运动，播放头穿过三条轨道，完成标记收束。"
-        ],
-        "retain": "保留原旁白节点63/97/138帧；第95–122帧三卡位置与尺寸共用同一平滑进度，从(728,554+170i)和268×112变为(184,806+88i)和712×68；播放头第140–174帧向右推进。",
-        "avoid": "同一对象连续运动，不能销毁再淡入；按30帧源时钟定位。",
-        "details": [
-          "保留原旁白节点63/97/138帧；第95–122帧三卡位置与尺寸共用同一平滑进度，从(728,554+170i)和268×112变为(184,806+88i)和712×68；播放头第140–174帧向右推进。"
-        ]
-      }
-    },
-    {
-      "loop": false,
-      "default_ease": "linear",
-      "parameters": {
-        "speed": {
-          "label": "播放速度",
-          "default": 1,
-          "min": 0.5,
-          "max": 2,
-          "step": 0.25
-        }
-      },
-      "demo_mode": "fixed-timeline",
-      "timing": null,
-      "content_slots": [],
-      "layer": "own-background",
-      "domains": [
-        "animation",
-        "document"
-      ],
-      "trigger": "按固定时间顺序播放，可暂停、重播和任意定位。",
       "assumptions": "曲线用于说明性能与开销的关系，坐标不是实测数据。",
       "id": "pareto-efficiency-sequence",
       "name": "性能开销曲线对比",
@@ -75755,7 +74799,7 @@
       "retain": "仅保留底部曲线图，按30帧时钟播放原57–196帧，共140帧；保留两条指数曲线、标记位置与移动、斜线区域和节省箭头。",
       "avoid": "不要添加标题或指标行，不用整图缩放或淡入替代曲线描绘与标记移动。",
       "duration_ms": 4666.666666666667,
-      "preview_ms": 4300.0,
+      "preview_ms": 4300,
       "source": {
         "path": "catalog/effects/deepseek-review.js",
         "factory": "pareto-efficiency-sequence",
@@ -75778,18 +74822,13 @@
           "export_name": "WiseReviewMotion",
           "package_name": "wise-review-motion",
           "files": [
-            "catalog/remotion/deepseek-review/S13Closing.tsx",
             "catalog/remotion/deepseek-review/S3Pareto.tsx",
-            "catalog/remotion/deepseek-review/S5Search.tsx",
             "catalog/remotion/deepseek-review/Scene.jsx",
-            "catalog/remotion/deepseek-review/SceneShell.tsx",
             "catalog/remotion/deepseek-review/anim.ts",
             "catalog/remotion/deepseek-review/fonts.js",
             "catalog/remotion/deepseek-review/index.jsx",
             "catalog/remotion/deepseek-review/theme.ts",
-            "catalog/remotion/deepseek-review/timing.js",
             "catalog/assets/deepseek-review/SOURCE.json",
-            "catalog/assets/deepseek-review/AUDIO.json",
             "catalog/assets/deepseek-review/README.md",
             "catalog/assets/deepseek-review/verify-source.mjs",
             "LICENSE",
@@ -75810,7 +74849,7 @@
           "height": 652,
           "fps": 30,
           "exact_frames": true,
-          "reuse_notes": "原绘制与时间参数直接保留；中文使用思源黑体 Light / Bold，英文与数字使用原 Oswald Bold。字体随工程交付。完整组合含原片配音、对应音乐及搜索音效，独立动作无声；没有在线素材请求。按当前帧重算全部姿态，可任意定位与重播。默认 effectId 与 variantId 对应所选条目，speed 可调0.5–2；图形与示例内容在实际组件中编辑。数据为用户提供的示例，帕累托曲线为示意。运行 npm run check:source 核对随包素材。",
+          "reuse_notes": "原绘制与时间参数直接保留；中文使用思源黑体 Light / Bold，英文与数字使用原 Oswald Bold。字体随工程交付。独立动作无声；没有在线素材请求。按当前帧重算全部姿态，可任意定位与重播。默认 effectId 与 variantId 对应所选条目，speed 可调0.5–2；图形与示例内容在实际组件中编辑。数据为用户提供的示例，帕累托曲线为示意。运行 npm run check:source 核对随包素材。",
           "binary_files": [
             {
               "source": "catalog/fonts/SourceHanSansSC-Light.woff2",
@@ -75857,6 +74896,1537 @@
           "动作第0–139帧对应设计时钟第57–196帧；设计进度p=帧号/240。轴线在p=0.24–0.37展开，旧曲线在0.27–0.48揭示，新曲线在0.34–0.78描出，标记在0.39–0.78移向左上。",
           "旧曲线为0.95×(1−exp(−2.6×(x−0.05)))，新曲线为1−exp(−4.5×(x−0.03)))；旧标记x=0.62，新标记x=0.39，各自y取对应曲线值。图内横坐标为44+840x，纵坐标为576−520y。",
           "两条曲线各取65个点，旧线4像素宽并用8/8虚线，新线8像素宽。改善区域使用45度、间隔14像素的斜线，从左向右揭示；节省箭头与文字随后出现。"
+        ]
+      }
+    },
+    {
+      "id": "dimensions-unfold-fold",
+      "name": "坐标展开成万维",
+      "kind": "action",
+      "category": "space",
+      "summary": "三条坐标轴展开成七排滚动短线，维数升到一万，再收回坐标轴并展开向量扇形。",
+      "purpose": "适合解释维度增多及高维难以直接画出；短线是示意，不表示真实的一万条轴。",
+      "objects": "坐标轴、840 段短线、维数读数、七支商品向量",
+      "phases": [
+        "坐标轴拆开，短线展开成七排。",
+        "短线滚动，数字从 3 增至 10,000+。",
+        "同一批短线收回三轴，示意向量依次展开。"
+      ],
+      "aliases": [
+        "无数维",
+        "高维",
+        "万维",
+        "坐标展开",
+        "条码"
+      ],
+      "behaviors": [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      "retain": "保留七排滚动、固定种子303、三轴来回对应。",
+      "avoid": "不添加未选片段，不改原几何和材质，不以整体淡入替代内部动作。",
+      "duration_ms": 3500.0000000000005,
+      "preview_ms": 1653.8461538461556,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/knowledge-video.js",
+        "factory": "dimensions-unfold-fold",
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "assets": [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        "reference": {
+          "name": "用户提供的向量与知识库最终工程"
+        },
+        "extraction": "按2026年10月30日确认范围提取实际绘制函数。保留固定种子、几何、字体与源时间；当前帧驱动，原工程只读。表格按用户要求恢复8列。",
+        "remotion": {
+          "component": "catalog/remotion/knowledge-video/index.jsx",
+          "export_name": "WiseKnowledgeMotion",
+          "package_name": "wise-knowledge-motion",
+          "files": [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 990,
+          "height": 990,
+          "fps": 60,
+          "reuse_notes": "预览与逐帧导出使用同一绘制函数。speed=1沿用成片1.3倍节奏；固定示例在组件源码内编辑。原字体与头像随工程提供，实际取景尺寸见本条目；不包含配音。",
+          "binary_files": [
+            {
+              "source": "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "target": "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "bytes": 2003884,
+              "sha256": "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              "source": "catalog/assets/knowledge-video/wise-avatar.png",
+              "target": "public/catalog/assets/knowledge-video/wise-avatar.png",
+              "bytes": 1287166,
+              "sha256": "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
+          "scripts": {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "content_slots": [],
+      "layer": "own-background",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放，可暂停、重播与任意定位。",
+      "analogy": "三条坐标轴展开成七排滚动短线，维数升到一万，再收回坐标轴并展开向量扇形。",
+      "assumptions": "内容和数据为原工程的固定讲解示例。适合解释维度增多及高维难以直接画出；短线是示意，不表示真实的一万条轴。",
+      "tempo_note": "默认沿用成片1.3倍节奏，约3.50秒。",
+      "recommendation": "适合解释维度增多及高维难以直接画出；短线是示意，不表示真实的一万条轴。",
+      "reproduction": {
+        "presentation": "原画板1080×1440，按主体范围45、200、990、990等比取景；近黑背景、暖金与银白、原得意黑字体。",
+        "objects": "坐标轴、840 段短线、维数读数、七支商品向量",
+        "retain": "保留七排滚动、固定种子303、三轴来回对应。",
+        "phases": [
+          "坐标轴拆开，短线展开成七排。",
+          "短线滚动，数字从 3 增至 10,000+。",
+          "同一批短线收回三轴，示意向量依次展开。"
+        ],
+        "avoid": "不加入未选片段，不拉伸或裁去主体。",
+        "details": [
+          "当前播放秒乘1.3，再加原场景17.65秒；到22.2秒保持。",
+          "保留七排滚动、固定种子303、三轴来回对应。",
+          "只创建已选主体；未带整段视频、配音或在线资源。"
+        ]
+      }
+    },
+    {
+      "id": "related-sentences-converge",
+      "name": "相关句子逐渐靠近",
+      "kind": "action",
+      "category": "space",
+      "summary": "立体框架与四组粒子建立，两条相关句子逐渐靠近，其他句子保持分离。",
+      "purpose": "适合说明语义训练、关联变化；这是固定示意位置，不做真实模型运算。",
+      "objects": "立体线框、四组粒子、句子标签、连接线与训练读数",
+      "phases": [
+        "框架与粒子逐步建立。",
+        "相关两组在同一相机空间内靠近。",
+        "标签、连线与训练读数保持对应。"
+      ],
+      "aliases": [
+        "语义靠近",
+        "相关句子",
+        "训练空间"
+      ],
+      "behaviors": [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      "retain": "仅保留相关句子靠近，不含词群聚拢与同词分向两类。",
+      "avoid": "不添加未选片段，不改原几何和材质，不以整体淡入替代内部动作。",
+      "duration_ms": 4207.692307692307,
+      "preview_ms": 3553.846153846152,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/knowledge-video.js",
+        "factory": "related-sentences-converge",
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "assets": [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        "reference": {
+          "name": "用户提供的向量与知识库最终工程"
+        },
+        "extraction": "按2026年10月30日确认范围提取实际绘制函数。保留固定种子、几何、字体与源时间；当前帧驱动，原工程只读。表格按用户要求恢复8列。",
+        "remotion": {
+          "component": "catalog/remotion/knowledge-video/index.jsx",
+          "export_name": "WiseKnowledgeMotion",
+          "package_name": "wise-knowledge-motion",
+          "files": [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 950,
+          "height": 1150,
+          "fps": 60,
+          "reuse_notes": "预览与逐帧导出使用同一绘制函数。speed=1沿用成片1.3倍节奏；固定示例在组件源码内编辑。原字体与头像随工程提供，实际取景尺寸见本条目；不包含配音。",
+          "binary_files": [
+            {
+              "source": "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "target": "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "bytes": 2003884,
+              "sha256": "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              "source": "catalog/assets/knowledge-video/wise-avatar.png",
+              "target": "public/catalog/assets/knowledge-video/wise-avatar.png",
+              "bytes": 1287166,
+              "sha256": "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
+          "scripts": {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "content_slots": [],
+      "layer": "own-background",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放，可暂停、重播与任意定位。",
+      "analogy": "立体框架与四组粒子建立，两条相关句子逐渐靠近，其他句子保持分离。",
+      "assumptions": "内容和数据为原工程的固定讲解示例。适合说明语义训练、关联变化；这是固定示意位置，不做真实模型运算。",
+      "tempo_note": "默认沿用成片1.3倍节奏，约4.21秒。",
+      "recommendation": "适合说明语义训练、关联变化；这是固定示意位置，不做真实模型运算。",
+      "reproduction": {
+        "presentation": "原画板1080×1440，按主体范围65、90、950、1150等比取景；近黑背景、暖金与银白、原得意黑字体。",
+        "objects": "立体线框、四组粒子、句子标签、连接线与训练读数",
+        "retain": "仅保留相关句子靠近，不含词群聚拢与同词分向两类。",
+        "phases": [
+          "框架与粒子逐步建立。",
+          "相关两组在同一相机空间内靠近。",
+          "标签、连线与训练读数保持对应。"
+        ],
+        "avoid": "不加入未选片段，不拉伸或裁去主体。",
+        "details": [
+          "当前播放秒乘1.3，再加原场景46.88秒；到52.35秒保持。",
+          "仅保留相关句子靠近，不含词群聚拢与同词分向两类。",
+          "只创建已选主体；未带整段视频、配音或在线资源。"
+        ]
+      }
+    },
+    {
+      "id": "context-silk-flow",
+      "name": "光丝传递词语关联",
+      "kind": "action",
+      "category": "connection",
+      "summary": "多根细光丝沿固定弧线显现，再持续流动；包括上下文汇入与交错关联加下方输出两种样式。",
+      "purpose": "适合表达上下文参考和信息交换；从光丝显现开始，不带前面的界面入场。",
+      "objects": "固定弧线上的细光丝、词语框、下方竖向输出",
+      "phases": [
+        "词语框已就位，光丝从端点显现。",
+        "亮纹沿同一条固定弧线行进。",
+        "第二种样式继续沿下方竖向光丝输出。"
+      ],
+      "aliases": [
+        "光丝",
+        "注意力",
+        "上下文",
+        "交错光线",
+        "输出光束"
+      ],
+      "behaviors": [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      "retain": "固定曲线、不缩放形状；保留原随机种子、线宽、亮纹与间歇流动。",
+      "avoid": "不添加未选片段，不改原几何和材质，不以整体淡入替代内部动作。",
+      "duration_ms": 2353.8461538461556,
+      "preview_ms": 1676.9230769230767,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/knowledge-video.js",
+        "factory": "context-silk-flow",
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "assets": [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        "reference": {
+          "name": "用户提供的向量与知识库最终工程"
+        },
+        "extraction": "按2026年10月30日确认范围提取实际绘制函数。保留固定种子、几何、字体与源时间；当前帧驱动，原工程只读。表格按用户要求恢复8列。",
+        "remotion": {
+          "component": "catalog/remotion/knowledge-video/index.jsx",
+          "export_name": "WiseKnowledgeMotion",
+          "package_name": "wise-knowledge-motion",
+          "files": [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 950,
+          "height": 900,
+          "fps": 60,
+          "reuse_notes": "预览与逐帧导出使用同一绘制函数。speed=1沿用成片1.3倍节奏；固定示例在组件源码内编辑。原字体与头像随工程提供，实际取景尺寸见本条目；不包含配音。",
+          "binary_files": [
+            {
+              "source": "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "target": "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "bytes": 2003884,
+              "sha256": "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              "source": "catalog/assets/knowledge-video/wise-avatar.png",
+              "target": "public/catalog/assets/knowledge-video/wise-avatar.png",
+              "bytes": 1287166,
+              "sha256": "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
+          "scripts": {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "content_slots": [],
+      "layer": "own-background",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放，可暂停、重播与任意定位。",
+      "analogy": "多根细光丝沿固定弧线显现，再持续流动；包括上下文汇入与交错关联加下方输出两种样式。",
+      "assumptions": "内容和数据为原工程的固定讲解示例。适合表达上下文参考和信息交换；从光丝显现开始，不带前面的界面入场。",
+      "tempo_note": "默认沿用成片1.3倍节奏，约2.35秒。",
+      "recommendation": "适合表达上下文参考和信息交换；从光丝显现开始，不带前面的界面入场。",
+      "reproduction": {
+        "presentation": "原画板1080×1440，按主体范围65、70、950、900等比取景；近黑背景、暖金与银白、原得意黑字体。",
+        "objects": "固定弧线上的细光丝、词语框、下方竖向输出",
+        "retain": "固定曲线、不缩放形状；保留原随机种子、线宽、亮纹与间歇流动。",
+        "phases": [
+          "词语框已就位，光丝从端点显现。",
+          "亮纹沿同一条固定弧线行进。",
+          "第二种样式继续沿下方竖向光丝输出。"
+        ],
+        "avoid": "不加入未选片段，不拉伸或裁去主体。",
+        "details": [
+          "当前播放秒乘1.3，再加原场景31.32秒；到34.38秒保持。",
+          "固定曲线、不缩放形状；保留原随机种子、线宽、亮纹与间歇流动。",
+          "只创建已选主体；未带整段视频、配音或在线资源。"
+        ]
+      },
+      "variants": [
+        {
+          "id": "context",
+          "label": "上下文汇入关键词",
+          "summary": "上下文汇入关键词，从光丝开始显现到后续流动。",
+          "duration_ms": 2353.8461538461556,
+          "preview_ms": 1676.9230769230767,
+          "source": {
+            "path": "catalog/effects/knowledge-video.js",
+            "factory": "context-silk-flow",
+            "origin": "original",
+            "license": "Apache-2.0",
+            "library": "remotion@4.0.532",
+            "assets": [
+              "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "catalog/assets/knowledge-video/wise-avatar.png",
+              "catalog/assets/knowledge-video/SOURCE.json",
+              "catalog/assets/knowledge-video/README.md",
+              "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+              "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+              "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+            ],
+            "reference": {
+              "name": "用户提供的向量与知识库最终工程"
+            },
+            "extraction": "按2026年10月30日确认范围提取实际绘制函数。保留固定种子、几何、字体与源时间；当前帧驱动，原工程只读。表格按用户要求恢复8列。",
+            "remotion": {
+              "component": "catalog/remotion/knowledge-video/index.jsx",
+              "export_name": "WiseKnowledgeMotion",
+              "package_name": "wise-knowledge-motion",
+              "files": [
+                "catalog/remotion/knowledge-video/drawing.js",
+                "catalog/remotion/knowledge-video/frame.js",
+                "catalog/remotion/knowledge-video/index.jsx",
+                "catalog/remotion/knowledge-video/line-growth.js",
+                "catalog/remotion/knowledge-video/painter.js",
+                "catalog/remotion/knowledge-video/scenes.js",
+                "catalog/remotion/knowledge-video/silk-flow.js",
+                "catalog/remotion/knowledge-video/source-layout.js",
+                "catalog/remotion/knowledge-video/space3d.js",
+                "catalog/remotion/knowledge-video/specs.js",
+                "catalog/assets/knowledge-video/README.md",
+                "catalog/assets/knowledge-video/SOURCE.json",
+                "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+                "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+                "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+                "LICENSE",
+                "catalog/assets/reel-extract/React-LICENSE.txt",
+                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+                "catalog/remotion/binary-assets-installer.mjs",
+                "catalog/assets/knowledge-video/verify-source.mjs"
+              ],
+              "packages": {
+                "remotion": "4.0.532",
+                "@remotion/cli": "4.0.532",
+                "react": "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              "width": 950,
+              "height": 900,
+              "fps": 60,
+              "reuse_notes": "预览与逐帧导出使用同一绘制函数。speed=1沿用成片1.3倍节奏；固定示例在组件源码内编辑。原字体与头像随工程提供，实际取景尺寸见本条目；不包含配音。",
+              "binary_files": [
+                {
+                  "source": "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+                  "target": "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+                  "bytes": 2003884,
+                  "sha256": "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+                },
+                {
+                  "source": "catalog/assets/knowledge-video/wise-avatar.png",
+                  "target": "public/catalog/assets/knowledge-video/wise-avatar.png",
+                  "bytes": 1287166,
+                  "sha256": "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+                }
+              ],
+              "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
+              "scripts": {
+                "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+              }
+            }
+          },
+          "objects": "两行词语框、汇入苹果关键词的固定弧形光丝",
+          "phases": [
+            "词语框已就位，细光丝从上下文词语端点显现。",
+            "光丝沿原固定弧线汇入苹果关键词。",
+            "亮纹继续在同一曲线上流动，保留两行上下文示例。"
+          ],
+          "tempo_note": "默认沿用成片1.3倍节奏，约2.35秒。",
+          "reproduction": {
+            "presentation": "原画板1080×1440，按主体范围65、70、950、900等比取景；近黑背景、暖金与银白、原得意黑字体。",
+            "objects": "两行词语框、汇入苹果关键词的固定弧形光丝",
+            "retain": "固定曲线、不缩放形状；保留原随机种子、线宽、亮纹与间歇流动。",
+            "phases": [
+              "词语框已就位，细光丝从上下文词语端点显现。",
+              "光丝沿原固定弧线汇入苹果关键词。",
+              "亮纹继续在同一曲线上流动，保留两行上下文示例。"
+            ],
+            "avoid": "不加入未选片段，不拉伸或裁去主体。",
+            "details": [
+              "当前播放秒乘1.3，再加原场景31.32秒；到34.38秒保持。",
+              "固定曲线、不缩放形状；保留原随机种子、线宽、亮纹与间歇流动。",
+              "只创建已选主体；未带整段视频、配音或在线资源。"
+            ]
+          }
+        },
+        {
+          "id": "cross",
+          "label": "交错关联与下方输出",
+          "summary": "交错关联与下方输出，从光丝开始显现到后续流动。",
+          "duration_ms": 3069.2307692307695,
+          "preview_ms": 2261.5384615384623,
+          "source": {
+            "path": "catalog/effects/knowledge-video.js",
+            "factory": "context-silk-flow-cross",
+            "origin": "original",
+            "license": "Apache-2.0",
+            "library": "remotion@4.0.532",
+            "assets": [
+              "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "catalog/assets/knowledge-video/wise-avatar.png",
+              "catalog/assets/knowledge-video/SOURCE.json",
+              "catalog/assets/knowledge-video/README.md",
+              "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+              "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+              "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+            ],
+            "reference": {
+              "name": "用户提供的向量与知识库最终工程"
+            },
+            "extraction": "按2026年10月30日确认范围提取实际绘制函数。保留固定种子、几何、字体与源时间；当前帧驱动，原工程只读。表格按用户要求恢复8列。",
+            "remotion": {
+              "component": "catalog/remotion/knowledge-video/index.jsx",
+              "export_name": "WiseKnowledgeMotion",
+              "package_name": "wise-knowledge-motion",
+              "files": [
+                "catalog/remotion/knowledge-video/drawing.js",
+                "catalog/remotion/knowledge-video/frame.js",
+                "catalog/remotion/knowledge-video/index.jsx",
+                "catalog/remotion/knowledge-video/line-growth.js",
+                "catalog/remotion/knowledge-video/painter.js",
+                "catalog/remotion/knowledge-video/scenes.js",
+                "catalog/remotion/knowledge-video/silk-flow.js",
+                "catalog/remotion/knowledge-video/source-layout.js",
+                "catalog/remotion/knowledge-video/space3d.js",
+                "catalog/remotion/knowledge-video/specs.js",
+                "catalog/assets/knowledge-video/README.md",
+                "catalog/assets/knowledge-video/SOURCE.json",
+                "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+                "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+                "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+                "LICENSE",
+                "catalog/assets/reel-extract/React-LICENSE.txt",
+                "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+                "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+                "catalog/remotion/binary-assets-installer.mjs",
+                "catalog/assets/knowledge-video/verify-source.mjs"
+              ],
+              "packages": {
+                "remotion": "4.0.532",
+                "@remotion/cli": "4.0.532",
+                "react": "19.3.0",
+                "react-dom": "19.3.0"
+              },
+              "width": 880,
+              "height": 390,
+              "fps": 60,
+              "reuse_notes": "预览与逐帧导出使用同一绘制函数。speed=1沿用成片1.3倍节奏；固定示例在组件源码内编辑。原字体与头像随工程提供，实际取景尺寸见本条目；不包含配音。",
+              "binary_files": [
+                {
+                  "source": "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+                  "target": "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+                  "bytes": 2003884,
+                  "sha256": "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+                },
+                {
+                  "source": "catalog/assets/knowledge-video/wise-avatar.png",
+                  "target": "public/catalog/assets/knowledge-video/wise-avatar.png",
+                  "bytes": 1287166,
+                  "sha256": "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+                }
+              ],
+              "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
+              "scripts": {
+                "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+              }
+            }
+          },
+          "objects": "两句输入、交错弧线、下方竖向输出光丝和输出卡",
+          "phases": [
+            "两句输入已就位，交错光丝沿固定弧线显现。",
+            "下方竖向输出光丝逐渐显现。",
+            "两组光丝继续流动，保留完整后续流动段。"
+          ],
+          "tempo_note": "默认沿用成片1.3倍节奏，约3.07秒。",
+          "reproduction": {
+            "presentation": "原画板1080×1440，按主体范围120、740、880、390等比取景；近黑背景、暖金与银白、原得意黑字体。",
+            "objects": "两句输入、交错弧线、下方竖向输出光丝和输出卡",
+            "retain": "固定曲线、不缩放形状；保留原随机种子、线宽、亮纹与间歇流动。",
+            "phases": [
+              "两句输入已就位，交错光丝沿固定弧线显现。",
+              "下方竖向输出光丝逐渐显现。",
+              "两组光丝继续流动，保留完整后续流动段。"
+            ],
+            "avoid": "不加入未选片段，不拉伸或裁去主体。",
+            "details": [
+              "当前播放秒乘1.3，再加原场景11.86秒；到15.85秒保持。",
+              "固定曲线、不缩放形状；保留原随机种子、线宽、亮纹与间歇流动。",
+              "只创建已选主体；未带整段视频、配音或在线资源。"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "cosine-gauge-sweep",
+      "name": "仪表指针与读数联动",
+      "kind": "illustration",
+      "category": "illustration-interface",
+      "summary": "半圆仪表逐渐描出，指针扫到指定值，数字同步变化并轻微弹动强调。",
+      "purpose": "适合分数、相似度或信号状态说明；固定示例范围为负一到正一。",
+      "objects": "半圆刻度、指针、填充弧与读数",
+      "phases": [
+        "仪表弧与刻度出现。",
+        "指针和填充弧联动，数字到 0.74。",
+        "读数轻微弹动后保持。"
+      ],
+      "aliases": [
+        "仪表盘",
+        "指针",
+        "余弦读数"
+      ],
+      "behaviors": [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      "retain": "保留 21 个刻度和原指针几何，读数与指针使用同一进度。",
+      "avoid": "不添加未选片段，不改原几何和材质，不以整体淡入替代内部动作。",
+      "duration_ms": 3707.6923076923076,
+      "preview_ms": 3053.8461538461543,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/knowledge-video.js",
+        "factory": "cosine-gauge-sweep",
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "assets": [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        "reference": {
+          "name": "用户提供的向量与知识库最终工程"
+        },
+        "extraction": "按2026年10月30日确认范围提取实际绘制函数。保留固定种子、几何、字体与源时间；当前帧驱动，原工程只读。表格按用户要求恢复8列。",
+        "remotion": {
+          "component": "catalog/remotion/knowledge-video/index.jsx",
+          "export_name": "WiseKnowledgeMotion",
+          "package_name": "wise-knowledge-motion",
+          "files": [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 840,
+          "height": 760,
+          "fps": 60,
+          "reuse_notes": "预览与逐帧导出使用同一绘制函数。speed=1沿用成片1.3倍节奏；固定示例在组件源码内编辑。原字体与头像随工程提供，实际取景尺寸见本条目；不包含配音。",
+          "binary_files": [
+            {
+              "source": "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "target": "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "bytes": 2003884,
+              "sha256": "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              "source": "catalog/assets/knowledge-video/wise-avatar.png",
+              "target": "public/catalog/assets/knowledge-video/wise-avatar.png",
+              "bytes": 1287166,
+              "sha256": "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
+          "scripts": {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "content_slots": [],
+      "layer": "own-background",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放，可暂停、重播与任意定位。",
+      "analogy": "半圆仪表逐渐描出，指针扫到指定值，数字同步变化并轻微弹动强调。",
+      "assumptions": "内容和数据为原工程的固定讲解示例。适合分数、相似度或信号状态说明；固定示例范围为负一到正一。",
+      "tempo_note": "默认沿用成片1.3倍节奏，约3.71秒。",
+      "recommendation": "适合分数、相似度或信号状态说明；固定示例范围为负一到正一。",
+      "reproduction": {
+        "presentation": "原画板1080×1440，按主体范围120、430、840、760等比取景；近黑背景、暖金与银白、原得意黑字体。",
+        "objects": "半圆刻度、指针、填充弧与读数",
+        "retain": "保留 21 个刻度和原指针几何，读数与指针使用同一进度。",
+        "phases": [
+          "仪表弧与刻度出现。",
+          "指针和填充弧联动，数字到 0.74。",
+          "读数轻微弹动后保持。"
+        ],
+        "avoid": "不加入未选片段，不拉伸或裁去主体。",
+        "details": [
+          "当前播放秒乘1.3，再加原场景5.58秒；到10.4秒保持。",
+          "保留 21 个刻度和原指针几何，读数与指针使用同一进度。",
+          "只创建已选主体；未带整段视频、配音或在线资源。"
+        ]
+      }
+    },
+    {
+      "id": "vector-angle-swing",
+      "name": "向量夹角来回摆动",
+      "kind": "illustration",
+      "category": "illustration-diagram",
+      "summary": "同一原点的两支箭头改变夹角，扇形、角度符号与余弦读数一起变化。",
+      "purpose": "适合解释方向相似与余弦关系；保留来回摆动，不只截取一次变化。",
+      "objects": "银色网格、两支向量、夹角扇形、公式和读数",
+      "phases": [
+        "第二支箭头长出，夹角标记出现。",
+        "箭头靠近后摆开，余弦读数随夹角变化。",
+        "箭头再次靠近，保留最终状态。"
+      ],
+      "aliases": [
+        "向量夹角",
+        "箭头摆动",
+        "余弦相似度"
+      ],
+      "behaviors": [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      "retain": "箭头、角度扇形与读数共同取同一个角度。",
+      "avoid": "不添加未选片段，不改原几何和材质，不以整体淡入替代内部动作。",
+      "duration_ms": 5115.384615384615,
+      "preview_ms": 4769.2307692307695,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/knowledge-video.js",
+        "factory": "vector-angle-swing",
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "assets": [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        "reference": {
+          "name": "用户提供的向量与知识库最终工程"
+        },
+        "extraction": "按2026年10月30日确认范围提取实际绘制函数。保留固定种子、几何、字体与源时间；当前帧驱动，原工程只读。表格按用户要求恢复8列。",
+        "remotion": {
+          "component": "catalog/remotion/knowledge-video/index.jsx",
+          "export_name": "WiseKnowledgeMotion",
+          "package_name": "wise-knowledge-motion",
+          "files": [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 960,
+          "height": 1030,
+          "fps": 60,
+          "reuse_notes": "预览与逐帧导出使用同一绘制函数。speed=1沿用成片1.3倍节奏；固定示例在组件源码内编辑。原字体与头像随工程提供，实际取景尺寸见本条目；不包含配音。",
+          "binary_files": [
+            {
+              "source": "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "target": "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "bytes": 2003884,
+              "sha256": "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              "source": "catalog/assets/knowledge-video/wise-avatar.png",
+              "target": "public/catalog/assets/knowledge-video/wise-avatar.png",
+              "bytes": 1287166,
+              "sha256": "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
+          "scripts": {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "content_slots": [],
+      "layer": "own-background",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放，可暂停、重播与任意定位。",
+      "analogy": "同一原点的两支箭头改变夹角，扇形、角度符号与余弦读数一起变化。",
+      "assumptions": "内容和数据为原工程的固定讲解示例。适合解释方向相似与余弦关系；保留来回摆动，不只截取一次变化。",
+      "tempo_note": "默认沿用成片1.3倍节奏，约5.12秒。",
+      "recommendation": "适合解释方向相似与余弦关系；保留来回摆动，不只截取一次变化。",
+      "reproduction": {
+        "presentation": "原画板1080×1440，按主体范围60、200、960、1030等比取景；近黑背景、暖金与银白、原得意黑字体。",
+        "objects": "银色网格、两支向量、夹角扇形、公式和读数",
+        "retain": "箭头、角度扇形与读数共同取同一个角度。",
+        "phases": [
+          "第二支箭头长出，夹角标记出现。",
+          "箭头靠近后摆开，余弦读数随夹角变化。",
+          "箭头再次靠近，保留最终状态。"
+        ],
+        "avoid": "不加入未选片段，不拉伸或裁去主体。",
+        "details": [
+          "当前播放秒乘1.3，再加原场景4.55秒；到11.2秒保持。",
+          "箭头、角度扇形与读数共同取同一个角度。",
+          "只创建已选主体；未带整段视频、配音或在线资源。"
+        ]
+      }
+    },
+    {
+      "id": "purchase-table-vector",
+      "name": "购买表格突出一行",
+      "kind": "illustration",
+      "category": "illustration-interface",
+      "summary": "三行八列购买记录在宽屏中展开，猫粮一行亮起，其余两行变暗，完整数字行提到下方。",
+      "purpose": "适合讲解表格一行如何成为向量；横向完整八列，列间保留宽裕间距。",
+      "objects": "八列用户、三行购买记录、行高亮和数字行",
+      "phases": [
+        "八个用户与猫粮购买记录出现。",
+        "猫砂和狗粮记录按同一列顺序填入。",
+        "突出猫粮一行，并展示完整的八个数字。"
+      ],
+      "aliases": [
+        "猫粮表格",
+        "购买记录",
+        "表格变向量",
+        "八列"
+      ],
+      "behaviors": [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      "retain": "三行八列原始数据不变；横向铺开，列中心间距160像素；不压成三列，不把记录转置。",
+      "avoid": "不裁去列或压缩列距，不以整体淡入替代内部动作。",
+      "duration_ms": 5423.076923076923,
+      "preview_ms": 4730.7692307692305,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/knowledge-video.js",
+        "factory": "purchase-table-vector",
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "assets": [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        "reference": {
+          "name": "用户提供的向量与知识库最终工程"
+        },
+        "extraction": "提取原工程的三行八列购买记录与行高亮动作，按用户确认使用宽屏布局和成片2倍速度；字体、数据与内部动作保持，当前帧驱动，原工程只读。",
+        "remotion": {
+          "component": "catalog/remotion/knowledge-video/index.jsx",
+          "export_name": "WiseKnowledgeMotion",
+          "package_name": "wise-knowledge-motion",
+          "files": [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 1600,
+          "height": 900,
+          "fps": 60,
+          "reuse_notes": "预览与逐帧导出使用同一绘制函数。speed=1为成片的2倍速度，约5.42秒；源工程时间按2.6倍映射。三行八列铺在1600×900横向画板内，列中心间距160像素。固定内容在组件源码中编辑，不含配音。",
+          "binary_files": [
+            {
+              "source": "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "target": "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "bytes": 2003884,
+              "sha256": "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              "source": "catalog/assets/knowledge-video/wise-avatar.png",
+              "target": "public/catalog/assets/knowledge-video/wise-avatar.png",
+              "bytes": 1287166,
+              "sha256": "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
+          "scripts": {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      "actions": [],
+      "demo_mode": "fixed-timeline",
+      "content_slots": [],
+      "layer": "own-background",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放，可暂停、重播与任意定位。",
+      "analogy": "三行八列购买记录在宽屏中展开，猫粮一行亮起，其余两行变暗，完整数字行提到下方。",
+      "assumptions": "内容和数据为固定讲解示例。适合讲解表格一行如何成为向量；横向完整八列，列间保留宽裕间距。",
+      "tempo_note": "默认以成片的2倍速度播放，约5.42秒；播放控件的1倍代表此默认节奏。",
+      "recommendation": "适合讲解表格一行如何成为向量；横向完整八列，列间保留宽裕间距。",
+      "reproduction": {
+        "presentation": "1600×900横屏画板，近黑背景、暖金与银白、得意黑字体；八列中心间距160像素，行高亮宽1504像素，下方居中显示完整数字行。",
+        "objects": "八列用户、三行购买记录、行高亮和数字行",
+        "retain": "三行八列原始数据不变；横向铺开，列中心间距160像素；不压成三列，不把记录转置。",
+        "phases": [
+          "八个用户与猫粮购买记录出现。",
+          "猫砂和狗粮记录按同一列顺序填入。",
+          "突出猫粮一行，并展示完整的八个数字。"
+        ],
+        "avoid": "不加入未选片段，不拉伸或裁去主体。",
+        "details": [
+          "当前播放秒乘2.6，再加原场景0秒；到14.1秒保持，片段约5.42秒。",
+          "三行八列原始数据不变；横向铺开，列中心间距160像素；不压成三列，不把记录转置。",
+          "只创建已选主体；未带整段视频、配音或在线资源。"
+        ]
+      }
+    },
+    {
+      "id": "paper-card-drop",
+      "name": "论文资料依次入场",
+      "kind": "illustration",
+      "category": "illustration-object",
+      "summary": "3:4竖屏中，论文页先倾斜落定，年份与作者信息随后显现，右下结构图最后进入。",
+      "purpose": "适合分三拍介绍论文、年代与结构图，保留一组资料依次入场的完整关系。",
+      "objects": "论文页、年份与作者信息、右下结构图三组资料",
+      "phases": [
+        "论文页从上方倾斜落定。",
+        "年份与作者信息依次由模糊变清晰。",
+        "右下结构图倾斜进入，三组资料共同停留。"
+      ],
+      "aliases": [
+        "论文卡",
+        "Attention Is All You Need",
+        "研究引用",
+        "论文卡倾斜落定",
+        "论文三组资料",
+        "竖屏论文",
+        "3:4"
+      ],
+      "behaviors": [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      "retain": "3:4竖屏、三组资料、先后顺序、倾斜落定与由模糊变清晰的入场；保留图内署名。",
+      "avoid": "不只截论文页，不把三组资料压成横屏，不提前切断结构图入场。",
+      "duration_ms": 2923.0769230769206,
+      "preview_ms": 2692.307692307692,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/knowledge-video.js",
+        "factory": "paper-card-drop",
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "assets": [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+          "catalog/assets/knowledge-video/transformer.png",
+          "catalog/assets/knowledge-video/Transformer-CREDITS.md"
+        ],
+        "reference": {
+          "name": "用户提供的向量与知识库最终工程"
+        },
+        "extraction": "从原工程提取论文页、年份作者与结构图的完整入场顺序；3:4竖屏、原字体、倾斜和时间关系保持，当前帧驱动，原工程只读。",
+        "remotion": {
+          "component": "catalog/remotion/knowledge-video/index.jsx",
+          "export_name": "WiseKnowledgeMotion",
+          "package_name": "wise-knowledge-motion",
+          "files": [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs",
+            "catalog/assets/knowledge-video/Transformer-CREDITS.md"
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 1080,
+          "height": 1440,
+          "fps": 60,
+          "reuse_notes": "1080×1440竖屏，三组资料按原片顺序入场；speed=1沿用成片节奏，约2.92秒。字体与结构图随工程提供，结构图署名和许可独立保留。固定内容在组件源码中编辑，不含配音。",
+          "binary_files": [
+            {
+              "source": "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "target": "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "bytes": 2003884,
+              "sha256": "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              "source": "catalog/assets/knowledge-video/wise-avatar.png",
+              "target": "public/catalog/assets/knowledge-video/wise-avatar.png",
+              "bytes": 1287166,
+              "sha256": "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            },
+            {
+              "source": "catalog/assets/knowledge-video/transformer.png",
+              "target": "public/catalog/assets/knowledge-video/transformer.png",
+              "bytes": 145389,
+              "sha256": "b491875a5a262910ab3e3ac9c377a425ef637f824d1bbf2e6416c2a651035356"
+            }
+          ],
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
+          "scripts": {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      "actions": [
+        "tilt-drop-settle"
+      ],
+      "demo_mode": "fixed-timeline",
+      "content_slots": [],
+      "layer": "own-background",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放，可暂停、重播与任意定位。",
+      "analogy": "3:4竖屏中，论文页先倾斜落定，年份与作者信息随后显现，右下结构图最后进入。",
+      "assumptions": "论文文字与结构图为固定讲解示例；三组资料沿用原工程编排。",
+      "tempo_note": "沿用成片节奏，约2.92秒；三组资料依次入场，最后共同停留。",
+      "recommendation": "适合分三拍介绍论文、年代与结构图，保留一组资料依次入场的完整关系。",
+      "reproduction": {
+        "presentation": "1080×1440的3:4竖屏，近黑背景；上方浅色论文页，左下暖金年份与作者信息，右下白底结构图卡片。",
+        "objects": "论文页、年份与作者信息、右下结构图三组资料",
+        "retain": "3:4竖屏、三组资料、先后顺序、倾斜落定与由模糊变清晰的入场；保留图内署名。",
+        "phases": [
+          "论文页从上方倾斜落定。",
+          "年份与作者信息依次由模糊变清晰。",
+          "右下结构图倾斜进入，三组资料共同停留。"
+        ],
+        "avoid": "不只截论文页，不把三组资料压成横屏，不提前切断结构图入场。",
+        "details": [
+          "当前播放秒乘1.3，再加原场景34.7秒；到38.5秒保持。",
+          "论文页在起点进入；年份晚0.4秒、作者晚0.7秒，结构图晚2.32秒进入，时间按源场景秒计。",
+          "论文页左110、上150，落定角度-1度；结构图左640、上690，落定角度4度；卡片落定均用0.7源秒。"
+        ]
+      },
+      "previous_names": [
+        "论文卡倾斜落定"
+      ]
+    },
+    {
+      "id": "cat-context-links",
+      "name": "中心词连接周围词语",
+      "kind": "illustration",
+      "category": "illustration-diagram",
+      "summary": "中心的猫标签先弹出，周围词语依次出现，连接线从边缘伸到各词语边缘。",
+      "purpose": "适合表达一个词与周边语境的关系；仅保留下方关系图。",
+      "objects": "中心词、六个周围词、边缘相接的连线",
+      "phases": [
+        "中心词弹出。",
+        "周围六个词错峰出现。",
+        "连线依次长出，端点闪光后停留。"
+      ],
+      "aliases": [
+        "猫中心线",
+        "中心词",
+        "语境连线"
+      ],
+      "behaviors": [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      "retain": "连线在标签边缘结束，不穿过字；不带上方人物档案卡。",
+      "avoid": "不添加未选片段，不改原几何和材质，不以整体淡入替代内部动作。",
+      "duration_ms": 2923.0769230769233,
+      "preview_ms": 2076.9230769230776,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/knowledge-video.js",
+        "factory": "cat-context-links",
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "assets": [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        "reference": {
+          "name": "用户提供的向量与知识库最终工程"
+        },
+        "extraction": "按2026年10月30日确认范围提取实际绘制函数。保留固定种子、几何、字体与源时间；当前帧驱动，原工程只读。表格按用户要求恢复8列。",
+        "remotion": {
+          "component": "catalog/remotion/knowledge-video/index.jsx",
+          "export_name": "WiseKnowledgeMotion",
+          "package_name": "wise-knowledge-motion",
+          "files": [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 880,
+          "height": 540,
+          "fps": 60,
+          "reuse_notes": "预览与逐帧导出使用同一绘制函数。speed=1沿用成片1.3倍节奏；固定示例在组件源码内编辑。原字体与头像随工程提供，实际取景尺寸见本条目；不包含配音。",
+          "binary_files": [
+            {
+              "source": "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "target": "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "bytes": 2003884,
+              "sha256": "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              "source": "catalog/assets/knowledge-video/wise-avatar.png",
+              "target": "public/catalog/assets/knowledge-video/wise-avatar.png",
+              "bytes": 1287166,
+              "sha256": "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
+          "scripts": {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      "actions": [
+        "stroke-draw",
+        "stagger-in"
+      ],
+      "demo_mode": "fixed-timeline",
+      "content_slots": [],
+      "layer": "own-background",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放，可暂停、重播与任意定位。",
+      "analogy": "中心的猫标签先弹出，周围词语依次出现，连接线从边缘伸到各词语边缘。",
+      "assumptions": "内容和数据为原工程的固定讲解示例。适合表达一个词与周边语境的关系；仅保留下方关系图。",
+      "tempo_note": "默认沿用成片1.3倍节奏，约2.92秒。",
+      "recommendation": "适合表达一个词与周边语境的关系；仅保留下方关系图。",
+      "reproduction": {
+        "presentation": "原画板1080×1440，按主体范围100、570、880、540等比取景；近黑背景、暖金与银白、原得意黑字体。",
+        "objects": "中心词、六个周围词、边缘相接的连线",
+        "retain": "连线在标签边缘结束，不穿过字；不带上方人物档案卡。",
+        "phases": [
+          "中心词弹出。",
+          "周围六个词错峰出现。",
+          "连线依次长出，端点闪光后停留。"
+        ],
+        "avoid": "不加入未选片段，不拉伸或裁去主体。",
+        "details": [
+          "当前播放秒乘1.3，再加原场景11.7秒；到15.5秒保持。",
+          "连线在标签边缘结束，不穿过字；不带上方人物档案卡。",
+          "只创建已选主体；未带整段视频、配音或在线资源。"
+        ]
+      }
+    },
+    {
+      "id": "farewell-actions",
+      "name": "人物告别与三连点亮",
+      "kind": "illustration",
+      "category": "illustration-object",
+      "summary": "人物与告别文字出现，点赞、收藏、关注依次描边，弹动点亮并散出短射线。",
+      "purpose": "适合视频告别与三连引导；使用时替换示例头像与署名。",
+      "objects": "人物头像、告别文字、三连图标、短射线与星点",
+      "phases": [
+        "人物和署名轻微弹出。",
+        "告别文字与三个图标依次出现。",
+        "图标依次弹动点亮，短射线散开。"
+      ],
+      "aliases": [
+        "告别",
+        "片尾",
+        "三连",
+        "点赞收藏关注"
+      ],
+      "behaviors": [
+        "sequence",
+        "reveal",
+        "data"
+      ],
+      "retain": "保留原头像浮动、三连描边、点亮和射线；独立示例无旁白。",
+      "avoid": "不添加未选片段，不改原几何和材质，不以整体淡入替代内部动作。",
+      "duration_ms": 3130.769230769231,
+      "preview_ms": 2107.6923076923063,
+      "loop": false,
+      "default_ease": "linear",
+      "parameters": {
+        "speed": {
+          "label": "播放速度",
+          "default": 1,
+          "min": 0.5,
+          "max": 2,
+          "step": 0.25
+        }
+      },
+      "source": {
+        "path": "catalog/effects/knowledge-video.js",
+        "factory": "farewell-actions",
+        "origin": "original",
+        "license": "Apache-2.0",
+        "library": "remotion@4.0.532",
+        "assets": [
+          "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+          "catalog/assets/knowledge-video/wise-avatar.png",
+          "catalog/assets/knowledge-video/SOURCE.json",
+          "catalog/assets/knowledge-video/README.md",
+          "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+          "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md"
+        ],
+        "reference": {
+          "name": "用户提供的向量与知识库最终工程"
+        },
+        "extraction": "按2026年10月30日确认范围提取实际绘制函数。保留固定种子、几何、字体与源时间；当前帧驱动，原工程只读。表格按用户要求恢复8列。",
+        "remotion": {
+          "component": "catalog/remotion/knowledge-video/index.jsx",
+          "export_name": "WiseKnowledgeMotion",
+          "package_name": "wise-knowledge-motion",
+          "files": [
+            "catalog/remotion/knowledge-video/drawing.js",
+            "catalog/remotion/knowledge-video/frame.js",
+            "catalog/remotion/knowledge-video/index.jsx",
+            "catalog/remotion/knowledge-video/line-growth.js",
+            "catalog/remotion/knowledge-video/painter.js",
+            "catalog/remotion/knowledge-video/scenes.js",
+            "catalog/remotion/knowledge-video/silk-flow.js",
+            "catalog/remotion/knowledge-video/source-layout.js",
+            "catalog/remotion/knowledge-video/space3d.js",
+            "catalog/remotion/knowledge-video/specs.js",
+            "catalog/assets/knowledge-video/README.md",
+            "catalog/assets/knowledge-video/SOURCE.json",
+            "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+            "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+            "LICENSE",
+            "catalog/assets/reel-extract/React-LICENSE.txt",
+            "catalog/assets/reel-extract/ReactDOM-LICENSE.txt",
+            "catalog/assets/reel-extract/Remotion-LICENSE.txt",
+            "catalog/remotion/binary-assets-installer.mjs",
+            "catalog/assets/knowledge-video/verify-source.mjs"
+          ],
+          "packages": {
+            "remotion": "4.0.532",
+            "@remotion/cli": "4.0.532",
+            "react": "19.3.0",
+            "react-dom": "19.3.0"
+          },
+          "width": 680,
+          "height": 1020,
+          "fps": 60,
+          "reuse_notes": "预览与逐帧导出使用同一绘制函数。speed=1沿用成片1.3倍节奏；固定示例在组件源码内编辑。原字体与头像随工程提供，实际取景尺寸见本条目；不包含配音。",
+          "binary_files": [
+            {
+              "source": "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "target": "public/catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+              "bytes": 2003884,
+              "sha256": "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+            },
+            {
+              "source": "catalog/assets/knowledge-video/wise-avatar.png",
+              "target": "public/catalog/assets/knowledge-video/wise-avatar.png",
+              "bytes": 1287166,
+              "sha256": "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
+            }
+          ],
+          "asset_installer": "catalog/remotion/binary-assets-installer.mjs",
+          "scripts": {
+            "check:source": "node catalog/assets/knowledge-video/verify-source.mjs"
+          }
+        }
+      },
+      "actions": [
+        "stagger-in",
+        "material-like-pop"
+      ],
+      "demo_mode": "fixed-timeline",
+      "content_slots": [],
+      "layer": "own-background",
+      "domains": [
+        "animation"
+      ],
+      "trigger": "打开后按固定时间播放，可暂停、重播与任意定位。",
+      "analogy": "人物与告别文字出现，点赞、收藏、关注依次描边，弹动点亮并散出短射线。",
+      "assumptions": "内容和数据为原工程的固定讲解示例。适合视频告别与三连引导；使用时替换示例头像与署名。",
+      "tempo_note": "默认沿用成片1.3倍节奏，约3.13秒。",
+      "recommendation": "适合视频告别与三连引导；使用时替换示例头像与署名。",
+      "reproduction": {
+        "presentation": "原画板1080×1440，按主体范围200、220、680、1020等比取景；近黑背景、暖金与银白、原得意黑字体。",
+        "objects": "人物头像、告别文字、三连图标、短射线与星点",
+        "retain": "保留原头像浮动、三连描边、点亮和射线；独立示例无旁白。",
+        "phases": [
+          "人物和署名轻微弹出。",
+          "告别文字与三个图标依次出现。",
+          "图标依次弹动点亮，短射线散开。"
+        ],
+        "avoid": "不加入未选片段，不拉伸或裁去主体。",
+        "details": [
+          "当前播放秒乘1.3，再加原场景12.96秒；到17.03秒保持。",
+          "保留原头像浮动、三连描边、点亮和射线；独立示例无旁白。",
+          "只创建已选主体；未带整段视频、配音或在线资源。"
         ]
       }
     }

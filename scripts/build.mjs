@@ -13,6 +13,8 @@ const {buildLegoMotion} = await import('./build-lego-motion.mjs');
 await buildLegoMotion(checking);
 const {buildReviewMotion} = await import('./build-review-motion.mjs');
 await buildReviewMotion(checking);
+const {buildKnowledgeMotion} = await import('./build-knowledge-motion.mjs');
+await buildKnowledgeMotion(checking);
 const {spawnSync}=await import('node:child_process');
 const sceneImages=spawnSync(process.execPath,[path.join(root,'scripts/build-scene-images.mjs'),...(checking?['--check']:[])],{encoding:'utf8'});
 if(sceneImages.status!==0)throw new Error(sceneImages.stderr||sceneImages.stdout||'原图片封装生成失败');

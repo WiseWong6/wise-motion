@@ -1,6 +1,5 @@
 // Copyright (c) 2026 Wise Wong. SPDX-License-Identifier: Apache-2.0
 import { FONT_FAMILY } from "./fonts.js";
-export { SCENE_TIMING } from "./timing.js";
 
 export const FONT = {
   display: FONT_FAMILY,

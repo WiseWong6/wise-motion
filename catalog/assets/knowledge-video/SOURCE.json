@@ -1,0 +1,31 @@
+{
+  "title": "向量与知识库 · 用户确认的动作摘取",
+  "confirmed": "2026-10-31",
+  "scope": "9个条目、10个示例。第二段光丝包括下方输出并保留流动；表格恢复8列并采用宽屏、成片2倍速；论文资料为3:4竖屏三组依次入场。未包含旁白。",
+  "source_clock": "播放秒乘各片段rate后加场景起点；表格rate为2.6，其余为1.3。",
+  "files": {
+    "compositions/s01-hook.html": "f515a6a1101ad4e5dcf6324a6d81c307f18bf1f996b53483dfce4f7dab5e14cf",
+    "compositions/s02-vector.html": "f3c3145e3d073212325d1ef3fa79776812b12b169b27621063955812ce02ac4b",
+    "compositions/s03-itemcf.html": "4dd0740de639a5798ebe1ae203acf0c167e12e6b3a70f31c22f6fcaabe2cce0d",
+    "compositions/s04-embedding.html": "a5495eff52266b6b61ebf39dae941cd8c49ce70928322e0fc756add752d46616",
+    "compositions/s07-rerank.html": "894046004028be7f8f045650c4c6fc72f66b2061426f11127f253cbe22aef4eb",
+    "compositions/s08-outro.html": "cb866d38dd488c61148a6ed12f6429b4c3ef0136db0f2cba1dd6db7ea83eddd8",
+    "assets/runtime/line-growth.js": "8d418d062dc4823ba51a807b8393cfd75ca553500254b6091dd917c2394a658c",
+    "assets/runtime/space3d.js": "5500140a7a9ccee7334f05907f562181d513215f9f191e4acb002edf1992739a",
+    "assets/runtime/silk-flow.js": "429b8d4150a1d31c3846042caade413ba44ca24ea5e5fca640e62e6bc2c6847d",
+    "assets/fonts/SmileySans-Oblique.otf": "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6",
+    "assets/fonts/OFL-SmileySans.txt": "80e4190797817693e577ddf8d661149a7aa006f71b336e3f3b77512daffb9772",
+    "assets/wise-avatar.png": "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23",
+    "assets/licenses/3D-Chladni-Apache-2.0.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "assets/licenses/3D-Chladni-NOTICE.md": "e0456b399e813c66fbc4836e79b2b3decf97489f7f2d1bb57bf448867fc38d10",
+    "assets/img/transformer.png": "b491875a5a262910ab3e3ac9c377a425ef637f824d1bbf2e6416c2a651035356"
+  },
+  "changes": [
+    "沿用原绘制函数、固定随机种子、几何、颜色、字体与缓动。",
+    "时间线改为当前秒数直接求值；各实例独立，不包含 GSAP。",
+    "只创建所选动作节点，按主体取景，不复制整段视频后隐藏其他内容。",
+    "猫粮表格使用三行八列原始记录，宽屏布局；列中心间距160像素，成片2倍速度。",
+    "论文页、年份与作者、结构图保持完整入场顺序，使用1080×1440竖屏。"
+  ],
+  "rights": "绘制代码 Apache-2.0；字体 OFL；空间绘制保留第三方 Apache 许可。头像为用户工程素材，示例保留，复用时可替换。论文卡文字来自用户提供的工程。 结构图为Google论文图，沿用原工程和Wikimedia Commons标示的CC BY-SA 4.0，署名见Transformer-CREDITS.md。"
+}

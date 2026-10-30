@@ -1082,39 +1082,24 @@
       "sha256": "f30c40e763c2c66d6bb96ab09201b97d7b8fb17b2f38bcba3347f6c94f548351"
     },
     {
-      "path": "catalog/assets/deepseek-review/AUDIO.json",
-      "bytes": 2170,
-      "sha256": "9ab2d816c627d88ffdd2f265b3400c6c194da0a35edf5fd80ab1021a40700e5c"
-    },
-    {
       "path": "catalog/assets/deepseek-review/Oswald-Bold.ttf",
       "bytes": 108496,
       "sha256": "eb7d46f856dd57f18a8c03d033c57802692bf127f01dbd95ba8984338e6b5135"
     },
     {
       "path": "catalog/assets/deepseek-review/README.md",
-      "bytes": 1004,
-      "sha256": "cedd308f1ec4f56f45d1d770f4743c96c8b2e375a01f445efb98fda000ca08c2"
+      "bytes": 865,
+      "sha256": "0326c43af7a3e840636b71e2da2f9f042a28c83b688e4febec9517f37a724976"
     },
     {
       "path": "catalog/assets/deepseek-review/SOURCE.json",
-      "bytes": 2274,
-      "sha256": "474cbb98fd583bb369db90a0434f79a4d714cfe9ce7ab86237cd11b03c4c53dc"
-    },
-    {
-      "path": "catalog/assets/deepseek-review/closing.wav",
-      "bytes": 1318478,
-      "sha256": "fd2a190225fe546ceac48efbde1b54800e8b617502b507aa0890cf1f4207872e"
-    },
-    {
-      "path": "catalog/assets/deepseek-review/search.wav",
-      "bytes": 1561678,
-      "sha256": "24541bb2444ea264e705d93836ca9bb60583975cfbc17e2180c2cd619f9bd239"
+      "bytes": 1925,
+      "sha256": "9b3aa0bfc52778c73dbf783da93cf9ed90fcfe242d987e5b03b51052b9cbbc70"
     },
     {
       "path": "catalog/assets/deepseek-review/verify-source.mjs",
-      "bytes": 586,
-      "sha256": "2840e6722988e23c341475be476712098b6689318778f4ad262aa24f2c21fa51"
+      "bytes": 577,
+      "sha256": "215b02debae36366aac1ab09a36d5fbad9391e19f56978535bd80242e1e4891f"
     },
     {
       "path": "catalog/assets/glass-light/SOURCE.json",
@@ -1125,6 +1110,56 @@
       "path": "catalog/assets/history-nature/SOURCE.json",
       "bytes": 1772,
       "sha256": "7df05ca50c5b2314bcd6ac49e15b6b2af4350c79074c1edfd75cd8ccd37788cf"
+    },
+    {
+      "path": "catalog/assets/knowledge-video/3D-Chladni-Apache-2.0.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "path": "catalog/assets/knowledge-video/3D-Chladni-NOTICE.md",
+      "bytes": 1622,
+      "sha256": "e0456b399e813c66fbc4836e79b2b3decf97489f7f2d1bb57bf448867fc38d10"
+    },
+    {
+      "path": "catalog/assets/knowledge-video/OFL-SmileySans.txt",
+      "bytes": 4422,
+      "sha256": "80e4190797817693e577ddf8d661149a7aa006f71b336e3f3b77512daffb9772"
+    },
+    {
+      "path": "catalog/assets/knowledge-video/README.md",
+      "bytes": 1738,
+      "sha256": "e75a5fcbec0a62751e2717b8cf6b546fb961c77554e374ed788d8460d9529fa3"
+    },
+    {
+      "path": "catalog/assets/knowledge-video/SOURCE.json",
+      "bytes": 2842,
+      "sha256": "008f78d8953b33c73d7e5e8c17b5057dfd8a84c9d581860a7bf2113457631942"
+    },
+    {
+      "path": "catalog/assets/knowledge-video/SmileySans-Oblique.otf",
+      "bytes": 2003884,
+      "sha256": "139b5dcbe70d6d52de85a62d148784c6af4bd161e38fdb62ba0c1e7e5065fca6"
+    },
+    {
+      "path": "catalog/assets/knowledge-video/Transformer-CREDITS.md",
+      "bytes": 613,
+      "sha256": "d15ba4a8fce5dd6ed95d0b15a3b2cc50e5e40d2578b34cbf55a16619183e30c1"
+    },
+    {
+      "path": "catalog/assets/knowledge-video/transformer.png",
+      "bytes": 145389,
+      "sha256": "b491875a5a262910ab3e3ac9c377a425ef637f824d1bbf2e6416c2a651035356"
+    },
+    {
+      "path": "catalog/assets/knowledge-video/verify-source.mjs",
+      "bytes": 569,
+      "sha256": "8c6cd55a3e4685451f34e978eef4a68742937d5c07a154f839affd401b43a509"
+    },
+    {
+      "path": "catalog/assets/knowledge-video/wise-avatar.png",
+      "bytes": 1287166,
+      "sha256": "49138b46d0b0743b46f03772f2babf5b72132cacdcd13e13e1d95164d5ea4a23"
     },
     {
       "path": "catalog/assets/lego-kingdom/README.md",
@@ -2996,8 +3031,8 @@
     },
     {
       "path": "catalog/effects/deepseek-review.js",
-      "bytes": 269811,
-      "sha256": "3eb572a8b75e3e5d12fe001e788013933d13bb7e940e8cd16115d6b9e08fe041"
+      "bytes": 254682,
+      "sha256": "596e2497bff5970b701d2f42d1762f6b00b10fdb5d5d00bf5be6f66fe0592a75"
     },
     {
       "path": "catalog/effects/dither-book.js",
@@ -3073,6 +3108,11 @@
       "path": "catalog/effects/kimi-illustrations.js",
       "bytes": 21764,
       "sha256": "3ee80e447baab9b3d4b35c51448a686cf6fae906feb66873bc1d2872f0e8ff87"
+    },
+    {
+      "path": "catalog/effects/knowledge-video.js",
+      "bytes": 151090,
+      "sha256": "4654a445e5d9fefa4f450a2a7a2e9ad1c9bc4d169c237d08cca822944b649355"
     },
     {
       "path": "catalog/effects/lego-kingdom.js",
@@ -3382,7 +3422,7 @@
     {
       "path": "catalog/export.js",
       "bytes": 47892,
-      "sha256": "c6bc43f9564f671cc6b43eb483a05b5f03dc86e8e9f24cf27fc38fc69bdb0e41"
+      "sha256": "a42e27c0f9dd5b55a7d59f9c41b66ee8bf497a0a9b92d4e0cf9ccdfd916f2770"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -3466,8 +3506,8 @@
     },
     {
       "path": "catalog/lazy.js",
-      "bytes": 5390,
-      "sha256": "e56ea9dcd554b6b82a732efb3b466ae52bb3121e0014de823c10f54e851d97c1"
+      "bytes": 5419,
+      "sha256": "fa089f8d28350534d2b657b39fa0cc7e57ba8853ac93dc661ecc6739c5f27b23"
     },
     {
       "path": "catalog/matching.js",
@@ -3486,13 +3526,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1805903,
-      "sha256": "5e2bbfd31404cae0be49f0e125e42a7b41de0b28d972670a42666a84ba51fb62"
+      "bytes": 1817842,
+      "sha256": "6a37573245dd94580124371ab44ac42d1b3b099f39d376aa7d6fe0c7453d6500"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 4112990,
-      "sha256": "f2317561766001ab9ce89d069ecc5321d665eb8efee8cfc3efebebc67f202e6b"
+      "bytes": 4136244,
+      "sha256": "42a5e38469bf5c90c0090988c32d94f7cf57794fceffaade327ccb2f4ba86134"
     },
     {
       "path": "catalog/related-preview.js",
@@ -3525,29 +3565,14 @@
       "sha256": "f0a82e1eeaa6ca5874755d793fc41f2aab77836cba3de073c896161bbd08be55"
     },
     {
-      "path": "catalog/remotion/deepseek-review/S13Closing.tsx",
-      "bytes": 9437,
-      "sha256": "18941dcc80cdb8a1962fdcd0eb121277953b966d79eb99e015e1552cf24c678b"
-    },
-    {
       "path": "catalog/remotion/deepseek-review/S3Pareto.tsx",
       "bytes": 5360,
       "sha256": "a5df90bca283a11411a568b4d2a0df699ac40b088181db651c9a120979ceee9f"
     },
     {
-      "path": "catalog/remotion/deepseek-review/S5Search.tsx",
-      "bytes": 6050,
-      "sha256": "fa303dd68946a44549ce1739f682e90152821899de69d2027d771b8616492adf"
-    },
-    {
       "path": "catalog/remotion/deepseek-review/Scene.jsx",
-      "bytes": 3339,
-      "sha256": "6909f974921309584fa92f187371a1121d4d19c4c46495aca3e7256b14903097"
-    },
-    {
-      "path": "catalog/remotion/deepseek-review/SceneShell.tsx",
-      "bytes": 411,
-      "sha256": "1e0663410d4f06e82aae67466b8da556bd81c52a0825c68c74c8d39a1135b3e2"
+      "bytes": 1414,
+      "sha256": "85d7156162407063dc0f1c19e71cc033088e918184d9bae4cf49896660e38db4"
     },
     {
       "path": "catalog/remotion/deepseek-review/anim.ts",
@@ -3556,8 +3581,8 @@
     },
     {
       "path": "catalog/remotion/deepseek-review/catalog.jsx",
-      "bytes": 1815,
-      "sha256": "3229a97bcafe6f958e2564c174946c0fcbbeb3429071a1cc3cd67e73fb169dcb"
+      "bytes": 1743,
+      "sha256": "f381d9d0a26c9b4658dba1ad5689db47a5b2b770460049c236f0e80e9a053c87"
     },
     {
       "path": "catalog/remotion/deepseek-review/fonts.js",
@@ -3566,18 +3591,68 @@
     },
     {
       "path": "catalog/remotion/deepseek-review/index.jsx",
-      "bytes": 1801,
-      "sha256": "d2f15678a7ec0b78dc0e020b211eb04574382af0f05c86bad13bccb08e54d5e0"
+      "bytes": 1624,
+      "sha256": "4c87827e39810e3c211c1231cf8e35eee08ac181f94ef3ca774b89a46d09ac16"
     },
     {
       "path": "catalog/remotion/deepseek-review/theme.ts",
-      "bytes": 3109,
-      "sha256": "4de2567d7f3045f8a8b36178b416f38b9cd3a0e7222e0f13bc9bc8a1f1660769"
+      "bytes": 3065,
+      "sha256": "8f308664ed1edd70227e6f60fe73723829e49ba9166095ff48f73356137bec3d"
     },
     {
-      "path": "catalog/remotion/deepseek-review/timing.js",
-      "bytes": 430,
-      "sha256": "cb91b43409c2f7419f5e1ef9593b958d0c229128c23a7fb9e42db2f8015a2042"
+      "path": "catalog/remotion/knowledge-video/catalog.js",
+      "bytes": 587,
+      "sha256": "b35ec0cb8af098369354b7ffdc991641e199c63bd55be7d903b04dbbfd3db921"
+    },
+    {
+      "path": "catalog/remotion/knowledge-video/drawing.js",
+      "bytes": 16234,
+      "sha256": "28941462c41d5304373996d9d600b02f4d5fa435e3a39abd7b6eff15b4322c9b"
+    },
+    {
+      "path": "catalog/remotion/knowledge-video/frame.js",
+      "bytes": 1555,
+      "sha256": "66a0b1dae84aeabd4bfa0bdbbc29fd6ff9039b6aebe513f99296cddccd8e5730"
+    },
+    {
+      "path": "catalog/remotion/knowledge-video/index.jsx",
+      "bytes": 1663,
+      "sha256": "2707746d8237c867a7d8c045cc810af70e90aa44512f9cc84e7be2badaa8e1d6"
+    },
+    {
+      "path": "catalog/remotion/knowledge-video/line-growth.js",
+      "bytes": 10125,
+      "sha256": "5eace3cfe88702ae10d761ffde69cc5718103417723a6a4f19de13dc654418b8"
+    },
+    {
+      "path": "catalog/remotion/knowledge-video/painter.js",
+      "bytes": 4562,
+      "sha256": "f67c457b998c137ee82cf229e878ecf8458ab00a0a57706c0f52c3e1b8bc6e1f"
+    },
+    {
+      "path": "catalog/remotion/knowledge-video/scenes.js",
+      "bytes": 34894,
+      "sha256": "accca691b415a29470672c319e021ad27eca4ddd8b7fa7179c544b98da30e80d"
+    },
+    {
+      "path": "catalog/remotion/knowledge-video/silk-flow.js",
+      "bytes": 1990,
+      "sha256": "479adebd979fea81d70d3998a4604175e76a48dc103f79b16b2194a4e070f2ec"
+    },
+    {
+      "path": "catalog/remotion/knowledge-video/source-layout.js",
+      "bytes": 102099,
+      "sha256": "920ff34cacae00bd8284e1464b4c43276929fe8d492ddf5998b973c68e0800f6"
+    },
+    {
+      "path": "catalog/remotion/knowledge-video/space3d.js",
+      "bytes": 17901,
+      "sha256": "318ed246c08f0c2efe1f1a7553e56b85fdbb8a6a6cfdd55c906da3efff6d8a86"
+    },
+    {
+      "path": "catalog/remotion/knowledge-video/specs.js",
+      "bytes": 2721,
+      "sha256": "24b3e54c5e0ca7eef8e8ba22f9141c72e3fa00abc1361c6b4edf4ddc71146118"
     },
     {
       "path": "catalog/remotion/lego-kingdom/AmbientActions.jsx",
@@ -3776,8 +3851,8 @@
     },
     {
       "path": "catalog/remotion-sources.js",
-      "bytes": 3573040,
-      "sha256": "84c3b7081bbba1a312b0fae738aede3615d0ec616a7944fa1ca158dfdaca46c2"
+      "bytes": 3777441,
+      "sha256": "5d9e9fceedf5b84c4001fa1e603ca4316d79e1e3c4c4fbd587bb78c75f5d9e4c"
     },
     {
       "path": "catalog/runtime.js",
