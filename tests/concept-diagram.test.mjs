@@ -92,7 +92,7 @@ test('两段图解按实际成片时钟保留原弧线、流线、球心和标�
 
 test('概念图解的两个案例一并迁入，可搜索直达，缩略图与预览使用相同实现',async()=>{
   const historical=await history(data),cross=JSON.parse(await readFile(state+'/crosswalk.json','utf8'));
-  assert.equal(effect.category,'data');assert.ok(!historical.recipes.some(e=>e.history_id==='tutorial-definition'));
+  assert.equal(effect.kind,'composition');assert.equal(effect.category,'composition-interface');assert.ok(!historical.recipes.some(e=>e.history_id==='tutorial-definition'));
   assert.ok(historical.excluded.some(e=>e.id==='tutorial-definition'));
   assert.deepEqual(cross.rules['tutorial-definition'].migration.cases,['tutorial-definition','tutorial-concept']);
   for(const file of cross.rules['tutorial-definition'].migration.files)assert.equal(createHash('sha256').update(await readFile(file.file)).digest('hex'),file.sha256);

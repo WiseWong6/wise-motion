@@ -156,6 +156,11 @@
   }
   F['prompt-border-trace']=root=>promptScene(root,'输入框边缘循线显现','border',0,1400);
   F['prompt-chinese-type']=root=>promptScene(root,'输入框逐字写入与发送点击','typing',0,6200);
+  F['prompt-chinese-type'].breakdown=[
+    {id:'ui',name:'界面落位与描边',start:0,end:900,time:'0–0.9 秒',actions:['prompt-ui-push','prompt-border-trace'],detail:'输入界面落位，圆角边缘描出，菜单、工具和按钮依次进入。'},
+    {id:'typing',name:'三行文字输入',start:900,end:4500,time:'0.9–4.5 秒',actions:['caption-type-caret'],detail:'三行提示词逐字输入，光标跟随当前文字；可参考已有光标打字动作。'},
+    {id:'send',name:'推近按钮并发送',start:4800,end:6100,time:'4.8–6.1 秒',actions:['send-press-ring'],detail:'画面推近发送按钮，按钮按下恢复，外侧蓝色短弧绕转并收起。'}
+  ];
   F['prompt-char-gather']=root=>promptScene(root,'字符沿弧汇入中心','gather',5,3000);
   F['send-press-ring']=root=>promptScene(root,'发送按钮按压扩圈','send',4.9,1100);
   F['prompt-ui-push']=root=>promptScene(root,'输入界面落位后推近','ui',0,4800);
@@ -164,7 +169,7 @@
   F['prompt-to-core-sequence'].breakdown=[
     {id:'ui',actions:['prompt-ui-push'],name:'输入界面落位推近',start:0,end:5800,time:'0–5.8 秒',detail:'原界面从略大、略低处落位，顶部菜单、工具与胶囊错峰进入；1–4.6 秒继续缓慢推近。所有控件、描边与文字共用这一移动。'},
     {id:'border',actions:['prompt-border-trace'],name:'圆角边缘描出',start:0,end:800,time:'0–0.8 秒',detail:'按原圆角路径起点沿一圈描出；描线完成后边缘亮度轻微起伏，5.2–5.8 秒随界面退出。'},
-    {id:'letters',actions:['prompt-chinese-type','prompt-char-gather'],name:'逐字输入与沿弧汇聚',start:900,end:7554,time:'0.9–7.55 秒',detail:'原提示词在 0.9–4.5 秒逐字写入，字符出现时轻抬 6 像素；5.3 秒起逐字向外绕行、转动放大，再缩进同一个中心。两项独立文字动作共用这一组字与布局。'},
+    {id:'letters',actions:['caption-type-caret','prompt-char-gather'],name:'逐字输入与沿弧汇聚',start:900,end:7554,time:'0.9–7.55 秒',detail:'原提示词在 0.9–4.5 秒逐字写入，字符出现时轻抬 6 像素；5.3 秒起逐字向外绕行、转动放大，再缩进同一个中心。输入可参考光标跟随打字，汇聚使用原字符与布局的独立动作。'},
     {id:'send',actions:['send-press-ring'],name:'发送按钮按压扩圈',start:5000,end:5700,time:'5–5.7 秒',detail:'白色发送按钮先缩到 80% 再恢复，白色细环向外扩张并淡去；按钮与细环共用原绘制函数。'},
     {id:'core',actions:['core-ring-expand'],name:'中心光核与同心环',start:6500,end:8000,time:'6.5–8 秒',detail:'白色光核以指数速度增大，外缘为淡紫；三条错相光环持续向外扩散，承接仍在汇聚的字符。'},
     {id:'labels',actions:[],reason:'组合内的标题与说明仅作为整段画面的文字层使用，无独立参考。',name:'原片标题与说明',start:400,end:6170,time:'0.4–6.17 秒',detail:'保留左上年份、Motion, from a prompt. 和底部原片说明；字从各自裁剪框中升入，发送后依次升出。'}

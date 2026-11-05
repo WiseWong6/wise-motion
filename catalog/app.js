@@ -23,6 +23,7 @@
     return historyLoad;
   }
   const labels = {title:'动效名称', prompt:'提示词', code:'代码'};
+  const kindNames = {action:'单个动作', composition:'组合片段', illustration:'插画素材', recipe:'历史配方'};
   const categoryName = id => data.categories.find(x => x.id === id)?.name || '';
 
   /* 内联图标参考 Lucide 1.8.0，部分继承 Feather；路径分别保留 ISC / MIT 来源，完整声明见 vendor/lucide/LICENSE。
@@ -197,10 +198,9 @@
   function renderList() {
     $('search-clear').hidden = !$('search').value;
     const query = $('search').value.trim();
-    const pool = query ? data.effects.filter(e => e.kind === kind) : null;
-    const matches = pool ? MotionMatch.rank({effects: pool}, query) : [];
-    const candidates = query ? matches.map(m => m.effect) : data.effects;
-    const effects = candidates.filter(e => e.kind === kind && (category === 'all' || e.category === category));
+    // 有搜索词时检索整个目录；页签和分类只控制清空搜索后的浏览范围。
+    const effects = query ? MotionMatch.rank(data, query).map(match => match.effect)
+      : data.effects.filter(e => e.kind === kind && (category === 'all' || e.category === category));
     $('empty').hidden = !!effects.length;
     const list = $('effects-list');
     list.hidden = !effects.length;
@@ -215,11 +215,12 @@
     for (const group of data.categories) {
       const items = effects.filter(e => e.category === group.id);
       if (!items.length) continue;
-      const open = !collapsed.has(group.id);
+      const open = !!query || !collapsed.has(group.id);
+      const groupName = query ? `${kindNames[items[0].kind]} · ${group.name}` : group.name;
       const section = document.createElement('section');
       section.className = 'effect-group';
       section.innerHTML =
-        `<button class="group-head" data-group="${group.id}" title="${MotionKit.escape(group.description||group.name)}" aria-expanded="${open}">${mark('chevron-right')}<span class="group-name">${MotionKit.escape(group.name)}</span><span class="pill-count">${items.length}</span></button>`;
+        `<button class="group-head" data-group="${group.id}" title="${MotionKit.escape(group.description||group.name)}" aria-expanded="${open}">${mark('chevron-right')}<span class="group-name">${MotionKit.escape(groupName)}</span><span class="pill-count">${items.length}</span></button>`;
       const grid = document.createElement('div');
       grid.className = 'effect-grid';
       for (const effect of items) grid.append(retained.get(effect.id) || card(effect));
@@ -443,6 +444,10 @@
   function selectEffect(id, preserved = null, caseId = null, variantId = null) {
     let effect = data.effects.find(e => e.id === id);
     if (!effect) return;
+    if ($('search').value.trim()) {
+      collapsed.delete(effect.category);
+      if (kind !== effect.kind) showKind(effect.kind);
+    }
     relatedPreview.close({resume:false,focus:false});
     if(effect.kind==='recipe'){
       const entry=effect.entries.find(e=>e.id===(caseId||preserved?.caseId))||effect.entries[0];

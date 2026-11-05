@@ -20,7 +20,7 @@ const expected={
   'keyframe-workbench':{panels:['panel-rise-collapse'],bounce:['ball-bounce-trails'],graph:['bezier-editor'],timeline:['timeline-keyframe-playhead'],'large-graph':['bezier-editor'],labels:['title-stagger']},
   'material-phone-sequence':{shapes:[],labels:['title-stagger'],phone:['material-phone-rise'],cards:['material-card-stagger'],switch:['material-switch-spring'],spinner:['material-spinner-arc'],like:['material-like-pop'],fab:['material-fab-panel']},
   'generative-point-sequence':{field:['generative-flow-field'],points:['generative-point-morph'],frame:['generative-frame-readout'],title:['title-stagger'],code:[]},
-  'prompt-to-core-sequence':{ui:['prompt-ui-push'],border:['prompt-border-trace'],letters:['prompt-chinese-type','prompt-char-gather'],send:['send-press-ring'],core:['core-ring-expand'],labels:[]},
+  'prompt-to-core-sequence':{ui:['prompt-ui-push'],border:['prompt-border-trace'],letters:['caption-type-caret','prompt-char-gather'],send:['send-press-ring'],core:['core-ring-expand'],labels:[]},
   'outro-recap-sequence':{burst:['radial-line-burst'],axis:['timeline-dock-down'],credits:['outro-credit-lift'],segments:['color-segment-stagger']}
 };
 
@@ -79,7 +79,7 @@ test('真实图层关系不依赖列表顺序，同一文字层保留写入和�
     assert.ok(!entry.actions?.includes('shape-pop-float'),effect.id+' 不保留已删除的独立动作关联');
     assert.equal(Object.hasOwn(entry.action_variants||{},'shape-pop-float'),false,effect.id+' 不保留已删除动作的示例选择');
   }
-  assert.deepEqual(Array.from(factories['prompt-to-core-sequence'].breakdown.find(row=>row.id==='letters').actions),['prompt-chinese-type','prompt-char-gather']);
+  assert.deepEqual(Array.from(factories['prompt-to-core-sequence'].breakdown.find(row=>row.id==='letters').actions),['caption-type-caret','prompt-char-gather']);
 });
 
 

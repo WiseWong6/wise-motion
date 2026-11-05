@@ -8,8 +8,8 @@
     },
     {
       "path": "catalog/app.js",
-      "bytes": 61832,
-      "sha256": "954fef3c18839d15f452951982d3530e01c59e1f6c749cec5998b5e30f69049f"
+      "bytes": 62151,
+      "sha256": "7baa8918fcc559bfc5ba2c1b60da6995de2e2da044c5a412a48088670fb8b3e5"
     },
     {
       "path": "catalog/assets/WEBP-SOURCES.json",
@@ -3001,8 +3001,8 @@
     },
     {
       "path": "catalog/effects/concept-diagram.js",
-      "bytes": 8069,
-      "sha256": "5bcae81c8c4f56597d05423a9d935099bcba5886f79f755ea4ff5510751d1fc7"
+      "bytes": 8862,
+      "sha256": "8702502e248e5f5f418a9ce33d50fa539cddb7d91f81f2c20bd334d04b75c33b"
     },
     {
       "path": "catalog/effects/continuous.js",
@@ -3111,8 +3111,8 @@
     },
     {
       "path": "catalog/effects/knowledge-video.js",
-      "bytes": 151090,
-      "sha256": "4654a445e5d9fefa4f450a2a7a2e9ad1c9bc4d169c237d08cca822944b649355"
+      "bytes": 153428,
+      "sha256": "016b8ca9349ff13e8667af0c56d2f6198fe55acc8ce2cfa750264165ed86785a"
     },
     {
       "path": "catalog/effects/lego-kingdom.js",
@@ -3236,8 +3236,8 @@
     },
     {
       "path": "catalog/effects/reel-opening.js",
-      "bytes": 11719,
-      "sha256": "b04ccc8c75c71ab722897626965bde73e3060a2597d90e1821d964fddb90af04"
+      "bytes": 12733,
+      "sha256": "5b3883aa1b8a2b984a84f1b51f2c9dd45814ce1edad93d14710ef4ff89c6b978"
     },
     {
       "path": "catalog/effects/reel-paper.js",
@@ -3246,8 +3246,8 @@
     },
     {
       "path": "catalog/effects/reel-prompt-outro.js",
-      "bytes": 45795,
-      "sha256": "2572dfcafcdbe3999ce9fb0a68e47e33b3b769b99f4248459296bfa5494cb768"
+      "bytes": 46514,
+      "sha256": "fd98ab9c9cf95ab08a7c6d4dd148ad32e3066d617172cf47e186fc855fe2cfcc"
     },
     {
       "path": "catalog/effects/reel-transitions.js",
@@ -3422,7 +3422,7 @@
     {
       "path": "catalog/export.js",
       "bytes": 47892,
-      "sha256": "a42e27c0f9dd5b55a7d59f9c41b66ee8bf497a0a9b92d4e0cf9ccdfd916f2770"
+      "sha256": "51ffc5d79bb5f4ba2b69b9bc2db06b686f502f963bbdfdd9c7adc014679d9ec2"
     },
     {
       "path": "catalog/fonts/LXGWWenKai-Regular.woff2",
@@ -3511,8 +3511,8 @@
     },
     {
       "path": "catalog/matching.js",
-      "bytes": 11098,
-      "sha256": "41d062546418e953af7b70fc086601985956615c8078b06ce7ccfda078ce751c"
+      "bytes": 11471,
+      "sha256": "0d280eddb4dffb107c42bbd1976305a4f2415727852a45bd93852db0f4008aae"
     },
     {
       "path": "catalog/player-glass.js",
@@ -3526,13 +3526,13 @@
     },
     {
       "path": "catalog/registry-data.js",
-      "bytes": 1817842,
-      "sha256": "6a37573245dd94580124371ab44ac42d1b3b099f39d376aa7d6fe0c7453d6500"
+      "bytes": 1818097,
+      "sha256": "f894722153ecea3fb9b30e590e25f7325052967d7a7069f5c48cb08fd58d994d"
     },
     {
       "path": "catalog/registry.json",
-      "bytes": 4136244,
-      "sha256": "42a5e38469bf5c90c0090988c32d94f7cf57794fceffaade327ccb2f4ba86134"
+      "bytes": 4136845,
+      "sha256": "7dd20348b14c9b8e76385cb4e8f53efbec5de40b02d0397530c198f71e79962b"
     },
     {
       "path": "catalog/related-preview.js",
@@ -3601,8 +3601,8 @@
     },
     {
       "path": "catalog/remotion/knowledge-video/catalog.js",
-      "bytes": 587,
-      "sha256": "b35ec0cb8af098369354b7ffdc991641e199c63bd55be7d903b04dbbfd3db921"
+      "bytes": 2535,
+      "sha256": "2870443f2ded3d703032a4d8463c24eea01e0b14056128e185a060a1e08c01ac"
     },
     {
       "path": "catalog/remotion/knowledge-video/drawing.js",

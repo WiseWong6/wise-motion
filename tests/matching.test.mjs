@@ -8,6 +8,17 @@ import {spawnSync} from 'node:child_process';
 import {runInNewContext} from 'node:vm';
 import {historyTestData} from './history-fixture.mjs';
 const {rank, describe} = createRequire(import.meta.url)('../catalog/matching.js');
+test('完整目录名称与旧名称可以直接检索，告别不被误解成否定需求', () => {
+  for (const effect of data.effects) {
+    for (const name of [effect.name,...(effect.previous_names||[])]) {
+      assert.ok(rank(data, name).some(match => match.effect.id === effect.id), `${name} 应找到 ${effect.id}`);
+    }
+  }
+  assert.equal(rank(data, '人物告别与三连点亮')[0].effect.id, 'farewell-actions');
+  assert.ok(rank(data, '告别').some(match => match.effect.id === 'farewell-actions'));
+  assert.ok(!rank(data, '人物告别与三连点亮', {exclude:['farewell-actions']}).some(match => match.effect.id === 'farewell-actions'));
+  assert.ok(!rank(data, '卡片翻转，别翻面').some(match => match.effect.id === 'card-flip'));
+});
 test('历史目录清空后，来源标题片段匹配仍通过独立样例验证',async()=>{
   const context={};runInNewContext(await readFile(new URL('../catalog/history-data.js',import.meta.url),'utf8'),context);
   const effects=context.MotionHistory.recipes;

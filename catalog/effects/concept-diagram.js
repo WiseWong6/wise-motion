@@ -97,4 +97,10 @@
       definition(Math.min(t,19));concept(Math.max(t,19));
     };
   };
+  // 两段图解是完整讲解片段，目录按真实切换时刻定位，绘制时钟不变。
+  const cut=150+(156.2-start)*1000,finish=150+(end-start)*1000+450;
+  F['concept-diagram'].breakdown=[
+    {id:'definition',name:'方向、流动与压缩',start:0,end:cut,time:`0–${(cut/1000).toFixed(2)} 秒`,actions:['stroke-draw','curve-path'],detail:'方向箭头、流线、外圈收束和密度结论按原时序出现；已有描线与沿路径移动条目提供动作参考。'},
+    {id:'concept',name:'方向、旋转与扩张',start:cut,end:finish,time:`${(cut/1000).toFixed(2)}–${(finish/1000).toFixed(2)} 秒`,actions:['stroke-draw','curve-path'],detail:'切到第二段图解，依次加入方向、旋转与流动说明，核心球增大，最终保留完整图解。'}
+  ];
 })(globalThis.MotionFactories);

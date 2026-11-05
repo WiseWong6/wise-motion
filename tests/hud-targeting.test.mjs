@@ -66,8 +66,9 @@ test('实际绘制分支在开机、扫描、锁定和退出均无无效坐标�
 
 
 test('数据条目覆盖标记区域且球面扫描与轨迹定位各自独立',()=>{
- const expected=['hud-range-readout','hud-navigation-bars','hud-signal-waves','hud-spectrum-bars','hud-data-stream','hud-candidate-status','hud-globe-scan','hud-radar-sweep'];
+ const expected=['hud-range-readout','hud-spectrum-bars','hud-data-stream','hud-candidate-status','hud-globe-scan','hud-radar-sweep'];
  for(const id of expected)assert.equal(data.effects.find(e=>e.id===id)?.category,'scanning',id);
+ for(const id of ['hud-system-boot','hud-navigation-bars','hud-signal-waves'])assert.equal(data.effects.find(e=>e.id===id)?.category,'data',id);
  assert.equal(data.redirects['hud-telemetry-sync'],'hud-range-readout');
 });
 

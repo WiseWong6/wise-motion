@@ -10,7 +10,7 @@ import {frameScriptsFor} from '../remotion/frame-document.mjs';
 const videoSources=new Set(['pixel-motion.js','time-in-motion-graphics.js','aboutlove.js','lego-kingdom.js'].map(file=>'catalog/effects/'+file));
 const illustrations=data.effects.filter(e=>e.kind==='illustration'&&!e.scene&&!videoSources.has(e.source.path));
 const animated=illustrations.filter(e=>e.actions.length);
-const noActionIds=['book-geometric-illustration','selfie-phone-illustration','spiral-galaxy-illustration','claude-spectrum-illustration'];
+const noActionIds=['book-geometric-illustration','selfie-phone-illustration','spiral-galaxy-illustration'];
 const definition=id=>data.effects.find(e=>e.id===id);
 const actionFor=(w,art)=>w.MotionKit.resolveVariant(definition(art.actions[0]),art.action_variants?.[art.actions[0]]);
 

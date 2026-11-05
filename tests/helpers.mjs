@@ -3,6 +3,7 @@ import {readFile} from 'node:fs/promises';
 import {JSDOM} from 'jsdom';
 import {installSceneCanvas} from './scene-canvas-fixture.mjs';
 import {installAboutloveFixture} from './aboutlove-fixture.mjs';
+import {installKnowledgeVideoFixture} from './knowledge-video-fixture.mjs';
 import {historyTestData} from './history-fixture.mjs';
 import {resolveEffect} from '../remotion/clock.mjs';
 export const data = JSON.parse(await readFile(new URL('../catalog/registry.json', import.meta.url), 'utf8'));
@@ -108,7 +109,7 @@ export async function environment(withApp = false, options = {}) {
   }
   for (const file of sources) {
     if (file === 'mark-lazy-loaded') { w.MotionLazy.markLoaded(); continue; }
-    if (file === 'catalog/app.js') options.beforeApp?.(w);
+    if (file === 'catalog/app.js') { installKnowledgeVideoFixture(w, data); options.beforeApp?.(w); }
     w.eval(await readFile(new URL('../' + file, import.meta.url), 'utf8'));
     if(file==='catalog/history-data.js'&&options.historyFixture)w.MotionHistory=historyTestData();
   }

@@ -151,5 +151,13 @@
     };
   }
   F['char-color-cycle'] = root => opening(root,false);
+  // 目录时钟将原开场的 0–2.85 秒映射到 0.15–2.55 秒。
+  const openingMs=seconds=>150+seconds/2.85*2400;
+  F['char-color-cycle'].breakdown=[
+    {id:'ruler',name:'尺度线与点阵展开',start:openingMs(.05),end:openingMs(1.4),time:'0.19–1.33 秒',actions:['dimension-line'],detail:'尺度线从中心向两端伸展，背景点阵向外显现。'},
+    {id:'title',name:'字标与年份进入',start:openingMs(.45),end:openingMs(2.02),time:'0.53–1.85 秒',actions:['mask-stagger-text'],detail:'六个完整字母从裁剪边界错峰升入，年份与七个彩色刻度随后出现。'},
+    {id:'caption',name:'字幕逐字输入',start:openingMs(1.4),end:openingMs(2.85),time:'1.33–2.55 秒',actions:['caption-type-caret'],detail:'下方字幕逐字写入，光标跟随末字。'},
+    {id:'color',name:'字母轮换颜色',start:openingMs(2),end:3000,time:'1.83–3.00 秒',actions:[],detail:'字母按原半秒节拍轮换颜色，其他元素保持位置，末尾停留。'}
+  ];
   F['letter-hole-zoom'] = root => opening(root,true);
 })(globalThis.MotionFactories);

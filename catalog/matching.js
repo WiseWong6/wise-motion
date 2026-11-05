@@ -51,7 +51,11 @@
     return {positive, denied};
   }
   function rank(registry, query, options = {}) {
-    const {positive, denied} = parse(query);
+    // 直接查名称、旧名称或别名时按字面匹配，避免把“告别”中的“别”当作否定。
+    const lookup = String(query).trim().toLowerCase();
+    const named = lookup && registry.effects.some(e => [e.name,...(e.previous_names||[]),...e.aliases]
+      .some(name => name.toLowerCase() === lookup));
+    const {positive, denied} = named ? {positive:String(query), denied:[]} : parse(query);
     const text=positive.trim().toLowerCase();
     const explicit = options.exclude || [];
     const prohibited = exclusions.filter(([pattern]) => denied.some(x => pattern.test(x)));

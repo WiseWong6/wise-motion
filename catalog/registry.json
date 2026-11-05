@@ -9470,7 +9470,7 @@
       "id": "heartbeat-follow",
       "name": "心电线失真恢复",
       "kind": "action",
-      "category": "connection",
+      "category": "scanning",
       "summary": "连续前进的心电轨迹在指定时刻突然出现高频噪声，噪声幅度迅速衰减；失真段留在历史尾迹里，随时间滚走。",
       "purpose": "连续前进的心电轨迹在指定时刻突然出现高频噪声，噪声幅度迅速衰减；失真段留在历史尾迹里，随时间滚走。",
       "objects": "心电轨迹突然失真再恢复",
@@ -14238,8 +14238,8 @@
     {
       "id": "concept-diagram",
       "name": "图解逐段演变",
-      "kind": "action",
-      "category": "data",
+      "kind": "composition",
+      "category": "composition-interface",
       "summary": "先把方向、流动、压缩逐步画成图，再接续方向、旋转和流动变大的第二段图解。",
       "purpose": "让文字中的概念逐项对应到图中的方向、轨迹与形体变化。",
       "objects": "两段图解、错峰标签、旋转弧线、带行进点的箭头、收缩外圈、流动虚线和脉动球心",
@@ -14292,7 +14292,10 @@
         "library": "animejs@4.5.0",
         "reference_url": "https://animejs.com/documentation/"
       },
-      "actions": [],
+      "actions": [
+        "stroke-draw",
+        "curve-path"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation",
@@ -14317,7 +14320,8 @@
           "这里 t 为当前动作秒数，播放速度1时等于播放秒数；当前 t 直接传给工厂；内部另有局部设计时钟或归一进度时，按细节中的映射求值。播放到动作末端后保留该末端画面。",
           "此条目按工厂内多段视觉时钟依次播放两个图解；第一例方向→流动→压缩→密度提高，外围半径240收至154、内弧84增至122；到内部视觉秒数19才切第二例。第二例依次加外向箭头、旋转箭头、流体与扩张，流体出现后外向箭头只减弱35%，不能全部删掉；阶段末保持第二例。"
         ]
-      }
+      },
+      "breakdown_mode": "sequence"
     },
     {
       "id": "rolling-distance",
@@ -14988,7 +14992,7 @@
       "id": "data-pulse",
       "name": "频谱波形同步",
       "kind": "action",
-      "category": "data",
+      "category": "scanning",
       "summary": "原式环形镜像频谱与双层波形共用逐帧分析数据。",
       "purpose": "同时呈现频段强弱和信号波形，保留原式环形画法。",
       "objects": "环形镜像频谱、鼓点内环、外圈粒点和双层波形",
@@ -22352,7 +22356,7 @@
       }
     },
     {
-      "kind": "action",
+      "kind": "composition",
       "loop": false,
       "parameters": {
         "speed": {
@@ -22371,7 +22375,11 @@
         "reference_url": "https://animejs.com/documentation/",
         "factory": "char-color-cycle"
       },
-      "actions": [],
+      "actions": [
+        "dimension-line",
+        "mask-stagger-text",
+        "caption-type-caret"
+      ],
       "demo_mode": "fixed-timeline",
       "domains": [
         "animation"
@@ -22379,12 +22387,13 @@
       "previous_names": [
         "文字错峰进场与轮换变色",
         "字色轮换",
-        "字色依次轮换"
+        "字色依次轮换",
+        "文字依次换色"
       ],
       "trigger": "打开预览后按固定时间顺序播放；可暂停、重播及拖动时间。",
       "id": "char-color-cycle",
-      "name": "文字依次换色",
-      "category": "attention",
+      "name": "字标开场与换色",
+      "category": "composition-text",
       "summary": "尺度横线先展开，点阵铺开；MOTION 逐字升入，年份、彩色刻度和打字字幕陆续出现，最后轮换字母颜色。",
       "purpose": "让短标题从有序进场过渡到连续的色彩强调。",
       "objects": "MOTION 原字标、尺度横线、两端年份、七个彩色刻度、打字字幕与背景点阵",
@@ -22397,7 +22406,8 @@
         "Claude 动效演进史",
         "文字错峰进场与轮换变色",
         "字色轮换",
-        "字色依次轮换"
+        "字色依次轮换",
+        "文字依次换色"
       ],
       "behaviors": [
         "appear",
@@ -22443,7 +22453,8 @@
           "这里 t 为动作秒数（播放速度1时等于播放秒数）；设计时钟 u=0+2.85×限制到0至1的((t−0.15)/2.4)，单位为秒。下列标明 u 的阶段使用设计时钟，不是实际播放时长；归一进度 p=u/2.85。设计时钟在两端钳住，不靠上一帧保留状态。",
           "工厂输入u=0.45+0.06i至1.25+0.06i秒，第i字从下330设计像素升入；2至3秒每0.5设计秒切换橙、粉、红、黄、青、紫、暖白，字形不换。点阵0.15至1.4展开，基线0.05至0.7伸展，年代刻线1.2起每0.07秒错峰；副题1.4起每设计秒40字输入，末尾停留。"
         ]
-      }
+      },
+      "breakdown_mode": "sequence"
     },
     {
       "kind": "action",
@@ -30159,9 +30170,9 @@
     },
     {
       "id": "prompt-chinese-type",
-      "name": "文字分行输入",
-      "kind": "action",
-      "category": "writing",
+      "name": "输入后推近发送",
+      "kind": "composition",
+      "category": "composition-interface",
       "summary": "完整圆角输入框内，提示词按固定节拍写入三行；写完后画面推进到发送按钮，按钮按压恢复，外侧蓝色短弧绕转并收起。",
       "purpose": "呈现完整输入框内的分行逐字写入，以及向发送按钮推进的点击反馈。",
       "objects": "完整圆角输入框、描边、顶部工具栏、底部控件、发送按钮、三行中文提示词与跟随光标",
@@ -30177,7 +30188,8 @@
         "演进史待验收",
         "Claude 动效演进史",
         "输入框逐字写入",
-        "分行逐字"
+        "分行逐字",
+        "文字分行输入"
       ],
       "behaviors": [
         "type",
@@ -30198,7 +30210,12 @@
           "step": 0.25
         }
       },
-      "actions": [],
+      "actions": [
+        "prompt-ui-push",
+        "prompt-border-trace",
+        "caption-type-caret",
+        "send-press-ring"
+      ],
       "trigger": "打开后播放；可暂停、重播和任意定位。",
       "analogy": "完整圆角输入框内，提示词按固定节拍写入三行；写完后画面推进到发送按钮，按钮按压恢复，外侧蓝色短弧绕转并收起。",
       "assumptions": "建立输入框、描边、工具栏、发送按钮及110个字符和光标，输入阶段与组合共用原界面、排版和绘制函数；深浅模式均保留原深色背景，中文及混排正文用Light。独立动作在输入结束后向发送按钮推进，增加按钮外侧的蓝弧点击反馈，6.2秒结束；原组合继续使用原有发送效果。",
@@ -30213,7 +30230,8 @@
         "中文随节拍逐字输入",
         "中文节拍打字机",
         "输入框逐字写入",
-        "分行逐字"
+        "分行逐字",
+        "文字分行输入"
       ],
       "original_scene": "claude-showreel-2026/sPrompt",
       "source": {
@@ -30244,7 +30262,8 @@
         ],
         "retain": "输入框及工具栏、发送按钮必须完整保留，与文字同步移动和缩放。内层坐标使用 1920×1080，输入框局部左上角为（45，88），宽 940、高 198、圆角 22；保留 110 字内容、21.5 像素字号、885 像素换行阈值、36 像素行距和跟随光标。 输入完成后以发送按钮为落点推进，0.65秒内放大到6倍并停在画面中心，过程先快后慢；输入框、文字、按钮和蓝弧必须同步移动和缩放。按钮自身按下时缩到80%再恢复；蓝色弧线为 #007aff、线宽 2 像素、圆头，位于按钮外侧 2 像素，最长半圈，在 1.1 秒内绕转两圈后收起。",
         "avoid": "不删除输入框而只留悬空文字，不在输入期间让界面退场；不改成整行淡入，不重排为单行，也不缩写提示词。 推进期间不让文字与输入框分离，不将按钮推出画面，也不把蓝弧改成整圈向外扩散。"
-      }
+      },
+      "breakdown_mode": "sequence"
     },
     {
       "id": "prompt-char-gather",
@@ -31145,7 +31164,7 @@
       "preview_ms": 3700,
       "actions": [
         "prompt-border-trace",
-        "prompt-chinese-type",
+        "caption-type-caret",
         "prompt-char-gather",
         "send-press-ring",
         "prompt-ui-push",
@@ -33370,8 +33389,8 @@
     {
       "id": "claude-spectrum-illustration",
       "name": "起伏频谱柱",
-      "kind": "illustration",
-      "category": "illustration-interface",
+      "kind": "action",
+      "category": "scanning",
       "summary": "三十二根柱条使用原片声音分析值起伏，柱高与明暗随频段强度变化。",
       "purpose": "将算法图块中的原插画单独复用，保留图形数量、几何关系和内部运动。",
       "objects": "三十二根频谱柱",
@@ -37882,7 +37901,7 @@
       "id": "hud-system-boot",
       "name": "面积图展开",
       "kind": "action",
-      "category": "scanning",
+      "category": "data",
       "summary": "强度曲线向右展开，曲线下方面积同步填充，末端圆点跟随当前读数。",
       "purpose": "以连续面积曲线展示相对信号强度，读数与曲线端点同步变化。",
       "objects": "三十二个采样点、半透明面积、末端圆点、强度百分比与采样窗口",
@@ -38042,7 +38061,7 @@
       "id": "hud-navigation-bars",
       "name": "弧形仪表联动",
       "kind": "action",
-      "category": "scanning",
+      "category": "data",
       "summary": "方位、仰角与信噪比驱动三组弧形仪表，亮弧、端点和数值同步变化。",
       "purpose": "方位、仰角与信噪比驱动三组弧形仪表，亮弧、端点和数值同步变化。",
       "objects": "三组270度量程弧、白色端点、居中读数与单位",
@@ -38202,7 +38221,7 @@
       "id": "hud-signal-waves",
       "name": "占比分区变化",
       "kind": "action",
-      "category": "scanning",
+      "category": "data",
       "summary": "主波、杂波和底噪占据不同面积，分区边界与百分比一起变化并在锁定后稳定。",
       "purpose": "主波、杂波和底噪占据不同面积，分区边界与百分比一起变化并在锁定后稳定。",
       "objects": "主波大分区、上下排列的杂波与底噪分区、占比读数与分离状态",
@@ -67313,7 +67332,7 @@
       "assumptions": "默认示例保留原成片对应片段；动作的几何、时序和状态函数可独立用于自己的图片或视频。",
       "id": "rect-aperture-breathe",
       "name": "矩形窗口伸缩",
-      "category": "layout",
+      "category": "transition",
       "duration_ms": 5733.333333333333,
       "preview_ms": 2800,
       "summary": "围绕同一机械轴心收拢矩形窗口，四边继续移动，并跨越三次换镜后展开至全幅。",
@@ -67460,7 +67479,7 @@
       "assumptions": "默认示例保留原成片对应片段；动作的几何、时序和状态函数可独立用于自己的图片或视频。",
       "id": "three-column-aperture",
       "name": "三列窗口依次开合",
-      "category": "layout",
+      "category": "transition",
       "duration_ms": 4066.6666666666665,
       "preview_ms": 1400,
       "summary": "中央竖窗收窄，左右两列以不同关键点展开，跨换镜保持同一编舞，最后合成全幅。",
@@ -70662,7 +70681,7 @@
       "id": "lap-outline-echo",
       "name": "绕圈叠出轮廓",
       "kind": "action",
-      "category": "continuous",
+      "category": "connection",
       "loop": false,
       "default_ease": "linear",
       "parameters": {
@@ -75549,8 +75568,8 @@
     {
       "id": "cosine-gauge-sweep",
       "name": "仪表指针与读数联动",
-      "kind": "illustration",
-      "category": "illustration-interface",
+      "kind": "action",
+      "category": "data",
       "summary": "半圆仪表逐渐描出，指针扫到指定值，数字同步变化并轻微弹动强调。",
       "purpose": "适合分数、相似度或信号状态说明；固定示例范围为负一到正一。",
       "objects": "半圆刻度、指针、填充弧与读数",
@@ -75692,8 +75711,8 @@
     {
       "id": "vector-angle-swing",
       "name": "向量夹角来回摆动",
-      "kind": "illustration",
-      "category": "illustration-diagram",
+      "kind": "action",
+      "category": "data",
       "summary": "同一原点的两支箭头改变夹角，扇形、角度符号与余弦读数一起变化。",
       "purpose": "适合解释方向相似与余弦关系；保留来回摆动，不只截取一次变化。",
       "objects": "银色网格、两支向量、夹角扇形、公式和读数",
@@ -75835,8 +75854,8 @@
     {
       "id": "purchase-table-vector",
       "name": "购买表格突出一行",
-      "kind": "illustration",
-      "category": "illustration-interface",
+      "kind": "action",
+      "category": "data",
       "summary": "三行八列购买记录在宽屏中展开，猫粮一行亮起，其余两行变暗，完整数字行提到下方。",
       "purpose": "适合讲解表格一行如何成为向量；横向完整八列，列间保留宽裕间距。",
       "objects": "八列用户、三行购买记录、行高亮和数字行",
@@ -75979,8 +75998,8 @@
     {
       "id": "paper-card-drop",
       "name": "论文资料依次入场",
-      "kind": "illustration",
-      "category": "illustration-object",
+      "kind": "composition",
+      "category": "composition-text",
       "summary": "3:4竖屏中，论文页先倾斜落定，年份与作者信息随后显现，右下结构图最后进入。",
       "purpose": "适合分三拍介绍论文、年代与结构图，保留一组资料依次入场的完整关系。",
       "objects": "论文页、年份与作者信息、右下结构图三组资料",
@@ -76104,7 +76123,8 @@
         }
       },
       "actions": [
-        "tilt-drop-settle"
+        "tilt-drop-settle",
+        "stagger-in"
       ],
       "demo_mode": "fixed-timeline",
       "content_slots": [],
@@ -76135,13 +76155,14 @@
       },
       "previous_names": [
         "论文卡倾斜落定"
-      ]
+      ],
+      "breakdown_mode": "sequence"
     },
     {
       "id": "cat-context-links",
       "name": "中心词连接周围词语",
-      "kind": "illustration",
-      "category": "illustration-diagram",
+      "kind": "composition",
+      "category": "composition-interface",
       "summary": "中心的猫标签先弹出，周围词语依次出现，连接线从边缘伸到各词语边缘。",
       "purpose": "适合表达一个词与周边语境的关系；仅保留下方关系图。",
       "objects": "中心词、六个周围词、边缘相接的连线",
@@ -76281,13 +76302,14 @@
           "连线在标签边缘结束，不穿过字；不带上方人物档案卡。",
           "只创建已选主体；未带整段视频、配音或在线资源。"
         ]
-      }
+      },
+      "breakdown_mode": "sequence"
     },
     {
       "id": "farewell-actions",
       "name": "人物告别与三连点亮",
-      "kind": "illustration",
-      "category": "illustration-object",
+      "kind": "composition",
+      "category": "composition-text",
       "summary": "人物与告别文字出现，点赞、收藏、关注依次描边，弹动点亮并散出短射线。",
       "purpose": "适合视频告别与三连引导；使用时替换示例头像与署名。",
       "objects": "人物头像、告别文字、三连图标、短射线与星点",
@@ -76400,6 +76422,7 @@
       },
       "actions": [
         "stagger-in",
+        "stroke-draw",
         "material-like-pop"
       ],
       "demo_mode": "fixed-timeline",
@@ -76428,7 +76451,8 @@
           "保留原头像浮动、三连描边、点亮和射线；独立示例无旁白。",
           "只创建已选主体；未带整段视频、配音或在线资源。"
         ]
-      }
+      },
+      "breakdown_mode": "sequence"
     }
   ],
   "redirects": {
