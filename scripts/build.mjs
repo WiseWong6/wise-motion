@@ -84,10 +84,11 @@ await output('catalog/registry-data.js', '/* 自动生成自 registry.json；请
 const tabKinds=['action','composition','illustration'];
 const tabCounts=Object.fromEntries(tabKinds.map(kind=>[kind,registry.effects.filter(effect=>effect.kind===kind).length]));
 const countSummary=`目录有 ${tabCounts.action} 个单个动作、${tabCounts.illustration} 个插画单图、${tabCounts.composition} 个组合片段，共 ${registry.effects.length} 项；数量由目录定义自动生成，详见 [目录统计](CATALOG-STATS.md)。`;
+const countSummaryEnglish=`The catalog contains ${tabCounts.action} individual motions, ${tabCounts.illustration} illustrations, and ${tabCounts.composition} sequences — ${registry.effects.length} entries in total. Counts are generated from the catalog definition; see [catalog statistics](CATALOG-STATS.md).`;
 const readme=await readFile(path.join(root,'README.md'),'utf8');
 const countBlock=/<!-- catalog-counts:start -->[\s\S]*?<!-- catalog-counts:end -->/g;
 if([...readme.matchAll(countBlock)].length!==1)throw new Error('README 目录统计位置须唯一');
-await output('README.md',readme.replace(countBlock,()=>`<!-- catalog-counts:start -->\n${countSummary}\n<!-- catalog-counts:end -->`));
+await output('README.md',readme.replace(countBlock,()=>`<!-- catalog-counts:start -->\n${countSummary}\n\n${countSummaryEnglish}\n<!-- catalog-counts:end -->`));
 await output('CATALOG-STATS.md',[
   '# 目录统计', '',
   '数量的唯一来源为 [目录定义](catalog/registry.json)，本页及 README 概览由 `npm run build` 自动生成，`npm run check` 核对一致性。请勿手工维护数字。', '',
